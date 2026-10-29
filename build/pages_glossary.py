@@ -1,0 +1,223 @@
+# -*- coding: utf-8 -*-
+"""Glossary page."""
+
+from framework import Page, write, render
+
+TERMS = [
+    ("4–20 mA", "4–20 mA",
+     "The analogue current loop standard. 4 mA is the live zero, 20 mA is full scale.",
+     "Chuẩn vòng dòng tương tự. 4 mA là điểm không sống, 20 mA là thang đầy."),
+    ("Accuracy", "Độ chính xác",
+     "How close an indicated value is to the true value, under stated reference conditions.",
+     "Mức gần đúng của giá trị chỉ thị so với giá trị thật, trong điều kiện chuẩn công bố."),
+    ("Actuator", "Cơ cấu chấp hành",
+     "The device that moves the final element — pneumatic diaphragm, electric motor, hydraulic ram.",
+     "Thiết bị dịch chuyển phần tử chấp hành — màng khí nén, động cơ điện, xi lanh thủy lực."),
+    ("Alarm", "Cảnh báo",
+     "An audible or visible signal that requires an operator response, rationalised under ISA-18.2.",
+     "Tín hiệu nghe hoặc nhìn được cần người vận hành phản ứng, được hợp lý hóa theo ISA-18.2."),
+    ("Anti-windup", "Chống bão hòa tích phân",
+     "Logic that stops the integral term accumulating while the output is saturated.",
+     "Logic ngăn số hạng tích phân tích lũy trong khi đầu ra đang bão hòa."),
+    ("Calibration", "Hiệu chuẩn",
+     "Comparing an instrument against a traceable reference and adjusting zero and span.",
+     "So sánh thiết bị với chuẩn truy xuất được và điều chỉnh zero, span."),
+    ("Cascade control", "Điều khiển tầng nối tiếp",
+     "A slow outer controller writes the setpoint of a fast inner controller.",
+     "Bộ điều khiển ngoài chậm đặt giá trị đặt cho bộ điều khiển trong nhanh."),
+    ("Cavitation", "Xâm thực",
+     "Vapour bubbles collapsing in a valve or orifice, causing noise, erosion and lost capacity.",
+     "Bọt hơi sụp trong van hoặc tiết lưu, gây ồn, xói mòn và mất lưu lượng."),
+    ("Control valve", "Van điều khiển",
+     "A throttling valve with a positioner that accepts a control signal and modulates flow.",
+     "Van tiết lưu có bộ định vị, nhận tín hiệu điều khiển và điều biến lưu lượng."),
+    ("Cv / Kv", "Cv / Kv",
+     "Flow coefficients: Cv in US gpm at 1 psi drop, Kv in m³/h at 1 bar drop.",
+     "Hệ số lưu lượng: Cv tính theo gpm Mỹ với 1 psi, Kv tính theo m³/h với 1 bar."),
+    ("DCS", "DCS — Hệ điều khiển phân tán",
+     "Distributed control system: plant-wide controllers, integrated engineering, history and alarms.",
+     "Hệ điều khiển phân tán: bộ điều khiển toàn nhà máy, kỹ thuật tích hợp, lịch sử và cảnh báo."),
+    ("Dead band", "Dải chết",
+     "A change in input that produces no change in output. In valves this is stiction.",
+     "Thay đổi đầu vào không tạo ra thay đổi đầu ra. Với van, đây là ma sát tĩnh."),
+    ("Dead time", "Thời gian trễ",
+     "The interval between an input change and any observable response.",
+     "Khoảng thời gian từ khi đầu vào thay đổi đến khi có đáp ứng quan sát được."),
+    ("Drift", "Độ trôi",
+     "Gradual change of zero or span over time, usually expressed per year.",
+     "Thay đổi dần của zero hoặc span theo thời gian, thường tính theo năm."),
+    ("Extensometer", "Extensometer — đầu đo biến dạng dài",
+     "An instrument measuring displacement along a line, typically in a borehole (ISO 18674-2).",
+     "Thiết bị đo chuyển vị dọc một tuyến, thường trong lỗ khoan (ISO 18674-2)."),
+    ("Feedforward", "Điều khiển bù trước",
+     "Acting on a measured disturbance before it produces an error.",
+     "Tác động dựa trên nhiễu đo được trước khi nhiễu gây ra sai lệch."),
+    ("Final control element", "Phần tử chấp hành cuối",
+     "The device that directly changes the process — valve, damper, drive, heater.",
+     "Thiết bị trực tiếp thay đổi quá trình — van, cánh gió, biến tần, gia nhiệt."),
+    ("HART", "HART",
+     "A digital signal superimposed on 4–20 mA for configuration and diagnostics.",
+     "Tín hiệu số chồng lên 4–20 mA để cấu hình và chẩn đoán."),
+    ("Hysteresis", "Độ trễ (từ trễ)",
+     "The difference between up-scale and down-scale readings at the same input.",
+     "Chênh lệch giữa giá trị đọc khi tăng và khi giảm tại cùng một đầu vào."),
+    ("IAE", "IAE",
+     "Integral of absolute error over time — a single number for loop performance.",
+     "Tích phân của giá trị tuyệt đối sai lệch theo thời gian — một con số cho hiệu năng vòng."),
+    ("Inclinometer", "Đầu đo nghiêng",
+     "An instrument measuring lateral displacement with depth (ISO 18674-3).",
+     "Thiết bị đo chuyển vị ngang theo chiều sâu (ISO 18674-3)."),
+    ("Instrument air", "Khí nén điều khiển",
+     "Clean, dry compressed air at 4–7 bar that drives pneumatic actuators.",
+     "Khí nén sạch, khô, áp 4–7 bar dùng cho cơ cấu chấp hành khí nén."),
+    ("Live zero", "Điểm không sống",
+     "A signal whose zero value is not 0 (4 mA), so a broken wire is distinguishable from a true zero.",
+     "Tín hiệu có giá trị không khác 0 (4 mA), nên phân biệt được dây đứt với giá trị không thật."),
+    ("Loop", "Vòng điều khiển",
+     "Sensor, controller and final element connected so the measurement affects the action.",
+     "Cảm biến, bộ điều khiển và phần tử chấp hành được nối để kết quả đo tác động lên hành động."),
+    ("MPC", "MPC — Điều khiển dự báo mô hình",
+     "Model predictive control: optimises future moves over a horizon with constraints.",
+     "Điều khiển dự báo mô hình: tối ưu các bước dịch chuyển tương lai trên một chân trời có ràng buộc."),
+    ("NAMUR NE 43", "NAMUR NE 43",
+     "Defines 3.6–21.0 mA as the fault-signalling band outside the 4–20 mA range.",
+     "Quy định 3,6–21,0 mA là dải báo lỗi ngoài khoảng 4–20 mA."),
+    ("Observational method", "Phương pháp quan trắc",
+     "A design approach where monitoring confirms predictions and triggers pre-planned action (EN 1997-1 §2.7).",
+     "Cách tiếp cận thiết kế trong đó quan trắc xác nhận dự báo và kích hoạt hành động định trước (EN 1997-1 §2.7)."),
+    ("Orifice plate", "Tấm lỗ khoan",
+     "A bored plate that creates a pressure difference proportional to flow squared (ISO 5167).",
+     "Tấm có lỗ khoan tạo chênh áp tỷ lệ với bình phương lưu lượng (ISO 5167)."),
+    ("P&amp;ID", "P&amp;ID — Sơ đồ đường ống và thiết bị",
+     "Piping and instrumentation diagram: the drawing that defines tags, loops and connections.",
+     "Sơ đồ đường ống và thiết bị: bản vẽ định nghĩa thẻ, vòng và đấu nối."),
+    ("Piezometer", "Piezometer — đầu đo áp lực nước lỗ rỗng",
+     "An instrument measuring pore water pressure u (ISO 18674-4).",
+     "Thiết bị đo áp lực nước lỗ rỗng u (ISO 18674-4)."),
+    ("PID", "PID — Bộ điều khiển tỷ lệ–tích phân–vi phân",
+     "The three-term feedback algorithm: proportional, integral, derivative.",
+     "Thuật toán phản hồi ba số hạng: tỷ lệ, tích phân, vi phân."),
+    ("PLC", "PLC — Bộ điều khiển logic khả trình",
+     "A rugged industrial computer executing cyclic logic, programmed per IEC 61131-3.",
+     "Máy tính công nghiệp bền, thực thi logic chu kỳ, lập trình theo IEC 61131-3."),
+    ("Pressure cell", "Cảm biến áp tổng",
+     "A flat cell measuring total stress in soil or against a structure (ISO 18674-5).",
+     "Tấm phẳng đo ứng suất tổng trong đất hoặc lên kết cấu (ISO 18674-5)."),
+    ("Process variable", "Biến quá trình",
+     "The quantity being controlled — the PV in the loop equation.",
+     "Đại lượng đang được điều khiển — PV trong phương trình vòng."),
+    ("Rangeability", "Tỷ số điều chỉnh",
+     "The ratio of maximum to minimum usable measurement within the stated accuracy.",
+     "Tỷ số giữa giá trị đo lớn nhất và nhỏ nhất còn dùng được trong độ chính xác công bố."),
+    ("Redundancy", "Dự phòng",
+     "Duplicate or independent measurement paths so one failure does not lose the signal.",
+     "Các đường đo trùng lặp hoặc độc lập để một hư hỏng không làm mất tín hiệu."),
+    ("Repeatability", "Độ lặp lại",
+     "The spread of readings for the same input, approached from the same direction.",
+     "Độ phân tán của kết quả đọc với cùng đầu vào, tiếp cận từ cùng một phía."),
+    ("RTD", "RTD — Nhiệt kế điện trở",
+     "A resistance temperature detector, usually platinum (Pt100), per IEC 60751.",
+     "Nhiệt kế điện trở, thường bằng bạch kim (Pt100), theo IEC 60751."),
+    ("SCADA", "SCADA",
+     "Supervisory control and data acquisition: remote monitoring and command over wide areas.",
+     "Hệ thu thập dữ liệu và giám sát điều khiển: quan trắc và ra lệnh từ xa trên diện rộng."),
+    ("Setpoint", "Giá trị đặt",
+     "The target value the controller works to hold — the SP in the loop equation.",
+     "Giá trị đích mà bộ điều khiển cố giữ — SP trong phương trình vòng."),
+    ("Settlement", "Lún",
+     "Downward movement of a structure or ground surface, measured absolutely or relatively.",
+     "Chuyển dịch xuống của kết cấu hoặc mặt đất, đo tuyệt đối hoặc tương đối."),
+    ("SIL", "SIL — Mức toàn vẹn an toàn",
+     "Safety integrity level 1–4, a property of a complete safety function per IEC 61508/61511.",
+     "Mức toàn vẹn an toàn 1–4, thuộc tính của một chức năng an toàn hoàn chỉnh theo IEC 61508/61511."),
+    ("SIS", "SIS — Hệ thống an toàn",
+     "Safety instrumented system: independent of the control system, brings the plant to a safe state.",
+     "Hệ thống an toàn: độc lập với hệ điều khiển, đưa nhà máy về trạng thái an toàn."),
+    ("Stiction", "Ma sát tĩnh",
+     "Static friction in a valve that must be overcome before any movement occurs.",
+     "Ma sát tĩnh trong van phải vượt qua trước khi có bất kỳ dịch chuyển nào."),
+    ("Strain gauge", "Tenxơmet",
+     "A foil or wire element whose resistance changes with strain (ISO 18674-7).",
+     "Phần tử lá hoặc dây có điện trở thay đổi theo biến dạng (ISO 18674-7)."),
+    ("Thermocouple", "Cặp nhiệt điện",
+     "Two dissimilar metals producing an emf at a junction, per IEC 60584.",
+     "Hai kim loại khác nhau sinh suất điện động tại mối nối, theo IEC 60584."),
+    ("Thermowell", "Ống bảo vệ nhiệt",
+     "A closed pocket that isolates the sensor from the process while conducting heat to it.",
+     "Ống kín cách ly cảm biến khỏi quá trình trong khi vẫn dẫn nhiệt tới cảm biến."),
+    ("Transmitter", "Bộ truyền tín hiệu",
+     "The device that converts a sensor output into a standard signal.",
+     "Thiết bị chuyển đầu ra của cảm biến thành tín hiệu chuẩn."),
+    ("Trigger-action plan", "Kế hoạch ngưỡng–hành động",
+     "A table of thresholds and the specific actions each one requires, agreed before construction.",
+     "Bảng ngưỡng và hành động cụ thể cho từng ngưỡng, thống nhất trước thi công."),
+    ("Turndown", "Tỷ số quay vòng",
+     "How far below full scale a device still meets its accuracy — often used interchangeably with rangeability.",
+     "Mức thấp hơn thang đầy mà thiết bị vẫn đạt độ chính xác — thường dùng thay cho rangeability."),
+    ("Vibrating wire", "Dây rung",
+     "A sensing principle where a tensioned wire's frequency encodes pressure, strain or load.",
+     "Nguyên lý đo trong đó tần số dây căng mã hóa áp suất, biến dạng hoặc tải trọng."),
+    ("Zero and span", "Zero và span",
+     "The two calibration adjustments: the output at minimum input, and the output change per unit input.",
+     "Hai điều chỉnh hiệu chuẩn: đầu ra tại đầu vào nhỏ nhất, và thay đổi đầu ra trên mỗi đơn vị đầu vào."),
+]
+
+
+def build():
+    pg = Page(
+        "glossary.html",
+        "gls",
+        "Glossary — English / Vietnamese instrumentation terms",
+        "Thuật ngữ — Anh / Việt về thiết bị đo",
+        "A bilingual glossary of process instrumentation, control and geotechnical monitoring terms.",
+        "Bảng thuật ngữ song ngữ về thiết bị đo, điều khiển quá trình và quan trắc địa kỹ thuật.",
+    )
+
+    pg.strings["gls.ph"] = {"en": "Search terms…", "vi": "Tìm thuật ngữ…"}
+
+    items = []
+    for en, vi, d_en, d_vi in TERMS:
+        items.append(
+            '<div class="gitem"><b>%s</b><span class="vi">%s</span><span class="d">%s</span></div>'
+            % (pg.span(en, vi), vi, pg.span(d_en, d_vi))
+        )
+    items = "\n    ".join(items)
+
+    body = """
+<section class="sec" style="padding-top:56px">
+  <div class="wrap">
+    <div class="sec-head">
+      %s
+      %s
+    </div>
+    <div class="searchbar">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="gloss-search" type="search" placeholder="Search terms…" data-i18n-attr="placeholder" data-i18n="gls.ph">
+      <span class="count" id="gloss-count"></span>
+    </div>
+    <div class="gloss" id="gloss-list">
+    %s
+    </div>
+    <div class="nextprev">
+      <a href="standards.html"><span class="k">%s</span>%s</a>
+      <a href="index.html" style="text-align:right"><span class="k">%s</span>%s</a>
+    </div>
+  </div>
+</section>
+""" % (
+        pg.h1("Glossary", "Thuật ngữ"),
+        pg.p(
+            "Fifty-two terms that appear in both specifications and in meetings, with the meaning each "
+            "discipline actually uses. Search works in either language.",
+            "Năm mươi hai thuật ngữ xuất hiện trong cả bản chỉ định và trong các cuộc họp, với nghĩa mà "
+            "mỗi ngành thực sự dùng. Tìm kiếm hoạt động bằng cả hai ngôn ngữ.",
+            "lede",
+        ),
+        items,
+        pg.span("Back", "Quay lại"),
+        pg.span("Standards index", "Danh mục tiêu chuẩn"),
+        pg.span("Home", "Trang chủ"),
+        pg.span("Back to start", "Về đầu trang"),
+    )
+
+    write("glossary.html", render(pg, body, "glossary.html"))
