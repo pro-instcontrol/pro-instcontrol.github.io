@@ -12,6 +12,7 @@ sys.path.insert(0, HERE)
 import framework  # noqa: E402
 import pages_home  # noqa: E402
 import pages_core  # noqa: E402
+import pages_install  # noqa: E402
 import pages_control  # noqa: E402
 import pages_safety  # noqa: E402
 import pages_tools  # noqa: E402
@@ -53,6 +54,7 @@ def main():
     pages_home.build()
     pages_core.build_fundamentals()
     pages_core.build_instruments()
+    pages_install.build()
     pages_control.build()
     pages_safety.build()
     pages_tools.build()

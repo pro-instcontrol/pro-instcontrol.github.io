@@ -751,7 +751,7 @@ def build_instruments():
 </div>
 <div class="nextprev">
   <a href="fundamentals.html"><span class="k">%s</span>%s</a>
-  <a href="control.html" style="text-align:right"><span class="k">%s</span>%s</a>
+  <a href="install.html" style="text-align:right"><span class="k">%s</span>%s</a>
 </div>
 """ % (
         pg.h3("Start from the variable", "Bắt đầu từ biến đo"),
@@ -808,7 +808,7 @@ def build_instruments():
         pg.span("Back", "Quay lại"),
         pg.span("Fundamentals", "Kiến thức cơ bản"),
         pg.span("Next", "Tiếp"),
-        pg.span("Control &amp; tuning", "Điều khiển &amp; hiệu chỉnh"),
+        pg.span("Installation", "Lắp đặt"),
     )
     body += section_close()
 

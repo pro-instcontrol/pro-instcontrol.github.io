@@ -15,6 +15,7 @@ Live: https://pro-instcontrol.github.io/
 | `index.html` | Positioning, the closed-loop idea, five measurement families, the dividing line |
 | `fundamentals.html` | Measurement chain, signal standards, 4–20 mA, error vocabulary, environment, installation rules |
 | `instruments.html` | 31 filterable instruments — principle, accuracy, best application, failure mode |
+| `install.html` | Tapping points and impulse lines by service, hazardous area zones and gas groups, the IS entity concept with a cable-length calculation, grounding and shielding, commissioning checks |
 | `control.html` | Loop anatomy, PID terms, six tuning methods, dead time, advanced strategies, an interactive PID simulator |
 | `safety.html` | SIS vs BPCS, the IEC 61511 lifecycle, what SIL bounds, redundancy and the common-cause floor, proof test coverage, independence, six ways a safety system stops being one |
 | `tools.html` | Five live calculators — 4–20 mA scaling with NE 43 bands, DP flow square root, valve Kv/Cv with choked flow, hydrostatic level, loop error budget |
@@ -72,6 +73,7 @@ build/
   framework.py      page shell, i18n registry, layout helpers, tidy()
   pages_home.py     index
   pages_core.py     fundamentals + instrument table
+  pages_install.py  installation, hazardous area, commissioning
   pages_control.py  control, block diagram, simulator markup
   pages_safety.py   safety instrumented systems, SIL, proof test
   pages_tools.py    five engineering calculators

@@ -592,14 +592,14 @@ def build():
 <section class="sec">
   <div class="wrap">
     <div class="nextprev">
-      <a href="instruments.html"><span class="k">%s</span>%s</a>
+      <a href="install.html"><span class="k">%s</span>%s</a>
       <a href="safety.html" style="text-align:right"><span class="k">%s</span>%s</a>
     </div>
   </div>
 </section>
 """ % (
         pg.span("Back", "Quay lại"),
-        pg.span("Instrument reference", "Danh mục thiết bị"),
+        pg.span("Installation", "Lắp đặt"),
         pg.span("Next", "Tiếp"),
         pg.span("Safety instrumented systems", "Hệ thống an toàn SIS"),
     )
