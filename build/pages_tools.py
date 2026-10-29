@@ -79,7 +79,7 @@ def build():
       <div class="rline"><span>%s</span><b id="ma-pct">—</b></div>
       <div class="rline"><span>%s</span><b id="ma-eu">—</b></div>
       <div class="band" id="ma-band"><i></i></div>
-      <div class="zones"><span>0</span><span>3.6</span><span>4</span><span>20</span><span>21</span><span>24</span></div>
+      <div class="zones"><span style="left:0">0</span><span style="left:15.8%%">3.6 / 4</span><span style="left:85.4%%">20 / 21</span><span style="left:100%%">24</span></div>
       %s
     </div>
   </div>
