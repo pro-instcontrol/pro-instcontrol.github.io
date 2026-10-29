@@ -80,6 +80,7 @@
     initFilters();
     initGlossary();
     initSim();
+    initTools();
   });
 
   /* ---------------- instrument filter ---------------- */
@@ -358,5 +359,150 @@
     document.addEventListener("langchange", function () { draw(); });
     read();
     simulate();
+  }
+
+  /* ---------------- engineering calculators ---------------- */
+  function initTools() {
+    if (!document.querySelector(".tool")) return;
+
+    function num(id, fallback) {
+      var el = document.getElementById(id);
+      if (!el) return fallback;
+      var v = parseFloat(el.value);
+      return isFinite(v) ? v : fallback;
+    }
+    function out(id, text) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = text;
+    }
+    function fmt(v, d) {
+      if (!isFinite(v)) return "—";
+      return v.toFixed(d);
+    }
+    function showVerdict(id, key) {
+      var box = document.getElementById(id);
+      if (!box) return;
+      var items = box.querySelectorAll(".v");
+      for (var i = 0; i < items.length; i++) {
+        items[i].classList.toggle("on", items[i].getAttribute("data-v") === key);
+      }
+    }
+    function bind(ids, fn) {
+      ids.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.addEventListener("input", fn);
+      });
+    }
+
+    /* --- 1. 4-20 mA scaling --- */
+    if (document.getElementById("ma-out")) {
+      var maPv = function () {
+        var lrv = num("ma-lrv", 0), urv = num("ma-urv", 100), pv = num("ma-pv", 0);
+        var span = urv - lrv;
+        if (Math.abs(span) < 1e-9) span = 1e-9;
+        var pct = ((pv - lrv) / span) * 100;
+        var ma = 4 + (16 * pct) / 100;
+        out("ma-out", fmt(ma, 2));
+        out("ma-pct", fmt(pct, 1) + " %");
+        var field = document.getElementById("ma-ma");
+        if (field && document.activeElement !== field) field.value = ma.toFixed(2);
+        var bar = document.querySelector("#ma-band i");
+        if (bar) bar.style.left = Math.max(0, Math.min(100, (ma / 24) * 100)) + "%";
+        if (ma < 3.6) showVerdict("ma-verdict", "faultlow");
+        else if (ma < 4) showVerdict("ma-verdict", "under");
+        else if (ma <= 20) showVerdict("ma-verdict", "ok");
+        else if (ma <= 21) showVerdict("ma-verdict", "over");
+        else showVerdict("ma-verdict", "faulthigh");
+      };
+      var maVal = function () {
+        var lrv = num("ma-lrv", 0), urv = num("ma-urv", 100), ma = num("ma-ma", 4);
+        out("ma-eu", fmt(lrv + ((ma - 4) * (urv - lrv)) / 16, 2) + " EU");
+      };
+      bind(["ma-lrv", "ma-urv", "ma-pv"], function () { maPv(); maVal(); });
+      bind(["ma-ma"], function () { maVal(); });
+      maPv();
+      maVal();
+    }
+
+    /* --- 2. DP flow --- */
+    if (document.getElementById("dp-out")) {
+      var dpRun = function () {
+        var qd = num("dp-qd", 100), dpd = num("dp-dpd", 250), dpm = num("dp-dpm", 100);
+        var acc = num("dp-acc", 1);
+        if (dpd <= 0) dpd = 1e-9;
+        var q = qd * Math.sqrt(Math.max(dpm, 0) / dpd);
+        var pct = (dpm / dpd) * 100;
+        out("dp-out", fmt(q, 2));
+        out("dp-dp", fmt(dpm, 1) + " mbar");
+        out("dp-pct", fmt(pct, 1) + " %");
+        var err = dpm > 0 ? (acc * dpd) / dpm : 999;
+        out("dp-td", err > 999 ? "> 999 %" : fmt(err, 2) + " %");
+      };
+      bind(["dp-qd", "dp-dpd", "dp-dpm", "dp-acc"], dpRun);
+      dpRun();
+    }
+
+    /* --- 3. valve sizing --- */
+    if (document.getElementById("cv-out")) {
+      var cvRun = function () {
+        var q = num("cv-q", 40), sg = num("cv-sg", 1);
+        var p1 = num("cv-p1", 6), p2 = num("cv-p2", 4);
+        var pv = num("cv-pv", 0.02), pc = num("cv-pc", 220.6);
+        var fl = num("cv-fl", 0.9), rated = num("cv-rated", 60);
+
+        var dp = p1 - p2;
+        if (dp <= 0) dp = 1e-6;
+        var ff = 0.96 - 0.28 * Math.sqrt(Math.max(pv, 0) / Math.max(pc, 1e-6));
+        var dpCh = fl * fl * Math.max(p1 - ff * pv, 1e-6);
+        var choked = dp > dpCh;
+        var dpUse = choked ? dpCh : dp;
+
+        var kv = q * Math.sqrt(Math.max(sg, 1e-6) / Math.max(dpUse, 1e-6));
+        var cv = 1.156 * kv;
+        var openPct = rated > 0 ? (cv / rated) * 100 : NaN;
+
+        out("cv-out", fmt(kv, 2));
+        out("cv-cv", fmt(cv, 2));
+        out("cv-dp", fmt(dpUse, 2) + " bar");
+        out("cv-open", isFinite(openPct) ? fmt(openPct, 1) + " %" : "—");
+
+        if (choked) showVerdict("cv-verdict", "choked");
+        else if (openPct < 10) showVerdict("cv-verdict", "low");
+        else if (openPct > 90) showVerdict("cv-verdict", "high");
+        else showVerdict("cv-verdict", "ok");
+      };
+      bind(["cv-q", "cv-sg", "cv-p1", "cv-p2", "cv-pv", "cv-pc", "cv-fl", "cv-rated"], cvRun);
+      cvRun();
+    }
+
+    /* --- 4. hydrostatic level --- */
+    if (document.getElementById("lvl-out")) {
+      var lvlRun = function () {
+        var dp = num("lvl-dp-in", 500), rho = num("lvl-rho", 1000), dr = num("lvl-dr", 1);
+        if (rho <= 0) rho = 1e-6;
+        var h = (dp * 100) / (rho * 9.80665);
+        out("lvl-out", fmt(h, 3));
+        out("lvl-dp", fmt(dp / 100, 3) + " kPa");
+        out("lvl-err", fmt((h * dr) / 100 * 1000, 1) + " mm");
+      };
+      bind(["lvl-dp-in", "lvl-rho", "lvl-dr"], lvlRun);
+      lvlRun();
+    }
+
+    /* --- 5. loop error budget --- */
+    if (document.getElementById("err-out")) {
+      var errRun = function () {
+        var a = num("err-a", 0.1), b = num("err-b", 0.5), c = num("err-c", 0.2), d = num("err-d", 0.05);
+        var span = num("err-span", 250);
+        var rss = Math.sqrt(a * a + b * b + c * c + d * d);
+        var worst = a + b + c + d;
+        out("err-out", fmt(rss, 2));
+        out("err-rss", fmt(rss, 2) + " % span");
+        out("err-eu", fmt((rss / 100) * span, 2) + " EU");
+        out("err-worst", fmt(worst, 2) + " % span");
+      };
+      bind(["err-a", "err-b", "err-c", "err-d", "err-span"], errRun);
+      errRun();
+    }
   }
 })();

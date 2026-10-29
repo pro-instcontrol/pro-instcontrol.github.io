@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tools — signal scaling, DP flow, valve Cv, error budget | I&amp;C</title>
+<meta name="description" content="Four working calculators for process instrumentation: 4–20 mA scaling with the NAMUR fault band, differential-pressure flow scaling, liquid control valve sizing with a choked flow check, hydrostatic level, and a loop error budget.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tools — signal scaling, DP flow, valve Cv, error budget | I&amp;C">
+<meta property="og:description" content="Four working calculators for process instrumentation: 4–20 mA scaling with the NAMUR fault band, differential-pressure flow scaling, liquid control valve sizing with a choked flow check, hydrostatic level, and a loop error budget.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=1">
+
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="shell.skip">Skip to content</a>
+<header class="topbar">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="Home">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="none">
+          <rect x="1" y="1" width="30" height="30" rx="8" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+          <path d="M7 22h6l3-12 3 12h6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="16" cy="10" r="2.2" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="brand-txt"><strong>Instrumentation &amp; Control</strong><em data-i18n="shell.tag">Field Guide</em></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a class="nav-link" href="index.html" data-i18n="shell.nav.home">Home</a>
+      <a class="nav-link" href="fundamentals.html" data-i18n="shell.nav.fundamentals">Fundamentals</a>
+      <a class="nav-link" href="instruments.html" data-i18n="shell.nav.instruments">Instruments</a>
+      <a class="nav-link" href="control.html" data-i18n="shell.nav.control">Control</a>
+      <a class="nav-link active" href="tools.html" data-i18n="shell.nav.tools">Tools</a>
+      <a class="nav-link" href="comparison.html" data-i18n="shell.nav.comparison">Comparison</a>
+      <a class="nav-link" href="geotechnical.html" data-i18n="shell.nav.geotechnical">Geotech</a>
+      <a class="nav-link" href="standards.html" data-i18n="shell.nav.standards">Standards</a>
+      <a class="nav-link" href="glossary.html" data-i18n="shell.nav.glossary">Glossary</a>
+    </nav>
+    <div class="bar-right">
+      <button class="lang" id="lang" type="button" aria-label="Switch language">
+        <span class="lang-opt on">EN</span><span class="lang-sep">/</span><span class="lang-opt">VI</span>
+      </button>
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<section class="sec intro"><div class="wrap intro-grid"><div class="intro-l"><h1 data-i18n="tol.1">Five calculators you actually use on a Monday</h1><p class="lede" data-i18n="tol.2">Every number below updates as you type. These are the calculations that get done on site with a phone and a coffee — signal scaling, square-root flow, valve sizing, hydrostatic level and the error budget nobody writes down.</p></div><aside class="toc"><span class="toc-h"><span data-i18n="tol.9">On this page</span></span><ol><li><a href="#signal"><span data-i18n="tol.3">Signal scaling</span></a></li><li><a href="#dpflow"><span data-i18n="tol.4">DP flow</span></a></li><li><a href="#valve"><span data-i18n="tol.5">Valve sizing</span></a></li><li><a href="#level"><span data-i18n="tol.6">Hydrostatic level</span></a></li><li><a href="#error"><span data-i18n="tol.7">Error budget</span></a></li><li><a href="#limits"><span data-i18n="tol.8">Limits &amp; caveats</span></a></li></ol></aside></div></section><section class="sec" id="signal"><div class="wrap"><div class="eyebrow"><span class="num">01</span><span class="line"></span><span class="eyebrow-label" data-i18n="tol.10">Signal scaling</span></div>
+<div class="sec-head">
+  <h2 data-i18n="tol.11">Where the value sits on the loop</h2>
+  <p data-i18n="tol.12">Type a process value and read the current, or type a measured current and read the value. The bar shows the NAMUR NE&nbsp;43 fault bands — anything outside 3.6–21.0&nbsp;mA is a diagnostic, not a measurement.</p>
+</div>
+<div class="tool" data-tool="ma">
+  <div class="tool-body">
+    <div class="fields">
+      <div class="field"><label for="ma-lrv"><span data-i18n="tol.13">Lower range value (LRV)</span></label><div class="inwrap"><input id="ma-lrv" type="number" step="any" value="0"><span class="unit">EU</span></div></div>
+      <div class="field"><label for="ma-urv"><span data-i18n="tol.14">Upper range value (URV)</span></label><div class="inwrap"><input id="ma-urv" type="number" step="any" value="100"><span class="unit">EU</span></div></div>
+      <div class="field"><label for="ma-pv"><span data-i18n="tol.15">Process value</span></label><div class="inwrap"><input id="ma-pv" type="number" step="any" value="60"><span class="unit">EU</span></div></div>
+      <div class="field"><label for="ma-ma"><span data-i18n="tol.16">Loop current</span></label><div class="inwrap"><input id="ma-ma" type="number" step="0.01" value="13.6"><span class="unit">mA</span></div></div>
+    </div>
+    <div class="result">
+      <div class="big"><b id="ma-out">—</b><span>mA</span></div>
+      <div class="rline"><span><span data-i18n="tol.17">Span position</span></span><b id="ma-pct">—</b></div>
+      <div class="rline"><span><span data-i18n="tol.18">From current</span></span><b id="ma-eu">—</b></div>
+      <div class="band" id="ma-band"><i></i></div>
+      <div class="zones"><span>0</span><span>3.6</span><span>4</span><span>20</span><span>21</span><span>24</span></div>
+      <div class="verdict" id="ma-verdict"><span class="v ok" data-v="ok"><span data-i18n="tol.19">Valid measurement — inside the 4–20 mA range.</span></span><span class="v warn" data-v="under"><span data-i18n="tol.20">Below 4 mA but above 3.6 mA — value under range, loop still alive.</span></span><span class="v warn" data-v="over"><span data-i18n="tol.21">Above 20 mA but below 21 mA — value over range, loop still alive.</span></span><span class="v bad" data-v="faultlow"><span data-i18n="tol.22">Below 3.6 mA — broken wire, dead transmitter or lost supply.</span></span><span class="v bad" data-v="faulthigh"><span data-i18n="tol.23">Above 21.0 mA — transmitter fault or saturation.</span></span></div>
+    </div>
+  </div>
+</div>
+<div class="note">
+  <span class="lbl"><span data-i18n="tol.24">Why 4 mA is not zero</span></span>
+  <p data-i18n="tol.25">A live zero means a genuine zero reading still draws 4&nbsp;mA, so 0&nbsp;mA can only be a broken wire. Below 3.6&nbsp;mA and above 21.0&nbsp;mA the transmitter is allowed to report a failure instead of a value — which is why the two bands are coloured differently here.</p>
+</div>
+</div></section><section class="sec" id="dpflow"><div class="wrap"><div class="eyebrow"><span class="num">02</span><span class="line"></span><span class="eyebrow-label" data-i18n="tol.26">Differential-pressure flow</span></div>
+<div class="sec-head">
+  <h2 data-i18n="tol.27">Square root, and why turndown hurts</h2>
+  <p data-i18n="tol.28">Across an orifice, nozzle or venturi the differential pressure rises with the square of the flow (ISO 5167). Scaling from a known design point needs no discharge coefficient — but it does need an honest design point.</p>
+</div>
+<div class="tool" data-tool="dp">
+  <div class="tool-body">
+    <div class="fields">
+      <div class="field"><label for="dp-qd"><span data-i18n="tol.29">Design flow</span></label><div class="inwrap"><input id="dp-qd" type="number" step="any" value="100"><span class="unit">m³/h</span></div></div>
+      <div class="field"><label for="dp-dpd"><span data-i18n="tol.30">Design differential</span></label><div class="inwrap"><input id="dp-dpd" type="number" step="any" value="250"><span class="unit">mbar</span></div></div>
+      <div class="field"><label for="dp-dpm"><span data-i18n="tol.31">Measured differential</span></label><div class="inwrap"><input id="dp-dpm" type="number" step="any" value="100"><span class="unit">mbar</span></div></div>
+      <div class="field"><label for="dp-acc"><span data-i18n="tol.32">Accuracy at design</span></label><div class="inwrap"><input id="dp-acc" type="number" step="0.05" value="1"><span class="unit">% span</span></div></div>
+    </div>
+    <div class="result">
+      <div class="big"><b id="dp-out">—</b><span>flow</span></div>
+      <div class="rline"><span><span data-i18n="tol.33">Flow at this differential</span></span><b id="dp-dp">—</b></div>
+      <div class="rline"><span><span data-i18n="tol.34">DP as % of span</span></span><b id="dp-pct">—</b></div>
+      <div class="rline"><span><span data-i18n="tol.35">Error at this flow</span></span><b id="dp-td">—</b></div>
+    </div>
+  </div>
+</div>
+<div class="note warn">
+  <span class="lbl"><span data-i18n="tol.36">The trap</span></span>
+  <p data-i18n="tol.37">At 50&nbsp;% of design flow the differential is only 25&nbsp;% of span, so a ±1&nbsp;% span error becomes ±2&nbsp;% of reading. At 25&nbsp;% flow the differential is 6.25&nbsp;% of span and the same error becomes ±4&nbsp;% of reading. This is why a DP meter is a poor choice for wide turndown, however good the transmitter.</p>
+</div>
+</div></section><section class="sec" id="valve"><div class="wrap"><div class="eyebrow"><span class="num">03</span><span class="line"></span><span class="eyebrow-label" data-i18n="tol.38">Liquid valve sizing</span></div>
+<div class="sec-head">
+  <h2 data-i18n="tol.39">Kv from flow, and the choked-flow limit</h2>
+  <p data-i18n="tol.40">Kv is the flow of water in m³/h at 1&nbsp;bar drop. Once the pressure drop exceeds the choked limit the extra drop buys nothing — the valve is already at critical flow and the sizing must use the limited ΔP, not the actual one.</p>
+</div>
+<div class="tool" data-tool="cv">
+  <div class="tool-body">
+    <div class="fields">
+      <div class="field"><label for="cv-q"><span data-i18n="tol.41">Flow</span></label><div class="inwrap"><input id="cv-q" type="number" step="any" value="40"><span class="unit">m³/h</span></div></div>
+      <div class="field"><label for="cv-sg"><span data-i18n="tol.42">Specific gravity</span></label><div class="inwrap"><input id="cv-sg" type="number" step="0.01" value="1"><span class="unit">–</span></div></div>
+      <div class="field"><label for="cv-p1"><span data-i18n="tol.43">Inlet pressure (abs)</span></label><div class="inwrap"><input id="cv-p1" type="number" step="any" value="6"><span class="unit">bar a</span></div></div>
+      <div class="field"><label for="cv-p2"><span data-i18n="tol.44">Outlet pressure (abs)</span></label><div class="inwrap"><input id="cv-p2" type="number" step="any" value="4"><span class="unit">bar a</span></div></div>
+      <div class="field"><label for="cv-pv"><span data-i18n="tol.45">Vapour pressure (abs)</span></label><div class="inwrap"><input id="cv-pv" type="number" step="0.001" value="0.02"><span class="unit">bar a</span></div></div>
+      <div class="field"><label for="cv-pc"><span data-i18n="tol.46">Liquid critical pressure</span></label><div class="inwrap"><input id="cv-pc" type="number" step="0.1" value="220.6"><span class="unit">bar a</span></div></div>
+      <div class="field"><label for="cv-fl"><span data-i18n="tol.47">Pressure recovery factor F<sub>L</sub></span></label><div class="inwrap"><input id="cv-fl" type="number" step="0.01" value="0.9"><span class="unit">–</span></div></div>
+      <div class="field"><label for="cv-rated"><span data-i18n="tol.48">Rated Cv of the valve</span></label><div class="inwrap"><input id="cv-rated" type="number" step="1" value="60"><span class="unit">Cv</span></div></div>
+    </div>
+    <div class="result">
+      <div class="big"><b id="cv-out">—</b><span>Kv</span></div>
+      <div class="rline"><span><span data-i18n="tol.49">Required Cv</span></span><b id="cv-cv">—</b></div>
+      <div class="rline"><span><span data-i18n="tol.50">ΔP used in sizing</span></span><b id="cv-dp">—</b></div>
+      <div class="rline"><span><span data-i18n="tol.51">Opening at rated Cv (approx.)</span></span><b id="cv-open">—</b></div>
+      <div class="verdict" id="cv-verdict"><span class="v ok" data-v="ok"><span data-i18n="tol.52">Sizing looks reasonable — the valve works in the controllable part of its range.</span></span><span class="v warn" data-v="low"><span data-i18n="tol.53">Under 10 % opening — the valve is oversized and control will be poor. Consider a smaller trim.</span></span><span class="v warn" data-v="high"><span data-i18n="tol.54">Over 90 % opening — no margin left for a higher demand.</span></span><span class="v bad" data-v="choked"><span data-i18n="tol.55">Choked flow — the sizing used the limited ΔP, not the actual one. Expect cavitation or flashing.</span></span></div>
+    </div>
+  </div>
+</div>
+<div class="note">
+  <span class="lbl"><span data-i18n="tol.56">Sizing rules of thumb</span></span>
+  <p data-i18n="tol.57">Aim for 20–80&nbsp;% opening at normal flow, with the maximum at about 90&nbsp;%. Below 10&nbsp;% the plug is off its seat and control is poor; above 90&nbsp;% there is no margin for a higher demand. Choked flow also means cavitation or flashing — check the trim material and consider an anti-cavitation cage.</p>
+</div>
+</div></section><section class="sec" id="level"><div class="wrap"><div class="eyebrow"><span class="num">04</span><span class="line"></span><span class="eyebrow-label" data-i18n="tol.58">Hydrostatic level</span></div>
+<div class="sec-head">
+  <h2 data-i18n="tol.59">ρgh, and the error you inherit from ρ</h2>
+  <p data-i18n="tol.60">A DP transmitter does not measure level — it measures pressure and divides by a density you typed in once, years ago. Change the temperature, the product or the concentration, and the level reading moves without anything moving.</p>
+</div>
+<div class="tool" data-tool="lvl">
+  <div class="tool-body">
+    <div class="fields">
+      <div class="field"><label for="lvl-dp-in"><span data-i18n="tol.61">Differential pressure</span></label><div class="inwrap"><input id="lvl-dp-in" type="number" step="any" value="500"><span class="unit">mbar</span></div></div>
+      <div class="field"><label for="lvl-rho"><span data-i18n="tol.62">Density</span></label><div class="inwrap"><input id="lvl-rho" type="number" step="1" value="1000"><span class="unit">kg/m³</span></div></div>
+      <div class="field"><label for="lvl-dr"><span data-i18n="tol.63">Density uncertainty</span></label><div class="inwrap"><input id="lvl-dr" type="number" step="0.1" value="1"><span class="unit">%</span></div></div>
+    </div>
+    <div class="result">
+      <div class="big"><b id="lvl-out">—</b><span>m</span></div>
+      <div class="rline"><span><span data-i18n="tol.64">Equivalent pressure</span></span><b id="lvl-dp">—</b></div>
+      <div class="rline"><span><span data-i18n="tol.65">Level error from ρ</span></span><b id="lvl-err">—</b></div>
+    </div>
+  </div>
+</div>
+<div class="note warn">
+  <span class="lbl"><span data-i18n="tol.66">The dominant term</span></span>
+  <p data-i18n="tol.67">A 1&nbsp;% density error is a 1&nbsp;% level error — 50&nbsp;mm on a 5&nbsp;m tank, straight onto the operator's screen. If the product temperature swings, either compensate with a measured density or accept that the level is nominal.</p>
+</div>
+</div></section><section class="sec" id="error"><div class="wrap"><div class="eyebrow"><span class="num">05</span><span class="line"></span><span class="eyebrow-label" data-i18n="tol.68">Loop error budget</span></div>
+<div class="sec-head">
+  <h2 data-i18n="tol.69">Four errors, one number</h2>
+  <p data-i18n="tol.70">The datasheet accuracy is only the first term. Installation, ambient temperature and the input card each add their own. Independent random errors combine as the root of the sum of squares; systematic ones add directly.</p>
+</div>
+<div class="tool" data-tool="err">
+  <div class="tool-body">
+    <div class="fields">
+      <div class="field"><label for="err-a"><span data-i18n="tol.71">Transmitter accuracy</span></label><div class="inwrap"><input id="err-a" type="number" step="0.01" value="0.1"><span class="unit">% span</span></div></div>
+      <div class="field"><label for="err-b"><span data-i18n="tol.72">Installation error</span></label><div class="inwrap"><input id="err-b" type="number" step="0.01" value="0.5"><span class="unit">% span</span></div></div>
+      <div class="field"><label for="err-c"><span data-i18n="tol.73">Ambient / EMC effect</span></label><div class="inwrap"><input id="err-c" type="number" step="0.01" value="0.2"><span class="unit">% span</span></div></div>
+      <div class="field"><label for="err-d"><span data-i18n="tol.74">Input card resolution</span></label><div class="inwrap"><input id="err-d" type="number" step="0.01" value="0.05"><span class="unit">% span</span></div></div>
+      <div class="field"><label for="err-span"><span data-i18n="tol.75">Span in engineering units</span></label><div class="inwrap"><input id="err-span" type="number" step="any" value="250"><span class="unit">EU</span></div></div>
+    </div>
+    <div class="result">
+      <div class="big"><b id="err-out">—</b><span>&#37;&nbsp;span</span></div>
+      <div class="rline"><span><span data-i18n="tol.76">Root sum square</span></span><b id="err-rss">—</b></div>
+      <div class="rline"><span><span data-i18n="tol.77">In engineering units</span></span><b id="err-eu">—</b></div>
+      <div class="rline"><span><span data-i18n="tol.78">Arithmetic worst case</span></span><b id="err-worst">—</b></div>
+    </div>
+  </div>
+</div>
+<div class="note">
+  <span class="lbl"><span data-i18n="tol.79">Which one to quote</span></span>
+  <p data-i18n="tol.80">Quote the RSS figure when the errors are genuinely independent and you are reporting a typical uncertainty. Quote the arithmetic sum when you must guarantee a limit, because it assumes every error lines up in the same direction — which is what a customer's auditor will assume if the number is challenged.</p>
+</div>
+</div></section><section class="sec" id="limits"><div class="wrap"><div class="eyebrow"><span class="num">06</span><span class="line"></span><span class="eyebrow-label" data-i18n="tol.81">Limits &amp; caveats</span></div>
+<div class="grid c2">
+  <div class="card"><h3 data-i18n="tol.82">Valve sizing is not a spreadsheet exercise</h3><p data-i18n="tol.83">Kv from a formula gives you a number to compare against a catalogue. The final choice still depends on the trim characteristic, noise, cavitation, actuator thrust and what the purchasing department can actually deliver.</p></div>
+  <div class="card"><h3 data-i18n="tol.84">DP flow needs a real design point</h3><p data-i18n="tol.85">The square-root scaling assumes the same fluid, the same density and the same orifice. Change the gas composition or the temperature and the relationship quietly stops being true.</p></div>
+  <div class="card"><h3 data-i18n="tol.86">Level is a density measurement in disguise</h3><p data-i18n="tol.87">The uncertainty from ρ usually dominates the transmitter's own accuracy. If density is not measured, level is not measured — it is estimated.</p></div>
+  <div class="card"><h3 data-i18n="tol.88">Every number here is a starting point</h3><p data-i18n="tol.89">These tools exist to catch mistakes early — a choked valve, a turndown that cannot work, a loop error larger than the tolerance. They do not replace the standard, the vendor's sizing software or a second engineer's check.</p></div>
+</div>
+<div class="nextprev">
+  <a href="control.html"><span class="k"><span data-i18n="tol.90">Back</span></span><span data-i18n="tol.91">Control &amp; tuning</span></a>
+  <a href="instruments.html" style="text-align:right"><span class="k"><span data-i18n="tol.92">Also</span></span><span data-i18n="tol.93">Instrument reference</span></a>
+</div>
+</div></section></main>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-l">
+      <span class="brand-mini">Instrumentation &amp; Control</span>
+      <p data-i18n="shell.foot.note">A bilingual field guide to process instrumentation and control. Content is synthesised from ISA, IEC, API and ISO 18674 practice; always verify against the current edition of a standard before design use.</p>
+    </div>
+    <div class="foot-r">
+      <span class="mono" data-i18n="shell.foot.built">Static site · no build step · EN / VI</span>
+      <a class="mono" href="https://github.com/pro-instcontrol" rel="noopener">github.com/pro-instcontrol</a>
+    </div>
+  </div>
+</footer>
+<script>window.I18N={"shell.skip":{"en":"Skip to content","vi":"Chuyển đến nội dung"},"shell.nav.home":{"en":"Home","vi":"Trang chủ"},"shell.nav.fundamentals":{"en":"Fundamentals","vi":"Cơ bản"},"shell.nav.instruments":{"en":"Instruments","vi":"Thiết bị đo"},"shell.nav.control":{"en":"Control","vi":"Điều khiển"},"shell.nav.tools":{"en":"Tools","vi":"Công cụ"},"shell.nav.comparison":{"en":"Comparison","vi":"So sánh"},"shell.nav.geotechnical":{"en":"Geotech","vi":"Địa kỹ thuật"},"shell.nav.standards":{"en":"Standards","vi":"Tiêu chuẩn"},"shell.nav.glossary":{"en":"Glossary","vi":"Thuật ngữ"},"shell.tag":{"en":"Field Guide","vi":"Sổ tay hiện trường"},"shell.menu":{"en":"Menu","vi":"Danh mục"},"shell.foot.note":{"en":"A bilingual field guide to process instrumentation and control. Content is synthesised from ISA, IEC, API and ISO 18674 practice; always verify against the current edition of a standard before design use.","vi":"Sổ tay song ngữ về thiết bị đo và điều khiển quá trình. Nội dung được tổng hợp từ thực tiễn ISA, IEC, API và ISO 18674; luôn đối chiếu với bản tiêu chuẩn hiện hành trước khi dùng cho thiết kế."},"shell.foot.built":{"en":"Static site · no build step · EN / VI","vi":"Trang tĩnh · không cần build · EN / VI"},"shell.foot.contact":{"en":"Contact","vi":"Liên hệ"},"tol.1":{"en":"Five calculators you actually use on a Monday","vi":"Năm công cụ bạn thực sự dùng vào sáng thứ Hai"},"tol.2":{"en":"Every number below updates as you type. These are the calculations that get done on site with a phone and a coffee — signal scaling, square-root flow, valve sizing, hydrostatic level and the error budget nobody writes down.","vi":"Mọi con số dưới đây cập nhật ngay khi bạn nhập. Đây là những phép tính được làm tại hiện trường bằng điện thoại và một ly cà phê — quy đổi tín hiệu, lưu lượng căn bậc hai, tính van, mức thủy tĩnh và ngân sách sai số mà không ai ghi lại."},"tol.3":{"en":"Signal scaling","vi":"Quy đổi tín hiệu"},"tol.4":{"en":"DP flow","vi":"Lưu lượng chênh áp"},"tol.5":{"en":"Valve sizing","vi":"Tính van"},"tol.6":{"en":"Hydrostatic level","vi":"Mức thủy tĩnh"},"tol.7":{"en":"Error budget","vi":"Ngân sách sai số"},"tol.8":{"en":"Limits &amp; caveats","vi":"Giới hạn &amp; lưu ý"},"tol.9":{"en":"On this page","vi":"Trong trang này"},"tol.10":{"en":"Signal scaling","vi":"Quy đổi tín hiệu"},"tol.11":{"en":"Where the value sits on the loop","vi":"Giá trị nằm ở đâu trên vòng đo"},"tol.12":{"en":"Type a process value and read the current, or type a measured current and read the value. The bar shows the NAMUR NE&nbsp;43 fault bands — anything outside 3.6–21.0&nbsp;mA is a diagnostic, not a measurement.","vi":"Nhập giá trị quá trình để đọc dòng điện, hoặc nhập dòng đo được để đọc giá trị. Thanh bên phải hiển thị dải báo lỗi NAMUR NE&nbsp;43 — bất cứ giá trị ngoài 3,6–21,0&nbsp;mA là chẩn đoán, không phải phép đo."},"tol.13":{"en":"Lower range value (LRV)","vi":"Giá trị dải dưới (LRV)"},"tol.14":{"en":"Upper range value (URV)","vi":"Giá trị dải trên (URV)"},"tol.15":{"en":"Process value","vi":"Giá trị quá trình"},"tol.16":{"en":"Loop current","vi":"Dòng vòng đo"},"tol.17":{"en":"Span position","vi":"Vị trí dải"},"tol.18":{"en":"From current","vi":"Từ dòng điện"},"tol.19":{"en":"Valid measurement — inside the 4–20 mA range.","vi":"Phép đo hợp lệ — trong dải 4–20 mA."},"tol.20":{"en":"Below 4 mA but above 3.6 mA — value under range, loop still alive.","vi":"Dưới 4 mA nhưng trên 3,6 mA — giá trị dưới dải, vòng vẫn còn sống."},"tol.21":{"en":"Above 20 mA but below 21 mA — value over range, loop still alive.","vi":"Trên 20 mA nhưng dưới 21 mA — giá trị vượt dải, vòng vẫn còn sống."},"tol.22":{"en":"Below 3.6 mA — broken wire, dead transmitter or lost supply.","vi":"Dưới 3,6 mA — dây đứt, bộ truyền hỏng hoặc mất nguồn."},"tol.23":{"en":"Above 21.0 mA — transmitter fault or saturation.","vi":"Trên 21,0 mA — bộ truyền lỗi hoặc bão hòa."},"tol.24":{"en":"Why 4 mA is not zero","vi":"Vì sao 4 mA không phải zero"},"tol.25":{"en":"A live zero means a genuine zero reading still draws 4&nbsp;mA, so 0&nbsp;mA can only be a broken wire. Below 3.6&nbsp;mA and above 21.0&nbsp;mA the transmitter is allowed to report a failure instead of a value — which is why the two bands are coloured differently here.","vi":"Điểm không sống nghĩa là giá trị không thật vẫn tiêu thụ 4&nbsp;mA, nên 0&nbsp;mA chỉ có thể là dây đứt. Dưới 3,6&nbsp;mA và trên 21,0&nbsp;mA bộ truyền được phép báo lỗi thay vì báo giá trị — vì vậy hai dải này được tô màu khác ở đây."},"tol.26":{"en":"Differential-pressure flow","vi":"Lưu lượng theo chênh áp"},"tol.27":{"en":"Square root, and why turndown hurts","vi":"Căn bậc hai, và vì sao dải đo bị thu hẹp"},"tol.28":{"en":"Across an orifice, nozzle or venturi the differential pressure rises with the square of the flow (ISO 5167). Scaling from a known design point needs no discharge coefficient — but it does need an honest design point.","vi":"Qua lỗ khoan, nozzle hay venturi, chênh áp tăng theo bình phương lưu lượng (ISO 5167). Quy đổi từ một điểm thiết kế đã biết không cần hệ số lưu lượng — nhưng cần một điểm thiết kế trung thực."},"tol.29":{"en":"Design flow","vi":"Lưu lượng thiết kế"},"tol.30":{"en":"Design differential","vi":"Chênh áp thiết kế"},"tol.31":{"en":"Measured differential","vi":"Chênh áp đo được"},"tol.32":{"en":"Accuracy at design","vi":"Độ chính xác tại điểm thiết kế"},"tol.33":{"en":"Flow at this differential","vi":"Lưu lượng tại chênh áp này"},"tol.34":{"en":"DP as % of span","vi":"Chênh áp theo % dải"},"tol.35":{"en":"Error at this flow","vi":"Sai số tại lưu lượng này"},"tol.36":{"en":"The trap","vi":"Cái bẫy"},"tol.37":{"en":"At 50&nbsp;% of design flow the differential is only 25&nbsp;% of span, so a ±1&nbsp;% span error becomes ±2&nbsp;% of reading. At 25&nbsp;% flow the differential is 6.25&nbsp;% of span and the same error becomes ±4&nbsp;% of reading. This is why a DP meter is a poor choice for wide turndown, however good the transmitter.","vi":"Tại 50&nbsp;% lưu lượng thiết kế, chênh áp chỉ còn 25&nbsp;% dải, nên sai số ±1&nbsp;% dải trở thành ±2&nbsp;% giá trị đọc. Tại 25&nbsp;% lưu lượng, chênh áp là 6,25&nbsp;% dải và cùng sai số đó thành ±4&nbsp;% giá trị đọc. Đó là lý do đồng hồ chênh áp là lựa chọn kém cho dải đo rộng, dù bộ truyền có tốt đến đâu."},"tol.38":{"en":"Liquid valve sizing","vi":"Tính van cho chất lỏng"},"tol.39":{"en":"Kv from flow, and the choked-flow limit","vi":"Kv từ lưu lượng, và giới hạn xâm thực"},"tol.40":{"en":"Kv is the flow of water in m³/h at 1&nbsp;bar drop. Once the pressure drop exceeds the choked limit the extra drop buys nothing — the valve is already at critical flow and the sizing must use the limited ΔP, not the actual one.","vi":"Kv là lưu lượng nước tính bằng m³/h khi chênh áp 1&nbsp;bar. Khi chênh áp vượt giới hạn tới hạn, phần chênh áp thêm không mang lại gì — van đã ở trạng thái dòng tới hạn và phải tính theo ΔP giới hạn, không phải ΔP thực tế."},"tol.41":{"en":"Flow","vi":"Lưu lượng"},"tol.42":{"en":"Specific gravity","vi":"Khối lượng riêng tương đối"},"tol.43":{"en":"Inlet pressure (abs)","vi":"Áp vào (tuyệt đối)"},"tol.44":{"en":"Outlet pressure (abs)","vi":"Áp ra (tuyệt đối)"},"tol.45":{"en":"Vapour pressure (abs)","vi":"Áp hơi (tuyệt đối)"},"tol.46":{"en":"Liquid critical pressure","vi":"Áp tới hạn của chất lỏng"},"tol.47":{"en":"Pressure recovery factor F<sub>L</sub>","vi":"Hệ số thu hồi áp F<sub>L</sub>"},"tol.48":{"en":"Rated Cv of the valve","vi":"Cv định mức của van"},"tol.49":{"en":"Required Cv","vi":"Cv yêu cầu"},"tol.50":{"en":"ΔP used in sizing","vi":"ΔP dùng để tính"},"tol.51":{"en":"Opening at rated Cv (approx.)","vi":"Độ mở theo Cv định mức (xấp xỉ)"},"tol.52":{"en":"Sizing looks reasonable — the valve works in the controllable part of its range.","vi":"Cỡ van hợp lý — van làm việc trong vùng điều khiển được."},"tol.53":{"en":"Under 10 % opening — the valve is oversized and control will be poor. Consider a smaller trim.","vi":"Dưới 10 % độ mở — van quá lớn và điều khiển sẽ kém. Cân nhắc trim nhỏ hơn."},"tol.54":{"en":"Over 90 % opening — no margin left for a higher demand.","vi":"Trên 90 % độ mở — không còn dự phòng cho nhu cầu cao hơn."},"tol.55":{"en":"Choked flow — the sizing used the limited ΔP, not the actual one. Expect cavitation or flashing.","vi":"Dòng tới hạn — phép tính dùng ΔP giới hạn, không phải ΔP thực. Dự kiến có xâm thực hoặc hóa hơi."},"tol.56":{"en":"Sizing rules of thumb","vi":"Quy tắc chọn cỡ"},"tol.57":{"en":"Aim for 20–80&nbsp;% opening at normal flow, with the maximum at about 90&nbsp;%. Below 10&nbsp;% the plug is off its seat and control is poor; above 90&nbsp;% there is no margin for a higher demand. Choked flow also means cavitation or flashing — check the trim material and consider an anti-cavitation cage.","vi":"Nhắm tới độ mở 20–80&nbsp;% tại lưu lượng bình thường, cực đại khoảng 90&nbsp;%. Dưới 10&nbsp;% nút van vừa rời đế và điều khiển kém; trên 90&nbsp;% không còn dự phòng cho nhu cầu cao hơn. Dòng tới hạn cũng có nghĩa là xâm thực hoặc hóa hơi — hãy kiểm tra vật liệu trim và cân nhắc lồng chống xâm thực."},"tol.58":{"en":"Hydrostatic level","vi":"Mức thủy tĩnh"},"tol.59":{"en":"ρgh, and the error you inherit from ρ","vi":"ρgh, và sai số thừa hưởng từ ρ"},"tol.60":{"en":"A DP transmitter does not measure level — it measures pressure and divides by a density you typed in once, years ago. Change the temperature, the product or the concentration, and the level reading moves without anything moving.","vi":"Bộ truyền áp vi sai không đo mức — nó đo áp suất rồi chia cho một khối lượng riêng bạn đã nhập một lần, nhiều năm trước. Thay đổi nhiệt độ, sản phẩm hoặc nồng độ, và kết quả đo mức sẽ dịch chuyển dù không có gì dịch chuyển."},"tol.61":{"en":"Differential pressure","vi":"Chênh áp"},"tol.62":{"en":"Density","vi":"Khối lượng riêng"},"tol.63":{"en":"Density uncertainty","vi":"Độ bất định khối lượng riêng"},"tol.64":{"en":"Equivalent pressure","vi":"Áp suất tương đương"},"tol.65":{"en":"Level error from ρ","vi":"Sai số mức do ρ"},"tol.66":{"en":"The dominant term","vi":"Số hạng chi phối"},"tol.67":{"en":"A 1&nbsp;% density error is a 1&nbsp;% level error — 50&nbsp;mm on a 5&nbsp;m tank, straight onto the operator's screen. If the product temperature swings, either compensate with a measured density or accept that the level is nominal.","vi":"Sai số khối lượng riêng 1&nbsp;% là sai số mức 1&nbsp;% — 50&nbsp;mm trên bồn 5&nbsp;m, đi thẳng lên màn hình người vận hành. Nếu nhiệt độ sản phẩm dao động, hãy bù bằng khối lượng riêng đo được hoặc chấp nhận rằng mức chỉ là danh nghĩa."},"tol.68":{"en":"Loop error budget","vi":"Ngân sách sai số vòng đo"},"tol.69":{"en":"Four errors, one number","vi":"Bốn sai số, một con số"},"tol.70":{"en":"The datasheet accuracy is only the first term. Installation, ambient temperature and the input card each add their own. Independent random errors combine as the root of the sum of squares; systematic ones add directly.","vi":"Độ chính xác trên datasheet chỉ là số hạng đầu tiên. Lắp đặt, nhiệt độ môi trường và card đầu vào mỗi thứ thêm sai số riêng. Sai số ngẫu nhiên độc lập cộng theo căn bậc hai tổng bình phương; sai số hệ thống cộng trực tiếp."},"tol.71":{"en":"Transmitter accuracy","vi":"Độ chính xác bộ truyền"},"tol.72":{"en":"Installation error","vi":"Sai số lắp đặt"},"tol.73":{"en":"Ambient / EMC effect","vi":"Ảnh hưởng môi trường / EMC"},"tol.74":{"en":"Input card resolution","vi":"Độ phân giải card đầu vào"},"tol.75":{"en":"Span in engineering units","vi":"Dải đo theo đơn vị kỹ thuật"},"tol.76":{"en":"Root sum square","vi":"Căn tổng bình phương"},"tol.77":{"en":"In engineering units","vi":"Theo đơn vị kỹ thuật"},"tol.78":{"en":"Arithmetic worst case","vi":"Tổng hợp xấu nhất"},"tol.79":{"en":"Which one to quote","vi":"Nên trích dẫn con số nào"},"tol.80":{"en":"Quote the RSS figure when the errors are genuinely independent and you are reporting a typical uncertainty. Quote the arithmetic sum when you must guarantee a limit, because it assumes every error lines up in the same direction — which is what a customer's auditor will assume if the number is challenged.","vi":"Trích dẫn con số RSS khi các sai số thực sự độc lập và bạn đang báo cáo độ bất định điển hình. Trích dẫn tổng số học khi phải đảm bảo một giới hạn, vì nó giả định mọi sai số cùng chiều — điều mà kiểm toán viên của khách hàng sẽ giả định nếu con số bị chất vấn."},"tol.81":{"en":"Limits &amp; caveats","vi":"Giới hạn &amp; lưu ý"},"tol.82":{"en":"Valve sizing is not a spreadsheet exercise","vi":"Tính van không phải bài tập bảng tính"},"tol.83":{"en":"Kv from a formula gives you a number to compare against a catalogue. The final choice still depends on the trim characteristic, noise, cavitation, actuator thrust and what the purchasing department can actually deliver.","vi":"Kv từ công thức cho bạn một con số để so với catalogue. Lựa chọn cuối cùng vẫn phụ thuộc đặc tính trim, độ ồn, xâm thực, lực cơ cấu chấp hành và thứ mà bộ phận mua hàng thực sự giao được."},"tol.84":{"en":"DP flow needs a real design point","vi":"Lưu lượng chênh áp cần điểm thiết kế thật"},"tol.85":{"en":"The square-root scaling assumes the same fluid, the same density and the same orifice. Change the gas composition or the temperature and the relationship quietly stops being true.","vi":"Quy đổi căn bậc hai giả định cùng chất lỏng, cùng khối lượng riêng và cùng tấm lỗ khoan. Thay đổi thành phần khí hoặc nhiệt độ và mối quan hệ âm thầm không còn đúng."},"tol.86":{"en":"Level is a density measurement in disguise","vi":"Mức thực chất là phép đo khối lượng riêng"},"tol.87":{"en":"The uncertainty from ρ usually dominates the transmitter's own accuracy. If density is not measured, level is not measured — it is estimated.","vi":"Độ bất định từ ρ thường chi phối độ chính xác của chính bộ truyền. Nếu không đo khối lượng riêng thì không đo được mức — đó là ước lượng."},"tol.88":{"en":"Every number here is a starting point","vi":"Mọi con số ở đây chỉ là khởi điểm"},"tol.89":{"en":"These tools exist to catch mistakes early — a choked valve, a turndown that cannot work, a loop error larger than the tolerance. They do not replace the standard, the vendor's sizing software or a second engineer's check.","vi":"Các công cụ này để phát hiện sai sót sớm — van bị tới hạn, dải đo không khả thi, sai số vòng lớn hơn dung sai. Chúng không thay thế tiêu chuẩn, phần mềm tính toán của nhà sản xuất hay bước kiểm tra của kỹ sư thứ hai."},"tol.90":{"en":"Back","vi":"Quay lại"},"tol.91":{"en":"Control &amp; tuning","vi":"Điều khiển &amp; hiệu chỉnh"},"tol.92":{"en":"Also","vi":"Xem thêm"},"tol.93":{"en":"Instrument reference","vi":"Danh mục thiết bị"}};window.I18N_META={"title":{"en":"Tools — signal scaling, DP flow, valve Cv, error budget | I&amp;C","vi":"Công cụ — quy đổi tín hiệu, lưu lượng chênh áp, Cv van, ngân sách sai số"},"desc":{"en":"Four working calculators for process instrumentation: 4–20 mA scaling with the NAMUR fault band, differential-pressure flow scaling, liquid control valve sizing with a choked flow check, hydrostatic level, and a loop error budget.","vi":"Bốn công cụ tính toán cho thiết bị đo quá trình: quy đổi 4–20 mA với dải báo lỗi NAMUR, quy đổi lưu lượng theo chênh áp, tính Cv van điều khiển cho chất lỏng có kiểm tra xâm thực, mức thủy tĩnh, và ngân sách sai số của vòng đo."}};</script>
+<script src="assets/app.js?v=1"></script>
+</body>
+</html>

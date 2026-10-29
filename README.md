@@ -16,6 +16,7 @@ Live: https://pro-instcontrol.github.io/
 | `fundamentals.html` | Measurement chain, signal standards, 4–20 mA, error vocabulary, environment, installation rules |
 | `instruments.html` | 31 filterable instruments — principle, accuracy, best application, failure mode |
 | `control.html` | Loop anatomy, PID terms, six tuning methods, dead time, advanced strategies, an interactive PID simulator |
+| `tools.html` | Five live calculators — 4–20 mA scaling with NE 43 bands, DP flow square root, valve Kv/Cv with choked flow, hydrostatic level, loop error budget |
 | `comparison.html` | The 21-row process-vs-geotechnical matrix, controllability conditions, hybrid cases, vocabulary traps |
 | `geotechnical.html` | Observational method, ISO 18674 series, 12 sensor families, vibrating wire vs 4–20 mA, field failures |
 | `standards.html` | ISA / IEC / API / ISO / CEN index with what each one governs |
@@ -71,13 +72,14 @@ build/
   pages_home.py     index
   pages_core.py     fundamentals + instrument table
   pages_control.py  control, block diagram, simulator markup
+  pages_tools.py    five engineering calculators
   pages_compare.py  the comparison matrix
   pages_ref.py      geotechnical + standards
   pages_glossary.py glossary
   build.py          entry point
 assets/
   style.css         design system (light theme, P&ID-inspired)
-  app.js            language engine, filters, glossary search, PID simulator
+  app.js            language engine, filters, glossary search, PID simulator, calculators
   favicon.svg
 dist/               generated output (not committed)
 ```
@@ -85,7 +87,7 @@ dist/               generated output (not committed)
 ## Design notes
 
 - Light theme only, system font stack with Inter / IBM Plex Mono loaded from Google Fonts.
-- No framework, no bundler, no dependencies. Roughly 25 kB of CSS and 12 kB of JS.
+- No framework, no bundler, no dependencies. Roughly 21 kB of CSS and 17 kB of JS.
 - Diagrams are hand-written inline SVG so they inherit the palette and stay crisp at any size.
 - The simulator is a first-order-plus-dead-time plant with a PID controller, simulated at
   dt = 0.1 s for 150 s on every slider change.
