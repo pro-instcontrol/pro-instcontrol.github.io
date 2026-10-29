@@ -392,8 +392,8 @@ def build():
   <div class="card"><h3>%s</h3><p>%s</p></div>
 </div>
 <div class="nextprev">
-  <a href="control.html"><span class="k">%s</span>%s</a>
-  <a href="instruments.html" style="text-align:right"><span class="k">%s</span>%s</a>
+  <a href="safety.html"><span class="k">%s</span>%s</a>
+  <a href="comparison.html" style="text-align:right"><span class="k">%s</span>%s</a>
 </div>
 """ % (
         pg.h3("Valve sizing is not a spreadsheet exercise", "Tính van không phải bài tập bảng tính"),
@@ -429,9 +429,9 @@ def build():
             "xuất hay bước kiểm tra của kỹ sư thứ hai.",
         ),
         pg.span("Back", "Quay lại"),
-        pg.span("Control &amp; tuning", "Điều khiển &amp; hiệu chỉnh"),
-        pg.span("Also", "Xem thêm"),
-        pg.span("Instrument reference", "Danh mục thiết bị"),
+        pg.span("Safety instrumented systems", "Hệ thống an toàn SIS"),
+        pg.span("Next", "Tiếp"),
+        pg.span("Process vs geotechnical", "Quá trình vs địa kỹ thuật"),
     )
     body += section_close()
 

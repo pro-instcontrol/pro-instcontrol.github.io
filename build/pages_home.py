@@ -394,7 +394,7 @@ def build():
     # ---- 04 how to use
     body += section_open("04", "How to use this guide", "Cách dùng sổ tay", pg, "how")
     body += """
-<div class="grid c3">
+<div class="grid c4">
   <div class="card">
     <span class="n">01</span>
     <h3>%s</h3>
@@ -412,6 +412,12 @@ def build():
     <h3>%s</h3>
     <p>%s</p>
     <a class="more" href="control.html">%s &rarr;</a>
+  </div>
+  <div class="card">
+    <span class="n">04</span>
+    <h3>%s</h3>
+    <p>%s</p>
+    <a class="more" href="safety.html">%s &rarr;</a>
   </div>
 </div>
 <div class="nextprev">
@@ -438,6 +444,14 @@ def build():
             "Hiệu chỉnh một vòng mô phỏng, rồi đọc cách các số hạng PID tương tác với thời gian trễ và quán tính.",
         ),
         pg.span("Control &amp; tuning", "Điều khiển &amp; hiệu chỉnh"),
+        pg.h3("Prove it fails safe", "Chứng minh nó hỏng an toàn"),
+        pg.p(
+            "Then read how a safety function is specified, verified and quietly defeated — and why a "
+            "SIL belongs to a loop, not to a device.",
+            "Rồi đọc cách một chức năng an toàn được đặc tả, kiểm chứng và bị vô hiệu hóa âm thầm — và "
+            "vì sao SIL thuộc về một vòng đo, không phải một thiết bị.",
+        ),
+        pg.span("Safety systems", "Hệ thống an toàn"),
         pg.span("Next", "Tiếp"),
         pg.span("Fundamentals of measurement", "Cơ bản về đo lường"),
         pg.span("Also read", "Đọc thêm"),

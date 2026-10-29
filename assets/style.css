@@ -366,6 +366,14 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 .verdict .v.warn::before{background:var(--amber)}
 .verdict .v.bad::before{background:#c0392b}
 
+/* ---------- formula panel ---------- */
+.formula{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;
+  background:var(--bg2);padding:16px 18px;font-family:var(--mono);font-size:12.8px;
+  line-height:2;color:var(--ink2);overflow-x:auto}
+.formula i{color:var(--muted);font-style:normal;font-size:11.5px;letter-spacing:.02em}
+.formula sub{font-size:.75em}
+.formula .r{color:var(--accent);font-weight:600}
+
 /* ---------- misc ---------- */
 .hl{background:linear-gradient(transparent 58%,#ffe9a8 58%);padding:0 1px}
 .dim{color:var(--muted)}

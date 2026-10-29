@@ -550,7 +550,7 @@ def build():
   %s
 </div>
 <div class="nextprev">
-  <a href="control.html"><span class="k">%s</span>%s</a>
+  <a href="tools.html"><span class="k">%s</span>%s</a>
   <a href="geotechnical.html" style="text-align:right"><span class="k">%s</span>%s</a>
 </div>
 """ % (
@@ -612,7 +612,7 @@ def build():
             "lãng phí; trường hợp sau nguy hiểm.",
         ),
         pg.span("Back", "Quay lại"),
-        pg.span("Control &amp; tuning", "Điều khiển &amp; hiệu chỉnh"),
+        pg.span("Tools", "Công cụ"),
         pg.span("Next", "Tiếp"),
         pg.span("Geotechnical monitoring", "Quan trắc địa kỹ thuật"),
     )
