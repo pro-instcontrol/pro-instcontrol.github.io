@@ -297,12 +297,22 @@ DESC = {
         "bằng chính lời của người bán nó."),
 }
 
-# works with a Vietnamese translation in progress
+# works with a Vietnamese translation in progress: title-substring -> (level, total, done)
 TRANSLATED = {
     "measurement, instrumentation and sensors handbook": ("progress", 101, 1),
+    "safety instrumented systems - design, analysis, and justification": ("progress", 16, 1),
+    "pc_process control": ("progress", 14, 1),
 }
 
 HANDBOOK_SLUG = "the-measurement-instrumentation-and-sensors-handbook"
+
+# title-substring -> reader slug (for the "open the book" card link)
+BOOK_SLUG = {
+    "measurement, instrumentation and sensors handbook": HANDBOOK_SLUG,
+    "safety instrumented systems - design, analysis, and justification":
+        "safety-instrumented-systems-design-analysis-justification",
+    "pc_process control": "pc-process-control",
+}
 
 
 def num(n, lang):
@@ -372,9 +382,11 @@ def card(w, lang, dom):
             break
 
     href = ""
-    if "measurement, instrumentation and sensors handbook" in key:
-        href = (("/vi/books/read/%s/" if lang == "vi" else "/books/read/%s/")
-                % HANDBOOK_SLUG)
+    for bk, bslug in BOOK_SLUG.items():
+        if bk in key:
+            href = (("/vi/books/read/%s/" if lang == "vi" else "/books/read/%s/")
+                    % bslug)
+            break
 
     title_html = esc(t)
     if href:
