@@ -1,5 +1,5 @@
 {
- "root": "G:\\Process Control and Automation",
+ "root": "D:/Process Control and Automation",
  "domains": [
   {
    "id": "safety",
@@ -113,7 +113,8 @@
   "pdfs": 808,
   "unique_pdfs": 583,
   "duplicate_sets": 214,
-  "wasted_bytes": 571049915
+  "wasted_bytes": 571049915,
+  "works": 196
  },
  "extensions": [
   {
@@ -3924,28 +3925,250 @@
   },
   {
    "id": 100,
-   "title": "Instrumentation and Sensors for the Food Industry Second Edition by Erika Kress-Rogers",
-   "dir": "",
+   "title": "Instrumentation and Sensors for the Food Industry (2nd Edition)",
+   "dir": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)",
    "domain": "instruments",
-   "why": 6,
+   "why": 9,
    "docs": [
     {
-     "path": "0226.Instrumentation and Sensors for the Food Industry Second Edition by Erika Kress-Rogers.pdf",
-     "title": "Instrumentation and Sensors for the Food Industry Second Edition by Erika Kress-Rogers",
+     "path": "D:/Process Control and Automation/0226.Instrumentation and Sensors for the Food Industry Second Edition by Erika Kress-Rogers.pdf",
+     "title": "Complete book (single file)",
      "pages": 868,
      "bytes": 10248091,
-     "copies": [
-      "0226.Instrumentation and Sensors for the Food Industry, Second Edition by Erika Kress-Rogers.pdf"
-     ],
-     "head": "Instrumentation and sensors for the food industryRelated titles from Woodhead’s food science, technology and nutrition list: Food chemical safety Volume 1: Contaminants (ISBN: 1 85573 462 1) This volume provides comprehensive information about contaminants in the food industry. T"
+     "copies": [],
+     "head": "Instrumentation and sensors for the food industry"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_01.pdf",
+     "title": "Ch 1 · Instrumentation for food quality assurance",
+     "pages": 30,
+     "bytes": 171081,
+     "copies": [],
+     "head": "1.1 Introduction 1.1.1 The role of quality assurance in the food industry Quality control is essential in the food industry, and efficient quality assurance is becoming increasingly important. The consumer expects a wide range of competitively priced food products of consistently high quality. Each food item has to be safe, wholesome and attractive in appearance, taste and texture, and needs to be"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_02.pdf",
+     "title": "Ch 2 · Instrumental measurements and sensory parameters",
+     "pages": 30,
+     "bytes": 362780,
+     "copies": [],
+     "head": "2.1 Introduction The human senses have always been used to assess food quality. For centuries they were the only instruments available, until scientific advances in physics, chemistry and biology, as well as the growing demands of the food processing industry, led to the development of analytical techniques aiming at understanding and controlling all aspects of food quality. Although the senses of"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_03.pdf",
+     "title": "Ch 3 · Principles of colour measurement for food",
+     "pages": 23,
+     "bytes": 151914,
+     "copies": [],
+     "head": "Part I In-line measurement for the control of food-processing operations"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_04.pdf",
+     "title": "Ch 4 · Colour measurement of foods by colour reflectance",
+     "pages": 32,
+     "bytes": 259903,
+     "copies": [],
+     "head": "4.1 Introduction: food colour and quality The first judgement of a food’s quality is more often than not dependent on its various appearance characteristics, such as colour, surface structure and shape. Colour, in particular, is an important sensory attribute. It may be defined as the sensation experienced when energy, in the form of radiation within the visible spectrum, falls upon the retina of "
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_05.pdf",
+     "title": "Ch 5 · Sorting by colour in the food industry",
+     "pages": 20,
+     "bytes": 407950,
+     "copies": [],
+     "head": "5.1 Introduction Food has colour, and good food is often a different colour from bad food. This in itself is not a very remarkable statement but its implications for the food industry are very significant. The human perception of colour has proved very effective in the determination of quality in many foods, and the sorting of food particles using the human eye and hand has been, and still is, wid"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_06.pdf",
+     "title": "Ch 6 · Food compositional analysis using near infra-red absorption technology",
+     "pages": 50,
+     "bytes": 514344,
+     "copies": [],
+     "head": "6.1 Introduction Near infra-red (NIR) measurement technology offers an amazingly diverse capability for the analysis of many different constituents or properties of food products. Moisture, fat, protein and sugar content are perhaps the most well known applications in products such as grain, flour, cereals, dairy products, snacks and coffee but NIR has also found application for the measurement of"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_07.pdf",
+     "title": "Ch 7 · Practical aspects of infra-red remote thermometry",
+     "pages": 26,
+     "bytes": 833851,
+     "copies": [],
+     "head": "7.1 Introduction All objects emit electromagnetic radiation, the quantity of emitted energy and its distribution in wavelength are strong functions of temperature. The filament of a light bulb emits a great deal of radiation in the visible part of the spectrum. To achieve this emission of light, the temperature of the filament is typically raised to well over 2000ºC. A household heating radiator i"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_08.pdf",
+     "title": "Ch 8 · In-line and off-line FTIR measurements",
+     "pages": 20,
+     "bytes": 574616,
+     "copies": [],
+     "head": "8.1 Introduction Infra-red (IR) spectroscopy measures the absorption of different frequencies of infra-red radiation by the matrix being measured. IR spectroscopy was first discovered by Herschel in 1800, who used a prism to create a spectrum from white light and measured the temperature with a thermometer. He then noted an increase of the temperature beyond the visible spectrum related to the inf"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_09.pdf",
+     "title": "Ch 9 · Microwave measurements of product variables",
+     "pages": 47,
+     "bytes": 879640,
+     "copies": [],
+     "head": "9.1 Introduction Microwave electromagnetic radiation has been used in the determination of water content of various materials for at least four decades. It was applied following the germinal ideas of a number of workers in different parts of the world (Freymann 1954; Nedzvecki 1955; Watson 1957; Walker 1958). In spite of its successful use in subsequent years, there were also frequent failures, wh"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_10.pdf",
+     "title": "Ch 10 · Pressure and temperature measurement in food process control",
+     "pages": 23,
+     "bytes": 357221,
+     "copies": [],
+     "head": "10.1 Introduction Chapters 10 and 11 are concerned with the measurement of process variables that are important to the manufacturing of food. Although not giving a direct indication of product quality, accurate measurements contribute to better process control. This in turn affects the reproducibility of the manufacturing process, its economy, and the durability of the final product. Here we shall"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_11.pdf",
+     "title": "Ch 11 · Level and flow measurement in food process control",
+     "pages": 23,
+     "bytes": 229010,
+     "copies": [],
+     "head": "11.1 Introduction This chapter deals with the measurement of level and flow. These variables differ slightly from temperature and pressure, in that they are used not only for control, but also the information they supply can be used at the enterprise level of a company. Here the quantities measured may be used in the planning of production, optimisation of the plant or simply to generate invoices "
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_12.pdf",
+     "title": "Ch 12 · Ultrasonic instrumentation in the food industry",
+     "pages": 29,
+     "bytes": 444109,
+     "copies": [],
+     "head": "12.1 Introduction The commonly accepted definition of ‘ultrasound’ is a pressure wave that is oscillating at a frequency above that of human hearing. Whilst the actual highest frequency audible can vary from person to person, ultrasonic waves can have any frequency above 20 kHz up to a practical limit of around 10 MHz for the applications to be discussed in this chapter. Within this band, the meas"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_13.pdf",
+     "title": "Ch 13 · Ultrasound propagation in foods and ambient gases: principles and applications",
+     "pages": 48,
+     "bytes": 271391,
+     "copies": [],
+     "head": "13.1 Introduction Ultrasound instrumentation is already established for a number of process control tasks in the food industry. These applications include the measurement of level, flow and suspended solids concentration and the detection of interfaces between liquids. The concentration of certain simple solutions is also being monitored with current instrumentation. Automatic qualitative distinct"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_14.pdf",
+     "title": "Ch 14 · In-line and on-line rheology measurement",
+     "pages": 20,
+     "bytes": 199329,
+     "copies": [],
+     "head": "14.1 Introduction The rheological characteristics of a food product influence many aspects of the fluid performance during processing (pumpability, droplet breakup in spray drying, emulsion formation, flow into molds, foamability, etc.) and of the finished product quality (texture, flavour release, stability, appearance). Knowledge of the rheological properties of materials during processing is im"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_15.pdf",
+     "title": "Ch 15 · Rheological measurements of foods",
+     "pages": 29,
+     "bytes": 204097,
+     "copies": [],
+     "head": "Part II Instrumental techniques in the quality control laboratory"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_16.pdf",
+     "title": "Ch 16 · Water activity and its measurement in food",
+     "pages": 31,
+     "bytes": 538695,
+     "copies": [],
+     "head": "16.1 Definition Food should be stable and must be safe. These requirements mean that the products must not endanger the health of the consumer with micro-organisms or their toxins, or deteriorate owing to enzymic or microbial activity, at any stage from production through storage and retail to consumption. Factors determining microbial deterioration may be differentiated as intrinsic factors, proc"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_17.pdf",
+     "title": "Ch 17 · Conductance/impedance techniques for microbial assay",
+     "pages": 34,
+     "bytes": 817321,
+     "copies": [],
+     "head": "17.1 Introduction Over a century ago Stewart (1899) ‘found that the electrical conductance of a medium in which bacteria were growing increased significantly’. He showed that the change in conductance was proportional to the concentration of the electrolytes produced, and deduced that the conductance change was thus proportional to the concentration of active bacteria and so could be used as a mea"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_18.pdf",
+     "title": "Ch 18 · Modern methods of texture measurement",
+     "pages": 32,
+     "bytes": 698744,
+     "copies": [],
+     "head": "18.1 Introduction: texture and food quality What drives us to eat the food that forms our chosen diet? In prosperous societies, we have available an enormous and ever-increasing range of foods, and manufacturers find themselves in an intensely competitive situation. In less well-developed societies, hunger will be the constant driving force, and our diet will be determined by availability of any f"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_19.pdf",
+     "title": "Ch 19 · Sensors for food flavour and freshness: electronic noses, tongues and testers",
+     "pages": 71,
+     "bytes": 989350,
+     "copies": [],
+     "head": "Part III Chemosensors, biosensors, immunosensors, electronic noses and tongues"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_20.pdf",
+     "title": "Ch 20 · Chemosensors, biosensors, immunosensors and DNA probes: the base devices",
+     "pages": 91,
+     "bytes": 1377169,
+     "copies": [],
+     "head": "20.1 Introduction 20.1.1 Chemical sensor types and their building blocks Biosensors were beginning to feature in newspapers in the early 1980s and have been the subject of dedicated conferences throughout the last decade. Commercial instruments based on advanced biosensor designs are already established on the market in the clinical sector and have become available for food applications (Chapter 2"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_21.pdf",
+     "title": "Ch 21 · Biosensors for process monitoring and quality assurance in the food industry",
+     "pages": 26,
+     "bytes": 304147,
+     "copies": [],
+     "head": "21.1 Introduction The availability of high-quality food with respect to nutrition, freshness and food safety is a major issue for customers and legal authorities. As a consequence, food has to be chemically analyzed for a number of compounds which are indicative for the parameters mentioned above. Analyses have to be carried out upon delivery of raw material at a food-producing company, during the"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_22.pdf",
+     "title": "Ch 22 · Commercial devices based on biosensors",
+     "pages": 20,
+     "bytes": 580041,
+     "copies": [],
+     "head": "22.1 Introduction Many enzyme sensors have been developed and commercialized for the medical sector in the form of glucose and lactate sensors by companies like Medisense, YSI, Boehringer, Eppendorf, Bayer, EKF, etc. More than 90% of all biosensors are aimed at the medical market and less than 10% are directed to environmental control (e.g. BOD sensors), fermentation monitoring, alcohol test, food"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_23.pdf",
+     "title": "Ch 23 · New biosensors",
+     "pages": 16,
+     "bytes": 93958,
+     "copies": [],
+     "head": "23.1 Introduction Biosensors are one of the foremost applications of biotechnology of relevance to the food industry. These devices have the ability to provide rapid, cost effective, specific and reliable quantitative analysis. However, the variety of biological complexity of molecular structures and the wide range of concentrations coupled with a complex matrix are some of the bioanalytical chall"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_fm.pdf",
+     "title": "Front matter",
+     "pages": 17,
+     "bytes": 54894,
+     "copies": [],
+     "head": "Instrumentation and sensors for the food industry Second edition Edited by Erika Kress-Rogers and Christopher J. B. Brimelow "
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_pref.pdf",
+     "title": "Preface",
+     "pages": 5,
+     "bytes": 20121,
+     "copies": [],
+     "head": "The optimization of industrial food processing The enjoyable, everyday food in an industrialized society relies not only on agriculture and fishing but also on efficient food processing. Few people mill their own cereals, preserve and store their fruit and vegetables from harvest to consumption, churn their butter, ferment milk into yoghurt and cereals into beer, turn meat carcasses into joints, s"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_toc.pdf",
+     "title": "Table of contents",
+     "pages": 6,
+     "bytes": 18044,
+     "copies": [],
+     "head": "Preface . . . ...................................................................... xi List of contributors . . . . . ......................................................... xvii List of symbols. . . ................................................................ xxvii 1 Instrumentation for food quality assurance . . . . . ......................... 1 E. Kress Rogers, ALSTOM, Ratingen 1.1 Intro"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_app.pdf",
+     "title": "Part IV · Appendices",
+     "pages": 39,
+     "bytes": 818225,
+     "copies": [],
+     "head": "Part IV Appendices"
+    },
+    {
+     "path": "D:/Process Industries/Instrumentation and Sensors for the Food Industry (2nd Edition)/35601_indx.pdf",
+     "title": "Index",
+     "pages": 20,
+     "bytes": 82967,
+     "copies": [],
+     "head": "absolute pressure devices 281, 283, 284 absolute profiling 38 absorption and scatter of light 67–8 sensitivities and NIR 142 see also near infra-red absorption technology accuracy on-line gauges 177 ultrasound techniques 333–4, 335 acidity sensors 628–9, 643, 648–9 see also pH acoustic emission monitoring (AEM) 363–4, 401 acoustic immunosensors 675–7, 684–8, 719 piezocrystal balance devices 558, 6"
     }
    ],
-   "ndocs": 1,
-   "pages": 868,
-   "bytes": 10248091,
-   "year": null,
+   "ndocs": 29,
+   "pages": 858,
+   "bytes": 22503003,
+   "year": 2001,
    "copies": 1,
-   "head": "Instrumentation and sensors for the food industryRelated titles from Woodhead’s food science, technology and nutrition list: Food chemical safety Volume 1: Contaminants (ISBN: 1 85573 462 1) This volume provides comprehensive information about contaminants in the food industry. T"
+   "head": "Instrumentation and sensors for the food industry"
   },
   {
    "id": 101,
@@ -5625,36 +5848,20 @@
    "why": "override:process engineering equipment handbook",
    "docs": [
     {
-     "path": "Process Engineering Equipment Handbook/9614X_cs.pdf",
-     "title": "9614X cs",
-     "pages": 36,
-     "bytes": 230814,
+     "path": "D:/Ebooks/Process Control and Automation/Process Engineering Equipment Handbook/9614x_01b.pdf",
+     "title": "9614x_01b",
+     "pages": 23,
+     "bytes": 1609006,
      "copies": [],
-     "head": "Codes & Standards, ASME Key to Symbols Key to Updating Service Symbols and Reafﬁrmation (R) Designation Codes and Standards with updating service are indicated by the following symbols: A = Addenda Additions and revisions that are sent automatically to purchasers of code or stand"
+     "head": "blasting. The lifetime maintenance cost of a painted carbon-steel structure vastly outweighs the small extra premium that stainless steel affords for the initial installation. Newer Filtration Designs Clearly, the most worrisome de ﬁciency of the old systems was the combination of poor water-handling ability either from rain or salt-related droplets and the materials of construction. Gas turbines "
     },
     {
-     "path": "Process Engineering Equipment Handbook/9614X_indx.pdf",
-     "title": "9614X indx",
-     "pages": 29,
-     "bytes": 203292,
+     "path": "D:/Ebooks/Process Control and Automation/Process Engineering Equipment Handbook/9614x_03a.pdf",
+     "title": "9614x_03a",
+     "pages": 62,
+     "bytes": 1645791,
      "copies": [],
-     "head": "A.O. Smith Engineered Storage Products Co., T-1 to T-8 ABB Lummus Crest, C-14 abrasives, A-1 to A-8 bond of, A-5 to A-7 characteristics of, A-4, 4 computer numerical control (CNC) and, A-1 to A-3 friability of, A-3 to A-4, A-6 grade or hardness of, A-5 to A-7 grain size of, A-6 g"
-    },
-    {
-     "path": "Process Engineering Equipment Handbook/9614X_pref.pdf",
-     "title": "9614X pref",
-     "pages": 3,
-     "bytes": 54587,
-     "copies": [],
-     "head": "Preface If you picked up this book you are probably one of those lucky people who run plants. Either a thinly spread engineer (branch of specialty is irrelevant), a newly promoted technical manager, or a harassed technologist or senior mechanic, who just was told: “See that plant"
-    },
-    {
-     "path": "Process Engineering Equipment Handbook/9614X_toc.pdf",
-     "title": "9614X toc",
-     "pages": 5,
-     "bytes": 117738,
-     "copies": [],
-     "head": "Contents Preface xi Contributors xv Introduction xxi A A-1 ASME Speciﬁcations A-1 Abrasives A-1 Accident Management A-9 Accountability, Environmental (see Environmental Accountability) Acid Rain A-9 Acoustic Enclosures, Turbine A-10 Actuators A-37 Aerfoils; Airfoils (see Metallur"
+     "head": "C CAD/CAM (see also Machining) CAD/CAM is an acronym for computer-automated design and computer-automated machining. CAM is generally conducted in conjunction with computer numerical control (CNC) for metal-working processes such as blade-tip robotic welding, CNC tig welding, and CNC lathing, milling, and/or machining. All these numerical and computational methods contribute to a ﬁeld that is now "
     },
     {
      "path": "Process Engineering Equipment Handbook/9614x_01.pdf",
@@ -5989,6 +6196,14 @@
      "head": "W Waste Heat Recovery (see Cogeneration) Waste Management* (see also Pollutants, Chemical) Waste management is a specialized science in itself and also has its own series of handbooks. However, if waste contaminates a site, it is possible that a process engineer may be held liabl"
     },
     {
+     "path": "Process Engineering Equipment Handbook/9614X_cs.pdf",
+     "title": "9614X cs",
+     "pages": 36,
+     "bytes": 230814,
+     "copies": [],
+     "head": "Codes & Standards, ASME Key to Symbols Key to Updating Service Symbols and Reafﬁrmation (R) Designation Codes and Standards with updating service are indicated by the following symbols: A = Addenda Additions and revisions that are sent automatically to purchasers of code or stand"
+    },
+    {
      "path": "Process Engineering Equipment Handbook/9614x_fm.pdf",
      "title": "9614x fm",
      "pages": 9,
@@ -5997,20 +6212,44 @@
      "head": "Process Engineering Equipment Handbook Claire Soares McGraw-Hill New York Chicago San Francisco Lisbon London Madrid Mexico City Milan New Delhi San Juan Seoul Singapore Sydney TorontoLibrary of Congress Cataloging-in-Publication Data Soares, Claire. Process engineering equipment"
     },
     {
+     "path": "Process Engineering Equipment Handbook/9614X_indx.pdf",
+     "title": "9614X indx",
+     "pages": 29,
+     "bytes": 203292,
+     "copies": [],
+     "head": "A.O. Smith Engineered Storage Products Co., T-1 to T-8 ABB Lummus Crest, C-14 abrasives, A-1 to A-8 bond of, A-5 to A-7 characteristics of, A-4, 4 computer numerical control (CNC) and, A-1 to A-3 friability of, A-3 to A-4, A-6 grade or hardness of, A-5 to A-7 grain size of, A-6 g"
+    },
+    {
+     "path": "Process Engineering Equipment Handbook/9614X_pref.pdf",
+     "title": "9614X pref",
+     "pages": 3,
+     "bytes": 54587,
+     "copies": [],
+     "head": "Preface If you picked up this book you are probably one of those lucky people who run plants. Either a thinly spread engineer (branch of specialty is irrelevant), a newly promoted technical manager, or a harassed technologist or senior mechanic, who just was told: “See that plant"
+    },
+    {
      "path": "Process Engineering Equipment Handbook/9614x_sp.pdf",
      "title": "9614x sp",
      "pages": 38,
      "bytes": 246665,
      "copies": [],
      "head": "Some Commonly Used Speciﬁcations, Codes, Standards, and Texts Texts No handbook is all encompassing, and the process engineer’s ﬁeld is a vast one. The following texts may help process engineers, depending on their industry sector and duties, especially if used in conjunction wit"
+    },
+    {
+     "path": "Process Engineering Equipment Handbook/9614X_toc.pdf",
+     "title": "9614X toc",
+     "pages": 5,
+     "bytes": 117738,
+     "copies": [],
+     "head": "Contents Preface xi Contributors xv Introduction xxi A A-1 ASME Speciﬁcations A-1 Abrasives A-1 Accident Management A-9 Accountability, Environmental (see Environmental Accountability) Acid Rain A-9 Acoustic Enclosures, Turbine A-10 Actuators A-37 Aerfoils; Airfoils (see Metallur"
     }
    ],
-   "ndocs": 47,
-   "pages": 1474,
-   "bytes": 50135861,
+   "ndocs": 49,
+   "pages": 1559,
+   "bytes": 53390658,
    "year": null,
    "copies": 2,
-   "head": "Codes & Standards, ASME Key to Symbols Key to Updating Service Symbols and Reafﬁrmation (R) Designation Codes and Standards with updating service are indicated by the following symbols: A = Addenda Additions and revisions that are sent automatically to purchasers of code or stand"
+   "head": "blasting. The lifetime maintenance cost of a painted carbon-steel structure vastly outweighs the small extra premium that stainless steel affords for the initial installation. Newer Filtration Designs Clearly, the most worrisome de ﬁciency of the old systems was the combination of poor water-handling ability either from rain or salt-related droplets and the materials of construction. Gas turbines "
   },
   {
    "id": 150,
@@ -8380,6 +8619,228 @@
    "year": null,
    "copies": 0,
    "head": "http://www.omega.com • e-mail: pressure@omega.com http://www.omega.com • e-mail: das@omega.com VOLUME 3 FORCE-RELATED MEASUREMENTS VOLUME 3 FORCE-RELATED MEASUREMENTS PRESSURE • STRAIN • FORCE PRESSURE • STRAIN • FORCE omega.com ® ® The cover is based on an original Norman Rockwe"
+  },
+  {
+   "id": 194,
+   "title": "Automatic Control Theory — Vietnamese lecture notes (HCMUT, 2006)",
+   "dir": "D:/Ebooks/Process Control Training/Control Theory",
+   "domain": "training",
+   "why": 8,
+   "docs": [
+    {
+     "path": "D:/Ebooks/Process Control Training/Control Theory/Chuong1_LTDKTD.pdf",
+     "title": "Chương 1 · Phần tử và hệ thống điều khiển tự động",
+     "pages": 44,
+     "bytes": 811283,
+     "copies": [],
+     "head": "26 September 2006 © H. T. Hoàng - ÐHBK TPHCM 1 LYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNGLYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNG Giaûng vieân: TS. Huyønh Thaùi Hoaøng Boä moân Ñieàu Khieån Töï Ñoäng Khoa Ñieän – Ñieän Töû Ñaïi hoïc Baùch Khoa TP.HCM Email: hthoang@hcmut.edu.vn Homepage: http://www2.hcmut.edu.vn/~hthoang/ Moân hoïc Moân hoïc "
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Control Theory/Chuong2_LTDKTD.pdf",
+     "title": "Chương 2 · Mô tả toán học hệ thống điều khiển liên tục",
+     "pages": 98,
+     "bytes": 1711578,
+     "copies": [],
+     "head": "26 September 2006 © H. T. Hoàng - ÐHBK TPHCM 1 LYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNGLYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNG Giaûng vieân: TS. Huyønh Thaùi Hoaøng Boä moân Ñieàu Khieån Töï Ñoäng Khoa Ñieän – Ñieän Töû Ñaïi hoïc Baùch Khoa TP.HCM Email: hthoang@hcmut.edu.vn Homepage: http://www2.hcmut.edu.vn/~hthoang/ Moân hoïc Moân hoïc "
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Control Theory/Chuong3_LTDKTD.pdf",
+     "title": "Chương 3 · Đánh giá tính ổn định của hệ thống",
+     "pages": 98,
+     "bytes": 1657878,
+     "copies": [],
+     "head": "26 September 2006 © H. T. Hoàng - ÐHBK TPHCM 1 LYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNGLYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNG Giaûng vieân: TS. Huyønh Thaùi Hoaøng Boä moân Ñieàu Khieån Töï Ñoäng Khoa Ñieän – Ñieän Töû Ñaïi hoïc Baùch Khoa TP.HCM Email: hthoang@hcmut.edu.vn Homepage: http://www2.hcmut.edu.vn/~hthoang/ Moân hoïc Moân hoïc "
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Control Theory/Chuong4_LTDKTD.pdf",
+     "title": "Chương 4 · Chất lượng của hệ thống điều khiển",
+     "pages": 35,
+     "bytes": 436274,
+     "copies": [],
+     "head": "26 September 2006 © H. T. Hoàng - ÐHBK TPHCM 1 LYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNGLYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNG Giaûng vieân: TS. Huyønh Thaùi Hoaøng Boä moân Ñieàu Khieån Töï Ñoäng Khoa Ñieän – Ñieän Töû Ñaïi hoïc Baùch Khoa TP.HCM Email: hthoang@hcmut.edu.vn Homepage: http://www2.hcmut.edu.vn/~hthoang/ Moân hoïc Moân hoïc "
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Control Theory/Chuong5_LTDKTD.pdf",
+     "title": "Chương 5 · Thiết kế hệ thống điều khiển liên tục",
+     "pages": 80,
+     "bytes": 771815,
+     "copies": [],
+     "head": "26 September 2006 © H. T. Hoàng - ÐHBK TPHCM 1 LYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNGLYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNG Giaûng vieân: TS. Huyønh Thaùi Hoaøng Boä moân Ñieàu Khieån Töï Ñoäng Khoa Ñieän – Ñieän Töû Ñaïi hoïc Baùch Khoa TP.HCM Email: hthoang@hcmut.edu.vn Homepage: http://www2.hcmut.edu.vn/~hthoang/ Moân hoïc Moân hoïc "
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Control Theory/Chuong6_LTDKTD.pdf",
+     "title": "Chương 6 · Mô tả toán học hệ thống điều khiển rời rạc",
+     "pages": 51,
+     "bytes": 391391,
+     "copies": [],
+     "head": "26 September 2006 © H. T. Hoàng - ÐHBK TPHCM 1 LYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNGLYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNG Giaûng vieân: TS. Huyønh Thaùi Hoaøng Boä moân Ñieàu Khieån Töï Ñoäng Khoa Ñieän – Ñieän Töû Ñaïi hoïc Baùch Khoa TP.HCM Email: hthoang@hcmut.edu.vn Homepage: http://www2.hcmut.edu.vn/~hthoang/ Moân hoïc Moân hoïc "
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Control Theory/Chuong7_LTDKTD.pdf",
+     "title": "Chương 7 · Phân tích và thiết kế hệ thống điều khiển rời rạc",
+     "pages": 87,
+     "bytes": 792551,
+     "copies": [],
+     "head": "15 December 2006 © H. T. Hoàng - ÐHBK TPHCM 1 LYLYÙÙ THUYETHUYEÁÁT T ÑÑIEIEÀÀU KHIEU KHIEÅÅN TN TÖÏÖÏ ÑÑOOÄÄNGNG Giaûng vieân: TS. Huyønh Thaùi Hoaøng Boä moân Ñieàu Khieån Töï Ñoäng Khoa Ñieän – Ñieän Töû Ñaïi hoïc Baùch Khoa TP.HCM Email: hthoang@hcmut.edu.vn Homepage: http://www2.hcmut.edu.vn/~hthoang/ Moân hoMoân hoïïc c "
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Control Theory/Chuong8_LTDKTD.pdf",
+     "title": "Chương 8 · Hệ thống điều khiển phi tuyến",
+     "pages": 80,
+     "bytes": 634207,
+     "copies": [],
+     "head": "26 September 2006 © H. T. Hoàng - ÐHBK TPHCM 1 LYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNGLYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNG Giaûng vieân: TS. Huyønh Thaùi Hoaøng Boä moân Ñieàu Khieån Töï Ñoäng Khoa Ñieän – Ñieän Töû Ñaïi hoïc Baùch Khoa TP.HCM Email: hthoang@hcmut.edu.vn Homepage: http://www2.hcmut.edu.vn/~hthoang/ Moân hoïc Moân hoïc "
+    }
+   ],
+   "ndocs": 8,
+   "pages": 573,
+   "bytes": 7206977,
+   "year": null,
+   "copies": 0,
+   "head": "26 September 2006 © H. T. Hoàng - ÐHBK TPHCM 1 LYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNGLYÙ THUYEÁT ÑIEÀU KHIEÅN TÖÏ ÑOÄNG Giaûng vieân: TS. Huyønh Thaùi Hoaøng Boä moân Ñieàu Khieån Töï Ñoäng Khoa Ñieän – Ñieän Töû Ñaïi hoïc Baùch Khoa TP.HCM Email: hthoang@hcmut.edu.vn Homepage: http://www2.hcmut.edu.vn/~hthoang/ Moân hoïc Moân hoïc "
+  },
+  {
+   "id": 195,
+   "title": "Process Control course pack — homework, MATLAB handouts and syllabus",
+   "dir": "D:/Ebooks/Process Control Training",
+   "domain": "training",
+   "why": 6,
+   "docs": [
+    {
+     "path": "D:/Ebooks/Process Control Training/CMPE293_syllabus.pdf",
+     "title": "Course syllabus (CMPE 293)",
+     "pages": 3,
+     "bytes": 28873,
+     "copies": [],
+     "head": " University of California, Santa Cruz Board of Studies in Computer Engineering CMPE 293: Introduction to Feedback Control System Design General Information and Syllabus Spring 2004 T-Th 2:00-3:45 PM Class: Porter College Room 241 Instructor: Gabriel Hugh Elkaim E-mail: elkaim@soe.ucsc.edu Office: Baskin Engineering, 353B Hours: T-Th 4:00-5:30 PM Phone: (831) 459-3054 (Office) (831) 421-9098 (Home:"
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/MATLAB.pdf",
+     "title": "MATLAB primer",
+     "pages": 1,
+     "bytes": 27413,
+     "copies": [],
+     "head": " CMPE 293 Spring 2004 MATLAB Tutorials Some helpful MATLAB tutorials are available on the web, and in print. Additionally, m- files used to create every single plot in the FPE book is available for a free download. 1. m-files, mdl-files, and errate for FPE are available at: http://www.scsolutions.com/feedback.html 2. Search for “MATLAB Primer” on Google. 3. Sigmon and Davis, MATLAB Primer, 6th Edi"
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/matlabhandout.pdf",
+     "title": "MATLAB handout",
+     "pages": 6,
+     "bytes": 174087,
+     "copies": [],
+     "head": "CMPE-293 Spring 2004 Feedback Control Design An Introduction to MATLAB and the Control Systems toolbox Aravind Parchuri, Darren Hon and Albert Honein MATLAB is essentially a programming interface that can be used for a variety of scientific calculations, programming and graphical visualization. Its basic data element is an array, and its computations are optimized for this data type, which makes i"
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Homework_1.pdf",
+     "title": "Homework 1",
+     "pages": 1,
+     "bytes": 20445,
+     "copies": [],
+     "head": " CMPE 293 Spring 2004 Due: 8-Apr-2004 Homework #1: Equations of Motion and Basic Feedback Systems Problems are from Franklin, Powell, Emami, Feedback Control of Dynamic Systems, 4th Edition (FPE). 1. Send me an email at elkaim@soe.ucsc.edu with the subject line: CMPE-293 and your full email address in the body. For example, mine would be: “Gabriel Hugh Elkaim” <elkaim@soe.ucsc.edu> 2. FPE 1.1. 3. "
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Homework_2.pdf",
+     "title": "Homework 2",
+     "pages": 1,
+     "bytes": 20249,
+     "copies": [],
+     "head": " CMPE 293 Spring 2004 Due: 15-Apr-2004 Homework #2: Dynamic Response of Basic Feedback Systems Problems are from Franklin, Powell, Emami, Feedback Control of Dynamic Systems, 4th Edition (FPE). 1. FPE 2.23. 2. FPE 3.14. 3. FPE 3.2 (a). 4. FPE 3.3 (b). 5. FPE 3.5 (d). 6. FPE 3.7 (b). 7. FPE 3.7 (d). 8. FPE 3.9 (d). 9. FPE 3.16. "
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Homework_3.pdf",
+     "title": "Homework 3",
+     "pages": 1,
+     "bytes": 81285,
+     "copies": [],
+     "head": " CMPE 293 Spring 2004 Due: 22-Apr-2004 Homework #3: Design Specifications and Control Response. Problems are from Franklin, Powell, Emami, Feedback Control of Dynamic Systems, 4th Edition (FPE). 1. Assume you have a plant, G(s) = 1/(s+a). a. What is the frequency response of this plant as per eqn. 3-9 in FPE. b. Using what we know about Laplace transforms, the response of this plant to a cosine in"
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Homework_4.pdf",
+     "title": "Homework 4",
+     "pages": 1,
+     "bytes": 19576,
+     "copies": [],
+     "head": " CMPE 293 Spring 2004 Due: 29-Apr-2004 Homework #4: Basic Feedback Control Design. Problems are from Franklin, Powell, Emami, Feedback Control of Dynamic Systems, 4th Edition (FPE). 1. FPE 4.4. 2. FPE 4.13. 3. FPE 4.14. 4. FPE 4.18. 5. FPE 4.26. 6. FPE 4.35. "
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Homework_5.pdf",
+     "title": "Homework 5",
+     "pages": 1,
+     "bytes": 20458,
+     "copies": [],
+     "head": " CMPE 293 Spring 2004 Due: 06-May-2004 Homework #5: Root Locus Method. Problems are from Franklin, Powell, Emami, Feedback Control of Dynamic Systems, 4th Edition (FPE). 1. FPE 5.1 (b) and (d-iii). 2. FPE 5.2. Rough sketches are OK. 3. FPE 5.4 (a). 4. FPE 5.5 (d). 5. FPE 5.6 (c). 6. FPE 5.7 (d). 7. FPE 5.8 (f). The point of the exercise is to learn to sketch the root locus by hand. It is OK to che"
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Homework_6.pdf",
+     "title": "Homework 6",
+     "pages": 1,
+     "bytes": 19590,
+     "copies": [],
+     "head": " CMPE 293 Spring 2004 Due: 13-May-2004 Homework #6: Root Locus Method, Midterm Review. Problems are from Franklin, Powell, Emami, Feedback Control of Dynamic Systems, 4th Edition (FPE). 1. FPE 5.22. 2. FPE 5.36. 3. FPE 5.41. 4. Prepare for take-home midterm, which will be posted to the website on Monday, 10-May-2004, and will be due at the beginning of class on Tuesday. The exam will be open book,"
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Homework_7.pdf",
+     "title": "Homework 7",
+     "pages": 1,
+     "bytes": 85818,
+     "copies": [],
+     "head": " CMPE 293 Spring 2004 Due: 20-May-2004 Homework #7: Lead, Lag, and Notch Filter design. Given the system: )1( 1)( 2 += ssG . Note, you may use MATLAB to check your work, but I want you to do most of this “by hand” in order to develop your intuition. 1. Design a lead controller with its zero at the origin, )()( ps sKsK += (unity feedback) such that the dominant second order roots are at js 22±−= . "
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Homework_8.pdf",
+     "title": "Homework 8",
+     "pages": 2,
+     "bytes": 36596,
+     "copies": [],
+     "head": " CMPE 293 Spring 2004 Due: 27-May-2004 Homework #8: Bode Plots. 1. Sketch the Bode diagrams (frequency response plots) for the following systems. First sketch the asymptotes, and then add the values at the key break points on the plots. a. () 51)( += sssG b. () () 10)5( 1)( ++ += ss ssG 2. A lead compensator is defined by, ()() ( )ωαα ω + ⎟ ⎠ ⎞⎜ ⎝ ⎛ + =++= ssKbs asKsD )( where the center frequency"
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Homework_9.pdf",
+     "title": "Homework 9",
+     "pages": 2,
+     "bytes": 87178,
+     "copies": [],
+     "head": " CMPE 293 Spring 2004 Due: 03-June-2004 Homework #9: Bode Synthesis. 1. Sketch the Bode diagrams (frequency response plots) for 641)( 2 −−= s ssG . 2. Sketch the Nyquist plots for each of these systems. For what range of gain, K, will the system be stable? a. () 10100)( 2 ++= ss sKsG . b. () 101)( 2 ++= ss sKsG . 3. What is the phase margin for the system: ( ) )10)(2( 5.010)( 2 ++ += sss ssG ? Do "
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Homework_1_pages.pdf",
+     "title": "Homework 1 · worked pages",
+     "pages": 7,
+     "bytes": 349149,
+     "copies": [],
+     "head": ""
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Homework_2_answers.pdf",
+     "title": "Homework 2 · answers",
+     "pages": 1,
+     "bytes": 21773,
+     "copies": [],
+     "head": ""
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Homework_3_answers.pdf",
+     "title": "Homework 3 · answers",
+     "pages": 1,
+     "bytes": 17887,
+     "copies": [],
+     "head": ""
+    },
+    {
+     "path": "D:/Ebooks/Process Control Training/Homework_4_answers.pdf",
+     "title": "Homework 4 · answers",
+     "pages": 1,
+     "bytes": 16322,
+     "copies": [],
+     "head": "CMPE293 Homework #4 Answers to Selected Problems 4.4 a) IKsKps s sW sY 600)60060( 1500 )( )( 2 +++ −= b) Kp = 1/10, KI = 12 4.18 b) K must be POSITIVE to stabilize the system 4.26 a) I IP KsKpss KsK sR sY 10)1020( )(10 )( )( 23 ++++ += b) IKsKpss s sW sY 10)1020( 10 )( )( 23 ++++= c) KI > 0 and KP > (KI-2) d) System is TYPE 1 Error Constant Kv = KI/2 e) System is TYPE 1 Error Constant Kv = -KI 4.3"
+    }
+   ],
+   "ndocs": 16,
+   "pages": 31,
+   "bytes": 1026699,
+   "year": null,
+   "copies": 0,
+   "head": " University of California, Santa Cruz Board of Studies in Computer Engineering CMPE 293: Introduction to Feedback Control System Design General Information and Syllabus Spring 2004 T-Th 2:00-3:45 PM Class: Porter College Room 241 Instructor: Gabriel Hugh Elkaim E-mail: elkaim@soe.ucsc.edu Office: Baskin Engineering, 353B Hours: T-Th 4:00-5:30 PM Phone: (831) 459-3054 (Office) (831) 421-9098 (Home:"
   }
  ]
 }

@@ -658,15 +658,8 @@ def header(lang, active_books=True, switch_href=None):
 
 
 def footer(lang):
-    if lang == "vi":
-        txt = ("Thư viện Pro InstControl · Danh mục lập ngày %s · "
-               "Nguồn: D:\\Process Control and Automation"
-               % datetime.date.today().isoformat())
-    else:
-        txt = ("Pro InstControl Library · Catalogue generated %s · "
-               "Source: D:\\Process Control and Automation"
-               % datetime.date.today().isoformat())
-    return '<footer class="site-footer"><p>%s</p></footer>' % esc(txt)
+    """Library pages carry no footer by design."""
+    return ""
 
 
 def build_index(lang):

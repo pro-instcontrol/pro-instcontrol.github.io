@@ -41,46 +41,65 @@ def book_link(bid, limit=48):
 
 
 # ---------------------------------------------------------------------------
-# BCIT coverage areas: (en, vi, desc_en, desc_vi, book_id)
-BCIT_COVERAGE = [
-    ("Measurement: temperature, pressure, flow, level",
-     "Đo lường: nhiệt độ, áp suất, lưu lượng, mức",
-     "Thermocouples and RTDs, pressure and DP transmitters, orifice and Coriolis "
-     "flow, radar and DP level.",
-     "Cặp nhiệt và RTD, truyền áp và DP, lưu lượng lỗ khoan và Coriolis, mức radar "
-     "và DP.", 180),
-    ("Transducers & signal conditioning",
-     "Cảm biến & điều chế tín hiệu",
-     "Converting a physical quantity into 4–20 mA, HART or a fieldbus value, then "
-     "linearising, ranging and filtering it.",
-     "Chuyển đại lượng vật lý thành 4–20 mA, HART hay giá trị fieldbus, rồi tuyến "
-     "tính hóa, đặt dải và lọc.", 123),
-    ("Control valves & actuators",
-     "Van điều khiển & cơ cấu chấp hành",
-     "Valve types, Cv sizing, positioners and the final control element.",
-     "Các loại van, tính Cv, bộ định vị và phần tử điều khiển cuối.", 186),
-    ("PID control & tuning",
-     "Điều khiển PID & hiệu chỉnh",
-     "Proportional, integral and derivative action, loop stability and practical "
-     "tuning methods.",
-     "Tác động tỷ lệ, tích phân và vi phân, ổn định vòng và phương pháp hiệu chỉnh "
-     "thực tế.", 116),
-    ("PLCs & automation",
-     "PLC & tự động hóa",
-     "Programming programmable logic controllers and computerized controls.",
-     "Lập trình PLC và điều khiển máy tính.", 4),
-    ("Calibration, loop checking & documentation",
-     "Hiệu chuẩn, kiểm tra vòng & tài liệu",
-     "Bench and field calibration, loop checkout, P&IDs and loop sheets.",
-     "Hiệu chuẩn tại xưởng và hiện trường, kiểm tra vòng, P&ID và phiếu vòng.", 180),
-    ("Safety, codes & standards",
-     "An toàn, quy chuẩn & tiêu chuẩn",
-     "Hazardous locations, electrical safety and instrument symbology.",
-     "Vùng nguy hiểm, an toàn điện và ký hiệu thiết bị đo.", 175),
-    ("Industrial networks & fieldbus",
-     "Mạng công nghiệp & fieldbus",
-     "HART, Profibus, Modbus and industrial Ethernet in the plant.",
-     "HART, Profibus, Modbus và Ethernet công nghiệp trong nhà máy.", 71),
+# BCIT Industrial Instrumentation & Process Control Technician diploma.
+# Course codes, titles and credits follow a completed BCIT transcript; the order
+# is the term sequence the courses were taken in. Books are library work ids.
+BCIT_TERMS = [
+    ("Term 1 — DC fundamentals and instrumentation basics",
+     "Kỳ 1 — Điện một chiều và cơ sở thiết bị đo",
+     [
+         ("INST 1000", "Điện một chiều", "DC Electricity", "6", 124),
+         ("INST 1001", "Tài liệu, ký hiệu thiết bị đo &amp; CAD",
+          "Instrumentation Documentation, Symbols &amp; CAD", "4", 57),
+         ("INST 1103", "Cơ sở thiết bị đo", "Instrumentation Fundamentals", "6", 180),
+         ("INST 2000", "Điện xoay chiều &amp; transistor",
+          "AC Electricity &amp; Transistors", "7", 124),
+         ("INST 2001", "Nguồn cấp &amp; khuếch đại thuật toán",
+          "Power Supplies &amp; Op-Amps", "7", 124),
+     ]),
+    ("General studies — maintenance management",
+     "Giáo dục đại cương — quản lý bảo trì",
+     [
+         ("PEMA 1000", "Quản lý bảo trì: nhập môn",
+          "Maintenance Management: Introduction", "1", None),
+     ]),
+    ("Term 2 — temperature, PLCs and process control",
+     "Kỳ 2 — nhiệt độ, PLC và điều khiển quá trình",
+     [
+         ("INST 2107", "Thiết bị đo &amp; đo nhiệt độ",
+          "Temperature Instruments &amp; Measurement", "6", 32),
+         ("INST 3112", "PLC &amp; HMI", "PLCs &amp; HMI", "8", 138),
+         ("INST 3117", "Bộ điều khiển tương tự &amp; vi xử lý",
+          "Analog &amp; Microprocessor Controllers", "8", 136),
+         ("INST 3121", "Điều khiển quá trình &amp; hệ điều khiển",
+          "Process Control &amp; Control Systems", "8", 142),
+     ]),
+    ("Term 3 — pressure, flow, level and final elements",
+     "Kỳ 3 — áp suất, lưu lượng, mức và phần tử chấp hành",
+     [
+         ("INST 2112", "Thiết bị đo &amp; đo áp suất",
+          "Pressure Instruments &amp; Measurement", "8", 146),
+         ("INST 2116", "Thiết bị đo &amp; đo lưu lượng",
+          "Flow Instruments &amp; Measurement", "6", 76),
+         ("INST 2121", "Thiết bị đo mức &amp; khối lượng riêng",
+          "Level &amp; Density Instruments &amp; Measurement", "6", 111),
+         ("INST 2123", "Van điều khiển &amp; bộ định vị",
+          "Control Valves &amp; Positioners", "8", 188),
+         ("INST 2125", "Hệ thống thủy lực", "Hydraulic Systems", "2", 140),
+     ]),
+    ("Term 4 — analysis, digital logic, DCS and boilers",
+     "Kỳ 4 — phân tích, logic số, DCS và lò hơi",
+     [
+         ("INST 3106", "Thiết bị phân tích &amp; điều khiển",
+          "Analytical Instruments &amp; Control", "6", 101),
+         ("INST 3110", "FET, thyristor &amp; logic số",
+          "FETs &amp; Thyristors, Digital Logic", "6", 113),
+         ("INST 3124", "Hệ điều khiển phân tán", "Distributed Control Systems", "6", 71),
+         ("INST 3128", "Điều khiển lò hơi &amp; Foundation Fieldbus",
+          "Boiler Control &amp; Foundation Fieldbus", "6", 141),
+         ("INST 3130", "Độ nhớt/độ đặc, pha trộn đường ống &amp; điều khiển mẻ",
+          "Viscosity/Consistency, Pipeline Blending &amp; Batch Control", "6", 100),
+     ]),
 ]
 
 # ---------------------------------------------------------------------------
@@ -292,21 +311,33 @@ def build():
     body += section_open("03", "BCIT — curriculum &amp; books",
                          "BCIT — chương trình &amp; sách", pg, "bcit-cur")
     body += "<div class=\"sec-head\">"
-    body += pg.h2("Coverage areas, with a book for each", "Các mảng nội dung, kèm một cuốn sách")
+    body += pg.h2("The course record, term by term", "Chương trình học, theo từng kỳ")
     body += pg.p(
-        "Across its terms the diploma builds the technician's core competencies. "
-        "Each area below links to a related book in the library. BCIT publishes the "
-        "exact course matrix and credits on its official page.",
-        "Qua các kỳ, chương trình xây các năng lực cốt lõi của kỹ thuật viên. Mỗi "
-        "mảng dưới đây liên kết tới một cuốn sách liên quan trong thư viện. BCIT công "
-        "bố ma trận môn học và số tín chỉ chính xác trên trang chính thức.")
-    body += "</div><div class=\"grid c2\">"
-    for en, vi, d_en, d_vi, bid in BCIT_COVERAGE:
-        bl = book_link(bid)
-        body += ("<div class=\"card\"><h3>%s</h3><p>%s</p>%s</div>"
-                 % (pg.span(en, vi), pg.span(d_en, d_vi),
-                    ('<p style="margin:.4rem 0 0;font-size:.85rem;">%s</p>' % bl) if bl else ""))
+        "Twenty courses, 116 credits: the diploma builds from DC electricity and "
+        "documentation through every measured variable to PLCs, DCS, boilers and "
+        "batch control. Every course below is paired with the library book that "
+        "covers it; BCIT publishes the official course matrix on its program page.",
+        "Hai mươi học phần, 116 tín chỉ: chương trình đi từ điện một chiều và tài "
+        "liệu kỹ thuật, qua từng đại lượng đo, tới PLC, DCS, lò hơi và điều khiển "
+        "mẻ. Mỗi học phần dưới đây được ghép với cuốn sách trong thư viện bao trùm "
+        "nội dung đó; BCIT công bố ma trận môn học chính thức trên trang chương trình.")
     body += "</div>"
+    for t_en, t_vi, rows in BCIT_TERMS:
+        body += "<h3 class=\"mt24\">%s</h3>" % pg.span(t_en, t_vi)
+        body += course_table(pg, rows)
+    body += "<div class=\"note mt24\"><span class=\"lbl\">%s</span>%s</div>" % (
+        pg.span("About the course list", "Về danh sách học phần"),
+        pg.p(
+            "Codes, titles and credits are taken from a BCIT transcript for the "
+            "Industrial Instrumentation &amp; Process Control Technician diploma, "
+            "so the term grouping reflects one student's path rather than a fixed "
+            "cohort timetable. Book pairings are editorial: each one is the closest "
+            "match in the library, not a BCIT-prescribed text.",
+            "Mã, tên và số tín chỉ lấy từ bảng điểm BCIT của chương trình Kỹ thuật "
+            "viên Thiết bị đo &amp; Điều khiển Quá trình, nên cách nhóm theo kỳ phản "
+            "ánh lộ trình của một sinh viên chứ không phải thời khóa biểu cố định. "
+            "Việc ghép sách mang tính biên tập: mỗi cuốn là bản gần nhất trong thư "
+            "viện, không phải giáo trình BCIT quy định."))
     body += section_close()
 
     # 04 HUST overview

@@ -140,6 +140,93 @@ FOOD_ITEMS = [
 ]
 
 
+# ---- food & beverage: what the industry actually measures ------------------
+# Each row follows a chapter of "Instrumentation and Sensors for the Food
+# Industry" (Kress-Rogers & Brimelow, 2nd ed., Woodbury 2001), now in the library.
+FOOD_MEASURES = [
+    ("Temperature &amp; pressure",
+     "Nhiệt độ &amp; áp suất",
+     "The base variables of every process step: pasteurisation hold, evaporation, sterilisation, "
+     "chilling. Sensors must survive CIP at 80–90 °C and stay hygienic.",
+     "Biến cơ bản của mọi công đoạn: giữ thanh trùng, bay hơi, tiệt trùng, làm lạnh. Cảm biến phải chịu "
+     "được CIP 80–90 °C và vẫn hợp vệ sinh.",
+     "Pt100 in hygienic pockets, diaphragm-seal gauges, remote IR thermometry",
+     "Pt100 trong vỏ vệ sinh, áp kế phớt màng, đo nhiệt hồng ngoại từ xa"),
+    ("Level &amp; flow",
+     "Mức &amp; lưu lượng",
+     "Batching, dosing and mass balance. Flow is the usual manipulated variable; level protects tanks "
+     "from overfill and pumps from running dry.",
+     "Phối liệu, định lượng và cân bằng vật chất. Lưu lượng thường là biến thao tác; mức bảo vệ bồn "
+     "khỏi tràn và bơm khỏi chạy khô.",
+     "Coriolis or electromagnetic flowmeters, radar/ultrasonic level",
+     "Lưu lượng kế Coriolis hoặc điện từ, đo mức radar/siêu âm"),
+    ("Colour",
+     "Màu sắc",
+     "Consumers judge quality by colour before taste. Reflectance measurement in L*a*b* replaces the "
+     "inspector's eye and drives optical sorting.",
+     "Người tiêu dùng đánh giá chất lượng bằng màu trước khi nếm. Đo phản xạ theo L*a*b* thay mắt "
+     "người kiểm và điều khiển máy phân loại quang học.",
+     "Colour reflectance spectrophotometer, in-line colour cameras, sorters",
+     "Quang phổ kế phản xạ màu, camera màu in-line, máy phân loại"),
+    ("Composition — NIR / FTIR",
+     "Thành phần — NIR / FTIR",
+     "Fat, protein, moisture and sugar measured without reagents, through a window or a probe, in "
+     "seconds. NIR handles at-line and in-line; FTIR resolves the mid-infrared fingerprints.",
+     "Đo béo, đạm, ẩm và đường không cần thuốc thử, qua cửa sổ hoặc đầu dò, trong vài giây. NIR dùng "
+     "at-line và in-line; FTIR phân giải dấu vân tay hồng ngoại trung.",
+     "NIR spectrometer with fibre probe, ATR-FTIR, microwave moisture gauge",
+     "Quang phổ kế NIR đầu dò sợi quang, ATR-FTIR, máy đo ẩm vi sóng"),
+    ("Water activity",
+     "Hoạt độ nước",
+     "Not water content but available water — the variable that decides whether micro-organisms can "
+     "grow. It sets shelf life for dried, baked and intermediate-moisture foods.",
+     "Không phải hàm ẩm mà là nước khả dụng — biến quyết định vi sinh vật có phát triển được hay "
+     "không. Nó quyết định hạn dùng của thực phẩm khô, nướng và ẩm trung gian.",
+     "Chilled-mirror or capacitive aw meter, equilibrium RH sensor",
+     "Máy đo aw gương lạnh hoặc điện dung, cảm biến RH cân bằng"),
+    ("Ultrasound",
+     "Siêu âm",
+     "Non-invasive and non-destructive: thickness, level, flow and — through attenuation and velocity — "
+     "composition and texture of solid foods.",
+     "Không xâm nhập và không phá hủy: độ dày, mức, lưu lượng và — qua suy giảm và vận tốc — thành phần "
+     "và cấu trúc của thực phẩm rắn.",
+     "Clamp-on ultrasonic flowmeter, pulse-echo probes, air-coupled transducers",
+     "Lưu lượng kế siêu âm kẹp ngoài, đầu dò xung-dội, đầu dò ghép không khí"),
+    ("Rheology &amp; texture",
+     "Lưu biến &amp; cấu trúc",
+     "How the product flows and how it feels in the mouth. Viscosity, yield stress and texture are "
+     "quality attributes and also line-hydraulics inputs.",
+     "Sản phẩm chảy thế nào và cảm giác trong miệng ra sao. Độ nhớt, ứng suất chảy và cấu trúc là thuộc "
+     "tính chất lượng, đồng thời là đầu vào thủy lực đường ống.",
+     "In-line viscometer, oscillatory rheometer, texture analyser",
+     "Nhớt kế in-line, lưu biến kế dao động, máy phân tích cấu trúc"),
+    ("Microbial &amp; biosensors",
+     "Vi sinh &amp; cảm biến sinh học",
+     "Contamination is the one failure that reaches the consumer. Conductance/impedance, immunosensors "
+     "and DNA probes shorten a two-day plate count to hours.",
+     "Nhiễm khuẩn là sự cố duy nhất tới tay người tiêu dùng. Độ dẫn/trở kháng, cảm biến miễn dịch và "
+     "đầu dò DNA rút ngắn 2 ngày cấy đĩa xuống còn vài giờ.",
+     "Impedance microbiology system, ELISA/immunosensor, PCR/DNA probe",
+     "Hệ vi sinh trở kháng, ELISA/cảm biến miễn dịch, PCR/đầu dò DNA"),
+    ("Flavour &amp; freshness",
+     "Hương vị &amp; độ tươi",
+     "Electronic noses and tongues compare a volatiles or taste fingerprint against a trained model — "
+     "fast screening where a sensory panel is too slow.",
+     "Mũi và lưỡi điện tử so sánh dấu vân tay bay hơi hoặc vị với mô hình đã huấn luyện — sàng lọc "
+     "nhanh nơi hội đồng cảm quan quá chậm.",
+     "Metal-oxide or conducting-polymer e-nose, potentiometric e-tongue",
+     "Mũi điện tử oxit kim loại hoặc polymer dẫn, lưỡi điện tử điện thế"),
+    ("Foreign bodies",
+     "Dị vật",
+     "Metal, glass and stone detection is a legal and brand-protection requirement, checked at the end "
+     "of the line on every pack.",
+     "Phát hiện kim loại, thủy tinh và sỏi là yêu cầu pháp lý và bảo vệ thương hiệu, kiểm ở cuối line "
+     "trên từng gói.",
+     "Metal detector (balanced coil), X-ray inspection, checkweigher",
+     "Máy dò kim loại (cuộn cân bằng), kiểm tra X-quang, cân kiểm"),
+]
+
+
 def build():
     pg = Page(
         "applications.html",
@@ -359,6 +446,34 @@ def build():
         body += "<div class=\"card\"><h3>%s</h3><p>%s</p></div>" % (
             pg.span(n_en, n_vi), pg.span(d_en, d_vi))
     body += "</div>"
+    body += "<div class=\"sec-head mt24\">"
+    body += pg.h3("Ten measurements that decide product quality",
+                  "Mười phép đo quyết định chất lượng sản phẩm")
+    body += pg.p(
+        "Food instrumentation is not exotic — it is the standard measurement chain pushed to meet hygiene, "
+        "speed and traceability. This table follows the chapters of the sector's reference work.",
+        "Thiết bị đo trong thực phẩm không hề lạ — đó là chuỗi đo tiêu chuẩn được đẩy tới mức đáp ứng vệ "
+        "sinh, tốc độ và truy xuất. Bảng này đi theo các chương của sách tham chiếu của ngành.")
+    body += "</div>"
+    body += "<div class=\"tbl-wrap\"><table class=\"tbl\"><thead><tr><th>%s</th><th>%s</th>" \
+            "<th>%s</th></tr></thead><tbody>" % (
+        pg.th("Quantity", "Đại lượng"), pg.th("Why it matters", "Vì sao quan trọng"),
+        pg.th("Typical instruments", "Thiết bị điển hình"))
+    for n_en, n_vi, d_en, d_vi, i_en, i_vi in FOOD_MEASURES:
+        body += "<tr><td><strong>%s</strong></td><td>%s</td><td>%s</td></tr>" % (
+            pg.span(n_en, n_vi), pg.span(d_en, d_vi), pg.span(i_en, i_vi))
+    body += "</tbody></table></div>"
+    body += "<div class=\"note mt24\"><span class=\"lbl\">%s</span>%s</div>" % (
+        pg.span("Where to read more", "Đọc thêm ở đâu"),
+        pg.p(
+            "The whole sector is covered chapter by chapter in "
+            "<a href=\"/books/work/100/\">Instrumentation and Sensors for the Food Industry "
+            "(2nd Edition)</a> — Kress-Rogers &amp; Brimelow, Woodhead, 2001 — now in the library, with "
+            "all 23 chapters readable and downloadable individually.",
+            "Toàn bộ ngành được trình bày theo từng chương trong "
+            "<a href=\"/books/work/100/\">Instrumentation and Sensors for the Food Industry "
+            "(2nd Edition)</a> — Kress-Rogers &amp; Brimelow, Woodhead, 2001 — nay đã có trong thư viện, "
+            "cả 23 chương đọc và tải riêng được."))
     body += "<div class=\"note mt24\"><span class=\"lbl\">%s</span>%s</div>" % (
         pg.span("ISA-88 / IEC 61512", "ISA-88 / IEC 61512"),
         pg.p(
