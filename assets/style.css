@@ -35,6 +35,7 @@ img,svg{max-width:100%}
 a{color:var(--accent-2);text-decoration:none}
 a:hover{text-decoration:underline;text-underline-offset:3px}
 h1,h2,h3,h4{margin:0;line-height:1.15;letter-spacing:-.022em;font-weight:650}
+h1 .en,h2 .en,h3 .en,h4 .en{display:block;font-size:.68em;font-weight:500;letter-spacing:0;color:var(--muted);margin-top:.22em;text-transform:none}
 p{margin:0 0 1em}
 h1 + p,h2 + p,h3 + p{margin-top:.72em}
 ul,ol{margin:0 0 1em;padding-left:1.15em}

@@ -16,241 +16,241 @@
 <main>
 <article class="intranet-content reader">
 
-  <div class="reader-hero">
-    <div class="breadcrumb"><a href="/vi/books/">Sách</a> · <a href="/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/">Sổ tay Đo lường, Thiết bị đo và Cảm biến</a> · Chương 2</div>
-    <h1>Các chế độ vận hành của thiết bị đo</h1>
-    <p class="byline">Richard S. Figliola · Clemson University</p>
-    <div class="meta-line">Chương 2 · theo Ch02.pdf (CRC Press, 1999)</div>
-  </div>
+ <div class="reader-hero">
+ <div class="breadcrumb"><a href="/vi/books/">Sách</a> · <a href="/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/">Sổ tay Đo lường, Thiết bị đo và Cảm biến</a> · Chương 2</div>
+ <h1>Các chế độ vận hành của thiết bị đo</h1>
+ <p class="byline">Richard S. Figliola · Clemson University</p>
+ <div class="meta-line">Chương 2 · theo Ch02.pdf (CRC Press, 1999)</div>
+ </div>
 
-  <div class="prose">
+ <div class="prose">
 
-    <div class="note">
-      <b>Thuật ngữ chính.</b>
-      <em>Thiết bị chỉ thị zero (null instrument)</em> — cân bằng đại lượng đo với một giá trị chuẩn để đạt trạng thái zero ·
-      <em>Thiết bị lệch (deflection instrument)</em> — đầu ra lệch tỷ lệ với đại lượng đo ·
-      <em>Cảm biến tương tự/số</em> · <em>Chỉ thị (readout)</em> ·
-      <em>Trở kháng đầu vào (input impedance)</em> · <em>Lỗi tải (loading error)</em> ·
-      <em>Đại lượng đo (measurand)</em> · <em>Độ phân giải (resolution)</em>.
-      Tiêu đề mỗi mục giữ nguyên bản tiếng Anh trong ngoặc để tiện đối chiếu.
-    </div>
+ <div class="note">
+ <b>Thuật ngữ chính.</b>
+ <em>Thiết bị chỉ thị zero (null instrument)</em> — cân bằng đại lượng đo với một giá trị chuẩn để đạt trạng thái zero ·
+ <em>Thiết bị lệch (deflection instrument)</em> — đầu ra lệch tỷ lệ với đại lượng đo ·
+ <em>Cảm biến tương tự/số</em> · <em>Chỉ thị (readout)</em> ·
+ <em>Trở kháng đầu vào (input impedance)</em> · <em>Lỗi tải (loading error)</em> ·
+ <em>Đại lượng đo (measurand)</em> · <em>Độ phân giải (resolution)</em>.
+ Tiêu đề mỗi mục giữ nguyên bản tiếng Anh trong ngoặc để tiện đối chiếu.
+ </div>
 
-    <p class="lead">Có nhiều chế độ vận hành khác nhau của một thiết bị đo. Chương này xem xét các phương pháp zero và lệch, sự khác biệt giữa cảm biến và chỉ thị tương tự so với số, và tại sao trở kháng đầu vào quyết định lỗi tải — tức sai số do chính hành động đo gây ra.</p>
+ <p class="lead">Có nhiều chế độ vận hành khác nhau của một thiết bị đo. Chương này xem xét các phương pháp zero và lệch, sự khác biệt giữa cảm biến và chỉ thị tương tự so với số, và tại sao trở kháng đầu vào quyết định lỗi tải — tức sai số do chính hành động đo gây ra.</p>
 
-    <h2>2.1 Thiết bị chỉ thị zero <span class="en">Null Instrument</span></h2>
+ <h2>2.1 Thiết bị chỉ thị zero <span class="en">Null Instrument</span></h2>
 
-    <p>Phương pháp zero là một chế độ vận hành có thể có của thiết bị đo. Thiết bị chỉ thị zero dùng phương pháp zero để đo. Trong phương pháp này, thiết bị tác động lên hệ thống đo sao cho chống lại tác động của đại lượng đo. Ảnh hưởng và đại lượng đo được cân bằng cho đến khi chúng bằng nhau nhưng ngược chiều giá trị, tạo ra một phép đo zero. Thông thường, điều này đạt được bằng một dạng phản hồi cho phép so sánh đại lượng đo với một giá trị chuẩn已知.</p>
+ <p>Phương pháp zero là một chế độ vận hành có thể có của thiết bị đo. Thiết bị chỉ thị zero dùng phương pháp zero để đo. Trong phương pháp này, thiết bị tác động lên hệ thống đo sao cho chống lại tác động của đại lượng đo. Ảnh hưởng và đại lượng đo được cân bằng cho đến khi chúng bằng nhau nhưng ngược chiều giá trị, tạo ra một phép đo zero. Thông thường, điều này đạt được bằng một dạng phản hồi cho phép so sánh đại lượng đo với một giá trị chuẩn đã biết.</p>
 
-    <p>Các đặc điểm chủ yếu của thiết bị chỉ thị zero gồm: một thao tác cân bằng lặp lại dùng một dạng bộ so sánh nào đó, phản hồi thủ công hay tự động để đạt cân bằng, và độ lệch zero tại điểm tương đương (parity).</p>
+ <p>Các đặc điểm chủ yếu của thiết bị chỉ thị zero gồm: một thao tác cân bằng lặp lại dùng một dạng bộ so sánh nào đó, phản hồi thủ công hay tự động để đạt cân bằng, và độ lệch zero tại điểm tương đương (parity).</p>
 
-    <p>Thiết bị chỉ thị zero có những ưu điểm nội tại nhất định so với các chế độ vận hành khác (xem thiết bị lệch). Bằng cách cân bằng đầu vào未知 với một đầu vào chuẩn已知, phương pháp zero giảm thiểu sự tương tác giữa hệ thống đo và đại lượng đo. Vì mỗi đầu vào đến từ một nguồn riêng biệt, ý nghĩa của bất cứ ảnh hưởng đo nào lên đại lượng đo bởi quá trình đo đều bị giảm. Thực tế, hệ thống được đo "thấy" một trở kháng đầu vào rất cao, nhờ đó giảm thiểu lỗi tải. Điều này đặc biệt hiệu quả khi đại lượng đo là một giá trị rất nhỏ. Do đó, chế độ zero có thể đạt độ chính xác cao với các giá trị đầu vào nhỏ và một lỗi tải thấp.</p>
+ <p>Thiết bị chỉ thị zero có những ưu điểm nội tại nhất định so với các chế độ vận hành khác (xem thiết bị lệch). Bằng cách cân bằng đầu vào chưa biết với một đầu vào chuẩn đã biết, phương pháp zero giảm thiểu sự tương tác giữa hệ thống đo và đại lượng đo. Vì mỗi đầu vào đến từ một nguồn riêng biệt, ý nghĩa của bất cứ ảnh hưởng đo nào lên đại lượng đo bởi quá trình đo đều bị giảm. Thực tế, hệ thống được đo "thấy" một trở kháng đầu vào rất cao, nhờ đó giảm thiểu lỗi tải. Điều này đặc biệt hiệu quả khi đại lượng đo là một giá trị rất nhỏ. Do đó, chế độ zero có thể đạt độ chính xác cao với các giá trị đầu vào nhỏ và một lỗi tải thấp.</p>
 
-    <p>Trong thực tế, thiết bị chỉ thị zero sẽ không đạt được sự tương đương hoàn hảo do độ phân giải có thể dùng được của các phương pháp cân bằng và phát hiện, nhưng điều này chỉ bị giới hạn bởi trình độ kỹ thuật của mạch hay sơ đồ đang được dùng.</p>
+ <p>Trong thực tế, thiết bị chỉ thị zero sẽ không đạt được sự tương đương hoàn hảo do độ phân giải có thể dùng được của các phương pháp cân bằng và phát hiện, nhưng điều này chỉ bị giới hạn bởi trình độ kỹ thuật của mạch hay sơ đồ đang được dùng.</p>
 
-    <p>Một nhược điểm của thiết bị chỉ thị zero là thao tác cân bằng lặp đòi hỏi nhiều thời gian hơn để thực hiện so với việc chỉ đơn giản đo đầu vào cảm biến. Vì thế, phương pháp này có thể không cho phép phép đo nhanh nhất khi đo tốc độ cao là cần thiết. Tuy nhiên, người dùng nên cân nhắc độ chính xác có thể đạt được so với tốc độ đo cần thiết khi xét đến các chế độ vận hành. Hơn nữa, thiết kế bộ so sánh và vòng lặp cân bằng có thể trở nên phức tạp đến mức các thiết bị có độ chính xác cao thường không phải là lựa chọn đo giá thấp nhất.</p>
+ <p>Một nhược điểm của thiết bị chỉ thị zero là thao tác cân bằng lặp đòi hỏi nhiều thời gian hơn để thực hiện so với việc chỉ đơn giản đo đầu vào cảm biến. Vì thế, phương pháp này có thể không cho phép phép đo nhanh nhất khi đo tốc độ cao là cần thiết. Tuy nhiên, người dùng nên cân nhắc độ chính xác có thể đạt được so với tốc độ đo cần thiết khi xét đến các chế độ vận hành. Hơn nữa, thiết kế bộ so sánh và vòng lặp cân bằng có thể trở nên phức tạp đến mức các thiết bị có độ chính xác cao thường không phải là lựa chọn đo giá thấp nhất.</p>
 
-    <p>Một cái cân hai đòn cân bằng là một ví dụ cơ học tốt về thiết bị chỉ thị zero có phản hồi cân bằng thủ công, như minh họa ở Hình 2.1. Cái cân này so sánh trọng lượng未知 của một vật trên một bên với một bộ quả cân chuẩn hay已知. Các giá trị已知 của trọng lượng được thêm dần vào một bên để tác động chống lại tác động của trọng lượng未知 ở bên đối diện. Cho đến khi tương đương, một giá trị cao hay thấp được chỉ báo cung cấp logic phản hồi cho người vận hành để thêm hay bớt quả cân trong một lần lặp cân bằng. Tại điểm tương đương thực sự, chỉ thị cân về zero; tức là nó chỉ ra độ lệch không. Khi đó, đầu vào未知 hay đại lượng đo được suy ra có giá trị bằng với đầu vào cân bằng — lượng quả cân已知 dùng để cân bằng cái cân. Các yếu tố ảnh hưởng đến độ chính xác đo tổng thể gồm độ chính xác của quả cân chuẩn dùng, độ phân giải của chỉ thị đầu ra, và ma sát tại điểm tựa.</p>
+ <p>Một cái cân hai đòn cân bằng là một ví dụ cơ học tốt về thiết bị chỉ thị zero có phản hồi cân bằng thủ công, như minh họa ở Hình 2.1. Cái cân này so sánh trọng lượng chưa biết của một vật trên một bên với một bộ quả cân chuẩn hay đã biết. Các giá trị đã biết của trọng lượng được thêm dần vào một bên để tác động chống lại tác động của trọng lượng chưa biết ở bên đối diện. Cho đến khi tương đương, một giá trị cao hay thấp được chỉ báo cung cấp logic phản hồi cho người vận hành để thêm hay bớt quả cân trong một lần lặp cân bằng. Tại điểm tương đương thực sự, chỉ thị cân về zero; tức là nó chỉ ra độ lệch không. Khi đó, đầu vào chưa biết hay đại lượng đo được suy ra có giá trị bằng với đầu vào cân bằng — lượng quả cân đã biết dùng để cân bằng cái cân. Các yếu tố ảnh hưởng đến độ chính xác đo tổng thể gồm độ chính xác của quả cân chuẩn dùng, độ phân giải của chỉ thị đầu ra, và ma sát tại điểm tựa.</p>
 
-    <figure class="figure" id="fig-2-1">
-      <svg viewBox="0 0 560 200" role="img" aria-label="Cân hai đòn cân bằng: đại lượng đo và quả cân chuẩn cân bằng nhau">
-        <style>.lb{font:13px Inter,sans-serif;fill:#222}.lbs{font:11px Inter,sans-serif;fill:#888}</style>
-        <line x1="280" y1="40" x2="280" y2="170" stroke="#2a2a2a" stroke-width="3"/>
-        <polygon points="120,70 440,70 280,40" fill="none" stroke="#2a2a2a" stroke-width="2.5"/>
-        <circle cx="280" cy="70" r="5" fill="#2a2a2a"/>
-        <rect x="90" y="70" width="60" height="10" fill="none" stroke="#2a2a2a"/>
-        <line x1="120" y1="80" x2="120" y2="150" stroke="#2a2a2a" stroke-width="1.5"/>
-        <path d="M95 150 h50 v18 h-50 z" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/>
-        <rect x="410" y="70" width="60" height="10" fill="none" stroke="#2a2a2a"/>
-        <line x1="440" y1="80" x2="440" y2="130" stroke="#2a2a2a" stroke-width="1.5"/>
-        <path d="M418 130 h44 v14 h-44 z" fill="#e9e9e9" stroke="#2a2a2a" stroke-width="1.5"/>
-        <text x="120" y="186" text-anchor="middle" class="lb">Đại lượng đo (unknown)</text>
-        <text x="440" y="186" text-anchor="middle" class="lb">Quả cân chuẩn (known)</text>
-      </svg>
-      <figcaption class="figcap">Hình 2-1 · Đại lượng đo và các đại lượng已知 cân bằng lẫn nhau trong thiết bị chỉ thị zero</figcaption>
-    </figure>
+ <figure class="figure" id="fig-2-1">
+ <svg viewBox="0 0 560 200" role="img" aria-label="Cân hai đòn cân bằng: đại lượng đo và quả cân chuẩn cân bằng nhau">
+ <style>.lb{font:13px Inter,sans-serif;fill:#222}.lbs{font:11px Inter,sans-serif;fill:#888}</style>
+ <line x1="280" y1="40" x2="280" y2="170" stroke="#2a2a2a" stroke-width="3"/>
+ <polygon points="120,70 440,70 280,40" fill="none" stroke="#2a2a2a" stroke-width="2.5"/>
+ <circle cx="280" cy="70" r="5" fill="#2a2a2a"/>
+ <rect x="90" y="70" width="60" height="10" fill="none" stroke="#2a2a2a"/>
+ <line x1="120" y1="80" x2="120" y2="150" stroke="#2a2a2a" stroke-width="1.5"/>
+ <path d="M95 150 h50 v18 h-50 z" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/>
+ <rect x="410" y="70" width="60" height="10" fill="none" stroke="#2a2a2a"/>
+ <line x1="440" y1="80" x2="440" y2="130" stroke="#2a2a2a" stroke-width="1.5"/>
+ <path d="M418 130 h44 v14 h-44 z" fill="#e9e9e9" stroke="#2a2a2a" stroke-width="1.5"/>
+ <text x="120" y="186" text-anchor="middle" class="lb">Đại lượng đo (unknown)</text>
+ <text x="440" y="186" text-anchor="middle" class="lb">Quả cân chuẩn (known)</text>
+ </svg>
+ <figcaption class="figcap">Hình 2-1 · Đại lượng đo và các đại lượng đã biết cân bằng lẫn nhau trong thiết bị chỉ thị zero</figcaption>
+ </figure>
 
-    <p>Bên trong thiết bị chỉ thị zero, sự lặp và cơ cấu phản hồi là một vòng lặp có thể được điều khiển thủ công hoặc tự động. Thiết yếu với thiết bị chỉ thị zero là hai đầu vào: đại lượng đo và đầu vào cân bằng. Thiết bị bao gồm một bộ so sánh vi phân, so sánh và tính hiệu số giữa hai đầu vào này. Điều này được minh họa ở Hình 2.2. Một đầu ra khác không từ bộ so sánh cung cấp tín hiệu lỗi và điều khiển logic cho sự hiệu chỉnh phản hồi. Các hiệu chỉnh lặp cung cấp một sự lặp tiến tới sự tương đương cuối cùng giữa các đầu vào và dẫn đến điều kiện zero, nơi đại lượng đo bị đầu vào cân bằng chống lại một cách chính xác. Tại điểm tương đương, tín hiệu lỗi được kéo về không bởi ảnh hưởng đối nghịch của đầu vào cân bằng và độ lệch chỉ thị nằm ở zero, từ đó đặt tên cho phương pháp. Chính độ lớn của đầu vào cân bằng mới truyền tải giá trị đầu ra theo đại lượng đo.</p>
+ <p>Bên trong thiết bị chỉ thị zero, sự lặp và cơ cấu phản hồi là một vòng lặp có thể được điều khiển thủ công hoặc tự động. Thiết yếu với thiết bị chỉ thị zero là hai đầu vào: đại lượng đo và đầu vào cân bằng. Thiết bị bao gồm một bộ so sánh vi phân, so sánh và tính hiệu số giữa hai đầu vào này. Điều này được minh họa ở Hình 2.2. Một đầu ra khác không từ bộ so sánh cung cấp tín hiệu lỗi và điều khiển logic cho sự hiệu chỉnh phản hồi. Các hiệu chỉnh lặp cung cấp một sự lặp tiến tới sự tương đương cuối cùng giữa các đầu vào và dẫn đến điều kiện zero, nơi đại lượng đo bị đầu vào cân bằng chống lại một cách chính xác. Tại điểm tương đương, tín hiệu lỗi được kéo về không bởi ảnh hưởng đối nghịch của đầu vào cân bằng và độ lệch chỉ thị nằm ở zero, từ đó đặt tên cho phương pháp. Chính độ lớn của đầu vào cân bằng mới truyền tải giá trị đầu ra theo đại lượng đo.</p>
 
-    <figure class="figure" id="fig-2-2">
-      <svg viewBox="0 0 560 220" role="img" aria-label="Sơ đồ khối thiết bị chỉ thị zero với vòng lặp phản hồi">
-        <defs><marker id="ah2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
-        <style>.bx2{fill:#fff;stroke:#2a2a2a;stroke-width:1.4}.t2{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}</style>
-        <rect x="40" y="90" width="120" height="40" rx="6" class="bx2"/><text x="100" y="108" class="t2">Đại lượng đo</text><text x="100" y="123" class="t2">(measurand)</text>
-        <rect x="400" y="90" width="120" height="40" rx="6" class="bx2"/><text x="460" y="108" class="t2">Đầu vào cân bằng</text><text x="460" y="123" class="t2">(balance input)</text>
-        <circle cx="280" cy="110" r="24" fill="#fff" stroke="#2a2a2a" stroke-width="1.6"/><text x="280" y="115" class="t2">Σ</text>
-        <rect x="240" y="175" width="120" height="34" rx="6" class="bx2"/><text x="300" y="196" class="t2">Logic phản hồi</text>
-        <line x1="100" y1="110" x2="256" y2="110" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah2)"/>
-        <line x1="460" y1="110" x2="304" y2="110" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah2)"/>
-        <path d="M280 134 C 280 160 300 160 300 175" fill="none" stroke="#2a2a2a" stroke-width="1.4" marker-end="url(#ah2)"/>
-        <path d="M300 175 C 300 150 240 150 220 130" fill="none" stroke="#2a2a2a" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ah2)"/>
-        <line x1="280" y1="86" x2="280" y2="58" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah2)"/>
-        <text x="288" y="54" class="t2" style="text-anchor:start">Đầu ra = độ lớn đầu vào cân bằng</text>
-      </svg>
-      <figcaption class="figcap">Hình 2-2 · Thiết bị chỉ thị zero cần đầu vào từ hai nguồn để so sánh</figcaption>
-    </figure>
+ <figure class="figure" id="fig-2-2">
+ <svg viewBox="0 0 560 220" role="img" aria-label="Sơ đồ khối thiết bị chỉ thị zero với vòng lặp phản hồi">
+ <defs><marker id="ah2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
+ <style>.bx2{fill:#fff;stroke:#2a2a2a;stroke-width:1.4}.t2{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}</style>
+ <rect x="40" y="90" width="120" height="40" rx="6" class="bx2"/><text x="100" y="108" class="t2">Đại lượng đo</text><text x="100" y="123" class="t2">(measurand)</text>
+ <rect x="400" y="90" width="120" height="40" rx="6" class="bx2"/><text x="460" y="108" class="t2">Đầu vào cân bằng</text><text x="460" y="123" class="t2">(balance input)</text>
+ <circle cx="280" cy="110" r="24" fill="#fff" stroke="#2a2a2a" stroke-width="1.6"/><text x="280" y="115" class="t2">Σ</text>
+ <rect x="240" y="175" width="120" height="34" rx="6" class="bx2"/><text x="300" y="196" class="t2">Logic phản hồi</text>
+ <line x1="100" y1="110" x2="256" y2="110" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah2)"/>
+ <line x1="460" y1="110" x2="304" y2="110" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah2)"/>
+ <path d="M280 134 C 280 160 300 160 300 175" fill="none" stroke="#2a2a2a" stroke-width="1.4" marker-end="url(#ah2)"/>
+ <path d="M300 175 C 300 150 240 150 220 130" fill="none" stroke="#2a2a2a" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ah2)"/>
+ <line x1="280" y1="86" x2="280" y2="58" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah2)"/>
+ <text x="288" y="54" class="t2" style="text-anchor:start">Đầu ra = độ lớn đầu vào cân bằng</text>
+ </svg>
+ <figcaption class="figcap">Hình 2-2 · Thiết bị chỉ thị zero cần đầu vào từ hai nguồn để so sánh</figcaption>
+ </figure>
 
-    <h2>2.2 Thiết bị lệch <span class="en">Deflection Instrument</span></h2>
+ <h2>2.2 Thiết bị lệch <span class="en">Deflection Instrument</span></h2>
 
-    <p>Phương pháp lệch là một chế độ vận hành có thể có của thiết bị đo. Thiết bị lệch dùng phương pháp lệch để đo. Thiết bị lệch bị tác động bởi đại lượng đo sao cho tạo ra một đáp ứng tỷ lệ bên trong thiết bị. Đáp ứng này là một giá trị đọc ra mang tính lệch hay độ lệch so với điều kiện ban đầu của thiết bị. Trong một dạng điển hình, đại lượng đo tác động trực tiếp lên một phần tử chính hay mạch sơ cấp để chuyển thông tin của nó thành một dạng có thể phát hiện. Tên gọi bắt nguồn từ một dạng thiết bị phổ biến, nơi có một sự lệch vật lý của phần tử chính được liên kết với một thang đầu ra, chẳng hạn một kim chỉ thị hay một dạng chỉ thị khác, lệch đi để chỉ ra giá trị đo. Độ lớn của sự lệch của phần tử chính tạo ra một sự lệch trên thang đầu ra được thiết kế để tỷ lệ với độ lớn của giá trị đại lượng đo.</p>
+ <p>Phương pháp lệch là một chế độ vận hành có thể có của thiết bị đo. Thiết bị lệch dùng phương pháp lệch để đo. Thiết bị lệch bị tác động bởi đại lượng đo sao cho tạo ra một đáp ứng tỷ lệ bên trong thiết bị. Đáp ứng này là một giá trị đọc ra mang tính lệch hay độ lệch so với điều kiện ban đầu của thiết bị. Trong một dạng điển hình, đại lượng đo tác động trực tiếp lên một phần tử chính hay mạch sơ cấp để chuyển thông tin của nó thành một dạng có thể phát hiện. Tên gọi bắt nguồn từ một dạng thiết bị phổ biến, nơi có một sự lệch vật lý của phần tử chính được liên kết với một thang đầu ra, chẳng hạn một kim chỉ thị hay một dạng chỉ thị khác, lệch đi để chỉ ra giá trị đo. Độ lớn của sự lệch của phần tử chính tạo ra một sự lệch trên thang đầu ra được thiết kế để tỷ lệ với độ lớn của giá trị đại lượng đo.</p>
 
-    <p>Các thiết bị lệch là phổ biến nhất trong các thiết bị đo. Quan hệ giữa đại lượng đo và phần tử chính hay mạch đo có thể là trực tiếp, không dùng cơ cấu cân bằng hay mạch so sánh. Đáp ứng tỷ lệ có thể được thao tác qua các phương pháp điều hoà tín hiệu giữa phần tử chính và thang đầu ra sao cho giá trị đọc ra là chỉ thị trực tiếp của đại lượng đo. Các thiết kế hiệu quả có thể đạt độ chính xác cao, thế nhưng độ chính xác đủ dùng cho các nhu cầu ít khắt khe hơn có thể đạt được với chi phí vừa phải.</p>
+ <p>Các thiết bị lệch là phổ biến nhất trong các thiết bị đo. Quan hệ giữa đại lượng đo và phần tử chính hay mạch đo có thể là trực tiếp, không dùng cơ cấu cân bằng hay mạch so sánh. Đáp ứng tỷ lệ có thể được thao tác qua các phương pháp điều hoà tín hiệu giữa phần tử chính và thang đầu ra sao cho giá trị đọc ra là chỉ thị trực tiếp của đại lượng đo. Các thiết kế hiệu quả có thể đạt độ chính xác cao, thế nhưng độ chính xác đủ dùng cho các nhu cầu ít khắt khe hơn có thể đạt được với chi phí vừa phải.</p>
 
-    <p>Một đặc điểm hấp dẫn của thiết bị lệch là nó có thể được thiết kế cho đo tĩnh, đo động, hay cả hai. Một ưu điểm của thiết kế lệch cho đo động là đáp ứng động cao có thể đạt được. Một nhược điểm của thiết bị lệch là do rút năng lượng từ đại lượng đo, hành động đo sẽ ảnh hưởng đến đại lượng đo và thay đổi giá trị của đại lượng đang được đo. Sự thay đổi này được gọi là lỗi tải. Do đó, người dùng phải bảo đảm rằng sai số kết quả là chấp nhận được. Điều này thường đòi hỏi xem xét cẩn thận trở kháng đầu vào của thiết bị cho phép đo dự định.</p>
+ <p>Một đặc điểm hấp dẫn của thiết bị lệch là nó có thể được thiết kế cho đo tĩnh, đo động, hay cả hai. Một ưu điểm của thiết kế lệch cho đo động là đáp ứng động cao có thể đạt được. Một nhược điểm của thiết bị lệch là do rút năng lượng từ đại lượng đo, hành động đo sẽ ảnh hưởng đến đại lượng đo và thay đổi giá trị của đại lượng đang được đo. Sự thay đổi này được gọi là lỗi tải. Do đó, người dùng phải bảo đảm rằng sai số kết quả là chấp nhận được. Điều này thường đòi hỏi xem xét cẩn thận trở kháng đầu vào của thiết bị cho phép đo dự định.</p>
 
-    <p>Một cái cân lò xo là một ví dụ đơn giản và tốt về thiết bị lệch. Như minh họa ở Hình 2.3, trọng lượng đầu vào hay đại lượng đo tác động lên một tấm lò xo (plate-spring). Tấm lò xo đóng vai trò phần tử chính. Vị trí ban đầu của lò xo bị ảnh hưởng bởi trọng lượng tác dụng và đáp ứng bằng một dịch chuyển tịnh tiến — một độ lệch x. Giá trị cuối cùng của độ lệch này là một vị trí ở trạng thái cân bằng giữa lực hướng xuống của trọng lượng W và lực phục hồi hướng lên của lò xo kx. Tức là, lực đầu vào được cân bằng với lực phục hồi. Một bộ nối cơ khí được kết nối trực tiếp hay qua liên kết với một kim chỉ thị. Vị trí kim được ánh xạ trên một thang tương ứng đóng vai trò thang chỉ thị. Chẳng hạn, tại cân bằng W = kx, hay bằng cách đo độ lệch của kim thì trọng lượng được suy ra qua x = W/k.</p>
+ <p>Một cái cân lò xo là một ví dụ đơn giản và tốt về thiết bị lệch. Như minh họa ở Hình 2.3, trọng lượng đầu vào hay đại lượng đo tác động lên một tấm lò xo (plate-spring). Tấm lò xo đóng vai trò phần tử chính. Vị trí ban đầu của lò xo bị ảnh hưởng bởi trọng lượng tác dụng và đáp ứng bằng một dịch chuyển tịnh tiến — một độ lệch x. Giá trị cuối cùng của độ lệch này là một vị trí ở trạng thái cân bằng giữa lực hướng xuống của trọng lượng W và lực phục hồi hướng lên của lò xo kx. Tức là, lực đầu vào được cân bằng với lực phục hồi. Một bộ nối cơ khí được kết nối trực tiếp hay qua liên kết với một kim chỉ thị. Vị trí kim được ánh xạ trên một thang tương ứng đóng vai trò thang chỉ thị. Chẳng hạn, tại cân bằng W = kx, hay bằng cách đo độ lệch của kim thì trọng lượng được suy ra qua x = W/k.</p>
 
-    <figure class="figure" id="fig-2-3">
-      <svg viewBox="0 0 560 220" role="img" aria-label="Cân lò xo: trọng lượng W làm lệch tấm lò xo một đoạn x">
-        <defs><marker id="ah3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
-        <style>.t3{font:12px Inter,sans-serif;fill:#111}</style>
-        <line x1="60" y1="30" x2="60" y2="180" stroke="#2a2a2a" stroke-width="2"/>
-        <rect x="50" y="30" width="20" height="14" fill="#e9e9e9" stroke="#2a2a2a"/>
-        <path d="M60 44 q -18 40 0 90" fill="none" stroke="#2a2a2a" stroke-width="2"/>
-        <line x1="60" y1="134" x2="60" y2="158" stroke="#2a2a2a" stroke-width="3" marker-end="url(#ah3)"/>
-        <rect x="30" y="158" width="60" height="20" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/>
-        <line x1="280" y1="20" x2="280" y2="180" stroke="#bbb" stroke-width="1" stroke-dasharray="3 3"/>
-        <line x1="260" y1="44" x2="300" y2="44" stroke="#888" stroke-width="1"/>
-        <line x1="260" y1="134" x2="300" y2="134" stroke="#888" stroke-width="1"/>
-        <text x="312" y="48" class="t3">vị trí ban đầu</text>
-        <text x="312" y="138" class="t3">lệch x (→ kim chỉ thị)</text>
-        <text x="60" y="200" text-anchor="middle" class="t3">W (đại lượng đo)</text>
-      </svg>
-      <figcaption class="figcap">Hình 2-3 · Thiết bị lệch chỉ cần đầu vào từ một nguồn, nhưng có thể gây lỗi tải</figcaption>
-    </figure>
+ <figure class="figure" id="fig-2-3">
+ <svg viewBox="0 0 560 220" role="img" aria-label="Cân lò xo: trọng lượng W làm lệch tấm lò xo một đoạn x">
+ <defs><marker id="ah3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
+ <style>.t3{font:12px Inter,sans-serif;fill:#111}</style>
+ <line x1="60" y1="30" x2="60" y2="180" stroke="#2a2a2a" stroke-width="2"/>
+ <rect x="50" y="30" width="20" height="14" fill="#e9e9e9" stroke="#2a2a2a"/>
+ <path d="M60 44 q -18 40 0 90" fill="none" stroke="#2a2a2a" stroke-width="2"/>
+ <line x1="60" y1="134" x2="60" y2="158" stroke="#2a2a2a" stroke-width="3" marker-end="url(#ah3)"/>
+ <rect x="30" y="158" width="60" height="20" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/>
+ <line x1="280" y1="20" x2="280" y2="180" stroke="#bbb" stroke-width="1" stroke-dasharray="3 3"/>
+ <line x1="260" y1="44" x2="300" y2="44" stroke="#888" stroke-width="1"/>
+ <line x1="260" y1="134" x2="300" y2="134" stroke="#888" stroke-width="1"/>
+ <text x="312" y="48" class="t3">vị trí ban đầu</text>
+ <text x="312" y="138" class="t3">lệch x (→ kim chỉ thị)</text>
+ <text x="60" y="200" text-anchor="middle" class="t3">W (đại lượng đo)</text>
+ </svg>
+ <figcaption class="figcap">Hình 2-3 · Thiết bị lệch chỉ cần đầu vào từ một nguồn, nhưng có thể gây lỗi tải</figcaption>
+ </figure>
 
-    <p>Sơ đồ logic luồng cho thiết bị lệch khá tuyến tính, như ở Hình 2.4. Tín hiệu đầu vào được phần tử chính hay mạch sơ cấp cảm nhận và nhờ đó bị lệch khỏi thiết lập ban đầu. Tín hiệu lệch được truyền đến các bộ điều hoà tín hiệu, chúng tác động để điều hoà tín hiệu thành dạng mong muốn. Các ví dụ về điều hoà tín hiệu là nhân tín hiệu lệch với một độ lớn tỷ lệ, chẳng hạn trong khuếch đại hay lọc, hay biến đổi tín hiệu bằng một hàm số học. Tín hiệu đã điều hoà sau đó được chuyển đến thang đầu ra, cung cấp giá trị chỉ thị tương ứng với giá trị đại lượng đo.</p>
+ <p>Sơ đồ logic luồng cho thiết bị lệch khá tuyến tính, như ở Hình 2.4. Tín hiệu đầu vào được phần tử chính hay mạch sơ cấp cảm nhận và nhờ đó bị lệch khỏi thiết lập ban đầu. Tín hiệu lệch được truyền đến các bộ điều hoà tín hiệu, chúng tác động để điều hoà tín hiệu thành dạng mong muốn. Các ví dụ về điều hoà tín hiệu là nhân tín hiệu lệch với một độ lớn tỷ lệ, chẳng hạn trong khuếch đại hay lọc, hay biến đổi tín hiệu bằng một hàm số học. Tín hiệu đã điều hoà sau đó được chuyển đến thang đầu ra, cung cấp giá trị chỉ thị tương ứng với giá trị đại lượng đo.</p>
 
-    <figure class="figure" id="fig-2-4">
-      <svg viewBox="0 0 560 130" role="img" aria-label="Luu đồ thiết bị lệch: phần tử chính đến điều hoà tín hiệu đến thang đầu ra">
-        <defs><marker id="ah4" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
-        <style>.b4{fill:#fff;stroke:#2a2a2a;stroke-width:1.4}.t4{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}</style>
-        <rect x="20" y="45" width="140" height="40" rx="6" class="b4"/><text x="90" y="63" class="t4">Phần tử chính /</text><text x="90" y="78" class="t4">mạch sơ cấp</text>
-        <rect x="210" y="45" width="140" height="40" rx="6" class="b4"/><text x="280" y="63" class="t4">Điều hoà</text><text x="280" y="78" class="t4">tín hiệu</text>
-        <rect x="400" y="45" width="140" height="40" rx="6" class="b4"/><text x="470" y="63" class="t4">Thang</text><text x="470" y="78" class="t4">đầu ra</text>
-        <line x1="160" y1="65" x2="205" y2="65" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah4)"/>
-        <line x1="350" y1="65" x2="395" y2="65" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah4)"/>
-      </svg>
-      <figcaption class="figcap">Hình 2-4 · Luồng logic của thiết bị lệch khá đơn giản</figcaption>
-    </figure>
+ <figure class="figure" id="fig-2-4">
+ <svg viewBox="0 0 560 130" role="img" aria-label="Luu đồ thiết bị lệch: phần tử chính đến điều hoà tín hiệu đến thang đầu ra">
+ <defs><marker id="ah4" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
+ <style>.b4{fill:#fff;stroke:#2a2a2a;stroke-width:1.4}.t4{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}</style>
+ <rect x="20" y="45" width="140" height="40" rx="6" class="b4"/><text x="90" y="63" class="t4">Phần tử chính /</text><text x="90" y="78" class="t4">mạch sơ cấp</text>
+ <rect x="210" y="45" width="140" height="40" rx="6" class="b4"/><text x="280" y="63" class="t4">Điều hoà</text><text x="280" y="78" class="t4">tín hiệu</text>
+ <rect x="400" y="45" width="140" height="40" rx="6" class="b4"/><text x="470" y="63" class="t4">Thang</text><text x="470" y="78" class="t4">đầu ra</text>
+ <line x1="160" y1="65" x2="205" y2="65" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah4)"/>
+ <line x1="350" y1="65" x2="395" y2="65" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah4)"/>
+ </svg>
+ <figcaption class="figcap">Hình 2-4 · Luồng logic của thiết bị lệch khá đơn giản</figcaption>
+ </figure>
 
-    <h2>2.3 Cảm biến tương tự và số <span class="en">Analog and Digital Sensors</span></h2>
+ <h2>2.3 Cảm biến tương tự và số <span class="en">Analog and Digital Sensors</span></h2>
 
-    <p><b>Cảm biến tương tự</b> cung cấp một tín hiệu liên tục cả về biên độ và nội dung thời gian (temporal) hay không gian (spatial). Từ then chốt của tương tự là "liên tục". Nếu một cảm biến cung cấp một tín hiệu đầu ra liên tục tỷ lệ trực tiếp với tín hiệu đầu vào, thì nó là tương tự. Hầu hết các đại lượng vật lý, như dòng điện, nhiệt độ, dịch chuyển, gia tốc, tốc độ, áp suất, cường độ ánh sáng và biến dạng, có xu hướng liên tục tự nhiên và dễ dàng đo bằng cảm biến tương tự, được biểu diễn bằng tín hiệu tương tự. Chẳng hạn, nhiệt độ trong một phòng có thể nhận bất cứ giá trị nào trong dải của nó, sẽ biến thiên một cách liên tục giữa bất cứ hai điểm nào trong phòng, và có thể biến thiên liên tục theo thời gian tại bất cứ vị trí nào trong phòng. Một cảm biến tương tự, như nhiệt kế bầu thuỷ ngân hay cặp nhiệt điện, sẽ đáp ứng liên tục với những thay đổi nhiệt độ như thế. Một tín hiệu liên tục như vậy được minh họa ở Hình 2.5, với biên độ tín hiệu tương tự với đại lượng đo (nhiệt độ) và tín hiệu liên tục cả về biên độ và thời gian.</p>
+ <p><b>Cảm biến tương tự</b> cung cấp một tín hiệu liên tục cả về biên độ và nội dung thời gian (temporal) hay không gian (spatial). Từ then chốt của tương tự là "liên tục". Nếu một cảm biến cung cấp một tín hiệu đầu ra liên tục tỷ lệ trực tiếp với tín hiệu đầu vào, thì nó là tương tự. Hầu hết các đại lượng vật lý, như dòng điện, nhiệt độ, dịch chuyển, gia tốc, tốc độ, áp suất, cường độ ánh sáng và biến dạng, có xu hướng liên tục tự nhiên và dễ dàng đo bằng cảm biến tương tự, được biểu diễn bằng tín hiệu tương tự. Chẳng hạn, nhiệt độ trong một phòng có thể nhận bất cứ giá trị nào trong dải của nó, sẽ biến thiên một cách liên tục giữa bất cứ hai điểm nào trong phòng, và có thể biến thiên liên tục theo thời gian tại bất cứ vị trí nào trong phòng. Một cảm biến tương tự, như nhiệt kế bầu thuỷ ngân hay cặp nhiệt điện, sẽ đáp ứng liên tục với những thay đổi nhiệt độ như thế. Một tín hiệu liên tục như vậy được minh họa ở Hình 2.5, với biên độ tín hiệu tương tự với đại lượng đo (nhiệt độ) và tín hiệu liên tục cả về biên độ và thời gian.</p>
 
-    <figure class="figure" id="fig-2-5">
-      <svg viewBox="0 0 560 160" role="img" aria-label="Tín hiệu tương tự liên tục theo thời gian">
-        <style>.t5{font:12px Inter,sans-serif;fill:#111}</style>
-        <line x1="40" y1="80" x2="520" y2="80" stroke="#bbb" stroke-width="1"/>
-        <path d="M40 80 C 80 30 120 30 160 80 S 240 130 280 80 S 360 30 400 80 S 480 130 520 80" fill="none" stroke="#2a2a2a" stroke-width="2"/>
-        <text x="40" y="150" class="t5">thời gian →</text>
-        <text x="430" y="40" class="t5">tín hiệu tương tự</text>
-      </svg>
-      <figcaption class="figcap">Hình 2-5 · Cặp nhiệt điện cung cấp một tín hiệu tương tự để xử lý</figcaption>
-    </figure>
+ <figure class="figure" id="fig-2-5">
+ <svg viewBox="0 0 560 160" role="img" aria-label="Tín hiệu tương tự liên tục theo thời gian">
+ <style>.t5{font:12px Inter,sans-serif;fill:#111}</style>
+ <line x1="40" y1="80" x2="520" y2="80" stroke="#bbb" stroke-width="1"/>
+ <path d="M40 80 C 80 30 120 30 160 80 S 240 130 280 80 S 360 30 400 80 S 480 130 520 80" fill="none" stroke="#2a2a2a" stroke-width="2"/>
+ <text x="40" y="150" class="t5">thời gian →</text>
+ <text x="430" y="40" class="t5">tín hiệu tương tự</text>
+ </svg>
+ <figcaption class="figcap">Hình 2-5 · Cặp nhiệt điện cung cấp một tín hiệu tương tự để xử lý</figcaption>
+ </figure>
 
-    <p><b>Cảm biến số</b> cung cấp một tín hiệu là biểu diễn số trực tiếp của đại lượng đo. Cảm biến số về cơ bản là các thiết bị nhị phân ("bật" hay "tắt"). Về căn bản, một tín hiệu số chỉ tồn tại tại các giá trị rời rạc của thời gian (hay không gian). Và trong khoảng rời rạc đó, tín hiệu chỉ có thể biểu diễn một số lượng rời rạc các giá trị biên độ. Một biến thể phổ biến là biểu diễn tín hiệu lấy mẫu rời rạc, biểu diễn đầu ra cảm biến dưới dạng rời rạc cả theo thời gian/không gian và theo biên độ. Cảm biến số dùng một biến thể của hệ đếm cơ số 2 để biểu diễn và truyền thông tin tín hiệu dưới dạng số. Hệ đếm cơ số 2 là hệ đếm dùng cơ số 2. Tín hiệu nhị phân đơn giản nhất là một bit chỉ có một trong hai giá trị có thể, 1 hay 0. Các bit giống như các công tắc điện "bật-tắt" và được dùng để truyền đạt thông tin logic và số học. Với đầu vào thích hợp, giá trị của bit truyền đi được đặt lại tương ứng với hành vi của đại lượng đo. Một cảm biến số truyền thông tin từng bit một lần dùng truyền dẫn nối tiếp. Bằng cách kết hợp các bit hay truyền các bit theo nhóm, cũng có thể định nghĩa các lệnh logic hay số nguyên vượt quá 0 hay 1. Một cảm biến số truyền các bit theo nhóm dùng truyền dẫn song song. Với bất cứ thiết bị số nào, một tín hiệu M-bit có thể biểu thị 2^M số khác nhau. Điều này cũng cung cấp giới hạn cho các giá trị khác nhau mà một thiết bị số có thể phân biệt. Chẳng hạn, thiết bị 2-bit có thể biểu thị 2^2 = 4 số khác nhau, 00, 01, 10 và 11, tương ứng với các giá trị 0, 1, 2 và 3. Như vậy, độ phân giải trong biên độ mà cảm biến số phân biệt được bị giới hạn nội tại ở 1 phần trong 2^M.</p>
+ <p><b>Cảm biến số</b> cung cấp một tín hiệu là biểu diễn số trực tiếp của đại lượng đo. Cảm biến số về cơ bản là các thiết bị nhị phân ("bật" hay "tắt"). Về căn bản, một tín hiệu số chỉ tồn tại tại các giá trị rời rạc của thời gian (hay không gian). Và trong khoảng rời rạc đó, tín hiệu chỉ có thể biểu diễn một số lượng rời rạc các giá trị biên độ. Một biến thể phổ biến là biểu diễn tín hiệu lấy mẫu rời rạc, biểu diễn đầu ra cảm biến dưới dạng rời rạc cả theo thời gian/không gian và theo biên độ. Cảm biến số dùng một biến thể của hệ đếm cơ số 2 để biểu diễn và truyền thông tin tín hiệu dưới dạng số. Hệ đếm cơ số 2 là hệ đếm dùng cơ số 2. Tín hiệu nhị phân đơn giản nhất là một bit chỉ có một trong hai giá trị có thể, 1 hay 0. Các bit giống như các công tắc điện "bật-tắt" và được dùng để truyền đạt thông tin logic và số học. Với đầu vào thích hợp, giá trị của bit truyền đi được đặt lại tương ứng với hành vi của đại lượng đo. Một cảm biến số truyền thông tin từng bit một lần dùng truyền dẫn nối tiếp. Bằng cách kết hợp các bit hay truyền các bit theo nhóm, cũng có thể định nghĩa các lệnh logic hay số nguyên vượt quá 0 hay 1. Một cảm biến số truyền các bit theo nhóm dùng truyền dẫn song song. Với bất cứ thiết bị số nào, một tín hiệu M-bit có thể biểu thị 2^M số khác nhau. Điều này cũng cung cấp giới hạn cho các giá trị khác nhau mà một thiết bị số có thể phân biệt. Chẳng hạn, thiết bị 2-bit có thể biểu thị 2^2 = 4 số khác nhau, 00, 01, 10 và 11, tương ứng với các giá trị 0, 1, 2 và 3. Như vậy, độ phân giải trong biên độ mà cảm biến số phân biệt được bị giới hạn nội tại ở 1 phần trong 2^M.</p>
 
-    <p>Khái niệm về cảm biến số được minh họa bằng bộ đếm vòng quay ở Hình 2.6. Các thiết bị như thế được dùng rộng rãi để cảm nhận số vòng quay mỗi phút của một trục quay. Trong ví dụ này, cảm biến là một bộ thu từ tính/bộ chuyển đổi điện áp, đầu ra một xung với mỗi lần một chiếc đinh tán từ tính gắn trên một moay-ơ của trục quay đi qua. Đầu ra từ bộ thu bình thường là "tắt" nhưng được bật "lên" trong khoảnh khắc bởi chiếc đinh tán đi qua. Xung này là một đỉnh điện áp gửi đến một thanh ghi số mà giá trị của nó tăng thêm một đơn vị với mỗi đỉnh. Thanh ghi có thể gửi thông tin đến một thiết bị đầu ra, chẳng hạn màn hình số như minh họa. Đầu ra từ cảm biến có thể xem xét dưới dạng các đỉnh điện áp theo thời gian. Tốc độ đếm liên quan đến tốc độ quay của trục. Như thấy, tín hiệu rời rạc theo thời gian. Một chiếc đinh tán duy nhất với bộ thu sẽ tăng bộ đếm lên một với mỗi vòng quay đầy đủ của trục. Các phân số của một vòng quay có thể phân giải được bằng cách tăng số lượng đinh tán trên moay-ơ. Trong ví dụ này, sự quay liên tục của trục là tương tự nhưng số vòng quay đếm được là số. Biên độ của đỉnh điện áp được đặt để kích hoạt bộ đếm và không liên quan đến tốc độ quay trục.</p>
+ <p>Khái niệm về cảm biến số được minh họa bằng bộ đếm vòng quay ở Hình 2.6. Các thiết bị như thế được dùng rộng rãi để cảm nhận số vòng quay mỗi phút của một trục quay. Trong ví dụ này, cảm biến là một bộ thu từ tính/bộ chuyển đổi điện áp, đầu ra một xung với mỗi lần một chiếc đinh tán từ tính gắn trên một moay-ơ của trục quay đi qua. Đầu ra từ bộ thu bình thường là "tắt" nhưng được bật "lên" trong khoảnh khắc bởi chiếc đinh tán đi qua. Xung này là một đỉnh điện áp gửi đến một thanh ghi số mà giá trị của nó tăng thêm một đơn vị với mỗi đỉnh. Thanh ghi có thể gửi thông tin đến một thiết bị đầu ra, chẳng hạn màn hình số như minh họa. Đầu ra từ cảm biến có thể xem xét dưới dạng các đỉnh điện áp theo thời gian. Tốc độ đếm liên quan đến tốc độ quay của trục. Như thấy, tín hiệu rời rạc theo thời gian. Một chiếc đinh tán duy nhất với bộ thu sẽ tăng bộ đếm lên một với mỗi vòng quay đầy đủ của trục. Các phân số của một vòng quay có thể phân giải được bằng cách tăng số lượng đinh tán trên moay-ơ. Trong ví dụ này, sự quay liên tục của trục là tương tự nhưng số vòng quay đếm được là số. Biên độ của đỉnh điện áp được đặt để kích hoạt bộ đếm và không liên quan đến tốc độ quay trục.</p>
 
-    <figure class="figure" id="fig-2-6">
-      <svg viewBox="0 0 560 170" role="img" aria-label="Bộ đếm vòng quay: trục, đinh tán, bộ thu, thanh ghi, màn hình">
-        <defs><marker id="ah6" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
-        <style>.b6{fill:#fff;stroke:#2a2a2a;stroke-width:1.4}.t6{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}</style>
-        <circle cx="70" cy="90" r="34" fill="none" stroke="#2a2a2a" stroke-width="2"/>
-        <rect x="92" y="84" width="8" height="8" fill="#2a2a2a"/>
-        <rect x="150" y="70" width="130" height="40" rx="6" class="b6"/><text x="215" y="88" class="t6">Bộ thu từ tính</text><text x="215" y="103" class="t6">(pickup)</text>
-        <rect x="320" y="70" width="90" height="40" rx="6" class="b6"/><text x="365" y="88" class="t6">Thanh ghi</text><text x="365" y="103" class="t6">(register)</text>
-        <rect x="450" y="70" width="90" height="40" rx="6" class="b6"/><text x="495" y="88" class="t6">Màn hình</text><text x="495" y="103" class="t6">số</text>
-        <line x1="104" y1="90" x2="148" y2="90" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah6)"/>
-        <line x1="280" y1="90" x2="315" y2="90" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah6)"/>
-        <line x1="410" y1="90" x2="445" y2="90" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah6)"/>
-        <text x="70" y="145" text-anchor="middle" class="t6">trục quay</text>
-      </svg>
-      <figcaption class="figcap">Hình 2-6 · Một trục quay với bộ đếm vòng quay sinh ra tín hiệu số</figcaption>
-    </figure>
+ <figure class="figure" id="fig-2-6">
+ <svg viewBox="0 0 560 170" role="img" aria-label="Bộ đếm vòng quay: trục, đinh tán, bộ thu, thanh ghi, màn hình">
+ <defs><marker id="ah6" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
+ <style>.b6{fill:#fff;stroke:#2a2a2a;stroke-width:1.4}.t6{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}</style>
+ <circle cx="70" cy="90" r="34" fill="none" stroke="#2a2a2a" stroke-width="2"/>
+ <rect x="92" y="84" width="8" height="8" fill="#2a2a2a"/>
+ <rect x="150" y="70" width="130" height="40" rx="6" class="b6"/><text x="215" y="88" class="t6">Bộ thu từ tính</text><text x="215" y="103" class="t6">(pickup)</text>
+ <rect x="320" y="70" width="90" height="40" rx="6" class="b6"/><text x="365" y="88" class="t6">Thanh ghi</text><text x="365" y="103" class="t6">(register)</text>
+ <rect x="450" y="70" width="90" height="40" rx="6" class="b6"/><text x="495" y="88" class="t6">Màn hình</text><text x="495" y="103" class="t6">số</text>
+ <line x1="104" y1="90" x2="148" y2="90" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah6)"/>
+ <line x1="280" y1="90" x2="315" y2="90" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah6)"/>
+ <line x1="410" y1="90" x2="445" y2="90" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah6)"/>
+ <text x="70" y="145" text-anchor="middle" class="t6">trục quay</text>
+ </svg>
+ <figcaption class="figcap">Hình 2-6 · Một trục quay với bộ đếm vòng quay sinh ra tín hiệu số</figcaption>
+ </figure>
 
-    <h2>2.4 Thiết bị chỉ thị tương tự và số <span class="en">Analog and Digital Readout Instruments</span></h2>
+ <h2>2.4 Thiết bị chỉ thị tương tự và số <span class="en">Analog and Digital Readout Instruments</span></h2>
 
-    <p>Một <b>thiết bị chỉ thị tương tự</b> cung cấp một chỉ thị đầu ra liên tục và trực tiếp tương tự với hành vi của đại lượng đo. Điển hình, đó có thể là độ lệch của một kim hay một vết mực trên một thang chia độ, hay cường độ của một chùm sáng hay một sóng âm. Độ lệch chỉ thị này có thể được dẫn động bởi các thay đổi điện áp hay dòng điện, hay bằng cơ khí, từ tính, quang học, hay tổ hợp của chúng. Độ phân giải của một chỉ thị tương tự được định nghĩa bởi bước nhảy nhỏ nhất có thể dùng trên thang chỉ thị của nó. Độ trải (span) của chỉ thị được định nghĩa bởi hiệu giữa giá trị nhỏ nhất và lớn nhất mà nó có thể chỉ thị. Dải (range) của nó xác định các giá trị nhỏ nhất và lớn nhất mà nó có thể chỉ thị.</p>
+ <p>Một <b>thiết bị chỉ thị tương tự</b> cung cấp một chỉ thị đầu ra liên tục và trực tiếp tương tự với hành vi của đại lượng đo. Điển hình, đó có thể là độ lệch của một kim hay một vết mực trên một thang chia độ, hay cường độ của một chùm sáng hay một sóng âm. Độ lệch chỉ thị này có thể được dẫn động bởi các thay đổi điện áp hay dòng điện, hay bằng cơ khí, từ tính, quang học, hay tổ hợp của chúng. Độ phân giải của một chỉ thị tương tự được định nghĩa bởi bước nhảy nhỏ nhất có thể dùng trên thang chỉ thị của nó. Độ trải (span) của chỉ thị được định nghĩa bởi hiệu giữa giá trị nhỏ nhất và lớn nhất mà nó có thể chỉ thị. Dải (range) của nó xác định các giá trị nhỏ nhất và lớn nhất mà nó có thể chỉ thị.</p>
 
-    <p>Một <b>thiết bị chỉ thị số</b> cung cấp một chỉ thị đầu ra rời rạc. Giá trị đầu ra số liên quan trực tiếp đến giá trị của đại lượng đo. Chỉ thị số thường ở dạng một giá trị số, hoặc là một số cố định hoặc một số được cập nhật định kỳ. Một cách hiển thị một số là chip hiển thị số bảy đoạn, như ở Hình 2.7, whose đầu ra có thể được cập nhật bằng cách thay đổi các đầu vào nối đất A đến G. Độ phân giải của một chỉ thị số được cho bởi độ đếm nhỏ nhất (least count) của nó — lượng tương đương của sự thay đổi nhỏ nhất được phân giải bởi chữ số có trọng số thấp nhất trong chỉ thị. Độ trải và dải được định nghĩa như với thiết bị tương tự.</p>
+ <p>Một <b>thiết bị chỉ thị số</b> cung cấp một chỉ thị đầu ra rời rạc. Giá trị đầu ra số liên quan trực tiếp đến giá trị của đại lượng đo. Chỉ thị số thường ở dạng một giá trị số, hoặc là một số cố định hoặc một số được cập nhật định kỳ. Một cách hiển thị một số là chip hiển thị số bảy đoạn, như ở Hình 2.7, mà đầu ra có thể được cập nhật bằng cách thay đổi các đầu vào nối đất A đến G. Độ phân giải của một chỉ thị số được cho bởi độ đếm nhỏ nhất (least count) của nó — lượng tương đương của sự thay đổi nhỏ nhất được phân giải bởi chữ số có trọng số thấp nhất trong chỉ thị. Độ trải và dải được định nghĩa như với thiết bị tương tự.</p>
 
-    <figure class="figure" id="fig-2-7">
-      <svg viewBox="0 0 560 200" role="img" aria-label="Chip hiển thị bảy đoạn và một chữ số 8">
-        <style>.seg{stroke:#2a2a2a;stroke-width:5;stroke-linecap="round";fill:none}.dig{font:60px Inter,sans-serif;font-weight:600;fill:#2a2a2a;text-anchor:middle}</style>
-        <rect x="40" y="40" width="120" height="120" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/>
-        <line x1="60" y1="60" x2="140" y2="60" class="seg"/>
-        <line x1="60" y1="60" x2="60" y2="100" class="seg"/>
-        <line x1="140" y1="60" x2="140" y2="100" class="seg"/>
-        <line x1="60" y1="100" x2="140" y2="100" class="seg"/>
-        <line x1="60" y1="100" x2="60" y2="140" class="seg"/>
-        <line x1="140" y1="100" x2="140" y2="140" class="seg"/>
-        <line x1="60" y1="140" x2="140" y2="140" class="seg"/>
-        <text x="230" y="65" class="seg" style="font:13px Inter,sans-serif;fill:#111">A</text>
-        <text x="200" y="80" class="seg" style="font:13px Inter,sans-serif;fill:#111">F</text>
-        <text x="175" y="105" class="seg" style="font:13px Inter,sans-serif;fill:#111">G</text>
-        <text x="200" y="135" class="seg" style="font:13px Inter,sans-serif;fill:#111">E</text>
-        <text x="230" y="150" class="seg" style="font:13px Inter,sans-serif;fill:#111">D</text>
-        <text x="300" y="115" style="font:30px Inter,sans-serif;fill:#111">→</text>
-        <text x="430" y="120" class="dig">8</text>
-      </svg>
-      <figcaption class="figcap">Hình 2-7 · Chip hiển thị bảy đoạn có thể hiển thị bất cứ chữ số nào từ 0 đến 9</figcaption>
-    </figure>
+ <figure class="figure" id="fig-2-7">
+ <svg viewBox="0 0 560 200" role="img" aria-label="Chip hiển thị bảy đoạn và một chữ số 8">
+ <style>.seg{stroke:#2a2a2a;stroke-width:5;stroke-linecap="round";fill:none}.dig{font:60px Inter,sans-serif;font-weight:600;fill:#2a2a2a;text-anchor:middle}</style>
+ <rect x="40" y="40" width="120" height="120" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/>
+ <line x1="60" y1="60" x2="140" y2="60" class="seg"/>
+ <line x1="60" y1="60" x2="60" y2="100" class="seg"/>
+ <line x1="140" y1="60" x2="140" y2="100" class="seg"/>
+ <line x1="60" y1="100" x2="140" y2="100" class="seg"/>
+ <line x1="60" y1="100" x2="60" y2="140" class="seg"/>
+ <line x1="140" y1="100" x2="140" y2="140" class="seg"/>
+ <line x1="60" y1="140" x2="140" y2="140" class="seg"/>
+ <text x="230" y="65" class="seg" style="font:13px Inter,sans-serif;fill:#111">A</text>
+ <text x="200" y="80" class="seg" style="font:13px Inter,sans-serif;fill:#111">F</text>
+ <text x="175" y="105" class="seg" style="font:13px Inter,sans-serif;fill:#111">G</text>
+ <text x="200" y="135" class="seg" style="font:13px Inter,sans-serif;fill:#111">E</text>
+ <text x="230" y="150" class="seg" style="font:13px Inter,sans-serif;fill:#111">D</text>
+ <text x="300" y="115" style="font:30px Inter,sans-serif;fill:#111">→</text>
+ <text x="430" y="120" class="dig">8</text>
+ </svg>
+ <figcaption class="figcap">Hình 2-7 · Chip hiển thị bảy đoạn có thể hiển thị bất cứ chữ số nào từ 0 đến 9</figcaption>
+ </figure>
 
-    <p>Nhiều thiết bị số kết hợp các đặc điểm của cảm biến tương tự với một chỉ thị số, hay nói chung chuyển đổi một tín hiệu tương tự thành tín hiệu rời rạc, được chỉ thị qua một đầu ra số. Trong những tình huống như vậy, một bộ chuyển đổi tương tự–số (ADC) là cần thiết. Thiết bị lai này có mặt tương tự được quy định theo dải tương tự toàn thang (E_FSR) của nó, định nghĩa biên độ điện áp tương tự mà thiết bị sẽ hoạt động. Mặt số được quy định theo kích thước bit của thanh ghi của nó. Một thiết bị M-bit sẽ đầu ra một số nhị phân M-bit. Độ phân giải của thiết bị như thế được cho bởi E_FSR / 2^M.</p>
+ <p>Nhiều thiết bị số kết hợp các đặc điểm của cảm biến tương tự với một chỉ thị số, hay nói chung chuyển đổi một tín hiệu tương tự thành tín hiệu rời rạc, được chỉ thị qua một đầu ra số. Trong những tình huống như vậy, một bộ chuyển đổi tương tự–số (ADC) là cần thiết. Thiết bị lai này có mặt tương tự được quy định theo dải tương tự toàn thang (E_FSR) của nó, định nghĩa biên độ điện áp tương tự mà thiết bị sẽ hoạt động. Mặt số được quy định theo kích thước bit của thanh ghi của nó. Một thiết bị M-bit sẽ đầu ra một số nhị phân M-bit. Độ phân giải của thiết bị như thế được cho bởi E_FSR / 2^M.</p>
 
-    <h2>2.5 Trở kháng đầu vào <span class="en">Input Impedance</span></h2>
+ <h2>2.5 Trở kháng đầu vào <span class="en">Input Impedance</span></h2>
 
-    <p>Về mặt lý tưởng, chính hành động đo không nên làm thay đổi giá trị của tín hiệu được đo. Bất cứ sự thay đổi nào như thế là một <b>lỗi tải</b>. Lỗi tải có thể xảy ra tại bất cứ tiếp điểm nào dọc theo chuỗi tín hiệu, nhưng có thể được giảm thiểu bằng cách ghép trở kháng (impedance matching) của nguồn với thiết bị đo. Trở kháng đầu vào của thiết bị đo khống chế năng lượng được rút từ nguồn, hay hệ thống được đo, bởi một thiết bị đo. Sự tổn thất công suất qua thiết bị đo được ước tính bởi P = E² / Z₂, trong đó Z₂ là trở kháng đầu vào của thiết bị đo, và E là điện thế nguồn đang được đo. Như vậy, để giảm thiểu tổn thất công suất, trở kháng đầu vào nên lớn.</p>
+ <p>Về mặt lý tưởng, chính hành động đo không nên làm thay đổi giá trị của tín hiệu được đo. Bất cứ sự thay đổi nào như thế là một <b>lỗi tải</b>. Lỗi tải có thể xảy ra tại bất cứ tiếp điểm nào dọc theo chuỗi tín hiệu, nhưng có thể được giảm thiểu bằng cách ghép trở kháng (impedance matching) của nguồn với thiết bị đo. Trở kháng đầu vào của thiết bị đo khống chế năng lượng được rút từ nguồn, hay hệ thống được đo, bởi một thiết bị đo. Sự tổn thất công suất qua thiết bị đo được ước tính bởi P = E² / Z₂, trong đó Z₂ là trở kháng đầu vào của thiết bị đo, và E là điện thế nguồn đang được đo. Như vậy, để giảm thiểu tổn thất công suất, trở kháng đầu vào nên lớn.</p>
 
-    <p>Cùng logic này cũng đúng với hai thiết bị trong một chuỗi tín hiệu khi thiết bị theo sau rút năng lượng từ thiết bị trước đó trong chuỗi. Như một ví dụ tổng quát, xét tình huống ở Hình 2.8, trong đó tín hiệu đầu ra từ một thiết bị cung cấp tín hiệu đầu vào cho một thiết bị theo sau trong chuỗi tín hiệu. Thế mạch hở E₁ có mặt tại đầu ra của thiết bị nguồn 1 có trở kháng đầu ra Z₁. Thiết bị 2 có trở kháng đầu vào Z₂ tại các đầu cuối đầu vào của nó. Nối các đầu cuối đầu ra của thiết bị 1 với các đầu cuối đầu vào của thiết bị 2 tạo ra mạch tương đương cũng minh họa ở Hình 2.8. Thế thực tế được cảm nhận bởi thiết bị 2 sẽ là E₂ = E₁ · Z₂ / (Z₁ + Z₂).</p>
+ <p>Cùng logic này cũng đúng với hai thiết bị trong một chuỗi tín hiệu khi thiết bị theo sau rút năng lượng từ thiết bị trước đó trong chuỗi. Như một ví dụ tổng quát, xét tình huống ở Hình 2.8, trong đó tín hiệu đầu ra từ một thiết bị cung cấp tín hiệu đầu vào cho một thiết bị theo sau trong chuỗi tín hiệu. Thế mạch hở E₁ có mặt tại đầu ra của thiết bị nguồn 1 có trở kháng đầu ra Z₁. Thiết bị 2 có trở kháng đầu vào Z₂ tại các đầu cuối đầu vào của nó. Nối các đầu cuối đầu ra của thiết bị 1 với các đầu cuối đầu vào của thiết bị 2 tạo ra mạch tương đương cũng minh họa ở Hình 2.8. Thế thực tế được cảm nhận bởi thiết bị 2 sẽ là E₂ = E₁ · Z₂ / (Z₁ + Z₂).</p>
 
-    <figure class="figure" id="fig-2-8">
-      <svg viewBox="0 0 560 200" role="img" aria-label="Mạch tương đương chuỗi thiết bị: nguồn E1 Z1 và tải Z2">
-        <defs><marker id="ah8" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
-        <style>.b8{font:12px Inter,sans-serif;fill:#111}</style>
-        <line x1="70" y1="100" x2="490" y2="100" stroke="#2a2a2a" stroke-width="2"/>
-        <line x1="70" y1="60" x2="70" y2="140" stroke="#2a2a2a" stroke-width="2"/>
-        <line x1="490" y1="60" x2="490" y2="140" stroke="#2a2a2a" stroke-width="2"/>
-        <text x="50" y="55" class="b8">E₁</text>
-        <rect x="180" y="84" width="80" height="32" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/><text x="220" y="104" text-anchor="middle" class="b8">Z₁</text>
-        <rect x="320" y="84" width="80" height="32" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/><text x="360" y="104" text-anchor="middle" class="b8">Z₂</text>
-        <text x="280" y="60" text-anchor="middle" class="b8">E₂ = E₁·Z₂/(Z₁+Z₂)</text>
-        <text x="220" y="140" text-anchor="middle" class="b8">nguồn (thiết bị 1)</text>
-        <text x="360" y="140" text-anchor="middle" class="b8">tải (thiết bị 2)</text>
-      </svg>
-      <figcaption class="figcap">Hình 2-8 · Một mạch tương đương được hình thành bằng cách áp dụng thiết bị đo vào đầu cuối đầu ra của một thiết bị</figcaption>
-    </figure>
+ <figure class="figure" id="fig-2-8">
+ <svg viewBox="0 0 560 200" role="img" aria-label="Mạch tương đương chuỗi thiết bị: nguồn E1 Z1 và tải Z2">
+ <defs><marker id="ah8" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
+ <style>.b8{font:12px Inter,sans-serif;fill:#111}</style>
+ <line x1="70" y1="100" x2="490" y2="100" stroke="#2a2a2a" stroke-width="2"/>
+ <line x1="70" y1="60" x2="70" y2="140" stroke="#2a2a2a" stroke-width="2"/>
+ <line x1="490" y1="60" x2="490" y2="140" stroke="#2a2a2a" stroke-width="2"/>
+ <text x="50" y="55" class="b8">E₁</text>
+ <rect x="180" y="84" width="80" height="32" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/><text x="220" y="104" text-anchor="middle" class="b8">Z₁</text>
+ <rect x="320" y="84" width="80" height="32" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/><text x="360" y="104" text-anchor="middle" class="b8">Z₂</text>
+ <text x="280" y="60" text-anchor="middle" class="b8">E₂ = E₁·Z₂/(Z₁+Z₂)</text>
+ <text x="220" y="140" text-anchor="middle" class="b8">nguồn (thiết bị 1)</text>
+ <text x="360" y="140" text-anchor="middle" class="b8">tải (thiết bị 2)</text>
+ </svg>
+ <figcaption class="figcap">Hình 2-8 · Một mạch tương đương được hình thành bằng cách áp dụng thiết bị đo vào đầu cuối đầu ra của một thiết bị</figcaption>
+ </figure>
 
-    <p>Hiệu giữa thế thực tế E₁ tại đầu cuối đầu ra của thiết bị 1 và thế đo E₂ là một <b>lỗi tải</b> do trở kháng đầu vào của thiết bị đo 2 gây ra. Rõ ràng rằng một trở kháng đầu vào cao Z₂ so với Z₁ giảm thiểu lỗi này. Một quy tắc chung là trở kháng đầu vào nên ít nhất lớn gấp 100 lần trở kháng nguồn để giảm lỗi tải xuống 1%. Nhìn chung, các thiết bị và phương pháp chỉ thị zero sẽ giảm thiểu lỗi tải. Chúng cung cấp tương đương một trở kháng đầu vào rất cao cho phép đo, giảm thiểu sự cạn kiệt năng lượng từ hệ thống được đo. Các thiết bị và kỹ thuật đo lệch sẽ rút năng lượng từ quá trình được đo và do đó đòi hỏi sự chú ý đến việc chọn đúng trở kháng đầu vào.</p>
+ <p>Hiệu giữa thế thực tế E₁ tại đầu cuối đầu ra của thiết bị 1 và thế đo E₂ là một <b>lỗi tải</b> do trở kháng đầu vào của thiết bị đo 2 gây ra. Rõ ràng rằng một trở kháng đầu vào cao Z₂ so với Z₁ giảm thiểu lỗi này. Một quy tắc chung là trở kháng đầu vào nên ít nhất lớn gấp 100 lần trở kháng nguồn để giảm lỗi tải xuống 1%. Nhìn chung, các thiết bị và phương pháp chỉ thị zero sẽ giảm thiểu lỗi tải. Chúng cung cấp tương đương một trở kháng đầu vào rất cao cho phép đo, giảm thiểu sự cạn kiệt năng lượng từ hệ thống được đo. Các thiết bị và kỹ thuật đo lệch sẽ rút năng lượng từ quá trình được đo và do đó đòi hỏi sự chú ý đến việc chọn đúng trở kháng đầu vào.</p>
 
-    <h2>Định nghĩa thuật ngữ <span class="en">Defining Terms</span></h2>
-    <ul class="ref-list">
-      <li><b>Cảm biến tương tự (Analog sensor):</b> Cảm biến có tín hiệu đầu ra liên tục cả về biên độ và thời gian (hay không gian).</li>
-      <li><b>Thiết bị lệch (Deflection instrument):</b> Thiết bị đo có đầu ra lệch tỷ lệ với độ lớn của đại lượng đo.</li>
-      <li><b>Cảm biến số (Digital sensor):</b> Cảm biến có tín hiệu đầu ra rời rạc (không liên tục) theo thời gian và/hoặc biên độ.</li>
-      <li><b>Trở kháng đầu vào (Input impedance):</b> Trở kháng đo giữa các đầu cuối đầu vào của một thiết bị.</li>
-      <li><b>Lỗi tải (Loading error):</b> Sự khác biệt giữa đại lượng đo và đầu ra hệ thống đo được quy cho hành động đo đại lượng đo.</li>
-      <li><b>Đại lượng đo (Measurand):</b> Một đại lượng vật lý, thuộc tính hay điều kiện đang được đo. Thường được gọi là giá trị đo.</li>
-      <li><b>Thiết bị chỉ thị zero (Null instrument):</b> Thiết bị đo cân bằng đại lượng đo với một giá trị已知, nhờ đó đạt trạng thái zero. Nó giảm thiểu lỗi tải đo.</li>
-      <li><b>Chỉ thị (Readout):</b> Sự hiển thị của một hệ thống đo.</li>
-      <li><b>Độ phân giải (Resolution):</b> Độ đếm nhỏ nhất hay sự thay đổi nhỏ nhất có thể phát hiện của đại lượng đo.</li>
-      <li><b>Cảm biến (Sensor):</b> Phần của hệ thống đo đáp ứng trực tiếp với đại lượng vật lý đang được đo.</li>
-    </ul>
+ <h2>Định nghĩa thuật ngữ <span class="en">Defining Terms</span></h2>
+ <ul class="ref-list">
+ <li><b>Cảm biến tương tự (Analog sensor):</b> Cảm biến có tín hiệu đầu ra liên tục cả về biên độ và thời gian (hay không gian).</li>
+ <li><b>Thiết bị lệch (Deflection instrument):</b> Thiết bị đo có đầu ra lệch tỷ lệ với độ lớn của đại lượng đo.</li>
+ <li><b>Cảm biến số (Digital sensor):</b> Cảm biến có tín hiệu đầu ra rời rạc (không liên tục) theo thời gian và/hoặc biên độ.</li>
+ <li><b>Trở kháng đầu vào (Input impedance):</b> Trở kháng đo giữa các đầu cuối đầu vào của một thiết bị.</li>
+ <li><b>Lỗi tải (Loading error):</b> Sự khác biệt giữa đại lượng đo và đầu ra hệ thống đo được quy cho hành động đo đại lượng đo.</li>
+ <li><b>Đại lượng đo (Measurand):</b> Một đại lượng vật lý, thuộc tính hay điều kiện đang được đo. Thường được gọi là giá trị đo.</li>
+ <li><b>Thiết bị chỉ thị zero (Null instrument):</b> Thiết bị đo cân bằng đại lượng đo với một giá trị đã biết, nhờ đó đạt trạng thái zero. Nó giảm thiểu lỗi tải đo.</li>
+ <li><b>Chỉ thị (Readout):</b> Sự hiển thị của một hệ thống đo.</li>
+ <li><b>Độ phân giải (Resolution):</b> Độ đếm nhỏ nhất hay sự thay đổi nhỏ nhất có thể phát hiện của đại lượng đo.</li>
+ <li><b>Cảm biến (Sensor):</b> Phần của hệ thống đo đáp ứng trực tiếp với đại lượng vật lý đang được đo.</li>
+ </ul>
 
-    <h2>Thông tin thêm <span class="en">Further Information</span></h2>
-    <ol class="ref-list">
-      <li>E. O. Doebelin, <em>Measurement Systems</em>, 4th ed., New York: McGraw-Hill, 1990.</li>
-      <li>R. S. Figliola and D. E. Beasley, <em>Theory and Design for Mechanical Measurements</em>, 2nd ed., New York: Wiley, 1995.</li>
-      <li>D. Wobschall, <em>Circuit Design for Electronic Instrumentation: Analog and Digital Devices from Sensor to Display</em>, 2nd ed., New York: McGraw-Hill, 1987.</li>
-    </ol>
+ <h2>Thông tin thêm <span class="en">Further Information</span></h2>
+ <ol class="ref-list">
+ <li>E. O. Doebelin, <em>Measurement Systems</em>, 4th ed., New York: McGraw-Hill, 1990.</li>
+ <li>R. S. Figliola and D. E. Beasley, <em>Theory and Design for Mechanical Measurements</em>, 2nd ed., New York: Wiley, 1995.</li>
+ <li>D. Wobschall, <em>Circuit Design for Electronic Instrumentation: Analog and Digital Devices from Sensor to Display</em>, 2nd ed., New York: McGraw-Hill, 1987.</li>
+ </ol>
 
-    <div class="chapter-nav">
-      <a href="/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch01-characteristics-of-instrumentation/"><span class="k">← Chương 1</span>Đặc tính của thiết bị đo</a>
-      <a href="/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/" style="text-align:right;"><span class="k">Mục lục →</span>Tất cả chương</a>
-    </div>
+ <div class="chapter-nav">
+ <a href="/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch01-characteristics-of-instrumentation/"><span class="k">← Chương 1</span>Đặc tính của thiết bị đo</a>
+ <a href="/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/" style="text-align:right;"><span class="k">Mục lục →</span>Tất cả chương</a>
+ </div>
 
-  </div>
+ </div>
 </article>
 </main>
 </body>
