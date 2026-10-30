@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 2 — Đo lường quá trình và cảm biến · Điều khiển quá trình thực hành</title>
+<meta name="description" content="Bản dịch tiếng Việt Chương 2 “Process Measurement and Transducers” của Wolfgang Altmann — các bộ chuyển đổi và cảm biến: đặc tính chung (độ chính xác, độ chuẩn xác, độ nhạy, độ phân giải, độ lặp lại, dải đo, độ trải, trễ từ), cảm biến nhiệt độ, bộ phát áp suất, lưu lượng kế, bộ phát mức và bộ phát thông minh.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/books/assets/library.css">
+</head>
+<body>
+<header class="site-header"><a href="/?lang=vi" class="brand"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#fff" stroke="#000" stroke-width="4"/><circle cx="100" cy="100" r="68" fill="none" stroke="#000" stroke-width="1.6" stroke-dasharray="1.5 9"/><path d="M100 26 A74 74 0 0 1 174 100" fill="none" stroke="#000" stroke-width="7"/><line x1="100" y1="100" x2="143" y2="57" stroke="#000" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="100" r="10" fill="#000"/></svg><span>Pro InstControl</span></a><nav class="site-nav"><a href="/?lang=vi">Trang chủ</a><a href="/fundamentals.html?lang=vi">Cơ bản</a><a href="/instruments.html?lang=vi">Thiết bị</a><a href="/control.html?lang=vi">Điều khiển</a><a href="/safety.html?lang=vi">An toàn</a><a href="/tools.html?lang=vi">Công cụ</a><a href="/comparison.html?lang=vi">So sánh</a><a href="/standards.html?lang=vi">Tiêu chuẩn</a><a href="/vi/books/" class="active">Sách</a><a href="/books/read/pc-process-control/ch02-process-measurement-and-transducers/" class="lang-switch">EN</a></nav></header>
+
+<main>
+<article class="intranet-content reader">
+
+  <div class="reader-hero">
+    <div class="breadcrumb"><a href="/vi/books/">Sách</a> · <a href="/vi/books/read/pc-process-control/">Điều khiển quá trình thực hành</a> · Chương 2</div>
+    <h1>Đo lường quá trình và cảm biến</h1>
+    <p class="byline">Wolfgang Altmann · IDC Technologies (Phiên bản 3.02)</p>
+    <div class="meta-line">Chương 2 · 80 trang gốc · bản dịch tiếng Việt</div>
+  </div>
+
+  <div class="prose">
+<div class="note">
+      <b>Thuật ngữ chính của chương.</b>
+      <em>Bộ chuyển đổi (transducer)</em> — thiết bị biến một hay nhiều đại lượng vật lý thành tín hiệu đầu ra (thường là điện). ·
+      <em>Cảm biến (sensor)</em> — phần tử đo sơ cấp của bộ chuyển đổi. ·
+      <em>Bộ phát (transmitter)</em> — khối tạo tín hiệu đầu ra có quan hệ đã biết với đại lượng đo. ·
+      <em>SMART transmitter</em> — bộ phát có vi xử lý, có thể hiệu chỉnh dải (ranging) và tuyến tính hóa. ·
+      <em>4&#8211;20 mA</em> — chuẩn dòng công nghiệp, 4 mA ứng với giá trị thấp nhất, 20 mA với giá trị cao nhất.
+      Tiêu đề mỗi mục giữ nguyên bản tiếng Anh trong ngoặc để tiện đối chiếu với bản gốc.
+    </div>
+
+    <p class="lead">Đo lường là "giác quan" của mọi hệ thống điều khiển quá trình. Một bộ điều khiển dù tinh vi đến đâu cũng vô dụng nếu nó không nhận được tín hiệu trung thực về nhiệt độ, áp suất, lưu lượng hay mức. Chương này giới thiệu các bộ chuyển đổi và cảm biến — từ khái niệm cơ bản, các đặc tính chung, cho đến từng họ thiết bị đo nhiệt độ, áp suất, lưu lượng, mức và những cân nhắc khi lựa chọn.</p>
+
+    <h2>2.1 Mục tiêu <span class="en">Objectives</span></h2>
+
+    <p>Sau khi học xong chương này, người học cần:</p>
+    <ul>
+      <li>Giải thích được ý nghĩa các thuật ngữ: độ chính xác (accuracy), độ chuẩn xác (precision), độ nhạy (sensitivity), độ phân giải (resolution), độ lặp lại (repeatability), dải đo (rangeability), độ trải (span) và trễ từ (hysteresis);</li>
+      <li>Chọn được thiết bị cảm biến phù hợp cho một quá trình cụ thể;</li>
+      <li>Mô tả được các cảm biến dùng để đo nhiệt độ, áp suất, lưu lượng và mức chất lỏng;</li>
+      <li>Liệt kê được các phương pháp giảm thiểu ảnh hưởng nhiễu (noise) lên hệ thống đo.</li>
+    </ul>
+
+    <h2>2.2 Định nghĩa về bộ chuyển đổi và cảm biến <span class="en">The Definition of Transducers and Sensors</span></h2>
+
+    <p>Bộ chuyển đổi (transducer) là thiết bị thu nhận thông tin dưới dạng một hoặc nhiều đại lượng vật lý và biến đổi nó thành tín hiệu đầu ra dạng điện. Bộ chuyển đổi gồm hai bộ phận chính: một phần tử đo sơ cấp gọi là <em>cảm biến</em> (sensor), và một khối <em>bộ phát</em> (transmitter) có nhiệm vụ tạo ra tín hiệu điện đầu ra có mối quan hệ đã biết với đại lượng vật lý được đo.</p>
+
+    <p>Ở các thiết bị tinh vi hơn, người ta có thể bổ sung phần tử thứ ba, thường dựa trên vi xử lý, được đặt giữa cảm biến và bộ phát. Phần tử này, trong số các chức năng khác, thực hiện việc tuyến tính hóa và hiệu chỉnh dải (ranging) cho bộ chuyển đổi theo các thông số vận hành yêu cầu.</p>
+
+    <h2>2.3 Danh sách các đại lượng đo phổ biến <span class="en">Listing of Common Measured Variables</span></h2>
+
+    <p>Xếp theo tần suất xuất hiện giảm dần, các đại lượng được điều khiển chủ yếu trong hệ thống điều khiển quá trình gồm:</p>
+    <ol>
+      <li>Nhiệt độ</li>
+      <li>Áp suất</li>
+      <li>Lưu lượng</li>
+      <li>Thành phần (composition)</li>
+      <li>Mức chất lỏng</li>
+    </ol>
+    <p>Các mục 2.4 đến 2.6 liệt kê và mô tả các loại bộ chuyển đổi này, kết thúc bằng phương pháp luận chọn thiết bị cảm biến.</p>
+
+    <h2>2.4 Các đặc tính chung của bộ chuyển đổi <span class="en">The Common Characteristics of Transducers</span></h2>
+
+    <p>Mọi bộ chuyển đổi, bất kể yêu cầu đo, đều thể hiện những đặc tính giống nhau như dải (Range), độ trải (Span), v.v. Phần này giải thích và minh họa cách diễn giải những đặc tính phổ biến nhất.</p>
+
+    <h3>2.4.1 Độ chính xác tĩnh và động <span class="en">Dynamic and Static Accuracy</span></h3>
+
+    <p>Thuật ngữ đầu tiên và phổ biến nhất là <em>độ chính xác</em> (accuracy), đồng thời cũng là thuật ngữ bị lạm dụng và ít được hiểu nhất. Người ta gần như luôn phát biểu "dụng cụ này chính xác &#177;X%", trong khi đáng lẽ phải nói "dụng cụ này <em>không chính xác</em> &#177;X%". Nói chung, độ chính xác được mô tả tốt nhất là mức độ gần với giá trị tuyệt đối hay thực tế của đại lượng quá trình. Để hiểu rõ thuật ngữ này và các thuật ngữ liên quan, trước hết cần định nghĩa <em>sai số</em> (error).</p>
+
+    <div class="note"><b>Định nghĩa sai số trong điều khiển quá trình.</b> Sai số là sự khác biệt giữa một phép đo hoàn hảo và giá trị thực tế được đo, tại bất kỳ điểm, thời điểm và chiều biến động nào trong dải đo.</div>
+
+    <p>Có hai loại độ chính xác: độ chính xác tĩnh (static) và độ chính xác động (dynamic).</p>
+    <ul>
+      <li><em>Độ chính xác tĩnh</em> là mức độ gần với giá trị thực khi giá trị thực không đổi.</li>
+      <li><em>Độ chính xác động</em> là mức độ gần với giá trị thực khi giá trị thực đang thay đổi — cần nhớ ở đây có một trễ đo (measurement lag): đến khi giá trị đo đã được xử lý, đại lượng vật lý thực tế có thể đã thay đổi.</li>
+    </ul>
+    <p>Bên cạnh độ chính xác còn có một tập hợp thuật ngữ con: <em>độ chuẩn xác</em> (precision), <em>độ nhạy</em> (sensitivity), <em>độ phân giải</em> (resolution), <em>độ lặp lại</em> (repeatability) và <em>dải đo</em> (rangeability), tất cả đều có liên hệ với <em>sai số</em> (ERROR).</p>
+
+    <h3>2.4.2 Độ chuẩn xác <span class="en">Precision</span></h3>
+
+    <p>Độ chuẩn xác là mức độ chính xác của các phép đo lặp lại cùng một đại lượng trong điều kiện hoàn toàn giống nhau.</p>
+    <p>Trong điều khiển quá trình, độ chuẩn xác quan trọng hơn độ chính xác tuyệt đối — nói cách khác, thường tốt hơn nếu đo một đại lượng một cách chuẩn xác thay vì có độ chính xác tuyệt đối cao. Sự khác biệt giữa hai tính chất này được minh họa ở Hình 2-1.</p>
+    <p>Lấy chất lỏng làm ví dụ, đường nét đứt biểu diễn nhiệt độ thực tế. Phép đo phía trên minh họa một dụng cụ chuẩn xác nhưng không chính xác, trong khi phép đo phía dưới minh họa dụng cụ kém chuẩn xác nhưng chính xác hơn. Dụng cụ thứ nhất có sai số lớn hơn, dụng cụ thứ hai có độ trôi (drift) lớn hơn.</p>
+    <div class="note"><b>Trôi (DRIFT):</b> Sự thay đổi không mong muốn trong quan hệ đầu ra &#8211; đầu vào theo thời gian.</div>
+<figure class="figure" id="fig-2-1">
+      <svg viewBox="0 0 480 300" role="img" aria-label="So sánh độ chính xác và độ chuẩn xác trong đo nhiệt độ">
+        <style>
+          .ax{stroke:#bbb;stroke-width:1}
+          .lab{font:11px Inter,sans-serif;fill:#444}
+          .leg{font:10px Inter,sans-serif;fill:#222}
+        </style>
+        <line x1="60" y1="20" x2="60" y2="270" class="ax"/>
+        <line x1="60" y1="270" x2="450" y2="270" class="ax"/>
+        <text x="250" y="292" text-anchor="middle" class="lab">Thời gian</text>
+        <text x="20" y="150" text-anchor="middle" class="lab" transform="rotate(-90 20 150)">Nhiệt độ</text>
+        <!-- actual (dashed) -->
+        <path d="M60 160 C120 150 180 165 240 155 S360 150 450 158" fill="none" stroke="#222" stroke-width="2" stroke-dasharray="5 4"/>
+        <text x="455" y="150" class="leg" font-style="italic">thực tế</text>
+        <!-- precise but inaccurate: tight cluster above -->
+        <g fill="#c0392b">
+          <circle cx="110" cy="110" r="3"/><circle cx="150" cy="106" r="3"/><circle cx="190" cy="112" r="3"/>
+          <circle cx="230" cy="108" r="3"/><circle cx="270" cy="111" r="3"/><circle cx="310" cy="107" r="3"/>
+          <circle cx="350" cy="110" r="3"/><circle cx="390" cy="109" r="3"/><circle cx="430" cy="106" r="3"/>
+        </g>
+        <text x="455" y="100" class="leg" fill="#c0392b">chuẩn xác, kém chính xác</text>
+        <!-- imprecise but accurate: wide spread around actual -->
+        <g fill="#2c6fbb">
+          <circle cx="110" cy="150" r="3"/><circle cx="150" cy="95" r="3"/><circle cx="190" cy="200" r="3"/>
+          <circle cx="230" cy="130" r="3"/><circle cx="270" cy="185" r="3"/><circle cx="310" cy="105" r="3"/>
+          <circle cx="350" cy="205" r="3"/><circle cx="390" cy="140" r="3"/><circle cx="430" cy="170" r="3"/>
+        </g>
+        <text x="455" y="220" class="leg" fill="#2c6fbb">kém chuẩn xác, chính xác</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-1 · Độ chính xác (accuracy) so với độ chuẩn xác (precision) trong một phép đo nhiệt độ điển hình</figcaption>
+    </figure>
+    <h3>2.4.3 Độ nhạy <span class="en">Sensitivity</span></h3>
+
+    <p>Thông thường, độ nhạy được định nghĩa là: mức độ thay đổi của tín hiệu đầu ra từ phần tử truyền tín hiệu của bộ chuyển đổi ứng với một sự thay đổi xác định của đại lượng đầu vào được đo. Nói cách khác, đó là tỉ số giữa sự thay đổi tín hiệu đầu ra và sự thay đổi đại lượng đo — là một tỉ số trạng thái xác lập, hay hệ số khuyếch đại (gain) trạng thái xác lập của phần tử.</p>
+    <p>Vì thế, sự thay đổi tín hiệu đầu ra càng lớn từ bộ phát ứng với một thay đổi đầu vào cho trước, thì độ nhạy của phần tử đo càng cao. Các thiết bị có độ nhạy cao, như thermistor, có thể đổi điện trở tới 5% trên mỗi &#176;C, trong khi thiết bị độ nhạy thấp như cặp nhiệt điện chỉ tạo ra điện áp đầu ra đổi 5&#181;V (5&#215;10<super>-6</super> V) trên mỗi &#176;C.</p>
+    <p>Loại độ nhạy thứ hai quan trọng với hệ đo được định nghĩa là: sự thay đổi nhỏ nhất của đại lượng đo mà vẫn làm thay đổi tín hiệu đầu ra từ phần tử cảm biến. Trong nhiều hệ vật lý — đặc biệt chứa đòn bẩy, khớp nối và chi tiết cơ khí — các bộ phận chuyển động có xu hướng bị kẹt và có độ rơ (free play). Kết quả là tín hiệu đầu vào nhỏ có thể không sinh ra tín hiệu đầu ra nào detectable. Để đạt độ nhạy cao, dụng cụ cần được thiết kế và chế tạo tốt. Khi đó hệ điều khiển có khả năng đáp ứng với những thay đổi nhỏ của đại lượng điều khiển; đôi khi người ta gọi đó là độ phân giải.</p>
+
+    <h3>2.4.4 Độ phân giải <span class="en">Resolution</span></h3>
+
+    <p>Độ chuẩn xác có liên hệ với độ phân giải, được định nghĩa là sự thay đổi nhỏ nhất của đầu vào dẫn đến một thay đổi đáng kể ở đầu ra bộ chuyển đổi.</p>
+
+    <h3>2.4.5 Độ lặp lại <span class="en">Repeatability</span></h3>
+
+    <p>Mức độ thống nhất giữa một số phép đo liên tiếp của đầu ra ứng với cùng một giá trị đầu vào, trong điều kiện vận hành giống hệt nhau, tiến tới từ cùng một chiều khi đi qua toàn dải. Nó thường được biểu diễn bằng phần trăm độ trải (percent of span). Nó không bao gồm trễ từ.</p>
+
+    <h3>2.4.6 Dải đo <span class="en">Rangeability</span></h3>
+
+    <p>Đây là vùng giữa giá trị dưới và giá trị trên của dải đo, nơi đại lượng được đo. Trừ khi có chỉ định khác, ta hiểu là dải đầu vào (Input range).</p>
+    <p>Ví dụ: nếu dải được cho là 50&#176;C đến 320&#176;C thì dải đo được ghi là 50&#176;C đến 320&#176;C.</p>
+
+    <h3>2.4.7 Độ trải <span class="en">Span</span></h3>
+
+    <p>Độ trải không được nhầm với dải đo, dù dùng cùng các điểm tham chiếu. Độ trải là <em>hiệu đại số</em> giữa giá trị trên và giá trị dưới của dải.</p>
+    <p>Ví dụ: nếu dải như ở mục 2.4.6 là 50&#176;C đến 320&#176;C thì độ trải là 320&#8211;50 = 270&#176;C.</p>
+
+    <h3>2.4.8 Trễ từ <span class="en">Hysteresis</span></h3>
+
+    <p>Đây là một phép đo động, thể hiện qua sự phụ thuộc của một giá trị đầu ra — ứng với một sự đi qua của đầu vào — vào lịch sử các lần đi qua trước và chiều đi qua.</p>
+    <p>Ví dụ: nếu đưa đầu vào của một hệ từ 0% lên 100% rồi ghi nhận đầu ra, sau đó đưa đầu vào trở về 0% và ghi nhận đầu ra lần nữa, thì hiệu của hai giá trị ghi được (0% &#8594; 100% &#8594; 0%) chính là giá trị trễ từ của hệ tại mọi điểm trong dải. Các phép thử phải lặp lại trong điều kiện hoàn toàn giống nhau.</p>
+
+    <h2>2.5 Động học cảm biến <span class="en">Sensor Dynamics</span></h2>
+
+    <p>Động học quá trình đã được bàn ở Chương 1, và những yếu tố này cũng áp dụng cho cảm biến, khiến việc hiểu động học cảm biến trở nên quan trọng. Tốc độ đáp ứng của phần tử đo sơ cấp thường là một trong những yếu tố quan trọng nhất vận hành bộ điều khiển phản hồi. Vì điều khiển quá trình là liên tục và động, tỉ lệ mà bộ điều khiển phát hiện được sự thay đổi của quá trình sẽ mang tính quyết định với toàn bộ vận hành hệ thống.</p>
+    <p>Cảm biến nhanh cho phép bộ điều khiển hoạt động kịp thời, trong khi cảm biến có hằng số thời gian lớn thì chậm và làm suy giảm vận hành vòng lặp phản hồi. Do ảnh hưởng đến đáp ứng vòng lặp, các đặc tính động của cảm biến cần được xem xét khi lựa chọn và lắp đặt.</p>
+
+    <h2>2.6 Lựa chọn thiết bị cảm biến <span class="en">Selection of Sensing Devices</span></h2>
+
+    <p>Trước khi chọn một phương pháp đo cụ thể cho đại lượng quá trình (PV) của một vòng lặp, cần xét nhiều yếu tố:</p>
+    <ul>
+      <li>Dải bình thường mà PV có thể biến thiên, và những giá trị cực đoan (nếu có).</li>
+      <li>Độ chính xác, độ chuẩn xác và độ nhạy yêu cầu cho phép đo.</li>
+      <li>Động học cảm biến cần thiết.</li>
+      <li>Độ tin cậy (reliability) yêu cầu.</li>
+      <li>Chi phí liên quan, gồm lắp đặt, vận hành cũng như mua sắm.</li>
+      <li>Yêu cầu và vấn đề lắp đặt, như rào buộc kích thước, hình dạng, truyền tín hiệu từ xa, chất lỏng ăn mòn, hỗn hợp dễ nổ, v.v.</li>
+    </ul>
+
+    <h2>2.7 Cảm biến nhiệt độ <span class="en">Temperature Sensors</span></h2>
+
+    <p>Nhiệt độ là đại lượng được đo phổ biến nhất trong điều khiển quá trình. Do dải nhiệt độ cần đo rất rộng (từ độ không tuyệt đối đến hàng ngàn độ) với độ trải chỉ vài độ và độ nhạy đến từng phần của độ, có vô số thiết bị có thể dùng đo nhiệt độ.</p>
+    <p>Năm cảm biến phổ biến nhất — cặp nhiệt điện (thermocouples), bộ cảm biến nhiệt điện trở RTD, thermistor, cảm biến IC và pyrometer bức xạ — được chọn cho chương này vì chúng minh họa hầu hết các khía cạnh ứng dụng, dải, độ chính xác và tính tuyến tính liên quan đến đo nhiệt độ.</p>
+
+    <h3>2.7.1 Cặp nhiệt điện <span class="en">Thermocouples</span></h3>
+
+    <p>Cặp nhiệt điện phủ một dải nhiệt độ từ &#8722;262&#176;C đến +2760&#176;C, được chế tạo từ nhiều vật liệu, tương đối rẻ và có nhiều dạng hình học — tất cả khiến chúng trở thành thiết bị rất đa dụng.</p>
+    <p>Cặp nhiệt điện gặp hai vấn đề lớn gây sai số khi áp dụng vào môi trường điều khiển quá trình:</p>
+    <ul>
+      <li>Thứ nhất là điện áp nhỏ do chúng sinh ra: ví dụ, đổi 1&#176;C trên cặp nhiệt điện bạch kim chỉ cho thay đổi đầu ra 5,8&#181;V (=5,8&#215;10<super>-6</super> V).</li>
+      <li>Thứ hai là tính phi tuyến, đòi hỏi chuyển đổi đa thức, bảng tra hoặc hiệu chuẩn tương ứng khi đưa vào khối tín hiệu và điều khiển. Xem Hình 2-2.</li>
+    </ul>
+
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Loại</th><th>Thành phần kim loại</th><th>Dải nhiệt độ</th><th>Độ trải</th><th>Hệ số Seebeck</th></tr></thead>
+      <tbody>
+        <tr><td>K</td><td>Chromel &#8211; Alumel</td><td>&#8722;190 đến +1371&#176;C</td><td></td><td>40&#181;V/&#176;C</td></tr>
+        <tr><td>J</td><td>Sắt &#8211; Constantan</td><td>&#8722;190 đến +760&#176;C</td><td></td><td>50&#181;V/&#176;C</td></tr>
+        <tr><td>T</td><td>Đồng &#8211; Constantan</td><td>&#8722;190 đến +760&#176;C</td><td></td><td>50&#181;V/&#176;C</td></tr>
+        <tr><td>E</td><td>Chromel &#8211; Constantan</td><td>&#8722;190 đến +1472&#176;C</td><td></td><td>60&#181;V/&#176;C</td></tr>
+        <tr><td>S</td><td>Bạch kim &#8211; 10% Rhodium/Bạch kim</td><td>0 đến +1760&#176;C</td><td></td><td>10&#181;V/&#176;C</td></tr>
+        <tr><td>R</td><td>Bạch kim &#8211; 13% Rhodium/Bạch kim</td><td>0 đến +1670&#176;C</td><td></td><td>11&#181;V/&#176;C</td></tr>
+      </tbody>
+    </table>
+    <p class="figcap">Bảng 2.1 · Các loại cặp nhiệt điện, dải nhiệt độ và giá trị hiệu ứng Seebeck</p>
+    </div>
+
+    <p><b>Nguyên lý hoạt động của cặp nhiệt điện.</b> Một cặp nhiệt điện có thể coi như một pin hoạt động bằng nhiệt, gồm hai loại dây kim loại/dợp kim đồng chất nối với nhau tại một đầu (điểm đo) và thường nối qua cáp bù đặc biệt tới một dụng cụ đo. Tại điểm nối với dụng cụ đo hình thành một mối nối thứ hai gọi là <em>điểm nối tham chiếu hay điểm nối lạnh</em> (reference/cold junction), hoàn thành mạch điện.</p>
+    <p><b>Các hiệu ứng Peltier &amp; Thomson.</b> Hiệu ứng <em>Peltier</em> là nguyên nhân sinh suất điện động (emf) tại mọi mối nối kim loại khác loại trong mạch; hiệu ứng này liên quan đến việc sinh hoặc hấp thụ nhiệt tại mối nối khi dòng điện chạy qua, và nhiệt độ phụ thuộc vào chiều dòng. Hiệu ứng <em>Thomson</em>, khi một emf thứ hai cũng có thể sinh ra dọc theo gradien nhiệt độ của một dây đồng chất duy nhất, cũng góp phần gây sai số. Cần thiết là toàn bộ dây trong mạch đo cặp nhiệt điện phải đồng chất, khi đó các emf sinh ra chỉ phụ thuộc vào loại vật liệu dùng. Mọi emf nhiệt sinh trong dây khi đi qua gradien nhiệt độ cũng sẽ triệt tiêu lẫn nhau.</p>
+    <p>Ngoài ra, nếu hai mối nối của kim loại đồng chất cùng giữ ở một nhiệt độ, kim loại đó không đóng góp emf thêm. Suy ra, nếu mọi mối nối trong mạch đều giữ ở nhiệt độ không đổi (trừ mối nối đo), ta có thể đo giá trị mối nối nóng (đo) so với giá trị không đổi của điểm nối lạnh tham chiếu.</p>
+    <p><b>Bù điểm nối lạnh (Cold Junction Compensation).</b> Như ở mục 2.7.1, ta phải đảm bảo mọi mối nối trong mạch đo — trừ mối nối dùng cho phép đo quá trình — hoặc là: (a) được giữ ở nhiệt độ không đổi đã biết, thường là 0&#176;C, gọi là "điểm nối lạnh"; hoặc (b) nhiệt độ các mối nối này được đo và dụng cụ đo tính đến nó khi tính đầu ra cuối.</p>
+    <p>Cả hai cách đều phổ biến. Cách thứ nhất dùng một khối đẳng nhiệt (isothermal block) giữ ở nhiệt độ đã biết, nơi nối dây cặp nhiệt điện vào dây đồng. Cách thứ hai đo nhiệt độ (thường bằng thermistor) tại điểm nối đồng &#8211; cặp nhiệt điện, đưa giá trị này vào hệ đo và để hệ tính đầu ra đã hiệu chỉnh.</p>
+<figure class="figure" id="fig-2-2">
+      <svg viewBox="0 0 520 240" role="img" aria-label="Sơ đồ mạch cặp nhiệt điện với điểm nối lạnh và điểm nối tham chiếu">
+        <style>
+          .bx{fill:#fafafa;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .s{font:10px Inter,sans-serif;fill:#777;text-anchor:middle}
+          .w{stroke:#2a2a2a;stroke-width:1.6;fill:none}
+          .dot{fill:#2a2a2a}
+        </style>
+        <rect x="30" y="70" width="150" height="60" rx="6" class="bx"/>
+        <text x="105" y="96" class="t">Điểm nối đo</text>
+        <text x="105" y="112" class="s">(nóng)</text>
+        <rect x="340" y="70" width="150" height="60" rx="6" class="bx"/>
+        <text x="415" y="96" class="t">Điểm nối lạnh</text>
+        <text x="415" y="112" class="s">(tham chiếu, 0&#176;C)</text>
+        <path class="w" d="M180 100 H250 V40 H340"/>
+        <path class="w" d="M180 100 H250 V160 H340"/>
+        <circle cx="180" cy="100" r="3.5" class="dot"/>
+        <circle cx="250" cy="40" r="3.5" class="dot"/>
+        <circle cx="250" cy="160" r="3.5" class="dot"/>
+        <circle cx="340" cy="100" r="3.5" class="dot"/>
+        <text x="215" y="32" class="s">dây bù</text>
+        <text x="215" y="178" class="s">dây bù</text>
+        <rect x="225" y="190" width="90" height="34" rx="5" class="bx"/>
+        <text x="270" y="211" class="t">Đồng hồ</text>
+        <text x="270" y="240" class="s">Hoàn thành mạch qua điểm nối lạnh</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-2 · Ví dụ mạch cặp nhiệt điện: điểm nối đo và điểm nối lạnh (tham chiếu)</figcaption>
+    </figure>
+    <h3>2.7.2 Bộ cảm biến nhiệt điện trở RTD <span class="en">Resistance Temperature Detectors</span></h3>
+
+    <p>Cùng năm Thomas Seebeck phát hiện cặp nhiệt điện, Sir Humphrey Davy nhận thấy sự phụ thuộc giữa nhiệt độ và điện trở của kim loại; nhưng phải đến năm 1932 H. C. Meyers mới chế tạo RTD đầu tiên.</p>
+    <p><b>Cấu tạo RTD.</b> RTD gồm một phần tử dây bạch kim hoặc niken được bọc trong vỏ bảo vệ; bản bạch kim có điện trở nền 100&#8486; tại 0&#176;C, bản niken là 1000&#8486; cũng tại 0&#176;C. Chúng có dạng 2, 3 hoặc 4 dây, trong đó 3 và 4 dây phổ biến nhất. Bản 2 dây có thể rất không chính xác vì điện trở dây dẫn mắc nối tiếp với mạch đo, trong khi phần tử đo lại dựa vào sự đổi điện trở để chỉ thị nhiệt độ.</p>
+<figure class="figure" id="fig-2-3">
+      <svg viewBox="0 0 460 200" role="img" aria-label="Cấu tạo của bộ cảm biến nhiệt điện trở RTD">
+        <style>
+          .sh{fill:#eee;stroke:#2a2a2a;stroke-width:1.4}
+          .co{fill:none;stroke:#c0392b;stroke-width:2.2}
+          .ld{stroke:#2a2a2a;stroke-width:1.6}
+          .t{font:11px Inter,sans-serif;fill:#111}
+        </style>
+        <rect x="120" y="40" width="220" height="120" rx="10" class="sh"/>
+        <path class="co" d="M150 160 V70 H170 V160 M190 160 V70 H210 V160 M230 160 V70 H250 V160 M270 160 V70 H290 V160 M310 160 V70 H330 V160"/>
+        <line class="ld" x1="150" y1="160" x2="150" y2="185"/>
+        <line class="ld" x1="330" y1="160" x2="330" y2="185"/>
+        <text x="240" y="185" text-anchor="middle" class="t">dây dẫn ra</text>
+        <text x="240" y="34" text-anchor="middle" class="t">vỏ bảo vệ (thường là thép không gỉ)</text>
+        <text x="240" y="118" text-anchor="middle" class="t" fill="#c0392b">phần tử cuộn dây bạch kim</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-3 · Cấu tạo của bộ cảm biến nhiệt điện trở (RTD)</figcaption>
+    </figure>
+    <p><b>Dải, độ nhạy và độ trải của RTD.</b> RTD hoạt động trong dải hẹp hơn cặp nhiệt điện: từ &#8722;247&#176;C đến +649&#176;C. Cần chọn độ trải phù hợp để vận hành đúng; độ nhạy điển hình của PT100 là 0,358&#8486;/&#176;C quanh điện trở danh định 100&#8486; tại 0&#176;C. Điều này tương ứng với một dải điện trở đơn (100&#8722;88&#8486; = &#8722;247&#176;C đến 100+232&#8486; = +649&#176;C), tức 12 đến 332&#8486;, vượt quá dải của một bộ chuyển đổi đơn.</p>
+    <p><b>Ví dụ RTD trong môi trường số.</b> Hình 2-3 (thực tế là Hình 2-4 dưới đây) minh họa cấu hình RTD 3 dây dùng trong một ứng dụng điều khiển quá trình số.</p>
+<figure class="figure" id="fig-2-4">
+      <svg viewBox="0 0 500 260" role="img" aria-label="Cấu hình RTD 3 dây cho hệ thống số">
+        <style>
+          .bx{fill:#fafafa;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .s{font:10px Inter,sans-serif;fill:#777;text-anchor:middle}
+          .w{stroke:#2a2a2a;stroke-width:1.6;fill:none}
+          .rx{fill:none;stroke:#c0392b;stroke-width:3}
+        </style>
+        <rect x="60" y="40" width="140" height="60" rx="6" class="bx"/>
+        <text x="130" y="62" class="t">Nguồn dòng</text>
+        <text x="130" y="78" class="s">không đổi</text>
+        <rect x="300" y="40" width="140" height="60" rx="6" class="bx"/>
+        <text x="370" y="62" class="t">Bộ số hóa</text>
+        <text x="370" y="78" class="s">&amp; vi xử lý</text>
+        <!-- element RX -->
+        <rect x="200" y="170" width="100" height="40" rx="6" class="bx"/>
+        <line class="rx" x1="210" y1="190" x2="290" y2="190"/>
+        <text x="240" y="158" text-anchor="middle" class="t">RX (phần tử đo)</text>
+        <line class="w" x1="130" y1="100" x2="130" y2="150"/>
+        <path class="w" d="M130 100 V150 H210 V190"/>
+        <path class="w" d="M240 190 V210 H130 V150"/>
+        <path class="w" d="M290 190 V210 H370 V100"/>
+        <path class="w" d="M370 100 V150 H290 V190"/>
+        <circle cx="130" cy="150" r="3.5" class="s" style="fill:#2a2a2a"/>
+        <circle cx="370" cy="150" r="3.5" class="s" style="fill:#2a2a2a"/>
+        <text x="160" y="135" class="s">A</text>
+        <text x="320" y="135" class="s">B</text>
+        <text x="240" y="245" class="s">RL = điện trở mỗi dây dẫn; VA&#8733;RX+2RL, VB&#8733;RX+RL</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-4 · Cấu hình RTD 3 dây dùng trong hệ thống điều khiển số</figcaption>
+    </figure>
+    <p>Các bộ điều khiển số hiện đại dùng RTD 3 dây như sau: một bộ sinh dòng không đổi đẩy dòng qua mạch [A đến C] gồm 2R<small>L</small> + R<small>X</small>. Một bộ dò điện áp đọc điện áp V<small>B</small> (tỷ lệ với R<small>X</small> + R<small>L</small>) giữa các điểm [B và C], và một điện áp thứ hai V<small>A</small> (tỷ lệ với R<small>X</small> + 2R<small>L</small>) giữa [A và C]. Vì V<small>A</small> &#8722; V<small>B</small> tỷ lệ với R<small>L</small>, còn V<small>B</small> &#8722; (V<small>A</small> &#8722; V<small>B</small>) tỷ lệ với chỉ R<small>X</small>, trong đó: R<small>L</small> là điện trở mỗi dây dẫn RTD, R<small>X</small> là phần tử đo, V<small>A</small> là điện áp cấp cho R<small>X</small> từ nguồn dòng không đổi, V<small>B</small> là điện áp đo cuối cùng (đầu ra RTD bản 3 dây). Các phép đo thực hiện nối tiếp, được số hóa và lưu lại cho đến khi tính được hiệu.</p>
+    <p>RTD tương đối tuyến tính (xem Hình 2-6), nhưng điều này phụ thuộc nhiều vào vùng vận hành đang dùng trong toàn dải của bộ chuyển đổi. RTD cũng bị hiệu ứng tự đốt (self-heating): dòng kích thích làm nóng phần tử cảm biến gây sai số hay偏移 nhiệt độ. Hệ số số hiện đại khắc phục bằng cách chỉ cấp điện cho bộ chuyển đổi ngay trước khi lấy mẫu; hoặc giảm dòng kích thích (nhưng làm điện áp đo thấp hơn, khiến nhiễu điện dễ thành vấn đề); hoặc tính toán và bù sai số tự đốt vào thuật toán đo.</p>
+
+    <h3>2.7.3 Thermistor <span class="en">Thermistors</span></h3>
+
+    <p>Đây là thiết bị đo nhiệt độ nhạy và nhanh nhất thường dùng, nhưng cái giá phải trả là tính phi tuyến rất tệ (xem Hình 2-6) và dải nhiệt độ rất hẹp. Thermistor chế từ ôxít kim loại, có hệ số nhiệt âm — điện trở giảm khi nhiệt độ tăng. Chúng được làm hầu như mọi hình dạng, từ cỡ đầu kim đến đĩa đường kính 25 mm dày 5 mm.</p>
+    <p>Phần lớn thermistor có điện trở danh định khoảng 5000&#8486;; do nhạy, điện trở nền này được cho ở một nhiệt độ cụ thể và cần tra cứu loại tương ứng trong tài liệu nhà sản xuất. Giá trị thermistor có thể đổi tới 200&#8486;/&#176;C, nghĩa là với điện trở nền nói trên, dải tối đa chỉ đạt +25 độ so với nhiệt độ nền.</p>
+
+    <h3>2.7.4 Cảm biến IC <span class="en">I.C Sensors</span></h3>
+
+    <p>Cảm biến mạch tích hợp (IC) mới xuất hiện gần đây trong điều khiển quá trình. Chúng vẫn bị hạn chế về tính biến thiên hình dạng, kích thước và bao bì. Ưu điểm chính là giá rẻ (dưới 10 USD) cùng tín hiệu tuyến tính, đầu ra cao.</p>
+    <p><b>Dải và độ chính xác IC.</b> Vì hình thành từ chip silicon, dải của chúng giới hạn ở &#8722;55&#176;C đến +150&#176;C nhưng dễ có độ chính xác đã hiệu chuẩn tới 0,05&#8211;0,1&#176;C. Một ngoại lệ là phiên bản đo nhiệt độ lạnh (cryogenic) &#8722;271&#176;C đến +202&#176;C nhờ các diode đặc chủng (độ không tuyệt đối = &#8722;273,16&#176;C).</p>
+
+    <h3>2.7.5 Thiết kế và thermowell cho cảm biến nhiệt độ <span class="en">Selection of Temperature Transducer Design and Thermowells</span></h3>
+
+    <p>Các bộ chuyển đổi đo nhiệt độ — đặc biệt cặp nhiệt điện — cần vỏ và giá đỡ khác nhau tùy ứng dụng. Thiết bị cảm biến thường được lắp trong một ống kín, gọi là <em>thermowell</em>; ưu điểm thêm là cho phép tháo thay cảm biến mà không phải mở bồn hay đường ống quá trình. Cần cân nhắc thermowell khi lắp thiết bị đo nhiệt độ; chiều dài thermowell phải được tính cho đầu dò.</p>
+    <p>Cần tính đến đáp ứng nhiệt. Nếu cần đáp ứng nhanh và đầu dò đã có đủ bảo vệ, thermowell có thể cản trở hiệu năng và thời gian đáp ứng — lưu ý khi dùng thermowell, thời gian đáp ứng thường tăng gấp đôi. Thermowell còn bảo vệ thiết bị, hỗ trợ bảo trì và hiệu chuẩn định kỳ. <em>Thermopaste</em> giúp truyền động nhiệt từ quá trình sang phần tử cảm biến nhanh và hiệu quả; cần cân nhắc việc thi công và bảo dưỡng vật liệu này, vì bảo dưỡng thường xuyên và ngưng tụ có thể ảnh hưởng hoạt động của paste.</p>
+<figure class="figure" id="fig-2-5">
+      <svg viewBox="0 0 520 200" role="img" aria-label="Mặt cắt ba kiểu đầu dò cặp nhiệt điện điển hình">
+        <style>
+          .sh{fill:#f0f0f0;stroke:#2a2a2a;stroke-width:1.4}
+          .in{fill:#fff;stroke:#2a2a2a;stroke-width:1}
+          .tc{stroke:#c0392b;stroke-width:2.4;fill:none}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+        </style>
+        <!-- open ended -->
+        <rect x="30" y="50" width="120" height="100" class="sh"/>
+        <line class="tc" x1="55" y1="150" x2="55" y2="60"/><line class="tc" x1="80" y1="150" x2="80" y2="60"/>
+        <text x="90" y="170" class="t">Hở đầu</text>
+        <text x="90" y="185" class="t">dễ hư hỏng</text>
+        <!-- sealed isolated -->
+        <rect x="200" y="50" width="120" height="100" class="sh"/>
+        <rect x="220" y="70" width="80" height="60" class="in"/>
+        <line class="tc" x1="245" y1="150" x2="245" y2="80"/><line class="tc" x1="270" y1="150" x2="270" y2="80"/>
+        <text x="260" y="170" class="t">Kín, cách ly</text>
+        <text x="260" y="185" class="t">nhiệt &amp; điện</text>
+        <!-- sealed connected -->
+        <rect x="370" y="50" width="120" height="100" class="sh"/>
+        <line class="tc" x1="395" y1="150" x2="395" y2="70"/><line class="tc" x1="420" y1="150" x2="420" y2="70"/>
+        <line x1="395" y1="70" x2="445" y2="70" stroke="#2a2a2a" stroke-width="1.4"/>
+        <text x="430" y="170" class="t">Kín, nối</text>
+        <text x="430" y="185" class="t">ra ngoài</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-5 · Mặt cắt ba kiểu đầu dò cặp nhiệt điện điển hình</figcaption>
+    </figure>
+    <p>Hình 2-5 cho thấy ba kiểu đầu dò cặp nhiệt điện điển hình: (a) Hở đầu — dễ hư hỏng, không dùng trong môi trường khắc nghiệt; (b) Kín và cách ly cả nhiệt lẫn điện với bên ngoài; (c) Kín nhưng có kết nối nhiệt (và/hoặc điện) ra ngoài.</p>
+
+    <h3>2.7.6 Pyrometer bức xạ <span class="en">Radiation Pyrometers</span></h3>
+
+    <p>Ở đầu kia của thang là yêu cầu đo nhiệt độ cao đến 4000&#176;C trở lên. Pyrometer bức xạ tổng hoạt động bằng cách đo tổng năng lượng bức xạ từ một vật nóng; dải của chúng là 0&#176;C đến 3890&#176;C. Pyrometer hồng ngoại (IR) đang nhanh chóng thay thế loại cũ, hoạt động bằng cách đo bước sóng trội do vật nóng bức xạ — vì khi nhiệt độ tăng, bước sóng trội của bức xạ vật đen ngắn lại.</p>
+    <p><b>Phát triển quang học hồng ngoại.</b> Hai tiến bộ gần đây đáng kể: dùng laser tự động hiệu chỉnh sai số do thay đổi độ phát xạ bề mặt khi nhiệt độ vật đổi; và dùng sợi quang (fiber optics) tập trung đo vào những vùng không thể tiếp cận. Một số thiết bị đạt độ chính xác rất cao, điển hình 0,1% @ 1000&#176;C, vận hành từ 500&#176;C đến 2000&#176;C; có thể ghép kênh (multiplexing) nhiều điểm, giảm chi phí.</p>
+<figure class="figure" id="fig-2-6">
+      <svg viewBox="0 0 480 280" role="img" aria-label="Đặc tính của cặp nhiệt điện, RTD, IC và thermistor">
+        <style>
+          .ax{stroke:#bbb;stroke-width:1}
+          .lab{font:11px Inter,sans-serif;fill:#444}
+        </style>
+        <line x1="60" y1="20" x2="60" y2="250" class="ax"/>
+        <line x1="60" y1="250" x2="450" y2="250" class="ax"/>
+        <text x="250" y="272" text-anchor="middle" class="lab">Nhiệt độ</text>
+        <text x="22" y="140" text-anchor="middle" class="lab" transform="rotate(-90 22 140)">Đầu ra</text>
+        <path d="M60 230 C140 200 220 175 300 150 S420 110 450 100" fill="none" stroke="#222" stroke-width="2.4"/>
+        <text x="455" y="98" class="lab" fill="#222">Cặp nhiệt điện</text>
+        <path d="M60 235 L450 60" fill="none" stroke="#2c6fbb" stroke-width="2.4"/>
+        <text x="455" y="58" class="lab" fill="#2c6fbb">RTD / IC (tuyến tính)</text>
+        <path d="M60 245 C120 240 150 210 180 150 C200 105 215 70 240 50" fill="none" stroke="#c0392b" stroke-width="2.4"/>
+        <text x="245" y="46" class="lab" fill="#c0392b">Thermistor (phi tuyến mạnh)</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-6 · Đặc tính của cặp nhiệt điện, RTD, cảm biến IC và thermistor</figcaption>
+    </figure>
+
+    <h2>2.8 Bộ phát áp suất <span class="en">Pressure Transmitters</span></h2>
+
+    <p>Áp suất có lẽ là đại lượng đo quan trọng và phổ biến thứ hai. Thiết bị đo áp suất quen thuộc nhất là áp kế (manometer) và đồng hồ kim, nhưng chúng cần người vận hành trực tiếp. Trong điều khiển quá trình, thiết bị đo áp suất cần một bộ phát tạo tín hiệu đầu ra để truyền đi, ví dụ dòng điện tỷ lệ với áp suất đo. Bộ phát thường cho đầu ra 4&#8211;20 mA, bền chắc và dùng được trong môi trường dễ cháy/nổ.</p>
+
+    <h3>2.8.1 Các khái niệm tham chiếu áp suất <span class="en">Terms of Pressure Reference</span></h3>
+
+    <p>Áp suất là lực trên một đơn vị diện tích, có thể biểu diễn bằng N/m&#178;, mm thủy ngân, atm, bar hay torr. Có ba tham chiếu phổ biến:</p>
+    <ul>
+      <li>So với chân không → áp suất tuyệt đối (absolute).</li>
+      <li>So với áp suất môi trường → áp suất tương đối (gauge).</li>
+      <li>Tham chiếu do người dùng cung cấp → áp suất chênh (differential).</li>
+    </ul>
+    <p>Có bảy phương pháp điện tử chính đo áp suất trong điều khiển quá trình, được liệt kê dưới đây:</p>
+    <ul>
+      <li>2.8.2 Điện trở biến dạng (strain gauge)</li>
+      <li>2.8.3 Tụ điện (capacitive)</li>
+      <li>2.8.4 Potentiometric (biến trở)</li>
+      <li>2.8.5 Dây cộng hưởng (resonant wire)</li>
+      <li>2.8.6 Áp điện (piezoelectric)</li>
+      <li>2.8.7 Từ tính (cảm ứng và trễ từ)</li>
+      <li>2.8.8 Quang học (optical)</li>
+    </ul>
+
+    <h3>2.8.2 Điện trở biến dạng <span class="en">Strain Gauge</span></h3>
+
+    <p>Trong điều khiển quá trình, một cách phổ biến nhất đo áp suất là cảm biến điện trở biến dạng. Có hai loại cơ bản: dán (bonded) và không dán (unbonded), đều dùng dây hoặc lá kim loại, hoạt động cùng nguyên lý điện. Một dây mảnh (hay lá) thường bằng hợp kim chrome-niken, đôi khi bạch kim, bị kéo giãn nên điện trở tăng theo chiều dài tăng.</p>
+    <p>Điện trở biến dạng thường làm bằng dây/lá kim loại chỉ dày vài micromet, nên cũng gọi là cảm biến áp suất dán màng mỏng (thin film). Loại không dán gồm dây quấn hở quanh hai trụ song song, khi uốn hoặc kéo giãn làm dây căng và giảm điện trở; chúng là các đơn vị lớn hơn. Xem Hình 2-7.</p>
+<figure class="figure" id="fig-2-7">
+      <svg viewBox="0 0 500 200" role="img" aria-label="Cấu tạo của điện trở biến dạng dán và không dán">
+        <style>
+          .bx{fill:#f7f7f7;stroke:#2a2a2a;stroke-width:1.4}
+          .w{stroke:#c0392b;stroke-width:2;fill:none}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .s{font:10px Inter,sans-serif;fill:#777;text-anchor:middle}
+        </style>
+        <text x="120" y="24" class="t">Điện trở biến dạng dán (bonded)</text>
+        <rect x="40" y="50" width="160" height="100" class="bx"/>
+        <path class="w" d="M60 140 L60 70 L85 70 L85 140 L110 140 L110 70 L135 70 L135 140 L160 140 L160 70 L185 70"/>
+        <text x="120" y="170" class="s">dây/foil kẹp giữa hai lớp giấy</text>
+        <text x="380" y="24" class="t">Điện trở biến dạng không dán</text>
+        <rect x="320" y="150" width="14" height="40" class="bx"/>
+        <rect x="426" y="150" width="14" height="40" class="bx"/>
+        <path class="w" d="M327 150 C360 120 380 180 420 150"/>
+        <text x="380" y="190" class="s">dây quấn giữa hai trụ</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-7 · Cấu tạo của điện trở biến dạng dán và không dán</figcaption>
+    </figure>
+    <p><b>Cấu tạo điện trở biến dạng.</b> Loại dán là phổ biến nhất, gồm một lớp sandwich cách điện thường làm bằng hai tờ giấy với dây gauge đặt theo khuôn mẫu giữa chúng. Dây gauge đường kính dưới 0,001 in (0,025 mm) được dùng vì có diện tích bề mặt lớn gấp vài nghìn lần tiết diện. Loại lá (foil) có thể mỏng tới 0,0001 in (0,025 mm). Loại bán dẫn có độ nhạy gần gấp 100 lần loại dây.</p>
+    <p><b>Độ nhạy và hệ số gauge.</b> Tỉ số phần trăm đổi điện trở trên phần trăm đổi chiều dài là thước đo độ nhạy (S): S = &#916;R/R / &#916;L/L. Nhiều yếu tố ảnh hưởng đến biến dạng trục và điện trở gauge, như hình học dây/lá và chiều biến dạng, được gộp trong hằng số gọi là <em>hệ số gauge</em> (Gauge Factor, GF): GF = &#916;R/R / Strain. Thông thường, bốn điện trở gauge được dán trên màng kim hoặc nhựa dẻo và mắc vào cầu Wheatstone để cho tín hiệu điện tỷ lệ với biến dạng do màng bị áp suất dịch chuyển. Sự đổi điện trở rất nhỏ, nên cần dụng cụ chính xác. Cách đo phổ biến nhất là cầu Wheatstone; Hình 2-8 trình bày một sơ đồ điển hình.</p>
+<figure class="figure" id="fig-2-8">
+      <svg viewBox="0 0 420 320" role="img" aria-label="Cầu Wheatstone cho đo điện trở biến dạng">
+        <style>
+          .r{fill:#fafafa;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .w{stroke:#2a2a2a;stroke-width:1.6;fill:none}
+          .dot{fill:#2a2a2a}
+        </style>
+        <rect x="150" y="50" width="120" height="44" rx="5" class="r"/><text x="210" y="76" class="t">R1 (hoạt động)</text>
+        <rect x="150" y="226" width="120" height="44" rx="5" class="r"/><text x="210" y="252" class="t">R4</text>
+        <rect x="40" y="138" width="120" height="44" rx="5" class="r"/><text x="100" y="164" class="t">R3</text>
+        <rect x="260" y="138" width="120" height="44" rx="5" class="r"/><text x="320" y="164" class="t">R2</text>
+        <path class="w" d="M210 50 V50 M100 138 H150 M270 138 H320 M210 226 V226"/>
+        <line class="w" x1="160" y1="72" x2="160" y2="138"/><line class="w" x1="260" y1="138" x2="260" y2="72"/>
+        <line class="w" x1="160" y1="160" x2="160" y2="226"/><line class="w" x1="260" y1="226" x2="260" y2="160"/>
+        <circle cx="160" cy="138" r="3.5" class="dot"/><circle cx="260" cy="138" r="3.5" class="dot"/>
+        <text x="160" y="128" class="t" font-size="10" fill="#777">V&#8722;</text>
+        <text x="260" y="128" class="t" font-size="10" fill="#777">V+</text>
+        <line x1="100" y1="160" x2="60" y2="160" class="w"/><text x="40" y="150" class="t" font-size="10">nguồn</text>
+        <line x1="210" y1="270" x2="210" y2="300" class="w"/><line x1="160" y1="290" x2="260" y2="290" class="w"/>
+        <text x="210" y="312" class="t" font-size="11">V&#8553; (đầu ra vi sai)</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-8 · Cầu Wheatstone dùng để đo điện trở biến dạng</figcaption>
+    </figure>
+    <p>Ảnh hưởng nhiệt độ (tham chiếu mục 2.7.2) lên điện trở gauge là tối thiểu nhờ tác dụng trừ của chúng. Các gauge hoạt động đặt ở hai nhánh đối diện cầu để hiệu ứng cộng dồn; hai gauge còn lại để bù, là gauge "giả" (dummy) hoặc điện trở bằng với gauge hoạt động. Cầu này phù hợp cả đo tĩnh và động, nhưng đầu ra là vi sai nên cần thận trọng khi "nối đất" bất kỳ phần nào. Một sơ đồ thay thế gọi là cầu đối trọng (ballast) hay biến trở (potentiometric) thu được bằng cách bỏ R2 và cho R3 = 0 (như nét đứt ở Hình 2-8). Cầu này chỉ hợp đo động, nhưng một chân tín hiệu có thể nối đất hoặc tham chiếu 0 V.</p>
+    <div class="note"><b>Các sai số đo điện trở biến dạng.</b> Độ không chắc chắn hệ số gauge (thường 1%); phi tuyến cầu (thường 1%, do giả sử đổi điện trở rất nhỏ so với điện trở danh định); sai lệch điện trở bù so với gauge (thường 0,5%); sai số do độ chính xác/phân giải dụng cụ đo và điện trở dây dẫn; ảnh hưởng nhiệt độ; tự đốt gauge.</div>
+    <p><b>Thông số kỹ thuật.</b> Phần tử điện trở biến dạng đo được áp suất tuyệt đối, tương đối và chênh từ 30 in. H<small>2</small>O đến trên 200.000 psig (7,5 kPa đến 1400 MPa). Độ không chính xác khoảng 0,2% và 0,5% độ trải. Có thiết bị vận hành từ &#8722;50&#176;C đến +120&#176;C, bản đặc chủng tới 320&#176;C.</p>
+
+    <h3>2.8.3 Dây cộng hưởng (Vibrating/Resonant Wire) <span class="en">Resonant Wire Transducers</span></h3>
+
+    <p>Cảm biến này gồm một mạch dao động điện tử làm dây rung ở tần số tự nhiên dưới sức căng. Nguyên lý giống dây đàn ghi-ta: một dây mảnh trong cảm biến được giữ căng, một đầu cố định, đầu kia gắn với màng. Khi áp suất dịch màng, sức căng dây đổi nên tần số cộng hưởng đổi. Sự đổi tần số này là hệ quả trực tiếp của đổi áp suất và được phát hiện, hiển thị thành áp suất. Tần số được cảm nhận như xung số từ cuộn dò từ, rồi bộ phát điện tử đổi thành tín hiệu điện phù hợp truyền đi. Loại này đo được áp suất chênh, tuyệt đối hay tương đối; áp suất tuyệt đối đạt được bằng cách rút chân không màng áp suất thấp (điển hình ~0,5 Pa).</p>
+<figure class="figure" id="fig-2-9">
+      <svg viewBox="0 0 460 200" role="img" aria-label="Bộ chuyển đổi dây cộng hưởng">
+        <style>
+          .bx{fill:#fafafa;stroke:#2a2a2a;stroke-width:1.4}
+          .w{stroke:#c0392b;stroke-width:2.4;fill:none}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+        </style>
+        <rect x="60" y="60" width="40" height="80" class="bx"/><text x="80" y="155" class="t">cố định</text>
+        <rect x="360" y="60" width="40" height="80" class="bx"/><text x="380" y="155" class="t">màng</text>
+        <path class="w" d="M100 100 Q230 80 360 100"/>
+        <circle cx="230" cy="90" r="10" fill="#eee" stroke="#2a2a2a" stroke-width="1.2"/>
+        <text x="230" y="120" class="t">cuộn dò</text>
+        <text x="230" y="40" class="t">dây rung ở tần số tự nhiên</text>
+        <text x="230" y="185" class="t">áp suất thay đổi tần số cộng hưởng &#8594; áp suất</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-9 · Bộ chuyển đổi dây cộng hưởng (resonant wire)</figcaption>
+    </figure>
+    <p><b>Ưu điểm:</b> độ chính xác và lặp lại tốt; ổn định; trễ từ thấp; phân giải cao; đo được áp suất tuyệt đối, tương đối hay chênh. <b>Hạn chế:</b> nhạy với rung động; biến thiên nhiệt độ cần bù nhiệt trong cảm biến (giới hạn độ nhạy); đầu ra phi tuyến gây khó cho điều khiển liên tục; công nghệ già, ít dùng nay, thường gặp với mạch tương tự.</p>
+
+    <h3>2.8.4 Tụ điện <span class="en">Capacitance</span></h3>
+
+    <p>Đo áp suất tụ điện cảm nhận sự đổi điện dung do màng di chuyển. Cảm biến được kích bằng bộ dao động tần số cao; khi màng lệch do áp suất, điện dung tương đối được đo bằng cầu. Hai thiết kế phổ biến: hai bản (hoạt động cân bằng hoặc không cân bằng) và một tụ đơn. Ở chế độ cân bằng, tụ tham chiếu được đổi để cho điện áp đầu ra bằng 0; chế độ không cân bằng đo tỉ số đầu ra trên điện áp kích để suy áp suất. Đây là phép đo khá chính xác, dải rộng, và cũng phổ biến để xác định mức trong bồn.</p>
+<figure class="figure" id="fig-2-10">
+      <svg viewBox="0 0 460 200" role="img" aria-label="Đầu dò áp suất tụ điện">
+        <style>
+          .pl{fill:#f0f0f0;stroke:#2a2a2a;stroke-width:1.4}
+          .di{fill:#cfe8ff;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .s{font:10px Inter,sans-serif;fill:#777;text-anchor:middle}
+        </style>
+        <rect x="40" y="70" width="30" height="60" class="pl"/>
+        <rect x="390" y="70" width="30" height="60" class="pl"/>
+        <rect x="150" y="60" width="20" height="80" class="pl"/>
+        <rect x="290" y="60" width="20" height="80" class="pl"/>
+        <rect x="190" y="80" width="80" height="14" class="di"/>
+        <line x1="230" y1="94" x2="230" y2="140" class="pl" stroke-width="2"/>
+        <text x="230" y="160" class="t">màng ngăn (di chuyển theo áp suất)</text>
+        <text x="160" y="50" class="s">bản tụ 1</text>
+        <text x="300" y="50" class="s">bản tụ 2</text>
+        <text x="230" y="185" class="s">C thay đổi &#8594; cầu đo &#8594; áp suất</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-10 · Đầu dò áp suất tụ điện (capacitance)</figcaption>
+    </figure>
+    <p><b>Ưu điểm:</b> độ không chính xác 0,01&#8211;0,2%; dải 80 Pa đến 35 MPa; tuyến tính; đáp ứng nhanh. <b>Hạn chế:</b> nhạy nhiệt; nhiễu dung (stray capacitance); rung động; khả năng quá áp hạn chế; chi phí. Nhiều nhược điểm trên đã được khắc phục ở thiết kế mới.</p>
+
+    <h3>2.8.5 Biến thiên vi sai tuyến tính (LVDT) <span class="en">Linear Variable Differential Transformer</span></h3>
+
+    <p>Phép đo này dựa vào dịch chuyển một lõi thấm từ cao trong các cuộn dây máy biến áp. Lực dịch từ môi trường quá trình truyền sang lõi qua màng, bellows hay ống Bourdon. LVDT hoạt động trên tỉ số cảm kháng giữa các cuộn. Ba cuộn quấn trên cùng một ống cách điện chứa lõi sắt thấm từ; cuộn sơ cấp ở giữa, được kích bằng xoay chiều. Nếu lõi ở chính giữa, hai cuộn thứ cấp cảm ứng điện áp bằng nhau (do thông từ). Khi lõi lệch khỏi tâm, điện áp hai cuộn thứ cấp khác nhau. Chúng thường mắc nối tiếp.</p>
+<figure class="figure" id="fig-2-11">
+      <svg viewBox="0 0 480 200" role="img" aria-label="Cảm biến vi sai biến thiên tuyến tính LVDT">
+        <style>
+          .co{fill:#f7f7f7;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .s{font:10px Inter,sans-serif;fill:#777;text-anchor:middle}
+        </style>
+        <rect x="60" y="70" width="360" height="50" rx="20" class="co"/>
+        <rect x="110" y="78" width="80" height="34" class="co"/><text x="150" y="100" class="s">thứ cấp 1</text>
+        <rect x="290" y="78" width="80" height="34" class="co"/><text x="330" y="100" class="s">thứ cấp 2</text>
+        <rect x="195" y="78" width="90" height="34" class="co"/><text x="240" y="100" class="s">sơ cấp</text>
+        <rect x="225" y="120" width="30" height="40" fill="#c0392b"/><text x="240" y="175" class="t">lõi sắt</text>
+        <text x="240" y="55" class="s">dịch chuyển lõi theo áp suất &#8594; tỉ lệ điện cảm thay đổi</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-11 · Cảm biến vi sai biến thiên tuyến tính (LVDT)</figcaption>
+    </figure>
+    <p><b>Hạn chế:</b> mòn cơ học; rung động. <b>Tóm tắt:</b> công nghệ cũ, dùng trước khi có điện trở biến dạng; thường thấy trên khung cân cũ hoặc điều khiển vị trí; rất ít dùng nay, bị loại strain gauge thay thế.</p>
+
+    <h3>2.8.6 Quang học <span class="en">Optical</span></h3>
+
+    <p>Cảm biến quang học đo sự dịch chuyển màng do áp suất. Một cánh (vane) không trong suốt gắn trên màng và di chuyển trước chùm hồng ngoại. Khi chùm sáng bị cản, lượng sáng đến diode dò chỉ ra vị trí màng. Một diode tham chiếu bù cho sự già hóa của nguồn sáng; nhờ đó ảnh hưởng nhiệt độ cũng được triệt tiêu, vì nó tác động lên cả diode đo và diode tham chiếu như nhau.</p>
+<figure class="figure" id="fig-2-12">
+      <svg viewBox="0 0 480 200" role="img" aria-label="Cảm biến áp suất quang học">
+        <style>
+          .bx{fill:#fafafa;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .s{font:10px Inter,sans-serif;fill:#777;text-anchor:middle}
+        </style>
+        <rect x="60" y="60" width="40" height="80" class="bx"/><text x="80" y="155" class="t">LED hồng ngoại</text>
+        <rect x="380" y="60" width="40" height="40" class="bx"/><text x="400" y="120" class="t">Diode dò</text>
+        <rect x="380" y="120" width="40" height="40" class="bx"/><text x="400" y="180" class="t">Diode tham chiếu</text>
+        <rect x="220" y="90" width="14" height="40" fill="#2a2a2a"/><text x="227" y="148" class="t">cánh</text>
+        <line x1="100" y1="100" x2="220" y2="110" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="4 3"/>
+        <line x1="234" y1="110" x2="380" y2="85" stroke="#2a2a2a" stroke-width="1.6"/>
+        <text x="240" y="50" class="t">màng di chuyển cánh chặn chùm sáng</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-12 · Cảm biến áp suất quang học</figcaption>
+    </figure>
+    <p><b>Ưu điểm:</b> đã bù nhiệt; lặp lại tốt; trễ từ không đáng kể (vì cảm biến quang cần dịch chuyển rất nhỏ); lặp lại rất tốt với trễ từ không đáng kể. <b>Hạn chế:</b> đắt.</p>
+
+    <h3>2.8.7 Ứng dụng đo áp suất <span class="en">Pressure Measurement Applications</span></h3>
+
+    <p>Nhiều yêu cầu cần xét khi áp dụng đo áp suất: (1) vị trí kết nối quá trình; (2) van cách ly; (3) dùng ống impulse; (4) van thử và xả; (5) kết cấu cảm biến; (6) ảnh hưởng nhiệt độ; (7) phớt màng từ xa; (8) ăn mòn có thể hại bộ phát và phần tử cảm biến; (9) chất lỏng chứa rắn lơ lửng hoặc đặc quánh gây tắc ống; (10) nhiệt độ quá trình ngoài dải vận hành bộ phát; (11) chất lỏng có thể đông đặc trong bộ phát/ống impulse; (12) cần xả (flush) chất lỏng ra khỏi kết nối khi đổi mẻ; (13) duy trì vệ sinh/không mầm bệnh; (14) loại bỏ bảo dưỡng ống chân ướt; (15) thực hiện đo tỷ trọng hay đại lượng khác.</p>
+
+    <h2>2.9 Lưu lượng kế <span class="en">Flow Meters</span></h2>
+
+    <p>Trong nhiều ứng dụng công nghiệp, đo lưu lượng rất tiện dụng nên tỉ lệ lớn bộ phát bán ra là đo lưu lượng. Vì thế có vô số loại lưu lượng kế. Hoạt động của chúng thuộc một trong hai cách tiếp cận.</p>
+
+    <h3>2.9.1 Lưu lượng kế rút năng lượng <span class="en">Energy Extractive Flowmeters</span></h3>
+
+    <p>Đây là cách cũ hơn, dùng thiết bị làm giảm năng lượng hệ thống. Phổ biến nhất là các lưu lượng kế sinh áp suất chênh như đĩa lỗ (orifice plate), vòi phun (flow nozzle) và ống Venturi.</p>
+<figure class="figure" id="fig-2-13">
+      <svg viewBox="0 0 480 220" role="img" aria-label="Hình dạng dòng chảy qua lỗ chóp (orifice plate)">
+        <style>
+          .pp{fill:none;stroke:#2a2a2a;stroke-width:1.4}
+          .pl{fill:#ddd;stroke:#2a2a2a;stroke-width:1.4}
+          .fl{stroke:#2c6fbb;stroke-width:1.4;fill:none}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+        </style>
+        <rect x="20" y="60" width="440" height="100" class="pp"/>
+        <rect x="220" y="60" width="16" height="100" class="pl"/>
+        <circle cx="228" cy="110" r="14" fill="#fff" stroke="#2a2a2a" stroke-width="1.4"/>
+        <path class="fl" d="M20 80 H200 Q228 80 252 110 Q276 140 460 100"/>
+        <path class="fl" d="M20 140 H200 Q228 140 252 110 Q276 80 460 120"/>
+        <text x="228" y="40" class="t">lỗ chóp</text>
+        <text x="360" y="170" class="t" fill="#2c6fbb">họ dòng co hẹp (vena contracta)</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-13 · Hình dạng dòng chảy qua lỗ chóp (orifice plate)</figcaption>
+    </figure>
+    <p><b>Đĩa lỗ (Orifice Plate).</b> Một đĩa lỗ chuẩn đơn giản là một đĩa nhẵn với lỗ vào tròn, sắc cạnh và vành lắp. Với chất lỏng nhớt, cạnh lỗ phía thượng lưu có thể được vạt tròn. Hình dạng và vị trí lỗ thay đổi tùy vật liệu đo; phổ biến nhất là đĩa lỗ đồng tâm lỗ tròn ở tâm, cho kết quả tốt nhất ở dòng rối với chất lỏng và khí sạch. Khi đo chất lỏng, lỗ có thể đặt ở đỉnh ống để khí thoát, hoặc đáy để rắn lơ lửng đi qua nhằm đo lưu lượng lỏng chính xác hơn. Đĩa lỗ chuẩn chủ yếu đo khí và hơi; đo tương đối chính xác nhưng gây tổn thất áp suất thường trực khá lớn do cản trở dòng. Chúng bền, rẻ với ống lớn, hợp hầu hết chất lỏng sạch và không bị ảnh hưởng nhiệt độ cao.</p>
+    <div class="note"><b>Ưu điểm:</b> kết cấu đơn giản; rẻ; dễ lắp giữa mặt bích; không bộ phận chuyển động; nhiều cỡ và tỉ lệ lỗ; hợp hầu hết khí/lỏng; đã được hiểu rõ; giá không tăng nhiều theo kích thước. <b>Hạn chế:</b> không chính xác, thường 1%; dải đo thấp, thường 4:1; độ chính xác bị ảnh hưởng bởi biến động tỷ trọng, áp suất, độ nhớt; xói mòn/vật cản hỏng làm sai; gây tổn thất áp suất không thu hồi; độ nhớt giới hạn dải; cần đoạn ống thẳng; ống phải đầy; sai số do điều kiện quá trình và biến động nhiệt/áp.</div>
+
+    <p><b>Tua-bin (Turbine) / Rotor.</b> Đồng hồ tua-bin có cánh lắp trên rô-to quay khi chất lỏng đẩy. Tốc độ rô-to tỷ lệ với vận tốc chất lỏng. Tốc độ quay thường truyền bằng từ: một đầu dò từ hoặc công tắc tiệm cận phát hiện cánh rô-to; mỗi khi đầu mút cánh qua cuộn dây, từ thông đổi và sinh xung; tần số xung chỉ thị lưu lượng. Đồng hồ tua-bin cần dòng chảy tầng (laminar) tốt: 10 đường kính ống thẳng phía thượng lưu và không dưới 5 đường kính phía hạ lưu; không chính xác với dòng xoáy. Người ta quy định tốc độ dòng tuyến tính tối thiểu/tối đa; để dải tốt, nên chọn đồng hồ sao cho lưu lượng tối đa ứng dụng bằng 70&#8211;80% của đồng hồ. Đổi tỷ trọng ảnh hưởng ít đến hiệu chuẩn.</p>
+    <div class="note"><b>Ưu điểm:</b> độ chính xác, lặp lại, dải cao cho độ nhớt/dải xác định; nhiệt độ chất lỏng &#8722;220&#176;C đến +350&#176;C; áp suất đến 9300 psi; đo chất lỏng không dẫn điện; có thể gia nhiệt; hợp lưu lượng rất thấp. <b>Hạn chế:</b> không hợp chất lỏng nhớt cao; phải biết độ nhớt; cần 10D thượng/5D hạ lưu; ineffective với dòng xoáy; chỉ hợp chất lỏng/khí sạch; đường ống không rung; thông số quan trọng với dải/nhớt; hấp thụ áp suất (~20&#8211;30 kPa ở tối đa); cần đủ áp lực đường ống tránh bọt cavitation.</div>
+    <p><b>Tóm tắt:</b> Đồng hồ tua-bin cho độ chính xác, lặp lại và dải rất tốt cho độ nhớt/dải xác định, thường dùng chuyển giao quyền sở hữu (custody transfer) chất lỏng/khí sạch.</p>
+
+    <h3>2.9.2 Lưu lượng kế cộng năng lượng <span class="en">Energy Additive Flow Meters</span></h3>
+
+    <p>Ví dụ phổ biến của cách tiếp cận cộng năng lượng là lưu lượng kế từ tính (magmeter), minh họa ở Hình 2-14. Thiết bị đo lưu lượng chất lỏng dẫn điện: một hạt mang điện chuyển động qua từ trường sinh điện áp tỷ lệ với vận tốc hạt; chất lỏng dẫn điện gồm các hạt mang điện sẽ sinh điện áp tỷ lệ với lưu lượng thể tích.</p>
+<figure class="figure" id="fig-2-14">
+      <svg viewBox="0 0 480 220" role="img" aria-label="Sơ đồ cảm biến lưu lượng từ tính">
+        <style>
+          .pp{fill:none;stroke:#2a2a2a;stroke-width:1.4}
+          .co{fill:#f7f7f7;stroke:#2a2a2a;stroke-width:1.4}
+          .el{fill:#cfe8ff;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .fl{stroke:#2c6fbb;stroke-width:2.2;fill:none}
+        </style>
+        <rect x="40" y="70" width="400" height="80" class="pp"/>
+        <rect x="60" y="40" width="60" height="30" class="co"/><text x="90" y="60" class="t" font-size="10">cuộn từ</text>
+        <rect x="360" y="40" width="60" height="30" class="co"/><text x="390" y="60" class="t" font-size="10">cuộn từ</text>
+        <rect x="225" y="70" width="20" height="20" class="el"/><text x="235" y="62" class="t" font-size="9">điện cực</text>
+        <rect x="225" y="130" width="20" height="20" class="el"/><text x="235" y="165" class="t" font-size="9">điện cực</text>
+        <path class="fl" d="M40 110 H440"/>
+        <text x="240" y="195" class="t">U &#8733; vận tốc &#8733; lưu lượng thể tích (chất lỏng dẫn điện)</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-14 · Sơ đồ cảm biến lưu lượng từ tính (magmeter)</figcaption>
+    </figure>
+    <p><b>Magmeter.</b> Ưu điểm: không cản trở dòng; không tổn thất áp suất/chênh; không bộ phận chuyển động mòn; chứa được rắn lơ lửng; không điểm đo áp suất bị tắc; đo lưu lượng thể tích tại nhiệt độ dòng bất kể độ nhớt, tỷ trọng, áp suất hay xoáy; nhiều magmeter đo được cả hai chiều. Hầu hết chất lỏng công nghiệp đo được: axít, bazơ, nước, dung dịch nước. Ngoại lệ: phần lớn hóa chất hữu cơ và sản phẩm lọc dầu độ dẫn không đủ; chất tinh khiết, hydrocarbon và khí không đo được. Ống phải đầy (model mới có cảm biến mức bù). Độ chính xác: quan hệ tuyến tính giữa đầu ra và lưu lượng; thường 1% toàn thang (tính cả dụng cụ phụ), do tuyến tính nên ở lưu lượng thấp vượt Venturi; có thể hiệu chuẩn 0,5% toàn thang và tuyến tính suốt dải.</p>
+    <p><b>Chọn cỡ và lót.</b> Cỡ magmeter chọn từ biểu đồ nhà sản xuất. Nguyên lý đòi hỏi sinh từ trường và dò điện áp ngang dòng. Nếu ống bằng vật liệu có tính từ, nó sẽ phá từ trường (ngắn mạch từ). Nếu mặt trong ống dẫn điện, nó ngắn mạch điện cực dò. Vì thế ống phải bằng vật liệu không từ (như thép không gỉ) và được lót vật liệu cách điện. Lớp lót chọn theo: chống ăn mòn hóa học, xói mòn, mài mòn, áp suất, nhiệt độ. Các vật liệu lót:</p>
+    <ul>
+      <li><em>Teflon (PTFE):</em> dùng rộng nhờ nhiệt độ cao; chống dính giảm bám; được phép dùng thực phẩm; kháng nhiều axít/bazơ.</li>
+      <li><em>Neoprene:</em> chống mài mòn và hóa chất tốt.</li>
+      <li><em>Cao su mềm:</em> rẻ; chống mài mòn cao; dùng chủ yếu bùn loãng.</li>
+      <li><em>Cao su cứng:</em> rẻ; dụng cụ thông thường; chủ yếu nước và bùn nhẹ.</li>
+      <li><em>Gốm (ceramic):</em> chống mài mòn và ăn mòn cao; nhiệt độ cao; rẻ hơn khi chế; hợp vệ sinh; nén tốt nhưng kéo kém; giòn, nứt khi đổi nhiệt đột ngột; không dùng với axít ôxy hóa hay kiềm đặc nóng.</li>
+    </ul>
+    <p><b>Lắp đặt.</b> Cần ống đầy (duy trì áp ngược đủ). Magmeter ít bị ảnh hưởng hồ sơ dòng và không bị độ nhớt; nên lắp với 5D thượng/3D hạ lưu. Khi thu nhỏ ống cần tính đoạn thu hồi, góc thu không quá 8&#176;. Nối đất quan trọng: dùng dải đồng giữa mặt bích mét và ống tại hai đầu, nối điểm chung; magmeter có điện cực nối đất tích hợp thì miễn requirement này. <b>Ưu điểm:</b> không cản dòng; không tổn thất áp; không bộ phận chuyển động; chống xói mòn; độc lập nhớt/tỷ trọng/áp suất/xoáy; chính xác; hai chiều; nhiều cỡ/lưu lượng. <b>Hạn chế:</b> đắt; hầu hết cần ống đầy; chỉ chất lỏng dẫn điện; lớp lót/điện cực bám cặn dẫn điện gây điện áp sai (duy trì lưu lượng cao hoặc điện cực tự làm sạch); van chặn hai bên để kiểm tra zero (loại DC không cần).</p>
+
+    <p><b>Đo siêu âm (Ultrasonic).</b> Hai loại: (a) thời gian truyền (transit time) cho chất lỏng sạch; (b) hiệu ứng Doppler cho dòng bùn/cặn. Loại thời gian truyền bắn xung chéo qua ống, đo thời gian từ phát đến thu; bắn luân phiên thượng/hạ lưu, tính vận tốc từ hiệu thời gian. Hợp chất lỏng sạch: nước, khí hóa lỏng, khí tự nhiên. Doppler dựa vào vật thể tỷ trọng khác nhau trong dòng phản xạ xung; tần số phản xạ đổi theo vận tốc. <b>Tóm tắt:</b> hầu hết lắp ngoài ống, không tiếp xúc chất lỏng, không bị ăn mòn/xói mòn/nhớt, hai chiều. <b>Ưu điểm:</b> ống lớn; không cản, không tổn thất áp; không bộ phận chuyển động; đáp ứng nhanh; lắp trên hệ có sẵn; không phụ thuộc tính chất chất lỏng. <b>Hạn chế:</b> phụ thuộc hồ sơ dòng; chất lỏng phải trong suốt âm; lỗi do bám; ứng dụng hạn chế; đắt; ống phải đầy; xoáy/turbulence ảnh hưởng; cần 10&#8211;20D thượng/5D hạ lưu; chất lỏng phải sạch bọt/rắn. Doppler không phải thiết bị chính xác cao, nhưng là giám sát lưu lượng rẻ, hợp chất bẩn: nước thải, bùn, nước thải công nghiệp. Do phụ thuộc âm, chúng nhạy hồ sơ dòng và bị biến động nhiệt độ/tỷ trọng.</p>
+
+    <h2>2.10 Bộ phát mức <span class="en">Level Transmitters</span></h2>
+
+    <p>Có nhiều cách đo mức dùng các công nghệ khác nhau: siêu âm (transit time), xung phản hồi (pulse echo), radar xung, áp suất tĩnh (hydrostatic), trọng lượng (strain gauge), dẫn điện (conductivity), tụ điện (capacitive). Đo liên tục biến mức thành tín hiệu tỷ lệ. Thiết bị vi xử lý chỉ thị được mức hay thể tích. Kỹ thuật khác có yêu cầu khác: đo từ đỉnh bồn cần biết hình dạng bồn để suy thể tích; đo tĩnh áp từ đáy bồn cần biết và giữ không đổi tỷ trọng. Đo mức là khái niệm đơn giản hơn hầu hết đại lượng khác, cho phép điều khiển dạng rất đơn giản. Tín hiệu phải được đổi sang dạng điện/khí/ số phù hợp điều khiển.</p>
+
+    <h3>2.10.1 Cân nhắc lắp đặt <span class="en">Installation Considerations</span></h3>
+
+    <p><b>Bồn thường (Atmospheric).</b> Hầu hết dụng cụ đo mức dễ tháo; lắp đỉnh loại trừ khả năng chất lỏng chảy vào vỏ cảm biến nếu vòi/cần bị ăn mòn gãy. Nhiều thiết bị có lợi thế đo thủ công, cung cấp: (a) đo khi thiết bị hỏng; (b) hiệu chuẩn/kiểm tra điểm cho thông tin vận hành quan trọng. Một tiêu chí: dụng cụ điểm (point) lắp tại mức tác động, có thể khó tiếp cận.</p>
+    <p><b>Bồn áp suất (Pressurized).</b> Hai lưu ý: (a) có thể tháo/lắp khi bồn đang áp; (b) cấp áp thiết bị phù hợp. Bồn áp suất cũng dùng ngăn phát thải (fugitive emissions) bằng khí trơ. Cần bù thay đổi áp thủy tĩnh trong cảm biến. Độ chính xác phụ thuộc: biến thiên trọng lực, ảnh hưởng nhiệt, hằng số điện môi; bọt, hơi, váng trên cảm biến cũng ảnh hưởng. <b>Tác động lên vòng lặp:</b> thiết bị đo mức đáp ứng nhanh, ít gây trễ hệ thống; nên đưa giới hạn công tắc cao/thấp vào hệ điều khiển làm thông tin dự phòng. <b>Công nghệ tương lai:</b> nhu cầu độ chính xác tăng do hiệu quả nhà máy; cảm biến bù tốt hơn (tích hợp cảm biến bù nhiệt vào màng áp) thay thế phớt màng từ xa; RF admittance hay siêu âm giảm chi phí tuân thủ môi trường. Với bồn phi kim, cảm biến cáp RF linh hoạt có điện cực nối đất tích hợp, bỏ được tham chiếu đất ngoài.</p>
+
+    <h2>2.11 Phổ các mô hình người dùng trong bộ chuyển đổi đo <span class="en">The Spectrum of User Models in Measuring Transducers</span></h2>
+
+    <p>Lấy cặp nhiệt điện làm ví dụ cực đoan có thể xảy ra giữa cùng một loại bộ chuyển đổi. Dạng đơn giản nhất: hai dây kim loại khác loại nối thành vòng hai mối nối; hiệu ứng Seebeck (nếu hai mối nối có nhiệt độ khác nhau, dòng chảy trong vòng) phát huy. Trong thực tế, mạch đo cặp nhiệt điện đo hiệu giữa hai mối nối. Ba vấn đề lớn phát sinh:</p>
+
+    <h3>2.11.1 Sinh điện áp của cặp nhiệt điện <span class="en">Voltage Generation</span></h3>
+
+    <p>Chỉ sinh suất điện động rất nhỏ, điển hình 1,8&#8211;6,0&#215;10<super>-12</super> V trên mỗi &#176;C, nên nhiễu điện cảm (normal mode hay common mode) dễ thành vấn đề. Normal mode khó loại bỏ hơn, thường dùng dây dẫn bảo vệ (guard) hay bọc cáp cẩn thận.</p>
+
+    <h3>2.11.2 Tính tuyến tính <span class="en">Thermocouple Linearity</span></h3>
+
+    <p>Đầu ra mọi cặp nhiệt điện không tuyến tính với dải nhiệt độ đo, gây vấn đề tuyến tính, tỉ lệ, dải và hiệu chuẩn.</p>
+
+    <h3>2.11.3 Bù điểm nối lạnh <span class="en">Cold Junction Compensation</span></h3>
+
+    <p>Mọi mạch điện cần thành vòng, nên cặp nhiệt điện cần một mối nối thứ hai — "điểm nối lạnh" — thường ở nhiệt độ môi trường (biến thiên, gây sai số lớn, nhất là khi đo gần nhiệt độ môi trường). Dạng đơn giản nhất là galvanometer nhạy điện áp thấp, kèm điện trở bù nhiệt độ cạnh đầu vào; điện trở này đổi dòng theo nhiệt độ môi trường để bù. Nhược điểm: đọc trực tiếp nên khó tích hợp hệ điều khiển; đường dây từ chỉ thị đến đầu đo phải "tinh chỉnh" điện trở riêng cho bộ bù; thang chia theo "hồ sơ" đáp ứng của loại cặp nhiệt điện.</p>
+
+    <h2>2.12 Các cân nhắc về thiết bị và bộ chuyển đổi <span class="en">Instrumentation and Transducer Considerations</span></h2>
+
+    <p>Nhiều yếu tố cần xét khi chọn thiết bị và bộ chuyển đổi; dưới đây là giải thích và chỉ mục các khía cạnh quan trọng.</p>
+
+    <h3>2.12.1 Truyền tín hiệu: khí nén hay điện tử <span class="en">Pneumatic versus Electronic</span></h3>
+
+    <p>Điện tử đang được ưa chuộng hơn, nhưng khí nén vẫn dùng và có ưu thế riêng.</p>
+    <p><b>Ưu điểm điện tử:</b> chi phí lắp đặt/three bão dưỡng thấp; độ chính xác cao (nhất là thiết bị thông minh); đáp ứng động nhanh; hợp khoảng cách xa; tương thích hệ số hóa. Lý do chính chọn điện tử là tương thích hệ điều khiển; với đường truyền dữ liệu ngày càng phổ biến, dễ lấy thêm thông tin từ cảm biến thông minh.</p>
+    <p><b>Ưu điểm khí nén:</b> phần cứng ban đầu rẻ; thiết kế đơn giản; ít bị môi trường ăn mòn; dễ nối với van điều khiển; an toàn ở khu vực nguy hiểm.</p>
+
+    <h3>2.12.2 Bộ hiệu chỉnh tín hiệu <span class="en">Signal Conditioners</span></h3>
+
+    <p>Bộ hiệu chỉnh đổi/altering tín hiệu để các thiết bị quá trình giao tiếp hiệu quả, chính xác; thường nối dụng cụ với chỉ thị, máy ghi và hệ điều khiển/giám sát vi xử lý. Gồm: <em>chuyển đổi tín hiệu</em> (đổi tín hiệu tương tự từ dạng này sang dạng kia) và <em>tăng cường tín hiệu</em> (với tín hiệu điện áp truyền xa dễ suy hao, hoặc dòng trong vòng có nhiều thiết bị cấp nguồn dòng cần tăng cường).</p>
+
+    <h3>2.12.3 Nhiễu <span class="en">Noise</span></h3>
+
+    <p>Nhiễu điện (interference) là tín hiệu điện không mong muốn gây lỗi gián đoạn hay vô hiệu hóa thiết bị đo/điều khiển. Hai loại chính: (1) Nhiễu tần số vô tuyến (RFI); (2) Nhiễu điện từ (EMI). Nguồn nhiễu thường gặp: bộ đàm cầm tay, điện thoại di động, động cơ AC/DC, máy biến áp, máy hàn hồ quang, solenoid/bộ tiếp điểm lớn, cáp cao thế, chuyển mạch công suất cao (SCR, thyristor), biến tần, phóng tĩnh điện, hệ gia nhiệt cảm ứng, radar, đèn huỳnh quang. RFI/EMI gây vận hành khó lường, thường không lặp lại nên khó phát hiện/sửa; có thể làm giảm hiệu năng hay hỏng hẳn thiết bị, dẫn đến giảm sản xuất, kém hiệu quả, dừng nhà máy, thậm chí nguy hiểm an toàn.</p>
+    <p>Có hai hướng bảo vệ: (1) ngăn nhiễu vào hệ — <em>bọc kín</em> (shielding), <em>nối đất đúng</em>, <em>lọc đầu cuối</em>; (2) thiết kế hệ miễn nhiễu.</p>
+    <div class="note"><b>Kỹ thuật giảm nhiễu.</b> (a) Dùng bộ phát (như cho cặp nhiệt điện): tín hiệu kháng nhiễu tốt hơn xa, điển hình 4&#8211;20 mA. (b) Cáp xoắn đôi bọc kín: xoắn để triệt dòng cảm ứng từ trường biến thiên (điện áp cảm ứng bằng nhau, ngược pha, hủy nhau). (c) Tải cảm ứng AC: dùng MOV đủ định mức song song với mạch RC snubber nối tiếp (0,1&#181;F + trở 47&#8486; 0,5W). (d) Tải cảm ứng DC: dùng diode song song (đúng cực tính), có thể thêm RC snubber.</div>
+
+    <h3>2.12.4 Vật liệu chế tạo <span class="en">Materials of Construction</span></h3>
+
+    <p>Khi chọn thiết bị, cần đảm bảo vật liệu quá trình không làm hỏng thiết bị. Các vật liệu: 316SS; Hastelloy C-276; Monel; thép các-bon; đồng beryllium (đàn hồi tốt); Ni-Span C (hệ số đàn hồi theo nhiệt rất thấp); Inconel (nhiệt/ăn mòn khắc nghiệt); thép không gỉ; thạch anh (trễ từ/drift tối thiểu).</p>
+
+    <h3>2.12.5 Tuyến tính hóa tín hiệu <span class="en">Signal Linearization</span></h3>
+
+    <p>Khi đầu ra đáp ứng tỷ lệ với đầu vào, thiết bị tuyến tính (gain không đổi, độ phân giải không đổi). Nếu không tuyến tính, có hai vấn đề: gain đổi và độ phân giải/độ chính xác đổi. Ba cách xử lý trong hệ điều khiển: (1) dựa trên gain cao nhất; (2) đo gain tại nhiều điểm; (3) đổi gain theo đại lượng quá trình. Cách đơn giản là tuyến tính hóa tín hiệu trước khi tính toán điều khiển.</p>
+
+    <h2>2.13 Tiêu chí và cân nhắc lựa chọn <span class="en">Selection Criteria and Considerations</span></h2>
+
+    <p>Lý do chọn thiết bị này hơn thiết bị khác rất đa dạng, thường dựa trên ưu/nhược điểm của dải thiết bị. Một danh sách đầy đủ xét: độ chính xác, độ tin cậy, giá mua, chi phí lắp, chi phí sở hữu, dễ dùng, môi trường quá trình (lỏng/hơi/khí), mức thông minh, độ lặp lại, xâm lấn, cỡ có sẵn, bảo trì, nhạy rung. Riêng lưu lượng thêm: đo lỏng/hơi/khí; dải đo (rangeability); turndown; tổn thất áp; số Reynolds; yêu cầu ống thượng/hạ lưu.</p>
+    <p>Cách tiếp cận có hệ thống hơn gồm các bước:</p>
+
+    <h3>2.13.1 Ứng dụng <span class="en">Application</span></h3>
+    <p>Yêu cầu và mục đích đo: giám sát, điều khiển, chỉ thị, điểm hay liên tục, báo động.</p>
+
+    <h3>2.13.2 Tính chất vật liệu quá trình <span class="en">Processed Material Properties</span></h3>
+    <p>Rắn/lỏng/khí/hơi; độ dẫn điện; đa pha (tỉ lệ lỏng/khí); độ nhớt; áp suất; nhiệt độ.</p>
+
+    <h3>2.13.3 Hiệu năng <span class="en">Performance</span></h3>
+    <p>Dải vận hành; độ chính xác; tính tuyến tính (có thể gồm hiệu ứng tuyến tính); độ lặp lại (có thể gồm hiệu ứng lặp lại); thời gian đáp ứng.</p>
+
+    <h3>2.13.4 Lắp đặt <span class="en">Installation</span></h3>
+    <p>Giá đỡ là mối lo chính, cùng tiếp cận và môi trường: lắp; cỡ đường; rung; tiếp cận; ngập.</p>
+
+    <h3>2.13.5 Kinh tế <span class="en">Economics</span></h3>
+    <p>Chi phí liên quan quyết định thiết bị có trong ngân sách: mua, lắp, bảo trì, tin cậy/thay thế.</p>
+
+    <h3>2.13.6 Môi trường và an toàn <span class="en">Environment and Safety</span></h3>
+    <p>Hiệu năng duy trì thông số vận hành; cần xét cả hỏng hóc và dự phòng (redundancy): phát thải quá trình, xử lý chất thải nguy hại, khả năng rò, kích hoạt dừng hệ.</p>
+
+    <h3>2.13.7 Thiết bị đo và công nghệ <span class="en">Measuring Devices and Technology</span></h3>
+    <p>Sau khi có tiêu chí, cân nhắc với thiết bị sẵn có. Ví dụ lưu lượng: (1) Chênh áp — đĩa lỗ, diện tích biến thiên; (2) Vận tốc — magmeter, vortex, tua-bin, propeller; (3) Thể tích dương — bánh răng oval, rotary; (4) Lưu lượng khối — Coriolis, nhiệt.</p>
+
+    <h3>2.13.8 Nhà cung cấp <span class="en">Vendor Supply</span></h3>
+    <p>Có thể bị giới hạn, nhất là công ty lớn có nhà cung cấp ưu tiên, khiến lựa chọn hẹp hoặc thủ tục mua thiết bị mới không đáng công.</p>
+
+    <h2>2.14 Giới thiệu về bộ phát thông minh (SMART TRANSMITTER) <span class="en">Introduction to the SMART TRANSMITTER</span></h2>
+
+    <p>Dạng đầy đủ nhất của bộ chuyển đổi cặp nhiệt điện — thường gọi là "bộ phát thông minh" (smart transmitter, Hình 2-15) — gồm: (1) bộ bù điểm nối lạnh điện tử; (2) bộ khuếch đại DC rất ổn định đưa điện áp thấp cặp nhiệt điện lên mức vận hành hợp lý; (3) vi xử lý tuyến tính hóa điện áp sinh ra; (4) chức năng hiệu chỉnh dải (ranging); (5) phần đầu ra/bộ phát, chọn được loại đầu ra; và (6) chính cặp nhiệt điện.</p>
+    <p>Nhờ vậy, một cặp nhiệt điện loại tổng dải 0&#176;C đến 650&#176;C có thể được hiệu chỉnh (set) chỉ 100&#176;C đến 300&#176;C; với đầu ra bộ phát 4&#8211;20 mA, ta có 12,5&#176;C/mA tuyến tính suốt dải chọn. Dùng toàn dải, độ nhạy đầu ra là 650&#176;C/20&#8211;4 mA = 40,625&#176;C/mA, cho tỉ số nhạy 3,25:1. Khái niệm này áp dụng cho hầu hết bộ chuyển đổi đo: đầu ra có thể được hiệu chỉnh dải và tuyến tính hóa trước khi đưa vào đầu vào bộ điều khiển.</p>
+<figure class="figure" id="fig-2-15">
+      <svg viewBox="0 0 520 200" role="img" aria-label="Hệ thống đo cặp nhiệt điện có vi xử lý, hiệu chỉnh dải và tuyến tính">
+        <style>
+          .bx{fill:#fafafa;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:10.5px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .ar{stroke:#2a2a2a;stroke-width:1.6;fill:none}
+        </style>
+        <rect x="20" y="80" width="80" height="40" rx="5" class="bx"/><text x="60" y="104" class="t">Cặp nhiệt điện</text>
+        <rect x="125" y="80" width="90" height="40" rx="5" class="bx"/><text x="170" y="98" class="t">Bù điểm</text><text x="170" y="112" class="t">nối lạnh</text>
+        <rect x="240" y="80" width="80" height="40" rx="5" class="bx"/><text x="280" y="98" class="t">Khuếch đại</text><text x="280" y="112" class="t">DC ổn định</text>
+        <rect x="345" y="80" width="80" height="40" rx="5" class="bx"/><text x="385" y="98" class="t">Vi xử lý</text><text x="385" y="112" class="t">(tuyến tính)</text>
+        <rect x="440" y="55" width="70" height="40" rx="5" class="bx"/><text x="475" y="73" class="t">Hiệu chỉnh</text><text x="475" y="87" class="t">dải</text>
+        <rect x="440" y="115" width="70" height="40" rx="5" class="bx"/><text x="475" y="133" class="t">Đầu ra</text><text x="475" y="147" class="t">4&#8211;20 mA</text>
+        <path class="ar" d="M100 100 H125 M215 100 H240 M320 100 H345 M425 100 H440"/>
+        <path class="ar" d="M475 95 V115"/>
+      </svg>
+      <figcaption class="figcap">Hình 2-15 · Hệ thống đo cặp nhiệt điện có vi xử lý, với đầu ra đã hiệu chỉnh dải và tuyến tính hóa</figcaption>
+    </figure>
+
+    <div class="chapter-nav">
+      <a href="/vi/books/read/pc-process-control/ch01-introduction/"><span class="k">&#8592; Chương 1</span>Giới thiệu</a>
+      <a href="/vi/books/read/pc-process-control/" style="text-align:right;"><span class="k">Mục lục &#8594;</span>Tất cả chương</a>
+    </div>
+  </div>
+</article>
+</main>
+<footer class="site-footer"><p>Thư viện Pro InstControl · Bản dịch không chính thức, dùng cho mục đích học tập · Bản gốc © IDC Technologies Pty Ltd</p></footer>
+</body>
+</html>

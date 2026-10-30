@@ -119,6 +119,9 @@ BOOKS = {
             ("M", "Configuration Example", "Ví dụ cấu hình"),
         ],
         "done": {1: "ch01-introduction"},
+        # Vietnamese translation is one chapter ahead of the English reader page
+        "done_vi": {1: "ch01-introduction",
+                    2: "ch02-process-measurement-and-transducers"},
         "copyright_en": "Original text © IDC Technologies Pty Ltd",
         "copyright_vi": "Bản gốc © IDC Technologies Pty Ltd",
         "lede_en": ("A hands-on training manual covering process dynamics, measurement, valves, "
@@ -182,11 +185,21 @@ def footer(lang, spec):
     return '<footer class="site-footer"><p>%s</p></footer></body></html>' % esc(txt)
 
 
+def done_for(lang, spec):
+    """Per-language 'done' map; falls back to the shared 'done' map.
+
+    Used so a chapter can be marked translated in one language (e.g. the
+    Vietnamese translation-in-progress) without claiming it exists in the
+    other language where the reader page has not been built yet.
+    """
+    return spec.get("done_%s" % lang) or spec.get("done", {})
+
+
 def toc(lang, spec):
     out = []
     base = ("/books/read/%s/" if lang == "en" else "/vi/books/read/%s/") % spec["slug"]
     chapters = spec["chapters"]
-    done = spec.get("done", {})
+    done = done_for(lang, spec)
     total = len(chapters)
     ndone = len(done)
     rows = []
@@ -238,7 +251,7 @@ def build(lang, spec):
              else "<a href=\"/books/\">Books</a> · Book contents")
     byline = spec["byline_vi"] if vi else spec["byline_en"]
     total = len(spec["chapters"])
-    ndone = len(spec.get("done", {}))
+    ndone = len(done_for(lang, spec))
     meta = ("%s chương · %s trang · %s tệp PDF"
             % (num(total, lang), num(spec["pages"], lang), spec["files"])) if vi \
         else ("%s chapters · %s pages · %s PDF files"

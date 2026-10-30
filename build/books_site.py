@@ -301,7 +301,7 @@ DESC = {
 TRANSLATED = {
     "measurement, instrumentation and sensors handbook": ("progress", 101, 2),
     "safety instrumented systems - design, analysis, and justification": ("progress", 16, 2),
-    "pc_process control": ("progress", 14, 1),
+    "pc_process control": ("progress", 14, 2),
 }
 
 HANDBOOK_SLUG = "the-measurement-instrumentation-and-sensors-handbook"
