@@ -5,7 +5,7 @@
   var msg = document.getElementById('pdf-msg');
   var openTab = document.getElementById('open-tab');
   if(!u){ msg.textContent = 'Chưa chỉ định tệp PDF.'; frame.style.display='none'; return; }
-  frame.src = u;
+  frame.src = 'https://docs.google.com/gview?embedded=true&url=' + encodeURIComponent(u);
   openTab.href = u; openTab.target = '_blank'; openTab.rel = 'noopener';
 })();
 </script><footer class="site-footer"><p>Thư viện Pro InstControl · Danh mục lập ngày 2026-10-30 · Nguồn: G:\Process Control and Automation</p></footer>

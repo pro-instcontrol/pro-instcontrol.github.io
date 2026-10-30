@@ -542,12 +542,11 @@ def work_page(lang, w, dom):
         reader_html = ('<p class="lead"><a href="%s"><strong>%s</strong></a></p>'
                        % (rhref, "Mở bản dịch →" if vi else "Open the book →"))
 
-    policy = ("<b>Cách đọc.</b> Tệp PDF được lưu trong thư viện cục bộ và không được đăng lại tại đây. "
-              "Trang này là phiếu mục lục trực tuyến: tên sách, lĩnh vực, số trang và các tệp đi kèm."
+    policy = ("<b>Cách đọc.</b> Tệp PDF được lưu trong kho phát hành của trang (GitHub Release). "
+              "Bấm <b>Đọc PDF</b> để xem trong trình duyệt hoặc <b>Tải PDF</b> để lưu bản sao."
               if vi else
-              "<b>About this copy.</b> The PDF is held in the local library catalogue and is not "
-              "republished here. This page is the online catalogue entry: title, subject, page "
-              "count and the files that make up the work.")
+              "<b>About this copy.</b> The PDF is hosted in the site's GitHub Release library. "
+              "Use <b>Read PDF</b> to view it in the browser, or <b>Download PDF</b> to save a copy.")
 
     body = (
         '<main><article class="intranet-content reader">'
@@ -593,7 +592,7 @@ def build_reader(lang):
   var msg = document.getElementById('pdf-msg');
   var openTab = document.getElementById('open-tab');
   if(!u){ msg.textContent = '%s'; frame.style.display='none'; return; }
-  frame.src = u;
+  frame.src = 'https://docs.google.com/gview?embedded=true&url=' + encodeURIComponent(u);
   openTab.href = u; openTab.target = '_blank'; openTab.rel = 'noopener';
 })();
 """ % ("Chưa chỉ định tệp PDF." if vi else "No PDF specified.")
