@@ -19,6 +19,7 @@ import pages_tools  # noqa: E402
 import pages_compare  # noqa: E402
 import pages_ref  # noqa: E402
 import pages_glossary  # noqa: E402
+import pages_applications  # noqa: E402
 
 DIST = framework.DIST
 ASSETS = os.path.join(ROOT, "assets")
@@ -61,6 +62,7 @@ def main():
     pages_compare.build()
     pages_ref.build_geotechnical()
     pages_ref.build_standards()
+    pages_applications.build()
     pages_glossary.build()
 
     # static assets

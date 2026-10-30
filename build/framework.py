@@ -30,10 +30,12 @@ TAG_VI = "Sổ tay hiện trường"
 
 NAV = [
     ("index.html", "Home", "Trang chủ"),
+    ("books/", "Books", "Sách"),
     ("fundamentals.html", "Fundamentals", "Cơ bản"),
     ("instruments.html", "Instruments", "Thiết bị đo"),
     ("install.html", "Install", "Lắp đặt"),
     ("control.html", "Control", "Điều khiển"),
+    ("applications.html", "Applications", "Ứng dụng"),
     ("safety.html", "Safety", "An toàn"),
     ("tools.html", "Tools", "Công cụ"),
     ("comparison.html", "Comparison", "So sánh"),
@@ -49,12 +51,14 @@ SHELL = {
     "shell.nav.instruments": ("Instruments", "Thiết bị đo"),
     "shell.nav.install": ("Install", "Lắp đặt"),
     "shell.nav.control": ("Control", "Điều khiển"),
+    "shell.nav.applications": ("Applications", "Ứng dụng"),
     "shell.nav.safety": ("Safety", "An toàn"),
     "shell.nav.tools": ("Tools", "Công cụ"),
     "shell.nav.comparison": ("Comparison", "So sánh"),
     "shell.nav.geotechnical": ("Geotech", "Địa kỹ thuật"),
     "shell.nav.standards": ("Standards", "Tiêu chuẩn"),
     "shell.nav.glossary": ("Glossary", "Thuật ngữ"),
+    "shell.nav.books": ("Books", "Sách"),
     "shell.tag": (TAG_EN, TAG_VI),
     "shell.menu": ("Menu", "Danh mục"),
     "shell.foot.note": (
@@ -214,7 +218,7 @@ def topbar(active):
         cls = "nav-link active" if href == active else "nav-link"
         items.append(
             '<a class="%s" href="%s" data-i18n="shell.nav.%s">%s</a>'
-            % (cls, href, href.replace(".html", "").replace("index", "home"), en)
+            % (cls, href, href.replace(".html", "").replace("index", "home").replace("/", ""), en)
         )
     nav_html = "\n      ".join(items)
     return """<header class="topbar">
