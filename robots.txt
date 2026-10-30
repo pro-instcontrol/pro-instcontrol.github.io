@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /shots/
+
+Sitemap: https://pro-instcontrol.github.io/sitemap.xml
