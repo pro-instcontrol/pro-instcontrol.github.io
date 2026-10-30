@@ -620,16 +620,21 @@ MARK = ('<svg viewBox="0 0 200 200" aria-hidden="true">'
         '<line x1="100" y1="100" x2="143" y2="57" stroke="#000" stroke-width="5" '
         'stroke-linecap="round"/><circle cx="100" cy="100" r="10" fill="#000"/></svg>')
 
-NAV_EN = [("/", "Home"), ("/fundamentals.html", "Fundamentals"),
-          ("/instruments.html", "Instruments"), ("/control.html", "Control"),
+NAV_EN = [("/", "Home"), ("/books/", "Books"), ("/fundamentals.html", "Fundamentals"),
+          ("/instruments.html", "Instruments"), ("/install.html", "Install"),
+          ("/control.html", "Control"), ("/applications.html", "Applications"),
           ("/safety.html", "Safety"), ("/tools.html", "Tools"),
-          ("/comparison.html", "Comparison"), ("/standards.html", "Standards"),
-          ("/books/", "Books")]
-NAV_VI = [("/?lang=vi", "Trang chủ"), ("/fundamentals.html?lang=vi", "Cơ bản"),
-          ("/instruments.html?lang=vi", "Thiết bị"), ("/control.html?lang=vi", "Điều khiển"),
-          ("/safety.html?lang=vi", "An toàn"), ("/tools.html?lang=vi", "Công cụ"),
-          ("/comparison.html?lang=vi", "So sánh"), ("/standards.html?lang=vi", "Tiêu chuẩn"),
-          ("/vi/books/", "Sách")]
+          ("/comparison.html", "Comparison"), ("/geotechnical.html", "Geotech"),
+          ("/standards.html", "Standards"), ("/glossary.html", "Glossary"),
+          ("/education.html", "Education")]
+NAV_VI = [("/?lang=vi", "Trang chủ"), ("/vi/books/", "Sách"),
+          ("/fundamentals.html?lang=vi", "Cơ bản"), ("/instruments.html?lang=vi", "Thiết bị"),
+          ("/install.html?lang=vi", "Lắp đặt"), ("/control.html?lang=vi", "Điều khiển"),
+          ("/applications.html?lang=vi", "Ứng dụng"), ("/safety.html?lang=vi", "An toàn"),
+          ("/tools.html?lang=vi", "Công cụ"), ("/comparison.html?lang=vi", "So sánh"),
+          ("/geotechnical.html?lang=vi", "Địa kỹ thuật"),
+          ("/standards.html?lang=vi", "Tiêu chuẩn"), ("/glossary.html?lang=vi", "Thuật ngữ"),
+          ("/education.html?lang=vi", "Giáo dục")]
 
 
 def header(lang, active_books=True, switch_href=None):
@@ -655,11 +660,11 @@ def header(lang, active_books=True, switch_href=None):
 def footer(lang):
     if lang == "vi":
         txt = ("Thư viện Pro InstControl · Danh mục lập ngày %s · "
-               "Nguồn: G:\\Process Control and Automation"
+               "Nguồn: D:\\Process Control and Automation"
                % datetime.date.today().isoformat())
     else:
         txt = ("Pro InstControl Library · Catalogue generated %s · "
-               "Source: G:\\Process Control and Automation"
+               "Source: D:\\Process Control and Automation"
                % datetime.date.today().isoformat())
     return '<footer class="site-footer"><p>%s</p></footer>' % esc(txt)
 
