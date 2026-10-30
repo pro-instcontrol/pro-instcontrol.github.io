@@ -23,7 +23,7 @@ Live: https://pro-instcontrol.github.io/
 | `geotechnical.html` | Observational method, ISO 18674 series, 12 sensor families, vibrating wire vs 4–20 mA, field failures |
 | `standards.html` | ISA / IEC / API / ISO / CEN index with what each one governs |
 | `glossary.html` | 52 bilingual terms with live search |
-| `video-library/` | 155 curated videos across 20 topics, with search, level and source filters (VI mirror at `vi/video-library/`) |
+| `video-library/` | 175 curated videos across 20 topics, a six-stage learning path, and search / level / source filters (VI mirror at `vi/video-library/`) |
 
 ## How the bilingual system works
 
@@ -83,6 +83,7 @@ build/
   pages_glossary.py glossary
   pages_videos.py   video library (EN + VI pages)
   videos_data.py    the curated video dataset
+  check_videos.py   dataset + dead-link check for the library
   build.py          entry point
 assets/
   style.css         design system (light theme, P&ID-inspired)
@@ -104,6 +105,12 @@ duration, the source channel and a one-line editorial note in both languages.
   JavaScript; `assets/videos.js` only adds search, level and source filtering.
 - Durations and titles come from the YouTube metadata; commercial and pricing
   videos from the source channels were left out.
+- A six-stage learning path (`PATH` in `pages_videos.py`) gives a beginner an
+  order; each entry links to `#v-<id>`, and the targeted card highlights.
+- `python build/check_videos.py` validates the dataset (duplicate ids, unknown
+  categories, bad durations) and checks every link through YouTube oEmbed.
+  `--offline` skips the network pass. Exits 1 on any failure, so it can gate a push.
+- The share card is `assets/og-video-library.png`, referenced from both pages.
 
 ## Design notes
 

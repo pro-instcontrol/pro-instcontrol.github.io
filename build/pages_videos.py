@@ -6,6 +6,7 @@ without JavaScript. assets/videos.js only adds search, level and source filters.
 """
 
 import html
+import json
 import os
 import sys
 
@@ -15,6 +16,7 @@ sys.path.insert(0, HERE)
 import framework  # noqa: E402
 import videos_data  # noqa: E402
 
+BASE = "https://pro-instcontrol.github.io"
 SITE = "Instrumentation &amp; Control"
 SITE_VI = "Đo lường &amp; Điều khiển"
 
@@ -40,6 +42,16 @@ LEVEL = {
     "en": {"B": "Beginner", "I": "Intermediate", "A": "Advanced"},
     "vi": {"B": "Cơ bản", "I": "Trung cấp", "A": "Nâng cao"},
 }
+
+# Suggested order through the catalogue: (stage number, [video ids])
+PATH = [
+    ("1", ["tY50mpZtdM8", "2EpFIhUHm28", "1a0i6hGdCBc", "wmUs1TmB6Zw"]),
+    ("2", ["RFy9b9XvY9Q", "VocqjKvs0hY", "T54Z_xH2biw", "oUd4WxjoHKY", "DDE3fkSNFw0"]),
+    ("3", ["j4EOTerfyTY", "FQNuIO4huy8", "Z1bOfL30WJU", "b-c2cKPqN6g", "6BFdzMu2ZAY"]),
+    ("4", ["fv6dLTEvl74", "IB1Ir4oCP5k", "TOprLLY1E0o", "Xxbywx2AKx8"]),
+    ("5", ["SamV6zpRNgg", "iFxSLNeA42M", "qZykZ1IDYZs", "pXkun-PEiY0"]),
+    ("6", ["KmxV4eZqxnQ", "1ehMkgs90cw", "ekg9aQxmag4", "drV5uTnjx40"]),
+]
 
 T = {
     "en": {
@@ -76,7 +88,8 @@ T = {
         "prov_d": "Vietnamese-language channels",
         "prov_m": "RealPars, Endress+Hauser, Fluke, Rosemount, Fisher, SAMSON, Siemens, ABB, DwyerOmega, "
                   "Kimray, Phoenix Contact, Precision Digital, exida, TÜV Rheinland, ISA, Hazcon, eFIXX, "
-                  "Lesman, Lakeside Process Controls, The Engineering Mindset, Brian Douglas, BCIT.",
+                  "Lesman, Lakeside Process Controls, The Engineering Mindset, Brian Douglas, LearnChemE, "
+                  "GalcoTV, Beamex, AutoCal Tech, Tim Wilborne, PetroSkills, SAIT, NAIT, Job Talks, BCIT.",
         "prov_v": "Học Nghề Kỹ Sư Điện &amp; Điện Tử, Tâm Lửa, P&amp;ID Oil and Gas, NK Engineering.",
         "lang_other": "VI",
         "lang_href": "../vi/video-library/",
@@ -87,6 +100,24 @@ T = {
                      "Content is synthesised from ISA, IEC, API and ISO 18674 practice; "
                      "always verify against the current edition of a standard before design use.",
         "foot_built": "Static site · no build step · EN / VI",
+        "path_h": "Where to start",
+        "path_p": "If you have no order yet, take this one. Six stages, roughly four hours of watching, "
+                  "and each stage assumes only the one before it. Every link jumps to that video in the "
+                  "catalogue below.",
+        "path": [
+            ("What the job is",
+             "The discipline, the project, the loop — and what a technician does all day."),
+            ("Measure something",
+             "One instrument from each family, so the vocabulary stops being abstract."),
+            ("Read the drawings",
+             "A P&amp;ID, its symbols, the loop drawing, then the index that ties them together."),
+            ("Close the loop",
+             "PID, tuning, and the valve that actually moves."),
+            ("Calibrate and check",
+             "Bench work, loop checks, and the faults behind most callouts."),
+            ("Make it safe",
+             "SIS and SIL, the cause &amp; effect matrix, then alarm and trip settings."),
+        ],
     },
     "vi": {
         "title": "Thư viện video — đo lường &amp; điều khiển quá trình",
@@ -122,7 +153,8 @@ T = {
         "prov_d": "Kênh tiếng Việt",
         "prov_m": "RealPars, Endress+Hauser, Fluke, Rosemount, Fisher, SAMSON, Siemens, ABB, DwyerOmega, "
                   "Kimray, Phoenix Contact, Precision Digital, exida, TÜV Rheinland, ISA, Hazcon, eFIXX, "
-                  "Lesman, Lakeside Process Controls, The Engineering Mindset, Brian Douglas, BCIT.",
+                  "Lesman, Lakeside Process Controls, The Engineering Mindset, Brian Douglas, LearnChemE, "
+                  "GalcoTV, Beamex, AutoCal Tech, Tim Wilborne, PetroSkills, SAIT, NAIT, Job Talks, BCIT.",
         "prov_v": "Học Nghề Kỹ Sư Điện &amp; Điện Tử, Tâm Lửa, P&amp;ID Oil and Gas, NK Engineering.",
         "lang_other": "EN",
         "lang_href": "../../video-library/",
@@ -133,10 +165,28 @@ T = {
                      "Nội dung được tổng hợp từ thực tiễn ISA, IEC, API và ISO 18674; "
                      "luôn đối chiếu với bản tiêu chuẩn hiện hành trước khi dùng cho thiết kế.",
         "foot_built": "Trang tĩnh · không cần build · EN / VI",
+        "path_h": "Nên bắt đầu từ đâu",
+        "path_p": "Nếu bạn chưa có thứ tự, hãy dùng thứ tự này. Sáu chặng, khoảng bốn giờ xem, mỗi chặng "
+                  "chỉ cần chặng trước đó. Mỗi liên kết nhảy tới video đó trong danh mục bên dưới.",
+        "path": [
+            ("Nghề này là gì",
+             "Ngành, dự án, vòng điều khiển — và một kỹ thuật viên làm gì cả ngày."),
+            ("Đo một đại lượng",
+             "Mỗi họ thiết bị một ví dụ, để thuật ngữ không còn trừu tượng."),
+            ("Đọc bản vẽ",
+             "P&amp;ID, ký hiệu, bản vẽ vòng, rồi instrument index nối chúng lại."),
+            ("Khép vòng điều khiển",
+             "PID, hiệu chỉnh, và chiếc van thực sự dịch chuyển."),
+            ("Hiệu chuẩn và kiểm tra",
+             "Làm trên bàn, kiểm tra vòng, và những lỗi giải thích phần lớn cuộc gọi sự cố."),
+            ("Làm cho nó an toàn",
+             "SIS và SIL, ma trận nhân quả, rồi ngưỡng báo động và cắt."),
+        ],
     },
 }
 
 YT = "https://www.youtube.com/watch?v="
+BY_ID = {v[0]: v for v in videos_data.VIDEOS}
 
 
 def seconds(dur):
@@ -146,9 +196,48 @@ def seconds(dur):
     return parts[0] * 3600 + parts[1] * 60 + parts[2]
 
 
+def page_url(lang):
+    return BASE + ("/vi/video-library/" if lang == "vi" else "/video-library/")
+
+
 def head(lang, prefix, n_videos, n_cats):
     t = T[lang]
-    css = prefix + "assets/style.css?v=2"
+    css = prefix + "assets/style.css?v=3"
+    ld = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "CollectionPage",
+                "@id": page_url(lang) + "#page",
+                "url": page_url(lang),
+                "name": html.unescape(t["title"]),
+                "description": html.unescape(t["desc"] % (n_videos, n_cats)),
+                "inLanguage": "vi-VN" if lang == "vi" else "en",
+                "isPartOf": {"@type": "WebSite", "name": "Instrumentation & Control",
+                             "url": BASE + "/"},
+                "mainEntity": {
+                    "@type": "ItemList",
+                    "numberOfItems": n_cats,
+                    "itemListElement": [
+                        {"@type": "ListItem", "position": i + 1,
+                         "name": c[2] if lang == "en" else c[3],
+                         "url": page_url(lang) + "#cat-" + c[0]}
+                        for i, c in enumerate(videos_data.CATS)
+                    ],
+                },
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Instrumentation & Control",
+                     "item": BASE + "/"},
+                    {"@type": "ListItem", "position": 2,
+                     "name": "Video library" if lang == "en" else "Thư viện video",
+                     "item": page_url(lang)},
+                ],
+            },
+        ],
+    }
     return """<!DOCTYPE html>
 <html lang="%(lang)s">
 <head>
@@ -156,15 +245,31 @@ def head(lang, prefix, n_videos, n_cats):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%(title)s</title>
 <meta name="description" content="%(desc)s">
+<link rel="canonical" href="%(canon)s">
+<link rel="alternate" hreflang="en" href="%(base)s/video-library/">
+<link rel="alternate" hreflang="vi" href="%(base)s/vi/video-library/">
+<link rel="alternate" hreflang="x-default" href="%(base)s/video-library/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Instrumentation &amp; Control">
+<meta property="og:locale" content="%(locale)s">
 <meta property="og:title" content="%(title)s">
 <meta property="og:description" content="%(desc)s">
+<meta property="og:url" content="%(canon)s">
+<meta property="og:image" content="%(base)s/assets/og-video-library.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="%(imgalt)s">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="%(title)s">
+<meta name="twitter:description" content="%(desc)s">
+<meta name="twitter:image" content="%(base)s/assets/og-video-library.png">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="%(prefix)sassets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="%(css)s">
+<script type="application/ld+json">%(ld)s</script>
 </head>
 <body>
 <a class="skip" href="#main">%(skip)s</a>
@@ -172,8 +277,14 @@ def head(lang, prefix, n_videos, n_cats):
         "lang": lang,
         "title": t["title"],
         "desc": t["desc"] % (n_videos, n_cats),
+        "canon": page_url(lang),
+        "base": BASE,
+        "locale": "vi_VN" if lang == "vi" else "en_US",
+        "imgalt": "Video library — process instrumentation and control"
+                  if lang == "en" else "Thư viện video — đo lường và điều khiển quá trình",
         "prefix": prefix,
         "css": css,
+        "ld": json.dumps(ld, ensure_ascii=False, separators=(",", ":")),
         "skip": t["skip"],
     }
 
@@ -183,8 +294,7 @@ def topbar(lang, prefix):
     items = []
     for href, en, vi in NAV:
         label = en if lang == "en" else vi
-        active = href == "video-library/"
-        cls = "nav-link active" if active else "nav-link"
+        cls = "nav-link active" if href == "video-library/" else "nav-link"
         items.append('<a class="%s" href="%s%s">%s</a>' % (cls, prefix, href, label))
     nav_html = "\n      ".join(items)
     brand = SITE if lang == "en" else SITE_VI
@@ -241,8 +351,39 @@ def hero(lang, n_videos, n_cats, hours, n_src):
     </div>
   </div>
 </section>
-""" % (t["kicker"], t["h1"], t["h1b"], t["lede"], n_videos, t["stat_videos"], n_cats, t["stat_topics"],
-       hours, t["stat_hours"], n_src, t["stat_src"])
+""" % (t["kicker"], t["h1"], t["h1b"], t["lede"], n_videos, t["stat_videos"], n_cats,
+       t["stat_topics"], hours, t["stat_hours"], n_src, t["stat_src"])
+
+
+def path_section(lang):
+    t = T[lang]
+    stages = []
+    for (num, ids), (title, blurb) in zip(PATH, t["path"]):
+        links = []
+        for vid in ids:
+            v = BY_ID.get(vid)
+            if not v:
+                continue
+            links.append(
+                '<li><a href="#v-%s"><span class="pt">%s</span><em>%s</em></a></li>'
+                % (vid, html.escape(v[5]), v[3])
+            )
+        stages.append("""<div class="path-stage">
+      <span class="path-num">%s</span>
+      <h3>%s</h3>
+      <p>%s</p>
+      <ol class="path-list">%s</ol>
+    </div>""" % (num, title, blurb, "".join(links)))
+    return """<section class="path-sec" id="path">
+  <div class="wrap">
+    <div class="path-head">
+      <h2>%s</h2>
+      <p>%s</p>
+    </div>
+    <div class="path-grid">%s</div>
+  </div>
+</section>
+""" % (t["path_h"], t["path_p"], "".join(stages))
 
 
 def tools(lang, sources):
@@ -276,7 +417,7 @@ def tools(lang, sources):
         t["src_lbl"], t["all_src"], opts, t["count"], t["kicker"], "".join(
             '<a class="vchip" href="#cat-%s"><span>%s</span>%s<em>%d</em></a>'
             % (cid, emo, name, count)
-            for cid, emo, name, count in _chip_data(lang)
+            for cid, emo, name, count in _CHIPS
         ),
     )
 
@@ -284,16 +425,12 @@ def tools(lang, sources):
 _CHIPS = []
 
 
-def _chip_data(lang):
-    return _CHIPS
-
-
 def card(lang, v):
     vid, cat, lvl, dur, src, title, note_en, note_vi = v
     note = note_en if lang == "en" else note_vi
     url = YT + vid
     t = html.escape(title)
-    return """<article class="vcard" data-cat="%s" data-level="%s" data-src="%s" data-q="%s">
+    return """<article class="vcard" id="v-%s" data-cat="%s" data-level="%s" data-src="%s" data-q="%s">
   <a class="vthumb" href="%s" target="_blank" rel="noopener" aria-label="%s">
     <img src="https://i.ytimg.com/vi/%s/hqdefault.jpg" alt="" loading="lazy" width="480" height="270">
     <span class="vplay" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
@@ -306,7 +443,7 @@ def card(lang, v):
   </div>
 </article>
 """ % (
-        cat, lvl, html.escape(src), html.escape((title + " " + note).lower()),
+        vid, cat, lvl, html.escape(src), html.escape((title + " " + note).lower()),
         url, t, vid, dur, html.escape(src), lvl, LEVEL[lang][lvl],
         url, t, html.escape(note),
     )
@@ -365,19 +502,17 @@ def footer(lang, prefix):
     </div>
   </div>
 </footer>
-<script src="%sassets/videos.js?v=1" defer></script>
+<script src="%sassets/videos.js?v=2" defer></script>
 </body>
 </html>
 """ % (brand, t["foot_note"], t["foot_built"], prefix)
 
 
 def build_lang(lang, path, prefix):
-    t = T[lang]
     by_cat = {c[0]: [] for c in videos_data.CATS}
     for v in videos_data.VIDEOS:
         by_cat[v[1]].append(v)
 
-    global _CHIPS
     _CHIPS[:] = [
         (c[0], c[1], (c[2] if lang == "en" else c[3]), len(by_cat[c[0]]))
         for c in videos_data.CATS
@@ -386,16 +521,17 @@ def build_lang(lang, path, prefix):
     n_videos = len(videos_data.VIDEOS)
     n_cats = len([c for c in videos_data.CATS if by_cat[c[0]]])
     total_s = sum(seconds(v[3]) for v in videos_data.VIDEOS)
-    hours = int(round(total_s / 3600.0))
+    hours = int(total_s // 3600 + 0.5)  # round half up, so 54.5 h reads as 55
     sources = sorted({v[4] for v in videos_data.VIDEOS}, key=lambda s: s.lower())
 
     body = head(lang, prefix, n_videos, n_cats)
     body += topbar(lang, prefix)
     body += hero(lang, n_videos, n_cats, hours, len(sources))
+    body += path_section(lang)
     body += tools(lang, sources)
     body += '<div class="wrap vid-body">'
     body += sections(lang, by_cat)
-    body += '<p class="vempty" id="vempty" hidden>%s</p>' % html.escape(t["empty"])
+    body += '<p class="vempty" id="vempty" hidden>%s</p>' % html.escape(T[lang]["empty"])
     body += provenance(lang)
     body += "</div>"
     body += footer(lang, prefix)
