@@ -42,6 +42,7 @@ NAV = [
     ("geotechnical.html", "Geotech", "Địa kỹ thuật"),
     ("standards.html", "Standards", "Tiêu chuẩn"),
     ("glossary.html", "Glossary", "Thuật ngữ"),
+    ("education.html", "Education", "Giáo dục"),
 ]
 
 SHELL = {
@@ -58,6 +59,7 @@ SHELL = {
     "shell.nav.geotechnical": ("Geotech", "Địa kỹ thuật"),
     "shell.nav.standards": ("Standards", "Tiêu chuẩn"),
     "shell.nav.glossary": ("Glossary", "Thuật ngữ"),
+    "shell.nav.education": ("Education", "Giáo dục"),
     "shell.nav.books": ("Books", "Sách"),
     "shell.tag": (TAG_EN, TAG_VI),
     "shell.menu": ("Menu", "Danh mục"),
