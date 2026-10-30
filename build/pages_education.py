@@ -1,279 +1,464 @@
 # -*- coding: utf-8 -*-
-"""Education — BCIT Industrial Instrumentation & Process Control Technician.
+"""Education — BCIT (Canada) and HUST SEEE EE-E8 (Vietnam) programs.
 
-Publishes the program structure of BCIT's Industrial Instrumentation and
-Process Control Technician diploma (School of Energy, full-time, in person)
-as a bilingual study guide, with a link to the official BCIT page for the
-authoritative course matrix and entrance requirements.
+Bilingual study map of two control/automation programs, with the HUST
+curriculum published course-by-course and related library books linked.
 
-Source: https://www.bcit.ca/programs/industrial-instrumentation-and-process-control-technician-diploma-full-time-2945dipma/
+Sources:
+  BCIT: https://www.bcit.ca/programs/industrial-instrumentation-and-process-control-technician-diploma-full-time-2945dipma/
+  HUST: https://seee.hust.edu.vn/vi/dao-tao/ee-e8/  (EN: /en/dao-tao/ee-e8/)
 """
 
-from framework import Page, section_open, section_close, write, render, page_intro
+import os
+import sys
+import html
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import books_site as lib  # noqa: E402
+from framework import Page, section_open, section_close, write, render, page_intro  # noqa: E402
 
 BCIT_URL = ("https://www.bcit.ca/programs/industrial-instrumentation-and-"
             "process-control-technician-diploma-full-time-2945dipma/")
+HUST_URL_VI = "https://seee.hust.edu.vn/vi/dao-tao/ee-e8/"
+HUST_URL_EN = "https://seee.hust.edu.vn/en/dao-tao/ee-e8/"
 
-# Curriculum coverage areas — the topic areas the diploma builds across its
-# terms (drawn from BCIT's stated program description and the standard
-# instrumentation-technician body of knowledge).
-COVERAGE = [
-    ("Safety, codes & standards",
-     "An toàn, quy chuẩn & tiêu chuẩn",
-     "Lockout/tagout, hazardous locations, electrical safety, and the codes that "
-     "govern instrument installation in industrial plants.",
-     "Khóa/dán nhãn, vùng nguy hiểm, an toàn điện và các quy chuẩn chi phối việc "
-     "lắp đặt thiết bị đo trong nhà máy."),
-    ("Electrical & electronic fundamentals",
-     "Cơ sở điện & điện tử",
-     "Ohm's law, AC/DC circuits, semiconductors, op-amps and the signal electronics "
-     "behind every transmitter and controller.",
-     "Định luật Ohm, mạch xoay/chiều, bán dẫn, op-amp và điện tử tín hiệu đằng sau "
-     "mọi bộ truyền và bộ điều khiển."),
+_cat, _dom, _ = lib.load()
+BOOKS = {w["id"]: w["title"] for w in _cat["works"]}
+
+
+def esc(s):
+    return html.escape(s or "", quote=True)
+
+
+def book_link(bid, limit=48):
+    """Small inline link to a library work, or '' if the id is absent."""
+    if bid is None or bid not in BOOKS:
+        return ""
+    t = BOOKS[bid]
+    short = t if len(t) <= limit else t[:limit - 1].rstrip() + "…"
+    return ('<a href="/books/work/%d/" style="text-decoration:none;">📚 %s</a>'
+            % (bid, esc(short)))
+
+
+# ---------------------------------------------------------------------------
+# BCIT coverage areas: (en, vi, desc_en, desc_vi, book_id)
+BCIT_COVERAGE = [
     ("Measurement: temperature, pressure, flow, level",
      "Đo lường: nhiệt độ, áp suất, lưu lượng, mức",
-     "The four core process variables — thermocouples and RTDs, pressure and DP "
-     "transmitters, orifice and Coriolis flow, radar and DP level.",
-     "Bốn biến quá trình cốt lõi — cặp nhiệt và RTD, truyền áp và DP, lưu lượng lỗ "
-     "khoan và Coriolis, mức radar và DP."),
+     "Thermocouples and RTDs, pressure and DP transmitters, orifice and Coriolis "
+     "flow, radar and DP level.",
+     "Cặp nhiệt và RTD, truyền áp và DP, lưu lượng lỗ khoan và Coriolis, mức radar "
+     "và DP.", 180),
     ("Transducers & signal conditioning",
      "Cảm biến & điều chế tín hiệu",
-     "Converting a physical quantity into 4–20 mA, HART, or a fieldbus value — and "
+     "Converting a physical quantity into 4–20 mA, HART or a fieldbus value, then "
      "linearising, ranging and filtering it.",
-     "Chuyển đại lượng vật lý thành 4–20 mA, HART hay giá trị fieldbus — rồi tuyến "
-     "tính hóa, đặt dải và lọc."),
+     "Chuyển đại lượng vật lý thành 4–20 mA, HART hay giá trị fieldbus, rồi tuyến "
+     "tính hóa, đặt dải và lọc.", 123),
     ("Control valves & actuators",
      "Van điều khiển & cơ cấu chấp hành",
-     "Valve types, Cv sizing, positioners, and the final control element that turns "
-     "a controller output into a physical change.",
-     "Các loại van, tính Cv, bộ định vị và phần tử điều khiển cuối biến đầu ra bộ "
-     "điều khiển thành thay đổi vật lý."),
+     "Valve types, Cv sizing, positioners and the final control element.",
+     "Các loại van, tính Cv, bộ định vị và phần tử điều khiển cuối.", 186),
     ("PID control & tuning",
      "Điều khiển PID & hiệu chỉnh",
-     "Proportional, integral and derivative action, loop stability, and the "
-     "practical tuning methods used to make a loop behave.",
-     "Tác động tỷ lệ, tích phân và vi phân, ổn định vòng và các phương pháp hiệu "
-     "chỉnh thực tế để vòng hoạt động đúng."),
+     "Proportional, integral and derivative action, loop stability and practical "
+     "tuning methods.",
+     "Tác động tỷ lệ, tích phân và vi phân, ổn định vòng và phương pháp hiệu chỉnh "
+     "thực tế.", 116),
     ("PLCs & automation",
      "PLC & tự động hóa",
-     "Programming programmable logic controllers and computerized controls that "
-     "run the required function within a manufacturing process.",
-     "Lập trình PLC và điều khiển máy tính thực hiện chức năng yêu cầu trong một "
-     "quá trình sản xuất."),
+     "Programming programmable logic controllers and computerized controls.",
+     "Lập trình PLC và điều khiển máy tính.", 4),
     ("Calibration, loop checking & documentation",
      "Hiệu chuẩn, kiểm tra vòng & tài liệu",
-     "Bench and field calibration, loop checkout, P&IDs, loop sheets and the records "
-     "that prove a measurement is true.",
-     "Hiệu chuẩn tại xưởng và hiện trường, kiểm tra vòng, P&ID, phiếu vòng và hồ sơ "
-     "chứng minh phép đo là đúng."),
+     "Bench and field calibration, loop checkout, P&IDs and loop sheets.",
+     "Hiệu chuẩn tại xưởng và hiện trường, kiểm tra vòng, P&ID và phiếu vòng.", 180),
+    ("Safety, codes & standards",
+     "An toàn, quy chuẩn & tiêu chuẩn",
+     "Hazardous locations, electrical safety and instrument symbology.",
+     "Vùng nguy hiểm, an toàn điện và ký hiệu thiết bị đo.", 175),
+    ("Industrial networks & fieldbus",
+     "Mạng công nghiệp & fieldbus",
+     "HART, Profibus, Modbus and industrial Ethernet in the plant.",
+     "HART, Profibus, Modbus và Ethernet công nghiệp trong nhà máy.", 71),
 ]
 
-CAREERS = [
-    ("Instrumentation & control technician",
-     "Kỹ thuật viên thiết bị đo & điều khiển",
-     "Install, maintain, calibrate and troubleshoot field instruments and control "
-     "systems across manufacturing and process industries.",
-     "Lắp đặt, bảo trì, hiệu chuẩn và xử lý sự cố thiết bị đo hiện trường và hệ "
-     "điều khiển trong nhiều ngành sản xuất và chế biến."),
-    ("Advanced apprenticeship entry",
-     "Vào nghề học việc ở bậc nâng cao",
-     "Graduates can transition into an apprenticeship at an advanced level with an "
-     "industry sponsor.",
-     "Sinh viên tốt nghiệp có thể chuyển vào chương trình học việc ở bậc nâng cao "
-     "với nhà tài trợ trong ngành."),
-    ("Job-ready, hands-on",
-     "Sẵn sàng làm việc, thực hành",
-     "Half the program is hands-on with industry-standard equipment, so graduates "
-     "arrive ready for the plant floor.",
-     "Một nửa chương trình là thực hành với thiết bị chuẩn công nghiệp, nên sinh "
-     "viên tốt nghiệp sẵn sàng cho sàn nhà máy."),
+# ---------------------------------------------------------------------------
+# HUST EE-E8 curriculum. (code, vi, en, credits, book_id_or_None)
+HUST_FOUNDATION = [
+    ("MI1016", "Giải tích I", "Calculus I", "4", None),
+    ("MI1036", "Đại số", "Algebra", "4", None),
+    ("IT1016", "Tin học đại cương", "Introduction to Computer Science", "3", None),
+    ("MI1026", "Giải tích II", "Calculus II", "4", None),
+    ("MI1046", "Phương trình vi phân và chuỗi", "Differential Equations and Series", "3", None),
+    ("PH1016", "Vật lý đại cương I", "Physics I", "4", None),
+    ("MI2036", "Xác suất thống kê và tín hiệu ngẫu nhiên",
+     "Probability, Statistics and Random Signals", "3", None),
+    ("MI2044", "Phương pháp tính", "Numerical Methods", "2", None),
+    ("PH1026", "Vật lý đại cương II", "Physics II", "4", None),
 ]
+
+HUST_CORE = [
+    ("EE1026E", "Nhập môn ngành Kỹ thuật điều khiển và Tự động hóa",
+     "Introduction to Control Engineering and Automation", "2", None),
+    ("EE2001E", "Tín hiệu và hệ thống", "Signals and Systems", "3", None),
+    ("EE2021E", "Lý thuyết mạch điện I", "Electrical Circuits I", "3", None),
+    ("EE3030E", "Nguyên lý trường điện từ", "Electromagnetic Fields Theory", "3", None),
+    ("EE2110E", "Thiết kế điện tử", "Electronic Design", "3", None),
+    ("EE3140E", "Máy điện", "Basic Electrical Machine", "3", None),
+    ("EE3288E", "Lý thuyết điều khiển tuyến tính", "Linear Control Theory", "3", 27),
+    ("EE3410E", "Điện tử công suất", "Power Electronics", "3", None),
+    ("EE2130E", "Thiết kế hệ thống số", "Digital System Design", "3", None),
+    ("EE3110E", "Kỹ thuật đo lường", "Sensors and Instrumentation", "3", 180),
+    ("EE3491E", "Kỹ thuật lập trình", "Techniques of Programming", "2", None),
+    ("EE2022E", "Lý thuyết mạch điện II", "Electrical Circuits II", "3", None),
+    ("EE3816E", "Đồ án I", "Project I", "2", None),
+    ("EE3480E", "Vi xử lý và kiến trúc máy tính",
+     "Microprocessor and Computer Architecture", "3", None),
+    ("EE3510E", "Truyền động điện", "Electrical Drives", "3", None),
+    ("EE3826E", "Đồ án II", "Project II", "2", None),
+    ("EE3424E", "Hệ thống cung cấp điện", "Power Distribution System", "3", None),
+]
+
+HUST_SPEC = [
+    ("EE4221E", "Điều khiển logic và PLC", "Logic Control and PLC", "3", 4),
+    ("EE3550E", "Điều khiển quá trình", "Process Control", "3", 116),
+    ("EE4435E", "Hệ thống điều khiển số", "Digital Control Systems", "3", 46),
+    ("EE4335E", "Trí tuệ nhân tạo trong hệ thống tự động hóa",
+     "Artificial Intelligence in Automation Systems", "2", 83),
+    ("EE3601E", "Hệ thống đo và điều khiển công nghiệp",
+     "Industrial Instrumentation and Control System", "3", 141),
+    ("EE4251E", "Thiết kế hệ thống nhúng", "Embedded System Design", "3", None),
+    ("EE4331E", "Điều khiển Điện tử công suất", "Power Electronics Control", "3", None),
+    ("EE4343E", "Robot và phương tiện tự hành", "Robotics and Autonomous Vehicles", "2", 161),
+    ("EE4166E", "Điều khiển hệ thống năng lượng tái tạo",
+     "Control of Renewable Energy Systems", "2", None),
+]
+
+HUST_PRACTICUM = [
+    ("EE3916E", "Thực tập kỹ thuật", "Engineering Practicum", "2", None),
+    ("EE4906E", "Đồ án tốt nghiệp cử nhân", "Bachelor's Project", "6", None),
+    ("EE4922E", "Đồ án nghiên cứu Cử nhân", "Bachelor's Research Project", "8", None),
+]
+
+HUST_POLITICAL = [
+    ("SSH1111", "Triết học Mác - Lênin", "Philosophy of Marxism and Leninism", "3", None),
+    ("SSH1121", "Kinh tế chính trị Mác - Lênin",
+     "Political Economics of Marxism and Leninism", "2", None),
+    ("EM1170", "Pháp luật đại cương", "Introduction to the Legal Environment", "2", None),
+    ("SSH1131", "Chủ nghĩa xã hội khoa học", "Scientific Socialism", "2", None),
+    ("SSH1141", "Lịch sử Đảng cộng sản Việt Nam",
+     "History of the Vietnamese Communist Party", "2", None),
+    ("SSH1151", "Tư tưởng Hồ Chí Minh", "Ho Chi Minh Ideology", "2", None),
+]
+
+HUST_SUPPORT = [
+    ("EE2023", "Technical Writing and Presentation", "Technical Writing and Presentation", "3", None),
+    ("CH2021", "Đổi mới sáng tạo và khởi nghiệp", "Innovation and Entrepreneurship", "2", None),
+    ("ED3220E", "Kỹ năng mềm", "Soft Skills", "2", None),
+    ("ED3280", "Tâm lý học ứng dụng", "Applied Psychology", "2", None),
+    ("EM1010", "Quản trị học đại cương", "Introduction to Management", "2", None),
+    ("EM1180", "Văn hóa kinh doanh và tinh thần khởi nghiệp",
+     "Business Culture and Entrepreneurship", "2", None),
+    ("ET3262", "Tư duy công nghệ và thiết kế kỹ thuật",
+     "Technology and Technical Design Thinking", "2", None),
+    ("ME3123", "Thiết kế mỹ thuật công nghiệp", "Industrial Design", "2", None),
+    ("ME3124", "Thiết kế quảng bá sản phẩm", "Product Promotion Design", "2", None),
+]
+
+
+def course_table(pg, rows):
+    out = ('<div class="tbl-wrap mt24"><table class="tbl"><thead><tr>'
+           '<th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr></thead><tbody>'
+           % (pg.th("Code", "Mã"), pg.th("Course", "Học phần"),
+              pg.th("Credits", "TC"), pg.th("Related book", "Sách liên quan")))
+    for code, vi, en, cr, bid in rows:
+        out += ('<tr><td><code>%s</code></td><td>%s</td><td>%s</td><td>%s</td></tr>'
+                % (code, pg.span(en, vi), cr, book_link(bid) or "—"))
+    return out + "</tbody></table></div>"
 
 
 def build():
     pg = Page(
         "education.html",
         "edu",
-        "Education — BCIT Industrial Instrumentation & Process Control | I&C Field Guide",
-        "Giáo dục — BCIT Kỹ thuật viên Thiết bị đo & Điều khiển Quá trình | Sổ tay I&C",
-        "The BCIT Industrial Instrumentation and Process Control Technician diploma "
-        "— what the program covers, how it is taught, and where it leads. A study "
-        "map for the field this site documents.",
-        "Chương trình diploma Kỹ thuật viên Thiết bị đo và Điều khiển Quá trình của "
-        "BCIT — chương trình dạy gì, dạy thế nào và dẫn tới đâu. Bản đồ học tập cho "
-        "lĩnh vực mà trang này ghi chép.",
+        "Education — BCIT & HUST control/automation programs | I&C Field Guide",
+        "Giáo dục — Chương trình BCIT & HUST về điều khiển/tự động hóa | Sổ tay I&C",
+        "Two control and automation programs mapped: BCIT's Industrial "
+        "Instrumentation and Process Control Technician diploma and HUST's "
+        "EE-E8 Control Engineering and Automation advanced program — with the "
+        "curriculum and related library books.",
+        "Hai chương trình điều khiển và tự động hóa được lập bản đồ: diploma Kỹ "
+        "thuật viên Thiết bị đo và Điều khiển Quá trình của BCIT và chương trình "
+        "tiên tiến EE-E8 Kỹ thuật Điều khiển - Tự động hóa của HUST — kèm chương "
+        "trình học và sách liên quan trong thư viện.",
     )
 
     body = page_intro(
         pg,
-        "BCIT Industrial Instrumentation &amp; Process Control Technician",
-        "Kỹ thuật viên Thiết bị đo &amp; Điều khiển Quá trình — BCIT",
-        "A full-time, in-person diploma from BCIT's School of Energy that builds a "
-        "foundation in the industrial instrumentation trade: applying, installing, "
-        "repairing, calibrating and tuning the measurement and control instruments "
-        "used in industrial manufacturing.",
-        "Chương trình diploma toàn thời gian, học trực tiếp tại Trường Năng lượng "
-        "BCIT, xây nền tảng nghề thiết bị đo công nghiệp: ứng dụng, lắp đặt, sửa "
-        "chữa, hiệu chuẩn và hiệu chỉnh các thiết bị đo và điều khiển dùng trong "
-        "sản xuất công nghiệp.",
+        "Education — two control &amp; automation programs",
+        "Giáo dục — hai chương trình điều khiển &amp; tự động hóa",
+        "A bilingual study map of two programs that teach the field this site "
+        "documents: BCIT's Industrial Instrumentation and Process Control "
+        "Technician diploma (Canada) and HUST's EE-E8 Control Engineering and "
+        "Automation advanced program (Vietnam). Each curriculum is linked to "
+        "related books in the library.",
+        "Bản đồ học tập song ngữ của hai chương trình dạy lĩnh vực mà trang này ghi "
+        "chép: diploma Kỹ thuật viên Thiết bị đo và Điều khiển Quá trình của BCIT "
+        "(Canada) và chương trình tiên tiến EE-E8 Kỹ thuật Điều khiển - Tự động hóa "
+        "của HUST (Việt Nam). Mỗi chương trình được liên kết tới sách liên quan "
+        "trong thư viện.",
         [
-            ("overview", "Program at a glance", "Chương trình trong một cái nhìn"),
-            ("coverage", "Curriculum coverage", "Nội dung chương trình"),
-            ("facilities", "Facilities", "Cơ sở thực hành"),
-            ("careers", "Careers &amp; pathway", "Nghề nghiệp &amp; lộ trình"),
-            ("apply", "Official page &amp; entry", "Trang chính thức &amp; đầu vào"),
+            ("programs", "Programs at a glance", "Chương trình trong một cái nhìn"),
+            ("bcit", "BCIT — overview", "BCIT — tổng quan"),
+            ("bcit-cur", "BCIT — curriculum &amp; books", "BCIT — chương trình &amp; sách"),
+            ("hust", "HUST EE-E8 — overview", "HUST EE-E8 — tổng quan"),
+            ("hust-found", "HUST — foundation &amp; core", "HUST — đại cương &amp; cơ sở"),
+            ("hust-spec", "HUST — specialization &amp; practicum", "HUST — chuyên ngành &amp; tốt nghiệp"),
+            ("hust-cond", "HUST — supporting &amp; conditions", "HUST — bổ trợ &amp; điều kiện"),
+            ("official", "Official pages &amp; entry", "Trang chính thức &amp; đầu vào"),
             ("why", "Why it matters here", "Vì sao quan trọng ở đây"),
         ],
     )
 
-    # 01 overview
-    body += section_open("01", "Program at a glance", "Chương trình trong một cái nhìn",
-                         pg, "overview")
+    # 01 programs
+    body += section_open("01", "Programs at a glance", "Chương trình trong một cái nhìn",
+                         pg, "programs")
+    body += "<div class=\"sec-head\">"
+    body += pg.h2("Two routes into the same trade", "Hai con đường vào cùng một nghề")
+    body += pg.p(
+        "BCIT trains instrumentation technicians to install, calibrate and maintain "
+        "field instruments and PLCs. HUST's EE-E8 trains control and automation "
+        "engineers across control theory, electronics, drives and intelligent "
+        "systems. Both converge on the loops, signals and standards this guide covers.",
+        "BCIT đào tạo kỹ thuật viên thiết bị đo lắp đặt, hiệu chuẩn và bảo trì thiết "
+        "bị hiện trường cùng PLC. EE-E8 của HUST đào tạo kỹ sư điều khiển và tự động "
+        "hóa qua lý thuyết điều khiển, điện tử, truyền động và hệ thống thông minh. "
+        "Cả hai cùng hội tụ ở các vòng, tín hiệu và tiêu chuẩn mà sổ tay này đề cập.")
+    body += "</div><div class=\"grid c2\">"
+    body += ("<div class=\"card\"><h3>%s</h3><p>%s</p><p>%s</p></div>"
+             % (pg.span("BCIT — Industrial Instrumentation &amp; Process Control Technician",
+                        "BCIT — Kỹ thuật viên Thiết bị đo &amp; Điều khiển Quá trình"),
+                pg.span("Diploma · full-time · in person · School of Energy, Canada",
+                        "Diploma · toàn thời gian · trực tiếp · Trường Năng lượng, Canada"),
+                pg.span("Half hands-on; field instruments, PLCs, calibration and tuning.",
+                        "Một nửa thực hành; thiết bị hiện trường, PLC, hiệu chuẩn và hiệu chỉnh.")))
+    body += ("<div class=\"card\"><h3>%s</h3><p>%s</p><p>%s</p></div>"
+             % (pg.span("HUST EE-E8 — Control Engineering &amp; Automation",
+                        "HUST EE-E8 — Kỹ thuật Điều khiển &amp; Tự động hóa"),
+                pg.span("Advanced program · 4 years · 132 credits · ASIIN accredited, Vietnam",
+                        "Chương trình tiên tiến · 4 năm · 132 TC · kiểm định ASIIN, Việt Nam"),
+                pg.span("English-taught; control theory, electronics, drives, robotics, AI.",
+                        "Dạy bằng tiếng Anh; lý thuyết điều khiển, điện tử, truyền động, robot, AI.")))
+    body += "</div>"
+    body += section_close()
+
+    # 02 BCIT overview
+    body += section_open("02", "BCIT — overview", "BCIT — tổng quan", pg, "bcit")
     body += "<div class=\"sec-head\">"
     body += pg.h2("A trade, taught hands-on", "Một nghề, dạy bằng thực hành")
     body += pg.p(
         "The program provides a foundation in the industrial instrumentation trade, "
-        "with practical, hands-on experience in applying, installing, repairing, "
-        "calibrating and tuning measurement and control instruments. Delivery is in "
-        "person, and half of the program's duration is dedicated to hands-on work "
-        "with industry-standard equipment.",
+        "with practical experience in applying, installing, repairing, calibrating "
+        "and tuning measurement and control instruments. Delivery is in person, and "
+        "half of the program is hands-on with industry-standard equipment.",
         "Chương trình xây nền tảng nghề thiết bị đo công nghiệp, với trải nghiệm thực "
         "hành trong ứng dụng, lắp đặt, sửa chữa, hiệu chuẩn và hiệu chỉnh thiết bị đo "
-        "và điều khiển. Học trực tiếp tại trường, và một nửa thời lượng dành cho thực "
-        "hành với thiết bị chuẩn công nghiệp.")
-    body += "</div>"
-    body += "<div class=\"grid c3\">"
+        "và điều khiển. Học trực tiếp tại trường, một nửa chương trình là thực hành "
+        "với thiết bị chuẩn công nghiệp.")
+    body += "</div><div class=\"grid c3\">"
     for en, vi, d_en, d_vi in [
         ("Credential", "Văn bằng", "Diploma, full-time", "Diploma, toàn thời gian"),
         ("School", "Trường", "School of Energy, BCIT", "Trường Năng lượng, BCIT"),
-        ("Delivery", "Hình thức", "In person; half hands-on",
-         "Trực tiếp; một nửa thực hành"),
+        ("Delivery", "Hình thức", "In person; half hands-on", "Trực tiếp; một nửa thực hành"),
     ]:
         body += "<div class=\"card\"><h3>%s</h3><p>%s</p></div>" % (
             pg.span(en, vi), pg.span(d_en, d_vi))
     body += "</div>"
     body += "<div class=\"note mt24\"><span class=\"lbl\">%s</span>%s</div>" % (
-        pg.span("What students do", "Sinh viên làm gì"),
+        pg.span("Facilities &amp; pathway", "Cơ sở &amp; lộ trình"),
         pg.p(
-            "Students install and maintain field instruments that are part of "
-            "large-scale manufacturing systems — digital, electronic, pneumatic or "
-            "hydraulic devices — and learn to program the computerized controls and "
-            "programmable logic controllers (PLCs) that perform the required function "
-            "within manufacturing.",
-            "Sinh viên lắp đặt và bảo trì thiết bị đo hiện trường thuộc các hệ sản xuất "
-            "quy mô lớn — thiết bị số, điện tử, khí nén hoặc thủy lực — và học lập "
-            "trình điều khiển máy tính cùng PLC thực hiện chức năng yêu cầu trong sản "
-            "xuất."))
+            "Practical work happens in the Spartan Controls Centre for Energy "
+            "Education and Research — two common unit operations and a steam plant. "
+            "Graduates work as instrumentation and control technicians and can enter "
+            "an apprenticeship at an advanced level with an industry sponsor.",
+            "Thực hành diễn ra tại Trung tâm Spartan Controls về Giáo dục và Nghiên "
+            "cứu Năng lượng — hai công đoạn đơn vị phổ biến và một nhà máy hơi. Sinh "
+            "viên tốt nghiệp làm kỹ thuật viên thiết bị đo và điều khiển, có thể vào "
+            "học việc ở bậc nâng cao với nhà tài trợ trong ngành."))
     body += section_close()
 
-    # 02 coverage
-    body += section_open("02", "Curriculum coverage", "Nội dung chương trình",
-                         pg, "coverage")
+    # 03 BCIT curriculum & books
+    body += section_open("03", "BCIT — curriculum &amp; books",
+                         "BCIT — chương trình &amp; sách", pg, "bcit-cur")
     body += "<div class=\"sec-head\">"
-    body += pg.h2("The body of knowledge, term by term", "Khối kiến thức, theo từng kỳ")
+    body += pg.h2("Coverage areas, with a book for each", "Các mảng nội dung, kèm một cuốn sách")
     body += pg.p(
-        "Across its terms the diploma builds the instrumentation technician's core "
-        "competencies — from electrical fundamentals and the four process variables "
-        "through valves, PID control, PLCs and calibration. BCIT publishes the exact "
-        "course matrix, course codes and credit values on the official program page.",
-        "Qua các kỳ, chương trình xây các năng lực cốt lõi của kỹ thuật viên thiết bị "
-        "đo — từ cơ sở điện và bốn biến quá trình, qua van, điều khiển PID, PLC và "
-        "hiệu chuẩn. BCIT công bố ma trận môn học, mã môn và số tín chỉ chính xác trên "
-        "trang chương trình chính thức.")
+        "Across its terms the diploma builds the technician's core competencies. "
+        "Each area below links to a related book in the library. BCIT publishes the "
+        "exact course matrix and credits on its official page.",
+        "Qua các kỳ, chương trình xây các năng lực cốt lõi của kỹ thuật viên. Mỗi "
+        "mảng dưới đây liên kết tới một cuốn sách liên quan trong thư viện. BCIT công "
+        "bố ma trận môn học và số tín chỉ chính xác trên trang chính thức.")
+    body += "</div><div class=\"grid c2\">"
+    for en, vi, d_en, d_vi, bid in BCIT_COVERAGE:
+        bl = book_link(bid)
+        body += ("<div class=\"card\"><h3>%s</h3><p>%s</p>%s</div>"
+                 % (pg.span(en, vi), pg.span(d_en, d_vi),
+                    ('<p style="margin:.4rem 0 0;font-size:.85rem;">%s</p>' % bl) if bl else ""))
     body += "</div>"
-    body += "<div class=\"grid c2\">"
-    for en, vi, d_en, d_vi in COVERAGE:
+    body += section_close()
+
+    # 04 HUST overview
+    body += section_open("04", "HUST EE-E8 — overview", "HUST EE-E8 — tổng quan",
+                         pg, "hust")
+    body += "<div class=\"sec-head\">"
+    body += pg.h2("An advanced, English-taught program", "Chương trình tiên tiến, dạy bằng tiếng Anh")
+    body += pg.p(
+        "EE-E8 is HUST's Advanced Program in Control Engineering and Automation, "
+        "taught in English and accredited by ASIIN (international). It trains "
+        "engineers to master modern control, robotics and automation technology, "
+        "following international standards for a global career.",
+        "EE-E8 là Chương trình tiên tiến về Kỹ thuật Điều khiển và Tự động hóa của "
+        "HUST, dạy bằng tiếng Anh và đạt kiểm định quốc tế ASIIN. Chương trình đào "
+        "tạo kỹ sư làm chủ công nghệ điều khiển, robot và tự động hóa hiện đại, bám "
+        "chuẩn quốc tế để làm việc trong môi trường toàn cầu.")
+    body += "</div><div class=\"grid c3\">"
+    for en, vi, d_en, d_vi in [
+        ("Program", "Chương trình", "EE-E8 · Advanced Program", "EE-E8 · Chương trình tiên tiến"),
+        ("Duration &amp; credits", "Thời gian &amp; tín chỉ", "4 years · 132 credits",
+         "4 năm · 132 TC"),
+        ("Accreditation", "Kiểm định", "ASIIN (2023–2028)", "ASIIN (2023–2028)"),
+    ]:
         body += "<div class=\"card\"><h3>%s</h3><p>%s</p></div>" % (
             pg.span(en, vi), pg.span(d_en, d_vi))
     body += "</div>"
     body += "<div class=\"note mt24\"><span class=\"lbl\">%s</span>%s</div>" % (
-        pg.span("Authoritative source", "Nguồn chính thức"),
+        pg.span("11 programme learning outcomes (PLO)", "11 chuẩn đầu ra (PLO)"),
         pg.p(
-            "This is a study summary, not the official calendar. For the current "
-            "course matrix, credits and entrance requirements, use the official BCIT "
-            "program page linked below.",
-            "Đây là bản tóm tắt học tập, không phải lịch học chính thức. Để có ma trận "
-            "môn học, số tín chỉ và yêu cầu đầu vào hiện hành, hãy dùng trang chương "
-            "trình chính thức của BCIT ở liên kết bên dưới."))
+            "The PLOs span mathematics and science; electrical, electronics, "
+            "instrumentation and control foundations; design and optimisation of "
+            "automatic systems; modelling and big-data solutions; modern software "
+            "tools; data analysis and AI; English communication (TOEIC 600); "
+            "critical thinking and lifelong learning; multidisciplinary teamwork; "
+            "professional ethics and international standards; and research project "
+            "management.",
+            "Các PLO bao gồm toán và khoa học; nền tảng điện, điện tử, đo lường và "
+            "điều khiển; thiết kế và tối ưu hệ tự động; mô hình hóa và giải pháp dữ "
+            "liệu lớn; công cụ phần mềm hiện đại; phân tích dữ liệu và AI; giao tiếp "
+            "tiếng Anh (TOEIC 600); tư duy phản biện và tự học suốt đời; làm việc "
+            "nhóm đa ngành; đạo đức nghề nghiệp và tiêu chuẩn quốc tế; và quản lý dự "
+            "án nghiên cứu."))
     body += section_close()
 
-    # 03 facilities
-    body += section_open("03", "Facilities", "Cơ sở thực hành", pg, "facilities")
+    # 05 HUST foundation & core
+    body += section_open("05", "HUST — foundation &amp; core",
+                         "HUST — đại cương &amp; cơ sở", pg, "hust-found")
     body += "<div class=\"sec-head\">"
-    body += pg.h2("The Spartan Controls Centre", "Trung tâm Spartan Controls")
+    body += pg.h2("Mathematics, science and the engineering core",
+                  "Toán, khoa học và cốt lõi ngành")
     body += pg.p(
-        "Practical learning happens in the Spartan Controls Centre for Energy "
-        "Education and Research — a world-class facility with two common unit "
-        "operations and a steam plant, giving students realistic loops to instrument, "
-        "calibrate and control.",
-        "Việc học thực hành diễn ra tại Trung tâm Spartan Controls về Giáo dục và "
-        "Nghiên cứu Năng lượng — cơ sở đẳng cấp thế giới với hai công đoạn đơn vị phổ "
-        "biến và một nhà máy hơi, cho sinh viên những vòng thực tế để gắn thiết bị, "
-        "hiệu chuẩn và điều khiển.")
+        "31 credits of mathematics and basic science, then 47 credits of core "
+        "engineering — circuits, electronics, machines, drives, control theory and "
+        "measurement. Courses with a matching book show it in the last column.",
+        "31 TC toán và khoa học cơ bản, rồi 47 TC cốt lõi ngành — mạch điện, điện "
+        "tử, máy điện, truyền động, lý thuyết điều khiển và đo lường. Môn có sách "
+        "phù hợp được ghi ở cột cuối.")
     body += "</div>"
+    body += ("<h3 style=\"margin:1.4rem 0 .4rem\">%s <span style=\"font-weight:400;color:#888;font-size:.8rem\">· 31 TC</span></h3>"
+             % pg.span("Mathematics &amp; basic science", "Toán và khoa học cơ bản"))
+    body += course_table(pg, HUST_FOUNDATION)
+    body += ("<h3 style=\"margin:1.4rem 0 .4rem\">%s <span style=\"font-weight:400;color:#888;font-size:.8rem\">· 47 TC</span></h3>"
+             % pg.span("Core engineering", "Cơ sở và cốt lõi ngành"))
+    body += course_table(pg, HUST_CORE)
+    body += section_close()
+
+    # 06 HUST specialization & practicum
+    body += section_open("06", "HUST — specialization &amp; practicum",
+                         "HUST — chuyên ngành &amp; tốt nghiệp", pg, "hust-spec")
+    body += "<div class=\"sec-head\">"
+    body += pg.h2("Choose a module, then graduate", "Chọn một mô đun, rồi tốt nghiệp")
+    body += pg.p(
+        "Students choose one 24-credit specialization module (control and "
+        "automation, or power/embedded/robotics tracks), then complete 16 credits "
+        "of practicum and graduation project.",
+        "Sinh viên chọn một mô đun chuyên ngành 24 TC (điều khiển và tự động hóa, "
+        "hoặc hướng điện/embbeded/robot), rồi hoàn thành 16 TC thực tập và đồ án tốt "
+        "nghiệp.")
+    body += "</div>"
+    body += ("<h3 style=\"margin:1.4rem 0 .4rem\">%s <span style=\"font-weight:400;color:#888;font-size:.8rem\">· 24 TC</span></h3>"
+             % pg.span("Specialization module", "Mô đun chuyên ngành"))
+    body += course_table(pg, HUST_SPEC)
+    body += ("<h3 style=\"margin:1.4rem 0 .4rem\">%s <span style=\"font-weight:400;color:#888;font-size:.8rem\">· 16 TC</span></h3>"
+             % pg.span("Practicum &amp; graduation", "Thực tập &amp; tốt nghiệp"))
+    body += course_table(pg, HUST_PRACTICUM)
+    body += section_close()
+
+    # 07 HUST supporting & conditions
+    body += section_open("07", "HUST — supporting &amp; conditions",
+                         "HUST — bổ trợ &amp; điều kiện", pg, "hust-cond")
+    body += "<div class=\"sec-head\">"
+    body += pg.h2("Supporting knowledge and conditions",
+                  "Kiến thức bổ trợ và điều kiện")
+    body += pg.p(
+        "Alongside the technical core, the program includes political theory and law "
+        "(13 credits), supporting knowledge (9 credits), plus English (18 units), "
+        "physical education and national-defence education.",
+        "Bên cạnh cốt lõi kỹ thuật, chương trình gồm lý luận chính trị và pháp luật "
+        "(13 TC), kiến thức bổ trợ (9 TC), cùng tiếng Anh (18 đơn vị), giáo dục thể "
+        "chất và giáo dục quốc phòng – an ninh.")
+    body += "</div>"
+    body += ("<h3 style=\"margin:1.4rem 0 .4rem\">%s <span style=\"font-weight:400;color:#888;font-size:.8rem\">· 13 TC</span></h3>"
+             % pg.span("Political theory &amp; law", "Lý luận chính trị &amp; pháp luật"))
+    body += course_table(pg, HUST_POLITICAL)
+    body += ("<h3 style=\"margin:1.4rem 0 .4rem\">%s <span style=\"font-weight:400;color:#888;font-size:.8rem\">· 9 TC</span></h3>"
+             % pg.span("Supporting knowledge", "Kiến thức bổ trợ"))
+    body += course_table(pg, HUST_SUPPORT)
     body += "<div class=\"note mt24\"><span class=\"lbl\">%s</span>%s</div>" % (
-        pg.span("Why it matters", "Vì sao quan trọng"),
+        pg.span("Also required", "Yêu cầu khác"),
         pg.p(
-            "A steam plant and real unit operations let students see the loops this "
-            "site documents in action — drum level, combustion, flow and temperature "
-            "control — rather than only on paper.",
-            "Một nhà máy hơi và các công đoạn thực cho sinh viên thấy những vòng mà "
-            "trang này ghi chép hoạt động thực tế — mức nước trống, cháy, lưu lượng và "
-            "nhiệt độ — chứ không chỉ trên giấy."))
+            "English (18 units: IELTS skills, grammar, communication), physical "
+            "education (5 credits) and national-defence education (4 units) are "
+            "required but carry no credit toward the 132 total.",
+            "Tiếng Anh (18 đơn vị: kỹ năng IELTS, ngữ pháp, giao tiếp), giáo dục thể "
+            "chất (5 TC) và giáo dục quốc phòng – an ninh (4 đơn vị) là bắt buộc "
+            "nhưng không tính vào tổng 132 TC."))
     body += section_close()
 
-    # 04 careers
-    body += section_open("04", "Careers &amp; pathway", "Nghề nghiệp &amp; lộ trình",
-                         pg, "careers")
+    # 08 official
+    body += section_open("08", "Official pages &amp; entry", "Trang chính thức &amp; đầu vào",
+                         pg, "official")
     body += "<div class=\"sec-head\">"
-    body += pg.h2("Where graduates go", "Sinh viên tốt nghiệp đi đâu")
+    body += pg.h2("Check the source before applying", "Kiểm tra nguồn trước khi đăng ký")
     body += pg.p(
-        "Graduates pursue employment as technicians in the instrumentation and "
-        "control field across diverse industries, and can transition into an "
-        "apprenticeship at an advanced level with an industry sponsor.",
-        "Sinh viên tốt nghiệp làm kỹ thuật viên trong lĩnh vực thiết bị đo và điều "
-        "khiển ở nhiều ngành, và có thể chuyển vào chương trình học việc ở bậc nâng "
-        "cao với nhà tài trợ trong ngành.")
+        "Entrance requirements, intakes, tuition and the full course matrix are "
+        "maintained by each institution. Open the official pages to confirm current "
+        "details.",
+        "Yêu cầu đầu vào, đợt tuyển sinh, học phí và ma trận môn học đầy đủ do mỗi "
+        "trường quản lý. Mở trang chính thức để xác nhận thông tin hiện hành.")
     body += "</div>"
-    body += "<div class=\"grid c3\">"
-    for en, vi, d_en, d_vi in CAREERS:
-        body += "<div class=\"card\"><h3>%s</h3><p>%s</p></div>" % (
-            pg.span(en, vi), pg.span(d_en, d_vi))
-    body += "</div>"
+    body += ("<div class=\"hero-cta\" style=\"display:flex;gap:.8rem;flex-wrap:wrap\">"
+             "<a class=\"btn btn-p\" href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+             "<a class=\"btn btn-p\" href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a>"
+             "<a class=\"btn\" href=\"%s\" target=\"_blank\" rel=\"noopener\">%s</a></div>"
+             % (BCIT_URL, pg.span("BCIT program page &rarr;", "Trang chương trình BCIT &rarr;"),
+                HUST_URL_VI, pg.span("HUST EE-E8 (VI) &rarr;", "HUST EE-E8 (VI) &rarr;"),
+                HUST_URL_EN, pg.span("HUST EE-E8 (EN) &rarr;", "HUST EE-E8 (EN) &rarr;")))
     body += section_close()
 
-    # 05 apply
-    body += section_open("05", "Official page &amp; entry", "Trang chính thức &amp; đầu vào",
-                         pg, "apply")
-    body += "<div class=\"sec-head\">"
-    body += pg.h2("Apply through BCIT", "Đăng ký qua BCIT")
-    body += pg.p(
-        "Entrance requirements, intake dates, tuition and the full course matrix are "
-        "maintained by BCIT. Open the official program page to check the current "
-        "details before applying.",
-        "Yêu cầu đầu vào, ngày nhập học, học phí và ma trận môn học đầy đủ do BCIT "
-        "quản lý. Mở trang chương trình chính thức để kiểm tra thông tin hiện hành "
-        "trước khi đăng ký.")
-    body += "</div>"
-    body += ("<div class=\"hero-cta\"><a class=\"btn btn-p\" href=\"%s\" "
-             "target=\"_blank\" rel=\"noopener\">%s</a></div>"
-             % (BCIT_URL, pg.span("Open the official BCIT program page &rarr;",
-                                  "Mở trang chương trình BCIT chính thức &rarr;")))
-    body += section_close()
-
-    # 06 why
-    body += section_open("06", "Why it matters here", "Vì sao quan trọng ở đây",
+    # 09 why
+    body += section_open("09", "Why it matters here", "Vì sao quan trọng ở đây",
                          pg, "why")
     body += "<div class=\"sec-head\">"
     body += pg.h2("The same loops, studied formally", "Cùng những vòng, được học bài bản")
     body += pg.p(
-        "Every topic on this site — measurement, transducers, valves, PID, safety — "
-        "is what this diploma teaches in a structured, hands-on program. Use the "
-        "field guide to revise the theory, and the BCIT program to see how it is "
-        "taught and assessed.",
-        "Mọi chủ đề trên trang này — đo lường, cảm biến, van, PID, an toàn — đều là "
-        "nội dung chương trình diploma này dạy một cách bài bản, thực hành. Dùng sổ "
-        "tay để ôn lý thuyết, và chương trình BCIT để xem cách dạy và đánh giá.")
+        "Every topic on this site — measurement, transducers, valves, PID, PLCs, "
+        "safety — is what these two programs teach in a structured way. Use the "
+        "field guide to revise the theory, and the programs to see how it is taught, "
+        "practised and assessed.",
+        "Mọi chủ đề trên trang này — đo lường, cảm biến, van, PID, PLC, an toàn — "
+        "đều là nội dung hai chương trình này dạy một cách bài bản. Dùng sổ tay để "
+        "ôn lý thuyết, và các chương trình để xem cách dạy, thực hành và đánh giá.")
     body += "</div>"
     body += "<div class=\"nextprev\">"
     body += "<a href=\"applications.html\"><span class=\"k\">%s</span>%s</a>" % (
