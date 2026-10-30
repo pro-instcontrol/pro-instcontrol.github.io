@@ -2,11 +2,59 @@
 
 Reads library/catalog.json (194 works) and writes static HTML.
 """
-import os, json, html, re, datetime
+import os, json, html, re, datetime, hashlib, unicodedata
+from urllib.parse import quote
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, ".."))
 CAT = os.path.join(ROOT, "library", "catalog.json")
+
+# PDFs are hosted as GitHub Release assets (repo is too small for ~2 GB).
+RELEASE_TAG = "library-pdfs"
+RELEASE_BASE = ("https://github.com/pro-instcontrol/pro-instcontrol.github.io"
+                "/releases/download/" + RELEASE_TAG + "/")
+PDF_ROOT = "D:/Process Control and Automation"
+
+# --- keep only English / Vietnamese works -------------------------------
+_FOREIGN = re.compile(
+    r"\b(impianti|impianto|regolazione|termici|impiantistica|anàlisi|"
+    r"automatització|aplicacions|pràctiques|exercicis|mètodes|instrumentació|"
+    r"interferències|autòmats|descripció|dels|amb|diseño|elementos|estudio|"
+    r"automatismos|eléctricos|regulación|fórmulas|simbología|messtechnik|"
+    r"regelung|régulation|mesure|automatique)\b", re.I)
+
+
+def is_foreign(w):
+    """True for clearly non-English / non-Vietnamese catalogue works.
+
+    The catalogue is English with a Vietnamese translation layer; the only
+    foreign titles are Catalan / Spanish / Italian / Korean imports.
+    """
+    t = w.get("title") or ""
+    if _FOREIGN.search(t):
+        return True
+    # Italian "IMPIANTI INDUSTRIALI/x impianti" subfolder (English works can
+    # sit directly under IMPIANTI INDUSTRIALI, so match the subfolder only).
+    for d in w.get("docs", []):
+        p = d.get("path") or ""
+        if re.search(r"(^|/)x impianti/", p, re.I) or re.search(r"/impianti/", p, re.I):
+            return True
+    for ch in t:
+        if ord(ch) > 127 and unicodedata.category(ch).startswith("L"):
+            return True
+    return False
+
+
+def pdf_asset_name(path):
+    """Deterministic, collision-safe release-asset filename for a PDF path."""
+    h = hashlib.sha1(path.encode("utf-8")).hexdigest()[:16]
+    base = os.path.basename(path).rsplit(".", 1)[0]
+    slug = re.sub(r"[^A-Za-z0-9]+", "-", base).strip("-")[:40] or "doc"
+    return "%s__%s.pdf" % (slug, h)
+
+
+def pdf_url(path):
+    return RELEASE_BASE + pdf_asset_name(path)
 
 # ---------------------------------------------------------------- shelves
 # eight shelves, each grouping several catalogue domains
@@ -326,6 +374,8 @@ def esc(s):
 def load():
     cat = json.load(open(CAT, encoding="utf-8"))
     dom = {d["id"]: d for d in cat["domains"]}
+    # keep only English / Vietnamese works
+    cat["works"] = [w for w in cat["works"] if not is_foreign(w)]
     works = cat["works"]
     by_shelf = {s[0]: [] for s in SHELVES}
     shelf_of = {}
@@ -381,21 +431,23 @@ def card(w, lang, dom):
             flag = '<span class="translated-flag" data-level="%s">%s</span>' % (level, lab)
             break
 
-    href = ""
+    # Every card is clickable: translated works open the reader; all others
+    # open their own catalogue detail page (books/work/<id>/).
+    rslug = None
     for bk, bslug in BOOK_SLUG.items():
         if bk in key:
-            href = (("/vi/books/read/%s/" if lang == "vi" else "/books/read/%s/")
-                    % bslug)
+            rslug = bslug
             break
 
-    title_html = esc(t)
-    if href:
-        title_html = '<a href="%s">%s</a>' % (href, esc(t))
+    if rslug:
+        href = (("/vi/books/read/%s/" if lang == "vi" else "/books/read/%s/") % rslug)
+        foot_lbl = "Đọc bản dịch →" if lang == "vi" else "Open the book →"
+    else:
+        href = (("/vi/books/work/%d/" if lang == "vi" else "/books/work/%d/") % w["id"])
+        foot_lbl = "Xem chi tiết →" if lang == "vi" else "View details →"
 
-    footer = ""
-    if href:
-        footer = ('<div class="card-footer"><span>%s</span></div>'
-                  % ("Đọc bản dịch →" if lang == "vi" else "Open the book →"))
+    title_html = '<a href="%s">%s</a>' % (href, esc(t))
+    footer = '<div class="card-footer"><span>%s</span></div>' % foot_lbl
 
     return (
         '<div class="card" data-shelf="%(sid)s" data-text="%(txt)s">'
@@ -405,6 +457,159 @@ def card(w, lang, dom):
            "title": title_html, "flag": flag, "desc": esc(describe(w, lang)),
            "footer": footer}
     )
+
+
+def head(lang, title, desc):
+    return (
+        '<!doctype html><html lang="%s"><head><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        '<title>%s</title><meta name="description" content="%s">'
+        '<link rel="preconnect" href="https://fonts.googleapis.com">'
+        '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+        '<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">'
+        '<link rel="stylesheet" href="/books/assets/library.css">'
+        '</head><body>' % (lang, esc(title), esc(desc))
+    )
+
+
+def reader_slug_for(title):
+    key = (title or "").lower()
+    for bk, bslug in BOOK_SLUG.items():
+        if bk in key:
+            return bslug
+    return None
+
+
+def work_page(lang, w, dom):
+    """Catalogue detail page for one work, so every card opens on click."""
+    vi = lang == "vi"
+    t = w["title"]
+    domain = (dom.get(w["domain"]) or {}).get(lang, w["domain"])
+    rslug = reader_slug_for(t)
+    crumb_home = "/vi/books/" if vi else "/books/"
+    crumb_lbl = "Sách" if vi else "Books"
+
+    bits = [domain]
+    if w.get("pages"):
+        bits.append("%s %s" % (num(w["pages"], lang), "trang" if vi else "pages"))
+    if w.get("ndocs", 1) > 1:
+        bits.append("%d %s" % (w["ndocs"], "tệp" if vi else "files"))
+    if w.get("year"):
+        bits.append(str(w["year"]))
+    meta = " · ".join(bits)
+    desc = describe(w, lang)
+
+    docs = w.get("docs") or []
+    docs_html = ""
+    pdf_btns = ""
+    if docs:
+        rows = []
+        for d in docs:
+            dtitle = d.get("title") or d.get("path") or "—"
+            dpages = d.get("pages") or 0
+            p = d.get("path") or ""
+            rlink = ""
+            if p:
+                u = pdf_url(p)
+                rlink = (' · <a href="%s" target="_blank" rel="noopener">%s</a>'
+                         ' · <a href="%s" download>%s</a>'
+                         % (u, "đọc" if vi else "read", u, "tải" if vi else "download"))
+            rows.append('<li><span class="t">%s</span><span class="st">%s %s%s</span></li>'
+                        % (esc(dtitle), num(dpages, lang), "trang" if vi else "pages", rlink))
+        docs_html = ('<h2>%s</h2><ul class="toc-list">%s</ul>'
+                     % ("Tệp trong thư viện" if vi else "Files in the library",
+                        "".join(rows)))
+        p0 = docs[0].get("path") or ""
+        if p0:
+            u0 = pdf_url(p0)
+            rpage = ("/vi/books/reader/?u=" if vi else "/books/reader/?u=") + quote(u0, safe="")
+            pdf_btns = (
+                '<p style="display:flex;gap:.7rem;flex-wrap:wrap;margin:1.1rem 0;">'
+                '<a href="' + rpage + '" '
+                'style="display:inline-block;padding:.55rem .95rem;border:1.5px solid #000;'
+                'border-radius:6px;font-weight:600;text-decoration:none;color:#000;'
+                'background:#fffdf7;">' + ("📖 Đọc PDF" if vi else "📖 Read PDF") + '</a>'
+                '<a href="' + u0 + '" download '
+                'style="display:inline-block;padding:.55rem .95rem;border:1.5px solid #000;'
+                'border-radius:6px;font-weight:600;text-decoration:none;color:#fff;'
+                'background:#000;">' + ("⬇ Tải PDF" if vi else "⬇ Download PDF") + '</a>'
+                '</p>'
+            )
+
+    reader_html = ""
+    if rslug:
+        rhref = ("/vi/books/read/%s/" if vi else "/books/read/%s/") % rslug
+        reader_html = ('<p class="lead"><a href="%s"><strong>%s</strong></a></p>'
+                       % (rhref, "Mở bản dịch →" if vi else "Open the book →"))
+
+    policy = ("<b>Cách đọc.</b> Tệp PDF được lưu trong thư viện cục bộ và không được đăng lại tại đây. "
+              "Trang này là phiếu mục lục trực tuyến: tên sách, lĩnh vực, số trang và các tệp đi kèm."
+              if vi else
+              "<b>About this copy.</b> The PDF is held in the local library catalogue and is not "
+              "republished here. This page is the online catalogue entry: title, subject, page "
+              "count and the files that make up the work.")
+
+    body = (
+        '<main><article class="intranet-content reader">'
+        '<div class="reader-hero">'
+        '<div class="breadcrumb"><a href="' + crumb_home + '">' + esc(crumb_lbl) + '</a> · '
+        + esc(domain) + '</div>'
+        '<h1>' + esc(t) + '</h1>'
+        '<div class="meta-line">' + esc(meta) + '</div>'
+        '</div>'
+        '<div class="prose">'
+        '<p class="lead">' + esc(desc) + '</p>'
+        '<div class="note">' + policy + '</div>'
+        + pdf_btns +
+        reader_html +
+        docs_html +
+        '<div class="chapter-nav"><a href="' + crumb_home + '"><span class="k">← '
+        + ("Thư viện" if vi else "Library") + '</span>'
+        + esc("Tất cả sách" if vi else "All books") + '</a></div>'
+        '</div></article></main>'
+    )
+    title = "%s · Pro InstControl %s" % (t, "Thư viện" if vi else "Library")
+    other = ("/books/work/%d/" if vi else "/vi/books/work/%d/") % w["id"]
+    return (head(lang, title, desc) + header(lang, switch_href=other)
+            + body + footer(lang))
+
+
+def build_reader(lang):
+    """In-site PDF reader: embeds a PDF URL (?u=) in an iframe with fallback."""
+    vi = lang == "vi"
+    switch = "/books/reader/" if vi else "/vi/books/reader/"
+    title = "Đọc PDF" if vi else "PDF reader"
+    crumb = ('<a href="/vi/books/">Sách</a> · Đọc PDF' if vi
+             else '<a href="/books/">Books</a> · PDF reader')
+    note = ("Trình đọc PDF trong trang. Nếu tệp không hiển thị, hãy "
+            "<a href=\"#\" id=\"open-tab\">mở trong tab mới</a>."
+            if vi else
+            "In-page PDF reader. If the file does not display, "
+            "<a href=\"#\" id=\"open-tab\">open it in a new tab</a>.")
+    js = """
+(function(){
+  var u = new URLSearchParams(location.search).get('u') || '';
+  var frame = document.getElementById('pdf-frame');
+  var msg = document.getElementById('pdf-msg');
+  var openTab = document.getElementById('open-tab');
+  if(!u){ msg.textContent = '%s'; frame.style.display='none'; return; }
+  frame.src = u;
+  openTab.href = u; openTab.target = '_blank'; openTab.rel = 'noopener';
+})();
+""" % ("Chưa chỉ định tệp PDF." if vi else "No PDF specified.")
+    body = (
+        '<main><article class="intranet-content reader">'
+        '<div class="reader-hero"><div class="breadcrumb">' + crumb + '</div>'
+        '<h1>' + ("Đọc PDF" if vi else "PDF reader") + '</h1></div>'
+        '<div class="prose">'
+        '<p id="pdf-msg">' + note + '</p>'
+        '<iframe id="pdf-frame" title="PDF" '
+        'style="width:100%;height:82vh;border:1px solid #ddd;border-radius:8px;"></iframe>'
+        '</div></article></main>'
+        '<script>' + js + '</script>'
+    )
+    return (head(lang, title, title) + header(lang, switch_href=switch)
+            + body + footer(lang))
 
 
 MARK = ('<svg viewBox="0 0 200 200" aria-hidden="true">'
@@ -427,16 +632,18 @@ NAV_VI = [("/?lang=vi", "Trang chủ"), ("/fundamentals.html?lang=vi", "Cơ bả
           ("/vi/books/", "Sách")]
 
 
-def header(lang, active_books=True):
+def header(lang, active_books=True, switch_href=None):
     nav = NAV_EN if lang == "en" else NAV_VI
     links = []
     for href, label in nav:
         cls = ' class="active"' if (active_books and href.endswith("books/")) else ""
         links.append('<a href="%s"%s>%s</a>' % (href, cls, esc(label)))
+    if switch_href is None:
+        switch_href = "/vi/books/" if lang == "en" else "/books/"
     if lang == "en":
-        links.append('<a href="/vi/books/" class="lang-switch">VI</a>')
+        links.append('<a href="%s" class="lang-switch">VI</a>' % switch_href)
     else:
-        links.append('<a href="/books/" class="lang-switch">EN</a>')
+        links.append('<a href="%s" class="lang-switch">EN</a>' % switch_href)
     brand_home = "/" if lang == "en" else "/?lang=vi"
     return (
         '<header class="site-header">'
@@ -617,6 +824,28 @@ def main():
         page = build_index(lang)
         open(out, "w", encoding="utf-8").write(page)
         print("wrote %s  %.0f kB" % (os.path.relpath(out, ROOT), len(page) / 1024))
+
+    # In-site PDF reader pages (EN + VI)
+    for lang in ("en", "vi"):
+        pair = ("vi/books/reader/index.html" if lang == "vi"
+                else "books/reader/index.html")
+        path = os.path.join(ROOT, *pair.split("/"))
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        open(path, "w", encoding="utf-8").write(build_reader(lang))
+    print("wrote reader pages")
+
+    # One catalogue detail page per work, so every card opens on click.
+    cat, dom, _ = load()
+    n = 0
+    for lang in ("en", "vi"):
+        for w in cat["works"]:
+            pair = ("vi/books/work/%d/index.html" if lang == "vi"
+                    else "books/work/%d/index.html") % w["id"]
+            path = os.path.join(ROOT, *pair.split("/"))
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            open(path, "w", encoding="utf-8").write(work_page(lang, w, dom))
+            n += 1
+    print("wrote %d work detail pages" % n)
 
 
 if __name__ == "__main__":
