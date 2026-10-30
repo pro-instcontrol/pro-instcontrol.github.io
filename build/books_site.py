@@ -509,7 +509,7 @@ def work_page(lang, w, dom):
             dpages = d.get("pages") or 0
             p = d.get("path") or ""
             rlink = ""
-            if p:
+            if p and p.lower().endswith(".pdf"):
                 u = pdf_url(p)
                 rlink = (' · <a href="%s" target="_blank" rel="noopener">%s</a>'
                          ' · <a href="%s" download>%s</a>'
@@ -519,9 +519,10 @@ def work_page(lang, w, dom):
         docs_html = ('<h2>%s</h2><ul class="toc-list">%s</ul>'
                      % ("Tệp trong thư viện" if vi else "Files in the library",
                         "".join(rows)))
-        p0 = docs[0].get("path") or ""
-        if p0:
-            u0 = pdf_url(p0)
+        pdf_paths = [d.get("path") for d in docs
+                     if (d.get("path") or "").lower().endswith(".pdf")]
+        if pdf_paths:
+            u0 = pdf_url(pdf_paths[0])
             rpage = ("/vi/books/reader/?u=" if vi else "/books/reader/?u=") + quote(u0, safe="")
             pdf_btns = (
                 '<p style="display:flex;gap:.7rem;flex-wrap:wrap;margin:1.1rem 0;">'
