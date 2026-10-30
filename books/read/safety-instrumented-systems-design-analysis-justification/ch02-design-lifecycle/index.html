@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 2 - Design Lifecycle · Safety Instrumented Systems</title>
+<meta name="description" content="English outline and figure companion to Chapter 2 of Gruhn & Cheddie Safety Instrumented Systems. Full Vietnamese translation linked.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/books/assets/library.css">
+</head>
+<body>
+<header class="site-header"><a href="/" class="brand"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#fff" stroke="#000" stroke-width="4"/><circle cx="100" cy="100" r="68" fill="none" stroke="#000" stroke-width="1.6" stroke-dasharray="1.5 9"/><path d="M100 26 A74 74 0 0 1 174 100" fill="none" stroke="#000" stroke-width="7"/><line x1="100" y1="100" x2="143" y2="57" stroke="#000" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="100" r="10" fill="#000"/></svg><span>Pro InstControl</span></a><nav class="site-nav"><a href="/">Home</a><a href="/fundamentals.html">Fundamentals</a><a href="/instruments.html">Instruments</a><a href="/control.html">Control</a><a href="/safety.html">Safety</a><a href="/tools.html">Tools</a><a href="/comparison.html">Comparison</a><a href="/standards.html">Standards</a><a href="/books/" class="active">Books</a><a href="/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch02-design-lifecycle/" class="lang-switch">VI</a></nav></header>
+<main>
+<article class="intranet-content reader">
+
+  <div class="reader-hero">
+    <div class="breadcrumb"><a href="/books/">Books</a> · <a href="/books/read/safety-instrumented-systems-design-analysis-justification/">Safety Instrumented Systems</a> · Chapter 2</div>
+    <h1>Design Lifecycle</h1>
+    <p class="byline">Paul Gruhn, P.E., CFSE &amp; Harry L. Cheddie, P.Eng., CFSE</p>
+    <div class="meta-line">Chapter 2 · 11 pages</div>
+  </div>
+
+  <div class="prose">
+
+    <div class="note">
+      <b>What this page is.</b> An outline and figure companion to Chapter 2. The full text lives in
+      <code>1829_02.pdf</code> in the library catalogue and is not republished here. The complete
+      Vietnamese translation of this chapter is
+      <a href="/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch02-design-lifecycle/">here</a>.
+    </div>
+
+    <p class="lead">"If I had 8 hours to cut down a tree, I would spend 6 hours sharpening the axe." - A. Lincoln. Designing a safety instrumented system is beyond any single person: it demands a multi-discipline team. This chapter shows why - from hindsight vs. foresight and the HSE findings on accident causes (44% traced to wrong or incomplete specifications) through the eight steps of the SIS design lifecycle described in IEC 61511 / ANSI-ISA-84.</p>
+
+    <h2>Chapter outline</h2>
+
+    <ul class="toc-list">
+      <li><span class="n">2.1</span><span class="t">Hindsight/Foresight</span><span class="st">p. 20</span></li>
+      <li><span class="n">2.2</span><span class="t">Findings of the HSE</span><span class="st">p. 21</span></li>
+      <li><span class="n">2.3</span><span class="t">Design Lifecycle</span><span class="st">p. 24</span></li>
+      <li><span class="n">2.3.1</span><span class="t">Hazard &amp; Risk Analysis</span><span class="st">p. 25</span></li>
+      <li><span class="n">2.3.2</span><span class="t">Allocation of Safety Functions to Protective Layers</span><span class="st">p. 26</span></li>
+      <li><span class="n">2.3.3</span><span class="t">Develop Safety Requirements Specification</span><span class="st">p. 26</span></li>
+      <li><span class="n">2.3.4</span><span class="t">SIS Design &amp; Engineering</span><span class="st">p. 27</span></li>
+      <li><span class="n">2.3.5</span><span class="t">Installation, Commissioning, and Validation</span><span class="st">p. 28</span></li>
+      <li><span class="n">2.3.6</span><span class="t">Operations and Maintenance</span><span class="st">p. 28</span></li>
+      <li><span class="n">2.3.7</span><span class="t">Modifications</span><span class="st">p. 28</span></li>
+      <li><span class="n">2.3.8</span><span class="t">Decommissioning</span><span class="st">p. 28</span></li>
+      <li><span class="n">·</span><span class="t">Summary</span><span class="st">p. 29</span></li>
+    </ul>
+    <h2>Figures</h2>
+    <p style="color:#888;font-size:.82rem">These diagrams are reproduced from the Vietnamese edition (Figures 2-1 to 2-3).</p>
+    <figure class="figure" id="fig-2-1">
+      <svg viewBox="0 0 680 220" role="img" aria-label="Nguyên nhân tai nạn theo từng giai đoạn, theo HSE Anh">
+        <style>
+          .blab{font:13px Inter,sans-serif;fill:#222}
+          .bval{font:13px Inter,sans-serif;font-weight:600;fill:#111}
+          .bar{fill:#2a2a2a}
+        </style>
+        <line x1="200" y1="20" x2="200" y2="200" stroke="#bbb" stroke-width="1"/>
+        <g>
+          <text x="192" y="36" text-anchor="end" class="blab">Đặc tả</text>
+          <rect x="200" y="24" width="198" height="22" class="bar"/>
+          <text x="404" y="40" class="bval">44%</text>
+          <text x="192" y="68" text-anchor="end" class="blab">Thay đổi sau</text>
+          <text x="192" y="84" text-anchor="end" class="blab">đưa vào vận hành</text>
+          <rect x="200" y="62" width="90" height="22" class="bar"/>
+          <text x="296" y="78" class="bval">20%</text>
+          <text x="192" y="112" text-anchor="end" class="blab">Thiết kế &amp; kỹ thuật</text>
+          <rect x="200" y="100" width="67.5" height="22" class="bar"/>
+          <text x="273" y="116" class="bval">15%</text>
+          <text x="192" y="148" text-anchor="end" class="blab">Vận hành &amp;</text>
+          <text x="192" y="164" text-anchor="end" class="blab">bảo dưỡng</text>
+          <rect x="200" y="138" width="67.5" height="22" class="bar"/>
+          <text x="273" y="154" class="bval">15%</text>
+          <text x="192" y="192" text-anchor="end" class="blab">Lắp đặt &amp;</text>
+          <text x="192" y="208" text-anchor="end" class="blab">đưa vào vận hành</text>
+          <rect x="200" y="182" width="27" height="22" class="bar"/>
+          <text x="233" y="198" class="bval">6%</text>
+        </g>
+        <text x="200" y="150" class="blab" style="font-size:11px;fill:#888">Tỷ lệ % của 34 tai nạn do hỏng hệ thống điều khiển/an toàn</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-1 · Phát hiện của HSE Anh: nguyên nhân tai nạn phân theo giai đoạn (44% do đặc tả sai/thiếu)</figcaption>
+    </figure>
+<figure class="figure" id="fig-2-2">
+      <svg viewBox="0 0 640 300" role="img" aria-label="Vòng đời thiết kế SIS theo IEC 61511">
+        <defs>
+          <marker id="arr2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/>
+          </marker>
+        </defs>
+        <style>
+          .bx{fill:#fff;stroke:#2a2a2a;stroke-width:1.4}
+          .bt{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .cl{font:10px Inter,sans-serif;fill:#888;text-anchor:middle}
+          .ctr{font:13px Inter,sans-serif;font-weight:600;fill:#111;text-anchor:middle}
+        </style>
+        <!-- loop of 8 main steps -->
+        <path d="M320 40 L520 70 L560 160 L460 250 L180 250 L80 160 L120 70 Z" fill="none" stroke="#c9a961" stroke-width="2" stroke-dasharray="4 4"/>
+        <g>
+          <rect x="270" y="20" width="100" height="40" rx="6" class="bx"/><text x="320" y="38" class="bt">Phân tích</text><text x="320" y="52" class="cl">rủi ro (8)</text>
+          <rect x="476" y="52" width="100" height="40" rx="6" class="bx"/><text x="526" y="70" class="bt">Phân bổ</text><text x="526" y="84" class="cl">lớp bảo vệ (9)</text>
+          <rect x="500" y="146" width="100" height="40" rx="6" class="bx"/><text x="550" y="164" class="bt">Xây dựng SRS</text><text x="550" y="178" class="cl">(10 &amp; 12)</text>
+          <rect x="404" y="246" width="100" height="40" rx="6" class="bx"/><text x="454" y="264" class="bt">Thiết kế &amp;</text><text x="454" y="278" class="cl">kỹ thuật (11,12)</text>
+          <rect x="156" y="246" width="100" height="40" rx="6" class="bx"/><text x="206" y="264" class="bt">Lắp đặt,</text><text x="206" y="278" class="cl">thử &amp; xác nhận</text>
+          <rect x="40" y="146" width="100" height="40" rx="6" class="bx"/><text x="90" y="164" class="bt">Vận hành &amp;</text><text x="90" y="178" class="cl">bảo dưỡng (16)</text>
+          <rect x="64" y="52" width="100" height="40" rx="6" class="bx"/><text x="114" y="70" class="bt">Ngưng vận hành</text><text x="114" y="84" class="cl">(18)</text>
+          <rect x="270" y="120" width="100" height="40" rx="6" class="bx"/><text x="320" y="138" class="bt">Thử nghiệm</text><text x="320" y="152" class="cl">xác nhận (7)</text>
+        </g>
+        <text x="320" y="300" class="cl" style="fill:#222">Các bước thực hiện xuyên suốt: Quản lý, Đánh giá, Kiểm toán (5) · Sửa đổi (17) · Biện pháp khác giảm rủi ro (9)</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-2 · Vòng đời thiết kế SIS (số trong ngoặc là điều khoản IEC 61511)</figcaption>
+    </figure>
+<figure class="figure" id="fig-2-3">
+      <svg viewBox="0 0 640 160" role="img" aria-label="Vòng đời đơn giản hóa theo 3 nhóm">
+        <style>
+          .g{fill:#f3f3f3;stroke:#bbb;stroke-width:1}
+          .gsep{fill:#c9a961}
+          .gt{font:13px Inter,sans-serif;font-weight:600;fill:#111;text-anchor:middle}
+          .st{font:12px Inter,sans-serif;fill:#222}
+          .sb{fill:#fff;stroke:#2a2a2a;stroke-width:1.2}
+        </style>
+        <rect x="10" y="24" width="190" height="112" rx="6" class="g"/>
+        <rect x="232" y="24" width="190" height="112" rx="6" class="g"/>
+        <rect x="454" y="24" width="176" height="112" rx="6" class="g"/>
+        <text x="105" y="44" class="gt">Phân tích</text>
+        <text x="327" y="44" class="gt">Thực hiện</text>
+        <text x="542" y="44" class="gt">Vận hành</text>
+        <g class="st" text-anchor="middle">
+          <rect x="24" y="54" width="162" height="22" rx="4" class="sb"/><text x="105" y="69">1 · Phân tích rủi ro</text>
+          <rect x="24" y="82" width="162" height="22" rx="4" class="sb"/><text x="105" y="97">2 · Nhận diện SIF</text>
+          <rect x="24" y="110" width="162" height="22" rx="4" class="sb"/><text x="105" y="125">3 · Xác định SIL</text>
+          <rect x="246" y="54" width="162" height="22" rx="4" class="sb"/><text x="327" y="69">4 · Thiết kế</text>
+          <rect x="246" y="82" width="162" height="22" rx="4" class="sb"/><text x="327" y="97">5 · Lắp đặt</text>
+          <rect x="246" y="110" width="162" height="22" rx="4" class="sb"/><text x="327" y="125">6 · Đưa vào vận hành</text>
+          <rect x="468" y="54" width="148" height="22" rx="4" class="sb"/><text x="542" y="69">7 · Vận hành</text>
+          <rect x="468" y="82" width="148" height="22" rx="4" class="sb"/><text x="542" y="97">8 · Bảo dưỡng</text>
+          <rect x="468" y="110" width="148" height="22" rx="4" class="sb"/><text x="542" y="125">9 · Sửa đổi</text>
+        </g>
+      </svg>
+      <figcaption class="figcap">Hình 2-3 · Vòng đời đơn giản hóa: 9 bước gộp trong 3 nhóm (Phân tích – Thực hiện – Vận hành)</figcaption>
+    </figure>
+
+    <div class="chapter-nav">
+      <a href="/books/read/safety-instrumented-systems-design-analysis-justification/ch01-introduction/"><span class="k">← Chapter 1</span>Introduction</a>
+      <a href="/books/read/safety-instrumented-systems-design-analysis-justification/" style="text-align:right;"><span class="k">All chapters →</span>Book contents</a>
+    </div>
+
+  </div>
+</article>
+</main>
+</body>
+</html>

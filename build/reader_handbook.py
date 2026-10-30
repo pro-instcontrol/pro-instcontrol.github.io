@@ -162,7 +162,8 @@ PAGES = 2617
 FILES = 117
 
 # chapters that already exist as reader pages: num -> (slug, title-vi)
-DONE = {1: "ch01-characteristics-of-instrumentation"}
+DONE = {1: "ch01-characteristics-of-instrumentation",
+        2: "ch02-operational-modes-of-instrumentation"}
 
 
 def num(n, lang):

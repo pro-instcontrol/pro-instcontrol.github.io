@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 2 - Operational Modes of Instrumentation · Measurement, Instrumentation and Sensors Handbook</title>
+<meta name="description" content="English outline and figure companion to Chapter 2 of the CRC Measurement, Instrumentation and Sensors Handbook. Full Vietnamese translation linked.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/books/assets/library.css">
+</head>
+<body>
+<header class="site-header"><a href="/" class="brand"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#fff" stroke="#000" stroke-width="4"/><circle cx="100" cy="100" r="68" fill="none" stroke="#000" stroke-width="1.6" stroke-dasharray="1.5 9"/><path d="M100 26 A74 74 0 0 1 174 100" fill="none" stroke="#000" stroke-width="7"/><line x1="100" y1="100" x2="143" y2="57" stroke="#000" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="100" r="10" fill="#000"/></svg><span>Pro InstControl</span></a><nav class="site-nav"><a href="/">Home</a><a href="/fundamentals.html">Fundamentals</a><a href="/instruments.html">Instruments</a><a href="/control.html">Control</a><a href="/safety.html">Safety</a><a href="/tools.html">Tools</a><a href="/comparison.html">Comparison</a><a href="/standards.html">Standards</a><a href="/books/" class="active">Books</a><a href="/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch02-operational-modes-of-instrumentation/" class="lang-switch">VI</a></nav></header>
+<main>
+<article class="intranet-content reader">
+
+  <div class="reader-hero">
+    <div class="breadcrumb"><a href="/books/">Books</a> · <a href="/books/read/the-measurement-instrumentation-and-sensors-handbook/">Measurement, Instrumentation and Sensors Handbook</a> · Chapter 2</div>
+    <h1>Operational Modes of Instrumentation</h1>
+    <p class="byline">Richard S. Figliola · Clemson University</p>
+    <div class="meta-line">Chapter 2</div>
+  </div>
+
+  <div class="prose">
+
+    <div class="note">
+      <b>What this page is.</b> An outline and figure companion to Chapter 2. The full text lives in
+      <code>Ch02.pdf</code> in the library catalogue and is not republished here. The complete
+      Vietnamese translation of this chapter is
+      <a href="/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch02-operational-modes-of-instrumentation/">here</a>.
+    </div>
+
+    <p class="lead">A measuring instrument can operate in several modes. This chapter contrasts the null method (balancing the measurand against a known standard to reach a zero condition, with very high input impedance and low loading error) with the deflection method (output deflects proportionally to the measurand, drawing energy and so introducing loading error), then treats analog vs. digital sensors and readouts, and shows why input impedance governs loading error in a signal chain.</p>
+
+    <h2>Chapter outline</h2>
+
+    <ul class="toc-list">
+      <li><span class="n">2.1</span><span class="t">Null Instrument</span></li>
+      <li><span class="n">2.2</span><span class="t">Deflection Instrument</span></li>
+      <li><span class="n">2.3</span><span class="t">Analog and Digital Sensors</span></li>
+      <li><span class="n">2.4</span><span class="t">Analog and Digital Readout Instruments</span></li>
+      <li><span class="n">2.5</span><span class="t">Input Impedance</span></li>
+      <li><span class="n">·</span><span class="t">Defining Terms</span></li>
+    </ul>
+    <h2>Figures</h2>
+    <p style="color:#888;font-size:.82rem">These diagrams are reproduced from the Vietnamese edition (Figures 2-1 to 2-8).</p>
+    <figure class="figure" id="fig-2-1">
+      <svg viewBox="0 0 560 200" role="img" aria-label="Cân hai đòn cân bằng: đại lượng đo và quả cân chuẩn cân bằng nhau">
+        <style>.lb{font:13px Inter,sans-serif;fill:#222}.lbs{font:11px Inter,sans-serif;fill:#888}</style>
+        <line x1="280" y1="40" x2="280" y2="170" stroke="#2a2a2a" stroke-width="3"/>
+        <polygon points="120,70 440,70 280,40" fill="none" stroke="#2a2a2a" stroke-width="2.5"/>
+        <circle cx="280" cy="70" r="5" fill="#2a2a2a"/>
+        <rect x="90" y="70" width="60" height="10" fill="none" stroke="#2a2a2a"/>
+        <line x1="120" y1="80" x2="120" y2="150" stroke="#2a2a2a" stroke-width="1.5"/>
+        <path d="M95 150 h50 v18 h-50 z" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/>
+        <rect x="410" y="70" width="60" height="10" fill="none" stroke="#2a2a2a"/>
+        <line x1="440" y1="80" x2="440" y2="130" stroke="#2a2a2a" stroke-width="1.5"/>
+        <path d="M418 130 h44 v14 h-44 z" fill="#e9e9e9" stroke="#2a2a2a" stroke-width="1.5"/>
+        <text x="120" y="186" text-anchor="middle" class="lb">Đại lượng đo (unknown)</text>
+        <text x="440" y="186" text-anchor="middle" class="lb">Quả cân chuẩn (known)</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-1 · Đại lượng đo và các đại lượng已知 cân bằng lẫn nhau trong thiết bị chỉ thị zero</figcaption>
+    </figure>
+<figure class="figure" id="fig-2-2">
+      <svg viewBox="0 0 560 220" role="img" aria-label="Sơ đồ khối thiết bị chỉ thị zero với vòng lặp phản hồi">
+        <defs><marker id="ah2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
+        <style>.bx2{fill:#fff;stroke:#2a2a2a;stroke-width:1.4}.t2{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}</style>
+        <rect x="40" y="90" width="120" height="40" rx="6" class="bx2"/><text x="100" y="108" class="t2">Đại lượng đo</text><text x="100" y="123" class="t2">(measurand)</text>
+        <rect x="400" y="90" width="120" height="40" rx="6" class="bx2"/><text x="460" y="108" class="t2">Đầu vào cân bằng</text><text x="460" y="123" class="t2">(balance input)</text>
+        <circle cx="280" cy="110" r="24" fill="#fff" stroke="#2a2a2a" stroke-width="1.6"/><text x="280" y="115" class="t2">Σ</text>
+        <rect x="240" y="175" width="120" height="34" rx="6" class="bx2"/><text x="300" y="196" class="t2">Logic phản hồi</text>
+        <line x1="100" y1="110" x2="256" y2="110" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah2)"/>
+        <line x1="460" y1="110" x2="304" y2="110" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah2)"/>
+        <path d="M280 134 C 280 160 300 160 300 175" fill="none" stroke="#2a2a2a" stroke-width="1.4" marker-end="url(#ah2)"/>
+        <path d="M300 175 C 300 150 240 150 220 130" fill="none" stroke="#2a2a2a" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ah2)"/>
+        <line x1="280" y1="86" x2="280" y2="58" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah2)"/>
+        <text x="288" y="54" class="t2" style="text-anchor:start">Đầu ra = độ lớn đầu vào cân bằng</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-2 · Thiết bị chỉ thị zero cần đầu vào từ hai nguồn để so sánh</figcaption>
+    </figure>
+<figure class="figure" id="fig-2-3">
+      <svg viewBox="0 0 560 220" role="img" aria-label="Cân lò xo: trọng lượng W làm lệch tấm lò xo một đoạn x">
+        <defs><marker id="ah3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
+        <style>.t3{font:12px Inter,sans-serif;fill:#111}</style>
+        <line x1="60" y1="30" x2="60" y2="180" stroke="#2a2a2a" stroke-width="2"/>
+        <rect x="50" y="30" width="20" height="14" fill="#e9e9e9" stroke="#2a2a2a"/>
+        <path d="M60 44 q -18 40 0 90" fill="none" stroke="#2a2a2a" stroke-width="2"/>
+        <line x1="60" y1="134" x2="60" y2="158" stroke="#2a2a2a" stroke-width="3" marker-end="url(#ah3)"/>
+        <rect x="30" y="158" width="60" height="20" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/>
+        <line x1="280" y1="20" x2="280" y2="180" stroke="#bbb" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="260" y1="44" x2="300" y2="44" stroke="#888" stroke-width="1"/>
+        <line x1="260" y1="134" x2="300" y2="134" stroke="#888" stroke-width="1"/>
+        <text x="312" y="48" class="t3">vị trí ban đầu</text>
+        <text x="312" y="138" class="t3">lệch x (→ kim chỉ thị)</text>
+        <text x="60" y="200" text-anchor="middle" class="t3">W (đại lượng đo)</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-3 · Thiết bị lệch chỉ cần đầu vào từ một nguồn, nhưng có thể gây lỗi tải</figcaption>
+    </figure>
+<figure class="figure" id="fig-2-4">
+      <svg viewBox="0 0 560 130" role="img" aria-label="Luu đồ thiết bị lệch: phần tử chính đến điều hoà tín hiệu đến thang đầu ra">
+        <defs><marker id="ah4" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
+        <style>.b4{fill:#fff;stroke:#2a2a2a;stroke-width:1.4}.t4{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}</style>
+        <rect x="20" y="45" width="140" height="40" rx="6" class="b4"/><text x="90" y="63" class="t4">Phần tử chính /</text><text x="90" y="78" class="t4">mạch sơ cấp</text>
+        <rect x="210" y="45" width="140" height="40" rx="6" class="b4"/><text x="280" y="63" class="t4">Điều hoà</text><text x="280" y="78" class="t4">tín hiệu</text>
+        <rect x="400" y="45" width="140" height="40" rx="6" class="b4"/><text x="470" y="63" class="t4">Thang</text><text x="470" y="78" class="t4">đầu ra</text>
+        <line x1="160" y1="65" x2="205" y2="65" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah4)"/>
+        <line x1="350" y1="65" x2="395" y2="65" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah4)"/>
+      </svg>
+      <figcaption class="figcap">Hình 2-4 · Luồng logic của thiết bị lệch khá đơn giản</figcaption>
+    </figure>
+<figure class="figure" id="fig-2-5">
+      <svg viewBox="0 0 560 160" role="img" aria-label="Tín hiệu tương tự liên tục theo thời gian">
+        <style>.t5{font:12px Inter,sans-serif;fill:#111}</style>
+        <line x1="40" y1="80" x2="520" y2="80" stroke="#bbb" stroke-width="1"/>
+        <path d="M40 80 C 80 30 120 30 160 80 S 240 130 280 80 S 360 30 400 80 S 480 130 520 80" fill="none" stroke="#2a2a2a" stroke-width="2"/>
+        <text x="40" y="150" class="t5">thời gian →</text>
+        <text x="430" y="40" class="t5">tín hiệu tương tự</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-5 · Cặp nhiệt điện cung cấp một tín hiệu tương tự để xử lý</figcaption>
+    </figure>
+<figure class="figure" id="fig-2-6">
+      <svg viewBox="0 0 560 170" role="img" aria-label="Bộ đếm vòng quay: trục, đinh tán, bộ thu, thanh ghi, màn hình">
+        <defs><marker id="ah6" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
+        <style>.b6{fill:#fff;stroke:#2a2a2a;stroke-width:1.4}.t6{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}</style>
+        <circle cx="70" cy="90" r="34" fill="none" stroke="#2a2a2a" stroke-width="2"/>
+        <rect x="92" y="84" width="8" height="8" fill="#2a2a2a"/>
+        <rect x="150" y="70" width="130" height="40" rx="6" class="b6"/><text x="215" y="88" class="t6">Bộ thu từ tính</text><text x="215" y="103" class="t6">(pickup)</text>
+        <rect x="320" y="70" width="90" height="40" rx="6" class="b6"/><text x="365" y="88" class="t6">Thanh ghi</text><text x="365" y="103" class="t6">(register)</text>
+        <rect x="450" y="70" width="90" height="40" rx="6" class="b6"/><text x="495" y="88" class="t6">Màn hình</text><text x="495" y="103" class="t6">số</text>
+        <line x1="104" y1="90" x2="148" y2="90" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah6)"/>
+        <line x1="280" y1="90" x2="315" y2="90" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah6)"/>
+        <line x1="410" y1="90" x2="445" y2="90" stroke="#2a2a2a" stroke-width="1.6" marker-end="url(#ah6)"/>
+        <text x="70" y="145" text-anchor="middle" class="t6">trục quay</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-6 · Một trục quay với bộ đếm vòng quay sinh ra tín hiệu số</figcaption>
+    </figure>
+<figure class="figure" id="fig-2-7">
+      <svg viewBox="0 0 560 200" role="img" aria-label="Chip hiển thị bảy đoạn và một chữ số 8">
+        <style>.seg{stroke:#2a2a2a;stroke-width:5;stroke-linecap="round";fill:none}.dig{font:60px Inter,sans-serif;font-weight:600;fill:#2a2a2a;text-anchor:middle}</style>
+        <rect x="40" y="40" width="120" height="120" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/>
+        <line x1="60" y1="60" x2="140" y2="60" class="seg"/>
+        <line x1="60" y1="60" x2="60" y2="100" class="seg"/>
+        <line x1="140" y1="60" x2="140" y2="100" class="seg"/>
+        <line x1="60" y1="100" x2="140" y2="100" class="seg"/>
+        <line x1="60" y1="100" x2="60" y2="140" class="seg"/>
+        <line x1="140" y1="100" x2="140" y2="140" class="seg"/>
+        <line x1="60" y1="140" x2="140" y2="140" class="seg"/>
+        <text x="230" y="65" class="seg" style="font:13px Inter,sans-serif;fill:#111">A</text>
+        <text x="200" y="80" class="seg" style="font:13px Inter,sans-serif;fill:#111">F</text>
+        <text x="175" y="105" class="seg" style="font:13px Inter,sans-serif;fill:#111">G</text>
+        <text x="200" y="135" class="seg" style="font:13px Inter,sans-serif;fill:#111">E</text>
+        <text x="230" y="150" class="seg" style="font:13px Inter,sans-serif;fill:#111">D</text>
+        <text x="300" y="115" style="font:30px Inter,sans-serif;fill:#111">→</text>
+        <text x="430" y="120" class="dig">8</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-7 · Chip hiển thị bảy đoạn có thể hiển thị bất cứ chữ số nào từ 0 đến 9</figcaption>
+    </figure>
+<figure class="figure" id="fig-2-8">
+      <svg viewBox="0 0 560 200" role="img" aria-label="Mạch tương đương chuỗi thiết bị: nguồn E1 Z1 và tải Z2">
+        <defs><marker id="ah8" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>
+        <style>.b8{font:12px Inter,sans-serif;fill:#111}</style>
+        <line x1="70" y1="100" x2="490" y2="100" stroke="#2a2a2a" stroke-width="2"/>
+        <line x1="70" y1="60" x2="70" y2="140" stroke="#2a2a2a" stroke-width="2"/>
+        <line x1="490" y1="60" x2="490" y2="140" stroke="#2a2a2a" stroke-width="2"/>
+        <text x="50" y="55" class="b8">E₁</text>
+        <rect x="180" y="84" width="80" height="32" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/><text x="220" y="104" text-anchor="middle" class="b8">Z₁</text>
+        <rect x="320" y="84" width="80" height="32" fill="#fff" stroke="#2a2a2a" stroke-width="1.5"/><text x="360" y="104" text-anchor="middle" class="b8">Z₂</text>
+        <text x="280" y="60" text-anchor="middle" class="b8">E₂ = E₁·Z₂/(Z₁+Z₂)</text>
+        <text x="220" y="140" text-anchor="middle" class="b8">nguồn (thiết bị 1)</text>
+        <text x="360" y="140" text-anchor="middle" class="b8">tải (thiết bị 2)</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-8 · Một mạch tương đương được hình thành bằng cách áp dụng thiết bị đo vào đầu cuối đầu ra của một thiết bị</figcaption>
+    </figure>
+
+    <div class="chapter-nav">
+      <a href="/books/read/the-measurement-instrumentation-and-sensors-handbook/ch01-characteristics-of-instrumentation/"><span class="k">← Chapter 1</span>Characteristics of Instrumentation</a>
+      <a href="/books/read/the-measurement-instrumentation-and-sensors-handbook/" style="text-align:right;"><span class="k">All chapters →</span>Book contents</a>
+    </div>
+
+  </div>
+</article>
+</main>
+</body>
+</html>

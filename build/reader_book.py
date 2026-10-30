@@ -53,7 +53,7 @@ BOOKS = {
             15: ("SIS Design Checklist", "Danh mục kiểm tra thiết kế SIS"),
             16: ("Case Study", "Nghiên cứu tình huống"),
         },
-        "done": {1: "ch01-introduction"},
+        "done": {1: "ch01-introduction", 2: "ch02-design-lifecycle"},
         "copyright_en": "Original text © 2006 ISA — The Instrumentation, Systems, and Automation Society",
         "copyright_vi": "Bản gốc © 2006 ISA — Hiệp hội Đo lường, Hệ thống và Tự động hóa",
         "lede_en": ("The practical “how-to” on specifying, analysing, designing, installing and "

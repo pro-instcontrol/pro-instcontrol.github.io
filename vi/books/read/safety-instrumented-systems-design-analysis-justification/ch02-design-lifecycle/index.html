@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 2 — Vòng đời thiết kế · Hệ thống đo lường an toàn — Thiết kế, phân tích và biện minh</title>
+<meta name="description" content="Bản dịch tiếng Việt Chương 2 “Design Lifecycle” của Paul Gruhn & Harry L. Cheddie — tại sao thiết kế an toàn đòi hỏi một đội ngũ đa ngành, phát hiện của HSE Anh về nguyên nhân tai nạn, và tám bước của vòng đời hệ thống đo lường an toàn theo IEC 61511.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/books/assets/library.css">
+</head>
+<body>
+<header class="site-header"><a href="/?lang=vi" class="brand"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#fff" stroke="#000" stroke-width="4"/><circle cx="100" cy="100" r="68" fill="none" stroke="#000" stroke-width="1.6" stroke-dasharray="1.5 9"/><path d="M100 26 A74 74 0 0 1 174 100" fill="none" stroke="#000" stroke-width="7"/><line x1="100" y1="100" x2="143" y2="57" stroke="#000" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="100" r="10" fill="#000"/></svg><span>Pro InstControl</span></a><nav class="site-nav"><a href="/?lang=vi">Trang chủ</a><a href="/fundamentals.html?lang=vi">Cơ bản</a><a href="/instruments.html?lang=vi">Thiết bị</a><a href="/control.html?lang=vi">Điều khiển</a><a href="/safety.html?lang=vi">An toàn</a><a href="/tools.html?lang=vi">Công cụ</a><a href="/comparison.html?lang=vi">So sánh</a><a href="/standards.html?lang=vi">Tiêu chuẩn</a><a href="/vi/books/" class="active">Sách</a><a href="/books/read/safety-instrumented-systems-design-analysis-justification/ch02-design-lifecycle/" class="lang-switch">EN</a></nav></header>
+
+<main>
+<article class="intranet-content reader">
+
+  <div class="reader-hero">
+    <div class="breadcrumb"><a href="/vi/books/">Sách</a> · <a href="/vi/books/read/safety-instrumented-systems-design-analysis-justification/">Hệ thống đo lường an toàn</a> · Chương 2</div>
+    <h1>Vòng đời thiết kế</h1>
+    <p class="byline">Paul Gruhn, P.E., CFSE &amp; Harry L. Cheddie, P.Eng., CFSE</p>
+    <div class="meta-line">Chương 2 · 11 trang gốc · bản dịch tiếng Việt</div>
+  </div>
+
+  <div class="prose">
+
+    <div class="note">
+      <b>Thuật ngữ chính của chương.</b>
+      <em>HSE</em> — Cơ quan Thực thi An toàn và Sức khỏe (Anh) ·
+      <em>HAZOP</em> — phân tích mối nguy và khả năng vận hành ·
+      <em>SIF</em> — chức năng đo lường an toàn (Safety Instrumented Function) ·
+      <em>SRS</em> — đặc tả yêu cầu an toàn (Safety Requirements Specification) ·
+      <em>SIL</em> — mức độ toàn vẹn an toàn (Safety Integrity Level) ·
+      <em>IEC 61511</em> / <em>ANSI/ISA-84.00.01-2004</em> — tiêu chuẩn an toàn chức năng cho lĩnh vực quá trình.
+      Tiêu đề mỗi mục giữ nguyên bản tiếng Anh trong ngoặc để tiện đối chiếu với bản gốc.
+    </div>
+
+    <p class="lead">“Nếu tôi có 8 tiếng để chặt hạ một cái cây, tôi sẽ dành 6 tiếng để mài rìu.” — A. Lincoln. Thiết kế một bộ phận đơn lẻ có thể là việc tương đối đơn giản, do một người đảm đương. Nhưng thiết kế bất cứ hệ thống lớn nào — dù là ô-tô, máy tính hay máy bay — thường vượt quá năng lực của bất cứ cá nhân nào. Kỹ sư thiết bị hay điều khiển không nên coi mọi công việc liên quan đến thiết kế một hệ thống đo lường an toàn là trách nhiệm của riêng mình, bởi vì chúng không phải. Thiết kế một hệ thống, kể cả hệ thống đo lường an toàn, đòi hỏi một đội ngũ đa ngành.</p>
+
+    <h2>2.1 Nhìn lại và nhìn trước <span class="en">Hindsight/Foresight</span></h2>
+
+    <p>“Nhìn lại có thể quý giá khi nó dẫn tới tầm nhìn mới.” — P. G. Neumann. Nhìn lại thì dễ. Ai cũng có tầm nhìn 20/20 khi đã xảy ra sự cố. Nhưng nhìn trước thì khó hơn một chút. Thế mà với những hệ thống lớn, rủi ro cao ngày nay, nhìn trước là điều bắt buộc. Chúng ta giản đơn là không có luxừ để thiết kế những nhà máy hóa dầu lớn theo kiểu thử-sai. Rủi ro quá lớn để học theo cách ấy. Chúng ta phải cố gắng ngăn chặn một số tai nạn nhất định, dù khả năng xảy ra có xa xôi đến đâu, thậm chí cả khi chúng chưa từng xảy ra. Đó là chủ đề của an toàn hệ thống.</p>
+
+    <p>An toàn hệ thống sinh ra từ các ngành công nghiệp quân sự và hàng không vũ trụ. Quân đội có nhiều ví dụ rủi ro cao rõ ràng. Trường hợp sau đây có thể được viết ra với giọng điệu hời hợt, nhưng rõ ràng là một vấn đề rất nghiêm trọng với những người liên quan. May mắn là không có thương vong.</p>
+
+    <p>Một siêu giếng tên lửa đạn đạo xuyên lục địa (ICBM) bị phá hủy vì các đối trọng, vốn dùng để cân bằng thang máy của giếng khi đi lên và xuống, chỉ được tính toán có mục đích nâng một quả tên lửa đã nạp nhiên liệu lên mặt đất để phóng. Không hề có tính toán rằng, khi không phóng trong cơn giận dữ, bạn phải hạ quả tên lửa đã nạp nhiên liệu xuống để rút nhiên liệu. Lần vận hành đầu với quả tên lửa đã nạp nhiên liệu gần như thành công. Cơ cấu truyền động giữ nó cho đến tận năm thước cuối cùng, khi trọng lực giành quyền kiểm soát và quả tên lửa rơi trở xuống. Rất đột ngột, đường kính giếng 40 foot bị biến thành khoảng 100 foot. [Tham khảo 1]</p>
+
+    <p>Một hệ thống cảnh báo radar ở Greenland gặp hỏng hóc vận hành trong tháng đầu tiên. Nó báo cáo có tên lửa Nga đang lao tới, nhưng thực ra những gì nó phản ứng lại là… mặt trăng đang mọc.</p>
+
+    <p>Nếu bạn đặt một thứ trong tầm với của ai đó, vào lúc nào đó nó sẽ được dùng, dù bạn không hề định thế. Chẳng hạn, có hai trường hợp Bộ Chỉ huy Phòng không Bắc Mỹ (NORAD) và Bộ Tư lệnh Không quân Chiến lược (SAC) báo động vì các hệ thống radar báo có tên lửa đang lao tới. Thực ra, ai đó đã vô tình nạp một băng từ huấn luyện. Sau khi sự cố lặp lại lần thứ hai, cuối cùng người ta mới thống nhất cất băng huấn luyện ở một vị trí khác! Điều vốn có thể bị coi là lỗi con người hóa ra lại là một lỗi của hệ thống — cái hệ thống đã cho phép sai lầm con người không thể tránh khỏi kia xảy ra.</p>
+
+    <h2>2.2 Phát hiện của HSE <span class="en">Findings of the HSE</span></h2>
+
+    <p>Cơ quan Thực thi An toàn và Sức khỏe Anh (HSE) đã xem xét 34 tai nạn là hậu quả trực tiếp của các hỏng hóc hệ thống điều khiển và an toàn trong nhiều ngành công nghiệp khác nhau [Tham khảo 2]. Các phát hiện được tóm tắt trong Hình 2-1. Hầu hết tai nạn đều có thể ngăn chặn được. Phần lớn tai nạn (44%) là do đặc tả không đúng và không đầy đủ. Đặc tả gồm cả đặc tả chức năng (tức hệ thống phải làm gì) và đặc tả toàn vẹn (tức nó phải làm tốt đến mức nào).</p>
+
+    <figure class="figure" id="fig-2-1">
+      <svg viewBox="0 0 680 220" role="img" aria-label="Nguyên nhân tai nạn theo từng giai đoạn, theo HSE Anh">
+        <style>
+          .blab{font:13px Inter,sans-serif;fill:#222}
+          .bval{font:13px Inter,sans-serif;font-weight:600;fill:#111}
+          .bar{fill:#2a2a2a}
+        </style>
+        <line x1="200" y1="20" x2="200" y2="200" stroke="#bbb" stroke-width="1"/>
+        <g>
+          <text x="192" y="36" text-anchor="end" class="blab">Đặc tả</text>
+          <rect x="200" y="24" width="198" height="22" class="bar"/>
+          <text x="404" y="40" class="bval">44%</text>
+          <text x="192" y="68" text-anchor="end" class="blab">Thay đổi sau</text>
+          <text x="192" y="84" text-anchor="end" class="blab">đưa vào vận hành</text>
+          <rect x="200" y="62" width="90" height="22" class="bar"/>
+          <text x="296" y="78" class="bval">20%</text>
+          <text x="192" y="112" text-anchor="end" class="blab">Thiết kế &amp; kỹ thuật</text>
+          <rect x="200" y="100" width="67.5" height="22" class="bar"/>
+          <text x="273" y="116" class="bval">15%</text>
+          <text x="192" y="148" text-anchor="end" class="blab">Vận hành &amp;</text>
+          <text x="192" y="164" text-anchor="end" class="blab">bảo dưỡng</text>
+          <rect x="200" y="138" width="67.5" height="22" class="bar"/>
+          <text x="273" y="154" class="bval">15%</text>
+          <text x="192" y="192" text-anchor="end" class="blab">Lắp đặt &amp;</text>
+          <text x="192" y="208" text-anchor="end" class="blab">đưa vào vận hành</text>
+          <rect x="200" y="182" width="27" height="22" class="bar"/>
+          <text x="233" y="198" class="bval">6%</text>
+        </g>
+        <text x="200" y="150" class="blab" style="font-size:11px;fill:#888">Tỷ lệ % của 34 tai nạn do hỏng hệ thống điều khiển/an toàn</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-1 · Phát hiện của HSE Anh: nguyên nhân tai nạn phân theo giai đoạn (44% do đặc tả sai/thiếu)</figcaption>
+    </figure>
+
+    <p>Có nhiều ví dụ về lỗi đặc tả chức năng. Kletz [Tham khảo 3] đã ghi nhận một trường hợp máy tính điều khiển một lò phản ứng tỏa nhiệt. Khi thêm vật liệu vào lò phản ứng, dòng nước làm mát cần tăng lên. Thế nhưng, hệ thống còn được lập trình sao cho với bất cứ hỏng nào của nhà máy — và rất nhiều thứ bị xếp vào loại hỏng — các đầu ra sẽ đóng băng tại giá trị đã biết cuối cùng. Cái rủi ro đã làm cho hai điều kiện mâu thuẫn này xảy ra cùng lúc. Vật liệu được thêm vào lò phản ứng, rồi hệ thống phát hiện mức dầu hộp số thấp. Dòng nước làm mát không tăng lên nên lò phản ứng quá nhiệt và phun trào nội dung. Hệ thống đã làm y hệt những gì nó được lập trình. Không hề có hỏng phần cứng.</p>
+
+    <p>Một đầu dò sao Hỏa được thiết kế để bay quanh hành tinh, thế nhưng lại lao thẳng vào hành tinh. Người ta xác định rằng tổ hợp Mỹ làm việc với hệ đơn vị Anh, còn tổ hợp châu Âu lại dùng hệ mét. Không hề có hỏng phần cứng.</p>
+
+    <p>Một đầu dò sao Hỏa khác được thiết kế để đáp xuống hành tinh. Các chân đáp được thiết kế triển khai ở một độ cao nhất định và động cơ tên lửa sẽ tắt. Các kỹ sư cơ khí biết rằng việc triển khai chân đáp tạo ra những tín hiệu giả cần được bỏ qua tạm thời. Thật không may, yêu cầu này không được ghi chép hay truyền đạt cho người khác. Những người thiết kế phần mềm đơn giản lập trình cho máy tính tắt động cơ tên lửa một khi phát hiện chân đáp đã hoạt động. Kết quả là tên lửa tắt ở độ cao quá lớn và vệ tinh bị phá hủy khi đáp xuống. Không hề có hỏng phần cứng. Một sự thiếu sót nhỏ trong đặc tả dẫn đến mất vệ tinh trị giá hơn 100 triệu đô-la, chưa kể chi phí tên lửa đẩy.</p>
+
+    <p>Bạn có thể lắc đầu trước sự ngớ ngẩn của những trường hợp này, nhưng thực tế có hàng ngàn trường hợp như thế được ghi chép trong nhiều tài liệu khác nhau. Có nhiều điều để học hỏi từ chúng, dù chúng xảy ra trong một ngành khác với ngành của bạn. Trevor Kletz nói: “Tai nạn không do thiếu tri thức, mà do thất bại trong việc dùng tri thức chúng ta đã có.” Bạn thà học từ sai lầm của người khác, hay tự mình mắc hết lấy, nhất là khi mạng sống của chính bạn phụ thuộc vào đó?</p>
+
+    <p>Đặc tả toàn vẹn liên quan đến hiệu năng hệ thống. HSE ghi nhận một trường hợp người dùng thay thế một hệ thống rơ-le bằng bộ điều khiển khả trình (PLC). Họ triển khai cùng logic chức năng và vì thế cho rằng đó là cùng một hệ thống — thậm chí được cải thiện nhờ công nghệ mới. Thật không may, công nghệ mới có đặc tính hỏng hoàn toàn khác hệ thống cũ và thực ra kém an toàn hơn. Chủ đề này sẽ được đề cập kỹ hơn ở các chương sau.</p>
+
+    <p>Leveson [Tham khảo 4] đã báo cáo rằng trong đại đa số tai nạn có liên quan đến phần mềm, khiếm khuyết có thể truy nguyên về các yêu cầu — nói cách khác, những giả định không đầy đủ hoặc sai về vận hành của hệ thống bị điều khiển hay vận hành bắt buộc của máy tính, các trạng thái hệ thống không được xử lý, điều kiện môi trường, v.v.</p>
+
+    <p>Một số tai nạn xảy ra vì hệ thống được dùng theo những cách mà người thiết kế nguyên thủy không thể hình dung. Chẳng hạn, một tên lửa Patriot đã bỏ lỡ một quả Scud trong chiến tranh vùng Vịnh lần thứ nhất. Va chạm của quả Scud vào một cơ sở của Mỹ khiến nhiều người thiệt mạng. Hệ thống tên lửa Patriot vốn được định hướng và thiết kế cho vận hành trong thời gian tương đối ngắn. Nó không được định dùng để bật liên tục trong thời gian dài. Khi vận hành như thế, các bộ đếm và bộ hẹn giờ nội bộ sai lệch đủ nhiều để ảnh hưởng đến độ chính xác của tên lửa. Đó là kết quả của việc hệ thống bị liên tục sửa đổi qua nhiều năm và dùng các hệ đếm số khác nhau trong hơn 20 ngôn ngữ lập trình. Không hề có hỏng phần cứng.</p>
+
+    <p>Không cần phải nói, chỉ có người sử dụng hệ thống mới có thể phát triển đặc tả hệ thống. Không nhà cung cấp nào có thể hình dung hay tính đến mọi chế độ vận hành. Không nhà cung cấp nào có thể bảo người dùng cách vận hành cơ sở của họ tốt nhất, hay loại logic hệ thống nào là thích hợp nhất.</p>
+
+    <p>Phần lớn nhất tiếp theo của các vấn đề (20%) do HSE tìm thấy là do những thay đổi được thực hiện sau khi đưa vào vận hành. Điều mà một người coi là nhỏ nhặt, không đáng kể lại không được ghi chép hay xem xét đúng bởi nhân sự thích hợp. Tên lửa đã bay chệch hướng và nhà máy quá trình đã nổ vì những vấn đề như thế. Người sử dụng cuối chịu trách nhiệm chính về các thay đổi sau khi đưa vào vận hành.</p>
+
+    <p>Các vấn đề vận hành và bảo dưỡng được xác định chịu trách nhiệm cho 15% tai nạn. Có những trường hợp kỹ thuật viên sửa một hạng mục, chỉ để đưa vào một vấn đề ở nơi khác trong hệ thống. Trong những trường hợp khác, họ tưởng mình đã sửa hạng mục đang xét, nhưng thực ra thì không. Người sử dụng cuối chịu trách nhiệm chính về vận hành và bảo dưỡng.</p>
+
+    <p>Các lỗi thiết kế và triển khai chiếm 15% vấn đề. Đây là lỗi duy nhất nằm trong tầm của nhà cung cấp hay đơn vị tích hợp hệ thống. Có những trường hợp đặc tả đúng, nhưng hệ thống cung cấp không đáp ứng ít nhất một yêu cầu và không được thử nghiệm kỹ lưỡng để bộc lộ khiếm khuyết.</p>
+
+    <p>Một tỷ lệ tương đối nhỏ các lỗi (6%) được truy nguyên về các vấn đề lắp đặt và đưa vào vận hành. Nhìn chung, những phát hiện tương tự đã được các tổ chức khác công bố, dù không nhất thiết chi tiết đến mức từng tỷ lệ phần trăm cho mỗi phân loại hỏng.</p>
+
+    <p>Để thiết kế một hệ thống an toàn, cần xem xét tất cả những lĩnh vực khác nhau này chứ không chỉ tập trung vào lĩnh vực dễ hay tiện che phủ nhất. Các ủy ban soạn thảo những tiêu chuẩn và hướng dẫn ngành khác nhau nhận ra điều này và đã cố gắng che phủ mọi căn cứ. Cuốn sách này cũng sẽ cố làm như vậy.</p>
+
+    <h2>2.3 Vòng đời thiết kế <span class="en">Design Lifecycle</span></h2>
+
+    <p>Các hệ thống lớn đòi hỏi một quy trình thiết kế có phương pháp để ngăn những hạng mục quan trọng rơi vào kẽ hở. Hình 2-2 minh họa các bước vòng đời như được mô tả trong tiêu chuẩn ANSI/ISA-84.00.01-2004 (sửa đổi theo IEC 61511). Đây chỉ nên được coi là một ví dụ. Có những biến thể của vòng đời được trình bày trong các tài liệu ngành khác. Một vòng đời đơn giản hóa được thể hiện ở Hình 2-3. Một công ty có thể muốn phát triển biến thể vòng đời riêng dựa trên những yêu cầu đặc thù của họ.</p>
+
+    <figure class="figure" id="fig-2-2">
+      <svg viewBox="0 0 640 300" role="img" aria-label="Vòng đời thiết kế SIS theo IEC 61511">
+        <defs>
+          <marker id="arr2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L8,3 L0,6 Z" fill="#2a2a2a"/>
+          </marker>
+        </defs>
+        <style>
+          .bx{fill:#fff;stroke:#2a2a2a;stroke-width:1.4}
+          .bt{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .cl{font:10px Inter,sans-serif;fill:#888;text-anchor:middle}
+          .ctr{font:13px Inter,sans-serif;font-weight:600;fill:#111;text-anchor:middle}
+        </style>
+        <!-- loop of 8 main steps -->
+        <path d="M320 40 L520 70 L560 160 L460 250 L180 250 L80 160 L120 70 Z" fill="none" stroke="#c9a961" stroke-width="2" stroke-dasharray="4 4"/>
+        <g>
+          <rect x="270" y="20" width="100" height="40" rx="6" class="bx"/><text x="320" y="38" class="bt">Phân tích</text><text x="320" y="52" class="cl">rủi ro (8)</text>
+          <rect x="476" y="52" width="100" height="40" rx="6" class="bx"/><text x="526" y="70" class="bt">Phân bổ</text><text x="526" y="84" class="cl">lớp bảo vệ (9)</text>
+          <rect x="500" y="146" width="100" height="40" rx="6" class="bx"/><text x="550" y="164" class="bt">Xây dựng SRS</text><text x="550" y="178" class="cl">(10 &amp; 12)</text>
+          <rect x="404" y="246" width="100" height="40" rx="6" class="bx"/><text x="454" y="264" class="bt">Thiết kế &amp;</text><text x="454" y="278" class="cl">kỹ thuật (11,12)</text>
+          <rect x="156" y="246" width="100" height="40" rx="6" class="bx"/><text x="206" y="264" class="bt">Lắp đặt,</text><text x="206" y="278" class="cl">thử &amp; xác nhận</text>
+          <rect x="40" y="146" width="100" height="40" rx="6" class="bx"/><text x="90" y="164" class="bt">Vận hành &amp;</text><text x="90" y="178" class="cl">bảo dưỡng (16)</text>
+          <rect x="64" y="52" width="100" height="40" rx="6" class="bx"/><text x="114" y="70" class="bt">Ngưng vận hành</text><text x="114" y="84" class="cl">(18)</text>
+          <rect x="270" y="120" width="100" height="40" rx="6" class="bx"/><text x="320" y="138" class="bt">Thử nghiệm</text><text x="320" y="152" class="cl">xác nhận (7)</text>
+        </g>
+        <text x="320" y="300" class="cl" style="fill:#222">Các bước thực hiện xuyên suốt: Quản lý, Đánh giá, Kiểm toán (5) · Sửa đổi (17) · Biện pháp khác giảm rủi ro (9)</text>
+      </svg>
+      <figcaption class="figcap">Hình 2-2 · Vòng đời thiết kế SIS (số trong ngoặc là điều khoản IEC 61511)</figcaption>
+    </figure>
+
+    <figure class="figure" id="fig-2-3">
+      <svg viewBox="0 0 640 160" role="img" aria-label="Vòng đời đơn giản hóa theo 3 nhóm">
+        <style>
+          .g{fill:#f3f3f3;stroke:#bbb;stroke-width:1}
+          .gsep{fill:#c9a961}
+          .gt{font:13px Inter,sans-serif;font-weight:600;fill:#111;text-anchor:middle}
+          .st{font:12px Inter,sans-serif;fill:#222}
+          .sb{fill:#fff;stroke:#2a2a2a;stroke-width:1.2}
+        </style>
+        <rect x="10" y="24" width="190" height="112" rx="6" class="g"/>
+        <rect x="232" y="24" width="190" height="112" rx="6" class="g"/>
+        <rect x="454" y="24" width="176" height="112" rx="6" class="g"/>
+        <text x="105" y="44" class="gt">Phân tích</text>
+        <text x="327" y="44" class="gt">Thực hiện</text>
+        <text x="542" y="44" class="gt">Vận hành</text>
+        <g class="st" text-anchor="middle">
+          <rect x="24" y="54" width="162" height="22" rx="4" class="sb"/><text x="105" y="69">1 · Phân tích rủi ro</text>
+          <rect x="24" y="82" width="162" height="22" rx="4" class="sb"/><text x="105" y="97">2 · Nhận diện SIF</text>
+          <rect x="24" y="110" width="162" height="22" rx="4" class="sb"/><text x="105" y="125">3 · Xác định SIL</text>
+          <rect x="246" y="54" width="162" height="22" rx="4" class="sb"/><text x="327" y="69">4 · Thiết kế</text>
+          <rect x="246" y="82" width="162" height="22" rx="4" class="sb"/><text x="327" y="97">5 · Lắp đặt</text>
+          <rect x="246" y="110" width="162" height="22" rx="4" class="sb"/><text x="327" y="125">6 · Đưa vào vận hành</text>
+          <rect x="468" y="54" width="148" height="22" rx="4" class="sb"/><text x="542" y="69">7 · Vận hành</text>
+          <rect x="468" y="82" width="148" height="22" rx="4" class="sb"/><text x="542" y="97">8 · Bảo dưỡng</text>
+          <rect x="468" y="110" width="148" height="22" rx="4" class="sb"/><text x="542" y="125">9 · Sửa đổi</text>
+        </g>
+      </svg>
+      <figcaption class="figcap">Hình 2-3 · Vòng đời đơn giản hóa: 9 bước gộp trong 3 nhóm (Phân tích – Thực hiện – Vận hành)</figcaption>
+    </figure>
+
+    <p>Một số người sẽ phàn nàn rằng thực hiện tất cả các bước trong vòng đời, cũng như mọi nhiệm vụ khác nhằm giảm rủi ro, sẽ làm tăng tổng chi phí và dẫn đến năng suất thấp hơn. Một nghiên cứu sâu rộng trong quá khứ [Tham khảo 4], do một nhóm bao gồm các hội kỹ thuật lớn, 20 ngành công nghiệp và 60 nhóm sản phẩm với tổng mức phơi nhiễm hơn 50 tỷ giờ, đã kết luận rằng sản lượng tăng khi an toàn tăng. Tại Mỹ, OSHA (Cục Quản lý An toàn và Sức khỏe Nghề nghiệp) đã ghi nhận rằng, kể từ khi áp dụng quy định quản lý an toàn quá trình, số tai nạn đã giảm hơn 20% và các công ty báo cáo năng suất của họ cao hơn.</p>
+
+    <h3>2.3.1 Phân tích mối nguy và rủi ro <span class="en">Hazard &amp; Risk Analysis</span></h3>
+
+    <p>Một trong những mục tiêu của thiết kế nhà máy quá trình là có một cơ sở vốn đã an toàn tự thân. Như Trevor Kletz nói: “Những gì bạn không có, sẽ không thể rò rỉ.” Hy vọng là thiết kế quá trình có thể loại bỏ nhiều mối nguy, chẳng hạn loại bỏ lưu kho trung gian không cần thiết, dùng chất xúc tác an toàn hơn, v.v. Cả những cuốn sách riêng đã được dành cho chủ đề thiết kế quá trình an toàn tự thân.</p>
+
+    <p>Bước đầu tiên được mô tả trong tiêu chuẩn là xây dựng sự hiểu biết về các mối nguy và rủi ro liên quan đến quá trình. Phân tích mối nguy gồm nhận diện các mối nguy và sự kiện nguy hiểm. Có nhiều kỹ thuật có thể dùng (ví dụ HAZOP, Điều gì-xảy-ra, Cây hỏng, Danh mục kiểm tra, v.v.) và nhiều tài liệu mô tả từng phương pháp. Đánh giá rủi ro gồm xếp hạng rủi ro của các sự kiện nguy hiểm đã được nhận diện trong phân tích mối nguy. Rủi ro là hàm của tần suất hay xác suất của một sự kiện, và mức độ nghiêm trọng hay hậu quả của sự kiện đó. Rủi ro có thể ảnh hưởng đến nhân sự, sản xuất, thiết bị tư bản, môi trường, hình ảnh công ty, v.v. Đánh giá rủi ro có thể định tính hoặc định lượng. Đánh giá định tính xếp hạng rủi ro chủ quan từ thấp đến cao. Đánh giá định lượng, như tên gọi ám chỉ, cố gắng gán các hệ số số học cho rủi ro, chẳng hạn tỷ lệ tử vong hay tai nạn, quy mô thực tế của một đợt xả, v.v. Những nghiên cứu này không chỉ là trách nhiệm của kỹ sư thiết bị hay điều khiển. Rõ ràng có một số ngành khác yêu cầu để thực hiện các đánh giá này, như an toàn, vận hành, bảo dưỡng, quá trình, thiết kế cơ khí, điện, v.v.</p>
+
+    <h3>2.3.2 Phân bổ các chức năng an toàn cho các lớp bảo vệ <span class="en">Allocation of Safety Functions to Protective Layers</span></h3>
+
+    <p>Nếu những rủi ro liên quan đến một sự kiện nguy hiểm có thể ngăn chặn hoặc giảm nhẹ bằng thứ gì đó khác ngoài thiết bị đo lường — thứ vốn phức tạp, đắt đỏ, đòi hỏi bảo dưỡng và dễ hỏng — thì càng tốt. Chẳng hạn, một bờ đê là thiết bị đơn giản và tin cậy, có thể dễ dàng chứa một đợt tràn chất lỏng. KISS (Keep it Simple, Stupid — Giữ cho nó Đơn giản) phải là chủ đề bao trùm.</p>
+
+    <p>Với mọi chức năng an toàn được giao cho thiết bị đo lường (tức các chức năng đo lường an toàn, SIF), mức hiệu năng yêu cầu cần được xác định. Các tiêu chuẩn gọi đây là mức độ toàn vẹn an toàn (SIL). Đây tiếp tục là một bước khó khăn với nhiều tổ chức. Lưu ý SIL không trực tiếp là thước đo rủi ro quá trình, mà là thước đo hiệu năng hệ thống an toàn được yêu cầu để khống chế các rủi ro đã nhận diện về một mức chấp nhận được. Các tiêu chuẩn mô tả nhiều phương pháp thực hiện việc này.</p>
+
+    <h3>2.3.3 Xây dựng đặc tả yêu cầu an toàn <span class="en">Develop Safety Requirements Specification</span></h3>
+
+    <p>Bước tiếp theo gồm xây dựng đặc tả yêu cầu an toàn. Nó gồm ghi chép các yêu cầu đầu vào và đầu ra (I/O), logic chức năng, và SIL của mỗi chức năng an toàn. Điều này tự nhiên khác nhau với từng hệ thống. Không có khuyến nghị chung, áp dụng cho mọi trường hợp. Một ví dụ đơn giản có thể là: “Nếu cảm biến nhiệt độ TT2301 vượt 410 độ, thì đóng các van XV5301 và XV5302. Chức năng này phải đáp ứng trong 3 giây và cần đạt SIL 2.” Cũng có thể có lợi khi liệt kê các yêu cầu độ tin cậy nếu các shutdown nhầm là mối quan ngại. Chẳng hạn, nhiều hệ thống khác nhau có thể được thiết kế để đáp ứng yêu cầu SIL 2, nhưng mỗi hệ thống sẽ có hiệu năng shutdown nhầm khác nhau. Xét đến chi phí liên quan đến thời gian ngưng sản xuất, cũng như các quan ngại an toàn, đây có thể là một vấn đề quan trọng. Ngoài ra, nên bao gồm mọi điều kiện vận hành của quá trình, từ khởi động đến shutdown, cũng như bảo dưỡng. Có thể thấy một số điều kiện logic xung đột trong những chế độ vận hành khác nhau của quá trình. Hệ thống sẽ được lập trình và thử nghiệm theo logic được xác định ở bước này. Nếu một lỗi được tạo ra ở đây, nó sẽ kéo theo suốt phần còn lại của thiết kế. Sự dư thừa hay tần suất thử nghiệm thủ công không thành vấn đề; hệ thống đơn giản sẽ không vận hành đúng khi được yêu cầu. Những điều này được gọi là các hỏng có tính hệ thống hay chức năng. Dùng các hệ thống dư thừa đa dạng được những người khác nhau lập trình bằng những ngôn ngữ khác nhau và thử nghiệm bởi một đội độc lập sẽ không giúp ích trong tình huống này, bởi vì logic chức năng mà tất cả chúng dựa vào có thể có lỗi.</p>
+
+    <p>Một hình ảnh tương tự cơ khí có thể hữu ích. Giả sử ta có yêu cầu về một van. Van phải có một kích thước nhất định, phải đóng trong một khoảng thời gian nhất định, phải vận hành với một sụt áp nhất định, v.v. Đây đại diện cho đặc tả chức năng — cái van phải làm gì. Các nhà cung cấp khác nhau tự nhiên triển khai yêu cầu theo những cách khác nhau. Nếu lắp một van thép carbon, và hai tháng sau van được phát hiện đã hỏng do ăn mòn nặng, thì lỗi nằm ở đâu? Đặc tả chức năng chỉ mô tả cái van phải làm gì. Trong trường hợp này, đặc tả toàn vẹn đã không đầy đủ và không nêu ra dịch vụ ăn mòn cũng như yêu cầu vật liệu đặc biệt. Đặc tả toàn vẹn nêu hệ thống phải thực hiện chức năng của nó tốt đến mức nào. Đối với một SIS, đó chính là SIL.</p>
+
+    <h3>2.3.4 Thiết kế &amp; kỹ thuật SIS <span class="en">SIS Design &amp; Engineering</span></h3>
+
+    <p>Bước này che phủ thiết kế khái niệm, thiết kế chi tiết và thử nghiệm tại nhà máy. Mọi thiết kế khái niệm đề xuất (tức một triển khai đề xuất) cần được phân tích để xem nó có đáp ứng các yêu cầu chức năng và hiệu năng hay không. Người ta không chọn một động cơ phản lực cỡ nào đó cho một máy bay dựa trên trực giác. Người ta không định cỡ một máy nén trị giá triệu đô-la bằng “cảm giác ruột gan”. Người ta không xác định kích thước cọc cần cho một cây cầu bằng thử-sai, ít nhất là không còn nữa. Cần ban đầu chọn một công nghệ, cấu hình (tức kiến trúc), chu kỳ thử nghiệm, v.v. Điều này liên quan đến cả thiết bị trường lẫn “hộp logic”. Các yếu tố cần xem xét là quy mô tổng thể, ngân sách, độ phức tạp, tốc độ đáp ứng, yêu cầu truyền thông, yêu cầu giao diện, phương pháp triển khai bypass, thử nghiệm, v.v. Ta có thể thực hiện một phân tích định lượng đơn giản để xem hệ thống đề xuất có đáp ứng các yêu cầu hiệu năng hay không. Mục đích là đánh giá hệ thống trước khi chỉ định giải pháp. Cũng như tốt hơn là thực hiện HAZOP trước khi xây dựng nhà máy thay vì sau đó, thì tốt hơn là phân tích hệ thống an toàn đề xuất trước khi chỉ định, chế tạo và lắp đặt nó. Lý do cho cả hai đều đơn giản: rẻ hơn, nhanh hơn và dễ dàng hơn khi thiết kế lại trên giấy.</p>
+
+    <p>Thiết kế chi tiết liên quan đến việc ghi chép và chế tạo thực sự của hệ thống. Một khi đã chọn thiết kế, hệ thống phải được kỹ thuật hóa và xây dựng theo các thủ tục chặt chẽ và bảo thủ. Đây là phương pháp thực tế duy nhất chúng ta biết để ngăn các lỗi thiết kế và triển khai. Quy trình đòi hỏi tài liệu hóa kỹ lưỡng, đóng vai trò là một dấu vết có thể kiểm toán mà người khác có thể theo dõi cho mục đích xác minh độc lập. Rất khó để bắt được lỗi của chính mình.</p>
+
+    <p>Sau khi hệ thống được chế tạo, phần cứng và phần mềm nên được thử nghiệm đầy đủ tại cơ sở của đơn vị tích hợp. Mọi thay đổi có thể cần thiết sẽ dễ thực hiện tại nhà máy hơn là tại địa điểm lắp đặt.</p>
+
+    <h3>2.3.5 Lắp đặt, đưa vào vận hành và xác nhận <span class="en">Installation, Commissioning, and Validation</span></h3>
+
+    <p>Bước này bảo đảm hệ thống được lắp đặt và khởi động theo các yêu cầu thiết kế, và vận hành đúng theo đặc tả yêu cầu an toàn. Toàn bộ hệ thống phải được kiểm tra, lần này bao gồm cả thiết bị trường. Nên có các tài liệu lắp đặt, đưa vào vận hành và thử nghiệm chi tiết phác thảo từng thủ tục cần thực hiện. Các kiểm tra hoàn tất nên được ký xác nhận bằng văn bản, ghi lại rằng từng chức năng đã được kiểm tra và đã vượt qua mọi thử nghiệm thỏa đáng.</p>
+
+    <h3>2.3.6 Vận hành và bảo dưỡng <span class="en">Operations and Maintenance</span></h3>
+
+    <p>Không phải mọi hỏng đều tự bộc lộ. Vì thế, mọi hệ thống đo lường an toàn phải được thử nghiệm và bảo dưỡng định kỳ. Điều này là cần thiết để bảo đảm hệ thống sẽ đáp ứng đúng với một yêu cầu thực tế. Tần suất kiểm tra và thử nghiệm đã được xác định trước đó trong vòng đời. Mọi thử nghiệm phải được ghi chép. Điều này sẽ cho phép một cuộc kiểm toán xác định xem những giả định ban đầu trong thiết kế (ví dụ tỷ lệ hỏng, mode hỏng, chu kỳ thử, v.v.) có còn hợp lệ dựa trên vận hành thực tế hay không.</p>
+
+    <h3>2.3.7 Sửa đổi <span class="en">Modifications</span></h3>
+
+    <p>Khi điều kiện quá trình thay đổi, có thể cần sửa đổi hệ thống an toàn. Mọi thay đổi đề xuất đều đòi hỏi quay lại pha thích hợp của vòng đời để xem xét tác động của thay đổi. Một thay đổi có thể bị một cá nhân coi là nhỏ nhặt, nhưng thực ra có thể tác động lớn đến toàn bộ quá trình. Điều này chỉ có thể xác định nếu thay đổi được ghi chép và xem xét kỹ lưỡng bởi một đội đủ trình độ. Nhìn lại đã chỉ ra nhiều tai nạn do thiếu sự xem xét này mà ra. Các thay đổi được thực hiện phải được thử nghiệm kỹ lưỡng.</p>
+
+    <h3>2.3.8 Ngưng vận hành <span class="en">Decommissioning</span></h3>
+
+    <p>Ngưng vận hành một hệ thống đòi hỏi một cuộc xem xét để bảo đảm việc gỡ bỏ hệ thống khỏi dịch vụ sẽ không ảnh hưởng đến quá trình hay bất cứ đơn vị lân cận nào. Phải có biện pháp sẵn có trong quá trình ngưng vận hành để bảo vệ nhân sự, thiết bị và môi trường.</p>
+
+    <h2>Tóm tắt <span class="en">Summary</span></h2>
+
+    <p>Thiết kế tổng thể các hệ thống đo lường an toàn không phải là việc đơn giản, thẳng-forward. Tổng tri thức và kỹ năng kỹ thuật yêu cầu thường vượt quá của bất cứ cá nhân nào. Cần có sự hiểu biết về quá trình, vận hành, thiết bị đo, hệ thống điều khiển và phân tích mối nguy. Điều này điển hình đòi hỏi sự tương tác của một đội đa ngành.</p>
+
+    <p>Kinh nghiệm cho thấy một quy trình thiết kế chi tiết, có hệ thống, phương pháp và được ghi chép kỹ lưỡng là cần thiết trong thiết kế các hệ thống đo lường an toàn. Nó bắt đầu từ một xem xét an toàn của quá trình, triển khai các lớp an toàn khác, phân tích có hệ thống, cũng như tài liệu và thủ tục chi tiết. Những bước này được mô tả trong các quy định, tiêu chuẩn, hướng dẫn và quy trình khuyến nghị khác nhau. Các bước được gọi là vòng đời thiết kế an toàn. Mục đích là để lại một dấu vết có thể ghi chép và kiểm toán, và bảo đảm không có gì bị lãng quên hay rơi vào kẽ hở không thể tránh khỏi trong mọi tổ chức.</p>
+
+    <h2>Tài liệu tham khảo <span class="en">References</span></h2>
+    <ol class="ref-list">
+      <li>Air Force Space Division Handbook.</li>
+      <li>Out of Control: Why control systems go wrong and how to prevent failure. U.K. Health &amp; Safety Executive, 1995.</li>
+      <li>Kletz, Trevor A. Computer Control and Human Error. Gulf Publishing Co., 1995.</li>
+      <li>Leveson, Nancy G. Safeware — System Safety and Computers. Addison-Wesley, 1995.</li>
+      <li>ANSI/ISA-84.00.01-2004, Parts 1-3 (IEC 61511-1 to 3 Mod). Functional Safety: Safety Instrumented Systems for the Process Industry Sector.</li>
+      <li>IEC 61508-1998. Functional Safety of Electrical/Electronic/Programmable Electronic Safety-Related Systems.</li>
+      <li>Programmable Electronic Systems in Safety Related Applications, Part 1 — An Introductory Guide. U.K. Health &amp; Safety Executive, 1987.</li>
+      <li>Guidelines for Safe Automation of Chemical Processes. American Institute of Chemical Engineers — Center for Chemical Process Safety, 1993.</li>
+      <li>Neumann, Peter G. Computer Related Risks. Addison-Wesley, 1995.</li>
+    </ol>
+
+    <div class="chapter-nav">
+      <a href="/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch01-introduction/"><span class="k">← Chương 1</span>Giới thiệu</a>
+      <a href="/vi/books/read/safety-instrumented-systems-design-analysis-justification/" style="text-align:right;"><span class="k">Mục lục →</span>Tất cả chương</a>
+    </div>
+
+  </div>
+</article>
+</main>
+</body>
+</html>
