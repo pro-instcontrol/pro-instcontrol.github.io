@@ -1,0 +1,313 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 2 — Process Measurement and Transducers · Practical Process Control</title><meta name="description" content="English figure companion to Chapter 2 of Altmann's Practical Process Control — accuracy, transducers, temperature, pressure, flow and level measurement. Vietnamese translation linked."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/books/assets/library.css"></head><body><header class="site-header"><a href="/" class="brand"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#fff" stroke="#000" stroke-width="4"/><circle cx="100" cy="100" r="68" fill="none" stroke="#000" stroke-width="1.6" stroke-dasharray="1.5 9"/><path d="M100 26 A74 74 0 0 1 174 100" fill="none" stroke="#000" stroke-width="7"/><line x1="100" y1="100" x2="143" y2="57" stroke="#000" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="100" r="10" fill="#000"/></svg><span>Pro InstControl</span></a><nav class="site-nav"><a href="/">Home</a><a href="/fundamentals.html">Fundamentals</a><a href="/instruments.html">Instruments</a><a href="/control.html">Control</a><a href="/safety.html">Safety</a><a href="/tools.html">Tools</a><a href="/comparison.html">Comparison</a><a href="/standards.html">Standards</a><a href="/books/" class="active">Books</a><a href="/vi/books/read/pc-process-control/ch02-process-measurement-and-transducers/" class="lang-switch">VI</a></nav></header><main><article class="intranet-content reader"><div class="reader-hero"><div class="breadcrumb"><a href="/books/">Books</a> · <a href="/books/read/pc-process-control/">Practical Process Control</a> · Chapter 2</div><h1>Process Measurement and Transducers</h1><p class="byline">Wolfgang Altmann · IDC Technologies (Version 3.02)</p><div class="meta-line">Chapter 2 · 15 figures</div></div><div class="prose"><div class="note"><b>What this page is.</b> A figure companion to Chapter 2. The full text lives in the library catalogue and is not republished here; the fifteen figures are redrawn as vectors, numbered and captioned as in the book, so they stay readable on a phone. The complete Vietnamese translation of this chapter is <a href="/vi/books/read/pc-process-control/ch02-process-measurement-and-transducers/">here</a>.</div><p class="lead">Chapter 2 turns from vocabulary to hardware: how a physical quantity becomes a signal. It defines transducers and sensors, sets out the characteristics every sensor is judged by (accuracy, precision, sensitivity, resolution, repeatability, rangeability, span, hysteresis), then works through the measurement of temperature, pressure, flow and level — thermocouples, RTDs and thermistors; strain-gauge, resonant-wire, capacitive, LVDT and optical pressure sensors; orifice and magnetic flowmeters; and level transmitters — closing with signal conditioning, noise, linearisation and the smart transmitter.</p><h2>Chapter outline</h2><ul class="toc-list"><li><span class="n">2.1</span><span class="t">Objectives</span></li><li><span class="n">2.2</span><span class="t">The Definition of Transducers and Sensors</span></li><li><span class="n">2.3</span><span class="t">Listing of Common Measured Variables</span></li><li><span class="n">2.4</span><span class="t">The Common Characteristics of Transducers</span></li><li><span class="n">2.4.1</span><span class="t">Dynamic and Static Accuracy</span></li><li><span class="n">2.4.2</span><span class="t">Precision</span></li><li><span class="n">2.4.3</span><span class="t">Sensitivity</span></li><li><span class="n">2.4.4</span><span class="t">Resolution</span></li><li><span class="n">2.4.5</span><span class="t">Repeatability</span></li><li><span class="n">2.4.6</span><span class="t">Rangeability</span></li><li><span class="n">2.4.7</span><span class="t">Span</span></li><li><span class="n">2.4.8</span><span class="t">Hysteresis</span></li><li><span class="n">2.5</span><span class="t">Sensor Dynamics</span></li><li><span class="n">2.6</span><span class="t">Selection of Sensing Devices</span></li><li><span class="n">2.7</span><span class="t">Temperature Sensors</span></li><li><span class="n">2.7.1</span><span class="t">Thermocouples</span></li><li><span class="n">2.7.2</span><span class="t">Resistance Temperature Detectors (RTD)</span></li><li><span class="n">2.7.3</span><span class="t">Thermistors</span></li><li><span class="n">2.7.4</span><span class="t">I.C Sensors</span></li><li><span class="n">2.7.5</span><span class="t">Selection of Temperature Transducer Design and Thermowells</span></li><li><span class="n">2.7.6</span><span class="t">Radiation Pyrometers</span></li><li><span class="n">2.8</span><span class="t">Pressure Transmitters</span></li><li><span class="n">2.8.1</span><span class="t">Terms of Pressure Reference</span></li><li><span class="n">2.8.2</span><span class="t">Strain Gauge</span></li><li><span class="n">2.8.3</span><span class="t">Resonant Wire Transducers</span></li><li><span class="n">2.8.4</span><span class="t">Capacitance</span></li><li><span class="n">2.8.5</span><span class="t">Linear Variable Differential Transformer (LVDT)</span></li><li><span class="n">2.8.6</span><span class="t">Optical</span></li><li><span class="n">2.8.7</span><span class="t">Pressure Measurement Applications</span></li><li><span class="n">2.9</span><span class="t">Flow Meters</span></li><li><span class="n">2.9.1</span><span class="t">Energy Extractive Flowmeters</span></li><li><span class="n">2.9.2</span><span class="t">Energy Additive Flow Meters</span></li><li><span class="n">2.10</span><span class="t">Level Transmitters</span></li><li><span class="n">2.10.1</span><span class="t">Installation Considerations</span></li><li><span class="n">2.11</span><span class="t">The Spectrum of User Models in Measuring Transducers</span></li><li><span class="n">2.11.1</span><span class="t">Voltage Generation</span></li><li><span class="n">2.11.2</span><span class="t">Thermocouple Linearity</span></li><li><span class="n">2.11.3</span><span class="t">Cold Junction Compensation</span></li><li><span class="n">2.12</span><span class="t">Instrumentation and Transducer Considerations</span></li><li><span class="n">2.12.1</span><span class="t">Pneumatic versus Electronic</span></li><li><span class="n">2.12.2</span><span class="t">Signal Conditioners</span></li><li><span class="n">2.12.3</span><span class="t">Noise</span></li><li><span class="n">2.12.4</span><span class="t">Materials of Construction</span></li><li><span class="n">2.12.5</span><span class="t">Signal Linearization</span></li><li><span class="n">2.13</span><span class="t">Selection Criteria and Considerations</span></li><li><span class="n">2.13.1</span><span class="t">Application</span></li><li><span class="n">2.13.2</span><span class="t">Processed Material Properties</span></li><li><span class="n">2.13.3</span><span class="t">Performance</span></li><li><span class="n">2.13.4</span><span class="t">Installation</span></li><li><span class="n">2.13.5</span><span class="t">Economics</span></li><li><span class="n">2.13.6</span><span class="t">Environment and Safety</span></li><li><span class="n">2.13.7</span><span class="t">Measuring Devices and Technology</span></li><li><span class="n">2.13.8</span><span class="t">Vendor Supply</span></li><li><span class="n">2.14</span><span class="t">Introduction to the SMART TRANSMITTER</span></li></ul><h2>Figures</h2><figure class="figure" id="fig-2-1">
+      <svg viewBox="0 0 480 300" role="img" aria-label="Accuracy versus precision in temperature measurement">
+        <style>
+          .ax{stroke:#bbb;stroke-width:1}
+          .lab{font:11px Inter,sans-serif;fill:#444}
+          .leg{font:10px Inter,sans-serif;fill:#222}
+        </style>
+        <line x1="60" y1="20" x2="60" y2="270" class="ax"/>
+        <line x1="60" y1="270" x2="450" y2="270" class="ax"/>
+        <text x="250" y="292" text-anchor="middle" class="lab">Time</text>
+        <text x="20" y="150" text-anchor="middle" class="lab" transform="rotate(-90 20 150)">Temperature</text>
+        <!-- actual (dashed) -->
+        <path d="M60 160 C120 150 180 165 240 155 S360 150 450 158" fill="none" stroke="#222" stroke-width="2" stroke-dasharray="5 4"/>
+        <text x="455" y="150" class="leg" font-style="italic">actual</text>
+        <!-- precise but inaccurate: tight cluster above -->
+        <g fill="#c0392b">
+          <circle cx="110" cy="110" r="3"/><circle cx="150" cy="106" r="3"/><circle cx="190" cy="112" r="3"/>
+          <circle cx="230" cy="108" r="3"/><circle cx="270" cy="111" r="3"/><circle cx="310" cy="107" r="3"/>
+          <circle cx="350" cy="110" r="3"/><circle cx="390" cy="109" r="3"/><circle cx="430" cy="106" r="3"/>
+        </g>
+        <text x="455" y="100" class="leg" fill="#c0392b">precise, inaccurate</text>
+        <!-- imprecise but accurate: wide spread around actual -->
+        <g fill="#2c6fbb">
+          <circle cx="110" cy="150" r="3"/><circle cx="150" cy="95" r="3"/><circle cx="190" cy="200" r="3"/>
+          <circle cx="230" cy="130" r="3"/><circle cx="270" cy="185" r="3"/><circle cx="310" cy="105" r="3"/>
+          <circle cx="350" cy="205" r="3"/><circle cx="390" cy="140" r="3"/><circle cx="430" cy="170" r="3"/>
+        </g>
+        <text x="455" y="220" class="leg" fill="#2c6fbb">imprecise, accurate</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-1 · Accuracy versus precision in a typical temperature measurement</figcaption>
+    </figure><figure class="figure" id="fig-2-2">
+      <svg viewBox="0 0 520 240" role="img" aria-label="Thermocouple circuit with cold and reference junctions">
+        <style>
+          .bx{fill:#fafafa;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .s{font:10px Inter,sans-serif;fill:#777;text-anchor:middle}
+          .w{stroke:#2a2a2a;stroke-width:1.6;fill:none}
+          .dot{fill:#2a2a2a}
+        </style>
+        <rect x="30" y="70" width="150" height="60" rx="6" class="bx"/>
+        <text x="105" y="96" class="t">Measuring junction</text>
+        <text x="105" y="112" class="s">(hot)</text>
+        <rect x="340" y="70" width="150" height="60" rx="6" class="bx"/>
+        <text x="415" y="96" class="t">Cold junction</text>
+        <text x="415" y="112" class="s">(reference, 0&#176;C)</text>
+        <path class="w" d="M180 100 H250 V40 H340"/>
+        <path class="w" d="M180 100 H250 V160 H340"/>
+        <circle cx="180" cy="100" r="3.5" class="dot"/>
+        <circle cx="250" cy="40" r="3.5" class="dot"/>
+        <circle cx="250" cy="160" r="3.5" class="dot"/>
+        <circle cx="340" cy="100" r="3.5" class="dot"/>
+        <text x="215" y="32" class="s">compensating lead</text>
+        <text x="215" y="178" class="s">compensating lead</text>
+        <rect x="225" y="190" width="90" height="34" rx="5" class="bx"/>
+        <text x="270" y="211" class="t">Meter</text>
+        <text x="270" y="240" class="s">Circuit completed through cold junction</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-2 · Example thermocouple circuit: measuring junction and cold (reference) junction</figcaption>
+    </figure><figure class="figure" id="fig-2-3">
+      <svg viewBox="0 0 460 200" role="img" aria-label="Construction of an RTD sensing element">
+        <style>
+          .sh{fill:#eee;stroke:#2a2a2a;stroke-width:1.4}
+          .co{fill:none;stroke:#c0392b;stroke-width:2.2}
+          .ld{stroke:#2a2a2a;stroke-width:1.6}
+          .t{font:11px Inter,sans-serif;fill:#111}
+        </style>
+        <rect x="120" y="40" width="220" height="120" rx="10" class="sh"/>
+        <path class="co" d="M150 160 V70 H170 V160 M190 160 V70 H210 V160 M230 160 V70 H250 V160 M270 160 V70 H290 V160 M310 160 V70 H330 V160"/>
+        <line class="ld" x1="150" y1="160" x2="150" y2="185"/>
+        <line class="ld" x1="330" y1="160" x2="330" y2="185"/>
+        <text x="240" y="185" text-anchor="middle" class="t">lead wires</text>
+        <text x="240" y="34" text-anchor="middle" class="t">protective sheath (usually stainless steel)</text>
+        <text x="240" y="118" text-anchor="middle" class="t" fill="#c0392b">platinum coil element</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-3 · Construction of a resistance temperature detector (RTD)</figcaption>
+    </figure><figure class="figure" id="fig-2-4">
+      <svg viewBox="0 0 500 260" role="img" aria-label="Three-wire RTD configuration for digital systems">
+        <style>
+          .bx{fill:#fafafa;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .s{font:10px Inter,sans-serif;fill:#777;text-anchor:middle}
+          .w{stroke:#2a2a2a;stroke-width:1.6;fill:none}
+          .rx{fill:none;stroke:#c0392b;stroke-width:3}
+        </style>
+        <rect x="60" y="40" width="140" height="60" rx="6" class="bx"/>
+        <text x="130" y="62" class="t">Current source</text>
+        <text x="130" y="78" class="s">constant</text>
+        <rect x="300" y="40" width="140" height="60" rx="6" class="bx"/>
+        <text x="370" y="62" class="t">Digitizer</text>
+        <text x="370" y="78" class="s">&amp; microprocessor</text>
+        <!-- element RX -->
+        <rect x="200" y="170" width="100" height="40" rx="6" class="bx"/>
+        <line class="rx" x1="210" y1="190" x2="290" y2="190"/>
+        <text x="240" y="158" text-anchor="middle" class="t">RX (sensing element)</text>
+        <line class="w" x1="130" y1="100" x2="130" y2="150"/>
+        <path class="w" d="M130 100 V150 H210 V190"/>
+        <path class="w" d="M240 190 V210 H130 V150"/>
+        <path class="w" d="M290 190 V210 H370 V100"/>
+        <path class="w" d="M370 100 V150 H290 V190"/>
+        <circle cx="130" cy="150" r="3.5" class="s" style="fill:#2a2a2a"/>
+        <circle cx="370" cy="150" r="3.5" class="s" style="fill:#2a2a2a"/>
+        <text x="160" y="135" class="s">A</text>
+        <text x="320" y="135" class="s">B</text>
+        <text x="240" y="245" class="s">RL = resistance of each lead; VA&#8733;RX+2RL, VB&#8733;RX+RL</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-4 · Three-wire RTD configuration used in digital control systems</figcaption>
+    </figure><figure class="figure" id="fig-2-5">
+      <svg viewBox="0 0 520 200" role="img" aria-label="Cross-sections of three typical thermocouple probes">
+        <style>
+          .sh{fill:#f0f0f0;stroke:#2a2a2a;stroke-width:1.4}
+          .in{fill:#fff;stroke:#2a2a2a;stroke-width:1}
+          .tc{stroke:#c0392b;stroke-width:2.4;fill:none}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+        </style>
+        <!-- open ended -->
+        <rect x="30" y="50" width="120" height="100" class="sh"/>
+        <line class="tc" x1="55" y1="150" x2="55" y2="60"/><line class="tc" x1="80" y1="150" x2="80" y2="60"/>
+        <text x="90" y="170" class="t">Open tip</text>
+        <text x="90" y="185" class="t">fragile</text>
+        <!-- sealed isolated -->
+        <rect x="200" y="50" width="120" height="100" class="sh"/>
+        <rect x="220" y="70" width="80" height="60" class="in"/>
+        <line class="tc" x1="245" y1="150" x2="245" y2="80"/><line class="tc" x1="270" y1="150" x2="270" y2="80"/>
+        <text x="260" y="170" class="t">Sealed, isolated</text>
+        <text x="260" y="185" class="t">thermal &amp; electrical</text>
+        <!-- sealed connected -->
+        <rect x="370" y="50" width="120" height="100" class="sh"/>
+        <line class="tc" x1="395" y1="150" x2="395" y2="70"/><line class="tc" x1="420" y1="150" x2="420" y2="70"/>
+        <line x1="395" y1="70" x2="445" y2="70" stroke="#2a2a2a" stroke-width="1.4"/>
+        <text x="430" y="170" class="t">Sealed, bonded</text>
+        <text x="430" y="185" class="t">exposed</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-5 · Cross-sections of three typical thermocouple probe types</figcaption>
+    </figure><figure class="figure" id="fig-2-6">
+      <svg viewBox="0 0 480 280" role="img" aria-label="Characteristics of thermocouple, RTD, IC and thermistor">
+        <style>
+          .ax{stroke:#bbb;stroke-width:1}
+          .lab{font:11px Inter,sans-serif;fill:#444}
+        </style>
+        <line x1="60" y1="20" x2="60" y2="250" class="ax"/>
+        <line x1="60" y1="250" x2="450" y2="250" class="ax"/>
+        <text x="250" y="272" text-anchor="middle" class="lab">Temperature</text>
+        <text x="22" y="140" text-anchor="middle" class="lab" transform="rotate(-90 22 140)">Output</text>
+        <path d="M60 230 C140 200 220 175 300 150 S420 110 450 100" fill="none" stroke="#222" stroke-width="2.4"/>
+        <text x="455" y="98" class="lab" fill="#222">Thermocouple</text>
+        <path d="M60 235 L450 60" fill="none" stroke="#2c6fbb" stroke-width="2.4"/>
+        <text x="455" y="58" class="lab" fill="#2c6fbb">RTD / IC (linear)</text>
+        <path d="M60 245 C120 240 150 210 180 150 C200 105 215 70 240 50" fill="none" stroke="#c0392b" stroke-width="2.4"/>
+        <text x="245" y="46" class="lab" fill="#c0392b">Thermistor (strongly non-linear)</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-6 · Characteristics of thermocouples, RTDs, IC sensors and thermistors</figcaption>
+    </figure><figure class="figure" id="fig-2-7">
+      <svg viewBox="0 0 500 200" role="img" aria-label="Construction of bonded and unbonded strain gauges">
+        <style>
+          .bx{fill:#f7f7f7;stroke:#2a2a2a;stroke-width:1.4}
+          .w{stroke:#c0392b;stroke-width:2;fill:none}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .s{font:10px Inter,sans-serif;fill:#777;text-anchor:middle}
+        </style>
+        <text x="120" y="24" class="t">Bonded strain gauge</text>
+        <rect x="40" y="50" width="160" height="100" class="bx"/>
+        <path class="w" d="M60 140 L60 70 L85 70 L85 140 L110 140 L110 70 L135 70 L135 140 L160 140 L160 70 L185 70"/>
+        <text x="120" y="170" class="s">wire/foil sandwiched between layers</text>
+        <text x="380" y="24" class="t">Unbonded strain gauge</text>
+        <rect x="320" y="150" width="14" height="40" class="bx"/>
+        <rect x="426" y="150" width="14" height="40" class="bx"/>
+        <path class="w" d="M327 150 C360 120 380 180 420 150"/>
+        <text x="380" y="190" class="s">wire wound between two posts</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-7 · Construction of bonded and unbonded strain gauges</figcaption>
+    </figure><figure class="figure" id="fig-2-8">
+      <svg viewBox="0 0 420 320" role="img" aria-label="Wheatstone bridge for strain-gauge measurement">
+        <style>
+          .r{fill:#fafafa;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:12px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .w{stroke:#2a2a2a;stroke-width:1.6;fill:none}
+          .dot{fill:#2a2a2a}
+        </style>
+        <rect x="150" y="50" width="120" height="44" rx="5" class="r"/><text x="210" y="76" class="t">R1 (active)</text>
+        <rect x="150" y="226" width="120" height="44" rx="5" class="r"/><text x="210" y="252" class="t">R4</text>
+        <rect x="40" y="138" width="120" height="44" rx="5" class="r"/><text x="100" y="164" class="t">R3</text>
+        <rect x="260" y="138" width="120" height="44" rx="5" class="r"/><text x="320" y="164" class="t">R2</text>
+        <path class="w" d="M210 50 V50 M100 138 H150 M270 138 H320 M210 226 V226"/>
+        <line class="w" x1="160" y1="72" x2="160" y2="138"/><line class="w" x1="260" y1="138" x2="260" y2="72"/>
+        <line class="w" x1="160" y1="160" x2="160" y2="226"/><line class="w" x1="260" y1="226" x2="260" y2="160"/>
+        <circle cx="160" cy="138" r="3.5" class="dot"/><circle cx="260" cy="138" r="3.5" class="dot"/>
+        <text x="160" y="128" class="t" font-size="10" fill="#777">V&#8722;</text>
+        <text x="260" y="128" class="t" font-size="10" fill="#777">V+</text>
+        <line x1="100" y1="160" x2="60" y2="160" class="w"/><text x="40" y="150" class="t" font-size="10">supply</text>
+        <line x1="210" y1="270" x2="210" y2="300" class="w"/><line x1="160" y1="290" x2="260" y2="290" class="w"/>
+        <text x="210" y="312" class="t" font-size="11">V&#8553; (differential output)</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-8 · Wheatstone bridge used to measure strain-gauge resistance</figcaption>
+    </figure><figure class="figure" id="fig-2-9">
+      <svg viewBox="0 0 460 200" role="img" aria-label="Resonant-wire transducer">
+        <style>
+          .bx{fill:#fafafa;stroke:#2a2a2a;stroke-width:1.4}
+          .w{stroke:#c0392b;stroke-width:2.4;fill:none}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+        </style>
+        <rect x="60" y="60" width="40" height="80" class="bx"/><text x="80" y="155" class="t">fixed</text>
+        <rect x="360" y="60" width="40" height="80" class="bx"/><text x="380" y="155" class="t">diaphragm</text>
+        <path class="w" d="M100 100 Q230 80 360 100"/>
+        <circle cx="230" cy="90" r="10" fill="#eee" stroke="#2a2a2a" stroke-width="1.2"/>
+        <text x="230" y="120" class="t">pickup coil</text>
+        <text x="230" y="40" class="t">wire vibrating at natural frequency</text>
+        <text x="230" y="185" class="t">pressure changes resonant frequency &#8594; pressure</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-9 · Resonant-wire transducer</figcaption>
+    </figure><figure class="figure" id="fig-2-10">
+      <svg viewBox="0 0 460 200" role="img" aria-label="Capacitance pressure sensor">
+        <style>
+          .pl{fill:#f0f0f0;stroke:#2a2a2a;stroke-width:1.4}
+          .di{fill:#cfe8ff;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .s{font:10px Inter,sans-serif;fill:#777;text-anchor:middle}
+        </style>
+        <rect x="40" y="70" width="30" height="60" class="pl"/>
+        <rect x="390" y="70" width="30" height="60" class="pl"/>
+        <rect x="150" y="60" width="20" height="80" class="pl"/>
+        <rect x="290" y="60" width="20" height="80" class="pl"/>
+        <rect x="190" y="80" width="80" height="14" class="di"/>
+        <line x1="230" y1="94" x2="230" y2="140" class="pl" stroke-width="2"/>
+        <text x="230" y="160" class="t">diaphragm (moves with pressure)</text>
+        <text x="160" y="50" class="s">capacitor plate 1</text>
+        <text x="300" y="50" class="s">capacitor plate 2</text>
+        <text x="230" y="185" class="s">C changes &#8594; bridge &#8594; pressure</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-10 · Capacitance pressure sensor</figcaption>
+    </figure><figure class="figure" id="fig-2-11">
+      <svg viewBox="0 0 480 200" role="img" aria-label="Linear variable differential transformer (LVDT)">
+        <style>
+          .co{fill:#f7f7f7;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .s{font:10px Inter,sans-serif;fill:#777;text-anchor:middle}
+        </style>
+        <rect x="60" y="70" width="360" height="50" rx="20" class="co"/>
+        <rect x="110" y="78" width="80" height="34" class="co"/><text x="150" y="100" class="s">secondary 1</text>
+        <rect x="290" y="78" width="80" height="34" class="co"/><text x="330" y="100" class="s">secondary 2</text>
+        <rect x="195" y="78" width="90" height="34" class="co"/><text x="240" y="100" class="s">primary</text>
+        <rect x="225" y="120" width="30" height="40" fill="#c0392b"/><text x="240" y="175" class="t">iron core</text>
+        <text x="240" y="55" class="s">core moves with pressure &#8594; inductance ratio changes</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-11 · Linear variable differential transformer (LVDT)</figcaption>
+    </figure><figure class="figure" id="fig-2-12">
+      <svg viewBox="0 0 480 200" role="img" aria-label="Optical pressure sensor">
+        <style>
+          .bx{fill:#fafafa;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .s{font:10px Inter,sans-serif;fill:#777;text-anchor:middle}
+        </style>
+        <rect x="60" y="60" width="40" height="80" class="bx"/><text x="80" y="155" class="t">Infrared LED</text>
+        <rect x="380" y="60" width="40" height="40" class="bx"/><text x="400" y="120" class="t">Detector diode</text>
+        <rect x="380" y="120" width="40" height="40" class="bx"/><text x="400" y="180" class="t">Reference diode</text>
+        <rect x="220" y="90" width="14" height="40" fill="#2a2a2a"/><text x="227" y="148" class="t">vane</text>
+        <line x1="100" y1="100" x2="220" y2="110" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="4 3"/>
+        <line x1="234" y1="110" x2="380" y2="85" stroke="#2a2a2a" stroke-width="1.6"/>
+        <text x="240" y="50" class="t">diaphragm moves a vane across the light beam</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-12 · Optical pressure sensor</figcaption>
+    </figure><figure class="figure" id="fig-2-13">
+      <svg viewBox="0 0 480 220" role="img" aria-label="Flow profile through an orifice plate">
+        <style>
+          .pp{fill:none;stroke:#2a2a2a;stroke-width:1.4}
+          .pl{fill:#ddd;stroke:#2a2a2a;stroke-width:1.4}
+          .fl{stroke:#2c6fbb;stroke-width:1.4;fill:none}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+        </style>
+        <rect x="20" y="60" width="440" height="100" class="pp"/>
+        <rect x="220" y="60" width="16" height="100" class="pl"/>
+        <circle cx="228" cy="110" r="14" fill="#fff" stroke="#2a2a2a" stroke-width="1.4"/>
+        <path class="fl" d="M20 80 H200 Q228 80 252 110 Q276 140 460 100"/>
+        <path class="fl" d="M20 140 H200 Q228 140 252 110 Q276 80 460 120"/>
+        <text x="228" y="40" class="t">orifice</text>
+        <text x="360" y="170" class="t" fill="#2c6fbb">vena contracta</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-13 · Flow profile through an orifice plate</figcaption>
+    </figure><figure class="figure" id="fig-2-14">
+      <svg viewBox="0 0 480 220" role="img" aria-label="Magnetic flowmeter sensor diagram">
+        <style>
+          .pp{fill:none;stroke:#2a2a2a;stroke-width:1.4}
+          .co{fill:#f7f7f7;stroke:#2a2a2a;stroke-width:1.4}
+          .el{fill:#cfe8ff;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:11px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .fl{stroke:#2c6fbb;stroke-width:2.2;fill:none}
+        </style>
+        <rect x="40" y="70" width="400" height="80" class="pp"/>
+        <rect x="60" y="40" width="60" height="30" class="co"/><text x="90" y="60" class="t" font-size="10">magnetic coil</text>
+        <rect x="360" y="40" width="60" height="30" class="co"/><text x="390" y="60" class="t" font-size="10">magnetic coil</text>
+        <rect x="225" y="70" width="20" height="20" class="el"/><text x="235" y="62" class="t" font-size="9">electrodes</text>
+        <rect x="225" y="130" width="20" height="20" class="el"/><text x="235" y="165" class="t" font-size="9">electrodes</text>
+        <path class="fl" d="M40 110 H440"/>
+        <text x="240" y="195" class="t">U &#8733; velocity &#8733; volumetric flow (conductive liquid)</text>
+      </svg>
+      <figcaption class="figcap">Figure 2-14 · Magnetic flowmeter (magmeter) sensor diagram</figcaption>
+    </figure><figure class="figure" id="fig-2-15">
+      <svg viewBox="0 0 520 200" role="img" aria-label="Microprocessor-based thermocouple system, range-corrected and linearised">
+        <style>
+          .bx{fill:#fafafa;stroke:#2a2a2a;stroke-width:1.4}
+          .t{font:10.5px Inter,sans-serif;fill:#111;text-anchor:middle}
+          .ar{stroke:#2a2a2a;stroke-width:1.6;fill:none}
+        </style>
+        <rect x="20" y="80" width="80" height="40" rx="5" class="bx"/><text x="60" y="104" class="t">Thermocouple</text>
+        <rect x="125" y="80" width="90" height="40" rx="5" class="bx"/><text x="170" y="98" class="t">Cold-junction</text><text x="170" y="112" class="t">compensation</text>
+        <rect x="240" y="80" width="80" height="40" rx="5" class="bx"/><text x="280" y="98" class="t">Amplifier</text><text x="280" y="112" class="t">stable DC</text>
+        <rect x="345" y="80" width="80" height="40" rx="5" class="bx"/><text x="385" y="98" class="t">Microprocessor</text><text x="385" y="112" class="t">(linearised)</text>
+        <rect x="440" y="55" width="70" height="40" rx="5" class="bx"/><text x="475" y="73" class="t">Range</text><text x="475" y="87" class="t">adjust</text>
+        <rect x="440" y="115" width="70" height="40" rx="5" class="bx"/><text x="475" y="133" class="t">Output</text><text x="475" y="147" class="t">4&#8211;20 mA</text>
+        <path class="ar" d="M100 100 H125 M215 100 H240 M320 100 H345 M425 100 H440"/>
+        <path class="ar" d="M475 95 V115"/>
+      </svg>
+      <figcaption class="figcap">Figure 2-15 · Microprocessor-based thermocouple measurement system with range-corrected, linearised output</figcaption>
+    </figure><div class="chapter-nav"><a href="/books/read/pc-process-control/ch01-introduction/"><span class="k">← Chapter 1</span>Introduction</a><a href="/books/read/pc-process-control/" style="text-align:right;"><span class="k">Library</span>All chapters</a></div></div></article></main><footer class="site-footer"><p>Pro InstControl Library · Unofficial study copy · Original text © IDC Technologies Pty Ltd</p></footer></body></html>

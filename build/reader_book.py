@@ -118,10 +118,8 @@ BOOKS = {
             ("L", "Background Graphics Design", "Thiết kế đồ họa nền"),
             ("M", "Configuration Example", "Ví dụ cấu hình"),
         ],
-        "done": {1: "ch01-introduction"},
-        # Vietnamese translation is one chapter ahead of the English reader page
-        "done_vi": {1: "ch01-introduction",
-                    2: "ch02-process-measurement-and-transducers"},
+        "done": {1: "ch01-introduction",
+                 2: "ch02-process-measurement-and-transducers"},
         "copyright_en": "Original text © IDC Technologies Pty Ltd",
         "copyright_vi": "Bản gốc © IDC Technologies Pty Ltd",
         "lede_en": ("A hands-on training manual covering process dynamics, measurement, valves, "
