@@ -21,6 +21,7 @@ import pages_ref  # noqa: E402
 import pages_glossary  # noqa: E402
 import pages_applications  # noqa: E402
 import pages_education  # noqa: E402
+import pages_videos  # noqa: E402
 
 DIST = framework.DIST
 ASSETS = os.path.join(ROOT, "assets")
@@ -65,6 +66,7 @@ def main():
     pages_ref.build_standards()
     pages_applications.build()
     pages_education.build()
+    pages_videos.main()
     pages_glossary.build()
 
     # static assets

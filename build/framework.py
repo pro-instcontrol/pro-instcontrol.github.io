@@ -31,6 +31,7 @@ TAG_VI = "Sổ tay hiện trường"
 NAV = [
     ("index.html", "Home", "Trang chủ"),
     ("books/", "Books", "Sách"),
+    ("video-library/", "Videos", "Video"),
     ("fundamentals.html", "Fundamentals", "Cơ bản"),
     ("instruments.html", "Instruments", "Thiết bị đo"),
     ("install.html", "Install", "Lắp đặt"),
@@ -61,6 +62,7 @@ SHELL = {
     "shell.nav.glossary": ("Glossary", "Thuật ngữ"),
     "shell.nav.education": ("Education", "Giáo dục"),
     "shell.nav.books": ("Books", "Sách"),
+    "shell.nav.video-library": ("Videos", "Video"),
     "shell.tag": (TAG_EN, TAG_VI),
     "shell.menu": ("Menu", "Danh mục"),
     "shell.foot.note": (

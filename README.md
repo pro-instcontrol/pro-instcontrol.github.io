@@ -23,6 +23,7 @@ Live: https://pro-instcontrol.github.io/
 | `geotechnical.html` | Observational method, ISO 18674 series, 12 sensor families, vibrating wire vs 4–20 mA, field failures |
 | `standards.html` | ISA / IEC / API / ISO / CEN index with what each one governs |
 | `glossary.html` | 52 bilingual terms with live search |
+| `video-library/` | 155 curated videos across 20 topics, with search, level and source filters (VI mirror at `vi/video-library/`) |
 
 ## How the bilingual system works
 
@@ -80,13 +81,29 @@ build/
   pages_compare.py  the comparison matrix
   pages_ref.py      geotechnical + standards
   pages_glossary.py glossary
+  pages_videos.py   video library (EN + VI pages)
+  videos_data.py    the curated video dataset
   build.py          entry point
 assets/
   style.css         design system (light theme, P&ID-inspired)
   app.js            language engine, filters, glossary search, PID simulator, calculators
+  videos.js         video library search / level / source filters
   favicon.svg
 dist/               generated output (not committed)
 ```
+
+## Video library
+
+`/video-library/` and `/vi/video-library/` are two static pages generated from
+`build/videos_data.py`. Each entry carries an id, one primary category, a level, a
+duration, the source channel and a one-line editorial note in both languages.
+
+- Sourced from the supplied Instrumentation & Control playlist, the @InstruNexus
+  channel, manufacturer / standards-body channels, and Vietnamese-language channels.
+- Cards are written into the HTML at build time, so the library reads without
+  JavaScript; `assets/videos.js` only adds search, level and source filtering.
+- Durations and titles come from the YouTube metadata; commercial and pricing
+  videos from the source channels were left out.
 
 ## Design notes
 
