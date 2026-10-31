@@ -76,6 +76,7 @@ SHORT = {
     "career": ("Career", "Nghề nghiệp"),
     "sims": ("Simulators", "Mô phỏng"),
     "tieng-viet": ("Tiếng Việt", "Tiếng Việt"),
+    "trends": ("Trends", "Xu hướng"),
 }
 
 # Which topics a reader is most likely to want next. Hand-picked, not derived:
@@ -93,7 +94,7 @@ RELATED = {
     "drawings": ["deliverables", "control", "install", "signals"],
     "deliverables": ["drawings", "procurement", "systems", "career"],
     "procurement": ["deliverables", "valves", "drawings", "systems"],
-    "systems": ["control", "signals", "drawings", "safety"],
+    "systems": ["control", "signals", "trends", "safety"],
     "safety": ["alarms", "valves", "systems", "install"],
     "alarms": ["safety", "systems", "control", "calibration"],
     "calibration": ["pressure", "temp", "flow", "level"],
@@ -102,6 +103,7 @@ RELATED = {
     "career": ["start", "deliverables", "sims", "procurement"],
     "sims": ["control", "career", "start", "calibration"],
     "tieng-viet": ["start", "calibration", "pressure", "control"],
+    "trends": ["systems", "signals", "install", "safety"],
 }
 
 T = {
