@@ -14,7 +14,7 @@ DIST = os.path.join(ROOT, "dist")
 
 # Single cache-busting version for every generated page. Bump this whenever
 # style.css or app.js changes; the env var exists only for one-off experiments.
-ASSET_VER = os.environ.get("ASSET_VER", "10")
+ASSET_VER = os.environ.get("ASSET_VER", "11")
 
 _NEST_OPEN = re.compile(r"<(h[1-4]|p|li)([^>]*)><\1([^>]*)>")
 _NEST_CLOSE = re.compile(r"</(h[1-4]|p|li)></\1>")
@@ -441,7 +441,11 @@ def render(pg, body, active):
     out += topbar(active)
     out += body
     out += footer()
-    out += "<script>window.I18N=%s;window.I18N_META=%s;</script>\n" % (payload, meta)
+    # The twin set travels with the page so app.js retargets the header and the
+    # foot pair from the same list the build used, instead of a copy of its own.
+    twins = json.dumps(sorted(TWIN_PATHS), ensure_ascii=False, separators=(",", ":"))
+    out += ("<script>window.I18N=%s;window.I18N_META=%s;window.TWINS=%s;</script>\n"
+            % (payload, meta, twins))
     out += '<script src="assets/app.js?v=%s"></script>\n</body>\n</html>\n' % ASSET_VER
     return tidy(out)
 

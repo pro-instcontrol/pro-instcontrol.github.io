@@ -24,12 +24,20 @@
   var lang = initial();
 
   /* Sections that exist twice, as real URLs: /books/ and /vi/books/ and so on.
-     The pages here are language-switched in place, so their nav has to point at
-     the matching tree instead of always at the English one. */
-  var TWINS = { "books/": 1, "video-library/": 1, "advanced/": 1, "hot-topics/": 1 };
+     The pages here are language-switched in place, so their links have to point
+     at the matching tree instead of always at the English one. The set is
+     emitted by the build (window.TWINS, from framework.TWIN_PATHS) so it cannot
+     drift; the literal below is only a fallback for an old cached page. */
+  var TWINS = {};
+  (window.TWINS || ["books/", "video-library/", "advanced/", "hot-topics/", "glossary.html"])
+    .forEach(function (p) { TWINS[p] = 1; });
 
   function retargetNav(l) {
-    var links = document.querySelectorAll(".nav a[href], .brand[href]");
+    // .nextprev is the foot-of-page pair: same rule, or a Vietnamese reader
+    // clicking Next on Education lands on the English library.
+    var links = document.querySelectorAll(
+      ".nav a[href], .brand[href], .nextprev a[href]"
+    );
     for (var i = 0; i < links.length; i++) {
       var a = links[i];
       var raw = a.getAttribute("href");
