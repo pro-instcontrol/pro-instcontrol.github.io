@@ -104,6 +104,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch13-basic-principles-of-fuzzy-logic-and-neural-networks/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/pc-process-control/ch14-self-tuning-intelligent-control-and-statistical-process-control/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch14-self-tuning-intelligent-control-and-statistical-process-control/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch14-self-tuning-intelligent-control-and-statistical-process-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch14-self-tuning-intelligent-control-and-statistical-process-control/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/"/>
@@ -1449,6 +1455,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch13-basic-principles-of-fuzzy-logic-and-neural-networks/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch13-basic-principles-of-fuzzy-logic-and-neural-networks/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch13-basic-principles-of-fuzzy-logic-and-neural-networks/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch14-self-tuning-intelligent-control-and-statistical-process-control/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch14-self-tuning-intelligent-control-and-statistical-process-control/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch14-self-tuning-intelligent-control-and-statistical-process-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch14-self-tuning-intelligent-control-and-statistical-process-control/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/</loc>

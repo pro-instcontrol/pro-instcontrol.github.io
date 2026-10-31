@@ -104,7 +104,7 @@ BOOKS = {
             11: ("Combined Feedback and Feedforward Control", "Kết hợp phản hồi và theo hướng"),
             12: ("Long Process Dead-Time and the Smith Predictor", "Trễ chết dài và bộ dự đoán Smith"),
             13: ("Basic Principles of Fuzzy Logic and Neural Networks", "Nguyên lý cơ bản của lô-gic mờ và mạng nơ-ron"),
-            14: ("Self-Tuning Intelligent Control and SPC", "Tự chỉnh, điều khiển thông minh và SPC"),
+            14: ("Self-Tuning Intelligent Control and SPC", "Tự chỉnh định, điều khiển thông minh và SPC"),
         },
         "appendices": [
             ("A", "Some Laplace Transform Pairs", "Một số cặp biến đổi Laplace"),
@@ -133,7 +133,8 @@ BOOKS = {
                  10: "ch10-concepts-and-applications-of-feedforward-control",
                  11: "ch11-combined-feedback-and-feedforward-control",
                  12: "ch12-long-dead-time-and-the-smith-predictor",
-                 13: "ch13-basic-principles-of-fuzzy-logic-and-neural-networks"},
+                 13: "ch13-basic-principles-of-fuzzy-logic-and-neural-networks",
+                 14: "ch14-self-tuning-intelligent-control-and-statistical-process-control"},
         "copyright_en": "Original text © IDC Technologies Pty Ltd",
         "copyright_vi": "Bản gốc © IDC Technologies Pty Ltd",
         "lede_en": ("A hands-on training manual covering process dynamics, measurement, valves, "
@@ -268,10 +269,16 @@ def build(lang, spec):
             % (num(total, lang), num(spec["pages"], lang), spec["files"])) if vi \
         else ("%s chapters · %s pages · %s PDF files"
               % (num(total, lang), num(spec["pages"], lang), spec["files"]))
-    flag = ('<span class="translated-flag" data-level="progress">🟠 Đang dịch · %d/%d chương</span>'
-            % (ndone, total) if vi else
-            '<span class="translated-flag" data-level="progress">🟠 Translating · %d of %d chapters</span>'
-            % (ndone, total))
+    if ndone >= total:
+        flag = ('<span class="translated-flag" data-level="full">🟢 Đã dịch đủ · %d/%d chương</span>'
+                % (ndone, total) if vi else
+                '<span class="translated-flag" data-level="full">🟢 Fully translated · %d of %d '
+                'chapters</span>' % (ndone, total))
+    else:
+        flag = ('<span class="translated-flag" data-level="progress">🟠 Đang dịch · %d/%d chương</span>'
+                % (ndone, total) if vi else
+                '<span class="translated-flag" data-level="progress">🟠 Translating · %d of %d '
+                'chapters</span>' % (ndone, total))
     lede = spec["lede_vi"] if vi else spec["lede_en"]
     policy = spec["policy_vi"] if vi else spec["policy_en"]
     read = ("Đọc Chương 1 →" if vi else "Read the Vietnamese Chapter 1 →")
