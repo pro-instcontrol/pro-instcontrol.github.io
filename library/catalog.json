@@ -114,7 +114,7 @@
   "unique_pdfs": 583,
   "duplicate_sets": 214,
   "wasted_bytes": 571049915,
-  "works": 214
+  "works": 220
  },
  "extensions": [
   {
@@ -6242,11 +6242,19 @@
      "bytes": 117738,
      "copies": [],
      "head": "Contents Preface xi Contributors xv Introduction xxi A A-1 ASME Speciﬁcations A-1 Abrasives A-1 Accident Management A-9 Accountability, Environmental (see Environmental Accountability) Acid Rain A-9 Acoustic Enclosures, Turbine A-10 Actuators A-37 Aerfoils; Airfoils (see Metallur"
+    },
+    {
+     "path": "D:/Process Industries/ProcessEngineering EquipmentHandbook.pdf",
+     "title": "Complete book (single file · Process Industries copy)",
+     "pages": 1544,
+     "bytes": 49947416,
+     "copies": [],
+     "head": "Process Engineering Equipment Handbook Claire Soares McGraw-Hill New York Chicago San Francisco Lisbon London Madrid Mexico City Milan New Delhi San Juan Seoul Singapore Sydney Toronto"
     }
    ],
-   "ndocs": 49,
-   "pages": 1559,
-   "bytes": 53390658,
+   "ndocs": 50,
+   "pages": 3103,
+   "bytes": 103338074,
    "year": null,
    "copies": 2,
    "head": "blasting. The lifetime maintenance cost of a painted carbon-steel structure vastly outweighs the small extra premium that stainless steel affords for the initial installation. Newer Filtration Designs Clearly, the most worrisome de ﬁciency of the old systems was the combination of poor water-handling ability either from rain or salt-related droplets and the materials of construction. Gas turbines "
@@ -9326,6 +9334,1296 @@
    "desc": {
     "en": "The January 2026 research report: survey results and analysis of where automation spend is going. Control systems and motors and drives lead, with 54% of respondents investing in each, broken out for manufacturers, vendors, integrators and policymakers.",
     "vi": "Báo cáo nghiên cứu tháng 1/2026: kết quả khảo sát và phân tích dòng tiền đầu tư tự động hóa. Hệ điều khiển và động cơ - truyền động dẫn đầu, mỗi hạng mục có 54% người trả lời đầu tư, dữ liệu tách riêng cho nhà sản xuất, nhà cung cấp, tích hợp hệ thống và nhà hoạch định chính sách."
+   }
+  },
+  {
+   "id": 214,
+   "title": "Handbook for Plant Process Engineer",
+   "dir": "D:/Process Industries",
+   "domain": "process",
+   "why": 7,
+   "docs": [
+    {
+     "path": "D:/Process Industries/Handbook for Plant Process Engineer.pdf",
+     "title": "Complete book (single file)",
+     "pages": 344,
+     "bytes": 3517005,
+     "copies": [],
+     "head": ""
+    }
+   ],
+   "ndocs": 1,
+   "pages": 344,
+   "bytes": 3517005,
+   "year": 2010,
+   "copies": 0,
+   "head": "",
+   "desc": {
+    "en": "A plant-floor handbook for the process engineer: equipment, materials, piping, instrumentation and the day-to-day problems of keeping a process running. Practical rather than theoretical.",
+    "vi": "Sổ tay hiện trường cho kỹ sư quá trình: thiết bị, vật liệu, đường ống, thiết bị đo và những vấn đề hằng ngày để giữ một quá trình vận hành. Thực dụng hơn là lý thuyết."
+   }
+  },
+  {
+   "id": 215,
+   "title": "Process Management",
+   "dir": "D:/Process Industries",
+   "domain": "process",
+   "why": 6,
+   "docs": [
+    {
+     "path": "D:/Process Industries/Process_Management.pdf",
+     "title": "Complete book (single file)",
+     "pages": 23,
+     "bytes": 1055957,
+     "copies": [],
+     "head": ""
+    }
+   ],
+   "ndocs": 1,
+   "pages": 23,
+   "bytes": 1055957,
+   "year": null,
+   "copies": 0,
+   "head": "",
+   "desc": {
+    "en": "A management-side view of running a process plant — organisation, planning, quality and the human systems around the equipment.",
+    "vi": "Góc nhìn quản lý về vận hành nhà máy quá trình — tổ chức, lập kế hoạch, chất lượng và các hệ thống con người quanh thiết bị."
+   }
+  },
+  {
+   "id": 216,
+   "title": "Essentials of Food Sanitation",
+   "dir": "D:/Process Industries/Essentials of Food Sanitation",
+   "domain": "safety",
+   "why": 6,
+   "docs": [
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_fm.pdf",
+     "title": "Front matter",
+     "pages": 4,
+     "bytes": 142740,
+     "copies": [],
+     "head": "ESSENTIALS OF FOOD SANITATION NORMAN G. MARRIOTT Virginia Polytechnic Institute and State University Consulting Editor GILL ROBERTSON, M.S., R.D. I QP P® International Thomson Publishing Thomson Science New York • Albany • Bonn • Boston • Cincinnati • Detroit • London • Madrid • Melbourne Mexico City • Pacific Grove • Paris • San Francisco • Singapore • Tokyo • Toronto • Washington "
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_01.pdf",
+     "title": "Chapter 1",
+     "pages": 10,
+     "bytes": 583995,
+     "copies": [],
+     "head": "Sanitation: Definitions and Regulations ABOUT THIS CHAPTER In this chapter you will learn: 1. Why modern food production makes it even more important than before to use sanitary methods 2. Why a well-designed plant is not enough to ensure that food is safe 3. What sanitation means 4. How sanitation is regulated by government agencies 5. Why a planned sanitation program is essential INTRODUCTION Ov"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_02.pdf",
+     "title": "Chapter 2",
+     "pages": 26,
+     "bytes": 1420789,
+     "copies": [],
+     "head": "Microorganisms ABOUT THIS CHAPTER In this chapter you will learn: 1. What microorganisms are and how they grow 2. How temperature, oxygen, water, pH, nutrients, and inhibitors affect the growth of microorganisms 3. How microbes cause food to spoil 4. About the causes and symptoms of the most common types of foodborne illness 5. How to destroy microbes 6. How to inhibit or control growth of microbe"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_03.pdf",
+     "title": "Chapter 3",
+     "pages": 9,
+     "bytes": 472397,
+     "copies": [],
+     "head": "Sources of Food Contamination ABOUT THIS CHAPTER In this chapter you will learn: 1. Where microorganisms in foods come from 2. The difference between foodborne infection and foodborne intoxication 3. How microbes in food cause illness in people 4. How specific foods and ingredients become infected 5. How contamination of foods can be prevented and controlled INTRODUCTION Nutrients for Microorganis"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_04.pdf",
+     "title": "Chapter 4",
+     "pages": 13,
+     "bytes": 841717,
+     "copies": [],
+     "head": "Personal Hygiene and Food Handling ABOUT THIS CHAPTER In this chapter you will learn: 1. What personal hygiene is and why it is important 2. About parts of the body that need to be kept clean or covered 3. When and how to wash hands to keep food safe 4. How diseases are spread 5. How employees and employers can take responsibility for personal hygiene INTRODUCTION Food handlers can carry bacteria "
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_05.pdf",
+     "title": "Chapter 5",
+     "pages": 17,
+     "bytes": 922885,
+     "copies": [],
+     "head": "Cleaning Compounds ABOUT THIS CHAPTER In this chapter you will learn: 1. About different types of soil 2. How soil is attached to and can be removed from surfaces 3. How cleaning compounds work 4. How and when to use different cleaning and scouring compounds 5. How to choose a cleaning compound 6. How to handle and use cleaning compounds safely 7. How cleaning chemicals can contaminate food INTROD"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_06.pdf",
+     "title": "Chapter 6",
+     "pages": 12,
+     "bytes": 617423,
+     "copies": [],
+     "head": "Sanitizing Methods ABOUT THIS CHAPTER In this chapter you will learn: 1. The difference between cleaning and sanitizing 2. Why rinsing is important 3. About the three major types of sanitizers: heat, radiation, and chemicals 4. About the most common chemical sanitizers INTRODUCTION After food-processing or preparation equipment has been used, it is covered with scraps of food, grease, and other di"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_07.pdf",
+     "title": "Chapter 7",
+     "pages": 26,
+     "bytes": 1647590,
+     "copies": [],
+     "head": "Cleaning and Sanitizing Systems ABOUT THIS CHAPTER In this chapter you will learn: 1. About the costs of different types of cleaning and sanitizing systems 2. How to choose a cleaning system 3. How to monitor a cleaning system to make sure that equipment and surfaces are clean and sanitary 4. About different types of cleaning equipment, including manual equipment, automatic equipment, cleaning-in-"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_08.pdf",
+     "title": "Chapter 8",
+     "pages": 15,
+     "bytes": 941474,
+     "copies": [],
+     "head": "Waste Disposal ABOUT THIS CHAPTER In this chapter you will learn: 1. Why food production facilities need to be concerned about waste disposal 2. How a facility can decide which waste-disposal systems will work best and be the least expensive 3. How to test the level of pollution in wastewater 4. How food processors handle solid waste 5. How food processors and municipal water treatment systems han"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_09.pdf",
+     "title": "Chapter 9",
+     "pages": 21,
+     "bytes": 1355903,
+     "copies": [],
+     "head": "Pest Control ABOUT THIS CHAPTER In this chapter you will learn: 1. Which pests (insects, rodents, and birds) cause the most problems in food estab- lishments 2. How to prevent pest infestations through inspections and good housekeeping 3. How to detect pest infestations 4. Why pest control is so difficult but essential 5. How to control pests, using chemicals, physical and mechanical methods, biol"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_10.pdf",
+     "title": "Chapter 10",
+     "pages": 24,
+     "bytes": 1182063,
+     "copies": [],
+     "head": "Quality Assurance and Hazard Analysis Critical Control Points ABOUT THIS CHAPTER In this chapter you will learn: 1. What quality assurance (QA), total quality management (TQM), hazard analysis critical control points (HACCPs), and good manufacturing practices (GMPs) mean to the food industry 2. How management can support and design QA and HACCP programs 3. The steps involved in QA programs, includ"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_11.pdf",
+     "title": "Chapter 11",
+     "pages": 14,
+     "bytes": 774630,
+     "copies": [],
+     "head": "Dairy Processing and Product Sanitation ABOUT THIS CHAPTER In this chapter you will learn: 1. How the design of dairy-processing plants affects the wholesomeness of dairy products 2. Which pathogens cause most problems in the dairy industry 3. About the types of soil in dairy plants 4. About cleaning and sanitizing compounds and equipment for dairy- processing plants INTRODUCTION The dairy industr"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_12.pdf",
+     "title": "Chapter 12",
+     "pages": 23,
+     "bytes": 1277112,
+     "copies": [],
+     "head": "Meat and Poultry Sanitation ABOUT THIS CHAPTER In this chapter you will learn: 1. Why it is so important to have good sanitation in meat- and poultry-processing facilities 2. Which pathogens cause most problems in meat and poultry food products 3. How to design and organize meat and poultry plants to control pathogens 4. How to clean and sanitize the various parts of meat- and poultry-processing p"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_13.pdf",
+     "title": "Chapter 13",
+     "pages": 10,
+     "bytes": 610435,
+     "copies": [],
+     "head": "Seafood Sanitation ABOUT THIS CHAPTER In this chapter you will learn: 1. How seafood can be contaminated 2. How the design and construction of seafood-processing plants can cut down on seafood contamination 3. How to clean and sanitize seafood-processing plants 4. How seafood processors can recover or recycle by-products 5. About inspection programs and HACCP in the seafood industry INTRODUCTION T"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_14.pdf",
+     "title": "Chapter 14",
+     "pages": 13,
+     "bytes": 714425,
+     "copies": [],
+     "head": "Fruit and Vegetable Processing and Product Sanitation ABOUT THIS CHAPTER In this chapter you will learn: 1. How to reduce contamination of fruit and vegetable products from raw products, soil, air, water, and pests 2. How good housekeeping and waste-disposal practices can help keep fruit and vegetable products wholesome 3. How the design of fruit- and vegetable-processing plants can affect hygiene"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_15.pdf",
+     "title": "Chapter 15",
+     "pages": 17,
+     "bytes": 993024,
+     "copies": [],
+     "head": "Beverage Plant Sanitation ABOUT THIS CHAPTER In this chapter you will learn: 1. How sanitation is important to producers of nonalcoholic beverages, beer, wine, and distilled spirits 2. Why beverage plants are easier to clean than food-processing plants 3. Why it is essential to make sure that the raw ingredients used in beverages are pure 4. How to clean and sanitize different types of beverage pl"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_16.pdf",
+     "title": "Chapter 16",
+     "pages": 12,
+     "bytes": 711487,
+     "copies": [],
+     "head": "Low-Moisture-Food Sanitation ABOUT THIS CHAPTER In this chapter you will learn: 1. Why good sanitation is important in low-moisture food-processing facilities, even though microbes do not usually grow in these foods 2. About the pests, insects, and other contaminants that affect low-moisture foods 3. How the design of a low-moisture-food plant and the type and layout of equipment affect sanitation"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_17.pdf",
+     "title": "Chapter 17",
+     "pages": 24,
+     "bytes": 1270096,
+     "copies": [],
+     "head": "Sanitary Food Handling in Foodservice ABOUT THIS CHAPTER In this chapter you will learn: 1. Why changes in the Foodservice industry have made sanitation even more important 2. Three procedures that can help keep food from being contaminated 3. How clean preparation and serving areas, clean utensils, good employee health and hygiene, sanitary serving areas, and inspection programs can protect food "
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_18.pdf",
+     "title": "Chapter 18",
+     "pages": 13,
+     "bytes": 670318,
+     "copies": [],
+     "head": "Foodservice Control Points ABOUT THIS CHAPTER In this chapter you will learn: 1. How to keep food safe at each step in a foodservice facility, from buying and receiving to serving leftovers 2. How to buy, receive, and store food safely 3. How to prepare, serve, cool, and reheat safely 4. How to draw flow diagrams for each recipe used in the facility to help decide on critical control points (CCPs)"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_19.pdf",
+     "title": "Chapter 19",
+     "pages": 9,
+     "bytes": 497278,
+     "copies": [],
+     "head": "Management and Sanitation ABOUT THIS CHAPTER In this chapter you will learn: 1. Why it is so important for managers to understand good hygiene and support the sanitation program 2. Who managers should involve when developing a sanitation program 3. How managers can help motivate employees and improve the image of sanita- tion work 4. How sanitation managers can cooperate with the media, outside ag"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_app.pdf",
+     "title": "Appendices",
+     "pages": 14,
+     "bytes": 395015,
+     "copies": [],
+     "head": "Where to Get More Information About Food Safety and Sanitation: Agencies, Associations, and Consumer Organizations The American Dietetic Association (ADA) National Center for Nutrition and Dietetics (NCND) 216 W Jackson Boulevard, Suite 800 Chicago, IL 60606-6995 (312) 899-0040 or (800) 877-1600 American Public Health Association (APHA) 1015 Fifteenth Street, NW Washington, DC 20005 (202) 789-5600"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_asq.pdf",
+     "title": "Appendix · ASQ food sanitation",
+     "pages": 11,
+     "bytes": 540213,
+     "copies": [],
+     "head": "Answers to Study Questions CHAPTER 1 1. Sanitation means creating and maintaining hygienic and healthful conditions. 2. Substantive, which means they have the power of law and must be carried out. 3. The Food and Drug Administration (FDA). Meat and poultry products are not moni- tored by this agency. 4. Less expensive; better communication between regulators and firms. 5. Conflicting interests of "
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_gl.pdf",
+     "title": "Glossary",
+     "pages": 5,
+     "bytes": 284505,
+     "copies": [],
+     "head": "Glossary Acid: a substance with a pH between O (mostly acid) and 7 (neutral). Adulterated: food that has been prepared or packed in an unsanitary way, contains dirt, could be harmful to health, or may not be correctly labeled. Aerobic microbes: microbes that grow only with oxygen. Agar: growth medium for microbes used during testing. Alkali: a substance with a pH between 7 (neutral) and 14 (mostly"
+    },
+    {
+     "path": "D:/Process Industries/Essentials of Food Sanitation/80117_indx.pdf",
+     "title": "Index",
+     "pages": 17,
+     "bytes": 468873,
+     "copies": [],
+     "head": " 339 This page has been reformatted by Knovel to provide easier navigation. Index Index terms Links A Abrasives 68 Activated sludge 124 Adulterated 5 Aerobic lagoons 124 Aerobic microorganisms 16 Air 41 222 Air-conditioning 242 Air curtain 135 Anaerobic lagoons 123 Anaerobic microorganisms 16 Aseptic filling 239 Aseptic packaging 223 236 291 Attitude 301 B Bacteria 12 13 Aeromonas hydrophila 28 Ba"
+    }
+   ],
+   "ndocs": 24,
+   "pages": 359,
+   "bytes": 19336387,
+   "year": 1998,
+   "copies": 0,
+   "head": "ESSENTIALS OF FOOD SANITATION NORMAN G. MARRIOTT Virginia Polytechnic Institute and State University Consulting Editor GILL ROBERTSON, M.S., R.D. I QP P® International Thomson Publishing Thomson Science New York • Albany • Bonn • Boston • Cincinnati • Detroit • London • Madrid • Melbourne Mexico City • Pacific Grove • Paris • San Francisco • Singapore • Tokyo • Toronto • Washington ",
+   "desc": {
+    "en": "A working text on food sanitation: microbiology, cleaning and sanitising, HACCP pre-requisites and the hygiene practice that keeps a food plant safe.",
+    "vi": "Giáo trình thực hành về vệ sinh thực phẩm: vi sinh, làm sạch và khử trùng, các tiên quyết HACCP và thực hành vệ sinh giữ cho nhà máy thực phẩm an toàn."
+   }
+  },
+  {
+   "id": 217,
+   "title": "Food Processing Technology — Principles and Practice (2nd Edition)",
+   "dir": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)",
+   "domain": "process",
+   "why": 7,
+   "docs": [
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_fm.pdf",
+     "title": "Front matter",
+     "pages": 5,
+     "bytes": 27182,
+     "copies": [],
+     "head": "FOOD PROCESSING TECHNOLOGY Principles and Practice Second Edition P. Fellows Director, Midway Technology and Visiting Fellow in Food Technology at Oxford Brookes University "
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_toc.pdf",
+     "title": "Table of contents",
+     "pages": 10,
+     "bytes": 29353,
+     "copies": [],
+     "head": "Acknowledgements . . . ........................................................ xvii Glossary ...................................................................... xix List of symbols ............................................................... xxvii List of acronyms . . . . . ........................................................ xxx Introduction . . . ......................................"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_01.pdf",
+     "title": "Chapter 1",
+     "pages": 55,
+     "bytes": 348394,
+     "copies": [],
+     "head": "Part I Basic principles"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_02.pdf",
+     "title": "Chapter 2",
+     "pages": 17,
+     "bytes": 458045,
+     "copies": [],
+     "head": "The purpose of process control is to reduce the variability in final products so that legislative requirements and consumers’ expectations of product quality and safety are met. It also aims to reduce wastage and production costs by improving the efficiency of processing. Simple control methods (for example, reading thermometers, noting liquid levels in tanks, adjusting valves to control the rate "
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_03.pdf",
+     "title": "Chapter 3",
+     "pages": 16,
+     "bytes": 1157916,
+     "copies": [],
+     "head": "Methods used to prepare freshly harvested or slaughtered food for further processing (Chapter 3), to alter the size of foods (Chapter 4), to mix ingredients (Chapter 5) or to separate components of food (Chapter 6) are each essential unit operations in nearly all food processes. They are used to prepare specific formulations, to aid subsequent processing, or to alter the sensory characteristics of"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_04.pdf",
+     "title": "Chapter 4",
+     "pages": 20,
+     "bytes": 706064,
+     "copies": [],
+     "head": "Size reduction or ‘comminution’ is the unit operation in which the average size of solid pieces of food is reduced by the application of grinding, compression or impact forces. When applied to the reduction in size of globules of immiscible liquids (for example oil globules in water) size reduction is more frequently referred to as homogenisation or emulsification. The size reduction of liquids to"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_05.pdf",
+     "title": "Chapter 5",
+     "pages": 22,
+     "bytes": 1206097,
+     "copies": [],
+     "head": "Mixing (or blending) is a unit operation in which a uniform mixture is obtained from two or more components, by dispersing one within the other(s). The larger component is sometimes called the continuous phase and the smaller component the dispersed phase by analogy with emulsions (Chapter 4), but these terms do not imply emulsification when used in this context. Mixing has no preservative effect "
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_06.pdf",
+     "title": "Chapter 6",
+     "pages": 30,
+     "bytes": 634432,
+     "copies": [],
+     "head": "Foods are complex mixtures of compounds and the extraction or separation of food components is fundamental for the preparation of ingredients to be used in other processes (for example cooking oils from oilseeds or gelatin from connective tissue); or for retrieval of high value compounds, such as enzymes (e.g. papain from papaya for meat tenderisation or rennet from calf stomachs for cheesemaking)"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_07.pdf",
+     "title": "Chapter 7",
+     "pages": 26,
+     "bytes": 463767,
+     "copies": [],
+     "head": "Fermented foods are among the oldest processed foods and have formed a traditional part of the diet in almost all countries for millennia. Today they continue to form major sectors of the food processing industry, including baked products, alcoholic drinks, yoghurt, cheese and soy products among many others. During food fermentations, the controlled action of selected micro-organisms is used to al"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_08.pdf",
+     "title": "Chapter 8",
+     "pages": 14,
+     "bytes": 74724,
+     "copies": [],
+     "head": "Ionising radiation takes the form of /C13-rays from isotopes or, commercially to a lesser extent, from X-rays and electrons. It is permitted in 38 countries to preserve foods by destruction of micro-organisms or inhibition of biochemical changes (Table 8.1). Applications and details of the technology have been comprehensively reviewed by Wilkinson and Gould (1996). The main advantages of irradiati"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_09.pdf",
+     "title": "Chapter 9",
+     "pages": 18,
+     "bytes": 136150,
+     "copies": [],
+     "head": "Over the last ten years, consumer demand has increasingly required processed foods to have a more ‘natural’ flavour and colour, with a shelf life that is sufficient for distribution and a reasonable period of home storage before consumption. This can be achieved by minimal processing methods that preserve foods but also retain to a greater extent their nutritional quality and sensory characteristi"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_10.pdf",
+     "title": "Chapter 10",
+     "pages": 11,
+     "bytes": 65665,
+     "copies": [],
+     "head": "Heat treatment remains one of the most important methods used in food processing, not only because of the desirable effects on eating quality (many foods are consumed in a cooked form and processes such as baking produce flavours that cannot be created by other means), but also because of the preservative effect on foods by the destruction of enzymes, micro-organisms, insects and parasites. The ot"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_11.pdf",
+     "title": "Chapter 11",
+     "pages": 9,
+     "bytes": 298635,
+     "copies": [],
+     "head": "Pasteurisation is a relatively mild heat treatment, in which food is heated to below 100ºC. In low acid foods (pH /C62 4.5, for example milk) it is used to minimise possible health hazards from pathogenic micro-organisms and to extend the shelf life of foods for several days. In acidic foods (pH /C60 4.5, for example bottled fruit) it is used to extend the shelf life for several months by destruct"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_12.pdf",
+     "title": "Chapter 12",
+     "pages": 28,
+     "bytes": 180918,
+     "copies": [],
+     "head": "Heat sterilisation is the unit operation in which foods are heated at a sufficiently high temperature and for a sufficiently long time to destroy microbial and enzyme activity. As a result, sterilised foods have a shelf life in excess of six months at ambient temperatures. The severe heat treatment during the older process of in-container sterilisation (canning) may produce substantial changes in "
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_13.pdf",
+     "title": "Chapter 13",
+     "pages": 16,
+     "bytes": 103032,
+     "copies": [],
+     "head": "In common with other unit operations that are intended to separate components of foods (Chapter 6), evaporation and distillation aim to separate specific components to increase the value of the food. In both types of operation, separation is achieved by exploiting differences in the vapour pressure (volatility) of the components and using heat to remove one or more from the bulk of the food. 13.1 "
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_14.pdf",
+     "title": "Chapter 14",
+     "pages": 15,
+     "bytes": 561584,
+     "copies": [],
+     "head": "Extrusion is a process which combines several unit operations including mixing, cooking, kneading, shearing, shaping and forming. Extruders are classified according to the method of operation (cold extruders or extruder-cookers) and the method of construction (single- or twin-screw extruders). The principles of operation are similar in all types: raw materials are fed into the extruder barrel and "
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_15.pdf",
+     "title": "Chapter 15",
+     "pages": 31,
+     "bytes": 522024,
+     "copies": [],
+     "head": "B. Heat processing using hot air"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_16.pdf",
+     "title": "Chapter 16",
+     "pages": 12,
+     "bytes": 1477593,
+     "copies": [],
+     "head": "Baking and roasting are essentially the same unit operation: they both use heated air to alter the eating quality of foods. The terminology differs in common usage; baking is usually applied to flour-based foods or fruits, and roasting to meats, nuts and vegetables. In this chapter the term baking is used to include both operations. A secondary purpose of baking is preservation by destruction of m"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_17.pdf",
+     "title": "Chapter 17",
+     "pages": 9,
+     "bytes": 95250,
+     "copies": [],
+     "head": "C. Heat processing using hot oils"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_18.pdf",
+     "title": "Chapter 18",
+     "pages": 21,
+     "bytes": 146526,
+     "copies": [],
+     "head": "D. Heat processing by direct and radiated energy"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_19.pdf",
+     "title": "Chapter 19",
+     "pages": 20,
+     "bytes": 103554,
+     "copies": [],
+     "head": "In the unit operations described in this section, a reduction in the temperature of foods slows the biochemical and microbiological changes that would otherwise take place during storage. Preservation by lowering the temperature of foods has important benefits in maintaining their sensory characteristics and nutritional value to produce high quality products. As a result these products have substa"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_20.pdf",
+     "title": "Chapter 20",
+     "pages": 12,
+     "bytes": 62342,
+     "copies": [],
+     "head": "A reduction in the concentration of oxygen and/or an increase in carbon dioxide concentration of the storage atmosphere surrounding a food reduces the rate of respiration of fresh fruits and vegetables and also inhibits microbial and insect growth. When combined with chilling (Chapter 19), modified or controlled atmospheres are an increasingly important method of maintaining high quality in proces"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_21.pdf",
+     "title": "Chapter 21",
+     "pages": 23,
+     "bytes": 434449,
+     "copies": [],
+     "head": "Freezing is the unit operation in which the temperature of a food is reduced below its freezing point and a proportion of the water undergoes a change in state to form ice crystals. The immobilisation of water to ice and the resulting concentration of dissolved solutes in unfrozen water lower the water activity ( aw) of the food ( aw is described in Chapter 1). Preservation is achieved by a combin"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_22.pdf",
+     "title": "Chapter 22",
+     "pages": 11,
+     "bytes": 81198,
+     "copies": [],
+     "head": "The advantages of dried and concentrated foods compared to other methods of preservation are described in Chapters 6, 13 and 15. The heat used to dry foods or concentrate liquids by boiling removes water and therefore preserves the food by a reduction in water activity (Chapter 1). However, the heat also causes a loss of sensory characteristics and nutritional qualities. In freeze drying and freez"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_23.pdf",
+     "title": "Chapter 23",
+     "pages": 8,
+     "bytes": 229744,
+     "copies": [],
+     "head": "The unit operations described in preceding chapters are used to prepare foods for processing (Part II) or process them to extend their shelf life and/or alter their sensory characteristics (Parts II, III and IV). In this Part, the unit operations may be integral to previous operations (for example coating chilled or frozen foods, confectionery, etc. (Chapter 23)) or packaging foods to extend their"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_24.pdf",
+     "title": "Chapter 24",
+     "pages": 49,
+     "bytes": 1016016,
+     "copies": [],
+     "head": "Packaging is an important part of all food processing operations and with some (for example canning (Chapter 12) and MAP (Chapter 20)), it is integral to the operation itself. There have been substantial developments in both materials and packaging systems over the last ten years, which have been instrumental in both reducing packaging costs and the development of novel and minimally processed foo"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_25.pdf",
+     "title": "Chapter 25",
+     "pages": 19,
+     "bytes": 467183,
+     "copies": [],
+     "head": "There have been significant developments in packaging systems during the last ten years, prompted by a number of considerations, for example: • marketing requirements for different, more attractive packs • reductions in pack weight to reduce costs and meet environmental concerns over energy and material consumption (Chapter 24) • new packaging requirements for minimally processed foods (Chapters 9"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_26.pdf",
+     "title": "Chapter 26",
+     "pages": 19,
+     "bytes": 644379,
+     "copies": [],
+     "head": "Correct handling of foods, ingredients and packaging materials from suppliers, through the production process, and during distribution to the consumer is essential to optimise product quality and to minimise costs. Improvements in materials handling have led to substantial increases in production efficiencies, and are used at all stages in a manufacturing process, including: • harvest and transpor"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_acro.pdf",
+     "title": "Acronyms",
+     "pages": 2,
+     "bytes": 7467,
+     "copies": [],
+     "head": "AGV Automatically guided vehicle AQL Acceptable quality limit CAP Controlled atmosphere packaging CAS Controlled atmosphere storage CBE Cocoa butter equivalent CIP Cleaning in place CCP Critical control point CFC Chlorofluorocarbon CORBA Common Object Resource Based Architecture DCS Distributed control systems DDE Dynamic data exchange EDI Electronic data interchange EMA Equilibrium modified atmos"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_appa.pdf",
+     "title": "Appendix A",
+     "pages": 2,
+     "bytes": 11833,
+     "copies": [],
+     "head": "Vitamin Nature and properties Vitamin A Present in animal foods as retinol, and in plant foods mostly as all-trans /C12-carotenes. The chemical structure includes double bonds which were susceptible to oxidation. Attacked by peroxides and free radicals formed from lipid oxidation. Losses promoted by traces of copper and iron which catalyse the oxidation. Negligible losses due to leaching. Heat con"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_appb.pdf",
+     "title": "Appendix B",
+     "pages": 3,
+     "bytes": 13515,
+     "copies": [],
+     "head": "Mineral Source Function Aluminium Low and variable in foods Possibly essential, evidence not conclusive. Deficiency unknown. Leavening agent: as sodium aluminum sulfate (Na 2SO4 /C1 Al2(SO4)3). Texture modifier. Bromine Brominated flour Not known to be essential to humans. Dough improver: KBrO3 improves baking quality of wheat flour. Calcium Dairy products, green leafy vegetables, tofu, fish bones"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_appc.pdf",
+     "title": "Appendix C",
+     "pages": 6,
+     "bytes": 20216,
+     "copies": [],
+     "head": "In the following tables the E numbers are generally recognised by the EEC as safe additives. Those without the prefix E are, at the time of writing, proposals and need not necessarily be adopted. C.1 Permitted colours Colour Alternative name(s) E number Curcumin E100 Riboflavin Lactoflavin E101 Riboflavin-5 /C48 -phosphate 101(a) Tartrazine E102 Quinoline yellow E104 Yellow 2G 107 Sunsey yellow FC"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_appd.pdf",
+     "title": "Appendix D",
+     "pages": 3,
+     "bytes": 15488,
+     "copies": [],
+     "head": "All physical properties are measured by a quantitative numerical value and a qualitative definition in terms of its dimensions. For example, in Table 1.5, the thermal conductivity of frozed beef is 1.3 W m /C01 K/C01; 1.3 is the quantitative value and W m /C01 K/C01 is the qualitative definition. There are three main fundamental dimensions: mass (M), length (L) and time (T). Temperature (/C18) is "
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_glos.pdf",
+     "title": "Glossary",
+     "pages": 8,
+     "bytes": 35757,
+     "copies": [],
+     "head": "Absorption Uptake of moisture by dry foods. Acid food A food with a pH of less than 4.6 and a water activity ( aw) equal to or greater than 0.85. Additives Chemicals added to food to improve their eating quality or shelf life. Adiabatic Changes to the humidity and temperature of air without loss or gain of heat (in drying). Adiabatic process Processing in which no heat is added or removed from a s"
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_indx.pdf",
+     "title": "Index",
+     "pages": 13,
+     "bytes": 46954,
+     "copies": [],
+     "head": "abrasion peeling, 96 absolute humidity, 313 absorption, 198 carbon dioxide – gas packing, 411 cooking oils, 358, 362 ethylene – fruit ripening, 415 latent heat – phase transition, 9 moisture, 46 radiant energy, 381 UV energy, 222 absorptivity, 381 accelerated freeze drying, 370, 447 acetic acid, 177, 182 acoustic drying., 225 active packaging, 413, 497 additives in foods, 555 adiabatic cooling of "
+    },
+    {
+     "path": "D:/Process Industries/Food Processing Technology - Principles and Practice (2nd Edition)/35334_symb.pdf",
+     "title": "Symbols",
+     "pages": 3,
+     "bytes": 14384,
+     "copies": [],
+     "head": "A Area a Thermal diffusivity a Throttling factor (extrusion) aw Water activity B Time of heating (canning) Bi Biot number b Permeability b Slope of sorption isotherm Cd Drag coefficient (fluid dynamics) c Concentration c Internal seam length (canning) c Specific heat capacity cp Specific heat at constant pressure D Diameter (pipe, vessel) D Dilution rate (fermentation) D Decimal reduction time D D"
+    }
+   ],
+   "ndocs": 36,
+   "pages": 586,
+   "bytes": 11897830,
+   "year": 2000,
+   "copies": 0,
+   "head": "FOOD PROCESSING TECHNOLOGY Principles and Practice Second Edition P. Fellows Director, Midway Technology and Visiting Fellow in Food Technology at Oxford Brookes University ",
+   "desc": {
+    "en": "Fellows' standard text on food processing: the unit operations — heat, freezing, drying, separation — and the equipment and control behind each.",
+    "vi": "Giáo trình chuẩn của Fellows về chế biến thực phẩm: các quá trình đơn vị — gia nhiệt, làm lạnh, sấy, tách — cùng thiết bị và điều khiển đằng sau mỗi quá trình."
+   }
+  },
+  {
+   "id": 218,
+   "title": "Industrial Hygiene Handbook",
+   "dir": "D:/Process Industries/Industrial Hygene Handbook",
+   "domain": "safety",
+   "why": 6,
+   "docs": [
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_fm.pdf",
+     "title": "Front matter",
+     "pages": 2,
+     "bytes": 34406,
+     "copies": [],
+     "head": "INDUSTRIAL HYGIENE Recognition, Measurement, Evaluation and Control Second Edition Edited by John T. Talty, P.E. National Institute for Occupational Safety and Health Cincinnati, Ohio Reprint Edition NOY ES DATA CORPORATION Park Ridge, New Jersey, U.S.A. "
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_toc.pdf",
+     "title": "Table of contents",
+     "pages": 17,
+     "bytes": 861655,
+     "copies": [],
+     "head": "Contents and Subject Index SECTION 1 INTRODUCTION TO INDUSTRIAL HYGIENE ENGINEERING AND CONTROL ................................... 1 . RECOGNITION OF HEALTH HAZARDS 2 Introduction 2 5 ..................................................... An Easy Way to Recognize Hazards ..................................... 3 The Classification of Hazards .......................................... Methods That Ca"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_fore.pdf",
+     "title": "Foreword",
+     "pages": 2,
+     "bytes": 121221,
+     "copies": [],
+     "head": "Foreword This book provides an advanced level of study of industrial hygiene engineering situations. Em- phasis is on the control of exposure to occupational health hazards. Primary attention is given to industrial ventilation, noise and vibration control, heat stress, and industrial illumination. Other engineering topics covered include industrial water quality, solid waste control, handling and "
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_01.pdf",
+     "title": "Chapter 1",
+     "pages": 9,
+     "bytes": 533259,
+     "copies": [],
+     "head": "1. Recognition of Health Hazards Introduction The workplace is a potentially hazardous environment. This fact has been recognized for a long time. With the increased interest in protection of the environment, both internal and external to the plant, the number of alleged threats to man's health and safety, both as a worker and as a resident of an industrial neighborhood, have multiplied. Hardly a "
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_02.pdf",
+     "title": "Chapter 2",
+     "pages": 25,
+     "bytes": 885843,
+     "copies": [],
+     "head": "2. Methods for Measuring and Evaluating Health Hazards Assume for a moment that you have been called to a local plant to act as an occupational safety and health consultant. that he has only recently become aware of the OSHA law and feels that his plant may be in violation of that law in some areas. study the plant for potential health hazard exposures, identify those exposures that exist, and mak"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_03.pdf",
+     "title": "Chapter 3",
+     "pages": 18,
+     "bytes": 923309,
+     "copies": [],
+     "head": "3. Human Systems Introduction It is important that the industrial hygiene engineer have a basic understanding of the structure and functioning of the human system. W an understanding, the industrial hygiene engineer can comunicate with individuals on the health team concerning the probable cause and effec potential hazard exposures within the industrial environment. Results obtained from the DhYSi"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_04.pdf",
+     "title": "Chapter 4",
+     "pages": 8,
+     "bytes": 451682,
+     "copies": [],
+     "head": "4. Industrial Toxicology lntroduct ion As was pointed out in the last chapter, the human system exists in a delicate balance. As the human body functions within the environment, it is constantly being assaulted with many foreign substances and physical phenomena. This is especially the case when the human is working within the industrial environment where many foreign substances and physical pheno"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_05.pdf",
+     "title": "Chapter 5",
+     "pages": 8,
+     "bytes": 484562,
+     "copies": [],
+     "head": "5. Physical Hazards Introduction The hazards that the worker encounters in the work environment can be classified into three major groupings. The first grouping includes the toxic hazards that are a result of a chemical action on the human system. These toxic hazards were covered in the last chapter. The second major classification involves physical hazards. Physical hazards are a result of a phys"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_06.pdf",
+     "title": "Chapter 6",
+     "pages": 9,
+     "bytes": 494109,
+     "copies": [],
+     "head": "6. General Methods of Control Available to the Industrial Hygiene Engineer Introduction In the previous chapters, the role of the industrial hygiene engineer in recognizing and evaluating the industrial environment has been discussed. This chapter will deal with the general methods of control available to the industrial hygiene engineer when he is faced with the necessity to control a hazard expos"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_07.pdf",
+     "title": "Chapter 7",
+     "pages": 5,
+     "bytes": 236586,
+     "copies": [],
+     "head": "7. Legal Aspects of Occupational Safety and Health Introduction The Occupational Safety and Health Act was signed into law December 29, 1970. Its purposes were to assure safe and healthful working conditions for the nation's working men and women and to preserve human resources. The Act delegated certain major responsibilities and authorities to the Department of Labor: 1. To promulgate, modify, a"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_08.pdf",
+     "title": "Chapter 8",
+     "pages": 2,
+     "bytes": 70529,
+     "copies": [],
+     "head": "8. References American Conference of Governmental Industrial Hygienists. Air Samgling Instruments for Evaluation of Atmospheric Contaminants, 4th ed. Cincinnati: American Conference of Governmental Industrial Hygienists, 1972. American Conference of Governmental Industrial Hygienists. Threshold Limit Values for Chemical Substances and Physical Aqents in the Workroom Environment with Intended Chang"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_09.pdf",
+     "title": "Chapter 9",
+     "pages": 15,
+     "bytes": 546981,
+     "copies": [],
+     "head": "1. Characteristics of Air In order to provide a background for the design of industrial ventilation systems, it is desirable to review the characteristics of air and the properties of airborne contaminants. The purpose of this and the following chapter is to undertake such a review. It is expected that the reader will find that some of the material included in these chapters has been encountered p"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_10.pdf",
+     "title": "Chapter 10",
+     "pages": 12,
+     "bytes": 551822,
+     "copies": [],
+     "head": "2. Properties of Airborne Contaminants In the preceding chapter, the characteristics of air were discussed. In this chapter, the discussion will center around the behavior of contaminants that are airborne. the air mixture but that are foreign to the normal state of the mixture. The contaminants in air may be harmful, irritating, or a nuisance to man. These contaminants may be the result of natura"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_11.pdf",
+     "title": "Chapter 11",
+     "pages": 20,
+     "bytes": 834730,
+     "copies": [],
+     "head": "3. Principles of Air Movement Industrial ventilation is perhaps the most powerful tool that is ava to the industrial hygiene engineer for use in controlling the work environment. The proper use of ventilation as a control can assure that workroom air remains free of potentially hazardous levels of airborne contaminants. Throuah the use of ventilation, airborne contaminants can I ab the be removed "
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_12.pdf",
+     "title": "Chapter 12",
+     "pages": 17,
+     "bytes": 652386,
+     "copies": [],
+     "head": "4. Dilution Ventilation There are three major categories of ventilation systems that are used in modern industry: general ventilation systems, dilution ventilation systems, and local exhaust ventilation systems. Each of these systems has a specific purpose, and it is not uncomnon to find all three types of systems present in a given plant location. worker in the environment. These systems may invo"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_13.pdf",
+     "title": "Chapter 13",
+     "pages": 10,
+     "bytes": 448938,
+     "copies": [],
+     "head": "5. Local Exhaust Ventilation The object ve of a local exhaust ventilation system is to remove the contaminant as it is generated at the source. Gases and vapors are controlled by controlling the air in which they are contained. industrial hyg en8 significance (i.e., d < 1Opm) are controlled by controlling the air in which they exist. These factors were illustrated in some detail in Chapter 2 of th"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_14.pdf",
+     "title": "Chapter 14",
+     "pages": 9,
+     "bytes": 424364,
+     "copies": [],
+     "head": "6. Make-up Air When a local exhaust system is operating, significant amounts of air can be removed from the workplace. In order to assure proper operation of local exhaust systems, the air that is removed from the workplace must be replaced. This supply of air is cormonly called \"make-up air.\" Make-up air is introduced into the work area from another area or from the outside to replace air that is"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_15.pdf",
+     "title": "Chapter 15",
+     "pages": 17,
+     "bytes": 552157,
+     "copies": [],
+     "head": "7. Design of Exhaust Hoods The purpose of a local exhaust ventilation system is to capture the contaminants in the air, at or near their source of generation. In this way the contaminant is prevented from entering the breathing zone of the worker. The initial point of entry of the contaminant into the local exhaust ventilation system is at the hood. only a simple round or rectangular opening or wh"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_16.pdf",
+     "title": "Chapter 16",
+     "pages": 10,
+     "bytes": 514947,
+     "copies": [],
+     "head": "8. Principles of Air Cleaning It is necessary to dispose of the air that has been removed from the work environment. Often, depending upon the condition of the air exhausted, it is possible to introduce the contaminated air directly into the atmosphere through vents and stacks. In doing so, it is expected that the contaminant loading in the air will be sufficiently reduced by atmospheric dilution."
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_17.pdf",
+     "title": "Chapter 17",
+     "pages": 17,
+     "bytes": 830163,
+     "copies": [],
+     "head": "9. Air-Cleaning Devices in the air were d specific a previous chapter, the general methods avai lable scussed. These methods have been aoolied bv ena or use in cleaning In this - neers to design r-cleaning equipment. Generally, a’particujar a r-cleaning device will use more than one of the general methods for cleaning air. chapter, the various types of air-cleaning devices that are available will "
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_18.pdf",
+     "title": "Chapter 18",
+     "pages": 16,
+     "bytes": 543634,
+     "copies": [],
+     "head": "10. Air-Moving Devices In order for ai to move within a ventilation system, a driving force must be present. Genera ly, the force is provided by a mechanical fan. A fan is a device used for mov ng air and other gases or vapors at pressures low enough that the compression of the air or gas can be ignored. Fans can be classified into two major categories: direction perpendicular to the fan blade: an"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_19.pdf",
+     "title": "Chapter 19",
+     "pages": 11,
+     "bytes": 435727,
+     "copies": [],
+     "head": "11. Design of Ducts The final major component of a venti lation system is the duct. The purpose of a duct is to enclose and direct the flow of air in a ventilation system from one point to another point. In an exhaust system, the duct prevents the contaminated air from mixing with the workroom air as it is being removed. In a supply system, the duct serves to direct the supply air to the point whe"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_20.pdf",
+     "title": "Chapter 20",
+     "pages": 22,
+     "bytes": 829450,
+     "copies": [],
+     "head": "12. Principles of System Design Losses occur in a ventilation system because of turbulence and friction. The initial loss in an exhaust system occurs at the hood or entry to the system. Entry loss (he) depends upon the configuration of the hood. example, a plain duct opening results in a loss of 0.93 velocity pressures while a flanged duct opening results in a loss of 0.49 velocity pressures. The "
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_21.pdf",
+     "title": "Chapter 21",
+     "pages": 9,
+     "bytes": 512562,
+     "copies": [],
+     "head": "13. Ventilation System Design Introduction In the previous chapter, the calculations necessary to design a ventilation system were introduced. These calculations provide the designer with the tools necessary to design a properly operating ventilation system. However, having the tools and knowing how to use them does not always result in a well-designed system. and computer language does not always"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_22.pdf",
+     "title": "Chapter 22",
+     "pages": 8,
+     "bytes": 412022,
+     "copies": [],
+     "head": "14. Recirculation of Exhaust Air make been n order for a local exhaust system to operate according to uo air must be suoolied to the work area to replace that a speci f icat ion, r wh i ch has contaminant that is being removed to protect the workers' healt.,. But this air also contains heat that has been provided in the workplace to assure the workers' comfort. When make-up air is supplied to repl"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_23.pdf",
+     "title": "Chapter 23",
+     "pages": 8,
+     "bytes": 269079,
+     "copies": [],
+     "head": "15. Correcting for Nonstandard Conditions Standard Versus Nonstandard Conditions Standard conditions for ventilation design are a temperature of 70°F and an atmospheric pressure of 14.7 pounds per square inch. conditions are different than those that are presently used for industrial hygiene and chemistry work (i.e., 77°F and 20°C). standard air is being moved through the system. applicable to non"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_24.pdf",
+     "title": "Chapter 24",
+     "pages": 11,
+     "bytes": 355697,
+     "copies": [],
+     "head": "16. Thermal Ventilation Effects Quite often an industrial process involves significant amounts of heat. Such processes require that the designer consider the effect of the addition of heat to the air surrounding the process when designing a ventilation system to control process contaminants. Special techniques have been developed to handle this problem. General Principles of Air Motion About a Hot"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_25.pdf",
+     "title": "Chapter 25",
+     "pages": 15,
+     "bytes": 721947,
+     "copies": [],
+     "head": "17. Testing Procedures in the Plant The installation of a ventilation system in the plant does not complete the responsibility of the industrial hygiene engineer. To assure adequate control of contaminants, the industrial hygiene engineer must develop a testing procedure that can be used to assure that the ventilation system is carried out to accompl ish-a number of purposes.- Reasons for Ventilat"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_26.pdf",
+     "title": "Chapter 26",
+     "pages": 8,
+     "bytes": 421694,
+     "copies": [],
+     "head": "18. Environmental Air Pollution Beyond the P I ant Often the tendency is to assume that once the contaminant has been removed from the plant, the responsibilities of the industrial hygiene engineer are complete. In the past, the practice has been to discharge contaminants in the air outside the plant and depend upon natural dilution to remove the hazard. However, this situation can create problems"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_27.pdf",
+     "title": "Chapter 27",
+     "pages": 2,
+     "bytes": 80820,
+     "copies": [],
+     "head": "19. References Alden, John L. and John M. Kane. Design of Industrial Exhaust Systems, 4th edition. New York: Industrial Press, Inc.. 1970. American Conference of Governmental Industrial Hygienists. Air Sampling Instruments for Evaluation of Atmospheric Contaminants, 4th edition. Cincinnati: American Conference of.Governmental Industrial Hygienists, 1972. American Conference of Governmental Industr"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_28.pdf",
+     "title": "Chapter 28",
+     "pages": 10,
+     "bytes": 527019,
+     "copies": [],
+     "head": "1. Heat Exchange and Its Effects on Man Heat Exchange Heat is a form of energy, while cold is the absence of heat or the absence of this energy. Quite often there exists a confusion between the terms \"heat\" and \"temperature.\" Heat itself is a measure of the energy in terms of quantity. Temperature on the other hand, is a measure of the intensity of the heat or the hotness of an object. A review of"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_29.pdf",
+     "title": "Chapter 29",
+     "pages": 9,
+     "bytes": 472911,
+     "copies": [],
+     "head": "2. Thermal Measurement I nt roduct ion It is not simple to determine the thermal stress to which the worker is subjected. Obviously the temperature of the work environment is significant. However, temperature alone does not determine thermal stress. The presence of water vapor in the air (humidity) must also be considered, since humidity is a determining factor in the rate of sweat evaporation. Al"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_30.pdf",
+     "title": "Chapter 30",
+     "pages": 15,
+     "bytes": 606589,
+     "copies": [],
+     "head": "3. Thermal Stress Indices I nt roduct ion Excessive thermal stress can result in a physiological and psychological strain on the exposed worker. The amount of thermal stress that is present in a work environment is a function of certain environmental measures, such as the temperature of the air. the humidity of the air, the radiant heat load, and the air movement present. These measures have been "
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_31.pdf",
+     "title": "Chapter 31",
+     "pages": 9,
+     "bytes": 516519,
+     "copies": [],
+     "head": "4. Methods for Controlling Thermal Exposures Introduction In the preceding chapters, the discussion centered about the fact that man at work in an industrial environment can be exposed to thermal stress. The industr a1 process generates heat by convection and radiation, while the worker n the environment generates body heat as a result of metabolism and general physical activity. The industrial hy"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_32.pdf",
+     "title": "Chapter 32",
+     "pages": 2,
+     "bytes": 74544,
+     "copies": [],
+     "head": "5. References American Conference of Governmental Industrial Hygienists. Threshold Limit Conference of Governmental Industrial Hygienists, 1976. A Manual of Recommended Practice, 13th ed. Lansing: American Conference of Governmental Industrial Hygienists, 1974. - . Committee on Industrial Ventilation. Industrial Ventilation: American Industrial Hygiene Association. Heating and Coolinq for Man in I"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_33.pdf",
+     "title": "Chapter 33",
+     "pages": 18,
+     "bytes": 685978,
+     "copies": [],
+     "head": "1. Physics of Sound Introduction This chapter discusses the definition of sound, sound waves, sound power, sound pressure, and sound intensity. are the basis for solving industrial noise control problems. The concepts presented in this chapter What is Sound? What is sound? What is noise? Are the two different? Yes, sound is different from noise. Noise is frequently defined as any unwanted sound. T"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_34.pdf",
+     "title": "Chapter 34",
+     "pages": 20,
+     "bytes": 697956,
+     "copies": [],
+     "head": "2. Physics of Sound Introduction The concepts of sound, sound power, sound pressure, and sound were discussed in the last chapter. Further, the relat onships be power, sound pressure, and sound intensity were concept ally and arithmetically presented. During the presentation of these topics tones were d i scussed . In this chapter, complex sound is examined; and the concepts o sound-pressure level"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_35.pdf",
+     "title": "Chapter 35",
+     "pages": 28,
+     "bytes": 1023125,
+     "copies": [],
+     "head": "3. Physics of Sound Introduction In the last chapter, the relationship between sound-pressure level and sound-power level was discussed. The relationship was given as: SPL = SWL - 20 Log r - 0.5 dB + T + 10 Log Q where SPL denotes sound-pressure level (reference: 0.00002N/m2), SWL denotes sound-power level (reference: watts), r denotes distance from the sound source in feet, T denotes the correcti"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_36.pdf",
+     "title": "Chapter 36",
+     "pages": 17,
+     "bytes": 766831,
+     "copies": [],
+     "head": "4. The Ear and the Effects of Sound Introduction The title of this chapter may be somewhat misleading. Rather than discussing the anatomy and physiology of the ear (refer to Chapter 24, The Industrial Environment: Its Evaluation and Control, for a discussion ofthe ear), this chapter discusses effects of noise on the ear. If the effects of sound on the ear are known. then it is possible to establis"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_37.pdf",
+     "title": "Chapter 37",
+     "pages": 15,
+     "bytes": 717213,
+     "copies": [],
+     "head": "5. Vibration I nt roduct ion This chapter discusses the characteristics of vibration, the theory of vibration, and the effects of vibration on man. In addition, it discusses the methods of controlling vibration; in particular, how to select isolators that isolate a disturbing force from a radiating surface. Definition of Vibration In general, vibration can be described as an oscillary motion in a "
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_38.pdf",
+     "title": "Chapter 38",
+     "pages": 22,
+     "bytes": 871313,
+     "copies": [],
+     "head": "6. Noise Control I nt roduct ion Noise control techniques discussed in this chapter include new plant planning, controlling noise in existing facilities (including the building of enclosures, barriers, and shields), and personal protective equipment. There are no standard solutions to noise control problems; each one is unique and requires a unique solution. However, many case studies have been pu"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_39.pdf",
+     "title": "Chapter 39",
+     "pages": 1,
+     "bytes": 34936,
+     "copies": [],
+     "head": "7. References American Industrial Hygiene Association. Industrial Noise Manual. Akron: American Industrial Hygiene Association, 1975. Baumeister, Theodore, ed. Mark's Standard Handbook for Electrical Engineers. New York: McGraw-Hi I1 Book Company, 1967. Beranek, Leo L., ed. Noise and Vibration Control. New York: McGraw-Hill Book Company, 1971. Hewitt, Paul G. Conceptual Physics . . ., A New Introd"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_40.pdf",
+     "title": "Chapter 40",
+     "pages": 15,
+     "bytes": 625815,
+     "copies": [],
+     "head": "1. Light Introduction safet I benef I 2 3 4 5 The purpose of industrial lighting is to provide an efficient and comfortable seeing of industrial tasks and to help provide a safe working environment. Adequate lighting is not for safety alone. Lighting adequate for seeing production and inspection tasks will be more than is needed for Light is more for comfort and convenience than for safety. has be"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_41.pdf",
+     "title": "Chapter 41",
+     "pages": 15,
+     "bytes": 599710,
+     "copies": [],
+     "head": "2. Light and Seeing/Design of a Lighting System The last chapter discussed the nature of light. Light was seen as radiant energy transported in photons that are carried by a wave field. chapter, the eye is discussed. Also discussed are some objective factors in the seeing process. illumination engineers. In this The chapter ends by introducing some terms used by Behavior of Light In the last chapt"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_42.pdf",
+     "title": "Chapter 42",
+     "pages": 37,
+     "bytes": 1644703,
+     "copies": [],
+     "head": "3. Lighting Design Introduction In the last chapter, the four factors of seeing industrial tasks--size, contrast, brightness, and time--were discussed. Also discussed were common lighting terminology and the behavior of light when it leaves the source. lighting system involves the consideration of many variables: What is the purpose of the Iighting--is it lighting for critical seeing, lighting for"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_43.pdf",
+     "title": "Chapter 43",
+     "pages": 1,
+     "bytes": 30687,
+     "copies": [],
+     "head": "4. References Baumeister. Theodore, ed. Mark's Standard Handbook for Mechanical Engineers, 7th ed. New York: McGraw-Hill Book Company, 1967. Hewitt. Paul G. Conceptual Physics . . . A New Introduction to Your Environment. Boston: Little, Brown, and Company, 1974. North American Philips Lighting Corporation, Liqhtinq Handbook. Bloomf NJ: North American Phi lips Lighting Corporation, 1984. Patty, Fr"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_44.pdf",
+     "title": "Chapter 44",
+     "pages": 34,
+     "bytes": 1447949,
+     "copies": [],
+     "head": "1. Principles of Nonionizing Radiation lntroduct ion In prior chapters, the principles of visible radiation (light) have been discussed. As discussed, light has characteristics of both wave and particles, and a light wave is energy released from a de-excitation of an orbital electron. Further, energy released is in discrete units or quanta of energy referred to as photons. Each wave in the visible"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_45.pdf",
+     "title": "Chapter 45",
+     "pages": 23,
+     "bytes": 933123,
+     "copies": [],
+     "head": "2. Control of Nonionizing Radiation In this chapter, the recognition and control of ultraviolet radiation, microwave radiation, and lasers will be discussed. Because the measurement and control of the other types of electromagnetic radiation discussed in the previous chapter are similar to those for ultraviolet and microwave radiation, these specific types of radiation have been selected because o"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_46.pdf",
+     "title": "Chapter 46",
+     "pages": 27,
+     "bytes": 1309156,
+     "copies": [],
+     "head": "3. Principles of Ionizing Radiation This chapter is dedicated to the basic properties of ionizing radiation. The discussion will include a review of atomic structure, radioactivity, the types of radiation, the biological effects of ionizing radiation, and the established maximum permissible doses for the various types of ionizing rad i at i on. Atomic Structure Over one hundred chemical elements e"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_47.pdf",
+     "title": "Chapter 47",
+     "pages": 11,
+     "bytes": 591065,
+     "copies": [],
+     "head": "4. Instrumentation Introduction Radiation detection instruments monitor the effect of ionizing radiation on a given material. For example, the ions produced in a given volume of gas can be measured, and the ions will be proportional to the energy absorbed by the gas. No single instrument performs acceptably under all conditions and requirements. Therefore, no single instrument can monitor and disc"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_48.pdf",
+     "title": "Chapter 48",
+     "pages": 40,
+     "bytes": 1703402,
+     "copies": [],
+     "head": "5. Control of Ionizing Radiation Identification of Radiation Safety Problems Ionizing radiation cannot be felt, seen, heard, tasted, or smelled. This gives it a mysterious quality. identified and measured with the instruments described in the last chapter. Ionizing radiation can be adequately monitored and properly control led. Areas where radiation dose rates may be excessive can be guarded durin"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_49.pdf",
+     "title": "Chapter 49",
+     "pages": 2,
+     "bytes": 59462,
+     "copies": [],
+     "head": "6. References American Conference of Governmental Industrial Hygienists. TLV's for Chemical Substances and Physical Agents in the Workroom Environment with Intended Changes for 1976. Cincinnati: American Conference of Governmental Industrial Hygienists, 1976. Blaty, Hanson. Introduction to Radiological Health. New York: McGraw-Hi I1 Book Company, 1976. Department of the Air Force, AFM. Laser Healt"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_50.pdf",
+     "title": "Chapter 50",
+     "pages": 10,
+     "bytes": 527866,
+     "copies": [],
+     "head": "1. Introduction to Ergonomics What is Ergonomics? In early times, man needed to use only simple tools to scratch out a living from the earth. With the coming of the industrial revolution, the complexity and number of tools that man must use in the workplace has increased astronomically. No longer is man subjected to only the natural environmental conditions. Workers must work in an industrial atmo"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_51.pdf",
+     "title": "Chapter 51",
+     "pages": 18,
+     "bytes": 698987,
+     "copies": [],
+     "head": "2. The Worker As the Physical Component Introduction In the preceding chapter, the discussion was centered on the act tha ergonomics is involved with the design of the job and the workplace in such a manner as to fit the worker into the system. There are essentially two ways in which the worker can be matched with the work environment. One way to accomplish this is to select only those workers who"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_52.pdf",
+     "title": "Chapter 52",
+     "pages": 11,
+     "bytes": 519039,
+     "copies": [],
+     "head": "3. The Worker As the Controlling Component In t roduct ion In the previous chapter, the characteristics of the worker as part of the workerlmachine system were discussed at some length. role of the worker as the controlling component in the workerlmachine system is discussed. In this chapter, the Within the workerhachine system, the worker can act as a controller. The worker senses where a modific"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_53.pdf",
+     "title": "Chapter 53",
+     "pages": 11,
+     "bytes": 582306,
+     "copies": [],
+     "head": "4. Design of the Job The Worker's Function in the Workplace The major question that should be asked is: These activities and tasks can \"What does the worker do on the job?\" If the job can be broken down into functions, the activities and tasks that are performed can be specified. then be analyzed. The analysis of the tasks provides information as to the optimum job design. of the design or redesig"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_54.pdf",
+     "title": "Chapter 54",
+     "pages": 13,
+     "bytes": 620352,
+     "copies": [],
+     "head": "5. Design of the Workplace General Work Station Desiqn Principles After the industrial hygiene engineer has designed the job to meet the criteria of the desired output and provided the appropriate tools and procedures to protect the worker from potential hazards, it is necessary to design the work station in which the worker will perform the job. The general principle that should be followed on wo"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_55.pdf",
+     "title": "Chapter 55",
+     "pages": 1,
+     "bytes": 49154,
+     "copies": [],
+     "head": "6. References Guyton, Arthur C., M.O. Function of the Human Body, 3d. ed. Philadelphia: W. B. Saunders Company, 1969. International Labor Office. Encyclopaedia of Occupational Safety and Health, 2 vols. New York: McGraw-Hi II Book Company, 1971. Kurke, M. I. \"Evaluation of a Display Incorporating Quantitative and Check Reading Characteristics.\" Journal of Applied Psychology, Vol. 40, pp. 233-236, "
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_56.pdf",
+     "title": "Chapter 56",
+     "pages": 12,
+     "bytes": 563925,
+     "copies": [],
+     "head": "1. Control of Industrial Water Quality Introduction Water, once thought to be an inexhaustible resource, is becoming more and When one considers that approximately seventy-five more scarce. water to be at a premium. percent of the earth's surface is covered with water, it is difficult to conceive of the possibility that water is in short supply. However. the problem is not with the quantity of ava"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_57.pdf",
+     "title": "Chapter 57",
+     "pages": 9,
+     "bytes": 526269,
+     "copies": [],
+     "head": "2. Control of Solid Waste Introduction In the \"throw-away\" age in which we live, the disposal of solid waste has become a major problem. It is a problem not only at the consumer level but also at the industrial level. The manufacturing process creates a significant amount of waste as a by-product of production. from the process area and must be disposed of in some manner. The method of removal can"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_58.pdf",
+     "title": "Chapter 58",
+     "pages": 11,
+     "bytes": 643732,
+     "copies": [],
+     "head": "3. Purchase, Handling, and Storage of Hazardous Materials Introduction What are hazardous materials? For the purposes of this discussion, hazardous materials will be considered to be any materials that can have an injurious effect on the health of the worker or that can result in a potential fire or explosion. The injurious effect of the materials may be either acute or chronic. A chronic effect i"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_59.pdf",
+     "title": "Chapter 59",
+     "pages": 12,
+     "bytes": 572604,
+     "copies": [],
+     "head": "4. Personal Protective Equipment Introduction The hazards that are encountered in the workplace take many forms. Workers may be exposed to toxic gases, hazardous vapors, mists and fogs, hazardous materials in the form of particulate matter, hazardous liquids, fumes and smoke, as well as other physical hazards such as noise and electromagnetic radiation. Throughout this text, various methods have b"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_60.pdf",
+     "title": "Chapter 60",
+     "pages": 9,
+     "bytes": 514141,
+     "copies": [],
+     "head": "5. Costs of Industrial Hygiene Control Introduction Because of an involvement and commitment to protecting the worker's health and safety, the industrial hygiene engineer often takes for granted that particular controls are needed to protect the worker. The fact that a worker may be exposed to a particular hazard is sufficient reason to justify the need for control. objective of management is to m"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_61.pdf",
+     "title": "Chapter 61",
+     "pages": 10,
+     "bytes": 444910,
+     "copies": [],
+     "head": "6. Basic Economic Analysis Introduction From the discussion presented in the previous chapter, it is clear that it is necessary to determine a method for comparing alternatives in a standard manner. The alternatives being compared may have different costs of implementation. control, it is desired that the best alternative be chosen. In the simplest case, this is done by selecting the lowest cost a"
+    },
+    {
+     "path": "D:/Process Industries/Industrial Hygene Handbook/11752_62.pdf",
+     "title": "Chapter 62",
+     "pages": 1,
+     "bytes": 31864,
+     "copies": [],
+     "head": "7. References ANSI, American National Standard Practices for Respiratory Protection. ANSI 288.2-1969, New York: American National Standards Institute, Inc., 1969. Anthony, Robert N. Management Accounting--Text and Cases, Ref. ed. Homewood, Baumeister, Theodore, ed. Marks Standard Handbook for Mechanical Engineers, Illinois: Richard D. Irwin, Inc., 1960, 7th ed. New York: McGraw-Hill Book Company, "
+    }
+   ],
+   "ndocs": 65,
+   "pages": 841,
+   "bytes": 37271436,
+   "year": null,
+   "copies": 0,
+   "head": "INDUSTRIAL HYGIENE Recognition, Measurement, Evaluation and Control Second Edition Edited by John T. Talty, P.E. National Institute for Occupational Safety and Health Cincinnati, Ohio Reprint Edition NOY ES DATA CORPORATION Park Ridge, New Jersey, U.S.A. ",
+   "desc": {
+    "en": "A reference on industrial hygiene: exposure, ventilation, noise, dust and chemical hazards, and the monitoring that keeps a plant within limits.",
+    "vi": "Sách tham khảo về vệ sinh công nghiệp: phơi nhiễm, thông gió, tiếng ồn, bụi và mối nguy hóa chất, cùng việc quan trắc giữ nhà máy trong giới hạn."
+   }
+  },
+  {
+   "id": 219,
+   "title": "Making the Most of HACCP — Learning from Others' Experience",
+   "dir": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience",
+   "domain": "safety",
+   "why": 6,
+   "docs": [
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_fm.pdf",
+     "title": "Front matter",
+     "pages": 6,
+     "bytes": 22704,
+     "copies": [],
+     "head": "Making the most of HACCP Learning from others ’ experience Edited by Tony Mayes and Sara Mortimore "
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_TOC.pdf",
+     "title": "Table of contents",
+     "pages": 5,
+     "bytes": 18024,
+     "copies": [],
+     "head": "Preface and acknowledgements ......................................... x i List of contributors ..................................................... xiii List of acronyms and abbreviations .................................... x v i i 1 Introduction . . . . . . ................................................ 1 T. Mayes, Unilever Research, Sharnbrook and S. Mortimore, Pilsbury Europe, Uxbridge 1.1"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_pref.pdf",
+     "title": "Preface",
+     "pages": 2,
+     "bytes": 8111,
+     "copies": [],
+     "head": "The origins of this book go back to the spring of 1998. When the publishers asked if we would like to consider writing on HACCP, the last thing we wanted to do was another ‘how to’ book. Both of us had already been involved with publications on the principles of HACCP systems and how organisations could turn those principles into practice. Something different and more useful was needed. A logical "
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_01.pdf",
+     "title": "Chapter 1",
+     "pages": 10,
+     "bytes": 43762,
+     "copies": [],
+     "head": "What is this book about? It is not about how to utilise the hazard analysis critical control point (HACCP) system which has been covered many times in numerous publications from international, national and trade organisations and from individual practitioners on a world-wide basis (see section 1.1). Nor is it an account of the role of HACCP in any particular sector of the food industry. This book "
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_02.pdf",
+     "title": "Chapter 2",
+     "pages": 20,
+     "bytes": 346385,
+     "copies": [],
+     "head": "Part I Small and medium-sized enterprises (SMEs), retailers and HACCP systems"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_03.pdf",
+     "title": "Chapter 3",
+     "pages": 11,
+     "bytes": 60527,
+     "copies": [],
+     "head": "3.1 Why bother with HACCP? COSHH, GMP, ISO 9000, EFSIS, HACCP? No wonder so many small to medium enterprises (SMEs) are daunted by the thought of hazard analysis critical control point (HACCP) implementation. Resources are at a premium, everyone is busy getting the new enterprise off the ground or keeping it running. This was certainly the position when I first encountered HACCP systems. The compa"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_04.pdf",
+     "title": "Chapter 4",
+     "pages": 15,
+     "bytes": 85674,
+     "copies": [],
+     "head": "4.1 Introduction This chapter looks at the implementation of HACCP systems in the UK from the point of view of retailers. It looks at how major UK retailers have encouraged the implementation of HACCP systems by food manufacturers supplying them with products for their network of supermarkets. The major multiple retailers’ interest in HACCP can be traced back to the 1970s when they began to develo"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_05.pdf",
+     "title": "Chapter 5",
+     "pages": 21,
+     "bytes": 346644,
+     "copies": [],
+     "head": "Part II Larger manufacturers and HACCP systems"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_06.pdf",
+     "title": "Chapter 6",
+     "pages": 17,
+     "bytes": 94502,
+     "copies": [],
+     "head": "6.1 Introduction In recent years, the hazard analysis critical control point (HACCP) system has become the accepted safety benchmark for food systems. The HACCP system is a management technique that allows a company to examine systematically all the processing steps involved in manufacture and use of a product, and then identify and manage those processes/operations that are critical to the safety"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_07.pdf",
+     "title": "Chapter 7",
+     "pages": 21,
+     "bytes": 159209,
+     "copies": [],
+     "head": "7.1 Introduction Originally founded in 1974 as a dairy farmers cooperative in the south-west of Ireland, the Kerry Group is now a leader in global food ingredients markets, and a leading producer of consumer foods for selected European markets. Established as a public company in 1986 from head offices in Tralee, County Kerry, the Group has achieved sustained profitable growth and pursued a strateg"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_08.pdf",
+     "title": "Chapter 8",
+     "pages": 17,
+     "bytes": 79814,
+     "copies": [],
+     "head": "8.1 Introduction Over the last decade consumers of food products have become much more aware of food safety issues. This concern has led both to the introduction of new enforcement agencies (such as the Food Standards Agency in the UK) and the strengthening of the powers given to existing enforcers such as Environmental Health Officers (EHOs) in Britain. At the same time there is increasing compet"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_09.pdf",
+     "title": "Chapter 9",
+     "pages": 27,
+     "bytes": 165326,
+     "copies": [],
+     "head": "Part III Regulation and training"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_10.pdf",
+     "title": "Chapter 10",
+     "pages": 18,
+     "bytes": 82639,
+     "copies": [],
+     "head": "10.1 Introduction Within the past 50 years there has been a great deal of change in the food industry. The number and variety of food products that are available to today’s consumers has increased dramatically and at the same time the consumer’s attitude and expectation of food has undergone a significant change. Only a few decades ago, the majority of consumers purchased their fruits, vegetables "
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_11.pdf",
+     "title": "Chapter 11",
+     "pages": 19,
+     "bytes": 84714,
+     "copies": [],
+     "head": "11.1 Introduction This chapter is based on the experience of the Thai Department of Fisheries in working with the fishery industry in Thailand on HACCP implementation. It shows some of the main problems encountered in implementing HACCP successfully, and how the industry and government have sought to overcome them. 11.2 The international fish trade The importance of HACCP systems to the fishery in"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_12.pdf",
+     "title": "Chapter 12",
+     "pages": 11,
+     "bytes": 53127,
+     "copies": [],
+     "head": "12.1 Background UK government initiatives to encourage the implementation of HACCP-based food safety control systems began in the early 1990s. This reflected the growing international recognition that HACCP was the management system of choice to ensure food safety and consumer protection. The initiatives also responded to key recommendations made by a UK Expert Committee which examined the rise in"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_13.pdf",
+     "title": "Chapter 13",
+     "pages": 19,
+     "bytes": 179393,
+     "copies": [],
+     "head": "Reading Scientific Services Ltd (RSSL) is a leading supplier of outsourced scientific services, including consultancy, training, research and analysis. A wide range of HACCP training courses are provided through RSSL’s training company, Food Industry Training – Reading (FITR), a joint venture with the Department of Food Biosciences at the University of Reading. 13.1 Introduction HACCP is carried o"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_14.pdf",
+     "title": "Chapter 14",
+     "pages": 31,
+     "bytes": 377774,
+     "copies": [],
+     "head": "Part IV Conclusion"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_15.pdf",
+     "title": "Chapter 15",
+     "pages": 13,
+     "bytes": 62586,
+     "copies": [],
+     "head": "Although the system that we know as HACCP has been around for 30 years now, there was little development of the original Pillsbury/NASA/US Natick army concept until the late 1980s/early 1990s. In just over a decade since then the HACCP system has undergone a transformation from its original concept to one that is now codified, accepted internationally as the most appropriate means of ensuring food"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_acr.pdf",
+     "title": "Acronyms",
+     "pages": 2,
+     "bytes": 7296,
+     "copies": [],
+     "head": "AICP Agar Immersion Plating and Contact APEDA Agricultural Produce Export Development Authority ASME American Society of Mechanical Engineers BIS Bureau of Indian Standards BRC British Retail Consortium CAC Codex Alimentarius Commission CCP critical control point CCTV closed circuit television CDSC Communicable Disease Surveillance Centre CFIA Canadian Food Inspection Agency CIFE Central Institute"
+    },
+    {
+     "path": "D:/Process Industries/Making the Most of HACCP - Learning from Others' Experience/35040_ind.pdf",
+     "title": "Index",
+     "pages": 9,
+     "bytes": 38227,
+     "copies": [],
+     "head": "absenteeism 259 Accelerated HACCP Project 16 acceptable (appropriate) level of protection (ALOP) 271–2 acquisitions 76–7 activity lists 224–5 Agar Immersion Plating and Contact (AIPC) slides (‘Dip’ slides) 25 Agricultural Produce Export Development Authority (APEDA) 84–5 American Society of Mechanical Engineers (ASME) process flow diagram method 53, 54 analytical personnel 89 approach 123–4 approv"
+    }
+   ],
+   "ndocs": 20,
+   "pages": 294,
+   "bytes": 2316438,
+   "year": 2000,
+   "copies": 0,
+   "head": "Making the most of HACCP Learning from others ’ experience Edited by Tony Mayes and Sara Mortimore ",
+   "desc": {
+    "en": "Case-based lessons on putting HACCP into practice — what worked, what failed, and why food-safety plans live or die on the plant floor.",
+    "vi": "Bài học từ tình huống thực tế khi áp dụng HACCP — điều gì hiệu quả, điều gì thất bại, và vì sao kế hoạch an toàn thực phẩm sống hay chết ở sàn nhà máy."
    }
   }
  ]
