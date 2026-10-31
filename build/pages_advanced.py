@@ -167,6 +167,209 @@ T = {
                        "it is wrong, nobody will be able to say where.",
         "plant_a1": "The measurement chain",
         "plant_a2": "Advanced control",
+        "eb_eop": "Enterprise layer",
+        "eop_h": "The DCS is becoming an enterprise operations platform",
+        "eop_p": "Brian LaMothe, who runs applied research at Emerson's Process Systems and Solutions "
+                 "business, makes a claim in Control Engineering that is easy to read past: the unit of "
+                 "optimisation has moved. \u201cSuccess is no longer defined by the performance of a "
+                 "flagship plant.\u201d The next-generation DCS, in his framing, is an enterprise "
+                 "operations platform \u2014 software-defined control that spans sites, exposes one "
+                 "trusted real-time data set, and coordinates deterministic control with predictive and "
+                 "prescriptive analytics.",
+        "eop_p2": "That is section 06 with a different owner. The layer stack in the total-plant argument "
+                  "ends at a boardroom screen; this article is about the software that has to sit "
+                  "underneath it for that screen to mean anything. Four moves carry the argument.",
+        "eop_hdr": ("The move", "What actually changes"),
+        "eop_moves": [
+            ("Standards governance",
+             "From a document to a check. Corporate standards libraries fail not because they are wrong "
+             "but because enforcement is manual \u2014 a paper or spreadsheet baseline, distributed, then "
+             "compared by hand against live configuration at each site. Drift is not vandalism: it is "
+             "local logic edits, staff turnover, seasonal temperature and humidity, and shifts in raw "
+             "material quality. Data-driven governance means continuous visibility of deviations and a "
+             "contextual comparison against the approved baseline, so \u201cfind the drift\u201d becomes a "
+             "targeted review instead of an audit."),
+            ("Enterprise engineering software",
+             "Configuration leaves the plant. Live and historical system configurations are pushed to a "
+             "secure cloud, with role-based access scoped to each engineer's span of responsibility and "
+             "exception-based views that show only where a site departs from corporate standard. "
+             "Versioned history is the point: it lets a specific change be correlated with a shift in "
+             "process performance, quality or reliability \u2014 the only way a standards library becomes "
+             "evidence rather than policy."),
+            ("Simulation before deployment",
+             "Prove, then promote. A digital twin seeded with the current configuration is the base "
+             "model; candidate logic or ML-derived setpoint strategies are injected and the predicted "
+             "KPI shifts compared \u2014 energy intensity, yield variance, constraint margin. What passes "
+             "goes through a gated pipeline: shadow mode first, then a canary release, then fleet "
+             "rollout. That is a software deployment pattern applied to control logic, and it is the "
+             "most defensible idea in the article."),
+            ("Evergreen operation",
+             "Stop taking the unit down to patch. The control system has never been as patchable as IT "
+             "because uptime is the product. The answer offered is decoupling: deterministic loops stay "
+             "hardened, while adjacent services \u2014 analytics, reliability modules, visualisation "
+             "adapters \u2014 run containerised and pull updates in a defined maintenance window without a "
+             "shutdown. Orchestration then places each service by latency, data proximity and cost."),
+        ],
+        "eop_note_h": "The one number, and what it is",
+        "eop_note_p": "The article's illustration: a coastal chemical plant faces a forecast 48-hour "
+                      "tropical storm. The platform ingests weather and logistics data, simulates a 12% "
+                      "loss of monthly ethylene output, and recommends that a sister inland plant raise "
+                      "feed rates 8% inside validated safety and energy envelopes, pre-position catalyst "
+                      "and adjust steam demand \u2014 checking flare limits, compressor loading and utility "
+                      "contracts against twin models, then publishing the approved changes as a versioned "
+                      "control update. Projected shortfall falls from 12% to 3%. Read that as arithmetic, "
+                      "not as measurement: the 12% and the 3% are modelled, and the nine-point recovery "
+                      "is the value of the coordination, not of any instrument. What the scenario does "
+                      "show honestly is where the difficulty sits \u2014 not in the analytics but in the "
+                      "constraint check and the versioned publish, which is the configuration-drift "
+                      "problem one layer up.",
+        "eop_worth_h": "What the vendor thesis is worth",
+        "eop_worth_p": "LaMothe is Emerson's vice president of applied research and emerging technologies, "
+                       "so this is a supplier describing the architecture its own products are being "
+                       "built against, and the fleet-wide language is aspirational \u2014 the article "
+                       "itself concedes that some of the enabling technology is \u201cyears away\u201d. The "
+                       "parts worth taking seriously are the ones that do not depend on the vendor: that "
+                       "standards decay at a rate set by staff turnover and season rather than by policy; "
+                       "that a configuration change should be traceable to a KPI movement; and that a "
+                       "control system you cannot patch without a shutdown is a lifecycle cost that "
+                       "compounds. Those hold whether or not the platform is called an EOP.",
+        "eop_close": "The honest test of any enterprise platform proposal is the one from section 06 moved "
+                     "up a level: can a number on the corporate screen be traced back \u2014 in one step "
+                     "\u2014 to a tag, a range, the calibration date, and the version of control logic that "
+                     "produced it. Standards governance, engineering software, simulation and evergreen "
+                     "updates are four different ways of making that trace possible. A dashboard that "
+                     "spans twelve sites and cannot do it is a reporting system with a larger licence fee.",
+        "eop_a1": "The data fabric",
+        "eop_a2": "Read the article",
+        "eb_sdc": "Software-defined",
+        "sdc_h": "Four benefits, one precondition: control stops living in its own hardware",
+        "sdc_p": "Sean Saul, who runs Emerson's DeltaV platform, wrote the mechanism down two years "
+                 "before the enterprise version of the argument appeared. Software-defined control "
+                 "means the control workload becomes containerised and runs on general hardware \u2014 "
+                 "most likely hyperconverged infrastructure (HCI), with the control system operating "
+                 "as a redundant service rather than a set of purpose-built controllers in "
+                 "purpose-built cabinets. The claim is not that the loops change. It is that "
+                 "everything around them stops being a hardware decision.",
+        "sdc_p2": "He names four benefits, and it is worth being precise about which of them are "
+                  "engineering and which are procurement.",
+        "sdc_hdr": ("The benefit", "What it actually buys"),
+        "sdc_moves": [
+            ("Resiliency",
+             "Failover stops being 1:1. Multiple controllers run simultaneously on HCI, so automation "
+             "workloads can be added without a shutdown: deploy the containerised control function, "
+             "build the I/O subsystem in the expansion area, auto-sense the field devices. If one "
+             "control function fails, HCI's rapid failover takes over \u2014 and the architecture allows "
+             "fault tolerance beyond a primary/backup pair, including failing over to virtualised hosts "
+             "in another physical location."),
+            ("Scalability",
+             "Capacity stops being a cabinet. Adding compute is connecting another blade in a server "
+             "cabinet. The value is not the blade; it is that the growth path no longer starts with a "
+             "drawing, a cabinet purchase and a shutdown window."),
+            ("Flexibility",
+             "The most concrete claim in the article. Today the project team must calculate every device "
+             "signal tag (DST) up front, because the count determines the hardware. Under "
+             "software-defined control the count becomes a configuration value: estimate, then scale up "
+             "or down in software. Capacity planning stops being a decision made once, at the worst "
+             "possible moment, by people with the least information."),
+            ("Extensibility",
+             "Update one instance while its primary keeps running. That is the same decoupling the "
+             "enterprise article later calls evergreen operation \u2014 here stated as a per-function "
+             "property rather than a fleet strategy."),
+        ],
+        "sdc_note_h": "Why now, and what it rests on",
+        "sdc_note_p": "The building blocks have existed for years; what changed is the field. "
+                      "Ethernet-APL is bringing video, acoustic monitoring and other high-bandwidth "
+                      "sources into the control system, and that volume will push purpose-built control "
+                      "hardware to or past its limits. So the two arguments are the same bet at "
+                      "different layers: APL makes the field discoverable and data-rich, and "
+                      "software-defined control assumes a field you can auto-sense. Neither works "
+                      "alone. Note also what the article concedes \u2014 today's most flexible "
+                      "controllers are still purpose-built hardware that merely borrows the ideas, "
+                      "which is the honest state of the art.",
+        "sdc_worth_h": "What to be sceptical of",
+        "sdc_worth_p": "Every one of the four benefits is written in the future tense: will offer, will "
+                       "be able to, will simplify. That is not evasion \u2014 the article says plainly "
+                       "where the technology is today \u2014 but it does mean the four benefits are a "
+                       "specification, not a result. Two are engineering claims that can be tested "
+                       "(does failover across sites hold the loop? does a DST change really require no "
+                       "hardware?) and two are procurement claims dressed as engineering (scalability "
+                       "and flexibility mostly mean you stop buying cabinets). The procurement ones are "
+                       "the easier sell and the harder to verify, because their cost lands years later, "
+                       "in the projects that did not have to be replanned.",
+        "sdc_close": "The useful way to hold this is as a dependency chain rather than a product claim: "
+                     "containerised control needs a virtualised host, a virtualised host needs a field "
+                     "it can discover, and a discoverable field needs APL and a common data model. "
+                     "Section 02 covers the wire and this section covers the compute; the two that "
+                     "follow cover the data fabric that makes the result usable, and the enterprise "
+                     "claim built on top of both. Skip a link and the benefits do not appear \u2014 which "
+                     "is why the same four words have been on slides for a decade.",
+        "sdc_a1": "Ethernet-APL",
+        "sdc_a2": "Read the article",
+        "eb_i40": "Data fabric",
+        "i40_h": "Industry 4.0 as the springboard, and the silo it has not removed",
+        "i40_p": "Sean Saul's next piece is the honest framing of the same problem. Industry 4.0, he "
+                 "writes, has become hard to define: nobody is sure whether it is over or still "
+                 "arriving, and the technologies behind it have been generating data for years while "
+                 "\u201cmany operations do not look much different than they did a decade ago\u201d. The "
+                 "reason is not that the technology failed. It is that project-based deployment "
+                 "produces silos \u2014 production, reliability, safety and sustainability each bought a "
+                 "plant-level solution with its own stack and its own data model, and getting that data "
+                 "out for cross-functional analysis is, in his phrase, a herculean task: manual, "
+                 "time-consuming and prone to error.",
+        "i40_p2": "So the argument is a data argument, not a technology argument. Industry 4.0 is the "
+                  "springboard because it is where the data fabric can start; the failure mode it has "
+                  "to overcome is the one every plant already has.",
+        "i40_hdr": ("The pressure", "What it does to the architecture"),
+        "i40_moves": [
+            ("Optimisation has moved up",
+             "Most high-performing organisations have already squeezed what closed-loop control can "
+             "give them at unit and plant level. The remaining gain is across multiple plants or the "
+             "whole enterprise \u2014 which is a data problem before it is a control problem."),
+            ("Rigid architectures",
+             "Automation has relied for decades on rigidly defined architectures, highly specified "
+             "installation requirements and hierarchical communication patterns. Those were reasonable "
+             "when the boundary of the system was the fence line. They are the constraint now."),
+            ("Departmental stacks",
+             "Each outcome \u2014 production, reliability, safety, sustainability \u2014 was solved at plant "
+             "level with a stack and a data model designed for one department. Extracting, transforming "
+             "and landing that data for shared use is where the effort goes, and it is not engineering "
+             "effort."),
+            ("A software-defined stack",
+             "HCI, edge and cloud supply the deployment model, with HCI collapsing complex networking "
+             "into one scalable server cluster. The article is careful here: PID and other algorithms "
+             "mostly run on fit-for-purpose controllers today, and only some workloads could move to "
+             "HCI or cloud depending on performance requirements. That caution is the useful part."),
+        ],
+        "i40_note_h": "The concession that dates the article",
+        "i40_note_p": "Two sentences carry the honest weight. The first: \u201csome of the technologies "
+                      "behind the boundless automation vision are years away from broad adoption.\u201d "
+                      "The second: the foundation \u201cwill be built upon the Industry 4.0 solutions "
+                      "available today.\u201d Together they define the only defensible buying rule in "
+                      "the piece \u2014 choose systems built with integration by design, so that the path "
+                      "is an evolution rather than a full-scale modernisation. That is a real constraint "
+                      "on a procurement and not a slogan, because it rules out the cheaper point "
+                      "solution that solves this year's problem and creates next year's silo.",
+        "i40_worth_h": "What is missing from the account",
+        "i40_worth_p": "The article names the silo problem precisely and then treats the data fabric as "
+                       "the answer without pricing it. A fabric requires a common data model and common "
+                       "definitions \u2014 the very thing departmental stacks disagree about \u2014 and it "
+                       "requires someone to own the model as plants are added. The piece also inherits "
+                       "a comfortable assumption from its own vendor position: that the platform is the "
+                       "integration. In practice the hardest part is agreeing what a tag means across "
+                       "two sites that have both been running for twenty years, and no architecture "
+                       "diagram removes that meeting. The life-sciences example is telling \u2014 "
+                       "operations that are \u201cborn digital\u201d find this easy, which is exactly why "
+                       "they are quoted and brownfield plants are not.",
+        "i40_close": "Read in sequence, the three articles are one argument at three depths. "
+                     "Software-defined control takes the control workload off purpose-built hardware. "
+                     "Industry 4.0 supplies the data fabric that makes the resulting data usable across "
+                     "sites \u2014 and concedes that the silos are organisational, not technical. The "
+                     "enterprise operations platform is what you claim to do once both are in place: "
+                     "govern standards, simulate before deploying, and patch without a shutdown. Each "
+                     "layer is a precondition for the next and the value appears only when all three "
+                     "are present \u2014 the conclusion of section 06, arrived at from the vendor side.",
+        "i40_a1": "Software-defined control",
+        "i40_a2": "Read the article",
         "board_h": "The boardroom is also a control loop",
         "board_p": "R. Russell Rhinehart makes the argument in Control Global: management is continually "
                    "taking control action, and managers rarely have a control background, so the same "
@@ -234,6 +437,20 @@ T = {
              "Control Global — How to fix poor control and choose the right strategy",
              "https://www.controlglobal.com/control/multivariable-control/article/55411596/effective-process-control-matching-strategies-to-process-characteristics-and-overcoming-challenges",
              "Part two: fix the process first, then match the strategy to the response."),
+            ("Article",
+             "Control Engineering — Today's industrial operations need software that spans the enterprise",
+             "https://www.controleng.com/todays-industrial-operations-need-software-that-spans-the-enterprise/",
+             "February 2026. Brian LaMothe (Emerson) on the DCS as an enterprise operations platform: "
+             "standards governance, simulation pipelines, evergreen updates."),
+            ("Article",
+             "Control Engineering — See the future: Four benefits of software-defined industrial controls",
+             "https://www.controleng.com/see-the-future-four-benefits-of-software-defined-industrial-controls/",
+             "March 2024. Sean Saul (Emerson DeltaV) on containerised control over HCI: resiliency, "
+             "scalability, flexibility, extensibility."),
+            ("Article",
+             "Control Engineering — Industry 4.0 is the springboard to a holistic automation future",
+             "https://www.controleng.com/industry-4-0-is-the-springboard-to-a-holistic-automation-future/",
+             "July 2024. The silo problem and the data fabric that is meant to end it."),
         ],
         "foot_note": "A bilingual field guide to process instrumentation and control. "
                      "Content is synthesised from ISA, IEC, API and ISO 18674 practice; "
@@ -387,6 +604,203 @@ T = {
                        "phải một hệ thống điều khiển — và lần đầu tiên nó sai, sẽ không ai nói được sai ở đâu.",
         "plant_a1": "Chuỗi đo lường",
         "plant_a2": "Điều khiển nâng cao",
+        "eb_eop": "Tầng doanh nghiệp",
+        "eop_h": "DCS đang trở thành nền tảng vận hành doanh nghiệp",
+        "eop_p": "Brian LaMothe, phụ trách nghiên cứu ứng dụng tại bộ phận Process Systems and Solutions "
+                 "của Emerson, nêu trên Control Engineering một luận điểm rất dễ đọc lướt qua: đơn vị "
+                 "tối ưu đã dịch chuyển. \u201cThành công không còn được định nghĩa bằng hiệu suất của "
+                 "một nhà máy đầu đàn.\u201d Theo cách ông đặt vấn đề, DCS thế hệ mới là một nền tảng vận "
+                 "hành doanh nghiệp — điều khiển định nghĩa bằng phần mềm, trải khắp các cơ sở, phơi ra "
+                 "một tập dữ liệu thời gian thực đáng tin cậy duy nhất, và phối hợp điều khiển tất định "
+                 "với phân tích dự báo cùng phân tích đề xuất.",
+        "eop_p2": "Đây là mục 06 với một chủ sở hữu khác. Chồng tầng trong lập luận toàn nhà máy kết thúc "
+                  "ở một màn hình phòng họp; bài này nói về phần mềm phải nằm bên dưới để màn hình đó có "
+                  "nghĩa. Bốn bước mang cả lập luận.",
+        "eop_hdr": ("Bước dịch chuyển", "Điều thực sự thay đổi"),
+        "eop_moves": [
+            ("Quản trị tiêu chuẩn",
+             "Từ văn bản thành phép kiểm tra. Thư viện tiêu chuẩn doanh nghiệp thất bại không phải vì "
+             "sai, mà vì việc cưỡng chế là thủ công — một bản chuẩn trên giấy hoặc bảng tính, phát "
+             "xuống, rồi so tay với cấu hình thực tế ở từng cơ sở. Trôi lệch không phải phá hoại: đó là "
+             "sửa logic cục bộ, thay người, nhiệt độ và độ ẩm theo mùa, và thay đổi chất lượng nguyên "
+             "liệu. Quản trị dựa trên dữ liệu nghĩa là thấy liên tục các sai lệch và so sánh trong ngữ "
+             "cảnh với bản chuẩn đã duyệt, để \u201ctìm chỗ trôi lệch\u201d thành một lần rà soát có mục "
+             "tiêu thay vì một cuộc kiểm toán."),
+            ("Phần mềm kỹ thuật doanh nghiệp",
+             "Cấu hình rời khỏi nhà máy. Cấu hình hệ thống hiện tại và lịch sử được đẩy lên đám mây bảo "
+             "mật, phân quyền theo phạm vi trách nhiệm của từng kỹ sư, với chế độ xem theo ngoại lệ chỉ "
+             "hiện nơi cơ sở lệch khỏi chuẩn công ty. Điểm mấu chốt là lịch sử có phiên bản: nó cho phép "
+             "gắn một thay đổi cụ thể với dịch chuyển về hiệu suất quá trình, chất lượng hay độ tin cậy "
+             "— cách duy nhất để một thư viện tiêu chuẩn trở thành bằng chứng thay vì chính sách."),
+            ("Mô phỏng trước khi triển khai",
+             "Chứng minh rồi mới đưa vào. Một bản sao số khởi tạo từ cấu hình hiện tại làm mô hình gốc; "
+             "logic ứng viên hoặc chiến lược đặt điểm do học máy sinh ra được tiêm vào và so sánh dịch "
+             "chuyển KPI dự báo — cường độ năng lượng, phương sai năng suất, biên ràng buộc. Cái gì đạt "
+             "sẽ đi qua một đường ống có cổng: chế độ bóng trước, rồi phát hành canary, rồi triển khai "
+             "toàn hệ thống. Đó là mẫu triển khai phần mềm áp lên logic điều khiển, và là ý tưởng vững "
+             "nhất trong bài."),
+            ("Vận hành trường tồn",
+             "Đừng dừng phân xưởng để vá lỗi. Hệ điều khiển chưa bao giờ vá được như hệ thống IT vì thời "
+             "gian hoạt động chính là sản phẩm. Câu trả lời đưa ra là tách rời: các vòng tất định giữ "
+             "nguyên độ cứng, còn các dịch vụ bên cạnh — phân tích, mô-đun độ tin cậy, bộ chuyển đổi "
+             "hiển thị — chạy trong container và nhận cập nhật trong cửa sổ bảo trì định trước mà không "
+             "phải dừng máy. Bộ điều phối sau đó đặt từng dịch vụ theo độ trễ, độ gần dữ liệu và chi phí."),
+        ],
+        "eop_note_h": "Con số duy nhất, và nó là gì",
+        "eop_note_p": "Ví dụ trong bài: một nhà máy hóa chất ven biển đối diện dự báo bão nhiệt đới 48 "
+                      "giờ. Nền tảng nạp dữ liệu thời tiết và logistics, mô phỏng mất 12% sản lượng "
+                      "ethylene tháng, và đề xuất nhà máy chị em trong nội địa tăng lưu lượng nạp 8% "
+                      "trong biên an toàn và năng lượng đã kiểm chứng, chuẩn bị trước xúc tác và điều "
+                      "chỉnh nhu cầu hơi — kiểm tra giới hạn đốt flare, tải máy nén và hợp đồng tiện ích "
+                      "trên mô hình sao, rồi phát hành thay đổi đã duyệt dưới dạng cập nhật điều khiển có "
+                      "phiên bản. Thiếu hụt dự báo giảm từ 12% xuống 3%. Hãy đọc đó như số học, không phải "
+                      "như đo lường: 12% và 3% là mô hình hóa, và chín điểm thu hồi là giá trị của sự phối "
+                      "hợp, không phải của bất kỳ thiết bị nào. Điều kịch bản này cho thấy một cách trung "
+                      "thực là khó khăn nằm ở đâu — không phải ở phân tích, mà ở bước kiểm tra ràng buộc "
+                      "và phát hành có phiên bản, tức cùng một bài toán trôi lệch cấu hình ở tầng cao hơn.",
+        "eop_worth_h": "Luận điểm nhà cung cấp này đáng giá bao nhiêu",
+        "eop_worth_p": "LaMothe là phó chủ tịch nghiên cứu ứng dụng và công nghệ mới của Emerson, nên đây "
+                       "là một nhà cung cấp mô tả kiến trúc mà sản phẩm của chính họ đang được xây theo, "
+                       "và ngôn ngữ triển khai toàn hệ thống vẫn là kỳ vọng — bài viết tự thừa nhận một "
+                       "số công nghệ nền tảng còn \u201cnhiều năm nữa\u201d mới có. Những phần nên xem "
+                       "trọng là phần không phụ thuộc nhà cung cấp: tiêu chuẩn xuống cấp theo tốc độ thay "
+                       "người và theo mùa chứ không theo chính sách; một thay đổi cấu hình phải truy được "
+                       "về một dịch chuyển KPI; và một hệ điều khiển không thể vá mà không dừng máy là "
+                       "chi phí vòng đời cộng dồn. Những điều đó đúng dù nền tảng có được gọi là EOP hay "
+                       "không.",
+        "eop_close": "Phép thử trung thực cho mọi đề xuất nền tảng doanh nghiệp là phép thử ở mục 06 nâng "
+                     "lên một tầng: một con số trên màn hình công ty có truy được — trong một bước — về "
+                     "tag, dải đo, ngày hiệu chuẩn, và phiên bản logic điều khiển đã sinh ra nó hay "
+                     "không. Quản trị tiêu chuẩn, phần mềm kỹ thuật, mô phỏng và cập nhật trường tồn là "
+                     "bốn cách khác nhau để làm cho phép truy đó khả thi. Một bảng điều khiển trải mười "
+                     "hai cơ sở mà không làm được điều đó chỉ là hệ thống báo cáo với phí bản quyền lớn hơn.",
+        "eop_a1": "Lớp dữ liệu",
+        "eop_a2": "Đọc bài gốc",
+        "eb_sdc": "Định nghĩa bằng phần mềm",
+        "sdc_h": "Bốn lợi ích, một điều kiện tiên quyết: điều khiển rời khỏi phần cứng riêng của nó",
+        "sdc_p": "Sean Saul, người phụ trách nền tảng DeltaV của Emerson, đã viết ra cơ chế này hai "
+                 "năm trước khi phiên bản doanh nghiệp của lập luận xuất hiện. Điều khiển định nghĩa "
+                 "bằng phần mềm nghĩa là khối công việc điều khiển được đóng gói trong container và "
+                 "chạy trên phần cứng phổ thông — nhiều khả năng là hạ tầng hội tụ (HCI), với hệ điều "
+                 "khiển chạy như một dịch vụ dư thừa thay vì một tập bộ điều khiển chuyên dụng trong "
+                 "tủ chuyên dụng. Luận điểm không phải là các vòng điều khiển thay đổi. Mà là mọi thứ "
+                 "xung quanh chúng thôi là một quyết định phần cứng.",
+        "sdc_p2": "Ông nêu bốn lợi ích, và cần phân biệt rõ cái nào là kỹ thuật, cái nào là mua sắm.",
+        "sdc_hdr": ("Lợi ích", "Thực sự đổi được gì"),
+        "sdc_moves": [
+            ("Khả năng phục hồi",
+             "Chuyển đổi dự phòng không còn là 1:1. Nhiều bộ điều khiển chạy đồng thời trên HCI, nên "
+             "có thể thêm khối lượng công việc tự động hóa mà không phải dừng máy: triển khai hàm "
+             "điều khiển trong container, xây hệ thống I/O ở khu vực mở rộng, tự nhận diện thiết bị "
+             "hiện trường. Nếu một hàm điều khiển hỏng, cơ chế chuyển đổi nhanh của HCI tiếp quản — và "
+             "kiến trúc cho phép dung sai lỗi vượt mô hình chính/dự phòng, kể cả chuyển sang máy chủ "
+             "ảo hóa ở một địa điểm vật lý khác."),
+            ("Khả năng mở rộng",
+             "Năng lực không còn là một tủ. Thêm năng lực tính toán là cắm thêm một blade vào tủ máy "
+             "chủ. Giá trị không nằm ở blade; mà ở chỗ đường phát triển không còn bắt đầu bằng một bản "
+             "vẽ, một đơn mua tủ và một cửa sổ dừng máy."),
+            ("Tính linh hoạt",
+             "Luận điểm cụ thể nhất trong bài. Hiện nay nhóm dự án phải tính trước từng tag tín hiệu "
+             "thiết bị (DST), vì số lượng quyết định phần cứng. Dưới điều khiển định nghĩa bằng phần "
+             "mềm, con số đó trở thành một giá trị cấu hình: ước lượng, rồi tăng giảm bằng phần mềm. "
+             "Hoạch định năng lực thôi là quyết định làm một lần, vào thời điểm tệ nhất, bởi những "
+             "người có ít thông tin nhất."),
+            ("Khả năng mở rộng chức năng",
+             "Cập nhật một phiên bản trong khi bản chính vẫn chạy. Đó chính là sự tách rời mà bài về "
+             "doanh nghiệp sau đó gọi là vận hành trường tồn — ở đây nêu như thuộc tính của từng hàm "
+             "chứ không phải chiến lược toàn hệ thống."),
+        ],
+        "sdc_note_h": "Vì sao bây giờ, và nó dựa trên cái gì",
+        "sdc_note_p": "Các khối công nghệ đã có nhiều năm; cái thay đổi là hiện trường. Ethernet-APL "
+                      "đang đưa video, giám sát âm thanh và các nguồn băng thông cao khác vào hệ điều "
+                      "khiển, và khối lượng đó sẽ đẩy phần cứng điều khiển chuyên dụng tới hoặc vượt "
+                      "giới hạn. Vậy hai lập luận là cùng một đặt cược ở hai tầng khác nhau: APL làm "
+                      "hiện trường trở nên khám phá được và giàu dữ liệu, còn điều khiển định nghĩa "
+                      "bằng phần mềm giả định một hiện trường có thể tự nhận diện. Không cái nào chạy "
+                      "một mình. Cũng nên ghi nhận điều bài viết thừa nhận — những bộ điều khiển linh "
+                      "hoạt nhất hiện nay vẫn là phần cứng chuyên dụng chỉ mượn các ý tưởng đó, và đó "
+                      "là hiện trạng trung thực.",
+        "sdc_worth_h": "Điều gì cần hoài nghi",
+        "sdc_worth_p": "Cả bốn lợi ích đều viết ở thì tương lai: sẽ mang lại, sẽ có thể, sẽ đơn giản "
+                       "hóa. Đó không phải né tránh — bài nói thẳng công nghệ đang ở đâu — nhưng có "
+                       "nghĩa bốn lợi ích là một bản đặc tả, không phải kết quả. Hai trong số đó là "
+                       "tuyên bố kỹ thuật kiểm chứng được (chuyển đổi dự phòng qua các cơ sở có giữ "
+                       "được vòng điều khiển không? đổi một DST có thật không cần phần cứng không?) và "
+                       "hai là tuyên bố mua sắm khoác áo kỹ thuật (mở rộng và linh hoạt chủ yếu nghĩa "
+                       "là bạn thôi mua tủ). Nhóm mua sắm dễ bán hơn và khó kiểm hơn, vì chi phí của "
+                       "nó rơi vào nhiều năm sau, trong những dự án lẽ ra không phải lập lại kế hoạch.",
+        "sdc_close": "Cách hữu ích để giữ việc này là một chuỗi phụ thuộc, không phải một tuyên bố sản "
+                     "phẩm: điều khiển trong container cần một máy chủ ảo hóa, máy chủ ảo hóa cần một "
+                     "hiện trường có thể khám phá, và hiện trường khám phá được cần APL cùng một mô "
+                     "hình dữ liệu chung. Mục 02 nói về đường dây và mục này nói về năng lực tính toán; "
+                     "hai mục tiếp theo nói về lớp dữ liệu làm cho kết quả dùng được, và về tuyên bố "
+                     "doanh nghiệp dựng trên cả hai. Thiếu một mắt xích thì các lợi ích không xuất hiện "
+                     "— đó là lý do bốn từ ấy đã nằm trên slide suốt một thập kỷ.",
+        "sdc_a1": "Ethernet-APL",
+        "sdc_a2": "Đọc bài gốc",
+        "eb_i40": "Lớp dữ liệu",
+        "i40_h": "Industry 4.0 làm bệ phóng, và cái silo nó chưa dỡ bỏ",
+        "i40_p": "Bài kế tiếp của Sean Saul là cách đặt vấn đề trung thực cho cùng một bài toán. "
+                 "Industry 4.0, ông viết, đã trở nên khó định nghĩa: không ai chắc nó đã kết thúc hay "
+                 "còn đang tới, và các công nghệ đứng sau nó đã sinh dữ liệu nhiều năm trong khi "
+                 "“nhiều cơ sở vận hành trông không khác mấy so với một thập kỷ trước”. Nguyên nhân "
+                 "không phải công nghệ thất bại. Mà là triển khai theo dự án sinh ra silo — sản xuất, "
+                 "độ tin cậy, an toàn và bền vững, mỗi bên mua một giải pháp cấp nhà máy với chồng "
+                 "công nghệ và mô hình dữ liệu riêng, và việc lấy dữ liệu đó ra để phân tích liên "
+                 "chức năng, theo cách ông nói, là một việc ngang sức Hercules: thủ công, tốn thời "
+                 "gian và dễ sai.",
+        "i40_p2": "Vậy lập luận là lập luận về dữ liệu, không phải về công nghệ. Industry 4.0 là bệ "
+                  "phóng vì đó là nơi lớp dữ liệu có thể bắt đầu; kiểu thất bại mà nó phải vượt qua "
+                  "là kiểu mà nhà máy nào cũng đã có.",
+        "i40_hdr": ("Áp lực", "Nó làm gì với kiến trúc"),
+        "i40_moves": [
+            ("Tối ưu đã dịch lên",
+             "Phần lớn tổ chức hiệu suất cao đã vắt hết những gì điều khiển vòng kín có thể cho ở cấp "
+             "phân xưởng và nhà máy. Phần lợi ích còn lại nằm giữa nhiều nhà máy hoặc toàn doanh "
+             "nghiệp — và đó là bài toán dữ liệu trước khi là bài toán điều khiển."),
+            ("Kiến trúc cứng nhắc",
+             "Tự động hóa đã dựa vào kiến trúc định nghĩa cứng nhắc, yêu cầu lắp đặt đặc tả cao và "
+             "mẫu truyền thông phân cấp suốt nhiều thập kỷ. Những điều đó hợp lý khi biên của hệ thống "
+             "là hàng rào nhà máy. Giờ chúng là ràng buộc."),
+            ("Chồng công nghệ theo phòng ban",
+             "Mỗi kết quả — sản xuất, độ tin cậy, an toàn, bền vững — được giải quyết ở cấp nhà máy "
+             "bằng một chồng công nghệ và mô hình dữ liệu thiết kế cho một phòng ban. Việc trích xuất, "
+             "biến đổi và đưa dữ liệu đó vào dùng chung là nơi công sức đổ vào, và đó không phải công "
+             "sức kỹ thuật."),
+            ("Chồng công nghệ định nghĩa bằng phần mềm",
+             "HCI, biên và đám mây cung cấp mô hình triển khai: HCI gộp việc mạng phức tạp vào một cụm "
+             "máy chủ mở rộng được. Bài viết thận trọng ở đây — PID và các thuật toán khác hiện chủ "
+             "yếu chạy trên bộ điều khiển chuyên dụng, và chỉ một số khối công việc có thể chuyển lên "
+             "HCI hoặc đám mây tùy yêu cầu hiệu năng. Chính sự thận trọng đó là phần hữu ích."),
+        ],
+        "i40_note_h": "Điều bài viết tự thừa nhận, và nó định tuổi bài",
+        "i40_note_p": "Hai câu mang sức nặng trung thực. Thứ nhất: “một số công nghệ đứng sau tầm nhìn "
+                      "tự động hóa không biên giới còn nhiều năm nữa mới được dùng rộng rãi.” Thứ hai: "
+                      "nền tảng “sẽ được xây trên các giải pháp Industry 4.0 có sẵn hôm nay.” Gộp lại, "
+                      "chúng định ra quy tắc mua sắm duy nhất biện hộ được trong bài — chọn hệ thống "
+                      "được thiết kế tích hợp sẵn, để đường đi là tiến hóa chứ không phải hiện đại hóa "
+                      "toàn phần. Đó là một ràng buộc thật với một gói thầu, không phải khẩu hiệu, vì nó "
+                      "loại bỏ giải pháp điểm rẻ hơn: giải quyết bài toán năm nay và tạo ra silo năm sau.",
+        "i40_worth_h": "Điều còn thiếu trong lập luận",
+        "i40_worth_p": "Bài viết gọi đúng tên vấn đề silo rồi coi lớp dữ liệu là câu trả lời mà không "
+                       "định giá nó. Một lớp dữ liệu cần mô hình dữ liệu chung và định nghĩa chung — "
+                       "đúng thứ mà các chồng công nghệ phòng ban đang bất đồng — và cần một người sở "
+                       "hữu mô hình đó khi thêm nhà máy. Bài cũng thừa hưởng một giả định dễ chịu từ vị "
+                       "thế nhà cung cấp của chính nó: rằng nền tảng chính là sự tích hợp. Trên thực "
+                       "tế, phần khó nhất là thống nhất một tag nghĩa là gì giữa hai cơ sở đều đã chạy "
+                       "hai mươi năm, và không sơ đồ kiến trúc nào dỡ bỏ được cuộc họp đó. Ví dụ ngành "
+                       "khoa học sự sống rất đáng chú ý — những cơ sở “sinh ra đã số” thấy việc này dễ, "
+                       "và chính vì thế họ được trích dẫn còn nhà máy cũ thì không.",
+        "i40_close": "Đọc theo trình tự, ba bài là một lập luận ở ba độ sâu. Điều khiển định nghĩa bằng "
+                     "phần mềm đưa khối công việc điều khiển ra khỏi phần cứng chuyên dụng. Industry "
+                     "4.0 cung cấp lớp dữ liệu làm cho dữ liệu sinh ra trở nên dùng được giữa các cơ "
+                     "sở — và thừa nhận rằng silo là chuyện tổ chức, không phải chuyện kỹ thuật. Nền "
+                     "tảng vận hành doanh nghiệp là điều bạn tuyên bố làm được khi cả hai đã có: quản "
+                     "trị tiêu chuẩn, mô phỏng trước khi triển khai, và vá lỗi mà không dừng máy. Mỗi "
+                     "tầng là điều kiện tiên quyết của tầng sau, và giá trị chỉ xuất hiện khi có đủ cả "
+                     "ba — cùng một kết luận như mục 06, nhưng đi từ phía nhà cung cấp.",
+        "i40_a1": "Điều khiển định nghĩa bằng phần mềm",
+        "i40_a2": "Đọc bài gốc",
         "board_h": "Phòng họp cũng là một vòng điều khiển",
         "board_p": "R. Russell Rhinehart lập luận trên Control Global: quản lý là việc liên tục ra hành "
                    "động điều khiển, và người quản lý hiếm khi có nền tảng điều khiển, nên vẫn là những "
@@ -452,6 +866,20 @@ T = {
              "Control Global — How to fix poor control and choose the right strategy",
              "https://www.controlglobal.com/control/multivariable-control/article/55411596/effective-process-control-matching-strategies-to-process-characteristics-and-overcoming-challenges",
              "Phần hai: sửa quá trình trước, rồi mới chọn chiến lược theo dạng đáp ứng."),
+            ("Bài báo",
+             "Control Engineering — Today's industrial operations need software that spans the enterprise",
+             "https://www.controleng.com/todays-industrial-operations-need-software-that-spans-the-enterprise/",
+             "Tháng 2/2026. Brian LaMothe (Emerson) về DCS như nền tảng vận hành doanh nghiệp: quản trị "
+             "tiêu chuẩn, đường ống mô phỏng, cập nhật trường tồn."),
+            ("Bài báo",
+             "Control Engineering — See the future: Four benefits of software-defined industrial controls",
+             "https://www.controleng.com/see-the-future-four-benefits-of-software-defined-industrial-controls/",
+             "Tháng 3/2024. Sean Saul (Emerson DeltaV) về điều khiển trong container trên HCI: phục hồi, "
+             "mở rộng, linh hoạt, mở rộng chức năng."),
+            ("Bài báo",
+             "Control Engineering — Industry 4.0 is the springboard to a holistic automation future",
+             "https://www.controleng.com/industry-4-0-is-the-springboard-to-a-holistic-automation-future/",
+             "Tháng 7/2024. Vấn đề silo và lớp dữ liệu được kỳ vọng sẽ chấm dứt nó."),
         ],
         "foot_note": "Sổ tay song ngữ về thiết bị đo và điều khiển quá trình. "
                      "Nội dung được tổng hợp từ thực tiễn ISA, IEC, API và ISO 18674; "
@@ -702,6 +1130,156 @@ def plant(lang, prefix):
     }
 
 
+def sdc(lang, prefix):
+    """Software-defined control — Emerson's DeltaV platform view, four benefits."""
+    t = T[lang]
+    hdr = "".join("<span>%s</span>" % h for h in t["sdc_hdr"])
+    rows = "".join(
+        '<li><span class="adv-stack-l">%02d</span>'
+        '<span class="adv-stack-b"><b>%s</b><span>%s</span></span></li>'
+        % (i, name, desc)
+        for i, (name, desc) in enumerate(t["sdc_moves"], 1)
+    )
+    return """<section class="sec adv-sec" id="sdc">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">07</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
+    <h2 class="adv-h2">%(h)s</h2>
+    <p class="adv-p">%(p)s</p>
+    <p class="adv-p">%(p2)s</p>
+    <ol class="adv-stack adv-stack-wide">
+      <li class="adv-stack-h">%(hdr)s</li>
+      %(rows)s
+    </ol>
+    <div class="adv-note">
+      <b>%(note_h)s</b>
+      <p>%(note_p)s</p>
+    </div>
+    <h3 class="adv-h3">%(worth_h)s</h3>
+    <p class="adv-p">%(worth_p)s</p>
+    <p class="adv-p adv-close">%(close)s</p>
+    <p class="adv-link"><a href="#apl">%(a1)s <span aria-hidden="true">&rarr;</span></a>
+      <a href="%(href)s" rel="noopener">%(a2)s <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+""" % {
+        "eb": t["eb_sdc"],
+        "h": t["sdc_h"],
+        "p": t["sdc_p"],
+        "p2": t["sdc_p2"],
+        "hdr": hdr,
+        "rows": rows,
+        "note_h": t["sdc_note_h"],
+        "note_p": t["sdc_note_p"],
+        "worth_h": t["sdc_worth_h"],
+        "worth_p": t["sdc_worth_p"],
+        "close": t["sdc_close"],
+        "a1": t["sdc_a1"],
+        "a2": t["sdc_a2"],
+        "href": ("https://www.controleng.com/"
+                 "see-the-future-four-benefits-of-software-defined-industrial-controls/"),
+    }
+
+
+def i40(lang, prefix):
+    """Industry 4.0 as the data-fabric foundation — Emerson, Control Engineering."""
+    t = T[lang]
+    hdr = "".join("<span>%s</span>" % h for h in t["i40_hdr"])
+    rows = "".join(
+        '<li><span class="adv-stack-l">%02d</span>'
+        '<span class="adv-stack-b"><b>%s</b><span>%s</span></span></li>'
+        % (i, name, desc)
+        for i, (name, desc) in enumerate(t["i40_moves"], 1)
+    )
+    return """<section class="sec adv-sec" id="i40">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">08</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
+    <h2 class="adv-h2">%(h)s</h2>
+    <p class="adv-p">%(p)s</p>
+    <p class="adv-p">%(p2)s</p>
+    <ol class="adv-stack adv-stack-wide">
+      <li class="adv-stack-h">%(hdr)s</li>
+      %(rows)s
+    </ol>
+    <div class="adv-note">
+      <b>%(note_h)s</b>
+      <p>%(note_p)s</p>
+    </div>
+    <h3 class="adv-h3">%(worth_h)s</h3>
+    <p class="adv-p">%(worth_p)s</p>
+    <p class="adv-p adv-close">%(close)s</p>
+    <p class="adv-link"><a href="#sdc">%(a1)s <span aria-hidden="true">&rarr;</span></a>
+      <a href="%(href)s" rel="noopener">%(a2)s <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+""" % {
+        "eb": t["eb_i40"],
+        "h": t["i40_h"],
+        "p": t["i40_p"],
+        "p2": t["i40_p2"],
+        "hdr": hdr,
+        "rows": rows,
+        "note_h": t["i40_note_h"],
+        "note_p": t["i40_note_p"],
+        "worth_h": t["i40_worth_h"],
+        "worth_p": t["i40_worth_p"],
+        "close": t["i40_close"],
+        "a1": t["i40_a1"],
+        "a2": t["i40_a2"],
+        "href": ("https://www.controleng.com/"
+                 "industry-4-0-is-the-springboard-to-a-holistic-automation-future/"),
+    }
+
+
+def eop(lang, prefix):
+    """The DCS as an enterprise operations platform — Emerson, Control Engineering."""
+    t = T[lang]
+    hdr = "".join("<span>%s</span>" % h for h in t["eop_hdr"])
+    rows = "".join(
+        '<li><span class="adv-stack-l">%02d</span>'
+        '<span class="adv-stack-b"><b>%s</b><span>%s</span></span></li>'
+        % (i, name, desc)
+        for i, (name, desc) in enumerate(t["eop_moves"], 1)
+    )
+    return """<section class="sec adv-sec" id="eop">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">09</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
+    <h2 class="adv-h2">%(h)s</h2>
+    <p class="adv-p">%(p)s</p>
+    <p class="adv-p">%(p2)s</p>
+    <ol class="adv-stack adv-stack-wide">
+      <li class="adv-stack-h">%(hdr)s</li>
+      %(rows)s
+    </ol>
+    <div class="adv-note">
+      <b>%(note_h)s</b>
+      <p>%(note_p)s</p>
+    </div>
+    <h3 class="adv-h3">%(worth_h)s</h3>
+    <p class="adv-p">%(worth_p)s</p>
+    <p class="adv-p adv-close">%(close)s</p>
+    <p class="adv-link"><a href="#i40">%(a1)s <span aria-hidden="true">&rarr;</span></a>
+      <a href="%(href)s" rel="noopener">%(a2)s <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+""" % {
+        "eb": t["eb_eop"],
+        "h": t["eop_h"],
+        "p": t["eop_p"],
+        "p2": t["eop_p2"],
+        "hdr": hdr,
+        "rows": rows,
+        "note_h": t["eop_note_h"],
+        "note_p": t["eop_note_p"],
+        "worth_h": t["eop_worth_h"],
+        "worth_p": t["eop_worth_p"],
+        "close": t["eop_close"],
+        "a1": t["eop_a1"],
+        "a2": t["eop_a2"],
+        "href": ("https://www.controleng.com/"
+                 "todays-industrial-operations-need-software-that-spans-the-enterprise/"),
+    }
+
+
 def boardroom(lang, prefix):
     t = T[lang]
     hdr = "".join("<span>%s</span>" % h for h in t["board_hdr"])
@@ -710,7 +1288,7 @@ def boardroom(lang, prefix):
     )
     return """<section class="sec adv-sec" id="boardroom">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">07</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
+    <div class="eyebrow"><span class="num">10</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
     <h2 class="adv-h2">%(h)s</h2>
     <p class="adv-p">%(p)s</p>
     <div class="tbl-wrap"><table class="tbl adv-tbl"><thead><tr><th>%(h1)s</th><th>%(h2)s</th></tr></thead>
@@ -1231,6 +1809,9 @@ def build_lang(lang, path, prefix):
     body += beyond(lang, prefix)
     body += paper(lang, prefix)
     body += plant(lang, prefix)
+    body += sdc(lang, prefix)
+    body += i40(lang, prefix)
+    body += eop(lang, prefix)
     body += boardroom(lang, prefix)
     body += sources(lang, prefix)
     body += footer(lang, prefix)

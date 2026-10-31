@@ -14,7 +14,7 @@ Live: https://pro-instcontrol.github.io/
 |---|---|
 | `index.html` | Positioning, the closed-loop idea, five measurement families, the dividing line |
 | `fundamentals.html` | Measurement chain, signal standards, 4–20 mA, error vocabulary, environment, installation rules |
-| `advanced/` | Where the fundamentals stop: cascade / feedforward / MPC, the safety paper trail, a 12-video **Trends & standards watch** section linking into the library, and the **total-plant** layer stack from field device to boardroom — with what the vendor numbers are worth (VI mirror at `vi/advanced/`) |
+| `advanced/` | Where the fundamentals stop: cascade / feedforward / MPC, the safety paper trail, a 12-video **Trends & standards watch** section linking into the library, the **total-plant** layer stack from field device to boardroom, and three vendor-architecture articles — software-defined control, the Industry 4.0 data fabric, and the DCS as an enterprise operations platform — each with what its numbers are worth (VI mirror at `vi/advanced/`) |
 | `instruments.html` | 31 filterable instruments — principle, accuracy, best application, failure mode |
 | `install.html` | Tapping points and impulse lines by service, hazardous area zones and gas groups, the IS entity concept with a cable-length calculation, grounding and shielding, commissioning checks |
 | `control.html` | Loop anatomy, PID terms, six tuning methods, dead time, advanced strategies, an interactive PID simulator |

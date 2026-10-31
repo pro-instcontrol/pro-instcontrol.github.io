@@ -14,7 +14,7 @@ DIST = os.path.join(ROOT, "dist")
 
 # Single cache-busting version for every generated page. Bump this whenever
 # style.css or app.js changes; the env var exists only for one-off experiments.
-ASSET_VER = os.environ.get("ASSET_VER", "4")
+ASSET_VER = os.environ.get("ASSET_VER", "5")
 
 _NEST_OPEN = re.compile(r"<(h[1-4]|p|li)([^>]*)><\1([^>]*)>")
 _NEST_CLOSE = re.compile(r"</(h[1-4]|p|li)></\1>")
