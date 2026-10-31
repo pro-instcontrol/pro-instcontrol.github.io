@@ -362,6 +362,27 @@ table.tbl thead th {
 }
 .note b { font-weight: 600; }
 
+/* numbered equations in the translated chapters */
+.eq {
+  position: relative;
+  font-family: var(--serif);
+  font-size: 1.14rem;
+  line-height: 1.95;
+  text-align: center;
+  margin: 1.25rem 0;
+  padding: 0.55rem 3.2rem 0.55rem 1rem;
+  background: var(--gray-bg);
+  border-left: 2px solid var(--accent-gold);
+  color: var(--gray-dark);
+  overflow-x: auto;
+}
+.eq .n {
+  position: absolute; right: 0.9rem; top: 0.7rem;
+  font-family: var(--sans); font-size: 0.76rem; color: var(--gray-mid);
+}
+.ref-list { margin: 0.8rem 0 1.4rem 1.2rem; font-size: 0.94rem; }
+.ref-list li { margin-bottom: 0.5rem; }
+
 .chapter-nav {
   display: flex; justify-content: space-between; gap: 16px;
   margin: 3rem 0 1rem; padding-top: 1.4rem;

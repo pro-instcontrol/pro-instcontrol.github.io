@@ -163,7 +163,9 @@ FILES = 117
 
 # chapters that already exist as reader pages: num -> (slug, title-vi)
 DONE = {1: "ch01-characteristics-of-instrumentation",
-        2: "ch02-operational-modes-of-instrumentation"}
+        2: "ch02-operational-modes-of-instrumentation",
+        3: "ch03-static-and-dynamic-characteristics-of-instrumentation",
+        4: "ch04-measurement-accuracy"}
 
 
 def num(n, lang):
@@ -271,10 +273,10 @@ def build(lang):
             if vi else
             "%s chapters · 14 sections · %s pages · %s PDF files"
             % (num(TOTAL, lang), num(PAGES, lang), FILES))
-    flag = ('<span class="translated-flag" data-level="progress">🟠 Đang dịch · 1/%d chương</span>'
-            % TOTAL if vi else
-            '<span class="translated-flag" data-level="progress">🟠 Translating · 1 of %d chapters</span>'
-            % TOTAL)
+    flag = ('<span class="translated-flag" data-level="progress">🟠 Đang dịch · %d/%d chương</span>'
+            % (len(DONE), TOTAL) if vi else
+            '<span class="translated-flag" data-level="progress">🟠 Translating · %d of %d chapters</span>'
+            % (len(DONE), TOTAL))
 
     if vi:
         lede = ("Sổ tay tham chiếu của ngành: 101 chương do nhiều tác giả viết, đi từ đặc tính của "
@@ -307,6 +309,10 @@ def build(lang):
 
     ch1 = ("/vi/books/read/%s/ch01-characteristics-of-instrumentation/" % SLUG if vi
            else "/books/read/%s/ch01-characteristics-of-instrumentation/" % SLUG)
+    last = max(DONE)
+    last_href = ("/vi/books/read/%s/%s/" if vi else "/books/read/%s/%s/") % (SLUG, DONE[last])
+    last_label = ("Chương %d →" if vi else "Chapter %d →") % last
+    last_title = CH[last][1] if vi else CH[last][0]
 
     body = (
         '<main><article class="intranet-content reader">'
@@ -338,10 +344,7 @@ def build(lang):
            "/vi/books/" if vi else "/books/",
            "Thư viện" if vi else "Library",
            esc("Tất cả sách" if vi else "All books"),
-           "/vi/books/read/%s/ch01-characteristics-of-instrumentation/" % SLUG if vi
-           else "/books/read/%s/ch01-characteristics-of-instrumentation/" % SLUG,
-           "Chương 1 →" if vi else "Chapter 1 →",
-           esc("Đặc tính của thiết bị đo" if vi else "Characteristics of Instrumentation"))
+           last_href, last_label, esc(last_title))
     )
     return head(lang, title, desc) + header(lang, switch) + body + footer(lang)
 
