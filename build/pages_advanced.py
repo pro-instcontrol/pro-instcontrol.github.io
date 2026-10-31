@@ -710,7 +710,7 @@ def boardroom(lang, prefix):
     )
     return """<section class="sec adv-sec" id="boardroom">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">05</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
+    <div class="eyebrow"><span class="num">07</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
     <h2 class="adv-h2">%(h)s</h2>
     <p class="adv-p">%(p)s</p>
     <div class="tbl-wrap"><table class="tbl adv-tbl"><thead><tr><th>%(h1)s</th><th>%(h2)s</th></tr></thead>
