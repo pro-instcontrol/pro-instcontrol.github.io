@@ -46,7 +46,8 @@ LEVEL = {
 # Suggested order through the catalogue: (stage number, [video ids])
 PATH = [
     ("1", ["tY50mpZtdM8", "2EpFIhUHm28", "1a0i6hGdCBc", "wmUs1TmB6Zw"]),
-    ("2", ["RFy9b9XvY9Q", "VocqjKvs0hY", "T54Z_xH2biw", "oUd4WxjoHKY", "DDE3fkSNFw0"]),
+    ("2", ["RFy9b9XvY9Q", "VocqjKvs0hY", "T54Z_xH2biw", "oUd4WxjoHKY", "DDE3fkSNFw0",
+           "P1wRXTl2L3I"]),
     ("3", ["j4EOTerfyTY", "FQNuIO4huy8", "Z1bOfL30WJU", "b-c2cKPqN6g", "6BFdzMu2ZAY"]),
     ("4", ["fv6dLTEvl74", "IB1Ir4oCP5k", "TOprLLY1E0o", "Xxbywx2AKx8"]),
     ("5", ["SamV6zpRNgg", "iFxSLNeA42M", "qZykZ1IDYZs", "pXkun-PEiY0"]),
@@ -590,7 +591,7 @@ def build_lang(lang, path, prefix):
     n_videos = len(videos_data.VIDEOS)
     n_cats = len([c for c in videos_data.CATS if by_cat[c[0]]])
     total_s = sum(seconds(v[3]) for v in videos_data.VIDEOS)
-    hours = int(total_s // 3600 + 0.5)  # round half up, so 54.5 h reads as 55
+    hours = int(total_s / 3600 + 0.5)  # true round-half-up (integer // would floor first)
     sources = sorted({v[4] for v in videos_data.VIDEOS}, key=lambda s: s.lower())
 
     body = head(lang, prefix, n_videos, n_cats)
