@@ -367,6 +367,87 @@ def build():
         pg.td("&gt; 1.0", "&gt; 1,0"),
         pg.td("PID inadequate — change the process or the strategy.", "PID không đủ — thay đổi quá trình hoặc chiến lược."),
     )
+
+    # noise is the second hard limit on a loop, and setpoint gap is the usual answer
+    body += """
+<div class="mt24 sec-sub">
+  %s
+  %s
+  %s
+  %s
+  <div class="note warn mt24">
+    <span class="lbl">%s</span>
+    %s
+  </div>
+</div>
+""" % (
+        pg.h3("The other clamp: noise, and setpoint gap", "Giới hạn còn lại: nhiễu, và khoảng đặt"),
+        pg.p(
+            "Dead time caps how <em>fast</em> a loop can be. Noise caps how <em>hard</em>. Both are "
+            "properties of the process and neither responds to tuning, which is why they are worth "
+            "separating from the six methods above. A worked example from Ed Bullerdiek's PID spotlight "
+            "series in <em>Control Engineering</em>: a fast self-limiting loop whose process variable "
+            "wanders in a band of roughly ±13% around its average, with noise that is neither white nor "
+            "cleanly cyclic. A 6-second filter — the most the series recommends for a loop that still "
+            "has to be aggressive — brought the visible band down to about ±5%. That is a little over "
+            "60% of the noise removed, not the 70% a white-noise calculation would promise, precisely "
+            "because the noise is not white.",
+            "Thời gian trễ giới hạn vòng điều khiển <em>nhanh</em> đến đâu. Nhiễu giới hạn nó <em>mạnh</em> "
+            "đến đâu. Cả hai đều là thuộc tính của quá trình và không cái nào đáp lại việc hiệu chỉnh, nên "
+            "đáng tách chúng ra khỏi sáu phương pháp ở trên. Một ví dụ đã làm trong loạt bài PID spotlight "
+            "của Ed Bullerdiek trên <em>Control Engineering</em>: một vòng tự giới hạn nhanh có biến quá "
+            "trình lang thang trong dải khoảng ±13% quanh giá trị trung bình, với nhiễu không trắng và "
+            "cũng không có chu kỳ rõ ràng. Một bộ lọc 6 giây — mức tối đa loạt bài đó khuyến nghị cho một "
+            "vòng vẫn phải hiệu chỉnh mạnh — đưa dải nhìn thấy xuống còn khoảng ±5%. Tức là loại bỏ hơn "
+            "60% nhiễu, không phải 70% như tính toán nhiễu trắng hứa hẹn, chính vì nhiễu không phải nhiễu "
+            "trắng.",
+        ),
+        pg.p(
+            "Then the part that surprises people: a PID controller cannot reduce process noise. A "
+            "correctly tuned one will not make it worse — that is the whole test — but it cannot make it "
+            "better either. The output band follows the PV band multiplied by the gain: at K = 0.5 "
+            "against a ±5% band, the valve strokes ±2.5%, continuously, forever. That is real wear on a "
+            "real stem, and it buys nothing, because the movement is not correcting anything.",
+            "Rồi đến phần khiến người ta bất ngờ: bộ điều khiển PID không thể giảm nhiễu quá trình. Một "
+            "bộ được hiệu chỉnh đúng sẽ không làm nó tệ hơn — đó chính là phép thử — nhưng cũng không làm "
+            "nó tốt hơn được. Dải đầu ra bằng dải PV nhân với hệ số: với K = 0,5 và dải ±5%, van hành "
+            "trình ±2,5%, liên tục, mãi mãi. Đó là mài mòn thật trên một trục van thật, và không đổi lấy "
+            "được gì, vì chuyển động đó không hiệu chỉnh điều gì cả.",
+        ),
+        pg.p(
+            "Setpoint gap is the standard way out. Set a gap at the noise limits — ±5% here — and drop "
+            "the gap gain to zero inside it, so the controller stops moving the output while the PV "
+            "wanders in a band it has no authority over anyway. The output then moves only for a real "
+            "setpoint change or a real disturbance. The cost is explicit and should be stated in the "
+            "design: every performance measure gets worse, because you have deliberately stopped "
+            "correcting. Which gap algorithm to use — notch, V-notch, floating or error-squared — depends "
+            "on whether your controller works in positional or velocity form; pairing them wrongly is the "
+            "usual reason gap control &ldquo;does not work&rdquo;.",
+            "Khoảng đặt (setpoint gap) là lối thoát tiêu chuẩn. Đặt khoảng đúng bằng giới hạn nhiễu — "
+            "±5% ở đây — và đưa hệ số trong khoảng về không, để bộ điều khiển ngừng dịch chuyển đầu ra "
+            "khi PV lang thang trong dải mà dù sao nó cũng không có thẩm quyền can thiệp. Đầu ra sau đó "
+            "chỉ dịch chuyển khi có thay đổi đặt thật hoặc nhiễu thật. Cái giá rất rõ và cần nêu trong "
+            "thiết kế: mọi chỉ tiêu hiệu năng đều tệ đi, vì bạn đã chủ động ngừng hiệu chỉnh. Dùng thuật "
+            "toán khoảng nào — notch, V-notch, floating hay bình phương sai lệch — phụ thuộc vào việc bộ "
+            "điều khiển của bạn làm việc ở dạng vị trí hay dạng vận tốc; ghép sai cặp đó là lý do thường "
+            "gặp khiến điều khiển khoảng &ldquo;không chạy&rdquo;.",
+        ),
+        pg.span("An accepted loss", "Một mất mát được chấp nhận"),
+        pg.p(
+            "This is the one place on the page where accepting worse control is the correct engineering "
+            "decision, because the alternative is stem wear and a controller chasing a signal it cannot "
+            "influence. The simulator below has no noise source, so it cannot show the gap directly — but "
+            "it shows the same trade from the other side: raise the dead time and watch how much gain the "
+            "loop will still take before it oscillates. Noise removes gain the way dead time removes "
+            "speed, and neither gives it back.",
+            "Đây là chỗ duy nhất trên trang này mà việc chấp nhận điều khiển tệ hơn lại là quyết định kỹ "
+            "thuật đúng, vì lựa chọn còn lại là mài mòn trục van và một bộ điều khiển đuổi theo tín hiệu "
+            "mà nó không thể tác động. Bộ mô phỏng bên dưới không có nguồn nhiễu nên không thể hiện trực "
+            "tiếp khoảng đặt — nhưng nó cho thấy cùng một sự đánh đổi từ phía ngược lại: tăng thời gian "
+            "trễ và xem vòng còn nhận được bao nhiêu hệ số trước khi dao động. Nhiễu lấy đi hệ số giống "
+            "như thời gian trễ lấy đi tốc độ, và không cái nào trả lại.",
+        ),
+    )
     body += section_close()
 
     # 05 advanced
@@ -584,6 +665,107 @@ def build():
             "riêng, đấu dây riêng, phần tử chấp hành riêng khi có thể. Dùng chung một van giữa điều khiển "
             "và cắt an toàn là một trong những lỗi thiết kế phổ biến và nghiêm trọng nhất — bộ điều khiển "
             "có thể đẩy van đến vị trí không an toàn ngay trước khi cần cắt.",
+        ),
+    )
+
+    # IEC 61131-10: the standard that came after the languages were standardised
+    body += """
+<div class="mt24 sec-sub">
+  %s
+  %s
+  %s
+  <div class="note warn mt24">
+    <span class="lbl">%s</span>
+    %s
+  </div>
+  %s
+  %s
+  <div class="note mt24">
+    <span class="lbl">%s</span>
+    %s
+  </div>
+</div>
+""" % (
+        pg.h3("Portability: what IEC 61131-3 never standardised",
+              "Tính khả chuyển: điều IEC 61131-3 chưa từng chuẩn hóa"),
+        pg.p(
+            "The table above says all four platforms implement IEC 61131-3, and that standard did "
+            "something real: it fixed the five languages — ladder diagram, structured text, function "
+            "block diagram, sequential function chart, instruction list — so a programmer could move "
+            "between vendors without relearning the notation. What it did not fix is the <em>file</em>. "
+            "Every engineering environment kept its own project format, so a project stayed tied to one "
+            "vendor's tool. Daniel Hollman makes the consequence concrete in <em>Control Engineering</em>: "
+            "machine builders redeveloped applications whenever a customer specified a different control "
+            "system, recreating tag structures, program logic and hardware configuration by hand.",
+            "Bảng trên nói cả bốn nền tảng đều dùng IEC 61131-3, và tiêu chuẩn đó đã làm được một việc "
+            "thật: nó cố định năm ngôn ngữ — ladder, structured text, function block diagram, sequential "
+            "function chart, instruction list — để người lập trình chuyển giữa các hãng mà không phải học "
+            "lại ký pháp. Cái nó không cố định là <em>tệp tin</em>. Mỗi môi trường kỹ thuật giữ định dạng "
+            "dự án riêng, nên dự án vẫn bị trói vào công cụ của một hãng. Daniel Hollman nêu hệ quả cụ thể "
+            "trên <em>Control Engineering</em>: nhà chế tạo máy phải phát triển lại ứng dụng mỗi khi khách "
+            "hàng chỉ định một hệ điều khiển khác, tạo lại cấu trúc tag, logic chương trình và cấu hình "
+            "phần cứng bằng tay.",
+        ),
+        pg.p(
+            "IEC 61131-10, published in 2019, closes that gap with an XML exchange format built on "
+            "PLCopen XML, which has existed since 2005. The difference between the two is worth keeping "
+            "straight, because they are often used as synonyms. PLCopen XML was designed to exchange "
+            "program content: program organisation units, variables, data types and graphical "
+            "representations. IEC 61131-10 goes further and represents tasks, configurations, resources "
+            "and project organisation as well. One is a way to move code; the other is a way to move a "
+            "project.",
+            "IEC 61131-10, công bố năm 2019, lấp khoảng trống đó bằng một định dạng trao đổi XML dựng trên "
+            "PLCopen XML, vốn có từ 2005. Nên phân biệt rõ hai thứ này vì chúng hay được dùng lẫn nhau. "
+            "PLCopen XML được thiết kế để trao đổi nội dung chương trình: đơn vị tổ chức chương trình, "
+            "biến, kiểu dữ liệu và biểu diễn đồ họa. IEC 61131-10 đi xa hơn, biểu diễn cả task, cấu hình, "
+            "tài nguyên và tổ chức dự án. Một cái là cách chuyển mã; cái kia là cách chuyển cả dự án.",
+        ),
+        pg.span("Not a conversion button", "Không phải một nút chuyển đổi"),
+        pg.p(
+            "Software transfers well: logic, reusable code, data structures. Hardware does not. Vendor "
+            "libraries, hardware configuration, safety functions and specialised motion implementations "
+            "all need engineering on the receiving side, and how much interoperability you actually get "
+            "depends on what both environments support. Read 61131-10 as a way to stop redeveloping the "
+            "parts that never needed redeveloping — an interoperable framework, not an automatic "
+            "migration.",
+            "Phần mềm chuyển tốt: logic, mã dùng lại, cấu trúc dữ liệu. Phần cứng thì không. Thư viện của "
+            "hãng, cấu hình phần cứng, chức năng an toàn và các cài đặt chuyển động chuyên dụng đều cần kỹ "
+            "thuật ở phía nhận, và mức tương tác thực sự đạt được phụ thuộc vào việc cả hai môi trường hỗ "
+            "trợ gì. Hãy đọc 61131-10 như cách để thôi phát triển lại những phần lẽ ra không cần phát triển "
+            "lại — một khung tương tác, không phải một cuộc di trú tự động.",
+        ),
+        pg.h3("The tag layer is the technical debt nobody budgets",
+              "Lớp tag là món nợ kỹ thuật không ai tính vào ngân sách"),
+        pg.p(
+            "The same lesson shows up one layer up. Asked what legacy HMI/SCADA systems most often "
+            "overlook, the instructors of Control Engineering's integration webcast named the tag "
+            "architecture — scanning, naming, descriptions, scaling, alarming, data types, deadbands, "
+            "historical deadbands, point grouping, which alarms belong together. It is taken for granted "
+            "precisely because it is invisible, and it is usually the most obsolete material in the "
+            "system: artefacts carried along for years because nobody had a reason to open them. The "
+            "second surprise comes halfway through a migration, when somebody finds the specialised "
+            "scripts and calculations buried in the HMI. They are rarely at the forefront, which is "
+            "exactly why they are missed in the estimate.",
+            "Bài học tương tự hiện ra ở tầng trên. Khi được hỏi hệ thống HMI/SCADA cũ thường bỏ sót điều "
+            "gì nhất, giảng viên khóa tích hợp của Control Engineering nêu kiến trúc tag — quét, đặt tên, "
+            "mô tả, chia thang, cảnh báo, kiểu dữ liệu, deadband, deadband lịch sử, cách nhóm điểm, cảnh "
+            "báo nào thuộc về nhau. Nó bị coi là đương nhiên chính vì nó vô hình, và nó thường là phần lạc "
+            "hậu nhất trong hệ thống: những thứ được mang theo nhiều năm vì không ai có lý do mở ra xem. "
+            "Bất ngờ thứ hai đến giữa cuộc di trú, khi ai đó tìm thấy các đoạn script và tính toán chuyên "
+            "dụng chôn trong HMI. Chúng hiếm khi nằm ở phần nổi, và chính vì thế mà bị bỏ sót trong dự toán.",
+        ),
+        pg.span("The rule that survives", "Quy tắc còn lại"),
+        pg.p(
+            "On naming, the instructors were blunt: the best convention is the one you will actually "
+            "follow and back with a procedure or a standard. Every scheme has trade-offs; having no "
+            "scheme is the only option with no upside. On the screens themselves, ISA-101 is the baseline "
+            "— it is the difference between a display that is situationally aware and a wall where "
+            "everything is equally important, which means nothing is.",
+            "Về đặt tên, các giảng viên nói thẳng: quy ước tốt nhất là quy ước bạn thực sự sẽ theo và hậu "
+            "thuẫn bằng một quy trình hoặc tiêu chuẩn. Mọi sơ đồ đều có đánh đổi; không có sơ đồ nào là "
+            "lựa chọn duy nhất không đem lại gì. Về bản thân màn hình, ISA-101 là mốc chuẩn — nó là khác "
+            "biệt giữa một màn hình hiểu được tình huống và một bức tường nơi mọi thứ đều quan trọng như "
+            "nhau, nghĩa là không thứ nào quan trọng.",
         ),
     )
     body += section_close()

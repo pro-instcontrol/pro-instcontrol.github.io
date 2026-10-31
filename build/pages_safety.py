@@ -409,6 +409,68 @@ def build():
             "chưa biết.",
         ),
     )
+
+    # which standard actually applies, and why security is now part of the answer
+    body += """
+<div class="mt24 sec-sub">
+  %s
+  %s
+  %s
+  <div class="note mt24">
+    <span class="lbl">%s</span>
+    %s
+  </div>
+</div>
+""" % (
+        pg.h3("61508 is the umbrella; the standard you cite depends on the machine",
+              "61508 là ô che chung; tiêu chuẩn bạn viện dẫn tùy theo máy"),
+        pg.p(
+            "IEC 61508 is the parent document for electrical, electronic and programmable-electronic "
+            "safety systems. Part 1 sets the requirements for the safety lifecycle from concept through "
+            "decommissioning; parts 2 and 3 prescribe measures against systematic hardware and software "
+            "faults. Everything below it narrows the scope. For process plant that is IEC 61511 — the "
+            "standard this page is mostly written against. For machinery it is IEC 62061 and ISO 13849, "
+            "and in practice ISO 13849 is the one most machine builders actually work to.",
+            "IEC 61508 là văn bản gốc cho các hệ thống an toàn điện, điện tử và điện tử lập trình được. "
+            "Phần 1 đặt yêu cầu cho vòng đời an toàn từ khái niệm đến thanh lý; phần 2 và 3 quy định biện "
+            "pháp chống lỗi hệ thống ở phần cứng và phần mềm. Mọi thứ bên dưới nó đều thu hẹp phạm vi. Với "
+            "nhà máy quá trình là IEC 61511 — tiêu chuẩn mà phần lớn trang này viết theo. Với máy móc là "
+            "IEC 62061 và ISO 13849, và trên thực tế ISO 13849 là thứ phần lớn nhà chế tạo máy thực sự làm "
+            "theo.",
+        ),
+        pg.p(
+            "Product standards sit below those, and the rule is that the most specific applicable "
+            "standard takes precedence. IEC 61131-6 covers programmable controllers used in safety "
+            "functions; ISO 13850 covers emergency stop. So a controller in a SIL 2 machine is not "
+            "&ldquo;61508-certified&rdquo; in some general sense — it is assessed against 61131-6 for the "
+            "safety functions it actually implements. That distinction matters at the procurement stage, "
+            "where a certificate is often quoted as if it settled the question.",
+            "Các tiêu chuẩn sản phẩm nằm dưới đó, và quy tắc là tiêu chuẩn cụ thể nhất áp dụng được sẽ "
+            "được ưu tiên. IEC 61131-6 áp cho bộ điều khiển lập trình dùng trong chức năng an toàn; "
+            "ISO 13850 áp cho nút dừng khẩn. Vậy một bộ điều khiển trong máy SIL 2 không phải "
+            "&ldquo;được chứng nhận 61508&rdquo; theo nghĩa chung chung — nó được đánh giá theo 61131-6 cho "
+            "đúng những chức năng an toàn mà nó thực sự thực hiện. Sự phân biệt này quan trọng ở bước mua "
+            "sắm, nơi một tờ chứng nhận thường được viện ra như thể nó đã giải quyết xong câu hỏi.",
+        ),
+        pg.span("Security is now a legal requirement", "An ninh mạng giờ là yêu cầu pháp lý"),
+        pg.p(
+            "One thing has changed since this page was first written. IEC 61508 touches on security but "
+            "makes no concrete specification for it, and a networked plant brings attack paths that end "
+            "in the same physical place as a failed safety function. NIS2 and the Cyber Resilience Act "
+            "have turned a security architecture from an accessory into an obligation. The two "
+            "disciplines remain different — safety is about unintended failure, security about intended "
+            "interference — but functional safety in a networked plant now depends on a level of security "
+            "that 61508 never demanded, and a SIL claim that ignores it is a claim about a plant that no "
+            "longer exists.",
+            "Một điều đã thay đổi kể từ khi trang này được viết lần đầu. IEC 61508 có nhắc đến an ninh "
+            "mạng nhưng không quy định cụ thể, và một nhà máy kết nối mạng mang theo những đường tấn công "
+            "kết thúc ở đúng cùng một chỗ vật lý như một chức năng an toàn bị hỏng. NIS2 và Đạo luật Kiên "
+            "cường mạng đã biến kiến trúc an ninh từ phụ kiện thành nghĩa vụ. Hai lĩnh vực vẫn khác nhau — "
+            "an toàn nói về hỏng hóc ngoài ý muốn, an ninh nói về can thiệp có chủ ý — nhưng an toàn chức "
+            "năng trong một nhà máy kết nối mạng giờ phụ thuộc vào mức an ninh mà 61508 chưa từng đòi hỏi, "
+            "và một tuyên bố SIL bỏ qua điều đó là tuyên bố về một nhà máy không còn tồn tại.",
+        ),
+    )
     body += section_close()
 
     # ---------------- 03 architecture ----------------

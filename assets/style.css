@@ -384,6 +384,9 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 .mt0{margin-top:0}
 .mb0{margin-bottom:0}
 .mt24{margin-top:24px}
+.sec-sub>h3{font-size:1.02rem;letter-spacing:-.015em;margin:0 0 10px}
+.sec-sub>*+h3{margin-top:26px}
+.sec-sub>h3+p{margin-top:0}
 .mt40{margin-top:40px}
 .src{font-size:12.6px;color:var(--muted);font-family:var(--mono);line-height:1.7}
 
