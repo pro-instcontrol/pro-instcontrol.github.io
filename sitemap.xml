@@ -164,6 +164,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch08-initial-system-evaluation/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch09-issues-relating-to-field-devices/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch09-issues-relating-to-field-devices/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch09-issues-relating-to-field-devices/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch09-issues-relating-to-field-devices/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/"/>
@@ -1533,6 +1539,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch08-initial-system-evaluation/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch08-initial-system-evaluation/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch08-initial-system-evaluation/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch09-issues-relating-to-field-devices/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch09-issues-relating-to-field-devices/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch09-issues-relating-to-field-devices/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch09-issues-relating-to-field-devices/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/</loc>
