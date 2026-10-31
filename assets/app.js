@@ -23,9 +23,31 @@
 
   var lang = initial();
 
+  /* Sections that exist twice, as real URLs: /books/ and /vi/books/ and so on.
+     The pages here are language-switched in place, so their nav has to point at
+     the matching tree instead of always at the English one. */
+  var TWINS = { "books/": 1, "video-library/": 1, "advanced/": 1 };
+
+  function retargetNav(l) {
+    var links = document.querySelectorAll(".nav a[href], .brand[href]");
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      var raw = a.getAttribute("href");
+      if (!raw) continue;
+      var pre = /^(\.\.\/)*/.exec(raw)[0];
+      var rest = raw.slice(pre.length);
+      var isVi = rest.indexOf("vi/") === 0;
+      var base = isVi ? rest.slice(3) : rest;
+      if (!TWINS[base]) continue;
+      var want = pre + (l === "vi" ? "vi/" : "") + base;
+      if (raw !== want) a.setAttribute("href", want);
+    }
+  }
+
   function apply(l) {
     lang = l;
     document.documentElement.lang = l;
+    retargetNav(l);
 
     var nodes = document.querySelectorAll("[data-i18n]");
     for (var i = 0; i < nodes.length; i++) {
