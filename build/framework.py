@@ -37,6 +37,7 @@ NAV = [
     ("books/", "Books", "Sách"),
     ("video-library/", "Videos", "Video"),
     ("hot-topics/", "Hot topics", "Chủ đề nóng"),
+    ("process.html", "Process", "Quá trình"),
     ("fundamentals.html", "Fundamentals", "Cơ bản"),
     ("advanced/", "Advanced", "Nâng cao"),
     ("instruments.html", "Instruments", "Thiết bị đo"),
@@ -92,6 +93,7 @@ LONG = {
     "books/": ("Book library", "Thư viện sách"),
     "video-library/": ("Video library", "Thư viện video"),
     "hot-topics/": ("Hot topics", "Chủ đề nóng"),
+    "process.html": ("What is a process", "Quá trình là gì"),
     "fundamentals.html": ("Fundamentals of measurement", "Cơ bản về đo lường"),
     "advanced/": ("Advanced practice", "Thực hành nâng cao"),
     "instruments.html": ("Instrument reference", "Danh mục thiết bị"),
@@ -131,6 +133,7 @@ SHELL = {
     "shell.nav.books": ("Books", "Sách"),
     "shell.nav.video-library": ("Videos", "Video"),
     "shell.nav.hot-topics": ("Hot topics", "Chủ đề nóng"),
+    "shell.nav.process": ("Process", "Quá trình"),
     "shell.tag": (TAG_EN, TAG_VI),
     "shell.menu": ("Menu", "Danh mục"),
     "shell.foot.note": (

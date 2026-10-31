@@ -22,6 +22,7 @@ import pages_ref  # noqa: E402
 import pages_glossary  # noqa: E402
 import pages_applications  # noqa: E402
 import pages_education  # noqa: E402
+import pages_process  # noqa: E402
 import pages_videos  # noqa: E402
 import pages_hot  # noqa: E402
 
@@ -121,6 +122,7 @@ def main():
     pages_ref.build_standards()
     pages_applications.build()
     pages_education.build()
+    pages_process.build()
     pages_videos.main()
     pages_glossary.build()
     pages_hot.main()
