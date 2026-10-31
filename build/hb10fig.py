@@ -982,6 +982,543 @@ def fig_10_16():
                 "a gold mirrored arc, the horizontal optical axis and the image plane on the right.")
 
 
+# ---------------------------------------------------------------- 10.3
+def _hexa(cx, cy, w, h, fill=PAPER):
+    """Hexagon, the block-diagram symbol for a disturbance."""
+    hw, hh = w / 2.0, h / 2.0
+    pts = [(cx - hw + 10, cy - hh), (cx + hw - 10, cy - hh), (cx + hw, cy),
+           (cx + hw - 10, cy + hh), (cx - hw + 10, cy + hh), (cx - hw, cy)]
+    return _poly(pts, fill, 1.1, INK, close=True)
+
+
+def _iso(x, y, w, d, h, ft=PAPER, fl=BAND, fr=SAND):
+    """Isometric box standing on (x, y) — the front-bottom vertex. w runs up-right,
+    d runs up-left, h is the height, so the box rises from y."""
+    ax, ay = 0.866, 0.5
+
+    def P(u, v, z):
+        return (x + (u - v) * ax, y - (u + v) * ay - z)
+
+    p0, p1, p2, p3 = P(0, 0, 0), P(w, 0, 0), P(w, d, 0), P(0, d, 0)
+    t0, t1, t2, t3 = P(0, 0, h), P(w, 0, h), P(w, d, h), P(0, d, h)
+    o = [_poly([p0, p1, t1, t0], fr, 0.9), _poly([p0, p3, t3, t0], fl, 0.9),
+         _poly([t0, t1, t2, t3], ft, 0.9)]
+    return "".join(o)
+
+
+def _box(x, y, w, h, label, fs=7.4, fill=PAPER, lines=None):
+    """A plain labelled block."""
+    o = [_r(x, y, w, h, fill, 1.1)]
+    rows = lines or [label]
+    n = len(rows)
+    for i, s in enumerate(rows):
+        o.append(_t(x + w / 2.0, y + h / 2.0 + (i - (n - 1) / 2.0) * 11 + 3, s, fs, "middle", "#222",
+                    i == 0))
+    return "".join(o)
+
+
+def fig_10_17():
+    """Body axes of an aircraft: roll about the fuselage, pitch about the wing,
+    yaw about the vertical."""
+    b = []
+    # plan silhouette, nose to the left
+    b.append(_poly([(150, 170), (205, 160), (300, 157), (340, 163), (340, 179),
+                    (300, 186), (205, 180), (150, 176)], "#eef2f6", 1.1, close=True))
+    b.append(_poly([(235, 163), (203, 112), (241, 115), (286, 160)], BAND, 1.0, close=True))
+    b.append(_poly([(235, 182), (203, 232), (241, 229), (286, 184)], BAND, 1.0, close=True))
+    b.append(_poly([(316, 160), (330, 138), (343, 142), (333, 164)], SAND, 1.0, close=True))
+    b.append(_poly([(316, 180), (330, 202), (343, 198), (333, 176)], SAND, 1.0, close=True))
+
+    O = (245, 171)
+    b.append(_arrow(O[0], O[1], 118, 171, 1.2))
+    b.append(_t(110, 175, "Y", 9.2, "middle", INK, True))
+    b.append(_arrow(O[0], O[1], 402, 216, 1.2))
+    b.append(_t(412, 222, "X", 9.2, "middle", INK, True))
+    b.append(_arrow(O[0], O[1], 245, 292, 1.2))
+    b.append(_t(245, 304, "Z", 9.2, "middle", INK, True))
+
+    b.append(_t(200, 148, "U", 8.6, "middle", GREEN, True))
+    b.append(_t(232, 242, "W", 8.6, "middle", GREEN, True))
+
+    # the three rotation rates
+    b.append(_p("M 172 148 A 7 22 0 0 1 172 194", "none", 1.3, RED))
+    b.append(_arrow(172, 150, 168, 145, 1.1, RED))
+    b.append(_t(166, 140, "P", 8.4, "middle", RED, True))
+    b.append(_t(160, 210, "lăn", 7.6, "middle", RED))
+
+    b.append('<ellipse cx="352" cy="196" rx="22" ry="7" fill="none" stroke="%s" stroke-width="1.3" '
+             'transform="rotate(30 352 196)"/>' % RED)
+    b.append(_arrow(338, 186, 334, 180, 1.1, RED))
+    b.append(_t(370, 180, "Q", 8.4, "middle", RED, True))
+    b.append(_t(382, 206, "chúc", 7.6, "start", RED))
+
+    b.append('<ellipse cx="245" cy="256" rx="22" ry="7" fill="none" stroke="%s" stroke-width="1.3"/>' % RED)
+    b.append(_arrow(223, 256, 219, 252, 1.1, RED))
+    b.append(_t(258, 274, "R", 8.4, "middle", RED, True))
+    b.append(_t(286, 258, "hướng", 7.6, "start", RED))
+
+    return _fig(svg(470, 318, STY + "".join(b), "Các trục thân máy bay"),
+                "Hình 10-17. Trong dẫn đường quán tính, chuyển động của xe, tên lửa, tàu thuỷ, máy bay, "
+                "rô-bốt… được theo dõi so với một hệ trục quy chiếu. Trên mặt đất, hệ quy chiếu quy ước "
+                "là các trục cố định của Trái Đất — Bắc, Đông và Hướng xuống. Một phương tiện như máy "
+                "bay hay tàu biển có các trục cục bộ riêng, gọi là lăn, chúc và hướng.",
+                "Figure 10-17. In inertial navigation, the movement of a vehicle, rocket, ship, aircraft "
+                "or robot is monitored with respect to a reference frame. On the Earth's surface the "
+                "conventional frame is the Earth's fixed axes — North, East and Down. A vehicle has its "
+                "own local axes, known as roll, pitch and yaw.",
+                "Hình chiếu bằng máy bay với ba trục X, Y, Z, các thành phần U và W, và ba mũi tên quay "
+                "lăn P, chúc Q, hướng R.",
+                "A plan view of an aircraft with the X, Y and Z axes, the U and W components, and three "
+                "rotation arrows for roll P, pitch Q and yaw R.")
+
+
+def fig_10_18():
+    """Navigational platform: gyros null the gimbals, the computer integrates."""
+    b = []
+    for i, nm in enumerate(("Gyro X", "Gyro Y", "Gyro Z")):
+        b.append(_box(50, 56 + i * 30, 70, 20, nm, 7.2))
+    b.append(_l(120, 66, 132, 66, 0.9))
+    b.append(_l(120, 96, 132, 96, 0.9))
+    b.append(_l(120, 126, 132, 126, 0.9))
+    b.append(_l(132, 66, 132, 126, 0.9))
+    b.append(_l(132, 96, 200, 96, 0.9))
+    b.append(_t(150, 90, "vòng không", 7.4, "start", "#444", True))
+    b.append(_arrow(200, 96, 200, 148, 0.9))
+
+    # gimbal assembly
+    b.append(_r(160, 150, 150, 146, PAPER, 1.1))
+    b.append(_c(235, 223, 56, "none", 1.2))
+    b.append('<ellipse cx="235" cy="223" rx="42" ry="52" fill="none" stroke="%s" stroke-width="1"/>' % "#8d99a6")
+    b.append(_c(235, 223, 22, "#e7e1d2", 1.0))
+    b.append(_l(235, 150, 235, 168, 1.0))
+    b.append(_l(235, 278, 235, 296, 1.0))
+    b.append(_t(330, 142, "các gimbal", 7.4, "start", "#444"))
+    b.append(_l(326, 146, 282, 176, 0.7, "#999"))
+
+    b.append(_box(400, 180, 130, 108, "", 7.4))
+    b.append(_t(465, 202, "MÁY TÍNH", 7.6, "middle", "#222", True))
+    b.append(_t(465, 214, "DẪN ĐƯỜNG", 7.6, "middle", "#222", True))
+    for i, s in enumerate(("tích phân", "hiệu chỉnh", "(Coriolis)", "(trọng lực)")):
+        b.append(_t(465, 232 + i * 12, s, 7.2, "middle", "#444"))
+
+    b.append(_arrow(310, 214, 400, 214, 1.0))
+    b.append(_t(355, 206, "vị trí, tốc độ, thái độ", 7.2, "middle", "#444"))
+    b.append(_t(355, 234, "góc gimbal (synchro)", 7.2, "middle", "#444"))
+    b.append(_arrow(400, 262, 310, 262, 1.0))
+    b.append(_t(355, 276, "mô-men bù", 7.2, "middle", RED))
+
+    # accelerometers
+    for i, nm in enumerate(("Accel X", "Accel Y", "Accel Z")):
+        b.append(_box(50, 300 + i * 28, 70, 20, nm, 7.2))
+    b.append(_l(120, 310, 132, 310, 0.9))
+    b.append(_l(120, 338, 132, 338, 0.9))
+    b.append(_l(120, 366, 132, 366, 0.9))
+    b.append(_l(132, 310, 132, 366, 0.9))
+    b.append(_l(132, 338, 465, 338, 0.9))
+    b.append(_arrow(465, 338, 465, 288, 0.9))
+    b.append(_t(240, 332, "gia tốc", 7.4, "start", "#444", True))
+
+    # fixed axes
+    b.append(_arrow(96, 396, 60, 396, 1.0))
+    b.append(_arrow(524, 396, 560, 396, 1.0))
+    b.append(_t(310, 400, "TRỤC CỐ ĐỊNH", 7.4, "middle", "#444", True))
+
+    return _fig(svg(620, 414, STY + "".join(b), "Sơ đồ khối hệ dẫn đường dùng bệ"),
+                "Hình 10-18. Một số hệ dẫn đường quán tính (INS) dựa trên bệ dẫn đường. Các cảm biến "
+                "quán tính được gắn sao cho chúng luôn nằm ngang và hướng theo một phương cố định. Hệ "
+                "dùng một bộ gimbal và các cảm biến gắn trên ba trục x, y, z để theo dõi liên tục góc "
+                "và gia tốc. Máy tính dẫn đường hiệu chỉnh các ảnh hưởng Coriolis, trọng lực và các "
+                "hiệu ứng khác.",
+                "Figure 10-18. Some inertial navigation systems are based on a navigational platform. "
+                "The inertial sensors are mounted so that they stay level and point in a fixed "
+                "direction. A set of gimbals and sensors on the x, y and z axes monitors the angles and "
+                "accelerations constantly, and the navigation computer corrects for Coriolis, gravity "
+                "and other effects.",
+                "Sơ đồ khối: ba con quay qua vòng không vào cụm gimbal, máy tính dẫn đường nhận vị trí, "
+                "tốc độ, thái độ và trả mô-men bù về gimbal; ba gia tốc kế cấp tín hiệu gia tốc.",
+                "A block diagram: three gyros close null loops around the gimbal assembly, the navigation "
+                "computer takes position, speed and attitude and returns torquing signals, and three "
+                "accelerometers feed acceleration.")
+
+
+def fig_10_19():
+    """Strapdown: the same sensors, bolted to the frame, no gimbals."""
+    b = []
+    b.append('<ellipse cx="290" cy="292" rx="188" ry="44" fill="#f2efe6" stroke="%s" stroke-width="1.2"/>'
+             % INK)
+    for i in range(28):
+        a = math.pi * 2 * i / 28.0
+        b.append(_l(290 + 188 * math.cos(a), 292 + 44 * math.sin(a),
+                    290 + 178 * math.cos(a), 292 + 40 * math.sin(a), 0.6, "#b9b0a0"))
+
+    # back to front: the computer bay, two sensor blocks, then the front pair
+    b.append(_iso(348, 236, 50, 50, 70))
+    b.append(_iso(206, 256, 50, 50, 44))
+    b.append(_iso(286, 256, 50, 50, 44))
+    b.append(_iso(166, 310, 50, 50, 44))
+    b.append(_iso(246, 310, 50, 50, 44))
+
+    # sensing axes, drawn up the front faces
+    b.append(_arrow(191, 306, 191, 274, 2.6))
+    b.append(_arrow(271, 306, 271, 274, 2.6))
+    b.append(_arrow(231, 252, 231, 220, 2.6))
+    b.append(_arrow(311, 252, 311, 220, 2.6))
+
+    b.append(_t(166, 328, "Gyro Y", 7.4, "middle", "#222", True))
+    b.append(_t(246, 328, "Accel Y", 7.4, "middle", "#222", True))
+    b.append(_t(178, 250, "Gyro X", 7.4, "end", "#222", True))
+    b.append(_t(316, 250, "Accel X", 7.4, "start", "#222", True))
+    b.append(_t(396, 226, "Gyro Z", 7.4, "start", "#222", True))
+    b.append(_t(436, 140, "máy tính và", 7.4, "start", "#444", True))
+    b.append(_t(436, 152, "xử lý tín hiệu", 7.4, "start", "#444"))
+    b.append(_l(432, 146, 380, 168, 0.7, "#999"))
+
+    return _fig(svg(560, 346, STY + "".join(b), "Hệ gắn cứng trên thân"),
+                "Hình 10-19. Hệ gắn cứng (strapdown) loại bỏ nhu cầu về gimbal. Con quay và gia tốc kế "
+                "được gắn chặt lên kết cấu phương tiện, và các phép đo quy về trục cục bộ lăn, chúc, "
+                "hướng. Con quay đo chuyển động góc trên ba trục trong những khoảng thời gian ngắn để "
+                "máy tính xử lý; kết hợp với đầu ra của gia tốc kế, máy tính dựng lại các trục dẫn đường.",
+                "Figure 10-19. A strapdown system needs no gimbals. The gyros and accelerometers are "
+                "mounted rigidly on the vehicle structure, and the measurements are referred to the local "
+                "roll, pitch and yaw axes. The gyros measure angular motion in the three axes over short "
+                "intervals; together with the accelerometer outputs the computer resolves the navigation axes.",
+                "Khối cảm biến ba chiều gồm các hộp Gyro X, Gyro Y, Gyro Z và Accel X, Accel Y, Accel Z "
+                "gắn cứng trên một đế tròn, kèm các mũi tên chỉ trục cảm nhận.",
+                "A three-dimensional sensor cluster of Gyro X, Gyro Y, Gyro Z and Accel X, Accel Y, Accel Z "
+                "boxes bolted to a round base, with thick arrows marking the sensing axes.")
+
+
+def fig_10_20():
+    """Gyroscope: torque orthogonal to the spin axis turns the axis, not the speed."""
+    b = []
+    C = (312, 212)
+    b.append(_c(C[0], C[1], 52, "#f2efe6", 1.3))
+    b.append(_p("M %s %s A 52 52 0 0 1 %s %s" % (_f(C[0] - 20), _f(C[1] - 48),
+                                                 _f(C[0] + 20), _f(C[1] - 48)), "none", 2.2, "#8d99a6"))
+    b.append(_t(C[0] - 6, C[1] + 4, "ω", 9.4, "middle", INK, True))
+
+    # spin axis and angular momentum
+    b.append(_arrow(C[0], C[1], 176, C[1], 1.3))
+    b.append(_t(166, C[1] + 6, "H", 9.4, "middle", INK, True))
+    b.append(_t(238, C[1] - 10, "H = Iω", 8.4, "middle", "#444"))
+    b.append(_t(238, C[1] + 24, "trục quay", 7.6, "middle", "#444"))
+
+    # dH at a small angle to H
+    b.append(_arrow(176, C[1], 150, 182, 1.2, BLUE))
+    b.append(_t(140, 176, "dH", 8.2, "middle", BLUE, True))
+    b.append(_arc(176, C[1], 36, 180, 132, BLUE, 1.2))
+    b.append(_t(148, 206, "dθ", 8.0, "middle", BLUE, True))
+
+    # output and input axes
+    b.append(_arrow(C[0], C[1], C[0], 104, 1.3))
+    b.append(_t(C[0] - 10, 92, "Ω", 9.4, "middle", INK, True))
+    b.append(_t(C[0] + 10, 100, "trục ra (tiến động)", 7.6, "start", "#444"))
+
+    b.append(_arrow(C[0], C[1], 396, 274, 1.3))
+    b.append(_t(402, 282, "T", 9.4, "start", INK, True))
+    b.append(_t(406, 266, "trục vào (mô-men)", 7.6, "start", "#444"))
+
+    b.append(_t(400, 196, "chiều quay", 7.6, "start", "#444"))
+    b.append(_t(400, 208, "bánh đà", 7.6, "start", "#444"))
+    b.append(_arc(C[0], C[1], 40, -74, -12, "#444", 1.3))
+    b.append(_arrow(343, 213, 351, 204, 1.2, "#444"))
+
+    return _fig(svg(520, 300, STY + "".join(b), "Nguyên lý con quay"),
+                "Hình 10-20. Nguyên lý hoạt động của con quay dựa trên động lượng góc của một vật quay "
+                "được chế tạo cẩn thận. Động lượng góc giữ ổn định hệ thống: nó không đổi trừ khi có "
+                "mô-men tác dụng. Nếu mô-men vuông góc với trục quay, nó không đổi được độ lớn của vận "
+                "tốc góc nhưng đổi được hướng của vận tốc góc, theo cùng chiều với mô-men.",
+                "Figure 10-20. A gyroscope works on the angular momentum of a carefully built rotating "
+                "body. The angular momentum stabilises the system: it stays unchanged unless a torque "
+                "acts. A torque orthogonal to the spin axis cannot change the magnitude of the angular "
+                "velocity, but it does change its direction, in the same sense as the torque.",
+                "Bánh đà quay với vận tốc góc omega, véc-tơ động lượng góc H dọc trục quay, véc-tơ dH "
+                "lệch góc dθ, trục ra tiến động Ω và trục vào mô-men T.",
+                "A spinning wheel with angular velocity omega, the angular momentum H along the spin axis, "
+                "the increment dH at angle dθ, the precession output axis Ω and the torque input axis T.")
+
+
+def fig_10_21():
+    """Two-axis flywheel gyro: rotor, inner gimbal, outer gimbal, outer pivot."""
+    b = []
+    C = (250, 196)
+    b.append('<ellipse cx="%s" cy="%s" rx="78" ry="96" fill="none" stroke="%s" stroke-width="1.5"/>'
+             % (_f(C[0]), _f(C[1]), INK))
+    b.append('<ellipse cx="%s" cy="%s" rx="58" ry="72" fill="none" stroke="%s" stroke-width="1.3"/>'
+             % (_f(C[0]), _f(C[1]), "#8d99a6"))
+    b.append('<defs><clipPath id="rot21"><circle cx="214" cy="168" r="27"/></clipPath></defs>')
+    b.append(_c(214, 168, 27, "#ded7c6", 1.2))
+    b.append('<g clip-path="url(#rot21)">%s</g>' % _hatch(187, 141, 54, 54, 6, "#b9b0a0"))
+    b.append(_c(214, 168, 27, "none", 1.2))
+    b.append(_l(178, 126, 252, 212, 1.0))
+    b.append(_l(C[0], 100, C[0], 74, 1.6))
+    b.append(_l(C[0], 292, C[0], 318, 1.6))
+
+    b.append(_t(160, 120, "trục quay", 7.6, "end", "#444"))
+    b.append(_l(164, 124, 196, 142, 0.7, "#999"))
+    b.append(_t(120, 210, "khối quay", 7.6, "end", "#444"))
+    b.append(_l(124, 208, 186, 182, 0.7, "#999"))
+    b.append(_t(340, 176, "gimbal trong", 7.6, "start", "#444"))
+    b.append(_l(336, 180, 296, 190, 0.7, "#999"))
+    b.append(_t(340, 258, "gimbal ngoài", 7.6, "start", "#444"))
+    b.append(_l(336, 254, 314, 232, 0.7, "#999"))
+    b.append(_t(250, 334, "trục ngoài", 7.6, "middle", "#444"))
+
+    return _fig(svg(470, 346, STY + "".join(b), "Con quay bánh đà hai trục"),
+                "Hình 10-21. Trong con quay bánh đà hai trục, rô-to quay bằng động cơ điện được treo "
+                "trên một cặp ổ trục chính xác ma sát thấp ở hai đầu trục rô-to. Các ổ này tựa trên một "
+                "vành gimbal trong hình vành khuyên; vành trong quay trên bộ ổ thứ hai gắn vào vành "
+                "gimbal ngoài. Vành ngoài gắn vào khung thiết bị bằng bộ ổ thứ ba xác định trục thẳng "
+                "đứng. Cách treo này luôn bảo toàn hướng trục quay đã định trước trong không gian quán tính.",
+                "Figure 10-21. In a two-axis flywheel gyro an electrically driven rotor is suspended in a "
+                "pair of precision low-friction bearings at the ends of the rotor axle. Those bearings are "
+                "carried by a circular inner gimbal ring, which turns on a second set of bearings attached "
+                "to the outer gimbal ring. The outer ring is attached to the instrument frame by a third "
+                "set of bearings that defines the vertical axis. The suspension always preserves the "
+                "predetermined spin-axis direction in inertial space.",
+                "Hai vành gimbal lồng nhau, khối rô-to gạch chéo ở phía trên bên trái, đường trục quay "
+                "xiên và hai trục ngoài ở trên và dưới.",
+                "Two nested gimbal rings, the hatched rotor mass at the upper left, the slanted spin axis "
+                "and the two outer pivots above and below.")
+
+
+def fig_10_22():
+    """Fibre-optic gyro: the Sagnac ring, its coupler, and the rate output."""
+    b = []
+    b.append(_t(58, 122, "nguồn", 7.6, "start", "#444"))
+    b.append(_r(96, 110, 20, 20, "#ded7c6", 1.0))
+    b.append(_hatch(96, 110, 20, 20, 5, "#b9b0a0"))
+    b.append(_t(106, 100, "đi-ốt", 7.4, "middle", "#444"))
+    b.append(_l(116, 120, 138, 120, 0.9))
+    b.append(_c(146, 120, 7, PAPER, 1.0))
+    b.append(_c(159, 120, 7, PAPER, 1.0))
+    b.append(_t(152, 142, "PC", 7.4, "middle", "#444"))
+    b.append(_l(166, 120, 196, 120, 0.9))
+
+    # coupler
+    b.append(_poly([(196, 110), (216, 110), (206, 124)], PAPER, 1.0, close=True))
+    b.append(_poly([(196, 130), (216, 130), (206, 118)], PAPER, 1.0, close=True))
+    b.append(_t(206, 150, "bộ ghép", 7.4, "middle", "#444"))
+    b.append(_r(196, 82, 22, 12, "#ded7c6", 1.0))
+    b.append(_t(207, 76, "kính phân cực", 7.4, "middle", "#444"))
+    b.append(_l(216, 120, 288, 120, 0.9))
+    b.append(_c(296, 120, 7, PAPER, 1.0))
+    b.append(_c(309, 120, 7, PAPER, 1.0))
+    b.append(_t(302, 100, "điều khiển phân cực", 7.4, "middle", "#444"))
+    b.append(_l(316, 120, 400, 152, 0.9))
+
+    # the sensing coil
+    CX, CY = 470, 206
+    for r in (42, 49, 56, 63):
+        b.append(_c(CX, CY, r, "none", 0.9, "#8d99a6"))
+    b.append(_t(CX, 124, "cuộn sợi quang", 7.4, "middle", "#222", True))
+    b.append(_t(CX, 136, "100 – 1000 m", 7.4, "middle", "#444"))
+    b.append(_t(398, 178, "t⁺", 7.6, "middle", BLUE, True))
+    b.append(_t(542, 178, "t⁻", 7.6, "middle", BLUE, True))
+    b.append(_arrow(CX, CY, CX + 63, CY, 0.9))
+    b.append(_t(CX + 34, CY - 6, "R", 8.2, "middle", INK, True))
+    b.append(_arc(CX, CY, 76, -64, -22, RED, 1.1))
+    b.append(_t(CX + 52, CY + 60, "Ω", 9.0, "middle", RED, True))
+
+    # detector and rate output
+    b.append(_l(206, 130, 206, 214, 0.9))
+    b.append(_r(180, 214, 20, 20, "#ded7c6", 1.0))
+    b.append(_hatch(180, 214, 20, 20, 5, "#b9b0a0"))
+    b.append(_t(160, 220, "đầu thu", 7.4, "end", "#444"))
+    b.append(_l(200, 224, 240, 224, 0.9))
+    b.append(_box(240, 208, 78, 32, "", 7.2))
+    b.append(_t(279, 221, "khuếch đại", 7.2, "middle", "#222", True))
+    b.append(_t(279, 233, "khoá pha", 7.2, "middle", "#222", True))
+    b.append(_arrow(318, 224, 396, 224, 1.0))
+    b.append(_t(324, 216, "ra tốc độ (analogue)", 7.2, "start", "#444"))
+
+    # bias coil and oscillator
+    for i in range(5):
+        b.append('<ellipse cx="430" cy="%s" rx="18" ry="5" fill="none" stroke="%s" stroke-width="1"/>'
+                 % (_f(296 + i * 11), INK))
+    b.append(_t(430, 288, "cuộn thiên áp", 7.2, "middle", "#444"))
+    b.append(_box(280, 352, 78, 24, "dao động", 7.2))
+    b.append(_l(358, 364, 430, 364, 0.9))
+    b.append(_arrow(430, 364, 430, 342, 0.9))
+    b.append(_l(300, 352, 300, 240, 0.9))
+    b.append(_arrow(300, 246, 300, 240, 0.9))
+
+    return _fig(svg(620, 386, STY + "".join(b), "Sơ đồ con quay sợi quang"),
+                "Hình 10-22. Một con quay sợi quang điển hình. Nó dựa trên tính chất quán tính của ánh "
+                "sáng, cụ thể là hiệu ứng Sagnac: hiệu ứng này làm dịch pha các vân giao thoa theo tốc "
+                "độ quay. Hai sóng ánh sáng lan truyền ngược chiều nhau quanh một vòng bán kính R, cùng "
+                "khởi phát từ nguồn. Khi con quay đứng yên, hai sóng tới đầu thu cùng lúc và không ghi "
+                "nhận lệch pha nào. Khi vòng quay, sóng truyền ngược chiều quay trở về sớm hơn sóng "
+                "truyền cùng chiều.",
+                "Figure 10-22. A typical fibre-optic gyroscope, based on the inertial properties of light "
+                "— the Sagnac effect, which shifts the interference fringes according to rotation rate. "
+                "Two light waves circulate in opposite directions around a loop of radius R, starting "
+                "from the same source. With the gyro at rest the two arrive together and no phase "
+                "difference is recorded; when the loop rotates, the wave travelling against the rotation "
+                "returns sooner than the one travelling with it.",
+                "Sơ đồ quang: nguồn, đi-ốt, bộ điều khiển phân cực, bộ ghép có kính phân cực, cuộn sợi "
+                "quang bán kính R quay với tốc độ Ω, đầu thu, khuếch đại khoá pha, cuộn thiên áp và dao động.",
+                "An optical schematic: source, diode, polarisation controllers, a coupler with a polariser, "
+                "the fibre coil of radius R rotating at Ω, a detector, a lock-in amplifier, a bias coil and "
+                "an oscillator.")
+
+
+def fig_10_23():
+    """Micromachined accelerometers: a wafer of them, one of them magnified."""
+    b = []
+    b.append(_c(268, 196, 108, "none", 1.3))
+    x0, y0, cell, n = 193, 121, 30, 5
+    for i in range(n + 1):
+        b.append(_l(x0 + i * cell, y0, x0 + i * cell, y0 + n * cell, 0.7, "#8d99a6"))
+        b.append(_l(x0, y0 + i * cell, x0 + n * cell, y0 + i * cell, 0.7, "#8d99a6"))
+    for i in range(n):
+        for j in range(n):
+            cx, cy = x0 + (i + 0.5) * cell, y0 + (j + 0.5) * cell
+            b.append(_r(cx - 9, cy - 4, 18, 8, PAPER, 0.8, "#555"))
+            for k in range(3):
+                b.append(_l(cx - 6 + k * 4, cy - 4, cx - 6 + k * 4, cy + 4, 0.6, "#555"))
+
+    b.append(_c(452, 216, 40, PAPER, 1.2))
+    b.append(_r(434, 208, 36, 16, PAPER, 1.0, "#555"))
+    for k in range(4):
+        b.append(_l(438 + k * 8, 208, 438 + k * 8, 224, 0.9, "#555"))
+    b.append(_l(340, 158, 414, 200, 0.8, "#999"))
+    b.append(_l(340, 196, 414, 224, 0.8, "#999"))
+
+    b.append(_t(352, 100, "phiến silic", 7.6, "start", "#444"))
+    b.append(_l(348, 104, 316, 122, 0.7, "#999"))
+    b.append(_t(268, 348, "đường cắt", 7.6, "middle", "#444"))
+    b.append(_l(268, 338, 268, 272, 0.7, "#999"))
+    b.append(_t(508, 268, "một gia tốc kế", 7.6, "start", "#444"))
+    b.append(_t(508, 280, "riêng lẻ", 7.6, "start", "#444"))
+
+    return _fig(svg(600, 366, STY + "".join(b), "Gia tốc kế vi cơ"),
+                "Hình 10-23. Ví dụ điển hình về một gia tốc kế vi cơ hiện đại. Nhiều gia tốc kế có thể "
+                "được gắn trên cùng một phiến, cảm nhận gia tốc theo các hướng x, y và z. Phần xử lý tín "
+                "hiệu sơ cấp cũng nằm ngay trên cùng phiến, và đầu ra thường ở dạng số.",
+                "Figure 10-23. A typical modern micromachined accelerometer. Many accelerometers can be "
+                "mounted on one chip, sensing acceleration in the x, y and z directions. The primary "
+                "signal conditioning sits on the same chip, and the output is usually digital.",
+                "Phiến silic tròn chia thành lưới ô vuông, mỗi ô chứa một cảm biến lược, và một ô được "
+                "phóng to ở bên phải.",
+                "A round silicon wafer divided into a grid of square cells, each holding a comb transducer, "
+                "with one cell magnified at the right.")
+
+
+def fig_10_24():
+    """Stabilisation loop: a gyro senses dip, the torquer drives it back to null."""
+    b = []
+    b.append(_arrow(66, 92, 116, 92, 1.0))
+    b.append(_c(128, 92, 12, PAPER, 1.2))
+    b.append(_t(121, 86, "+", 9.0, "middle", "#222", True))
+    b.append(_t(121, 106, "+", 9.0, "middle", "#222", True))
+    b.append(_arrow(140, 92, 276, 92, 1.0))
+    b.append(_box(276, 70, 74, 44, "bệ", 7.6))
+    b.append(_arrow(350, 92, 540, 92, 1.0))
+    b.append(_l(540, 92, 540, 196, 1.0))
+    b.append(_t(534, 132, "góc nghiêng của bệ", 7.4, "end", "#444"))
+    b.append(_arrow(540, 196, 512, 196, 1.0))
+    b.append(_box(412, 176, 100, 40, "", 7.2, lines=["con quay", "một trục"]))
+    b.append(_arrow(412, 196, 384, 196, 1.0))
+    b.append(_box(318, 176, 66, 40, "", 7.2, lines=["khuếch đại", "giải điều chế"]))
+    b.append(_arrow(318, 196, 292, 196, 1.0))
+    b.append(_box(242, 176, 50, 40, "", 7.2, lines=["hiệu", "chỉnh"]))
+    b.append(_arrow(242, 196, 216, 196, 1.0))
+    b.append(_box(120, 176, 96, 46, "", 7.2,
+                  lines=["khuếch đại công suất", "điều chế", "động cơ mô-men"]))
+    b.append(_l(168, 176, 168, 140, 1.0))
+    b.append(_l(168, 140, 128, 140, 1.0))
+    b.append(_arrow(128, 140, 128, 106, 1.0))
+    b.append(_t(60, 124, "mô-men phân bố", 7.2, "start", "#444"))
+    b.append(_t(60, 136, "lên bệ", 7.2, "start", "#444"))
+
+    return _fig(svg(600, 240, STY + "".join(b), "Vòng ổn định bệ"),
+                "Hình 10-24. Ổn định đạt được nhờ các bệ được thiết kế để giữ gia tốc kế và con quay "
+                "luôn nằm ngang và định hướng theo phương vị một cách chính xác. Trong một số trường "
+                "hợp, bệ được dẫn động quanh trục bằng động cơ servo và động cơ điện; đầu ra của các bộ "
+                "tích phân kép được dùng trực tiếp để điều khiển tốc độ tiến động của con quay trục cấp. "
+                "Các đầu dò nhạy trên con quay phát tín hiệu sai lệch để duy trì độ ổn định mong muốn "
+                "khi có mô-men nhiễu.",
+                "Figure 10-24. Stabilisation is obtained with platforms designed to hold accelerometers "
+                "and gyros level and oriented in azimuth. In some cases the platform is driven about its "
+                "axis by servo amplifiers and electric motors; pick-offs on the gyros feed error signals "
+                "that keep the platform stable in the presence of disturbing torques.",
+                "Sơ đồ khối vòng kín: khối bệ, góc nghiêng của bệ hồi tiếp qua con quay một trục, "
+                "khuếch đại và giải điều chế, hiệu chỉnh, rồi khuếch đại công suất về điểm tổng.",
+                "A closed-loop block diagram: the platform, its dip angle fed back through a single-axis "
+                "gyro, an amplifier and demodulator, an equaliser, then a power amplifier back to the "
+                "summing junction.")
+
+
+def fig_10_25():
+    """Aircraft stability: guidance, actuators, airframe, sensors, flight controller."""
+    b = []
+    b.append(_t(64, 70, "lệnh hướng", 7.4, "start", "#444"))
+    b.append(_arrow(64, 84, 176, 84, 1.0))
+    b.append(_box(176, 66, 82, 40, "", 7.2, lines=["điều khiển bay", "sơ cấp"]))
+    b.append(_l(258, 86, 402, 86, 1.0))
+    b.append(_arrow(402, 86, 402, 164, 1.0))
+    b.append(_dot(402, 176, 2.6))
+
+    b.append(_box(96, 150, 74, 40, "", 7.2, lines=["hệ dẫn", "đường"]))
+    b.append(_arrow(170, 170, 196, 170, 1.0))
+    b.append(_c(208, 170, 11, PAPER, 1.2))
+    b.append(_t(202, 165, "+", 8.4, "middle", "#222", True))
+    b.append(_t(202, 184, "+", 8.4, "middle", "#222", True))
+    b.append(_arrow(219, 170, 250, 170, 1.0))
+    b.append(_box(250, 150, 76, 40, "", 7.2, lines=["cơ cấu", "chấp hành"]))
+    b.append(_arrow(326, 170, 356, 170, 1.0))
+    b.append(_c(368, 170, 11, PAPER, 1.2))
+    b.append(_t(362, 165, "+", 8.4, "middle", "#222", True))
+    b.append(_t(362, 184, "+", 8.4, "middle", "#222", True))
+    b.append(_arrow(379, 170, 414, 170, 1.0))
+    b.append(_box(414, 148, 92, 44, "", 7.2, lines=["động học", "máy bay"]))
+    b.append(_arrow(506, 170, 566, 170, 1.0))
+    b.append(_t(512, 158, "chuyển động", 7.4, "start", "#444"))
+    b.append(_t(346, 206, "góc lệch", 7.2, "middle", "#444"))
+
+    b.append(_hexa(368, 108, 78, 30))
+    b.append(_t(368, 112, "nhiễu", 7.4, "middle", "#222", True))
+    b.append(_arrow(368, 123, 368, 157, 1.0))
+
+    # the feedback path
+    b.append(_l(560, 170, 560, 250, 1.0))
+    b.append(_l(560, 250, 500, 250, 1.0))
+    b.append(_arrow(500, 250, 486, 250, 1.0))
+    b.append(_box(400, 232, 86, 36, "cảm biến", 7.4))
+    b.append(_l(400, 250, 384, 250, 1.0))
+    b.append(_c(372, 250, 11, PAPER, 1.2))
+    b.append(_t(366, 245, "+", 8.4, "middle", "#222", True))
+    b.append(_t(366, 264, "+", 8.4, "middle", "#222", True))
+    b.append(_hexa(372, 300, 76, 28))
+    b.append(_t(372, 304, "tạp âm", 7.4, "middle", "#222", True))
+    b.append(_arrow(372, 286, 372, 262, 1.0))
+    b.append(_arrow(361, 250, 336, 250, 1.0))
+    b.append(_box(258, 232, 78, 36, "", 7.2, lines=["bộ điều khiển", "bay"]))
+    b.append(_l(258, 250, 230, 250, 1.0))
+    b.append(_l(230, 250, 230, 182, 1.0))
+    b.append(_arrow(230, 182, 208, 182, 1.0))
+
+    return _fig(svg(600, 330, STY + "".join(b), "Vòng ổn định máy bay"),
+                "Hình 10-25. Trên nhiều máy bay dân dụng, con quay và gia tốc kế đặt đúng chỗ cấp tín "
+                "hiệu điều khiển độ ổn định. Do nhiễu loạn ngẫu nhiên trong chuyến bay như trôi con "
+                "quay, sai số thang đo và sai lệch điểm không của gia tốc kế, sai số hướng mong muốn "
+                "tăng dần theo thời gian; các sai số tích luỹ này phải được bù định kỳ bằng thông tin "
+                "bên ngoài như hệ dẫn đường Omega.",
+                "Figure 10-25. On many commercial aircraft, suitably located gyroscopes and accelerometers "
+                "supply signals that control stability. Random in-flight disturbances such as gyro drift, "
+                "scale-factor error and accelerometer bias make the orientation error grow with time; "
+                "these accumulated errors are compensated periodically from external information such as "
+                "Omega navigation systems.",
+                "Sơ đồ khối vòng điều khiển máy bay: lệnh hướng vào điều khiển bay sơ cấp, hệ dẫn đường "
+                "qua cơ cấu chấp hành và điểm tổng thứ hai có nhiễu, tới động học máy bay; cảm biến hồi "
+                "tiếp qua bộ điều khiển bay về điểm tổng thứ nhất.",
+                "An aircraft control-loop block diagram: the heading command into primary flying controls, "
+                "guidance through the actuators and a second summing junction with disturbances into the "
+                "airframe dynamics, and sensors feeding back through the flight controller to the first junction.")
+
+
 FIGURES = [fig_10_1, fig_10_2, fig_10_3, fig_10_4, fig_10_5, fig_10_6, fig_10_7,
            fig_10_8, fig_10_9, fig_10_10, fig_10_11, fig_10_12, fig_10_13, fig_10_14,
-           fig_10_15, fig_10_16]
+           fig_10_15, fig_10_16, fig_10_17, fig_10_18, fig_10_19, fig_10_20, fig_10_21,
+           fig_10_22, fig_10_23, fig_10_24, fig_10_25]
