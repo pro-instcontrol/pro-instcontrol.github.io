@@ -103,11 +103,13 @@ def landing(lang):
 
     b.append('<div class="chapter-nav">'
              '<a href="%s"><span class="k">← Chương 5</span>Chuẩn đo lường</a>'
-             '<a href="%s" style="text-align:right;"><span class="k">Mục lục →</span>Nội dung sách</a></div>'
+             '<a href="%sch07-thickness-measurement/" style="text-align:right;">'
+             '<span class="k">Chương 7 →</span>Đo chiều dày</a></div>'
              % (BASE_VI, BASE_VI) if vi else
              '<div class="chapter-nav">'
              '<a href="%s"><span class="k">← Chapter 5</span>Measurement Standards</a>'
-             '<a href="%s" style="text-align:right;"><span class="k">All chapters →</span>Book contents</a></div>'
+             '<a href="%sch07-thickness-measurement/" style="text-align:right;">'
+             '<span class="k">Chapter 7 →</span>Thickness Measurement</a></div>'
              % (BASE_EN, BASE_EN))
 
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'

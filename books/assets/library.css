@@ -359,6 +359,19 @@ table.tbl.matrix td:first-child, table.tbl.matrix th:first-child,
 table.tbl.matrix td:last-child, table.tbl.matrix th:last-child { white-space: nowrap; }
 table.tbl.matrix tbody td:nth-child(n+5):nth-child(-n+8) { text-align: center; }
 
+/* a group-header row inside a reference table: "Mechanical", "Far-field / resonance" */
+table.tbl tr.grp td {
+  font-family: var(--serif); font-weight: 600; font-size: 0.96rem;
+  background: #f7f4ec; border-bottom: 1px solid var(--gray-light);
+}
+table.tbl tr.grp + tr td { border-top: none; }
+
+/* caption line under a table — quieter than .figcap, same job */
+p.tblcap {
+  font-size: 0.84rem; color: #888; font-style: italic;
+  margin: -1.1rem 0 1.8rem 0;
+}
+
 .note {
   border-left: 3px solid var(--accent-gold);
   background: #fffdf7;

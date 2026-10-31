@@ -58,7 +58,7 @@ CH = {
     4: ("Measurement Accuracy", "Độ chính xác của phép đo"),
     5: ("Measurement Standards", "Chuẩn đo lường"),
     6: ("Displacement Measurement, Linear and Angular", "Đo dịch chuyển thẳng và góc"),
-    7: ("Thickness Measurement", "Đo độ dày"),
+    7: ("Thickness Measurement", "Đo chiều dày"),
     8: ("Proximity Sensing for Robotics", "Cảm biến tiệm cận cho robot"),
     9: ("Distance", "Khoảng cách"),
     10: ("Position, Location, Altitude Measurement", "Đo vị trí, định vị và độ cao"),
@@ -167,7 +167,8 @@ DONE = {1: "ch01-characteristics-of-instrumentation",
         3: "ch03-static-and-dynamic-characteristics-of-instrumentation",
         4: "ch04-measurement-accuracy",
         5: "ch05-measurement-standards",
-        6: "ch06-displacement-measurement"}
+        6: "ch06-displacement-measurement",
+        7: "ch07-thickness-measurement"}
 
 
 def num(n, lang):

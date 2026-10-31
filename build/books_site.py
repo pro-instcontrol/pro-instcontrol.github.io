@@ -353,7 +353,7 @@ DESC = {
 
 # works with a Vietnamese translation in progress: title-substring -> (level, total, done)
 TRANSLATED = {
-    "measurement, instrumentation and sensors handbook": ("progress", 101, 6),
+    "measurement, instrumentation and sensors handbook": ("progress", 101, 7),
     "safety instrumented systems - design, analysis, and justification": ("progress", 16, 5),
     "pc_process control": ("progress", 14, 5),
 }
