@@ -34,6 +34,7 @@ SLUGS = {
         7: "ch07-real-and-ideal-pid-controllers",
         8: "ch08-tuning-of-pid-controllers",
         9: "ch09-output-modes-equations-and-cascade-control",
+        10: "ch10-concepts-and-applications-of-feedforward-control",
     },
     "sis": {
         1: "ch01-introduction",
