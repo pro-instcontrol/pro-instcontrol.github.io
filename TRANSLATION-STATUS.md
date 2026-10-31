@@ -1,18 +1,19 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** end of session 2026-10-31 (session 6) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** end of session 2026-10-31 (session 7) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 10 — Position, Location, Altitude Measurement**,
-> already in progress. Chapters 1–9 are done and live. Chapter 10 is **73 pages / 43 figures /
-> 4 tables / 8 co-authors**, about six times a normal chapter of this batch, so it is being
-> built in stages and must **not** be registered until it is whole.
+> **Where to start next:** Handbook **Chapter 11 — Level Measurement**. Chapters 1–10 are
+> done, live, and registered. Chapter 10 (the big one: 73 pages, 43 figures, 8 co-authors)
+> shipped this session and is no longer a special case.
 >
-> **Already done for chapter 10:** figures **10.1–10.16** are written and QA'd in
-> `build/hb10fig.py`, and all of sections 10.1 and 10.2 have been read. Start at §3.3.
+> **This is a batch boundary.** The standing instruction is *batch of 5, then check in*, and
+> chapter 10 closes the second batch. Do not start chapter 11 without asking.
 >
-> **This session also repaired a broken rebase** left in the working tree and shipped a
-> new "Process" section that had been stranded locally. Read §7 session 6 before you run
-> `git pull` — the same conflict will recur.
+> **Chapter 11 and 12 are already downloaded** — `work/Ch11.pdf`, `work/Ch12.pdf`, extracted
+> to `work/hb_ch11.txt` and `work/hb_ch12.txt`. Both are small (21 pp / 13 pp). Start at §3.3.
+>
+> **Read §5 before drawing anything.** This session found four figure defects that the
+> Georgia-serif QA grid cannot see, because its font metrics differ from the site font.
 
 This file is the single source of truth for the book-translation work on this site.
 Read it before touching anything. Update the status table and append to the session log
@@ -36,7 +37,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–9** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–10** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–5** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–5** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py`, `pc4fig.py`, `pc5fig.py`) |
 
@@ -51,6 +52,9 @@ Chapters done, with their slugs and build scripts:
 | HB 5 | Measurement Standards | `ch05-measurement-standards` | `reader_hb_ch05.py` | 3 | 6.5k |
 | HB 6 | Displacement Measurement, Linear and Angular | `ch06-displacement-measurement` (landing) + 12 section pages | `reader_hb_ch06.py` (+ `hb06_common.py`, `hb06fig.py`, `hb06_s01…s12.py`) | 123 | 63k |
 | HB 7 | Thickness Measurement | `ch07-thickness-measurement` | `reader_hb_ch07.py` + `hb7fig.py` | 16 | 6.9k |
+| HB 8 | Proximity Sensing for Robotics | `ch08-proximity-sensing-for-robotics` | `reader_hb_ch08.py` + `hb8fig.py` | 26 | 7.6k |
+| HB 9 | Distance | `ch09-distance` | `reader_hb_ch09.py` + `hb9fig.py` | 8 | 8.9k |
+| HB 10 | Position, Location, Altitude Measurement | `ch10-position-location-altitude` | `reader_hb_ch10.py` + `hb10fig.py` | 43 | 13.4k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.0k |
@@ -70,7 +74,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `("progress", total_chapters, done_chapters)`.
-  Currently `("progress", 101, 7)`, `("progress", 16, 5)`, `("progress", 14, 5)`.
+  Currently `("progress", 101, 10)`, `("progress", 16, 5)`, `("progress", 14, 5)`.
 - `build/reader_handbook.py` → `DONE = {chapter_no: "chapter-slug"}`.
 - `build/reader_book.py` → per-book `"done": {chapter_no: "chapter-slug"}`.
 - `build/reader_pc.py` / `build/reader_sis.py` → `MODULES = {chapter_no: "pc_chNN"}` — which
@@ -189,73 +193,35 @@ Two known cosmetic compromises, both chapter-wide and both deliberate:
 - **Section 6.12's English page is a companion essay**, not a translation: five `h2`
   sections of commentary, with the eleven figures but only one re-stated equation.
 
-### 3.3 Immediate: Handbook Chapter 10 — Position, Location, Altitude Measurement
+### 3.3 Immediate: Handbook Chapter 11 — Level Measurement
 
-**Not a normal-sized chapter.** 73 source pages, 32,867 words, **43 figures**, **4 tables**,
-eight co-authors, five independent sections:
+Small chapter: 21 source pages, ~5.6k words. Chapter 12 (Area, 13 pp) follows it and is
+smaller still. Both PDFs are already on disk.
 
-| Section | Author(s) | Figures | Tables |
-|---|---|---|---|
-| 10.1 Altitude Measurement | D. E. Manolakis | 10.1–10.7 | 10.1 |
-| 10.2 Attitude Measurement | M. A. Stedham, P. P. Banerjee, S. Nishifuji, S. Tanaka | 10.8–10.16 | 10.2, 10.3, 10.4 |
-| 10.3 Inertial Navigation | Halit Eren, C. C. Fung | 10.17–10.25 | — |
-| 10.4 Satellite Navigation and Radiolocation | Halit Eren, C. C. Fung | 10.26–10.36 | — |
-| 10.5 Occupancy Detection | Jacob Fraden | 10.37–10.43 | — |
+| File | What |
+|---|---|
+| `work/Ch11.pdf` | source, already downloaded |
+| `work/hb_ch11.txt` | extracted text (`workbuddy-pdf Ch11.pdf out --format txt`) |
+| `work/Ch12.pdf`, `work/hb_ch12.txt` | the next one after that |
 
-The user's standing instruction (asked and answered this session) is: **build chapter 10 as one
-unit, in order, and publish only when complete.** It will span more than one session. Do not
-register `DONE[10]` or bump the `books_site.py` progress counter until every section is written.
+Build it exactly like chapter 9 (§3.2 / §4), which is the cheapest template: one figure
+module, one chapter script, ~8 figures, one or two tables.
 
-Page numbers per figure are recoverable with:
-
-```bash
-python -c "
-import io,re
-lines=io.open('work/hb_ch10.txt',encoding='utf-8').read().split('\n')
-page=0
-for i,l in enumerate(lines,1):
-    if 'CRC Press LLC' in l: page+=1
-    m=re.match(r'^(FIGURE 10\.\d+|TABLE 10\.\d+)',l)
-    if m: print('page %2d  %s'%(page,m.group(1)))
-"
-```
-
-Subtract 1 from that number to get the `work/ch10png/page-NNNN.png` filename — the counter
-double-counts the CRC cover page.
-
-**Done so far:**
+**Chapter 10 is closed.** For the record, since it was the largest chapter in the book and
+the one most likely to be used as a model:
 
 | Item | State | Commit |
 |---|---|---|
-| Section 10.1 text read; figures 10.1–10.7 | done, QA'd | `320ac92` |
-| Section 10.2 text read; figures 10.8–10.16 | done, QA'd | `9c6096a` |
-| Section 10.3 text read | done (figures not started) | — |
-| Sections 10.4, 10.5 text read | done (figures not started) | — |
+| Figures 10.1–10.16 (sections 10.1, 10.2) | done, QA'd | `320ac92`, `9c6096a` |
+| Figures 10.17–10.25 (section 10.3) | done, QA'd | `52f4dde` |
+| Figures 10.26–10.36 (section 10.4) | done, QA'd | `666a8f2` |
+| Figures 10.37–10.43 (section 10.5) | done, QA'd | `1bcb6b6` |
+| `reader_hb_ch10.py` — all five sections, VI + EN | done | `e54d823` |
+| Registered in `DONE[10]` and `("progress", 101, 10)` | done | `e54d823` |
+| Live | https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch10-position-location-altitude/ | — |
 
-**Remaining:** figures **10.17–10.43** (27 figures), then `build/reader_hb_ch10.py` for all
-five sections, then register / build / ship as in §4.4.
-
-**What the reading already established**, so the next session does not have to re-read the PDF:
-
-- **10.2 Attitude Measurement** — figures 10.8–10.16; tables 10.2 (gyro performance),
-  10.3 (servo accelerometer spec), 10.4 (spacecraft attitude sensors); eqs 10.45–10.91
-  (ship sensors, two-dominant-wave model, Kalman filter bank with Bayesian weights, crane
-  lifter double pendulum, VG/DG Laplace analysis, IMU pitch/rms, Grubin two-cone
-  intersection, trace averaging, PALADS); 17 references.
-- **10.3 Inertial Navigation** — figures 10.17–10.25; eqs 10.92–10.104; six error
-  categories; stabilization; vehicular navigation (dead reckoning, radiolocation, map
-  matching, proximity beacon); aircraft (VOR/DME, Omega); underwater (SINS, Litton LN-100,
-  HBOI); robotics (Honeywell MAPS, Hitachi IFOG); 3 references + an appendix list of ~20
-  manufacturers.
-- **10.4 Satellite Navigation and Radiolocation** — figures 10.26–10.36; eq 10.105 (rms);
-  EM spectrum and 8 frequency bands; AM/FM/pulse modulation; four ionosphere layers
-  (D 60–90 km, E 110 km, F1 175–200 km, F2 250–400 km); ground waves; CEP/rms; radiobeacons,
-  Loran-C, Decca, Consol, Omega, radar, Transit, transponders, GPS (L1 1575.42 MHz /
-  L2 1227.6 MHz, C/A vs P/Y), Glonass, Starfix; 5 references + ~10 suppliers.
-- **10.5 Occupancy Detection** — figures 10.37–10.43; eqs 10.106–10.114; 17 detector types;
-  ultrasonic; microwave (`f₀ = c₀/λ₀`, Doppler, `Δf ≈ v/λ₀`, `Δf ≈ (v/λ₀)cos Θ`); MIR;
-  capacitive; triboelectric; optoelectronic; facet lenses; PIR (Stefan–Boltzmann, eq 10.113);
-  AFIR (eq 10.114).
+Final counts on the live page: **43 figures, 6 tables** (4 numbered + 2 appendix supplier
+tables), **124 numbered equations** (10.1–10.114 plus 10.89a/b/c), 5 sections, 8 co-authors.
 
 ### 3.4 Then
 
@@ -469,6 +435,9 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 | An arrow points at a sparse patch of a scatter | the tip was placed by eye, not from the data | compute the tip from the cluster's own coordinates: `X(mean_x), Y(mean_y)` |
 | `git rebase` left the tree mid-flight with `UU` files | a `git pull --rebase` hit generated-output conflicts and was abandoned | check `.git/rebase-merge` before anything else; resolve the **source** conflict, take `dcef287`'s HTML, rebuild, then `--continue` |
 | A rebase "succeeded" but a file silently lost rules | the index held the correct merge and the worktree held an older copy | after resolving, `git show :path \| grep` against the worktree before committing |
+| A figure label is legible on the QA grid but printed across the artwork on the real page | `work/qa6/figs.py` forces `font-family: Georgia, serif`, whose glyph widths differ from the site font — a label that just fits in Georgia overruns in the real face | **verify labels on the rendered page, not on the grid.** The grid is for geometry only. `work/qa22/oneNN.html` (one figure, `width:1180px`, real `library.css`) is the cheap way |
+| A circuit schematic labels a transistor that was never drawn | the `_t(…, "Q₃", …)` call was written, the `_mos_v(rail, 240)` call was not | count symbols against labels; a `_mos_v`/`_cap_v`/`_res_v` pair is easy to half-write |
+| A lead starts in empty space between two feet | the pictogram's `(x, y)` is the point *between* the feet, but the wire was drawn from that point to a part below | join the feet with a short bar first, then tap the bar — otherwise the schematic shows a connection to nothing |
 
 ## 6. House rules
 
@@ -491,6 +460,51 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 - **Write this file's session log before you stop.**
 
 ## 7. Session log
+
+### 2026-10-31, session 7 — Handbook Chapter 10 shipped (the whole thing)
+
+**Shipped:** Handbook chapter 10, *Position, Location, Altitude Measurement*. 73 source pages,
+5 sections, 8 co-authors, 43 figures, 4 numbered tables, 124 numbered equations, both
+languages. Commit `e54d823`. Live at
+`/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch10-position-location-altitude/`.
+Handbook progress 9/101 → 10/101; `DONE[10]` and `("progress", 101, 10)` both updated.
+
+**What was written this session** (the figures for all five sections already existed from
+sessions 5–6):
+
+- `build/reader_hb_ch10.py` — 10.3 Inertial Navigation (Schuler, Sagnac, the t/t²/t³ error
+  ladder, stabilization, vehicular/aircraft/underwater/robotics, LN-100, HBOI, MAPS, Hitachi
+  IFOG), 10.4 Satellite Navigation and Radiolocation (EM spectrum, ionosphere layers,
+  CEP/rms, radiobeacons, Loran-C, Decca, Consol, Omega, radar, Transit, transponders, GPS,
+  DGPS, Glonass, Starfix), 10.5 Occupancy Detection (17 detector types, ultrasonic,
+  microwave Doppler, MIR, capacitive, triboelectric, optoelectronic, facet lenses, PIR, AFIR),
+  then `body_en()` — an original essay that reads the five sections as five versions of one
+  inverse problem, with a t/t²/t³ error-propagation table and a seven-row errata table.
+- Appendix supplier lists for 10.3 and 10.4 rendered as two-column tables, with a note that
+  the street addresses and phone numbers are omitted as stale.
+
+**Four figure defects found on the rendered page and fixed** — none of them visible on the
+Georgia QA grid, because its glyph widths differ from the site face:
+
+| Figure | Defect |
+|---|---|
+| 10-38 | `Q₃` was labelled but never drawn — the `_mos_v(rail, 240)` call was missing, so the current sink was a plain wire. Added it at `gy=249`, moved `C_p` to x=224 and `R₁`/`Q₃` labels into the clear strip, retuned the gate tap |
+| 10-40 | the red `ảnh của vật` label printed across the comb teeth — moved above the comb at `y=57`, anchored middle |
+| 10-37 | `C_b` hung from a point between the ankles — added a 36 px bar joining the feet so the lead starts on the body |
+| 10-39 | the small "image" pictogram's head sat on the signal lead — dropped to `y=134`, height 20 |
+
+**Two source errata handled with `note()` boxes rather than silent correction:** the chapter
+gives the GPS orbit as 2200 km (really 20 200 km) and the Glonass orbit as 1500 km (really
+19 100 km); both would fail Kepler's third law in one line, and the chapter's own Figure 10-35
+contradicts its text. Also noted that Selective Availability was switched off on 2 May 2000,
+not "by 2006" as the text predicts.
+
+**Housekeeping:** two `<ol>`/`<ul class="plain">` lists were used for the 17 detector types
+and the six error categories; `.plain` has no CSS rule, so they fall back to the UA default
+list styling, which is what other chapters already do (`<ol start="1">`). No change needed.
+
+**Deploy:** `git fetch` → 4 ahead, 0 behind → pushed to `main` → live on the third poll
+(25–65 s as usual). `check_links.py`: 486 pages, 12 204 references, 0 broken. Sitemap 484 URLs.
 
 ### 2026-10-31, session 6 — broken rebase repaired, "Process" section shipped, chapter 10 figures 10.8–10.16
 
