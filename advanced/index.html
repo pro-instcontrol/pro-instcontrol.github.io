@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advanced practice — beyond the single loop | I&amp;C</title>
+<meta name="description" content="The layer above single-loop instrumentation: cascade and model predictive control, safety cases with numbers, and the field-connectivity standards being rewritten now.">
+<link rel="canonical" href="https://pro-instcontrol.github.io/advanced/">
+<link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/advanced/">
+<link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/advanced/">
+<link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/advanced/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Instrumentation &amp; Control">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Advanced practice — beyond the single loop | I&amp;C">
+<meta property="og:description" content="The layer above single-loop instrumentation: cascade and model predictive control, safety cases with numbers, and the field-connectivity standards being rewritten now.">
+<meta property="og:url" content="https://pro-instcontrol.github.io/advanced/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Advanced practice — beyond the single loop | I&amp;C">
+<meta name="twitter:description" content="The layer above single-loop instrumentation: cascade and model predictive control, safety cases with numbers, and the field-connectivity standards being rewritten now.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css?v=5">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://pro-instcontrol.github.io/advanced/#page","url":"https://pro-instcontrol.github.io/advanced/","name":"Advanced practice — beyond the single loop | I&C","description":"The layer above single-loop instrumentation: cascade and model predictive control, safety cases with numbers, and the field-connectivity standards being rewritten now.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"Instrumentation & Control","url":"https://pro-instcontrol.github.io/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Instrumentation & Control","item":"https://pro-instcontrol.github.io/"},{"@type":"ListItem","position":2,"name":"Advanced practice","item":"https://pro-instcontrol.github.io/advanced/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="wrap bar">
+    <a class="brand" href="../index.html" aria-label="Home">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="none">
+          <rect x="1" y="1" width="30" height="30" rx="8" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+          <path d="M7 22h6l3-12 3 12h6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="16" cy="10" r="2.2" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="brand-txt"><strong>Instrumentation &amp; Control</strong><em>Field Guide</em></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a class="nav-link" href="../index.html">Home</a>
+      <a class="nav-link" href="../books/">Books</a>
+      <a class="nav-link" href="../video-library/">Videos</a>
+      <a class="nav-link" href="../fundamentals.html">Fundamentals</a>
+      <a class="nav-link active" href="../advanced/">Advanced</a>
+      <a class="nav-link" href="../instruments.html">Instruments</a>
+      <a class="nav-link" href="../install.html">Install</a>
+      <a class="nav-link" href="../control.html">Control</a>
+      <a class="nav-link" href="../applications.html">Applications</a>
+      <a class="nav-link" href="../safety.html">Safety</a>
+      <a class="nav-link" href="../tools.html">Tools</a>
+      <a class="nav-link" href="../comparison.html">Comparison</a>
+      <a class="nav-link" href="../geotechnical.html">Geotech</a>
+      <a class="nav-link" href="../standards.html">Standards</a>
+      <a class="nav-link" href="../glossary.html">Glossary</a>
+      <a class="nav-link" href="../education.html">Education</a>
+    </nav>
+    <div class="bar-right">
+      <a class="lang" href="../vi/advanced/" aria-label="Switch language">
+        <span class="lang-opt on">EN</span><span class="lang-sep">/</span><span class="lang-opt">VI</span>
+      </a>
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<section class="sec adv-hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">00</span><span class="line"></span><span class="eyebrow-label">Advanced practice</span></div>
+    <h1 class="adv-h1">Where the fundamentals stop being enough</h1>
+    <p class="lede adv-lede">Every other page here teaches one loop, one instrument, one drawing. This is the layer above: strategies that need more than one loop, safety cases that need numbers, and the connectivity standards that are being rewritten while you read this.</p>
+  </div>
+</section>
+<section class="sec adv-sec" id="trends">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">01</span><span class="line"></span><span class="eyebrow-label">Standards watch</span></div>
+    <h2 class="adv-h2">Trends &amp; standards watch</h2>
+    <p class="adv-p">Twelve videos on where field connectivity is actually heading. The short version: Ethernet-APL standardised the wire, not the protocol. HART-IP, PROFINET, EtherNet/IP and OPC UA FX now share one two-wire cable to the same devices. FOUNDATION Fieldbus did not lose to a rival protocol — it lost to the layer underneath it.</p>
+    <a class="adv-card" href="../video-library/#cat-trends">
+      <span class="adv-card-k">Video library · 12 videos</span>
+      <span class="adv-card-t">Open the Trends &amp; standards watch section</span>
+      <span class="adv-card-d">Ethernet-APL, HART-IP, OPC UA FX, NOA, MTP, OT security, digital twin</span>
+      <span class="adv-card-go">Go to the videos <span aria-hidden="true">&rarr;</span></span>
+    </a>
+    <ul class="adv-themes"><li><b>Ethernet-APL</b><span>10BASE-T1L over two wires: 10 Mbit/s, 1 km trunk, power on the same pair, Ex zone 0/1/2 with 2-WISE. It replaces the physical layer, nothing above it.</span></li><li><b>HART-IP</b><span>The cheapest migration for most plants: the same HART devices and workflows, Ethernet transport instead of a 4–20 mA loop.</span></li><li><b>OPC UA FX</b><span>Controller-to-controller exchange with a standard data model. The multi-vendor bench demos matter more than the specification text.</span></li><li><b>NOA and MTP</b><span>The second channel for monitoring without touching the control network, and modular skids that integrate without custom engineering.</span></li><li><b>OT security</b><span>IEC 62443 has moved from a project afterthought to a procurement gate. Segmentation vocabulary is now expected of instrument engineers.</span></li><li><b>Digital twin</b><span>Useful where the model is honest about its steady-state assumptions, and quietly wrong where it is not.</span></li></ul>
+  </div>
+</section>
+<section class="sec adv-sec" id="beyond">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">02</span><span class="line"></span><span class="eyebrow-label">Control strategy</span></div>
+    <h2 class="adv-h2">Beyond the single loop</h2>
+    <p class="adv-p">Cascade, feedforward, ratio and model predictive control: what each one buys, what it costs to maintain, and why dead time decides whether any of them can help you. The control page carries the full treatment, including tuning methods compared and the dead-time problem that dominates everything else.</p>
+    <p class="adv-link"><a href="../control.html#advanced">Control &amp; tuning — the advanced section <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+<section class="sec adv-sec" id="paper">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">03</span><span class="line"></span><span class="eyebrow-label">Safety case</span></div>
+    <h2 class="adv-h2">Safety cases and the paper trail</h2>
+    <p class="adv-p">The documents that decide whether a plant is allowed to run: LOPA to justify the layer, an SRS to specify it, SIL verification to prove it, a cause &amp; effect matrix to wire it, and an alarm rationalisation to keep it usable at three in the morning.</p>
+    <p class="adv-link"><a href="../safety.html">Functional safety &amp; SIS <span aria-hidden="true">&rarr;</span></a>
+      <a href="../standards.html">Standards reference <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-l">
+      <span class="brand-mini">Instrumentation &amp; Control</span>
+      <p>A bilingual field guide to process instrumentation and control. Content is synthesised from ISA, IEC, API and ISO 18674 practice; always verify against the current edition of a standard before design use.</p>
+    </div>
+    <div class="foot-r">
+      <span class="mono">Static site · no build step · EN / VI</span>
+      <a class="mono" href="https://github.com/pro-instcontrol" rel="noopener">github.com/pro-instcontrol</a>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){var b=document.getElementById("burger");if(!b)return;
+b.addEventListener("click",function(){var o=document.body.classList.toggle("menu-open");
+b.setAttribute("aria-expanded",o?"true":"false");});})();
+</script>
+</body>
+</html>

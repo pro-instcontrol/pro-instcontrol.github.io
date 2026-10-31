@@ -5,6 +5,12 @@
     <loc>https://pro-instcontrol.github.io/</loc>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/advanced/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/advanced/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/advanced/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/advanced/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/applications.html</loc>
   </url>
   <url>
@@ -1065,6 +1071,12 @@
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/tools.html</loc>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/advanced/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/advanced/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/advanced/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/advanced/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/</loc>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thực hành nâng cao — vượt ra ngoài một vòng | I&amp;C</title>
+<meta name="description" content="Tầng phía trên của đo lường điều khiển một vòng: điều khiển cascade và dự báo mô hình, hồ sơ an toàn có con số, và các tiêu chuẩn kết nối hiện trường đang được viết lại.">
+<link rel="canonical" href="https://pro-instcontrol.github.io/vi/advanced/">
+<link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/advanced/">
+<link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/advanced/">
+<link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/advanced/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Instrumentation &amp; Control">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:title" content="Thực hành nâng cao — vượt ra ngoài một vòng | I&amp;C">
+<meta property="og:description" content="Tầng phía trên của đo lường điều khiển một vòng: điều khiển cascade và dự báo mô hình, hồ sơ an toàn có con số, và các tiêu chuẩn kết nối hiện trường đang được viết lại.">
+<meta property="og:url" content="https://pro-instcontrol.github.io/vi/advanced/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Thực hành nâng cao — vượt ra ngoài một vòng | I&amp;C">
+<meta name="twitter:description" content="Tầng phía trên của đo lường điều khiển một vòng: điều khiển cascade và dự báo mô hình, hồ sơ an toàn có con số, và các tiêu chuẩn kết nối hiện trường đang được viết lại.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css?v=5">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://pro-instcontrol.github.io/vi/advanced/#page","url":"https://pro-instcontrol.github.io/vi/advanced/","name":"Thực hành nâng cao — vượt ra ngoài một vòng | I&C","description":"Tầng phía trên của đo lường điều khiển một vòng: điều khiển cascade và dự báo mô hình, hồ sơ an toàn có con số, và các tiêu chuẩn kết nối hiện trường đang được viết lại.","inLanguage":"vi-VN","isPartOf":{"@type":"WebSite","name":"Instrumentation & Control","url":"https://pro-instcontrol.github.io/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Instrumentation & Control","item":"https://pro-instcontrol.github.io/"},{"@type":"ListItem","position":2,"name":"Thực hành nâng cao","item":"https://pro-instcontrol.github.io/vi/advanced/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Chuyển đến nội dung</a>
+<header class="topbar">
+  <div class="wrap bar">
+    <a class="brand" href="../../index.html" aria-label="Home">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="none">
+          <rect x="1" y="1" width="30" height="30" rx="8" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+          <path d="M7 22h6l3-12 3 12h6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="16" cy="10" r="2.2" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="brand-txt"><strong>Đo lường &amp; Điều khiển</strong><em>Sổ tay hiện trường</em></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a class="nav-link" href="../../index.html">Trang chủ</a>
+      <a class="nav-link" href="../../vi/books/">Sách</a>
+      <a class="nav-link" href="../../vi/video-library/">Video</a>
+      <a class="nav-link" href="../../fundamentals.html">Cơ bản</a>
+      <a class="nav-link active" href="../../vi/advanced/">Nâng cao</a>
+      <a class="nav-link" href="../../instruments.html">Thiết bị đo</a>
+      <a class="nav-link" href="../../install.html">Lắp đặt</a>
+      <a class="nav-link" href="../../control.html">Điều khiển</a>
+      <a class="nav-link" href="../../applications.html">Ứng dụng</a>
+      <a class="nav-link" href="../../safety.html">An toàn</a>
+      <a class="nav-link" href="../../tools.html">Công cụ</a>
+      <a class="nav-link" href="../../comparison.html">So sánh</a>
+      <a class="nav-link" href="../../geotechnical.html">Địa kỹ thuật</a>
+      <a class="nav-link" href="../../standards.html">Tiêu chuẩn</a>
+      <a class="nav-link" href="../../glossary.html">Thuật ngữ</a>
+      <a class="nav-link" href="../../education.html">Giáo dục</a>
+    </nav>
+    <div class="bar-right">
+      <a class="lang" href="../../advanced/" aria-label="Switch language">
+        <span class="lang-opt on">VI</span><span class="lang-sep">/</span><span class="lang-opt">EN</span>
+      </a>
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<section class="sec adv-hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">00</span><span class="line"></span><span class="eyebrow-label">Thực hành nâng cao</span></div>
+    <h1 class="adv-h1">Nơi kiến thức cơ bản không còn đủ</h1>
+    <p class="lede adv-lede">Mọi trang khác ở đây dạy một vòng điều khiển, một thiết bị, một bản vẽ. Đây là tầng phía trên: những chiến lược cần nhiều hơn một vòng, hồ sơ an toàn cần con số, và những tiêu chuẩn kết nối đang được viết lại ngay lúc này.</p>
+  </div>
+</section>
+<section class="sec adv-sec" id="trends">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">01</span><span class="line"></span><span class="eyebrow-label">Theo dõi tiêu chuẩn</span></div>
+    <h2 class="adv-h2">Xu hướng &amp; theo dõi tiêu chuẩn</h2>
+    <p class="adv-p">Mười hai video về hướng phát triển thực sự của kết nối hiện trường. Bản ngắn: Ethernet-APL chuẩn hoá đường dây, không chuẩn hoá giao thức. HART-IP, PROFINET, EtherNet/IP và OPC UA FX nay dùng chung một đôi dây tới cùng thiết bị. FOUNDATION Fieldbus không thua một giao thức đối thủ — nó thua tầng bên dưới.</p>
+    <a class="adv-card" href="../../vi/video-library/#cat-trends">
+      <span class="adv-card-k">Thư viện video · 12 video</span>
+      <span class="adv-card-t">Mở mục Xu hướng &amp; theo dõi tiêu chuẩn</span>
+      <span class="adv-card-d">Ethernet-APL, HART-IP, OPC UA FX, NOA, MTP, an ninh OT, digital twin</span>
+      <span class="adv-card-go">Đến phần video <span aria-hidden="true">&rarr;</span></span>
+    </a>
+    <ul class="adv-themes"><li><b>Ethernet-APL</b><span>10BASE-T1L trên hai dây: 10 Mbit/s, trục dài 1 km, cấp nguồn cùng đôi dây, vùng Ex 0/1/2 với 2-WISE. Nó thay lớp vật lý, không thay gì ở phía trên.</span></li><li><b>HART-IP</b><span>Đường chuyển đổi rẻ nhất với phần lớn nhà máy: vẫn thiết bị và quy trình HART cũ, chỉ đổi sang đường truyền Ethernet thay vì vòng 4–20 mA.</span></li><li><b>OPC UA FX</b><span>Trao đổi controller-với-controller theo mô hình dữ liệu chuẩn. Các demo đa hãng trên bàn thử có sức nặng hơn phần chữ của đặc tả.</span></li><li><b>NOA và MTP</b><span>Kênh thứ hai để giám sát mà không đụng mạng điều khiển, và các skid mô-đun tích hợp được mà không cần lập trình riêng.</span></li><li><b>An ninh OT</b><span>IEC 62443 đã từ việc làm sau cùng thành điều kiện mua sắm. Vốn từ về phân vùng nay được coi là chuẩn mực của kỹ sư đo lường.</span></li><li><b>Digital twin</b><span>Hữu ích khi mô hình trung thực về giả thiết trạng thái ổn định, và âm thầm sai ở chỗ nó không trung thực.</span></li></ul>
+  </div>
+</section>
+<section class="sec adv-sec" id="beyond">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">02</span><span class="line"></span><span class="eyebrow-label">Chiến lược điều khiển</span></div>
+    <h2 class="adv-h2">Vượt ra ngoài một vòng</h2>
+    <p class="adv-p">Cascade, feedforward, điều khiển tỉ lệ và điều khiển dự báo mô hình: mỗi thứ mua được gì, tốn gì để duy trì, và vì sao thời gian trễ quyết định chúng có giúp được hay không. Trang điều khiển trình bày đầy đủ, gồm so sánh các phương pháp hiệu chỉnh và bài toán thời gian trễ chi phối mọi thứ còn lại.</p>
+    <p class="adv-link"><a href="../../control.html#advanced">Điều khiển &amp; hiệu chỉnh — phần nâng cao <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+<section class="sec adv-sec" id="paper">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">03</span><span class="line"></span><span class="eyebrow-label">Hồ sơ an toàn</span></div>
+    <h2 class="adv-h2">Hồ sơ an toàn và giấy tờ</h2>
+    <p class="adv-p">Những tài liệu quyết định nhà máy có được phép chạy hay không: LOPA để biện minh cho lớp bảo vệ, SRS để đặc tả, kiểm chứng SIL để chứng minh, ma trận nguyên nhân &amp; kết quả để đấu dây, và rà soát báo động để hệ thống còn dùng được lúc ba giờ sáng.</p>
+    <p class="adv-link"><a href="../../safety.html">An toàn chức năng &amp; SIS <span aria-hidden="true">&rarr;</span></a>
+      <a href="../../standards.html">Tham chiếu tiêu chuẩn <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-l">
+      <span class="brand-mini">Đo lường &amp; Điều khiển</span>
+      <p>Sổ tay song ngữ về thiết bị đo và điều khiển quá trình. Nội dung được tổng hợp từ thực tiễn ISA, IEC, API và ISO 18674; luôn đối chiếu với bản tiêu chuẩn hiện hành trước khi dùng cho thiết kế.</p>
+    </div>
+    <div class="foot-r">
+      <span class="mono">Trang tĩnh · không cần build · EN / VI</span>
+      <a class="mono" href="https://github.com/pro-instcontrol" rel="noopener">github.com/pro-instcontrol</a>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){var b=document.getElementById("burger");if(!b)return;
+b.addEventListener("click",function(){var o=document.body.classList.toggle("menu-open");
+b.setAttribute("aria-expanded",o?"true":"false");});})();
+</script>
+</body>
+</html>
