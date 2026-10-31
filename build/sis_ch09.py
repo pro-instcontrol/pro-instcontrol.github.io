@@ -755,6 +755,7 @@ def body_en():
                "0.06 — RRF 16, barely SIL 1. The logic is 8 % of that. The two valves are 50 %. No choice "
                "of PLC, no TMR architecture and no certification will move a number whose eighth part is "
                "the only part you were negotiating about."))
+    b.append(fig(1, F.fig_9_1(), "en"))
     b.append(p("The solenoid deserves particular attention because it is the cheapest item on the list and "
                "the second largest contributor. It is a coil of wire in a weatherproof box, asked to sit "
                "energised for years in a plant where the ambient temperature swings forty degrees, and it "
@@ -769,10 +770,18 @@ def body_en():
                "1oo2 arrangement buys a much larger factor and costs a tap, a root valve, an impulse line, "
                "a cable, an input card and a maintenance procedure. Neither is wrong; the point is that "
                "the cheap option is usually tried last."))
+    b.append(fig(2, F.fig_9_2(), "en"))
     b.append(p("There is a second, quieter benefit. A transmitter that can tell you it has failed lets you "
                "bypass the failed signal and keep producing, instead of tripping the plant on a sensor that "
                "is merely broken. That decision — alarm versus trip on a detected fault — is the whole of "
                "Table 9-2, and it is a process decision, not an instrument one."))
+    b.append(p("The same idea applies to discrete inputs, where the mechanism is different and just as "
+               "cheap. A plain contact tells the card whether it is open or closed — two states, one of "
+               "which is indistinguishable from a broken wire. Fit an end-of-line resistor and the same "
+               "circuit reports four states, because the card can now see the difference between a closed "
+               "contact, an open contact, a short and a break. The price is a resistor that can itself "
+               "fail, and a healthy-state current that the loop must tolerate."))
+    b.append(fig(3, F.fig_9_3(), "en"))
 
     b.append(h2("Why the field device is hard to fix"))
     b.append(p("A logic solver is one box from one vendor with one failure rate. A loop is a tap, a root "

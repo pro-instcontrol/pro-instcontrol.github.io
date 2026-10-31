@@ -501,6 +501,11 @@ def body_en():
                "the negotiable (“to the extent that…”). It is tempting to read that range as a difference "
                "in conviction. It is more accurately a difference in how much each document trusts the "
                "management system that will operate the plant."))
+    b.append(p("The HSE document makes the point with a single picture that fills a whole page, and it is "
+               "worth more than the sentence it illustrates: sensors separate, logic separate, final "
+               "elements separate. Not because two processors in one cabinet would be unreliable, but "
+               "because the boundary has to be visible to the person who is about to do something unwise."))
+    b.append(fig(1, F.fig_3_1(), "en"))
     b.append(p("The prescriptive standards — NFPA 85 in particular — come from industries where the "
                "consequence of a mistake is immediate and public, and where the regulator can afford to be "
                "blunt. The performance-based ones come from industries where the same plant may be run by "

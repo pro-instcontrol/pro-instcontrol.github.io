@@ -493,6 +493,7 @@ def body_en():
                "logic runs. SAT proves the installed system meets the safety requirements specification, "
                "and it is the first test that uses the real sensors and the real valves. FSA/PSSR is not a "
                "test at all; it is an independent judgement about evidence somebody else gathered."))
+    b.append(fig(1, F.fig_11_1(), "en"))
     b.append(p("The order matters as much as the content. Each gate is cheap to pass and expensive to "
                "fail, and each one narrows what is left to discover. If you skip FAT because the schedule "
                "is tight, you do not save the FAT; you move it to the site, where the same defect costs "
@@ -507,6 +508,7 @@ def body_en():
                "\"validation done\" skip the phase-by-phase checks, and then discover during SAT that the "
                "cause-and-effect diagram they are testing against was never verified against the hazard "
                "study."))
+    b.append(fig(2, F.fig_11_2(), "en"))
     b.append(p("The FSA is a third thing again, and the standard's requirement that at least one assessor "
                "come from outside the design team is the whole point. An assessment conducted by the people "
                "who made the decisions is a review, and reviews of one's own work reliably find nothing. "
@@ -518,6 +520,7 @@ def body_en():
                "mA, thermocouple simulators, lamps for outputs, each labelled as the field device it stands "
                "in for. It is genuinely good value — it finds logic errors, addressing errors, scaling "
                "errors and configuration errors before anyone books a flight."))
+    b.append(fig(3, F.fig_11_3(), "en"))
     b.append(p("What it cannot find is everything that lives between the terminal and the process. Cable "
                "capacitance and induced noise. A shield grounded at both ends. A 24 V supply that sags when "
                "forty solenoids pick up together. A valve that takes eleven seconds to stroke when the "

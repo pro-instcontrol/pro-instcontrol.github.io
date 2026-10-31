@@ -378,6 +378,7 @@ def body_en():
                "individually negotiable, and the negotiation was always won by whoever was closest to the "
                "immediate problem. That is the argument for independence in one sentence: a layer that can "
                "be switched off by the person it inconveniences is not a layer."))
+    b.append(fig(1, F.fig_4_1(), "en"))
 
     b.append(h2("Prevention and mitigation are different businesses"))
     b.append(p("The distinction sounds academic until you try to buy one. A prevention layer competes with "
@@ -391,6 +392,7 @@ def body_en():
                "flare, the evacuation plan — are touched by almost nobody, and they are the ones that still "
                "work when everything inside has been compromised. A plant with excellent inner layers and "
                "no outer ones is a plant that has never had a bad day."))
+    b.append(fig(2, F.fig_4_2(), "en"))
 
     b.append(h2("Alarms are the weakest layer, and the most used"))
     b.append(p("Alarms occupy a strange position: they are cheap, they are easy to add, and they are the "
@@ -417,6 +419,7 @@ def body_en():
                "does not add a factor of ten to the BPCS; it subtracts one, because the combined system now "
                "shares a failure mode that neither had alone, and because the IEC standards cap the BPCS "
                "claim at ten precisely to reflect that."))
+    b.append(fig(3, F.fig_4_3(), "en"))
     b.append(p("The same logic explains why the standards are so insistent about field devices. A shared "
                "transmitter is a shared failure, and a shared impulse line is a shared failure that no "
                "amount of logic redundancy can see. Diversification is not a preference for old "

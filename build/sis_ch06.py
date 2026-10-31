@@ -872,6 +872,12 @@ def body_en():
                "target exists, the team is not doing a SIL study. It is inventing policy, and it should say "
                "so before it starts, because the number it invents will be quoted back at it for the life "
                "of the plant."))
+    b.append(p("The bands themselves are a logarithmic ladder, and that they are a ladder rather than a "
+               "scale is the point. SIL 1 and SIL 2 are a factor of ten apart, not a few per cent, and the "
+               "cost of climbing one rung rises by roughly the same factor. So the question in the rest of "
+               "the chapter is never “how close to the edge of a band can we sit” but “which rung do we "
+               "need”."))
+    b.append(fig(5, F.fig_6_5(), "en"))
 
     b.append(h2("Why the statistics in section 6.5.7 feel wrong and are still useful"))
     b.append(p("The Russian roulette passage is the most quoted part of the chapter and also the least "
@@ -895,6 +901,18 @@ def body_en():
                "up is the safe direction. LOPA keeps the axis continuous and therefore rounds less. The "
                "difference between a SIL 2 and a SIL 1 answer is usually the difference between two "
                "resolutions, not between two truths."))
+    b.append(p("ALARP is the first of the four and the least arithmetic. Its middle band — where risk must "
+               "be reduced only when the benefit justifies the cost — is a legal concept, so the boundary "
+               "moves with the argument being made rather than with the physics of the plant."))
+    b.append(fig(1, F.fig_6_1(), "en"))
+    b.append(p("The matrix is the second, and its virtue is that a room full of people can agree on a box "
+               "in ten minutes. Its vice is that the box is coarse: a continuous frequency axis collapsed "
+               "into five cells rounds upwards — the safe direction, but not the precise one."))
+    b.append(fig(2, F.fig_6_2(), "en"))
+    b.append(p("The risk graph is the third: the same judgement as the matrix, but read as a path rather "
+               "than a cell, so consequence, exposure, possibility of avoidance and probability of the "
+               "event are each considered on their own axis instead of being fused into a single shade."))
+    b.append(fig(4, F.fig_6_4(), "en"))
     b.append(p("What matters is that the method is fixed before the answers are known, applied consistently "
                "across the plant, and documented well enough that a second team would reach the same box. A "
                "site that uses a matrix for one unit and LOPA for the next has not bought accuracy; it has "
@@ -906,6 +924,7 @@ def body_en():
                "relief valve, a dike, a blast wall or a trained operator counts as a layer lowers the SIL "
                "requirement, and every such claim is a claim about independence that nobody can verify "
                "quantitatively."))
+    b.append(fig(3, F.fig_6_3(), "en"))
     b.append(p("The four IPL criteria — specificity, independence, dependability, auditability — are the "
                "discipline that keeps the negotiation honest. Independence is the one that fails most "
                "often, and it fails quietly. A relief valve sharing a nozzle with the instrument tapping is "
@@ -926,6 +945,11 @@ def body_en():
                "and the operator is there to back it up rather than to carry it."))
 
     b.append(h2("LOPA is arithmetic, and arithmetic is auditable"))
+    b.append(p("The example is a hexane drum held at level by a controller driving the inlet valve. If the "
+               "drum overfills, hexane escapes through a vent and lands in a dike; the accident needs both "
+               "the controller and the dike to fail, which is exactly the kind of “and” that LOPA is built "
+               "to price."))
+    b.append(fig(6, F.fig_6_6(), "en"))
     b.append(p("The worked example is worth reading as a template rather than a case. Four numbers, three "
                "multiplications, two comparisons: 10⁻³ against a 10⁻⁴ target, 2.5 × 10⁻⁴ against 10⁻⁵. The "
                "shortfalls are ten and twenty-five, the binding one is twenty-five, and twenty-five sits "
@@ -936,6 +960,7 @@ def body_en():
                "That single sentence is the difference between an honest LOPA and a flattering one. It is "
                "always possible to add a layer and lower the answer; it is only sometimes true that the "
                "layer would still be there when the demand arrives."))
+    b.append(fig(7, F.fig_6_7(), "en"))
 
     b.append(h2("SIL is a property of a loop, never of a box"))
     b.append(p("The distinction the chapter insists on — that a logic solver may be rated for SIL 3 while "

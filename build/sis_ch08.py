@@ -962,6 +962,22 @@ def body_en():
         "killing your safety performance; the caveats are why you must never quote the answer to three "
         "significant figures in a meeting."))
 
+    b.append(h2("Safe, dangerous, detected, hidden"))
+    b.append(p("Before any formula, the vocabulary. A failure is described by two questions asked "
+               "independently: does it leave the process in a safe state or remove the protection, and "
+               "does it announce itself or not. Crossing them gives four cells, and the whole discipline "
+               "lives in one of them — dangerous and undetected. A dangerous failure that announces itself "
+               "is a maintenance problem. A dangerous failure that hides is the only thing a proof test "
+               "actually has to find, and the only thing the PFD formula is counting."))
+    b.append(fig(1, F.fig_8_1(), "en"))
+    b.append(p("The reason the vocabulary has to be this precise is that “availability” is a word borrowed "
+               "from the control world, where it is the only thing that matters. A safety system is judged "
+               "on the opposite axis: it is allowed to be unavailable as often as it likes, provided every "
+               "one of those occasions is a trip rather than a silence. Two systems with identical "
+               "availability figures can differ by three orders of magnitude in the number that decides "
+               "whether the plant is protected."))
+    b.append(fig(2, F.fig_8_2(), "en"))
+
     b.append(h2("The four numbers that decide everything"))
     b.append(p("Strip away the vendor literature and a safety instrumented function is four numbers: the "
                "failure rate of the sensor, the failure rate of the logic solver, the failure rate of the "
@@ -1000,6 +1016,27 @@ def body_en():
                "sounds excellent and can mean a nuisance trip every month with four minutes of downtime "
                "each. Ninety-nine point nine nine percent sounds barely different and can mean one trip "
                "every ten years. Both are true statements about different plants."))
+    b.append(fig(3, F.fig_8_3(), "en"))
+
+    b.append(h2("Three ways to draw the same system"))
+    b.append(p("Section 8.7 presents three modelling methods, and the choice between them is a choice about "
+               "what you are willing to assume. A reliability block diagram is the simplest: blocks in "
+               "series multiply their probabilities of working, blocks in parallel multiply their "
+               "probabilities of failing, and the diagram makes the weak link visible at a glance. It also "
+               "assumes every block is independent, which is exactly the assumption that hurts."))
+    b.append(fig(4, F.fig_8_4(), "en"))
+    b.append(p("A fault tree works the other way round — top-down from the event you are trying to prevent, "
+               "through the combinations of failures that could cause it, down to individual components. "
+               "Its advantage is that it can carry the field devices and the process itself in one "
+               "structure, so the answer is not confined to the logic solver. Its limitation is equally "
+               "clear: it can only model failures somebody has already thought of."))
+    b.append(fig(5, F.fig_8_5(), "en"))
+    b.append(p("A Markov model abandons the drawing entirely and describes the system as states and "
+               "transition rates. That buys the three things the other two methods cannot express — time, "
+               "repair and the test interval — and it costs a matrix to solve and a set of transition rates "
+               "nobody measured. It is the right tool when the question is about test intervals; it is the "
+               "wrong tool when the question is about whether the team understands the plant."))
+    b.append(fig(6, F.fig_8_6(), "en"))
 
     b.append(h2("The models disagree with reality for a reason"))
     b.append(p("Section 8.12 is the honest heart of the chapter. The TMR calculation produces a risk "
@@ -1007,6 +1044,7 @@ def body_en():
                "It does not, and the reason is that the model contains only the failures somebody thought "
                "of. Common cause is the largest of the missing terms, and a Beta factor of 1 % — one failure "
                "in a hundred taking out all three channels — removes a factor of forty from the answer."))
+    b.append(fig(8, F.fig_8_8(), "en"))
     b.append(p("This is why IEC 61511 put the fault tolerance tables in. If the arithmetic alone decided "
                "the architecture, a clever engineer with optimistic failure rates could justify a simplex "
                "logic solver at SIL 3 and be technically correct. The tables say: no. At SIL 3 you need two "
@@ -1019,6 +1057,7 @@ def body_en():
                "for a programmable logic solver at each SIL and each band of safe failure fraction; Table "
                "8-3 does the same for field devices and non-programmable solvers, and is stricter because "
                "field devices have far less diagnostics."))
+    b.append(fig(7, F.fig_8_7(), "en"))
     b.append(p("The trap is that SFF is a property of the device, not of your installation. A transmitter "
                "with 95 % diagnostic coverage installed with its impulse line plugged has the diagnostic "
                "coverage of a brick. The standard knows this, which is why section 8.14 mentions the "

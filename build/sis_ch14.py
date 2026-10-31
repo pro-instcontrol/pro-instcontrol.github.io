@@ -614,6 +614,12 @@ def body_en():
                "avoids shutting the plant down when nothing is wrong. Only the first is easy to defend, and "
                "it is the one that most companies have already settled by policy. The argument that "
                "actually gets argued is the second and third."))
+    b.append(p("The running example is a vessel with two feeds held in ratio by the BPCS, protected "
+               "against overpressure by a relief valve. Everything in that arrangement is control: the "
+               "level controller trimming two flow controllers is doing what a control system is for. The "
+               "safety function is the separate layer that closes the feeds when the BPCS has already "
+               "failed — and the whole of this chapter is about what that layer is worth."))
+    b.append(fig(1, F.fig_14_1(), "en"))
 
     b.append(h2("Four failure modes, four different arguments"))
     b.append(p("Section 14.2 splits the usual safe/dangerous pair into four modes, and the split is worth "
@@ -669,11 +675,20 @@ def body_en():
                "triplicated 2oo3 transmitters and a fault-tolerant safety PLC. Both meet SIL 1. Case 1 has "
                "a PFD of 0.0165 and trips spuriously every three years. Case 2 has a PFD of 0.0100 and "
                "trips every five years."))
+    b.append(fig(2, F.fig_14_2(), "en"))
+    b.append(p("Case 1 is the arrangement almost every plant already has: two single transmitters feeding "
+               "one relay block that closes two shutdown valves. There is no redundancy anywhere, so a "
+               "failed transmitter loses one function and a failed relay loses both — and the test interval "
+               "has to be short enough to compensate."))
+    b.append(p("Case 2 replaces the sensors and the logic but leaves the valves alone, which is where the "
+               "money is and where the reliability is not."))
+    b.append(fig(3, F.fig_14_3(), "en"))
     b.append(p("Case 2 costs $38,000 more to buy and $74,160 less to own. The mechanism is worth spelling "
                "out because it is not obvious from the purchase order: the 2oo3 sensors and the safety PLC "
                "can be tested every three years instead of every six months, and that single change removes "
                "the largest annual cost line in Case 1 — $25,000 of manual testing. The redundancy did not "
                "just buy safety margin; it bought test interval, and test interval is where the money is."))
+    b.append(fig(4, F.fig_14_4(), "en"))
     b.append(p("There is a sting in the tail that the chapter states plainly and then moves past. The "
                "valves are single in both cases, and they dominate both the PFD and the spurious trip rate "
                "of Case 2. Doubling the sensor count and buying a fault-tolerant PLC reduced the PFD from "

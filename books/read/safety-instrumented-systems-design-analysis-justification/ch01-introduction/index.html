@@ -26,7 +26,7 @@
   <div class="prose">
 
     <div class="note">
-      <b>What this page is.</b> An outline companion to Chapter 1. The full text lives in
+      <b>What this page is.</b> An outline and commentary companion to Chapter 1. The full text lives in
       <code>1829_01.pdf</code> in the library catalogue and is not republished here. The complete
       Vietnamese translation of this chapter is
       <a href="/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch01-introduction/">here</a>.
@@ -61,6 +61,77 @@
       <li><span class="n">1.9</span><span class="t">There’s Always More to Learn</span><span class="st">p. 16</span></li>
       <li><span class="n">·</span><span class="t">Summary</span><span class="st">p. 17</span></li>
     </ul>
+
+    <h2>A definition that excludes more than it includes</h2>
+    <p>A safety instrumented system is a combination of sensors, logic solver and final elements that
+      takes the process to a safe state when it is asked to. The definition is narrow on purpose, and the
+      exclusions do most of the work. It excludes the basic process control system, which is there to keep
+      the plant running rather than to stop it. It excludes the relief valve and the dike, which are
+      protection but not instrumentation. It excludes the operator, whose response time cannot be
+      demonstrated. What is left is the one layer in the onion that is <em>designed</em> to be dormant —
+      and dormancy is the property that makes the rest of this book necessary.</p>
+    <p>That is why the chapter spends so little time on what an SIS is and so much on what it is not. A
+      control loop that stops working announces itself within minutes. A safety function that stops
+      working announces nothing at all, and will go on announcing nothing for years. Everything that
+      follows — the SIL arithmetic, the proof tests, the change control — exists to compensate for a
+      component that is silent by design.</p>
+
+    <h2>Six confusions with one cause</h2>
+    <p>Section 1.4 lists six areas where the industry argues with itself: technology, redundancy, field
+      devices, test intervals, vendor claims, and certification versus prior use. They look like six
+      separate arguments. They are one argument seen from six angles, and the cause is structural: the
+      field is split between vendors who sell components, engineering contractors who sell systems, and
+      end users who own the consequence — and all three use the same words to mean different things.</p>
+    <p>A SIL 3 certificate on a transmitter, a SIL 3 claim for a loop, and a SIL 3 requirement in a safety
+      requirements specification are three different statements, and only one of them is about a plant.
+      The vendor's document says what the device can do under stated conditions; the loop claim says what
+      the installation achieves, which is usually less; the requirement says what the hazard needs, which
+      is usually more than either. Most of the confusion in the chapter is somebody quoting one of those
+      three numbers in a conversation about another.</p>
+    <p>Two of the six deserve singling out because they recur throughout the book. The first is
+      <b>redundancy</b>, which is treated as a property a system has rather than a claim about which
+      failures are independent. Two channels in one cabinet, on one power supply, calibrated by one
+      technician with one procedure, are redundant in the drawing and single in the failure. The second is
+      the <b>field device</b> question, which chapter 9 answers with a table showing that the logic solver
+      is a small fraction of the loop's unreliability while absorbing most of the specification effort.</p>
+
+    <h2>Two standards, two audiences</h2>
+    <p>The most useful thing in section 1.5 is the distinction between IEC 61508 and IEC 61511, because
+      it explains why the same conversation produces different numbers depending on who is in the room.
+      IEC 61508 is the umbrella standard, written for the makers of devices: it defines what a component
+      must do to be called SIL 2, and it is what a vendor's certificate refers to. IEC 61511 — published in
+      the United States as ANSI/ISA-84.00.01 — is written for the users of those devices: it defines what
+      a <em>plant</em> must do, starting from the hazard rather than from the component.</p>
+    <p>A vendor cannot certify a plant, and a plant cannot be built from certificates. That asymmetry is
+      the reason the book keeps returning to the safety requirements specification: it is the only
+      document that belongs to the user, and the only one that can connect a hazard to a purchase order.</p>
+
+    <h2>The standards changed direction, and moved the burden</h2>
+    <p>Section 1.6 describes a shift that took about twenty years and is still incomplete. The older
+      documents were prescriptive: use two sensors, use a redundant logic solver, test annually. The newer
+      ones are performance-based: achieve this probability of failure on demand, and demonstrate that you
+      have. The prescriptive form is easy to audit and impossible to argue with; the performance form is
+      hard to audit and possible to argue with in every direction.</p>
+    <p>What moved is the burden of proof. Under a prescriptive rule, compliance is the deliverable. Under
+      a performance rule, the deliverable is an argument — and an argument can be made badly, made
+      optimistically, or made by someone who does not know what they are doing. That is not a defect of
+      the newer standards; it is the price of letting a competent engineer design for the actual hazard
+      instead of for the worst case in a committee room. But it does mean that the quality of a safety
+      system now depends on the quality of the reasoning behind it, which is why the rest of the book is
+      about method rather than about equipment.</p>
+
+    <h2>The failure mode is complacency</h2>
+    <p>Sections 1.7 to 1.9 are short and read like asides. They are the most important pages in the
+      chapter. The argument is that the industry's characteristic failure is not ignorance — the standards
+      are widely read and the equipment is generally good — but confidence. A plant that has run for
+      fifteen years without a serious incident begins to treat that record as evidence about the system
+      rather than as evidence about the absence of demands.</p>
+    <p>Nothing in this book protects against that. A proof test that is signed without being performed, a
+      bypass that outlives its permit, a cause-and-effect sheet that was correct in 2004 and has been
+      edited four times since: each is invisible in the incident statistics right up to the moment it is
+      the only thing in them. The chapter's closing line is that there is always more to learn, and the
+      reason it is the closing line is that the alternative — deciding you already know — is the specific
+      attitude that the rest of the book is written against.</p>
 
     <div class="table-wrap">
       <table class="tbl">

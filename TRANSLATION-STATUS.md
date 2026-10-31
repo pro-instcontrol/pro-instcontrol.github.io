@@ -1,13 +1,14 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** end of session 2026-11-01 (session 8) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** end of session 2026-11-01 (session 9) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook **Chapter 11 — Level Measurement**. Chapters 1–10 are
 > done, live, and registered.
 >
-> **Practical Process Control is finished.** All 14 chapters are translated, all 14 English
-> companion pages now carry the same figures as their Vietnamese counterparts, and the
-> library card reads "Fully translated · 14 of 14".
+> **Both translated books are now finished.** Practical Process Control (14/14) and Safety
+> Instrumented Systems (16/16) each have full Vietnamese translations and English companion
+> pages that carry the same figures as their Vietnamese counterparts — 54 figures on the SIS
+> side, 120 on the PC side, zero mismatches.
 >
 > **This is a batch boundary.** The standing instruction is *batch of 5, then check in*, and
 > chapter 10 closes the second batch. Do not start chapter 11 without asking.
@@ -17,11 +18,6 @@
 >
 > **Read §5 before drawing anything.** Session 7 found four figure defects that the
 > Georgia-serif QA grid cannot see, because its font metrics differ from the site font.
->
-> **Known gap, not yet fixed: the SIS English pages carry 3 figures against 54 in
-> Vietnamese.** Same class of defect as PC had; see §3.4 for the exact list. The
-> Vietnamese translation itself is complete — this is a companion-page gap, not a
-> translation gap.
 
 This file is the single source of truth for the book-translation work on this site.
 Read it before touching anything. Update the status table and append to the session log
@@ -257,38 +253,18 @@ tables), **124 numbered equations** (10.1–10.114 plus 10.89a/b/c), 5 sections,
 
 ### 3.4 Then
 
-- **SIS English pages are missing almost all their figures.** The Vietnamese pages carry
-  54 figures across 16 chapters; the English pages carry 3 (only chapter 2). This is exactly
-  the defect PC had and session 8 fixed. The fix is mechanical and per-module: read
-  `body_en()` in `sis_chNN.py`, insert `fig(n, F.fig_N_n(), "en")` after the paragraph that
-  discusses each drawing, and add a bridging sentence where the figure is not already
-  introduced in the prose. Do the chapters in order and re-run `build/reader_sis.py` after
-  each. Target: EN figure count == VI figure count, chapter by chapter.
-
-  | Chapter | VI figs | EN figs now | Missing |
-  |---|---|---|---|
-  | 3 | 1 | 0 | 1 |
-  | 4 | 3 | 0 | 3 |
-  | 5 | 0 | 0 | — |
-  | 6 | 7 | 0 | 7 |
-  | 7 | 7 | 0 | 7 |
-  | 8 | 8 | 0 | 8 |
-  | 9 | 3 | 0 | 3 |
-  | 10 | 2 | 0 | 2 |
-  | 11 | 3 | 0 | 3 |
-  | 12 | 3 | 0 | 3 |
-  | 13 | 3 | 0 | 3 |
-  | 14 | 4 | 0 | 4 |
-  | 15 | 1 | 0 | 1 |
-  | 16 | 6 | 0 | 6 |
-
+- **SIS English pages: closed in session 9.** The gap was 3 figures against 54; it is now
+  54 against 54, and every chapter's English page is a companion essay of 1,100–2,750 words
+  (it was 371–1,560). Chapters 1 and 2, which had no generator and were bare outlines at
+  371 and 378 words, are now 1,374 and 1,066 words with the outline kept above the
+  commentary. Nothing on the SIS side needs further work.
 - Handbook Chapters 11–101. Chapter 11 (Level, 21 pp / 5.6k words) and Chapter 12 (Area,
   13 pp / 4.5k words) are both small and both already downloaded to `work/Ch11.pdf` and
   `work/Ch12.pdf`.
-- The handbook is the priority and the user has said so twice. Do **not** resume SIS until
-  the handbook is finished — the chapters done in session 4 were an explicit, bounded
+- The handbook is the priority and the user has said so twice. Do **not** revisit PC or SIS
+  until the handbook is finished — the chapters done in session 4 were an explicit, bounded
   exception ("stop after this chapter and continue to translate 6 chapters of next 2 books").
-- PC is **finished** and needs no further work.
+- PC and SIS are both **finished** and need no further work.
 
 ## 4. How to translate the next chapter — the recipe
 
@@ -474,6 +450,8 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 | A book's landing page still says "the translation proceeds chapter by chapter" after it is finished | `lede_en` / `policy_en` are static strings | add `lede_done_en` / `policy_done_en` (and `_vi`); `reader_book.build()` prefers them once `len(done) == total` |
 | An English page has a Vietnamese subtitle under every heading | `h2("English", "Vietnamese")` — `h2(t, en)` renders the second argument as a subtitle | on English pages pass **one** argument. Only the `"§ 10.2"` section references in ch10–14 are intentional |
 | An English companion page has far fewer figures than its Vietnamese twin | `body_en()` never called `fig(...)`; the SVGs existed but were not wired in | after editing, compare counts: `for d in books/read/<book>/ch*; do …; done` — they must match |
+| `sisfig.fig_6_1` does not exist | SIS chapters 6–16 each have their **own** figure module (`sis06fig` … `sis16fig`); only ch03 and ch04 use `sisfig` | import the chapter's own module: `import sis08fig as F` |
+| A hand-edited chapter page reverts after a rebuild | `build.py` does not touch SIS/PC ch01–ch02, but a careless `cp` or a new generator would | ch01/ch02 of SIS and PC have no generator by design; verify with `md5sum` before and after a build |
 | A dimension arrow bisects its own label | label placed at the midpoint between the two arrow tips | put it beside one tip instead |
 | A page has no previous/next links at all | `nav()` was defined but never called from `page()` | it is wired now; if you fork the shell, call it |
 | A wide table wraps tags mid-token (`FALL-` / `1000`) | eleven columns squeezed into the prose width | `table.tbl.matrix` CSS + merge columns until it fits |
@@ -521,6 +499,51 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 - **Write this file's session log before you stop.**
 
 ## 7. Session log
+
+### 2026-11-01, session 9 — Safety Instrumented Systems finished
+
+Same request as session 8, for the other book: *finish* the SIS reader, mark it done in
+`/books`, and make "Open the book →" work.
+
+**The card and the footer were already correct** — session 8 fixed both for every card on
+the site, and SIS had been switched to `"full"` at the same time. Verified in both
+languages before touching anything: `data-level="full"`, "Fully translated · 16 of 16
+chapters", footer is a real `<a href>`.
+
+**The real gap was the English pages.** 13 of 16 chapters carried **zero** figures against
+54 in Vietnamese, and chapters 1–2 were bare outlines at 371 and 378 words. The whole book
+came to 3 English figures against 54.
+
+What was done, chapter by chapter:
+
+| | Before | After |
+|---|---|---|
+| Figures (EN) | 3 | **54** — parity on all 16 chapters |
+| ch01 words | 371 | 1,374 |
+| ch02 words | 378 | 1,066 |
+| ch05 words | 810 | 1,317 |
+| ch06 words | 1,337 | 2,576 |
+| ch08 words | 1,094 | 2,498 |
+| ch16 words | 1,563 | 2,742 |
+
+Three chapters needed new sections rather than figure placement:
+
+- **ch08** never introduced the failure-mode vocabulary or the three modelling methods, so
+  two sections were written: "Safe, dangerous, detected, hidden" (figures 8-1, 8-2) and
+  "Three ways to draw the same system" (reliability block diagram, fault tree, Markov —
+  figures 8-4, 8-5, 8-6). The chapter has 18 source sections and the essay had six.
+- **ch07**'s redundancy section compressed four architectures into one paragraph. Rewritten
+  as one paragraph per architecture, each with its drawing (7-2, 7-3, 7-5, 7-6).
+- **ch05** never covered what the standard requires the specification to contain. Added
+  Table 5.1, twelve rows, each with the reason it cannot be deferred.
+
+**ch01 and ch02 have no generator** and are hand-edited HTML. Both gained four or five
+commentary sections above the existing outline, which was kept because it is genuinely
+useful for front matter. Confirmed the build does not overwrite them: `build.py` +
+`cp -r dist/. ./` leaves their md5 unchanged.
+
+Final state: `check_links.py` → 486 pages, 12,610 references, 0 broken. Sitemap 484 URLs.
+SIS figure parity 54/54. No mismatches on PC either (120/120).
 
 ### 2026-11-01, session 8 — Practical Process Control finished; the /books card fixed
 

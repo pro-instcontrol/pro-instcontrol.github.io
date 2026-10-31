@@ -557,11 +557,20 @@ def body_en():
                "pieces get assembled: a crude unit charge heater, followed from process hazard analysis "
                "to a quarterly test procedure, through all eight lifecycle steps. The emphasis is on the "
                "method, not on the answer."))
+    b.append(fig(1, F.fig_16_1(), "en"))
     b.append(p("The chapter is worth reading as a whole because of something no single chapter could "
                "show — how much of the engineering is bookkeeping. Six tables, one P&ID, four block "
                "diagrams and a fourteen-step checklist. The safety argument is not won by a clever "
                "calculation; it is won by the fact that the calculation, the cause-and-effect sheet and "
                "the test procedure all refer to the same four valves by the same names."))
+    b.append(p("The plant itself is an ordinary crude unit charge heater: two feed passes, a fuel gas "
+               "train through a knock-out drum, and pilot gas on its own pressure control. Every loop on "
+               "it belongs to the BPCS, which sits two hundred feet away in the control room."))
+    b.append(fig(2, F.fig_16_2(), "en"))
+    b.append(p("What the SIS adds is deliberately small, and seeing how small is the best preparation for "
+               "the arithmetic that follows: three transmitters, one logic block, four trip valves and a "
+               "hard-wired manual switch. Everything else on the drawing already existed."))
+    b.append(fig(3, F.fig_16_3(), "en"))
 
     b.append(h2("The numbers that decide the design"))
     b.append(p("Two of them do most of the work, and both are small. The pilot gas function needs SIL 3 "
@@ -570,6 +579,7 @@ def body_en():
                "or a million-dollar fire. That single split in Table 16-2 is what produces the asymmetry "
                "in the whole design: only the pilot gas group gets 1oo2 transmitters, only it gets a "
                "1oo2 valve pair on both the pilot and the fuel gas."))
+    b.append(fig(4, F.fig_16_4(), "en"))
     b.append(p("The second number is the demand rate. Once a year, stated in section 16.3 almost in "
                "passing, is what makes every PFD in section 16.9 a simple multiplication. At one demand "
                "per year, with a three-month proof test, the average probability of failure on demand is "
@@ -587,6 +597,7 @@ def body_en():
                "XV-30A/B', it is 'close everything that can feed this fire box'. Counting only the pilot "
                "valves would have understated the PFD by half and, more importantly, would have described "
                "the wrong function on the cause-and-effect sheet."))
+    b.append(fig(5, F.fig_16_5(), "en"))
     b.append(p("And the result is 3.06 × 10⁻⁴ against a SIL 3 limit of 1 × 10⁻³. That is a margin of "
                "about three, which sounds comfortable until you notice where it comes from: the margin "
                "exists because the valves are 1oo2 and tested quarterly. Change the test interval to "
@@ -628,6 +639,7 @@ def body_en():
                "test is a fourteen-step procedure an operator can run in an afternoon. The bypass is not "
                "a concession to convenience; it is what buys the three-month test interval that the PFD "
                "calculation depends on."))
+    b.append(fig(6, F.fig_16_6(), "en"))
 
     b.append(h2("The test procedure as a safety document"))
     b.append(p("Look at what the fourteen steps actually do. Steps 2 and 3 open the bypasses and confirm "

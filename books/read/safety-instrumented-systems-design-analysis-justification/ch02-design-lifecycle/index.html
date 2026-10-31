@@ -25,7 +25,7 @@
   <div class="prose">
 
     <div class="note">
-      <b>What this page is.</b> An outline and figure companion to Chapter 2. The full text lives in
+      <b>What this page is.</b> An outline, figure and commentary companion to Chapter 2. The full text lives in
       <code>1829_02.pdf</code> in the library catalogue and is not republished here. The complete
       Vietnamese translation of this chapter is
       <a href="/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch02-design-lifecycle/">here</a>.
@@ -49,6 +49,55 @@
       <li><span class="n">2.3.8</span><span class="t">Decommissioning</span><span class="st">p. 28</span></li>
       <li><span class="n">·</span><span class="t">Summary</span><span class="st">p. 29</span></li>
     </ul>
+
+    <h2>Hindsight is the wrong tool for the job</h2>
+    <p>Section 2.1 makes a distinction that sounds like a word game and is not. Hindsight asks what went
+      wrong, after the fact, with the evidence in front of you. Foresight asks what could go wrong, before
+      the fact, with the evidence you have been able to gather. Engineering is supposed to run on the
+      second, and it mostly runs on the first, because the first is cheap and the second is not.</p>
+    <p>The practical consequence is that the industry's knowledge is stored in the wrong place. It sits in
+      incident reports, insurance claims and coroners' findings — all of which are produced after the
+      money has been spent and the plant has been built. A design team starting a new project has almost
+      no access to that store, and even less incentive to read it, because the schedule has already been
+      agreed.</p>
+
+    <h2>The 44 % finding is about documents, not engineers</h2>
+    <p>The Health and Safety Executive's finding — that 44 % of accidents in control and safety systems
+      trace back to an incorrect or incomplete specification — is quoted so often that it has stopped
+      being read. It does not say that 44 % of engineers are incompetent. It says that in nearly half of
+      the cases, the system did exactly what it was asked to do, and what it was asked to do was wrong.</p>
+    <p>That reframing matters because it moves the fix. If the problem were competence, the remedy would
+      be training and more checking of the same documents. If the problem is that the specification was
+      never written down completely enough to be checked, the remedy is structural: a document that states
+      the function, the integrity target, the proof-test interval, the response time and the safe state,
+      in a form that somebody who was not in the meeting can audit.</p>
+    <p>Add the 20 % attributed to changes made after commissioning and the number reaches 64 %. Nearly two
+      thirds of the failures happen before the equipment is ever stressed — in the specification and in
+      the modification — which is the same distribution that chapter 15's checklist is built around, and
+      the reason sections 1 to 4 and section 19 of that checklist carry most of its value.</p>
+
+    <h2>Eight steps, and the loop that closes them</h2>
+    <p>Section 2.3 lays out the design lifecycle that IEC 61511 and ANSI/ISA-84.00.01 both adopt: hazard
+      and risk analysis, allocation of safety functions to protection layers, development of the safety
+      requirements specification, SIS design and engineering, installation and commissioning and
+      validation, operations and maintenance, modifications, and decommissioning. Eight steps, in that
+      order, and the order is the argument.</p>
+    <p>Each step produces the input to the next, which is why skipping one is not a shortcut but a debt.
+      An allocation made without a hazard study assigns a SIL to the wrong scenario. A specification
+      written without an allocation states a target integrity that nobody derived. A design built from an
+      incomplete specification will pass its factory test perfectly and fail its first demand, because the
+      factory test checks the design against the specification and the specification is what was wrong.</p>
+    <p>The eighth step is the one that makes it a lifecycle rather than a sequence. Decommissioning is not
+      the end of the system; it is the point at which the next hazard study begins, and the information
+      gathered in steps six and seven — what actually failed, how often, and what the proof tests found —
+      is the only field data the next project will ever get. A plant that throws that away at
+      decommissioning has spent twenty years generating evidence and then deleted it.</p>
+    <p>There is also a backward loop that the diagram does not draw. Operations feeds modifications, and
+      modifications feed back into the hazard analysis, which is why chapter 13 treats a change as a
+      return to the first affected phase rather than as an edit. The lifecycle is not a line with eight
+      boxes on it; it is a line with a return path, and most of the failures in this book live on the
+      return path.</p>
+
     <h2>Figures</h2>
     <p style="color:#888;font-size:.82rem">These diagrams are reproduced from the Vietnamese edition (Figures 2-1 to 2-3).</p>
     <figure class="figure" id="fig-2-1">

@@ -431,6 +431,55 @@ def body_en():
                "be verified — and a function that cannot be verified cannot be claimed at a high SIL, "
                "whatever the hardware."))
 
+    b.append(h2("What the standard actually requires the SRS to say"))
+    b.append(p("Section 5.3 lists the contents that ANSI/ISA-84.00.01-2004 requires of a safety "
+               "requirements specification. Read as a list of topics it is dry. Read as a checklist it is "
+               "the most practical page in the book, because every item on it is something that cannot be "
+               "added later without changing the design."))
+    b.append(table(
+        ["The SRS must state", "Why it cannot be deferred"],
+        [["A description of each safety instrumented function",
+          "The function, not the instrument. “Trip on high pressure” does not say what closes; if the "
+          "sentence has no output in it, the design is being done at the wrong stage."],
+         ["The safe state for each function",
+          "De-energised, valve closed, fan stopped, damper open. The answer decides the wiring, the "
+          "solenoid type and the failure direction of every component downstream."],
+         ["The demand rate",
+          "It is the denominator of the PFD. Without it the SIL target is a number with no units, and "
+          "every calculation in chapter 8 is meaningless."],
+         ["The target SIL for each function",
+          "Derived from the hazard study and the risk tolerance, never from what the vendor's catalogue "
+          "happens to offer."],
+         ["The proof-test interval",
+          "A design parameter, not a maintenance preference: it enters the PFD with the same weight as "
+          "the failure rate (chapter 12)."],
+         ["The response time, sensor to final element",
+          "Usually dominated by the valve stroke and usually omitted. A trip that closes the valve in "
+          "eleven seconds does not satisfy a requirement written for three."],
+         ["The process measurements and trip points",
+          "With units, ranges, and the source of the number. A trip point with no provenance is a guess "
+          "that will be re-guessed at every review."],
+         ["The output actions and the input–output relationship",
+          "The cause and effect matrix. It is the document that survives commissioning, and the only one "
+          "an operator will read at three in the morning."],
+         ["The behaviour on failure of the SIS itself",
+          "Fail-safe direction, and what the outputs do on loss of power or loss of the logic solver."],
+         ["The reset and restart requirements",
+          "Manual or automatic reset, what permissives must be satisfied, and who is permitted to reset."],
+         ["The bypass and override provisions",
+          "A function that cannot be tested online will not be tested. The bypass is what buys the test "
+          "interval the PFD assumes."],
+         ["The maximum spurious trip rate",
+          "The second requirement, and in practice usually the binding one — see chapter 16, where the "
+          "nuisance-trip budget is tighter than the SIL."]],
+        "Table 5.1 · The contents the standard requires of a safety requirements specification, and the "
+        "reason each one has to be settled before the design starts rather than after."))
+    b.append(p("Two rows do more work than the rest. The <b>demand rate</b> turns a SIL from an adjective "
+               "into a number, because it is the only thing that converts a probability into a frequency. "
+               "The <b>proof-test interval</b> is the only item on the list that can be changed after "
+               "commissioning without touching hardware — which is exactly why it gets changed informally, "
+               "and why the calculation quietly stops being true."))
+
     b.append(h2("Cause and effect: the one document everybody reads"))
     b.append(p("Of all the documents in the SRS package, the cause and effect matrix is the one that "
                "actually gets used after commissioning. The P&ID is consulted when something is modified, "

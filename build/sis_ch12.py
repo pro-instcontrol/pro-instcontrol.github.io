@@ -418,6 +418,7 @@ def body_en():
                "themselves is carried across from a system where it happens to be true. It is not true "
                "here. A welded-shut relay, a plugged impulse line, a valve that has not moved in four years "
                "— none of these produce an alarm. They produce a demand that is not met."))
+    b.append(fig(1, F.fig_12_1(), "en"))
 
     b.append(h2("The test interval is a design parameter, not a maintenance preference"))
     b.append(p("Equation 12.1 is one line long and it reorders the priorities of everyone who reads it. "
@@ -453,6 +454,7 @@ def body_en():
                "out of service for the duration of each test, and at some point the second effect overtakes "
                "the first. A simplex system in bypass has an availability of zero, not 99 per cent; a "
                "triplicated system in test is a dual system."))
+    b.append(fig(2, F.fig_12_2(), "en"))
     b.append(p("So there is a genuine optimum, and it is a calculable number rather than a matter of "
                "opinion. For the parameters drawn here it lands near nine months. The practical lesson is "
                "not the exact figure — it depends on the loop — but that the curve has two arms with two "
@@ -476,6 +478,13 @@ def body_en():
                "department, a person. Item 5.0 wants the hazards of the test itself written down, which is "
                "the item most often skipped and the one that gets people hurt: a test that closes a valve "
                "on a live process is a hazard in its own right, and it needs to be assessed as one."))
+    b.append(p("Testability, meanwhile, is designed rather than discovered. The loop in Figure 12-3 has an "
+               "isolation valve so the transmitter can be pressurised, a bypass valve so the process keeps "
+               "running around the shutdown valve, and two limit switches confirming that the valve "
+               "actually reached its end position. Three additions, and a unit shutdown becomes a "
+               "twenty-minute exercise — which is the only reason the interval in the calculation is "
+               "achievable at all."))
+    b.append(fig(3, F.fig_12_3(), "en"))
     b.append(p("The chapter's insistence that operations and maintenance help write the procedure is not "
                "politeness. A procedure written by an engineer in an office describes the system as "
                "designed. A procedure written with the technician describes the system as it is, including "

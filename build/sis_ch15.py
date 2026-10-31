@@ -553,6 +553,7 @@ def body_en():
                "failures, 44 percent traced back to incorrect or incomplete specifications and 20 percent "
                "to changes made after commissioning. Sixty-four percent. Nearly two thirds of the failures "
                "happened before the equipment was ever stressed, in documents and decisions."))
+    b.append(fig(1, F.fig_15_1(), "en"))
 
     b.append(h2("The two failure modes this checklist actually targets"))
     b.append(p("Those two numbers are not equally distributed across the twenty sections. Sections 1 to 4 "

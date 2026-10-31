@@ -599,6 +599,11 @@ def body_en():
                "excellent below about fifteen I/O and become unmanageable somewhere before a hundred. The "
                "number is not a standard; it is the point at which nobody can trace a cause to an effect "
                "any more."))
+    b.append(p("The solid-state system of section 7.3 replaces the relay with a module and the copper with "
+               "a printed board, and in integrity terms it buys very little: the logic is still fixed in "
+               "the wiring, the failure modes are still physical, and a logic change still means redrawing "
+               "the schematic."))
+    b.append(fig(1, F.fig_7_1(), "en"))
 
     b.append(h2("Diagnostics are the whole difference"))
     b.append(p("Every technology in this chapter delivers the same thing when it works: a discrete output. "
@@ -606,6 +611,12 @@ def body_en():
                "A general-purpose PLC has almost no answer to that question, because it was designed for "
                "active control, where a failed input announces itself by making the process misbehave. In a "
                "safety system the process is quiet by design, so a failed input announces nothing at all."))
+    b.append(p("The input circuit shows why the problem is structural rather than a matter of better "
+               "components. The opto-coupler that makes the channel safe — no conductive path between field "
+               "and logic — is the same component that makes a stuck switch undetectable, because there is "
+               "no return path to test against. Diagnostics have to be designed in, by adding a second "
+               "channel or a pulse test, not switched on."))
+    b.append(fig(4, F.fig_7_4(), "en"))
     b.append(p("This is why the chapter's horror stories are all the same story. The demo system with the "
                "CPU chip removed that kept every output energised; the four out of seven systems that failed "
                "a site acceptance test nobody had thought to run; the backup CPU cable that was never "
@@ -629,12 +640,28 @@ def body_en():
     b.append(h2("Redundancy architectures are arguments about disagreement"))
     b.append(p("Hot back-up, active parallel, TMR and 1oo2D are usually presented as a ladder of increasing "
                "integrity. They are better understood as four different answers to one question: when the "
-               "channels disagree, who decides? A hot back-up never has to answer, because only one CPU is "
-               "running; it pays for that by being unable to detect its own failure. Active parallel has to "
-               "answer every time and has no basis on which to do it. TMR answers by majority, which works "
-               "until two channels fail the same way. 1oo2D answers by diagnostics rather than by voting, "
-               "which is why it needs only two channels — and why its integrity depends entirely on the "
-               "diagnostic coverage it claims."))
+               "channels disagree, who decides?"))
+    b.append(p("A hot back-up never has to answer, because only one CPU is running, and it pays for that by "
+               "being unable to detect its own failure. All three of its failure routes meet at the same "
+               "joint: diagnostics that do not cover every failure, a switch that may not be bumpless, and "
+               "a standby that may already be dead."))
+    b.append(fig(2, F.fig_7_2(), "en"))
+    b.append(p("Active parallel has to answer every time, and has no basis on which to do it. Both channels "
+               "process, so there is no standby copy to compare against the running one; the only "
+               "arbitration available is a voting rule chosen in advance, and that rule — not the hardware "
+               "— decides whether the system fails safe or fails dangerous."))
+    b.append(fig(3, F.fig_7_3(), "en"))
+    b.append(p("TMR answers by majority, which works until two channels fail the same way. It survives any "
+               "single failure, including a dangerous one, because two channels still agree — but the three "
+               "channels protect only the logic. The sensor and the valve are still single points of "
+               "failure, and they are where most of the unreliability actually lives."))
+    b.append(fig(5, F.fig_7_5(), "en"))
+    b.append(p("1oo2D answers by diagnostics rather than by voting, which is why it needs only two channels "
+               "and why its integrity depends entirely on the diagnostic coverage it claims. Two "
+               "simultaneous safe failures are needed for a nuisance trip and two simultaneous dangerous "
+               "failures for loss of function: fault tolerance equal to a triple system, from two channels "
+               "and a diagnostic that must actually work."))
+    b.append(fig(6, F.fig_7_6(), "en"))
     b.append(p("The common-cause problem runs underneath all four. Redundancy counts independent failures; "
                "software bugs, shared power supplies, shared impulse lines and shared maintenance procedures "
                "are not independent. A triple system with a single shared root cause is a single system with "
@@ -646,6 +673,7 @@ def body_en():
                "one spare-parts list, one maintenance team, one programming environment, one screen. It is "
                "also a decision to convert a set of independent single points of failure into one shared "
                "single point of failure, and to convert a local trip into a plant trip."))
+    b.append(fig(7, F.fig_7_7(), "en"))
     b.append(p("The mitigation is redundancy, and the trap is that redundancy is exactly what makes the "
                "system complex enough to need more of it. Every hot back-up adds a switch that can fail; "
                "every switch adds a diagnostic that must itself be tested; every test adds a procedure that "

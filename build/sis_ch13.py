@@ -394,11 +394,13 @@ def body_en():
                "that had no room left. The programmer added a second rung and repeated the coil, which is "
                "exactly what you would do if you were thinking of the diagram as a drawing rather than as "
                "an execution order."))
+    b.append(fig(1, F.fig_13_1(), "en"))
     b.append(p("Ladder logic does not write to the output during the scan. Values accumulate in memory and "
                "are written at the end, so the later rung overwrites the earlier one: the original rung "
                "calls for a shutdown, the new rung resets the bit to normal, and the valve never moves. The "
                "revision worked exactly as designed. The original logic was never re-tested, so nobody "
                "found out until a government inspector asked for a demonstration."))
+    b.append(fig(2, F.fig_13_2(), "en"))
     b.append(p("Two general rules come out of it, and both are cheap. Never write to the same output in more "
                "than one place — if you need a second condition, put it in series on the same rung or use "
                "an intermediate bit. And when you change logic, re-test the whole logic, not the diff. The "
@@ -410,6 +412,7 @@ def body_en():
                "re-verification and documentation. That is inconvenient, because software changes feel "
                "like edits rather than engineering. The programmer in the anecdote made a ten-minute "
                "change and treated it as one."))
+    b.append(fig(3, F.fig_13_3(), "en"))
     b.append(p("The standard's six software requirements are worth reading as a checklist rather than as "
                "prose, because each one maps to a failure mode: analyse the effect before you modify; plan "
                "the modification and the re-verification; follow the plan; plan the conditions during "

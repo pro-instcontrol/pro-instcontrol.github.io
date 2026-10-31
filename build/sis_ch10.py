@@ -542,6 +542,7 @@ def body_en():
                "thing it tests. A requirement with no acceptance criterion is not a requirement, it is a "
                "wish, and it will be discovered as a defect during commissioning when the fix is most "
                "expensive."))
+    b.append(fig(1, F.fig_10_1(), "en"))
 
     b.append(h2("Energise to trip versus de-energise to trip"))
     b.append(p("Section 10.2.1 contains a trap that catches people who think they are being clever. A "
@@ -549,6 +550,7 @@ def body_en():
                "normally de-energised system, common in fire and gas and in machinery protection, fails "
                "safe by energising — so loss of power means no trip, and an inverted logic solver gives you "
                "exactly the wrong behaviour."))
+    b.append(fig(2, F.fig_10_2(), "en"))
     b.append(p("Everything else in that section follows from this one fact. The latching solenoids, the "
                "alarm fuses, the line monitoring: each exists because in a de-energised system a broken "
                "wire and a healthy circuit look identical. That is the price of choosing the architecture "
