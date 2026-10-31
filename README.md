@@ -26,6 +26,7 @@ Live: https://pro-instcontrol.github.io/
 | `standards.html` | ISA / IEC / API / ISO / CEN index with what each one governs |
 | `glossary.html` | 52 bilingual terms with live search |
 | `video-library/` | 214 curated videos across 21 topics, a six-stage learning path, and search / level / source filters (VI mirror at `vi/video-library/`) |
+| `books/` | The working library: 175 works on eight shelves with live search, an in-site PDF reader and a page per work — including the 18-part **Control Engineering eBook** series on the *Magazines & Reference* shelf (VI mirror at `vi/books/`) |
 
 ## How the bilingual system works
 
@@ -95,6 +96,9 @@ build/
   videos_data.py    the curated video dataset
   check_videos.py   dataset + dead-link check for the library
   make_og.py        renders the library share card from the dataset
+  books_site.py     /books/ index, PDF reader and one page per catalogue work
+  add_ebooks.py     ingests the Control Engineering eBook series into the catalogue
+  add_works.py      ingests other newly supplied material into the catalogue
   build.py          entry point
 assets/
   style.css         design system (light theme, P&ID-inspired)

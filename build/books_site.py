@@ -88,8 +88,10 @@ SHELVES = [
      "Tài liệu giảng dạy có cấu trúc: khóa PLC, bài hướng dẫn và giáo trình đại học.",
      ["training"], "#6d28d9"),
     ("press", "Magazines & Reference", "Tạp chí & Tham khảo",
-     "Trade press, vendor literature and miscellany worth keeping.",
-     "Báo ngành, tài liệu nhà sản xuất và các tài liệu lẻ còn giá trị.",
+     "Control Engineering's themed eBook series, Control Magazine back issues, "
+     "vendor literature and miscellany worth keeping.",
+     "Bộ eBook theo chủ đề của Control Engineering, các số Control Magazine cũ, "
+     "tài liệu nhà sản xuất và những tài liệu lẻ còn giá trị.",
      ["trade", "misc"], "#525252"),
 ]
 
@@ -391,6 +393,11 @@ def load():
 
 
 def describe(w, lang):
+    # A work may carry its own bilingual blurb (the Control Engineering eBook
+    # series does, since 18 titles would otherwise all share one prefix).
+    own = w.get("desc")
+    if own:
+        return own.get(lang) or own.get("en") or ""
     t = w["title"].lower()
     for key, (en, vi) in DESC.items():
         if key in t:
