@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import pcsis_common as C   # noqa: E402
 
-MODULES = {3: "pc_ch03", 4: "pc_ch04", 5: "pc_ch05"}
+MODULES = {3: "pc_ch03", 4: "pc_ch04", 5: "pc_ch05", 6: "pc_ch06", 7: "pc_ch07"}
 
 
 def main():

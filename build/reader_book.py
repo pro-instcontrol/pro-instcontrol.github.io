@@ -125,7 +125,9 @@ BOOKS = {
                  2: "ch02-process-measurement-and-transducers",
                  3: "ch03-basic-principles-of-control-valves-and-actuators",
                  4: "ch04-fundamentals-of-control-systems",
-                 5: "ch05-stability-and-control-modes-of-closed-loops"},
+                 5: "ch05-stability-and-control-modes-of-closed-loops",
+                 6: "ch06-digital-control-principles",
+                 7: "ch07-real-and-ideal-pid-controllers"},
         "copyright_en": "Original text © IDC Technologies Pty Ltd",
         "copyright_vi": "Bản gốc © IDC Technologies Pty Ltd",
         "lede_en": ("A hands-on training manual covering process dynamics, measurement, valves, "
