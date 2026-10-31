@@ -1,9 +1,9 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-10-31 (session 14 — Chapter 14 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-10-31 (session 15 — Chapter 15 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 15** (and onward). Chapters
-> 1–14 are done, live, and registered. `work/hb_ch14.txt` is translated; Chapter 15+ source
+> **Where to start next:** Handbook **Chapter 16** (and onward). Chapters
+> 1–15 are done, live, and registered. `work/hb_ch15.txt` is translated; Chapter 16+ source
 > PDFs must be extracted from the 117-file handbook library before translation.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
@@ -42,7 +42,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–14** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–15** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -64,6 +64,7 @@ Chapters done, with their slugs and build scripts:
 | HB 12 | Area Measurement | `ch12-area-measurement` | `reader_hb_ch12.py` + `hb12fig.py` | 10 | 7.0k |
 | HB 13 | Volume Measurement | `ch13-volume-measurement` | `reader_hb_ch13.py` + `hb13fig.py` | 10 | 7.3k |
 | HB 14 | Angle Measurement | `ch14-angle-measurement` | `reader_hb_ch14.py` + `hb14fig.py` | 3 | 3.5k |
+| HB 15 | Tilt Measurement | `ch15-tilt-measurement` | `reader_hb_ch15.py` + `hb15fig.py` | 5 | ~5.0k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
@@ -103,7 +104,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `(level, total_chapters, done_chapters)`.
-  Currently `("progress", 101, 14)`, `("full", 16, 16)`, `("full", 14, 14)`.
+  Currently `("progress", 101, 15)`, `("full", 16, 16)`, `("full", 14, 14)`.
 - `build/books_site.py` → `FLAG_LABEL = {level: (vi_format, en_format)}` — **the pill text
   is derived from `level`, not hard-coded.** Add a level here as well as in the CSS, or the
   pill will read "Translating" on a finished book.
@@ -565,6 +566,39 @@ Handbook progress 13/101 → 14/101; `DONE[14]`, `("progress", 101, 14)`, and th
 `pdf-store-b` junctions and `library/pdfindex.json`; copy the needed `ChNN.pdf` into `work/`, extract, then
 follow the §4 recipe. Note this chapter had only 3 figures — do not pad figure counts to 10 when the
 source genuinely has fewer.
+
+### 2026-10-31, session 15 — Handbook Chapter 15, Tilt Measurement
+
+**Shipped:** Handbook chapter 15, *Tilt Measurement* (Adam Chrzanowski & James M. Secord, University of New
+Brunswick) — a geodetic/monitoring chapter. Full Vietnamese translation + English companion at
+`/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch15-tilt-measurement/`.
+Handbook progress 14/101 → 15/101; `DONE[15]`, `("progress", 101, 15)`, and the §2 table all updated.
+
+**What was written this session:**
+
+- `build/hb15fig.py` — the chapter's **five** real figures (15.1 subsidence from a tilt profile P1–P4 with
+  αᵢ, sᵢ, δh₄; 15.2 connected vessels in hydrostatic equilibrium, h₁=h₂ and P₁+ρ₁gh₁=P₂+ρ₂gh₂; 15.3 hydrostatic
+  leveling with an air tube at top and a liquid tube at bottom, Δh₁₂=r₂−r₁; 15.4 a suspended (a) and an inverted
+  (b) plumb line; 15.5 a: air-current deflection e, b: spiral-wire radius r with max error 2r). No figures were
+  invented — the source has Figures 15.1–15.5, so the module is a 5-figure set, not 10.
+- `build/reader_hb_ch15.py` — full VI translation + EN companion. Embeds all 5 figures (5/5 parity on both
+  languages), the defining equations — δh₄=α₁s₁+α₂s₂+α₃s₃ (15.1), the geodetic-leveling relation
+  T₁₂=d(Δh)/s₁₂, the hydrostatic balance P₁+ρ₁gh₁=P₂+ρ₂gh₂=c (15.2), Δh₁₂=r₂−r₁ (15.3), the plumb-line
+  deflection e=f₀hH/Q (15.3) with f₀=0.08dv²Q (15.4) and the spiral-wire radius r=(d/8)·√(πER/Q) (15.5) — and
+  the 33-item reference list and appendix supplier table. Also `work/hb_ch15.txt` extracted from
+  `pdf-store-b/Ch15__…pdf` (12 pages).
+- Figure parity: VI 5/5 and EN 5/5, IDs `fig-15-1`…`fig-15-5` confirmed; 6 SVGs/page (5 figures + brand
+  mark), 0 malformed on parse.
+
+**Deploy:** `git fetch` → remote already at `ab88d01` (no new remote commits) → `reader_handbook.py` (now
+15 done rows after `DONE[15]` was added), `books_site.py` (progress 101→15), `make_sitemap.py` (509 URLs,
+494 EN/VI pairs), `check_links.py` (511 pages, 13,867 references, **0 broken**). Pushed `b67f9fa` on `main`.
+Live: 200 on both VI/EN and on the book TOC. Library pill now `Đang dịch · 15/101 chương`.
+
+**Chapters 1–15 done; 86 to go.** Next unit is Chapter 16. Source PDFs for 16+ live in the `pdf-store`/
+`pdf-store-b` junctions and `library/pdfindex.json`; copy the needed `ChNN.pdf` into `work/`, extract, then
+follow the §4 recipe. Note the registry edits (`DONE[15]`, `("progress", 101, 15)`) had to be re-applied this
+session — a prior edit to those two lines did not persist — so confirm both before committing next time.
 
 ### 2026-11-01, session 13 — Handbook Chapter 13, Volume Measurement
 
