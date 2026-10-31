@@ -486,7 +486,8 @@ def body_vi():
     b.append('<div class="chapter-nav">'
              '<a href="%sch03-static-and-dynamic-characteristics-of-instrumentation/"><span class="k">← Chương 3</span>'
              'Đặc tính tĩnh và động của thiết bị đo</a>'
-             '<a href="%s" style="text-align:right;"><span class="k">Mục lục →</span>Tất cả chương</a></div>'
+             '<a href="%sch05-measurement-standards/" style="text-align:right;">'
+             '<span class="k">Chương 5 →</span>Chuẩn đo lường</a></div>'
              % (BASE_VI, BASE_VI))
     return "".join(b)
 
@@ -529,7 +530,8 @@ def body_en():
     b.append('<div class="chapter-nav">'
              '<a href="%sch03-static-and-dynamic-characteristics-of-instrumentation/"><span class="k">← Chapter 3'
              '</span>Static and Dynamic Characteristics</a>'
-             '<a href="%s" style="text-align:right;"><span class="k">All chapters →</span>Book contents</a></div>'
+             '<a href="%sch05-measurement-standards/" style="text-align:right;">'
+             '<span class="k">Chapter 5 →</span>Measurement Standards</a></div>'
              % (BASE_EN, BASE_EN))
     return "".join(b)
 

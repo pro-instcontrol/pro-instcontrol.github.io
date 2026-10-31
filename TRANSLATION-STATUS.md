@@ -55,6 +55,31 @@ Progress pills on the library cards are driven by numbers, not by the page conte
 
 **If you add a chapter page and forget these three, the TOC will not link to it.**
 
+### The chapter-nav chain rots every time a chapter lands
+
+Each chapter page ends with a two-slot `chapter-nav`: previous chapter on the left,
+next chapter on the right. When the next chapter is added, **the previous chapter's
+forward link must be rewritten** — nothing does this automatically. Chapter 1 shipped
+with a greyed-out `<span class="disabled">… · chưa dịch</span>` in that slot, and it was
+still saying "not translated" four chapters later.
+
+When you add chapter *N*:
+
+1. Rewrite the right-hand slot of chapter *N−1* in **both** languages.
+2. If chapter *N−1* has a generator (`reader_hb_chNN.py`), edit the generator and rerun it —
+   not the HTML, or the next rebuild undoes your fix.
+3. If it has no generator (chapters 1 and 2 of the handbook, all PC/SIS chapters), edit the
+   HTML directly.
+4. The newest chapter keeps "All chapters → / Book contents" in its right slot until
+   chapter *N+1* exists.
+
+Grep for leftovers before you commit:
+
+```bash
+grep -rn "chưa dịch\|not translated" books/read vi/books/read
+grep -rln 'class="disabled"' books/read vi/books/read
+```
+
 ## 3. Next unit of work
 
 ### Immediate: Handbook Chapter 6 — Displacement Measurement, Linear and Angular
