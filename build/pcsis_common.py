@@ -53,6 +53,7 @@ SLUGS = {
         10: "ch10-engineering-a-system",
         11: "ch11-installing-a-system",
         12: "ch12-functional-testing",
+        13: "ch13-managing-changes-to-a-system",
     },
 }
 

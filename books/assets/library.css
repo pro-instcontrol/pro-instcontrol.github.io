@@ -359,6 +359,9 @@ table.tbl.matrix td:first-child, table.tbl.matrix th:first-child,
 table.tbl.matrix td:last-child, table.tbl.matrix th:last-child { white-space: nowrap; }
 table.tbl.matrix tbody td:nth-child(n+5):nth-child(-n+8) { text-align: center; }
 
+/* MOC procedure table: the item column holds a short label, so stop it breaking mid-word */
+table.tbl.moc th:first-child, table.tbl.moc td:first-child { white-space: nowrap; }
+
 /* a group-header row inside a reference table: "Mechanical", "Far-field / resonance" */
 table.tbl tr.grp td {
   font-family: var(--serif); font-weight: 600; font-size: 0.96rem;
