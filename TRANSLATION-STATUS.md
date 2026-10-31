@@ -470,6 +470,9 @@ that set.
 | A figure's curve has the wrong symmetry (bump instead of S-curve) | sign error inside `erf` — `erf(a+u) − erf(−(a−u))` collapses to an even function | write the difference exactly as the equation reads: `erf(y₁+u) − erf(y₁−u)` |
 | Labels sit on top of the curve in a `_measured()` plot | annotation placed at a fixed `y0 + 24` | put the label in the empty half of the plot, not the top strip |
 | `grep -c` reports 1 figure on a page that has twelve | generated HTML is a single long line | count with `re.findall` in Python |
+| pdf.js says `Missing PDF` for a URL that `curl` fetches fine | the browser refuses the response — no CORS, or a preflight the host answers with 403 | check `OPTIONS` with `Access-Control-Request-Headers: range`; a 403 there kills range loading no matter what `GET` returns |
+| A 100 MB book cannot be opened by any viewer | Google gview gives up around 30 MB; release assets send `Content-Disposition: attachment` and no CORS, so nothing can read them | host on GitHub Pages (same origin, `application/pdf`, 206) and render with the vendored pdf.js |
+| `git push` rejected: "pre-receive hook declined … is 142.40 MB" | a page-range split is not proportional — one half of a scan can hold nearly all the imagery | split recursively on the *measured* file size (`_leaves()` in `make_pdfstore.py`), never on page count |
 | A physics constant in the book does not reproduce from its own formula | the source is not always self-consistent | recompute, then add a `note()` box saying what the arithmetic gives and why — never silently "fix" the text |
 | Push rejected, non-fast-forward | the video-library work landed while you were translating | `git fetch` + `git rebase FETCH_HEAD`, then regenerate the sitemap |
 | `SyntaxError` after an edit | an edit ate a newline between two statements | read the region before editing |
@@ -530,6 +533,66 @@ that set.
 - **Write this file's session log before you stop.**
 
 ## 7. Session log
+
+### 2026-11-01, session 11 — the library's PDF reader, rebuilt on pdf.js
+
+Request: *fix large PDF — change to a different viewer that allows reading books
+above 100 MB.* The old reader set `iframe.src` to
+`docs.google.com/gview?embedded=true&url=…`, and gview answers **"This file is too
+large to preview"** for anything much over 30 MB. Measured, it fails at 63 MB,
+36 MB and 31 MB and works at 5.5 MB, so the 111 MB and 147 MB books could never
+open, and neither could a dozen 30–90 MB ones.
+
+**Transport was the whole problem, and it was decided by measurement, not by
+reading docs.** Every candidate was probed with `curl -D -` before any code was
+written:
+
+| Host | CORS | Range | Preflight (`Range`) | Verdict |
+|---|---|---|---|---|
+| Release assets | none | yes | – | unusable: `fetch()` → `TypeError: Failed to fetch` |
+| `raw.githubusercontent.com` | `*` | 206 | **403** | unusable |
+| `cdn.jsdelivr.net` | `*` | 206 | 200 | 404s anything over 20 MB |
+| **GitHub Pages** | same origin | 206 | n/a | **works** |
+
+Two extra findings that saved a dead end: the native plugin cannot be used either
+(`<iframe>` renders blank, `<object>`/`<embed>` say "Couldn't load plugin", because
+the asset forces a download), and `Content-Disposition` is not ours to change on
+a release asset.
+
+**What was built.**
+
+- `assets/pdfjs/` — pdf.js 4.10.38 legacy build (392 kB + 1.4 MB worker) plus
+  `standard_fonts/` and `cmaps/`, 4.0 MB in all. `build/build.py` now copies
+  *directory* assets with `copytree`; it only handled flat files before, which
+  would have thrown `IsADirectoryError`.
+- `build_reader()` rewritten: a sticky toolbar (back, title, part selector, page
+  box, zoom, download) over a scrolling stage of page placeholders painted lazily
+  by `IntersectionObserver` with a 1600 px margin. Canvas rasterisation is capped
+  at 2.6× so "fit width" on a retina screen does not allocate a 3200 px canvas per
+  page. Keyboard: ← → Home End. Deep link `?p=`. Reader params: `f` (file), `pl`
+  (part files), `i` (index), `r` (page ranges), `t` (title), `b` (back link).
+- `build/make_pdfstore.py` — publishes the bytes. Two companion repositories with
+  Pages enabled, `/pdf-store/` and `/pdf-store-b/`, greedily filled to 769 MB and
+  768 MB because a Pages site is capped at 1 GB and the library is 1.5 GB.
+  `library/pdfindex.json` (785 entries) is the contract: path → file, parts, ranges,
+  repository. A path that already has a home keeps it, so adding a book never
+  moves an existing one.
+- `build/books_site.py` — work pages now link `reader_href(...)` instead of a
+  gview URL, and the copy explains the part selector.
+
+**The splitting trap.** 111.6 MB and 147.2 MB both exceed GitHub's hard 100 MB
+per-file limit, so they are published as page-range parts. A 50/50 split by page
+count produced **142.40 MB and 5 MB** for the 147 MB scan — nearly all the imagery
+sits in one half — and the push was rejected. `_leaves()` now recurses on the
+*measured* file size, yielding 5.0 / 36.8 / 40.4 / 65.6 MB. `pypdf`'s
+`append(src, pages=(a, b))` is the only workable primitive: a per-page `add_page`
+loop rewrote a 40-page slice as 53 MB by keeping the whole cross-reference table.
+
+**Verified.** The 111 MB book opens on its cover and page 20 renders crisply;
+the 147 MB book opens as "Part 1 · 1–294"; a 15-page book from store A renders;
+the Vietnamese reader and a 390 px viewport both lay out cleanly. Both Pages sites
+answer `206 application/pdf` with `Content-Range`. Full build: 501 URLs,
+14,622 local references, **0 broken**.
 
 ### 2026-11-01, session 10 — Handbook Chapter 11, and a glossary built from the books
 

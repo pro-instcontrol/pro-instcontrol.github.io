@@ -17,6 +17,14 @@ CAT = os.path.join(ROOT, "library", "catalog.json")
 RELEASE_TAG = "library-pdfs"
 RELEASE_BASE = ("https://github.com/pro-instcontrol/pro-instcontrol.github.io"
                 "/releases/download/" + RELEASE_TAG + "/")
+# The reader streams from GitHub Pages sites in two companion repositories
+# (/pdf-store/, /pdf-store-b/) — same origin as this site, `application/pdf`,
+# 206 on Range, no attachment disposition. Release assets cannot do that: they
+# send Content-Disposition: attachment and no Access-Control-Allow-Origin, so
+# pdf.js cannot read them and the browser downloads instead of rendering.
+# library/pdfindex.json (built by build/make_pdfstore.py) maps each catalogue
+# path to its file and repository.
+PDF_INDEX = os.path.join(ROOT, "library", "pdfindex.json")
 PDF_ROOT = "D:/Process Control and Automation"
 
 # --- keep only English / Vietnamese works -------------------------------
@@ -59,6 +67,41 @@ def pdf_asset_name(path):
 
 def pdf_url(path):
     return RELEASE_BASE + pdf_asset_name(path)
+
+
+_INDEX_CACHE = {}
+
+
+def pdf_index():
+    """Catalogue path -> published file(s). Written by build/make_pdfstore.py."""
+    if not _INDEX_CACHE:
+        try:
+            _INDEX_CACHE.update(json.load(open(PDF_INDEX, encoding="utf-8")))
+        except (OSError, ValueError):
+            pass
+    return _INDEX_CACHE
+
+
+def reader_href(lang, path, title, back=None):
+    """Reader URL for one catalogue PDF, carrying its part list if it has one."""
+    info = pdf_index().get(path) or {}
+    if info.get("u"):
+        q = [("f", info["u"])]
+        if info.get("n", 1) > 1:
+            q.append(("pl", "|".join(info["parts"])))
+            q.append(("i", "1"))
+            if info.get("r"):
+                q.append(("r", info["r"]))
+    else:
+        # Not in the index yet: fall back to the release asset, which downloads
+        # rather than renders, but at least is not a dead link.
+        q = [("f", pdf_url(path))]
+    if title:
+        q.append(("t", title))
+    if back:
+        q.append(("b", back))
+    base = "/vi/books/reader/?" if lang == "vi" else "/books/reader/?"
+    return base + "&".join("%s=%s" % (k, quote(v, safe="")) for k, v in q)
 
 # ---------------------------------------------------------------- shelves
 # eight shelves, each grouping several catalogue domains
@@ -526,6 +569,7 @@ def work_page(lang, w, dom):
     docs = w.get("docs") or []
     docs_html = ""
     pdf_btns = ""
+    this_page = ("/vi/books/work/%d/" if vi else "/books/work/%d/") % w["id"]
     if docs:
         rows = []
         for d in docs:
@@ -535,9 +579,10 @@ def work_page(lang, w, dom):
             rlink = ""
             if p and p.lower().endswith(".pdf"):
                 u = pdf_url(p)
-                rlink = (' · <a href="%s" target="_blank" rel="noopener">%s</a>'
+                rlink = (' · <a href="%s">%s</a>'
                          ' · <a href="%s" download>%s</a>'
-                         % (u, "đọc" if vi else "read", u, "tải" if vi else "download"))
+                         % (reader_href(lang, p, dtitle, this_page),
+                            "đọc" if vi else "read", u, "tải" if vi else "download"))
             rows.append('<li><span class="t">%s</span><span class="st">%s %s%s</span></li>'
                         % (esc(dtitle), num(dpages, lang), "trang" if vi else "pages", rlink))
         docs_html = ('<h2>%s</h2><ul class="toc-list">%s</ul>'
@@ -547,13 +592,13 @@ def work_page(lang, w, dom):
                      if (d.get("path") or "").lower().endswith(".pdf")]
         if pdf_paths:
             u0 = pdf_url(pdf_paths[0])
-            rpage = ("/vi/books/reader/?u=" if vi else "/books/reader/?u=") + quote(u0, safe="")
+            rpage = reader_href(lang, pdf_paths[0], t, this_page)
             pdf_btns = (
                 '<p style="display:flex;gap:.7rem;flex-wrap:wrap;margin:1.1rem 0;">'
                 '<a href="' + rpage + '" '
                 'style="display:inline-block;padding:.55rem .95rem;border:1.5px solid #000;'
                 'border-radius:6px;font-weight:600;text-decoration:none;color:#000;'
-                'background:#fffdf7;">' + ("📖 Đọc PDF" if vi else "📖 Read PDF") + '</a>'
+                'background:#fffdf7;">' + ("📖 Đọc sách" if vi else "📖 Read the book") + '</a>'
                 '<a href="' + u0 + '" download '
                 'style="display:inline-block;padding:.55rem .95rem;border:1.5px solid #000;'
                 'border-radius:6px;font-weight:600;text-decoration:none;color:#fff;'
@@ -567,11 +612,14 @@ def work_page(lang, w, dom):
         reader_html = ('<p class="lead"><a href="%s"><strong>%s</strong></a></p>'
                        % (rhref, "Mở bản dịch →" if vi else "Open the book →"))
 
-    policy = ("<b>Cách đọc.</b> Tệp PDF được lưu trong kho phát hành của trang (GitHub Release). "
-              "Bấm <b>Đọc PDF</b> để xem trong trình duyệt hoặc <b>Tải PDF</b> để lưu bản sao."
+    policy = ("<b>Cách đọc.</b> Bấm <b>Đọc sách</b> để mở tệp ngay trong trang, "
+              "lật từng trang như sách giấy; bấm <b>Tải PDF</b> để lưu bản sao. "
+              "Sách rất lớn được chia thành nhiều phần, chọn phần ở thanh trên."
               if vi else
-              "<b>About this copy.</b> The PDF is hosted in the site's GitHub Release library. "
-              "Use <b>Read PDF</b> to view it in the browser, or <b>Download PDF</b> to save a copy.")
+              "<b>About this copy.</b> Use <b>Read the book</b> to open it in the "
+              "page and turn its pages in place, or <b>Download PDF</b> to save a "
+              "copy. Very large books are split into parts — pick one in the "
+              "toolbar.")
 
     body = (
         '<main><article class="intranet-content reader">'
@@ -598,41 +646,396 @@ def work_page(lang, w, dom):
             + body + footer(lang))
 
 
+READER_CSS = """
+body{overflow:hidden}
+.pdfshell{display:flex;flex-direction:column;height:calc(100vh - var(--hh,72px))}
+.pdftop{flex:0 0 auto;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;
+  padding:.5rem .9rem;border-bottom:1px solid var(--gray-light);background:#fff;
+  font-family:var(--sans);font-size:.84rem;z-index:20}
+.tb-title{font-family:var(--serif);font-size:1.04rem;font-weight:600;line-height:1.2;
+  max-width:38ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb-of,.tb-z{color:var(--gray-mid);font-variant-numeric:tabular-nums}
+.tb-of b{color:var(--yin)}
+.sp{flex:1 1 auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;
+  height:2rem;padding:0 .5rem;border:1px solid var(--gray-light);border-radius:6px;
+  background:#fff;color:var(--yin);cursor:pointer;font:inherit;line-height:1;
+  text-decoration:none;border-bottom-width:1px}
+.btn:hover{background:var(--gray-bg);border-color:var(--gray-mid)}
+.btn:disabled{opacity:.3;cursor:default}
+.btn.solid{background:var(--yin);color:#fff;border-color:var(--yin)}
+.pdftop input[type=number]{width:4.4rem;height:2rem;padding:0 .3rem;text-align:center;
+  border:1px solid var(--gray-light);border-radius:6px;font:inherit;
+  font-variant-numeric:tabular-nums}
+.pdftop select{height:2rem;max-width:19ch;border:1px solid var(--gray-light);
+  border-radius:6px;background:#fff;font:inherit;padding:0 .25rem}
+.pdfbody{position:relative;flex:1 1 auto;display:flex;min-height:0}
+.pdfstage{position:relative;flex:1 1 auto;overflow:auto;background:#ededed;
+  padding:16px 0 44px;outline:none;scrollbar-gutter:stable}
+.pdfpage{position:relative;margin:0 auto 16px;background:#fff;
+  box-shadow:0 1px 4px rgba(0,0,0,.18);overflow:hidden}
+.pdfpage canvas{display:block;width:100%;height:100%}
+.pdfstate{position:absolute;inset:0;display:grid;place-items:center;padding:2rem;
+  text-align:center;color:var(--gray-mid);font-family:var(--sans);font-size:.9rem;
+  pointer-events:none}
+.pdfstate[hidden]{display:none}
+@media (max-width:720px){
+  .tb-title{max-width:100%;order:-1;flex-basis:100%;font-size:.98rem}
+  .pdfstage{padding:10px 0 30px}
+  .sp{display:none}
+  #zfit{display:none}
+  .pdftop{gap:.3rem;padding:.45rem .6rem}
+  .tb-of,.tb-z{font-size:.78rem}
+}
+"""
+
+READER_JS = """
+import * as pdfjsLib from '/assets/pdfjs/pdf.min.js';
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/pdfjs/pdf.worker.min.js';
+
+const qs = new URLSearchParams(location.search);
+const FILE = qs.get('f') || '';
+const PARTS = (qs.get('pl') || '').split('|').filter(Boolean);
+const RANGES = (qs.get('r') || '').split('|').filter(Boolean);
+const IDX = Math.max(1, parseInt(qs.get('i') || '1', 10) || 1);
+const TITLE = qs.get('t') || '';
+const BACK = qs.get('b') || '__BACK__';
+const START = parseInt(qs.get('p') || '0', 10) || 0;
+
+const $ = function (id) { return document.getElementById(id); };
+const stage = $('stage'), msgEl = $('msg');
+const pnum = $('pnum'), ptot = $('ptot'), zval = $('zval');
+const prevB = $('prev'), nextB = $('next');
+
+let doc = null, baseW = 612, ratio = 1.414, scale = 1, fitMode = true;
+const dpr = Math.min(window.devicePixelRatio || 1, 2);
+let items = [], io = null, raf = 0, tick = 0;
+
+function say(t) { msgEl.textContent = t || ''; msgEl.hidden = !t; }
+
+function fitScale() {
+  const w = stage.clientWidth - 34;
+  return Math.min(3, Math.max(0.2, w / baseW));
+}
+
+function layout() {
+  const w = Math.round(baseW * scale), h = Math.round(baseW * scale * ratio);
+  for (let i = 0; i < items.length; i++) {
+    items[i].el.style.width = w + 'px';
+    items[i].el.style.height = h + 'px';
+  }
+}
+
+function build() {
+  stage.innerHTML = '';
+  items = [];
+  const frag = document.createDocumentFragment();
+  for (let i = 1; i <= doc.numPages; i++) {
+    const el = document.createElement('div');
+    el.className = 'pdfpage';
+    el.dataset.p = String(i);
+    frag.appendChild(el);
+    items.push({ el: el, canvas: null, done: false, run: null });
+  }
+  stage.appendChild(frag);
+  layout();
+  ptot.textContent = doc.numPages;
+  pnum.max = doc.numPages;
+}
+
+async function paint(i) {
+  const it = items[i - 1];
+  if (!it || it.done || it.run) return;
+  const page = await doc.getPage(i).catch(function () { return null; });
+  if (!page) return;
+  // Cap the raster so that "fit width" on a retina screen does not allocate a
+  // 3200px-wide canvas for every page in the window.
+  const rs = Math.min(scale * dpr, 2.6);
+  const vp = page.getViewport({ scale: rs });
+  const c = document.createElement('canvas');
+  c.width = Math.max(1, Math.round(vp.width));
+  c.height = Math.max(1, Math.round(vp.height));
+  c.style.width = '100%';
+  c.style.height = '100%';
+  it.el.style.width = Math.round(vp.width / rs * scale) + 'px';
+  it.el.style.height = Math.round(vp.height / rs * scale) + 'px';
+  it.el.appendChild(c);
+  it.canvas = c;
+  it.run = page.render({ canvasContext: c.getContext('2d', { alpha: false }), viewport: vp });
+  try { await it.run.promise; } catch (e) { }
+  it.run = null;
+  if (it.canvas === c) it.done = true;
+}
+
+function drop(i) {
+  const it = items[i - 1];
+  if (!it || !it.canvas) return;
+  if (it.run) { try { it.run.cancel(); } catch (e) { } it.run = null; }
+  if (it.canvas.parentNode === it.el) it.el.removeChild(it.canvas);
+  it.canvas = null;
+  it.done = false;
+}
+
+function watch() {
+  if (io) io.disconnect();
+  io = new IntersectionObserver(function (es) {
+    for (let k = 0; k < es.length; k++) {
+      const i = +es[k].target.dataset.p;
+      if (es[k].isIntersecting) paint(i); else drop(i);
+    }
+    sync();
+  }, { root: stage, rootMargin: '1600px 0px' });
+  for (let i = 0; i < items.length; i++) io.observe(items[i].el);
+}
+
+function currentPage() {
+  const y = stage.scrollTop + 14;
+  let lo = 1, hi = items.length;
+  while (lo < hi) {
+    const m = (lo + hi + 1) >> 1;
+    if (items[m - 1].el.offsetTop <= y) lo = m; else hi = m - 1;
+  }
+  return lo;
+}
+
+function sync() {
+  const c = currentPage();
+  if (pnum.value !== String(c)) pnum.value = c;
+  prevB.disabled = c <= 1;
+  nextB.disabled = c >= items.length;
+  return c;
+}
+
+function goPage(n) {
+  n = Math.min(Math.max(1, n), items.length);
+  stage.scrollTop = Math.max(0, items[n - 1].el.offsetTop - 10);
+  sync();
+}
+
+function renderVisible() {
+  const top = stage.scrollTop - 1600, bot = stage.scrollTop + stage.clientHeight + 1600;
+  for (let i = 0; i < items.length; i++) {
+    const t = items[i].el.offsetTop, b = t + items[i].el.offsetHeight;
+    if (b > top && t < bot) paint(i + 1); else drop(i + 1);
+  }
+}
+
+function setZoom(s) {
+  const c = currentPage();
+  const it = items[c - 1];
+  const frac = (stage.scrollTop - it.el.offsetTop) / Math.max(1, it.el.offsetHeight);
+  scale = Math.min(3, Math.max(0.2, s));
+  fitMode = false;
+  for (let i = 1; i <= items.length; i++) drop(i);
+  layout();
+  zval.textContent = Math.round(scale * 100) + '%';
+  stage.scrollTop = Math.max(0, items[c - 1].el.offsetTop + frac * items[c - 1].el.offsetHeight - 10);
+  renderVisible();
+  sync();
+}
+
+function onScroll() {
+  if (raf) return;
+  raf = requestAnimationFrame(function () {
+    raf = 0;
+    const c = sync();
+    const now = Date.now();
+    if (now - tick > 400) {
+      tick = now;
+      const u = new URL(location.href);
+      u.searchParams.set('p', String(c));
+      history.replaceState(null, '', u.toString());
+    }
+  });
+}
+
+function measureHeader() {
+  const h = document.querySelector('.site-header');
+  const v = h ? h.offsetHeight : 72;
+  document.documentElement.style.setProperty('--hh', v + 'px');
+}
+
+async function openWithRetry(url) {
+  // raw.githubusercontent.com occasionally answers a freshly pushed file with a
+  // cached 404 for a minute or two; one retry is the difference between "the
+  // book opens" and "the book is broken".
+  let last = null;
+  for (let t = 0; t < 3; t++) {
+    try {
+      return await pdfjsLib.getDocument({
+        url: url,
+        cMapUrl: '/assets/pdfjs/cmaps/', cMapPacked: true,
+        standardFontDataUrl: '/assets/pdfjs/standard_fonts/'
+      }).promise;
+    } catch (e) {
+      last = e;
+      if (t < 2) await new Promise(function (r) { setTimeout(r, 900 * (t + 1)); });
+    }
+  }
+  throw last;
+}
+
+async function boot() {
+  measureHeader();
+  $('back').href = BACK;
+  if (!FILE) { say('__NOFILE__'); return; }
+  $('dl').href = FILE;
+  const label = TITLE || decodeURIComponent(FILE.split('/').pop()).replace(/\.pdf$/i, '');
+  $('title').textContent = label;
+  document.title = label + ' · Pro InstControl';
+  say('__LOADING__');
+
+  if (PARTS.length > 1) {
+    const sel = $('partsel');
+    PARTS.forEach(function (f, k) {
+      const o = document.createElement('option');
+      o.value = f;
+      o.textContent = RANGES[k] ? '__PART__ ' + (k + 1) + ' · ' + RANGES[k] : '__PART__ ' + (k + 1);
+      if (k + 1 === IDX) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.hidden = false;
+    sel.addEventListener('change', function () {
+      const u = new URL(location.href);
+      u.searchParams.set('f', sel.value);
+      u.searchParams.set('i', String(PARTS.indexOf(sel.value) + 1));
+      u.searchParams.delete('p');
+      location.href = u.toString();
+    });
+  }
+
+  try {
+    doc = await openWithRetry(FILE);
+  } catch (e) {
+    console.error(e);
+    say('__FAILED__');
+    return;
+  }
+  say('');
+  const p1 = await doc.getPage(1);
+  const v1 = p1.getViewport({ scale: 1 });
+  baseW = v1.width;
+  ratio = v1.height / v1.width;
+  scale = fitScale();
+  build();
+  watch();
+  zval.textContent = Math.round(scale * 100) + '%';
+  if (START > 0) goPage(START); else sync();
+  renderVisible();
+}
+
+prevB.addEventListener('click', function () { goPage(currentPage() - 1); });
+nextB.addEventListener('click', function () { goPage(currentPage() + 1); });
+$('zo').addEventListener('click', function () { setZoom(scale / 1.25); });
+$('zi').addEventListener('click', function () { setZoom(scale * 1.25); });
+$('zfit').addEventListener('click', function () {
+  fitMode = true;
+  scale = fitScale();
+  for (let i = 1; i <= items.length; i++) drop(i);
+  layout();
+  zval.textContent = Math.round(scale * 100) + '%';
+  renderVisible();
+});
+pnum.addEventListener('change', function () { goPage(parseInt(pnum.value, 10) || 1); });
+stage.addEventListener('scroll', onScroll, { passive: true });
+document.addEventListener('keydown', function (e) {
+  if (e.target && e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowLeft') { goPage(currentPage() - 1); e.preventDefault(); }
+  else if (e.key === 'ArrowRight') { goPage(currentPage() + 1); e.preventDefault(); }
+  else if (e.key === 'Home') { goPage(1); e.preventDefault(); }
+  else if (e.key === 'End') { goPage(items.length); e.preventDefault(); }
+});
+let rz = 0;
+window.addEventListener('resize', function () {
+  clearTimeout(rz);
+  rz = setTimeout(function () {
+    measureHeader();
+    if (!doc) return;
+    if (fitMode) scale = fitScale();
+    for (let i = 1; i <= items.length; i++) drop(i);
+    layout();
+    zval.textContent = Math.round(scale * 100) + '%';
+    renderVisible();
+  }, 180);
+});
+
+boot();
+"""
+
+
 def build_reader(lang):
-    """In-site PDF reader: embeds a PDF URL (?u=) in an iframe with fallback."""
+    """The library's PDF reader, drawn by pdf.js on the site itself.
+
+    The previous version handed the file to docs.google.com/gview, which
+    refuses anything much above 30 MB ("This file is too large to preview"),
+    so the catalogue's 111 MB and 147 MB books — and a dozen 30-90 MB ones —
+    could not be opened at all. pdf.js fetches the file directly and paints it
+    page by page over HTTP range requests, so the first page appears long
+    before the last byte arrives.
+
+    That needs an origin the browser will let us read cross-origin. GitHub
+    Release assets are not it (attachment disposition, no CORS); the companion
+    repository `pro-instcontrol/pdf-store`, served through
+    raw.githubusercontent.com, is (`Access-Control-Allow-Origin: *` plus 206
+    range responses). Books over ~70 MB are published there in page-range
+    parts, because GitHub rejects any single file above 100 MB.
+    """
     vi = lang == "vi"
     switch = "/books/reader/" if vi else "/vi/books/reader/"
-    title = "Đọc PDF" if vi else "PDF reader"
-    crumb = ('<a href="/vi/books/">Sách</a> · Đọc PDF' if vi
-             else '<a href="/books/">Books</a> · PDF reader')
-    note = ("Trình đọc PDF trong trang. Nếu tệp không hiển thị, hãy "
-            "<a href=\"#\" id=\"open-tab\">mở trong tab mới</a>."
-            if vi else
-            "In-page PDF reader. If the file does not display, "
-            "<a href=\"#\" id=\"open-tab\">open it in a new tab</a>.")
-    js = """
-(function(){
-  var u = new URLSearchParams(location.search).get('u') || '';
-  var frame = document.getElementById('pdf-frame');
-  var msg = document.getElementById('pdf-msg');
-  var openTab = document.getElementById('open-tab');
-  if(!u){ msg.textContent = '%s'; frame.style.display='none'; return; }
-  frame.src = 'https://docs.google.com/gview?embedded=true&url=' + encodeURIComponent(u);
-  openTab.href = u; openTab.target = '_blank'; openTab.rel = 'noopener';
-})();
-""" % ("Chưa chỉ định tệp PDF." if vi else "No PDF specified.")
+    title = "Đọc sách" if vi else "Read a book"
+    words = {
+        "__NOFILE__": "Chưa chỉ định tệp PDF." if vi else "No PDF specified.",
+        "__LOADING__": "Đang mở tệp…" if vi else "Opening the file…",
+        "__FAILED__": ("Không mở được tệp này. Hãy dùng nút tải để đọc ngoài "
+                       "trình duyệt." if vi else
+                       "This file could not be opened. Use the download button "
+                       "to read it offline."),
+        "__PART__": "Phần" if vi else "Part",
+        "__BACK__": "/vi/books/" if vi else "/books/",
+    }
+    js = READER_JS
+    for k, v in words.items():
+        js = js.replace(k, v.replace("\\", "\\\\").replace("'", "\\'"))
+
+    back_lbl = "← Thư viện" if vi else "← Library"
     body = (
-        '<main><article class="intranet-content reader">'
-        '<div class="reader-hero"><div class="breadcrumb">' + crumb + '</div>'
-        '<h1>' + ("Đọc PDF" if vi else "PDF reader") + '</h1></div>'
-        '<div class="prose">'
-        '<p id="pdf-msg">' + note + '</p>'
-        '<iframe id="pdf-frame" title="PDF" '
-        'style="width:100%;height:82vh;border:1px solid #ddd;border-radius:8px;"></iframe>'
-        '</div></article></main>'
-        '<script>' + js + '</script>'
+        '<style>' + READER_CSS + '</style>'
+        '<main class="pdfshell">'
+        '<div class="pdftop">'
+        '<a class="btn" id="back" href="/vi/books/" title="' + esc(back_lbl) + '">←</a>'
+        '<span class="tb-title" id="title">' + esc(title) + '</span>'
+        '<select id="partsel" hidden aria-label="'
+        + ("Chọn phần" if vi else "Choose a part") + '"></select>'
+        '<span class="sp"></span>'
+        '<button class="btn" id="prev" aria-label="'
+        + ("Trang trước" if vi else "Previous page") + '">‹</button>'
+        '<input type="number" id="pnum" min="1" value="1" aria-label="'
+        + ("Số trang" if vi else "Page number") + '">'
+        '<span class="tb-of">/ <b id="ptot">–</b></span>'
+        '<button class="btn" id="next" aria-label="'
+        + ("Trang sau" if vi else "Next page") + '">›</button>'
+        '<span class="sp"></span>'
+        '<button class="btn" id="zo" aria-label="'
+        + ("Thu nhỏ" if vi else "Zoom out") + '">−</button>'
+        '<span class="tb-z" id="zval">100%</span>'
+        '<button class="btn" id="zi" aria-label="'
+        + ("Phóng to" if vi else "Zoom in") + '">+</button>'
+        '<button class="btn" id="zfit" aria-label="'
+        + ("Vừa chiều rộng" if vi else "Fit width") + '">⤢</button>'
+        '<a class="btn solid" id="dl" href="#" download aria-label="'
+        + ("Tải PDF" if vi else "Download PDF") + '">⬇</a>'
+        '</div>'
+        '<div class="pdfbody">'
+        '<div class="pdfstage" id="stage" tabindex="0"></div>'
+        '<div class="pdfstate" id="msg" hidden></div>'
+        '</div>'
+        '</main>'
+        '<script type="module">' + js + '</script>'
     )
-    return (head(lang, title, title) + header(lang, switch_href=switch)
+    desc = ("Trình đọc PDF của thư viện: mở được cả sách trên 100 MB."
+            if vi else
+            "The library's PDF reader — including books above 100 MB.")
+    return (head(lang, title, desc) + header(lang, switch_href=switch)
             + body + footer(lang))
 
 

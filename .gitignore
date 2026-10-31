@@ -8,3 +8,7 @@ Thumbs.db
 /work/
 kb/
 .playwright-cli/
+
+# PDF stores are separate Pages repositories, junctioned in for local testing
+pdf-store/
+pdf-store-b/

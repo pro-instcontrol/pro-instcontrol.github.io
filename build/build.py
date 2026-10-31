@@ -127,13 +127,22 @@ def main():
     pages_glossary.build()
     pages_hot.main()
 
-    # static assets
+    # static assets (assets/pdfjs/ is a tree: pdf.js plus its cmaps and fonts)
     dst = os.path.join(DIST, "assets")
     os.makedirs(dst, exist_ok=True)
     for name in os.listdir(ASSETS):
+        src = os.path.join(ASSETS, name)
         target = os.path.join(dst, name)
-        shutil.copy2(os.path.join(ASSETS, name), target)
-        framework.WRITTEN.append(target)
+        if os.path.isdir(src):
+            if os.path.isdir(target):
+                shutil.rmtree(target)
+            shutil.copytree(src, target)
+            for dp, _dn, fn in os.walk(target):
+                for f in fn:
+                    framework.WRITTEN.append(os.path.join(dp, f))
+        else:
+            shutil.copy2(src, target)
+            framework.WRITTEN.append(target)
 
     for name, body in (("404.html", NOT_FOUND), (".nojekyll", "")):
         target = os.path.join(DIST, name)

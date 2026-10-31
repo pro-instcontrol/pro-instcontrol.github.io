@@ -1,11 +1,313 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PDF reader</title><meta name="description" content="PDF reader"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/books/assets/library.css"></head><body><header class="site-header"><a href="/" class="brand"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#fff" stroke="#000" stroke-width="4"/><circle cx="100" cy="100" r="68" fill="none" stroke="#000" stroke-width="1.6" stroke-dasharray="1.5 9"/><path d="M100 26 A74 74 0 0 1 174 100" fill="none" stroke="#000" stroke-width="7"/><line x1="100" y1="100" x2="143" y2="57" stroke="#000" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="100" r="10" fill="#000"/></svg><span>Pro InstControl</span></a><nav class="site-nav"><a href="/">Home</a><a href="/hot-topics/">Hot topics</a><a href="/process.html">Process</a><a href="/fundamentals.html">Fundamentals</a><a href="/advanced/">Advanced</a><a href="/instruments.html">Instruments</a><a href="/install.html">Install</a><a href="/control.html">Control</a><a href="/applications.html">Applications</a><a href="/safety.html">Safety</a><a href="/tools.html">Tools</a><a href="/standards.html">Standards</a><a href="/glossary.html">Glossary</a><a href="/education.html">Education</a><a href="/books/" class="active">Books</a><a href="/video-library/">Videos</a><a href="/vi/books/reader/" class="lang-switch">VI</a></nav></header><main><article class="intranet-content reader"><div class="reader-hero"><div class="breadcrumb"><a href="/books/">Books</a> · PDF reader</div><h1>PDF reader</h1></div><div class="prose"><p id="pdf-msg">In-page PDF reader. If the file does not display, <a href="#" id="open-tab">open it in a new tab</a>.</p><iframe id="pdf-frame" title="PDF" style="width:100%;height:82vh;border:1px solid #ddd;border-radius:8px;"></iframe></div></article></main><script>
-(function(){
-  var u = new URLSearchParams(location.search).get('u') || '';
-  var frame = document.getElementById('pdf-frame');
-  var msg = document.getElementById('pdf-msg');
-  var openTab = document.getElementById('open-tab');
-  if(!u){ msg.textContent = 'No PDF specified.'; frame.style.display='none'; return; }
-  frame.src = 'https://docs.google.com/gview?embedded=true&url=' + encodeURIComponent(u);
-  openTab.href = u; openTab.target = '_blank'; openTab.rel = 'noopener';
-})();
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Read a book</title><meta name="description" content="The library&#x27;s PDF reader — including books above 100 MB."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="/books/assets/library.css"></head><body><header class="site-header"><a href="/" class="brand"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#fff" stroke="#000" stroke-width="4"/><circle cx="100" cy="100" r="68" fill="none" stroke="#000" stroke-width="1.6" stroke-dasharray="1.5 9"/><path d="M100 26 A74 74 0 0 1 174 100" fill="none" stroke="#000" stroke-width="7"/><line x1="100" y1="100" x2="143" y2="57" stroke="#000" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="100" r="10" fill="#000"/></svg><span>Pro InstControl</span></a><nav class="site-nav"><a href="/">Home</a><a href="/hot-topics/">Hot topics</a><a href="/process.html">Process</a><a href="/fundamentals.html">Fundamentals</a><a href="/advanced/">Advanced</a><a href="/instruments.html">Instruments</a><a href="/install.html">Install</a><a href="/control.html">Control</a><a href="/applications.html">Applications</a><a href="/safety.html">Safety</a><a href="/tools.html">Tools</a><a href="/standards.html">Standards</a><a href="/glossary.html">Glossary</a><a href="/education.html">Education</a><a href="/books/" class="active">Books</a><a href="/video-library/">Videos</a><a href="/vi/books/reader/" class="lang-switch">VI</a></nav></header><style>
+body{overflow:hidden}
+.pdfshell{display:flex;flex-direction:column;height:calc(100vh - var(--hh,72px))}
+.pdftop{flex:0 0 auto;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;
+  padding:.5rem .9rem;border-bottom:1px solid var(--gray-light);background:#fff;
+  font-family:var(--sans);font-size:.84rem;z-index:20}
+.tb-title{font-family:var(--serif);font-size:1.04rem;font-weight:600;line-height:1.2;
+  max-width:38ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb-of,.tb-z{color:var(--gray-mid);font-variant-numeric:tabular-nums}
+.tb-of b{color:var(--yin)}
+.sp{flex:1 1 auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;
+  height:2rem;padding:0 .5rem;border:1px solid var(--gray-light);border-radius:6px;
+  background:#fff;color:var(--yin);cursor:pointer;font:inherit;line-height:1;
+  text-decoration:none;border-bottom-width:1px}
+.btn:hover{background:var(--gray-bg);border-color:var(--gray-mid)}
+.btn:disabled{opacity:.3;cursor:default}
+.btn.solid{background:var(--yin);color:#fff;border-color:var(--yin)}
+.pdftop input[type=number]{width:4.4rem;height:2rem;padding:0 .3rem;text-align:center;
+  border:1px solid var(--gray-light);border-radius:6px;font:inherit;
+  font-variant-numeric:tabular-nums}
+.pdftop select{height:2rem;max-width:19ch;border:1px solid var(--gray-light);
+  border-radius:6px;background:#fff;font:inherit;padding:0 .25rem}
+.pdfbody{position:relative;flex:1 1 auto;display:flex;min-height:0}
+.pdfstage{position:relative;flex:1 1 auto;overflow:auto;background:#ededed;
+  padding:16px 0 44px;outline:none;scrollbar-gutter:stable}
+.pdfpage{position:relative;margin:0 auto 16px;background:#fff;
+  box-shadow:0 1px 4px rgba(0,0,0,.18);overflow:hidden}
+.pdfpage canvas{display:block;width:100%;height:100%}
+.pdfstate{position:absolute;inset:0;display:grid;place-items:center;padding:2rem;
+  text-align:center;color:var(--gray-mid);font-family:var(--sans);font-size:.9rem;
+  pointer-events:none}
+.pdfstate[hidden]{display:none}
+@media (max-width:720px){
+  .tb-title{max-width:100%;order:-1;flex-basis:100%;font-size:.98rem}
+  .pdfstage{padding:10px 0 30px}
+  .sp{display:none}
+  #zfit{display:none}
+  .pdftop{gap:.3rem;padding:.45rem .6rem}
+  .tb-of,.tb-z{font-size:.78rem}
+}
+</style><main class="pdfshell"><div class="pdftop"><a class="btn" id="back" href="/vi/books/" title="← Library">←</a><span class="tb-title" id="title">Read a book</span><select id="partsel" hidden aria-label="Choose a part"></select><span class="sp"></span><button class="btn" id="prev" aria-label="Previous page">‹</button><input type="number" id="pnum" min="1" value="1" aria-label="Page number"><span class="tb-of">/ <b id="ptot">–</b></span><button class="btn" id="next" aria-label="Next page">›</button><span class="sp"></span><button class="btn" id="zo" aria-label="Zoom out">−</button><span class="tb-z" id="zval">100%</span><button class="btn" id="zi" aria-label="Zoom in">+</button><button class="btn" id="zfit" aria-label="Fit width">⤢</button><a class="btn solid" id="dl" href="#" download aria-label="Download PDF">⬇</a></div><div class="pdfbody"><div class="pdfstage" id="stage" tabindex="0"></div><div class="pdfstate" id="msg" hidden></div></div></main><script type="module">
+import * as pdfjsLib from '/assets/pdfjs/pdf.min.js';
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/assets/pdfjs/pdf.worker.min.js';
+
+const qs = new URLSearchParams(location.search);
+const FILE = qs.get('f') || '';
+const PARTS = (qs.get('pl') || '').split('|').filter(Boolean);
+const RANGES = (qs.get('r') || '').split('|').filter(Boolean);
+const IDX = Math.max(1, parseInt(qs.get('i') || '1', 10) || 1);
+const TITLE = qs.get('t') || '';
+const BACK = qs.get('b') || '/books/';
+const START = parseInt(qs.get('p') || '0', 10) || 0;
+
+const $ = function (id) { return document.getElementById(id); };
+const stage = $('stage'), msgEl = $('msg');
+const pnum = $('pnum'), ptot = $('ptot'), zval = $('zval');
+const prevB = $('prev'), nextB = $('next');
+
+let doc = null, baseW = 612, ratio = 1.414, scale = 1, fitMode = true;
+const dpr = Math.min(window.devicePixelRatio || 1, 2);
+let items = [], io = null, raf = 0, tick = 0;
+
+function say(t) { msgEl.textContent = t || ''; msgEl.hidden = !t; }
+
+function fitScale() {
+  const w = stage.clientWidth - 34;
+  return Math.min(3, Math.max(0.2, w / baseW));
+}
+
+function layout() {
+  const w = Math.round(baseW * scale), h = Math.round(baseW * scale * ratio);
+  for (let i = 0; i < items.length; i++) {
+    items[i].el.style.width = w + 'px';
+    items[i].el.style.height = h + 'px';
+  }
+}
+
+function build() {
+  stage.innerHTML = '';
+  items = [];
+  const frag = document.createDocumentFragment();
+  for (let i = 1; i <= doc.numPages; i++) {
+    const el = document.createElement('div');
+    el.className = 'pdfpage';
+    el.dataset.p = String(i);
+    frag.appendChild(el);
+    items.push({ el: el, canvas: null, done: false, run: null });
+  }
+  stage.appendChild(frag);
+  layout();
+  ptot.textContent = doc.numPages;
+  pnum.max = doc.numPages;
+}
+
+async function paint(i) {
+  const it = items[i - 1];
+  if (!it || it.done || it.run) return;
+  const page = await doc.getPage(i).catch(function () { return null; });
+  if (!page) return;
+  // Cap the raster so that "fit width" on a retina screen does not allocate a
+  // 3200px-wide canvas for every page in the window.
+  const rs = Math.min(scale * dpr, 2.6);
+  const vp = page.getViewport({ scale: rs });
+  const c = document.createElement('canvas');
+  c.width = Math.max(1, Math.round(vp.width));
+  c.height = Math.max(1, Math.round(vp.height));
+  c.style.width = '100%';
+  c.style.height = '100%';
+  it.el.style.width = Math.round(vp.width / rs * scale) + 'px';
+  it.el.style.height = Math.round(vp.height / rs * scale) + 'px';
+  it.el.appendChild(c);
+  it.canvas = c;
+  it.run = page.render({ canvasContext: c.getContext('2d', { alpha: false }), viewport: vp });
+  try { await it.run.promise; } catch (e) { }
+  it.run = null;
+  if (it.canvas === c) it.done = true;
+}
+
+function drop(i) {
+  const it = items[i - 1];
+  if (!it || !it.canvas) return;
+  if (it.run) { try { it.run.cancel(); } catch (e) { } it.run = null; }
+  if (it.canvas.parentNode === it.el) it.el.removeChild(it.canvas);
+  it.canvas = null;
+  it.done = false;
+}
+
+function watch() {
+  if (io) io.disconnect();
+  io = new IntersectionObserver(function (es) {
+    for (let k = 0; k < es.length; k++) {
+      const i = +es[k].target.dataset.p;
+      if (es[k].isIntersecting) paint(i); else drop(i);
+    }
+    sync();
+  }, { root: stage, rootMargin: '1600px 0px' });
+  for (let i = 0; i < items.length; i++) io.observe(items[i].el);
+}
+
+function currentPage() {
+  const y = stage.scrollTop + 14;
+  let lo = 1, hi = items.length;
+  while (lo < hi) {
+    const m = (lo + hi + 1) >> 1;
+    if (items[m - 1].el.offsetTop <= y) lo = m; else hi = m - 1;
+  }
+  return lo;
+}
+
+function sync() {
+  const c = currentPage();
+  if (pnum.value !== String(c)) pnum.value = c;
+  prevB.disabled = c <= 1;
+  nextB.disabled = c >= items.length;
+  return c;
+}
+
+function goPage(n) {
+  n = Math.min(Math.max(1, n), items.length);
+  stage.scrollTop = Math.max(0, items[n - 1].el.offsetTop - 10);
+  sync();
+}
+
+function renderVisible() {
+  const top = stage.scrollTop - 1600, bot = stage.scrollTop + stage.clientHeight + 1600;
+  for (let i = 0; i < items.length; i++) {
+    const t = items[i].el.offsetTop, b = t + items[i].el.offsetHeight;
+    if (b > top && t < bot) paint(i + 1); else drop(i + 1);
+  }
+}
+
+function setZoom(s) {
+  const c = currentPage();
+  const it = items[c - 1];
+  const frac = (stage.scrollTop - it.el.offsetTop) / Math.max(1, it.el.offsetHeight);
+  scale = Math.min(3, Math.max(0.2, s));
+  fitMode = false;
+  for (let i = 1; i <= items.length; i++) drop(i);
+  layout();
+  zval.textContent = Math.round(scale * 100) + '%';
+  stage.scrollTop = Math.max(0, items[c - 1].el.offsetTop + frac * items[c - 1].el.offsetHeight - 10);
+  renderVisible();
+  sync();
+}
+
+function onScroll() {
+  if (raf) return;
+  raf = requestAnimationFrame(function () {
+    raf = 0;
+    const c = sync();
+    const now = Date.now();
+    if (now - tick > 400) {
+      tick = now;
+      const u = new URL(location.href);
+      u.searchParams.set('p', String(c));
+      history.replaceState(null, '', u.toString());
+    }
+  });
+}
+
+function measureHeader() {
+  const h = document.querySelector('.site-header');
+  const v = h ? h.offsetHeight : 72;
+  document.documentElement.style.setProperty('--hh', v + 'px');
+}
+
+async function openWithRetry(url) {
+  // raw.githubusercontent.com occasionally answers a freshly pushed file with a
+  // cached 404 for a minute or two; one retry is the difference between "the
+  // book opens" and "the book is broken".
+  let last = null;
+  for (let t = 0; t < 3; t++) {
+    try {
+      return await pdfjsLib.getDocument({
+        url: url,
+        cMapUrl: '/assets/pdfjs/cmaps/', cMapPacked: true,
+        standardFontDataUrl: '/assets/pdfjs/standard_fonts/'
+      }).promise;
+    } catch (e) {
+      last = e;
+      if (t < 2) await new Promise(function (r) { setTimeout(r, 900 * (t + 1)); });
+    }
+  }
+  throw last;
+}
+
+async function boot() {
+  measureHeader();
+  $('back').href = BACK;
+  if (!FILE) { say('No PDF specified.'); return; }
+  $('dl').href = FILE;
+  const label = TITLE || decodeURIComponent(FILE.split('/').pop()).replace(/\.pdf$/i, '');
+  $('title').textContent = label;
+  document.title = label + ' · Pro InstControl';
+  say('Opening the file…');
+
+  if (PARTS.length > 1) {
+    const sel = $('partsel');
+    PARTS.forEach(function (f, k) {
+      const o = document.createElement('option');
+      o.value = f;
+      o.textContent = RANGES[k] ? 'Part ' + (k + 1) + ' · ' + RANGES[k] : 'Part ' + (k + 1);
+      if (k + 1 === IDX) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.hidden = false;
+    sel.addEventListener('change', function () {
+      const u = new URL(location.href);
+      u.searchParams.set('f', sel.value);
+      u.searchParams.set('i', String(PARTS.indexOf(sel.value) + 1));
+      u.searchParams.delete('p');
+      location.href = u.toString();
+    });
+  }
+
+  try {
+    doc = await openWithRetry(FILE);
+  } catch (e) {
+    console.error(e);
+    say('This file could not be opened. Use the download button to read it offline.');
+    return;
+  }
+  say('');
+  const p1 = await doc.getPage(1);
+  const v1 = p1.getViewport({ scale: 1 });
+  baseW = v1.width;
+  ratio = v1.height / v1.width;
+  scale = fitScale();
+  build();
+  watch();
+  zval.textContent = Math.round(scale * 100) + '%';
+  if (START > 0) goPage(START); else sync();
+  renderVisible();
+}
+
+prevB.addEventListener('click', function () { goPage(currentPage() - 1); });
+nextB.addEventListener('click', function () { goPage(currentPage() + 1); });
+$('zo').addEventListener('click', function () { setZoom(scale / 1.25); });
+$('zi').addEventListener('click', function () { setZoom(scale * 1.25); });
+$('zfit').addEventListener('click', function () {
+  fitMode = true;
+  scale = fitScale();
+  for (let i = 1; i <= items.length; i++) drop(i);
+  layout();
+  zval.textContent = Math.round(scale * 100) + '%';
+  renderVisible();
+});
+pnum.addEventListener('change', function () { goPage(parseInt(pnum.value, 10) || 1); });
+stage.addEventListener('scroll', onScroll, { passive: true });
+document.addEventListener('keydown', function (e) {
+  if (e.target && e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowLeft') { goPage(currentPage() - 1); e.preventDefault(); }
+  else if (e.key === 'ArrowRight') { goPage(currentPage() + 1); e.preventDefault(); }
+  else if (e.key === 'Home') { goPage(1); e.preventDefault(); }
+  else if (e.key === 'End') { goPage(items.length); e.preventDefault(); }
+});
+let rz = 0;
+window.addEventListener('resize', function () {
+  clearTimeout(rz);
+  rz = setTimeout(function () {
+    measureHeader();
+    if (!doc) return;
+    if (fitMode) scale = fitScale();
+    for (let i = 1; i <= items.length; i++) drop(i);
+    layout();
+    zval.textContent = Math.round(scale * 100) + '%';
+    renderVisible();
+  }, 180);
+});
+
+boot();
 </script>
