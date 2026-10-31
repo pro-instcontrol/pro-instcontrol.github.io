@@ -1518,7 +1518,547 @@ def fig_10_25():
                 "airframe dynamics, and sensors feeding back through the flight controller to the first junction.")
 
 
+# ---------------------------------------------------------------- 10.4
+def _wave(x0, x1, y0, amp, fn, n=420, color=INK, sw=1.3):
+    """Sample fn(u) over [0,1] and draw it as a polyline."""
+    pts = []
+    for i in range(n + 1):
+        u = i / float(n)
+        pts.append((x0 + (x1 - x0) * u, y0 - amp * fn(u)))
+    return _p("M " + " L ".join("%s %s" % (_f(x), _f(y)) for x, y in pts), "none", sw, color)
+
+
+def fig_10_26():
+    """The radio spectrum, on a log-frequency axis with wavelength above."""
+    b = []
+    x0, w, y = 64, 500, 210
+
+    def X(f):
+        return x0 + math.log10(f) / 15.0 * w
+
+    b.append(_arrow(x0, y, x0 + w + 14, y, 1.1))
+    for e in range(0, 16, 3):
+        px = X(10.0 ** e)
+        b.append(_l(px, y, px, y + 4, 0.9))
+        b.append(_t(px, y + 16, "10^%d" % e, 7.2, "middle", "#555"))
+    b.append(_t(x0 + w / 2.0, y + 30, "tần số (Hz)", 8.0, "middle", "#444"))
+
+    # wavelength, on the axis above
+    b.append(_arrow(x0, 84, x0 + w + 14, 84, 1.0))
+    for e, lab in ((0, "3·10⁸ m"), (4.477, "10 km"), (6.477, "100 m"), (8.477, "1 m"),
+                   (10.477, "1 cm"), (12.477, "0,1 mm")):
+        px = x0 + e / 15.0 * w
+        b.append(_l(px, 84, px, 80, 0.9))
+        b.append(_t(px, 74, lab, 7.0, "middle", "#555"))
+    b.append(_t(x0 + w / 2.0, 60, "bước sóng", 8.0, "middle", "#444"))
+
+    # sound, one row
+    b.append(_r(X(1.3), 100, X(2.0e4) - X(1.3), 20, BAND, 0.9))
+    b.append(_t((X(1.3) + X(2.0e4)) / 2.0, 114, "âm thanh nghe được", 7.0, "middle", "#222"))
+    b.append(_t(X(1.0), 114, "hạ âm", 6.8, "end", "#555"))
+
+    # radio bands, one row
+    bands = [(3.0e3, 3.0e4, "VLF"), (3.0e4, 3.0e5, "LF"), (3.0e5, 3.0e6, "MF"),
+             (3.0e6, 3.0e7, "HF"), (3.0e7, 3.0e8, "VHF"), (3.0e8, 3.0e9, "UHF"),
+             (3.0e9, 3.0e10, "SHF"), (3.0e10, 3.0e11, "EHF")]
+    for i, (lo, hi, nm) in enumerate(bands):
+        b.append(_r(X(lo), 128, X(hi) - X(lo), 26, BAND if i % 2 == 0 else SAND, 0.9))
+        b.append(_t((X(lo) + X(hi)) / 2.0, 145, nm, 7.2, "middle", "#222", True))
+
+    b.append(_arrow(X(3.0e3), 166, X(3.0e11), 166, 0.8, "#888"))
+    b.append(_t((X(3.0e3) + X(3.0e11)) / 2.0, 180, "dải radio và vi ba", 7.2, "middle", "#444", True))
+    b.append(_t((X(3.0e3) + X(3.0e5)) / 2.0, 194, "radiobeacon", 6.8, "middle", "#555"))
+    b.append(_t(X(3.0e8) + 6, 194, "GPS · TRANSIT", 6.8, "start", "#555"))
+    b.append(_t(X(3.0e9) + 4, 206, "radar", 6.8, "start", "#555"))
+
+    b.append(_t(X(1.0e13), 118, "tử ngoại,", 6.8, "middle", "#555"))
+    b.append(_t(X(1.0e13), 128, "khả kiến,", 6.8, "middle", "#555"))
+    b.append(_t(X(1.0e13), 138, "hồng ngoại", 6.8, "middle", "#555"))
+    b.append(_t(X(1.0e14), 108, "tia X, tia gamma", 6.8, "middle", "#555"))
+    b.append(_t(X(1.0e14), 152, "tia vũ trụ", 6.8, "middle", "#555"))
+
+    return _fig(svg(600, 226, STY + "".join(b), "Phổ tần số sóng điện từ"),
+                "Hình 10-26. Phổ tần số sóng điện từ. Dải nghe được có thể nghe thành sóng âm. "
+                "Radiobeacon làm việc ở dải VLF, LF và MF. Omega dùng VLF phủ toàn cầu chỉ với tám "
+                "trạm phát. GPS, Transit và Glonass dùng tần số UHF. Bước sóng dưới 10 cm không thích "
+                "hợp cho hệ vệ tinh nhưng lại được dùng trong radar.",
+                "Figure 10-26. Electromagnetic wave frequency spectrum. The audible range can be heard if "
+                "converted to sound waves. Radiobeacons operate in VLF, LF and MF; Omega covers the world "
+                "from only eight transmitters. GPS, Transit and Glonass use UHF. Wavelengths below 10 cm "
+                "are unsuitable for satellite systems but are used in radar.",
+                "Trục logarit tần số từ 1 Hz tới 10 mũ 15 Hz, phía trên là trục bước sóng, các dải VLF "
+                "tới EHF và các chú thích radiobeacon, GPS, radar.",
+                "A log frequency axis from 1 Hz to 10 to the 15, a wavelength axis above it, the VLF to "
+                "EHF bands, and notes on radiobeacons, GPS and radar.")
+
+
+def fig_10_27():
+    """Three ways to put information on a carrier."""
+    b = []
+    y = [92, 176, 262]
+
+    # amplitude modulation
+    b.append(_wave(70, 560, y[0], 26,
+                   lambda u: math.sin(2 * math.pi * 26 * u) *
+                   (1.0 + 0.75 * math.sin(2 * math.pi * 3 * u))))
+    b.append(_l(196, y[0] - 44, 196, y[0] + 44, 1.2))
+    b.append(_l(432, y[0] - 44, 432, y[0] + 44, 1.2))
+    b.append(_t(120, y[0] + 58, "sóng mang", 7.2, "middle", "#444"))
+    b.append(_t(314, y[0] + 58, "điều biên (AM)", 7.4, "middle", "#222", True))
+    b.append(_t(508, y[0] + 58, "sóng mang", 7.2, "middle", "#444"))
+
+    # frequency modulation
+    def fm(u):
+        return math.sin(2 * math.pi * (12 * u + 9 * (1 - math.cos(2 * math.pi * 3 * u)) / (2 * math.pi)))
+    b.append(_wave(70, 560, y[1], 26, fm))
+    b.append(_l(196, y[1] - 44, 196, y[1] + 44, 1.2))
+    b.append(_l(432, y[1] - 44, 432, y[1] + 44, 1.2))
+    b.append(_t(314, y[1] + 58, "điều tần (FM)", 7.4, "middle", "#222", True))
+
+    # pulse modulation
+    def pulse(u):
+        seg = u * 8.0
+        return math.sin(2 * math.pi * 22 * u) if (seg % 1.0) < 0.62 else 0.0
+    for a, bb in ((70, 190), (232, 300), (348, 416), (464, 560)):
+        b.append(_wave(a, bb, y[2], 26, lambda u, a=a, bb=bb: math.sin(2 * math.pi * 14 * u)))
+    b.append(_t(211, y[2] + 34, "không phát", 6.8, "middle", "#888"))
+    b.append(_t(382, y[2] + 34, "không phát", 6.8, "middle", "#888"))
+    b.append(_t(314, y[2] + 52, "điều xung", 7.4, "middle", "#222", True))
+
+    return _fig(svg(600, 330, STY + "".join(b), "Ba kiểu điều chế sóng mang"),
+                "Hình 10-27. Điều biên, điều tần và điều xung sóng mang RF. Điều biên thích hợp cho "
+                "phát thanh; điều tần dùng trong phát thanh thương mại; điều xung dùng trong hệ vệ "
+                "tinh, radar và các thiết bị dẫn đường tầm xa.",
+                "Figure 10-27. Amplitude, frequency and pulse modulation of RF carrier waves. Amplitude "
+                "modulation suits broadcasting; frequency modulation is used in commercial radio; pulse "
+                "modulation is used in satellite systems, radar and long-range navigation aids.",
+                "Ba dạng sóng: điều biên với bao hình thay đổi, điều tần với mật độ chu kỳ thay đổi, và "
+                "điều xung gồm các cụm xung cách nhau bởi khoảng không phát.",
+                "Three waveforms: amplitude modulation with a varying envelope, frequency modulation with "
+                "varying cycle density, and pulse modulation as bursts separated by silent gaps.")
+
+
+def fig_10_28():
+    """Ionosphere layers and the rays that bounce between them and the ground."""
+    b = []
+    gx0, gx1 = 64, 564
+
+    def g(x):
+        return 318 - 20 * math.sin(math.pi * (x - gx0) / (gx1 - gx0))
+
+    def band(off):
+        pts = [(x, g(x) - off) for x in range(gx0, gx1 + 1, 8)]
+        return _p("M " + " L ".join("%s %s" % (_f(x), _f(y)) for x, y in pts), "none", 1.0, "#8d99a6")
+
+    b.append(_p("M " + " L ".join("%s %s" % (_f(x), _f(g(x))) for x in range(gx0, gx1 + 1, 8)),
+                "none", 1.8))
+    b.append(_t(392, 344, "Trái Đất", 8.0, "middle", "#444", True))
+
+    for off, nm in ((48, "tầng D"), (92, "tầng E"), (136, "tầng F₁"), (182, "tầng F₂")):
+        b.append(band(off))
+        b.append(_t(72, g(72) - off - 5, nm, 6.8, "start", "#555"))
+
+    b.append(_l(330, 44, 330, 300, 0.8, "#bbb", "5 4"))
+    b.append(_t(196, 54, "BAN NGÀY", 7.6, "middle", "#222", True))
+    b.append(_t(452, 54, "BAN ĐÊM", 7.6, "middle", "#222", True))
+    b.append(_t(250, 74, "tầng điện ly", 7.2, "middle", "#444"))
+
+    S = (150, g(150))
+    b.append(_dot(S[0], S[1], 3.0))
+    b.append(_t(S[0], S[1] + 20, "máy phát", 7.0, "middle", "#444"))
+
+    for ax, off, lab, lx in ((236, 136, "tia 1", -14), (300, 182, "tia 2", -14),
+                             (206, 92, "tia 3", -14)):
+        apex = (ax, g(ax) - off)
+        b.append(_l(S[0], S[1], apex[0], apex[1], 1.1, BLUE))
+        b.append(_l(apex[0], apex[1], 2 * ax - S[0], g(2 * ax - S[0]), 1.1, BLUE))
+        b.append(_t(ax + lx, apex[1] - 7, lab, 6.8, "middle", BLUE))
+
+    b.append(_p("M %s %s Q %s %s %s %s" % (_f(S[0] + 6), _f(g(S[0] + 6)),
+                                           _f(S[0] + 80), _f(g(S[0] + 80) - 16),
+                                           _f(S[0] + 150), _f(g(S[0] + 150))), "none", 1.2, GREEN))
+    b.append(_t(268, g(268) - 6, "sóng đất", 7.0, "middle", GREEN))
+
+    b.append(_t(340, g(340) - 40, "sóng trời 1 lần phản xạ", 6.8, "middle", GREEN))
+    b.append(_t(470, g(470) - 66, "sóng trời 2 lần phản xạ", 6.8, "middle", GREEN))
+
+    b.append(_t(248, g(248) + 14, "P₂", 7.0, "middle", "#444"))
+    b.append(_t(312, g(312) + 14, "P₁", 7.0, "middle", "#444"))
+    b.append(_l(256, g(256) - 12, 304, g(304) - 12, 0.8, "#888"))
+    b.append(_l(256, g(256) - 16, 256, g(256) - 8, 0.8, "#888"))
+    b.append(_l(304, g(304) - 16, 304, g(304) - 8, 0.8, "#888"))
+    b.append(_t(280, g(280) - 20, "vùng câm", 6.6, "middle", "#555"))
+
+    return _fig(svg(600, 356, STY + "".join(b), "Các tầng điện ly và truyền sóng vô tuyến"),
+                "Hình 10-28. Bốn tầng điện ly và ảnh hưởng của chúng tới truyền sóng vô tuyến. Bốn "
+                "tầng hình thành do sự ion hoá phân tử khí quyển bởi tia tử ngoại của Mặt Trời. Tác "
+                "dụng của tầng điện ly lên sóng vô tuyến thể hiện qua phản xạ, còn gọi là phản hồi tầng. "
+                "Tần số của sóng điện từ quan trọng cho hành vi của nó khi xuyên qua tầng điện ly.",
+                "Figure 10-28. The four ionosphere layers and their effect on radio propagation. The "
+                "layers are produced by ionisation of atmospheric molecules by solar ultraviolet. The "
+                "effect on radio waves appears as reflection, or hop. The frequency of the wave matters "
+                "to how it behaves inside the ionosphere.",
+                "Mặt đất cong ở dưới, bốn tầng điện ly D, E, F1, F2 phía trên, ba tia phản xạ từ máy "
+                "phát, sóng đất, vùng câm giữa P1 và P2.",
+                "A curved Earth below, the four ionosphere layers D, E, F1 and F2 above, three reflected "
+                "rays from a transmitter, the ground wave and the skip zone between P1 and P2.")
+
+
+def fig_10_29():
+    """One rms circle holds 68% of the fixes."""
+    def rnd(seed):
+        s = [seed]
+
+        def f():
+            s[0] = (1103515245 * s[0] + 12345) % 2147483648
+            return s[0] / 2147483648.0
+        return f
+
+    b = []
+    C = (300, 186)
+    R = 96
+    b.append(_c(C[0], C[1], R, "none", 1.4))
+    r = rnd(1017)
+    for i in range(260):
+        gx = (r() + r() + r() - 1.5) * 0.72
+        gy = (r() + r() + r() - 1.5) * 0.72
+        b.append(_dot(C[0] + gx * R, C[1] + gy * R, 1.5, "#333"))
+    b.append(_dot(C[0], C[1], 3.2, PAPER))
+    b.append(_c(C[0], C[1], 3.2, PAPER, 1.0))
+    b.append(_l(C[0], C[1], C[0] - R * 0.71, C[1] + R * 0.71, 1.2))
+    b.append(_t(C[0] - 54, C[1] + 60, "R", 9.0, "middle", INK, True))
+
+    return _fig(svg(600, 320, STY + "".join(b), "Vòng tròn bán kính rms"),
+                "Hình 10-29. Vòng tròn bán kính rms bao 68% số vị trí đo được. Các biến thiên trong "
+                "phép đo do nhiều nguyên nhân: điều kiện tầng điện ly, vị trí chính xác của vệ tinh, "
+                "và sai số trong mạch điện tử. (Hai lần rms bao 95% số vị trí chỉ ra.)",
+                "Figure 10-29. The rms radius circle that encloses 68% of all measured positions. The "
+                "variations come from ionospheric conditions, the precise satellite positions and "
+                "inefficiencies in the electronic circuits. (Twice rms encloses 95%.)",
+                "Một vòng tròn lớn với hàng trăm điểm phân bố dày ở tâm và thưa dần ra mép, bán kính R "
+                "vẽ từ tâm tới mép.",
+                "A large circle of several hundred dots, dense at the centre and thinning outward, with "
+                "the radius R drawn from the centre to the rim.")
+
+
+def fig_10_30():
+    """Hyperbolae of constant time difference between a master and a slave."""
+    b = []
+    Mx, Sx, cy = 236, 372, 176
+    mid = (Mx + Sx) / 2.0
+    c = (Sx - Mx) / 2.0
+
+    b.append(_arrow(96, cy, 520, cy, 1.0))
+    b.append(_t(88, cy + 4, "X", 8.6, "middle", INK, True))
+    b.append(_t(530, cy + 4, "Y", 8.6, "middle", INK, True))
+
+    for a in (14.0, 30.0, 44.0, 58.0):
+        bb = math.sqrt(max(c * c - a * a, 1.0))
+        for sign in (-1, 1):
+            pts = []
+            for i in range(41):
+                t = -1.55 + 3.1 * i / 40.0
+                pts.append((mid + sign * a * math.cosh(t), cy + bb * math.sinh(t)))
+            b.append(_p("M " + " L ".join("%s %s" % (_f(x), _f(y)) for x, y in pts),
+                        "none", 1.0, "#555"))
+
+    for cx in (Mx, Sx):
+        for rr in (44, 78, 112):
+            b.append(_c(cx, cy, rr, "none", 0.7, "#bbb"))
+    b.append(_dot(Mx, cy, 3.4))
+    b.append(_dot(Sx, cy, 3.4))
+    b.append(_t(Mx, cy - 10, "M", 8.6, "middle", INK, True))
+    b.append(_t(Sx, cy - 10, "S", 8.6, "middle", INK, True))
+
+    return _fig(svg(600, 300, STY + "".join(b), "Họ đường hypebol của hai trạm"),
+                "Hình 10-30. Họ đường hypebol của hai sóng vô tuyến lan truyền ngược chiều nhau. Các "
+                "đường này là quỹ tích mọi điểm có cùng hiệu thời gian giữa xung chủ và xung tớ. Đường "
+                "thẳng MS gọi là đường chuẩn; khoảng cách xa nhất của mục tiêu không được vượt quá sáu "
+                "lần chiều dài đường chuẩn.",
+                "Figure 10-30. Hyperbolic patterns of two radio waves propagated in opposite directions. "
+                "The lines are the locus of every point with the same time difference between the master "
+                "and the secondary pulse. The straight line MS is the baseline; the target must not be "
+                "farther than six times the baseline length.",
+                "Hai chùm đường hypebol đối xứng qua trung điểm của hai trạm M và S trên đường chuẩn "
+                "XY, kèm các vòng tròn khoảng cách mờ.",
+                "Two families of hyperbolae symmetric about the midpoint of stations M and S on the "
+                "baseline XY, with faint range circles.")
+
+
+def fig_10_31():
+    """Loran-C: nine master pulses, then the slaves, and the three delays."""
+    b = []
+    b.append(_arrow(88, 176, 570, 176, 1.0))
+    b.append(_t(560, 192, "thời gian", 7.6, "end", "#444"))
+
+    def group(x, n, gap=7.0, last=14.0, h=16):
+        for i in range(n):
+            px = x + i * gap + (last - gap if i == n - 1 else 0)
+            b.append(_l(px, 176, px, 176 - h, 1.2))
+
+    group(120, 9)
+    b.append(_t(150, 152, "xung chủ", 7.2, "middle", "#222", True))
+    group(268, 8)
+    b.append(_t(292, 152, "tớ X", 7.2, "middle", "#222", True))
+    group(372, 8)
+    b.append(_t(396, 152, "tớ Y", 7.2, "middle", "#222", True))
+    group(452, 8)
+    b.append(_t(476, 152, "tớ Z", 7.2, "middle", "#222", True))
+    group(516, 4, 7.0, 7.0)
+    b.append(_t(534, 152, "chủ", 7.2, "middle", "#222", True))
+
+    for lab, x2, y in (("TDX", 268, 196), ("TDY", 372, 214), ("TDZ", 452, 232)):
+        b.append(_l(120, y, x2, y, 0.9, "#555"))
+        b.append(_l(120, y - 4, 120, y + 4, 0.9, "#555"))
+        b.append(_l(x2, y - 4, x2, y + 4, 0.9, "#555"))
+        b.append(_t((120 + x2) / 2.0, y - 5, lab, 7.0, "middle", RED, True))
+
+    b.append(_arrow(300, 164, 328, 164, 0.8, "#888"))
+    b.append(_t(314, 158, "1000 μs", 6.8, "middle", "#555"))
+
+    return _fig(svg(600, 246, STY + "".join(b), "Chuỗi xung Loran-C"),
+                "Hình 10-31. Chuỗi xung Loran-C. Chín xung từ trạm chủ cách nhau 1 ms, riêng xung thứ "
+                "chín cách 2 ms. Các trạm tớ X, Y, Z phát xung sau khi nhận thông tin từ trạm chủ một "
+                "khoảng thời gian; đầu thu bắt các xung này sẽ cho trực tiếp kinh độ và vĩ độ dưới dạng "
+                "số đọc.",
+                "Figure 10-31. Loran-C pulse sequence. The nine pulses from the master are separated by "
+                "1 ms, except the ninth, which is 2 ms later. The secondary stations X, Y and Z transmit "
+                "some time after receiving the master's signal; a receiver that picks these up reads "
+                "latitude and longitude directly.",
+                "Giản đồ thời gian với nhóm chín xung chủ, ba nhóm xung tớ X, Y, Z, nhóm chủ kế tiếp và "
+                "ba khoảng trễ TDX, TDY, TDZ.",
+                "A timing diagram with the nine-pulse master group, three secondary groups X, Y and Z, "
+                "the next master group, and the three delays TDX, TDY and TDZ.")
+
+
+def fig_10_32():
+    """Omega: three comparisons, from a broad lane down to the 10.2 kHz wave."""
+    b = []
+    b.append('<ellipse cx="300" cy="190" rx="214" ry="88" fill="none" stroke="%s" stroke-width="1.4"/>' % INK)
+
+    b.append(_wave(92, 508, 190, 44, lambda u: math.sin(2 * math.pi * u), n=200))
+    b.append(_wave(92, 508, 190, 36, lambda u: math.sin(2 * math.pi * 3 * u), n=360, color="#8d99a6"))
+    b.append(_wave(372, 508, 190, 20, lambda u: math.sin(2 * math.pi * 11 * u), n=300, color=BLUE))
+
+    for x, lab, dy in ((372, "so pha #1", -108), (432, "so pha #2", -126), (470, "so pha #3", -84)):
+        b.append(_l(x, 108, x, 272, 1.0, "#555"))
+        b.append(_t(x, 190 + dy, lab, 7.0, "middle", "#444", True))
+
+    b.append(_t(150, 264, "sóng hiệu 1,133 kHz", 7.2, "middle", "#444"))
+    b.append(_t(300, 236, "sóng hiệu 3,4 kHz", 7.2, "middle", "#666"))
+    b.append(_t(440, 244, "sóng 10,2 kHz", 7.2, "middle", BLUE))
+    b.append(_arrow(240, 150, 300, 150, 0.8, "#555"))
+    b.append(_arrow(300, 150, 240, 150, 0.0, "#555"))
+    b.append(_t(270, 144, "làn rộng", 6.8, "middle", "#555"))
+
+    return _fig(svg(600, 300, STY + "".join(b), "Phân giải làn của hệ Omega"),
+                "Hình 10-32. Ba lần so pha liên tiếp để phân giải làn trong hệ Omega. Độ lệch pha "
+                "được so ở ba mức với ba tín hiệu khác nhau do mỗi trạm phát, nhằm xác định vị trí "
+                "chính xác. Một bước sóng dài 25 km, tương ứng hai làn. Độ chính xác của hệ Omega có "
+                "giới hạn.",
+                "Figure 10-32. Three successive phase comparisons for lane resolution in Omega. The "
+                "phase differences are compared at three levels against three different signals "
+                "transmitted by each station, to fix the position precisely. One wavelength is 25 km, "
+                "representing two lanes. Omega's accuracy is limited.",
+                "Một elip lớn chứa ba sóng chồng nhau: sóng hiệu 1,133 kHz một chu kỳ, sóng hiệu "
+                "3,4 kHz ba chu kỳ, và sóng 10,2 kHz ở phía phải, kèm ba đường so pha thẳng đứng.",
+                "A large ellipse holding three overlaid waves — a one-cycle 1.133 kHz difference wave, a "
+                "three-cycle 3.4 kHz wave and a 10.2 kHz wave at the right — with three vertical phase-"
+                "comparison lines.")
+
+
+def fig_10_33():
+    """Radar antenna pattern: a narrow main lobe, small side lobes."""
+    b = []
+    b.append(_p("M 128 190 A 26 26 0 0 1 128 118", "none", 2.2))
+    b.append(_l(128, 118, 128, 190, 1.4))
+    b.append(_arrow(128, 154, 520, 154, 0.9, "#888"))
+    b.append(_t(500, 146, "trục chùm tia", 7.2, "middle", "#444"))
+
+    b.append(_p("M 128 154 C 240 118 400 132 512 154 C 400 176 240 190 128 154 Z",
+                "#eef2f6", 1.1))
+    for ang, ln in ((-38, 46), (-62, 30), (38, 46), (62, 30)):
+        a = math.radians(ang)
+        cx, cy = 128 + ln * math.cos(a), 154 + ln * math.sin(a)
+        b.append('<ellipse cx="%s" cy="%s" rx="%s" ry="%s" fill="none" stroke="%s" stroke-width="1" '
+                 'transform="rotate(%s %s %s)"/>'
+                 % (_f(cx), _f(cy), _f(ln * 0.42), _f(ln * 0.16), INK, ang, _f(cx), _f(cy)))
+
+    b.append(_arrow(392, 136, 392, 172, 0.9, RED))
+    b.append(_arrow(392, 172, 392, 136, 0.0, RED))
+    b.append(_l(388, 136, 396, 136, 0.9, RED))
+    b.append(_l(388, 172, 396, 172, 0.9, RED))
+    b.append(_t(392, 126, "độ rộng chùm tia", 6.8, "middle", RED))
+
+    b.append(_t(330, 202, "búp chính", 7.2, "middle", "#444"))
+    b.append(_t(178, 104, "búp phụ", 7.2, "middle", "#444"))
+    b.append(_l(172, 108, 166, 120, 0.7, "#888"))
+    b.append(_t(96, 206, "gương parabol", 7.0, "middle", "#444"))
+
+    return _fig(svg(600, 230, STY + "".join(b), "Chùm tia radar"),
+                "Hình 10-33. Chùm tia của radar tìm kiếm mặt biển. Sóng điện từ cao tần được tạo thành "
+                "chùm bởi ăng ten parabol. Ăng ten thu quay 360° để quét toàn bộ vùng quanh nó; vị trí "
+                "mục tiêu được xác định nhờ tín hiệu phản xạ trở lại và hướng của ăng ten.",
+                "Figure 10-33. A surface search radar beam. High-frequency electromagnetic waves are "
+                "formed into a beam by a parabolic antenna. The receiving antenna turns through 360° to "
+                "scan the whole surrounding area; the target's position follows from the returned echo "
+                "and the antenna's bearing.",
+                "Một ăng ten parabol ở bên trái, búp chính hẹp kéo dài sang phải, bốn búp phụ nhỏ, trục "
+                "chùm tia nằm ngang và mũi tên đo độ rộng chùm tia.",
+                "A parabolic antenna on the left, a narrow main lobe stretching right, four small side "
+                "lobes, the horizontal beam axis and an arrow marking the beam width.")
+
+
+def fig_10_34():
+    """Transit: the Doppler curve rises, peaks at closest approach, then falls."""
+    b = []
+    for i in range(3):
+        x0 = 46 + i * 180
+        cx = x0 + 70
+        # satellite
+        b.append(_r(cx - 16, 46, 32, 16, "#e7e1d2", 1.0))
+        b.append(_r(cx - 40, 50, 22, 8, BAND, 0.9))
+        b.append(_r(cx + 18, 50, 22, 8, BAND, 0.9))
+        b.append(_t(cx, 40, "T%d" % (i + 1), 7.4, "middle", "#222", True))
+
+        # graph box
+        b.append(_r(x0 + 20, 96, 100, 56, PAPER, 1.0))
+        b.append(_l(x0 + 20, 124, x0 + 120, 124, 0.7, "#bbb"))
+        b.append(_t(x0 + 16, 102, "+", 7.0, "middle", "#666"))
+        b.append(_t(x0 + 16, 148, "−", 7.0, "middle", "#666"))
+        b.append(_t(x0 + 18, 126, "0", 6.6, "middle", "#666"))
+
+        def f(u, i=i):
+            if i == 0:
+                return 1.0 / (1.0 + math.exp(-(u - 0.30) * 7))
+            if i == 1:
+                return math.exp(-((u - 0.5) / 0.24) ** 2)
+            return 1.0 / (1.0 + math.exp((u - 0.60) * 7))
+        b.append(_wave(x0 + 24, x0 + 116, 146, 42, f, n=140, color=BLUE, sw=1.2))
+        if i == 1:
+            b.append(_l(cx, 100, cx, 148, 0.8, RED, "3 3"))
+
+        # receiver
+        b.append(_p("M %s 200 L %s 200 L %s 218 Z" % (_f(cx - 16), _f(cx + 16), _f(cx)), "none", 1.3))
+        b.append(_l(cx, 218, cx, 230, 1.2))
+        b.append(_l(cx - 12, 230, cx + 12, 230, 1.4))
+        b.append(_l(cx - 10, 62, cx - 14, 200, 0.7, "#999", "4 3"))
+        b.append(_l(cx + 10, 62, cx + 14, 200, 0.7, "#999", "4 3"))
+
+    b.append(_t(116, 90, "vệ tinh đang tới", 7.0, "middle", "#444"))
+    b.append(_t(296, 90, "lúc tới gần nhất", 7.0, "middle", "#444"))
+    b.append(_t(476, 90, "vệ tinh đang rời", 7.0, "middle", "#444"))
+
+    return _fig(svg(600, 250, STY + "".join(b), "Đường cong Doppler của vệ tinh Transit"),
+                "Hình 10-34. Đường cong Doppler của vệ tinh Transit. Khi vệ tinh tới gần đầu thu, tần "
+                "số nhận được tăng lên do dịch Doppler. Tại thời điểm tới gần nhất, tần số phát và tần "
+                "số nhận bằng nhau. Khi vệ tinh rời xa, tần số nhận được nhỏ hơn. Điều này cũng đúng "
+                "với các vệ tinh định vị khác như GPS, Glonass, Starfix.",
+                "Figure 10-34. Transit satellite Doppler curve. As the satellite approaches the receiver "
+                "the received frequency rises through the Doppler shift; at closest approach the "
+                "transmitted and received frequencies are equal; as it recedes the received frequency is "
+                "lower. The same applies to GPS, Glonass and Starfix.",
+                "Ba pa-nen: vệ tinh đang tới với đường cong tăng dần, lúc tới gần nhất với đỉnh giữa, "
+                "và vệ tinh đang rời với đường cong giảm dần; mỗi pa-nen có hộp đồ thị và ăng ten thu.",
+                "Three panels: an approaching satellite with a rising curve, closest approach with a "
+                "central peak, and a receding satellite with a falling curve, each with a graph box and a "
+                "receiving antenna.")
+
+
+def fig_10_35():
+    """GPS constellation: six orbital planes, four satellites each."""
+    b = []
+    C = (300, 224)
+    R = 184
+    b.append(_c(C[0], C[1], R, "none", 1.3))
+    b.append(_c(C[0], C[1], 34, "#ded7c6", 1.0))
+    b.append(_hatch(C[0] - 34, C[1] - 34, 68, 68, 7, "#b9b0a0"))
+
+    names = "ABCDEF"
+    for k in range(6):
+        ph = k * math.pi / 3.0
+        pts = []
+        for i in range(81):
+            t = -1.0 + 2.0 * i / 80.0
+            x, y = C[0] + 172 * t, C[1] - 128 * math.sin(math.pi * t + ph)
+            if (x - C[0]) ** 2 + (y - C[1]) ** 2 <= (R - 5) ** 2:
+                pts.append((x, y))
+        if len(pts) > 1:
+            b.append(_p("M " + " L ".join("%s %s" % (_f(x), _f(y)) for x, y in pts),
+                        "none", 0.9, "#777"))
+        for j, t in enumerate((-0.74, -0.26, 0.26, 0.74)):
+            x = C[0] + 172 * t
+            y = C[1] - 128 * math.sin(math.pi * t + ph)
+            if (x - C[0]) ** 2 + (y - C[1]) ** 2 > (R - 12) ** 2:
+                continue
+            b.append(_r(x - 7, y - 4, 14, 8, PAPER, 0.9))
+            b.append(_l(x - 7, y, x - 11, y, 0.8))
+            b.append(_l(x + 7, y, x + 11, y, 0.8))
+            b.append(_t(x, y - 8, "%s%d" % (names[k], j + 1), 6.2, "middle", "#222", True))
+
+    return _fig(svg(600, 420, STY + "".join(b), "Vùng phủ của chùm vệ tinh GPS"),
+                "Hình 10-35. Vùng phủ của chùm vệ tinh GPS dùng cho dẫn đường. Bốn vệ tinh chạy trên "
+                "quỹ đạo tròn; có sáu mặt phẳng quỹ đạo nghiêng 60° so với nhau. Với cách bố trí này, "
+                "mọi điểm trên Trái Đất luôn thấy ít nhất bốn vệ tinh cùng lúc, cho độ chính xác tốt "
+                "ngay cả khi chỉ nhận mã C/A.",
+                "Figure 10-35. Operational GPS satellite coverage for navigation. Four satellites orbit "
+                "in circular form across six planes inclined 60° to each other. In this arrangement any "
+                "point on Earth sees at least four satellites at once, which gives good accuracy even "
+                "with C/A codes alone.",
+                "Mặt chiếu tròn với sáu quỹ đạo hình sin cắt nhau, mỗi quỹ đạo bốn vệ tinh có nhãn A1 "
+                "tới F4, và một vòng tròn gạch ở tâm.",
+                "A circular planisphere with six crossing sinusoidal orbits, four labelled satellites "
+                "A1 to F4 on each, and a hatched circle at the centre.")
+
+
+def fig_10_36():
+    """Differential GPS: a surveyed receiver publishes the correction."""
+    b = []
+    sats = [(196, 74), (286, 52), (382, 58), (472, 78)]
+    for x, y in sats:
+        b.append(_r(x - 14, y, 28, 14, "#e7e1d2", 1.0))
+        b.append(_r(x - 34, y + 4, 18, 7, BAND, 0.8))
+        b.append(_r(x + 16, y + 4, 18, 7, BAND, 0.8))
+    b.append(_t(300, 40, "vệ tinh GPS", 7.4, "middle", "#222", True))
+
+    for ax in (232, 424):
+        b.append(_p("M %s 186 A 20 20 0 0 1 %s 186" % (_f(ax - 20), _f(ax + 20)), "none", 1.8))
+        b.append(_l(ax, 186, ax, 202, 1.2))
+        for x, y in sats:
+            b.append(_l(x, y + 14, ax, 180, 0.7, "#999"))
+    b.append(_t(232, 216, "ăng ten đã trắc đạc", 7.0, "middle", "#444"))
+    b.append(_t(424, 216, "ăng ten mục tiêu", 7.0, "middle", "#444"))
+
+    b.append(_box(140, 240, 116, 42, "", 7.2, lines=["máy phát", "vi phân"]))
+    b.append(_box(376, 240, 116, 42, "", 7.2, lines=["máy thu", "vi phân"]))
+    b.append(_l(232, 202, 232, 240, 0.9))
+    b.append(_l(424, 202, 424, 240, 0.9))
+
+    # The reference station measures the error and sends the correction to the rover,
+    # so the arrow runs left to right, into the receiver.
+    b.append(_l(198, 282, 198, 312, 0.9))
+    b.append(_l(198, 312, 434, 312, 0.9))
+    b.append(_arrow(434, 312, 434, 284, 0.9))
+    b.append(_t(287, 306, "hiệu chỉnh – nghiệm đo", 7.2, "middle", RED, True))
+
+    return _fig(svg(600, 330, STY + "".join(b), "GPS vi phân"),
+                "Hình 10-36. Hoạt động của GPS vi phân. Vị trí vệ tinh và vị trí mục tiêu được các đầu "
+                "thu mặt đất hoặc đầu thu di động có toạ độ đã biết chính xác cảm nhận. Sai số vị trí "
+                "mục tiêu do tín hiệu vệ tinh gây ra được hiệu chỉnh bằng thông tin từ đầu thu cố định; "
+                "nhờ đó đạt được độ chính xác cỡ dưới một mét.",
+                "Figure 10-36. Differential GPS operation. Satellite and target positions are sensed by "
+                "ground-fixed or mobile receivers whose own coordinates are known exactly. The target's "
+                "error from the satellite signals is corrected with information from the fixed receiver, "
+                "which brings accuracy into the sub-metre range.",
+                "Bốn vệ tinh ở trên, hai ăng ten thu bên dưới, hộp máy phát vi phân và máy thu vi phân, "
+                "và đường hồi tiếp ghi hiệu chỉnh – nghiệm đo.",
+                "Four satellites above, two receiving antennas below, a differential transmitter box and "
+                "a differential receiver box, and a feedback path labelled correction – measured solution.")
+
+
 FIGURES = [fig_10_1, fig_10_2, fig_10_3, fig_10_4, fig_10_5, fig_10_6, fig_10_7,
            fig_10_8, fig_10_9, fig_10_10, fig_10_11, fig_10_12, fig_10_13, fig_10_14,
            fig_10_15, fig_10_16, fig_10_17, fig_10_18, fig_10_19, fig_10_20, fig_10_21,
-           fig_10_22, fig_10_23, fig_10_24, fig_10_25]
+           fig_10_22, fig_10_23, fig_10_24, fig_10_25, fig_10_26, fig_10_27, fig_10_28,
+           fig_10_29, fig_10_30, fig_10_31, fig_10_32, fig_10_33, fig_10_34, fig_10_35,
+           fig_10_36]
