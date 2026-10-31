@@ -1,17 +1,18 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** end of session 2026-10-31 (session 5) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** end of session 2026-10-31 (session 6) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook **Chapter 10 — Position, Location, Altitude Measurement**,
 > already in progress. Chapters 1–9 are done and live. Chapter 10 is **73 pages / 43 figures /
 > 4 tables / 8 co-authors**, about six times a normal chapter of this batch, so it is being
 > built in stages and must **not** be registered until it is whole.
 >
-> **Already done for chapter 10:** all of section 10.1's text has been read, and its seven
-> figures (10.1–10.7) are finished and QA'd in `build/hb10fig.py`. Start at §3.5.
+> **Already done for chapter 10:** figures **10.1–10.16** are written and QA'd in
+> `build/hb10fig.py`, and all of sections 10.1 and 10.2 have been read. Start at §3.3.
 >
-> **Chapters 8 and 9 landed this session** and are live (9 of 101). Chapter 9 carried a real
-> source defect worth knowing about — see §7, session 5.
+> **This session also repaired a broken rebase** left in the working tree and shipped a
+> new "Process" section that had been stranded locally. Read §7 session 6 before you run
+> `git pull` — the same conflict will recur.
 
 This file is the single source of truth for the book-translation work on this site.
 Read it before touching anything. Update the status table and append to the session log
@@ -222,11 +223,39 @@ for i,l in enumerate(lines,1):
 Subtract 1 from that number to get the `work/ch10png/page-NNNN.png` filename — the counter
 double-counts the CRC cover page.
 
-**Done so far:** all of section 10.1's text read; figures 10.1–10.7 written and QA'd in
-`build/hb10fig.py` (committed as `320ac92`, WIP, not registered).
+**Done so far:**
 
-**Remaining:** figures 10.8–10.43, then `build/reader_hb_ch10.py` for all five sections,
-then register / build / ship as in §4.4.
+| Item | State | Commit |
+|---|---|---|
+| Section 10.1 text read; figures 10.1–10.7 | done, QA'd | `320ac92` |
+| Section 10.2 text read; figures 10.8–10.16 | done, QA'd | `9c6096a` |
+| Section 10.3 text read | done (figures not started) | — |
+| Sections 10.4, 10.5 text read | done (figures not started) | — |
+
+**Remaining:** figures **10.17–10.43** (27 figures), then `build/reader_hb_ch10.py` for all
+five sections, then register / build / ship as in §4.4.
+
+**What the reading already established**, so the next session does not have to re-read the PDF:
+
+- **10.2 Attitude Measurement** — figures 10.8–10.16; tables 10.2 (gyro performance),
+  10.3 (servo accelerometer spec), 10.4 (spacecraft attitude sensors); eqs 10.45–10.91
+  (ship sensors, two-dominant-wave model, Kalman filter bank with Bayesian weights, crane
+  lifter double pendulum, VG/DG Laplace analysis, IMU pitch/rms, Grubin two-cone
+  intersection, trace averaging, PALADS); 17 references.
+- **10.3 Inertial Navigation** — figures 10.17–10.25; eqs 10.92–10.104; six error
+  categories; stabilization; vehicular navigation (dead reckoning, radiolocation, map
+  matching, proximity beacon); aircraft (VOR/DME, Omega); underwater (SINS, Litton LN-100,
+  HBOI); robotics (Honeywell MAPS, Hitachi IFOG); 3 references + an appendix list of ~20
+  manufacturers.
+- **10.4 Satellite Navigation and Radiolocation** — figures 10.26–10.36; eq 10.105 (rms);
+  EM spectrum and 8 frequency bands; AM/FM/pulse modulation; four ionosphere layers
+  (D 60–90 km, E 110 km, F1 175–200 km, F2 250–400 km); ground waves; CEP/rms; radiobeacons,
+  Loran-C, Decca, Consol, Omega, radar, Transit, transponders, GPS (L1 1575.42 MHz /
+  L2 1227.6 MHz, C/A vs P/Y), Glonass, Starfix; 5 references + ~10 suppliers.
+- **10.5 Occupancy Detection** — figures 10.37–10.43; eqs 10.106–10.114; 17 detector types;
+  ultrasonic; microwave (`f₀ = c₀/λ₀`, Doppler, `Δf ≈ v/λ₀`, `Δf ≈ (v/λ₀)cos Θ`); MIR;
+  capacitive; triboelectric; optoelectronic; facet lenses; PIR (Stefan–Boltzmann, eq 10.113);
+  AFIR (eq 10.114).
 
 ### 3.4 Then
 
@@ -431,6 +460,15 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 | A curve runs flat along the bottom frame | the plot clamped out-of-range values to `yr[0]` | stop the polyline at the frame instead — clamping invents data |
 | A y axis reads `−0` | the tick list started at 0 and the formatter prefixed every value | special-case zero in the tick list, do not format `-v` for `v = 0` |
 | A legend sits on top of the curves | it was placed inside the frame in a gap that the data later filled | put the legend in a row above the frame, or in a genuinely empty corner |
+| `NameError: PAPER is not defined` in a new figure module | `hb10fig.py` imports only `GOLD, INK, MUTED, TXT, _f, svg, _fig` from `hbfig` | declare `PAPER = "#ffffff"` alongside the module's own `BLUE`/`RED`/`GREEN`/`SAND`/`BAND` |
+| A label sits **on** the arrow it names | the label was placed at a radius *smaller* than the arrow's own length, so it lands inside the shaft | place it at `r + 14` beyond the tip, not at the midpoint |
+| Two or three labels pile up at the top of a vector fan | every vector points up, so every label wants the same strip of canvas | give each vector its own length and stagger the tips vertically; the longest gets the outermost label |
+| A hatch fills a rectangle instead of the wedge | the hatch runs were clipped to the canvas, not to the wedge's slanted edge | compute the slanted boundary per scan line: `xr = x0 + (y - yTop) * (xR - x0) / (yMid - yTop)` |
+| A rotating element (ship roll, gyro roll) is drawn on top of the hull | the arc centre was inside the outline | move the arc centre clear of the outline and re-check at the widest point, not the centreline |
+| A part is drawn attached at both ends when it should be free | the rectangle ran from the case wall to the hinge | leave a visible gap: a cantilever that touches the wall reads as a strut |
+| An arrow points at a sparse patch of a scatter | the tip was placed by eye, not from the data | compute the tip from the cluster's own coordinates: `X(mean_x), Y(mean_y)` |
+| `git rebase` left the tree mid-flight with `UU` files | a `git pull --rebase` hit generated-output conflicts and was abandoned | check `.git/rebase-merge` before anything else; resolve the **source** conflict, take `dcef287`'s HTML, rebuild, then `--continue` |
+| A rebase "succeeded" but a file silently lost rules | the index held the correct merge and the worktree held an older copy | after resolving, `git show :path \| grep` against the worktree before committing |
 
 ## 6. House rules
 
@@ -453,6 +491,41 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 - **Write this file's session log before you stop.**
 
 ## 7. Session log
+
+### 2026-10-31, session 6 — broken rebase repaired, "Process" section shipped, chapter 10 figures 10.8–10.16
+
+**No new book chapter landed. The session opened on a broken repository and closed on a
+clean, fully verified one, plus nine new figures for chapter 10.**
+
+**The rebase.** The working tree was mid-rebase: detached HEAD, `.git/rebase-merge` present,
+14 unmerged paths, `main` at `2781ec6` being replayed onto `dcef287`. The incoming commit was
+*Add 'Process' section: what a process is, the three economic sectors, and the
+control/instrumentation/IT-OT/AI stack* — a whole new top-level section that existed only
+locally and had never been pushed.
+
+The single real source conflict was in `build/framework.py`. `origin/main` had just rewritten
+the foot-of-page chain so that `CHAIN` is **derived** from `NAV`
+(`CHAIN = [(href, en, vi) + LONG[href] for href, en, vi in NAV]`), while the Process commit
+hand-added a second hardcoded `CHAIN` list to insert itself. Resolution: keep the derivation,
+delete the hardcoded list, and add the missing `"process.html"` key to `LONG` — after which
+Process lands between *Hot topics* and *Fundamentals* automatically, exactly where the
+incoming commit wanted it. Verified with `chain_neighbours("process.html")`.
+
+All 21 generated HTML files were resolved by taking `dcef287`'s version and **rebuilding from
+source** rather than hand-merging, which is the only safe way to resolve generated output.
+`assets/style.css` also arrived with a spurious working-tree diff (it silently lost the
+`.hot-press` rules); restored from the index.
+
+Shipped as `cc91bb3` (the rebased Process commit) + `4518b72` (the rebuild), then pushed.
+Sitemap **482 URLs / 468 pairs**; link check **484 pages, 11,800 references, 0 broken**.
+Visually checked `process.html` over HTTP: 10 sections, the five-column sector table renders
+cleanly, footer chain reads *Hot topics → Fundamentals of measurement*.
+
+**Chapter 10, figures 10.8–10.16** (section 10.2, Attitude Measurement), committed `9c6096a`.
+Nine figures drawn from source pages 19–34: servo accelerometer, dielectric inclinometer,
+ship sensor locations, crane lifter, trolley-lifter dynamics, vertical-gyro vector fan,
+attitude cones, trace-averaging scatter, PAL ray diagram. Three QA rounds were needed; the
+defects found and fixed are in the traps table.
 
 ### 2026-10-31, session 5 — Handbook Chapters 8 and 9 shipped, Chapter 10 started
 
