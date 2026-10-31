@@ -590,9 +590,11 @@ def plant(lang, prefix):
       <a href="%(prefix)scontrol.html#advanced">%(a2)s <span aria-hidden="true">&rarr;</span></a></p>
     <h3 class="adv-h3">%(src_h)s</h3>
     <ul class="adv-src">%(srcs)s</ul>
+    %(chain)s
   </div>
 </section>
 """ % {
+        "chain": framework.nextprev_plain(lang, "advanced/"),
         "eb": t["eb_4"],
         "h": t["plant_h"],
         "p": t["plant_p"],

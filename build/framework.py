@@ -177,6 +177,109 @@ def bullets(pg, rows):
     return out + "</ul>"
 
 
+# The reading chain, in exactly the order of the top nav (minus Books and Videos,
+# which are separate trees with no prev/next of their own). The pair at the foot
+# of every page is generated from this list, so the two can never drift apart
+# again when a section is added in the middle.
+CHAIN = [
+    ("index.html", "Home", "Trang chủ", "Home", "Trang chủ"),
+    ("fundamentals.html", "Fundamentals", "Cơ bản",
+     "Fundamentals of measurement", "Cơ bản về đo lường"),
+    ("advanced/", "Advanced", "Nâng cao",
+     "Advanced practice", "Thực hành nâng cao"),
+    ("instruments.html", "Instruments", "Thiết bị đo",
+     "Instrument reference", "Danh mục thiết bị"),
+    ("install.html", "Install", "Lắp đặt",
+     "Installation", "Lắp đặt"),
+    ("control.html", "Control", "Điều khiển",
+     "Control &amp; tuning", "Điều khiển &amp; hiệu chỉnh"),
+    ("applications.html", "Applications", "Ứng dụng",
+     "Applications", "Ứng dụng"),
+    ("safety.html", "Safety", "An toàn",
+     "Safety instrumented systems", "Hệ thống an toàn"),
+    ("tools.html", "Tools", "Công cụ",
+     "Engineering tools", "Công cụ kỹ thuật"),
+    ("comparison.html", "Comparison", "So sánh",
+     "Process vs geotechnical", "Quá trình và địa kỹ thuật"),
+    ("geotechnical.html", "Geotech", "Địa kỹ thuật",
+     "Geotechnical monitoring", "Quan trắc địa kỹ thuật"),
+    ("standards.html", "Standards", "Tiêu chuẩn",
+     "Standards index", "Danh mục tiêu chuẩn"),
+    ("glossary.html", "Glossary", "Thuật ngữ",
+     "Glossary", "Thuật ngữ"),
+    ("education.html", "Education", "Giáo dục",
+     "Education", "Giáo dục"),
+]
+
+CHAIN_IDS = [c[0] for c in CHAIN]
+
+
+def chain_neighbours(active):
+    """The entry before and after `active`, wrapping the last page back to Home."""
+    if active not in CHAIN_IDS:
+        return None, None
+    i = CHAIN_IDS.index(active)
+    prev = CHAIN[i - 1] if i > 0 else None
+    nxt = CHAIN[(i + 1) % len(CHAIN)]
+    return prev, nxt
+
+
+def nextprev(pg, active):
+    """Back / Next at the foot of the page, following the top nav order."""
+    if active not in CHAIN_IDS:
+        return ""
+    prev, nxt = chain_neighbours(active)
+    out = ['<div class="nextprev">']
+    if prev:
+        out.append('<a href="%s"><span class="k">%s</span>%s</a>'
+                   % (prev[0], pg.span("Back", "Quay lại"), pg.span(prev[3], prev[4])))
+    if nxt[0] == "index.html":
+        out.append('<a href="index.html" style="text-align:right">'
+                   '<span class="k">%s</span>%s</a>'
+                   % (pg.span("Home", "Trang chủ"),
+                      pg.span("Back to start", "Về trang đầu")))
+    else:
+        out.append('<a href="%s" style="text-align:right"><span class="k">%s</span>%s</a>'
+                   % (nxt[0], pg.span("Next", "Tiếp"), pg.span(nxt[3], nxt[4])))
+    out.append("</div>")
+    return "".join(out)
+
+
+def nextprev_plain(lang, active):
+    """The same chain without i18n keys, for pages written once per language."""
+    if active not in CHAIN_IDS:
+        return ""
+    prev, nxt = chain_neighbours(active)
+    ti = 3 if lang == "en" else 4
+    out = ['<div class="nextprev">']
+    if prev:
+        out.append('<a href="%s"><span class="k">%s</span>%s</a>'
+                   % (prev[0], "Back" if lang == "en" else "Quay lại", prev[ti]))
+    if nxt[0] == "index.html":
+        out.append('<a href="index.html" style="text-align:right">'
+                   '<span class="k">%s</span>%s</a>'
+                   % ("Home" if lang == "en" else "Trang chủ",
+                      "Back to start" if lang == "en" else "Về trang đầu"))
+    else:
+        out.append('<a href="%s" style="text-align:right"><span class="k">%s</span>%s</a>'
+                   % (nxt[0], "Next" if lang == "en" else "Tiếp", nxt[ti]))
+    out.append("</div>")
+    return "".join(out)
+
+
+NEXTPREV_RE = re.compile(r'<div class="nextprev">.*?</div>', re.S)
+
+
+def apply_chain(body, pg, active):
+    """Force the foot-of-page pair to match CHAIN, wherever the template put it."""
+    if active not in CHAIN_IDS or active == "index.html":
+        return body  # the home page keeps its own "Also read" pair
+    block = nextprev(pg, active)
+    if NEXTPREV_RE.search(body):
+        return NEXTPREV_RE.sub(block, body, count=1)
+    return body.replace("</main>", block + "\n</main>", 1)
+
+
 def page_intro(pg, title_en, title_vi, lede_en, lede_vi, toc=None):
     """Page header: title + lede on the left, section index on the right."""
     left = '<div class="intro-l">%s%s</div>' % (
@@ -294,7 +397,7 @@ def render(pg, body, active):
     )
     out = head(pg)
     out += topbar(active)
-    out += body
+    out += apply_chain(body, pg, active)
     out += footer()
     out += "<script>window.I18N=%s;window.I18N_META=%s;</script>\n" % (payload, meta)
     out += '<script src="assets/app.js?v=%s"></script>\n</body>\n</html>\n' % ASSET_VER
