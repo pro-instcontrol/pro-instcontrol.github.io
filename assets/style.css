@@ -736,6 +736,8 @@ a.lang:hover{text-decoration:none}
 .adv-src li{font-size:12.6px;line-height:1.55;color:var(--muted);max-width:66em}
 .adv-src a{color:var(--accent-2);font-weight:500}
 .adv-src .tag{display:inline-block;font-family:var(--mono);font-size:8.6px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line2);border-radius:4px;padding:1px 5px;margin-right:8px;vertical-align:1.5px}
+.adv-tbl{margin-top:24px}
+.adv-tbl th:first-child,.adv-tbl td:first-child{width:22%}
 @media (max-width:760px){
   .adv-themes{grid-template-columns:1fr}
   .adv-hero{padding:40px 0 26px}

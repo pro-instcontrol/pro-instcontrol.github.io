@@ -14,7 +14,7 @@ DIST = os.path.join(ROOT, "dist")
 
 # Single cache-busting version for every generated page. Bump this whenever
 # style.css or app.js changes; the env var exists only for one-off experiments.
-ASSET_VER = os.environ.get("ASSET_VER", "3")
+ASSET_VER = os.environ.get("ASSET_VER", "4")
 
 _NEST_OPEN = re.compile(r"<(h[1-4]|p|li)([^>]*)><\1([^>]*)>")
 _NEST_CLOSE = re.compile(r"</(h[1-4]|p|li)></\1>")
@@ -245,24 +245,29 @@ def nextprev(pg, active):
     return "".join(out)
 
 
-def nextprev_plain(lang, active):
-    """The same chain without i18n keys, for pages written once per language."""
+def nextprev_plain(lang, active, prefix=""):
+    """The same chain without i18n keys, for pages written once per language.
+
+    ``prefix`` is for pages that do not sit at the site root, e.g. ``../`` from
+    /advanced/, so the chain links resolve to the root pages rather than to
+    siblings that do not exist.
+    """
     if active not in CHAIN_IDS:
         return ""
     prev, nxt = chain_neighbours(active)
     ti = 3 if lang == "en" else 4
     out = ['<div class="nextprev">']
     if prev:
-        out.append('<a href="%s"><span class="k">%s</span>%s</a>'
-                   % (prev[0], "Back" if lang == "en" else "Quay lại", prev[ti]))
+        out.append('<a href="%s%s"><span class="k">%s</span>%s</a>'
+                   % (prefix, prev[0], "Back" if lang == "en" else "Quay lại", prev[ti]))
     if nxt[0] == "index.html":
-        out.append('<a href="index.html" style="text-align:right">'
+        out.append('<a href="%sindex.html" style="text-align:right">'
                    '<span class="k">%s</span>%s</a>'
-                   % ("Home" if lang == "en" else "Trang chủ",
+                   % (prefix, "Home" if lang == "en" else "Trang chủ",
                       "Back to start" if lang == "en" else "Về trang đầu"))
     else:
-        out.append('<a href="%s" style="text-align:right"><span class="k">%s</span>%s</a>'
-                   % (nxt[0], "Next" if lang == "en" else "Tiếp", nxt[ti]))
+        out.append('<a href="%s%s" style="text-align:right"><span class="k">%s</span>%s</a>'
+                   % (prefix, nxt[0], "Next" if lang == "en" else "Tiếp", nxt[ti]))
     out.append("</div>")
     return "".join(out)
 

@@ -40,6 +40,7 @@ T = {
         "eb_2": "Control strategy",
         "eb_3": "Safety case",
         "eb_4": "Total plant",
+        "eb_5": "Decision layer",
         "lang_other": "VI",
         "lang_href": "../vi/advanced/",
         "nav_active": "advanced/",
@@ -166,6 +167,46 @@ T = {
                        "it is wrong, nobody will be able to say where.",
         "plant_a1": "The measurement chain",
         "plant_a2": "Advanced control",
+        "board_h": "The boardroom is also a control loop",
+        "board_p": "R. Russell Rhinehart makes the argument in Control Global: management is continually "
+                   "taking control action, and managers rarely have a control background, so the same "
+                   "questions apply — is the measurement valid, what is the inventory, how long is the "
+                   "dead time. It is section 04 read from the top down. He also warns that the human "
+                   "response to unasked-for help is itself a process, which is why the case has to be "
+                   "made in the manager's language and not in block diagrams.",
+        "board_hdr": ("Control concept", "The managerial version"),
+        "board_map": [
+            ("Cause and effect",
+             "There must be a mechanistic link between the action and the result. Choose the lever with "
+             "the strongest effect, the lowest cost and the fewest side effects — and beware technical "
+             "folklore that only looks like mechanism."),
+            ("Measurement validity",
+             "Easy to measure is not the same as true. Rhinehart's example: friendliness towards "
+             "managers might be a measure of morale, or it might be self-serving obsequiousness."),
+            ("Inventory, not the reading",
+             "Feedback control adds or removes inventory; the reading is only the response. You do not "
+             "add safety incidents — you top up the inventory of concern and knowledge, which leaks "
+             "away as people leave and as productivity pressure rises."),
+            ("Process dynamics",
+             "Training decays like an open-loop stable process, a grudge accumulates like an "
+             "integrating one, anger compounds like an unstable one. Each needs a different response, "
+             "and only the first is safe to leave alone."),
+            ("Dead time",
+             "A report approved at every level, a decree that must be disseminated before it takes "
+             "effect. Push cautiously, then wait for the effect before adjusting again."),
+            ("Noise",
+             "Reacting to normal variation is tampering. Rhinehart's example: the new university "
+             "president saw an enrolment dip, launched programmes to fix it, and left them running "
+             "after enrolment recovered. The dip was annual variation."),
+        ],
+        "board_close": "The point for an instrument engineer is not that management is soft. It is that "
+                       "the top of the stack is the slowest loop in the plant: the dead time is measured "
+                       "in quarters, the disturbances are unmeasured, and there is no way to run a step "
+                       "test. That is exactly why the bottom of the stack has to be honest. A "
+                       "deadtime-dominant loop that overshoots pays for it twice — and the boardroom has "
+                       "the longest dead time of all.",
+        "board_a1": "The four process responses, and what each needs",
+        "board_a2": "Part two — fix the process before you tune",
         "src_h": "Sources and further reading",
         "sources": [
             ("White paper", "Emerson — Improving quality with PlantWeb digital plant architecture",
@@ -185,6 +226,14 @@ T = {
              "Process Industry Forum — Digital plant architecture and the power of predictive intelligence",
              "https://www.processindustryforum.com/article/digital-plant-architecture-power-predictive-intelligence-improve-plant-performance",
              "The installed-cost and maintenance-productivity claims."),
+            ("Column",
+             "Control Global — Applying process control principles to decision making at the managerial level",
+             "https://www.controlglobal.com/control/multivariable-control/article/55411209/applying-process-control-principles-to-decision-making-at-the-managerial-level",
+             "October 2026. R. Russell Rhinehart, part one: the same basics, applied to management."),
+            ("Column",
+             "Control Global — How to fix poor control and choose the right strategy",
+             "https://www.controlglobal.com/control/multivariable-control/article/55411596/effective-process-control-matching-strategies-to-process-characteristics-and-overcoming-challenges",
+             "Part two: fix the process first, then match the strategy to the response."),
         ],
         "foot_note": "A bilingual field guide to process instrumentation and control. "
                      "Content is synthesised from ISA, IEC, API and ISO 18674 practice; "
@@ -208,6 +257,7 @@ T = {
         "eb_2": "Chiến lược điều khiển",
         "eb_3": "Hồ sơ an toàn",
         "eb_4": "Toàn nhà máy",
+        "eb_5": "Tầng quyết định",
         "lang_other": "EN",
         "lang_href": "../../advanced/",
         "nav_active": "advanced/",
@@ -337,6 +387,44 @@ T = {
                        "phải một hệ thống điều khiển — và lần đầu tiên nó sai, sẽ không ai nói được sai ở đâu.",
         "plant_a1": "Chuỗi đo lường",
         "plant_a2": "Điều khiển nâng cao",
+        "board_h": "Phòng họp cũng là một vòng điều khiển",
+        "board_p": "R. Russell Rhinehart lập luận trên Control Global: quản lý là việc liên tục ra hành "
+                   "động điều khiển, và người quản lý hiếm khi có nền tảng điều khiển, nên vẫn là những "
+                   "câu hỏi ấy — phép đo có hợp lệ không, lượng tồn là gì, thời gian trễ dài bao nhiêu. "
+                   "Đó là mục 04 đọc từ trên xuống. Ông cũng cảnh báo rằng phản ứng của con người trước "
+                   "một sự giúp đỡ không được mời cũng là một quá trình, nên lập luận phải nói bằng ngôn "
+                   "ngữ của người quản lý chứ không phải bằng sơ đồ khối.",
+        "board_hdr": ("Khái niệm điều khiển", "Phiên bản quản trị"),
+        "board_map": [
+            ("Nhân quả",
+             "Phải có liên hệ cơ chế giữa hành động và kết quả. Chọn đòn bẩy mạnh nhất, rẻ nhất và ít "
+             "tác dụng phụ nhất — và cảnh giác với những “truyền thuyết kỹ thuật” chỉ trông giống cơ chế."),
+            ("Tính hợp lệ của phép đo",
+             "Dễ đo không có nghĩa là đúng. Ví dụ của Rhinehart: sự niềm nở với cấp trên có thể là thước "
+             "đo tinh thần, mà cũng có thể chỉ là sự xu nịnh vụ lợi."),
+            ("Lượng tồn, không phải con số đọc",
+             "Điều khiển hồi tiếp thêm hoặc bớt lượng tồn; con số đọc chỉ là đáp ứng. Bạn không thêm sự "
+             "cố — bạn bổ sung lượng tồn quan tâm và hiểu biết, thứ rò rỉ dần khi người cũ rời đi và khi "
+             "áp lực năng suất tăng lên."),
+            ("Động học quá trình",
+             "Đào tạo tàn lụi như quá trình ổn định vòng hở, mối bất bình tích tụ như quá trình tích "
+             "phân, giận dữ sinh sôi như quá trình không ổn định. Mỗi dạng cần cách xử lý khác nhau, và "
+             "chỉ dạng đầu là an toàn khi bỏ mặc."),
+            ("Thời gian trễ",
+             "Một báo cáo phải qua từng cấp phê duyệt, một chỉ thị phải ban xuống rồi mới có hiệu lực. "
+             "Hãy đẩy một cách thận trọng, rồi chờ thấy kết quả trước khi chỉnh tiếp."),
+            ("Nhiễu",
+             "Phản ứng với dao động bình thường chính là can thiệp mù quáng. Ví dụ của Rhinehart: vị "
+             "hiệu trưởng mới thấy tuyển sinh giảm, tung ra hàng loạt chương trình để sửa, rồi để chúng "
+             "chạy tiếp sau khi tuyển sinh hồi lại. Cú giảm ấy là dao động theo năm."),
+        ],
+        "board_close": "Điều đáng nói với một kỹ sư đo lường không phải là quản trị thiếu chặt chẽ. Mà "
+                       "là đỉnh của chồng tầng ấy là vòng chậm nhất trong nhà máy: thời gian trễ tính "
+                       "bằng quý, nhiễu không đo được, và không có cách nào chạy thử bậc thang. Chính vì "
+                       "thế tầng đáy phải trung thực. Một vòng trễ chi phối mà vọt lố sẽ trả giá hai lần "
+                       "— và phòng họp có thời gian trễ dài nhất trong tất cả.",
+        "board_a1": "Bốn dạng đáp ứng, và mỗi dạng cần gì",
+        "board_a2": "Phần hai — sửa quá trình trước khi hiệu chỉnh",
         "src_h": "Nguồn và đọc thêm",
         "sources": [
             ("White paper", "Emerson — Improving quality with PlantWeb digital plant architecture",
@@ -356,6 +444,14 @@ T = {
              "Process Industry Forum — Digital plant architecture and the power of predictive intelligence",
              "https://www.processindustryforum.com/article/digital-plant-architecture-power-predictive-intelligence-improve-plant-performance",
              "Các tuyên bố về chi phí lắp đặt và năng suất bảo trì."),
+            ("Chuyên mục",
+             "Control Global — Applying process control principles to decision making at the managerial level",
+             "https://www.controlglobal.com/control/multivariable-control/article/55411209/applying-process-control-principles-to-decision-making-at-the-managerial-level",
+             "Tháng 10/2026. R. Russell Rhinehart, phần một: chính những nguyên tắc ấy, áp vào quản trị."),
+            ("Chuyên mục",
+             "Control Global — How to fix poor control and choose the right strategy",
+             "https://www.controlglobal.com/control/multivariable-control/article/55411596/effective-process-control-matching-strategies-to-process-characteristics-and-overcoming-challenges",
+             "Phần hai: sửa quá trình trước, rồi mới chọn chiến lược theo dạng đáp ứng."),
         ],
         "foot_note": "Sổ tay song ngữ về thiết bị đo và điều khiển quá trình. "
                      "Nội dung được tổng hợp từ thực tiễn ISA, IEC, API và ISO 18674; "
@@ -562,11 +658,6 @@ def plant(lang, prefix):
         for lvl, name, desc, adds in t["plant_layers"]
     )
     breaks = "".join("<li><b>%s</b> %s</li>" % (h, p) for h, p in t["plant_breaks"])
-    srcs = "".join(
-        '<li><span class="tag">%s</span><a href="%s" rel="noopener">%s</a> — %s</li>'
-        % (tag, href, label, note)
-        for tag, label, href, note in t["sources"]
-    )
     return """<section class="sec adv-sec" id="plant">
   <div class="wrap">
     <div class="eyebrow"><span class="num">06</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
@@ -588,9 +679,6 @@ def plant(lang, prefix):
     <p class="adv-p adv-close">%(close)s</p>
     <p class="adv-link"><a href="%(prefix)sfundamentals.html">%(a1)s <span aria-hidden="true">&rarr;</span></a>
       <a href="%(prefix)scontrol.html#advanced">%(a2)s <span aria-hidden="true">&rarr;</span></a></p>
-    <h3 class="adv-h3">%(src_h)s</h3>
-    <ul class="adv-src">%(srcs)s</ul>
-    %(chain)s
   </div>
 </section>
 """ % {
@@ -611,9 +699,59 @@ def plant(lang, prefix):
         "prefix": prefix,
         "a1": t["plant_a1"],
         "a2": t["plant_a2"],
-        "src_h": t["src_h"],
-        "srcs": srcs,
     }
+
+
+def boardroom(lang, prefix):
+    t = T[lang]
+    hdr = "".join("<span>%s</span>" % h for h in t["board_hdr"])
+    rows = "".join(
+        '<tr><td><strong>%s</strong></td><td>%s</td></tr>' % (k, v) for k, v in t["board_map"]
+    )
+    return """<section class="sec adv-sec" id="boardroom">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">05</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
+    <h2 class="adv-h2">%(h)s</h2>
+    <p class="adv-p">%(p)s</p>
+    <div class="tbl-wrap"><table class="tbl adv-tbl"><thead><tr><th>%(h1)s</th><th>%(h2)s</th></tr></thead>
+      <tbody>%(rows)s</tbody></table></div>
+    <p class="adv-p adv-close">%(close)s</p>
+    <p class="adv-link"><a href="%(prefix)sapplications.html#response">%(a1)s <span aria-hidden="true">&rarr;</span></a>
+      <a href="%(a2href)s" rel="noopener">%(a2)s <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+""" % {
+        "eb": t["eb_5"],
+        "h": t["board_h"],
+        "p": t["board_p"],
+        "h1": t["board_hdr"][0],
+        "h2": t["board_hdr"][1],
+        "rows": rows,
+        "close": t["board_close"],
+        "prefix": prefix,
+        "a1": t["board_a1"],
+        "a2": t["board_a2"],
+        "a2href": "https://www.controlglobal.com/control/multivariable-control/article/55411596/"
+                  "effective-process-control-matching-strategies-to-process-characteristics-and-"
+                  "overcoming-challenges",
+    }
+
+
+def sources(lang, prefix):
+    t = T[lang]
+    items = "".join(
+        '<li><span class="tag">%s</span><a href="%s" rel="noopener">%s</a> — %s</li>'
+        % (tag, href, label, note)
+        for tag, label, href, note in t["sources"]
+    )
+    return """<section class="sec adv-sec" id="sources">
+  <div class="wrap">
+    <h3 class="adv-h3">%s</h3>
+    <ul class="adv-src">%s</ul>
+    %s
+  </div>
+</section>
+""" % (t["src_h"], items, framework.nextprev_plain(lang, "advanced/", prefix))
 
 
 def footer(lang, prefix):
@@ -1093,6 +1231,8 @@ def build_lang(lang, path, prefix):
     body += beyond(lang, prefix)
     body += paper(lang, prefix)
     body += plant(lang, prefix)
+    body += boardroom(lang, prefix)
+    body += sources(lang, prefix)
     body += footer(lang, prefix)
     framework.write(path, framework.tidy(body))
     return path
