@@ -2171,6 +2171,10 @@ def fig_10_37():
 
     # body standing on the earth plate
     b.append(_person(376, 186, 92, "#3d3d3d", arm_up=True))
+    # The two feet are joined by a short bar so that the lead down to C_b leaves the
+    # body from a point that is actually on the body, instead of starting in the gap
+    # between the ankles.
+    b.append(_l(358, 186, 394, 186, 2.2, "#3d3d3d"))
     # C_a between the raised hand and the plate
     b.append(_l(407, 104, 432, 104, 1.1))
     b.append(_cap_h(440, 104, 13))
@@ -2208,10 +2212,11 @@ def fig_10_38():
     b.append(_l(rail, 98, rail, 108, 1.1))
     b.append(_mos_v(rail, 130))
     b.append(_l(rail, 152, rail, 230, 1.1))
+    b.append(_mos_v(rail, 249))
     b.append(_l(rail, 268, rail, 296, 1.1))
     b.append(_t(266, 70, "Q₁", 7.6, "end", "#222", True))
     b.append(_t(266, 124, "Q₂", 7.6, "end", "#222", True))
-    b.append(_t(266, 240, "Q₃", 7.6, "end", "#222", True))
+    b.append(_t(258, 252, "Q₃", 7.6, "end", "#222", True))
     b.append(_t(314, 72, "p", 6.8, "start", "#666"))
     b.append(_t(314, 126, "n", 6.8, "start", "#666"))
 
@@ -2224,31 +2229,31 @@ def fig_10_38():
     b.append(_dot(190, 106, 2.4))
 
     # probe capacitance to earth
-    b.append(_l(rail, 190, 240, 190, 1.1))
-    b.append(_l(240, 190, 240, 206, 1.1))
-    b.append(_cap_v(240, 212))
-    b.append(_l(240, 219, 240, 296, 1.1))
-    b.append(_t(216, 215, "C_p", 7.8, "end", "#222", True))
+    b.append(_l(rail, 190, 224, 190, 1.1))
+    b.append(_l(224, 190, 224, 206, 1.1))
+    b.append(_cap_v(224, 212))
+    b.append(_l(224, 219, 224, 296, 1.1))
+    b.append(_t(204, 215, "C_p", 7.8, "end", "#222", True))
     b.append(_dot(rail, 190, 2.8))
-    b.append(_t(310, 186, "e_p", 7.8, "start", "#222", True))
+    b.append(_t(312, 182, "e_p", 7.8, "start", "#222", True))
 
     # bias resistor from the node to the sink gate
     b.append(_l(rail, 200, 272, 200, 1.1))
     b.append(_l(272, 200, 272, 208, 1.1))
     b.append(_res_v(272, 222))
-    b.append(_l(272, 236, 272, 246, 1.1))
-    b.append(_l(272, 246, 280, 246, 1.1))
-    b.append(_t(254, 226, "R₁", 7.8, "end", "#222", True))
+    b.append(_l(272, 236, 272, 249, 1.1))
+    b.append(_l(272, 249, 280, 249, 1.1))
+    b.append(_t(258, 222, "R₁", 7.8, "end", "#222", True))
 
     # filter capacitor across the sink
     b.append(_l(rail, 216, 350, 216, 1.1))
     b.append(_l(350, 216, 350, 246, 1.1))
     b.append(_cap_v(350, 254, 16))
     b.append(_l(350, 261, 350, 296, 1.1))
-    b.append(_t(366, 258, "C₁", 7.8, "start", "#222", True))
+    b.append(_t(372, 262, "C₁", 7.8, "start", "#222", True))
 
     # earth rail
-    b.append(_l(240, 296, 350, 296, 1.4))
+    b.append(_l(224, 296, 350, 296, 1.4))
     b.append(_gnd(295, 296))
 
     # coupling to the comparator
@@ -2317,7 +2322,9 @@ def fig_10_39():
     # sensing element
     b.append(_r(396, 84, 11, 48, "#4a4a4a", 1.0))
     b.append(_t(440, 74, "phần tử cảm quang", 6.8, "end", "#333"))
-    b.append(_person(424, 132, 22, "#6b6b6b", walk=True))
+    # The image is drawn small and dropped below the signal lead, so the head does not
+    # sit on the wire that leaves the element.
+    b.append(_person(424, 134, 20, "#6b6b6b", walk=True))
     b.append(_t(436, 156, "ảnh của vật", 6.6, "start", "#555"))
 
     # processing chain
@@ -2430,7 +2437,10 @@ def fig_10_40():
     b.append(_arrow(127, 50, 114, 50, 0.7, "#666"))
     b.append(_t(120, 45, "d", 7.0, "middle", "#555"))
     b.append(_arrow(206, 84, 206, 100, 0.8, RED))
-    b.append(_t(212, 96, "ảnh của vật", 6.6, "start", RED))
+    # The label sits above the comb, over the white margin: at 6.6 px the string is
+    # wider than the 22 px gap between two teeth and would otherwise print on top of
+    # them, which is exactly where it is least legible.
+    b.append(_t(206, 57, "ảnh của vật", 6.6, "middle", RED))
 
     # ---- B: parallel grid
     b.append(_t(28, 158, "B", 10.5, "start", "#222", True))

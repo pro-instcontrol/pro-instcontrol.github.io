@@ -170,7 +170,8 @@ DONE = {1: "ch01-characteristics-of-instrumentation",
         6: "ch06-displacement-measurement",
         7: "ch07-thickness-measurement",
         8: "ch08-proximity-sensing-for-robotics",
-        9: "ch09-distance"}
+        9: "ch09-distance",
+        10: "ch10-position-location-altitude"}
 
 
 def num(n, lang):
