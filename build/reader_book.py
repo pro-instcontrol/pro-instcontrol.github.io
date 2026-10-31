@@ -53,7 +53,10 @@ BOOKS = {
             15: ("SIS Design Checklist", "Danh mục kiểm tra thiết kế SIS"),
             16: ("Case Study", "Nghiên cứu tình huống"),
         },
-        "done": {1: "ch01-introduction", 2: "ch02-design-lifecycle"},
+        "done": {1: "ch01-introduction", 2: "ch02-design-lifecycle",
+                 3: "ch03-process-control-vs-safety-control",
+                 4: "ch04-protection-layers",
+                 5: "ch05-developing-the-safety-requirement-specifications"},
         "copyright_en": "Original text © 2006 ISA — The Instrumentation, Systems, and Automation Society",
         "copyright_vi": "Bản gốc © 2006 ISA — Hiệp hội Đo lường, Hệ thống và Tự động hóa",
         "lede_en": ("The practical “how-to” on specifying, analysing, designing, installing and "
@@ -119,7 +122,10 @@ BOOKS = {
             ("M", "Configuration Example", "Ví dụ cấu hình"),
         ],
         "done": {1: "ch01-introduction",
-                 2: "ch02-process-measurement-and-transducers"},
+                 2: "ch02-process-measurement-and-transducers",
+                 3: "ch03-basic-principles-of-control-valves-and-actuators",
+                 4: "ch04-fundamentals-of-control-systems",
+                 5: "ch05-stability-and-control-modes-of-closed-loops"},
         "copyright_en": "Original text © IDC Technologies Pty Ltd",
         "copyright_vi": "Bản gốc © IDC Technologies Pty Ltd",
         "lede_en": ("A hands-on training manual covering process dynamics, measurement, valves, "

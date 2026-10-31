@@ -38,6 +38,24 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch02-process-measurement-and-transducers/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/pc-process-control/ch03-basic-principles-of-control-valves-and-actuators/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch03-basic-principles-of-control-valves-and-actuators/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch03-basic-principles-of-control-valves-and-actuators/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch03-basic-principles-of-control-valves-and-actuators/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/pc-process-control/ch04-fundamentals-of-control-systems/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch04-fundamentals-of-control-systems/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch04-fundamentals-of-control-systems/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch04-fundamentals-of-control-systems/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/pc-process-control/ch05-stability-and-control-modes-of-closed-loops/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch05-stability-and-control-modes-of-closed-loops/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch05-stability-and-control-modes-of-closed-loops/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch05-stability-and-control-modes-of-closed-loops/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/"/>
@@ -54,6 +72,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch02-design-lifecycle/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch02-design-lifecycle/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch02-design-lifecycle/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch03-process-control-vs-safety-control/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch03-process-control-vs-safety-control/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch03-process-control-vs-safety-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch03-process-control-vs-safety-control/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch04-protection-layers/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch04-protection-layers/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch04-protection-layers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch04-protection-layers/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch05-developing-the-safety-requirement-specifications/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch05-developing-the-safety-requirement-specifications/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch05-developing-the-safety-requirement-specifications/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch05-developing-the-safety-requirement-specifications/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/</loc>
@@ -1295,6 +1331,24 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch02-process-measurement-and-transducers/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch03-basic-principles-of-control-valves-and-actuators/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch03-basic-principles-of-control-valves-and-actuators/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch03-basic-principles-of-control-valves-and-actuators/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch03-basic-principles-of-control-valves-and-actuators/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch04-fundamentals-of-control-systems/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch04-fundamentals-of-control-systems/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch04-fundamentals-of-control-systems/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch04-fundamentals-of-control-systems/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch05-stability-and-control-modes-of-closed-loops/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch05-stability-and-control-modes-of-closed-loops/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch05-stability-and-control-modes-of-closed-loops/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch05-stability-and-control-modes-of-closed-loops/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/"/>
@@ -1311,6 +1365,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch02-design-lifecycle/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch02-design-lifecycle/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch02-design-lifecycle/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch03-process-control-vs-safety-control/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch03-process-control-vs-safety-control/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch03-process-control-vs-safety-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch03-process-control-vs-safety-control/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch04-protection-layers/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch04-protection-layers/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch04-protection-layers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch04-protection-layers/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch05-developing-the-safety-requirement-specifications/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch05-developing-the-safety-requirement-specifications/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch05-developing-the-safety-requirement-specifications/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch05-developing-the-safety-requirement-specifications/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/</loc>

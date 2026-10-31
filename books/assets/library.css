@@ -352,6 +352,13 @@ table.tbl thead th {
   border-bottom: 2px solid var(--yin); background: var(--gray-bg);
 }
 
+/* cause-and-effect matrix: many narrow columns, so tighten the padding and keep
+   the tag / note columns from breaking mid-token */
+table.tbl.matrix th, table.tbl.matrix td { padding: 6px 8px; font-size: 0.86rem; }
+table.tbl.matrix td:first-child, table.tbl.matrix th:first-child,
+table.tbl.matrix td:last-child, table.tbl.matrix th:last-child { white-space: nowrap; }
+table.tbl.matrix tbody td:nth-child(n+5):nth-child(-n+8) { text-align: center; }
+
 .note {
   border-left: 3px solid var(--accent-gold);
   background: #fffdf7;
