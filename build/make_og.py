@@ -9,6 +9,7 @@ them. Requires node + playwright (same module path the rest of the checks use).
 """
 
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -20,6 +21,9 @@ sys.path.insert(0, HERE)
 import videos_data  # noqa: E402
 
 OUT = os.path.join(ROOT, "assets", "og-video-library.png")
+# The deploy step copies dist/ over the repo root, so a stale card sitting in
+# dist/assets would silently overwrite the one just rendered. Write both.
+MIRROR = os.path.join(ROOT, "dist", "assets", "og-video-library.png")
 
 
 def seconds(d):
@@ -128,6 +132,8 @@ def main():
     env = dict(os.environ)
     env.setdefault("NODE_PATH", r"C:\Users\Phamd\.workbuddy-ai\binaries\node\workspace\node_modules")
     subprocess.run([node, js_path], check=True, env=env)
+    if os.path.isdir(os.path.dirname(MIRROR)):
+        shutil.copyfile(OUT, MIRROR)
     print("wrote %s  (%d videos, %d topics, %d hours, %d sources)" % (OUT, n, cats, hours, srcs))
 
 
