@@ -383,6 +383,42 @@ table.tbl thead th {
 .ref-list { margin: 0.8rem 0 1.4rem 1.2rem; font-size: 0.94rem; }
 .ref-list li { margin-bottom: 0.5rem; }
 
+/* pull quote for long citations (e.g. Lord Kelvin) */
+.pullquote {
+  margin: 1.9rem 0;
+  padding: 1.1rem 0 0.9rem 1.5rem;
+  border-left: 3px solid var(--accent-gold);
+  font-family: var(--serif);
+  font-size: 1.09rem;
+  line-height: 1.85;
+  color: var(--gray-dark);
+}
+.pullquote p { margin: 0 0 0.7rem; }
+.pullquote .src {
+  display: block; margin-top: 0.55rem;
+  font-family: var(--sans); font-size: 0.8rem; font-style: normal;
+  letter-spacing: 0.02em; color: var(--gray-mid);
+}
+
+/* VIM-sourced glossary of defining terms */
+.glossary { margin: 1.2rem 0 1.6rem; }
+.glossary dt {
+  font-weight: 600; font-size: 0.97rem; color: var(--gray-dark);
+  margin: 1.15rem 0 0.25rem;
+}
+.glossary dt .vim {
+  font-family: var(--sans); font-weight: 400; font-size: 0.74rem;
+  letter-spacing: 0.04em; color: var(--accent-gold); margin-left: 0.4rem;
+}
+.glossary dd { margin: 0 0 0.3rem; font-size: 0.95rem; line-height: 1.72; }
+.glossary dd .note {
+  margin: 0.4rem 0 0; padding: 0.5rem 0.85rem;
+  background: transparent; border-left: 2px solid var(--gray-light);
+  font-size: 0.88rem; color: var(--gray-mid);
+}
+.glossary .gloss-aside { margin: 1.4rem 0 1.1rem; }
+.glossary .gloss-aside p { margin: 0; font-size: 0.95rem; line-height: 1.75; }
+
 .chapter-nav {
   display: flex; justify-content: space-between; gap: 16px;
   margin: 3rem 0 1rem; padding-top: 1.4rem;

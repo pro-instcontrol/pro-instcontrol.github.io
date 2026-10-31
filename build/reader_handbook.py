@@ -165,7 +165,8 @@ FILES = 117
 DONE = {1: "ch01-characteristics-of-instrumentation",
         2: "ch02-operational-modes-of-instrumentation",
         3: "ch03-static-and-dynamic-characteristics-of-instrumentation",
-        4: "ch04-measurement-accuracy"}
+        4: "ch04-measurement-accuracy",
+        5: "ch05-measurement-standards"}
 
 
 def num(n, lang):

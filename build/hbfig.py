@@ -618,3 +618,233 @@ def fig_4_2():
                 "Figure 4.2 · The uniform (rectangular) distribution: every value within ±L is equally likely, and the standard deviation is L/√3.",
                 "Hình chữ nhật phẳng giữa trừ L và cộng L",
                 "Flat rectangular density between minus L and plus L")
+
+
+# ---------------------------------------------------------------- helpers for charts
+def _box(x, y, w, h, lines, fs=9, fill="#fff"):
+    """A rectangle with centred, multi-line label."""
+    out = ['<rect x="%s" y="%s" width="%s" height="%s" fill="%s" stroke="#2a2a2a" stroke-width="1.1"/>'
+           % (_f(x), _f(y), _f(w), _f(h), fill)]
+    n = len(lines)
+    for i, ln in enumerate(lines):
+        cy = y + h / 2.0 + (i - (n - 1) / 2.0) * (fs + 2) + fs / 3.0
+        out.append('<text x="%s" y="%s" text-anchor="middle" '
+                   'style="font:%dpx Inter,Helvetica,sans-serif;fill:#111">%s</text>'
+                   % (_f(x + w / 2.0), _f(cy), fs, ln))
+    return "".join(out)
+
+
+def _vlink(x, y1, y2):
+    return ('<line x1="%s" y1="%s" x2="%s" y2="%s" stroke="#2a2a2a" stroke-width="1"/>'
+            % (_f(x), _f(y1), _f(x), _f(y2)))
+
+
+# ---------------------------------------------------------------- 5.1
+def fig_5_1():
+    """Protocol standards and the bodies that produce them: a three-tier fan."""
+    o = []
+    W, H = 580, 284
+    o.append(_box(180, 6, 200, 34, ["Tiêu chuẩn thực hành", "(Protocol standards)"], fs=9))
+    o.append(_vlink(280, 40, 58))
+    o.append(_box(30, 58, 500, 24, ["Người dùng tiêu chuẩn"], fs=10))
+
+    # tier 2: the four categories
+    cats = [(30, 104, "Tiêu chuẩn", "quốc gia"),
+            (164, 104, "Tiêu chuẩn", "quốc tế"),
+            (298, 114, "Tiêu chuẩn quốc tế", "trên thực tế"),
+            (442, 104, "Tiêu chuẩn", "ngành")]
+    for x, w, a, b in cats:
+        cx = x + w / 2.0
+        o.append(_vlink(cx, 82, 96))
+        o.append(_box(x, 96, w, 32, [a, b], fs=8))
+
+    # tier 3: ISO and IEC under "Tiêu chuẩn quốc tế"
+    o.append(_vlink(355, 128, 138))
+    o.append('<line x1="321" y1="138" x2="389" y2="138" stroke="#2a2a2a" stroke-width="1"/>')
+    o.append(_vlink(321, 138, 148))
+    o.append(_vlink(389, 138, 148))
+    o.append(_box(290, 148, 62, 28, ["ISO", "(TC 12…)"], fs=7.5))
+    o.append(_box(358, 148, 62, 28, ["IEC"], fs=8))
+
+    # tier 4: national bodies on a comb
+    bodies = [(30, 76, "ANSI"), (116, 76, "SCC"), (202, 76, "BSI"),
+              (288, 76, "DIN"), (374, 96, "Hiệp hội khác")]
+    o.append('<line x1="68" y1="188" x2="422" y2="188" stroke="#2a2a2a" stroke-width="1"/>')
+    o.append(_vlink(321, 176, 188))
+    o.append(_vlink(389, 176, 188))
+    for x, w, lab in bodies:
+        cx = x + w / 2.0
+        o.append(_vlink(cx, 188, 198))
+        o.append(_box(x, 198, w, 28, [lab], fs=8))
+    o.append('<text x="480" y="217" style="font:9px Inter;fill:#666">…</text>')
+
+    # tier 5: member societies
+    socs = [(32, 72, "ASQ"), (118, 72, "ASTM"), (204, 72, "ASME"),
+            (290, 72, "IEEE"), (386, 72, "ISA")]
+    for x, w, lab in socs:
+        cx = x + w / 2.0
+        o.append(_vlink(cx, 226, 240))
+        o.append(_box(x, 240, w, 28, [lab], fs=8))
+    o.append('<text x="470" y="259" style="font:9px Inter;fill:#666">…</text>')
+
+    return _fig(svg(W, H, "".join(o), "Sơ đồ phân cấp các tổ chức tiêu chuẩn"),
+                "Hình 5-1 · Các tiêu chuẩn thực hành (protocol) và hệ thống tổ chức sản sinh ra chúng: từ tổ chức "
+                "quốc tế (ISO, IEC) qua các cơ quan tiêu chuẩn quốc gia (ANSI, SCC, BSI, DIN) xuống các hội thành "
+                "viên (ASQ, ASTM, ASME, IEEE, ISA).",
+                "Figure 5.1 · Standards of practice (protocol standards) and the organisations that produce them: "
+                "from international bodies (ISO, IEC) through national standards bodies (ANSI, SCC, BSI, DIN) to "
+                "member societies (ASQ, ASTM, ASME, IEEE, ISA).",
+                "Sơ đồ phân cấp tổ chức tiêu chuẩn",
+                "Hierarchy of standards organisations")
+
+
+# ---------------------------------------------------------------- 5.2
+def fig_5_2():
+    o = []
+    steps = ["Chất lượng", "Quyết định đúng", "Dữ liệu số đúng", "Phép đo chính xác",
+             "Thiết bị đo đã hiệu chuẩn", "Tiêu chuẩn có thể truy xuất"]
+    y = 6
+    for i, s in enumerate(steps):
+        o.append(_box(150, y, 260, 34, [s], fs=10))
+        if i < len(steps) - 1:
+            o.append('<line x1="280" y1="%s" x2="280" y2="%s" stroke="#2a2a2a" stroke-width="1" '
+                     'marker-end="url(#a52)"/>' % (_f(y + 34), _f(y + 50)))
+            o.append('<text x="290" y="%s" style="font:8.5px Inter;fill:#555">dựa trên</text>'
+                     % _f(y + 46))
+        y += 50
+    o.append('<defs><marker id="a52" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">'
+             '<path d="M0,0 L6,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>')
+    return _fig(svg(560, 300, "".join(o), "Chuỗi từ chất lượng xuống tiêu chuẩn truy xuất được"),
+                "Hình 5-2 · Chuỗi lập luận: chất lượng dựa trên quyết định đúng, quyết định đúng dựa trên dữ liệu số "
+                "đúng, dữ liệu đúng dựa trên phép đo chính xác, phép đo chính xác dựa trên thiết bị đã hiệu chuẩn "
+                "và được dùng đúng, và cuối cùng tất cả dựa trên tiêu chuẩn có thể truy xuất.",
+                "Figure 5.2 · The chain of reasoning: quality rests on valid decisions, which rest on correct "
+                "numerical data, which rest on accurate measurements, which rest on calibrated instruments "
+                "properly used, which rest on traceable standards.",
+                "Sáu ô nối tiếp từ chất lượng xuống tiêu chuẩn truy xuất",
+                "Six boxes chained from quality down to traceable standards")
+
+
+# ---------------------------------------------------------------- 5.3
+def fig_5_3():
+    """Three-branch measurement assurance system, laid out as three clean columns."""
+    o = []
+    W, H = 900, 452
+    A, B, C = 160, 450, 740          # column centres
+    AW = BW = CW = 180
+
+    def hdr(cx, txt):
+        return ('<text x="%s" y="16" text-anchor="middle" '
+                'style="font:10.5px Inter;fill:#111;font-weight:600;letter-spacing:.02em">%s</text>'
+                % (_f(cx), txt))
+
+    o.append(hdr(A, "Hoa Kỳ"))
+    o.append(hdr(B, "Hiệp ước quốc tế"))
+    o.append(hdr(C, "Quốc gia khác"))
+
+    # ---- column A: the US ladder --------------------------------------
+    us = [
+        (40, 26, ["Tổng thống Hoa Kỳ"]),
+        (78, 26, ["Bộ Thương mại"]),
+        (116, 26, ["NIST"]),
+        (154, 26, ["Tiêu chuẩn quốc gia"]),
+        (192, 26, ["Chuẩn tham chiếu quốc gia"]),
+        (230, 26, ["Chuẩn làm việc"]),
+        (268, 32, ["Chuẩn tham chiếu", "phòng thí nghiệm"]),
+        (310, 26, ["Dụng cụ, cảm biến…"]),
+        (348, 26, ["Quá trình, sản phẩm"]),
+    ]
+    for y, h, lines in us:
+        o.append(_box(A - AW / 2.0, y, AW, h, lines, fs=8.5))
+    for i in range(len(us) - 1):
+        y, h, _ = us[i]
+        o.append(_vlink(A, y + h, us[i + 1][0]))
+
+    # side boxes: who else uses each tier
+    sides = [
+        (116, ["Văn", "phòng"]),
+        (154, ["Cấp", "bang"]),
+        (192, ["Cấp địa", "phương"]),
+        (230, ["Thương", "mại"]),
+        (268, ["Chuẩn liên", "phòng"]),
+    ]
+    for y, lines in sides:
+        o.append(_box(4, y, 56, 26, lines, fs=7))
+        o.append('<line x1="60" y1="%s" x2="%s" y2="%s" stroke="#2a2a2a" stroke-width="1"/>'
+                 % (_f(y + 13), _f(A - AW / 2.0), _f(y + 13)))
+
+    # ---- column B: the treaty ladder ----------------------------------
+    o.append(_box(B - BW / 2.0, 40, BW, 26, ["Hiệp ước Mét"], fs=8.5))
+    o.append(_vlink(B, 66, 80))
+    o.append(_box(B - BW / 2.0, 80, BW, 30, ["CIPM — Uỷ ban", "cân đo quốc tế"], fs=8.5))
+    # consultative committees
+    o.append(_vlink(B, 110, 120))
+    o.append('<line x1="%s" y1="120" x2="%s" y2="120" stroke="#2a2a2a" stroke-width="1"/>'
+             % (_f(B - 48), _f(B + 48)))
+    o.append(_box(B - 88, 126, 80, 24, ["CCE"], fs=8.5))
+    o.append(_box(B + 8, 126, 80, 24, ["CCT"], fs=8.5))
+    o.append(_vlink(B - 48, 120, 126))
+    o.append(_vlink(B + 48, 120, 126))
+    o.append(_vlink(B - 48, 150, 158))
+    o.append(_vlink(B + 48, 150, 158))
+    o.append(_box(B - 88, 158, 80, 24, ["CCx"], fs=8.5))
+    o.append(_box(B + 8, 158, 80, 24, ["CCy"], fs=8.5))
+    o.append(_vlink(B - 48, 182, 192))
+    o.append(_vlink(B + 48, 182, 192))
+    o.append('<line x1="%s" y1="192" x2="%s" y2="192" stroke="#2a2a2a" stroke-width="1"/>'
+             % (_f(B - 48), _f(B + 48)))
+    o.append(_vlink(B, 192, 202))
+    o.append(_box(B - BW / 2.0, 202, BW, 30, ["BIPM — Văn phòng", "cân đo quốc tế"], fs=8.5))
+
+    # ---- column C: other national structures --------------------------
+    o.append(_box(650, 40, 84, 26, ["Quốc gia 1"], fs=8))
+    o.append(_box(740, 40, 84, 26, ["Quốc gia n"], fs=8))
+    o.append(_vlink(692, 66, 80))
+    o.append(_vlink(782, 66, 80))
+    o.append(_box(650, 80, 84, 26, ["Bộ", "ngành"], fs=8))
+    o.append(_box(740, 80, 84, 26, ["Bộ", "ngành"], fs=8))
+    o.append(_vlink(692, 106, 120))
+    o.append(_vlink(782, 106, 120))
+    o.append(_box(650, 120, 84, 30, ["Phòng", "chuẩn"], fs=8))
+    o.append(_box(740, 120, 84, 30, ["Phòng", "chuẩn"], fs=8))
+
+    # ---- the comparison band ------------------------------------------
+    o.append('<rect x="70" y="392" width="760" height="34" fill="#f7f5ef" stroke="#2a2a2a" '
+             'stroke-width="1.1"/>')
+    o.append('<text x="450" y="413" text-anchor="middle" '
+             'style="font:8.5px Inter;fill:#111">So sánh chéo liên tục giữa các phòng chuẩn quốc gia — '
+             'mỗi mắt của chuỗi đều có độ không đảm bảo đã nêu</text>')
+
+    def dash(x1, y1, x2, y2, arrow=False):
+        return ('<line x1="%s" y1="%s" x2="%s" y2="%s" stroke="#2a2a2a" stroke-width="1" '
+                'stroke-dasharray="4 3"%s/>'
+                % (_f(x1), _f(y1), _f(x2), _f(y2), ' marker-end="url(#a53)"' if arrow else ""))
+
+    # into the band, from each branch
+    o.append('<path d="M%s 205 H330 V392" fill="none" stroke="#2a2a2a" stroke-width="1" '
+             'stroke-dasharray="4 3" marker-end="url(#a53)"/>' % _f(A + AW / 2.0))
+    o.append(dash(B, 232, B, 392, True))
+    o.append(dash(692, 150, 692, 392, True))
+    o.append(dash(782, 150, 782, 392, True))
+
+    # treaty ratification link
+    o.append(dash(A + AW / 2.0, 53, B - BW / 2.0, 53, True))
+    o.append('<text x="%s" y="47" text-anchor="middle" style="font:7.5px Inter;fill:#666">phê chuẩn</text>'
+             % _f((A + AW / 2.0 + B - BW / 2.0) / 2.0))
+
+    o.append('<defs><marker id="a53" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">'
+             '<path d="M0,0 L6,3 L0,6 Z" fill="#2a2a2a"/></marker></defs>')
+
+    return _fig(svg(W, H, "".join(o),
+                    "Hệ đảm bảo đo lường: ba nhánh Hoa Kỳ, hiệp ước quốc tế và quốc gia"),
+                "Hình 5-3 · Hệ đảm bảo đo lường: quan hệ giữa các cấp tiêu chuẩn. Nhánh Hoa Kỳ đi từ Tổng "
+                "thống qua Bộ Thương mại và NIST xuống chuẩn làm việc và dụng cụ; nhánh hiệp ước đi từ Hiệp "
+                "ước Mét qua CIPM và các uỷ ban tư vấn tới BIPM; các quốc gia khác nối vào bằng phòng chuẩn "
+                "quốc gia. Mọi mũi tên đứt nét là một phép so sánh có độ không đảm bảo đã nêu.",
+                "Figure 5.3 · The measurement assurance system: how the tiers of standards relate. The US "
+                "branch runs from the President through the Department of Commerce and NIST down to working "
+                "standards and instruments; the treaty branch runs from the Treaty of the Meter through CIPM "
+                "and its consultative committees to the BIPM; other nations connect through their national "
+                "laboratories. Every dashed arrow is a comparison with a stated uncertainty.",
+                "Sơ đồ ba nhánh của hệ đảm bảo đo lường",
+                "Three-branch measurement assurance diagram")
