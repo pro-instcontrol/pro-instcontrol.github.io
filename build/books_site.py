@@ -621,6 +621,7 @@ MARK = ('<svg viewBox="0 0 200 200" aria-hidden="true">'
         'stroke-linecap="round"/><circle cx="100" cy="100" r="10" fill="#000"/></svg>')
 
 NAV_EN = [("/", "Home"), ("/books/", "Books"), ("/fundamentals.html", "Fundamentals"),
+          ("/advanced/", "Advanced"),
           ("/instruments.html", "Instruments"), ("/install.html", "Install"),
           ("/control.html", "Control"), ("/applications.html", "Applications"),
           ("/safety.html", "Safety"), ("/tools.html", "Tools"),
@@ -628,7 +629,8 @@ NAV_EN = [("/", "Home"), ("/books/", "Books"), ("/fundamentals.html", "Fundament
           ("/standards.html", "Standards"), ("/glossary.html", "Glossary"),
           ("/education.html", "Education")]
 NAV_VI = [("/?lang=vi", "Trang chủ"), ("/vi/books/", "Sách"),
-          ("/fundamentals.html?lang=vi", "Cơ bản"), ("/instruments.html?lang=vi", "Thiết bị"),
+          ("/fundamentals.html?lang=vi", "Cơ bản"), ("/vi/advanced/", "Nâng cao"),
+          ("/instruments.html?lang=vi", "Thiết bị"),
           ("/install.html?lang=vi", "Lắp đặt"), ("/control.html?lang=vi", "Điều khiển"),
           ("/applications.html?lang=vi", "Ứng dụng"), ("/safety.html?lang=vi", "An toàn"),
           ("/tools.html?lang=vi", "Công cụ"), ("/comparison.html?lang=vi", "So sánh"),

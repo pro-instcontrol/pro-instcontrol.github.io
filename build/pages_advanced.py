@@ -529,7 +529,7 @@ def beyond(lang, prefix):
     t = T[lang]
     return """<section class="sec adv-sec" id="beyond">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">02</span><span class="line"></span><span class="eyebrow-label">%s</span></div>
+    <div class="eyebrow"><span class="num">04</span><span class="line"></span><span class="eyebrow-label">%s</span></div>
     <h2 class="adv-h2">%s</h2>
     <p class="adv-p">%s</p>
     <p class="adv-link"><a href="%scontrol.html#advanced">%s <span aria-hidden="true">&rarr;</span></a></p>
@@ -542,7 +542,7 @@ def paper(lang, prefix):
     t = T[lang]
     return """<section class="sec adv-sec" id="paper">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">03</span><span class="line"></span><span class="eyebrow-label">%s</span></div>
+    <div class="eyebrow"><span class="num">05</span><span class="line"></span><span class="eyebrow-label">%s</span></div>
     <h2 class="adv-h2">%s</h2>
     <p class="adv-p">%s</p>
     <p class="adv-link"><a href="%ssafety.html">%s <span aria-hidden="true">&rarr;</span></a>
@@ -569,7 +569,7 @@ def plant(lang, prefix):
     )
     return """<section class="sec adv-sec" id="plant">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">04</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
+    <div class="eyebrow"><span class="num">06</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
     <h2 class="adv-h2">%(h)s</h2>
     <p class="adv-p">%(p)s</p>
     <p class="adv-p">%(p2)s</p>
@@ -640,11 +640,454 @@ b.setAttribute("aria-expanded",o?"true":"false");});})();
 """ % (brand, t["foot_note"], t["foot_built"])
 
 
+# ---------------------------------------------------------------------------
+# Trade-press sections. Both are columns from Control, October 2026, and both
+# are written as "here is the argument, here is what it changes on your unit".
+# ---------------------------------------------------------------------------
+
+APL = {
+    "en": {
+        "eb": "From the trade press",
+        "h": "Ethernet-APL reliability: the architecture decides, not the cable",
+        "lede": "John Rezabek's <em>On the Bus</em> column in the October 2026 issue of "
+                "<em>Control</em> is the most useful page published on Ethernet-APL this "
+                "year, and it never discusses the 10BASE-T1L specification. It is about the "
+                "Monday morning after a segment misbehaves, and about what an engineer has "
+                "implicitly promised the control room before the first field switch leaves "
+                "the shop.",
+        "note_h": "The line that decides the project",
+        "note_p": "“Operators have little patience for mystery failures that disrupt their "
+                  "shift, especially when they cause or contribute to a shutdown.”",
+        "h1": "The fieldbus story that sets up the question",
+        "p1": "An operator, Constantine, intercepts the engineer, Emile, before the morning "
+              "ops meeting with a diagnosis already formed: “I think we must have a card "
+              "failure.” Emile notices that the devices with spurious or constant connection "
+              "problems all share one fieldbus segment — and that one of them is a control "
+              "valve holding pressure on a distillation tower running near total vacuum, "
+              "where losing the loop means losing the product specification. He also knows "
+              "the card carries an H1 interface for a second segment of about ten devices, "
+              "and that swapping it will drop those too, even if everything returns in the "
+              "state it was in. Constantine, who fears the worst, insists other avenues be "
+              "pursued. He is right: the culprit is a DP transmitter that had worked for 26 "
+              "years on top of that same tower. Disconnected, communication came back; "
+              "replaced, it stayed clean.",
+        "p2": "That is the real case for APL, and it has nothing to do with speed. A shared "
+              "bus means one degraded instrument can take the segment with it. A "
+              "point-to-point spur means it cannot.",
+        "h2": "What APL fixes, and what it only moves",
+        "p3": "Every APL device gets its own single-pair spur back to the field switch, so "
+              "corrosion, moisture ingress or a dying transmitter stays local to the device "
+              "it belongs to. What stays shared is the field switch, its power supply and "
+              "its uplink — which means APL moves active electronics, firmware and (most "
+              "likely) local power supplies out into the field, and every one of those is a "
+              "new place for a random failure to happen. The arithmetic is uncomfortable: "
+              "the more switches you deploy, the more chances the plant has to draw a bad "
+              "one. And the loops whose health and diagnostic data you most wanted are "
+              "precisely the critical ones — which is why some early fieldbus adopters kept "
+              "their critical loops hardwired over 4–20 mA, and why the same temptation "
+              "returns here.",
+        "h3": "The failure mode that isn't technical",
+        "p4": "The harder problem is what the crew concludes. If an APL field switch drops "
+              "several instruments at once, it will not be filed as an unlucky random "
+              "failure of a sound architecture. It will be remembered as the day the new "
+              "networked scheme put the unit on its back — and the fix will look obvious to "
+              "everyone in the room: hardwire those devices. Whether fairly or not, the "
+              "engineer who recommended the architecture owns that story for a long time. "
+              "Fieldbus was not always as robust as it is now; a short circuit could once "
+              "fail an entire segment. APL will get the same fortification, but on the "
+              "switch vendor's schedule, not yours.",
+        "h4": "What to settle in the design review, before the first switch ships",
+        "items": [
+            ("Loops per switch.",
+             "Choose the blast radius deliberately and write the number down: a switch "
+             "reset should cost one unit operation at most. If the answer is “however many "
+             "spurs the switch has”, the architecture chose for you."),
+            ("Power and uplink diversity.",
+             "Dual power feeds, and a redundant uplink or ring wherever the switch serves "
+             "safety-relevant or high-value loops. This is a scope line item, not a "
+             "commissioning detail."),
+            ("Fallback for the critical loops.",
+             "Decide now whether a critical device can sit on APL at all, or whether it "
+             "keeps a 4–20 mA path. Diagnostic data you cannot act on during a trip is not "
+             "worth the exposure."),
+            ("Reset and firmware behaviour.",
+             "A switch reset must not disturb spur power on healthy devices. Test it on the "
+             "bench, not on the unit at three in the morning."),
+            ("Alarms for the new failure mode.",
+             "One alarm — switch X offline, N devices affected — instead of N simultaneous "
+             "device-failure alarms. Rationalise it before startup, not after the first "
+             "event."),
+            ("The one-sentence test.",
+             "Can you tell the shift team, in one sentence, what happens when a switch dies "
+             "and what they should do? If not, the design is not finished."),
+        ],
+        "close": "None of this argues against APL. It argues that APL is an architecture "
+                 "purchase disguised as a cabling decision: the wire is standardised, the "
+                 "fault isolation is not, and the difference between the two is a drawing "
+                 "the instrument engineer signs.",
+        "link1": "Trends &amp; standards watch",
+        "link2": "Standards reference",
+        "src_h": "Sources",
+        "srcs": [
+            ("Trade press",
+             "https://www.controlglobal.com/",
+             "Control — “What to know about Ethernet-APL reliability”, John Rezabek, On the Bus",
+             "October 2026, p. 12. The fieldbus troubleshooting story, the point-to-point "
+             "spur argument, and the operator-confidence problem."),
+            ("News brief",
+             "https://www.endress.com",
+             "Endress+Hauser with Covestro, BASF and Yokogawa — large-scale Ethernet-APL and "
+             "PROFINET scalability test",
+             "Reported 28 July; run in May at Endress+Hauser Digital Solutions, Reinach, "
+             "Switzerland. First integration of Yokogawa Centum VP and PRM into a "
+             "large-scale APL test environment."),
+        ],
+    },
+    "vi": {
+        "eb": "Từ báo ngành",
+        "h": "Độ tin cậy của Ethernet-APL: kiến trúc quyết định, không phải sợi dây",
+        "lede": "Bài <em>On the Bus</em> của John Rezabek trên <em>Control</em> số tháng "
+                "10/2026 là trang viết hữu ích nhất về Ethernet-APL trong năm nay, và nó "
+                "không hề bàn tới đặc tả 10BASE-T1L. Bài nói về buổi sáng thứ Hai sau khi "
+                "một segment trục trặc, và về những gì người kỹ sư đã ngầm hứa với phòng "
+                "điều khiển trước khi chiếc field switch đầu tiên rời xưởng.",
+        "note_h": "Câu quyết định cả dự án",
+        "note_p": "“Vận hành viên rất ít kiên nhẫn với những sự cố bí ẩn làm gián đoạn ca "
+                  "trực, nhất là khi chúng gây ra hoặc góp phần vào một lần dừng máy.”",
+        "h1": "Câu chuyện fieldbus đặt ra câu hỏi",
+        "p1": "Constantine, một vận hành viên, chặn Emile trước giờ họp giao ca với chẩn "
+              "đoán đã thành hình: “Tôi nghĩ chắc hỏng card rồi.” Emile để ý thấy các thiết "
+              "bị có vấn đề kết nối chập chờn hoặc mất liên tục đều nằm chung một segment "
+              "fieldbus — và một trong số đó là van điều khiển giữ áp cho tháp chưng cất "
+              "chạy gần chân không tuyệt đối, nơi mất vòng điều khiển nghĩa là mất tiêu "
+              "chuẩn sản phẩm. Anh cũng biết card ấy còn mang giao diện H1 cho segment thứ "
+              "hai với khoảng mười thiết bị, và thay card sẽ làm rơi luôn nhóm đó, dù mọi "
+              "thứ trở lại đúng trạng thái cũ. Constantine, người luôn nghĩ tới khả năng xấu "
+              "nhất, khăng khăng phải tìm hướng khác. Anh ta đúng: thủ phạm là một bộ truyền "
+              "chênh áp đã chạy 26 năm trên đỉnh đúng tháp ấy. Ngắt nó ra, thông tin liên "
+              "lạc trở lại; thay nó, hệ thống sạch lỗi.",
+        "p2": "Đó mới là lý do thật để dùng APL, và nó không liên quan gì tới tốc độ. Bus "
+              "dùng chung nghĩa là một thiết bị xuống cấp có thể kéo cả segment theo. Nhánh "
+              "spur điểm-điểm thì không.",
+        "h2": "APL sửa được gì, và chỉ dời cái gì đi chỗ khác",
+        "p3": "Mỗi thiết bị APL có một nhánh spur đôi dây riêng về field switch, nên ăn "
+              "mòn, ẩm xâm nhập hay một bộ truyền sắp chết chỉ ảnh hưởng tới chính thiết bị "
+              "đó. Thứ vẫn dùng chung là field switch, nguồn của nó và uplink của nó — nghĩa "
+              "là APL đưa điện tử tích cực, firmware và (nhiều khả năng) cả nguồn cục bộ ra "
+              "hiện trường, và mỗi thứ trong đó là một chỗ mới để phát sinh hỏng hóc ngẫu "
+              "nhiên. Phép tính không dễ chịu: càng nhiều switch, nhà máy càng có nhiều cơ "
+              "hội bốc phải một chiếc hỏng. Và những vòng mà bạn muốn có dữ liệu sức khỏe, "
+              "chẩn đoán nhất lại đúng là những vòng trọng yếu — đó là lý do một số người "
+              "dùng fieldbus đầu tiên vẫn giữ các vòng trọng yếu ở dạng hardwire 4–20 mA, và "
+              "lý do sự cám dỗ ấy quay lại ở đây.",
+        "h3": "Kiểu hỏng không phải kỹ thuật",
+        "p4": "Bài toán khó hơn là kết luận của cả ca trực. Nếu một field switch APL làm rơi "
+              "nhiều thiết bị cùng lúc, nó sẽ không được ghi nhận như một sự cố ngẫu nhiên "
+              "đen đủi của một kiến trúc vốn lành. Nó sẽ được nhớ như ngày mà sơ đồ kết nối "
+              "mới quật ngửa cả phân xưởng — và cách khắc phục sẽ hiển nhiên với mọi người "
+              "trong phòng: đấu dây cứng lại mấy thiết bị đó. Dù công bằng hay không, người "
+              "kỹ sư đề xuất kiến trúc ấy sẽ mang câu chuyện đó rất lâu. Fieldbus không phải "
+              "lúc nào cũng bền như bây giờ; từng có thời một điểm ngắn mạch làm hỏng cả "
+              "segment. APL rồi cũng sẽ được gia cố như vậy, nhưng theo lịch của hãng "
+              "switch, không phải lịch của bạn.",
+        "h4": "Những gì cần chốt ở buổi duyệt thiết kế, trước khi chiếc switch đầu tiên được giao",
+        "items": [
+            ("Số vòng trên mỗi switch.",
+             "Chọn bán kính ảnh hưởng một cách có chủ đích và ghi con số ấy ra giấy: một "
+             "lần reset switch cùng lắm chỉ nên làm mất một đơn vị công nghệ. Nếu câu trả "
+             "lời là “bao nhiêu spur mà switch có”, thì kiến trúc đã chọn thay bạn."),
+            ("Đa dạng nguồn và uplink.",
+             "Hai nguồn cấp, và uplink dự phòng hoặc vòng ring ở mọi nơi switch phục vụ "
+             "vòng an toàn hoặc vòng giá trị cao. Đây là một dòng trong phạm vi cung cấp, "
+             "không phải chi tiết lúc chạy thử."),
+            ("Đường lùi cho vòng trọng yếu.",
+             "Quyết ngay từ bây giờ: thiết bị trọng yếu có được phép nằm trên APL hay "
+             "không, hay vẫn giữ một đường 4–20 mA. Dữ liệu chẩn đoán mà bạn không kịp dùng "
+             "trong lúc trip thì không đáng để đánh đổi."),
+            ("Hành vi khi reset và firmware.",
+             "Reset switch không được làm nhiễu nguồn spur của các thiết bị đang khỏe. Thử "
+             "trên bàn thử, đừng thử trên phân xưởng lúc ba giờ sáng."),
+            ("Báo động cho kiểu hỏng mới.",
+             "Một báo động — switch X mất kết nối, N thiết bị bị ảnh hưởng — thay vì N báo "
+             "động hỏng thiết bị cùng lúc. Rà soát trước khi chạy máy, không phải sau sự cố "
+             "đầu tiên."),
+            ("Phép thử một câu.",
+             "Bạn có thể nói với ca trực, trong một câu, chuyện gì xảy ra khi một switch "
+             "chết và họ nên làm gì? Nếu không, thiết kế chưa xong."),
+        ],
+        "close": "Không điều nào ở trên là phản đối APL. Chúng nói rằng APL là một khoản mua "
+                 "kiến trúc trá hình thành quyết định đi dây: sợi dây đã được chuẩn hoá, khả "
+                 "năng cô lập sự cố thì chưa, và khoảng cách giữa hai điều đó là một bản vẽ "
+                 "mà kỹ sư đo lường phải ký.",
+        "link1": "Xu hướng &amp; theo dõi tiêu chuẩn",
+        "link2": "Tham chiếu tiêu chuẩn",
+        "src_h": "Nguồn",
+        "srcs": [
+            ("Báo ngành",
+             "https://www.controlglobal.com/",
+             "Control — “What to know about Ethernet-APL reliability”, John Rezabek, On the Bus",
+             "Tháng 10/2026, tr. 12. Câu chuyện xử lý sự cố fieldbus, lập luận về nhánh spur "
+             "điểm-điểm, và bài toán niềm tin của vận hành."),
+            ("Tin ngắn",
+             "https://www.endress.com",
+             "Endress+Hauser cùng Covestro, BASF và Yokogawa — thử nghiệm mở rộng quy mô "
+             "Ethernet-APL và PROFINET",
+             "Công bố ngày 28/7; thực hiện trong tháng 5 tại Endress+Hauser Digital "
+             "Solutions, Reinach, Thụy Sĩ. Lần đầu Centum VP và PRM của Yokogawa được tích "
+             "hợp vào môi trường thử APL quy mô lớn."),
+        ],
+    },
+}
+
+DATA = {
+    "en": {
+        "eb": "From the trade press",
+        "h": "Digital transformation's data problem: drowning in data, short of knowledge",
+        "lede": "Ian Verhappen's <em>Without Wires</em> column in the same October 2026 issue "
+                "of <em>Control</em> names the failure that the total-plant section below "
+                "describes from the other end. Digital transformation, as he defines it, is "
+                "the integration of the Purdue Enterprise Reference Architecture from Level 1 "
+                "to Level 4 — and it arguably began with the internet. Intelligent fieldbuses "
+                "and wireless sensor networks then raised the information available from OT "
+                "networks by orders of magnitude. What did not rise by orders of magnitude is "
+                "the realised benefit, and the gap is not a connectivity problem.",
+        "note_h": "His diagnosis in one line",
+        "note_p": "“Perhaps the problem isn't the data, but the vast amount of it, and the "
+                  "ability to identify and find what's important about it—securely.”",
+        "h1": "The numbers behind the hoarding",
+        "p1": "Verhappen cites a graph showing enterprise data at 60% of all data, with "
+              "volume growing at a compounded 27% a year. Organizations are therefore "
+              "collecting vast amounts into warehouses, lakes and lakehouses without "
+              "necessarily using any of it — because everyone else is collecting too, and "
+              "everyone knows data is valuable. That is not a strategy; it is insurance "
+              "against being the only one without a data lake. Capturing “everything” "
+              "through the IIoT compounds the problem rather than solving it, and the "
+              "datasets have grown past what any single physical repository can hold.",
+        "p2": "The response has been to virtualise instead of consolidate, and the two "
+              "architectures worth knowing by name are:",
+        "items": [
+            ("Data fabric.",
+             "Metadata, machine learning and APIs weave the existing disparate sources — "
+             "lakes, warehouses, databases — into a single virtual access layer. You query "
+             "the fabric; it fetches from wherever the data actually lives, behind the "
+             "scenes. The data does not move; the query does."),
+            ("Data mesh.",
+             "An organisational answer rather than a technical one: instead of one central IT "
+             "team owning a giant lake, each business domain — logistics, sales, a production "
+             "unit — treats its data as a product, hosts and manages its own repository, and "
+             "exposes standard APIs for everyone else to consume."),
+        ],
+        "h3": "Why AI does not rescue this",
+        "p4": "Many people are looking again at artificial intelligence, including large "
+              "language models, to save the day with a friendly interface that finds the "
+              "jewels amid the dross. Verhappen's objection is the one that matters: an "
+              "assistant can only answer the question you pose, and if you do not know what "
+              "treasures are hidden in your data, posing the right question is itself the "
+              "hard part. A model that queries a lake you never curated will return a "
+              "confident answer drawn from whatever happened to be in it — which is exactly "
+              "the failure mode the total-plant section below calls a reporting system rather "
+              "than a control system.",
+        "h2": "The OT-specific fly in the ointment",
+        "p3": "Legacy OT stacks put a data historian in the control network and a long-term "
+              "historian in the DMZ, so what gets captured is limited to time-stamped PV and "
+              "status. Verhappen suspects systems with that minimal capability are now in the "
+              "minority, since control systems have supported commercial off-the-shelf "
+              "concepts and digital field communications for roughly 25 years. Yet, from his "
+              "experience in IEC SC65E WG10, he estimates that at least 90% of systems still "
+              "do not capture the data that is already available to them. The reason is not "
+              "bandwidth. It is not knowing what to capture, and not knowing how it would be "
+              "used to achieve safe, reliable operations that also return the investment.",
+        "close": "So the conclusion is uncomfortable and correct: digital transformation needs "
+                 "data in context, and despite drowning in data we suffer a dearth of "
+                 "knowledge. RAMI has been with us since 2015 and the floundering continues, "
+                 "largely because — without knowing which data can become information, or how "
+                 "to integrate it — there are always more urgent fires competing for the same "
+                 "engineers. The fix is not a bigger lake. It is deciding, tag by tag, which "
+                 "measurements are allowed to matter, what status flag travels with them, and "
+                 "which decision they are supposed to improve.",
+        "h4": "What this asks of an instrument engineer",
+        "asks": [
+            ("Start from the decision, not the tag.",
+             "A historian full of everything is a cost centre. Twenty measurements that a "
+             "unit's margin actually depends on, with quality flags intact, is an asset."),
+            ("Capture what the device already knows.",
+             "Diagnostics, valve signatures, sensor health: the 90% figure is not about "
+             "missing instruments, it is about unconfigured ones."),
+            ("Keep the context.",
+             "Units, range, calibration date and the good / bad / uncertain flag have to "
+             "survive the trip into the lake, or the lake is fiction at scale."),
+            ("Own the fabric or the mesh.",
+             "Whether the plant picks a virtual access layer or domain-owned data products, "
+             "somebody in instrumentation has to be accountable for what the field contributes "
+             "to it."),
+        ],
+        "link1": "The total-plant layer model",
+        "link2": "The measurement chain",
+        "src_h": "Source",
+        "srcs": [
+            ("Trade press",
+             "https://www.controlglobal.com/",
+             "Control — “Digital transformation's data problem”, Ian Verhappen, Without Wires",
+             "October 2026, p. 13. PERA L1–L4, the 60% / 27% figures, data fabric versus data "
+             "mesh, and the 90% estimate from IEC SC65E WG10."),
+        ],
+    },
+    "vi": {
+        "eb": "Từ báo ngành",
+        "h": "Bài toán dữ liệu của chuyển đổi số: chết chìm trong dữ liệu, thiếu hụt tri thức",
+        "lede": "Bài <em>Without Wires</em> của Ian Verhappen trên cũng số <em>Control</em> "
+                "tháng 10/2026 gọi tên đúng thất bại mà mục toàn nhà máy ở dưới mô tả từ phía "
+                "ngược lại. Chuyển đổi số, theo cách ông định nghĩa, là tích hợp kiến trúc "
+                "Purdue (PERA) từ Level 1 đến Level 4 — và có thể nói nó bắt đầu từ internet. "
+                "Fieldbus thông minh và mạng cảm biến không dây sau đó nâng lượng thông tin "
+                "lấy được từ mạng OT lên nhiều bậc độ lớn. Thứ không tăng theo bậc độ lớn là "
+                "lợi ích thực tế, và khoảng cách ấy không phải vấn đề kết nối.",
+        "note_h": "Chẩn đoán của ông, gói trong một câu",
+        "note_p": "“Có lẽ vấn đề không phải dữ liệu, mà là lượng dữ liệu quá lớn, và khả "
+                  "năng nhận ra — một cách an toàn — điều gì là quan trọng trong đó.”",
+        "h1": "Những con số phía sau thói tích trữ",
+        "p1": "Verhappen dẫn một biểu đồ cho thấy dữ liệu doanh nghiệp chiếm 60% toàn bộ dữ "
+              "liệu, với khối lượng tạo ra tăng theo cấp số nhân kép 27% mỗi năm. Vì thế các "
+              "tổ chức thu về rất nhiều vào data warehouse, data lake và lakehouse mà không "
+              "nhất thiết dùng đến — bởi ai cũng đang thu, và ai cũng biết dữ liệu là thứ có "
+              "giá. Đó không phải chiến lược; đó là bảo hiểm để không phải là nơi duy nhất "
+              "không có data lake. Thu “tất cả mọi thứ” qua IIoT càng làm vấn đề nặng thêm "
+              "chứ không giải quyết nó, và các tập dữ liệu đã lớn vượt khả năng chứa của bất "
+              "kỳ kho vật lý đơn lẻ nào.",
+        "p2": "Cách đối phó là ảo hoá thay vì tập trung, và hai kiến trúc đáng nhớ tên là:",
+        "items": [
+            ("Data fabric.",
+             "Metadata, học máy và API dệt các nguồn rời rạc sẵn có — lake, warehouse, cơ sở "
+             "dữ liệu — thành một lớp truy cập ảo duy nhất. Bạn truy vấn trên “tấm vải” ấy, "
+             "nó lấy dữ liệu từ nơi dữ liệu thật sự nằm, phía sau hậu trường. Dữ liệu không "
+             "di chuyển; truy vấn mới di chuyển."),
+            ("Data mesh.",
+             "Một câu trả lời về tổ chức chứ không phải kỹ thuật: thay vì một nhóm IT trung "
+             "tâm sở hữu chiếc lake khổng lồ, mỗi miền nghiệp vụ — logistics, kinh doanh, một "
+             "đơn vị sản xuất — coi dữ liệu của mình là một sản phẩm, tự vận hành kho dữ liệu "
+             "cục bộ và mở API chuẩn cho người khác dùng."),
+        ],
+        "h3": "Vì sao AI không cứu được chuyện này",
+        "p4": "Nhiều người lại đang trông vào trí tuệ nhân tạo, kể cả mô hình ngôn ngữ lớn, "
+              "để cứu tình bằng một giao diện thân thiện tìm ra viên ngọc giữa đống cặn. Phản "
+              "biện của Verhappen mới là điều đáng kể: trợ lý chỉ trả lời được câu hỏi bạn "
+              "đặt, và nếu bạn không biết kho dữ liệu của mình giấu báu vật gì thì việc đặt "
+              "đúng câu hỏi đã là phần khó. Một mô hình truy vấn chiếc lake mà bạn chưa từng "
+              "tuyển chọn sẽ trả về câu trả lời đầy tự tin rút từ đúng những gì tình cờ nằm "
+              "trong đó — chính là kiểu thất bại mà mục toàn nhà máy ở dưới gọi là mua một hệ "
+              "thống báo cáo chứ không phải một hệ thống điều khiển.",
+        "h2": "Con ruồi riêng của OT",
+        "p3": "Các hệ OT cũ đặt một data historian trong mạng điều khiển và một historian dài "
+              "hạn trong DMZ, nên thứ được thu chỉ giới hạn ở PV và trạng thái kèm dấu thời "
+              "gian. Verhappen cho rằng những hệ chỉ có mức tối thiểu ấy nay đã thành thiểu "
+              "số, vì hệ điều khiển đã hỗ trợ khái niệm COTS và truyền thông số với mạng cảm "
+              "biến hiện trường khoảng 25 năm nay. Vậy mà, từ kinh nghiệm trong IEC SC65E "
+              "WG10, ông ước ít nhất 90% hệ thống vẫn không thu được lượng dữ liệu vốn đã có "
+              "sẵn. Lý do không phải băng thông. Mà là không biết nên thu gì, và không biết "
+              "thu rồi thì dùng thế nào để vận hành an toàn, tin cậy mà vẫn hoàn vốn.",
+        "close": "Nên kết luận vừa khó chịu vừa đúng: chuyển đổi số cần dữ liệu trong ngữ "
+                 "cảnh, và dù chết chìm trong dữ liệu, chúng ta vẫn thiếu tri thức. RAMI đã ở "
+                 "đây từ 2015 và việc chuyển đổi số cho OT vẫn chật vật, phần lớn vì — khi "
+                 "chưa biết dữ liệu nào có thể thành thông tin, và tích hợp nó ra sao — luôn "
+                 "có những đám cháy cấp bách hơn tranh cùng một đội kỹ sư. Cách sửa không "
+                 "phải một chiếc lake to hơn. Mà là quyết định, theo từng tag, phép đo nào "
+                 "được phép có ý nghĩa, cờ trạng thái nào đi kèm nó, và nó phục vụ quyết định "
+                 "nào.",
+        "h4": "Điều này đặt ra gì cho kỹ sư đo lường",
+        "asks": [
+            ("Bắt đầu từ quyết định, không phải từ tag.",
+             "Một historian đầy đủ mọi thứ là một trung tâm chi phí. Hai mươi phép đo mà "
+             "biên lợi nhuận của phân xưởng thật sự phụ thuộc vào, còn nguyên cờ chất lượng, "
+             "mới là tài sản."),
+            ("Thu những gì thiết bị đã biết.",
+             "Chẩn đoán, chữ ký van, sức khỏe cảm biến: con số 90% không nói về thiết bị "
+             "thiếu, mà về thiết bị chưa được cấu hình."),
+            ("Giữ ngữ cảnh.",
+             "Đơn vị đo, dải đo, ngày hiệu chuẩn và cờ tốt / hỏng / không chắc phải sống sót "
+             "tới tận lake, nếu không thì lake chỉ là hư cấu ở quy mô lớn."),
+            ("Chịu trách nhiệm về fabric hoặc mesh.",
+             "Dù nhà máy chọn lớp truy cập ảo hay sản phẩm dữ liệu theo miền, phải có người "
+             "trong bộ phận đo lường chịu trách nhiệm về phần hiện trường đóng góp vào đó."),
+        ],
+        "link1": "Mô hình tầng toàn nhà máy",
+        "link2": "Chuỗi đo lường",
+        "src_h": "Nguồn",
+        "srcs": [
+            ("Báo ngành",
+             "https://www.controlglobal.com/",
+             "Control — “Digital transformation's data problem”, Ian Verhappen, Without Wires",
+             "Tháng 10/2026, tr. 13. PERA L1–L4, các con số 60% / 27%, data fabric so với "
+             "data mesh, và ước lượng 90% từ IEC SC65E WG10."),
+        ],
+    },
+}
+
+
+def _items(rows):
+    return "".join("<li><b>%s</b> %s</li>" % (b, s) for b, s in rows)
+
+
+def _srcs(rows):
+    out = []
+    for tag, href, title, note in rows:
+        out.append('<li><span class="tag">%s</span><a href="%s" rel="noopener">%s</a> — %s</li>'
+                   % (tag, href, title, note))
+    return '<ul class="adv-src">' + "".join(out) + "</ul>"
+
+
+def _block(key, d):
+    if key in ("items", "asks"):
+        return '<ul class="adv-list">%s</ul>' % _items(d[key])
+    if key == "close":
+        return '<p class="adv-p adv-close">%s</p>' % d[key]
+    if key[0] == "h":
+        return '<h3 class="adv-h3">%s</h3>' % d[key]
+    return '<p class="adv-p">%s</p>' % d[key]
+
+
+# Reading order differs between the two columns: Rezabek builds to a checklist,
+# Verhappen puts the two architectures before the AI argument.
+ORDER_APL = ["h1", "p1", "p2", "h2", "p3", "h3", "p4", "h4", "items", "close"]
+ORDER_DATA = ["h1", "p1", "p2", "items", "h3", "p4", "h2", "p3", "close", "h4", "asks"]
+
+
+def trade_section(lang, prefix, sid, num, d, order, href1, href2):
+    """A Control column rendered as a normal adv-sec block."""
+    out = '<section class="sec adv-sec" id="%s">\n  <div class="wrap">\n' % sid
+    out += ('    <div class="eyebrow"><span class="num">%s</span><span class="line"></span>'
+            '<span class="eyebrow-label">%s</span></div>\n' % (num, d["eb"]))
+    out += '    <h2 class="adv-h2">%s</h2>\n' % d["h"]
+    out += '    <p class="adv-p">%s</p>\n' % d["lede"]
+    out += ('    <div class="adv-note">\n      <b>%s</b>\n      <p>%s</p>\n    </div>\n'
+            % (d["note_h"], d["note_p"]))
+    for key in order:
+        out += "    %s\n" % _block(key, d)
+    out += ('    <p class="adv-link"><a href="%s">%s <span aria-hidden="true">&rarr;</span></a>\n'
+            '      <a href="%s">%s <span aria-hidden="true">&rarr;</span></a></p>\n'
+            % (href1, d["link1"], href2, d["link2"]))
+    out += '    <h3 class="adv-h3">%s</h3>\n' % d["src_h"]
+    out += "    %s\n" % _srcs(d["srcs"])
+    out += "  </div>\n</section>\n"
+    return out
+
+
+def apl_section(lang, prefix):
+    return trade_section(lang, prefix, "apl", "02", APL[lang], ORDER_APL,
+                         prefix + "video-library/#cat-trends", prefix + "standards.html")
+
+
+def data_section(lang, prefix):
+    return trade_section(lang, prefix, "data", "03", DATA[lang], ORDER_DATA,
+                         "#plant", prefix + "fundamentals.html")
+
+
 def build_lang(lang, path, prefix):
     body = head(lang, prefix)
     body += topbar(lang, prefix)
     body += hero(lang)
     body += trends(lang, prefix)
+    body += apl_section(lang, prefix)
+    body += data_section(lang, prefix)
     body += beyond(lang, prefix)
     body += paper(lang, prefix)
     body += plant(lang, prefix)

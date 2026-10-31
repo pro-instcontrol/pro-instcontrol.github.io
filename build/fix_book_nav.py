@@ -20,6 +20,7 @@ LINKS = [
     ("/", "Home", "Trang chủ"),
     ("/books/", "Books", "Sách"),
     ("/fundamentals.html", "Fundamentals", "Cơ bản"),
+    ("/advanced/", "Advanced", "Nâng cao"),
     ("/instruments.html", "Instruments", "Thiết bị"),
     ("/install.html", "Install", "Lắp đặt"),
     ("/control.html", "Control", "Điều khiển"),
@@ -37,17 +38,26 @@ NAV_RE = re.compile(r'<nav class="site-nav">.*?</nav>', re.S)
 ACTIVE_RE = re.compile(r'<a href="([^"]*)" class="active">')
 SWITCH_RE = re.compile(r'<a href="([^"]*)" class="lang-switch">([^<]*)</a>')
 
+# Sections that exist twice, as real URLs. Their Vietnamese nav points at the
+# /vi/ twin rather than taking a ?lang=vi hint on the English page.
+VI_TWIN = {"/books/": "/vi/books/", "/advanced/": "/vi/advanced/"}
+
 
 def build_nav(active, switch_href, switch_label, vi):
     parts = []
     for href, en, vi_label in LINKS:
         label = vi_label if vi else en
-        if vi and href != "/books/":
+        if vi and href in VI_TWIN:
+            target = VI_TWIN[href]
+        elif vi:
             # Topic pages take a ?lang=vi hint so the i18n script starts in Vietnamese.
             target = href + ("&lang=vi" if "?" in href else "?lang=vi")
         else:
             target = href
-        cls = ' class="active"' if href == active else ""
+        is_active = href == active or target == active
+        if is_active and active:
+            target = active  # keep the page's own spelling of its own URL
+        cls = ' class="active"' if is_active else ""
         parts.append('<a href="%s"%s>%s</a>' % (target, cls, label))
     if switch_href:
         parts.append('<a href="%s" class="lang-switch">%s</a>' % (switch_href, switch_label))

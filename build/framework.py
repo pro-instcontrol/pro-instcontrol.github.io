@@ -169,6 +169,14 @@ def section_close():
     return "</div></section>"
 
 
+def bullets(pg, rows):
+    """A list of (bold label, sentence) pairs, for .adv-list blocks."""
+    out = '<ul class="adv-list">'
+    for (ben, bvi), (sen, svi) in rows:
+        out += "<li>%s %s</li>" % (pg.el("b", ben, bvi), pg.span(sen, svi))
+    return out + "</ul>"
+
+
 def page_intro(pg, title_en, title_vi, lede_en, lede_vi, toc=None):
     """Page header: title + lede on the left, section index on the right."""
     left = '<div class="intro-l">%s%s</div>' % (

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Fundamentals + instrument reference pages."""
 
-from framework import Page, section_open, section_close, write, render, page_intro
+from framework import Page, section_open, section_close, write, render, page_intro, bullets
 
 
 # --------------------------------------------------------------------------
@@ -35,6 +35,7 @@ def build_fundamentals():
             ("signals", "Signal standards", "Tiêu chuẩn tín hiệu"),
             ("why", "Why 4–20 mA", "Vì sao 4–20 mA"),
             ("accuracy", "The vocabulary of error", "Từ vựng về sai số"),
+            ("noise", "Noise &amp; filtering", "Nhiễu &amp; lọc"),
             ("env", "Environment &amp; certification", "Môi trường &amp; chứng nhận"),
             ("install", "Installation rules", "Quy tắc lắp đặt"),
         ],
@@ -312,8 +313,197 @@ def build_fundamentals():
     )
     body += section_close()
 
-    # 05 environment
-    body += section_open("05", "Environment &amp; certification", "Môi trường &amp; chứng nhận", pg, "env")
+    # 05 noise — Control, October 2026, "Develop Your Potential"
+    body += section_open("05", "Noise &amp; filtering", "Nhiễu &amp; lọc", pg, "noise")
+    body += "<div class=\"sec-head\">"
+    body += pg.h2("Preventing noise from degrading control performance",
+                  "Chặn nhiễu làm suy giảm hiệu năng điều khiển")
+    body += pg.p(
+        "R. Russell Rhinehart opens a three-part series in Control (October 2026) with "
+        "the measurement problem underneath every tuning argument: noise decides when "
+        "you think a change started, when you think the PV reached steady state, and "
+        "what you think its value is.",
+        "R. Russell Rhinehart mở đầu loạt ba bài trên Control (tháng 10/2026) bằng bài "
+        "toán đo lường nằm dưới mọi cuộc tranh luận về hiệu chỉnh: nhiễu quyết định "
+        "thời điểm bạn nghĩ một thay đổi bắt đầu, thời điểm bạn nghĩ PV đã đạt trạng "
+        "thái ổn định, và giá trị mà bạn nghĩ nó đang có.")
+    body += "</div>"
+    body += "<div class=\"note mt24\"><span class=\"lbl\">%s</span>%s</div>" % (
+        pg.span("The trade-off, stated plainly", "Sự đánh đổi, nói thẳng"),
+        pg.p("“You must choose the filter parameter values to balance precision (at "
+             "steady state) and speed of response with lag or delay.”",
+             "“Bạn phải chọn tham số lọc để cân bằng giữa độ chính xác (khi ở trạng "
+             "thái ổn định) và tốc độ đáp ứng, đánh đổi với lag hoặc delay.”"))
+    body += "<h3 class=\"mt24\">%s</h3>" % pg.span(
+        "What noise does to the number you read", "Nhiễu làm gì với con số bạn đọc")
+    body += pg.p(
+        "Figure 1 of the article plots a noisy measurement of a process that moved "
+        "from one steady value to another, with the first-order filtered value as a "
+        "line through it. Read the line and you would say the transient began at a "
+        "time of three and settled at twenty. Read the dots and you would say it began "
+        "at two and ended at fifteen. Through the transient the filtered value lags — "
+        "nearly every sample between five and ten sits above it — so if that filtered "
+        "number feeds an online calculation such as a material balance closure, it "
+        "misstates the process during precisely the interval in which the process is "
+        "changing. At the initial and final steady states the filtered value sits in "
+        "the centroid of the data, which is the one place it is both smooth and valid.",
+        "Hình 1 của bài vẽ phép đo nhiễu của một quá trình vừa chuyển từ giá trị ổn "
+        "định này sang giá trị khác, cùng đường giá trị đã qua bộ lọc bậc một. Nhìn "
+        "đường ấy, ta sẽ nói quá trình bắt đầu chuyển ở thời điểm 3 và ổn định ở 20. "
+        "Nhìn các điểm đo, ta sẽ nói nó bắt đầu ở 2 và kết thúc ở 15. Trong suốt giai "
+        "đoạn chuyển tiếp, giá trị lọc bị trễ — gần như mọi điểm đo trong khoảng 5 đến "
+        "10 đều nằm trên đường lọc — nên nếu con số đã lọc ấy đi vào một phép tính trực "
+        "tuyến như cân bằng vật chất, nó mô tả sai quá trình đúng trong khoảng thời "
+        "gian quá trình đang thay đổi. Ở trạng thái ổn định đầu và cuối, giá trị lọc "
+        "nằm ở trọng tâm của dữ liệu, chỗ duy nhất nó vừa phẳng vừa đúng.")
+    body += pg.p(
+        "The filtered trace still wiggles while the process is steady. Filter less and "
+        "it tracks the transient faster but reduces less noise; that trade is not a "
+        "tuning mistake, it is what a first-order filter is. The simulation behind the "
+        "article is harsher still: the true PV begins its rise at a time of four and "
+        "reaches 95% of its final value by about ten, and neither the raw data nor the "
+        "filtered line identifies those two instants well.",
+        "Ngay khi quá trình đứng yên, đường lọc vẫn dao động nhẹ. Lọc ít hơn thì bám "
+        "chuyển tiếp nhanh hơn nhưng giảm nhiễu ít hơn; sự đánh đổi ấy không phải lỗi "
+        "hiệu chỉnh, mà là bản chất của bộ lọc bậc một. Mô phỏng trong bài còn khó chịu "
+        "hơn: giá trị thật bắt đầu tăng ở thời điểm 4 và đạt 95% giá trị cuối vào "
+        "khoảng 10, trong khi cả dữ liệu thô lẫn đường lọc đều không chỉ ra được hai "
+        "thời điểm ấy một cách tử tế.")
+    body += "<h3 class=\"mt24\">%s</h3>" % pg.span("Where the noise comes from",
+                                                   "Nhiễu đến từ đâu")
+    body += bullets(pg, [
+        (("Flow turbulence.", "Rối dòng chảy."),
+         ("The most common source: it confounds pressure and flow measurements, and it "
+          "is in the process, not in the instrument.",
+          "Nguồn phổ biến nhất: nó làm nhiễu phép đo áp suất và lưu lượng, và nó nằm "
+          "trong quá trình, không nằm trong thiết bị.")),
+        (("Incomplete mixing.", "Trộn chưa hoàn toàn."),
+         ("Rich and lean fluid packets pass the sensor, confounding composition and "
+          "temperature readings.",
+          "Các gói lưu chất giàu và nghèo lần lượt đi ngang cảm biến, làm nhiễu phép đo "
+          "thành phần và nhiệt độ.")),
+        (("Mechanical vibration.", "Rung cơ học."),
+         ("From external equipment, or from the process itself — splashing, boiling, "
+          "cavitation, bubbling.",
+          "Từ thiết bị bên ngoài, hoặc từ chính quá trình — bắn tóe, sôi, xâm thực, "
+          "sủi bọt.")),
+        (("External electromagnetic fields.", "Trường điện từ bên ngoài."),
+         ("The reason signal cable is not run parallel to power cable, and the reason a "
+          "shield is only as good as its single-point earth.",
+          "Lý do cáp tín hiệu không đi song song cáp động lực, và lý do vỏ chắn chỉ tốt "
+          "bằng điểm tiếp địa một đầu của nó.")),
+        (("The modelling assumption.", "Giả thiết mô hình hoá."),
+         ("Noise is treated as normally and independently distributed perturbations "
+          "added to the PV, near-Gaussian with zero mean and amplitude given by the "
+          "standard deviation. That idealisation is what made the mathematics possible; "
+          "it is also the assumption that fails on a real installation.",
+          "Nhiễu được coi là những nhiễu động phân bố chuẩn và độc lập cộng vào PV, gần "
+          "Gauss với trung bình bằng 0 và biên độ đặc trưng bởi độ lệch chuẩn. Chính lý "
+          "tưởng hoá ấy làm cho phần toán trở nên khả thi; và cũng chính là giả thiết vỡ "
+          "trên một lắp đặt thật.")),
+    ])
+    body += "<h3 class=\"mt24\">%s</h3>" % pg.span(
+        "Three filter families, three different ways to be wrong",
+        "Ba họ bộ lọc, ba kiểu sai khác nhau")
+    body += pg.p(
+        "The idealised noise model is what allowed the first-order filter, the moving "
+        "average, and the statistical filters — Kalman, SPC — to be analysed at all. It "
+        "is also why they dominate applications far beyond the cases where their "
+        "assumptions hold. The three families differ in what they can see and what they "
+        "cost you.",
+        "Mô hình nhiễu lý tưởng hoá là thứ cho phép phân tích được bộ lọc bậc một, "
+        "trung bình trượt và các bộ lọc thống kê — Kalman, SPC. Cũng vì thế chúng thống "
+        "trị ứng dụng vượt xa những trường hợp mà giả thiết của chúng còn đúng. Ba họ "
+        "này khác nhau ở chỗ chúng nhìn thấy được gì và bạn phải trả giá bằng gì.")
+    body += bullets(pg, [
+        (("First-order and moving average.", "Bậc một và trung bình trượt."),
+         ("Real time, present and past only. They lag, they wiggle at steady state, and "
+          "the number they report is a centroid of the data rather than a reading.",
+          "Thời gian thực, chỉ thấy hiện tại và quá khứ. Chúng bị lag, dao động khi ổn "
+          "định, và con số chúng báo là trọng tâm của dữ liệu chứ không phải một phép đọc.")),
+        (("Statistical (SPC, Kalman).", "Thống kê (SPC, Kalman)."),
+         ("Hold the prior filtered value until there is adequate evidence to report a "
+          "change: step and hold. Delay instead of lag, no wiggle at steady state, and a "
+          "faster track of the transient.",
+          "Giữ nguyên giá trị lọc trước đó cho tới khi có đủ bằng chứng để công bố thay "
+          "đổi: bậc thang và giữ. Delay thay vì lag, không dao động khi ổn định, và bám "
+          "chuyển tiếp nhanh hơn.")),
+        (("Kernel.", "Kernel."),
+         ("Works after the data is collected, averaging at each instant using values "
+          "from both sides of it — a plain average, exponential or radial-basis "
+          "weighting, a median, or a local curve fit. Best transient fidelity, but it "
+          "always reports half a data window behind, which is why it belongs in offline "
+          "analysis rather than in the controller.",
+          "Chạy sau khi đã có dữ liệu, lấy trung bình tại từng thời điểm bằng cả giá trị "
+          "hai bên — trung bình thường, trọng số hàm mũ hay radial basis, trung vị, hoặc "
+          "khớp đường cong cục bộ. Bám chuyển tiếp tốt nhất, nhưng luôn báo kết quả trễ "
+          "nửa cửa sổ dữ liệu, nên nó thuộc về phân tích ngoại tuyến chứ không thuộc về "
+          "bộ điều khiển.")),
+    ])
+    body += "<h3 class=\"mt24\">%s</h3>" % pg.span("Tempering is not removing",
+                                                   "Làm mượt không phải là loại bỏ")
+    body += pg.p(
+        "No filter removes uncertainty; they reduce variance and leave the uncertainty "
+        "behind. Every online filter introduces lag or delay, and when the process "
+        "makes a sequence of real changes the filtered signal stays aggravatingly "
+        "behind and misdirects the action taken on it. The greater the noise reduction, "
+        "the greater the lag. Filter parameters are therefore a trade between precision "
+        "at steady state and speed of response — not a number to be copied from the "
+        "last project.",
+        "Không bộ lọc nào loại bỏ được độ bất định; chúng chỉ giảm phương sai và để "
+        "nguyên phần bất định ấy. Mọi bộ lọc trực tuyến đều tạo lag hoặc delay, và khi "
+        "quá trình có một chuỗi thay đổi thật, tín hiệu đã lọc vẫn ở phía sau một cách "
+        "khó chịu và làm sai hướng hành động dựa trên nó. Giảm nhiễu càng nhiều thì lag "
+        "càng lớn. Vì thế tham số lọc là một đánh đổi giữa độ chính xác khi ổn định và "
+        "tốc độ đáp ứng — không phải con số chép từ dự án trước.")
+    body += pg.p(
+        "The practical rule the article ends on is one line long: if noise is degrading "
+        "the controller, filter the derivative function only, not the process variable, "
+        "so proportional action responds to data rather than to a lagged value. It is a "
+        "single change in the function block, and it is the difference between a loop "
+        "that reacts and a loop that remembers.",
+        "Quy tắc thực dụng mà bài kết lại chỉ dài một dòng: nếu nhiễu đang làm hại bộ "
+        "điều khiển, chỉ lọc ở khâu đạo hàm, đừng lọc trên chính biến quá trình, để tác "
+        "động tỉ lệ đáp ứng với dữ liệu thay vì với một giá trị đã trễ. Đó là thay đổi "
+        "một dòng trong function block, và là khác biệt giữa một vòng biết phản ứng và "
+        "một vòng chỉ biết nhớ lại.")
+    body += "<h3 class=\"mt24\">%s</h3>" % pg.span("Three questions for your own loops",
+                                                   "Ba câu hỏi cho vòng điều khiển của bạn")
+    body += bullets(pg, [
+        (("Is the filter constant on the loop sheet?", "Hằng số lọc có trên phiếu vòng không?"),
+         ("If it exists only as a default in a function block, nobody owns it and nobody "
+          "can defend it in a review.",
+          "Nếu nó chỉ tồn tại như một giá trị mặc định trong function block, thì không ai "
+          "chịu trách nhiệm về nó và không ai bảo vệ được nó trong một buổi duyệt thiết kế.")),
+        (("Does the operator know the PV on screen is filtered?",
+          "Vận hành có biết PV trên màn hình là giá trị đã lọc?"),
+         ("And by how much? Someone who does not know the number in front of them is "
+          "eight seconds old will compensate in the wrong direction.",
+          "Và trễ bao nhiêu? Một người không biết con số trước mặt mình đã cũ tám giây "
+          "sẽ bù trừ sai hướng.")),
+        (("Does the material balance read the raw tag or the filtered one?",
+          "Cân bằng vật chất đọc tag thô hay tag đã lọc?"),
+         ("Mixing the two is the surest way to create an argument that cannot be settled "
+          "with data.",
+          "Trộn lẫn hai loại là cách chắc chắn nhất để tạo ra một cuộc tranh luận không "
+          "thể giải quyết bằng dữ liệu.")),
+    ])
+    body += ("<ul class=\"adv-src\"><li><span class=\"tag\">Trade press</span>"
+             "<a href=\"https://www.controlglobal.com/\" rel=\"noopener\">%s</a> — %s</li></ul>" % (
+                 pg.span("Control — “Preventing noise from degrading control "
+                         "performance”, R. Russell Rhinehart, Develop Your Potential",
+                         "Control — “Preventing noise from degrading control "
+                         "performance”, R. Russell Rhinehart, Develop Your Potential"),
+                 pg.span("October 2026, pp. 14–15. First of three parts: first-order "
+                         "versus statistical versus kernel filtering, and the "
+                         "lag-versus-precision trade.",
+                         "Tháng 10/2026, tr. 14–15. Bài đầu trong loạt ba bài: lọc bậc "
+                         "một so với lọc thống kê và lọc kernel, và đánh đổi giữa lag với "
+                         "độ chính xác.")))
+    body += section_close()
+
+    # 06 environment
+    body += section_open("06", "Environment &amp; certification", "Môi trường &amp; chứng nhận", pg, "env")
     body += """
 <div class="grid c3">
   <div class="card">
@@ -374,7 +564,7 @@ def build_fundamentals():
     body += section_close()
 
     # 06 installation
-    body += section_open("06", "Installation decides the answer", "Lắp đặt quyết định kết quả", pg, "install")
+    body += section_open("07", "Installation decides the answer", "Lắp đặt quyết định kết quả", pg, "install")
     body += """
 <div class="sec-head">
   %s

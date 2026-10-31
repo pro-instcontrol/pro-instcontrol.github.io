@@ -15,7 +15,8 @@ import html
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import books_site as lib  # noqa: E402
-from framework import Page, section_open, section_close, write, render, page_intro  # noqa: E402
+from framework import (Page, section_open, section_close, write, render,  # noqa: E402
+                       page_intro, bullets)
 
 BCIT_URL = ("https://www.bcit.ca/programs/industrial-instrumentation-and-"
             "process-control-technician-diploma-full-time-2945dipma/")
@@ -197,6 +198,76 @@ def course_table(pg, rows):
     return out + "</tbody></table></div>"
 
 
+# Control, October 2026 — "Train for the plant you operate, not for the classroom"
+TRAINING_GAPS = [
+    (("Consumption gap.", "Khoảng trống khai thác."),
+     ("Facilities still run analog — and in places pneumatic — controls even where "
+      "more than 95% of field devices are digitally native, because usability was "
+      "prioritised over optimisation. The HART diagnostics are already paid for and "
+      "left unused, because nobody trained the technicians to implement them through "
+      "installation, maintenance and troubleshooting.",
+      "Nhà máy vẫn chạy điều khiển tương tự — có nơi còn khí nén — ngay cả khi hơn "
+      "95% thiết bị hiện trường đã là số, vì tính dễ dùng được đặt trên tối ưu hoá. "
+      "Chẩn đoán HART đã được trả tiền và bỏ đó không dùng, vì không ai huấn luyện kỹ "
+      "thuật viên triển khai chúng qua lắp đặt, bảo trì và xử lý sự cố.")),
+    (("Design gap.", "Khoảng trống thiết kế."),
+     ("You cannot expect top-quartile performance from assets that were never "
+      "engineered to support it — especially when training is booked as an "
+      "unnecessary expense rather than a lifecycle performance investment. The "
+      "decisions taken at the design phase get paid for several times over.",
+      "Không thể đòi hiệu năng nhóm dẫn đầu từ những tài sản chưa từng được thiết kế "
+      "để đạt mức đó — nhất là khi huấn luyện bị ghi như một khoản chi không cần "
+      "thiết thay vì một khoản đầu tư cho hiệu năng vòng đời. Những quyết định ở "
+      "khâu thiết kế rồi sẽ bị trả giá nhiều lần.")),
+    (("Performance gap.", "Khoảng trống hiệu năng."),
+     ("Nearly a quarter of manufacturing losses — unplanned shutdowns, scrap, "
+      "slowdowns — trace back to inadequate training. Repeat failures are most often "
+      "gaps in troubleshooting and in system-wide procedural understanding, and an "
+      "understaffed, undertrained plant burns the time that should have gone to "
+      "root-cause work.",
+      "Gần một phần tư tổn thất sản xuất — dừng máy ngoài kế hoạch, hàng loại, chạy "
+      "chậm — bắt nguồn từ huấn luyện không đủ. Hỏng hóc lặp lại thường là lỗ hổng về "
+      "xử lý sự cố và về hiểu quy trình ở phạm vi toàn hệ thống; nhà máy thiếu người "
+      "và thiếu huấn luyện thì đốt mất đúng quãng thời gian lẽ ra dành cho việc tìm "
+      "nguyên nhân gốc.")),
+    (("Skills gap.", "Khoảng trống kỹ năng."),
+     ("A quarter of the industrial workforce is over 55 and only 8% is under 25. On "
+      "the current trajectory, roughly half of those critical roles will not be "
+      "filled.",
+      "Một phần tư lực lượng lao động công nghiệp trên 55 tuổi và chỉ 8% dưới 25. Với "
+      "quỹ đạo hiện nay, khoảng một nửa số vị trí trọng yếu ấy sẽ không có người.")),
+    (("Training gap.", "Khoảng trống huấn luyện."),
+     ("Adult Learning Theory research consistently shows 70% of traditional "
+      "classroom instruction is forgotten within 24 hours, and 90% of new knowledge "
+      "can fade within a week without hands-on reinforcement for students to revisit "
+      "and use those skills.",
+      "Nghiên cứu về lý thuyết học tập của người trưởng thành cho thấy 70% nội dung "
+      "giảng trên lớp bị quên trong vòng 24 giờ, và 90% kiến thức mới có thể phai "
+      "trong một tuần nếu không có thực hành củng cố để học viên quay lại và dùng "
+      "những kỹ năng đó.")),
+]
+
+TRAINING_ASKS = [
+    (("Your loop drawings are the curriculum.", "Bản vẽ vòng của bạn chính là giáo trình."),
+     ("If the training package does not open with the P&amp;ID of the unit the "
+      "learner actually works on, it is teaching a plant that does not exist.",
+      "Nếu bộ tài liệu huấn luyện không mở đầu bằng P&amp;ID của đúng phân xưởng mà "
+      "học viên đang làm, nó đang dạy một nhà máy không tồn tại.")),
+    (("The diagnostics you configured are the exercise.",
+      "Chẩn đoán bạn đã cấu hình chính là bài tập."),
+     ("HART status, valve signature, sensor drift: these are the abnormal situations "
+      "worth rehearsing, and they are already sitting in your instrument database.",
+      "Trạng thái HART, chữ ký van, độ trôi cảm biến: đó là những tình huống bất "
+      "thường đáng đem ra tập, và chúng đã nằm sẵn trong cơ sở dữ liệu thiết bị của "
+      "bạn.")),
+    (("Hours are not competence.", "Số giờ không phải năng lực."),
+     ("If nobody on the shift can explain what a drifting zero does to a material "
+      "balance, the training did not happen — whatever the logbook says.",
+      "Nếu không ai trong ca giải thích được một điểm không bị trôi sẽ làm gì với cân "
+      "bằng vật chất, thì buổi huấn luyện đó đã không xảy ra — bất kể sổ ghi thế nào.")),
+]
+
+
 def build():
     pg = Page(
         "education.html",
@@ -236,6 +307,7 @@ def build():
             ("hust-spec", "HUST — specialization &amp; practicum", "HUST — chuyên ngành &amp; tốt nghiệp"),
             ("hust-cond", "HUST — supporting &amp; conditions", "HUST — bổ trợ &amp; điều kiện"),
             ("official", "Official pages &amp; entry", "Trang chính thức &amp; đầu vào"),
+            ("training", "Training &amp; the plant", "Huấn luyện &amp; nhà máy"),
             ("why", "Why it matters here", "Vì sao quan trọng ở đây"),
         ],
     )
@@ -477,8 +549,136 @@ def build():
                 HUST_URL_EN, pg.span("HUST EE-E8 (EN) &rarr;", "HUST EE-E8 (EN) &rarr;")))
     body += section_close()
 
-    # 09 why
-    body += section_open("09", "Why it matters here", "Vì sao quan trọng ở đây",
+    # 09 training — Control, October 2026, "Other Voices"
+    body += section_open("09", "From the trade press", "Từ báo ngành", pg, "training")
+    body += "<div class=\"sec-head\">"
+    body += pg.h2("Train for the plant you operate, not for the classroom",
+                  "Huấn luyện cho nhà máy bạn vận hành, không phải cho lớp học")
+    body += pg.p(
+        "You would not board an aircraft whose pilot had never touched a simulator. "
+        "Luke Bicklein and Chris Helbling of Experitec argue in Control's October "
+        "2026 Other Voices column that this is effectively the standard of practice "
+        "across much of industrial manufacturing today — and that what separates "
+        "aviation from the plant is not equipment, but how seriously the "
+        "responsibility is codified into training.",
+        "Bạn sẽ không lên một chiếc máy bay mà phi công chưa từng chạm vào buồng lái "
+        "mô phỏng. Luke Bicklein và Chris Helbling của Experitec lập luận trên "
+        "chuyên mục Other Voices của Control số tháng 10/2026 rằng đó lại đúng là "
+        "chuẩn mực thực hành ở phần lớn ngành sản xuất công nghiệp hiện nay — và "
+        "thứ tách hàng không khỏi nhà máy không phải thiết bị, mà là mức độ nghiêm "
+        "túc mà trách nhiệm ấy được thể chế hoá vào việc huấn luyện.")
+    body += "</div>"
+    body += "<div class=\"note mt24\"><span class=\"lbl\">%s</span>%s</div>" % (
+        pg.span("The comparison", "Phép so sánh"),
+        pg.p("“You wouldn't board an airplane whose pilot never touched a flight "
+             "simulator. Yet, that's effectively the standard of practice across "
+             "much of the industrial manufacturing sector today.”",
+             "“Bạn sẽ không lên một chiếc máy bay mà phi công chưa từng chạm vào "
+             "buồng lái mô phỏng. Vậy mà đó lại đúng là chuẩn mực thực hành ở phần "
+             "lớn ngành sản xuất công nghiệp hiện nay.”"))
+    body += "<h3 class=\"mt24\">%s</h3>" % pg.span(
+        "Two professions, two attitudes to proof", "Hai nghề, hai thái độ với bằng chứng")
+    body += pg.p(
+        "Put an airline cockpit and a processing plant control room side by side and "
+        "the parallels are striking: both demand split-second judgment from people "
+        "carrying enormous responsibility for human safety, capital assets, "
+        "environmental stewardship and brand reputation. Where the two diverge is in "
+        "how that responsibility is codified. Aviation institutionalised recurring "
+        "training and mandatory proficiency checks, so crews are prepared for "
+        "abnormal situations before they arise in service. Manufacturers are left "
+        "interpreting OSHA expectations that lack clear certification guidelines and "
+        "enforcement.",
+        "Đặt buồng lái máy bay cạnh phòng điều khiển nhà máy chế biến, các điểm tương "
+        "đồng rất rõ: cả hai đều đòi hỏi phán đoán trong tích tắc từ những người mang "
+        "trách nhiệm lớn với an toàn con người, tài sản vốn, môi trường và uy tín "
+        "thương hiệu. Chỗ hai nghề rẽ nhau là cách trách nhiệm ấy được thể chế hoá. "
+        "Hàng không đã thể chế hoá huấn luyện định kỳ và các kỳ kiểm tra năng lực bắt "
+        "buộc, để tổ bay được chuẩn bị cho tình huống bất thường trước khi chúng xảy "
+        "ra trong khai thác. Người sản xuất thì phải tự diễn giải các yêu cầu của "
+        "OSHA — vốn thiếu hướng dẫn chứng nhận rõ ràng và thiếu cả cơ chế cưỡng chế.")
+    body += "<h3 class=\"mt24\">%s</h3>" % pg.span(
+        "The numbers are not close", "Những con số không hề sát nhau")
+    body += pg.p(
+        "Operators log an average of 20 training hours a year against a recommended "
+        "minimum of 60 from multiple industrial bodies, and the hours actually "
+        "completed keep trending down. Fewer than half of plant operators today are "
+        "formally trained on a digital twin or an operator training system — the "
+        "direct analogue of the flight simulator, and the only place where "
+        "abnormal-situation training can happen without consequence.",
+        "Vận hành viên ghi nhận trung bình 20 giờ huấn luyện mỗi năm, so với mức tối "
+        "thiểu 60 giờ mà nhiều tổ chức ngành khuyến nghị, và số giờ thực hoàn thành "
+        "vẫn đang giảm. Chưa tới một nửa số vận hành viên nhà máy hiện nay được huấn "
+        "luyện chính quy trên digital twin hoặc hệ thống huấn luyện vận hành (OTS) — "
+        "thứ tương đương trực tiếp của buồng lái mô phỏng, và là nơi duy nhất có thể "
+        "huấn luyện tình huống bất thường mà không phải trả giá.")
+    body += "<h3 class=\"mt24\">%s</h3>" % pg.span("Five gaps that compound",
+                                                   "Năm khoảng trống cộng dồn")
+    body += bullets(pg, TRAINING_GAPS)
+    body += "<h3 class=\"mt24\">%s</h3>" % pg.span("What actually works",
+                                                   "Cái gì thực sự hiệu quả")
+    body += pg.p(
+        "Classroom instruction paired with hands-on reinforcement — not one in place "
+        "of the other — and room to fail safely. The 3Ds of training, describe, "
+        "demonstrate, do, forge the muscle memory; scenario-based training "
+        "consistently beats sequential, step-by-step instruction because it layers "
+        "deductive reasoning on top of practice, and that is the difference between a "
+        "troubleshooter and someone chasing symptoms. It is the same reason pilots "
+        "log more simulator hours than flight hours.",
+        "Giảng trên lớp đi kèm thực hành củng cố — không phải cái này thay cái kia — "
+        "và phải có chỗ cho phép sai một cách an toàn. Ba chữ D của huấn luyện — mô "
+        "tả, làm mẫu, tự làm — tạo nên phản xạ; huấn luyện theo tình huống luôn thắng "
+        "chỉ dẫn tuần tự từng bước, vì nó xếp thêm năng lực suy luận diễn dịch lên "
+        "trên phần thực hành, và đó chính là khác biệt giữa người xử lý sự cố thật và "
+        "người chỉ chạy theo triệu chứng. Cũng vì lẽ đó phi công ghi nhiều giờ bay mô "
+        "phỏng hơn giờ bay thật.")
+    body += pg.p(
+        "Experitec turned those principles into the Performance Learning Platform: a "
+        "factory on wheels. A working miniature process — pumps moving fluid through "
+        "real equipment, pressure, temperature, level and flow instruments measuring "
+        "it, control valves manipulating it, a modern control system closing the "
+        "loops, and the asset-management, calibration and diagnostic tools the "
+        "learner will meet in a real plant. It began as internal onboarding for young "
+        "engineers, then was extended to manufacturers and educators chasing the same "
+        "outcome.",
+        "Experitec biến những nguyên tắc ấy thành Performance Learning Platform: một "
+        "“nhà máy trên bánh xe”. Một quá trình thu nhỏ nhưng chạy thật — bơm đẩy lưu "
+        "chất qua thiết bị thật, thiết bị đo áp suất, nhiệt độ, mức và lưu lượng đo "
+        "chính quá trình ấy, van điều khiển tác động lên nó, một hệ điều khiển hiện "
+        "đại khép các vòng, cùng những công cụ quản lý tài sản, hiệu chuẩn và chẩn "
+        "đoán mà học viên sẽ gặp trong nhà máy thật. Ban đầu nó là chương trình hội "
+        "nhập nội bộ cho kỹ sư trẻ, rồi được mở rộng cho các nhà sản xuất và cơ sở "
+        "đào tạo cùng theo đuổi kết quả ấy.")
+    body += pg.p(
+        "The evidence that this matters is not in the survey data but in the "
+        "schedule. Ask any outage manager how many days are added to loop checkouts "
+        "because field devices were left out of service. That is a training failure "
+        "surfacing as a turnaround overrun — and it is fixed by practice, not by "
+        "another slide deck.",
+        "Bằng chứng cho thấy điều này quan trọng không nằm trong số liệu khảo sát mà "
+        "nằm ở tiến độ. Hỏi bất kỳ quản đốc đại tu nào xem có bao nhiêu ngày bị cộng "
+        "thêm vào phần kiểm tra vòng vì thiết bị hiện trường bị bỏ ngoài vận hành. Đó "
+        "là một thất bại huấn luyện hiện ra dưới dạng một lần đại tu vượt tiến độ — "
+        "và nó chỉ được sửa bằng thực hành, không bằng thêm một bộ slide.")
+    body += "<h3 class=\"mt24\">%s</h3>" % pg.span(
+        "What this asks of the people who own the loops",
+        "Điều này đặt ra gì cho người chịu trách nhiệm các vòng điều khiển")
+    body += bullets(pg, TRAINING_ASKS)
+    body += ("<ul class=\"adv-src\"><li><span class=\"tag\">Trade press</span>"
+             "<a href=\"https://www.controlglobal.com/\" rel=\"noopener\">%s</a> — %s</li></ul>" % (
+                 pg.span("Control — “Train for the plant you operate, not for the "
+                         "classroom”, Luke Bicklein and Chris Helbling, Other Voices",
+                         "Control — “Train for the plant you operate, not for the "
+                         "classroom”, Luke Bicklein và Chris Helbling, Other Voices"),
+                 pg.span("October 2026, pp. 10–11. The aviation comparison, the "
+                         "20-versus-60 hours, the five gaps, the 3Ds, and the "
+                         "Performance Learning Platform.",
+                         "Tháng 10/2026, tr. 10–11. Phép so sánh với hàng không, 20 so "
+                         "với 60 giờ, năm khoảng trống, ba chữ D, và Performance "
+                         "Learning Platform.")))
+    body += section_close()
+
+    # 10 why
+    body += section_open("10", "Why it matters here", "Vì sao quan trọng ở đây",
                          pg, "why")
     body += "<div class=\"sec-head\">"
     body += pg.h2("The same loops, studied formally", "Cùng những vòng, được học bài bản")
