@@ -406,9 +406,12 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 .foot-r .mono{font-size:11.5px;color:var(--muted);letter-spacing:.03em}
 
 /* ---------- responsive ---------- */
-@media (min-width:1381px){
-  .nav-link{padding:8px 6px;font-size:12.6px}
-  .bar{gap:16px}
+@media (min-width:1440px){
+  /* Seventeen top-level links, one more than the header was measured for. At
+     12.2px with 4px of padding they need 1030px of the 1364px available, which
+     leaves room for a wider fallback font if Inter does not load. */
+  .nav-link{padding:8px 4px;font-size:12.2px}
+  .bar{gap:14px}
 }
 @media (max-width:1240px){
   .nav-link{padding:8px 6px;font-size:12.6px}
@@ -419,7 +422,7 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
   .hero-in{gap:36px}
   .c4{grid-template-columns:repeat(2,1fr)}
 }
-@media (max-width:1380px){
+@media (max-width:1439px){
   .nav{
     display:none;position:absolute;top:66px;left:0;right:0;background:#fff;
     border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;
@@ -687,7 +690,7 @@ a.lang:hover{text-decoration:none}
 .adv-hero{padding:56px 0 34px;border-bottom:1px solid var(--line)}
 .adv-h1{font-size:clamp(1.9rem,3.4vw,2.6rem);letter-spacing:-.03em;max-width:22em}
 .adv-lede{margin-top:14px;max-width:44em}
-.adv-sec{padding:46px 0 40px;border-bottom:1px solid var(--line)}
+.adv-sec{padding:46px 0 40px;border-bottom:1px solid var(--line);scroll-margin-top:80px}
 .adv-sec:last-of-type{border-bottom:0}
 .adv-h2{font-size:1.42rem;letter-spacing:-.024em;margin-top:6px}
 .adv-p{color:var(--ink2);font-size:14.2px;line-height:1.62;max-width:62em;margin-top:10px}
@@ -743,6 +746,45 @@ a.lang:hover{text-decoration:none}
 .adv-src .tag{display:inline-block;font-family:var(--mono);font-size:8.6px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line2);border-radius:4px;padding:1px 5px;margin-right:8px;vertical-align:1.5px}
 .adv-tbl{margin-top:24px}
 .adv-tbl th:first-child,.adv-tbl td:first-child{width:22%}
+
+/* ---------- hot topics (/hot-topics/ and /vi/hot-topics/) ---------- */
+.hot-cov{display:flex;flex-wrap:wrap;gap:7px;margin:22px 0 0;padding:0;list-style:none}
+.hot-cov li{margin:0}
+.hot-cov a,.hot-cov span{
+  display:inline-block;font-family:var(--mono);font-size:10.8px;letter-spacing:.03em;
+  padding:5px 9px;border:1px solid var(--line2);border-radius:6px;color:var(--ink2);
+  background:#fff;white-space:nowrap;
+}
+.hot-cov a:hover{border-color:var(--accent);color:var(--accent-2);text-decoration:none;background:var(--accent-soft)}
+.hot-cov .is-full{border-color:#bcded8;color:var(--accent-2);background:var(--accent-soft)}
+.hot-cov .is-partial{border-style:dashed;border-color:#d8c19a;color:var(--amber);background:var(--amber-soft)}
+.hot-cov .is-gap{color:var(--muted);border-style:dotted;background:var(--bg2)}
+.hot-earlier{margin-top:16px;font-size:12.6px;color:var(--muted);line-height:1.7}
+.hot-earlier a{color:var(--accent-2);font-weight:500}
+.hot-earlier .k{font-family:var(--mono);font-size:9.6px;letter-spacing:.1em;text-transform:uppercase;margin-right:8px}
+.hot-month{padding:42px 0 38px;border-bottom:1px solid var(--line);scroll-margin-top:80px}
+.hot-month:last-of-type{border-bottom:0}
+.hot-mh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.hot-mh h2{font-size:1.32rem;letter-spacing:-.024em;margin:0}
+.hot-count{font-family:var(--mono);font-size:9.4px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line2);border-radius:4px;padding:2px 6px;vertical-align:2px}
+.hot-count.warn{color:var(--amber);border-color:#d8c19a;background:var(--amber-soft)}
+.hot-src{margin-left:auto;font-family:var(--mono);font-size:10.6px;letter-spacing:.03em;color:var(--accent-2)}
+.hot-angle{margin:12px 0 0;font-size:13.4px;line-height:1.62;color:var(--ink2);border-left:2px solid var(--accent);padding-left:14px;max-width:62em}
+.hot-list{list-style:none;margin:24px 0 0;padding:0;border:1px solid var(--line2);border-radius:12px;background:#fff;overflow:hidden}
+.hot-list li{display:grid;grid-template-columns:42px minmax(0,1fr);gap:0 16px;padding:14px 20px;border-top:1px solid var(--line);align-items:start;margin:0}
+.hot-list li:first-child{border-top:0}
+.hot-n{font-family:var(--mono);font-size:13px;color:var(--accent-2);padding-top:2px}
+.hot-t{display:block;font-size:13.9px;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.42}
+.hot-t:hover{color:var(--accent-2)}
+.hot-b{display:block;font-size:12.7px;color:var(--muted);line-height:1.55;margin-top:4px;max-width:72em}
+.hot-foot{margin-top:34px}
+
+@media (max-width:760px){
+  .hot-month{padding:32px 0 28px}
+  .hot-src{margin-left:0;flex-basis:100%}
+  .hot-list li{grid-template-columns:30px minmax(0,1fr);gap:0 10px;padding:13px 15px}
+  .hot-t{font-size:13.2px}
+}
 @media (max-width:760px){
   .adv-themes{grid-template-columns:1fr}
   .adv-hero{padding:40px 0 26px}

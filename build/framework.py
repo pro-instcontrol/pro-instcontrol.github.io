@@ -14,7 +14,7 @@ DIST = os.path.join(ROOT, "dist")
 
 # Single cache-busting version for every generated page. Bump this whenever
 # style.css or app.js changes; the env var exists only for one-off experiments.
-ASSET_VER = os.environ.get("ASSET_VER", "6")
+ASSET_VER = os.environ.get("ASSET_VER", "9")
 
 _NEST_OPEN = re.compile(r"<(h[1-4]|p|li)([^>]*)><\1([^>]*)>")
 _NEST_CLOSE = re.compile(r"</(h[1-4]|p|li)></\1>")
@@ -36,6 +36,7 @@ NAV = [
     ("index.html", "Home", "Trang chủ"),
     ("books/", "Books", "Sách"),
     ("video-library/", "Videos", "Video"),
+    ("hot-topics/", "Hot topics", "Chủ đề nóng"),
     ("fundamentals.html", "Fundamentals", "Cơ bản"),
     ("advanced/", "Advanced", "Nâng cao"),
     ("instruments.html", "Instruments", "Thiết bị đo"),
@@ -69,6 +70,7 @@ SHELL = {
     "shell.nav.education": ("Education", "Giáo dục"),
     "shell.nav.books": ("Books", "Sách"),
     "shell.nav.video-library": ("Videos", "Video"),
+    "shell.nav.hot-topics": ("Hot topics", "Chủ đề nóng"),
     "shell.tag": (TAG_EN, TAG_VI),
     "shell.menu": ("Menu", "Danh mục"),
     "shell.foot.note": (
@@ -412,10 +414,16 @@ def render(pg, body, active):
     return tidy(out)
 
 
+# Every path this run wrote, so the build can report what it left behind in
+# dist/ from an earlier run instead of wiping the tree.
+WRITTEN = []
+
+
 def write(path, content):
     os.makedirs(DIST, exist_ok=True)
     full = os.path.join(DIST, path)
     os.makedirs(os.path.dirname(full), exist_ok=True) if os.path.dirname(full) else None
     with open(full, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(content)
+    WRITTEN.append(full)
     return full

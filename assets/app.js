@@ -26,7 +26,7 @@
   /* Sections that exist twice, as real URLs: /books/ and /vi/books/ and so on.
      The pages here are language-switched in place, so their nav has to point at
      the matching tree instead of always at the English one. */
-  var TWINS = { "books/": 1, "video-library/": 1, "advanced/": 1 };
+  var TWINS = { "books/": 1, "video-library/": 1, "advanced/": 1, "hot-topics/": 1 };
 
   function retargetNav(l) {
     var links = document.querySelectorAll(".nav a[href], .brand[href]");

@@ -23,6 +23,7 @@ import pages_glossary  # noqa: E402
 import pages_applications  # noqa: E402
 import pages_education  # noqa: E402
 import pages_videos  # noqa: E402
+import pages_hot  # noqa: E402
 
 DIST = framework.DIST
 ASSETS = os.path.join(ROOT, "assets")
@@ -50,9 +51,28 @@ NOT_FOUND = """<!DOCTYPE html>
 """
 
 
+def stale(dist):
+    """Files under dist/ that this run did not write.
+
+    The build used to wipe dist/ first. It no longer does: a bulk delete of the
+    tree trips the workspace safety guard, and overwriting is enough because
+    every path the build owns is rewritten in full on each run. What is left
+    behind is a file whose page was removed from the build — rare, and reported
+    here rather than deleted silently.
+    """
+    keep = set()
+    for path in framework.WRITTEN:
+        keep.add(os.path.normcase(os.path.abspath(path)))
+    out = []
+    for root, _dirs, files in os.walk(dist):
+        for name in files:
+            full = os.path.normcase(os.path.abspath(os.path.join(root, name)))
+            if full not in keep:
+                out.append(os.path.join(root, name))
+    return out
+
+
 def main():
-    if os.path.isdir(DIST):
-        shutil.rmtree(DIST)
     os.makedirs(DIST, exist_ok=True)
 
     pages_home.build()
@@ -70,17 +90,21 @@ def main():
     pages_education.build()
     pages_videos.main()
     pages_glossary.build()
+    pages_hot.main()
 
     # static assets
     dst = os.path.join(DIST, "assets")
     os.makedirs(dst, exist_ok=True)
     for name in os.listdir(ASSETS):
-        shutil.copy2(os.path.join(ASSETS, name), os.path.join(dst, name))
+        target = os.path.join(dst, name)
+        shutil.copy2(os.path.join(ASSETS, name), target)
+        framework.WRITTEN.append(target)
 
-    with open(os.path.join(DIST, "404.html"), "w", encoding="utf-8", newline="\n") as fh:
-        fh.write(NOT_FOUND)
-    with open(os.path.join(DIST, ".nojekyll"), "w", encoding="utf-8") as fh:
-        fh.write("")
+    for name, body in (("404.html", NOT_FOUND), (".nojekyll", "")):
+        target = os.path.join(DIST, name)
+        with open(target, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(body)
+        framework.WRITTEN.append(target)
 
     files = sorted(os.listdir(DIST))
     print("built %d entries in dist/" % len(files))
@@ -88,6 +112,11 @@ def main():
         p = os.path.join(DIST, f)
         if os.path.isfile(p):
             print("  %-24s %6.1f kB" % (f, os.path.getsize(p) / 1024.0))
+    left = stale(DIST)
+    if left:
+        print("stale in dist/ (not written by this run, left in place):")
+        for path in left:
+            print("  %s" % os.path.relpath(path, DIST))
     print("glossary terms: %d" % len(pages_glossary.TERMS))
     print("instrument rows: %d" % len(pages_core.ROWS))
 

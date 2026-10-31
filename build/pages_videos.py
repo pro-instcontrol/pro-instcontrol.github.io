@@ -17,7 +17,7 @@ import framework  # noqa: E402
 import videos_data  # noqa: E402
 
 BASE = "https://pro-instcontrol.github.io"
-TWIN_PATHS = {"video-library/", "books/", "advanced/"}
+TWIN_PATHS = {"video-library/", "books/", "advanced/", "hot-topics/"}
 SITE = "Instrumentation &amp; Control"
 SITE_VI = "Đo lường &amp; Điều khiển"
 

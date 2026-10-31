@@ -27,6 +27,7 @@ Live: https://pro-instcontrol.github.io/
 | `glossary.html` | 52 bilingual terms with live search |
 | `video-library/` | 214 curated videos across 21 topics, a six-stage learning path, and search / level / source filters (VI mirror at `vi/video-library/`) |
 | `books/` | The working library: 175 works on eight shelves with live search, an in-site PDF reader and a page per work — including the 18-part **Control Engineering eBook** series on the *Magazines & Reference* shelf (VI mirror at `vi/books/`) |
+| `hot-topics/` | A year of Control Engineering's monthly most-read lists — 7 of 12 months survived in the archive, 62 ranked positions resolving to 53 distinct articles, translated and read as a series rather than as news (VI mirror at `vi/hot-topics/`) |
 
 ## How the bilingual system works
 
@@ -51,9 +52,9 @@ document title and meta description, and remembers the choice in `localStorage`.
 - Elements whose text is generated at runtime (simulator readouts) keep the value outside the
   translated node.
 
-Three sections exist twice as **real URLs** rather than as swapped text — `/books/`,
-`/video-library/` and `/advanced/`, each with a `/vi/` twin. `app.js` retargets those three nav
-links on every language change (`retargetNav`, the `TWINS` map), so a reader who has switched to
+Four sections exist twice as **real URLs** rather than as swapped text — `/books/`,
+`/video-library/`, `/advanced/` and `/hot-topics/`, each with a `/vi/` twin. `app.js` retargets
+those four nav links on every language change (`retargetNav`, the `TWINS` map), so a reader who has switched to
 Tiếng Việt stays in the Vietnamese tree instead of being dropped back into English. The pages
 themselves use a plain `<a class="lang">` link to the sibling URL, because a JS swap cannot change
 the address bar.
@@ -93,6 +94,8 @@ build/
   pages_ref.py      geotechnical + standards
   pages_glossary.py glossary
   pages_videos.py   video library (EN + VI pages)
+  pages_hot.py      /hot-topics/ (EN + VI pages), rendered from hot_data.py
+  hot_data.py       the monthly most-read dataset: ranks, titles, blurbs, coverage
   videos_data.py    the curated video dataset
   check_videos.py   dataset + dead-link check for the library
   make_og.py        renders the library share card from the dataset
