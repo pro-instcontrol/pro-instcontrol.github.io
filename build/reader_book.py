@@ -41,7 +41,7 @@ BOOKS = {
             3: ("Process Control vs. Safety Control", "Điều khiển quá trình so với điều khiển an toàn"),
             4: ("Protection Layers", "Các lớp bảo vệ"),
             5: ("Developing the Safety Requirement Specifications", "Xây dựng đặc tả yêu cầu an toàn"),
-            6: ("Determining the Safety Integrity Level (SIL)", "Xác định mức độ toàn vẹn an toàn (SIL)"),
+            6: ("Determining the Safety Integrity Level (SIL)", "Xác định mức toàn vẹn an toàn (SIL)"),
             7: ("Choosing a Technology", "Lựa chọn công nghệ"),
             8: ("Initial System Evaluation", "Đánh giá hệ thống ban đầu"),
             9: ("Issues Relating to Field Devices", "Các vấn đề liên quan đến thiết bị trường"),
@@ -56,7 +56,8 @@ BOOKS = {
         "done": {1: "ch01-introduction", 2: "ch02-design-lifecycle",
                  3: "ch03-process-control-vs-safety-control",
                  4: "ch04-protection-layers",
-                 5: "ch05-developing-the-safety-requirement-specifications"},
+                 5: "ch05-developing-the-safety-requirement-specifications",
+                 6: "ch06-determining-the-safety-integrity-level"},
         "copyright_en": "Original text © 2006 ISA — The Instrumentation, Systems, and Automation Society",
         "copyright_vi": "Bản gốc © 2006 ISA — Hiệp hội Đo lường, Hệ thống và Tự động hóa",
         "lede_en": ("The practical “how-to” on specifying, analysing, designing, installing and "

@@ -46,6 +46,7 @@ SLUGS = {
         3: "ch03-process-control-vs-safety-control",
         4: "ch04-protection-layers",
         5: "ch05-developing-the-safety-requirement-specifications",
+        6: "ch06-determining-the-safety-integrity-level",
     },
 }
 
