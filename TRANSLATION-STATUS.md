@@ -1,9 +1,9 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-10-31 (session 16 — Chapter 16 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-10-31 (session 17 — Chapter 17 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 17** (and onward). Chapters
-> 1–16 are done, live, and registered. `work/hb_ch16.txt` is translated; Chapter 17+ source
+> **Where to start next:** Handbook **Chapter 18** (and onward). Chapters
+> 1–17 are done, live, and registered. `work/hb_ch17.txt` is translated; Chapter 18+ source
 > PDFs must be extracted from the 117-file handbook library before translation.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
@@ -42,7 +42,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–16** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–17** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -66,6 +66,7 @@ Chapters done, with their slugs and build scripts:
 | HB 14 | Angle Measurement | `ch14-angle-measurement` | `reader_hb_ch14.py` + `hb14fig.py` | 3 | 3.5k |
 | HB 15 | Tilt Measurement | `ch15-tilt-measurement` | `reader_hb_ch15.py` + `hb15fig.py` | 5 | ~5.0k |
 | HB 16 | Velocity Measurement | `ch16-velocity-measurement` | `reader_hb_ch16.py` + `hb16fig.py` | 16 | ~8.0k |
+| HB 17 | Acceleration, Vibration, and Shock Measurement | `ch17-acceleration-vibration-shock-measurement` | `reader_hb_ch17.py` + `hb17fig.py` | 23 | ~11k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
@@ -105,7 +106,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `(level, total_chapters, done_chapters)`.
-  Currently `("progress", 101, 16)`, `("full", 16, 16)`, `("full", 14, 14)`.
+  Currently `("progress", 101, 17)`, `("full", 16, 16)`, `("full", 14, 14)`.
 - `build/books_site.py` → `FLAG_LABEL = {level: (vi_format, en_format)}` — **the pill text
   is derived from `level`, not hard-coded.** Add a level here as well as in the CSS, or the
   pill will read "Translating" on a finished book.
@@ -603,6 +604,46 @@ TOC, and the live VI page reports 16 figures. Library pill now `Đang dịch · 
 `pdf-store-b` junctions and `library/pdfindex.json`; copy the needed `ChNN.pdf` into `work/`, extract, then
 follow the §4 recipe. Note the registry edits (`DONE[16]`, `("progress", 101, 16)`) were applied cleanly this
 session — reconfirmed both before committing.
+
+### 2026-10-31, session 17 — Handbook Chapter 17, Acceleration, Vibration, and Shock Measurement
+
+**Shipped:** Handbook chapter 17, *Acceleration, Vibration, and Shock Measurement* (Halit Eren, Curtin
+University of Technology) — 33 source pages. Full Vietnamese translation + English companion at
+`/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch17-acceleration-vibration-shock-measurement/`.
+Handbook progress 16/101 → 17/101; `DONE[17]`, `("progress", 101, 17)`, and the §2 table all updated.
+
+**What was written this session:**
+
+- `build/hb17fig.py` — **all 23** real figures (17.1 deflection seismic accelerometer; 17.2 log a/v/x relationship;
+  17.3 single-DOF pulse response; 17.4 second-order unit-step responses for ζ=0.2/0.4/0.707/1.0; 17.5 Bode
+  gain/phase; 17.6 coil-and-magnet accelerometer; 17.7 rotational servo block diagram; 17.8 compression PZT;
+  17.9 PZT frequency response; 17.10 piezoresistive gage bonding; 17.11 differential-capacitance accelerometer;
+  17.12 diaphragm capacitive; 17.13 seismic displacement; 17.14 potentiometer; 17.15 strain-gage cantilever;
+  17.16 vibrating-string; 17.17 surface micromachining steps; 17.18 DETF; 17.19 cross-axis sensitivity vector;
+  17.20 charge amplifier; 17.21 Wheatstone bridge; 17.22 MCU block; 17.23 microaccel signal conditioning). No
+  figures invented — the source has 23, so the module is a 23-figure set.
+- `build/reader_hb_ch17.py` — full VI translation + EN companion. Embeds all 23 figures (23/23 parity), the
+  equations 17.1–17.47 (sinusoidal motion, second-order Laplace form, Ampère's law F=ma=ilB, servo
+  e₀/eₐ transfer, q=dᵢⱼma, differential-capacitance f=f₀+fₐ, gage factor ΔR/R, seismic z-equation, vibrating
+  string f² difference, electrostatic feedback, charge-amplifier E₀), and a specs table for the military
+  microaccel. `work/hb_ch17.txt` extracted from `pdf-store-b/Ch17__da9897756caf10c3.pdf` (33 pages). The
+  4-item reference list is reproduced; the manufacturer list is intentionally omitted (commercial info).
+- **Bug fixed:** `fig_17_4` originally divided by `sqrt(1−ζ²)` with ζ=1.0 → `ZeroDivisionError`. Switched the
+  ζ=1.0 branch to the critically-damped closed form `1−(1+ωₙt)e^{−ωₙt}`; also escaped a literal `<` in a fig-17.19
+  label (`thường < 1%` → `&lt;`). All 23 figures now parse well-formed (0 malformed on `xml.dom.minidom`).
+- Figure parity: VI 23/23 and EN 23/23, IDs `fig-17-1`…`fig-17-23` confirmed; 24 SVGs/page (23 figures +
+  brand mark), 0 malformed on parse. VI page 124 kB, EN 75 kB.
+
+**Deploy:** `build.py` → `cp -r dist/. ./` (from project root) → `reader_hb_ch17.py` (writes ROOT) →
+`reader_handbook.py` (17 done rows, progress 17/101), `books_site.py` (progress 101→17), `make_sitemap.py`
+(513 URLs, 498 EN/VI pairs), `check_links.py` (515 pages, 13,963 references, **0 broken**). Committed
+`7229208`; remote already at `0c36343` (no new remote commits) → pushed `0c36343..7229208` on `main`. Live:
+200 on both VI/EN, the book TOC, and the live pages report 23 figures; TOC shows **17/101 hoàn thành**.
+Library pill now `Đang dịch · 17/101 chương`.
+
+**Chapters 1–17 done; 84 to go.** Next unit is Chapter 18. Same junction + `library/pdfindex.json` workflow;
+copy the needed `ChNN.pdf` into `work/`, extract, then follow the §4 recipe. Registry edits (`DONE[17]`,
+`("progress", 101, 17)`) were applied and reconfirmed before committing.
 
 ### 2026-10-31, session 15 — Handbook Chapter 15, Tilt Measurement
 
