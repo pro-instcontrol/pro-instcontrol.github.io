@@ -389,6 +389,9 @@ def footer():
 
 
 def render(pg, body, active):
+    # The chain registers its label strings on pg, so it has to run before the
+    # dictionary is serialised or those keys would be missing from window.I18N.
+    body = apply_chain(body, pg, active)
     strings = {k: {"en": v[0], "vi": v[1]} for k, v in SHELL.items()}
     strings.update(pg.strings)
     payload = json.dumps(strings, ensure_ascii=False, separators=(",", ":"))
@@ -397,7 +400,7 @@ def render(pg, body, active):
     )
     out = head(pg)
     out += topbar(active)
-    out += apply_chain(body, pg, active)
+    out += body
     out += footer()
     out += "<script>window.I18N=%s;window.I18N_META=%s;</script>\n" % (payload, meta)
     out += '<script src="assets/app.js?v=%s"></script>\n</body>\n</html>\n' % ASSET_VER
