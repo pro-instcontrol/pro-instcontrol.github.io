@@ -1,9 +1,9 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-10-31 (session 12 — Chapter 12 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 13 — Chapter 13 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 13 — Volume Measurement** (and onward). Chapters
-> 1–12 are done, live, and registered. `work/hb_ch12.txt` is translated; Chapter 13+ source
+> **Where to start next:** Handbook **Chapter 14** (and onward). Chapters
+> 1–13 are done, live, and registered. `work/hb_ch13.txt` is translated; Chapter 14+ source
 > PDFs must be extracted from the 117-file handbook library before translation.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
@@ -42,7 +42,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–11** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–13** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -62,6 +62,7 @@ Chapters done, with their slugs and build scripts:
 | HB 10 | Position, Location, Altitude Measurement | `ch10-position-location-altitude` | `reader_hb_ch10.py` + `hb10fig.py` | 43 | 13.4k |
 | HB 11 | Level Measurement | `ch11-level-measurement` | `reader_hb_ch11.py` + `hb11fig.py` | 15 | 7.1k |
 | HB 12 | Area Measurement | `ch12-area-measurement` | `reader_hb_ch12.py` + `hb12fig.py` | 10 | 7.0k |
+| HB 13 | Volume Measurement | `ch13-volume-measurement` | `reader_hb_ch13.py` + `hb13fig.py` | 10 | 7.3k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
@@ -101,7 +102,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `(level, total_chapters, done_chapters)`.
-  Currently `("progress", 101, 10)`, `("full", 16, 16)`, `("full", 14, 14)`.
+  Currently `("progress", 101, 13)`, `("full", 16, 16)`, `("full", 14, 14)`.
 - `build/books_site.py` → `FLAG_LABEL = {level: (vi_format, en_format)}` — **the pill text
   is derived from `level`, not hard-coded.** Add a level here as well as in the CSS, or the
   pill will read "Translating" on a finished book.
@@ -535,6 +536,36 @@ that set.
 - **Write this file's session log before you stop.**
 
 ## 7. Session log
+
+### 2026-11-01, session 13 — Handbook Chapter 13, Volume Measurement
+
+**Shipped:** Handbook chapter 13, *Volume Measurement* (Rene G. Aarnink, Hessel Wijkstra,
+University Hospital Nijmegen). A medical-volume chapter: plethysmography (air/water chamber,
+strain-gage, impedance, inductive), numerical integration with imaging, indicator-dilution
+(Stewart–Hamilton, thermodilution, radionuclide, gas dilution), and water-displacement volumetry.
+Both languages, live at
+`/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch13-volume-measurement/`.
+Handbook progress 12/101 → 13/101; `DONE[13]`, `("progress", 101, 13)`, and the §2 table all updated.
+
+**What was written this session:**
+
+- `build/hb13fig.py` — all ten figures (13.1 venous-occlusion trace, 13.2/13.3 four-electrode
+  impedance layouts, 13.4 prostate ellipsoid, 13.5 step-section planimetry, 13.6 ellipsoid model,
+  13.7 step-size error plot, 13.8 indicator time-concentration curve, 13.9 water-overflow schematic,
+  13.10 leg disk model). 11 SVGs/page (10 figures + brand mark), 0 malformed on parse.
+- `build/reader_hb_ch13.py` — full Vietnamese translation plus an English companion essay. Embeds the
+  10 figures, the 27 equations (13.1 Boyle, 13.2–13.4 strain-gage, 13.5–13.7 impedance, 13.8 inductive
+  calibration, 13.9–13.17 imaging/numerical integration, 13.18–13.24 indicator dilution & disk model),
+  and rebuilt Table 13.1 (techniques / applications / companies / products / price).
+- Figure parity: VI 10/10 and EN 10/10, IDs `fig-13-1`…`fig-13-10` confirmed on both pages.
+
+**Deploy:** `git fetch` → rebase if the remote moved → `make_sitemap.py` (505 URLs, 490 EN/VI pairs)
+→ `check_links.py` (507 pages, 13,768 references, **0 broken**). The library card pill now reads
+`Đang dịch · 13/101 chương` in both languages.
+
+**Chapters 1–13 done; 88 to go.** Next unit is Chapter 14. Source PDFs for 14+ live in the
+`pdf-store`/`pdf-store-b` junctions and the `library/pdfindex.json` contract — copy the needed
+`ChNN.pdf` into `work/`, extract with the bundled `workbuddy-pdf.exe`, then follow the §4 recipe.
 
 ### 2026-11-01, session 11 — the library's PDF reader, rebuilt on pdf.js
 
