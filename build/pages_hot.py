@@ -196,8 +196,6 @@ T = {
         "src_h": "Sources",
         "src_note": "Every monthly post linked above, plus the Control Engineering research "
                     "roundup for 2025, which appears as an article in its own right in February.",
-        "foot_prev": "Video library",
-        "foot_next": "Fundamentals of measurement",
         "foot_note": "A bilingual field guide to process instrumentation and control. "
                      "Quotations are attributed; commentary is this site's own.",
         "foot_built": "Static site · no build step · EN / VI",
@@ -368,8 +366,6 @@ T = {
         "src_h": "Nguồn",
         "src_note": "Mọi bài hằng tháng được liên kết ở trên, cùng bản tổng hợp nghiên cứu 2025 "
                     "của Control Engineering — xuất hiện như một bài độc lập vào tháng 2.",
-        "foot_prev": "Thư viện video",
-        "foot_next": "Cơ bản về đo lường",
         "foot_note": "Sổ tay song ngữ về thiết bị đo và điều khiển quá trình. Trích dẫn đều ghi "
                      "nguồn; phần bình luận là của site này.",
         "foot_built": "Trang tĩnh · không cần build · EN / VI",
