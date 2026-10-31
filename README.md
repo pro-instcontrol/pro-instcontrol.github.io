@@ -23,7 +23,7 @@ Live: https://pro-instcontrol.github.io/
 | `geotechnical.html` | Observational method, ISO 18674 series, 12 sensor families, vibrating wire vs 4–20 mA, field failures |
 | `standards.html` | ISA / IEC / API / ISO / CEN index with what each one governs |
 | `glossary.html` | 52 bilingual terms with live search |
-| `video-library/` | 186 curated videos across 20 topics, a six-stage learning path, and search / level / source filters (VI mirror at `vi/video-library/`) |
+| `video-library/` | 196 curated videos across 20 topics, a six-stage learning path, and search / level / source filters (VI mirror at `vi/video-library/`) |
 
 ## How the bilingual system works
 
