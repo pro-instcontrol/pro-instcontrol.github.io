@@ -313,6 +313,16 @@ def body_en():
         "open loop and closed loop — and each is right only inside a particular range of conditions. The "
         "chapter closes with the two quantities that decide the fate of every loop: dead time and dead "
         "zone."))
+    b.append(p("Two drawings frame everything that follows, and they are worth fixing in mind before any of "
+               "the vocabulary. The first is the loop as an operator ran it before automatic control "
+               "existed: read the thermometer, compare it with what you want, turn the valve, wait, read "
+               "again. Every automatic controller is that sequence, run faster and without the judgement."))
+    b.append(fig(6, F.fig_4_6(), "en"))
+    b.append(p("The second is the same loop redrawn as a block diagram, because that is the form in which "
+               "every later chapter will argue about it. The error enters the controller, the controller "
+               "output passes through the valve, the process answers, and the measurement comes back — with "
+               "the sign that decides whether the loop is a regulator or an amplifier."))
+    b.append(fig(7, F.fig_4_7(), "en"))
 
     b.append(h2("On-off control: crude, cheap, and hard to beat"))
     b.append(p("A switch is the oldest controller there is. It never holds the process variable at the set "
@@ -322,9 +332,11 @@ def body_en():
                "calibration, and it cannot go unstable. For a domestic boiler, a refrigerator or a sump "
                "pump, a swing of one degree is entirely acceptable and a PID loop would be an expensive way "
                "of achieving nothing more."))
+    b.append(fig(1, F.fig_4_1(), "en"))
     b.append(p("The design decision is therefore not “which is better” but “how tight does the band have to "
                "be”. Once the answer is tighter than the switching differential can deliver, on-off is out "
                "and modulating control begins."))
+    b.append(fig(2, F.fig_4_2(), "en"))
 
     b.append(h2("Open loop: fast, and blind"))
     b.append(p("Feedforward control measures the disturbance and acts before the process variable has moved "
@@ -332,12 +344,15 @@ def body_en():
                "not one dead time later. Its whole weakness is that nothing checks the result. A perfect "
                "model gives perfect correction; a model that is 10 % wrong leaves a 10 % error that nothing "
                "will ever remove."))
+    b.append(fig(3, F.fig_4_3(), "en"))
+    b.append(fig(4, F.fig_4_4(), "en"))
     b.append(p("This is why pure feedforward is rare and hybrid control is normal. The industrial rule of "
                "thumb is that feedforward should carry the bulk of the correction — 80 to 90 % — and the "
                "feedback loop should be left with only the residue. Sized that way, neither loop is asked to "
                "do more than it is good at: the feedforward branch is not pushed beyond the accuracy of its "
                "model, and the feedback branch is not asked to fight a disturbance it would only see a dead "
                "time too late."))
+    b.append(fig(8, F.fig_4_8(), "en"))
 
     b.append(h2("Direct or reverse: one question, asked once"))
     b.append(p("Every loop has a sign, and getting it wrong is the most common commissioning error in the "
@@ -346,6 +361,7 @@ def body_en():
                "direct acting; if it is close more, the controller is reverse acting. A tank whose level is "
                "held by the outlet valve is direct acting — more level, more drain. The same tank held by "
                "the inlet valve is reverse acting — more level, less fill."))
+    b.append(fig(5, F.fig_4_5(), "en"))
     b.append(p("The P, I and D terms do not care which convention is used, because changing PV − SP into "
                "SP − PV only changes the sign of the error, and the sign can be absorbed anywhere in the "
                "chain. What cannot be absorbed is getting it wrong: a loop with the wrong sign is a "
@@ -359,6 +375,7 @@ def body_en():
                "too large. A loop can tolerate a large lag; it cannot tolerate a large dead time, because "
                "every correction is applied blind and the controller ends up reacting to a state of the "
                "plant that no longer exists."))
+    b.append(fig(9, F.fig_4_9(), "en"))
     b.append(p("The number that matters is the ratio L/T, not either quantity alone. Below about 0.5 a "
                "conventional PID will do everything asked of it. Around 1 the loop becomes sluggish and "
                "detuned, and the achievable performance collapses quickly beyond that. When L exceeds T, "
@@ -366,6 +383,7 @@ def body_en():
                "output in between, and let the process finish responding before looking again. The "
                "algorithms are the same; only the integral setting has to be raised, because the controller "
                "is in automatic for a fraction of the time."))
+    b.append(fig(10, F.fig_4_10(), "en"))
 
     b.append(h2("What the three parameters actually describe"))
     b.append(p("A process response curve carries three numbers, and every tuning method in the rest of the "
@@ -374,6 +392,7 @@ def body_en():
                "K, flow and pH loops) or slow and stubborn (low K, furnaces and heated rooms). The dead time "
                "L tells you how long you must wait before you are allowed to learn anything. The lag T tells "
                "you how fast the variable moves once it starts."))
+    b.append(fig(11, F.fig_4_11(), "en"))
     b.append(p("The dead zone is the fourth, and the one most often forgotten. It is deliberately built into "
                "on-off controllers to stop them chattering, and it is accidentally built into every "
                "mechanical linkage as friction and backlash. Either way it produces a standing error that no "

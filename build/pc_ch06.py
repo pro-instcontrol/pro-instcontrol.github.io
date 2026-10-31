@@ -331,6 +331,13 @@ def body_en():
         "unbounded gain at high frequency: it will differentiate the noise on a 4–20 mA signal just as "
         "faithfully as the process variable, and the result is a valve that hunts."))
     b.append(fig(2, F.fig_6_2(), "en"))
+    b.append(p(
+        "Figure 6-4 is the same controller written in the Laplace domain with the lead made explicit, and "
+        "it is the form to keep: not an ideal differentiator clipped by a filter added afterwards, but a "
+        "controller whose derivative branch is a lead from the start. Everything the rest of the chapter "
+        "says about α, about scan time and about initialisation follows from reading that one block "
+        "diagram correctly."))
+    b.append(fig(4, F.fig_6_4(), "en"))
 
     b.append(h2("The lead filter, and why α is 8 to 12"))
     b.append(p(

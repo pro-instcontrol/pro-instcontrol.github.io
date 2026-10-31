@@ -1,10 +1,13 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** end of session 2026-10-31 (session 7) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** end of session 2026-11-01 (session 8) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook **Chapter 11 — Level Measurement**. Chapters 1–10 are
-> done, live, and registered. Chapter 10 (the big one: 73 pages, 43 figures, 8 co-authors)
-> shipped this session and is no longer a special case.
+> done, live, and registered.
+>
+> **Practical Process Control is finished.** All 14 chapters are translated, all 14 English
+> companion pages now carry the same figures as their Vietnamese counterparts, and the
+> library card reads "Fully translated · 14 of 14".
 >
 > **This is a batch boundary.** The standing instruction is *batch of 5, then check in*, and
 > chapter 10 closes the second batch. Do not start chapter 11 without asking.
@@ -12,8 +15,13 @@
 > **Chapter 11 and 12 are already downloaded** — `work/Ch11.pdf`, `work/Ch12.pdf`, extracted
 > to `work/hb_ch11.txt` and `work/hb_ch12.txt`. Both are small (21 pp / 13 pp). Start at §3.3.
 >
-> **Read §5 before drawing anything.** This session found four figure defects that the
+> **Read §5 before drawing anything.** Session 7 found four figure defects that the
 > Georgia-serif QA grid cannot see, because its font metrics differ from the site font.
+>
+> **Known gap, not yet fixed: the SIS English pages carry 3 figures against 54 in
+> Vietnamese.** Same class of defect as PC had; see §3.4 for the exact list. The
+> Vietnamese translation itself is complete — this is a companion-page gap, not a
+> translation gap.
 
 This file is the single source of truth for the book-translation work on this site.
 Read it before touching anything. Update the status table and append to the session log
@@ -38,8 +46,8 @@ Order of work, fixed by the site owner:
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
 | Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–10** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
-| Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–5** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
-| Practical Process Control | `pc-process-control` | 14 | **1–5** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py`, `pc4fig.py`, `pc5fig.py`) |
+| Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
+| Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
 Chapters done, with their slugs and build scripts:
 
@@ -57,14 +65,34 @@ Chapters done, with their slugs and build scripts:
 | HB 10 | Position, Location, Altitude Measurement | `ch10-position-location-altitude` | `reader_hb_ch10.py` + `hb10fig.py` | 43 | 13.4k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
-| PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.0k |
-| PC 4 | Fundamentals of Control Systems | `ch04-fundamentals-of-control-systems` | `reader_pc.py` → `pc_ch04.py` + `pc4fig.py` | 11 | 4.2k |
-| PC 5 | Stability and Control Modes of Closed Loops | `ch05-stability-and-control-modes-of-closed-loops` | `reader_pc.py` → `pc_ch05.py` + `pc5fig.py` | 11 | 5.6k |
-| SIS 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
-| SIS 2 | Design Lifecycle | `ch02-design-lifecycle` | *none kept* | — | — |
-| SIS 3 | Process Control vs. Safety Control | `ch03-process-control-vs-safety-control` | `reader_sis.py` → `sis_ch03.py` + `sisfig.py` | 1 | 6.3k |
-| SIS 4 | Protection Layers | `ch04-protection-layers` | `reader_sis.py` → `sis_ch04.py` + `sisfig.py` | 3 | 5.2k |
-| SIS 5 | Developing the Safety Requirement Specifications | `ch05-developing-the-safety-requirement-specifications` | `reader_sis.py` → `sis_ch05.py` | 0 | 4.5k |
+| PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
+| PC 4 | Fundamentals of Control Systems | `ch04-fundamentals-of-control-systems` | `reader_pc.py` → `pc_ch04.py` + `pc4fig.py` | 11 | 4.4k |
+| PC 5 | Stability and Control Modes of Closed Loops | `ch05-stability-and-control-modes-of-closed-loops` | `reader_pc.py` → `pc_ch05.py` + `pc5fig.py` | 11 | 5.8k |
+| PC 6 | Digital Control Principles | `ch06-digital-control-principles` | `reader_pc.py` → `pc_ch06.py` + `pc6fig.py` | 6 | 3.6k |
+| PC 7 | Real and Ideal P.I.D. Controllers | `ch07-real-and-ideal-pid-controllers` | `reader_pc.py` → `pc_ch07.py` + `pc7fig.py` | 9 | 3.1k |
+| PC 8 | Tuning of PID Controllers in Open and Closed Loop | `ch08-tuning-of-pid-controllers` | `reader_pc.py` → `pc_ch08.py` + `pc8fig.py` | 11 | 7.5k |
+| PC 9 | Controller Output Modes, Equations and Cascade Control | `ch09-output-modes-equations-and-cascade-control` | `reader_pc.py` → `pc_ch09.py` + `pc9fig.py` | 9 | 5.9k |
+| PC 10 | Concepts and Applications of Feedforward Control | `ch10-concepts-and-applications-of-feedforward-control` | `reader_pc.py` → `pc_ch10.py` + `pc10fig.py` | 9 | 3.9k |
+| PC 11 | Combined Feedback and Feedforward Control | `ch11-combined-feedback-and-feedforward-control` | `reader_pc.py` → `pc_ch11.py` + `pc11fig.py` | 7 | 3.2k |
+| PC 12 | Long Process Dead-Time and the Smith Predictor | `ch12-long-dead-time-and-the-smith-predictor` | `reader_pc.py` → `pc_ch12.py` + `pc12fig.py` | 6 | 3.4k |
+| PC 13 | Basic Principles of Fuzzy Logic and Neural Networks | `ch13-basic-principles-of-fuzzy-logic-and-neural-networks` | `reader_pc.py` → `pc_ch13.py` + `pc13fig.py` | 8 | 6.5k |
+| PC 14 | Self-Tuning Intelligent Control and SPC | `ch14-self-tuning-intelligent-control-and-statistical-process-control` | `reader_pc.py` → `pc_ch14.py` + `pc14fig.py` | 11 | 5.9k |
+| SIS 1 | Introduction | `ch01-introduction` | *none kept* | 0 | 8.0k |
+| SIS 2 | Design Lifecycle | `ch02-design-lifecycle` | *none kept* | 3 | 4.9k |
+| SIS 3 | Process Control vs. Safety Control | `ch03-process-control-vs-safety-control` | `reader_sis.py` → `sis_ch03.py` + `sisfig.py` | 1 | 6.4k |
+| SIS 4 | Protection Layers | `ch04-protection-layers` | `reader_sis.py` → `sis_ch04.py` + `sisfig.py` | 3 | 5.4k |
+| SIS 5 | Developing the Safety Requirement Specifications | `ch05-developing-the-safety-requirement-specifications` | `reader_sis.py` → `sis_ch05.py` | 0 | 4.7k |
+| SIS 6 | Determining the Safety Integrity Level (SIL) | `ch06-determining-the-safety-integrity-level` | `reader_sis.py` → `sis_ch06.py` | 7 | 13.4k |
+| SIS 7 | Choosing a Technology | `ch07-choosing-a-technology` | `reader_sis.py` → `sis_ch07.py` | 7 | 9.4k |
+| SIS 8 | Initial System Evaluation | `ch08-initial-system-evaluation` | `reader_sis.py` → `sis_ch08.py` | 8 | 15.2k |
+| SIS 9 | Issues Relating to Field Devices | `ch09-issues-relating-to-field-devices` | `reader_sis.py` → `sis_ch09.py` | 3 | 9.4k |
+| SIS 10 | Engineering a System | `ch10-engineering-a-system` | `reader_sis.py` → `sis_ch10.py` | 2 | 8.0k |
+| SIS 11 | Installing a System | `ch11-installing-a-system` | `reader_sis.py` → `sis_ch11.py` | 3 | 5.6k |
+| SIS 12 | Functional Testing | `ch12-functional-testing` | `reader_sis.py` → `sis_ch12.py` | 3 | 5.8k |
+| SIS 13 | Managing Changes to a System | `ch13-managing-changes-to-a-system` | `reader_sis.py` → `sis_ch13.py` | 3 | 4.8k |
+| SIS 14 | Justification for a Safety System | `ch14-justification-for-a-safety-system` | `reader_sis.py` → `sis_ch14.py` | 4 | 7.7k |
+| SIS 15 | SIS Design Checklist | `ch15-sis-design-checklist` | `reader_sis.py` → `sis_ch15.py` | 1 | 7.0k |
+| SIS 16 | Case Study | `ch16-case-study` | `reader_sis.py` → `sis_ch16.py` | 6 | 6.9k |
 
 > **Only chapters 1 and 2 of PC and SIS have no generator.** Everything from Chapter 3 on
 > is generated — edit the `pc_chNN.py` / `sis_chNN.py` module and rerun the orchestrator,
@@ -73,10 +101,14 @@ Chapters done, with their slugs and build scripts:
 
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
-- `build/books_site.py` → `TRANSLATED = {...}` — tuple `("progress", total_chapters, done_chapters)`.
-  Currently `("progress", 101, 10)`, `("progress", 16, 5)`, `("progress", 14, 5)`.
+- `build/books_site.py` → `TRANSLATED = {...}` — tuple `(level, total_chapters, done_chapters)`.
+  Currently `("progress", 101, 10)`, `("full", 16, 16)`, `("full", 14, 14)`.
+- `build/books_site.py` → `FLAG_LABEL = {level: (vi_format, en_format)}` — **the pill text
+  is derived from `level`, not hard-coded.** Add a level here as well as in the CSS, or the
+  pill will read "Translating" on a finished book.
 - `build/reader_handbook.py` → `DONE = {chapter_no: "chapter-slug"}`.
-- `build/reader_book.py` → per-book `"done": {chapter_no: "chapter-slug"}`.
+- `build/reader_book.py` → per-book `"done": {chapter_no: "chapter-slug"}`, plus optional
+  `lede_done_xx` / `policy_done_xx` overrides that win once `len(done) == total`.
 - `build/reader_pc.py` / `build/reader_sis.py` → `MODULES = {chapter_no: "pc_chNN"}` — which
   chapter modules the orchestrator builds, and in which order it chains the `chapter-nav`.
 - **The previous chapter's forward `chapter-nav` link** — see below.
@@ -225,15 +257,38 @@ tables), **124 numbered equations** (10.1–10.114 plus 10.89a/b/c), 5 sections,
 
 ### 3.4 Then
 
+- **SIS English pages are missing almost all their figures.** The Vietnamese pages carry
+  54 figures across 16 chapters; the English pages carry 3 (only chapter 2). This is exactly
+  the defect PC had and session 8 fixed. The fix is mechanical and per-module: read
+  `body_en()` in `sis_chNN.py`, insert `fig(n, F.fig_N_n(), "en")` after the paragraph that
+  discusses each drawing, and add a bridging sentence where the figure is not already
+  introduced in the prose. Do the chapters in order and re-run `build/reader_sis.py` after
+  each. Target: EN figure count == VI figure count, chapter by chapter.
+
+  | Chapter | VI figs | EN figs now | Missing |
+  |---|---|---|---|
+  | 3 | 1 | 0 | 1 |
+  | 4 | 3 | 0 | 3 |
+  | 5 | 0 | 0 | — |
+  | 6 | 7 | 0 | 7 |
+  | 7 | 7 | 0 | 7 |
+  | 8 | 8 | 0 | 8 |
+  | 9 | 3 | 0 | 3 |
+  | 10 | 2 | 0 | 2 |
+  | 11 | 3 | 0 | 3 |
+  | 12 | 3 | 0 | 3 |
+  | 13 | 3 | 0 | 3 |
+  | 14 | 4 | 0 | 4 |
+  | 15 | 1 | 0 | 1 |
+  | 16 | 6 | 0 | 6 |
+
 - Handbook Chapters 11–101. Chapter 11 (Level, 21 pp / 5.6k words) and Chapter 12 (Area,
   13 pp / 4.5k words) are both small and both already downloaded to `work/Ch11.pdf` and
   `work/Ch12.pdf`.
-- The handbook is the priority and the user has said so twice. Do **not** resume PC or SIS
-  until the handbook is finished — the six chapters done in session 4 were an explicit,
-  bounded exception ("stop after this chapter and continue to translate 6 chapters of
-  next 2 books").
-- When the handbook is done: PC from Chapter 6, then SIS from Chapter 6. Both are now on
-  the same architecture, so each is one `pc_chNN.py` / `sis_chNN.py` plus a figure module.
+- The handbook is the priority and the user has said so twice. Do **not** resume SIS until
+  the handbook is finished — the chapters done in session 4 were an explicit, bounded
+  exception ("stop after this chapter and continue to translate 6 chapters of next 2 books").
+- PC is **finished** and needs no further work.
 
 ## 4. How to translate the next chapter — the recipe
 
@@ -413,6 +468,12 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 | `SyntaxError` after an edit | an edit ate a newline between two statements | read the region before editing |
 | A legend box covers a curve | there are only four corners and the curves cross all of them | move it under the axis with `_legend_h`, not to another corner — three attempts at "another corner" all failed |
 | `_circle() got an unexpected keyword argument 'stroke'` | the parameter is `color` | `_circle(cx, cy, r, color=…)` |
+| A finished book's card says "🟠 Translating · 14 of 14 chapters" | the pill **text** was hard-coded while only the colour came from `level` | `FLAG_LABEL` in `books_site.py` maps `level` → text; never hard-code the label |
+| A card pill renders with no colour | `level` was `"done"`, which has no `[data-level]` rule in `library.css` | use one of `full` / `progress` / `summary` / `none` |
+| "Open the book →" looks like a link but does nothing | the footer was `<div class="card-footer"><span>…</span></div>` — no `href` anywhere | footer must be `<a href="…">`; `.card-footer a` needs `color: inherit` or it inherits the blue link colour |
+| A book's landing page still says "the translation proceeds chapter by chapter" after it is finished | `lede_en` / `policy_en` are static strings | add `lede_done_en` / `policy_done_en` (and `_vi`); `reader_book.build()` prefers them once `len(done) == total` |
+| An English page has a Vietnamese subtitle under every heading | `h2("English", "Vietnamese")` — `h2(t, en)` renders the second argument as a subtitle | on English pages pass **one** argument. Only the `"§ 10.2"` section references in ch10–14 are intentional |
+| An English companion page has far fewer figures than its Vietnamese twin | `body_en()` never called `fig(...)`; the SVGs existed but were not wired in | after editing, compare counts: `for d in books/read/<book>/ch*; do …; done` — they must match |
 | A dimension arrow bisects its own label | label placed at the midpoint between the two arrow tips | put it beside one tip instead |
 | A page has no previous/next links at all | `nav()` was defined but never called from `page()` | it is wired now; if you fork the shell, call it |
 | A wide table wraps tags mid-token (`FALL-` / `1000`) | eleven columns squeezed into the prose width | `table.tbl.matrix` CSS + merge columns until it fits |
@@ -460,6 +521,58 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 - **Write this file's session log before you stop.**
 
 ## 7. Session log
+
+### 2026-11-01, session 8 — Practical Process Control finished; the /books card fixed
+
+The user's request was three things at once: *finish* `/books/read/pc-process-control/`,
+mark it **done** in `/books`, and make the **"Open the book →"** footer actually work.
+
+**1. The card had two real bugs, not one.** Both were in `build/books_site.py`:
+
+- The pill's *text* was hard-coded to `"🟠 Translating · %d of %d chapters"` for every
+  level, so a completed book still advertised itself as in progress. Only the colour came
+  from `level`. Replaced with `FLAG_LABEL = {level: (vi_fmt, en_fmt)}`; the label now
+  follows the level.
+- The PC entry used `level="done"`, which has no rule in `library.css`, so it fell through
+  to the unstyled default. Both PC and SIS are now `"full"` — they were the only two books
+  at 14/14 and 16/16 and both had been mislabelled.
+
+**2. The footer was never a link.** `card()` emitted
+`<div class="card-footer"><span>Open the book →</span></div>` — a `<span>` with no `href`.
+Only the `<h3>` was clickable, while `.card:hover .card-footer span` underlined the text,
+which made the dead footer *look* live. It is now `<a href="…">`, and `library.css` gained
+`.card-footer a { color: inherit }` so it stays gold instead of turning link-blue. All 175
+cards on the site were affected; all 175 are fixed.
+
+**3. Three English pages had no figures at all.** Chapters 3, 4 and 5 rendered 0 figures
+against 24, 11 and 11 in Vietnamese: their `body_en()` essays were complete but never
+called `fig(...)`. Wired them in, and while there closed the smaller gaps in chapters 6–9
+(missing 1, 3, 1 and 4). **Every chapter now has EN figures == VI figures**, 14 of 14.
+
+Chapter 3 needed real writing, not just insertions: the essay's one-line-per-family table
+became eight `h3` subsections, each with its cross-section and characteristic drawings, plus
+a new "Four more that do not fit the table" for the balanced-plug, cylinder, expandable-element
+and fluid-interaction valves. The English page went from 10 kB / 1,370 words to
+154 kB / 3,874 words. Chapter 9 also gained the §9.10 material it had never covered
+("One primary, several secondaries").
+
+**4. Two caption mismatches caught on the rendered page.** Figure 7-2 is an *equation*
+panel, and the bridging sentence described a block diagram; figure 7-5 is a
+differentiator-plus-lag, and the sentence claimed "two resistors and a capacitor", which the
+source does not say. Both rewritten. These are the kind of error the QA grid cannot show —
+read the page.
+
+**5. Landing pages described themselves as unfinished.** `reader_book.py` had static
+`lede`/`policy` strings saying "the translation proceeds chapter by chapter" even at 14/14.
+Added `lede_done_en/_vi` and `policy_done_en/_vi`, preferred by `build()` once
+`len(done) == total`. Applied to both PC and SIS.
+
+Final state: `check_links.py` → 486 pages, 12,582 references, 0 broken. Sitemap 484 URLs.
+Figure parity 14/14. Cards green in both languages.
+
+**Found and deliberately not fixed:** the SIS English pages carry 3 figures against 54 in
+Vietnamese — the same defect, in a book the user did not ask about this session. The full
+per-chapter table is in §3.4; it is the next job after the handbook.
 
 ### 2026-10-31, session 7 — Handbook Chapter 10 shipped (the whole thing)
 

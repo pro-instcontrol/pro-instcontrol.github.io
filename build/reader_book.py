@@ -74,17 +74,33 @@ BOOKS = {
                     "justifying safety instrumented systems — from the difference between process "
                     "control and safety control through to lifecycle management. The Vietnamese "
                     "translation proceeds chapter by chapter."),
+        "lede_done_en": ("The practical “how-to” on specifying, analysing, designing, installing and "
+                         "justifying safety instrumented systems — from the difference between process "
+                         "control and safety control through to lifecycle management. The Vietnamese "
+                         "translation is complete: all sixteen chapters."),
         "lede_vi": ("Cuốn sách thực hành “cách làm” về xác định, phân tích, thiết kế, lắp đặt và "
                     "biện minh cho các hệ thống đo lường an toàn — từ sự khác biệt giữa điều khiển "
                     "quá trình và điều khiển an toàn cho đến quản lý vòng đời. Bản dịch tiếng Việt "
                     "thực hiện theo từng chương."),
+        "lede_done_vi": ("Cuốn sách thực hành “cách làm” về xác định, phân tích, thiết kế, lắp đặt và "
+                         "biện minh cho các hệ thống đo lường an toàn — từ sự khác biệt giữa điều "
+                         "khiển quá trình và điều khiển an toàn cho đến quản lý vòng đời. Bản dịch "
+                         "tiếng Việt đã hoàn tất: đủ mười sáu chương."),
         "policy_en": ("<b>About this copy.</b> The 19 PDF files are held in the local library "
                       "catalogue and are not republished here. This page is the online contents "
                       "map: what each chapter covers and which chapters already have a Vietnamese "
                       "translation."),
+        "policy_done_en": ("<b>About this copy.</b> The 19 PDF files are held in the local library "
+                           "catalogue and are not republished here. This page is the online contents "
+                           "map: what each chapter covers, with a link to the Vietnamese translation "
+                           "of all sixteen chapters."),
         "policy_vi": ("<b>Cách đọc bản dịch.</b> 19 tệp PDF được lưu trong thư viện cục bộ và "
                       "không được đăng lại tại đây. Trang này là bản đồ mục lục trực tuyến: nội "
                       "dung từng chương và những chương nào đã có bản dịch tiếng Việt."),
+        "policy_done_vi": ("<b>Cách đọc bản dịch.</b> 19 tệp PDF được lưu trong thư viện cục bộ và "
+                           "không được đăng lại tại đây. Trang này là bản đồ mục lục trực tuyến: nội "
+                           "dung từng chương, kèm liên kết tới bản dịch tiếng Việt của cả mười sáu "
+                           "chương."),
         "note_en": "Figures follow the original numbering where the source chapter contains them.",
         "note_vi": "Hình ảnh giữ nguyên số hiệu của bản gốc tại những chương có hình.",
     },
@@ -152,17 +168,33 @@ BOOKS = {
                     "control modes, PID tuning, feedforward, fuzzy logic and statistical process "
                     "control. The Vietnamese translation proceeds chapter by chapter; figures are "
                     "redrawn as vectors so they stay legible on a phone."),
+        "lede_done_en": ("A hands-on training manual covering process dynamics, measurement, valves, "
+                         "control modes, PID tuning, feedforward, fuzzy logic and statistical process "
+                         "control. The Vietnamese translation is complete — all fourteen chapters — "
+                         "and every figure is redrawn as a vector so it stays legible on a phone."),
         "lede_vi": ("Giáo trình thực hành về động học quá trình, đo lường, van, các mode điều khiển, "
                     "tìm điểm PID, theo hướng, lô-gic mờ và điều khiển thống kê quá trình. Bản dịch "
                     "tiếng Việt thực hiện theo từng chương; hình được vẽ lại bằng vector để rõ nét "
                     "trên điện thoại."),
+        "lede_done_vi": ("Giáo trình thực hành về động học quá trình, đo lường, van, các mode điều "
+                         "khiển, tìm điểm PID, theo hướng, lô-gic mờ và điều khiển thống kê quá "
+                         "trình. Bản dịch tiếng Việt đã hoàn tất — đủ mười bốn chương — và toàn bộ "
+                         "hình được vẽ lại bằng vector để rõ nét trên điện thoại."),
         "policy_en": ("<b>About this copy.</b> The 35 PDF files are held in the local library "
                       "catalogue and are not republished here. This page is the online contents "
                       "map: what each chapter covers and which chapters already have a Vietnamese "
                       "translation."),
+        "policy_done_en": ("<b>About this copy.</b> The 35 PDF files are held in the local library "
+                           "catalogue and are not republished here. This page is the online contents "
+                           "map: what each chapter covers, with a link to the Vietnamese translation "
+                           "of every one of the fourteen chapters."),
         "policy_vi": ("<b>Cách đọc bản dịch.</b> 35 tệp PDF được lưu trong thư viện cục bộ và "
                       "không được đăng lại tại đây. Trang này là bản đồ mục lục trực tuyến: nội "
                       "dung từng chương và những chương nào đã có bản dịch tiếng Việt."),
+        "policy_done_vi": ("<b>Cách đọc bản dịch.</b> 35 tệp PDF được lưu trong thư viện cục bộ và "
+                           "không được đăng lại tại đây. Trang này là bản đồ mục lục trực tuyến: nội "
+                           "dung từng chương, kèm liên kết tới bản dịch tiếng Việt của cả mười bốn "
+                           "chương."),
         "note_en": "Figures follow the original numbering (Ch.1 alone has Figures 1.1–1.12).",
         "note_vi": "Hình ảnh giữ nguyên số hiệu bản gốc (riêng Chương 1 có Hình 1.1–1.12).",
     },
@@ -281,7 +313,7 @@ def build(lang, spec):
         else ("%s chapters · %s pages · %s PDF files"
               % (num(total, lang), num(spec["pages"], lang), spec["files"]))
     if ndone >= total:
-        flag = ('<span class="translated-flag" data-level="full">🟢 Đã dịch đủ · %d/%d chương</span>'
+        flag = ('<span class="translated-flag" data-level="full">🟢 Đã dịch đầy đủ · %d/%d chương</span>'
                 % (ndone, total) if vi else
                 '<span class="translated-flag" data-level="full">🟢 Fully translated · %d of %d '
                 'chapters</span>' % (ndone, total))
@@ -290,8 +322,14 @@ def build(lang, spec):
                 % (ndone, total) if vi else
                 '<span class="translated-flag" data-level="progress">🟠 Translating · %d of %d '
                 'chapters</span>' % (ndone, total))
-    lede = spec["lede_vi"] if vi else spec["lede_en"]
-    policy = spec["policy_vi"] if vi else spec["policy_en"]
+    # A finished book must not describe itself as still being translated: the
+    # lede and the "about this copy" note have a completion variant that wins
+    # when every chapter is done.
+    sfx = "_done_vi" if vi else "_done_en"
+    lede = (spec["lede" + sfx] if ndone >= total and "lede" + sfx in spec
+            else spec["lede_vi"] if vi else spec["lede_en"])
+    policy = (spec["policy" + sfx] if ndone >= total and "policy" + sfx in spec
+              else spec["policy_vi"] if vi else spec["policy_en"])
     read = ("Đọc Chương 1 →" if vi else "Read the Vietnamese Chapter 1 →")
     h2 = "Bản đồ chương" if vi else "Chapter map"
     note2 = spec["note_vi"] if vi else spec["note_en"]

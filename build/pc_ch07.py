@@ -285,12 +285,28 @@ def body_en():
         "building it into a panel instrument."))
     b.append(fig(1, F.fig_7_1(), "en"))
     b.append(p(
+        "Figure 7-2 is the same model in algebra: the output is the gain multiplied by the sum of the three "
+        "control terms, which rearranges into K times the bracket (1 + 1/(T_int·s) + T_der·s) applied to the "
+        "error. That equation is what every tuning rule in this book is written against, and it is worth "
+        "noticing how much it conceals — three time constants that a panel instrument could never set "
+        "independently of one another."))
+    b.append(fig(2, F.fig_7_2(), "en"))
+    b.append(p(
         "The interactive form is what you get when the same law has to survive a cable. Proportional "
         "and integral are computed together as a PI block, and derivative is not a differentiator at "
         "all but a lead — a differentiator followed by a first-order lag whose time constant is α times "
         "smaller. You can no longer point at a term and say what it does alone, because the three "
         "actions interact: changing the integral time moves the corner frequency of the lead as well."))
     b.append(fig(3, F.fig_7_3(), "en"))
+    b.append(p(
+        "Figure 7-4 draws that arrangement, and Figure 7-5 shows why it was worth the trouble: the lead is "
+        "a differentiator followed by a lag, with α the ratio of the two time constants — something a panel "
+        "instrument can actually build, rather than the ideal differentiator that would differentiate the "
+        "noise for ever. The cost is the coupling. Integral time and the lead's corner frequency are set by "
+        "the same components, so tuning one moves the other, and that is the sentence to remember when a "
+        "controller behaves differently from what the tuning formula predicted."))
+    b.append(fig(4, F.fig_7_4(), "en"))
+    b.append(fig(5, F.fig_7_5(), "en"))
 
     b.append(h2("What noise actually does to a derivative"))
     b.append(p(

@@ -351,11 +351,24 @@ DESC = {
         "bằng chính lời của người bán nó."),
 }
 
-# works with a Vietnamese translation in progress: title-substring -> (level, total, done)
+# works with a Vietnamese translation: title-substring -> (level, total, done)
+# `level` is both the CSS hook (.translated-flag[data-level=...]) and the key
+# into FLAG_LABEL below — a book that is finished must never read "Translating".
 TRANSLATED = {
     "measurement, instrumentation and sensors handbook": ("progress", 101, 10),
-    "safety instrumented systems - design, analysis, and justification": ("progress", 16, 16),
-    "pc_process control": ("done", 14, 14),
+    "safety instrumented systems - design, analysis, and justification": ("full", 16, 16),
+    "pc_process control": ("full", 14, 14),
+}
+
+# level -> (vietnamese format, english format); %d/%d are done/total
+FLAG_LABEL = {
+    "full":     ("🟢 Đã dịch đầy đủ · %d/%d chương",
+                 "🟢 Fully translated · %d of %d chapters"),
+    "progress": ("🟠 Đang dịch · %d/%d chương",
+                 "🟠 Translating · %d of %d chapters"),
+    "summary":  ("🔵 Tóm tắt chương · %d/%d chương",
+                 "🔵 Chapter summaries · %d of %d"),
+    "none":     ("⚪ Chưa dịch", "⚪ Not translated"),
 }
 
 HANDBOOK_SLUG = "the-measurement-instrumentation-and-sensors-handbook"
@@ -435,10 +448,8 @@ def card(w, lang, dom):
     key = t.lower()
     for k, (level, total, done) in TRANSLATED.items():
         if k in key:
-            if lang == "vi":
-                lab = "🟠 Đang dịch · %d/%d chương" % (done, total)
-            else:
-                lab = "🟠 Translating · %d of %d chapters" % (done, total)
+            fmt = FLAG_LABEL.get(level, FLAG_LABEL["progress"])[0 if lang == "vi" else 1]
+            lab = fmt if level == "none" else fmt % (done, total)
             flag = '<span class="translated-flag" data-level="%s">%s</span>' % (level, lab)
             break
 
@@ -458,7 +469,9 @@ def card(w, lang, dom):
         foot_lbl = "Xem chi tiết →" if lang == "vi" else "View details →"
 
     title_html = '<a href="%s">%s</a>' % (href, esc(t))
-    footer = '<div class="card-footer"><span>%s</span></div>' % foot_lbl
+    # the footer used to be a bare <span>, so "Open the book →" looked like a
+    # link but did nothing. It is now a real anchor pointing at the same place.
+    footer = '<div class="card-footer"><a href="%s">%s</a></div>' % (href, foot_lbl)
 
     return (
         '<div class="card" data-shelf="%(sid)s" data-text="%(txt)s">'

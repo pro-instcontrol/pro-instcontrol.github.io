@@ -463,12 +463,13 @@ def body_en():
         "The first idea in the chapter is that the PID calculation is a single number per scan, but the "
         "controller may own several output blocks. Each block keeps its own absolute value, its own "
         "mode, its own limits and its own initialisation. The increment is common; the value is not."))
-    b.append(fig(2, F.fig_9_2(), "en"))
+    b.append(fig(1, F.fig_9_1(), "en"))
     b.append(p(
         "This is what makes a cascade physically possible. The primary controller's output is not a "
         "valve position, it is a number that a secondary controller will treat as a set point. The same "
         "increment therefore has to arrive at both blocks, while the two blocks sit at completely "
         "different absolute levels — one perhaps at 35 % and the other at 72 %."))
+    b.append(fig(2, F.fig_9_2(), "en"))
 
     b.append(h2("Saturation, and the two ways to handle a limit"))
     b.append(p(
@@ -498,7 +499,7 @@ def body_en():
         "pressure changes the heat input without the controller knowing anything has happened until the "
         "outlet temperature moves. With a flow loop inserted, the valve is now the flow controller's "
         "business, and the temperature controller asks for a flow rather than a valve position."))
-    b.append(fig(4, F.fig_9_4(), "en"))
+    b.append(fig(3, F.fig_9_3(), "en"))
     b.append(p(
         "The physics that makes this work is the difference in speed. A flow loop settles in a second or "
         "two; a heater's outlet temperature takes minutes. A disturbance that acts on the fast variable "
@@ -506,6 +507,7 @@ def body_en():
         "which time it is a large error. Interposing the fast loop means the disturbance is corrected "
         "before it ever becomes an error in the slow variable. That is the whole of cascade control, and "
         "the rest of the section is bookkeeping needed to make it bumpless."))
+    b.append(fig(4, F.fig_9_4(), "en"))
 
     b.append(h2("PV-tracking and initialisation: the two mechanisms that prevent the bump"))
     b.append(p(
@@ -528,6 +530,11 @@ def body_en():
         "do, and a large set-point step produces a proportional jump and a derivative spike in the same "
         "scan. Under type C they do not — P and D act on the measurement only, and the error feeds only "
         "the integral, so a set-point step becomes a ramp."))
+    b.append(fig(5, F.fig_9_5(), "en"))
+    b.append(p(
+        "Figure 9-6 draws the alternative. The difference is not academic: on a large set-point step the "
+        "type A controller produces a proportional jump plus a derivative spike in the same scan, which is "
+        "a step change commanded into the valve; the type C controller ramps into it instead."))
     b.append(fig(6, F.fig_9_6(), "en"))
     b.append(p(
         "The algebra in the chapter proves that with a constant set point the two types are identical, "
@@ -554,4 +561,20 @@ def body_en():
         "The chapter's note that the secondary gain should be below one is easy to miss and matters. If "
         "the secondary's gain is above one, the primary's full output range is not passed through to the "
         "secondary's output, and the cascade loses authority at the extremes exactly when it is needed."))
+
+    b.append(h2("One primary, several secondaries"))
+    b.append(p(
+        "Section 9.10 is the case that breaks a naive implementation: a control strategy in which the "
+        "primary controller owns more than one output calculation. The PID result is the dynamic output of "
+        "the primary — the CV computed once per scan — and in a digital controller that single number is "
+        "used to increment each output block independently. Because the blocks can sit at different "
+        "absolute values at any moment, each has to be incremented separately rather than written."))
+    b.append(fig(9, F.fig_9_9(), "en"))
+    b.append(p(
+        "What this buys is scale without extra logic. One temperature controller can drive three fuel "
+        "valves, or a pressure controller can trim two compressors, and the primary never needs to know "
+        "how many secondaries it has — the increment is common and each block resolves it into its own "
+        "engineering units. What it does not buy is permission to mix quantities: the outputs must all "
+        "mean the same thing, or the primary's single increment means something different at each block "
+        "and the cascade has no common variable to regulate."))
     return "".join(b)

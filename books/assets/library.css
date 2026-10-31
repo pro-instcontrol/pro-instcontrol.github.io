@@ -262,8 +262,15 @@ strong { font-weight: 600; }
   letter-spacing: 0.02em;
   color: var(--gold-deep);
 }
-.card-footer span { border-bottom: 1px solid transparent; }
-.card:hover .card-footer span { border-bottom-color: var(--gold-deep); }
+.card-footer span, .card-footer a {
+  color: inherit;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.card:hover .card-footer span,
+.card:hover .card-footer a,
+.card-footer a:hover,
+.card-footer a:focus-visible { border-bottom-color: var(--gold-deep); }
 
 /* File names, URLs and chemical-style tokens arrive without spaces. They must
    not stretch a grid track or push the page sideways on a phone. */

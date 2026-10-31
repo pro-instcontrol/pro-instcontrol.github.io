@@ -562,7 +562,7 @@ def body_en():
         "Read it in that order. Sections 3.2.1–3.2.9 are reference material you will come back to; sections "
         "3.3 onwards are the part that decides whether a loop is stable."))
 
-    b.append(h2("The eight families at a glance", "Tám họ van trong một cái nhìn"))
+    b.append(h2("The eight families at a glance"))
     b.append(table(
         ["Family", "How it throttles", "Typical rangeability", "Where it wins"],
         [["Ball", "Rotating sphere with a port; V-notch or parabolic for characterising",
@@ -587,10 +587,130 @@ def body_en():
     b.append(p(
         "Two entries deserve a warning. The digital valve's rangeability of 255:1 at eight bits is real, but "
         "it is bought with cost — roughly three times a single-port globe of the same size. And the "
-        "rangeabilities in the third column are all *inherent* figures, measured on a bench with constant "
-        "pressure drop; section 3.3.3 explains why the installed figure is usually much smaller."))
+        "rangeabilities in the third column are all <em>inherent</em> figures, measured on a bench with "
+        "constant pressure drop; section 3.3.3 explains why the installed figure is usually much smaller."))
 
-    b.append(h2("Gain is the only number that matters", "Hệ số khuếch đại là con số duy nhất quan trọng"))
+    b.append(h3("Ball"))
+    b.append(p(
+        "A sphere with a bore through it, turned a quarter turn. The plain port is a gate rather than a "
+        "throttle: its characteristic is quick opening, and it is at its worst halfway through the stroke, "
+        "where the opening is a pair of crescents and the flow area changes fastest. Cut a V-notch or a "
+        "parabolic slot into the leading edge and the same body becomes a usable control valve — at the cost "
+        "of the bubble-tight shut-off the plain port gave you."))
+    b.append(fig(1, F.fig_3_1(), "en"))
+    b.append(p(
+        "The notch does more than soften the characteristic. On water the characterised trim tracks equal "
+        "percentage closely; on gas at critical velocity the same trim drifts towards linear, because the "
+        "flow is choked and the port area stops being the limiting quantity. That is the first reminder in "
+        "this chapter that a characteristic belongs to the fluid as much as to the metal."))
+    b.append(fig(2, F.fig_3_2(), "en"))
+
+    b.append(h3("Butterfly"))
+    b.append(p(
+        "A disc on a shaft, and the only family that scales painlessly to a metre and a half of bore. At 0° "
+        "the disc stands across the flow and seals; at 90° it lies parallel to the flow and the valve is wide "
+        "open. Nothing about that geometry is linear, and the torque curve is worse than the flow curve."))
+    b.append(fig(3, F.fig_3_3(), "en"))
+    b.append(p(
+        "Throttling is therefore confined to the first 60° or so of opening, where the disc still has "
+        "authority and the actuator still has margin. Whether the shaft passes through the disc (aligned) or "
+        "sits behind it (eccentric) changes both the characteristic and the torque, and so does the shaft "
+        "diameter relative to the bore — which is why two butterfly valves of the same size from two makers "
+        "can behave quite differently in the same line."))
+    b.append(fig(4, F.fig_3_4(), "en"))
+
+    b.append(h3("Digital"))
+    b.append(p(
+        "Not one orifice but a manifold of them, each element twice the area of its neighbour — 1, 2, 4, 8 "
+        "and so on. Open the ports in binary order and eight on/off solenoids give 255 discrete positions. "
+        "The characteristic is linear in port count by construction, rangeability is set by the smallest "
+        "port, and because every element is either shut or open there is no stem to stick and no packing to "
+        "leak. The cost is the solenoid count and the finite step at the bottom of the range."))
+    b.append(fig(5, F.fig_3_5(), "en"))
+
+    b.append(h3("Globe"))
+    b.append(p(
+        "The reference design against which the others are judged. A plug travels linearly into a seat, so "
+        "the flow path turns twice and the body absorbs energy that would otherwise leave as noise or "
+        "cavitation. Trim is interchangeable — contoured for equal percentage, drilled cage for low noise, "
+        "multistage for a large pressure drop — which is why the family still covers applications that no "
+        "other type can reach. The penalties are weight and permanent pressure loss."))
+    b.append(fig(6, F.fig_3_6(), "en"))
+
+    b.append(h3("Pinch"))
+    b.append(p(
+        "A rubber sleeve squeezed shut by air or by a bar. Nothing in the wetted path but the sleeve, so "
+        "abrasive slurry and corrosive liquor see no metal and there is no packing to leak past. "
+        "Rangeability is poor and the sleeve is a consumable, but on a slurry line the alternative is a valve "
+        "that erodes itself out of calibration within months."))
+    b.append(fig(8, F.fig_3_8(), "en"))
+    b.append(p(
+        "Reducing the port or coning the sleeve linearises what is otherwise a quick-opening characteristic, "
+        "and a variable orifice inside the sleeve recovers throttling in the upper half of the stroke, where "
+        "a plain sleeve has already passed full flow."))
+    b.append(fig(9, F.fig_3_9(), "en"))
+
+    b.append(h3("Plug"))
+    b.append(p(
+        "The oldest throttling geometry still in service: a tapered plug with a rectangular or round port, "
+        "turned 90° in a matching body. The plug is held against its seat by the process pressure itself, so "
+        "shut-off is tight and the valve is self-cleaning in viscous and fibrous service — the reason it "
+        "survives in paper stock and heavy oil despite everything the ball valve does better."))
+    b.append(fig(10, F.fig_3_10(), "en"))
+    b.append(p(
+        "The characteristic is whatever the port shape makes it: a round hole gives quick opening, a V gives "
+        "something closer to linear. There is no trim to change, so the port shape is chosen at order time "
+        "and cannot be revised later."))
+    b.append(fig(11, F.fig_3_11(), "en"))
+
+    b.append(h3("Saunders"))
+    b.append(p(
+        "A diaphragm clamped over a weir and pushed down by a compressor. The diaphragm isolates the whole "
+        "mechanism from the fluid, the body is full-bore when open and drains completely, and the assembly "
+        "comes apart for cleaning — which is why food and pharmaceutical plants adopted it wholesale."))
+    b.append(fig(12, F.fig_3_12(), "en"))
+    b.append(p(
+        "The conventional design is close to quick opening. The dual-range version brings in a second, "
+        "smaller diaphragm area over the upper half of the stroke and comes out close to linear, which is the "
+        "difference between a valve that can be tuned and one that can only be switched."))
+    b.append(fig(13, F.fig_3_13(), "en"))
+
+    b.append(h3("Sliding gate"))
+    b.append(p(
+        "Two plates with holes in them, one sliding across the other. Because the motion is shear rather than "
+        "compression, the actuator sees almost no unbalanced force, so the valve stays small and cheap even "
+        "at 10,000 psig — the highest pressure in the table and the one place where this family has no "
+        "competitor."))
+    b.append(fig(14, F.fig_3_14(), "en"))
+    b.append(p(
+        "The characteristic is set entirely by the insert: a V gives something near equal percentage, a round "
+        "hole gives quick opening, and a stepped insert gives a characteristic with a deliberate plateau in "
+        "the middle."))
+    b.append(fig(15, F.fig_3_15(), "en"))
+
+    b.append(h3("Four more that do not fit the table"))
+    b.append(p(
+        "The catalogue has variants that are not separate families but answers to specific failures. The "
+        "dynamically balanced plug admits process pressure to the back of the plug so that the two faces "
+        "cancel, and a small pilot poppet does the metering: the actuator no longer has to hold the line "
+        "pressure, only the pilot."))
+    b.append(fig(16, F.fig_3_16(), "en"))
+    b.append(p(
+        "The diaphragm-operated cylinder valve puts the same idea in-line for high-pressure drops. The "
+        "expandable-element valve replaces the plug with a solid rubber cylinder that is expanded or "
+        "contracted to change an annular area — a pinch valve turned inside out, with the same absence of "
+        "packing and the same temperature limit."))
+    b.append(fig(17, F.fig_3_17(), "en"))
+    b.append(fig(18, F.fig_3_18(), "en"))
+    b.append(p(
+        "The fluid-interaction valve has no moving part in the flow at all. Two lateral control ports sit at "
+        "the base of a Y; a small control flow deflects the main jet from one port to the other in a "
+        "flip-flop, and the valve is switched rather than throttled. It is a diverter, and it belongs in this "
+        "chapter only because it is the limiting case of the argument: the less the valve obstructs the "
+        "flow, the less it can modulate it."))
+    b.append(fig(19, F.fig_3_19(), "en"))
+
+    b.append(h2("Gain is the only number that matters"))
     b.append(p(
         "Equation 3.1 is the whole chapter in one line: K_LOOP = K_C × K_V × K_P × K_S = 0.5. The 0.5 is "
         "quarter-amplitude damping. If the process gain K_P rises when load rises — which is what most "
@@ -601,49 +721,55 @@ def body_en():
         "percentage valve is choosing to let the valve do it: its gain is proportional to flow, so when the "
         "process gain rises with flow the valve gain falls to compensate. A linear valve has constant gain and "
         "compensates for nothing."))
+    b.append(fig(20, F.fig_3_20(), "en"))
     b.append(p(
         "That is why the Driskell table in the text is worth more than it looks. It is not a list of "
         "preferences; it is a list of which loops have a process gain that varies enough to need compensating. "
         "Level loops and gas-pressure loops get equal percentage when the valve takes more than 2:1 of the "
         "pressure drop; flow loops stay linear because a flow loop's process gain is already close to constant."))
 
-    b.append(h2("Distortion: why the bench curve is a lie", "Méo dạng: vì sao đường cong trên bàn thử là lời nói dối"))
+    b.append(h2("Distortion: why the bench curve is a lie"))
     b.append(p(
         "Boger's relation is the useful piece of mathematics here. If DC is the fraction of the total system "
         "pressure drop that appears across the valve at maximum flow, then the installed flow is "
         "q = f(x) / √(DC + (1−DC)·f(x)²). At DC = 1 — a valve with the whole system drop across it — the "
         "installed curve is the inherent curve. As DC falls, the curve saturates earlier and the usable travel "
         "shrinks."))
+    b.append(fig(7, F.fig_3_7(), "en"))
     b.append(p(
         "Figure 3.21 plots that family. At DC = 0.05, a linear valve is fully open by 40 % travel: the last "
         "60 % of the stroke does nothing. The valve is not faulty; the installation has removed its range. "
         "This is the single most common reason a valve that tested perfectly on the bench controls badly in "
         "the plant."))
+    b.append(fig(21, F.fig_3_21(), "en"))
     b.append(p(
         "The practical consequence is in section 3.3.3: rangeability should be computed from the C_V needed at "
         "maximum flow (minimum drop) and the C_V needed at minimum flow (maximum drop), not taken from the "
         "catalogue. The catalogue figure assumes a constant drop that no real installation has."))
 
-    b.append(h2("Actuators: force balance, not magic", "Cơ cấu chấp hành: cân bằng lực, không phải phép màu"))
+    b.append(h2("Actuators: force balance, not magic"))
     b.append(p(
         "Equations 3.2 to 3.5 are one equation written four times, once for each combination of direction and "
         "flow. P·A is the diaphragm force, K·X the spring, P_V·A_V the force the process exerts on the plug. "
         "Set the sum to zero and you have the steady-state stem position. The sign of the P_V·A_V term is what "
         "makes a valve 'flow-to-open' or 'flow-to-close', and it is why a valve can be stable in one piping "
         "arrangement and unstable in the reverse."))
+    b.append(fig(22, F.fig_3_22(), "en"))
     b.append(p(
         "The simplifications matter too. Friction in the packing, in the actuator guide and in the plug guide "
         "is left out, and so is inertia. Those omissions are exactly the hysteresis loop drawn in Figure 3.23: "
         "the real valve does not retrace its path, and the width of that loop is the dead band the controller "
         "has to overcome before anything moves."))
+    b.append(fig(23, F.fig_3_23(), "en"))
     b.append(p(
         "The positioner is the answer to friction, and it is also a trap. A positioner is a high-gain "
         "proportional controller (K = 10 to 200, proportional band 10 % to 0.5 %) closed around stem position. "
         "It makes the valve follow its set point regardless of packing friction — and in doing so it inserts a "
         "second, fast loop inside the first. The rule in section 3.5.1 is the cascade rule: the slave must be "
         "at least ten times faster than the master, or the two loops fight."))
+    b.append(fig(24, F.fig_3_24(), "en"))
 
-    b.append(h2("Sizing: the mistake that is hard to see", "Chọn cỡ: sai lầm khó thấy"))
+    b.append(h2("Sizing: the mistake that is hard to see"))
     b.append(p(
         "Section 3.6 is short and is the most expensive page in the chapter. The instruction is to size "
         "between 0.8·C_V,min and 1.2·C_V,max and not to use a valve outside its rangeability. The trap it "

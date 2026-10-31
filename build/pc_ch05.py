@@ -449,6 +449,7 @@ def body_en():
         "three modes P, I and D contribute to keeping it still. The whole chapter is written around one "
         "example, a feed heater ahead of a distillation column, because that example carries all of it at "
         "once: lag, dead time and four separate disturbances."))
+    b.append(fig(1, F.fig_5_1(), "en"))
 
     b.append(h2("Stability is a phase problem, not an amplitude problem"))
     b.append(p("The textbook condition for stability is usually stated as two inequalities — loop gain below "
@@ -457,6 +458,7 @@ def body_en():
                "loop already inverts its own signal. A loop with a gain of fifty is perfectly stable if its "
                "phase never reaches 180° inside the band where it has any authority; a loop with a gain of "
                "0.9 will ring forever if the phase crosses 180° exactly where the gain is 0.9."))
+    b.append(fig(2, F.fig_5_2(), "en"))
     b.append(p("This is why dead time is so much more dangerous than lag. A first-order lag can never produce "
                "more than 90° of phase shift, no matter how slow it is; you can stack two of them and still "
                "stay below 180°. A dead time produces phase shift proportional to frequency and unbounded: "
@@ -471,6 +473,7 @@ def body_en():
                "constant flow of feed that needs a constant flow of fuel — the controller must hold a steady "
                "output, and a steady output requires a steady non-zero input. The error is not a defect of "
                "the tuning; it is the price of the force."))
+    b.append(fig(3, F.fig_5_3(), "en"))
     b.append(p("Equation 5.4 makes the trade explicit: the offset is inversely proportional to one plus the "
                "loop gain. You can buy it down by raising gain, but you buy it with stability, and the "
                "exchange rate worsens as the dead time grows. For a loop with a lot of dead time, getting "
@@ -483,11 +486,14 @@ def body_en():
                "stop pushing when the error is exactly zero. That is its virtue and its danger in one "
                "sentence: it will remove an offset no proportional band can remove, and it will keep pushing "
                "through the moment when the process has already arrived and the controller has not noticed."))
+    b.append(fig(4, F.fig_5_4(), "en"))
     b.append(p("The 90° of phase lag is the mechanism of the danger. Add 90° from the integral term to 90° "
                "from the process lag and you are at 180° with nothing else in the loop. This is why the rule "
                "“never use I without P” is not a stylistic preference: the proportional term supplies the "
                "restoring force that stops the integrator from overrunning, and without it the loop has no "
                "damping at all."))
+    b.append(fig(5, F.fig_5_5(), "en"))
+    b.append(fig(6, F.fig_5_6(), "en"))
     b.append(p("Integral windup is the same problem in its most common industrial form. When the output "
                "saturates — the valve is fully open and the temperature is still low — the integrator "
                "continues to accumulate an error it cannot do anything about. When the process finally "
@@ -503,11 +509,14 @@ def body_en():
                "without overshoot. On a real signal, the slope is dominated by whatever noise is sitting on "
                "the measurement, and the derivative of noise is enormous. The result is a controller that "
                "twitches the valve continuously and wears out the packing."))
+    b.append(fig(7, F.fig_5_7(), "en"))
     b.append(p("Hence the standard practice: derivative is used on temperature and composition loops, where "
                "the measurement is smooth and the process is slow, and it is not used on flow and pressure "
                "loops, where the measurement is fast and noisy and the process has almost no lag to "
                "compensate. The mode is not a measure of sophistication. A flow loop with derivative turned "
                "on is a worse loop, not a better one."))
+    b.append(fig(8, F.fig_5_8(), "en"))
+    b.append(fig(9, F.fig_5_9(), "en"))
 
     b.append(h2("Tuning is a negotiation, not a calculation"))
     b.append(p("The three constants are not independent, and no formula produces them from first principles. "
@@ -516,8 +525,10 @@ def body_en():
                "Two engineers can tune the same loop to the same numbers and get different behaviour, "
                "because the plant changed between the two visits — a fouled heat exchanger, a worn valve "
                "trim, a different feed."))
+    b.append(fig(10, F.fig_5_10(), "en"))
     b.append(p("The practical consequence is that a loop should be tuned for the worst condition it will "
                "actually meet, not the cleanest one available on commissioning day, and that the tuning "
                "should be recorded along with the date and the plant condition it was done under. A tuning "
                "constant without that context is a number without a meaning."))
+    b.append(fig(11, F.fig_5_11(), "en"))
     return "\n".join(b)

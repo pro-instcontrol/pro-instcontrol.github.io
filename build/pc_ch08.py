@@ -724,6 +724,7 @@ def body_en():
         "process gain, integral gain equals the loop time constant, derivative gain is a quarter of it. "
         "It is the least fashionable of the four methods and the fastest to apply, and on a genuinely "
         "first-order loop it is as good as anything else in the chapter."))
+    b.append(fig(7, F.fig_8_7(), "en"))
 
     b.append(h2("Hysteresis: when the process answers differently in each direction"))
     b.append(p(
