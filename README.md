@@ -49,6 +49,13 @@ document title and meta description, and remembers the choice in `localStorage`.
 - Elements whose text is generated at runtime (simulator readouts) keep the value outside the
   translated node.
 
+Three sections exist twice as **real URLs** rather than as swapped text — `/books/`,
+`/video-library/` and `/advanced/`, each with a `/vi/` twin. `app.js` retargets those three nav
+links on every language change (`retargetNav`, the `TWINS` map), so a reader who has switched to
+Tiếng Việt stays in the Vietnamese tree instead of being dropped back into English. The pages
+themselves use a plain `<a class="lang">` link to the sibling URL, because a JS swap cannot change
+the address bar.
+
 ## Editing content
 
 Content lives in Python modules under `build/`, one pair of strings per element:
