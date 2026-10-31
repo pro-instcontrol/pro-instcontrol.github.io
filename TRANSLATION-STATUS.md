@@ -1,9 +1,9 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 13 — Chapter 13 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-10-31 (session 14 — Chapter 14 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 14** (and onward). Chapters
-> 1–13 are done, live, and registered. `work/hb_ch13.txt` is translated; Chapter 14+ source
+> **Where to start next:** Handbook **Chapter 15** (and onward). Chapters
+> 1–14 are done, live, and registered. `work/hb_ch14.txt` is translated; Chapter 15+ source
 > PDFs must be extracted from the 117-file handbook library before translation.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
@@ -42,7 +42,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–13** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–14** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -63,6 +63,7 @@ Chapters done, with their slugs and build scripts:
 | HB 11 | Level Measurement | `ch11-level-measurement` | `reader_hb_ch11.py` + `hb11fig.py` | 15 | 7.1k |
 | HB 12 | Area Measurement | `ch12-area-measurement` | `reader_hb_ch12.py` + `hb12fig.py` | 10 | 7.0k |
 | HB 13 | Volume Measurement | `ch13-volume-measurement` | `reader_hb_ch13.py` + `hb13fig.py` | 10 | 7.3k |
+| HB 14 | Angle Measurement | `ch14-angle-measurement` | `reader_hb_ch14.py` + `hb14fig.py` | 3 | 3.5k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
@@ -102,7 +103,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `(level, total_chapters, done_chapters)`.
-  Currently `("progress", 101, 13)`, `("full", 16, 16)`, `("full", 14, 14)`.
+  Currently `("progress", 101, 14)`, `("full", 16, 16)`, `("full", 14, 14)`.
 - `build/books_site.py` → `FLAG_LABEL = {level: (vi_format, en_format)}` — **the pill text
   is derived from `level`, not hard-coded.** Add a level here as well as in the CSS, or the
   pill will read "Translating" on a finished book.
@@ -536,6 +537,34 @@ that set.
 - **Write this file's session log before you stop.**
 
 ## 7. Session log
+
+### 2026-10-31, session 14 — Handbook Chapter 14, Angle Measurement
+
+**Shipped:** Handbook chapter 14, *Angle Measurement* (Robert J. Sandberg, University of Wisconsin) — a
+mechanical/geometric chapter. Full Vietnamese translation + English companion at
+`/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch14-angle-measurement/`.
+Handbook progress 13/101 → 14/101; `DONE[14]`, `("progress", 101, 14)`, and the §2 table all updated.
+
+**What was written this session:**
+
+- `build/hb14fig.py` — the chapter's **three** real figures (14.1 vernier protractor with a zoomed
+  reading call-out, 14.2 sine bar with `sin A = H/D`, 14.3 two-ball taper measurement). No figures were
+  invented: the source has only Figures 14.1–14.3, so the module is a 3-figure set, not 10.
+- `build/reader_hb_ch14.py` — full VI translation + EN companion. Embeds the 3 figures (3/3 parity on
+  both languages), the sine-bar relation `sin A = H/D`, Table 14.1 (defining terms, rendered as a
+  `<dl class="glossary">` so it feeds `make_glossary.py`), and Tables 14.2/14.3 (manufacturers and the
+  full instruments/price list). Also `work/hb_ch14.txt` extracted from `pdf-store/Ch14__…pdf` (8 pages).
+- Figure parity: VI 3/3 and EN 3/3, IDs `fig-14-1`…`fig-14-3` confirmed; 4 SVGs/page (3 figures + brand
+  mark), 0 malformed on parse.
+
+**Deploy:** `git fetch` → rebase onto 1 remote commit (home-page frames) → `make_sitemap.py` (507 URLs,
+492 EN/VI pairs) → `check_links.py` (509 pages, 13,816 references, **0 broken**). Pushed `41518ca` on
+`main`. Live: 200 on both VI/EN. Library pill now `Đang dịch · 14/101 chương`.
+
+**Chapters 1–14 done; 87 to go.** Next unit is Chapter 15. Source PDFs for 15+ live in the `pdf-store`/
+`pdf-store-b` junctions and `library/pdfindex.json`; copy the needed `ChNN.pdf` into `work/`, extract, then
+follow the §4 recipe. Note this chapter had only 3 figures — do not pad figure counts to 10 when the
+source genuinely has fewer.
 
 ### 2026-11-01, session 13 — Handbook Chapter 13, Volume Measurement
 
