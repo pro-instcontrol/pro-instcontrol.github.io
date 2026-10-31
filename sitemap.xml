@@ -68,6 +68,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch07-real-and-ideal-pid-controllers/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/pc-process-control/ch08-tuning-of-pid-controllers/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch08-tuning-of-pid-controllers/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch08-tuning-of-pid-controllers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch08-tuning-of-pid-controllers/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/"/>
@@ -1377,6 +1383,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch07-real-and-ideal-pid-controllers/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch07-real-and-ideal-pid-controllers/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch07-real-and-ideal-pid-controllers/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch08-tuning-of-pid-controllers/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch08-tuning-of-pid-controllers/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch08-tuning-of-pid-controllers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch08-tuning-of-pid-controllers/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/</loc>
