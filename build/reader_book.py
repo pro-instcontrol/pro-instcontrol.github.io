@@ -62,7 +62,8 @@ BOOKS = {
                  8: "ch08-initial-system-evaluation",
                  9: "ch09-issues-relating-to-field-devices",
                  10: "ch10-engineering-a-system",
-                 11: "ch11-installing-a-system"},
+                 11: "ch11-installing-a-system",
+                 12: "ch12-functional-testing"},
         "copyright_en": "Original text © 2006 ISA — The Instrumentation, Systems, and Automation Society",
         "copyright_vi": "Bản gốc © 2006 ISA — Hiệp hội Đo lường, Hệ thống và Tự động hóa",
         "lede_en": ("The practical “how-to” on specifying, analysing, designing, installing and "

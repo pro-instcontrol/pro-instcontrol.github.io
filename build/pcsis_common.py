@@ -52,6 +52,7 @@ SLUGS = {
         9: "ch09-issues-relating-to-field-devices",
         10: "ch10-engineering-a-system",
         11: "ch11-installing-a-system",
+        12: "ch12-functional-testing",
     },
 }
 
