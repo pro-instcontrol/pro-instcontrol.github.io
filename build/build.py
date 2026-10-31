@@ -14,6 +14,7 @@ import pages_home  # noqa: E402
 import pages_core  # noqa: E402
 import pages_install  # noqa: E402
 import pages_control  # noqa: E402
+import pages_advanced  # noqa: E402
 import pages_safety  # noqa: E402
 import pages_tools  # noqa: E402
 import pages_compare  # noqa: E402
@@ -59,6 +60,7 @@ def main():
     pages_core.build_instruments()
     pages_install.build()
     pages_control.build()
+    pages_advanced.main()
     pages_safety.build()
     pages_tools.build()
     pages_compare.build()

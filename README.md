@@ -14,6 +14,7 @@ Live: https://pro-instcontrol.github.io/
 |---|---|
 | `index.html` | Positioning, the closed-loop idea, five measurement families, the dividing line |
 | `fundamentals.html` | Measurement chain, signal standards, 4–20 mA, error vocabulary, environment, installation rules |
+| `advanced/` | Where the fundamentals stop: cascade / feedforward / MPC, the safety paper trail, and a 12-video **Trends & standards watch** section linking into the library (VI mirror at `vi/advanced/`) |
 | `instruments.html` | 31 filterable instruments — principle, accuracy, best application, failure mode |
 | `install.html` | Tapping points and impulse lines by service, hazardous area zones and gas groups, the IS entity concept with a cable-length calculation, grounding and shielding, commissioning checks |
 | `control.html` | Loop anatomy, PID terms, six tuning methods, dead time, advanced strategies, an interactive PID simulator |
@@ -76,6 +77,7 @@ build/
   pages_core.py     fundamentals + instrument table
   pages_install.py  installation, hazardous area, commissioning
   pages_control.py  control, block diagram, simulator markup
+  pages_advanced.py advanced practice (EN + VI pages, links into the library)
   pages_safety.py   safety instrumented systems, SIL, proof test
   pages_tools.py    five engineering calculators
   pages_compare.py  the comparison matrix
@@ -111,6 +113,9 @@ duration, the source channel and a one-line editorial note in both languages.
 - `python build/check_videos.py` validates the dataset (duplicate ids, unknown
   categories, bad durations) and checks every link through YouTube oEmbed.
   `--offline` skips the network pass. Exits 1 on any failure, so it can gate a push.
+- The 21st category, **Trends & standards watch** (`trends`), is linked from
+  `/advanced/` and `/vi/advanced/` at `#cat-trends` — that page is the entry point
+  for a reader who has not yet met Ethernet-APL or OPC UA FX.
 - The share card is `assets/og-video-library.png`, referenced from both pages. It is
   rendered by `python build/make_og.py`, which reads the headline stats (videos,
   topics, hours, sources) straight from the dataset — rerun it whenever content

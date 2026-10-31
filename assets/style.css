@@ -679,3 +679,42 @@ a.lang:hover{text-decoration:none}
 }
 .vcard{scroll-margin-top:190px}
 @media (max-width:760px){.vcard{scroll-margin-top:86px}}
+
+/* ---------- advanced practice ---------- */
+.adv-hero{padding:56px 0 34px;border-bottom:1px solid var(--line)}
+.adv-h1{font-size:clamp(1.9rem,3.4vw,2.6rem);letter-spacing:-.03em;max-width:22em}
+.adv-lede{margin-top:14px;max-width:44em}
+.adv-sec{padding:46px 0 40px;border-bottom:1px solid var(--line)}
+.adv-sec:last-of-type{border-bottom:0}
+.adv-h2{font-size:1.42rem;letter-spacing:-.024em;margin-top:6px}
+.adv-p{color:var(--ink2);font-size:14.2px;line-height:1.62;max-width:62em;margin-top:10px}
+.adv-card{
+  display:block;margin-top:22px;padding:20px 22px;background:#fff;
+  border:1px solid var(--line2);border-radius:12px;max-width:640px;
+  transition:border-color .18s,transform .18s,box-shadow .18s;
+}
+.adv-card:hover{
+  text-decoration:none;border-color:var(--accent);transform:translateY(-2px);
+  box-shadow:0 14px 34px -24px rgba(11,23,37,.4);
+}
+.adv-card-k{
+  display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent-2);
+}
+.adv-card-t{display:block;font-size:1.1rem;font-weight:650;letter-spacing:-.02em;color:var(--ink);margin-top:7px}
+.adv-card-d{display:block;font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5}
+.adv-card-go{
+  display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+  color:var(--accent-2);margin-top:12px;
+}
+.adv-themes{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:16px 30px}
+.adv-themes li{border-left:2px solid var(--accent-soft);padding-left:13px}
+.adv-themes b{display:block;font-size:13.4px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.adv-themes span{font-size:12.9px;color:var(--muted);line-height:1.55}
+.adv-link{margin-top:18px;display:flex;flex-wrap:wrap;gap:22px}
+.adv-link a{font-size:13.6px;font-weight:500;color:var(--accent-2)}
+@media (max-width:760px){
+  .adv-themes{grid-template-columns:1fr}
+  .adv-hero{padding:40px 0 26px}
+  .adv-sec{padding:34px 0 28px}
+}

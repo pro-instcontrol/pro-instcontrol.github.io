@@ -17,6 +17,7 @@ import framework  # noqa: E402
 import videos_data  # noqa: E402
 
 BASE = "https://pro-instcontrol.github.io"
+TWIN_PATHS = {"video-library/", "books/", "advanced/"}
 SITE = "Instrumentation &amp; Control"
 SITE_VI = "Đo lường &amp; Điều khiển"
 
@@ -25,6 +26,7 @@ NAV = [
     ("books/", "Books", "Sách"),
     ("video-library/", "Videos", "Video"),
     ("fundamentals.html", "Fundamentals", "Cơ bản"),
+    ("advanced/", "Advanced", "Nâng cao"),
     ("instruments.html", "Instruments", "Thiết bị đo"),
     ("install.html", "Install", "Lắp đặt"),
     ("control.html", "Control", "Điều khiển"),
@@ -350,7 +352,9 @@ def topbar(lang, prefix):
     for href, en, vi in NAV:
         label = en if lang == "en" else vi
         cls = "nav-link active" if href == "video-library/" else "nav-link"
-        items.append('<a class="%s" href="%s%s">%s</a>' % (cls, prefix, href, label))
+        # sections that exist as two real URLs keep the reader in their language
+        base = prefix + ("vi/" if lang == "vi" and href in TWIN_PATHS else "")
+        items.append('<a class="%s" href="%s%s">%s</a>' % (cls, base, href, label))
     nav_html = "\n      ".join(items)
     brand = SITE if lang == "en" else SITE_VI
     tag = "Field Guide" if lang == "en" else "Sổ tay hiện trường"
