@@ -54,6 +54,7 @@ SLUGS = {
         11: "ch11-installing-a-system",
         12: "ch12-functional-testing",
         13: "ch13-managing-changes-to-a-system",
+        14: "ch14-justification-for-a-safety-system",
     },
 }
 
@@ -109,7 +110,13 @@ def refs(items):
 
 def table(header_row, rows, caption="", cls="tbl"):
     th = "".join("<th>%s</th>" % h for h in header_row)
-    body = "".join("<tr>%s</tr>" % "".join("<td>%s</td>" % c for c in r) for r in rows)
+    body = []
+    for r in rows:
+        if isinstance(r, str):                      # a group-header row
+            body.append('<tr class="grp"><td colspan="%d">%s</td></tr>' % (len(header_row), r))
+        else:
+            body.append("<tr>%s</tr>" % "".join("<td>%s</td>" % c for c in r))
+    body = "".join(body)
     cap = ('<p style="font-size:.84rem;color:#888;font-style:italic">%s</p>' % caption) if caption else ""
     return ('<div class="table-wrap"><table class="%s"><thead><tr>%s</tr></thead>'
             '<tbody>%s</tbody></table></div>%s' % (cls, th, body, cap))
