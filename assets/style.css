@@ -393,6 +393,7 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 .nextprev{display:flex;justify-content:space-between;gap:20px;padding:34px 0;
   border-top:1px solid var(--line);margin-top:60px}
 .nextprev a{font-size:14px;font-weight:600;color:var(--ink)}
+.nextprev a:only-child{margin-left:auto}  /* home page has no "back" */
 .nextprev .k{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
   text-transform:uppercase;color:var(--muted);margin-bottom:3px}
 
@@ -778,6 +779,12 @@ a.lang:hover{text-decoration:none}
 .hot-t:hover{color:var(--accent-2)}
 .hot-b{display:block;font-size:12.7px;color:var(--muted);line-height:1.55;margin-top:4px;max-width:72em}
 .hot-foot{margin-top:34px}
+/* second publisher: same month block, no rank column -- an issue has an order,
+   not a ranking, so nothing here is numbered */
+.hot-press{padding:38px 0 34px;border-bottom:1px solid var(--line);scroll-margin-top:80px}
+.hot-press:last-of-type{border-bottom:0}
+.hot-press .hot-mh h3{font-size:1.16rem;letter-spacing:-.02em;margin:0}
+.hot-list.hot-plain li{grid-template-columns:minmax(0,1fr)}
 
 @media (max-width:760px){
   .hot-month{padding:32px 0 28px}

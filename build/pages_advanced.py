@@ -1106,7 +1106,7 @@ def plant(lang, prefix):
   </div>
 </section>
 """ % {
-        "chain": framework.nextprev_plain(lang, "advanced/"),
+        "chain": framework.nextprev_plain(lang, "advanced/", prefix),
         "eb": t["eb_4"],
         "h": t["plant_h"],
         "p": t["plant_p"],

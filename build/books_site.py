@@ -764,10 +764,11 @@ def build_index(lang):
         '<div class="no-results-box" id="no-results" style="display:none;">'
         '<h3>%s</h3><p>%s</p>'
         '<button class="reset-filter-btn" id="reset-filters">%s</button></div>'
-        '</article></main>'
+        '%s</article></main>'
         % (MARK, esc(title), esc(tagline), esc(lede), esc(ph),
            total, total, esc(showing), esc(jump_lbl), "".join(opts), "".join(pills),
-           "".join(sections), esc(empty_t), esc(empty_p), esc(reset))
+           "".join(sections), esc(empty_t), esc(empty_p), esc(reset),
+           framework.nextprev_plain(lang, "books/", "/", cls="lib-chain"))
     )
 
     js = """

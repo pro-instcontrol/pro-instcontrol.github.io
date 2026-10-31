@@ -604,6 +604,7 @@ def build_lang(lang, path, prefix):
     body += sections(lang, by_cat)
     body += '<p class="vempty" id="vempty" hidden>%s</p>' % html.escape(T[lang]["empty"])
     body += provenance(lang)
+    body += framework.nextprev_plain(lang, "video-library/", prefix, cls="nextprev vid-chain")
     body += "</div>"
     body += footer(lang, prefix)
     return framework.write(path, body)

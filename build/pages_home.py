@@ -420,10 +420,6 @@ def build():
     <a class="more" href="safety.html">%s &rarr;</a>
   </div>
 </div>
-<div class="nextprev">
-  <a href="fundamentals.html"><span class="k">%s</span>%s</a>
-  <a href="comparison.html" style="text-align:right"><span class="k">%s</span>%s</a>
-</div>
 """ % (
         pg.h3("Learn the signal chain", "Hiểu chuỗi tín hiệu"),
         pg.p(
@@ -452,10 +448,6 @@ def build():
             "vì sao SIL thuộc về một vòng đo, không phải một thiết bị.",
         ),
         pg.span("Safety systems", "Hệ thống an toàn"),
-        pg.span("Next", "Tiếp"),
-        pg.span("Fundamentals of measurement", "Cơ bản về đo lường"),
-        pg.span("Also read", "Đọc thêm"),
-        pg.span("Process vs geotechnical", "Quá trình vs địa kỹ thuật"),
     )
     body += section_close()
 

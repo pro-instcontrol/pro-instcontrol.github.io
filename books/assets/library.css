@@ -525,6 +525,37 @@ footer.site-footer {
 }
 footer.site-footer a { border-bottom: none; color: var(--gray-dark); }
 
+/* Foot-of-page chain: the same browsing order as the site nav. Rendered by
+   framework.nextprev_plain(), so the library cannot drift out of sequence. */
+.lib-chain {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1180px;
+  margin: 3rem auto 0;
+  padding: 1.6rem 0 0;
+  border-top: 1px solid var(--gray-light);
+  font-family: var(--sans);
+}
+.lib-chain a {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--gray-dark);
+  text-decoration: none;
+  border-bottom: none;
+}
+.lib-chain a:hover { color: var(--gold-deep); }
+.lib-chain a:only-child { margin-left: auto; }
+.lib-chain .k {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-bottom: 4px;
+}
+
 @media (max-width: 1180px) {
   .site-nav { gap: 6px 13px; font-size: 0.8rem; }
 }

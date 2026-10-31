@@ -27,7 +27,7 @@ Live: https://pro-instcontrol.github.io/
 | `glossary.html` | 52 bilingual terms with live search |
 | `video-library/` | 214 curated videos across 21 topics, a six-stage learning path, and search / level / source filters (VI mirror at `vi/video-library/`) |
 | `books/` | The working library: 175 works on eight shelves with live search, an in-site PDF reader and a page per work — including the 18-part **Control Engineering eBook** series on the *Magazines & Reference* shelf (VI mirror at `vi/books/`) |
-| `hot-topics/` | A year of Control Engineering's monthly most-read lists — 7 of 12 months survived in the archive, 62 ranked positions resolving to 53 distinct articles, translated and read as a series rather than as news (VI mirror at `vi/hot-topics/`) |
+| `hot-topics/` | A year of Control Engineering's monthly most-read lists — 7 of 12 months survived in the archive, 62 ranked positions resolving to 53 distinct articles — plus 30 unranked features from 8 issues of *Automation.com Monthly*, the second publisher. Translated and read as a series rather than as news (VI mirror at `vi/hot-topics/`) |
 
 ## How the bilingual system works
 
@@ -74,6 +74,12 @@ Adding a section means adding one tuple to `NAV` and re-running `build.py` and
 `fix_book_nav.py`; all 424 pages then carry it. `nav_links` also owns the
 language targeting: a section with a `/vi/` twin points at the twin, everything
 else gets `?lang=vi`, so a Vietnamese page never links back into English.
+
+The **back / next pair** at the foot of every page is not a second list either:
+`CHAIN` is built from `NAV`, with the long wording in `LONG`. So the reading
+order is the header order, and the last section (Giáo dục) wraps back to Trang
+chủ. Walking *Next* from the home page visits all seventeen sections in nav
+order and returns; walking *Back* retraces it exactly.
 
 ## Editing content
 

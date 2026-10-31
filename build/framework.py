@@ -14,7 +14,7 @@ DIST = os.path.join(ROOT, "dist")
 
 # Single cache-busting version for every generated page. Bump this whenever
 # style.css or app.js changes; the env var exists only for one-off experiments.
-ASSET_VER = os.environ.get("ASSET_VER", "9")
+ASSET_VER = os.environ.get("ASSET_VER", "10")
 
 _NEST_OPEN = re.compile(r"<(h[1-4]|p|li)([^>]*)><\1([^>]*)>")
 _NEST_CLOSE = re.compile(r"</(h[1-4]|p|li)></\1>")
@@ -59,28 +59,57 @@ NAV = [
 TWIN_PATHS = {"video-library/", "books/", "advanced/", "hot-topics/"}
 
 
+def target(lang, href):
+    """Where a nav or chain item points for this language, from the site root.
+
+    Sections with a /vi/ twin point at the twin; everything else is switched in
+    place with ?lang=vi, so a Vietnamese page never links back into English.
+    """
+    if lang != "vi":
+        return href
+    return "vi/" + href if href in TWIN_PATHS else href + "?lang=vi"
+
+
 def nav_links(lang, prefix="", active="", cls="nav-link", cls_active="nav-link active"):
     """(class, href, label) for every top-nav item, in NAV order.
 
     ``prefix`` is for pages that do not sit at the site root (``../`` from
-    /advanced/). The /vi/ tree is used only for sections that have a twin,
-    because every other page is language-switched in place -- those take a
-    ``?lang=vi`` hint instead, so a Vietnamese page never links to an English
-    page by accident.
+    /advanced/).
     """
     out = []
     for href, en, vi in NAV:
         label = en if lang == "en" else vi
-        is_active = href == active
-        if lang == "vi" and href in TWIN_PATHS:
-            base = prefix + "vi/"
-        elif lang == "vi":
-            base = prefix
-            href += "?lang=vi"
-        else:
-            base = prefix
-        out.append((cls_active if is_active else cls, base + href, label))
+        out.append((cls_active if href == active else cls,
+                    prefix + target(lang, href), label))
     return out
+
+
+# Long labels for the foot-of-page pair. Only the wording lives here: the order
+# and the membership are NAV's, so the browsing sequence cannot drift from the
+# top nav again. One list, two renderings.
+LONG = {
+    "index.html": ("Home", "Trang chủ"),
+    "books/": ("Book library", "Thư viện sách"),
+    "video-library/": ("Video library", "Thư viện video"),
+    "hot-topics/": ("Hot topics", "Chủ đề nóng"),
+    "fundamentals.html": ("Fundamentals of measurement", "Cơ bản về đo lường"),
+    "advanced/": ("Advanced practice", "Thực hành nâng cao"),
+    "instruments.html": ("Instrument reference", "Danh mục thiết bị"),
+    "install.html": ("Installation", "Lắp đặt"),
+    "control.html": ("Control &amp; tuning", "Điều khiển &amp; hiệu chỉnh"),
+    "applications.html": ("Applications", "Ứng dụng"),
+    "safety.html": ("Safety instrumented systems", "Hệ thống an toàn"),
+    "tools.html": ("Engineering tools", "Công cụ kỹ thuật"),
+    "comparison.html": ("Process vs geotechnical", "Quá trình và địa kỹ thuật"),
+    "geotechnical.html": ("Geotechnical monitoring", "Quan trắc địa kỹ thuật"),
+    "standards.html": ("Standards index", "Danh mục tiêu chuẩn"),
+    "glossary.html": ("Glossary", "Thuật ngữ"),
+    "education.html": ("Education", "Giáo dục"),
+}
+
+CHAIN = [(href, en, vi) + LONG[href] for href, en, vi in NAV]
+
+CHAIN_IDS = [c[0] for c in CHAIN]
 
 
 SHELL = {
@@ -210,41 +239,10 @@ def bullets(pg, rows):
     return out + "</ul>"
 
 
-# The reading chain, in exactly the order of the top nav (minus Books and Videos,
-# which are separate trees with no prev/next of their own). The pair at the foot
-# of every page is generated from this list, so the two can never drift apart
-# again when a section is added in the middle.
-CHAIN = [
-    ("index.html", "Home", "Trang chủ", "Home", "Trang chủ"),
-    ("fundamentals.html", "Fundamentals", "Cơ bản",
-     "Fundamentals of measurement", "Cơ bản về đo lường"),
-    ("advanced/", "Advanced", "Nâng cao",
-     "Advanced practice", "Thực hành nâng cao"),
-    ("instruments.html", "Instruments", "Thiết bị đo",
-     "Instrument reference", "Danh mục thiết bị"),
-    ("install.html", "Install", "Lắp đặt",
-     "Installation", "Lắp đặt"),
-    ("control.html", "Control", "Điều khiển",
-     "Control &amp; tuning", "Điều khiển &amp; hiệu chỉnh"),
-    ("applications.html", "Applications", "Ứng dụng",
-     "Applications", "Ứng dụng"),
-    ("safety.html", "Safety", "An toàn",
-     "Safety instrumented systems", "Hệ thống an toàn"),
-    ("tools.html", "Tools", "Công cụ",
-     "Engineering tools", "Công cụ kỹ thuật"),
-    ("comparison.html", "Comparison", "So sánh",
-     "Process vs geotechnical", "Quá trình và địa kỹ thuật"),
-    ("geotechnical.html", "Geotech", "Địa kỹ thuật",
-     "Geotechnical monitoring", "Quan trắc địa kỹ thuật"),
-    ("standards.html", "Standards", "Tiêu chuẩn",
-     "Standards index", "Danh mục tiêu chuẩn"),
-    ("glossary.html", "Glossary", "Thuật ngữ",
-     "Glossary", "Thuật ngữ"),
-    ("education.html", "Education", "Giáo dục",
-     "Education", "Giáo dục"),
-]
-
-CHAIN_IDS = [c[0] for c in CHAIN]
+# The reading chain IS the top nav: CHAIN is built from NAV above, so the
+# foot-of-page pair walks the site in the same order the header shows, and the
+# last section wraps back to the home page. Adding a section to NAV adds it to
+# both, in the right place, with no second list to keep in step.
 
 
 def chain_neighbours(active):
@@ -278,29 +276,33 @@ def nextprev(pg, active):
     return "".join(out)
 
 
-def nextprev_plain(lang, active, prefix=""):
+def nextprev_plain(lang, active, prefix="", cls="nextprev"):
     """The same chain without i18n keys, for pages written once per language.
 
     ``prefix`` is for pages that do not sit at the site root, e.g. ``../`` from
     /advanced/, so the chain links resolve to the root pages rather than to
-    siblings that do not exist.
+    siblings that do not exist. The hrefs follow the same language rule as the
+    header: a Vietnamese page keeps pointing at Vietnamese targets.
     """
     if active not in CHAIN_IDS:
         return ""
     prev, nxt = chain_neighbours(active)
     ti = 3 if lang == "en" else 4
-    out = ['<div class="nextprev">']
+    out = ['<div class="%s">' % cls]
     if prev:
         out.append('<a href="%s%s"><span class="k">%s</span>%s</a>'
-                   % (prefix, prev[0], "Back" if lang == "en" else "Quay lại", prev[ti]))
+                   % (prefix, target(lang, prev[0]),
+                      "Back" if lang == "en" else "Quay lại", prev[ti]))
     if nxt[0] == "index.html":
-        out.append('<a href="%sindex.html" style="text-align:right">'
+        out.append('<a href="%s%s" style="text-align:right">'
                    '<span class="k">%s</span>%s</a>'
-                   % (prefix, "Home" if lang == "en" else "Trang chủ",
+                   % (prefix, target(lang, "index.html"),
+                      "Home" if lang == "en" else "Trang chủ",
                       "Back to start" if lang == "en" else "Về trang đầu"))
     else:
         out.append('<a href="%s%s" style="text-align:right"><span class="k">%s</span>%s</a>'
-                   % (prefix, nxt[0], "Next" if lang == "en" else "Tiếp", nxt[ti]))
+                   % (prefix, target(lang, nxt[0]),
+                      "Next" if lang == "en" else "Tiếp", nxt[ti]))
     out.append("</div>")
     return "".join(out)
 
@@ -310,12 +312,15 @@ NEXTPREV_RE = re.compile(r'<div class="nextprev">.*?</div>', re.S)
 
 def apply_chain(body, pg, active):
     """Force the foot-of-page pair to match CHAIN, wherever the template put it."""
-    if active not in CHAIN_IDS or active == "index.html":
-        return body  # the home page keeps its own "Also read" pair
+    if active not in CHAIN_IDS:
+        return body
     block = nextprev(pg, active)
     if NEXTPREV_RE.search(body):
         return NEXTPREV_RE.sub(block, body, count=1)
-    return body.replace("</main>", block + "\n</main>", 1)
+    # No pair in the template: append one, inside a .wrap so it keeps the same
+    # measure as the sections above. (Body never contains </main> -- the footer
+    # supplies that -- so an anchor on </main> would silently do nothing.)
+    return body + '<div class="wrap">%s</div>' % block
 
 
 def page_intro(pg, title_en, title_vi, lede_en, lede_vi, toc=None):

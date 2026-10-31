@@ -43,6 +43,7 @@ T = {
             ("method", "How the list is built"),
             ("months", "The months"),
             ("reading", "What a year shows"),
+            ("press", "The other magazine"),
             ("here", "Read further here"),
         ],
         "lang_other": "VI",
@@ -139,8 +140,30 @@ T = {
                     "standing still. What it is not curious about, at least not in public, is the "
                     "arithmetic inside the loop.",
 
-        # 04 here
-        "eb_4": "On this site",
+        # 04 press
+        "eb_4": "Second publisher",
+        "pr_h": "The other magazine, and a different measurement",
+        "pr_p1": "Control Engineering ranks by pageviews. Automation.com Monthly has no such table: "
+                "an issue is the set of features an editor commissioned, and its order is the order "
+                "of the magazine. Reprinting those titles as a second top ten would invent a ranking "
+                "that does not exist, so they are listed unranked, issue by issue — and the "
+                "difference is the point. One list measures what readers chose; the other measures "
+                "what an editor thought they should read.",
+        "pr_p2": "Eight issues are used, from June/July 2025 to October 2026. The source marks some "
+                "cards <em>Sponsored By</em> a named company; those are advertising and are excluded, "
+                "as are editor's messages and topical roundups. What is left is the editorial core "
+                "of each issue, with the source's own summary under each title.",
+        "pr_note_h": "Why there is no InTech here",
+        "pr_note_p": "InTech was the ISA's magazine and it ended with the October 2024 issue — the "
+                    "last two years of it do not exist to collect. The 2025 issues on automation.com "
+                    "are largely ISA-sponsored InTech material, and those cards are excluded on the "
+                    "same rule as vendor placements. Nothing here comes from isa.org: the society's "
+                    "terms do not permit its material to be processed by a model.",
+        "pr_items": "features",
+        "pr_src": "Issue page",
+
+        # 05 here
+        "eb_5": "On this site",
         "hr_h": "Where these subjects are taken further",
         "hr_p": "The same stories, followed to the engineering instead of the announcement.",
         "hr_hdr": ["Subject in the list", "Where it is worked out here"],
@@ -195,6 +218,7 @@ T = {
             ("method", "Cách lập danh sách"),
             ("months", "Các tháng"),
             ("reading", "Một năm nói lên gì"),
+            ("press", "Tờ báo còn lại"),
             ("here", "Đọc tiếp ở đây"),
         ],
         "lang_other": "EN",
@@ -288,7 +312,30 @@ T = {
                     "việc đứng yên. Điều ngành không tò mò — ít nhất là không công khai — là phần "
                     "số học bên trong vòng điều khiển.",
 
-        "eb_4": "Trên site này",
+        # 04 press
+        "eb_4": "Nhà xuất bản thứ hai",
+        "pr_h": "Tờ tạp chí còn lại, và một cách đo khác",
+        "pr_p1": "Control Engineering xếp theo lượt xem. Automation.com Monthly không có bảng như "
+                "vậy: một số báo là tập bài mà biên tập viên đặt làm, và thứ tự của nó là thứ tự "
+                "trên trang. In lại những tiêu đề đó thành một top 10 thứ hai sẽ là bịa ra một thứ "
+                "hạng không tồn tại, nên chúng được liệt kê ở đây không xếp hạng, theo từng số — và "
+                "chính sự khác biệt đó mới đáng nói: một danh sách đo điều độc giả chọn, danh sách "
+                "kia đo điều biên tập viên cho là nên đọc.",
+        "pr_p2": "Tám số được dùng, từ tháng 6–7/2025 đến tháng 10/2026. Nguồn đánh dấu một số thẻ "
+                "là <em>Sponsored By</em> kèm tên đơn vị; đó là quảng cáo nên được loại, cùng với "
+                "thư tòa soạn và mục điểm tin. Phần còn lại là lõi biên tập của mỗi số, kèm tóm tắt "
+                "của chính nguồn dưới mỗi tiêu đề.",
+        "pr_note_h": "Vì sao ở đây không có InTech",
+        "pr_note_p": "InTech là tạp chí của ISA và đã dừng ở số tháng 10/2024 — hai năm gần nhất của "
+                    "nó không tồn tại để sưu tầm. Các số 2025 trên automation.com phần lớn là bài "
+                    "InTech do ISA bảo trợ, và những thẻ đó bị loại theo cùng quy tắc với bài của "
+                    "nhà cung cấp. Không có nội dung nào ở đây lấy từ isa.org: điều khoản của hiệp "
+                    "hội không cho phép đưa tài liệu của họ vào một mô hình.",
+        "pr_items": "bài",
+        "pr_src": "Trang số báo",
+
+        # 05 here
+        "eb_5": "Trên site này",
         "hr_h": "Những chủ đề này được đi sâu ở đâu",
         "hr_p": "Cùng những câu chuyện đó, đi tới chỗ kỹ thuật thay vì dừng ở thông cáo.",
         "hr_hdr": ["Chủ đề trong danh sách", "Được làm rõ ở đây"],
@@ -577,6 +624,54 @@ def reading(lang, prefix):
 """ % {"eb": t["eb_3"], "h": t["rd_h"], "obs": "\n".join(parts), "close": t["rd_close"]}
 
 
+def press(lang, prefix):
+    """The second publisher. Unranked on purpose: an issue has an order, not a rank."""
+    t = T[lang]
+    blocks = []
+    for iss in hot_data.PRESS:
+        items = "".join(
+            '<li><div><a class="hot-t" href="%s" rel="noopener">%s</a>'
+            '<span class="hot-b">%s</span></div></li>'
+            % (it["href"], it["t_" + lang], it["b_" + lang])
+            for it in iss["items"]
+        )
+        blocks.append("""  <section class="hot-press" id="%s">
+    <div class="wrap">
+      <div class="hot-mh">
+        <h3>%s</h3>
+        <span class="hot-count">%d %s</span>
+        <a class="hot-src" href="%s" rel="noopener">%s &rarr;</a>
+      </div>
+      <p class="hot-angle">%s</p>
+      <ul class="hot-list hot-plain">%s</ul>
+    </div>
+  </section>
+""" % (iss["slug"], iss["en"] if lang == "en" else iss["vi"], len(iss["items"]),
+       t["pr_items"], iss["src"], t["pr_src"], iss["kicker_" + lang], items))
+    return """<section class="sec adv-sec" id="press" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">04</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
+    <h2 class="adv-h2">%(h)s</h2>
+    <p class="adv-p">%(p1)s</p>
+    <p class="adv-p">%(p2)s</p>
+    <div class="adv-note">
+      <b>%(nh)s</b>
+      <p>%(np)s</p>
+    </div>
+  </div>
+%(body)s
+</section>
+""" % {
+        "eb": t["eb_4"],
+        "h": t["pr_h"],
+        "p1": t["pr_p1"],
+        "p2": t["pr_p2"],
+        "nh": t["pr_note_h"],
+        "np": t["pr_note_p"],
+        "body": "".join(blocks),
+    }
+
+
 def here(lang, prefix):
     t = T[lang]
     rows = "".join(
@@ -588,10 +683,15 @@ def here(lang, prefix):
         % (("Monthly list" if lang == "en" else "Danh sách tháng"), m["src"],
            m["en"] if lang == "en" else m["vi"])
         for m in hot_data.MONTHS
+    ) + "".join(
+        '<li><span class="tag">%s</span><a href="%s" rel="noopener">%s</a></li>'
+        % (("Issue" if lang == "en" else "Số báo"), i["src"],
+           i["en"] if lang == "en" else i["vi"])
+        for i in hot_data.PRESS
     )
     return """<section class="sec adv-sec" id="here">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">04</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
+    <div class="eyebrow"><span class="num">05</span><span class="line"></span><span class="eyebrow-label">%(eb)s</span></div>
     <h2 class="adv-h2">%(h)s</h2>
     <p class="adv-p">%(p)s</p>
     <div class="tbl-wrap"><table class="tbl adv-tbl"><thead><tr><th>%(h1)s</th><th>%(h2)s</th></tr></thead>
@@ -599,14 +699,11 @@ def here(lang, prefix):
     <h3 class="adv-h3">%(src_h)s</h3>
     <ul class="adv-src">%(srcs)s</ul>
     <p class="adv-p">%(src_note)s</p>
-    <div class="nextprev hot-foot">
-      <a href="%(back_href)s"><span class="k">%(back_k)s</span>%(back)s</a>
-      <a href="%(next_href)s" style="text-align:right"><span class="k">%(next_k)s</span>%(next)s</a>
-    </div>
+    %(chain)s
   </div>
 </section>
 """ % {
-        "eb": t["eb_4"],
+        "eb": t["eb_5"],
         "h": t["hr_h"],
         "p": t["hr_p"],
         "h1": t["hr_hdr"][0],
@@ -615,13 +712,8 @@ def here(lang, prefix):
         "src_h": t["src_h"],
         "srcs": srcs,
         "src_note": t["src_note"],
-        "prefix": prefix,
-        "back_href": prefix + ("vi/video-library/" if lang == "vi" else "video-library/"),
-        "next_href": prefix + "fundamentals.html",
-        "back_k": "Back" if lang == "en" else "Quay lại",
-        "back": t["foot_prev"],
-        "next_k": "Next" if lang == "en" else "Tiếp",
-        "next": t["foot_next"],
+        "chain": framework.nextprev_plain(lang, "hot-topics/", prefix,
+                                          cls="nextprev hot-foot"),
     }
 
 
@@ -658,6 +750,7 @@ def build_lang(lang, path, prefix):
     body += method(lang, prefix)
     body += months(lang, prefix)
     body += reading(lang, prefix)
+    body += press(lang, prefix)
     body += here(lang, prefix)
     body += footer(lang, prefix)
     framework.write(path, framework.tidy(body))
