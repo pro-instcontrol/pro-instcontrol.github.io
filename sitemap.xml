@@ -386,6 +386,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch16-velocity-measurement/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch17-acceleration-vibration-shock-measurement/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch17-acceleration-vibration-shock-measurement/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch17-acceleration-vibration-shock-measurement/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch17-acceleration-vibration-shock-measurement/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/reader/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/reader/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/reader/"/>
@@ -1905,6 +1911,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch16-velocity-measurement/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch16-velocity-measurement/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch16-velocity-measurement/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch17-acceleration-vibration-shock-measurement/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch17-acceleration-vibration-shock-measurement/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch17-acceleration-vibration-shock-measurement/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch17-acceleration-vibration-shock-measurement/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/reader/</loc>
