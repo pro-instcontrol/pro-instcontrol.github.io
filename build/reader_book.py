@@ -130,7 +130,8 @@ BOOKS = {
                  7: "ch07-real-and-ideal-pid-controllers",
                  8: "ch08-tuning-of-pid-controllers",
                  9: "ch09-output-modes-equations-and-cascade-control",
-                 10: "ch10-concepts-and-applications-of-feedforward-control"},
+                 10: "ch10-concepts-and-applications-of-feedforward-control",
+                 11: "ch11-combined-feedback-and-feedforward-control"},
         "copyright_en": "Original text © IDC Technologies Pty Ltd",
         "copyright_vi": "Bản gốc © IDC Technologies Pty Ltd",
         "lede_en": ("A hands-on training manual covering process dynamics, measurement, valves, "

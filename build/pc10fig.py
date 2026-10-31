@@ -17,8 +17,8 @@ def _sim_pi(ts, dt, dist, kp, ti, tau=1.2, dead=0.3, ff=False, ff_gain=1.0):
     buf = [0.0] * int(dead / dt + 1)
     for i, t in enumerate(ts):
         d = dist(t)
-        # the compensator acts at the process input, alongside the disturbance
-        ffd = ff_gain * d if ff else 0.0
+        # the compensator acts at the process input, opposing the disturbance
+        ffd = -ff_gain * d if ff else 0.0
         ud = buf.pop(0)
         buf.append(u)
         y[i] = y[i - 1] + dt * ((ud + d + ffd - y[i - 1]) / tau) if i else 0.0
