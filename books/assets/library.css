@@ -388,6 +388,13 @@ table.tbl.led tbody td:first-child { white-space: nowrap; }
 /* MOC procedure table: the item column holds a short label, so stop it breaking mid-word */
 table.tbl.moc th:first-child, table.tbl.moc td:first-child { white-space: nowrap; }
 
+/* vendor survey table: product names are single tokens, so never split them; let the
+   class and description columns absorb the slack instead */
+table.tbl.prod th, table.tbl.prod td { padding: 7px 9px; font-size: 0.86rem; }
+table.tbl.prod th:nth-child(2), table.tbl.prod td:nth-child(2) {
+  white-space: nowrap; overflow-wrap: normal;
+}
+
 /* a group-header row inside a reference table: "Mechanical", "Far-field / resonance" */
 table.tbl tr.grp td {
   font-family: var(--serif); font-weight: 600; font-size: 0.96rem;
