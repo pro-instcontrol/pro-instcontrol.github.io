@@ -1,20 +1,20 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** end of session 2026-11-01 (session 9) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** end of session 2026-11-01 (session 10) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 11 — Level Measurement**. Chapters 1–10 are
-> done, live, and registered.
+> **Where to start next:** Handbook **Chapter 12 — Area Measurement**. Chapters 1–11 are
+> done, live, and registered. `work/hb_ch12.txt` is already extracted (13 source pages).
 >
-> **Both translated books are now finished.** Practical Process Control (14/14) and Safety
+> **Both translated books are finished.** Practical Process Control (14/14) and Safety
 > Instrumented Systems (16/16) each have full Vietnamese translations and English companion
 > pages that carry the same figures as their Vietnamese counterparts — 54 figures on the SIS
 > side, 120 on the PC side, zero mismatches.
 >
-> **This is a batch boundary.** The standing instruction is *batch of 5, then check in*, and
-> chapter 10 closes the second batch. Do not start chapter 11 without asking.
->
-> **Chapter 11 and 12 are already downloaded** — `work/Ch11.pdf`, `work/Ch12.pdf`, extracted
-> to `work/hb_ch11.txt` and `work/hb_ch12.txt`. Both are small (21 pp / 13 pp). Start at §3.3.
+> **The glossary is now generated, not written by hand.** `/glossary.html` and
+> `/vi/glossary.html` are built by `build/make_glossary.py`, which parses the
+> `<dl class="glossary">` block of every translated chapter and merges it with the curated
+> list in `build/pages_glossary.py`. Adding a chapter that defines terms adds them to the
+> glossary automatically on the next build — see §4.5.
 >
 > **Read §5 before drawing anything.** Session 7 found four figure defects that the
 > Georgia-serif QA grid cannot see, because its font metrics differ from the site font.
@@ -41,7 +41,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–10** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–11** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -59,6 +59,7 @@ Chapters done, with their slugs and build scripts:
 | HB 8 | Proximity Sensing for Robotics | `ch08-proximity-sensing-for-robotics` | `reader_hb_ch08.py` + `hb8fig.py` | 26 | 7.6k |
 | HB 9 | Distance | `ch09-distance` | `reader_hb_ch09.py` + `hb9fig.py` | 8 | 8.9k |
 | HB 10 | Position, Location, Altitude Measurement | `ch10-position-location-altitude` | `reader_hb_ch10.py` + `hb10fig.py` | 43 | 13.4k |
+| HB 11 | Level Measurement | `ch11-level-measurement` | `reader_hb_ch11.py` + `hb11fig.py` | 15 | 7.1k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
@@ -425,6 +426,36 @@ Pages publishes about 40 s later. Verify:
 curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/books/read/<slug>/<ch>/"
 ```
 
+### 4.5 The glossary is a build artefact
+
+`build/make_glossary.py` assembles `/glossary.html` and `/vi/glossary.html` from two
+sources and nothing else:
+
+1. `build/pages_glossary.py` → `TERMS`, the 52 curated control and instrumentation terms,
+   already bilingual;
+2. every `vi/books/read/**/index.html` that contains a `<dl class="glossary">` block — the
+   "Định nghĩa thuật ngữ" section of a chapter. The **Vietnamese** headword and definition
+   are parsed straight out of the built page, so the glossary can never drift from what the
+   chapters say.
+
+The English side of a book term is **not** parsed — there is nothing to parse, because the
+English companion pages do not repeat the glossary. It lives in `BOOK_EN` in
+`make_glossary.py`: Vietnamese headword → (English headword, English definition). When a
+chapter adds a glossary, add its entries there too, or the term will be dropped with no
+error.
+
+`ALIAS` maps a book headword onto an existing curated entry (`Hiệu chuẩn` → `Calibration`),
+so the curated definition survives and the chapter is listed as an extra source instead of
+producing a duplicate row.
+
+**After adding entries:** `python build/make_glossary.py`, then check the count in the hero.
+It writes to `dist/` *and* the site root, because `build.py` emits into `dist/` and the tree
+is then copied up — writing only to the root would let the copy put back a stale page.
+
+`glossary.html` is in `framework.TWIN_PATHS`, so the Vietnamese nav points at the real
+`/vi/glossary.html` rather than `?lang=vi`. Adding a section to the nav means adding it to
+that set.
+
 ## 5. Traps that have already bitten
 
 | Symptom | Cause | Fix |
@@ -499,6 +530,50 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 - **Write this file's session log before you stop.**
 
 ## 7. Session log
+
+### 2026-11-01, session 10 — Handbook Chapter 11, and a glossary built from the books
+
+Two requests in one turn: *finish at chapter 11*, then *build the full glossary from all
+/books* at `/glossary.html` and `/vi/glossary.html`.
+
+**Chapter 11 (Level Measurement, Detlef Brumbi, Krohne).** 21 source pages, 15 figures,
+3 tables, 23 equations. New `build/hb11fig.py` draws all fifteen — the four mounting modes,
+the buoyancy balance, the servo displacer, both float read-outs, the three hydrostatic
+arrangements, the echo geometry and burst timing, three antennas, the compact radar head,
+the TDR line with its echo trace, the FMCW ramp and block diagram, the through-product
+geometry, the capacitance probe, both radiometric configurations and the vibrating fork.
+`reader_hb_ch11.py` carries a complete Vietnamese translation (7,109 words) and an English
+companion that is an essay rather than a mirror. 15/15 figure parity, 0 broken links.
+
+Five figure defects were found only by screenshotting the grid and re-reading it, all of the
+same family — a label detached from the dimension line it belongs to:
+
+* 11.12 had two dimension lines stacked at the same x, with the `h_v` label 260 px away from
+  its own line;
+* 11.5(c) put the gas bottle on top of panel (b)'s computer box, and the purge pipe entered
+  the tank through its roof instead of its side;
+* 11.11 routed the mixer output along the exact bottom edge of the DRO block;
+* 11.8 had an arrow ending 28 px short of the block it pointed at;
+* 11.3 put the `l` dimension across the tank wall, which read as a stray line.
+
+**The glossary.** `/glossary.html` existed but was a hand-written list of 52 terms and
+`/vi/glossary.html` did not exist at all. Replaced both with a generated index of **98
+entries**: the 52 curated terms plus 46 lifted from the four handbook chapters that carry a
+"Defining Terms" section (Ch. 5 with 32 VIM terms, Ch. 6.4, 6.5 and 6.6). Four of them
+(`Calibration`, `Accuracy`, `Repeatability`, `Tolerance`) are the same concept as a curated
+entry and are merged, with the chapter listed as an extra source.
+
+Search filters on a `data-s` blob that holds both headwords and both definitions with
+diacritics stripped, so "muc" finds "Mức" and "level" finds it too. Vietnamese sorting folds
+`đ` to `dz`, which puts `Đ` after `D` as Vietnamese convention expects, and the letter strip
+gives `Đ` its own button.
+
+Two traps worth recording. `pages_glossary.build()` now delegates to `make_glossary`, and
+`make_glossary` imports `pages_glossary` for `TERMS` — the import has to be inside the
+function or it is circular. And a stale `build/__pycache__/make_glossary*.pyc` silently kept
+serving the pre-patch `build_entries()`, which cost twenty minutes of chasing a merge that
+was already correct; `rm -rf build/__pycache__` before believing a debug print.
+
 
 ### 2026-11-01, session 9 — Safety Instrumented Systems finished
 

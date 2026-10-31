@@ -164,60 +164,12 @@ TERMS = [
 
 
 def build():
-    pg = Page(
-        "glossary.html",
-        "gls",
-        "Glossary — English / Vietnamese instrumentation terms",
-        "Thuật ngữ — Anh / Việt về thiết bị đo",
-        "A bilingual glossary of process instrumentation, control and geotechnical monitoring terms.",
-        "Bảng thuật ngữ song ngữ về thiết bị đo, điều khiển quá trình và quan trắc địa kỹ thuật.",
-    )
+    """The glossary is assembled from the books, not from this file.
 
-    pg.strings["gls.ph"] = {"en": "Search terms…", "vi": "Tìm thuật ngữ…"}
-
-    items = []
-    for en, vi, d_en, d_vi in TERMS:
-        items.append(
-            '<div class="gitem"><b>%s</b><span class="vi">%s</span><span class="d">%s</span></div>'
-            % (pg.span(en, vi), vi, pg.span(d_en, d_vi))
-        )
-    items = "\n    ".join(items)
-
-    body = """
-<section class="sec" style="padding-top:56px">
-  <div class="wrap">
-    <div class="sec-head">
-      %s
-      %s
-    </div>
-    <div class="searchbar">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-      <input id="gloss-search" type="search" placeholder="Search terms…" data-i18n-attr="placeholder" data-i18n="gls.ph">
-      <span class="count" id="gloss-count"></span>
-    </div>
-    <div class="gloss" id="gloss-list">
-    %s
-    </div>
-    <div class="nextprev">
-      <a href="standards.html"><span class="k">%s</span>%s</a>
-      <a href="index.html" style="text-align:right"><span class="k">%s</span>%s</a>
-    </div>
-  </div>
-</section>
-""" % (
-        pg.h1("Glossary", "Thuật ngữ"),
-        pg.p(
-            "Fifty-two terms that appear in both specifications and in meetings, with the meaning each "
-            "discipline actually uses. Search works in either language.",
-            "Năm mươi hai thuật ngữ xuất hiện trong cả bản chỉ định và trong các cuộc họp, với nghĩa mà "
-            "mỗi ngành thực sự dùng. Tìm kiếm hoạt động bằng cả hai ngôn ngữ.",
-            "lede",
-        ),
-        items,
-        pg.span("Back", "Quay lại"),
-        pg.span("Standards index", "Danh mục tiêu chuẩn"),
-        pg.span("Home", "Trang chủ"),
-        pg.span("Back to start", "Về đầu trang"),
-    )
-
-    write("glossary.html", render(pg, body, "glossary.html"))
+    TERMS stays here because it is the curated half of the index; the builder
+    lives in make_glossary.py, which parses every chapter's "Defining Terms"
+    block and merges it with this list. Delegating keeps one source of truth
+    for the two output pages (/glossary.html and /vi/glossary.html).
+    """
+    import make_glossary
+    make_glossary.build_all()

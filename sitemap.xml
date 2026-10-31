@@ -1464,6 +1464,9 @@
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/glossary.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/glossary.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/glossary.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/glossary.html"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/hot-topics/</loc>
@@ -2928,6 +2931,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/97/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/97/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/97/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/glossary.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/glossary.html"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/glossary.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/glossary.html"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/hot-topics/</loc>

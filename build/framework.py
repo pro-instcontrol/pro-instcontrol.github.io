@@ -57,7 +57,7 @@ NAV = [
 # emits the top nav has to agree on this set, so it lives here and nowhere else:
 # a section added to NAV is a section added to the twin set, or the Vietnamese
 # nav silently drops it.
-TWIN_PATHS = {"video-library/", "books/", "advanced/", "hot-topics/"}
+TWIN_PATHS = {"video-library/", "books/", "advanced/", "hot-topics/", "glossary.html"}
 
 
 def target(lang, href):
