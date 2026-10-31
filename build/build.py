@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Build the whole site into dist/."""
 
+import json
 import os
 import shutil
 import sys
@@ -34,19 +35,24 @@ def not_found():
 
     Absolute hrefs (prefix "/"), because GitHub Pages serves this one file for
     a miss at any depth: a relative link would resolve against /foo/bar/.
+
+    It carries its own language pass instead of app.js: this page has no
+    dictionary and must not depend on a relative asset path, but a Vietnamese
+    reader who mistypes a URL should still land on Vietnamese links.
     """
     nav = "\n      ".join(
-        '<a class="%s" href="%s">%s</a>' % (cls, href, label)
-        for cls, href, label in framework.nav_links("en", "/", "")
+        '<a class="nav-link" href="/%s" data-vi="%s">%s</a>' % (href, vi, en)
+        for href, en, vi in framework.NAV
     )
-    return """<!DOCTYPE html>
+    twins = json.dumps(sorted(framework.TWIN_PATHS))
+    page = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found — Instrumentation &amp; Control</title>
+<title data-vi="Không tìm thấy trang — Đo lường &amp; Điều khiển">Page not found — Instrumentation &amp; Control</title>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/style.css?v=%s">
+<link rel="stylesheet" href="/assets/style.css?v=__VER__">
 </head>
 <body>
 <header class="topbar">
@@ -59,27 +65,70 @@ def not_found():
           <circle cx="16" cy="10" r="2.2" fill="currentColor"/>
         </svg>
       </span>
-      <span class="brand-txt"><strong>Instrumentation &amp; Control</strong><em>Field Guide</em></span>
+      <span class="brand-txt"><strong>Instrumentation &amp; Control</strong><em data-vi="Sổ tay hiện trường">Field Guide</em></span>
     </a>
     <nav class="nav" id="nav">
-      %s
+      __NAV__
     </nav>
     <div class="bar-right">
-      <a class="lang" href="/?lang=vi"><span class="lang-opt on">EN</span><span class="lang-sep">/</span><span class="lang-opt">VI</span></a>
+      <a class="lang" id="lang" href="/?lang=vi"><span class="lang-opt on">EN</span><span class="lang-sep">/</span><span class="lang-opt">VI</span></a>
     </div>
   </div>
 </header>
 <main class="sec" style="padding-top:90px">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">404</span><span class="line"></span><span class="eyebrow-label">Not found</span></div>
-    <h1 style="font-size:clamp(1.8rem,4vw,2.8rem)">This loop is open.</h1>
-    <p class="lede">The page you asked for does not exist. Return to the index and pick a branch.</p>
-    <div class="hero-cta"><a class="btn btn-p" href="/index.html">Back to home &rarr;</a></div>
+    <div class="eyebrow"><span class="num">404</span><span class="line"></span><span class="eyebrow-label" data-vi="Không tìm thấy">Not found</span></div>
+    <h1 style="font-size:clamp(1.8rem,4vw,2.8rem)" data-vi="Vòng điều khiển này đang hở.">This loop is open.</h1>
+    <p class="lede" data-vi="Trang bạn yêu cầu không tồn tại. Hãy quay về trang chủ và chọn một nhánh.">The page you asked for does not exist. Return to the index and pick a branch.</p>
+    <div class="hero-cta"><a class="btn btn-p" href="/index.html" data-vi="Về trang chủ →">Back to home &rarr;</a></div>
   </div>
 </main>
+<script>
+(function () {
+  var TWINS = __TWINS__;
+  var m = /[?&]lang=(en|vi)/.exec(location.search);
+  var l = m ? m[1] : null;
+  if (!l) { try { l = localStorage.getItem("pic-lang"); } catch (e) {} }
+  if (l !== "vi") return;
+
+  document.documentElement.lang = "vi";
+
+  /* Same rule as app.js: sections with a /vi/ twin point at the twin, the rest
+     take a ?lang=vi hint so the reader does not fall back into English. */
+  var links = document.querySelectorAll('a[href^="/"]');
+  for (var i = 0; i < links.length; i++) {
+    var a = links[i];
+    var raw = a.getAttribute("href");
+    var base = raw.slice(1);
+    if (TWINS.indexOf(base) > -1) {
+      a.setAttribute("href", "/vi/" + base);
+    } else if (base.indexOf("vi/") !== 0 && /\\.html(\\?|$)/.test(base)) {
+      a.setAttribute("href", raw + (raw.indexOf("?") > -1 ? "&" : "?") + "lang=vi");
+    }
+  }
+
+  var nodes = document.querySelectorAll("[data-vi]");
+  for (var j = 0; j < nodes.length; j++) {
+    nodes[j].textContent = nodes[j].getAttribute("data-vi");
+  }
+
+  var lang = document.getElementById("lang");
+  if (lang) {
+    lang.setAttribute("href", "/?lang=en");
+    var opts = lang.querySelectorAll(".lang-opt");
+    if (opts.length === 2) {
+      opts[0].className = "lang-opt";
+      opts[1].className = "lang-opt on";
+    }
+  }
+})();
+</script>
 </body>
 </html>
-""" % (framework.ASSET_VER, nav)
+"""
+    return (page.replace("__NAV__", nav)
+                .replace("__TWINS__", twins)
+                .replace("__VER__", str(framework.ASSET_VER)))
 
 
 NOT_FOUND = not_found()

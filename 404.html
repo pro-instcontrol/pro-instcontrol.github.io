@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found — Instrumentation &amp; Control</title>
+<title data-vi="Không tìm thấy trang — Đo lường &amp; Điều khiển">Page not found — Instrumentation &amp; Control</title>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/style.css?v=11">
 </head>
@@ -18,38 +18,78 @@
           <circle cx="16" cy="10" r="2.2" fill="currentColor"/>
         </svg>
       </span>
-      <span class="brand-txt"><strong>Instrumentation &amp; Control</strong><em>Field Guide</em></span>
+      <span class="brand-txt"><strong>Instrumentation &amp; Control</strong><em data-vi="Sổ tay hiện trường">Field Guide</em></span>
     </a>
     <nav class="nav" id="nav">
-      <a class="nav-link" href="/index.html">Home</a>
-      <a class="nav-link" href="/hot-topics/">Hot topics</a>
-      <a class="nav-link" href="/process.html">Process</a>
-      <a class="nav-link" href="/fundamentals.html">Fundamentals</a>
-      <a class="nav-link" href="/advanced/">Advanced</a>
-      <a class="nav-link" href="/instruments.html">Instruments</a>
-      <a class="nav-link" href="/install.html">Install</a>
-      <a class="nav-link" href="/control.html">Control</a>
-      <a class="nav-link" href="/applications.html">Applications</a>
-      <a class="nav-link" href="/safety.html">Safety</a>
-      <a class="nav-link" href="/tools.html">Tools</a>
-      <a class="nav-link" href="/standards.html">Standards</a>
-      <a class="nav-link" href="/glossary.html">Glossary</a>
-      <a class="nav-link" href="/education.html">Education</a>
-      <a class="nav-link" href="/books/">Books</a>
-      <a class="nav-link" href="/video-library/">Videos</a>
+      <a class="nav-link" href="/index.html" data-vi="Trang chủ">Home</a>
+      <a class="nav-link" href="/hot-topics/" data-vi="Chủ đề nóng">Hot topics</a>
+      <a class="nav-link" href="/process.html" data-vi="Quá trình">Process</a>
+      <a class="nav-link" href="/fundamentals.html" data-vi="Cơ bản">Fundamentals</a>
+      <a class="nav-link" href="/advanced/" data-vi="Nâng cao">Advanced</a>
+      <a class="nav-link" href="/instruments.html" data-vi="Thiết bị đo">Instruments</a>
+      <a class="nav-link" href="/install.html" data-vi="Lắp đặt">Install</a>
+      <a class="nav-link" href="/control.html" data-vi="Điều khiển">Control</a>
+      <a class="nav-link" href="/applications.html" data-vi="Ứng dụng">Applications</a>
+      <a class="nav-link" href="/safety.html" data-vi="An toàn">Safety</a>
+      <a class="nav-link" href="/tools.html" data-vi="Công cụ">Tools</a>
+      <a class="nav-link" href="/standards.html" data-vi="Tiêu chuẩn">Standards</a>
+      <a class="nav-link" href="/glossary.html" data-vi="Thuật ngữ">Glossary</a>
+      <a class="nav-link" href="/education.html" data-vi="Giáo dục">Education</a>
+      <a class="nav-link" href="/books/" data-vi="Sách">Books</a>
+      <a class="nav-link" href="/video-library/" data-vi="Video">Videos</a>
     </nav>
     <div class="bar-right">
-      <a class="lang" href="/?lang=vi"><span class="lang-opt on">EN</span><span class="lang-sep">/</span><span class="lang-opt">VI</span></a>
+      <a class="lang" id="lang" href="/?lang=vi"><span class="lang-opt on">EN</span><span class="lang-sep">/</span><span class="lang-opt">VI</span></a>
     </div>
   </div>
 </header>
 <main class="sec" style="padding-top:90px">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">404</span><span class="line"></span><span class="eyebrow-label">Not found</span></div>
-    <h1 style="font-size:clamp(1.8rem,4vw,2.8rem)">This loop is open.</h1>
-    <p class="lede">The page you asked for does not exist. Return to the index and pick a branch.</p>
-    <div class="hero-cta"><a class="btn btn-p" href="/index.html">Back to home &rarr;</a></div>
+    <div class="eyebrow"><span class="num">404</span><span class="line"></span><span class="eyebrow-label" data-vi="Không tìm thấy">Not found</span></div>
+    <h1 style="font-size:clamp(1.8rem,4vw,2.8rem)" data-vi="Vòng điều khiển này đang hở.">This loop is open.</h1>
+    <p class="lede" data-vi="Trang bạn yêu cầu không tồn tại. Hãy quay về trang chủ và chọn một nhánh.">The page you asked for does not exist. Return to the index and pick a branch.</p>
+    <div class="hero-cta"><a class="btn btn-p" href="/index.html" data-vi="Về trang chủ →">Back to home &rarr;</a></div>
   </div>
 </main>
+<script>
+(function () {
+  var TWINS = ["advanced/", "books/", "glossary.html", "hot-topics/", "video-library/"];
+  var m = /[?&]lang=(en|vi)/.exec(location.search);
+  var l = m ? m[1] : null;
+  if (!l) { try { l = localStorage.getItem("pic-lang"); } catch (e) {} }
+  if (l !== "vi") return;
+
+  document.documentElement.lang = "vi";
+
+  /* Same rule as app.js: sections with a /vi/ twin point at the twin, the rest
+     take a ?lang=vi hint so the reader does not fall back into English. */
+  var links = document.querySelectorAll('a[href^="/"]');
+  for (var i = 0; i < links.length; i++) {
+    var a = links[i];
+    var raw = a.getAttribute("href");
+    var base = raw.slice(1);
+    if (TWINS.indexOf(base) > -1) {
+      a.setAttribute("href", "/vi/" + base);
+    } else if (base.indexOf("vi/") !== 0 && /\.html(\?|$)/.test(base)) {
+      a.setAttribute("href", raw + (raw.indexOf("?") > -1 ? "&" : "?") + "lang=vi");
+    }
+  }
+
+  var nodes = document.querySelectorAll("[data-vi]");
+  for (var j = 0; j < nodes.length; j++) {
+    nodes[j].textContent = nodes[j].getAttribute("data-vi");
+  }
+
+  var lang = document.getElementById("lang");
+  if (lang) {
+    lang.setAttribute("href", "/?lang=en");
+    var opts = lang.querySelectorAll(".lang-opt");
+    if (opts.length === 2) {
+      opts[0].className = "lang-opt";
+      opts[1].className = "lang-opt on";
+    }
+  }
+})();
+</script>
 </body>
 </html>
