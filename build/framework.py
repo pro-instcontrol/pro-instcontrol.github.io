@@ -34,8 +34,6 @@ TAG_VI = "Sổ tay hiện trường"
 
 NAV = [
     ("index.html", "Home", "Trang chủ"),
-    ("books/", "Books", "Sách"),
-    ("video-library/", "Videos", "Video"),
     ("hot-topics/", "Hot topics", "Chủ đề nóng"),
     ("process.html", "Process", "Quá trình"),
     ("fundamentals.html", "Fundamentals", "Cơ bản"),
@@ -46,12 +44,17 @@ NAV = [
     ("applications.html", "Applications", "Ứng dụng"),
     ("safety.html", "Safety", "An toàn"),
     ("tools.html", "Tools", "Công cụ"),
-    ("comparison.html", "Comparison", "So sánh"),
-    ("geotechnical.html", "Geotech", "Địa kỹ thuật"),
     ("standards.html", "Standards", "Tiêu chuẩn"),
     ("glossary.html", "Glossary", "Thuật ngữ"),
     ("education.html", "Education", "Giáo dục"),
+    ("books/", "Books", "Sách"),
+    ("video-library/", "Videos", "Video"),
 ]
+
+# Comparison and geotechnical are deliberately not in NAV: they are side
+# branches off the tools and the instruments, reachable from the pages that
+# reference them, and the linear read is cleaner without them. They still
+# build, and they stay in the sitemap.
 
 # Sections that exist twice, as real URLs (/x/ and /vi/x/). Every generator that
 # emits the top nav has to agree on this set, so it lives here and nowhere else:
@@ -102,8 +105,6 @@ LONG = {
     "applications.html": ("Applications", "Ứng dụng"),
     "safety.html": ("Safety instrumented systems", "Hệ thống an toàn"),
     "tools.html": ("Engineering tools", "Công cụ kỹ thuật"),
-    "comparison.html": ("Process vs geotechnical", "Quá trình và địa kỹ thuật"),
-    "geotechnical.html": ("Geotechnical monitoring", "Quan trắc địa kỹ thuật"),
     "standards.html": ("Standards index", "Danh mục tiêu chuẩn"),
     "glossary.html": ("Glossary", "Thuật ngữ"),
     "education.html": ("Education", "Giáo dục"),
@@ -125,8 +126,6 @@ SHELL = {
     "shell.nav.applications": ("Applications", "Ứng dụng"),
     "shell.nav.safety": ("Safety", "An toàn"),
     "shell.nav.tools": ("Tools", "Công cụ"),
-    "shell.nav.comparison": ("Comparison", "So sánh"),
-    "shell.nav.geotechnical": ("Geotech", "Địa kỹ thuật"),
     "shell.nav.standards": ("Standards", "Tiêu chuẩn"),
     "shell.nav.glossary": ("Glossary", "Thuật ngữ"),
     "shell.nav.education": ("Education", "Giáo dục"),
@@ -312,7 +311,9 @@ NEXTPREV_RE = re.compile(r'<div class="nextprev">.*?</div>', re.S)
 def apply_chain(body, pg, active):
     """Force the foot-of-page pair to match CHAIN, wherever the template put it."""
     if active not in CHAIN_IDS:
-        return body
+        # A page outside the reading order keeps no pair: leaving its template's
+        # one in place would advertise a sequence the nav no longer contains.
+        return NEXTPREV_RE.sub("", body, count=1)
     block = nextprev(pg, active)
     if NEXTPREV_RE.search(body):
         return NEXTPREV_RE.sub(block, body, count=1)

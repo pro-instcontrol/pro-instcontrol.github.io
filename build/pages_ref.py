@@ -445,10 +445,6 @@ def build_geotechnical():
   <div class="card"><h3>%s</h3><p>%s</p></div>
   <div class="card"><h3>%s</h3><p>%s</p></div>
 </div>
-<div class="nextprev">
-  <a href="comparison.html"><span class="k">%s</span>%s</a>
-  <a href="standards.html" style="text-align:right"><span class="k">%s</span>%s</a>
-</div>
 """ % (
         pg.h2("Six ways a monitoring system fails", "Sáu cách hệ quan trắc thất bại"),
         pg.p(
@@ -499,10 +495,6 @@ def build_geotechnical():
             "Kiểu hư hỏng phổ biến nhất. Nếu bảng điều khiển không có người phụ trách và không có nhịp "
             "xem xét, dữ liệu là chi phí, không phải biện pháp kiểm soát.",
         ),
-        pg.span("Back", "Quay lại"),
-        pg.span("Process vs geotechnical", "Quá trình vs địa kỹ thuật"),
-        pg.span("Next", "Tiếp"),
-        pg.span("Standards index", "Danh mục tiêu chuẩn"),
     )
     body += section_close()
 

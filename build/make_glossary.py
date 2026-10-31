@@ -23,6 +23,7 @@ import re
 import unicodedata
 
 from books_site import head, header, esc
+import framework
 from framework import DIST
 from pages_glossary import TERMS
 
@@ -365,6 +366,12 @@ CSS = """<style>
 .gs a{color:#a8894f;text-decoration:none;border-bottom:1px solid #e6dcc6}
 .gs a:hover{border-bottom-color:#b45309;color:#b45309}
 .gempty{display:none;padding:40px 0;text-align:center;color:#8d8375;font-size:.95rem}
+.gchain{display:flex;justify-content:space-between;gap:20px;margin-top:54px;padding-top:24px;
+  border-top:1px solid #e8e2d6}
+.gchain a{text-decoration:none;border-bottom:none;font-size:.93rem;font-weight:500;color:#1d1d1d}
+.gchain a:hover{border-bottom:none;color:#b45309}
+.gchain .k{display:block;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+  color:#9a8f7a;margin-bottom:.15rem}
 @media (max-width:640px){.ghero h1{font-size:2.05rem}.gw{padding:0 16px 64px}}
 </style>"""
 
@@ -499,12 +506,15 @@ def render(lang, entries):
         '<span class="gcount" id="gcount"></span></div>'
         '<div class="gaz">%s</div></div>'
         '<div id="glist">%s</div><div class="gempty" id="gempty">%s</div>'
+        '%s'
         '</div></main>'
         % (crumb, "Thuật ngữ" if vi else "Glossary", lede, meta,
            "Tìm thuật ngữ…" if vi else "Search terms…",
            "Tìm thuật ngữ" if vi else "Search terms",
            "".join(letters), "".join(out),
-           "Không tìm thấy thuật ngữ nào." if vi else "No term matches that search.")
+           "Không tìm thấy thuật ngữ nào." if vi else "No term matches that search.",
+           framework.nextprev_plain(lang, "glossary.html", "/",
+                                    cls="nextprev gchain"))
     )
     return (head(lang, title, desc) + CSS + header(lang, active_books=False, switch_href=switch)
             + body + JS + "</body></html>")

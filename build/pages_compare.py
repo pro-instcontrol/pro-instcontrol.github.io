@@ -549,10 +549,6 @@ def build():
   <span class="lbl">%s</span>
   %s
 </div>
-<div class="nextprev">
-  <a href="tools.html"><span class="k">%s</span>%s</a>
-  <a href="geotechnical.html" style="text-align:right"><span class="k">%s</span>%s</a>
-</div>
 """ % (
         pg.h2("Six rules that follow from the matrix", "Sáu quy tắc rút ra từ bảng so sánh"),
         pg.p(
@@ -611,10 +607,6 @@ def build():
             "một bài toán điều khiển, tạo ra hệ thống đúng trên giấy và hỏng khi vận hành. Trường hợp đầu "
             "lãng phí; trường hợp sau nguy hiểm.",
         ),
-        pg.span("Back", "Quay lại"),
-        pg.span("Tools", "Công cụ"),
-        pg.span("Next", "Tiếp"),
-        pg.span("Geotechnical monitoring", "Quan trắc địa kỹ thuật"),
     )
     body += section_close()
 

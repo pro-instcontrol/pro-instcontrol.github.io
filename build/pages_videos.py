@@ -20,24 +20,6 @@ BASE = "https://pro-instcontrol.github.io"
 SITE = "Instrumentation &amp; Control"
 SITE_VI = "Đo lường &amp; Điều khiển"
 
-NAV = [
-    ("index.html", "Home", "Trang chủ"),
-    ("books/", "Books", "Sách"),
-    ("video-library/", "Videos", "Video"),
-    ("fundamentals.html", "Fundamentals", "Cơ bản"),
-    ("advanced/", "Advanced", "Nâng cao"),
-    ("instruments.html", "Instruments", "Thiết bị đo"),
-    ("install.html", "Install", "Lắp đặt"),
-    ("control.html", "Control", "Điều khiển"),
-    ("applications.html", "Applications", "Ứng dụng"),
-    ("safety.html", "Safety", "An toàn"),
-    ("tools.html", "Tools", "Công cụ"),
-    ("comparison.html", "Comparison", "So sánh"),
-    ("geotechnical.html", "Geotech", "Địa kỹ thuật"),
-    ("standards.html", "Standards", "Tiêu chuẩn"),
-    ("glossary.html", "Glossary", "Thuật ngữ"),
-    ("education.html", "Education", "Giáo dục"),
-]
 
 LEVEL = {
     "en": {"B": "Beginner", "I": "Intermediate", "A": "Advanced"},
