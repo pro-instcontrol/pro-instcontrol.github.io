@@ -53,6 +53,56 @@ PATH = [
     ("6", ["KmxV4eZqxnQ", "1ehMkgs90cw", "ekg9aQxmag4", "drV5uTnjx40"]),
 ]
 
+# Compact labels for the related-topic row under each section heading.
+SHORT = {
+    "start": ("Foundations", "Nền tảng"),
+    "control": ("PID &amp; control", "Điều khiển &amp; PID"),
+    "pressure": ("Pressure", "Áp suất"),
+    "temp": ("Temperature", "Nhiệt độ"),
+    "flow": ("Flow", "Lưu lượng"),
+    "level": ("Level", "Mức"),
+    "analyzers": ("Analyzers", "Phân tích"),
+    "valves": ("Valves", "Van"),
+    "drawings": ("P&amp;IDs", "P&amp;ID"),
+    "deliverables": ("Deliverables", "Hồ sơ"),
+    "procurement": ("Procurement", "Mua sắm"),
+    "systems": ("PLC &amp; DCS", "PLC &amp; DCS"),
+    "safety": ("SIS &amp; SIL", "SIS &amp; SIL"),
+    "alarms": ("Alarms", "Báo động"),
+    "calibration": ("Calibration", "Hiệu chuẩn"),
+    "signals": ("Signals", "Tín hiệu"),
+    "install": ("Installation", "Lắp đặt"),
+    "career": ("Career", "Nghề nghiệp"),
+    "sims": ("Simulators", "Mô phỏng"),
+    "tieng-viet": ("Tiếng Việt", "Tiếng Việt"),
+}
+
+# Which topics a reader is most likely to want next. Hand-picked, not derived:
+# the pairings follow how the work actually flows (measure -> read the drawing ->
+# close the loop -> prove it is safe) rather than tag overlap.
+RELATED = {
+    "start": ["control", "pressure", "drawings", "career"],
+    "control": ["valves", "drawings", "sims", "alarms"],
+    "pressure": ["temp", "flow", "level", "calibration"],
+    "temp": ["pressure", "flow", "level", "calibration"],
+    "flow": ["pressure", "temp", "level", "valves"],
+    "level": ["pressure", "flow", "temp", "calibration"],
+    "analyzers": ["signals", "calibration", "safety", "temp"],
+    "valves": ["control", "flow", "install", "safety"],
+    "drawings": ["deliverables", "control", "install", "signals"],
+    "deliverables": ["drawings", "procurement", "systems", "career"],
+    "procurement": ["deliverables", "valves", "drawings", "systems"],
+    "systems": ["control", "signals", "drawings", "safety"],
+    "safety": ["alarms", "valves", "systems", "install"],
+    "alarms": ["safety", "systems", "control", "calibration"],
+    "calibration": ["pressure", "temp", "flow", "level"],
+    "signals": ["systems", "analyzers", "drawings", "install"],
+    "install": ["valves", "signals", "drawings", "safety"],
+    "career": ["start", "deliverables", "sims", "procurement"],
+    "sims": ["control", "career", "start", "calibration"],
+    "tieng-viet": ["start", "calibration", "pressure", "control"],
+}
+
 T = {
     "en": {
         "title": "Video library — process instrumentation &amp; control",
@@ -77,6 +127,7 @@ T = {
         "count": "%d of %d videos",
         "empty": "Nothing matches that filter. Clear the search and try again.",
         "top": "Back to top",
+        "related": "Related topics",
         "note": "Links open on YouTube in a new tab. Videos remain the property of their creators; "
                 "the notes here are editorial, and a link is not an endorsement of every claim in a clip.",
         "prov_h": "Where these come from",
@@ -141,6 +192,7 @@ T = {
         "count": "%d trên %d video",
         "empty": "Không có video nào khớp bộ lọc. Hãy xoá từ khoá và thử lại.",
         "top": "Lên đầu trang",
+        "related": "Chủ đề liên quan",
         "note": "Liên kết mở trên YouTube ở tab mới. Video thuộc quyền tác giả của người tạo; "
                 "phần ghi chú ở đây là ý kiến biên tập, và một liên kết không có nghĩa là bảo chứng "
                 "cho mọi khẳng định trong video.",
@@ -202,7 +254,7 @@ def page_url(lang):
 
 def head(lang, prefix, n_videos, n_cats):
     t = T[lang]
-    css = prefix + "assets/style.css?v=3"
+    css = prefix + "assets/style.css?v=4"
     ld = {
         "@context": "https://schema.org",
         "@graph": [
@@ -449,6 +501,21 @@ def card(lang, v):
     )
 
 
+def related_nav(lang, cid):
+    """Chips pointing at the topics a reader usually wants next."""
+    t = T[lang]
+    idx = 0 if lang == "en" else 1
+    links = []
+    for rid in RELATED.get(cid, []):
+        emo = next(c[1] for c in videos_data.CATS if c[0] == rid)
+        label = SHORT[rid][idx]
+        links.append('<a href="#cat-%s"><span aria-hidden="true">%s</span>%s</a>' % (rid, emo, label))
+    if not links:
+        return ""
+    return ('<nav class="vrelated" aria-label="%s"><span class="vrel-lbl">%s</span>%s</nav>'
+            % (t["related"], t["related"], "".join(links)))
+
+
 def sections(lang, by_cat):
     t = T[lang]
     out = []
@@ -461,11 +528,13 @@ def sections(lang, by_cat):
   <div class="vid-sec-head">
     <h2><span class="vemoji" aria-hidden="true">%s</span>%s<span class="vcount">%d</span></h2>
     <p>%s</p>
+    %s
     <a class="totop" href="#top">↑ %s</a>
   </div>
   <div class="vgrid">%s</div>
 </section>
-""" % (cid, emo, html.escape(name), len(items), html.escape(desc), t["top"], cards))
+""" % (cid, emo, html.escape(name), len(items), html.escape(desc),
+       related_nav(lang, cid), t["top"], cards))
     return "".join(out)
 
 
