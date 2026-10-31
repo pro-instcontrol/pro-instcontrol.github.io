@@ -2056,9 +2056,680 @@ def fig_10_36():
                 "a differential receiver box, and a feedback path labelled correction – measured solution.")
 
 
+# ------------------------------------------------- section 10.5 — occupancy
+def _cap_v(cx, y, half=17, gap=7):
+    """Capacitor in a vertical lead: two horizontal plates straddling y."""
+    return (_l(cx - half, y - gap / 2.0, cx + half, y - gap / 2.0, 1.8)
+            + _l(cx - half, y + gap / 2.0, cx + half, y + gap / 2.0, 1.8))
+
+
+def _cap_h(x, cy, half=14, gap=7):
+    """Capacitor in a horizontal lead: two vertical plates straddling x."""
+    return (_l(x - gap / 2.0, cy - half, x - gap / 2.0, cy + half, 1.8)
+            + _l(x + gap / 2.0, cy - half, x + gap / 2.0, cy + half, 1.8))
+
+
+def _res_v(cx, y, h=34, w=6):
+    """Resistor zigzag in a vertical lead, centred on y."""
+    n = 6
+    y0, y1 = y - h / 2.0, y + h / 2.0
+    pts = []
+    for i in range(n + 1):
+        yy = y0 + (y1 - y0) * i / float(n)
+        pts.append((cx + (0 if i in (0, n) else (w if i % 2 else -w)), yy))
+    return _poly(pts, "none", 1.5)
+
+
+def _gnd(x, y):
+    """Earth symbol hanging below (x, y)."""
+    return (_l(x, y, x, y + 9, 1.2) + _l(x - 9, y + 9, x + 9, y + 9, 1.8)
+            + _l(x - 6, y + 13, x + 6, y + 13, 1.3) + _l(x - 3, y + 17, x + 3, y + 17, 1.0))
+
+
+def _mos_v(x, gy, half=16, gate_dx=20):
+    """Vertical MOSFET sitting on the rail at x; the gate lead enters at gy from
+    the left, the drain leaves upward and the source downward. The gate plate and
+    the channel are drawn as two parallel bars so the symbol reads as a device."""
+    ch = x - 8
+    gp = x - 17
+    o = [_l(x - gate_dx, gy, gp, gy, 1.1),
+         _l(gp, gy - half, gp, gy + half, 1.8)]
+    for a, b in ((-half, -5), (-4, 4), (5, half)):
+        o.append(_l(ch, gy + a, ch, gy + b, 1.7))
+    o.append(_l(ch, gy - 11, x, gy - 11, 1.3))
+    o.append(_l(x, gy - 11, x, gy - half - 6, 1.3))
+    o.append(_l(ch, gy + 11, x, gy + 11, 1.3))
+    o.append(_l(x, gy + 11, x, gy + half + 6, 1.3))
+    return "".join(o)
+
+
+def _person(x, y, h=46.0, fill="#3d3d3d", walk=False, arm_up=False):
+    """Pictogram figure; (x, y) is the point between the feet, h the height.
+    The shoulders sit just below the neck, never inside the head."""
+    hr = h * 0.10
+    neck = y - h + 2 * hr
+    sh = neck + h * 0.045
+    hip = y - h * 0.45
+    o = [_c(x, y - h + hr, hr, fill, 0.9, fill)]
+    o.append(_l(x, neck, x, hip, 2.2, fill))
+    if walk:
+        o.append(_l(x, sh, x - h * 0.24, sh + h * 0.20, 1.8, fill))
+        o.append(_l(x, sh, x + h * 0.26, sh + h * 0.14, 1.8, fill))
+        o.append(_l(x, hip, x - h * 0.30, y, 1.9, fill))
+        o.append(_l(x, hip, x + h * 0.22, y - h * 0.08, 1.9, fill))
+        o.append(_l(x + h * 0.22, y - h * 0.08, x + h * 0.32, y, 1.7, fill))
+    else:
+        o.append(_l(x, sh, x - h * 0.22, sh + h * 0.26, 1.7, fill))
+        if arm_up:
+            o.append(_l(x, sh, x + h * 0.34, sh - h * 0.14, 1.7, fill))
+        else:
+            o.append(_l(x, sh, x + h * 0.22, sh + h * 0.26, 1.7, fill))
+        o.append(_l(x, hip, x - h * 0.17, y, 1.8, fill))
+        o.append(_l(x, hip, x + h * 0.17, y, 1.8, fill))
+    return "".join(o)
+
+
+def fig_10_37():
+    """An intruder adds capacitance to a detection circuit."""
+    b = []
+
+    def plate(cx, top=74, w=48, h=40):
+        o = [_r(cx - w / 2.0, top, w, h, "#4a4a4a", 1.0)]
+        return "".join(o)
+
+    # ---- panel A: plate, meter, earth
+    b.append(_r(24, 206, 256, 15, "#ddd6c6", 0.9))
+    b.append(_hatch(24, 206, 256, 15, 8, "#b3aa96"))
+    b.append(_l(24, 206, 280, 206, 1.5))
+    b.append(_t(48, 217, "Đất", 7.4, "middle", "#333"))
+    b.append(_t(28, 58, "A", 10.5, "start", "#222", True))
+
+    b.append(plate(152))
+    b.append(_t(152, 66, "Bản cực", 7.4, "middle", "#333"))
+    b.append(_l(152, 114, 152, 206, 1.1))
+    b.append(_cap_v(152, 146))
+    b.append(_t(128, 149, "C₁", 7.8, "end", "#222", True))
+    b.append(_l(152, 170, 196, 170, 1.0))
+    b.append(_box(196, 158, 78, 24, "", 6.4, lines=["máy đo", "điện dung"]))
+    b.append(_l(235, 182, 235, 206, 1.0))
+
+    # ---- panel B: the same circuit with a body near the plate
+    b.append(_r(320, 206, 280, 15, "#ddd6c6", 0.9))
+    b.append(_hatch(320, 206, 280, 15, 8, "#b3aa96"))
+    b.append(_l(320, 206, 600, 206, 1.5))
+    b.append(_t(344, 217, "Đất", 7.4, "middle", "#333"))
+    b.append(_t(324, 58, "B", 10.5, "start", "#222", True))
+
+    b.append(plate(494))
+    b.append(_t(494, 66, "Bản cực", 7.4, "middle", "#333"))
+    b.append(_l(494, 114, 494, 206, 1.1))
+    b.append(_cap_v(494, 146))
+    b.append(_t(470, 149, "C₁", 7.8, "end", "#222", True))
+    b.append(_l(494, 170, 528, 170, 1.0))
+    b.append(_box(528, 158, 70, 24, "", 6.4, lines=["máy đo", "điện dung"]))
+    b.append(_l(563, 182, 563, 206, 1.0))
+
+    # body standing on the earth plate
+    b.append(_person(376, 186, 92, "#3d3d3d", arm_up=True))
+    # C_a between the raised hand and the plate
+    b.append(_l(407, 104, 432, 104, 1.1))
+    b.append(_cap_h(440, 104, 13))
+    b.append(_l(444, 104, 470, 104, 1.1))
+    b.append(_t(438, 86, "Cₐ", 7.8, "middle", "#222", True))
+    # C_b between the feet and the earth
+    b.append(_l(376, 186, 376, 190, 1.1))
+    b.append(_cap_v(376, 194, 15, 6))
+    b.append(_l(376, 197, 376, 206, 1.1))
+    b.append(_t(354, 198, "C_b", 7.8, "end", "#222", True))
+
+    return _fig(svg(620, 240, STY + "".join(b), "Vật xâm nhập làm tăng điện dung"),
+                "Hình 10-37. Vật xâm nhập đưa thêm điện dung vào mạch phát hiện. (A) Bản cực cách "
+                "điện với đất một điện dung C₁. (B) Khi người tiến lại gần, hình thành thêm hai tụ: "
+                "Cₐ giữa bản cực và thân người, C_b giữa thân người và đất, nên điện dung tổng tăng "
+                "một lượng ΔC.",
+                "Figure 10-37. An intruder brings additional capacitance to a detection circuit. "
+                "(A) The test plate sits at C₁ to earth. (B) A body near the plate adds Cₐ between "
+                "plate and body and C_b between body and earth, so the total rises by ΔC.",
+                "Hai sơ đồ A và B: bản cực treo trên tấm đất, tụ C₁ nối bản cực với đất, hộp máy đo "
+                "điện dung; ở B thêm một người đứng trên tấm đất với tụ Cₐ lên bản cực và C_b xuống đất.",
+                "Two diagrams A and B: a plate hanging above an earth bar, capacitor C₁ from plate to "
+                "earth, and a capacitance meter box; B adds a standing person with Cₐ up to the plate "
+                "and C_b down to earth.")
+
+
+def fig_10_38():
+    """Circuit diagram for a capacitive intrusion detector."""
+    b = []
+    rail = 300
+
+    b.append(_t(rail, 24, "V_ref", 7.8, "middle", "#222", True))
+    b.append(_l(rail, 32, rail, 54, 1.1))
+    b.append(_mos_v(rail, 76))
+    b.append(_l(rail, 98, rail, 108, 1.1))
+    b.append(_mos_v(rail, 130))
+    b.append(_l(rail, 152, rail, 230, 1.1))
+    b.append(_l(rail, 268, rail, 296, 1.1))
+    b.append(_t(266, 70, "Q₁", 7.6, "end", "#222", True))
+    b.append(_t(266, 124, "Q₂", 7.6, "end", "#222", True))
+    b.append(_t(266, 240, "Q₃", 7.6, "end", "#222", True))
+    b.append(_t(314, 72, "p", 6.8, "start", "#666"))
+    b.append(_t(314, 126, "n", 6.8, "start", "#666"))
+
+    # oscillator drives both gates
+    b.append(_box(46, 88, 110, 36, "bộ dao động", 6.8))
+    b.append(_l(156, 106, 190, 106, 1.1))
+    b.append(_l(190, 76, 190, 130, 1.1))
+    b.append(_l(190, 76, 280, 76, 1.1))
+    b.append(_l(190, 130, 280, 130, 1.1))
+    b.append(_dot(190, 106, 2.4))
+
+    # probe capacitance to earth
+    b.append(_l(rail, 190, 240, 190, 1.1))
+    b.append(_l(240, 190, 240, 206, 1.1))
+    b.append(_cap_v(240, 212))
+    b.append(_l(240, 219, 240, 296, 1.1))
+    b.append(_t(216, 215, "C_p", 7.8, "end", "#222", True))
+    b.append(_dot(rail, 190, 2.8))
+    b.append(_t(310, 186, "e_p", 7.8, "start", "#222", True))
+
+    # bias resistor from the node to the sink gate
+    b.append(_l(rail, 200, 272, 200, 1.1))
+    b.append(_l(272, 200, 272, 208, 1.1))
+    b.append(_res_v(272, 222))
+    b.append(_l(272, 236, 272, 246, 1.1))
+    b.append(_l(272, 246, 280, 246, 1.1))
+    b.append(_t(254, 226, "R₁", 7.8, "end", "#222", True))
+
+    # filter capacitor across the sink
+    b.append(_l(rail, 216, 350, 216, 1.1))
+    b.append(_l(350, 216, 350, 246, 1.1))
+    b.append(_cap_v(350, 254, 16))
+    b.append(_l(350, 261, 350, 296, 1.1))
+    b.append(_t(366, 258, "C₁", 7.8, "start", "#222", True))
+
+    # earth rail
+    b.append(_l(240, 296, 350, 296, 1.4))
+    b.append(_gnd(295, 296))
+
+    # coupling to the comparator
+    b.append(_l(rail, 190, 390, 190, 1.1))
+    b.append(_cap_h(398, 190, 15))
+    b.append(_l(405, 190, 430, 190, 1.1))
+    b.append(_t(398, 168, "C₂", 7.8, "middle", "#222", True))
+
+    b.append(_poly([(430, 164), (430, 216), (478, 190)], PAPER, 1.4, INK, close=True))
+    b.append(_t(440, 178, "–", 9.0, "middle", "#222", True))
+    b.append(_t(440, 204, "+", 9.0, "middle", "#222", True))
+    b.append(_l(430, 204, 412, 204, 1.1))
+    b.append(_l(412, 204, 412, 226, 1.1))
+    b.append(_t(412, 238, "V_T", 7.8, "middle", "#222", True))
+    b.append(_arrow(478, 190, 538, 190, 1.1))
+    b.append(_t(518, 181, "V_out", 7.8, "middle", "#222", True))
+
+    return _fig(svg(640, 330, STY + "".join(b), "Mạch phát hiện xâm nhập điện dung"),
+                "Hình 10-38. Sơ đồ mạch phát hiện xâm nhập bằng điện dung. Khi đầu ra của bộ dao "
+                "động xuống thấp, Q₁ mở và nạp điện dung đầu dò C_p từ V_ref; khi nó lên cao, Q₁ "
+                "đóng, Q₂ mở và C_p xả qua nguồn dòng không đổi dựng bằng Q₃. Tụ C₁ lọc các gai áp, "
+                "điện áp trung bình e_p tỉ lệ với C_p. Khi có người lại gần, C_p tăng, e_p dâng lên; "
+                "thay đổi này qua C₂ tới bộ so sánh có ngưỡng cố định V_T và tạo ra V_out.",
+                "Figure 10-38. Circuit diagram for a capacitive intrusion detector. When the "
+                "oscillator output goes low, Q₁ conducts and charges the probe capacitance C_p from "
+                "V_ref; when it goes high, Q₁ closes and Q₂ opens so C_p discharges through the "
+                "constant-current sink built around Q₃. C₁ filters the voltage spikes and the mean "
+                "voltage e_p represents C_p. An intruder raises C_p, so e_p rises; the change passes "
+                "through C₂ to a comparator with a fixed threshold V_T, producing V_out.",
+                "Sơ đồ mạch: V_ref ở trên, hai transistor Q₁ và Q₂ nối tiếp, bộ dao động điều khiển "
+                "cổng của cả hai, tụ đầu dò C_p xuống đất, điện trở R₁, transistor Q₃ làm nguồn dòng, "
+                "tụ C₁, tụ ghép C₂ và bộ so sánh có ngưỡng V_T cho ra V_out.",
+                "A circuit: V_ref at the top, transistors Q₁ and Q₂ in series, an oscillator driving "
+                "both gates, the probe capacitor C_p to earth, resistor R₁, transistor Q₃ as a current "
+                "sink, capacitor C₁, coupling capacitor C₂ and a comparator with threshold V_T giving "
+                "V_out.")
+
+
+def fig_10_39():
+    """Optoelectronic motion detector: optics (A) and window comparator (B)."""
+    b = []
+
+    # ---- panel A
+    b.append(_t(28, 44, "A", 10.5, "start", "#222", True))
+    b.append(_l(96, 110, 258, 110, 0.8, "#aaa", "5 4"))
+    b.append(_person(96, 158, 46, "#3d3d3d", walk=True))
+    b.append(_t(96, 96, "Vật xâm nhập", 7.2, "middle", "#333"))
+    # direction of movement and the angle to the lens
+    b.append(_arrow(112, 158, 236, 158, 0.9, "#777", "4 3"))
+    b.append(_t(174, 172, "hướng chuyển động", 7.0, "middle", "#555"))
+    b.append(_l(112, 158, 258, 110, 0.9, "#777", "4 3"))
+    b.append(_p("M 150 158 A 38 38 0 0 0 147 147", "none", 0.9, "#777"))
+    b.append(_t(154, 150, "α", 8.0, "start", "#444", True))
+
+    # lens
+    b.append('<ellipse cx="272" cy="110" rx="13" ry="40" fill="#6b6b6b" stroke="%s" '
+             'stroke-width="1.2"/>' % INK)
+    b.append(_t(272, 58, "Thấu kính", 7.2, "middle", "#333"))
+
+    # rays through the lens to the element
+    b.append(_l(96, 118, 272, 74, 0.8, "#8a8a8a", "4 3"))
+    b.append(_l(96, 156, 272, 146, 0.8, "#8a8a8a", "4 3"))
+    b.append(_l(272, 74, 396, 108, 0.8, "#8a8a8a", "4 3"))
+    b.append(_l(272, 146, 396, 108, 0.8, "#8a8a8a", "4 3"))
+
+    # sensing element
+    b.append(_r(396, 84, 11, 48, "#4a4a4a", 1.0))
+    b.append(_t(440, 74, "phần tử cảm quang", 6.8, "end", "#333"))
+    b.append(_person(424, 132, 22, "#6b6b6b", walk=True))
+    b.append(_t(436, 156, "ảnh của vật", 6.6, "start", "#555"))
+
+    # processing chain
+    b.append(_t(506, 36, "tới mạch xử lý", 7.0, "middle", "#444"))
+    b.append(_r(446, 42, 120, 84, PAPER, 1.2))
+    b.append(_box(452, 48, 108, 22, "khuếch đại", 6.8))
+    b.append(_box(452, 84, 108, 22, "so sánh cửa sổ", 6.8))
+    b.append(_l(402, 108, 446, 108, 1.1))
+    b.append(_l(446, 108, 446, 95, 1.1))
+    b.append(_l(446, 95, 452, 95, 1.1))
+    b.append(_l(506, 70, 506, 84, 1.1))
+    b.append(_t(514, 79, "v", 7.4, "start", "#222", True))
+    b.append(_arrow(566, 95, 598, 95, 1.0))
+    b.append(_t(586, 87, "e", 7.6, "middle", "#222", True))
+
+    # ---- panel B
+    b.append(_t(28, 214, "B", 10.5, "start", "#222", True))
+    b.append(_l(80, 330, 80, 222, 1.2))
+    b.append(_l(80, 330, 540, 330, 1.2))
+    b.append(_arrow(80, 234, 80, 214, 1.2))
+    b.append(_t(68, 220, "V", 8.2, "middle", "#222", True))
+    b.append(_t(508, 344, "thời gian", 7.6, "middle", "#444"))
+    b.append(_arrow(540, 330, 552, 330, 1.0))
+
+    UP, LO = 262, 296                       # +threshold, −threshold
+
+    def vt(x):
+        return (279
+                - 34 * math.exp(-((x - 175) / 24.0) ** 2)
+                + 26 * math.exp(-((x - 290) / 28.0) ** 2)
+                - 30 * math.exp(-((x - 355) / 20.0) ** 2)
+                + 15 * math.exp(-((x - 432) / 16.0) ** 2)
+                - 17 * math.exp(-((x - 476) / 14.0) ** 2)
+                + 2.0 * math.sin(x * 0.85))
+
+    b.append(_l(90, UP, 532, UP, 0.9, "#777", "6 4"))
+    b.append(_l(90, LO, 532, LO, 0.9, "#777", "6 4"))
+    b.append(_t(536, UP + 3, "ngưỡng trên", 6.6, "start", "#555"))
+    b.append(_t(536, LO + 3, "ngưỡng dưới", 6.6, "start", "#555"))
+
+    pts = [(x, vt(x)) for x in range(90, 531)]
+    b.append(_p("M " + " L ".join("%s %s" % (_f(x), _f(y)) for x, y in pts), "none", 1.5, INK))
+
+    # window marker
+    b.append(_l(516, UP, 516, LO, 0.9, RED))
+    b.append(_arrow(516, UP, 516, UP + 12, 0.9, RED))
+    b.append(_arrow(516, LO, 516, LO - 12, 0.9, RED))
+    b.append(_t(536, (UP + LO) / 2.0 + 3, "cửa sổ", 6.8, "start", RED))
+
+    # logic output, aligned with the excursions
+    base, high = 356, 342
+    b.append(_t(68, base + 3, "e", 7.6, "middle", "#222", True))
+    seg, cur = [], base
+    for x in range(90, 531):
+        y = high if (vt(x) < UP or vt(x) > LO) else base
+        if y != cur:
+            seg.append((x, cur))
+            seg.append((x, y))
+            cur = y
+    seg.append((530, cur))
+    b.append(_p("M " + " L ".join("%s %s" % (_f(x), _f(y)) for x, y in seg), "none", 1.5, RED))
+    b.append(_t(92, high - 5, "1", 6.6, "start", "#666"))
+    b.append(_t(92, base + 11, "0", 6.6, "start", "#666"))
+
+    return _fig(svg(620, 372, STY + "".join(b), "Đầu dò chuyển động quang điện tử"),
+                "Hình 10-39. Bố trí chung của một đầu dò chuyển động quang điện tử. (A) Thấu kính "
+                "tạo ảnh của vật đang chuyển động; khi ảnh quét qua trục quang, nó chồng lên phần "
+                "tử cảm quang và phần tử phát ra tín hiệu. (B) Tín hiệu được khuếch đại rồi so với "
+                "hai ngưỡng trong bộ so sánh cửa sổ; mỗi lần vượt ngưỡng cho ra một xung logic e. "
+                "Không chồng lên nhau thì không phát hiện.",
+                "Figure 10-39. General arrangement of an optoelectronic motion detector. (A) A lens "
+                "forms an image of a moving object; when the image crosses the optical axis it "
+                "superimposes on the sensing element and the element responds with a signal. (B) The "
+                "signal is amplified and compared with two thresholds in a window comparator; each "
+                "excursion beyond a threshold yields a logic pulse e. No overlap, no detection.",
+                "Hai phần: A là hình học quang học gồm vật xâm nhập, thấu kính, phần tử cảm quang và "
+                "khối khuếch đại cùng bộ so sánh cửa sổ; B là đồ thị tín hiệu V theo thời gian với "
+                "hai ngưỡng, cửa sổ giữa chúng và dãy xung logic e bên dưới.",
+                "Two parts: A is the optical layout with the intruder, the lens, the sensing element "
+                "and the amplifier and window comparator block; B is the signal V against time with "
+                "two thresholds, the window between them and the logic pulse train e below.")
+
+
+def fig_10_40():
+    """Complex shapes of the light sensing element."""
+    b = []
+
+    def comb(x0, y_top, y_bot, teeth_top, teeth_bot, tw=13):
+        o = [_r(x0, y_top, 196, 7, "#4a4a4a", 0.9),
+             _r(x0, y_bot, 196, 7, "#4a4a4a", 0.9)]
+        for x in teeth_top:
+            o.append(_r(x0 + x, y_top + 7, tw, y_bot - y_top - 14, "#4a4a4a", 0.9))
+        for x in teeth_bot:
+            o.append(_r(x0 + x, y_top + 14, tw, y_bot - y_top - 21, "#4a4a4a", 0.9))
+        return "".join(o)
+
+    # ---- A: interdigitated (series)
+    b.append(_t(28, 52, "A", 10.5, "start", "#222", True))
+    b.append(comb(64, 64, 130, (10, 56, 102, 148), (33, 79, 125, 171), 14))
+    b.append(_l(64, 97, 46, 97, 1.1))
+    b.append(_t(40, 100, "v", 7.8, "end", "#222", True))
+    # dimensions
+    b.append(_arrow(80, 50, 93, 50, 0.7, "#666"))
+    b.append(_arrow(93, 50, 80, 50, 0.7, "#666"))
+    b.append(_t(86, 45, "d", 7.0, "middle", "#555"))
+    b.append(_arrow(97, 50, 110, 50, 0.7, "#666"))
+    b.append(_arrow(110, 50, 97, 50, 0.7, "#666"))
+    b.append(_t(104, 45, "w", 7.0, "middle", "#555"))
+    b.append(_arrow(114, 50, 127, 50, 0.7, "#666"))
+    b.append(_arrow(127, 50, 114, 50, 0.7, "#666"))
+    b.append(_t(120, 45, "d", 7.0, "middle", "#555"))
+    b.append(_arrow(206, 84, 206, 100, 0.8, RED))
+    b.append(_t(212, 96, "ảnh của vật", 6.6, "start", RED))
+
+    # ---- B: parallel grid
+    b.append(_t(28, 158, "B", 10.5, "start", "#222", True))
+    b.append(_r(64, 162, 196, 7, "#4a4a4a", 0.9))
+    b.append(_r(64, 214, 196, 7, "#4a4a4a", 0.9))
+    for i in range(8):
+        b.append(_r(72 + i * 24, 169, 11, 45, "#4a4a4a", 0.9))
+    b.append(_l(64, 196, 46, 196, 1.1))
+    b.append(_t(40, 199, "v", 7.8, "end", "#222", True))
+    b.append(_arrow(72, 236, 96, 236, 0.7, "#666"))
+    b.append(_arrow(96, 236, 72, 236, 0.7, "#666"))
+    b.append(_t(84, 232, "d", 7.0, "middle", "#555"))
+
+    # ---- C: mask in front of the element
+    b.append(_t(300, 52, "C", 10.5, "start", "#222", True))
+    b.append('<ellipse cx="316" cy="128" rx="9" ry="26" fill="#6b6b6b" stroke="%s" '
+             'stroke-width="1"/>' % INK)
+    b.append(_t(316, 92, "thấu kính", 6.6, "middle", "#444"))
+    # mask slats
+    for i, yy in enumerate((78, 104, 130, 156)):
+        b.append(_r(392, yy, 9, 16, "#4a4a4a", 0.9))
+    b.append(_t(396, 70, "mặt nạ", 6.8, "middle", "#444"))
+    # sensing element, drawn as a tilted plate with alternating bands
+    b.append(_poly([(470, 62), (492, 72), (492, 186), (470, 176)], "#efe9dc", 1.1, INK, True))
+    for i, yy in enumerate((74, 100, 126, 152)):
+        b.append(_poly([(470, yy), (492, yy + 10), (492, yy + 22), (470, yy + 12)],
+                       "#4a4a4a", 0.6, "#4a4a4a", True))
+    b.append(_t(494, 40, "phần tử", 6.6, "middle", "#444"))
+    b.append(_t(494, 48, "cảm quang", 6.6, "middle", "#444"))
+    # rays through two slits
+    b.append(_l(325, 128, 392, 86, 0.8, "#8a8a8a", "4 3"))
+    b.append(_l(401, 86, 470, 78, 0.8, "#8a8a8a", "4 3"))
+    b.append(_l(325, 128, 392, 138, 0.8, "#8a8a8a", "4 3"))
+    b.append(_l(401, 138, 470, 148, 0.8, "#8a8a8a", "4 3"))
+    b.append(_t(360, 100, "A", 7.6, "middle", "#444", True))
+    b.append(_t(360, 148, "B", 7.6, "middle", "#444", True))
+    b.append(_arrow(432, 196, 456, 196, 0.7, "#666"))
+    b.append(_arrow(456, 196, 432, 196, 0.7, "#666"))
+    b.append(_t(444, 192, "d", 7.0, "middle", "#555"))
+
+    return _fig(svg(560, 250, STY + "".join(b), "Hình dạng phức hợp của phần tử cảm quang"),
+                "Hình 10-40. Các dạng phức hợp của phần tử cảm quang. (A) Các đoạn mắc nối tiếp "
+                "theo hình răng lược; (B) lưới song song; (C) dùng mặt nạ lưới đặt trước phần tử. "
+                "Mỗi đoạn dẫn hoặc không dẫn tuỳ theo ảnh của vật có phủ lên nó hay không, nên đầu "
+                "ra là một tín hiệu xoay chiều khi ảnh quét ngang qua.",
+                "Figure 10-40. Complex shapes of the light sensing element. (A) Interdigitated "
+                "segments in series; (B) a parallel grid; (C) a grid mask in front of the element. "
+                "Each segment conducts or not depending on whether the object's image covers it, so "
+                "the output is an alternating signal as the image sweeps across.",
+                "Ba phần: A là hình răng lược hai lược cài nhau có kích thước d và w; B là các dải "
+                "song song nối chung hai thanh; C là hình phối cảnh gồm thấu kính, mặt nạ có các khe "
+                "và phần tử cảm quang có dải xen kẽ, với hai tia A và B.",
+                "Three parts: A is an interdigitated pair of combs with dimensions d and w; B is "
+                "parallel strips joined by two bars; C is a perspective view with a lens, a slotted "
+                "mask and a banded sensing element, with rays A and B.")
+
+
+def fig_10_41():
+    """A facet lens creates multiple images near the sensing element."""
+    b = []
+    obj_x, lens_x = 96, 300
+    facets = (70, 100, 130, 160, 190)
+    img_x = 486
+
+    b.append(_person(obj_x, 168, 54, "#3d3d3d"))
+    b.append(_t(obj_x, 106, "vật", 7.4, "middle", "#333"))
+    # object height and movement
+    b.append(_arrow(68, 118, 68, 168, 0.8, "#666"))
+    b.append(_arrow(68, 168, 68, 118, 0.8, "#666"))
+    b.append(_t(62, 146, "h", 7.4, "end", "#444", True))
+    b.append(_arrow(78, 182, 78, 168, 0.8, GREEN))
+    b.append(_t(84, 180, "Δ", 7.4, "start", GREEN, True))
+
+    # facet lens
+    b.append(_r(lens_x, 54, 22, 158, PAPER, 1.2))
+    for y in facets:
+        b.append('<ellipse cx="%s" cy="%s" rx="7" ry="12" fill="#dfe6ee" stroke="%s" '
+                 'stroke-width="1"/>' % (_f(lens_x + 11), _f(y), INK))
+    b.append(_t(lens_x + 11, 46, "Thấu kính ghép", 7.2, "middle", "#333"))
+
+    # rays object -> facet -> image
+    for y in facets:
+        b.append(_l(obj_x + 12, 140, lens_x, y, 0.7, "#9a9a9a", "4 3"))
+        yi = 128 + (128 - y) * 0.62
+        b.append(_l(lens_x + 22, y, img_x - 12, yi, 0.7, "#9a9a9a", "4 3"))
+
+    for y in facets:
+        yi = 128 + (128 - y) * 0.62
+        b.append(_person(img_x, yi + 14, 24, "#6b6b6b", walk=True))
+
+    # sensing element
+    b.append(_r(452, 118, 16, 16, "#4a4a4a", 1.0))
+    b.append(_t(448, 126, "phần tử", 6.6, "end", "#444"))
+    b.append(_arrow(502, 159, 502, 178, 0.7, "#666"))
+    b.append(_arrow(502, 178, 502, 159, 0.7, "#666"))
+    b.append(_t(508, 172, "d", 7.0, "start", "#555"))
+
+    # pitch on the lens
+    b.append(_arrow(336, 100, 336, 130, 0.7, "#666"))
+    b.append(_arrow(336, 130, 336, 100, 0.7, "#666"))
+    b.append(_t(342, 118, "p", 7.0, "start", "#555"))
+
+    # L and f
+    b.append(_arrow(obj_x, 214, lens_x, 214, 0.8, "#666"))
+    b.append(_arrow(lens_x, 214, obj_x, 214, 0.8, "#666"))
+    b.append(_t((obj_x + lens_x) / 2.0, 210, "L", 7.6, "middle", "#444", True))
+    b.append(_arrow(lens_x + 22, 214, img_x, 214, 0.8, "#666"))
+    b.append(_arrow(img_x, 214, lens_x + 22, 214, 0.8, "#666"))
+    b.append(_t((lens_x + img_x) / 2.0, 210, "f", 7.6, "middle", "#444", True))
+
+    return _fig(svg(600, 236, STY + "".join(b), "Thấu kính ghép tạo nhiều ảnh"),
+                "Hình 10-41. Thấu kính ghép tạo ra nhiều ảnh cạnh phần tử cảm quang. Mỗi mắt kính "
+                "nhỏ cho một ảnh riêng, nên khi vật dịch chuyển một đoạn Δ thì các ảnh cũng dịch "
+                "theo và lần lượt quét qua phần tử. Bước p giữa hai mắt kính, khoảng cách L tới vật "
+                "và tiêu cự f quyết định vị trí các ảnh.",
+                "Figure 10-41. A facet lens creates multiple images near the sensing element. Each "
+                "facet forms its own image, so when the object shifts by Δ the images shift too and "
+                "sweep across the element one after another. The facet pitch p, the object distance "
+                "L and the focal length f fix where the images fall.",
+                "Một người đứng bên trái với chiều cao h và độ dịch chuyển Δ, thấu kính ghép ở giữa "
+                "gồm năm mắt kính, các tia sáng toả tới từng mắt rồi hội tụ thành năm ảnh xếp dọc "
+                "bên phải, một phần tử cảm quang nhỏ đặt giữa các ảnh, và hai kích thước L và f.",
+                "A person at the left with height h and displacement Δ, a five-facet lens in the "
+                "middle, rays reaching each facet and converging into five stacked images at the "
+                "right, a small sensing element among the images, and the dimensions L and f.")
+
+
+def fig_10_42():
+    """The pyroelectric effect as a secondary effect of piezoelectricity."""
+    b = []
+
+    # ---- panel A: uniform temperature
+    b.append(_t(40, 54, "A", 10.5, "start", "#222", True))
+    b.append(_r(150, 48, 14, 10, "#8f8a7c", 0.9))
+    b.append(_t(166, 46, "đế đỡ", 6.8, "start", "#444"))
+    b.append(_r(146, 58, 8, 96, "#4a4a4a", 0.9))
+    b.append(_r(170, 58, 8, 96, "#4a4a4a", 0.9))
+    b.append(_r(154, 58, 16, 96, "#cfc8b8", 0.9))
+    b.append(_l(140, 76, 132, 76, 0.9))
+    b.append(_t(128, 79, "vật liệu", 6.8, "end", "#444"))
+    b.append(_t(128, 88, "hoả điện", 6.8, "end", "#444"))
+    b.append(_t(140, 112, "Tₐ", 7.6, "end", "#222", True))
+    b.append(_t(184, 112, "Tₐ", 7.6, "start", "#222", True))
+    b.append(_l(150, 154, 150, 168, 1.0))
+    b.append(_l(174, 154, 174, 168, 1.0))
+    b.append(_t(162, 182, "V = 0", 7.6, "middle", "#222", True))
+
+    # ---- panel B: front face heated, it expands
+    b.append(_t(300, 54, "B", 10.5, "start", "#222", True))
+    b.append(_r(410, 48, 14, 10, "#8f8a7c", 0.9))
+    b.append(_p("M 406 58 C 398 78 398 134 406 154", "none", 1.0, "#4a4a4a"))
+    b.append(_p("M 414 58 C 406 78 406 134 414 154", "none", 1.0, "#4a4a4a"))
+    b.append(_p("M 414 58 C 406 78 406 134 414 154 L 432 154 L 432 58 Z", "#cfc8b8", 0.9))
+    b.append(_r(430, 58, 8, 96, "#4a4a4a", 0.9))
+    for yy in (74, 94, 114, 134):
+        b.append(_t(402, yy, "+", 8.0, "middle", RED, True))
+        b.append(_t(444, yy, "–", 8.0, "middle", BLUE, True))
+    b.append(_arrow(344, 106, 392, 106, 1.2, RED))
+    b.append(_t(368, 100, "IR", 7.6, "middle", RED, True))
+    b.append(_t(452, 178, "T_s > Tₐ", 7.6, "start", "#222", True))
+    b.append(_l(414, 154, 414, 190, 1.0))
+    b.append(_l(438, 154, 438, 190, 1.0))
+    b.append(_t(426, 202, "V ≠ 0", 7.6, "middle", "#222", True))
+
+    return _fig(svg(500, 214, STY + "".join(b), "Mô hình hiệu ứng hoả điện"),
+                "Hình 10-42. Mô hình đơn giản của hiệu ứng hoả điện như một hiệu ứng bậc hai của "
+                "áp điện. (A) Ban đầu phần tử có nhiệt độ đồng đều nên chưa có điện tích, V = 0. "
+                "(B) Khi bị chiếu xạ nhiệt, mặt trước nóng lên và giãn ra, sinh ứng suất và do đó "
+                "một điện tích áp điện: mặt trước tích điện dương, mặt sau tích điện âm, V ≠ 0.",
+                "Figure 10-42. A simplified model of the pyroelectric effect as a secondary effect "
+                "of piezoelectricity. (A) The element starts at a uniform temperature, so no charge "
+                "and V = 0. (B) Under thermal radiation the front face warms and expands, the "
+                "resulting stress produces a piezoelectric charge — positive on the front, negative "
+                "on the back — and V ≠ 0.",
+                "Hai hình: A là phần tử hoả điện kẹp giữa hai điện cực, nhiệt độ Tₐ đều, hai đầu "
+                "nối tắt nên V bằng không; B là phần tử bị tia hồng ngoại chiếu vào, mặt trước phình "
+                "ra, có dấu cộng ở mặt trước, dấu trừ ở mặt sau và V khác không.",
+                "Two views: A is the pyroelectric element between two electrodes at uniform Tₐ with "
+                "the terminals shorted so V is zero; B is the same element under infrared, its front "
+                "face bowed out, plus signs on the front, minus on the back, and V no longer zero.")
+
+
+def fig_10_43():
+    """A dual pyroelectric sensor and its buffer circuit."""
+    b = []
+
+    b.append(_t(28, 30, "A", 10.5, "start", "#222", True))
+
+    # plan view of the electrode pattern
+    b.append(_t(240, 34, "điện cực đáy", 6.8, "middle", "#444"))
+    b.append(_r(120, 38, 240, 50, PAPER, 1.2))
+    b.append(_r(134, 47, 96, 32, "#5a5a5a", 1.0))
+    b.append(_r(250, 47, 96, 32, "#5a5a5a", 1.0))
+    b.append(_l(120, 63, 96, 63, 1.0))
+    b.append(_l(360, 63, 384, 63, 1.0))
+
+    # side view
+    b.append(_l(120, 130, 360, 130, 2.2))
+    b.append(_t(120, 126, "điện cực trên", 6.6, "start", "#444"))
+    b.append(_r(120, 132, 240, 14, "#cfc8b8", 1.0))
+    b.append(_r(132, 146, 78, 7, "#5a5a5a", 0.9))
+    b.append(_r(270, 146, 78, 7, "#5a5a5a", 0.9))
+    b.append(_t(240, 166, "điện cực đáy", 6.6, "middle", "#444"))
+    b.append(_t(112, 141, "+", 8.4, "end", RED, True))
+    b.append(_t(112, 156, "–", 8.4, "end", BLUE, True))
+    b.append(_arrow(196, 96, 196, 124, 1.2, RED))
+    b.append(_t(190, 114, "IR", 7.2, "end", RED, True))
+    b.append(_arrow(282, 116, 348, 116, 1.0, GREEN))
+    b.append(_t(282, 110, "ảnh dịch chuyển", 6.6, "start", GREEN))
+    b.append(_arrow(364, 139, 400, 139, 1.0))
+    b.append(_t(402, 137, "V", 7.4, "start", "#222", True))
+    b.append(_t(402, 147, "tới R", 6.6, "start", "#555"))
+
+    # voltage waveform below
+    b.append(_l(80, 286, 80, 202, 1.2))
+    b.append(_l(80, 286, 420, 286, 1.2))
+    b.append(_arrow(80, 214, 80, 198, 1.2))
+    b.append(_t(70, 202, "V", 7.6, "middle", "#222", True))
+    b.append(_l(90, 232, 410, 232, 0.9, "#777", "6 4"))
+    b.append(_l(90, 262, 410, 262, 0.9, "#777", "6 4"))
+    b.append(_t(414, 235, "ngưỡng", 6.4, "start", "#555"))
+
+    def vx(x):
+        return (247
+                - 26 * math.exp(-((x - 160) / 34.0) ** 2)
+                + 24 * math.exp(-((x - 300) / 34.0) ** 2))
+
+    pts = [(x, vx(x)) for x in range(92, 410)]
+    b.append(_p("M " + " L ".join("%s %s" % (_f(x), _f(y)) for x, y in pts), "none", 1.6, INK))
+    b.append(_t(250, 302, "vị trí ảnh nhiệt", 7.2, "middle", "#444"))
+
+    # ---- panel B: buffer circuit
+    b.append(_t(470, 30, "B", 10.5, "start", "#222", True))
+
+    # the element itself, drawn as a capacitor
+    b.append(_l(496, 76, 496, 146, 1.8))
+    b.append(_l(506, 76, 506, 146, 1.8))
+    b.append(_t(501, 52, "C₁", 7.4, "middle", "#222", True))
+    b.append(_l(501, 76, 501, 60, 1.1))
+    b.append(_l(501, 146, 501, 162, 1.1))
+    b.append(_arrow(516, 100, 516, 124, 0.9, RED))
+    b.append(_t(522, 114, "i", 7.4, "start", RED, True))
+
+    # coupling to the gate
+    b.append(_l(501, 60, 518, 60, 1.1))
+    b.append(_cap_h(530, 60, 12))
+    b.append(_l(536, 60, 560, 60, 1.1))
+    b.append(_t(530, 42, "C₂", 7.4, "middle", "#222", True))
+    b.append(_l(560, 60, 560, 84, 1.1))
+
+    # bias resistor from the gate node to earth
+    b.append(_l(560, 84, 560, 104, 1.1))
+    b.append(_res_v(560, 120, 32))
+    b.append(_l(560, 136, 560, 162, 1.1))
+    b.append(_t(574, 116, "R", 7.4, "start", "#222", True))
+    b.append(_t(574, 126, "5·10¹⁰ Ω", 6.4, "start", "#555"))
+
+    # JFET buffer
+    b.append(_mos_v(610, 84, 14, 50))
+    b.append(_l(610, 64, 610, 46, 1.1))
+    b.append(_t(610, 38, "V_DD", 7.4, "middle", "#222", True))
+    b.append(_l(610, 104, 610, 120, 1.1))
+    b.append(_res_v(610, 136, 32))
+    b.append(_l(610, 152, 610, 162, 1.1))
+    b.append(_t(626, 84, "Q", 7.4, "start", "#222", True))
+    b.append(_t(626, 140, "47 kΩ", 6.4, "start", "#555"))
+    b.append(_arrow(610, 112, 656, 112, 1.0))
+    b.append(_t(650, 104, "ra", 7.0, "middle", "#222", True))
+
+    # earth rail
+    b.append(_l(480, 162, 640, 162, 1.4))
+    b.append(_gnd(560, 162))
+
+    return _fig(svg(680, 316, STY + "".join(b), "Cảm biến hoả điện kép"),
+                "Hình 10-43. Cảm biến hoả điện kép. (A) Phần tử cảm nhận có một điện cực trên và hai "
+                "điện cực đáy lắng trên cùng một đế tinh thể. Ảnh nhiệt di chuyển từ phần bên trái "
+                "sang phần bên phải, tạo ra dòng i đổi dấu: không, dương, không, âm, không. (B) Dòng "
+                "này chảy qua điện trở phân cực R rất lớn; transistor Q làm bộ chuyển đổi trở kháng "
+                "với tổng trở ra chỉ vài kilôôm.",
+                "Figure 10-43. A dual pyroelectric sensor. (A) The sensing element carries one front "
+                "electrode and two bottom electrodes on a common crystalline substrate. A moving "
+                "thermal image travels from the left part to the right, driving a current i that "
+                "runs zero, positive, zero, negative, zero. (B) That current flows through the very "
+                "large bias resistor R; transistor Q converts the impedance down to a few kilohms.",
+                "Hai phần: A gồm hình chiếu bằng của cặp điện cực đáy, hình chiếu cạnh của phần tử "
+                "hoả điện với điện cực trên và hai điện cực đáy, và đồ thị dòng điện đổi dấu theo vị "
+                "trí ảnh nhiệt; B là mạch đệm gồm tụ C₁, dòng i, điện trở phân cực R rất lớn, tụ C₂, "
+                "transistor Q, nguồn V_DD và điện trở 47 kΩ.",
+                "Two parts: A has a plan view of the pair of bottom electrodes, a side view of the "
+                "pyroelectric element with its upper and two bottom electrodes, and a plot of the "
+                "sign-changing current against image position; B is the buffer with C₁, the current "
+                "i, the very large bias resistor R, C₂, transistor Q, the V_DD supply and a 47 kΩ "
+                "resistor.")
+
+
 FIGURES = [fig_10_1, fig_10_2, fig_10_3, fig_10_4, fig_10_5, fig_10_6, fig_10_7,
            fig_10_8, fig_10_9, fig_10_10, fig_10_11, fig_10_12, fig_10_13, fig_10_14,
            fig_10_15, fig_10_16, fig_10_17, fig_10_18, fig_10_19, fig_10_20, fig_10_21,
            fig_10_22, fig_10_23, fig_10_24, fig_10_25, fig_10_26, fig_10_27, fig_10_28,
            fig_10_29, fig_10_30, fig_10_31, fig_10_32, fig_10_33, fig_10_34, fig_10_35,
-           fig_10_36]
+           fig_10_36, fig_10_37, fig_10_38, fig_10_39, fig_10_40, fig_10_41, fig_10_42,
+           fig_10_43]
