@@ -86,8 +86,13 @@ def not_found():
 <script>
 (function () {
   var TWINS = __TWINS__;
+  /* Where the reader asked to be beats what they picked last time, and the
+     path beats both: /vi/... is a deliberate Vietnamese address, even for a
+     page that is not there (there is no /vi/ index, so /vi/ itself lands
+     here). Only an explicit ?lang= outranks it. */
   var m = /[?&]lang=(en|vi)/.exec(location.search);
   var l = m ? m[1] : null;
+  if (!l && /^\/vi(\/|$)/.test(location.pathname)) l = "vi";
   if (!l) { try { l = localStorage.getItem("pic-lang"); } catch (e) {} }
   if (l !== "vi") return;
 
