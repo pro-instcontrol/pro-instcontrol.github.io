@@ -175,7 +175,8 @@ DONE = {1: "ch01-characteristics-of-instrumentation",
         11: "ch11-level-measurement",
         12: "ch12-area-measurement",
         13: "ch13-volume-measurement",
-        14: "ch14-angle-measurement"}
+        14: "ch14-angle-measurement",
+        15: "ch15-tilt-measurement"}
 
 
 def num(n, lang):
