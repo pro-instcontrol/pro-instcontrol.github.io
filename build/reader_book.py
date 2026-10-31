@@ -66,7 +66,8 @@ BOOKS = {
                  12: "ch12-functional-testing",
                  13: "ch13-managing-changes-to-a-system",
                  14: "ch14-justification-for-a-safety-system",
-                 15: "ch15-sis-design-checklist"},
+                 15: "ch15-sis-design-checklist",
+                 16: "ch16-case-study"},
         "copyright_en": "Original text © 2006 ISA — The Instrumentation, Systems, and Automation Society",
         "copyright_vi": "Bản gốc © 2006 ISA — Hiệp hội Đo lường, Hệ thống và Tự động hóa",
         "lede_en": ("The practical “how-to” on specifying, analysing, designing, installing and "

@@ -15,7 +15,8 @@ MODULES = {3: "sis_ch03", 4: "sis_ch04", 5: "sis_ch05", 6: "sis_ch06",
            7: "sis_ch07", 8: "sis_ch08", 9: "sis_ch09", 10: "sis_ch10",
            11: "sis_ch11",
            12: "sis_ch12",
-           13: "sis_ch13", 14: "sis_ch14", 15: "sis_ch15"}
+           13: "sis_ch13", 14: "sis_ch14", 15: "sis_ch15",
+           16: "sis_ch16"}
 
 
 def main():
