@@ -1,9 +1,9 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-10-31 (session 15 — Chapter 15 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-10-31 (session 16 — Chapter 16 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 16** (and onward). Chapters
-> 1–15 are done, live, and registered. `work/hb_ch15.txt` is translated; Chapter 16+ source
+> **Where to start next:** Handbook **Chapter 17** (and onward). Chapters
+> 1–16 are done, live, and registered. `work/hb_ch16.txt` is translated; Chapter 17+ source
 > PDFs must be extracted from the 117-file handbook library before translation.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
@@ -42,7 +42,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–15** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–16** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -65,6 +65,7 @@ Chapters done, with their slugs and build scripts:
 | HB 13 | Volume Measurement | `ch13-volume-measurement` | `reader_hb_ch13.py` + `hb13fig.py` | 10 | 7.3k |
 | HB 14 | Angle Measurement | `ch14-angle-measurement` | `reader_hb_ch14.py` + `hb14fig.py` | 3 | 3.5k |
 | HB 15 | Tilt Measurement | `ch15-tilt-measurement` | `reader_hb_ch15.py` + `hb15fig.py` | 5 | ~5.0k |
+| HB 16 | Velocity Measurement | `ch16-velocity-measurement` | `reader_hb_ch16.py` + `hb16fig.py` | 16 | ~8.0k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
@@ -104,7 +105,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `(level, total_chapters, done_chapters)`.
-  Currently `("progress", 101, 15)`, `("full", 16, 16)`, `("full", 14, 14)`.
+  Currently `("progress", 101, 16)`, `("full", 16, 16)`, `("full", 14, 14)`.
 - `build/books_site.py` → `FLAG_LABEL = {level: (vi_format, en_format)}` — **the pill text
   is derived from `level`, not hard-coded.** Add a level here as well as in the CSS, or the
   pill will read "Translating" on a finished book.
@@ -566,6 +567,42 @@ Handbook progress 13/101 → 14/101; `DONE[14]`, `("progress", 101, 14)`, and th
 `pdf-store-b` junctions and `library/pdfindex.json`; copy the needed `ChNN.pdf` into `work/`, extract, then
 follow the §4 recipe. Note this chapter had only 3 figures — do not pad figure counts to 10 when the
 source genuinely has fewer.
+
+### 2026-10-31, session 16 — Handbook Chapter 16, Velocity Measurement
+
+**Shipped:** Handbook chapter 16, *Velocity Measurement* (Charles P. Pinney, Pinney Technologies, Inc.;
+William E. Baker, University of New Mexico) — 17 source pages. Full Vietnamese translation + English
+companion at
+`/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch16-velocity-measurement/`.
+Handbook progress 15/101 → 16/101; `DONE[16]`, `("progress", 101, 16)`, and the §2 table all updated.
+
+**What was written this session:**
+
+- `build/hb16fig.py` — **all 16** real figures (16.1 position–time graph; 16.2 LVT moving-coil / moving-magnet
+  transducers; 16.3 Michelson interferometer; 16.4 VISAR fiber-optic setup; 16.5 seismic instrument; 16.6 dc
+  tach-generator; 16.7 ac tach-generator; 16.8 moving-conductor EMF; 16.9 magnetic speed-sensor curve; 16.10
+  slotted-disk opto sensor; 16.11/16.12 Hall-effect gear-tooth sensor and circuit; 16.13 Wiegand wire; 16.14
+  quartz Coriolis tuning fork; 16.15 MHD angular-rate sensor; 16.16 differenced-accelerometer angular rate).
+  No figures invented — the source has 16, so the module is a 16-figure set.
+- `build/reader_hb_ch16.py` — full VI translation + EN companion. Embeds all 16 figures (16/16 parity), the
+  equations V_avg=(y₂−y₁)/(t₂−t₁) (16.1), V_y=dy/dt (16.2), V_y(t)=V_y(tᵢ)+∫a_y dt (16.3), e_i∝BLV (16.4),
+  the Coriolis force F=2m·Ω×V_r, and ω=(1/l)∫(a₁−a₂)dt. Also `work/hb_ch16.txt` extracted from
+  `pdf-store-b/Ch16__…pdf` (17 pages). The 20-item reference list is reproduced.
+- **Source error flagged with a `note()` box:** the text says approaching source/observer gives a "red shift"
+  and receding gives "blue shift" — backwards. The correct convention (blue shift on approach, red shift on
+  recession) is noted, and the contradiction with the chapter's own train-whistle example is pointed out.
+- Figure parity: VI 16/16 and EN 16/16, IDs `fig-16-1`…`fig-16-16` confirmed; 17 SVGs/page (16 figures +
+  brand mark), 0 malformed on parse.
+
+**Deploy:** `git fetch` → remote already at `98de6de` (no new remote commits) → `reader_handbook.py` (16 done
+rows), `books_site.py` (progress 101→16), `make_sitemap.py` (511 URLs, 496 EN/VI pairs), `check_links.py`
+(513 pages, 13,915 references, **0 broken**). Pushed `99bdd1b` on `main`. Live: 200 on both VI/EN, the book
+TOC, and the live VI page reports 16 figures. Library pill now `Đang dịch · 16/101 chương`.
+
+**Chapters 1–16 done; 85 to go.** Next unit is Chapter 17. Source PDFs for 17+ live in the `pdf-store`/
+`pdf-store-b` junctions and `library/pdfindex.json`; copy the needed `ChNN.pdf` into `work/`, extract, then
+follow the §4 recipe. Note the registry edits (`DONE[16]`, `("progress", 101, 16)`) were applied cleanly this
+session — reconfirmed both before committing.
 
 ### 2026-10-31, session 15 — Handbook Chapter 15, Tilt Measurement
 
