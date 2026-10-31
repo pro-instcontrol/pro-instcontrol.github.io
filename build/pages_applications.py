@@ -297,6 +297,53 @@ SECTORS = [
 ]
 
 
+# ---- process response type decides the controller ---------------------------
+# Taxonomy per Control Engineering's PID Spotlight series (parts 10, 11, 15)
+# and Control Global / Rhinehart on matching strategy to process characteristics.
+PROCESS_TYPES = [
+    ("Self-limiting, lag-dominant",
+     "Tự ổn định, quán tính chi phối",
+     "Settles at a new value; the lag is long compared with the dead time.",
+     "Về một giá trị mới; quán tính dài hơn nhiều so với thời gian trễ.",
+     "PID. Gain above the baseline, derivative may help. This is the default case, and the one "
+     "every tuning guide is written for.",
+     "PID. Hệ số khuếch đại trên mức cơ sở, đạo hàm có thể có ích. Đây là trường hợp mặc định, và "
+     "cũng là trường hợp mọi tài liệu hiệu chỉnh viết cho.",
+     "Steam temperature, most pressure and flow loops.",
+     "Nhiệt độ hơi, phần lớn vòng áp suất và lưu lượng."),
+    ("Self-limiting, deadtime-dominant",
+     "Tự ổn định, trễ chi phối",
+     "Also settles, but the dead time dominates the response.",
+     "Cũng về một giá trị, nhưng thời gian trễ chi phối đáp ứng.",
+     "PI with <strong>derivative off</strong> and gain <strong>below</strong> the baseline, tuned "
+     "critically damped. Overshoot is expensive: the next correction waits a full dead time.",
+     "PI, <strong>tắt đạo hàm</strong> và hệ số khuếch đại <strong>dưới</strong> mức cơ sở, hiệu "
+     "chỉnh tới tắt dần tới hạn. Vọt lố rất đắt: lần sửa tiếp theo phải chờ hết một thời gian trễ.",
+     "On-line composition analysers, moisture, sheet properties, kiln exit gas.",
+     "Máy phân tích thành phần trực tuyến, độ ẩm, tính chất tờ giấy, khí ra khỏi lò."),
+    ("Integrating",
+     "Tích phân",
+     "Ramps. It never settles on its own — the valve position sets the slope.",
+     "Tăng dốc. Tự nó không bao giờ dừng — vị trí van quyết định độ dốc.",
+     "P-only, or PI with a narrow band and minimal integral. A level loop is a buffer, not a "
+     "setpoint tracker; the inventory is what absorbs the disturbance.",
+     "Chỉ P, hoặc PI với dải hẹp và tích phân tối thiểu. Vòng mức là bộ đệm, không phải bộ bám giá "
+     "trị đặt; chính lượng tồn chứa mới là thứ hấp thụ nhiễu.",
+     "Drum level, gas-header pressure, accumulators and surge drums.",
+     "Mức nước trống, áp suất header khí, bình tích áp và bình đệm."),
+    ("Near-integrating / high order",
+     "Gần tích phân / bậc cao",
+     "Ramps slowly, then bends towards a value it takes a long time to reach.",
+     "Tăng dốc chậm rồi cong dần về một giá trị mất rất lâu mới tới.",
+     "PI, detuned. If you cannot tell which of the two it is, treat it as integrating and accept "
+     "the slower response.",
+     "PI, hiệu chỉnh chậm. Nếu không phân biệt được là dạng nào, hãy coi như tích phân và chấp "
+     "nhận đáp ứng chậm hơn.",
+     "Large mixing vessels, long pipelines, some furnace passes.",
+     "Bình trộn lớn, tuyến ống dài, một số pass của lò."),
+]
+
+
 def build():
     pg = Page(
         "applications.html",
@@ -324,6 +371,7 @@ def build():
             ("refinery", "Oil refining", "Lọc dầu"),
             ("food", "Food & beverage", "Thực phẩm &amp; đồ uống"),
             ("sectors", "The other seven", "Bảy ngành còn lại"),
+            ("response", "Process response", "Dạng đáp ứng"),
             ("thread", "The common thread", "Sợi dây chung"),
         ],
     )
@@ -597,8 +645,106 @@ def build():
             "lập luận đó chi tiết."))
     body += section_close()
 
-    # 07 common thread
-    body += section_open("07", "The common thread", "Sợi dây chung", pg, "thread")
+    # 07 process response decides the controller
+    body += section_open("07", "The process decides", "Quá trình quyết định", pg, "response")
+    body += "<div class=\"sec-head\">"
+    body += pg.h2("Four responses, four controllers", "Bốn dạng đáp ứng, bốn cách điều khiển")
+    body += pg.p(
+        "Before the question of which controller comes the question of which process. A level loop and "
+        "a composition loop can carry identical PIDs and need opposite tuning, because one integrates "
+        "and the other is deadtime-dominated. Control Global's R. Russell Rhinehart puts the order "
+        "bluntly — fix the process before you tune the controller — and the trade press keeps returning "
+        "to the same taxonomy.",
+        "Trước câu hỏi dùng bộ điều khiển nào là câu hỏi quá trình thuộc dạng nào. Một vòng mức và một "
+        "vòng thành phần có thể mang cùng một PID nhưng cần hiệu chỉnh ngược nhau, vì một cái là quá "
+        "trình tích phân còn cái kia bị chi phối bởi thời gian trễ. R. Russell Rhinehart trên Control "
+        "Global nói thẳng thứ tự: sửa quá trình trước khi hiệu chỉnh bộ điều khiển. Và báo ngành cứ "
+        "quay lại cùng một cách phân loại.")
+    body += "</div>"
+    body += "<div class=\"tbl-wrap\"><table class=\"tbl\"><thead><tr><th>%s</th><th>%s</th>" \
+            "<th>%s</th><th>%s</th></tr></thead><tbody>" % (
+        pg.th("Response", "Dạng đáp ứng"), pg.th("What a step does", "Đáp ứng với bậc thang"),
+        pg.th("What the controller should do", "Bộ điều khiển nên làm gì"),
+        pg.th("Where it shows up here", "Gặp ở đâu trong trang này"))
+    for n_en, n_vi, s_en, s_vi, c_en, c_vi, w_en, w_vi in PROCESS_TYPES:
+        body += "<tr><td><strong>%s</strong></td><td>%s</td><td>%s</td><td>%s</td></tr>" % (
+            pg.span(n_en, n_vi), pg.span(s_en, s_vi), pg.span(c_en, c_vi), pg.span(w_en, w_vi))
+    body += "</tbody></table></div>"
+    body += "<div class=\"note mt24\"><span class=\"lbl\">%s</span>%s</div>" % (
+        pg.span("Why overshoot is expensive when the dead time dominates",
+                "Vì sao vọt lố lại đắt khi thời gian trễ chi phối"),
+        pg.p(
+            "On a deadtime-dominant loop the controller gets one correction, then must wait out the "
+            "dead time to see what happened. Overshoot is therefore not a cosmetic defect — it is a "
+            "second error that has to be fixed with the same handicap. Control Engineering's PID "
+            "Spotlight series works the arithmetic on a 1:10 lag-to-deadtime process: good tuning is "
+            "about K&nbsp;=&nbsp;0.33 with Ti&nbsp;=&nbsp;1&nbsp;min/repeat and derivative at zero, "
+            "while K&nbsp;=&nbsp;0.60 produces the characteristic sharp reversal at the first peak. "
+            "The series' rules are blunt — for a deadtime-dominant process the derivative should "
+            "always be zero, and the gain belongs below the baseline, not above it.",
+            "Với vòng có thời gian trễ chi phối, bộ điều khiển chỉ được sửa một lần, rồi phải chờ hết "
+            "thời gian trễ mới biết chuyện gì xảy ra. Vì thế vọt lố không phải lỗi thẩm mỹ — nó là sai "
+            "số thứ hai phải sửa với đúng bất lợi ấy. Loạt bài PID Spotlight của Control Engineering "
+            "tính cụ thể trên một quá trình có tỷ lệ quán tính/trễ 1:10: hiệu chỉnh tốt là khoảng "
+            "K&nbsp;=&nbsp;0,33 với Ti&nbsp;=&nbsp;1&nbsp;phút/lần lặp và đạo hàm bằng 0, còn "
+            "K&nbsp;=&nbsp;0,60 cho ra đặc trưng đảo chiều nhọn tại đỉnh đầu tiên. Quy tắc của loạt "
+            "bài rất thẳng: với quá trình trễ chi phối, đạo hàm luôn phải bằng 0, và hệ số khuếch đại "
+            "nằm dưới mức cơ sở chứ không phải trên."))
+    body += "<div class=\"note mt24\"><span class=\"lbl\">%s</span>%s</div>" % (
+        pg.span("The analyser is the slowest instrument in the plant",
+                "Máy phân tích là thiết bị chậm nhất trong nhà máy"),
+        pg.p(
+            "Composition loops are usually cascaded for the same reason: the primary composition "
+            "controller sets the setpoint of a fast secondary loop — tray temperature, in a column — "
+            "instead of stroking the valve itself. And in-line analysis keeps moving closer to the "
+            "reactor. Yokogawa's ACOMP, presented at YNOW2026, pulls a sample from a polymer reactor, "
+            "conditions it, and measures molecular weight, viscosity and conversion continuously: "
+            "process-to-detector delay of 30&nbsp;seconds to five minutes, then one point per second, "
+            "against up to five hours for a laboratory result. Controlling monomer concentration along "
+            "a deliberately chosen trajectory held 2&nbsp;% error, and discharging on measurement "
+            "rather than on a lab certificate added a batch per day on some reactors. The analyser did "
+            "not get more accurate. It got faster — which, for a control loop, is the same thing.",
+            "Vòng thành phần thường được cascade cũng vì lý do đó: bộ điều khiển thành phần chính đặt "
+            "giá trị đặt cho một vòng thứ cấp nhanh — nhiệt độ đĩa, trong tháp chưng — thay vì tự "
+            "đánh van. Và phân tích trực tuyến cứ tiến dần lại gần thiết bị phản ứng. ACOMP của "
+            "Yokogawa, trình bày tại YNOW2026, lấy mẫu từ lò phản ứng polymer, xử lý mẫu rồi đo liên "
+            "tục khối lượng phân tử, độ nhớt và độ chuyển hoá: trễ từ quá trình tới đầu dò 30 giây "
+            "đến năm phút, sau đó một điểm dữ liệu mỗi giây, so với tới năm giờ cho một kết quả phòng "
+            "thí nghiệm. Điều khiển nồng độ monomer theo một quỹ đạo chọn trước giữ sai số 2&nbsp;%, "
+            "và xả sản phẩm theo kết quả đo thay vì theo phiếu phòng lab thêm được một mẻ mỗi ngày ở "
+            "một số lò. Máy phân tích không chính xác hơn. Nó nhanh hơn — và với một vòng điều khiển, "
+            "đó là cùng một điều."))
+    body += "<div class=\"note mt24\"><span class=\"lbl\">%s</span>%s</div>" % (
+        pg.span("Where these rules come from", "Những quy tắc này đến từ đâu"),
+        pg.p(
+            "Control Global, R. Russell Rhinehart, <a href=\"https://www.controlglobal.com/control/"
+            "multivariable-control/article/55411596/effective-process-control-matching-strategies-to-"
+            "process-characteristics-and-overcoming-challenges\" rel=\"noopener\">How to fix poor "
+            "control and choose the right strategy</a> (Oct 2026) — fix the process first, P-only for "
+            "integrating processes, PI for fast stable ones, cascade where the primary measurement "
+            "lags. Control Engineering's <a href=\"https://www.controleng.com/control-systems/pid-apc/\" "
+            "rel=\"noopener\">PID Spotlight</a> series — part&nbsp;10 deadtime-dominant, part&nbsp;11 "
+            "integrating, part&nbsp;13 dead time, part&nbsp;19 tuning best practice, parts&nbsp;29–33 "
+            "shaping the response, noise and gap control. And Control Global on <a href=\"https://www."
+            "controlglobal.com/show-coverage/ynow-a-yokogawa-users-conference/article/55403109/"
+            "yokogawa-yokogawa-closes-the-loop-on-polymerization-control\" rel=\"noopener\">Yokogawa's "
+            "ACOMP</a> polymerisation work.",
+            "Control Global, R. Russell Rhinehart, <a href=\"https://www.controlglobal.com/control/"
+            "multivariable-control/article/55411596/effective-process-control-matching-strategies-to-"
+            "process-characteristics-and-overcoming-challenges\" rel=\"noopener\">How to fix poor "
+            "control and choose the right strategy</a> (10/2026) — sửa quá trình trước, chỉ P cho quá "
+            "trình tích phân, PI cho quá trình ổn định nhanh, cascade khi phép đo sơ cấp bị trễ. Loạt "
+            "<a href=\"https://www.controleng.com/control-systems/pid-apc/\" rel=\"noopener\">PID "
+            "Spotlight</a> của Control Engineering — phần&nbsp;10 trễ chi phối, phần&nbsp;11 tích "
+            "phân, phần&nbsp;13 thời gian trễ, phần&nbsp;19 thực hành hiệu chỉnh tốt nhất, "
+            "phần&nbsp;29–33 tạo dạng đáp ứng, nhiễu và điều khiển khoảng. Và Control Global về "
+            "<a href=\"https://www.controlglobal.com/show-coverage/ynow-a-yokogawa-users-conference/"
+            "article/55403109/yokogawa-yokogawa-closes-the-loop-on-polymerization-control\" "
+            "rel=\"noopener\">ACOMP của Yokogawa</a>."))
+    body += section_close()
+
+    # 08 common thread
+    body += section_open("08", "The common thread", "Sợi dây chung", pg, "thread")
     body += "<div class=\"sec-head\">"
     body += pg.h2("Same chain, different consequences", "Cùng một chuỗi, hậu quả khác nhau")
     body += pg.p(
