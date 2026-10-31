@@ -50,6 +50,7 @@ SLUGS = {
         7: "ch07-choosing-a-technology",
         8: "ch08-initial-system-evaluation",
         9: "ch09-issues-relating-to-field-devices",
+        10: "ch10-engineering-a-system",
     },
 }
 
