@@ -154,7 +154,6 @@ T = {
         "foot_note": "A bilingual field guide to process instrumentation and control. "
                      "Content is synthesised from ISA, IEC, API and ISO 18674 practice; "
                      "always verify against the current edition of a standard before design use.",
-        "foot_built": "Static site · no build step · EN / VI",
         "path_h": "Where to start",
         "path_p": "If you have no order yet, take this one. Six stages, roughly four hours of watching, "
                   "and each stage assumes only the one before it. Every link jumps to that video in the "
@@ -220,7 +219,6 @@ T = {
         "foot_note": "Sổ tay song ngữ về thiết bị đo và điều khiển quá trình. "
                      "Nội dung được tổng hợp từ thực tiễn ISA, IEC, API và ISO 18674; "
                      "luôn đối chiếu với bản tiêu chuẩn hiện hành trước khi dùng cho thiết kế.",
-        "foot_built": "Trang tĩnh · không cần build · EN / VI",
         "path_h": "Nên bắt đầu từ đâu",
         "path_p": "Nếu bạn chưa có thứ tự, hãy dùng thứ tự này. Sáu chặng, khoảng bốn giờ xem, mỗi chặng "
                   "chỉ cần chặng trước đó. Mỗi liên kết nhảy tới video đó trong danh mục bên dưới.",
@@ -567,16 +565,12 @@ def footer(lang, prefix):
       <span class="brand-mini">%s</span>
       <p>%s</p>
     </div>
-    <div class="foot-r">
-      <span class="mono">%s</span>
-      <a class="mono" href="https://github.com/pro-instcontrol" rel="noopener">github.com/pro-instcontrol</a>
-    </div>
   </div>
 </footer>
 <script src="%sassets/videos.js?v=2" defer></script>
 </body>
 </html>
-""" % (brand, t["foot_note"], t["foot_built"], prefix)
+""" % (brand, t["foot_note"], prefix)
 
 
 def build_lang(lang, path, prefix):

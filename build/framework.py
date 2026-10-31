@@ -144,10 +144,6 @@ SHELL = {
         "Nội dung được tổng hợp từ thực tiễn ISA, IEC, API và ISO 18674; "
         "luôn đối chiếu với bản tiêu chuẩn hiện hành trước khi dùng cho thiết kế.",
     ),
-    "shell.foot.built": (
-        "Static site · no build step · EN / VI",
-        "Trang tĩnh · không cần build · EN / VI",
-    ),
     "shell.foot.contact": ("Contact", "Liên hệ"),
 }
 
@@ -425,13 +421,9 @@ def footer():
       <span class="brand-mini">%s</span>
       <p data-i18n="shell.foot.note">%s</p>
     </div>
-    <div class="foot-r">
-      <span class="mono" data-i18n="shell.foot.built">%s</span>
-      <a class="mono" href="https://github.com/pro-instcontrol" rel="noopener">github.com/pro-instcontrol</a>
-    </div>
   </div>
 </footer>
-""" % (SITE_NAME_EN, SHELL["shell.foot.note"][0], SHELL["shell.foot.built"][0])
+""" % (SITE_NAME_EN, SHELL["shell.foot.note"][0])
 
 
 def render(pg, body, active):

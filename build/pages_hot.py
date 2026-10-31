@@ -198,7 +198,6 @@ T = {
                     "roundup for 2025, which appears as an article in its own right in February.",
         "foot_note": "A bilingual field guide to process instrumentation and control. "
                      "Quotations are attributed; commentary is this site's own.",
-        "foot_built": "Static site · no build step · EN / VI",
     },
     "vi": {
         "title": "Chủ đề nóng — một năm ngành đọc gì | Đo lường &amp; Điều khiển",
@@ -368,7 +367,6 @@ T = {
                     "của Control Engineering — xuất hiện như một bài độc lập vào tháng 2.",
         "foot_note": "Sổ tay song ngữ về thiết bị đo và điều khiển quá trình. Trích dẫn đều ghi "
                      "nguồn; phần bình luận là của site này.",
-        "foot_built": "Trang tĩnh · không cần build · EN / VI",
     },
 }
 
@@ -723,10 +721,6 @@ def footer(lang, prefix):
       <span class="brand-mini">%s</span>
       <p>%s</p>
     </div>
-    <div class="foot-r">
-      <span class="mono">%s</span>
-      <a class="mono" href="https://github.com/pro-instcontrol" rel="noopener">github.com/pro-instcontrol</a>
-    </div>
   </div>
 </footer>
 <script>
@@ -736,7 +730,7 @@ b.setAttribute("aria-expanded",o?"true":"false");});})();
 </script>
 </body>
 </html>
-""" % (brand, t["foot_note"], t["foot_built"])
+""" % (brand, t["foot_note"])
 
 
 def build_lang(lang, path, prefix):
