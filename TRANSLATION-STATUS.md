@@ -1,16 +1,17 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** end of session 2026-10-30 (session 4) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** end of session 2026-10-31 (session 5) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 8 — Proximity Sensing for Robotics**. Chapters 1–7
-> are done. Everything you need is in §3 and §4.
+> **Where to start next:** Handbook **Chapter 10 — Position, Location, Altitude Measurement**,
+> already in progress. Chapters 1–9 are done and live. Chapter 10 is **73 pages / 43 figures /
+> 4 tables / 8 co-authors**, about six times a normal chapter of this batch, so it is being
+> built in stages and must **not** be registered until it is whole.
 >
-> **Chapter 7 landed this session** — 16 figures, three source tables, 6.9k words VI. It is on
-> its own figure module, `build/hb7fig.py`, because the source chapter has no figures at all
-> and every diagram had to be invented from the text (see §7, session 4).
+> **Already done for chapter 10:** all of section 10.1's text has been read, and its seven
+> figures (10.1–10.7) are finished and QA'd in `build/hb10fig.py`. Start at §3.5.
 >
-> **Earlier this session** six chapters landed — PC 3, 4, 5 and SIS 3, 4, 5 — on the
-> `vfig.py` / `pcfig.py` / `pcsis_common.py` architecture described in §3.1.
+> **Chapters 8 and 9 landed this session** and are live (9 of 101). Chapter 9 carried a real
+> source defect worth knowing about — see §7, session 5.
 
 This file is the single source of truth for the book-translation work on this site.
 Read it before touching anything. Update the status table and append to the session log
@@ -34,7 +35,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–7** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–9** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–5** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–5** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py`, `pc4fig.py`, `pc5fig.py`) |
 
@@ -187,21 +188,53 @@ Two known cosmetic compromises, both chapter-wide and both deliberate:
 - **Section 6.12's English page is a companion essay**, not a translation: five `h2`
   sections of commentary, with the eleven figures but only one re-stated equation.
 
-### 3.3 Immediate: Handbook Chapter 8 — Proximity Sensing for Robotics
+### 3.3 Immediate: Handbook Chapter 10 — Position, Location, Altitude Measurement
 
-A normal-sized chapter. Use the ordinary single-page recipe in §4 with
-`reader_handbook.py` `DONE[8]` and a `ch08-…` slug; do **not** copy Chapter 6's
-twelve-page structure — it was only ever a size workaround.
+**Not a normal-sized chapter.** 73 source pages, 32,867 words, **43 figures**, **4 tables**,
+eight co-authors, five independent sections:
 
-The chapter number and PDF asset name come from the release listing in §4.1 —
-check the real title there before choosing the slug; the Part II list in the book
-TOC (`reader_handbook.py`, the `CHAPTERS` table near line 61) is authoritative.
+| Section | Author(s) | Figures | Tables |
+|---|---|---|---|
+| 10.1 Altitude Measurement | D. E. Manolakis | 10.1–10.7 | 10.1 |
+| 10.2 Attitude Measurement | M. A. Stedham, P. P. Banerjee, S. Nishifuji, S. Tanaka | 10.8–10.16 | 10.2, 10.3, 10.4 |
+| 10.3 Inertial Navigation | Halit Eren, C. C. Fung | 10.17–10.25 | — |
+| 10.4 Satellite Navigation and Radiolocation | Halit Eren, C. C. Fung | 10.26–10.36 | — |
+| 10.5 Occupancy Detection | Jacob Fraden | 10.37–10.43 | — |
+
+The user's standing instruction (asked and answered this session) is: **build chapter 10 as one
+unit, in order, and publish only when complete.** It will span more than one session. Do not
+register `DONE[10]` or bump the `books_site.py` progress counter until every section is written.
+
+Page numbers per figure are recoverable with:
+
+```bash
+python -c "
+import io,re
+lines=io.open('work/hb_ch10.txt',encoding='utf-8').read().split('\n')
+page=0
+for i,l in enumerate(lines,1):
+    if 'CRC Press LLC' in l: page+=1
+    m=re.match(r'^(FIGURE 10\.\d+|TABLE 10\.\d+)',l)
+    if m: print('page %2d  %s'%(page,m.group(1)))
+"
+```
+
+Subtract 1 from that number to get the `work/ch10png/page-NNNN.png` filename — the counter
+double-counts the CRC cover page.
+
+**Done so far:** all of section 10.1's text read; figures 10.1–10.7 written and QA'd in
+`build/hb10fig.py` (committed as `320ac92`, WIP, not registered).
+
+**Remaining:** figures 10.8–10.43, then `build/reader_hb_ch10.py` for all five sections,
+then register / build / ship as in §4.4.
 
 ### 3.4 Then
 
-- Handbook Chapters 8–101, one per sitting.
+- Handbook Chapters 11–101. Chapter 11 (Level, 21 pp / 5.6k words) and Chapter 12 (Area,
+  13 pp / 4.5k words) are both small and both already downloaded to `work/Ch11.pdf` and
+  `work/Ch12.pdf`.
 - The handbook is the priority and the user has said so twice. Do **not** resume PC or SIS
-  until the handbook is finished — the six chapters done this session were an explicit,
+  until the handbook is finished — the six chapters done in session 4 were an explicit,
   bounded exception ("stop after this chapter and continue to translate 6 chapters of
   next 2 books").
 - When the handbook is done: PC from Chapter 6, then SIS from Chapter 6. Both are now on
@@ -394,6 +427,10 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 | `x^2` or `ε_r` looks like a typo in an SVG label | `baseline-shift` is unreliable in browsers | use `_sup()` / `_sub()` from `hb7fig.py` — `<tspan dy="−3.2">` then a zero-width reset |
 | A formula inside a plot sits on top of the curve | oscillation or monotone decay fills the whole frame | move the formula **above** the plot frame, at `y = 14` |
 | A long label runs off the right edge of the canvas | text anchored `start` near `x = 540` | measure roughly (`≈4.4 px per character at fs 8.6`) or switch to `anchor="end"` |
+| A Greek label floats with no arc behind it | the arc was never drawn, only the letter | every angle label needs its `_p("M … A …")` arc; check the pair together |
+| A curve runs flat along the bottom frame | the plot clamped out-of-range values to `yr[0]` | stop the polyline at the frame instead — clamping invents data |
+| A y axis reads `−0` | the tick list started at 0 and the formatter prefixed every value | special-case zero in the tick list, do not format `-v` for `v = 0` |
+| A legend sits on top of the curves | it was placed inside the frame in a gap that the data later filled | put the legend in a row above the frame, or in a genuinely empty corner |
 
 ## 6. House rules
 
@@ -416,6 +453,67 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 - **Write this file's session log before you stop.**
 
 ## 7. Session log
+
+### 2026-10-31, session 5 — Handbook Chapters 8 and 9 shipped, Chapter 10 started
+
+**Two chapters landed and are live. The library reads 9 of 101.**
+
+| Chapter | Slug | Pages | Figures | Tables | Commit |
+|---|---|---|---|---|---|
+| 8 Proximity Sensing for Robotics | `ch08-proximity-sensing-for-robotics` | 17 | 17 | 1 | `0856e39` |
+| 9 Distance | `ch09-distance` | 18 | 8 | 1 | `ef10c0b` |
+
+Both verified live: `/vi/books/read/…/chNN-…/` and `/books/read/…/chNN-…/` return 200, the
+contents page lists both, and the sitemap went 481 URLs / 468 pairs with 483 pages,
+11,739 references, 0 broken.
+
+**Chapter 9 carried a genuine source defect, and my first reading of it was wrong.** The
+printed eq. 9.1 is `R = b·sin α₁·sin α₂/sin(α₂ − α₁)`. I first wrote a note claiming the
+numerator should be `cos α₂`; that was wrong. Read the figure the way its caption reads it —
+α₁ and α₂ measured at the two ends of the baseline, each against the baseline — and the third
+angle is `π − α₁ − α₂`, so the sine rule gives
+
+- slant side from the left station: `R = b·sin α₂/sin(α₁ + α₂)`
+- perpendicular distance to the baseline: `h = b·sin α₁·sin α₂/sin(α₁ + α₂)`
+
+The printed numerator is exactly `h`'s; only the denominator sign is wrong. The decisive test
+is that the printed denominator vanishes when α₁ = α₂, i.e. for a target on the perpendicular
+bisector, where the range is plainly finite (`b/(2 tan α₁)`). So it is a sign slip that
+manufactures a singularity, not a small-angle approximation. The note and the English essay
+both now say this. **Lesson: check a claimed defect against a case with a known answer before
+writing it down.**
+
+**New CSS class this session:** `table.tbl.prod` — the vendor survey table in 9.4 has single-token
+product names (`MicroScribe-3DX`, `Rangecam 7000`, `OPTOTRAK`) that `overflow-wrap: anywhere`
+was splitting mid-word. The class pins column 2 with `white-space: nowrap; overflow-wrap: normal`.
+
+**Chapter 10 started — and it is not a normal chapter.** 73 pages, 32,867 words, **43 figures**,
+4 tables, eight co-authors, five sections. I asked the owner how to sequence it and the answer
+was **"Ch.10 as one unit, in order"** — build it whole, publish only when complete, accept that
+it spans sessions. Do not register `DONE[10]` early.
+
+Progress on chapter 10 (commit `320ac92`, WIP, deliberately unregistered):
+
+- all of section 10.1's text read (19 references, eqs. 10.1–10.44, table 10.1);
+- figures 10.1–10.7 written and QA'd in `build/hb10fig.py`.
+
+Three figure fixes worth remembering:
+
+- **10.1:** C, B and A must all sit on the *level* flightpath — the apparent slope is
+  perspective only. My first version put them on a sloping line, which made `CB = y` and
+  `BA = x` both slanted and the labels collide with the line. Rebuilt with `fy(x)` constant-height.
+- **10.3:** I had drawn a `φ` label with no arc behind it. A label must never exist without its
+  referent. θ is the bearing from the Y axis, φ the elevation from the horizontal sight line;
+  both arcs are now drawn at different radii (40 and 95) so the two shallow angles do not merge.
+- **10.7:** the legend sat in the middle of the plot on top of the curves, and the y axis read
+  `−0` because the tick list started at 0 and the formatter prefixed every value. Legend moved
+  to a single row above the frame; tick list special-cases zero. `_curve()` also now *stops* at
+  the frame instead of clamping, which had been drawing a false flat line along `y = −160`.
+
+Charts in this chapter are computed, not sketched: the multiplier plot uses
+`a(x) = 2√(x²+z²) − x` (gives `2z` at the omni radar and approaches `x` far away, matching the
+printed endpoints), and the inherent-bias plot uses the second-order Taylor term of eq. 10.44,
+so bias grows with the square of the horizontal distance, scaled by the triangle side.
 
 ### 2026-10-30, session 4 — Handbook Chapter 7, Thickness Measurement
 
