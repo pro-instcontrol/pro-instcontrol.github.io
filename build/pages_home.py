@@ -63,6 +63,97 @@ HERO_SVG = """
 """
 
 
+def attr_i18n(pg, en, vi, attr="title"):
+    """Register a string for an attribute rather than for element text.
+
+    The iframe title is the only label a screen reader gets for the embedded
+    document, so it has to follow the language like every other string; app.js
+    writes it through data-i18n-attr instead of replacing innerHTML.
+    """
+    k = pg.key()
+    pg.strings[k] = {"en": en, "vi": vi}
+    return 'data-i18n="%s" data-i18n-attr="%s"' % (k, attr)
+
+
+def reader_block(pg):
+    """The two source documents behind the next section, read in place.
+
+    comparison.html and geotechnical.html argue the two sides of the dividing
+    line. Embedding them here keeps the reader on the page while they check the
+    claim, and gives both pages the inbound link they lost when they came out
+    of the reading chain. ?embed=1 strips the site chrome inside the frame;
+    data-embed lets app.js rebuild the src in the reader's language.
+    """
+    return """
+<section class="sec alt" id="read-inline">
+  <div class="wrap">
+    <div class="sec-head">
+      %s
+      %s
+    </div>
+    <div class="reader">
+      <input type="radio" name="reader-pick" id="r-cmp" checked>
+      <input type="radio" name="reader-pick" id="r-geo">
+      <div class="reader-tabs">
+        <label for="r-cmp">%s</label>
+        <label for="r-geo">%s</label>
+      </div>
+      <div class="pane p-cmp">
+        <div class="pane-bar">
+          %s
+          %s
+        </div>
+        <iframe src="comparison.html?embed=1" data-embed="comparison.html" loading="lazy"
+                title="Process control vs geotechnical monitoring" %s></iframe>
+      </div>
+      <div class="pane p-geo">
+        <div class="pane-bar">
+          %s
+          %s
+        </div>
+        <iframe src="geotechnical.html?embed=1" data-embed="geotechnical.html" loading="lazy"
+                title="Geotechnical monitoring" %s></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+""" % (
+        pg.h2("Read the two documents here", "Đọc trực tiếp hai tài liệu"),
+        pg.p(
+            "The next section draws the line between the two disciplines. Both source pages are "
+            "open below, in this page — scroll inside the frame, or open the full page if you want "
+            "the navigation around it.",
+            "Phần tiếp theo vạch ranh giới giữa hai ngành. Cả hai trang gốc được mở ngay bên dưới, "
+            "trong chính trang này — cuộn trong khung, hoặc mở trang đầy đủ nếu muốn có menu "
+            "điều hướng.",
+        ),
+        pg.span("Comparison", "So sánh"),
+        pg.span("Geotechnical", "Địa kỹ thuật"),
+        pg.span(
+            "Process control vs geotechnical monitoring — the full comparison",
+            "Điều khiển quá trình vs quan trắc địa kỹ thuật — bản đầy đủ",
+            "pane-t",
+        ),
+        pg.a("comparison.html", "Open full page &nearr;", "Mở trang đầy đủ &nearr;", "pane-open"),
+        attr_i18n(
+            pg,
+            "Process control vs geotechnical monitoring — the full comparison",
+            "Điều khiển quá trình vs quan trắc địa kỹ thuật — bản đầy đủ",
+        ),
+        pg.span(
+            "Geotechnical monitoring — instruments, ISO 18674, field reality",
+            "Quan trắc địa kỹ thuật — thiết bị, ISO 18674, thực tế hiện trường",
+            "pane-t",
+        ),
+        pg.a("geotechnical.html", "Open full page &nearr;", "Mở trang đầy đủ &nearr;", "pane-open"),
+        attr_i18n(
+            pg,
+            "Geotechnical monitoring — instruments, ISO 18674, field reality",
+            "Quan trắc địa kỹ thuật — thiết bị, ISO 18674, thực tế hiện trường",
+        ),
+    )
+
+
 def build():
     pg = Page(
         "index.html",
@@ -85,7 +176,6 @@ def build():
       %s
       <div class="hero-cta">
         <a class="btn btn-p" href="fundamentals.html">%s <span class="arw">&rarr;</span></a>
-        <a class="btn btn-s" href="comparison.html">%s</a>
       </div>
     </div>
     <div class="figure">
@@ -111,7 +201,6 @@ def build():
             "lede",
         ),
         pg.span("Start with the fundamentals", "Bắt đầu từ kiến thức cơ bản"),
-        pg.span("Process vs geotechnical", "Quá trình vs địa kỹ thuật"),
         HERO_SVG,
         pg.span(
             "One loop, three jobs: sense (FT-101), decide (FIC-101), act (FV-101) — over a 4–20 mA signal.",
@@ -292,6 +381,9 @@ def build():
         pg.span("Explore final elements", "Xem về phần tử chấp hành"),
     )
     body += section_close()
+
+    # ---- the two source documents, read in place
+    body += reader_block(pg)
 
     # ---- 03 the line
     body += section_open("03", "The dividing line", "Ranh giới phân chia", pg, "line")

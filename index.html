@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Process Instrumentation &amp; Control — a bilingual field guide</title>
 <meta name="description" content="A bilingual English/Vietnamese field guide to process instrumentation and control: measurement principles, instrument selection, PID tuning, and how process control differs from geotechnical monitoring.">
 <meta property="og:type" content="website">
@@ -13,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=11">
+<link rel="stylesheet" href="assets/style.css?v=12">
 
 </head>
 <body>
@@ -68,7 +69,6 @@
       <p class="lede" data-i18n="idx.3">A working field guide to the instruments that sense pressure, temperature, flow, level and composition — and to the loops that decide what to do about the reading. Written for the engineer who specifies, installs and tunes, in English and Vietnamese.</p>
       <div class="hero-cta">
         <a class="btn btn-p" href="fundamentals.html"><span data-i18n="idx.4">Start with the fundamentals</span> <span class="arw">&rarr;</span></a>
-        <a class="btn btn-s" href="comparison.html"><span data-i18n="idx.5">Process vs geotechnical</span></a>
       </div>
     </div>
     <div class="figure">
@@ -130,139 +130,172 @@
   <text x="474" y="200" font-family="'IBM Plex Mono',monospace" font-size="12.5" fill="#66788d">final element</text>
 </svg>
 
-      <div class="figcap"><span data-i18n="idx.6">One loop, three jobs: sense (FT-101), decide (FIC-101), act (FV-101) — over a 4–20 mA signal.</span></div>
+      <div class="figcap"><span data-i18n="idx.5">One loop, three jobs: sense (FT-101), decide (FIC-101), act (FV-101) — over a 4–20 mA signal.</span></div>
     </div>
   </div>
 </section>
 
 <div class="wrap" style="padding-top:0;padding-bottom:0">
 <div class="stats">
-  <div class="stat"><b>4–20 mA</b><span data-i18n="idx.7">live-zero analogue signal</span></div>
-  <div class="stat"><b>P · T · F · L · A</b><span data-i18n="idx.8">five measurement families</span></div>
-  <div class="stat"><b>P / I / D</b><span data-i18n="idx.9">three terms, one loop</span></div>
-  <div class="stat"><b>ISO 18674</b><span data-i18n="idx.10">the geotechnical counterpart</span></div>
+  <div class="stat"><b>4–20 mA</b><span data-i18n="idx.6">live-zero analogue signal</span></div>
+  <div class="stat"><b>P · T · F · L · A</b><span data-i18n="idx.7">five measurement families</span></div>
+  <div class="stat"><b>P / I / D</b><span data-i18n="idx.8">three terms, one loop</span></div>
+  <div class="stat"><b>ISO 18674</b><span data-i18n="idx.9">the geotechnical counterpart</span></div>
 </div>
 </div>
-<section class="sec" id="what"><div class="wrap"><div class="eyebrow"><span class="num">01</span><span class="line"></span><span class="eyebrow-label" data-i18n="idx.11">The discipline</span></div>
+<section class="sec" id="what"><div class="wrap"><div class="eyebrow"><span class="num">01</span><span class="line"></span><span class="eyebrow-label" data-i18n="idx.10">The discipline</span></div>
 <div class="g-2-1">
   <div>
-    <h2 data-i18n="idx.12">Instrumentation is a loop, not a list</h2>
-    <p data-i18n="idx.13">Process instrumentation and control (I&amp;C) is the engineering of <strong>measurement plus action</strong>. A transmitter on its own is only half a discipline: the value it produces has to travel to a controller, be compared with a target, and drive a final element that changes the process. Take away any one of those three links and you no longer have control — you have a reading.</p>
-    <p data-i18n="idx.14">That is why the same word, <em>instrument</em>, means something quite different in geotechnical engineering, where the loop is deliberately left open and a human being occupies the place of the controller. The comparison section takes that difference apart properly; here it is enough to notice that control requires something to control.</p>
+    <h2 data-i18n="idx.11">Instrumentation is a loop, not a list</h2>
+    <p data-i18n="idx.12">Process instrumentation and control (I&amp;C) is the engineering of <strong>measurement plus action</strong>. A transmitter on its own is only half a discipline: the value it produces has to travel to a controller, be compared with a target, and drive a final element that changes the process. Take away any one of those three links and you no longer have control — you have a reading.</p>
+    <p data-i18n="idx.13">That is why the same word, <em>instrument</em>, means something quite different in geotechnical engineering, where the loop is deliberately left open and a human being occupies the place of the controller. The comparison section takes that difference apart properly; here it is enough to notice that control requires something to control.</p>
     <div class="note">
-      <span class="lbl"><span data-i18n="idx.15">Rule of thumb</span></span>
-      <p data-i18n="idx.16">If you cannot name the manipulated variable, you are designing a monitoring system — however many transmitters it contains.</p>
+      <span class="lbl"><span data-i18n="idx.14">Rule of thumb</span></span>
+      <p data-i18n="idx.15">If you cannot name the manipulated variable, you are designing a monitoring system — however many transmitters it contains.</p>
     </div>
   </div>
   <div>
     <div class="card">
-      <span data-i18n="idx.17">Level 0 → 4</span>
-      <h3 data-i18n="idx.18">Where the work sits</h3>
-      <p data-i18n="idx.19">Most I&amp;C scope lives between the process connection and the operator screen — ISA-95 levels 0 to 3.</p>
+      <span data-i18n="idx.16">Level 0 → 4</span>
+      <h3 data-i18n="idx.17">Where the work sits</h3>
+      <p data-i18n="idx.18">Most I&amp;C scope lives between the process connection and the operator screen — ISA-95 levels 0 to 3.</p>
     </div>
   </div>
 </div>
-</div></section><section class="sec" id="families"><div class="wrap"><div class="eyebrow"><span class="num">02</span><span class="line"></span><span class="eyebrow-label" data-i18n="idx.20">Measurement families</span></div>
+</div></section><section class="sec" id="families"><div class="wrap"><div class="eyebrow"><span class="num">02</span><span class="line"></span><span class="eyebrow-label" data-i18n="idx.19">Measurement families</span></div>
 <div class="sec-head">
-  <h2 data-i18n="idx.21">Five ways to describe a process</h2>
-  <p data-i18n="idx.22">Almost every process variable an operator cares about falls into one of five families. Each has a dominant technology, a characteristic failure mode, and a set of installation rules that decide whether the number on the screen is true.</p>
+  <h2 data-i18n="idx.20">Five ways to describe a process</h2>
+  <p data-i18n="idx.21">Almost every process variable an operator cares about falls into one of five families. Each has a dominant technology, a characteristic failure mode, and a set of installation rules that decide whether the number on the screen is true.</p>
 </div>
 <div class="grid c3">
   <a class="card" href="instruments.html#pressure">
     <span class="n">P</span>
-    <h3><span data-i18n="idx.23">Pressure</span></h3>
-    <p><span data-i18n="idx.24">Gauge, absolute and differential. The foundation of flow, level and density measurement.</span></p>
-    <span class="more"><span data-i18n="idx.25">Explore pressure</span> &rarr;</span>
+    <h3><span data-i18n="idx.22">Pressure</span></h3>
+    <p><span data-i18n="idx.23">Gauge, absolute and differential. The foundation of flow, level and density measurement.</span></p>
+    <span class="more"><span data-i18n="idx.24">Explore pressure</span> &rarr;</span>
   </a>
   <a class="card" href="instruments.html#temperature">
     <span class="n">T</span>
-    <h3><span data-i18n="idx.26">Temperature</span></h3>
-    <p><span data-i18n="idx.27">RTDs for accuracy, thermocouples for range and speed. The most common loop in any plant.</span></p>
-    <span class="more"><span data-i18n="idx.28">Explore temperature</span> &rarr;</span>
+    <h3><span data-i18n="idx.25">Temperature</span></h3>
+    <p><span data-i18n="idx.26">RTDs for accuracy, thermocouples for range and speed. The most common loop in any plant.</span></p>
+    <span class="more"><span data-i18n="idx.27">Explore temperature</span> &rarr;</span>
   </a>
   <a class="card" href="instruments.html#flow">
     <span class="n">F</span>
-    <h3><span data-i18n="idx.29">Flow</span></h3>
-    <p><span data-i18n="idx.30">The hardest variable to measure well. Orifice, magnetic, Coriolis, vortex, ultrasonic.</span></p>
-    <span class="more"><span data-i18n="idx.31">Explore flow</span> &rarr;</span>
+    <h3><span data-i18n="idx.28">Flow</span></h3>
+    <p><span data-i18n="idx.29">The hardest variable to measure well. Orifice, magnetic, Coriolis, vortex, ultrasonic.</span></p>
+    <span class="more"><span data-i18n="idx.30">Explore flow</span> &rarr;</span>
   </a>
   <a class="card" href="instruments.html#level">
     <span class="n">L</span>
-    <h3><span data-i18n="idx.32">Level</span></h3>
-    <p><span data-i18n="idx.33">Hydrostatic, radar, guided wave, capacitance. Interface detection is the hard part.</span></p>
-    <span class="more"><span data-i18n="idx.34">Explore level</span> &rarr;</span>
+    <h3><span data-i18n="idx.31">Level</span></h3>
+    <p><span data-i18n="idx.32">Hydrostatic, radar, guided wave, capacitance. Interface detection is the hard part.</span></p>
+    <span class="more"><span data-i18n="idx.33">Explore level</span> &rarr;</span>
   </a>
   <a class="card" href="instruments.html#analytical">
     <span class="n">A</span>
-    <h3><span data-i18n="idx.35">Analytical</span></h3>
-    <p><span data-i18n="idx.36">pH, conductivity, oxygen, moisture and gas composition — where quality is measured directly.</span></p>
-    <span class="more"><span data-i18n="idx.37">Explore analytical</span> &rarr;</span>
+    <h3><span data-i18n="idx.34">Analytical</span></h3>
+    <p><span data-i18n="idx.35">pH, conductivity, oxygen, moisture and gas composition — where quality is measured directly.</span></p>
+    <span class="more"><span data-i18n="idx.36">Explore analytical</span> &rarr;</span>
   </a>
   <a class="card" href="instruments.html#final">
     <span class="n">&#9654;</span>
-    <h3><span data-i18n="idx.38">Final elements</span></h3>
-    <p><span data-i18n="idx.39">Control valves, actuators, positioners and variable-speed drives — the muscles of the loop.</span></p>
-    <span class="more"><span data-i18n="idx.40">Explore final elements</span> &rarr;</span>
+    <h3><span data-i18n="idx.37">Final elements</span></h3>
+    <p><span data-i18n="idx.38">Control valves, actuators, positioners and variable-speed drives — the muscles of the loop.</span></p>
+    <span class="more"><span data-i18n="idx.39">Explore final elements</span> &rarr;</span>
   </a>
 </div>
-</div></section><section class="sec" id="line"><div class="wrap"><div class="eyebrow"><span class="num">03</span><span class="line"></span><span class="eyebrow-label" data-i18n="idx.41">The dividing line</span></div>
+</div></section>
+<section class="sec alt" id="read-inline">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 data-i18n="idx.40">Read the two documents here</h2>
+      <p data-i18n="idx.41">The next section draws the line between the two disciplines. Both source pages are open below, in this page — scroll inside the frame, or open the full page if you want the navigation around it.</p>
+    </div>
+    <div class="reader">
+      <input type="radio" name="reader-pick" id="r-cmp" checked>
+      <input type="radio" name="reader-pick" id="r-geo">
+      <div class="reader-tabs">
+        <label for="r-cmp"><span data-i18n="idx.42">Comparison</span></label>
+        <label for="r-geo"><span data-i18n="idx.43">Geotechnical</span></label>
+      </div>
+      <div class="pane p-cmp">
+        <div class="pane-bar">
+          <span class="pane-t" data-i18n="idx.44">Process control vs geotechnical monitoring — the full comparison</span>
+          <a href="comparison.html" class="pane-open" data-i18n="idx.45">Open full page &nearr;</a>
+        </div>
+        <iframe src="comparison.html?embed=1" data-embed="comparison.html" loading="lazy"
+                title="Process control vs geotechnical monitoring" data-i18n="idx.46" data-i18n-attr="title"></iframe>
+      </div>
+      <div class="pane p-geo">
+        <div class="pane-bar">
+          <span class="pane-t" data-i18n="idx.47">Geotechnical monitoring — instruments, ISO 18674, field reality</span>
+          <a href="geotechnical.html" class="pane-open" data-i18n="idx.48">Open full page &nearr;</a>
+        </div>
+        <iframe src="geotechnical.html?embed=1" data-embed="geotechnical.html" loading="lazy"
+                title="Geotechnical monitoring" data-i18n="idx.49" data-i18n-attr="title"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec" id="line"><div class="wrap"><div class="eyebrow"><span class="num">03</span><span class="line"></span><span class="eyebrow-label" data-i18n="idx.50">The dividing line</span></div>
 <div class="sec-head">
-  <h2 data-i18n="idx.42">Small and controllable, or large and watchful</h2>
-  <p data-i18n="idx.43">Both disciplines hang instruments on a structure and read numbers. The difference is what happens next — and it is not a matter of taste, it follows from the physics of the system being measured.</p>
+  <h2 data-i18n="idx.51">Small and controllable, or large and watchful</h2>
+  <p data-i18n="idx.52">Both disciplines hang instruments on a structure and read numbers. The difference is what happens next — and it is not a matter of taste, it follows from the physics of the system being measured.</p>
 </div>
 <div class="versus">
   <div class="a">
-    <span class="tagline"><span data-i18n="idx.44">Closed loop · acts</span></span>
-    <h3><span data-i18n="idx.45">Process instrumentation &amp; control</span></h3>
+    <span class="tagline"><span data-i18n="idx.53">Closed loop · acts</span></span>
+    <h3><span data-i18n="idx.54">Process instrumentation &amp; control</span></h3>
     <ul>
-      <li data-i18n="idx.46"><strong>Bounded system.</strong> A pipe, a vessel, a heat exchanger — geometry and boundary conditions are known and drawn.</li>
-      <li data-i18n="idx.47"><strong>Fast.</strong> Time constants from seconds to minutes; a loop can be tuned in an afternoon.</li>
-      <li data-i18n="idx.48"><strong>An actuator exists.</strong> A valve, a damper, a drive — something that can be moved to change the variable.</li>
-      <li data-i18n="idx.49"><strong>Goal: hold.</strong> Keep PV at SP despite disturbance, within a stated band.</li>
+      <li data-i18n="idx.55"><strong>Bounded system.</strong> A pipe, a vessel, a heat exchanger — geometry and boundary conditions are known and drawn.</li>
+      <li data-i18n="idx.56"><strong>Fast.</strong> Time constants from seconds to minutes; a loop can be tuned in an afternoon.</li>
+      <li data-i18n="idx.57"><strong>An actuator exists.</strong> A valve, a damper, a drive — something that can be moved to change the variable.</li>
+      <li data-i18n="idx.58"><strong>Goal: hold.</strong> Keep PV at SP despite disturbance, within a stated band.</li>
     </ul>
   </div>
   <div class="b">
-    <span class="tagline"><span data-i18n="idx.50">Open loop · observes</span></span>
-    <h3><span data-i18n="idx.51">Geotechnical monitoring</span></h3>
+    <span class="tagline"><span data-i18n="idx.59">Open loop · observes</span></span>
+    <h3><span data-i18n="idx.60">Geotechnical monitoring</span></h3>
     <ul>
-      <li data-i18n="idx.52"><strong>Natural system.</strong> A slope, a dam foundation, a tunnel — geometry inferred from a handful of boreholes.</li>
-      <li data-i18n="idx.53"><strong>Slow.</strong> Time constants from days to years; the monitoring campaign outlives the project team.</li>
-      <li data-i18n="idx.54"><strong>No actuator.</strong> You cannot throttle a hillside. There is nothing to move, so there is nothing to tune.</li>
-      <li data-i18n="idx.55"><strong>Goal: know.</strong> Detect change early, compare with a threshold, trigger a decision.</li>
+      <li data-i18n="idx.61"><strong>Natural system.</strong> A slope, a dam foundation, a tunnel — geometry inferred from a handful of boreholes.</li>
+      <li data-i18n="idx.62"><strong>Slow.</strong> Time constants from days to years; the monitoring campaign outlives the project team.</li>
+      <li data-i18n="idx.63"><strong>No actuator.</strong> You cannot throttle a hillside. There is nothing to move, so there is nothing to tune.</li>
+      <li data-i18n="idx.64"><strong>Goal: know.</strong> Detect change early, compare with a threshold, trigger a decision.</li>
     </ul>
   </div>
 </div>
 <div class="mt24">
-  <p class="small dim" data-i18n="idx.56">The rest of this guide treats the first column as its main subject and keeps the second column in view, because most real projects — dams, tailings facilities, tunnels, pipelines through unstable ground — need both at once, and the two are usually specified by people who do not share a vocabulary.</p>
+  <p class="small dim" data-i18n="idx.65">The rest of this guide treats the first column as its main subject and keeps the second column in view, because most real projects — dams, tailings facilities, tunnels, pipelines through unstable ground — need both at once, and the two are usually specified by people who do not share a vocabulary.</p>
 </div>
-</div></section><section class="sec" id="how"><div class="wrap"><div class="eyebrow"><span class="num">04</span><span class="line"></span><span class="eyebrow-label" data-i18n="idx.57">How to use this guide</span></div>
+</div></section><section class="sec" id="how"><div class="wrap"><div class="eyebrow"><span class="num">04</span><span class="line"></span><span class="eyebrow-label" data-i18n="idx.66">How to use this guide</span></div>
 <div class="grid c4">
   <div class="card">
     <span class="n">01</span>
-    <h3 data-i18n="idx.58">Learn the signal chain</h3>
-    <p data-i18n="idx.59">Start with how a physical quantity becomes a number on a screen, and where accuracy is lost on the way.</p>
-    <a class="more" href="fundamentals.html"><span data-i18n="idx.60">Fundamentals</span> &rarr;</a>
+    <h3 data-i18n="idx.67">Learn the signal chain</h3>
+    <p data-i18n="idx.68">Start with how a physical quantity becomes a number on a screen, and where accuracy is lost on the way.</p>
+    <a class="more" href="fundamentals.html"><span data-i18n="idx.69">Fundamentals</span> &rarr;</a>
   </div>
   <div class="card">
     <span class="n">02</span>
-    <h3 data-i18n="idx.61">Choose the instrument</h3>
-    <p data-i18n="idx.62">Use the filterable reference to compare principle, accuracy and failure mode for each family.</p>
-    <a class="more" href="instruments.html"><span data-i18n="idx.63">Instrument reference</span> &rarr;</a>
+    <h3 data-i18n="idx.70">Choose the instrument</h3>
+    <p data-i18n="idx.71">Use the filterable reference to compare principle, accuracy and failure mode for each family.</p>
+    <a class="more" href="instruments.html"><span data-i18n="idx.72">Instrument reference</span> &rarr;</a>
   </div>
   <div class="card">
     <span class="n">03</span>
-    <h3 data-i18n="idx.64">Close the loop</h3>
-    <p data-i18n="idx.65">Tune a simulated loop, then read how PID terms interact with dead time and process lag.</p>
-    <a class="more" href="control.html"><span data-i18n="idx.66">Control &amp; tuning</span> &rarr;</a>
+    <h3 data-i18n="idx.73">Close the loop</h3>
+    <p data-i18n="idx.74">Tune a simulated loop, then read how PID terms interact with dead time and process lag.</p>
+    <a class="more" href="control.html"><span data-i18n="idx.75">Control &amp; tuning</span> &rarr;</a>
   </div>
   <div class="card">
     <span class="n">04</span>
-    <h3 data-i18n="idx.67">Prove it fails safe</h3>
-    <p data-i18n="idx.68">Then read how a safety function is specified, verified and quietly defeated — and why a SIL belongs to a loop, not to a device.</p>
-    <a class="more" href="safety.html"><span data-i18n="idx.69">Safety systems</span> &rarr;</a>
+    <h3 data-i18n="idx.76">Prove it fails safe</h3>
+    <p data-i18n="idx.77">Then read how a safety function is specified, verified and quietly defeated — and why a SIL belongs to a loop, not to a device.</p>
+    <a class="more" href="safety.html"><span data-i18n="idx.78">Safety systems</span> &rarr;</a>
   </div>
 </div>
-</div></section><div class="wrap"><div class="nextprev"><a href="hot-topics/" style="text-align:right"><span class="k"><span data-i18n="idx.70">Next</span></span><span data-i18n="idx.71">Hot topics</span></a></div></div></main>
+</div></section><div class="wrap"><div class="nextprev"><a href="hot-topics/" style="text-align:right"><span class="k"><span data-i18n="idx.79">Next</span></span><span data-i18n="idx.80">Hot topics</span></a></div></div></main>
 <footer class="foot">
   <div class="wrap foot-in">
     <div class="foot-l">
@@ -271,7 +304,7 @@
     </div>
   </div>
 </footer>
-<script>window.I18N={"shell.skip":{"en":"Skip to content","vi":"Chuyển đến nội dung"},"shell.nav.home":{"en":"Home","vi":"Trang chủ"},"shell.nav.fundamentals":{"en":"Fundamentals","vi":"Cơ bản"},"shell.nav.advanced":{"en":"Advanced","vi":"Nâng cao"},"shell.nav.instruments":{"en":"Instruments","vi":"Thiết bị đo"},"shell.nav.install":{"en":"Install","vi":"Lắp đặt"},"shell.nav.control":{"en":"Control","vi":"Điều khiển"},"shell.nav.applications":{"en":"Applications","vi":"Ứng dụng"},"shell.nav.safety":{"en":"Safety","vi":"An toàn"},"shell.nav.tools":{"en":"Tools","vi":"Công cụ"},"shell.nav.standards":{"en":"Standards","vi":"Tiêu chuẩn"},"shell.nav.glossary":{"en":"Glossary","vi":"Thuật ngữ"},"shell.nav.education":{"en":"Education","vi":"Giáo dục"},"shell.nav.books":{"en":"Books","vi":"Sách"},"shell.nav.video-library":{"en":"Videos","vi":"Video"},"shell.nav.hot-topics":{"en":"Hot topics","vi":"Chủ đề nóng"},"shell.nav.process":{"en":"Process","vi":"Quá trình"},"shell.tag":{"en":"Field Guide","vi":"Sổ tay hiện trường"},"shell.menu":{"en":"Menu","vi":"Danh mục"},"shell.foot.note":{"en":"A bilingual field guide to process instrumentation and control. Content is synthesised from ISA, IEC, API and ISO 18674 practice; always verify against the current edition of a standard before design use.","vi":"Sổ tay song ngữ về thiết bị đo và điều khiển quá trình. Nội dung được tổng hợp từ thực tiễn ISA, IEC, API và ISO 18674; luôn đối chiếu với bản tiêu chuẩn hiện hành trước khi dùng cho thiết kế."},"shell.foot.contact":{"en":"Contact","vi":"Liên hệ"},"idx.1":{"en":"Process · Control · Monitoring","vi":"Quá trình · Điều khiển · Quan trắc"},"idx.2":{"en":"Measure the process.<span class=\"thin\">Then close the loop.</span>","vi":"Đo lường quá trình.<span class=\"thin\">Rồi khép kín vòng điều khiển.</span>"},"idx.3":{"en":"A working field guide to the instruments that sense pressure, temperature, flow, level and composition — and to the loops that decide what to do about the reading. Written for the engineer who specifies, installs and tunes, in English and Vietnamese.","vi":"Sổ tay thực hành về các thiết bị đo áp suất, nhiệt độ, lưu lượng, mức và thành phần — cùng những vòng điều khiển quyết định phải làm gì với kết quả đo. Dành cho kỹ sư khảo sát, lắp đặt và hiệu chỉnh, bằng tiếng Anh và tiếng Việt."},"idx.4":{"en":"Start with the fundamentals","vi":"Bắt đầu từ kiến thức cơ bản"},"idx.5":{"en":"Process vs geotechnical","vi":"Quá trình vs địa kỹ thuật"},"idx.6":{"en":"One loop, three jobs: sense (FT-101), decide (FIC-101), act (FV-101) — over a 4–20 mA signal.","vi":"Một vòng, ba nhiệm vụ: cảm nhận (FT-101), quyết định (FIC-101), tác động (FV-101) — qua tín hiệu 4–20 mA."},"idx.7":{"en":"live-zero analogue signal","vi":"tín hiệu tương tự có điểm không sống"},"idx.8":{"en":"five measurement families","vi":"năm họ phép đo"},"idx.9":{"en":"three terms, one loop","vi":"ba số hạng, một vòng điều khiển"},"idx.10":{"en":"the geotechnical counterpart","vi":"đối tượng địa kỹ thuật tương ứng"},"idx.11":{"en":"The discipline","vi":"Ngành kỹ thuật"},"idx.12":{"en":"Instrumentation is a loop, not a list","vi":"Thiết bị đo là một vòng, không phải một danh mục"},"idx.13":{"en":"Process instrumentation and control (I&amp;C) is the engineering of <strong>measurement plus action</strong>. A transmitter on its own is only half a discipline: the value it produces has to travel to a controller, be compared with a target, and drive a final element that changes the process. Take away any one of those three links and you no longer have control — you have a reading.","vi":"Đo lường và điều khiển quá trình (I&amp;C) là kỹ thuật của <strong>đo lường cộng với tác động</strong>. Một bộ truyền tín hiệu đứng riêng chỉ là một nửa của ngành: giá trị đo phải đi đến bộ điều khiển, được so sánh với giá trị đích, rồi điều khiển một phần tử chấp hành làm thay đổi quá trình. Thiếu một trong ba mắt xích đó, bạn không còn điều khiển — bạn chỉ còn một con số."},"idx.14":{"en":"That is why the same word, <em>instrument</em>, means something quite different in geotechnical engineering, where the loop is deliberately left open and a human being occupies the place of the controller. The comparison section takes that difference apart properly; here it is enough to notice that control requires something to control.","vi":"Đó là lý do cùng một từ, <em>thiết bị đo</em>, lại mang nghĩa khác trong địa kỹ thuật, nơi vòng điều khiển được cố ý để hở và con người giữ vị trí của bộ điều khiển. Phần so sánh sẽ mổ xẻ khác biệt này; ở đây chỉ cần lưu ý: muốn điều khiển thì phải có thứ gì đó để điều khiển."},"idx.15":{"en":"Rule of thumb","vi":"Quy tắc thực hành"},"idx.16":{"en":"If you cannot name the manipulated variable, you are designing a monitoring system — however many transmitters it contains.","vi":"Nếu bạn không gọi được tên của biến điều khiển, bạn đang thiết kế một hệ quan trắc — dù nó có bao nhiêu bộ truyền tín hiệu đi nữa."},"idx.17":{"en":"Level 0 → 4","vi":"Mức 0 → 4"},"idx.18":{"en":"Where the work sits","vi":"Công việc nằm ở đâu"},"idx.19":{"en":"Most I&amp;C scope lives between the process connection and the operator screen — ISA-95 levels 0 to 3.","vi":"Phần lớn phạm vi I&amp;C nằm giữa điểm đấu nối quá trình và màn hình vận hành — các mức 0 đến 3 của ISA-95."},"idx.20":{"en":"Measurement families","vi":"Các họ phép đo"},"idx.21":{"en":"Five ways to describe a process","vi":"Năm cách mô tả một quá trình"},"idx.22":{"en":"Almost every process variable an operator cares about falls into one of five families. Each has a dominant technology, a characteristic failure mode, and a set of installation rules that decide whether the number on the screen is true.","vi":"Gần như mọi biến quá trình mà người vận hành quan tâm đều thuộc một trong năm họ. Mỗi họ có một công nghệ chủ đạo, một kiểu hư hỏng đặc trưng, và những quy tắc lắp đặt quyết định con số trên màn hình có đúng hay không."},"idx.23":{"en":"Pressure","vi":"Áp suất"},"idx.24":{"en":"Gauge, absolute and differential. The foundation of flow, level and density measurement.","vi":"Áp kế, áp suất tuyệt đối và áp suất vi sai. Nền tảng của đo lưu lượng, mức và khối lượng riêng."},"idx.25":{"en":"Explore pressure","vi":"Xem về áp suất"},"idx.26":{"en":"Temperature","vi":"Nhiệt độ"},"idx.27":{"en":"RTDs for accuracy, thermocouples for range and speed. The most common loop in any plant.","vi":"RTD cho độ chính xác, cặp nhiệt điện cho dải rộng và tốc độ. Vòng đo phổ biến nhất trong nhà máy."},"idx.28":{"en":"Explore temperature","vi":"Xem về nhiệt độ"},"idx.29":{"en":"Flow","vi":"Lưu lượng"},"idx.30":{"en":"The hardest variable to measure well. Orifice, magnetic, Coriolis, vortex, ultrasonic.","vi":"Biến khó đo chính xác nhất. Lỗ khoan, điện từ, Coriolis, xoáy, siêu âm."},"idx.31":{"en":"Explore flow","vi":"Xem về lưu lượng"},"idx.32":{"en":"Level","vi":"Mức"},"idx.33":{"en":"Hydrostatic, radar, guided wave, capacitance. Interface detection is the hard part.","vi":"Thủy tĩnh, radar, sóng dẫn, điện dung. Phần khó nhất là phát hiện mặt phân cách."},"idx.34":{"en":"Explore level","vi":"Xem về mức"},"idx.35":{"en":"Analytical","vi":"Phân tích"},"idx.36":{"en":"pH, conductivity, oxygen, moisture and gas composition — where quality is measured directly.","vi":"pH, độ dẫn, oxy, độ ẩm và thành phần khí — nơi chất lượng được đo trực tiếp."},"idx.37":{"en":"Explore analytical","vi":"Xem về phân tích"},"idx.38":{"en":"Final elements","vi":"Phần tử chấp hành"},"idx.39":{"en":"Control valves, actuators, positioners and variable-speed drives — the muscles of the loop.","vi":"Van điều khiển, cơ cấu chấp hành, bộ định vị và biến tần — phần cơ bắp của vòng điều khiển."},"idx.40":{"en":"Explore final elements","vi":"Xem về phần tử chấp hành"},"idx.41":{"en":"The dividing line","vi":"Ranh giới phân chia"},"idx.42":{"en":"Small and controllable, or large and watchful","vi":"Nhỏ và điều khiển được, hay lớn và cần quan sát"},"idx.43":{"en":"Both disciplines hang instruments on a structure and read numbers. The difference is what happens next — and it is not a matter of taste, it follows from the physics of the system being measured.","vi":"Cả hai ngành đều gắn thiết bị lên một kết cấu và đọc số. Khác biệt nằm ở bước tiếp theo — và đó không phải chuyện sở thích, mà xuất phát từ bản chất vật lý của hệ được đo."},"idx.44":{"en":"Closed loop · acts","vi":"Vòng kín · tác động"},"idx.45":{"en":"Process instrumentation &amp; control","vi":"Đo lường &amp; điều khiển quá trình"},"idx.46":{"en":"<strong>Bounded system.</strong> A pipe, a vessel, a heat exchanger — geometry and boundary conditions are known and drawn.","vi":"<strong>Hệ có biên xác định.</strong> Một đường ống, một bình chứa, một thiết bị trao đổi nhiệt — hình học và điều kiện biên đã biết và được vẽ ra."},"idx.47":{"en":"<strong>Fast.</strong> Time constants from seconds to minutes; a loop can be tuned in an afternoon.","vi":"<strong>Nhanh.</strong> Hằng số thời gian từ giây đến phút; một vòng có thể hiệu chỉnh trong một buổi."},"idx.48":{"en":"<strong>An actuator exists.</strong> A valve, a damper, a drive — something that can be moved to change the variable.","vi":"<strong>Có cơ cấu chấp hành.</strong> Một van, một cánh gió, một biến tần — thứ có thể dịch chuyển để thay đổi biến quá trình."},"idx.49":{"en":"<strong>Goal: hold.</strong> Keep PV at SP despite disturbance, within a stated band.","vi":"<strong>Mục tiêu: giữ.</strong> Giữ PV ở SP bất chấp nhiễu động, trong một dải cho phép."},"idx.50":{"en":"Open loop · observes","vi":"Vòng hở · quan sát"},"idx.51":{"en":"Geotechnical monitoring","vi":"Quan trắc địa kỹ thuật"},"idx.52":{"en":"<strong>Natural system.</strong> A slope, a dam foundation, a tunnel — geometry inferred from a handful of boreholes.","vi":"<strong>Hệ tự nhiên.</strong> Một mái dốc, nền đập, đường hầm — hình học suy ra từ vài lỗ khoan."},"idx.53":{"en":"<strong>Slow.</strong> Time constants from days to years; the monitoring campaign outlives the project team.","vi":"<strong>Chậm.</strong> Hằng số thời gian từ ngày đến năm; chiến dịch quan trắc sống lâu hơn đội dự án."},"idx.54":{"en":"<strong>No actuator.</strong> You cannot throttle a hillside. There is nothing to move, so there is nothing to tune.","vi":"<strong>Không có cơ cấu chấp hành.</strong> Không thể &ldquo;van hóa&rdquo; một mái dốc. Không có gì để dịch chuyển thì cũng không có gì để hiệu chỉnh."},"idx.55":{"en":"<strong>Goal: know.</strong> Detect change early, compare with a threshold, trigger a decision.","vi":"<strong>Mục tiêu: biết.</strong> Phát hiện thay đổi sớm, so với ngưỡng, kích hoạt một quyết định."},"idx.56":{"en":"The rest of this guide treats the first column as its main subject and keeps the second column in view, because most real projects — dams, tailings facilities, tunnels, pipelines through unstable ground — need both at once, and the two are usually specified by people who do not share a vocabulary.","vi":"Phần còn lại của sổ tay lấy cột thứ nhất làm chủ đề chính và vẫn theo dõi cột thứ hai, vì hầu hết dự án thực tế — đập, bãi quặng đuôi, đường hầm, tuyến ống qua vùng đất yếu — cần cả hai cùng lúc, và hai bên thường do những người không dùng chung từ vựng chỉ định."},"idx.57":{"en":"How to use this guide","vi":"Cách dùng sổ tay"},"idx.58":{"en":"Learn the signal chain","vi":"Hiểu chuỗi tín hiệu"},"idx.59":{"en":"Start with how a physical quantity becomes a number on a screen, and where accuracy is lost on the way.","vi":"Bắt đầu từ việc một đại lượng vật lý trở thành con số trên màn hình, và độ chính xác bị mất ở đâu trên đường đi."},"idx.60":{"en":"Fundamentals","vi":"Kiến thức cơ bản"},"idx.61":{"en":"Choose the instrument","vi":"Chọn thiết bị"},"idx.62":{"en":"Use the filterable reference to compare principle, accuracy and failure mode for each family.","vi":"Dùng bảng tra có bộ lọc để so sánh nguyên lý, độ chính xác và kiểu hư hỏng của từng họ."},"idx.63":{"en":"Instrument reference","vi":"Danh mục thiết bị"},"idx.64":{"en":"Close the loop","vi":"Khép kín vòng điều khiển"},"idx.65":{"en":"Tune a simulated loop, then read how PID terms interact with dead time and process lag.","vi":"Hiệu chỉnh một vòng mô phỏng, rồi đọc cách các số hạng PID tương tác với thời gian trễ và quán tính."},"idx.66":{"en":"Control &amp; tuning","vi":"Điều khiển &amp; hiệu chỉnh"},"idx.67":{"en":"Prove it fails safe","vi":"Chứng minh nó hỏng an toàn"},"idx.68":{"en":"Then read how a safety function is specified, verified and quietly defeated — and why a SIL belongs to a loop, not to a device.","vi":"Rồi đọc cách một chức năng an toàn được đặc tả, kiểm chứng và bị vô hiệu hóa âm thầm — và vì sao SIL thuộc về một vòng đo, không phải một thiết bị."},"idx.69":{"en":"Safety systems","vi":"Hệ thống an toàn"},"idx.70":{"en":"Next","vi":"Tiếp"},"idx.71":{"en":"Hot topics","vi":"Chủ đề nóng"}};window.I18N_META={"title":{"en":"Process Instrumentation &amp; Control — a bilingual field guide","vi":"Đo lường &amp; Điều khiển Quá trình — sổ tay song ngữ"},"desc":{"en":"A bilingual English/Vietnamese field guide to process instrumentation and control: measurement principles, instrument selection, PID tuning, and how process control differs from geotechnical monitoring.","vi":"Sổ tay song ngữ Anh/Việt về thiết bị đo và điều khiển quá trình: nguyên lý đo, chọn thiết bị, hiệu chỉnh PID, và khác biệt với quan trắc địa kỹ thuật."}};window.TWINS=["advanced/","books/","glossary.html","hot-topics/","video-library/"];</script>
-<script src="assets/app.js?v=11"></script>
+<script>window.I18N={"shell.skip":{"en":"Skip to content","vi":"Chuyển đến nội dung"},"shell.nav.home":{"en":"Home","vi":"Trang chủ"},"shell.nav.fundamentals":{"en":"Fundamentals","vi":"Cơ bản"},"shell.nav.advanced":{"en":"Advanced","vi":"Nâng cao"},"shell.nav.instruments":{"en":"Instruments","vi":"Thiết bị đo"},"shell.nav.install":{"en":"Install","vi":"Lắp đặt"},"shell.nav.control":{"en":"Control","vi":"Điều khiển"},"shell.nav.applications":{"en":"Applications","vi":"Ứng dụng"},"shell.nav.safety":{"en":"Safety","vi":"An toàn"},"shell.nav.tools":{"en":"Tools","vi":"Công cụ"},"shell.nav.standards":{"en":"Standards","vi":"Tiêu chuẩn"},"shell.nav.glossary":{"en":"Glossary","vi":"Thuật ngữ"},"shell.nav.education":{"en":"Education","vi":"Giáo dục"},"shell.nav.books":{"en":"Books","vi":"Sách"},"shell.nav.video-library":{"en":"Videos","vi":"Video"},"shell.nav.hot-topics":{"en":"Hot topics","vi":"Chủ đề nóng"},"shell.nav.process":{"en":"Process","vi":"Quá trình"},"shell.tag":{"en":"Field Guide","vi":"Sổ tay hiện trường"},"shell.menu":{"en":"Menu","vi":"Danh mục"},"shell.foot.note":{"en":"A bilingual field guide to process instrumentation and control. Content is synthesised from ISA, IEC, API and ISO 18674 practice; always verify against the current edition of a standard before design use.","vi":"Sổ tay song ngữ về thiết bị đo và điều khiển quá trình. Nội dung được tổng hợp từ thực tiễn ISA, IEC, API và ISO 18674; luôn đối chiếu với bản tiêu chuẩn hiện hành trước khi dùng cho thiết kế."},"shell.foot.contact":{"en":"Contact","vi":"Liên hệ"},"idx.1":{"en":"Process · Control · Monitoring","vi":"Quá trình · Điều khiển · Quan trắc"},"idx.2":{"en":"Measure the process.<span class=\"thin\">Then close the loop.</span>","vi":"Đo lường quá trình.<span class=\"thin\">Rồi khép kín vòng điều khiển.</span>"},"idx.3":{"en":"A working field guide to the instruments that sense pressure, temperature, flow, level and composition — and to the loops that decide what to do about the reading. Written for the engineer who specifies, installs and tunes, in English and Vietnamese.","vi":"Sổ tay thực hành về các thiết bị đo áp suất, nhiệt độ, lưu lượng, mức và thành phần — cùng những vòng điều khiển quyết định phải làm gì với kết quả đo. Dành cho kỹ sư khảo sát, lắp đặt và hiệu chỉnh, bằng tiếng Anh và tiếng Việt."},"idx.4":{"en":"Start with the fundamentals","vi":"Bắt đầu từ kiến thức cơ bản"},"idx.5":{"en":"One loop, three jobs: sense (FT-101), decide (FIC-101), act (FV-101) — over a 4–20 mA signal.","vi":"Một vòng, ba nhiệm vụ: cảm nhận (FT-101), quyết định (FIC-101), tác động (FV-101) — qua tín hiệu 4–20 mA."},"idx.6":{"en":"live-zero analogue signal","vi":"tín hiệu tương tự có điểm không sống"},"idx.7":{"en":"five measurement families","vi":"năm họ phép đo"},"idx.8":{"en":"three terms, one loop","vi":"ba số hạng, một vòng điều khiển"},"idx.9":{"en":"the geotechnical counterpart","vi":"đối tượng địa kỹ thuật tương ứng"},"idx.10":{"en":"The discipline","vi":"Ngành kỹ thuật"},"idx.11":{"en":"Instrumentation is a loop, not a list","vi":"Thiết bị đo là một vòng, không phải một danh mục"},"idx.12":{"en":"Process instrumentation and control (I&amp;C) is the engineering of <strong>measurement plus action</strong>. A transmitter on its own is only half a discipline: the value it produces has to travel to a controller, be compared with a target, and drive a final element that changes the process. Take away any one of those three links and you no longer have control — you have a reading.","vi":"Đo lường và điều khiển quá trình (I&amp;C) là kỹ thuật của <strong>đo lường cộng với tác động</strong>. Một bộ truyền tín hiệu đứng riêng chỉ là một nửa của ngành: giá trị đo phải đi đến bộ điều khiển, được so sánh với giá trị đích, rồi điều khiển một phần tử chấp hành làm thay đổi quá trình. Thiếu một trong ba mắt xích đó, bạn không còn điều khiển — bạn chỉ còn một con số."},"idx.13":{"en":"That is why the same word, <em>instrument</em>, means something quite different in geotechnical engineering, where the loop is deliberately left open and a human being occupies the place of the controller. The comparison section takes that difference apart properly; here it is enough to notice that control requires something to control.","vi":"Đó là lý do cùng một từ, <em>thiết bị đo</em>, lại mang nghĩa khác trong địa kỹ thuật, nơi vòng điều khiển được cố ý để hở và con người giữ vị trí của bộ điều khiển. Phần so sánh sẽ mổ xẻ khác biệt này; ở đây chỉ cần lưu ý: muốn điều khiển thì phải có thứ gì đó để điều khiển."},"idx.14":{"en":"Rule of thumb","vi":"Quy tắc thực hành"},"idx.15":{"en":"If you cannot name the manipulated variable, you are designing a monitoring system — however many transmitters it contains.","vi":"Nếu bạn không gọi được tên của biến điều khiển, bạn đang thiết kế một hệ quan trắc — dù nó có bao nhiêu bộ truyền tín hiệu đi nữa."},"idx.16":{"en":"Level 0 → 4","vi":"Mức 0 → 4"},"idx.17":{"en":"Where the work sits","vi":"Công việc nằm ở đâu"},"idx.18":{"en":"Most I&amp;C scope lives between the process connection and the operator screen — ISA-95 levels 0 to 3.","vi":"Phần lớn phạm vi I&amp;C nằm giữa điểm đấu nối quá trình và màn hình vận hành — các mức 0 đến 3 của ISA-95."},"idx.19":{"en":"Measurement families","vi":"Các họ phép đo"},"idx.20":{"en":"Five ways to describe a process","vi":"Năm cách mô tả một quá trình"},"idx.21":{"en":"Almost every process variable an operator cares about falls into one of five families. Each has a dominant technology, a characteristic failure mode, and a set of installation rules that decide whether the number on the screen is true.","vi":"Gần như mọi biến quá trình mà người vận hành quan tâm đều thuộc một trong năm họ. Mỗi họ có một công nghệ chủ đạo, một kiểu hư hỏng đặc trưng, và những quy tắc lắp đặt quyết định con số trên màn hình có đúng hay không."},"idx.22":{"en":"Pressure","vi":"Áp suất"},"idx.23":{"en":"Gauge, absolute and differential. The foundation of flow, level and density measurement.","vi":"Áp kế, áp suất tuyệt đối và áp suất vi sai. Nền tảng của đo lưu lượng, mức và khối lượng riêng."},"idx.24":{"en":"Explore pressure","vi":"Xem về áp suất"},"idx.25":{"en":"Temperature","vi":"Nhiệt độ"},"idx.26":{"en":"RTDs for accuracy, thermocouples for range and speed. The most common loop in any plant.","vi":"RTD cho độ chính xác, cặp nhiệt điện cho dải rộng và tốc độ. Vòng đo phổ biến nhất trong nhà máy."},"idx.27":{"en":"Explore temperature","vi":"Xem về nhiệt độ"},"idx.28":{"en":"Flow","vi":"Lưu lượng"},"idx.29":{"en":"The hardest variable to measure well. Orifice, magnetic, Coriolis, vortex, ultrasonic.","vi":"Biến khó đo chính xác nhất. Lỗ khoan, điện từ, Coriolis, xoáy, siêu âm."},"idx.30":{"en":"Explore flow","vi":"Xem về lưu lượng"},"idx.31":{"en":"Level","vi":"Mức"},"idx.32":{"en":"Hydrostatic, radar, guided wave, capacitance. Interface detection is the hard part.","vi":"Thủy tĩnh, radar, sóng dẫn, điện dung. Phần khó nhất là phát hiện mặt phân cách."},"idx.33":{"en":"Explore level","vi":"Xem về mức"},"idx.34":{"en":"Analytical","vi":"Phân tích"},"idx.35":{"en":"pH, conductivity, oxygen, moisture and gas composition — where quality is measured directly.","vi":"pH, độ dẫn, oxy, độ ẩm và thành phần khí — nơi chất lượng được đo trực tiếp."},"idx.36":{"en":"Explore analytical","vi":"Xem về phân tích"},"idx.37":{"en":"Final elements","vi":"Phần tử chấp hành"},"idx.38":{"en":"Control valves, actuators, positioners and variable-speed drives — the muscles of the loop.","vi":"Van điều khiển, cơ cấu chấp hành, bộ định vị và biến tần — phần cơ bắp của vòng điều khiển."},"idx.39":{"en":"Explore final elements","vi":"Xem về phần tử chấp hành"},"idx.40":{"en":"Read the two documents here","vi":"Đọc trực tiếp hai tài liệu"},"idx.41":{"en":"The next section draws the line between the two disciplines. Both source pages are open below, in this page — scroll inside the frame, or open the full page if you want the navigation around it.","vi":"Phần tiếp theo vạch ranh giới giữa hai ngành. Cả hai trang gốc được mở ngay bên dưới, trong chính trang này — cuộn trong khung, hoặc mở trang đầy đủ nếu muốn có menu điều hướng."},"idx.42":{"en":"Comparison","vi":"So sánh"},"idx.43":{"en":"Geotechnical","vi":"Địa kỹ thuật"},"idx.44":{"en":"Process control vs geotechnical monitoring — the full comparison","vi":"Điều khiển quá trình vs quan trắc địa kỹ thuật — bản đầy đủ"},"idx.45":{"en":"Open full page &nearr;","vi":"Mở trang đầy đủ &nearr;"},"idx.46":{"en":"Process control vs geotechnical monitoring — the full comparison","vi":"Điều khiển quá trình vs quan trắc địa kỹ thuật — bản đầy đủ"},"idx.47":{"en":"Geotechnical monitoring — instruments, ISO 18674, field reality","vi":"Quan trắc địa kỹ thuật — thiết bị, ISO 18674, thực tế hiện trường"},"idx.48":{"en":"Open full page &nearr;","vi":"Mở trang đầy đủ &nearr;"},"idx.49":{"en":"Geotechnical monitoring — instruments, ISO 18674, field reality","vi":"Quan trắc địa kỹ thuật — thiết bị, ISO 18674, thực tế hiện trường"},"idx.50":{"en":"The dividing line","vi":"Ranh giới phân chia"},"idx.51":{"en":"Small and controllable, or large and watchful","vi":"Nhỏ và điều khiển được, hay lớn và cần quan sát"},"idx.52":{"en":"Both disciplines hang instruments on a structure and read numbers. The difference is what happens next — and it is not a matter of taste, it follows from the physics of the system being measured.","vi":"Cả hai ngành đều gắn thiết bị lên một kết cấu và đọc số. Khác biệt nằm ở bước tiếp theo — và đó không phải chuyện sở thích, mà xuất phát từ bản chất vật lý của hệ được đo."},"idx.53":{"en":"Closed loop · acts","vi":"Vòng kín · tác động"},"idx.54":{"en":"Process instrumentation &amp; control","vi":"Đo lường &amp; điều khiển quá trình"},"idx.55":{"en":"<strong>Bounded system.</strong> A pipe, a vessel, a heat exchanger — geometry and boundary conditions are known and drawn.","vi":"<strong>Hệ có biên xác định.</strong> Một đường ống, một bình chứa, một thiết bị trao đổi nhiệt — hình học và điều kiện biên đã biết và được vẽ ra."},"idx.56":{"en":"<strong>Fast.</strong> Time constants from seconds to minutes; a loop can be tuned in an afternoon.","vi":"<strong>Nhanh.</strong> Hằng số thời gian từ giây đến phút; một vòng có thể hiệu chỉnh trong một buổi."},"idx.57":{"en":"<strong>An actuator exists.</strong> A valve, a damper, a drive — something that can be moved to change the variable.","vi":"<strong>Có cơ cấu chấp hành.</strong> Một van, một cánh gió, một biến tần — thứ có thể dịch chuyển để thay đổi biến quá trình."},"idx.58":{"en":"<strong>Goal: hold.</strong> Keep PV at SP despite disturbance, within a stated band.","vi":"<strong>Mục tiêu: giữ.</strong> Giữ PV ở SP bất chấp nhiễu động, trong một dải cho phép."},"idx.59":{"en":"Open loop · observes","vi":"Vòng hở · quan sát"},"idx.60":{"en":"Geotechnical monitoring","vi":"Quan trắc địa kỹ thuật"},"idx.61":{"en":"<strong>Natural system.</strong> A slope, a dam foundation, a tunnel — geometry inferred from a handful of boreholes.","vi":"<strong>Hệ tự nhiên.</strong> Một mái dốc, nền đập, đường hầm — hình học suy ra từ vài lỗ khoan."},"idx.62":{"en":"<strong>Slow.</strong> Time constants from days to years; the monitoring campaign outlives the project team.","vi":"<strong>Chậm.</strong> Hằng số thời gian từ ngày đến năm; chiến dịch quan trắc sống lâu hơn đội dự án."},"idx.63":{"en":"<strong>No actuator.</strong> You cannot throttle a hillside. There is nothing to move, so there is nothing to tune.","vi":"<strong>Không có cơ cấu chấp hành.</strong> Không thể &ldquo;van hóa&rdquo; một mái dốc. Không có gì để dịch chuyển thì cũng không có gì để hiệu chỉnh."},"idx.64":{"en":"<strong>Goal: know.</strong> Detect change early, compare with a threshold, trigger a decision.","vi":"<strong>Mục tiêu: biết.</strong> Phát hiện thay đổi sớm, so với ngưỡng, kích hoạt một quyết định."},"idx.65":{"en":"The rest of this guide treats the first column as its main subject and keeps the second column in view, because most real projects — dams, tailings facilities, tunnels, pipelines through unstable ground — need both at once, and the two are usually specified by people who do not share a vocabulary.","vi":"Phần còn lại của sổ tay lấy cột thứ nhất làm chủ đề chính và vẫn theo dõi cột thứ hai, vì hầu hết dự án thực tế — đập, bãi quặng đuôi, đường hầm, tuyến ống qua vùng đất yếu — cần cả hai cùng lúc, và hai bên thường do những người không dùng chung từ vựng chỉ định."},"idx.66":{"en":"How to use this guide","vi":"Cách dùng sổ tay"},"idx.67":{"en":"Learn the signal chain","vi":"Hiểu chuỗi tín hiệu"},"idx.68":{"en":"Start with how a physical quantity becomes a number on a screen, and where accuracy is lost on the way.","vi":"Bắt đầu từ việc một đại lượng vật lý trở thành con số trên màn hình, và độ chính xác bị mất ở đâu trên đường đi."},"idx.69":{"en":"Fundamentals","vi":"Kiến thức cơ bản"},"idx.70":{"en":"Choose the instrument","vi":"Chọn thiết bị"},"idx.71":{"en":"Use the filterable reference to compare principle, accuracy and failure mode for each family.","vi":"Dùng bảng tra có bộ lọc để so sánh nguyên lý, độ chính xác và kiểu hư hỏng của từng họ."},"idx.72":{"en":"Instrument reference","vi":"Danh mục thiết bị"},"idx.73":{"en":"Close the loop","vi":"Khép kín vòng điều khiển"},"idx.74":{"en":"Tune a simulated loop, then read how PID terms interact with dead time and process lag.","vi":"Hiệu chỉnh một vòng mô phỏng, rồi đọc cách các số hạng PID tương tác với thời gian trễ và quán tính."},"idx.75":{"en":"Control &amp; tuning","vi":"Điều khiển &amp; hiệu chỉnh"},"idx.76":{"en":"Prove it fails safe","vi":"Chứng minh nó hỏng an toàn"},"idx.77":{"en":"Then read how a safety function is specified, verified and quietly defeated — and why a SIL belongs to a loop, not to a device.","vi":"Rồi đọc cách một chức năng an toàn được đặc tả, kiểm chứng và bị vô hiệu hóa âm thầm — và vì sao SIL thuộc về một vòng đo, không phải một thiết bị."},"idx.78":{"en":"Safety systems","vi":"Hệ thống an toàn"},"idx.79":{"en":"Next","vi":"Tiếp"},"idx.80":{"en":"Hot topics","vi":"Chủ đề nóng"}};window.I18N_META={"title":{"en":"Process Instrumentation &amp; Control — a bilingual field guide","vi":"Đo lường &amp; Điều khiển Quá trình — sổ tay song ngữ"},"desc":{"en":"A bilingual English/Vietnamese field guide to process instrumentation and control: measurement principles, instrument selection, PID tuning, and how process control differs from geotechnical monitoring.","vi":"Sổ tay song ngữ Anh/Việt về thiết bị đo và điều khiển quá trình: nguyên lý đo, chọn thiết bị, hiệu chỉnh PID, và khác biệt với quan trắc địa kỹ thuật."}};window.TWINS=["advanced/","books/","glossary.html","hot-topics/","video-library/"];</script>
+<script src="assets/app.js?v=12"></script>
 </body>
 </html>

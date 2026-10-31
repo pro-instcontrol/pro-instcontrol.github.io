@@ -179,6 +179,7 @@ def build_geotechnical():
         "extensometers, load cells, the ISO 18674 series, and why the loop stays open.",
         "Cách thiết bị địa kỹ thuật hoạt động: cảm biến dây rung, piezometer, đầu đo nghiêng, "
         "extensometer, cảm biến lực, bộ ISO 18674, và vì sao vòng điều khiển để hở.",
+        embeddable=True,
     )
 
     body = page_intro(

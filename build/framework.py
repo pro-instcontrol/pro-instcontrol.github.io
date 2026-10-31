@@ -14,7 +14,7 @@ DIST = os.path.join(ROOT, "dist")
 
 # Single cache-busting version for every generated page. Bump this whenever
 # style.css or app.js changes; the env var exists only for one-off experiments.
-ASSET_VER = os.environ.get("ASSET_VER", "11")
+ASSET_VER = os.environ.get("ASSET_VER", "12")
 
 _NEST_OPEN = re.compile(r"<(h[1-4]|p|li)([^>]*)><\1([^>]*)>")
 _NEST_CLOSE = re.compile(r"</(h[1-4]|p|li)></\1>")
@@ -154,9 +154,11 @@ def esc(text):
 class Page:
     """Collects paired strings and emits markup in one language (EN default)."""
 
-    def __init__(self, path, prefix, title_en, title_vi, desc_en, desc_vi):
+    def __init__(self, path, prefix, title_en, title_vi, desc_en, desc_vi,
+                 embeddable=False):
         self.path = path
         self.prefix = prefix
+        self.embeddable = embeddable
         self.title = {"en": title_en, "vi": title_vi}
         self.desc = {"en": desc_en, "vi": desc_vi}
         self.strings = {}
@@ -345,6 +347,16 @@ def page_intro(pg, title_en, title_vi, lede_en, lede_vi, toc=None):
     )
 
 
+# Pages that another page can show inside a reader iframe accept ?embed=1: the
+# flag hides the site chrome (header, footer, foot pair) so the frame shows the
+# article rather than a site inside a site. The class is set from the head,
+# before the first paint, or the header flashes inside the frame on every load.
+EMBED_JS = (
+    "<script>if(/[?&]embed=1/.test(location.search))"
+    'document.documentElement.classList.add("embed");</script>'
+)
+
+
 def head(pg, extra_head=""):
     css_ver = ASSET_VER
     return """<!DOCTYPE html>
@@ -352,6 +364,7 @@ def head(pg, extra_head=""):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+%(embed)s
 <title>%(title)s</title>
 <meta name="description" content="%(desc)s">
 <meta property="og:type" content="website">
@@ -371,6 +384,7 @@ def head(pg, extra_head=""):
         "title": pg.title["en"],
         "desc": pg.desc["en"],
         "ver": css_ver,
+        "embed": EMBED_JS if pg.embeddable else "",
         "extra": extra_head,
         "skip": SHELL["shell.skip"][0],
     }

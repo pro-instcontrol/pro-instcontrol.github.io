@@ -275,6 +275,7 @@ def build():
         "structures, and where the two disciplines meet.",
         "So sánh có hệ thống giữa đo lường điều khiển quá trình và quan trắc địa kỹ thuật: vòng kín "
         "so với vòng hở, hệ nhỏ điều khiển được so với kết cấu lớn, và nơi hai ngành gặp nhau.",
+        embeddable=True,
     )
 
     body = page_intro(

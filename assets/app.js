@@ -52,10 +52,30 @@
     }
   }
 
+  /* The home page embeds comparison.html and geotechnical.html in reader
+     iframes. A frame has no language of its own: it takes whatever its src
+     asks for, so the src is rebuilt from data-embed on every switch instead
+     of being patched in place — patching would strand a frame in the language
+     it happened to load in. */
+  function retargetFrames(l) {
+    var frames = document.querySelectorAll("iframe[data-embed]");
+    for (var i = 0; i < frames.length; i++) {
+      var f = frames[i];
+      var base = f.getAttribute("data-embed");
+      if (!base) continue;
+      var url = base + "?embed=1";
+      if (l === "vi") {
+        url = (TWINS[base] ? "vi/" + base : base) + "?embed=1&lang=vi";
+      }
+      if (f.getAttribute("src") !== url) f.setAttribute("src", url);
+    }
+  }
+
   function apply(l) {
     lang = l;
     document.documentElement.lang = l;
     retargetNav(l);
+    retargetFrames(l);
 
     var nodes = document.querySelectorAll("[data-i18n]");
     for (var i = 0; i < nodes.length; i++) {
