@@ -55,6 +55,7 @@ SLUGS = {
         12: "ch12-functional-testing",
         13: "ch13-managing-changes-to-a-system",
         14: "ch14-justification-for-a-safety-system",
+        15: "ch15-sis-design-checklist",
     },
 }
 

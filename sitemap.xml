@@ -200,6 +200,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch14-justification-for-a-safety-system/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch15-sis-design-checklist/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch15-sis-design-checklist/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch15-sis-design-checklist/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch15-sis-design-checklist/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/"/>
@@ -1605,6 +1611,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch14-justification-for-a-safety-system/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch14-justification-for-a-safety-system/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch14-justification-for-a-safety-system/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch15-sis-design-checklist/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch15-sis-design-checklist/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/ch15-sis-design-checklist/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/ch15-sis-design-checklist/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/</loc>

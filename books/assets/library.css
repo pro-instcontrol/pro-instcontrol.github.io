@@ -359,6 +359,15 @@ table.tbl.matrix td:first-child, table.tbl.matrix th:first-child,
 table.tbl.matrix td:last-child, table.tbl.matrix th:last-child { white-space: nowrap; }
 table.tbl.matrix tbody td:nth-child(n+5):nth-child(-n+8) { text-align: center; }
 
+/* checklist: a number column, a wide question column, and one narrow choice column */
+table.tbl.chk th:first-child, table.tbl.chk td:first-child {
+  width: 4rem; white-space: nowrap; color: var(--gray-mid); font-variant-numeric: tabular-nums;
+}
+table.tbl.chk th:last-child, table.tbl.chk td:last-child {
+  width: 7rem; white-space: nowrap; text-align: center;
+  font-size: 0.8rem; letter-spacing: .02em; color: var(--gray-mid);
+}
+
 /* cost table: the money columns are read down a column, so align them right */
 table.tbl.cost th:nth-child(n+2), table.tbl.cost td:nth-child(n+2) {
   text-align: right; white-space: nowrap;
