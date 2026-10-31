@@ -1,9 +1,14 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** end of session 2026-10-30 · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** end of session 2026-10-30 (session 3) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook **Chapter 7 — Thickness Measurement**. Chapter 6 is
 > finished (twelve section pages, 123 figures). Everything you need is in §3 and §4.
+>
+> **Six chapters landed this session** — PC 3, 4, 5 and SIS 3, 4, 5 — on the new
+> `vfig.py` / `pcfig.py` / `pcsis_common.py` architecture described in §3.1. Both PC and
+> SIS now have real per-chapter generators, so the old "edit the HTML by hand" caveat is
+> gone.
 
 This file is the single source of truth for the book-translation work on this site.
 Read it before touching anything. Update the status table and append to the session log
@@ -28,8 +33,8 @@ Order of work, fixed by the site owner:
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
 | Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–6** | `build/reader_handbook.py` + `build/reader_hb_ch06.py` |
-| Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–2** | `build/reader_book.py` (`"sis"`) |
-| Practical Process Control | `pc-process-control` | 14 | **1–2** | `build/reader_book.py` (`"pc"`) |
+| Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–5** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
+| Practical Process Control | `pc-process-control` | 14 | **1–5** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py`, `pc4fig.py`, `pc5fig.py`) |
 
 Chapters done, with their slugs and build scripts:
 
@@ -43,21 +48,32 @@ Chapters done, with their slugs and build scripts:
 | HB 6 | Displacement Measurement, Linear and Angular | `ch06-displacement-measurement` (landing) + 12 section pages | `reader_hb_ch06.py` (+ `hb06_common.py`, `hb06fig.py`, `hb06_s01…s12.py`) | 123 | 63k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
+| PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.0k |
+| PC 4 | Fundamentals of Control Systems | `ch04-fundamentals-of-control-systems` | `reader_pc.py` → `pc_ch04.py` + `pc4fig.py` | 11 | 4.2k |
+| PC 5 | Stability and Control Modes of Closed Loops | `ch05-stability-and-control-modes-of-closed-loops` | `reader_pc.py` → `pc_ch05.py` + `pc5fig.py` | 11 | 5.6k |
 | SIS 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | SIS 2 | Design Lifecycle | `ch02-design-lifecycle` | *none kept* | — | — |
+| SIS 3 | Process Control vs. Safety Control | `ch03-process-control-vs-safety-control` | `reader_sis.py` → `sis_ch03.py` + `sisfig.py` | 1 | 6.3k |
+| SIS 4 | Protection Layers | `ch04-protection-layers` | `reader_sis.py` → `sis_ch04.py` + `sisfig.py` | 3 | 5.2k |
+| SIS 5 | Developing the Safety Requirement Specifications | `ch05-developing-the-safety-requirement-specifications` | `reader_sis.py` → `sis_ch05.py` | 0 | 4.5k |
 
-> **Caveat.** Only the handbook chapters have proper generator scripts. The PC and SIS
-> pages were written ad-hoc, so editing them means editing the generated HTML in place.
-> When you resume those two books, write a proper `reader_pc_chNN.py` / `reader_sis_chNN.py`
-> first (copy `reader_hb_ch05.py`) rather than hand-editing.
+> **Only chapters 1 and 2 of PC and SIS have no generator.** Everything from Chapter 3 on
+> is generated — edit the `pc_chNN.py` / `sis_chNN.py` module and rerun the orchestrator,
+> never the HTML. If you need to change Chapter 1 or 2, edit the HTML in place (and remember
+> that a later `build/build.py` will not touch those two directories).
 
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `("progress", total_chapters, done_chapters)`.
+  Currently `("progress", 101, 6)`, `("progress", 16, 5)`, `("progress", 14, 5)`.
 - `build/reader_handbook.py` → `DONE = {chapter_no: "chapter-slug"}`.
 - `build/reader_book.py` → per-book `"done": {chapter_no: "chapter-slug"}`.
+- `build/reader_pc.py` / `build/reader_sis.py` → `MODULES = {chapter_no: "pc_chNN"}` — which
+  chapter modules the orchestrator builds, and in which order it chains the `chapter-nav`.
+- **The previous chapter's forward `chapter-nav` link** — see below.
 
-**If you add a chapter page and forget these three, the TOC will not link to it.**
+**If you add a chapter page and forget these, the TOC will not link to it** — and the
+page count on the library card will be wrong.
 
 ### The chapter-nav chain rots every time a chapter lands
 
@@ -67,13 +83,18 @@ forward link must be rewritten** — nothing does this automatically. Chapter 1 
 with a greyed-out `<span class="disabled">… · chưa dịch</span>` in that slot, and it was
 still saying "not translated" four chapters later.
 
+For the PC and SIS books this is now automatic: `pcsis_common.nav()` walks the ordered
+`MODULES` map, so chapter *N*'s forward slot is whatever module comes next, and the last
+module gets "Book contents". Adding a chapter to `MODULES` is enough. The handbook still
+needs the manual step:
+
 When you add chapter *N*:
 
 1. Rewrite the right-hand slot of chapter *N−1* in **both** languages.
 2. If chapter *N−1* has a generator (`reader_hb_chNN.py`), edit the generator and rerun it —
    not the HTML, or the next rebuild undoes your fix.
-3. If it has no generator (chapters 1 and 2 of the handbook, all PC/SIS chapters), edit the
-   HTML directly.
+3. If it has no generator (handbook chapters 1 and 2, PC 1–2, SIS 1–2), edit the HTML
+   directly.
 4. The newest chapter keeps "All chapters → / Book contents" in its right slot until
    chapter *N+1* exists.
 
@@ -86,7 +107,46 @@ grep -rln 'class="disabled"' books/read vi/books/read
 
 ## 3. Next unit of work
 
-### Done — how Chapter 6 is built (keep this as the template for any big chapter)
+### 3.1 PC and SIS: the shared architecture (built this session)
+
+Both books share one stack. Adding a chapter means writing one module, one figure module,
+and one line in `MODULES`.
+
+| File | Role |
+|---|---|
+| `build/vfig.py` | the primitives everything else builds on: `_txt`, `_line`, `_arrow`, `_rect`, `_circle`, `_axes`, `_curve`, `_finish`, `INK` / `GREY` / `BLUE` / `RED` / `GREEN` |
+| `build/pcsis_common.py` | page shell, prose markup (`p / h2 / h3 / eq / quote / note / ul / refs / fig / table`), and `nav()` |
+| `build/pcfig.py`, `pc4fig.py`, `pc5fig.py` | one figure module per chapter |
+| `build/sisfig.py` | figures for SIS 3 and 4 (SIS 5 has none) |
+| `build/pc_ch03.py`, `pc_ch04.py`, `pc_ch05.py` | one text module per chapter, exposing `body_vi()` / `body_en()` |
+| `build/sis_ch03.py`, `sis_ch04.py`, `sis_ch05.py` | same, for SIS |
+| `build/reader_pc.py`, `build/reader_sis.py` | orchestrators. `python reader_pc.py` builds every chapter in `MODULES`; `python reader_pc.py 4` builds one |
+
+`MODULES` in each orchestrator is an **ordered** dict — the order is what the `nav()`
+chain walks. Adding chapter 6 to PC is `MODULES = {…, 6: "pc_ch06"}` plus the module.
+
+Figure-function contract, identical to the handbook:
+
+```python
+def fig_5_3():
+    o = [...]
+    return _finish("".join(o), 660, 192,
+                   "caption VI", "caption EN", "aria VI", "aria EN")
+```
+
+Helper signatures that are easy to get wrong:
+
+- `_axes(x0, y0, W, H, xlab, ylab, xt=None, yt=None)` — ticks are `[(value, label), …]` in
+  **data units**; both axis titles sit on the top row.
+- `_curve(fn, x0, y0, W, H, n=121, xr=(0,1), yr=(0,1), **kw)` — return `None` from `fn` to
+  drop a sample; that is how a steep line gets clipped at the frame instead of escaping it.
+- `_legend(x, y, rows, w=126)` — boxed key, `rows = [(colour, label, dash), …]`.
+- `_legend_h(x, y, rows, gap=22)` — unboxed horizontal key, for when every corner of the
+  plot is crossed by a curve. Put it at `y0 + H + 16` and raise the canvas by 6 px.
+- `_circle(cx, cy, r, fill="none", sw=1.1, color=INK, dash="")` — the keyword is **`color`**,
+  not `stroke`. This has bitten once.
+
+### 3.2 Done — how Chapter 6 is built (keep this as the template for any big chapter)
 
 Chapter 6 shipped as **one landing page + twelve section pages**, and the machinery is
 worth reusing if another oversized chapter turns up. Nothing here needs touching to move
@@ -124,18 +184,21 @@ Two known cosmetic compromises, both chapter-wide and both deliberate:
 - **Section 6.12's English page is a companion essay**, not a translation: five `h2`
   sections of commentary, with the eleven figures but only one re-stated equation.
 
-### Immediate: Handbook Chapter 7 — Thickness Measurement
+### 3.3 Immediate: Handbook Chapter 7 — Thickness Measurement
 
 A normal-sized chapter (`Ch07__53d649615a6315cf.pdf`, 222 kB). Use the ordinary
 single-page recipe in §4 with `reader_handbook.py` `DONE[7]` and a `ch07-…` slug;
 do **not** copy the twelve-page structure — it was only ever a size workaround.
 
-### Then
+### 3.4 Then
 
 - Handbook Chapters 8–101, one per sitting.
-- After the handbook is finished: Process Control from Chapter 3 (Basic Principles of
-  Control Valves and Actuators), then Safety Instrumented Systems from Chapter 3
-  (Process Control vs. Safety Control).
+- The handbook is the priority and the user has said so twice. Do **not** resume PC or SIS
+  until the handbook is finished — the six chapters done this session were an explicit,
+  bounded exception ("stop after this chapter and continue to translate 6 chapters of
+  next 2 books").
+- When the handbook is done: PC from Chapter 6, then SIS from Chapter 6. Both are now on
+  the same architecture, so each is one `pc_chNN.py` / `sis_chNN.py` plus a figure module.
 
 ## 4. How to translate the next chapter — the recipe
 
@@ -228,14 +291,15 @@ cd build
 python reader_hb_ch06.py            # writes both languages
 ```
 
-Then edit **all three** registries (`reader_handbook.py` `DONE`, `books_site.py`
-`TRANSLATED`) and rebuild the landing pages:
+Then edit **all four** registries (`reader_handbook.py` `DONE`, `books_site.py`
+`TRANSLATED`, `reader_book.py` `"done"`, and the previous chapter's forward nav) and
+rebuild the landing pages:
 
 ```bash
 python reader_handbook.py           # book TOC, both languages
 python books_site.py                # library index, both languages
 cd ..
-python build/make_sitemap.py        # 357 URLs at last run
+python build/make_sitemap.py        # 435 URLs at last run
 python build/check_links.py         # must print "broken 0"
 ```
 
@@ -308,6 +372,13 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 | A physics constant in the book does not reproduce from its own formula | the source is not always self-consistent | recompute, then add a `note()` box saying what the arithmetic gives and why — never silently "fix" the text |
 | Push rejected, non-fast-forward | the video-library work landed while you were translating | `git fetch` + `git rebase FETCH_HEAD`, then regenerate the sitemap |
 | `SyntaxError` after an edit | an edit ate a newline between two statements | read the region before editing |
+| A legend box covers a curve | there are only four corners and the curves cross all of them | move it under the axis with `_legend_h`, not to another corner — three attempts at "another corner" all failed |
+| `_circle() got an unexpected keyword argument 'stroke'` | the parameter is `color` | `_circle(cx, cy, r, color=…)` |
+| A dimension arrow bisects its own label | label placed at the midpoint between the two arrow tips | put it beside one tip instead |
+| A page has no previous/next links at all | `nav()` was defined but never called from `page()` | it is wired now; if you fork the shell, call it |
+| A wide table wraps tags mid-token (`FALL-` / `1000`) | eleven columns squeezed into the prose width | `table.tbl.matrix` CSS + merge columns until it fits |
+| `git rebase FETCH_HEAD` conflicts in generated HTML | both sides rebuilt the same pages | `git rebase --abort`; `git stash`/backup; `git reset --hard FETCH_HEAD`; restore **only** the new `build/*.py` files by name — a blanket `git checkout <backup> -- build/` reverts `build.py`, `framework.py` and the registries too |
+| Meta line reads `0 hình` on a figure-less chapter | the figure clause was unconditional | it is conditional now; keep it that way |
 
 ## 6. House rules
 
@@ -320,9 +391,90 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 - Keep the source's own numbering for equations and figures (`(4.21)`, `Hình 5-3`).
 - The glossary in Chapter 5 keeps the VIM clause numbers in `[brackets]` — do the same
   for any VIM-sourced definition.
+- **Translate chapters, not book sections.** A "chapter" with nothing but an Introduction
+  is skipped rather than padded.
+- **Translate the whole chapter.** Every section, never abridged. If the source is
+  unusable, say so — put `<b>là bản scan bị lỗi</b>` in a translator's note and explain
+  exactly which part could not be read (SIS Chapter 5 does this for its cause-and-effect
+  table).
 - Do not delete `.workbuddy-ai/`.
+- **Write this file's session log before you stop.**
 
 ## 7. Session log
+
+### 2026-10-30, session 3 — six chapters across PC and SIS
+
+The user's instruction was "stop after this chapter and continue to translate 6 chapters
+of next 2 books": finish Handbook 6 (already shipped at the start of the session), then
+**PC 3, 4, 5 and SIS 3, 4, 5**. All six are done, built, QA'd, committed (`1cad1b3`) and
+pushed to `main`.
+
+| # | Chapter | Source pp | Figures | Words VI | HTML VI / EN |
+|---|---|---|---|---|---|
+| PC 3 | Basic Principles of Control Valves and Actuators | 40 | 24 | 7.992 | 171 kB / 10 kB |
+| PC 4 | Fundamentals of Control Systems | 17 | 11 | 4.194 | 113 kB / 8 kB |
+| PC 5 | Stability and Control Modes of Closed Loops | 23 | 11 | 5.645 | 119 kB / 9 kB |
+| SIS 3 | Process Control vs. Safety Control | 15 | 1 | 6.289 | 36 kB / 9 kB |
+| SIS 4 | Protection Layers | 13 | 3 | 5.223 | 40 kB / 8 kB |
+| SIS 5 | Developing the Safety Requirement Specifications | 14 | 0 | 4.534 | 27 kB / 8 kB |
+
+**Architecture built this session** (described in §3.1): `vfig.py` primitives,
+`pcsis_common.py` shell + markup, per-chapter figure and text modules, and
+`reader_pc.py` / `reader_sis.py` orchestrators. This replaces the ad-hoc hand-written
+HTML that PC 1–2 and SIS 1–2 were built with.
+
+Content notes worth keeping:
+
+- **PC 3** carries equations 3.x for valve sizing, the `Cv`/`Kv` conversion, cavitation
+  and flashing limits, and actuator thrust balancing — 24 figures, the most of any
+  chapter this session.
+- **PC 5** carries equations 5.1–5.9, Table 5-1 (five mode combinations) and a
+  translator's note that Exercises 2–6 are simulation-harness work and were not
+  translated.
+- **SIS 3** puts each verbatim ANSI/ISA-91.00.01 clause in a `quote()` and works the
+  beta-factor arithmetic explicitly (10⁻⁶ → 10 %). It also keeps the ISA SP84 audit
+  story: a third of the safety functions deleted, a third bypassed, a third dead.
+- **SIS 4** is the Bhopal chapter — the ten protection layers are counted in a `note()`,
+  and the de-energize-vs-energize-to-trip argument and the IEC cap of 10 are both kept.
+- **SIS 5** is the only figure-less chapter so far; `page()` had to be taught not to
+  print `0 hình`. Table 5-3 is a nine-column cause-and-effect matrix (see below).
+
+Defects found and fixed by visual QA — each one was real, not cosmetic:
+
+- **`pcsis_common.page()` never called `nav()`.** Every chapter page shipped with no
+  previous/next links at all, in either language. Now wired.
+- **`fig_5_3`'s legend crossed the K=1 line at top-right**, then the K=0.2 line at
+  bottom-right; it ended up in the empty upper-left. This is what prompted `_legend_h`.
+- **Four PC Ch.5 legends covered curves** (5-4, 5-6, 5-7, 5-9). All four moved below the
+  axis with `_legend_h(x0, y0 + H + 16, …)`, canvas raised 186 → 192.
+- **`fig_5_11` drew the set point through a different value mapping than the curves**, so
+  the PI response appeared never to reach it. Rebuilt so both use `y0 + H * (1 - value)`;
+  the static-offset dimension arrow was then added between the two.
+- **`fig_5_4` / `fig_5_7`'s "lệch 90°" labels sat on the wave peaks** — amplitude 0.34 →
+  0.30 and the labels lifted to `y0 + 9`.
+- **`fig_4_1` (Swiss cheese) had its holes off the dashed path** — only two of four were
+  crossed. Holes re-centred on 100/108/102/106 against a path at y=104.
+- **`fig_3_1`'s quote box overlapped the plant box**, and the dashed control/protection
+  divider ran straight through the plant; the divider now stops above it.
+- **`fig_4_2` (onion) was taller than its canvas** and its footnotes collided with the
+  outer ring — rebuilt at radii 18…98 around `(320, 132)`.
+- **SIS Ch.5's cause-and-effect matrix wrapped every tag mid-token.** Eleven columns do
+  not fit the prose width; added `table.tbl.matrix` to `library.css` and cut the table to
+  nine columns. Tags now sit on one line and the X marks are centred.
+
+**Rebase conflict.** The remote had moved. `git rebase FETCH_HEAD` conflicted in three
+generated pages (`vi/books/index.html`, the PC index, the SIS index). Aborted, saved a
+`pre-rebase-backup` branch, `git reset --hard FETCH_HEAD`, then restored **only** the new
+`build/*.py` files by name. A blanket `git checkout pre-rebase-backup -- build/` also
+reverted `build.py`, `framework.py`, `books_site.py` and `reader_book.py`, which then had
+to be restored separately — the six registry edits and the CSS were re-applied by hand.
+Lesson recorded in §5.
+
+**Verification:** sitemap **435 URLs / 422 EN/VI pairs**; link check **437 pages, 10,599
+local references, 0 broken**. Library pills read `6/101`, `5/16`, `5/14`. Both book TOCs
+show five done rows. The `ch02 → ch03 → ch04 → ch05 → book index` chain was walked
+end-to-end in both languages for both books. The sitewide nav standardisation from
+`2f9b72b` is intact on all six new pages (18 site-nav links, `/vi/books/` marked active).
 
 ### 2026-10-30, session 2 — Chapter 6 finished
 
