@@ -103,7 +103,7 @@ BOOKS = {
             10: ("Concepts and Applications of Feedforward Control", "Khái niệm và ứng dụng điều khiển theo hướng"),
             11: ("Combined Feedback and Feedforward Control", "Kết hợp phản hồi và theo hướng"),
             12: ("Long Process Dead-Time and the Smith Predictor", "Trễ chết dài và bộ dự đoán Smith"),
-            13: ("Basic Principles of Fuzzy Logic and Neural Networks", "Nguyên lý cơ bản mạng mờ và mạng nơ-ron"),
+            13: ("Basic Principles of Fuzzy Logic and Neural Networks", "Nguyên lý cơ bản của lô-gic mờ và mạng nơ-ron"),
             14: ("Self-Tuning Intelligent Control and SPC", "Tự chỉnh, điều khiển thông minh và SPC"),
         },
         "appendices": [
@@ -132,7 +132,8 @@ BOOKS = {
                  9: "ch09-output-modes-equations-and-cascade-control",
                  10: "ch10-concepts-and-applications-of-feedforward-control",
                  11: "ch11-combined-feedback-and-feedforward-control",
-                 12: "ch12-long-dead-time-and-the-smith-predictor"},
+                 12: "ch12-long-dead-time-and-the-smith-predictor",
+                 13: "ch13-basic-principles-of-fuzzy-logic-and-neural-networks"},
         "copyright_en": "Original text © IDC Technologies Pty Ltd",
         "copyright_vi": "Bản gốc © IDC Technologies Pty Ltd",
         "lede_en": ("A hands-on training manual covering process dynamics, measurement, valves, "
@@ -140,7 +141,7 @@ BOOKS = {
                     "control. The Vietnamese translation proceeds chapter by chapter; figures are "
                     "redrawn as vectors so they stay legible on a phone."),
         "lede_vi": ("Giáo trình thực hành về động học quá trình, đo lường, van, các mode điều khiển, "
-                    "tìm điểm PID, theo hướng, mạng mờ và điều khiển thống kê quá trình. Bản dịch "
+                    "tìm điểm PID, theo hướng, lô-gic mờ và điều khiển thống kê quá trình. Bản dịch "
                     "tiếng Việt thực hiện theo từng chương; hình được vẽ lại bằng vector để rõ nét "
                     "trên điện thoại."),
         "policy_en": ("<b>About this copy.</b> The 35 PDF files are held in the local library "

@@ -98,6 +98,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch12-long-dead-time-and-the-smith-predictor/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/pc-process-control/ch13-basic-principles-of-fuzzy-logic-and-neural-networks/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch13-basic-principles-of-fuzzy-logic-and-neural-networks/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch13-basic-principles-of-fuzzy-logic-and-neural-networks/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch13-basic-principles-of-fuzzy-logic-and-neural-networks/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/"/>
@@ -1437,6 +1443,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch12-long-dead-time-and-the-smith-predictor/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch12-long-dead-time-and-the-smith-predictor/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch12-long-dead-time-and-the-smith-predictor/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch13-basic-principles-of-fuzzy-logic-and-neural-networks/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch13-basic-principles-of-fuzzy-logic-and-neural-networks/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/ch13-basic-principles-of-fuzzy-logic-and-neural-networks/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pc-process-control/ch13-basic-principles-of-fuzzy-logic-and-neural-networks/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/</loc>

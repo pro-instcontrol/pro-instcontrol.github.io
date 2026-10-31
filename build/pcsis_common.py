@@ -37,6 +37,7 @@ SLUGS = {
         10: "ch10-concepts-and-applications-of-feedforward-control",
         11: "ch11-combined-feedback-and-feedforward-control",
         12: "ch12-long-dead-time-and-the-smith-predictor",
+        13: "ch13-basic-principles-of-fuzzy-logic-and-neural-networks",
     },
     "sis": {
         1: "ch01-introduction",
