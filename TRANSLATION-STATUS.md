@@ -1,14 +1,16 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** end of session 2026-10-30 (session 3) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** end of session 2026-10-30 (session 4) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 7 — Thickness Measurement**. Chapter 6 is
-> finished (twelve section pages, 123 figures). Everything you need is in §3 and §4.
+> **Where to start next:** Handbook **Chapter 8 — Proximity Sensing for Robotics**. Chapters 1–7
+> are done. Everything you need is in §3 and §4.
 >
-> **Six chapters landed this session** — PC 3, 4, 5 and SIS 3, 4, 5 — on the new
-> `vfig.py` / `pcfig.py` / `pcsis_common.py` architecture described in §3.1. Both PC and
-> SIS now have real per-chapter generators, so the old "edit the HTML by hand" caveat is
-> gone.
+> **Chapter 7 landed this session** — 16 figures, three source tables, 6.9k words VI. It is on
+> its own figure module, `build/hb7fig.py`, because the source chapter has no figures at all
+> and every diagram had to be invented from the text (see §7, session 4).
+>
+> **Earlier this session** six chapters landed — PC 3, 4, 5 and SIS 3, 4, 5 — on the
+> `vfig.py` / `pcfig.py` / `pcsis_common.py` architecture described in §3.1.
 
 This file is the single source of truth for the book-translation work on this site.
 Read it before touching anything. Update the status table and append to the session log
@@ -32,7 +34,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–6** | `build/reader_handbook.py` + `build/reader_hb_ch06.py` |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–7** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–5** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–5** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py`, `pc4fig.py`, `pc5fig.py`) |
 
@@ -46,6 +48,7 @@ Chapters done, with their slugs and build scripts:
 | HB 4 | Measurement Accuracy | `ch04-measurement-accuracy` | `reader_hb_ch04.py` | 2 | 6.7k |
 | HB 5 | Measurement Standards | `ch05-measurement-standards` | `reader_hb_ch05.py` | 3 | 6.5k |
 | HB 6 | Displacement Measurement, Linear and Angular | `ch06-displacement-measurement` (landing) + 12 section pages | `reader_hb_ch06.py` (+ `hb06_common.py`, `hb06fig.py`, `hb06_s01…s12.py`) | 123 | 63k |
+| HB 7 | Thickness Measurement | `ch07-thickness-measurement` | `reader_hb_ch07.py` + `hb7fig.py` | 16 | 6.9k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.0k |
@@ -65,7 +68,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `("progress", total_chapters, done_chapters)`.
-  Currently `("progress", 101, 6)`, `("progress", 16, 5)`, `("progress", 14, 5)`.
+  Currently `("progress", 101, 7)`, `("progress", 16, 5)`, `("progress", 14, 5)`.
 - `build/reader_handbook.py` → `DONE = {chapter_no: "chapter-slug"}`.
 - `build/reader_book.py` → per-book `"done": {chapter_no: "chapter-slug"}`.
 - `build/reader_pc.py` / `build/reader_sis.py` → `MODULES = {chapter_no: "pc_chNN"}` — which
@@ -184,11 +187,15 @@ Two known cosmetic compromises, both chapter-wide and both deliberate:
 - **Section 6.12's English page is a companion essay**, not a translation: five `h2`
   sections of commentary, with the eleven figures but only one re-stated equation.
 
-### 3.3 Immediate: Handbook Chapter 7 — Thickness Measurement
+### 3.3 Immediate: Handbook Chapter 8 — Proximity Sensing for Robotics
 
-A normal-sized chapter (`Ch07__53d649615a6315cf.pdf`, 222 kB). Use the ordinary
-single-page recipe in §4 with `reader_handbook.py` `DONE[7]` and a `ch07-…` slug;
-do **not** copy the twelve-page structure — it was only ever a size workaround.
+A normal-sized chapter. Use the ordinary single-page recipe in §4 with
+`reader_handbook.py` `DONE[8]` and a `ch08-…` slug; do **not** copy Chapter 6's
+twelve-page structure — it was only ever a size workaround.
+
+The chapter number and PDF asset name come from the release listing in §4.1 —
+check the real title there before choosing the slug; the Part II list in the book
+TOC (`reader_handbook.py`, the `CHAPTERS` table near line 61) is authoritative.
 
 ### 3.4 Then
 
@@ -231,8 +238,12 @@ To *see* a figure, render pages to PNG and look at them:
 
 ### 4.2 Redraw the figures as vectors
 
-Every figure is an inline SVG, never a raster crop. Put the drawing functions in
-**`build/hbfig.py`** (one module holds all handbook figures; keep it that way).
+Every figure is an inline SVG, never a raster crop. Drawing functions go in a
+**per-chapter module**: `build/hbfig.py` holds Chapters 3–5, `build/hb06fig.py` holds
+Chapter 6, `build/hb7fig.py` holds Chapter 7. `hbfig.py` also exports the primitives the
+later modules import — `Box`, `_f`, `_box`, `_vlink`, `svg`, `_fig`, and the `INK` /
+`MUTED` / `GOLD` colours. Do not keep appending to `hbfig.py`; a chapter of any size gets
+its own module and imports from it.
 Each function returns a 5-tuple:
 
 ```python
@@ -299,7 +310,7 @@ rebuild the landing pages:
 python reader_handbook.py           # book TOC, both languages
 python books_site.py                # library index, both languages
 cd ..
-python build/make_sitemap.py        # 435 URLs at last run
+python build/make_sitemap.py        # 437 URLs at last run
 python build/check_links.py         # must print "broken 0"
 ```
 
@@ -379,6 +390,10 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 | A wide table wraps tags mid-token (`FALL-` / `1000`) | eleven columns squeezed into the prose width | `table.tbl.matrix` CSS + merge columns until it fits |
 | `git rebase FETCH_HEAD` conflicts in generated HTML | both sides rebuilt the same pages | `git rebase --abort`; `git stash`/backup; `git reset --hard FETCH_HEAD`; restore **only** the new `build/*.py` files by name — a blanket `git checkout <backup> -- build/` reverts `build.py`, `framework.py` and the registries too |
 | Meta line reads `0 hình` on a figure-less chapter | the figure clause was unconditional | it is conditional now; keep it that way |
+| A figure label vanishes behind its own shape | the label was emitted before the shape that covers it — SVG has no z-index | draw in back-to-front order: core, then windings, then labels |
+| `x^2` or `ε_r` looks like a typo in an SVG label | `baseline-shift` is unreliable in browsers | use `_sup()` / `_sub()` from `hb7fig.py` — `<tspan dy="−3.2">` then a zero-width reset |
+| A formula inside a plot sits on top of the curve | oscillation or monotone decay fills the whole frame | move the formula **above** the plot frame, at `y = 14` |
+| A long label runs off the right edge of the canvas | text anchored `start` near `x = 540` | measure roughly (`≈4.4 px per character at fs 8.6`) or switch to `anchor="end"` |
 
 ## 6. House rules
 
@@ -401,6 +416,76 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 - **Write this file's session log before you stop.**
 
 ## 7. Session log
+
+### 2026-10-30, session 4 — Handbook Chapter 7, Thickness Measurement
+
+**Chapter 7 is complete and live:** `ch07-thickness-measurement`, 10 source pages,
+**16 figures, 3 tables, 6.9k words VI / 1.8k EN**, 192 kB / 216 kB. Commit `8eba02e`.
+
+The chapter's difficulty is unusual and worth recording: **the source has no figures at
+all** — only Tables 7.1, 7.2 and 7.3. Every one of the sixteen diagrams is invented from
+the prose, which means the normal "redraw the source figure" loop did not apply and each
+figure had to justify itself from a stated relation. They are:
+
+| # | Subject | What was computed |
+|---|---|---|
+| 7-1 | The thickness scale | log10 positions of seven objects from 10²⁰ m to 10⁻⁷ m |
+| 7-2 | Why a caliper fails | decision tree, no curve |
+| 7-3 | Micrometer reading | 0.5 mm pitch ÷ 50 divisions = 0.01 mm; 7.5 + 28×0.01 = 7.78 mm |
+| 7-4 | LVDT | V = exp(−((x−d)/w)²) − exp(−((x+d)/w)²), the differential S-curve |
+| 7-5 | Pneumatic backpressure | P/P_s = 1/(1+(g/g₀)²); peak sensitivity at g₀/√3 |
+| 7-6 | Capacitance | C/C₀ = d₀/d |
+| 7-7 | Eddy-current lift-off | S = S₀·exp(−z/zc) |
+| 7-8 | Magnetic pull-off | F/F₀ = 1/(1+z/a)⁴ on a log axis |
+| 7-9 | Hall gauge | schematic + dimension |
+| 7-10 | Pulse-echo A-scan | three Gaussian echoes at 0.3 / 2 / 4 µs; d = c·Δt/2 = 5.9 mm in steel |
+| 7-11 | Channeled spectrum | T = 1/(1+F sin²(2πndν̄)), d = 20 and 40 µm |
+| 7-12 | Newton's rings | r_m = √((m+½)λR); I = sin²(πr²/λR) |
+| 7-13 | Beta backscatter / transmission | 1−e^(−µx) against e^(−µx) |
+| 7-14 | AFM force–distance | F = −A/z² + B/z⁸, zero at z₀ = 0.6 nm, well at 0.76 nm |
+| 7-15 | STM tunnelling | κ = √(2mφ)/ħ from φ = 4 eV → 1.02 Å⁻¹, a decade per 1.1 Å |
+| 7-16 | THz transient | Gaussian-derivative pulse (τ = 100 fs) and its spectrum, peak 2.25 THz |
+
+A translator's note at the head of the chapter states this openly, and says that where the
+text is only qualitative the figure had to pick a functional form — named in the figure.
+
+Figure defects caught by QA this round, all real:
+
+- **`fig_7_3` labelled every half-millimetre tick "0,5"** instead of 1,5 / 2,5 / 3,5, and its
+  red pointer ran straight through the number ring on the thimble. Fixed both.
+- **`fig_7_4` painted the core bar over its own S₁ / P / S₂ labels** — the labels were drawn
+  before the rect that covered them. Core now drawn first, windings as open frames.
+- **`fig_7_5` had two annotations in the same corner** ("vùng làm việc" and "độ nhạy cực
+  đại"). The curve leaves no room for a working-range band at all, so the band was dropped
+  and the peak annotation moved clear.
+- **`fig_7_7`'s lift-off dimension floated at x=206 with no coil above it** — now on the
+  left with guide lines to the coil and the coating.
+- **`fig_7_10`'s Δt arrow ended inside the third pulse** — rebuilt as a proper dimension
+  with dashed construction verticals at both echo positions.
+- **`fig_7-11` and `7-12` put their formulas on top of their own curves** (both plots are
+  oscillation from edge to edge). Both formulas moved above the plot frame.
+- **`fig_7_13`'s saturation label was clipped by the canvas edge** — shortened to "bão hoà".
+- **`fig_7_14`'s "lực hút cực đại" sat on the x-axis** — moved right of the well.
+- **`fig_7_15`'s formula block was bisected by its own 1 Å marker** — the marker was removed
+  and the block moved into the empty lower-left triangle under the curve.
+
+Two new CSS rules in `books/assets/library.css` for table patterns this chapter needed:
+`table.tbl tr.grp td` (a group-header row inside a reference table — Table 7.1 uses six of
+them) and `p.tblcap` (the italic grey caption line under a table, matching `.figcap`).
+
+New helpers in `hb7fig.py` worth reusing: `_sup()` / `_sub()` (reliable super/subscripts via
+`<tspan dy>`, because `baseline-shift` is not dependable), `_panel()` (titled box with
+left-aligned lines, bold lines as `(text, "b")` tuples), `_dim()` (double-headed dimension
+line), `_plot()` (samples a function, breaks the path outside the frame), `_key()`
+(horizontal colour key above the plot).
+
+Also fixed: `reader_hb_ch06.py`'s landing-page nav pointed its forward slot at the book
+contents; it now points at Chapter 7 in both languages. The book TOC title for chapter 7 was
+"Đo độ dày" while the page H1 said "Đo chiều dày" — the TOC now matches the page.
+
+Verification: sitemap **437 URLs / 424 pairs**; link check **439 pages, 10,647 local
+references, 0 broken**; library pill `7/101`; book TOC `done rows: 7`; Part II reads
+`12 chương · 2 đã dịch`; both chapter-7 URLs and the chapter-6 landing return 200 live.
 
 ### 2026-10-30, session 3 — six chapters across PC and SIS
 
