@@ -1,9 +1,10 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** end of session 2026-11-01 (session 10) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-10-31 (session 12 — Chapter 12 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 12 — Area Measurement**. Chapters 1–11 are
-> done, live, and registered. `work/hb_ch12.txt` is already extracted (13 source pages).
+> **Where to start next:** Handbook **Chapter 13 — Volume Measurement** (and onward). Chapters
+> 1–12 are done, live, and registered. `work/hb_ch12.txt` is translated; Chapter 13+ source
+> PDFs must be extracted from the 117-file handbook library before translation.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
 > Instrumented Systems (16/16) each have full Vietnamese translations and English companion
@@ -60,6 +61,7 @@ Chapters done, with their slugs and build scripts:
 | HB 9 | Distance | `ch09-distance` | `reader_hb_ch09.py` + `hb9fig.py` | 8 | 8.9k |
 | HB 10 | Position, Location, Altitude Measurement | `ch10-position-location-altitude` | `reader_hb_ch10.py` + `hb10fig.py` | 43 | 13.4k |
 | HB 11 | Level Measurement | `ch11-level-measurement` | `reader_hb_ch11.py` + `hb11fig.py` | 15 | 7.1k |
+| HB 12 | Area Measurement | `ch12-area-measurement` | `reader_hb_ch12.py` + `hb12fig.py` | 10 | 7.0k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
