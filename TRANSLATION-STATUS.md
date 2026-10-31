@@ -2,6 +2,9 @@
 
 **Last updated:** end of session 2026-10-30 · **Live site:** https://pro-instcontrol.github.io/
 
+> **Where to start next:** Handbook **Chapter 7 — Thickness Measurement**. Chapter 6 is
+> finished (twelve section pages, 123 figures). Everything you need is in §3 and §4.
+
 This file is the single source of truth for the book-translation work on this site.
 Read it before touching anything. Update the status table and append to the session log
 at the end of every session.
@@ -24,7 +27,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–5** | `build/reader_handbook.py` |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–6** | `build/reader_handbook.py` + `build/reader_hb_ch06.py` |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–2** | `build/reader_book.py` (`"sis"`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–2** | `build/reader_book.py` (`"pc"`) |
 
@@ -37,6 +40,7 @@ Chapters done, with their slugs and build scripts:
 | HB 3 | Static and Dynamic Characteristics | `ch03-static-and-dynamic-characteristics-of-instrumentation` | `reader_hb_ch03.py` | 18 | 9.7k |
 | HB 4 | Measurement Accuracy | `ch04-measurement-accuracy` | `reader_hb_ch04.py` | 2 | 6.7k |
 | HB 5 | Measurement Standards | `ch05-measurement-standards` | `reader_hb_ch05.py` | 3 | 6.5k |
+| HB 6 | Displacement Measurement, Linear and Angular | `ch06-displacement-measurement` (landing) + 12 section pages | `reader_hb_ch06.py` (+ `hb06_common.py`, `hb06fig.py`, `hb06_s01…s12.py`) | 123 | 63k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | SIS 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
@@ -82,44 +86,53 @@ grep -rln 'class="disabled"' books/read vi/books/read
 
 ## 3. Next unit of work
 
-### Immediate: Handbook Chapter 6 — Displacement Measurement, Linear and Angular
+### Done — how Chapter 6 is built (keep this as the template for any big chapter)
 
-`Keith Antonelli et al.` · **167 pages, 63,446 words** — roughly ten times Chapter 5.
+Chapter 6 shipped as **one landing page + twelve section pages**, and the machinery is
+worth reusing if another oversized chapter turns up. Nothing here needs touching to move
+on to Chapter 7; read it only if you have to change a Chapter 6 page.
 
-Source PDF: `library-pdfs` release asset `Ch06__cd77530f6c8b8a96.pdf` (2.3 MB).
-Text already extracted to **`work/hb_ch06.txt`** (63k words, 167 pages).
+| File | Role |
+|---|---|
+| `build/hb06_common.py` | `SECTIONS` (twelve `(n, slug, title_vi, title_en)` tuples), `LANDING`, the twelve section authors (`BYLINE`), and the PSD markup helpers `p / h2 / h3 / eq / quote / ul / note / refs / fig / table / nav / page` |
+| `build/hb06fig.py` | every vector figure, `fig_6_1()` … `fig_6_123()`, ~6,000 lines. Each returns a 5-tuple `(svg, cap_vi, cap_en, aria_vi, aria_en)` via `_fig(...)` |
+| `build/hb06_s01.py` … `hb06_s12.py` | one module per section, each exposing `body_vi()` and `body_en()` |
+| `build/reader_hb_ch06.py` | orchestrator: `python reader_hb_ch06.py` writes the landing page and all twelve sections in both languages; `python reader_hb_ch06.py 7` writes one section |
 
-Because of its size, **do not try to render it as one page**. The chapter has **twelve**
-top-level sections and each is a self-contained essay of roughly one normal chapter's length:
+Source word counts per section, and the slug each one was published under:
 
-| § | Section | Source words |
-|---|---|---|
-| 6.1 | Resistive Displacement Sensors | 5,563 |
-| 6.2 | Inductive Displacement Sensors | 7,563 |
-| 6.3 | Capacitive Sensors — Displacement | 5,746 |
-| 6.4 | Piezoelectric Transducers and Sensors | 5,271 |
-| 6.5 | Laser Interferometer Displacement Sensors | 5,989 |
-| 6.6 | Bore Gaging Displacement Sensors | 4,454 |
-| 6.7 | Time-of-Flight Ultrasonic Displacement Sensors | 2,425 |
-| 6.8 | Optical Encoder Displacement Sensors | 8,449 |
-| 6.9 | Magnetic Displacement Sensors | 3,836 |
-| 6.10 | Synchro/Resolver Displacement Sensors | 4,858 |
-| 6.11 | Optical Fiber Displacement Sensors | 6,120 |
-| 6.12 | Optical Beam Deflection Sensing | 2,963 |
-| | **total** | **63,237** |
+| § | Section | Slug | Words |
+|---|---|---|---|
+| 6.1 | Resistive Displacement Sensors | `ch06-1-resistive-displacement-sensors` | 5,563 |
+| 6.2 | Inductive Displacement Sensors | `ch06-2-inductive-displacement-sensors` | 7,563 |
+| 6.3 | Capacitive Sensors — Displacement | `ch06-3-capacitive-displacement-sensors` | 5,746 |
+| 6.4 | Piezoelectric Transducers and Sensors | `ch06-4-piezoelectric-transducers` | 5,271 |
+| 6.5 | Laser Interferometer Displacement Sensors | `ch06-5-laser-interferometer` | 5,989 |
+| 6.6 | Bore Gaging Displacement Sensors | `ch06-6-bore-gaging` | 4,454 |
+| 6.7 | Time-of-Flight Ultrasonic Displacement Sensors | `ch06-7-time-of-flight-ultrasonic` | 2,425 |
+| 6.8 | Optical Encoder Displacement Sensors | `ch06-8-optical-encoders` | 8,449 |
+| 6.9 | Magnetic Displacement Sensors | `ch06-9-magnetic-displacement-sensors` | 3,836 |
+| 6.10 | Synchro/Resolver Displacement Sensors | `ch06-10-synchro-resolver` | 4,858 |
+| 6.11 | Optical Fiber Displacement Sensors | `ch06-11-optical-fiber-displacement-sensors` | 6,120 |
+| 6.12 | Optical Beam Deflection Sensing | `ch06-12-optical-beam-deflection` | 2,963 |
 
-**Recommended structure:** one reader page per section —
-`ch06-1-resistive-displacement-sensors`, `ch06-2-inductive-displacement-sensors`, … — plus a
-`ch06-displacement-measurement` landing page that carries the chapter introduction and
-indexes the twelve sections. Register the landing page in `DONE[6]` so the book TOC points
-at it; chain the section pages to each other with `chapter-nav` at the bottom of each.
+Two known cosmetic compromises, both chapter-wide and both deliberate:
 
-Translate **one section per sitting** and ship it, rather than half-translating the chapter.
-If you follow that, chapter 6 is twelve small jobs, not one impossible one.
+- **In-figure text is Vietnamese on the English pages too.** Every SVG label is drawn once,
+  in Vietnamese; the English section pages reuse the same SVG with an English `figcaption`.
+  Fixing it means generating each figure twice — not worth it unless a reader complains.
+- **Section 6.12's English page is a companion essay**, not a translation: five `h2`
+  sections of commentary, with the eleven figures but only one re-stated equation.
+
+### Immediate: Handbook Chapter 7 — Thickness Measurement
+
+A normal-sized chapter (`Ch07__53d649615a6315cf.pdf`, 222 kB). Use the ordinary
+single-page recipe in §4 with `reader_handbook.py` `DONE[7]` and a `ch07-…` slug;
+do **not** copy the twelve-page structure — it was only ever a size workaround.
 
 ### Then
 
-- Handbook Chapter 7 onwards (`Ch07__53d649615a6315cf.pdf`, 222 kB — a normal-sized chapter).
+- Handbook Chapters 8–101, one per sitting.
 - After the handbook is finished: Process Control from Chapter 3 (Basic Principles of
   Control Valves and Actuators), then Safety Instrumented Systems from Chapter 3
   (Process Control vs. Safety Control).
@@ -288,6 +301,11 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 | `ERR_CONNECTION_REFUSED` | `(python -m http.server &)` in a subshell dies | launch it as a background task |
 | Link checker reports hundreds of broken links | regex `(?:href\|src)=` also matches `data-src=` | require a `(?<![\w-])` boundary — `build/check_links.py` does this |
 | Link checker under-counts pages | directory pruning applied at every level | prune only at the root (already handled in `check_links.py`) |
+| Every `.toc-list` row shows title and description run together | the landing template uses `.d`, which had no CSS rule | `.toc-list a .t { display:block }` + `.toc-list a .d { display:block … }` in `library.css` |
+| A figure's curve has the wrong symmetry (bump instead of S-curve) | sign error inside `erf` — `erf(a+u) − erf(−(a−u))` collapses to an even function | write the difference exactly as the equation reads: `erf(y₁+u) − erf(y₁−u)` |
+| Labels sit on top of the curve in a `_measured()` plot | annotation placed at a fixed `y0 + 24` | put the label in the empty half of the plot, not the top strip |
+| `grep -c` reports 1 figure on a page that has twelve | generated HTML is a single long line | count with `re.findall` in Python |
+| A physics constant in the book does not reproduce from its own formula | the source is not always self-consistent | recompute, then add a `note()` box saying what the arithmetic gives and why — never silently "fix" the text |
 | Push rejected, non-fast-forward | the video-library work landed while you were translating | `git fetch` + `git rebase FETCH_HEAD`, then regenerate the sitemap |
 | `SyntaxError` after an edit | an edit ate a newline between two statements | read the region before editing |
 
@@ -306,7 +324,52 @@ curl -s -o /dev/null -w "%{http_code}\n" "https://pro-instcontrol.github.io/vi/b
 
 ## 7. Session log
 
-### 2026-10-30 (this session)
+### 2026-10-30, session 2 — Chapter 6 finished
+
+- **Handbook Chapter 6 — Displacement Measurement, Linear and Angular is complete:**
+  twelve section pages plus a landing page, in both languages. 63,237 source words,
+  **123 vector figures**, 138 numbered equations, 8 tables, ~700 kB of HTML.
+- Built the reusable Chapter 6 machinery described in §3: `hb06_common.py` (shared
+  markup + the twelve section tuples), `hb06fig.py` (all figures), twelve `hb06_sNN.py`
+  modules, and `reader_hb_ch06.py` as orchestrator.
+- This session finished sections **6.9–6.12**:
+  - **6.9 Magnetic Displacement Sensors** — replaced a wrong "Table 6.26 could not be
+    extracted" note with the real four-column table of sensors, manufacturers and 1999
+    prices, in both languages.
+  - **6.10 Synchro/Resolver Displacement Sensors** — 10 figures, equations 6.113–6.116,
+    the seventeen-step test procedure, Table 6.27 (15 suppliers), 10 kB EN / 104 kB VI.
+  - **6.11 Optical Fiber Displacement Sensors** — 14 figures, equations 6.117–6.125,
+    Tables 6.28 and 6.29, all 24 references, 8 kB EN / 102 kB VI.
+  - **6.12 Optical Beam Deflection Sensing** — 11 figures, equations 6.126–6.138,
+    11 references, 70 kB EN / 79 kB VI.
+- **Three physics corrections found while checking the arithmetic**, all documented in
+  `note()` boxes so the reader sees them rather than a silent fix:
+  - 6.12: the text says the bicell optimum is at `r₁ = 2y₁` **and** that the peak
+    sensitivity is `0.484/y₁`; those two statements disagree. Differentiating 6.137 gives
+    `r₁ = √2·y₁`, and that value reproduces 0.484/y₁ exactly (`r₁ = 2y₁` gives 0.439/y₁).
+  - 6.12: the printed "calculated sensitivity 3.8 × 10³ m⁻¹" cannot be reproduced from
+    `r₁ = 0.4 mm` and `y₁ = 63.5 µm` — that gives 2.75 × 10³. The 3.8 × 10³ figure
+    reappears if the 1/e radius (0.283 mm) is used instead of the 1/e² radius, which is
+    the classic beam-radius mix-up. The measured value (4.1 × 10³ m⁻¹) is unaffected.
+  - 6.12: figure 6.117's curve had a sign error (`erf(y₁+u) − erf(−(y₁−u))`), which
+    turned the odd difference response into an even bump. Now `erf(y₁+u) − erf(y₁−u)`.
+- **Figure QA passes this session** (each caught a real defect): 6.114's y-axis had
+  `y = 0` at the arrow tip instead of at the blade edge and its beam ticks were drawn
+  over the hatching; 6.115's "linear range" label pointed at a horizontal guide line
+  rather than at the tangent, so the tangent was redrawn inside the plot and the range
+  moved to a bracket on the u axis; 6.116 was rebuilt (dimension arrows, `y = 0` centre
+  line, legible `y₁/y₂`); 6.120's annotation sat on the flat sum-voltage curve.
+- **Fixed a CSS gap:** the chapter landing pages used `<span class="t">` / `<span class="d">`
+  in `.toc-list`, but `.d` had no rule, so every section title ran into its description.
+  Added `.toc-list a .t { display:block }` and `.toc-list a .d { … }` to
+  `books/assets/library.css`. This affected both language versions of the landing page.
+- Registered Chapter 6 in `DONE[6]` and bumped the library card to **6/101**.
+  Book TOC now reads `Đang dịch · 6/101 chương`, and Part II reads `12 chương · 1 đã dịch`.
+- Sitemap regenerated: **385 URLs, 372 EN/VI pairs**. Link check: **387 pages,
+  8,216 local references, 0 broken**.
+- Removed two leftover `build/_head.tmp` / `_tail.tmp` scratch files before committing.
+
+### 2026-10-30, session 1 — Chapter 5
 
 - Translated **Handbook Chapter 5 — Measurement Standards** (DeWayne B. Sharp) in full:
   6,490 words of Vietnamese, 3 figures, 2 tables, 32 VIM glossary entries, 2 pull quotes,

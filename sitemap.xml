@@ -92,6 +92,84 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch05-measurement-standards/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-1-resistive-displacement-sensors/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-1-resistive-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-1-resistive-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-1-resistive-displacement-sensors/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-10-synchro-resolver/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-10-synchro-resolver/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-10-synchro-resolver/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-10-synchro-resolver/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-11-optical-fiber-displacement-sensors/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-11-optical-fiber-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-11-optical-fiber-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-11-optical-fiber-displacement-sensors/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-12-optical-beam-deflection/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-12-optical-beam-deflection/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-12-optical-beam-deflection/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-12-optical-beam-deflection/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-2-inductive-displacement-sensors/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-2-inductive-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-2-inductive-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-2-inductive-displacement-sensors/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-3-capacitive-displacement-sensors/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-3-capacitive-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-3-capacitive-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-3-capacitive-displacement-sensors/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-4-piezoelectric-transducers/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-4-piezoelectric-transducers/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-4-piezoelectric-transducers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-4-piezoelectric-transducers/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-5-laser-interferometer/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-5-laser-interferometer/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-5-laser-interferometer/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-5-laser-interferometer/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-6-bore-gaging/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-6-bore-gaging/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-6-bore-gaging/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-6-bore-gaging/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-7-time-of-flight-ultrasonic/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-7-time-of-flight-ultrasonic/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-7-time-of-flight-ultrasonic/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-7-time-of-flight-ultrasonic/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-8-optical-encoders/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-8-optical-encoders/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-8-optical-encoders/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-8-optical-encoders/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-9-magnetic-displacement-sensors/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-9-magnetic-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-9-magnetic-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-9-magnetic-displacement-sensors/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-displacement-measurement/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-displacement-measurement/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-displacement-measurement/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-displacement-measurement/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/reader/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/reader/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/reader/"/>
@@ -1155,6 +1233,84 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch05-measurement-standards/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch05-measurement-standards/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch05-measurement-standards/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-1-resistive-displacement-sensors/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-1-resistive-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-1-resistive-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-1-resistive-displacement-sensors/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-10-synchro-resolver/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-10-synchro-resolver/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-10-synchro-resolver/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-10-synchro-resolver/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-11-optical-fiber-displacement-sensors/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-11-optical-fiber-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-11-optical-fiber-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-11-optical-fiber-displacement-sensors/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-12-optical-beam-deflection/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-12-optical-beam-deflection/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-12-optical-beam-deflection/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-12-optical-beam-deflection/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-2-inductive-displacement-sensors/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-2-inductive-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-2-inductive-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-2-inductive-displacement-sensors/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-3-capacitive-displacement-sensors/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-3-capacitive-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-3-capacitive-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-3-capacitive-displacement-sensors/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-4-piezoelectric-transducers/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-4-piezoelectric-transducers/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-4-piezoelectric-transducers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-4-piezoelectric-transducers/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-5-laser-interferometer/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-5-laser-interferometer/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-5-laser-interferometer/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-5-laser-interferometer/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-6-bore-gaging/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-6-bore-gaging/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-6-bore-gaging/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-6-bore-gaging/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-7-time-of-flight-ultrasonic/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-7-time-of-flight-ultrasonic/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-7-time-of-flight-ultrasonic/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-7-time-of-flight-ultrasonic/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-8-optical-encoders/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-8-optical-encoders/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-8-optical-encoders/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-8-optical-encoders/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-9-magnetic-displacement-sensors/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-9-magnetic-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-9-magnetic-displacement-sensors/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-9-magnetic-displacement-sensors/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-displacement-measurement/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-displacement-measurement/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-displacement-measurement/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch06-displacement-measurement/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/reader/</loc>
