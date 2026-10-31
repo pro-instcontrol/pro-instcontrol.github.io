@@ -12,6 +12,10 @@ import re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, "dist")
 
+# Single cache-busting version for every generated page. Bump this whenever
+# style.css or app.js changes; the env var exists only for one-off experiments.
+ASSET_VER = os.environ.get("ASSET_VER", "3")
+
 _NEST_OPEN = re.compile(r"<(h[1-4]|p|li)([^>]*)><\1([^>]*)>")
 _NEST_CLOSE = re.compile(r"</(h[1-4]|p|li)></\1>")
 
@@ -188,7 +192,7 @@ def page_intro(pg, title_en, title_vi, lede_en, lede_vi, toc=None):
 
 
 def head(pg, extra_head=""):
-    css_ver = os.environ.get("ASSET_VER", "1")
+    css_ver = ASSET_VER
     return """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -285,9 +289,7 @@ def render(pg, body, active):
     out += body
     out += footer()
     out += "<script>window.I18N=%s;window.I18N_META=%s;</script>\n" % (payload, meta)
-    out += '<script src="assets/app.js?v=%s"></script>\n</body>\n</html>\n' % os.environ.get(
-        "ASSET_VER", "1"
-    )
+    out += '<script src="assets/app.js?v=%s"></script>\n</body>\n</html>\n' % ASSET_VER
     return tidy(out)
 
 

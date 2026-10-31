@@ -259,7 +259,7 @@ def page_url(lang):
 
 def head(lang, prefix, n_videos, n_cats):
     t = T[lang]
-    css = prefix + "assets/style.css?v=4"
+    css = prefix + "assets/style.css?v=%s" % framework.ASSET_VER
     ld = {
         "@context": "https://schema.org",
         "@graph": [

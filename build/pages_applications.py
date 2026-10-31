@@ -227,16 +227,86 @@ FOOD_MEASURES = [
 ]
 
 
+# ---- the sectors the four deep dives leave out -------------------------------
+# One dominant variable per sector, and the reason that variable is hard.
+SECTORS = [
+    ("Water &amp; wastewater",
+     "Nước &amp; nước thải",
+     "Flow, level, pH, residual chlorine",
+     "Lưu lượng, mức, pH, clo dư",
+     "The sensor sits <em>in</em> the process, not beside it: fouling, biofouling and exhausted reagent "
+     "drift the reading long before the instrument fails outright. Turndown from storm flow to night "
+     "flow can reach 20:1.",
+     "Cảm biến nằm <em>trong</em> chính quá trình: bám cặn, bám sinh học và cạn thuốc thử làm trôi kết "
+     "quả rất lâu trước khi thiết bị hỏng hẳn. Dải biến thiên từ lưu lượng mưa bão đến lưu lượng ban "
+     "đêm có thể tới 20:1."),
+    ("Mining &amp; metals",
+     "Khai khoáng &amp; luyện kim",
+     "Slurry density, flow, particle size",
+     "Tỷ trọng bùn, lưu lượng, cỡ hạt",
+     "Abrasion eats liners and electrodes. A magnetic flowmeter needs a full pipe and a conductive "
+     "fluid, and density usually comes from a nuclear gauge that carries its own licensing burden.",
+     "Mài mòn ăn lớp lót và điện cực. Lưu lượng kế điện từ cần đầy ống và chất lỏng dẫn điện, còn tỷ "
+     "trọng thường lấy từ đồng vị phóng xạ — kèm theo nghĩa vụ cấp phép riêng."),
+    ("Pulp &amp; paper",
+     "Bột giấy &amp; giấy",
+     "Consistency, kappa number, basis weight",
+     "Độ đặc, chỉ số kappa, định lượng giấy",
+     "Consistency is measured through the flowing stock, not sampled from it. Basis weight comes from a "
+     "frame that traverses the sheet, so the measurement is a profile across the web, not a point.",
+     "Độ đặc được đo xuyên qua dòng bột đang chảy, không lấy mẫu. Định lượng giấy đến từ khung quét "
+     "chạy ngang tờ giấy, nên phép đo là một biên dạng theo chiều rộng chứ không phải một điểm."),
+    ("Pharmaceutical &amp; life sciences",
+     "Dược phẩm &amp; khoa học đời sống",
+     "Conductivity, pressure, temperature, particle count",
+     "Độ dẫn, áp suất, nhiệt độ, số hạt",
+     "The instrument must be cleanable <em>and provable</em>: CIP/SIP cycles, surface finish, and a "
+     "calibration record that survives an audit. Data integrity — ALCOA+, 21 CFR Part 11 — is part of "
+     "the specification, not an afterthought.",
+     "Thiết bị phải làm sạch được <em>và chứng minh được</em>: chu trình CIP/SIP, độ nhẵn bề mặt, và hồ "
+     "sơ hiệu chuẩn sống sót qua kỳ thanh tra. Tính toàn vẹn dữ liệu — ALCOA+, 21 CFR Part 11 — là một "
+     "phần của bản chỉ định, không phải việc làm sau."),
+    ("Cement &amp; minerals",
+     "Xi măng &amp; khoáng sản",
+     "Kiln shell temperature, gas analysis, feed rate",
+     "Nhiệt độ vỏ lò, phân tích khí, lưu lượng liệu",
+     "The kiln is a rotating reactor tens of metres long with a residence time in tens of minutes, so "
+     "most loops are feedforward: by the time feedback arrives the product has already left the hot zone.",
+     "Lò là một thiết bị phản ứng quay dài hàng chục mét với thời gian lưu tính bằng chục phút, nên "
+     "phần lớn vòng là feedforward: lúc hồi tiếp đến thì sản phẩm đã ra khỏi vùng nhiệt rồi."),
+    ("Hydrogen &amp; the energy transition",
+     "Hydro &amp; chuyển dịch năng lượng",
+     "Mass flow, purity, pressure",
+     "Lưu lượng khối, độ tinh khiết, áp suất",
+     "Hydrogen embrittles steel and escapes through the smallest gap, so mass flow (Coriolis) beats "
+     "volumetric, and purity needs an analyser that is itself a process instrument. An electrolyser adds "
+     "a fast pressure loop that couples the plant to the gas grid.",
+     "Hydro làm giòn thép và lọt qua khe nhỏ nhất, nên lưu lượng khối (Coriolis) đáng tin hơn lưu lượng "
+     "thể tích, và độ tinh khiết cần máy phân tích mà bản thân nó cũng là thiết bị quá trình. Điện phân "
+     "thêm một vòng áp suất nhanh nối nhà máy với lưới khí."),
+    ("Biomass &amp; waste-to-energy",
+     "Sinh khối &amp; điện từ chất thải",
+     "Moisture, calorific value, combustion O<sub>2</sub>",
+     "Độ ẩm, nhiệt trị, O<sub>2</sub> cháy",
+     "Fuel properties change hourly, so the controller chases a moving target. Moisture is the largest "
+     "disturbance and the hardest to measure online — which is why so much of the loop is still run on "
+     "operator judgement.",
+     "Tính chất nhiên liệu đổi theo giờ, nên bộ điều khiển đuổi theo một mục tiêu di động. Độ ẩm là "
+     "nhiễu lớn nhất và khó đo trực tuyến nhất — vì thế phần lớn vòng vẫn chạy theo phán đoán của vận "
+     "hành."),
+]
+
+
 def build():
     pg = Page(
         "applications.html",
         "app",
         "Applications of process control & instrumentation | I&amp;C Field Guide",
         "Ứng dụng của điều khiển và thiết bị đo quá trình | Sổ tay I&amp;C",
-        "Where the measurement chain meets the real plant: boiler control, power-plant C&I, oil refining "
-        "and food & beverage — what each sector controls and the instruments it relies on.",
-        "Nơi chuỗi đo lường gặp nhà máy thực tế: điều khiển lò hơi, C&I nhà máy điện, lọc dầu và thực phẩm "
-        "& đồ uống — mỗi ngành kiểm soát gì và dùng thiết bị nào.",
+        "Where the measurement chain meets the real plant: boiler control, power-plant C&I, oil refining, "
+        "food & beverage — plus the dominant variable in the seven sectors those four leave out.",
+        "Nơi chuỗi đo lường gặp nhà máy thực tế: điều khiển lò hơi, C&I nhà máy điện, lọc dầu, thực phẩm "
+        "&amp; đồ uống — cộng với đại lượng chi phối ở bảy ngành còn lại.",
     )
 
     body = page_intro(
@@ -252,7 +322,8 @@ def build():
             ("boiler", "Boiler control", "Điều khiển lò hơi"),
             ("power", "Power-plant C&I", "C&I nhà máy điện"),
             ("refinery", "Oil refining", "Lọc dầu"),
-            ("food", "Food & beverage", "Thực phẩm & đồ uống"),
+            ("food", "Food & beverage", "Thực phẩm &amp; đồ uống"),
+            ("sectors", "The other seven", "Bảy ngành còn lại"),
             ("thread", "The common thread", "Sợi dây chung"),
         ],
     )
@@ -485,8 +556,49 @@ def build():
             "line bia, sữa và nước giải khát tự động."))
     body += section_close()
 
-    # 06 common thread
-    body += section_open("06", "The common thread", "Sợi dây chung", pg, "thread")
+    # 06 the other seven sectors
+    body += section_open("06", "The other seven", "Bảy ngành còn lại", pg, "sectors")
+    body += "<div class=\"sec-head\">"
+    body += pg.h2("One dominant variable each", "Mỗi ngành một đại lượng chi phối")
+    body += pg.p(
+        "The four sectors above are where the textbooks spend their time. Most instrument engineers "
+        "actually work in the rest, and in each of those one variable decides the design: it sets the "
+        "technology, the calibration interval and the failure mode you will spend your weekends on.",
+        "Bốn ngành trên là nơi sách giáo khoa dành thời gian. Phần lớn kỹ sư đo lường thực tế làm việc ở "
+        "những ngành còn lại, và ở mỗi ngành ấy có một đại lượng quyết định thiết kế: nó chọn công nghệ, "
+        "chọn chu kỳ hiệu chuẩn, và chọn kiểu hỏng mà bạn sẽ dành những ngày cuối tuần để xử lý.")
+    body += "</div>"
+    body += "<div class=\"tbl-wrap\"><table class=\"tbl\"><thead><tr><th>%s</th><th>%s</th>" \
+            "<th>%s</th></tr></thead><tbody>" % (
+        pg.th("Sector", "Ngành"), pg.th("The variable that dominates", "Đại lượng chi phối"),
+        pg.th("What makes it hard", "Vì sao khó"))
+    for s_en, s_vi, v_en, v_vi, h_en, h_vi in SECTORS:
+        body += "<tr><td><strong>%s</strong></td><td>%s</td><td>%s</td></tr>" % (
+            pg.span(s_en, s_vi), pg.span(v_en, v_vi), pg.span(h_en, h_vi))
+    body += "</tbody></table></div>"
+    body += "<div class=\"note mt24\"><span class=\"lbl\">%s</span>%s</div>" % (
+        pg.span("Where sector knowledge actually lives", "Kiến thức ngành thực sự nằm ở đâu"),
+        pg.p(
+            "Very little of this is in a standard. It lives in trade press, in forums and in vendor "
+            "application notes — <a href=\"https://www.processindustryforum.com/\" rel=\"noopener\">Process "
+            "Industry Forum</a> is one of the larger English-language collections, with application "
+            "write-ups, tutorials, a panel of named experts and a partner directory. Note the business "
+            "model: the same portal that publishes a genuinely useful commissioning tip also publishes "
+            "its partners' efficiency claims. Read it for the mechanism, and treat the percentage as an "
+            "advertisement until you have measured your own plant. The <a href=\"advanced/#plant\">total-"
+            "plant section</a> takes that argument apart in detail.",
+            "Rất ít điều trong số này nằm trong một tiêu chuẩn. Nó sống trong báo ngành, trong các diễn "
+            "đàn và trong ghi chú ứng dụng của nhà cung cấp — <a href=\"https://www.processindustryforum.com/\" "
+            "rel=\"noopener\">Process Industry Forum</a> là một trong những nơi tập hợp lớn nhất bằng tiếng "
+            "Anh, với bài viết ứng dụng, hướng dẫn, một hội đồng chuyên gia có tên và danh bạ đối tác. Hãy "
+            "để ý mô hình kinh doanh: chính cổng thông tin đăng một mẹo chạy thử rất hữu ích cũng đăng "
+            "tuyên bố hiệu quả của các đối tác. Đọc để lấy cơ chế, và coi phần trăm là quảng cáo cho đến "
+            "khi bạn tự đo được nhà máy của mình. Phần <a href=\"advanced/#plant\">toàn nhà máy</a> mổ xẻ "
+            "lập luận đó chi tiết."))
+    body += section_close()
+
+    # 07 common thread
+    body += section_open("07", "The common thread", "Sợi dây chung", pg, "thread")
     body += "<div class=\"sec-head\">"
     body += pg.h2("Same chain, different consequences", "Cùng một chuỗi, hậu quả khác nhau")
     body += pg.p(

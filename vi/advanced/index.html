@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Thực hành nâng cao — vượt ra ngoài một vòng | I&amp;C</title>
-<meta name="description" content="Tầng phía trên của đo lường điều khiển một vòng: điều khiển cascade và dự báo mô hình, hồ sơ an toàn có con số, và các tiêu chuẩn kết nối hiện trường đang được viết lại.">
+<meta name="description" content="Tầng phía trên của đo lường điều khiển một vòng: điều khiển cascade và dự báo mô hình, hồ sơ an toàn có con số, các tiêu chuẩn kết nối hiện trường đang được viết lại, và kiến trúc toàn nhà máy vốn nhận chở một con số từ màng đo đến phòng họp.">
 <link rel="canonical" href="https://pro-instcontrol.github.io/vi/advanced/">
 <link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/advanced/">
 <link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/advanced/">
@@ -13,18 +13,18 @@
 <meta property="og:site_name" content="Instrumentation &amp; Control">
 <meta property="og:locale" content="vi_VN">
 <meta property="og:title" content="Thực hành nâng cao — vượt ra ngoài một vòng | I&amp;C">
-<meta property="og:description" content="Tầng phía trên của đo lường điều khiển một vòng: điều khiển cascade và dự báo mô hình, hồ sơ an toàn có con số, và các tiêu chuẩn kết nối hiện trường đang được viết lại.">
+<meta property="og:description" content="Tầng phía trên của đo lường điều khiển một vòng: điều khiển cascade và dự báo mô hình, hồ sơ an toàn có con số, các tiêu chuẩn kết nối hiện trường đang được viết lại, và kiến trúc toàn nhà máy vốn nhận chở một con số từ màng đo đến phòng họp.">
 <meta property="og:url" content="https://pro-instcontrol.github.io/vi/advanced/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Thực hành nâng cao — vượt ra ngoài một vòng | I&amp;C">
-<meta name="twitter:description" content="Tầng phía trên của đo lường điều khiển một vòng: điều khiển cascade và dự báo mô hình, hồ sơ an toàn có con số, và các tiêu chuẩn kết nối hiện trường đang được viết lại.">
+<meta name="twitter:description" content="Tầng phía trên của đo lường điều khiển một vòng: điều khiển cascade và dự báo mô hình, hồ sơ an toàn có con số, các tiêu chuẩn kết nối hiện trường đang được viết lại, và kiến trúc toàn nhà máy vốn nhận chở một con số từ màng đo đến phòng họp.">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/style.css?v=5">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://pro-instcontrol.github.io/vi/advanced/#page","url":"https://pro-instcontrol.github.io/vi/advanced/","name":"Thực hành nâng cao — vượt ra ngoài một vòng | I&C","description":"Tầng phía trên của đo lường điều khiển một vòng: điều khiển cascade và dự báo mô hình, hồ sơ an toàn có con số, và các tiêu chuẩn kết nối hiện trường đang được viết lại.","inLanguage":"vi-VN","isPartOf":{"@type":"WebSite","name":"Instrumentation & Control","url":"https://pro-instcontrol.github.io/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Instrumentation & Control","item":"https://pro-instcontrol.github.io/"},{"@type":"ListItem","position":2,"name":"Thực hành nâng cao","item":"https://pro-instcontrol.github.io/vi/advanced/"}]}]}</script>
+<link rel="stylesheet" href="../../assets/style.css?v=3">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://pro-instcontrol.github.io/vi/advanced/#page","url":"https://pro-instcontrol.github.io/vi/advanced/","name":"Thực hành nâng cao — vượt ra ngoài một vòng | I&C","description":"Tầng phía trên của đo lường điều khiển một vòng: điều khiển cascade và dự báo mô hình, hồ sơ an toàn có con số, các tiêu chuẩn kết nối hiện trường đang được viết lại, và kiến trúc toàn nhà máy vốn nhận chở một con số từ màng đo đến phòng họp.","inLanguage":"vi-VN","isPartOf":{"@type":"WebSite","name":"Instrumentation & Control","url":"https://pro-instcontrol.github.io/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Instrumentation & Control","item":"https://pro-instcontrol.github.io/"},{"@type":"ListItem","position":2,"name":"Thực hành nâng cao","item":"https://pro-instcontrol.github.io/vi/advanced/"}]}]}</script>
 </head>
 <body>
 <a class="skip" href="#main">Chuyển đến nội dung</a>
@@ -73,7 +73,7 @@
   <div class="wrap">
     <div class="eyebrow"><span class="num">00</span><span class="line"></span><span class="eyebrow-label">Thực hành nâng cao</span></div>
     <h1 class="adv-h1">Nơi kiến thức cơ bản không còn đủ</h1>
-    <p class="lede adv-lede">Mọi trang khác ở đây dạy một vòng điều khiển, một thiết bị, một bản vẽ. Đây là tầng phía trên: những chiến lược cần nhiều hơn một vòng, hồ sơ an toàn cần con số, và những tiêu chuẩn kết nối đang được viết lại ngay lúc này.</p>
+    <p class="lede adv-lede">Mọi trang khác ở đây dạy một vòng điều khiển, một thiết bị, một bản vẽ. Đây là tầng phía trên: những chiến lược cần nhiều hơn một vòng, hồ sơ an toàn cần con số, những tiêu chuẩn kết nối đang được viết lại ngay lúc này — và kiến trúc vốn nhận chở một con số từ màng đo ngoài hiện trường đến biên lợi nhuận trong phòng họp.</p>
   </div>
 </section>
 <section class="sec adv-sec" id="trends">
@@ -105,6 +105,31 @@
     <p class="adv-p">Những tài liệu quyết định nhà máy có được phép chạy hay không: LOPA để biện minh cho lớp bảo vệ, SRS để đặc tả, kiểm chứng SIL để chứng minh, ma trận nguyên nhân &amp; kết quả để đấu dây, và rà soát báo động để hệ thống còn dùng được lúc ba giờ sáng.</p>
     <p class="adv-link"><a href="../../safety.html">An toàn chức năng &amp; SIS <span aria-hidden="true">&rarr;</span></a>
       <a href="../../standards.html">Tham chiếu tiêu chuẩn <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+<section class="sec adv-sec" id="plant">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">04</span><span class="line"></span><span class="eyebrow-label">Toàn nhà máy</span></div>
+    <h2 class="adv-h2">Toàn nhà máy, từ màng đo đến phòng họp</h2>
+    <p class="adv-p">Mọi mục khác ở đây dừng lại ở một vòng điều khiển. Ý tưởng toàn nhà máy là: một chuỗi dữ liệu duy nhất chạy từ màng đo ngoài hiện trường đến con số biên lợi nhuận trong phòng họp, và mỗi tầng trong chuỗi ấy chỉ tốt bằng tầng bên dưới nó. Emerson bán mô hình này dưới tên Plantweb; ABB Ability, Siemens Xcelerator, Honeywell Forge và Yokogawa IA2S bán đúng những tầng ấy với logo khác. Lịch sử cũng đáng biết: Emerson ra mắt PlantWeb năm 1997 như “kiến trúc nhà máy số dựa trên hiện trường” đầu tiên, rồi giới thiệu lại năm 2016 thành hệ sinh thái số. Tiếp thị đổi hai lần; mô hình tầng thì không.</p>
+    <p class="adv-p">Các tầng này không phải phát minh của một hãng. Đó là cách duy nhất để vật lý khớp lại: phép đo được thực hiện tại màng, đổi thành tín hiệu, được kiểm chứng ở đâu đó, gộp thành một đơn vị công nghệ, rồi mới thành tiền. Khác nhau giữa các sản phẩm là ranh giới từng tầng nằm ở đâu, và cái gì sống sót khi đi qua ranh giới đó.</p>
+    <ol class="adv-stack">
+      <li class="adv-stack-h"><span>Tầng</span><span>Có gì ở đó</span><span>Chuyển lên trên cái gì</span></li>
+      <li><span class="adv-stack-l">L1</span><span class="adv-stack-b"><b>Thiết bị hiện trường</b><span>Bộ truyền thông minh, bộ điều khiển van số, máy phân tích, cảm biến ăn mòn và âm thanh. HART, FOUNDATION Fieldbus, PROFIBUS, WirelessHART, Ethernet-APL.</span></span><span class="adv-stack-a">Giá trị đo — cộng với ý kiến của chính thiết bị về nó: trạng thái, chẩn đoán, chữ ký van, màng bám bẩn.</span></li><li><span class="adv-stack-l">L2</span><span class="adv-stack-b"><b>Điều khiển &amp; an toàn</b><span>DeltaV, Ovation, PLC an toàn. PID, điều khiển dự báo mô hình nhúng trong controller, ma trận nguyên nhân &amp; kết quả.</span></span><span class="adv-stack-a">Tín hiệu đã kiểm chứng (tốt / hỏng / không chắc), đầu ra điều khiển, và bằng chứng vòng đo giữ được giá trị đặt.</span></li><li><span class="adv-stack-l">L3</span><span class="adv-stack-b"><b>Vận hành</b><span>Trạm vận hành, công cụ kỹ thuật, historian, quản lý thiết bị, rà soát báo động.</span></span><span class="adv-stack-a">Quyết định của con người, dấu vết kiểm toán, và một phiếu công việc.</span></li><li><span class="adv-stack-l">L4</span><span class="adv-stack-b"><b>Phân tích tại nhà máy</b><span>Ứng dụng giám sát tài sản, phần mềm hiệu năng, data lake tại chỗ hoặc trên cloud — cả AWS và Azure đều có tài liệu.</span></span><span class="adv-stack-a">Điểm sức khỏe tài sản, tuổi thọ còn lại, ngoại lệ xếp theo số tiền gặp rủi ro.</span></li><li><span class="adv-stack-l">L5</span><span class="adv-stack-b"><b>Kinh doanh</b><span>Kế toán sản lượng, kế hoạch, ngân sách bảo trì, năng lượng.</span></span><span class="adv-stack-a">Sản lượng, lượng hàng cho không, chi phí dừng máy ngoài kế hoạch — con số người quản lý hành động được.</span></li>
+    </ol>
+    <div class="adv-note">
+      <b>Phép tính mà tầng trên cùng thừa hưởng</b>
+      <p>Bản white paper năm 2003 của chính Emerson về kiến trúc này cụ thể một cách bất thường về chỗ tiền nằm ở đâu. Nó định nghĩa chất lượng là (sản phẩm làm ra − hàng mất và làm lại) ÷ sản phẩm làm ra, cho biết các cuộc kiểm toán biến động của hãng thấy 80% vòng điều khiển chạy dưới mức, và dẫn một nghiên cứu dự báo tiết kiệm hơn 7% giá vốn hàng bán khi đưa chín lĩnh vực thực hành điều khiển lên mức tốt nhất — trong đó 3,3% đến từ ba lĩnh vực đầu, tất cả đều ở cấp vòng: hiệu năng và hiệu chỉnh phần tử chấp hành cuối, điều khiển đơn vị công nghệ, và điều khiển điều chỉnh nâng cao. Người viết bài là hãng bán giải pháp, nên hãy đọc các phần trăm ấy như bằng chứng tồn tại, không phải chuẩn so sánh. Cấu trúc lập luận mới là điều đáng giữ: tiền được tạo ra ở dưới cùng và chỉ được đếm ở trên cùng.</p>
+    </div>
+    <h3 class="adv-h3">Hãng nói gì, và những con số ấy đáng bao nhiêu</h3>
+    <p class="adv-p">Tài liệu tiếp thị thêm vào những con số mà white paper để trống: tiết kiệm tới 30% chi phí lắp đặt, tới 66% năng suất của nhân viên bảo trì, ít nhất 2% hiệu suất toàn nhà máy, 20–30% trên từng quá trình cụ thể. “Tới” và “ít nhất” nằm trong cùng một đoạn là dấu hiệu cần chú ý — các khoảng ấy không nêu giá, không chuẩn hoá, và lấy từ những nhà máy tốt nhất. Hai điều trong tài liệu đó vẫn đáng coi trọng. Thứ nhất là cách chia theo chức năng, cũng chính là năm tầng ấy dưới tên khác: khai thác trí tuệ hiện trường, kết nối nhà máy, điều khiển quá trình, tối ưu tài sản. Thứ hai là chỗ hãng thừa nhận “lợi ích tăng thêm có thể đạt được khi triển khai bất kỳ phần nào của kiến trúc này”, nhưng lợi ích lớn nhất cần giải pháp trọn vẹn — vừa là phát biểu kỹ thuật trung thực, vừa là mô hình kinh doanh.</p>
+    <h3 class="adv-h3">Ba thứ đứt giữa các tầng</h3>
+    <ul class="adv-list"><li><b>Cờ chất lượng.</b> Chính bài white paper ấy nhận xét rằng kiến trúc lấy DCS làm trung tâm coi “mọi tín hiệu tương tự trong khoảng 4–20 mA là tốt”. Nếu tầng hiện trường gửi lên một giá trị mà không kèm trạng thái, mọi tầng phía trên thừa hưởng một sai số không định lượng được. DeltaV và Ovation có đọc cờ tốt / hỏng / không chắc — nhưng cờ đó phải sống sót đến tận báo cáo, nếu không báo cáo chỉ là hư cấu.</li><li><b>Trạng thái hiệu chuẩn.</b> Data lake không khử trôi được một bộ truyền. Ước lượng tuổi thọ còn lại thừa hưởng đúng những gì cảm biến đang làm lúc mô hình được huấn luyện, kể cả độ lệch điểm không mà không ai ngó tới từ lần dừng máy trước.</li><li><b>Bản thân ranh giới.</b> Mỗi ranh giới tầng là nơi đơn vị đo, dấu thời gian và chất lượng dữ liệu bị đánh rơi. OPC UA và MQTT là câu trả lời ít tệ nhất hiện nay; một file CSV xuất theo lịch là nơi kiến trúc chết một cách lặng lẽ.</li></ul>
+    <p class="adv-p adv-close">Vậy phép thử với một đề xuất toàn nhà máy không phải là nó có bao nhiêu tầng, hay bảng điều khiển trông đẹp đến đâu. Mà là: một con số trên màn hình cấp cao nhất có truy nguyên được, trong một bước, về một tag, một dải đo, và ngày thiết bị ấy được hiệu chuẩn gần nhất hay không. Nếu không, bạn đã mua một hệ thống báo cáo, không phải một hệ thống điều khiển — và lần đầu tiên nó sai, sẽ không ai nói được sai ở đâu.</p>
+    <p class="adv-link"><a href="../../fundamentals.html">Chuỗi đo lường <span aria-hidden="true">&rarr;</span></a>
+      <a href="../../control.html#advanced">Điều khiển nâng cao <span aria-hidden="true">&rarr;</span></a></p>
+    <h3 class="adv-h3">Nguồn và đọc thêm</h3>
+    <ul class="adv-src"><li><span class="tag">White paper</span><a href="https://www.emerson.com/documents/automation/product-data-sheet-improving-quality-en-41040.pdf" rel="noopener">Emerson — Improving quality with PlantWeb digital plant architecture</a> — Tháng 5/2003. Các con số 80% / 7% / 3,3% và giả thiết 4–20 mA.</li><li><span class="tag">Video</span><a href="https://videos.emerson.com/detail/video/3768919387001/" rel="noopener">PlantWeb for the Power Industry</a> — Năm tầng được giải thích trên một nhà máy điện.</li><li><span class="tag">Kiến trúc</span><a href="https://docs.aws.amazon.com/reference-architecture-diagrams/latest/emerson-plantweb-optics-data-lake-hcls/emerson-plantweb-optics-data-lake-hcls.html" rel="noopener">AWS reference architecture — Emerson Plantweb Optics Data Lake cho y tế và khoa học đời sống</a> — Tầng cloud được đấu thật sự thế nào: Kinesis, IoT Core, S3, SageMaker.</li><li><span class="tag">Báo ngành</span><a href="https://www.pulpandpapercanada.com/emerson-launches-plantweb-digital-ecosystem-1100000427/" rel="noopener">Pulp &amp; Paper Canada — Emerson launches Plantweb digital ecosystem</a> — Tháng 10/2016. Peter Zornio nói về nguồn gốc 1997.</li><li><span class="tag">Bài báo</span><a href="https://www.processindustryforum.com/article/digital-plant-architecture-power-predictive-intelligence-improve-plant-performance" rel="noopener">Process Industry Forum — Digital plant architecture and the power of predictive intelligence</a> — Các tuyên bố về chi phí lắp đặt và năng suất bảo trì.</li></ul>
   </div>
 </section>
 </main>

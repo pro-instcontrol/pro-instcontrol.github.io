@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Advanced practice — beyond the single loop | I&amp;C</title>
-<meta name="description" content="The layer above single-loop instrumentation: cascade and model predictive control, safety cases with numbers, and the field-connectivity standards being rewritten now.">
+<meta name="description" content="The layer above single-loop instrumentation: cascade and model predictive control, safety cases with numbers, the field-connectivity standards being rewritten now, and the total-plant architecture that claims to run from a diaphragm to a boardroom.">
 <link rel="canonical" href="https://pro-instcontrol.github.io/advanced/">
 <link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/advanced/">
 <link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/advanced/">
@@ -13,18 +13,18 @@
 <meta property="og:site_name" content="Instrumentation &amp; Control">
 <meta property="og:locale" content="en_US">
 <meta property="og:title" content="Advanced practice — beyond the single loop | I&amp;C">
-<meta property="og:description" content="The layer above single-loop instrumentation: cascade and model predictive control, safety cases with numbers, and the field-connectivity standards being rewritten now.">
+<meta property="og:description" content="The layer above single-loop instrumentation: cascade and model predictive control, safety cases with numbers, the field-connectivity standards being rewritten now, and the total-plant architecture that claims to run from a diaphragm to a boardroom.">
 <meta property="og:url" content="https://pro-instcontrol.github.io/advanced/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Advanced practice — beyond the single loop | I&amp;C">
-<meta name="twitter:description" content="The layer above single-loop instrumentation: cascade and model predictive control, safety cases with numbers, and the field-connectivity standards being rewritten now.">
+<meta name="twitter:description" content="The layer above single-loop instrumentation: cascade and model predictive control, safety cases with numbers, the field-connectivity standards being rewritten now, and the total-plant architecture that claims to run from a diaphragm to a boardroom.">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=5">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://pro-instcontrol.github.io/advanced/#page","url":"https://pro-instcontrol.github.io/advanced/","name":"Advanced practice — beyond the single loop | I&C","description":"The layer above single-loop instrumentation: cascade and model predictive control, safety cases with numbers, and the field-connectivity standards being rewritten now.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"Instrumentation & Control","url":"https://pro-instcontrol.github.io/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Instrumentation & Control","item":"https://pro-instcontrol.github.io/"},{"@type":"ListItem","position":2,"name":"Advanced practice","item":"https://pro-instcontrol.github.io/advanced/"}]}]}</script>
+<link rel="stylesheet" href="../assets/style.css?v=3">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://pro-instcontrol.github.io/advanced/#page","url":"https://pro-instcontrol.github.io/advanced/","name":"Advanced practice — beyond the single loop | I&C","description":"The layer above single-loop instrumentation: cascade and model predictive control, safety cases with numbers, the field-connectivity standards being rewritten now, and the total-plant architecture that claims to run from a diaphragm to a boardroom.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"Instrumentation & Control","url":"https://pro-instcontrol.github.io/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Instrumentation & Control","item":"https://pro-instcontrol.github.io/"},{"@type":"ListItem","position":2,"name":"Advanced practice","item":"https://pro-instcontrol.github.io/advanced/"}]}]}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -73,7 +73,7 @@
   <div class="wrap">
     <div class="eyebrow"><span class="num">00</span><span class="line"></span><span class="eyebrow-label">Advanced practice</span></div>
     <h1 class="adv-h1">Where the fundamentals stop being enough</h1>
-    <p class="lede adv-lede">Every other page here teaches one loop, one instrument, one drawing. This is the layer above: strategies that need more than one loop, safety cases that need numbers, and the connectivity standards that are being rewritten while you read this.</p>
+    <p class="lede adv-lede">Every other page here teaches one loop, one instrument, one drawing. This is the layer above: strategies that need more than one loop, safety cases that need numbers, the connectivity standards being rewritten while you read this — and the architecture that claims to carry one number from a diaphragm in the field to a margin in a boardroom.</p>
   </div>
 </section>
 <section class="sec adv-sec" id="trends">
@@ -105,6 +105,31 @@
     <p class="adv-p">The documents that decide whether a plant is allowed to run: LOPA to justify the layer, an SRS to specify it, SIL verification to prove it, a cause &amp; effect matrix to wire it, and an alarm rationalisation to keep it usable at three in the morning.</p>
     <p class="adv-link"><a href="../safety.html">Functional safety &amp; SIS <span aria-hidden="true">&rarr;</span></a>
       <a href="../standards.html">Standards reference <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+<section class="sec adv-sec" id="plant">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">04</span><span class="line"></span><span class="eyebrow-label">Total plant</span></div>
+    <h2 class="adv-h2">The whole plant, from the diaphragm to the boardroom</h2>
+    <p class="adv-p">Every other section here stops at one loop. The total-plant idea is that a single data chain runs from a diaphragm in the field to a margin number in a boardroom, and that each layer in that chain is only as good as the layer below it. Emerson sells the shape as Plantweb; ABB Ability, Siemens Xcelerator, Honeywell Forge and Yokogawa IA2S sell the same layers with different logos. The lineage is worth knowing: Emerson introduced PlantWeb in 1997 as “the first field-based digital plant architecture” and relaunched it in 2016 as a digital ecosystem. The marketing changed twice; the layer model did not.</p>
+    <p class="adv-p">The layers are not a vendor invention. They are the only way the physics works out: a measurement is made at the diaphragm, converted to a signal, validated somewhere, aggregated into a unit, and only then turned into money. What varies between products is where each boundary sits, and what survives crossing it.</p>
+    <ol class="adv-stack">
+      <li class="adv-stack-h"><span>Layer</span><span>What lives there</span><span>What it hands upward</span></li>
+      <li><span class="adv-stack-l">L1</span><span class="adv-stack-b"><b>Field devices</b><span>Smart transmitters, digital valve controllers, analysers, corrosion and acoustic sensors. HART, FOUNDATION Fieldbus, PROFIBUS, WirelessHART, Ethernet-APL.</span></span><span class="adv-stack-a">The value — plus the device's own opinion of itself: status, diagnostics, valve signature, sensor fouling.</span></li><li><span class="adv-stack-l">L2</span><span class="adv-stack-b"><b>Control &amp; safety</b><span>DeltaV, Ovation, safety PLCs. PID, model predictive control embedded in the controller, cause &amp; effect.</span></span><span class="adv-stack-a">A validated signal (good / bad / uncertain), a manipulated output, and evidence that the loop can hold setpoint.</span></li><li><span class="adv-stack-l">L3</span><span class="adv-stack-b"><b>Operations</b><span>Operator stations, engineering tools, historian, device management, alarm rationalisation.</span></span><span class="adv-stack-a">A human decision, an audit trail, and a work order.</span></li><li><span class="adv-stack-l">L4</span><span class="adv-stack-b"><b>Site analytics</b><span>Asset-monitoring apps, performance software, a data lake on site or in the cloud — both AWS and Azure are documented.</span></span><span class="adv-stack-a">Health scores, remaining useful life, exceptions ranked by money at risk.</span></li><li><span class="adv-stack-l">L5</span><span class="adv-stack-b"><b>Business</b><span>Production accounting, planning, maintenance budget, energy.</span></span><span class="adv-stack-a">Throughput, give-away, unplanned-downtime cost — the numbers a manager can act on.</span></li>
+    </ol>
+    <div class="adv-note">
+      <b>The arithmetic the top layer inherits</b>
+      <p>Emerson's own 2003 white paper on this architecture is unusually specific about where the money is. It defines quality as (product produced − lost and rework) ÷ product produced, reports that its variability audits found 80% of control loops underperforming, and cites a study projecting more than 7% of cost of goods sold from lifting nine areas of control practice to best practice — of which 3.3% comes from the first three, all of them loop-level: final control element performance and tuning, unit operation control, and advanced regulatory control. The vendor wrote the paper, so read the percentages as an existence proof rather than a benchmark. The structure of the argument is what matters: the saving is created at the bottom and merely counted at the top.</p>
+    </div>
+    <h3 class="adv-h3">What the vendor claims, and what it is worth</h3>
+    <p class="adv-p">The marketing literature adds the numbers the white paper leaves out: up to 30% saving in installed cost, up to 66% improvement in maintenance productivity, at least 2% improvement in overall plant efficiency, 20–30% on specific processes. “Up to” and “at least” in the same paragraph is the tell — the ranges are unpriced, unnormalised, and drawn from the best installations. Two things in that literature are still worth taking seriously. The first is the functional decomposition, which is the same five layers under other names: leverage field intelligence, connect the plant, control the process, optimise the assets. The second is the concession that “incremental gains can be realised by implementing any part of this architecture” but that the greatest benefits need the complete solution — which is both the honest engineering statement and the commercial model.</p>
+    <h3 class="adv-h3">Three things break between the layers</h3>
+    <ul class="adv-list"><li><b>The quality flag.</b> The same white paper observes that a DCS-centred architecture assumes “any analog signal between 4 and 20 mA is good”. If the field layer sends a value without its status, every layer above inherits an unquantified error. DeltaV and Ovation do consume good / bad / uncertain — but that flag has to survive all the way into the report, or the report is fiction.</li><li><b>The calibration state.</b> A data lake cannot un-drift a transmitter. A remaining-useful-life estimate inherits whatever the sensor was doing when the model was trained, including the zero shift nobody has looked at since the last shutdown.</li><li><b>The boundary itself.</b> Every layer boundary is where units, timestamps and quality get dropped. OPC UA and MQTT are the least-bad answer so far; a scheduled CSV export is where architectures go to die quietly.</li></ul>
+    <p class="adv-p adv-close">So the test of a total-plant proposal is not how many layers it has, or how good the dashboard looks. It is whether a number on the top-level screen can be traced, in one step, back to a tag, a range, and the date that instrument was last calibrated. If it cannot, you have bought a reporting system, not a control system — and the first time it is wrong, nobody will be able to say where.</p>
+    <p class="adv-link"><a href="../fundamentals.html">The measurement chain <span aria-hidden="true">&rarr;</span></a>
+      <a href="../control.html#advanced">Advanced control <span aria-hidden="true">&rarr;</span></a></p>
+    <h3 class="adv-h3">Sources and further reading</h3>
+    <ul class="adv-src"><li><span class="tag">White paper</span><a href="https://www.emerson.com/documents/automation/product-data-sheet-improving-quality-en-41040.pdf" rel="noopener">Emerson — Improving quality with PlantWeb digital plant architecture</a> — May 2003. The 80% / 7% / 3.3% figures and the 4–20 mA assumption.</li><li><span class="tag">Video</span><a href="https://videos.emerson.com/detail/video/3768919387001/" rel="noopener">PlantWeb for the Power Industry</a> — The layers explained against a power plant.</li><li><span class="tag">Architecture</span><a href="https://docs.aws.amazon.com/reference-architecture-diagrams/latest/emerson-plantweb-optics-data-lake-hcls/emerson-plantweb-optics-data-lake-hcls.html" rel="noopener">AWS reference architecture — Emerson Plantweb Optics Data Lake for health care and life sciences</a> — How the cloud tier is actually wired: Kinesis, IoT Core, S3, SageMaker.</li><li><span class="tag">Trade press</span><a href="https://www.pulpandpapercanada.com/emerson-launches-plantweb-digital-ecosystem-1100000427/" rel="noopener">Pulp &amp; Paper Canada — Emerson launches Plantweb digital ecosystem</a> — October 2016. Peter Zornio on the 1997 origin.</li><li><span class="tag">Article</span><a href="https://www.processindustryforum.com/article/digital-plant-architecture-power-predictive-intelligence-improve-plant-performance" rel="noopener">Process Industry Forum — Digital plant architecture and the power of predictive intelligence</a> — The installed-cost and maintenance-productivity claims.</li></ul>
   </div>
 </section>
 </main>

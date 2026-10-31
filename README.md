@@ -14,10 +14,11 @@ Live: https://pro-instcontrol.github.io/
 |---|---|
 | `index.html` | Positioning, the closed-loop idea, five measurement families, the dividing line |
 | `fundamentals.html` | Measurement chain, signal standards, 4–20 mA, error vocabulary, environment, installation rules |
-| `advanced/` | Where the fundamentals stop: cascade / feedforward / MPC, the safety paper trail, and a 12-video **Trends & standards watch** section linking into the library (VI mirror at `vi/advanced/`) |
+| `advanced/` | Where the fundamentals stop: cascade / feedforward / MPC, the safety paper trail, a 12-video **Trends & standards watch** section linking into the library, and the **total-plant** layer stack from field device to boardroom — with what the vendor numbers are worth (VI mirror at `vi/advanced/`) |
 | `instruments.html` | 31 filterable instruments — principle, accuracy, best application, failure mode |
 | `install.html` | Tapping points and impulse lines by service, hazardous area zones and gas groups, the IS entity concept with a cable-length calculation, grounding and shielding, commissioning checks |
 | `control.html` | Loop anatomy, PID terms, six tuning methods, dead time, advanced strategies, an interactive PID simulator |
+| `applications.html` | Boiler control, power-plant C&I, oil refining, food & beverage — then the one dominant variable in each of the seven sectors those four leave out (water, mining, pulp & paper, pharma, cement, hydrogen, biomass) |
 | `safety.html` | SIS vs BPCS, the IEC 61511 lifecycle, what SIL bounds, redundancy and the common-cause floor, proof test coverage, independence, six ways a safety system stops being one |
 | `tools.html` | Five live calculators — 4–20 mA scaling with NE 43 bands, DP flow square root, valve Kv/Cv with choked flow, hydrostatic level, loop error budget |
 | `comparison.html` | The 21-row process-vs-geotechnical matrix, controllability conditions, hybrid cases, vocabulary traps |
