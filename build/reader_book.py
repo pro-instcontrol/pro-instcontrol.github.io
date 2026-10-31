@@ -58,7 +58,8 @@ BOOKS = {
                  4: "ch04-protection-layers",
                  5: "ch05-developing-the-safety-requirement-specifications",
                  6: "ch06-determining-the-safety-integrity-level",
-                 7: "ch07-choosing-a-technology"},
+                 7: "ch07-choosing-a-technology",
+                 8: "ch08-initial-system-evaluation"},
         "copyright_en": "Original text © 2006 ISA — The Instrumentation, Systems, and Automation Society",
         "copyright_vi": "Bản gốc © 2006 ISA — Hiệp hội Đo lường, Hệ thống và Tự động hóa",
         "lede_en": ("The practical “how-to” on specifying, analysing, designing, installing and "

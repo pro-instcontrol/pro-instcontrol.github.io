@@ -48,6 +48,7 @@ SLUGS = {
         5: "ch05-developing-the-safety-requirement-specifications",
         6: "ch06-determining-the-safety-integrity-level",
         7: "ch07-choosing-a-technology",
+        8: "ch08-initial-system-evaluation",
     },
 }
 
