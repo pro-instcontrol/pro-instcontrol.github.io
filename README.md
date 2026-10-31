@@ -59,6 +59,22 @@ Tiếng Việt stays in the Vietnamese tree instead of being dropped back into E
 themselves use a plain `<a class="lang">` link to the sibling URL, because a JS swap cannot change
 the address bar.
 
+### The top nav has one source
+
+`framework.NAV` is the only list of top-nav items — 17 `(href, English, Vietnamese)`
+tuples in display order. Nothing else may spell a nav out by hand:
+
+| consumer | what it renders |
+| --- | --- |
+| `framework.nav_links(lang, prefix, active)` | every generated page (`<nav class="nav">`) |
+| `books_site._nav(lang)` | the library's own header, as absolute URLs |
+| `build/fix_book_nav.py` | rewrites the library pages already on disk |
+
+Adding a section means adding one tuple to `NAV` and re-running `build.py` and
+`fix_book_nav.py`; all 424 pages then carry it. `nav_links` also owns the
+language targeting: a section with a `/vi/` twin points at the twin, everything
+else gets `?lang=vi`, so a Vietnamese page never links back into English.
+
 ## Editing content
 
 Content lives in Python modules under `build/`, one pair of strings per element:

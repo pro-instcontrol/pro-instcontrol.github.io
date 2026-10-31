@@ -18,7 +18,6 @@ sys.path.insert(0, HERE)
 import framework  # noqa: E402
 
 BASE = "https://pro-instcontrol.github.io"
-TWIN_PATHS = {"video-library/", "books/", "advanced/", "hot-topics/"}
 SITE = "Instrumentation &amp; Control"
 SITE_VI = "Đo lường &amp; Điều khiển"
 
@@ -968,13 +967,10 @@ def head(lang, prefix):
 def topbar(lang, prefix):
     t = T[lang]
     active = t["nav_active"]
-    items = []
-    for href, en, vi in framework.NAV:
-        label = en if lang == "en" else vi
-        cls = "nav-link active" if href == active else "nav-link"
-        base = prefix + ("vi/" if lang == "vi" and href in TWIN_PATHS else "")
-        items.append('<a class="%s" href="%s%s">%s</a>' % (cls, base, href, label))
-    nav_html = "\n      ".join(items)
+    nav_html = "\n      ".join(
+        '<a class="%s" href="%s">%s</a>' % (cls, href, label)
+        for cls, href, label in framework.nav_links(lang, prefix, active)
+    )
     brand = SITE if lang == "en" else SITE_VI
     tag = "Field Guide" if lang == "en" else "Sổ tay hiện trường"
     return """<header class="topbar">

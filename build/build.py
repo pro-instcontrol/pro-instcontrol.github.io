@@ -28,27 +28,60 @@ import pages_hot  # noqa: E402
 DIST = framework.DIST
 ASSETS = os.path.join(ROOT, "assets")
 
-NOT_FOUND = """<!DOCTYPE html>
+def not_found():
+    """404 with the same nav as every other page.
+
+    Absolute hrefs (prefix "/"), because GitHub Pages serves this one file for
+    a miss at any depth: a relative link would resolve against /foo/bar/.
+    """
+    nav = "\n      ".join(
+        '<a class="%s" href="%s">%s</a>' % (cls, href, label)
+        for cls, href, label in framework.nav_links("en", "/", "")
+    )
+    return """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page not found — Instrumentation &amp; Control</title>
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.css?v=%s">
 </head>
 <body>
+<header class="topbar">
+  <div class="wrap bar">
+    <a class="brand" href="/index.html" aria-label="Home">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="none">
+          <rect x="1" y="1" width="30" height="30" rx="8" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+          <path d="M7 22h6l3-12 3 12h6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="16" cy="10" r="2.2" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="brand-txt"><strong>Instrumentation &amp; Control</strong><em>Field Guide</em></span>
+    </a>
+    <nav class="nav" id="nav">
+      %s
+    </nav>
+    <div class="bar-right">
+      <a class="lang" href="/?lang=vi"><span class="lang-opt on">EN</span><span class="lang-sep">/</span><span class="lang-opt">VI</span></a>
+    </div>
+  </div>
+</header>
 <main class="sec" style="padding-top:90px">
   <div class="wrap">
     <div class="eyebrow"><span class="num">404</span><span class="line"></span><span class="eyebrow-label">Not found</span></div>
     <h1 style="font-size:clamp(1.8rem,4vw,2.8rem)">This loop is open.</h1>
     <p class="lede">The page you asked for does not exist. Return to the index and pick a branch.</p>
-    <div class="hero-cta"><a class="btn btn-p" href="index.html">Back to home &rarr;</a></div>
+    <div class="hero-cta"><a class="btn btn-p" href="/index.html">Back to home &rarr;</a></div>
   </div>
 </main>
 </body>
 </html>
-"""
+""" % (framework.ASSET_VER, nav)
+
+
+NOT_FOUND = not_found()
 
 
 def stale(dist):

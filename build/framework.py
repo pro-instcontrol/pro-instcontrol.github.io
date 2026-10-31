@@ -52,6 +52,37 @@ NAV = [
     ("education.html", "Education", "Giáo dục"),
 ]
 
+# Sections that exist twice, as real URLs (/x/ and /vi/x/). Every generator that
+# emits the top nav has to agree on this set, so it lives here and nowhere else:
+# a section added to NAV is a section added to the twin set, or the Vietnamese
+# nav silently drops it.
+TWIN_PATHS = {"video-library/", "books/", "advanced/", "hot-topics/"}
+
+
+def nav_links(lang, prefix="", active="", cls="nav-link", cls_active="nav-link active"):
+    """(class, href, label) for every top-nav item, in NAV order.
+
+    ``prefix`` is for pages that do not sit at the site root (``../`` from
+    /advanced/). The /vi/ tree is used only for sections that have a twin,
+    because every other page is language-switched in place -- those take a
+    ``?lang=vi`` hint instead, so a Vietnamese page never links to an English
+    page by accident.
+    """
+    out = []
+    for href, en, vi in NAV:
+        label = en if lang == "en" else vi
+        is_active = href == active
+        if lang == "vi" and href in TWIN_PATHS:
+            base = prefix + "vi/"
+        elif lang == "vi":
+            base = prefix
+            href += "?lang=vi"
+        else:
+            base = prefix
+        out.append((cls_active if is_active else cls, base + href, label))
+    return out
+
+
 SHELL = {
     "shell.skip": ("Skip to content", "Chuyển đến nội dung"),
     "shell.nav.home": ("Home", "Trang chủ"),

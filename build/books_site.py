@@ -2,11 +2,15 @@
 
 Reads library/catalog.json (194 works) and writes static HTML.
 """
-import os, json, html, re, datetime, hashlib, unicodedata
+import os, sys, json, html, re, datetime, hashlib, unicodedata
 from urllib.parse import quote
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, ".."))
+if HERE not in sys.path:
+    sys.path.insert(0, HERE)
+
+import framework  # noqa: E402  (one nav list for the whole site)
 CAT = os.path.join(ROOT, "library", "catalog.json")
 
 # PDFs are hosted as GitHub Release assets (repo is too small for ~2 GB).
@@ -627,23 +631,32 @@ MARK = ('<svg viewBox="0 0 200 200" aria-hidden="true">'
         '<line x1="100" y1="100" x2="143" y2="57" stroke="#000" stroke-width="5" '
         'stroke-linecap="round"/><circle cx="100" cy="100" r="10" fill="#000"/></svg>')
 
-NAV_EN = [("/", "Home"), ("/books/", "Books"), ("/fundamentals.html", "Fundamentals"),
-          ("/advanced/", "Advanced"),
-          ("/instruments.html", "Instruments"), ("/install.html", "Install"),
-          ("/control.html", "Control"), ("/applications.html", "Applications"),
-          ("/safety.html", "Safety"), ("/tools.html", "Tools"),
-          ("/comparison.html", "Comparison"), ("/geotechnical.html", "Geotech"),
-          ("/standards.html", "Standards"), ("/glossary.html", "Glossary"),
-          ("/education.html", "Education")]
-NAV_VI = [("/?lang=vi", "Trang chủ"), ("/vi/books/", "Sách"),
-          ("/fundamentals.html?lang=vi", "Cơ bản"), ("/vi/advanced/", "Nâng cao"),
-          ("/instruments.html?lang=vi", "Thiết bị"),
-          ("/install.html?lang=vi", "Lắp đặt"), ("/control.html?lang=vi", "Điều khiển"),
-          ("/applications.html?lang=vi", "Ứng dụng"), ("/safety.html?lang=vi", "An toàn"),
-          ("/tools.html?lang=vi", "Công cụ"), ("/comparison.html?lang=vi", "So sánh"),
-          ("/geotechnical.html?lang=vi", "Địa kỹ thuật"),
-          ("/standards.html?lang=vi", "Tiêu chuẩn"), ("/glossary.html?lang=vi", "Thuật ngữ"),
-          ("/education.html?lang=vi", "Giáo dục")]
+def _nav(lang):
+    """The site nav, in the site's order, as absolute URLs.
+
+    The library pages are their own sub-site (own stylesheet, own header), but
+    the link set is not theirs to decide: it comes from framework.NAV, so a
+    section added to the site nav appears here too. Topic pages take a
+    ?lang=vi hint because they are language-switched in place; sections with a
+    real Vietnamese URL point at the /vi/ twin instead.
+    """
+    out = []
+    for href, en, vi in framework.NAV:
+        label = en if lang == "en" else vi
+        if href == "index.html":
+            target = "/?lang=vi" if lang == "vi" else "/"
+        elif lang == "vi" and href in framework.TWIN_PATHS:
+            target = "/vi/" + href
+        elif lang == "vi":
+            target = "/" + href + "?lang=vi"
+        else:
+            target = "/" + href
+        out.append((target, label))
+    return out
+
+
+NAV_EN = _nav("en")
+NAV_VI = _nav("vi")
 
 
 def header(lang, active_books=True, switch_href=None):
