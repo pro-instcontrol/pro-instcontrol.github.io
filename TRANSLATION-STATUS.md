@@ -1,9 +1,9 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-10-31 (session 21 — Chapter 21 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-10-31 (session 22 — Chapter 22 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 22** (and onward). Chapters
-> 1–21 are done, live, and registered. `work/hb_ch21.txt` is translated; Chapter 22+ source
+> **Where to start next:** Handbook **Chapter 23** (and onward). Chapters
+> 1–22 are done, live, and registered. `work/hb_ch22.txt` is translated; Chapter 23+ source
 > PDFs must be extracted from the 117-file handbook library before translation.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
@@ -42,7 +42,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–21** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–22** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -71,6 +71,7 @@ Chapters done, with their slugs and build scripts:
 | HB 19 | Frequency Measurement | `ch19-frequency-measurement` | `reader_hb_ch19.py` + `hb19fig.py` | 15 | ~14k |
 | HB 20 | Mass and Weight Measurement | `ch20-mass-and-weight-measurement` | `reader_hb_ch20.py` + `hb20fig.py` | 3 | ~6k |
 | HB 21 | Density Measurement | `ch21-density-measurement` | `reader_hb_ch21.py` + `hb21fig.py` | 16 | ~12k |
+| HB 22 | Strain Measurement | `ch22-strain-measurement` | `reader_hb_ch22.py` + `hb22fig.py` | 14 | ~13k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
@@ -110,7 +111,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `(level, total_chapters, done_chapters)`.
-  Currently `("progress", 101, 21)`, `("full", 16, 16)`, `("full", 14, 14)`.
+  Currently `("progress", 101, 22)`, `("full", 16, 16)`, `("full", 14, 14)`.
 - `build/books_site.py` → `FLAG_LABEL = {level: (vi_format, en_format)}` — **the pill text
   is derived from `level`, not hard-coded.** Add a level here as well as in the CSS, or the
   pill will read "Translating" on a finished book.
@@ -609,7 +610,50 @@ TOC, and the live VI page reports 16 figures. Library pill now `Đang dịch · 
 follow the §4 recipe. Note the registry edits (`DONE[16]`, `("progress", 101, 16)`) were applied cleanly this
 session — reconfirmed both before committing.
 
-### 2026-10-31, session 21 — Handbook Chapter 21, Density Measurement
+### 2026-10-31, session 22 — Handbook Chapter 22, Strain Measurement
+
+**Shipped:** Handbook chapter 22, *Strain Measurement* (Christopher S. Lynch, Georgia Institute of
+Technology) — 20 source pages. Full Vietnamese translation + English companion at
+`/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch22-strain-measurement/`.
+Handbook progress 21/101 → 22/101; `DONE[22]`, `("progress", 101, 22)`, and the §2 table all updated.
+
+**What was written this session:**
+
+- `build/hb22fig.py` — **all 14** real figures: 22.1 uniaxial tension; 22.2 stress–strain curve with a
+  Poisson sub-plot; 22.3 shear block; 22.4 principal directions (two squares, one stretched, one skewed);
+  22.5 foil gage construction; 22.6 single grid leg with length/width/thickness; 22.7 Wheatstone bridge;
+  22.8 Mohr's circle; 22.9 PVDF gage; 22.10 piezoelectric parallel-plate section; 22.11 electrometer and
+  charge amplifier; 22.12 Fabry–Perot fiber; 22.13 polariscope; 22.14 Moiré fringes. The source has
+  exactly 14 figures, so nothing was padded. All 14 SVGs validated; one label collision in 22.13
+  ("phân cực" / "bản 1/4 sóng" / "phân tích") was fixed by spreading the labels to x = 165, 232, 416, 484,
+  after which the bounding-box check reports 0 collisions and 0 off-canvas labels.
+- `build/reader_hb_ch22.py` — full VI translation + EN companion. 14/14 figure parity, 2/2 table parity;
+  equations 22.1–22.6 (Hooke's law, shear), 22.7–22.8 (gage factor with temperature and transverse terms),
+  22.9–22.14 (resistance derivation), 22.15a/b–22.18 (Wheatstone bridge), 22.19–22.21 (power and thermal
+  limits), 22.22–22.29 (Mohr's circle and rosettes), 22.30–22.32 (piezoelectric polarization), 22.33
+  (`Q = CV`), 22.34–22.35 (birefringence), 22.36–22.40 (Moiré displacement → strain); 29 references.
+  `work/hb_ch22.txt` extracted from `pdf-store-b/Ch22__d1fbcd4327eb71ae.pdf` (20 pages).
+- **Tables:** 22.1 (eight sensor types across eight characteristics, footnote markers ᵃ–ᵍ) and 22.2
+  (nine vendors with 1999 list prices). The VI body emitted both from the start, but the EN body only
+  *referred* to them in prose — a dangling reference. Both tables were added to the English page, plus
+  the data-limitations paragraph, so the two languages now match at 2/2.
+- **Convention reconfirmed:** the EN companion page is a prose summary with **no display equations**
+  (same as Chapters 20 and 21 — both also render 0 numbered equations against 19 and 4 on the VI side).
+  This is intentional, not a parity defect.
+- Figure parity: VI 14/14 and EN 14/14, IDs `fig-22-1`…`fig-22-14`; VI 90 kB, EN 64 kB.
+
+**Deploy:** `build.py` → `cp -r dist/. ./` → `reader_hb_ch22.py` → `reader_handbook.py` (22 done rows),
+`books_site.py` (progress 101→22), `make_sitemap.py` (523 URLs, 508 EN/VI pairs), `check_links.py` (525
+pages, 14,247 references, **0 broken**). Committed `ed29270`; remote was at `dc4915c` (no rebase) →
+pushed `dc4915c..ed29270` on `main`. Live: 200 on both VI/EN, 14 figures and 2 tables each, TOC shows
+**22/101** with 22 clickable `đã dịch` badges.
+
+**Chapters 1–22 done; 79 to go.** Next unit is Chapter 23 (*Ch23.pdf* at
+`pdf-store/Ch23__409b681c05d67a79.pdf`). Same junction + `library/pdfindex.json` workflow; copy the needed
+`ChNN.pdf` into `work/`, extract, then follow the §4 recipe. Build only the real figures the source
+contains — do not pad.
+
+
 
 **Shipped:** Handbook chapter 21, *Density Measurement* (Halit Eren, Curtin University of Technology) — 17
 source pages. Full Vietnamese translation + English companion at
