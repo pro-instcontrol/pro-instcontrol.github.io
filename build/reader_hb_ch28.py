@@ -5718,10 +5718,1013 @@ def sec_28_6_en():
     return "".join(b)
 
 
+def _t2812(lang):
+    """Table 28.12 — manufacturers of ultrasonic transit time flowmeters.
+    The source prints the nine companies in two columns; the two-column layout
+    carries no meaning, so it is flattened to a single list."""
+    if lang == "vi":
+        hd = ("Công ty", "Địa chỉ và liên hệ")
+        cap = ("Bảng 28.12 · Các công ty chế tạo và phân phối lưu lượng kế siêu âm thời gian truyền. "
+               "Địa chỉ in lại đúng như bản gốc năm 1999.")
+    else:
+        hd = ("Company", "Address and contact")
+        cap = ("Table 28.12 · Companies manufacturing and distributing ultrasonic transit time "
+               "flowmeters. Addresses are reproduced as printed in the 1999 original.")
+    rows = [
+        ["Rittmeyer AG",
+         "P.O. Box 2143, CH-6302 Zug, Switzerland<br>"
+         "Tel: (+4141)-767-1000<br>Fax: (+4141)-767-1075<br>"
+         "instrumentation@rittmeyer.ch<br>http://www.rittmeyer.com/"],
+        ["Krohne Messtechnik GmbH&amp;Co.KG",
+         "Postfach 10 08 62, Ludwig-Krohne-Strasse 5, 4100 Duisburg 1, Germany<br>"
+         "http://www.krohne.com/"],
+        ["Danfoss A/S", "DK-6430 Nordborg, Denmark<br>Tel: (+45) 74 88 22 22"],
+        ["Panametrics, Inc.",
+         "221 Crescent Street, Waltham, MA 02254<br>Tel: (617) 899-2719<br>"
+         "http://www.panametrics.com/"],
+        ["Accusonic Division, ORE International, Inc.",
+         "P.O. Box 709, Falmouth, MA 02541<br>Tel: (508) 548-5800<br>http://www.ore.com/"],
+        ["Fuji Electric Co., Ltd.",
+         "12-1 Yurakucho 1-chome, Chiyoda-ku, Tokyo 100, Japan<br>Tel: Tokyo 211-7111"],
+        ["Crouzet SA",
+         "Division “Aérospatial”, 25, rue Jules-Védrines, 26027 Valence Cedex, France<br>"
+         "Tel: 75 79 85 11"],
+        ["Nusonics Inc.",
+         "11391 E. Tecumseh St., Tulsa, OK 74116-1602<br>Tel: (918) 438-1010"],
+        ["Ultraflux",
+         "le technoparc, 17, rue Charles Edouard Jeanneret, 78306 Poissy Cedex, France<br>"
+         "Tel: 33(1)39 79 26 40"],
+    ]
+    return table(hd, rows, cap, widths=("30%", "70%"))
+
+
+def sec_28_7_vi():
+    b = []
+    b.append(h2("28.7 Lưu lượng kế siêu âm", "Ultrasonic Flowmeters"))
+    b.append(p("Hans-Peter Vaterlaus, Thomas Hossle, Paolo Giordano và Christophe Bruttin."))
+    b.append(p(
+        "Lưu lượng là một trong những đại lượng vật lý quan trọng nhất được đo trong công nghiệp và "
+        "trong quản lý nước. Có nhiều loại lưu lượng kế khác nhau, tuỳ theo yêu cầu do từng phân khúc "
+        "thị trường đặt ra. Trong nhiều năm, lưu lượng kế kiểu chênh áp là thiết bị đo lưu lượng được "
+        "dùng rộng rãi nhất cho dòng chất lưu trong ống và trong kênh hở, khi cần đo chính xác với chi "
+        "phí hợp lý. Tuy nhiên, ở những thị trường như thuỷ điện, cấp nước, thuỷ lợi..., lưu lượng "
+        "phải được đo mà không gây bất kỳ tổn thất cột áp hay sụt áp nào. Điều đó có nghĩa là không "
+        "được phép có chi tiết chuyển động, không có thiết bị thứ cấp, cũng không có chỗ thắt nào. "
+        "Hiện có hai loại lưu lượng kế thoả mãn yêu cầu này: lưu lượng kế điện từ và lưu lượng kế "
+        "siêu âm. Trong khi lưu lượng kế siêu âm có thể dùng được với gần như mọi loại chất lỏng đang "
+        "chảy, lưu lượng kế điện từ đòi hỏi chất lỏng phải có độ dẫn điện tối thiểu để hoạt động. "
+        "Ngoài ra, giá thành lưu lượng kế siêu âm gần như không phụ thuộc đường kính ống, trong khi "
+        "giá lưu lượng kế điện từ tăng rất mạnh theo đường kính ống."))
+    b.append(p("Có nhiều kiểu lưu lượng kế siêu âm đang được dùng để đo lưu lượng:"))
+    b.append(ol([
+        "<b>Thời gian truyền:</b> đây là công nghệ hiện đại nhất và là kiểu được dùng rộng rãi nhất "
+        "hiện nay, sẽ được trình bày trong mục này. Kiểu lưu lượng kế siêu âm này lợi dụng sự khác "
+        "nhau về thời gian để một xung âm đi một quãng đường cố định, trước hết ngược chiều dòng rồi "
+        "theo chiều dòng. Lưu lượng kế thời gian truyền nhạy với chất rắn lơ lửng hoặc bọt khí trong "
+        "chất lưu.",
+        "<b>Doppler:</b> kiểu này phổ biến hơn và rẻ hơn, nhưng không được coi là chính xác bằng lưu "
+        "lượng kế thời gian truyền. Nó lợi dụng độ dịch tần số Doppler gây ra bởi âm phản xạ hoặc tán "
+        "xạ từ các hạt lơ lửng trên đường đi của dòng, và vì vậy mang tính bổ sung nhiều hơn là cạnh "
+        "tranh với lưu lượng kế thời gian truyền.",
+        "<b>Tương quan chéo:</b> hai đoạn đo được đặt cách nhau một khoảng xác định. Cả hai đo độ hấp "
+        "thụ năng lượng của tín hiệu siêu âm. Một phép tương quan chéo sẽ tính ra vận tốc dòng.",
+        "<b>Dịch pha:</b> pha của tín hiệu phát và tín hiệu thu được đo theo chiều dòng và ngược chiều "
+        "dòng. Góc dịch pha thu được tỷ lệ trực tiếp với vận tốc dòng.",
+        "<b>Trôi:</b> độ trôi của một tín hiệu siêu âm đi qua dòng được đo bằng độ suy giảm tín hiệu.",
+    ]))
+
+    # ---------------------------------------------------------------- transit time
+    b.append(h3("Lưu lượng kế thời gian truyền", "Transit Time Flowmeter"))
+    b.append(h4("Nguyên lý làm việc", "Principle of Operation"))
+    b.append(p(
+        "Phương pháp âm học đo lưu lượng dựa trên thực tế là vận tốc lan truyền của sóng âm và vận tốc "
+        "dòng chảy cộng vector với nhau. Loại lưu lượng kế này đo hiệu thời gian truyền giữa hai xung "
+        "siêu âm phát ngược chiều dòng <i>t</i><sub>21</sub> và xuôi chiều dòng "
+        "<i>t</i><sub>12</sub> qua dòng chảy, như trên Hình 28.43. Nếu trong ống không có thành phần "
+        "vận tốc ngang, hai thời gian truyền của các xung âm học này được cho bởi:"))
+    b.append(eq("t<sub>12</sub> = L<sub>w</sub> / (c + v̄<sub>a</sub> cos φ) &nbsp;&nbsp;và&nbsp;&nbsp; "
+                "t<sub>21</sub> = L<sub>w</sub> / (c − v̄<sub>a</sub> cos φ)", "28.65"))
+    b.append(defs([
+        ("<i>L</i><sub>w</sub>", "Khoảng cách trong chất lưu giữa hai đầu dò"),
+        ("<i>c</i>", "Tốc độ âm thanh ở điều kiện làm việc"),
+        ("φ", "Góc giữa trục ống và đường truyền âm"),
+        ("v̄<sub>a</sub>", "Vận tốc dọc trục trung bình trên quãng đường <i>L</i><sub>w</sub>"),
+    ]))
+    b.append(fig(43, F.fig(43), "vi"))
+    b.append(p(
+        "Vì các đầu dò thường được dùng đồng thời làm bộ phát và bộ thu, hiệu thời gian truyền có thể "
+        "xác định được với cùng một cặp đầu dò. Như vậy vận tốc dọc trục trung bình v̄<sub>a</sub> dọc "
+        "theo đường truyền được cho bởi:"))
+    b.append(eq("v̄<sub>a</sub> = (L<sub>w</sub> / 2 cos φ) (1/t<sub>21</sub> − 1/t<sub>12</sub>) = "
+                "(D / 2 cos φ sin φ) (1/t<sub>21</sub> − 1/t<sub>12</sub>)", "28.66"))
+    b.append(p(
+        "Ví dụ sau cho thấy những yêu cầu đặt ra đối với kỹ thuật đo thời gian: giả sử một ống kín có "
+        "đường kính <i>D</i> = 150 mm, góc φ = 60°, vận tốc dòng v̄<sub>a</sub> = 1 m s<sup>−1</sup> và "
+        "nhiệt độ nước 20 °C. Kết quả là thời gian truyền vào khoảng 116 µs và hiệu thời gian Δ<i>t</i> "
+        "(Δ<i>t</i> = <i>t</i><sub>12</sub> − <i>t</i><sub>21</sub>) vào cỡ 78 ns. Để đạt độ chính xác "
+        "1 % của dải đo tương ứng, Δ<i>t</i> phải được đo với độ phân giải ít nhất 100 ps "
+        "(1 × 10<sup>−10</sup> s)."))
+    b.append(note(
+        "Bản gốc in “116 s” — rõ ràng là thiếu ký hiệu micro. Với <i>D</i> = 150 mm, φ = 60° và "
+        "<i>c</i> ≈ 1482 m s<sup>−1</sup> ở 20 °C, quãng đường <i>L</i><sub>w</sub> = <i>D</i>/sin φ ≈ "
+        "0,173 m cho thời gian truyền 116,9 µs; giá trị 78 ns của Δ<i>t</i> trong bản gốc cũng chỉ "
+        "khớp với đơn vị micro giây. Bản dịch ghi 116 µs."))
+    b.append(p(
+        "Các kỹ thuật đo thời gian tiêu chuẩn không thể đáp ứng những yêu cầu như vậy, nên phải áp "
+        "dụng các kỹ thuật đặc biệt. Ưu điểm của cách tiếp cận đo số thực hiện hoàn toàn bằng kỹ thuật "
+        "số hiện đại là giá trị đo được xử lý trực tiếp bằng một vi xử lý. Vấn đề khó nhất là đạt được "
+        "độ phân giải yêu cầu và xử lý được jitter của các cổng logic số. Trong kỹ thuật đo, người ta "
+        "biết rằng nếu tín hiệu được lấy mẫu nhiều lần (<i>N</i><sub>n</sub>), độ phân giải tăng theo "
+        "số mẫu (“lấy mẫu bội”) [1]. Hiểu biết này không chỉ được áp dụng cho tín hiệu tương tự mà còn "
+        "cho tín hiệu thời gian truyền, và được dùng trong công nghệ lưu lượng kế ngày nay. Thời gian "
+        "lan truyền <i>t</i> (<i>t</i><sub>12</sub>, <i>t</i><sub>21</sub>), phụ thuộc quãng đường xung "
+        "âm phải đi qua chất lưu, được đo nhiều lần. Do đó ta thu được hệ thức sau [2]:"))
+    b.append(eq("<i>t</i> = (1/<i>N</i><sub>n</sub>) ∫<sub>0</sub><sup>τ</sup> (1/<i>f</i>) d<i>t</i>",
+                "28.67"))
+    b.append(p("trong đó τ là thời gian tích phân, và <i>f</i> là tần số."))
+    b.append(p(
+        "Theo sơ đồ khối trên Hình 28.44, người ta dùng hai bộ đếm. Một bộ đếm <i>N</i><sub>t</sub> "
+        "được đồng hồ hoá trong suốt thời gian đo bằng một bộ dao động thạch anh ổn định; bộ kia đếm "
+        "số mẫu <i>N</i><sub>n</sub>. Phép đo dừng sau một khoảng thời gian vài miligiây và sau khi "
+        "<i>N</i><sub>n</sub> đã đạt một giá trị nguyên. Hai số đếm <i>N</i><sub>t</sub> và "
+        "<i>N</i><sub>n</sub> được dùng để tính thời gian lan truyền <i>t</i><sub>12</sub> hoặc "
+        "<i>t</i><sub>21</sub> bằng cách chia <i>N</i><sub>t</sub> cho <i>N</i><sub>n</sub>. Độ phân "
+        "giải <i>r</i> được tính bằng:"))
+    b.append(eq("<i>r</i> = 1 / (<i>N</i><sub>n</sub> <i>f</i>)", "28.68"))
+    b.append(fig(44, F.fig(44), "vi"))
+    b.append(p("Ưu điểm của phương pháp đo này đối với lưu lượng kế thời gian truyền là:"))
+    b.append(ol([
+        "Độ phân giải của phép đo vận tốc là không đổi (giá trị điển hình 0,8 mm s<sup>−1</sup>).",
+        "Độ chính xác gần như chỉ phụ thuộc độ ổn định và hệ số nhiệt độ của bộ dao động thạch anh.",
+        "Nhờ lấy mẫu nhiều lần, jitter của logic số được lấy trung bình.",
+    ]))
+
+    # ---------------------------------------------------------------- sensors
+    b.append(h4("Cảm biến", "Sensors"))
+    b.append(p(
+        "Đầu dò gồm phần tử áp điện biến đổi năng lượng điện thành năng lượng âm, cùng kết cấu cơ bản "
+        "để đỡ gốm áp điện và tạo các kết nối điện. Thiết kế đầu dò bao gồm việc chọn phần tử áp điện, "
+        "xác định kích thước và tần số cộng hưởng thích hợp, và chế tạo sao cho chịu được ứng suất "
+        "nhiệt và cơ, xem Hình 28.45. Xét theo mô hình đường truyền [3, 4], đáp ứng điện–âm tối ưu và "
+        "sự phối hợp tốt nhất các trở kháng âm <i>Z</i> = ρ<i>c</i> của các phần tử đầu dò khác nhau "
+        "là quan trọng. Không chỉ phải thu được dạng sóng thích hợp để điện tử phát hiện, mà còn phải "
+        "cực tiểu hoá tổn thất năng lượng khi sóng đi qua nhiều mặt phân cách. Do sự đa dạng rộng của "
+        "kích thước ống và điều kiện dòng chảy, có một số cấu hình cảm biến khác nhau cho lưu lượng kế "
+        "thời gian truyền."))
+    b.append(fig(45, F.fig(45), "vi"))
+    b.append(h4("Kiểu dọc trục", "Axial"))
+    b.append(p(
+        "Do hiệu quãng đường nhỏ trong các ống đường kính nhỏ, cần cho xung âm đi thẳng dọc theo trục "
+        "ống để bảo đảm quãng đường đủ dài. Hình 28.46 cho một ví dụ về đoạn ống cảm biến kiểu dọc "
+        "trục. Giới hạn trên về cỡ ống cho loại cảm biến này là khoảng 0,075 m [5]."))
+    b.append(fig(46, F.fig(46), "vi"))
+    b.append(h4("Kiểu hướng tâm", "Radial"))
+    b.append(p(
+        "Nhiều nhà chế tạo cung cấp các đoạn ống đo hoàn chỉnh với đầu dò âm gắn sẵn ở hai bên của một "
+        "đoạn ống nối. Những cảm biến này, như trên Hình 28.47, thường được gọi là “hướng tâm” do cách "
+        "bố trí đầu dò. Giới hạn dưới về cỡ ống của cảm biến kiểu hướng tâm là khoảng 100 mm."))
+    b.append(fig(47, F.fig(47), "vi"))
+    b.append(h4("Lắp đặt tại hiện trường", "Field Mounting"))
+    b.append(p(
+        "Cảm biến kiểu hướng tâm thường được dùng để trang bị cho một tuyến ống đang tồn tại, khi muốn "
+        "thực hiện việc lắp đặt mà không phải cắt bỏ một đoạn ống. Để đáp ứng yêu cầu này, có thể dùng "
+        "các đầu dò lắp tại hiện trường, được gắn keo, khoan hoặc hàn vào đoạn ống đang có. Bằng cách "
+        "này có thể đạt được các đoạn ống đo có đường kính tới 13 m hoặc hơn."))
+    b.append(h4("Kiểu kẹp ngoài", "Clamp-on"))
+    b.append(p(
+        "Nếu cần một cách lắp đặt mà thành ống không bị đầu dò xuyên qua thì hệ kẹp ngoài là lựa chọn "
+        "đúng. Đạt độ chính xác thấp hơn và hiệu chuẩn có phần phức tạp hơn, hệ kẹp ngoài vẫn có chỗ "
+        "đứng trong những ứng dụng đòi hỏi phải di chuyển đoạn ống đo một cách dễ dàng, hoặc nơi không "
+        "thể ngắt một quy trình đang chạy. Các đầu dò được gắn trên một thiết bị hiệu chuẩn và được "
+        "ghép âm với thành ống bằng mỡ và/hoặc epoxy."))
+    b.append(h4("Kênh hở và các ứng dụng đặc biệt", "Open Channels and Special Applications"))
+    b.append(p(
+        "Trong kênh hở, các đầu dò thường được gắn lên hoặc chôn vào thành kênh. Hình 28.48 cho một ví "
+        "dụ về cảm biến đo kênh hở. Phần tử gốm áp điện được đặt trên một quả cầu để có nhiều khả năng "
+        "bố trí. Đôi khi các đoạn ống đang tồn tại được bọc hoàn toàn bằng đá hoặc bê tông. Trong những "
+        "trường hợp này, có thể cố định các đầu dò trong thành ống dẫn. Với đường kính nhỏ, phải tính "
+        "đến phần nhô của đầu dò vào trong đoạn ống đo."))
+    b.append(fig(48, F.fig(48), "vi"))
+
+    # ---------------------------------------------------------------- closed conduits
+    b.append(h4("Đo lưu lượng trong ống kín", "Measurement of Flow in Closed Conduits"))
+    b.append(p(
+        "Vấn đề quan trọng nhất khi dùng lưu lượng kế siêu âm là hiểu được ảnh hưởng của prôfin vận tốc "
+        "của chất lưu chảy trong ống. Prôfin dòng phụ thuộc vào chất lưu, số Reynolds Re, độ nhám tương "
+        "đối và hình dạng của ống, các nhiễu động phía thượng lưu và hạ lưu, cùng các yếu tố khác. Lưu "
+        "lượng kế thời gian truyền cho một vận tốc dòng trung bình v̄ dọc theo đường âm. Do đó lưu "
+        "lượng âm <i>Q</i><sub>ADM</sub> được tính qua <i>Q</i> = v̄<i>A</i>, với v̄ là vận tốc dòng "
+        "trung bình theo diện tích và <i>A</i> là mặt cắt của ống. Để có được vận tốc trung bình theo "
+        "diện tích v̄, vận tốc đo được v̄<sub>a</sub> phải được hiệu chỉnh bằng một hệ số thuỷ lực "
+        "<i>k</i><sub>h</sub> phụ thuộc vào kiểu ống và số Reynolds. Để đạt hiệu năng và độ chính xác "
+        "tối đa của lưu lượng kế siêu âm, phải tuân thủ các yêu cầu về đoạn ống thẳng đủ dài như minh "
+        "hoạ cho một số ví dụ trên Hình 28.49. Làm được như vậy thì có thể đạt độ chính xác điển hình "
+        "1 % giá trị đọc hoặc tốt hơn, ngay cả khi dùng hệ đo một đường. Đoạn ống thẳng bị rút ngắn "
+        "dẫn tới độ chính xác giảm. Trong một số ứng dụng, độ chính xác giảm này là chấp nhận được; "
+        "nếu không thì phải lắp một lưu lượng kế siêu âm nhiều đường. Những lưu lượng kế này lấy trung "
+        "bình các thành phần dòng gây sai số khác nhau. Có thể đạt độ chính xác 0,5 % giá trị đọc ngay "
+        "cả trong điều kiện không lý tưởng hoặc đoạn ống thẳng không đủ. Hình 28.50 cho bốn ví dụ về "
+        "cách bố trí đường âm có thể có trong một ống kín."))
+    b.append(note(
+        "Bản gốc dẫn “Figure 28.50” cho bốn cách bố trí đường âm, nhưng bốn cách bố trí đó là Hình "
+        "28.51; Hình 28.50 là đồ thị hệ số <i>k</i><sub>h</sub> theo số Reynolds. Câu sau trong bản gốc "
+        "cũng dẫn đúng “Figure 28.51”. Bản dịch giữ nguyên nội dung và ghi rõ chỗ nhầm này."))
+    b.append(fig(49, F.fig(49), "vi"))
+
+    b.append(h4("Một đường với mặt cắt tròn và chữ nhật",
+                "Single Path with Circular and Rectangular Cross-sections"))
+    b.append(p("Số Reynolds Re được cho bởi:"))
+    b.append(eq("Re = (v̄ · <i>D</i>) / ν", "28.69"))
+    b.append(defs([
+        ("v̄", "Vận tốc trung bình trên mặt cắt [m s<sup>−1</sup>]"),
+        ("<i>D</i>", "Đường kính ống"),
+        ("ν", "Độ nhớt động học phụ thuộc nhiệt độ"),
+    ]))
+    b.append(p(
+        "Trong đường ống thông thường, dòng chảy tầng tồn tại chừng nào số Reynolds còn dưới khoảng "
+        "2600. Hình dạng prôfin vận tốc tuân theo một parabol, và vận tốc tại một điểm trên prôfin "
+        "được cho bởi:"))
+    b.append(eq("<i>v</i>(<i>r</i>) = <i>v</i><sub>max</sub> [1 − (<i>r</i>/<i>R</i>)<sup>2</sup>]",
+                "28.70"))
+    b.append(defs([
+        ("<i>r</i>", "Bán kính biến thiên"),
+        ("<i>R</i>", "Bán kính ống"),
+    ]))
+    b.append(p(
+        "Giữa số Reynolds 2600 và 4000 xuất hiện chế độ chảy quá độ, với sự chuyển đổi liên tục giữa "
+        "prôfin tầng và prôfin rối. Khi số Reynolds vượt 4000, prôfin vận tốc bước vào chế độ chảy "
+        "rối. Nikuradse [6] đã chỉ ra rằng prôfin vận tốc rối của một dòng đối xứng trục trong ống "
+        "kín, không có xoáy, có các đoạn vào và ra đủ dài và thành nhẵn, có thể biểu diễn bằng:"))
+    b.append(eq("<i>v</i>(<i>r</i>) = <i>v</i><sub>max</sub> [(<i>R</i> − <i>r</i>)/<i>R</i>]"
+                "<sup>1/<i>n</i></sup>", "28.71"))
+    b.append(p(
+        "trong đó, theo Nikuradse, <i>n</i> là số mũ phụ thuộc số Reynolds, cho bởi:"))
+    b.append(eq("<i>n</i> = 1 / (0,2525 − 0,0229 × log(Re))", "28.72"))
+    b.append(p("Với định nghĩa hệ số hiệu chỉnh thuỷ lực <i>k</i><sub>h</sub> cho bởi:"))
+    b.append(eq("<i>k</i><sub>h</sub> = v̄ / v̄<sub>a</sub>", "28.73"))
+    b.append(defs([
+        ("v̄", "Vận tốc trung bình trên mặt cắt"),
+        ("v̄<sub>a</sub>", "Vận tốc trung bình dọc đường âm"),
+    ]))
+    b.append(p("và tích phân trên mặt cắt theo:"))
+    b.append(eq("<i>k</i><sub>h</sub> = [ (1/<i>A</i>) ∫<sub>0</sub><sup>R</sup> "
+                "∫<sub>0</sub><sup>2π</sup> <i>v</i>(<i>r</i>) <i>r</i> d<i>r</i> dθ ] / "
+                "[ (1/2<i>R</i>) ∫<sub>−R</sub><sup>R</sup> <i>v</i>(<i>r</i>) d<i>r</i> ]", "28.74"))
+    b.append(p(
+        "ta được với dòng chảy tầng một hệ số hiệu chỉnh thuỷ lực <i>k</i><sub>h</sub> = 0,75."))
+    b.append(p(
+        "Trong chế độ chảy rối, theo Nikuradse [6], hệ số hiệu chỉnh thuỷ lực <i>k</i><sub>h</sub>, "
+        "phụ thuộc số Reynolds Re, có thể biểu diễn bằng:"))
+    b.append(eq("<i>k</i><sub>h</sub> = 1 / (1,125 − 0,011 × log(Re))", "28.75"))
+    b.append(p("cho mặt cắt tròn, và"))
+    b.append(eq("<i>k</i><sub>h</sub> = 0,79 + 0,02 × log(Re)", "28.76"))
+    b.append(p("cho mặt cắt chữ nhật."))
+    b.append(fig(50, F.fig(50), "vi"))
+    b.append(p(
+        "Trong các ứng dụng thuỷ điện, số Reynolds Re thường vượt giá trị 4000. Hình 28.50 cho thấy sự "
+        "phụ thuộc của hệ số <i>k</i><sub>h</sub> trong ống kín có mặt cắt tròn vào số Reynolds. Số "
+        "Reynolds không chỉ thay đổi giá trị theo vận tốc dòng v̄ với một đường kính <i>D</i> cho "
+        "trước, mà còn phụ thuộc mạnh vào độ nhớt động học phụ thuộc nhiệt độ ν(<i>T</i>). Không tính "
+        "đến giá trị đúng của Re có thể dễ dàng dẫn tới sai số của hệ số <i>k</i><sub>h</sub> và do đó "
+        "của lưu lượng <i>Q</i> vào cỡ 2 % đến 3 %. Các lưu lượng kế thời gian truyền hiện đại có vi xử "
+        "lý cập nhật hệ số <i>k</i><sub>h</sub> với tốc độ 4 lần một giây và bằng cách đo nhiệt độ "
+        "<i>T</i> của chất lưu với cùng tốc độ đó. Kết quả là thu được một hệ số <i>k</i><sub>h</sub> "
+        "đúng, và do đó một lưu lượng <i>Q</i> đã được bù theo nhiệt độ và số Reynolds."))
+
+    b.append(h4("Tích phân nhiều đường trong mặt cắt tròn",
+                "Multipath Integration in Circular Cross-sections"))
+    b.append(p(
+        "Tuy nhiên, trên thực tế không phải lúc nào cũng giữ được các yêu cầu về đoạn ống thẳng như đã "
+        "định nghĩa trên Hình 28.49. Ngoài ra, sai số do dòng xiên xuất hiện khi các thành phần vận tốc "
+        "không dọc trục trong ống làm thay đổi thời gian truyền của một xung giữa các cảm biến. Vận "
+        "tốc không dọc trục do những nhiễu động trong ống kín như khuỷu, dòng vào không đối xứng, và "
+        "các gián đoạn trên thành ống hoặc máy bơm gây ra. Việc loại bỏ độ nhạy của lưu lượng kế âm với "
+        "phân bố vận tốc bằng cách tăng số đường âm <i>n</i> đã trở thành một thực tiễn được chấp "
+        "nhận. Các đường bổ sung không chỉ làm giảm đáng kể sai số do phân bố vận tốc, mà còn giảm sai "
+        "số tích phân số cũng như sai số do lệch đường. Điều này cho thấy rằng với những phép đo chính "
+        "xác mà sai số vài phần mười phần trăm là đáng kể, chi phí lắp thêm cảm biến cho một bố trí bốn "
+        "đường theo Hình 28.51 có thể là hợp lý. Trong một hệ đo nhiều đường, theo phương pháp tích "
+        "phân mô tả trong IEC 41, Phụ lục J1 [7], lưu lượng <i>Q</i><sub>ADM</sub> có thể biểu diễn "
+        "bằng:"))
+    b.append(eq("<i>Q</i><sub>ADM</sub> = <i>k</i> (<i>D</i>/2) Σ<sub><i>i</i>=1</sub><sup><i>n</i></sup> "
+                "v̄<sub>a<i>i</i></sub> <i>W</i><sub><i>i</i></sub> <i>L</i><sub>w<i>i</i></sub> "
+                "sin φ<sub><i>i</i></sub>", "28.77"))
+    b.append(defs([
+        ("v̄<sub>a<i>i</i></sub>", "Vận tốc dọc đường âm thứ <i>i</i>"),
+        ("<i>W</i><sub><i>i</i></sub>", "Trọng số tương ứng"),
+        ("<i>L</i><sub>w<i>i</i></sub>", "Chiều dài đường tương ứng"),
+        ("φ<sub><i>i</i></sub>", "Góc của đường tương ứng"),
+    ]))
+    b.append(fig(51, F.fig(51), "vi"))
+    b.append(p(
+        "Phương pháp mô tả trong IEC 41 đòi hỏi định vị đầu dò rất chính xác, do các trọng số "
+        "<i>W</i><sub><i>i</i></sub> thu được bằng phân tích toán học chỉ đúng khi các cảm biến được "
+        "đặt đúng vị trí. Việc lệch các đường âm kết hợp với trọng số cố định có thể dẫn tới sai số "
+        "đáng kể."))
+    b.append(note(
+        "Bản gốc dẫn “IEC 41, Appendix J1 [7]”, nhưng trong danh mục tài liệu tham khảo thì [7] là "
+        "Brand (1987) còn IEC 41 là [8]. Bản dịch giữ nguyên số [7] như đã in."))
+
+    # ---------------------------------------------------------------- open channels
+    b.append(h3("Đo lưu lượng trong kênh hở", "Measurement of Flow in Open Channels"))
+    b.append(p(
+        "Đo lưu lượng kênh hở được dùng trong nhiều ứng dụng, gồm mạng cấp nước, thuỷ văn, phân phối "
+        "nước cho thuỷ lợi và nông nghiệp, trạm xử lý nước thải... Việc đo lưu lượng trên sông và kênh "
+        "hở thường được tính bằng một đường quan hệ mực nước – lưu lượng, dùng để chuyển các bản ghi "
+        "mức nước thành lưu lượng. Đường quan hệ này được xây dựng từ một tập hợp các phép đo lưu lượng "
+        "và mực nước trên dòng, và phải được kiểm tra định kỳ để bảo đảm quan hệ mực nước – lưu lượng "
+        "vẫn không đổi; nhiều hiện tượng có thể làm đường quan hệ thay đổi, khiến cùng một mực nước ghi "
+        "được lại cho một lưu lượng khác. Đó là trường hợp các kênh hở dưới điều kiện thuỷ lực thay "
+        "đổi, ví dụ do hiệu ứng nước dềnh, do cửa van, và nơi không tồn tại một quan hệ mực nước – lưu "
+        "lượng đơn trị. Trong bối cảnh đó, việc ứng dụng lưu lượng kế âm học là cực kỳ thú vị và hiện "
+        "đang rất thành công trong quản lý nước. Thực vậy, trong khi các giá trị lưu lượng khác nhau có "
+        "thể ứng với một mực nước cho trước tuỳ theo đặc tính thuỷ lực, thì giữa vận tốc lan truyền "
+        "sóng âm trong một chất lưu đang chảy và chính chất lưu đang chảy luôn có một quan hệ đơn trị."))
+    b.append(p(
+        "Bằng kỹ thuật siêu âm, lưu lượng qua kênh hở có thể xác định được bằng công nghệ một đường và "
+        "nhiều đường. Trong cấu hình một đường, phải đặc biệt chú ý xác định phân bố vận tốc theo "
+        "phương đứng (Hình 28.52) để đạt độ chính xác tốt bằng một số đọc vận tốc “đường” duy nhất "
+        "v̄<sub>a<i>z</i></sub> ở độ cao <i>z</i> trên đáy. Ngược lại, trong cấu hình nhiều đường, "
+        "prôfin vận tốc đường trung bình được mô tả tốt. Trong trường hợp này, phải đặc biệt chú ý tới "
+        "phương pháp tích phân dùng để xác định lưu lượng từ các số đọc trên đường âm."))
+    b.append(fig(52, F.fig(52), "vi"))
+
+    b.append(h4("Một đường", "Single Path"))
+    b.append(p(
+        "Trong phép đo một đường, dùng phương pháp diện tích – vận tốc, lưu lượng <i>Q</i> được tính "
+        "qua <i>Q</i> = v̄<i>A</i>, với v̄ (m s<sup>−1</sup>) là vận tốc dòng trung bình theo diện tích "
+        "và <i>A</i> là mặt cắt. Để có vận tốc trung bình v̄ trên toàn mặt cắt, vận tốc đường trung "
+        "bình v̄<sub>a<i>z</i></sub>, do lưu lượng kế âm đo ở một độ sâu <i>z</i> cho trước, phải được "
+        "hiệu chỉnh bằng một hệ số hiệu chỉnh thuỷ lực không thứ nguyên <i>k</i><sub>h</sub> theo hệ "
+        "thức v̄ = <i>k</i><sub>h</sub> v̄<sub>a<i>z</i></sub>. Nói chung, hệ số <i>k</i><sub>h</sub> "
+        "phản ánh ảnh hưởng của prôfin vận tốc theo phương ngang và phương đứng. Nó chủ yếu phụ thuộc "
+        "mực nước, hình dạng mặt cắt và độ nhám biên. Prôfin vận tốc đứng trung bình có thể được mô tả "
+        "bằng quy luật logarit quen thuộc (Hình 28.53), cho bởi [8]."))
+    b.append(eq("v̄(<i>z</i>) = (v̄<sub>*</sub> / <i>k</i>) ln(<i>z</i>/<i>z</i><sub>0</sub>)", "28.78"))
+    b.append(defs([
+        ("v̄(<i>z</i>)", "Vận tốc dòng trung bình ở độ cao <i>z</i> trên đáy"),
+        ("<i>k</i>", "Hằng số rối của von Kármán"),
+        ("<i>z</i>", "Khoảng cách trên đáy"),
+        ("v̄<sub>*</sub>", "Vận tốc ma sát"),
+        ("<i>z</i><sub>0</sub>", "Hằng số tích phân, phụ thuộc độ nhám của biên"),
+    ]))
+    b.append(fig(53, F.fig(53), "vi"))
+    b.append(p(
+        "Khi mặt biên thuỷ lực nhám, người ta thấy <i>z</i><sub>0</sub> chỉ phụ thuộc chiều cao nhám "
+        "<i>k</i><sub>s</sub> theo hệ thức <i>z</i><sub>0</sub> = <i>k</i><sub>s</sub>/30. Tích phân "
+        "Phương trình 28.78 trên toàn bộ chiều cao nước <i>h</i> và thay v̄, ta được phương trình sau:"))
+    b.append(eq("<i>k</i><sub>h</sub> = [ln(<i>h</i>/<i>k</i><sub>s</sub>) − 1] / "
+                "ln(<i>z</i>/<i>k</i><sub>s</sub>)", "28.79"))
+    b.append(p("với giả thiết <i>z</i><sub>0</sub> không đáng kể so với <i>h</i>."))
+    b.append(p(
+        "Trên Hình 28.54, hệ số <i>k</i><sub>h</sub> theo quy luật logarit được biểu diễn cho hai độ "
+        "nhám đáy khác nhau. Tuy nhiên, trong nhiều ứng dụng thực tế, việc xác định đúng giá trị của "
+        "<i>k</i><sub>s</sub> thường khó. Vì lý do đó, một mô hình <i>k</i><sub>h</sub> khác đã được "
+        "xây dựng trên cơ sở quy luật luỹ thừa [9, 10]. Trong công thức này, số mũ 1/<i>m</i> không "
+        "còn là hằng số mà phụ thuộc độ nhám và bán kính thuỷ lực, để tính đến ảnh hưởng của hình "
+        "dạng kênh. Prôfin vận tốc đứng trung bình v̄(<i>z</i>), theo quy luật luỹ thừa, có thể biểu "
+        "diễn bằng công thức sau (Hình 28.55):"))
+    b.append(fig(54, F.fig(54), "vi"))
+    b.append(eq("v̄(<i>z</i>) = v̄<sub>s</sub> (<i>z</i>/<i>h</i>)<sup>1/<i>m</i></sup>", "28.80"))
+    b.append(defs([
+        ("<i>h</i>", "Mực nước hiện thời"),
+        ("v̄<sub>s</sub>", "Vận tốc đường trung bình tại mặt tự do (giá trị cực đại)"),
+        ("1/<i>m</i>", "Số mũ"),
+    ]))
+    b.append(fig(55, F.fig(55), "vi"))
+    b.append(p(
+        "Từ việc tích phân Phương trình 28.80 trên toàn bộ chiều sâu nước, ta thu được biểu thức sau "
+        "cho hệ số <i>k</i><sub>h</sub>:"))
+    b.append(eq("<i>k</i><sub>h</sub> = [<i>m</i>/(<i>m</i> + 1)] "
+                "(<i>h</i>/<i>z</i>)<sup>1/<i>m</i></sup>", "28.81"))
+    b.append(p(
+        "Giá trị của <i>m</i>, phụ thuộc độ nhám, có thể biểu diễn bằng hệ số ma sát không thứ nguyên "
+        "<i>f</i> của công thức Darcy–Weisbach [8], theo:"))
+    b.append(eq("<i>m</i> = <i>k</i> √(8/<i>f</i>)", "28.82"))
+    b.append(p(
+        "trong đó <i>k</i> là hằng số von Kármán, biến thiên từ 0,2 đến 0,4. <i>k</i> phụ thuộc tải "
+        "lượng lơ lửng (giá trị thấp khi độ đục cao), hoặc có thể biểu diễn bằng công thức Manning theo "
+        "hệ thức [11]:"))
+    b.append(eq("<i>m</i> = (<i>k</i>/√<i>g</i>) <i>R</i><sub>h</sub><sup>1/6</sup> / <i>n</i>", "28.83"))
+    b.append(defs([
+        ("<i>g</i>", "Gia tốc trọng trường"),
+        ("<i>n</i>", "Hệ số nhám Manning"),
+        ("<i>R</i><sub>h</sub>", "Bán kính thuỷ lực"),
+    ]))
+    b.append(fig(56, F.fig(56), "vi"))
+    b.append(p(
+        "Trên Hình 28.56, hệ số hiệu chỉnh được biểu diễn cho mặt nhẵn và mặt nhám. Nhờ hệ thức này, "
+        "việc áp dụng ngoài hiện trường trở nên dễ hơn do sự quen thuộc rộng rãi với công thức Manning "
+        "trong tính toán dòng kênh hở, bởi hình thức đơn giản, tính linh hoạt cao và kết quả thoả đáng "
+        "của nó."))
+
+    b.append(h4("Nhiều đường", "Multipath"))
+    b.append(p(
+        "Các phương trình trên về prôfin vận tốc đứng trung bình trong kênh hở dự đoán rằng vận tốc "
+        "trung bình cực đại xuất hiện tại mặt tự do. Tuy nhiên, các phép đo ngoài hiện trường và trong "
+        "phòng thí nghiệm chứng minh rằng vận tốc trung bình cực đại xuất hiện dưới mặt tự do, phụ "
+        "thuộc mạnh vào tỷ số <i>B</i>/<i>h</i>, với <i>B</i> là chiều rộng kênh. Những quan sát này "
+        "cho thấy một quy luật phân bố vận tốc một chiều không phải lúc nào cũng mô tả đầy đủ prôfin "
+        "dòng trong kênh hở. Vì vậy, để giảm bất định trong mô tả prôfin vận tốc và đạt độ chính xác "
+        "cao ngay cả trong điều kiện thuỷ lực bất lợi, phải dùng một cấu hình nhiều đường."))
+    b.append(p(
+        "Trong phép đo nhiều đường, dùng “phương pháp mặt cắt trung bình”, vận tốc dòng được đo ở nhiều "
+        "mức giữa mặt tự do và đáy kênh (Hình 28.57). Tổng lưu lượng <i>Q</i><sub>ADM</sub> được thực "
+        "hiện theo hệ thức [12]:"))
+    b.append(eq("<i>Q</i><sub>ADM</sub> = <i>Q</i><sub>b</sub> + <i>Q</i><sub>t</sub> + "
+                "Σ<sub><i>i</i>=1</sub><sup><i>n</i></sup> [ (v̄<sub>a<i>i</i></sub> + "
+                "v̄<sub>a<i>i</i>+1</sub>)/2 · (<i>A</i>(<i>z</i><sub><i>i</i>+1</sub>) − "
+                "<i>A</i>(<i>z</i><sub><i>i</i></sub>)) ]", "28.84"))
+    b.append(defs([
+        ("<i>Q</i><sub>b</sub>", "Lưu lượng trong mặt cắt đáy, với vận tốc đáy thu được từ vận tốc "
+                                  "đường thấp nhất sau khi hiệu chỉnh ma sát đáy"),
+        ("<i>Q</i><sub>t</sub>", "Lưu lượng tại mặt cắt hoạt động cao nhất, với vận tốc "
+                                  "<i>v</i><sub>top</sub> nội suy từ prôfin vận tốc"),
+        ("v̄<sub>a<i>i</i></sub>", "Vận tốc trung bình dọc đường âm thứ <i>i</i>"),
+        ("<i>A</i>(<i>z</i><sub><i>i</i></sub>)", "Mặt cắt phía dưới đường thứ <i>i</i>"),
+    ]))
+    b.append(fig(57, F.fig(57), "vi"))
+    b.append(p(
+        "Các lưu lượng kế siêu âm điều khiển bằng vi xử lý hiện đại có thể đáp ứng cả phép đo một "
+        "đường lẫn nhiều đường trong kênh hở, dùng quy luật logarit hoặc quy luật luỹ thừa cho phép đo "
+        "một đường. Ngoài ra, các hệ thống mô-đun hoàn toàn hiện đại có thể dùng phần lớn thiết bị cho "
+        "việc đo cả trong kênh hở lẫn trong ống kín."))
+
+    # ---------------------------------------------------------------- application
+    b.append(h3("Ứng dụng: phát hiện rò rỉ ống áp lực có tháp điều áp",
+                "Application: Penstock Leak Detection with Surge Chambers"))
+    b.append(p(
+        "Phát hiện rò rỉ ống áp lực là một ứng dụng điển hình của lưu lượng kế âm học [13]. Nó được "
+        "dùng để nhận biết ngay lập tức vỡ ống và tổn thất do rò rỉ trong ống áp lực. Hai lưu lượng kế "
+        "được lắp ở hai đầu đối diện của ống áp lực: một để đo <i>Q</i><sub>up</sub> càng gần cửa nhận "
+        "nước càng tốt, cái kia để đo <i>Q</i><sub>down</sub> tại cửa vào nhà máy. Trong cách mô tả "
+        "này, lưu lượng thượng lưu được so với lưu lượng hạ lưu và hiệu lưu lượng Δ<i>Q</i> = "
+        "<i>Q</i><sub>up</sub> − <i>Q</i><sub>down</sub> được tính và giám sát. Nếu hiệu Δ<i>Q</i> vượt "
+        "một ngưỡng cho trước, hệ thống phát cảnh báo hoặc đưa ra tiếp điểm đóng van."))
+    b.append(p(
+        "Trong các ứng dụng thuỷ điện, một vấn đề khác nảy sinh do có tháp điều áp (Hình 28.58). Kết "
+        "cấu thuỷ lực này gây dao động khối lượng do tải tuabin thay đổi. Cho tới nay, nếu trong ống "
+        "áp lực có một tháp điều áp thì có hai khả năng. Một là chia ống áp lực thành hai phần: một "
+        "trước tháp điều áp, một sau nó, và bảo vệ chúng riêng rẽ. Giải pháp này đắt và rất thường "
+        "không thực tế, vì tháp điều áp được xây trong đá và không thể tiếp cận. Hai là xây dựng một "
+        "thứ giống “thuật toán phát hiện rò rỉ”, bao gồm cả hành vi dao động của ống áp lực. Tuy nhiên, "
+        "một hệ như vậy cần nhiều thử nghiệm hiện trường và kiến thức để đặt chính xác tần số cộng "
+        "hưởng, hệ số tắt dần và các ngưỡng. Công nghệ mới nhất trong lưu lượng kế siêu âm, kết hợp "
+        "với các cảm biến mực nước chính xác, có thể đưa ra một giải pháp cho vấn đề này. Bằng cách áp "
+        "dụng công thức:"))
+    b.append(eq("Δ<i>Q</i> = <i>Q</i><sub>up</sub> − <i>Q</i><sub>down</sub> − "
+                "Δ<i>V</i><sub>chamber</sub> / Δ<i>t</i>", "28.85"))
+    b.append(p(
+        "các thay đổi thể tích của tháp điều áp do dao động khối lượng được tính đến, dẫn tới hành vi "
+        "tốt hơn và thực tế hơn của việc phát hiện rò rỉ ống áp lực khi có tháp điều áp."))
+    b.append(fig(58, F.fig(58), "vi"))
+
+    # ---------------------------------------------------------------- manufacturers
+    b.append(h3("Thiết bị và nhà chế tạo/nhà phân phối",
+                "Instrumentation and Manufacturers/Distributors"))
+    b.append(p(
+        "Bảng 28.12 cho một cái nhìn tổng quan về một số công ty chế tạo và phân phối lưu lượng kế thời "
+        "gian truyền. Giá lưu lượng kế thời gian truyền có dải rất rộng do tính đa dạng của các ứng "
+        "dụng khác nhau, và vì vậy khó liệt kê chính xác. Nói chung, lưu lượng kế siêu âm hiếm khi được "
+        "bán như một thiết bị “đóng gói sẵn”. Vì lý do đó, giá của một đoạn ống đo, kể cả lắp đặt, dao "
+        "động từ vài nghìn đô la Mỹ tới gần 100 000 đô la Mỹ."))
+    b.append(_t2812("vi"))
+
+    # ---------------------------------------------------------------- references
+    b.append(h3("Tài liệu tham khảo", "References"))
+    b.append(wl([
+        "1. M. Barmettler and P. Gruber, Anwendung von Oversampling-Verfahren zur Erhöhung der "
+        "Auflösung digital erfasster Signale, <i>Technisches Messen</i>, Oldenbourg Verlag, 1992.",
+        "2. D. Hoppe, Kombinierte Zählung und Abstandsbestimmung von Impulssignalen, <i>Technisches "
+        "Messen</i>, Oldenbourg Verlag, 10, 1991.",
+        "3. R. Krimholtz, D. Leedom, and G. Matthaei, New equivalent circuits for elementary "
+        "piezoelectric transducers, <i>Electronics Lett.</i>, 6, 398, 1970.",
+        "4. P. D. Edmonds, <i>Methods of Experimental Physics, Ultrasonics</i>, New York: Academic "
+        "Press, 1981.",
+        "5. D. W. Spitzer, <i>Flow Measurement, Practical Guides for Measurement and Control</i>, "
+        "Research Triangle Park, NC: Instrument Society of America, 1991.",
+        "6. J. Nikuradse, Gesetzmässigkeiten der turbulenten Strömung in glatten Rohren, VDI Verlag "
+        "GmbH, 1932.",
+        "7. F. L. Brand, Akustische Verfahren zur Durchflussmessung, <i>Messen, Prüfen "
+        "Automatisieren</i>, April 1987.",
+        "8. International Standard IEC 41, 3rd ed., 1991.",
+        "9. R. H. French, <i>Open Channel Hydraulics</i>, New York: McGraw-Hill, 1985, 30.",
+        "10. Chen-Iung Chen, <i>J. Hydraulic Eng.</i>, 379, 117, 1990.",
+        "11. M. F. Karim and J. F. Kennedy, <i>J. Hydraulic Eng.</i>, 162, 113, 1987.",
+        "12. G. Grego, M. Baldin, et al., Application of an Acoustic Flowmeter for Discharge "
+        "Measurement in the Po.",
+        "13. G. Grego and M. Baldin, <i>Energia Elettrica</i>, 1, 52, 72, 1995.",
+        "14. H. P. Vaterlaus and H. Gabler, A new intelligent ultrasonic flowmeter for hydropower "
+        "applications, <i>Int. Water Power &amp; Dam Construction</i>, 1994.",
+    ]))
+    return "".join(b)
+
+
+def sec_28_7_en():
+    b = []
+    b.append(h2("28.7 Ultrasonic Flowmeters", "Ultrasonic Flowmeters"))
+    b.append(p("Hans-Peter Vaterlaus, Thomas Hossle, Paolo Giordano, and Christophe Bruttin."))
+    b.append(p(
+        "Flow is one of the most important physical parameters measured in industry and water "
+        "management. There are various kinds of flowmeters available, depending on the requirements "
+        "defined by the different market segments. For many years, differential pressure types of "
+        "flowmeters have been the most widely applied flow measuring device for fluid flows in pipes "
+        "and open channels that require accurate measurement at reasonable cost. In markets like "
+        "waterpower, water supply, irrigation, etc., however, flow must be measured without any head "
+        "losses or any pressure drop. This means no moving parts, no secondary devices, nor are any "
+        "restrictions allowed. Two types of flowmeters presently fulfill this requirement: "
+        "electromagnetic and ultrasonic flowmeters. Whereas ultrasonic flowmeters can be applied in "
+        "nearly any kind of flowing liquid, electromagnetic flowmeters require a minimum electric "
+        "conductivity of the liquid for operation. In addition, the cost of ultrasonic flowmeters is "
+        "nearly independent of pipe diameter, whereas the price of electromagnetic flowmeters "
+        "increases drastically with pipe diameter."))
+    b.append(p("There are various types of ultrasonic flowmeters in use for discharge measurement:"))
+    b.append(ol([
+        "<b>Transit time:</b> this is today’s state-of-the-art technology and most widely used type, "
+        "and will be discussed in this chapter section. This type of ultrasonic flowmeter makes use "
+        "of the difference in the time for a sonic pulse to travel a fixed distance, first against "
+        "the flow and then in the direction of flow. Transit time flowmeters are sensitive to "
+        "suspended solids or air bubbles in the fluid.",
+        "<b>Doppler:</b> this type is more popular and less expensive, but is not considered as "
+        "accurate as the transit time flowmeter. It makes use of the Doppler frequency shift caused "
+        "by sound reflected or scattered from suspensions in the flow path and is therefore more "
+        "complementary than competitive to transit time flowmeters.",
+        "<b>Cross-correlation:</b> two measuring sections are installed with a certain distance to "
+        "each other. Both measure the energy absorption of the ultrasonic signal. A cross-correlation "
+        "calculates the flow velocity.",
+        "<b>Phase shift:</b> the phase position of the transmitting and receiving signal is measured "
+        "in the direction of the flow and against it. The resulting phase shift angle is directly "
+        "proportional to the flow velocity.",
+        "<b>Drift:</b> the drift of an ultrasonic signal crossing the flow is measured by signal "
+        "attenuation.",
+    ]))
+
+    # ---------------------------------------------------------------- transit time
+    b.append(h3("Transit Time Flowmeter", "Transit Time Flowmeter"))
+    b.append(h4("Principle of Operation", "Principle of Operation"))
+    b.append(p(
+        "The acoustic method of discharge measurement is based on the fact that the propagation "
+        "velocity of an acoustic wave and the flow velocity are summed vectorially. This type of "
+        "flowmeter measures the difference in transit times between two ultrasonic pulses transmitted "
+        "upstream <i>t</i><sub>21</sub> and downstream <i>t</i><sub>12</sub> across the flow, as shown "
+        "in Figure 28.43. If there are no transverse flow components in the conduit, these two "
+        "transit times of acoustic pulses are given by:"))
+    b.append(eq("t<sub>12</sub> = L<sub>w</sub> / (c + v̄<sub>a</sub> cos φ) &nbsp;&nbsp;and&nbsp;&nbsp; "
+                "t<sub>21</sub> = L<sub>w</sub> / (c − v̄<sub>a</sub> cos φ)", "28.65"))
+    b.append(defs([
+        ("<i>L</i><sub>w</sub>", "Distance in the fluid between the two transducers"),
+        ("<i>c</i>", "Speed of sound at the operating conditions"),
+        ("φ", "Angle between the axis of the conduit and the acoustic path"),
+        ("v̄<sub>a</sub>", "Axial flow velocity averaged along the distance <i>L</i><sub>w</sub>"),
+    ]))
+    b.append(fig(43, F.fig(43), "en"))
+    b.append(p(
+        "Since the transducers are generally used both as transmitters and receivers, the difference "
+        "in travel time can be determined with the same pair of transducers. Thus, the mean axial "
+        "velocity v̄<sub>a</sub> along the path is given by:"))
+    b.append(eq("v̄<sub>a</sub> = (L<sub>w</sub> / 2 cos φ) (1/t<sub>21</sub> − 1/t<sub>12</sub>) = "
+                "(D / 2 cos φ sin φ) (1/t<sub>21</sub> − 1/t<sub>12</sub>)", "28.66"))
+    b.append(p(
+        "The following example shows the demands on the time measurement technique: assuming a closed "
+        "conduit with diameter <i>D</i> = 150 mm, angle φ = 60°, flow velocity v̄<sub>a</sub> = "
+        "1 m s<sup>−1</sup>, and water temperature = 20 °C. This results in transit times of about "
+        "116 µs and a time difference Δ<i>t</i> (Δ<i>t</i> = <i>t</i><sub>12</sub> − "
+        "<i>t</i><sub>21</sub>) on the order of 78 ns. To achieve an accuracy of 1% of the "
+        "corresponding full-scale range, Δ<i>t</i> has to be measured with a resolution of at least "
+        "100 ps (1 × 10<sup>−10</sup> s)."))
+    b.append(note(
+        "The original prints “116 s” — plainly a dropped micro sign. With <i>D</i> = 150 mm, φ = 60° "
+        "and <i>c</i> ≈ 1482 m s<sup>−1</sup> at 20 °C, the path <i>L</i><sub>w</sub> = <i>D</i>/sin φ "
+        "≈ 0.173 m gives a transit time of 116.9 µs, and the printed Δ<i>t</i> of 78 ns is consistent "
+        "only with microseconds. This edition reads 116 µs."))
+    b.append(p(
+        "Standard time measurement techniques are not able to meet such requirements so that special "
+        "techniques must be applied. The advantage of the approach of state-of-the-art real digital "
+        "measurement is to process the measured value directly by a microcomputer. The most difficult "
+        "problem is to reach the required resolution and to cope with the jitter of digital logic "
+        "gates. It is well known in the measurement technique that, if signals are sampled multiple "
+        "times (<i>N</i><sub>n</sub>), the resolution increases with the number of samples "
+        "(“oversampling”) [1]. This knowledge is not only applied for analog signals but also for "
+        "transit time signals and is used in today’s technology of flowmeters. The propagation time "
+        "<i>t</i> (<i>t</i><sub>12</sub>, <i>t</i><sub>21</sub>), depending on the distance the sound "
+        "pulse has to travel through the fluid, is measured several times. Due to this fact, one "
+        "obtains the following relation [2]:"))
+    b.append(eq("<i>t</i> = (1/<i>N</i><sub>n</sub>) ∫<sub>0</sub><sup>τ</sup> (1/<i>f</i>) "
+                "d<i>t</i>", "28.67"))
+    b.append(p("where τ is integration time, and <i>f</i> is the frequency."))
+    b.append(p(
+        "According to the block diagram in Figure 28.44, two counters are used. One counter "
+        "<i>N</i><sub>t</sub> is clocked during the measuring period by a stable quartz oscillator; "
+        "the other one counts the number of samples <i>N</i><sub>n</sub>. The measurement stops after "
+        "a certain period of some milliseconds and after having reached an integer value for "
+        "<i>N</i><sub>n</sub>. The two counts of <i>N</i><sub>t</sub> and <i>N</i><sub>n</sub> are "
+        "used to calculate propagation time <i>t</i><sub>12</sub> or <i>t</i><sub>21</sub> by "
+        "dividing <i>N</i><sub>t</sub> by <i>N</i><sub>n</sub>. The resolution <i>r</i> is calculated "
+        "by:"))
+    b.append(eq("<i>r</i> = 1 / (<i>N</i><sub>n</sub> <i>f</i>)", "28.68"))
+    b.append(fig(44, F.fig(44), "en"))
+    b.append(p("Advantages of this measurement method for transit time flowmeters are:"))
+    b.append(ol([
+        "The resolution of the velocity measurement is constant (typical value 0.8 mm s<sup>−1</sup>).",
+        "The accuracy depends almost only on the stability and the temperature coefficient of the "
+        "quartz oscillator.",
+        "Due to the multiple sampling, the jitter of the digital logic is averaged.",
+    ]))
+
+    # ---------------------------------------------------------------- sensors
+    b.append(h4("Sensors", "Sensors"))
+    b.append(p(
+        "The transducer comprises the piezoelectric element that converts electric to acoustic energy "
+        "and the basic structure for supporting the piezoceramic and providing electric connections. "
+        "Transducer design entails choice of the piezoelectric element, determination of suitable "
+        "dimensions and resonant frequency, and construction to withstand thermal and mechanical "
+        "stress, see Figure 28.45. Considering the transmission line model [3, 4], the optimal "
+        "electroacoustic response and the best matching of acoustic impedances <i>Z</i> = ρ<i>c</i> of "
+        "the different transducer elements is important. Not only must suitable waveforms to be "
+        "detected by the electronics be obtained, but also the energy loss must be minimized when "
+        "crossing several interface boundaries. Because of the wide versatility of pipe sizes and flow "
+        "conditions, there are a number of different sensor configurations for transit time "
+        "flowmeters."))
+    b.append(fig(45, F.fig(45), "en"))
+    b.append(h4("Axial", "Axial"))
+    b.append(p(
+        "Due to the small differences in small diameter pipes, it is necessary to pass the sonic pulse "
+        "directly down the axis of the pipe to ensure that there is sufficient path length. Figure "
+        "28.46 shows an example of an axial sensor pipe section. The upper pipe size limit for this "
+        "kind of sensor is about 0.075 m [5]."))
+    b.append(fig(46, F.fig(46), "en"))
+    b.append(h4("Radial", "Radial"))
+    b.append(p(
+        "Many manufacturers supply complete metering sections with built-in sonic transducers on "
+        "either side of a spool section. Such sensors, shown in Figure 28.47, are generally called "
+        "“radial” because of the transducer placement. A lower pipe size limit of radial type sensors "
+        "is about 100 mm."))
+    b.append(fig(47, F.fig(47), "en"))
+    b.append(h4("Field Mounting", "Field Mounting"))
+    b.append(p(
+        "Radial-type sensors are often used to instrument an existing line, where it is desirable to "
+        "make the installation without cutting out a section of the pipe. To meet this requirement, "
+        "field-mountable transducers, cemented, drilled, or welded into an existing pipe section, can "
+        "be used. Metering sections with diameters up to 13 m or more can be achieved in this way."))
+    b.append(h4("Clamp-on", "Clamp-on"))
+    b.append(p(
+        "If there is a need for an installation where the pipe wall is not penetrated by the "
+        "transducers, clamp-on systems are the right choice. Achieving a lower accuracy and being "
+        "somewhat more complex to calibrate, clamp-on systems have their entitlement in applications "
+        "where an easy movement of the metering section is an important requirement or where an "
+        "existing process cannot be interrupted. The transducers are mounted on a calibration device "
+        "and acoustically coupled to the pipe wall with grease and/or epoxy."))
+    b.append(h4("Open Channels and Special Applications", "Open Channels and Special Applications"))
+    b.append(p(
+        "In open channels, the transducers are normally mounted on or dug into the channel walls. "
+        "Figure 28.48 shows an example of an open-channel sensor. The piezoceramic element is placed "
+        "on a sphere to achieve a wide range of mounting possibilities. Sometimes, existing pipe "
+        "sections are completely enclosed with rock or concrete. In these cases, the transducers can "
+        "be fixed in the wall of the conduit. For small diameters, the resulting protrusion of the "
+        "transducers into the metering section must be taken into account."))
+    b.append(fig(48, F.fig(48), "en"))
+
+    # ---------------------------------------------------------------- closed conduits
+    b.append(h4("Measurement of Flow in Closed Conduits", "Measurement of Flow in Closed Conduits"))
+    b.append(p(
+        "The most important issue in applying ultrasonic flowmeters is an understanding of the effects "
+        "of the velocity profile of the flowing fluid within the conduit. The flow profile depends on "
+        "the fluid, the Reynolds number Re, the relative roughness and shape of the conduit, upstream "
+        "and downstream disturbances, and other factors. Transit time flowmeters give an average flow "
+        "velocity v̄ along the sonic path. The acoustic flow rate <i>Q</i><sub>ADM</sub> is therefore "
+        "calculated through <i>Q</i> = v̄<i>A</i>, with v̄ the area-averaged flow velocity and <i>A</i> "
+        "the cross-section of the conduit. In order to obtain the area-averaged flow velocity v̄, the "
+        "measured velocity v̄<sub>a</sub> must be corrected by a hydraulic coefficient "
+        "<i>k</i><sub>h</sub> that depends on the type of the conduit and the Reynolds number. In "
+        "order to achieve maximum performance and accuracy of ultrasonic flowmeters, one has to keep "
+        "to sufficient straight run requirements as shown for some examples in Figure 28.49. By doing "
+        "so, a typical accuracy of 1% of reading or better can be achieved, even when applying a "
+        "single-path measurement system. Reduced straight runs lead to reduced accuracy. In some "
+        "applications, this reduced accuracy is acceptable; if not, a multipath ultrasonic flowmeter "
+        "must be installed. These flowmeters provide averaging of the various error-producing flow "
+        "components. Accuracy of 0.5% of reading can be achieved even under nonideal conditions or "
+        "insufficient straight runs. Figure 28.50 shows four examples of possible sonic path "
+        "arrangements in a closed conduit."))
+    b.append(note(
+        "The original cites “Figure 28.50” for the four sonic path arrangements, but those "
+        "arrangements are Figure 28.51; Figure 28.50 is the graph of the <i>k</i><sub>h</sub> factor "
+        "against Reynolds number. A later sentence in the original cites “Figure 28.51” correctly. "
+        "The text is reproduced as printed, with the discrepancy flagged here."))
+    b.append(fig(49, F.fig(49), "en"))
+
+    b.append(h4("Single Path with Circular and Rectangular Cross-sections",
+                "Single Path with Circular and Rectangular Cross-sections"))
+    b.append(p("The Reynolds number Re is given by:"))
+    b.append(eq("Re = (v̄ · <i>D</i>) / ν", "28.69"))
+    b.append(defs([
+        ("v̄", "Mean velocity over the cross section [m s<sup>−1</sup>]"),
+        ("<i>D</i>", "Pipe diameter"),
+        ("ν", "Temperature-dependent kinematic viscosity"),
+    ]))
+    b.append(p(
+        "In normal piping, a laminar flow exists as long as the Reynolds number is below about 2600. "
+        "The shape of the velocity profile conforms to a parabola, and the velocity of a point on the "
+        "profile is given by:"))
+    b.append(eq("<i>v</i>(<i>r</i>) = <i>v</i><sub>max</sub> [1 − (<i>r</i>/<i>R</i>)<sup>2</sup>]",
+                "28.70"))
+    b.append(defs([
+        ("<i>r</i>", "Variable radius"),
+        ("<i>R</i>", "Pipe radius"),
+    ]))
+    b.append(p(
+        "Between a Reynolds number Re of 2600 and 4000, the transitional flow regime with continuous "
+        "switching between laminar and turbulent velocity profile comes into existence. When the "
+        "Reynolds number exceeds 4000, the velocity profile enters the turbulent flow regime. "
+        "Nikuradse [6] showed that the turbulent velocity profile of an axis-symmetrical flow in a "
+        "closed conduit without swirl and sufficient inlet and outlet sections and smooth walls can "
+        "be expressed by:"))
+    b.append(eq("<i>v</i>(<i>r</i>) = <i>v</i><sub>max</sub> [(<i>R</i> − <i>r</i>)/<i>R</i>]"
+                "<sup>1/<i>n</i></sup>", "28.71"))
+    b.append(p("where, according to Nikuradse, <i>n</i> is a Reynolds number-dependent exponent given "
+               "by:"))
+    b.append(eq("<i>n</i> = 1 / (0.2525 − 0.0229 × log(Re))", "28.72"))
+    b.append(p("With the definition of a hydraulic corrective coefficient <i>k</i><sub>h</sub> given "
+               "by:"))
+    b.append(eq("<i>k</i><sub>h</sub> = v̄ / v̄<sub>a</sub>", "28.73"))
+    b.append(defs([
+        ("v̄", "Mean velocity over the cross-section"),
+        ("v̄<sub>a</sub>", "Mean velocity along the sonic path"),
+    ]))
+    b.append(p("and integrating over the cross-section according to:"))
+    b.append(eq("<i>k</i><sub>h</sub> = [ (1/<i>A</i>) ∫<sub>0</sub><sup>R</sup> "
+                "∫<sub>0</sub><sup>2π</sup> <i>v</i>(<i>r</i>) <i>r</i> d<i>r</i> dθ ] / "
+                "[ (1/2<i>R</i>) ∫<sub>−R</sub><sup>R</sup> <i>v</i>(<i>r</i>) d<i>r</i> ]", "28.74"))
+    b.append(p("one obtains for laminar flow a hydraulic corrective coefficient of "
+               "<i>k</i><sub>h</sub> = 0.75."))
+    b.append(p(
+        "In the turbulent flow regime, according to Nikuradse [6], the hydraulic corrective "
+        "coefficient <i>k</i><sub>h</sub>, dependent on the Reynolds number Re, can be expressed by:"))
+    b.append(eq("<i>k</i><sub>h</sub> = 1 / (1.125 − 0.011 × log(Re))", "28.75"))
+    b.append(p("for a circular cross-section, and"))
+    b.append(eq("<i>k</i><sub>h</sub> = 0.79 + 0.02 × log(Re)", "28.76"))
+    b.append(p("for a rectangular cross-section."))
+    b.append(fig(50, F.fig(50), "en"))
+    b.append(p(
+        "In hydropower applications, the Reynolds number Re generally exceeds the value of 4000. "
+        "Figure 28.50 shows the dependence of the <i>k</i><sub>h</sub> factor in closed conduits with "
+        "circular cross-section on the Reynolds number. The Reynolds number not only changes its value "
+        "as a function of the flow velocity v̄ for a given diameter <i>D</i>, but is also strongly "
+        "dependent on the temperature-dependent kinematic viscosity ν(<i>T</i>). Not taking into "
+        "account for correct value of Re can easily lead to errors of the <i>k</i><sub>h</sub> factor "
+        "and thus to the flowrate <i>Q</i> on the order of 2% to 3%. Modern transit time meters with "
+        "microprocessors update the <i>k</i><sub>h</sub> factor at a rate of 4 times a second and by "
+        "measuring the temperature <i>T</i> of the fluid at the same rate. A correct "
+        "<i>k</i><sub>h</sub> factor is obtained and hence a temperature and Reynolds "
+        "number-compensated flow rate <i>Q</i>."))
+
+    b.append(h4("Multipath Integration in Circular Cross-sections",
+                "Multipath Integration in Circular Cross-sections"))
+    b.append(p(
+        "In reality, however, the straight run requirements as defined in Figure 28.49 cannot always "
+        "be kept. In addition, cross flow errors occur when nonaxial components of velocity in a pipe "
+        "alter the transit times of a pulse between the sensors. Nonaxial velocities are caused by "
+        "such disturbances in closed conduits as bends, asymmetric intake flows, and discontinuities "
+        "in the pipe wall or pumps. It has become accepted practice to eliminate the sensitivity of an "
+        "acoustic flowmeter to velocity distributions by increasing the number of acoustic paths "
+        "<i>n</i>. Additional paths not only decrease substantially the velocity distribution error, "
+        "but also reduce the numerical integration error as well as errors due to path misalignment. "
+        "This suggests that for accurate measurements for which a few tenths of a percent error are "
+        "significant, the cost of installing more sensors for a four-path arrangement according to "
+        "Figure 28.51 can be justified. In a multipath measurement system, according to the "
+        "integration method described by IEC 41, Appendix J1 [7], the flowrate "
+        "<i>Q</i><sub>ADM</sub> can be expressed by:"))
+    b.append(eq("<i>Q</i><sub>ADM</sub> = <i>k</i> (<i>D</i>/2) Σ<sub><i>i</i>=1</sub><sup><i>n</i></sup> "
+                "v̄<sub>a<i>i</i></sub> <i>W</i><sub><i>i</i></sub> <i>L</i><sub>w<i>i</i></sub> "
+                "sin φ<sub><i>i</i></sub>", "28.77"))
+    b.append(defs([
+        ("v̄<sub>a<i>i</i></sub>", "Velocities along the acoustic path <i>i</i>"),
+        ("<i>W</i><sub><i>i</i></sub>", "Corresponding weighting factor"),
+        ("<i>L</i><sub>w<i>i</i></sub>", "Corresponding path length"),
+        ("φ<sub><i>i</i></sub>", "Corresponding path angle"),
+    ]))
+    b.append(fig(51, F.fig(51), "en"))
+    b.append(p(
+        "The method described in IEC 41 needs a very accurate transducer positioning due to the fact "
+        "that the weighting factors <i>W</i><sub><i>i</i></sub> obtained by mathematical analysis are "
+        "only valid when the sensors are positioned at the correct locations. Misalignment of the "
+        "acoustic paths in conjunction with fixed weights can lead to considerable errors."))
+    b.append(note(
+        "The original cites “IEC 41, Appendix J1 [7]”, but in the reference list [7] is Brand (1987) "
+        "and IEC 41 is [8]. The printed number is kept here."))
+
+    # ---------------------------------------------------------------- open channels
+    b.append(h3("Measurement of Flow in Open Channels", "Measurement of Flow in Open Channels"))
+    b.append(p(
+        "Open-channel flow measurement is used in many applications, including water supply networks, "
+        "hydrography, allocation of water for irrigation and agricultural purposes, sewage treatment "
+        "plants, etc. Discharge measurements in rivers and open channels are often computed by means "
+        "of a rating curve, used to convert records of water level readings into flow rates. The "
+        "rating curve is developed using a set of discharge measurements and water level in the "
+        "stream, and must be checked periodically to ensure that the level-discharge relationship has "
+        "remained constant; many phenomena can cause the rating curve to change so that the same "
+        "recorded water level produces a different discharge. This is the case of open channels under "
+        "changeable hydraulic conditions due, for example, to backwater effects, gates, and where an "
+        "univocal stage-discharge relationship does not exist. In this context, acoustic flowmeter "
+        "application is extremely interesting and is currently experiencing wide success in water "
+        "management. In fact, while different flow rate values can correspond to a given water level "
+        "in relation to the hydraulic characteristics, there is always an univocal relationship "
+        "between the acoustic wave propagation velocity in a flowing fluid and the flowing fluid "
+        "itself."))
+    b.append(p(
+        "By means of the ultrasonic technique, discharge through open channels can be determined using "
+        "single- and multipath technology. In a single-path configuration, particular attention must "
+        "be paid to define the vertical velocity distribution (Figure 28.52) in order to achieve a "
+        "good level of accuracy by a single “line” velocity reading v̄<sub>a<i>z</i></sub> at the "
+        "distance <i>z</i> above the bottom. On the other hand, in a multipath configuration, the mean "
+        "line velocity profile is well described. In this case, special attention must be paid to the "
+        "integration method used to determine the flow rate from the acoustic path readings."))
+    b.append(fig(52, F.fig(52), "en"))
+
+    b.append(h4("Single Path", "Single Path"))
+    b.append(p(
+        "In single-path measurements, using the area-velocity method, the flow rate <i>Q</i> is "
+        "calculated through <i>Q</i> = v̄<i>A</i> with v̄ (m s<sup>−1</sup>) the area-averaged flow "
+        "velocity and <i>A</i> the cross-section. To obtain the velocity average v̄ over the entire "
+        "cross-section, the mean path velocity v̄<sub>a<i>z</i></sub>, measured by the acoustic "
+        "flowmeter at a given depth <i>z</i>, must be corrected by a dimensionless hydraulic corrective "
+        "coefficient <i>k</i><sub>h</sub> according to the relation v̄ = <i>k</i><sub>h</sub> "
+        "v̄<sub>a<i>z</i></sub>. In general, the coefficient <i>k</i><sub>h</sub> reflects the "
+        "influence of the horizontal and vertical velocity profile. It mainly depends on the water "
+        "level, on the cross-section shape, and on the boundary roughness. The mean vertical velocity "
+        "profile can be described by the well-known logarithmic law (Figure 28.53) given by [8]."))
+    b.append(eq("v̄(<i>z</i>) = (v̄<sub>*</sub> / <i>k</i>) ln(<i>z</i>/<i>z</i><sub>0</sub>)", "28.78"))
+    b.append(defs([
+        ("v̄(<i>z</i>)", "Mean flow velocity at a distance <i>z</i> above the bottom"),
+        ("<i>k</i>", "Von Kármán’s turbulence constant"),
+        ("<i>z</i>", "Distance above the bottom"),
+        ("v̄<sub>*</sub>", "Shear velocity"),
+        ("<i>z</i><sub>0</sub>", "Constant of integration, dependent on the boundary roughness"),
+    ]))
+    b.append(fig(53, F.fig(53), "en"))
+    b.append(p(
+        "When the boundary surface is hydraulically rough, <i>z</i><sub>0</sub> has been found to "
+        "depend solely on the roughness height <i>k</i><sub>s</sub> according to the relation "
+        "<i>z</i><sub>0</sub> = <i>k</i><sub>s</sub>/30. Integrating Equation 28.78 over the total "
+        "water height <i>h</i> and substituting for v̄, the following equation is obtained:"))
+    b.append(eq("<i>k</i><sub>h</sub> = [ln(<i>h</i>/<i>k</i><sub>s</sub>) − 1] / "
+                "ln(<i>z</i>/<i>k</i><sub>s</sub>)", "28.79"))
+    b.append(p("assuming <i>z</i><sub>0</sub> negligible with respect to <i>h</i>."))
+    b.append(p(
+        "In Figure 28.54, the logarithmic <i>k</i><sub>h</sub> factor is represented for two different "
+        "bottom roughnesses. However, in many practical applications, it is often difficult to define "
+        "correct values for <i>k</i><sub>s</sub>. For this reason, another <i>k</i><sub>h</sub> model "
+        "has been developed on the basis of the power law [9, 10]. In this formula, the exponent "
+        "1/<i>m</i> is not constant anymore, but depends on the roughness and the hydraulic radius to "
+        "take into account the influence of the channel shape. The mean vertical velocity profile "
+        "v̄(<i>z</i>), according to the power law, can be expressed by the following formula (Figure "
+        "28.55):"))
+    b.append(fig(54, F.fig(54), "en"))
+    b.append(eq("v̄(<i>z</i>) = v̄<sub>s</sub> (<i>z</i>/<i>h</i>)<sup>1/<i>m</i></sup>", "28.80"))
+    b.append(defs([
+        ("<i>h</i>", "Current water level"),
+        ("v̄<sub>s</sub>", "Mean line velocity at the free surface (maximum value)"),
+        ("1/<i>m</i>", "Exponent"),
+    ]))
+    b.append(fig(55, F.fig(55), "en"))
+    b.append(p(
+        "From the integration of Equation 28.80 over the total water depth, one obtains the following "
+        "expression for the <i>k</i><sub>h</sub> factor:"))
+    b.append(eq("<i>k</i><sub>h</sub> = [<i>m</i>/(<i>m</i> + 1)] "
+                "(<i>h</i>/<i>z</i>)<sup>1/<i>m</i></sup>", "28.81"))
+    b.append(p(
+        "The value of <i>m</i>, depending on the roughness, can be expressed using the adimensional "
+        "friction factor <i>f</i> of the Darcy–Weisbach formula [8], according to:"))
+    b.append(eq("<i>m</i> = <i>k</i> √(8/<i>f</i>)", "28.82"))
+    b.append(p(
+        "where <i>k</i> = Von Kármán constant, varying from 0.2 to 0.4. <i>k</i> depends on the "
+        "suspended load (low values for high turbidity), or can be expressed using the Manning formula "
+        "by the relation [11]:"))
+    b.append(eq("<i>m</i> = (<i>k</i>/√<i>g</i>) <i>R</i><sub>h</sub><sup>1/6</sup> / <i>n</i>", "28.83"))
+    b.append(defs([
+        ("<i>g</i>", "Gravity acceleration"),
+        ("<i>n</i>", "Manning’s roughness coefficient"),
+        ("<i>R</i><sub>h</sub>", "Hydraulic radius"),
+    ]))
+    b.append(fig(56, F.fig(56), "en"))
+    b.append(p(
+        "In Figure 28.56, the corrective factor is represented for smooth and rough surfaces. By means "
+        "of this relation, an easier field application has been obtained due to wide familiarity with "
+        "the Manning formula in open-channel flow computation because of its simplicity of form, high "
+        "versatility, and satisfactory results."))
+
+    b.append(h4("Multipath", "Multipath"))
+    b.append(p(
+        "The foregoing equations for the mean vertical velocity profile in open channels predict that "
+        "the maximum mean velocity occurs at the free surface. Field and laboratory measurements, "
+        "however, demonstrate that the maximum mean velocity occurs below the free surface, strongly "
+        "depending on the ratio <i>B</i>/<i>h</i>, with <i>B</i> being the channel width. These "
+        "observations show that a one-dimensional velocity distribution law cannot always completely "
+        "describe flow profiles in open channels. Therefore, to reduce uncertainties in velocity "
+        "profile description and to achieve high accuracies even under unfavorable hydraulic "
+        "conditions, a multipath configuration must be used."))
+    b.append(p(
+        "In multipath measurement, using the “mean section method,” the flow velocity is measured at "
+        "several levels between the free surface and the channel bottom (Figure 28.57). The total "
+        "discharge <i>Q</i><sub>ADM</sub> is performed by the relation [12]:"))
+    b.append(eq("<i>Q</i><sub>ADM</sub> = <i>Q</i><sub>b</sub> + <i>Q</i><sub>t</sub> + "
+                "Σ<sub><i>i</i>=1</sub><sup><i>n</i></sup> [ (v̄<sub>a<i>i</i></sub> + "
+                "v̄<sub>a<i>i</i>+1</sub>)/2 · (<i>A</i>(<i>z</i><sub><i>i</i>+1</sub>) − "
+                "<i>A</i>(<i>z</i><sub><i>i</i></sub>)) ]", "28.84"))
+    b.append(defs([
+        ("<i>Q</i><sub>b</sub>", "Flow rate in the bottom section with the bottom velocity obtained "
+                                  "from the lowest path velocity by correction for bottom friction"),
+        ("<i>Q</i><sub>t</sub>", "Flow rate at the highest active section with velocity "
+                                  "<i>v</i><sub>top</sub>, interpolated from the velocity profile"),
+        ("v̄<sub>a<i>i</i></sub>", "Mean velocity along the <i>i</i>th acoustic path"),
+        ("<i>A</i>(<i>z</i><sub><i>i</i></sub>)", "Cross-section below the <i>i</i>th path"),
+    ]))
+    b.append(fig(57, F.fig(57), "en"))
+    b.append(p(
+        "Modern microprocessor-controlled ultrasonic flowmeters can cope with either single-path or "
+        "multipath measurement in open channels, using the logarithmic or the power law for "
+        "single-path measurement. In addition, up-to-date completely modular systems are able to use "
+        "the major part of the equipment for measuring both in open channels and closed conduits."))
+
+    # ---------------------------------------------------------------- application
+    b.append(h3("Application: Penstock Leak Detection with Surge Chambers",
+                "Application: Penstock Leak Detection with Surge Chambers"))
+    b.append(p(
+        "Penstock leak detection is a typical acoustic flowmeter application [13]. It is used for "
+        "immediate recognition of pipe rupture and leak losses in penstocks. Two flowmeters are "
+        "installed at opposite ends of the penstock: one for measuring <i>Q</i><sub>up</sub> as near "
+        "as possible to the intake, the other for measuring <i>Q</i><sub>down</sub> at the powerhouse "
+        "entrance. In this description, the upstream flow is compared to the downstream flow and the "
+        "flow difference Δ<i>Q</i> = <i>Q</i><sub>up</sub> − <i>Q</i><sub>down</sub> is calculated and "
+        "supervised. If the difference Δ<i>Q</i> exceeds a given threshold, the system enunciates "
+        "alarms or valve closure contacts."))
+    b.append(p(
+        "In hydropower applications another problem arises due to the presence of surge chambers "
+        "(Figure 28.58). This hydraulic structure causes mass oscillations due to load changes of the "
+        "turbine. Up to now, if there was a surge tank in a penstock, one had two possibilities. On "
+        "the one hand, one could divide the penstock into two parts: one before the surge chamber, one "
+        "after it, and protect them separately. This solution is expensive and very often impractical "
+        "because the surge chamber is built into the rock and inaccessible. On the other hand, one "
+        "could develop something like a “leak detection algorithm,” which includes the oscillatory "
+        "behavior of a penstock. Such a system, however, needs extensive field tests and the knowledge "
+        "for exact settings of resonant frequency, damping factor, and thresholds. The latest "
+        "technology in ultrasonic flowmeters, combined with accurate water level sensors, can offer a "
+        "solution to this problem. By applying the formula:"))
+    b.append(eq("Δ<i>Q</i> = <i>Q</i><sub>up</sub> − <i>Q</i><sub>down</sub> − "
+                "Δ<i>V</i><sub>chamber</sub> / Δ<i>t</i>", "28.85"))
+    b.append(p(
+        "changes of the volume of the surge chamber due to mass oscillations are taken into account, "
+        "leading to a better and more realistic behavior of penstock leak detection in the presence of "
+        "surge tanks."))
+    b.append(fig(58, F.fig(58), "en"))
+
+    # ---------------------------------------------------------------- manufacturers
+    b.append(h3("Instrumentation and Manufacturers/Distributors",
+                "Instrumentation and Manufacturers/Distributors"))
+    b.append(p(
+        "Table 28.12 gives an overview of some companies manufacturing and distributing transit time "
+        "flowmeters. Prices of transit time flowmeters have a very wide range due to the wide "
+        "versatility of different applications and are therefore difficult to list accurately. "
+        "Generally, ultrasonic flowmeters are seldom sold as a “prepacked” instrument. For this "
+        "reason, the price for a metering section, including installation, varies from a few $1000 to "
+        "nearly $100,000."))
+    b.append(_t2812("en"))
+
+    # ---------------------------------------------------------------- references
+    b.append(h3("References", "References"))
+    b.append(wl([
+        "1. M. Barmettler and P. Gruber, Anwendung von Oversampling-Verfahren zur Erhöhung der "
+        "Auflösung digital erfasster Signale, <i>Technisches Messen</i>, Oldenbourg Verlag, 1992.",
+        "2. D. Hoppe, Kombinierte Zählung und Abstandsbestimmung von Impulssignalen, <i>Technisches "
+        "Messen</i>, Oldenbourg Verlag, 10, 1991.",
+        "3. R. Krimholtz, D. Leedom, and G. Matthaei, New equivalent circuits for elementary "
+        "piezoelectric transducers, <i>Electronics Lett.</i>, 6, 398, 1970.",
+        "4. P. D. Edmonds, <i>Methods of Experimental Physics, Ultrasonics</i>, New York: Academic "
+        "Press, 1981.",
+        "5. D. W. Spitzer, <i>Flow Measurement, Practical Guides for Measurement and Control</i>, "
+        "Research Triangle Park, NC: Instrument Society of America, 1991.",
+        "6. J. Nikuradse, Gesetzmässigkeiten der turbulenten Strömung in glatten Rohren, VDI Verlag "
+        "GmbH, 1932.",
+        "7. F. L. Brand, Akustische Verfahren zur Durchflussmessung, <i>Messen, Prüfen "
+        "Automatisieren</i>, April 1987.",
+        "8. International Standard IEC 41, 3rd ed., 1991.",
+        "9. R. H. French, <i>Open Channel Hydraulics</i>, New York: McGraw-Hill, 1985, 30.",
+        "10. Chen-Iung Chen, <i>J. Hydraulic Eng.</i>, 379, 117, 1990.",
+        "11. M. F. Karim and J. F. Kennedy, <i>J. Hydraulic Eng.</i>, 162, 113, 1987.",
+        "12. G. Grego, M. Baldin, et al., Application of an Acoustic Flowmeter for Discharge "
+        "Measurement in the Po.",
+        "13. G. Grego and M. Baldin, <i>Energia Elettrica</i>, 1, 52, 72, 1995.",
+        "14. H. P. Vaterlaus and H. Gabler, A new intelligent ultrasonic flowmeter for hydropower "
+        "applications, <i>Int. Water Power &amp; Dam Construction</i>, 1994.",
+    ]))
+    return "".join(b)
+
+
 # ================================================================ build
 
-SECTIONS_VI = [sec_28_1_vi, sec_28_2_vi, sec_28_3_vi, sec_28_4_vi, sec_28_5_vi, sec_28_6_vi]
-SECTIONS_EN = [sec_28_1_en, sec_28_2_en, sec_28_3_en, sec_28_4_en, sec_28_5_en, sec_28_6_en]
+SECTIONS_VI = [sec_28_1_vi, sec_28_2_vi, sec_28_3_vi, sec_28_4_vi, sec_28_5_vi, sec_28_6_vi,
+               sec_28_7_vi]
+SECTIONS_EN = [sec_28_1_en, sec_28_2_en, sec_28_3_en, sec_28_4_en, sec_28_5_en, sec_28_6_en,
+               sec_28_7_en]
 
 
 def body_vi():
@@ -5761,8 +6764,8 @@ def build(lang):
              'Chương 28' % BASE_VI if vi else
              '<a href="/books/">Books</a> · <a href="%s">Measurement, Instrumentation and Sensors '
              'Handbook</a> · Chapter 28' % BASE_EN)
-    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 6/11 mục" if vi else
-            "Chapter 28 · in progress: 6 of 11 sections")
+    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 7/11 mục" if vi else
+            "Chapter 28 · in progress: 7 of 11 sections")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
             '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'

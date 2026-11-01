@@ -1784,8 +1784,8 @@ was 26 pages and 21 figures. Expect roughly **150,000 px of page height** at a 1
 | 28.3 Positive Displacement Flowmeters | 34–40 | 21–29 | — |
 | 28.4 Turbine and Vane Flowmeters | 41–57 | 30–33 | 28.8–28.9 |
 | 28.5 Impeller Flowmeters | 58–63 | 34–35 | 28.10 |
-| 28.6 Electromagnetic Flowmeters | 64–74 | 36–41 | 28.11 |
-| 28.7 Ultrasonic Flowmeters | 75–89 | 42–57 | 28.12 |
+| 28.6 Electromagnetic Flowmeters | 64–74 | 36–42 | 28.11 |
+| 28.7 Ultrasonic Flowmeters | 75–89 | 43–58 | 28.12 |
 | 28.8 Vortex Shedding Flowmeters | 90–99 | 59–67 | — |
 | 28.9 Thermal Mass Flow Sensors | 100–118 | 68–80 | 28.13–28.23 |
 | 28.10 Coriolis Effect Mass Flowmeters | 119–122 | 81–84 | — |
@@ -1794,10 +1794,10 @@ was 26 pages and 21 figures. Expect roughly **150,000 px of page height** at a 1
 A first pass at this table was shifted by one section (28.2 given as 14–23, everything after it a
 section early). Corrected above from the actual heading positions; 28.2 is 20 pages, not 10.
 
-Figure 28.58 has no caption in the extracted text (its caption either failed to extract or is set
-differently); it needs to be read off the page image at p. 91 when 28.8 is reached. Figure 28.18 is
-marked “Figure not available” in the source itself — redraw it from the surrounding description and say
-so in the caption.
+Figure 28.58 **does** have a caption — an earlier note here said it did not, which was wrong; it is
+printed on p. 88 and the figure sits at the foot of §28.7, not in 28.8. Figure 28.18 is marked “Figure
+not available” in the source itself — redraw it from the surrounding description and say so in the
+caption.
 
 ### Done so far
 
@@ -1807,9 +1807,9 @@ so in the caption.
   positive-displacement primitives (`_tip`, `_thick`, `_stub`, `_bellows`, `_peanut`),
   turbine primitives (`_num`, `_blade_row`) plus **figures 1–35**, `work/qa_figs.py hb28fig` →
   **35 figures, problems 0**, visual pass done.
-- **`build/reader_hb_ch28.py`** — module scaffold plus **sections 28.1 through 28.5 complete** in
-  both languages: 35 figures, 57 equations, 12 tables, 64 references. 351 kB (EN) / 344 kB (VI) per
-  page. Sections are added as `sec_NN_vi` / `sec_NN_en` and appended to the `SECTIONS_VI` /
+- **`build/reader_hb_ch28.py`** — module scaffold plus **sections 28.1 through 28.7 complete** in
+  both languages: 58 figures, 85 equations, 23 defining-term blocks and numbered tables, 64 + 14
+  references. 523 kB (EN) / 509 kB (VI) per page, **117,502 px (EN) / 114,122 px (VI)** at 1424 px. Sections are added as `sec_NN_vi` / `sec_NN_en` and appended to the `SECTIONS_VI` /
   `SECTIONS_EN` lists at the bottom; nothing else needs touching.
 - Generated page verified locally at 1424 px: **79,229 px tall (VI) / 81,020 px (EN)**, no horizontal
   overflow, figures legible, tables fit. 28.1 was 14,552 px, 28.2 ~24,000, 28.3 ~10,600, 28.4
@@ -1860,6 +1860,30 @@ so in the caption.
   schematic of the same insertion sensor.
 - **The source's Hoffer entry reads “57 mL min⁻¹ to 11.5 rpm”** — a unit inconsistency in the
   original, reproduced as printed and marked `[nguyên văn]` / `[as printed]`.
+- **§28.6 covers:** the case for electromagnetic meters (no obstruction, no moving parts, bidirectional,
+  linear); Faraday's law and its reduction to `e = BDv`; the noise sources; construction and operation of
+  ac and dc meters; the eight-way comparison table; installation; conductivity limits and electrode
+  coating; signal pickup and phase-sensitive demodulation (28.62–28.64); grounding; and Table 28.11.
+  Seven figures (28.36–28.42) and thirteen equations.
+- **§28.7 covers:** the five ultrasonic families as a numbered list (transit time, Doppler,
+  cross-correlation, phase shift, drift); the transit-time principle and its time-resolution problem
+  (116 µs / 78 ns / 100 ps); oversampling and the two-counter scheme; the six sensor configurations;
+  closed-conduit theory (Re, laminar parabola, Nikuradse, `k_h` 28.73–28.76, IEC 41 multipath
+  integration); open-channel theory (logarithmic and power laws, `k_h` 28.78–28.83, mean-section
+  method); penstock leak detection with surge chambers; Table 28.12; 14 references. Sixteen figures
+  (28.43–28.58) and 21 equations (28.65–28.85) — the heaviest section since 28.2.
+- **Three defects in the printed source are reproduced as printed and flagged in translator's notes**
+  in §28.7: “116 s” for 116 µs after (28.66); “Figure 28.50” cited for the four path arrangements that
+  are actually Figure 28.51; and “IEC 41, Appendix J1 [7]” where the reference list has IEC 41 as [8].
+- **§28.7's figures needed a second pass.** The first draft passed the QA script with two label
+  collisions but failed the eye test in eight places: figure 28.43 split “L_w” into two stacked
+  labels sitting on the centreline; 28.44's controller box had its title and formula spread to
+  opposite ends of the box and carried duplicate `Nₙ`/`Nₜ` labels; 28.46's “đầu dò” was printed
+  across the pipe wall; 28.48's “đáy kênh” sat inside the hatched bed; 28.49's six row labels ran
+  straight through the fitting sketches; 28.50's “chảy rối, theo Nikuradse” was printed on the curve;
+  28.51's “crossed” arrangements were drawn as parallel chords; 28.55's `1/m` exponent sat on the
+  curve; and 28.58's flow arrows pointed in opposite directions. All redrawn.
+
 
 ### Conventions set for this chapter
 
@@ -1886,6 +1910,14 @@ so in the caption.
   double-quoted style attribute inside a double-quoted Python string is a syntax error.
 - **The QA script skips `<text>` elements carrying a `transform`** — its bounding-box model is
   axis-aligned, so rotated axis titles produced false off-canvas and overlap reports before that.
+- **A figure can pass QA and still be wrong in content, not just in placement.** §28.7's Figure
+  28.51 was labelled “hai đường cắt chéo” (two crossed paths) while drawing two parallel chords, and
+  Figure 28.58 had its two flow arrows pointing at each other. Neither is a label collision, so
+  `qa_figs.py` is blind to both. Read every new figure against the source art, not just the QA output.
+- **A column of long labels centred on a narrow x will run straight through the drawing.** Figure
+  28.49's six disturbance names were `_lbl(120, y, name, "ts", "middle")`; at 10 px the longest is
+  ~180 px wide, so it spanned x = 30…210 and crossed both the fitting sketch and the pipe. Right-align
+  the column at a fixed edge and wrap the long entries onto two lines.
 - **The QA script only compares label against label.** It cannot see a label printed on top of a
   drawn shape, and that was the §28.5 defect: “lỗ phun” and “dòng tuần hoàn” sat across the rotor
   circle and read as struck-through. Every figure still needs the eye test at 1424 px.

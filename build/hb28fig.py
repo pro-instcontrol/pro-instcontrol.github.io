@@ -2064,6 +2064,611 @@ def fig_28_42():
                 "symbol")
 
 
+# ================================================================ 28.7 ultrasonic
+
+def fig_28_43():
+    o = [_defs()]
+    # ---- pipe in section
+    o.append(_rect(120, 96, 440, 110, FILL, E, 1.6))
+    for x in (104, 544):
+        o.append(_rect(x, 84, 16, 134, "#dce6f2", E, 1.5))
+    # ---- diameter
+    o.append(_darr(120, 70, 120, 232, E))
+    o.append(_lbl(112, 156, "D", "tb", "end"))
+    # ---- flow
+    o.append(_arr(146, 151, 206, 151, S, "ah28s", 1.6))
+    o.append(_lbl(150, 142, "v̄", "tb"))
+    # ---- transducers and the acoustic path
+    o.append(_rect(300, 76, 34, 24, "#dce6f2", E, 1.5))
+    o.append(_rect(346, 202, 34, 24, "#dce6f2", E, 1.5))
+    o.append(_line(317, 100, 363, 202, E, 1.3, "6 4"))
+    o.append(_lbl(244, 86, "cảm biến 2", "ts", "end"))
+    o.append(_lbl(244, 228, "cảm biến 1", "ts", "end"))
+    o.append(_line(246, 82, 300, 82, S, 0.8, "2 3"))
+    o.append(_line(246, 224, 346, 224, S, 0.8, "2 3"))
+    # ---- angle and path length, both off the centreline
+    o.append(_line(317, 151, 430, 151, S, 0.8, "3 3"))
+    o.append(_path("M306,151 Q316,141 330,127", G, 1.2))
+    o.append(_lbl(318, 138, "φ", "tb", "end"))
+    o.append(_lbl(360, 172, "Lw", "ts"))
+    o.append(_line(352, 165, 344, 158, S, 0.7, "2 2"))
+    return _fig(svg(680, 262, "".join(o), "Nguyên lý lưu lượng kế thời gian truyền"),
+                "Hình 28.43 · Nguyên lý của lưu lượng kế thời gian truyền. Phát một xung siêu âm "
+                "ngược chiều và xuôi chiều dòng chảy: chất lỏng chuyển động với vận tốc v̄ và tạo với "
+                "xung siêu âm một góc φ.",
+                "Figure 28.43 · Principle of transit time flowmeters. Transmitting an ultrasonic pulse "
+                "upstream and downstream across the flow: the liquid is moving with velocity v̄ and "
+                "with angle φ to the ultrasonic pulse.",
+                "Ống nằm ngang có hai đầu dò đặt lệch nhau, đường siêu âm chéo qua dòng và góc φ",
+                "A horizontal pipe with two transducers offset from each other, a diagonal acoustic "
+                "path and the angle φ")
+
+
+def fig_28_44():
+    o = [_defs()]
+
+    def box(x, y, w, h, t, sub=""):
+        out = _rect(x, y, w, h, FILL, E, 1.4)
+        out += _lbl(x + w / 2, y + (16 if sub else h / 2 + 4), t, "ts", "middle")
+        if sub:
+            out += _lbl(x + w / 2, y + h - 6, sub, "ts", "middle")
+        return out
+
+    # ---- blocks
+    o.append(box(130, 124, 86, 36, "Bộ chuyển mạch"))
+    o.append(box(250, 36, 86, 28, "Bộ phát"))
+    o.append(box(250, 220, 86, 28, "Bộ thu"))
+    o.append(box(376, 44, 112, 34, "Bộ đếm Start", "Nₙ"))
+    o.append(box(376, 204, 112, 34, "Bộ đếm Stop", "Nₜ"))
+    o.append(box(376, 258, 112, 26, "Bộ dao động"))
+    o.append(_rect(548, 96, 116, 116, FILL, E, 1.4))
+    o.append(_lbl(606, 122, "Bộ điều khiển", "ts", "middle"))
+    o.append(_lbl(606, 152, "t₁₂ = Nₜ/Nₙ", "ts", "middle"))
+    # ---- transducers
+    o.append(_lbl(64, 134, "đầu dò", "ts", "middle"))
+    o.append(_lbl(64, 148, "thu / phát", "ts", "middle"))
+    o.append(_line(100, 142, 130, 142, S, 1.2))
+    # ---- signal wiring
+    o.append(_path("M216,132 L234,132 L234,50 L250,50", S, 1.1))
+    o.append(_path("M216,152 L234,152 L234,234 L250,234", S, 1.1))
+    o.append(_line(336, 46, 376, 50, S, 1.1))
+    o.append(_line(336, 58, 376, 64, S, 1.1))
+    o.append(_line(336, 228, 376, 216, S, 1.1))
+    o.append(_line(432, 258, 432, 238, S, 1.1))
+    o.append(_line(488, 60, 548, 124, S, 1.1))
+    o.append(_line(488, 222, 548, 170, S, 1.1))
+    # controller back to the switch, routed under everything
+    o.append(_path("M548,196 L522,196 L522,290 L172,290 L172,160", S, 1.1))
+    # ---- signal names
+    o.append(_lbl(344, 40, "Start", "ts"))
+    o.append(_lbl(344, 80, "Reset", "ts"))
+    o.append(_lbl(344, 200, "Stop", "ts"))
+    o.append(_lbl(300, 282, "tiến / lùi", "ts"))
+    return _fig(svg(680, 300, "".join(o), "Sơ đồ khối lưu lượng kế siêu âm thời gian truyền"),
+                "Hình 28.44 · Sơ đồ khối của một lưu lượng kế siêu âm thời gian truyền dùng kỹ thuật "
+                "lấy mẫu bội để tăng độ phân giải.",
+                "Figure 28.44 · Block diagram of a transit time ultrasonic flowmeter using oversampling "
+                "for higher resolution.",
+                "Sơ đồ khối: bộ phát, bộ thu, bộ chuyển mạch, hai bộ đếm, dao động và bộ điều khiển",
+                "A block diagram: transmitter, receiver, switch, two counters, oscillator and "
+                "controller")
+
+
+def fig_28_45():
+    o = [_defs()]
+    # ---- sectioned transducer body
+    o.append(_rect(210, 90, 190, 96, "#dce6f2", E, 1.6, rx=4))
+    o.append(_rect(210, 90, 190, 96, "none", E, 1.6))
+    # matching layer and piezoceramic
+    o.append(_rect(210, 96, 22, 84, P, E, 1.3))
+    o.append(_rect(232, 100, 16, 76, "#c9d6e6", E, 1.3))
+    for k in range(5):
+        o.append(_line(234, 108 + k * 15, 246, 108 + k * 15, E, 0.8))
+    # backing block
+    o.append(_rect(248, 100, 130, 76, "#e8e2d4", E, 1.2))
+    for k in range(6):
+        o.append(_circ(268 + k * 18, 138, 3, "none", S, 0.8))
+    # connector
+    o.append(_rect(378, 118, 42, 40, FILL, E, 1.4))
+    o.append(_path("M420,126 C452,120 452,158 420,152", S, 2.2))
+    o.append(_lbl(456, 132, "cáp", "ts"))
+    # callouts
+    o.append(_line(221, 96, 196, 62, S, 0.9, "3 3"))
+    o.append(_lbl(192, 58, "lớp ghép", "ts", "end"))
+    o.append(_line(240, 176, 214, 208, S, 0.9, "3 3"))
+    o.append(_lbl(210, 216, "gốm áp điện", "ts", "end"))
+    o.append(_line(310, 176, 300, 212, S, 0.9, "3 3"))
+    o.append(_lbl(296, 220, "khối đệm", "ts", "end"))
+    o.append(_line(399, 118, 400, 84, S, 0.9, "3 3"))
+    o.append(_lbl(404, 80, "đầu nối", "ts"))
+    o.append(_arr(150, 138, 204, 138, S, "ah28s", 1.5))
+    o.append(_lbl(146, 158, "sóng tới", "ts", "end"))
+    return _fig(svg(680, 240, "".join(o), "Cấu tạo đầu dò siêu âm"),
+                "Hình 28.45 · Đầu dò siêu âm về nguyên lý và một phiên bản thực tế. Phần tử cảm biến có "
+                "thể thay được ngay cả khi đang có áp suất.",
+                "Figure 28.45 · Ultrasonic transducer in principle and as an example of an existing "
+                "version. The sensor element can be changed even under pressure.",
+                "Mặt cắt đầu dò: lớp ghép, gốm áp điện, khối đệm, đầu nối cáp và hướng sóng tới",
+                "A transducer section: matching layer, piezoceramic, backing block, cable connector "
+                "and the incoming wave")
+
+
+def fig_28_46():
+    o = [_defs()]
+    o.append(_rect(120, 108, 440, 86, FILL, E, 1.6))
+    for x in (104, 544):
+        o.append(_rect(x, 96, 16, 110, "#dce6f2", E, 1.5))
+    # transducers at both ends, firing along the axis
+    o.append(_rect(104, 138, 16, 26, P, E, 1.4))
+    o.append(_rect(544, 138, 16, 26, P, E, 1.4))
+    o.append(_arr(140, 151, 520, 151, G, "ah28g", 1.5))
+    o.append(_lbl(330, 142, "xung siêu âm dọc trục ống", "ts", "middle"))
+    o.append(_lbl(96, 152, "đầu dò", "ts", "end"))
+    o.append(_darr(120, 214, 560, 214, E))
+    o.append(_lbl(340, 208, "chiều dài đường truyền", "ts", "middle"))
+    return _fig(svg(680, 240, "".join(o), "Kiểu cảm biến dọc trục"),
+                "Hình 28.46 · Kiểu cảm biến dọc trục. Xung siêu âm đi thẳng dọc theo trục của ống.",
+                "Figure 28.46 · Axial sensor type. The ultrasonic pulse passes directly down the axis "
+                "of the pipe.",
+                "Ống có hai đầu dò ở hai đầu, xung siêu âm chạy dọc theo trục",
+                "A pipe with a transducer at each end and the pulse running along the axis")
+
+
+def fig_28_47():
+    o = [_defs()]
+    o.append(_rect(150, 100, 380, 96, FILL, E, 1.6))
+    for x in (134, 514):
+        o.append(_rect(x, 88, 16, 120, "#dce6f2", E, 1.5))
+    o.append(_rect(300, 78, 36, 22, "#dce6f2", E, 1.5))
+    o.append(_rect(344, 196, 36, 22, "#dce6f2", E, 1.5))
+    o.append(_line(318, 100, 362, 196, G, 1.4, "6 4"))
+    o.append(_arr(180, 148, 236, 148, S, "ah28s", 1.5))
+    o.append(_lbl(180, 138, "dòng chảy", "ts"))
+    o.append(_lbl(300, 70, "đầu dò", "ts", "middle"))
+    o.append(_lbl(400, 214, "đầu dò", "ts"))
+    o.append(_darr(150, 232, 530, 232, E))
+    o.append(_lbl(340, 226, "đoạn ống đo (spool)", "ts", "middle"))
+    return _fig(svg(680, 258, "".join(o), "Kiểu cảm biến hướng tâm"),
+                "Hình 28.47 · Kiểu cảm biến hướng tâm. Nhà chế tạo cung cấp chúng dưới dạng đoạn ống đo "
+                "hoàn chỉnh, hoặc dạng cảm biến lắp tại hiện trường cho đường ống đang tồn tại.",
+                "Figure 28.47 · Radial sensor type. Manufacturers provide them as complete metering "
+                "sections or as field-mounting sensors for existing conduits.",
+                "Đoạn ống đo có hai đầu dò đặt hai phía đối diện, đường siêu âm chéo qua ống",
+                "A metering spool with two transducers on opposite sides and a diagonal acoustic path")
+
+
+def fig_28_48():
+    o = [_defs()]
+    # channel bed
+    o.append(_path("M60,190 L300,190 L360,150 L620,150", E, 1.8))
+    o.append(_rect(60, 190, 560, 26, "url(#hatch28)", E, 1.2))
+    o.append(_lbl(66, 234, "đáy kênh", "ts"))
+    # sphere-mounted element
+    o.append(_circ(470, 128, 22, P, E, 1.5))
+    o.append(_rect(462, 116, 16, 12, "#dce6f2", E, 1.3))
+    o.append(_line(492, 120, 522, 104, S, 0.9, "3 3"))
+    o.append(_lbl(526, 100, "phần tử trên", "ts"))
+    o.append(_lbl(526, 114, "quả cầu xoay", "ts"))
+    o.append(_arr(470, 104, 470, 74, S, "ah28s", 1.4))
+    o.append(_lbl(480, 86, "chùm siêu âm", "ts"))
+    # water level
+    o.append(_line(60, 70, 600, 70, BLUE, 1.2, "7 4"))
+    o.append(_lbl(66, 64, "mặt nước", "ts"))
+    return _fig(svg(680, 252, "".join(o), "Cảm biến đo kênh hở"),
+                "Hình 28.48 · Cảm biến đo kênh hở với phần tử cảm biến đặt trên một quả cầu xoay. Việc "
+                "căn chỉnh hai cảm biến có thể thực hiện bằng thiết bị laser.",
+                "Figure 28.48 · Open-channel sensor with sensor element placed on a movable sphere. "
+                "Alignment of two sensors can be executed by laser equipment.",
+                "Mặt cắt kênh hở có quả cầu mang phần tử cảm biến đặt trên đáy kênh",
+                "An open-channel section with a sphere carrying the sensor element on the bed")
+
+
+def fig_28_49():
+    """Six disturbance types with their minimum inlet and outlet runs. The left
+    column is right-aligned and wrapped so the text never reaches the fitting
+    sketch or the pipe."""
+    o = [_defs()]
+    rows = [("Chặn giảm lưu,", "mở hết", "10×D"),
+            ("Khuỷu 90° hoặc", "ống chữ T", "20×D"),
+            ("Hai khuỷu 90°", "trong một mặt phẳng", "25×D"),
+            ("Hai khuỷu 90°", "trong hai mặt phẳng", "40×D"),
+            ("Van lá, van cổng,", "van trượt mở một phần", "50×D"),
+            ("Bơm", "", "50×D")]
+    # header
+    o.append(_lbl(88, 26, "Kiểu nhiễu loạn", "tb", "middle"))
+    o.append(_arr(210, 40, 330, 40, E, "ah28", 1.8))
+    o.append(_lbl(270, 30, "DÒNG CHẢY", "tb", "middle"))
+    o.append(_lbl(315, 62, "đoạn vào", "tb", "middle"))
+    o.append(_lbl(505, 62, "đoạn ra", "tb", "middle"))
+
+    for k, (l1, l2, run) in enumerate(rows):
+        y = 92 + k * 58
+        o.append(_lbl(150, y - 5 if l2 else y + 4, l1, "ts", "end"))
+        if l2:
+            o.append(_lbl(150, y + 9, l2, "ts", "end"))
+        # fitting sketch, 162..196
+        if k == 0:
+            o.append(_path("M166,%d L182,%d L182,%d L166,%d Z"
+                           % (y - 10, y - 6, y + 6, y + 10), E, 1.4))
+        elif k == 1:
+            o.append(_path("M170,%d L170,%d L190,%d" % (y + 10, y - 6, y - 6), E, 2.2))
+        elif k == 2:
+            o.append(_path("M168,%d L168,%d L180,%d L180,%d L192,%d"
+                           % (y + 10, y - 2, y - 2, y - 10, y - 10), E, 2.2))
+        elif k == 3:
+            o.append(_path("M168,%d L168,%d L180,%d" % (y + 10, y - 2, y - 2), E, 2.2))
+            o.append(_path("M180,%d L180,%d L192,%d" % (y - 2, y - 10, y - 10),
+                           E, 2.2, "none", "4 3"))
+        elif k == 4:
+            o.append(_path("M168,%d L168,%d L180,%d Z" % (y - 9, y + 9, y), E, 1.4))
+            o.append(_path("M192,%d L192,%d L180,%d Z" % (y - 9, y + 9, y), E, 1.4))
+        else:
+            o.append(_circ(178, y, 9, "none", E, 1.4))
+            o.append(_path("M174,%d L174,%d L184,%d Z" % (y + 5, y - 5, y), E, 1.2))
+        # pipe run with the metering section
+        o.append(_rect(206, y - 11, 354, 22, P, E, 1.3))
+        o.append(_rect(424, y - 17, 26, 10, "#dce6f2", E, 1.2))
+        o.append(_line(437, y - 7, 437, y + 7, G, 1.2, "3 2"))
+        # dimensions
+        o.append(_darr(206, y + 21, 424, y + 21, E))
+        o.append(_lbl(315, y + 35, run, "ts", "middle"))
+        o.append(_darr(450, y + 21, 560, y + 21, E))
+        o.append(_lbl(505, y + 35, "5×D", "ts", "middle"))
+    return _fig(svg(680, 440, "".join(o), "Yêu cầu đoạn ống thẳng tối thiểu"),
+                "Hình 28.49 · Yêu cầu đoạn ống thẳng tối thiểu để một lưu lượng kế thời gian truyền "
+                "một đường đạt độ chính xác 1 %.",
+                "Figure 28.49 · Minimum straight run requirements for a 1% accuracy of a single-path "
+                "transit time flowmeter.",
+                "Sáu hàng ứng với sáu kiểu nhiễu loạn, mỗi hàng có chiều dài đoạn vào và đoạn ra",
+                "Six rows for six disturbance types, each with its inlet and outlet run lengths")
+
+
+def fig_28_50():
+    o = [_defs()]
+    x0, x1, y0, y1 = 150, 600, 60, 300
+    lo, hi = 2.0, 7.0
+
+    def X(r):
+        return x0 + (_m.log10(r) - lo) / (hi - lo) * (x1 - x0)
+
+    def Y(k):
+        return y1 - (k - 0.70) / (1.00 - 0.70) * (y1 - y0)
+
+    o.append(_rect(x0, y0, x1 - x0, y1 - y0, P, E, 1.3))
+    # transition band
+    o.append(_rect(X(2000), y0, X(4000) - X(2000), y1 - y0, "#f3ede0", "none", 0))
+    o.append(_lbl(X(2830), y0 + 12, "quá độ", "ts", "middle"))
+    for r in (100, 1000, 10000, 100000, 1000000, 10000000):
+        o.append(_line(X(r), y0, X(r), y1, "#d8d8d8", 0.9))
+        o.append(_lbl(X(r), y1 + 14, ("10⁰" if r == 1 else "%g" % r), "ts", "middle"))
+    for k in (0.7, 0.8, 0.9, 1.0):
+        o.append(_line(x0, Y(k), x1, Y(k), "#d8d8d8", 0.9))
+        o.append(_lbl(x0 - 6, Y(k) + 3, "%.1f" % k, "ts", "end"))
+    # laminar plateau then the turbulent law
+    o.append(_line(x0, Y(0.75), X(2000), Y(0.75), BLUE, 1.8))
+    pts = []
+    r = 4000.0
+    while r <= 10 ** 7:
+        k = 1.0 / (1.125 - 0.011 * _m.log10(r))
+        pts.append("%s,%s" % (_f(X(r)), _f(Y(k))))
+        r *= 1.12
+    o.append(_path("M" + " L".join(pts), G, 2.0))
+    o.append(_lbl(166, Y(0.75) - 8, "chảy tầng  k_h = 0,75", "ts"))
+    o.append(_lbl(566, 152, "chảy rối, theo Nikuradse", "ts", "end"))
+    o.append(_lbl((x0 + x1) / 2, y1 + 34, "số Reynolds Re", "ts", "middle"))
+    o.append(_lbl(x0 - 10, y0 - 8, "k_h", "tb", "end"))
+    return _fig(svg(680, 350, "".join(o), "Hệ số hiệu chỉnh thuỷ lực theo số Reynolds"),
+                "Hình 28.50 · Sự phụ thuộc của hệ số k<sub>h</sub> vào số Reynolds với phép đo một "
+                "đường. Giữa số Reynolds 2000 và 4000 tồn tại chế độ chảy quá độ.",
+                "Figure 28.50 · Dependence of the k_h factor for single-path measurement on the "
+                "Reynolds number. Between a Reynolds number of 2000 and 4000, the transitional flow "
+                "regime occurs.",
+                "Đồ thị k_h theo số Reynolds, có dải quá độ 2000–4000 và hai nhánh chảy tầng, chảy rối",
+                "A k_h against Reynolds number plot with a 2000-4000 transition band and laminar and "
+                "turbulent branches")
+
+
+def fig_28_51():
+    o = [_defs()]
+    o.append(_lbl(340, 26, "dòng chảy", "ts", "middle"))
+    o.append(_arr(300, 40, 380, 40, E, "ah28", 1.6))
+    R = 58
+
+    def chord(cx, cy, ang, off):
+        """A chord across the section: direction ang (degrees), perpendicular
+        offset off from the centre. Crossed arrangements are made by tilting
+        two chords in opposite directions."""
+        a = _m.radians(ang)
+        ux, uy = _m.cos(a), _m.sin(a)
+        nx, ny = -_m.sin(a), _m.cos(a)
+        mx, my = cx + off * nx, cy + off * ny
+        half = _m.sqrt(max(R * R - off * off, 1))
+        return _line(mx - half * ux, my - half * uy, mx + half * ux, my + half * uy, G, 1.8)
+
+    specs = [(96, "một đường", "1 mặt phẳng", [(0, 0)]),
+             (270, "hai đường", "cắt chéo, 1 mặt phẳng", [(22, -14), (-22, 14)]),
+             (444, "hai đường", "2 mặt phẳng", [(0, -24), (0, 24)]),
+             (618, "bốn đường", "cắt chéo, 2 mặt phẳng",
+              [(20, -14), (-20, 14), (20, 14), (-20, -14)])]
+    for cx, t1, t2, paths in specs:
+        cy = 130
+        o.append(_circ(cx, cy, R, FILL, E, 1.5))
+        o.append(_line(cx - R, cy, cx + R, cy, S, 0.8, "4 3"))
+        o.append(_line(cx, cy - R, cx, cy + R, S, 0.8, "4 3"))
+        for ang, off in paths:
+            o.append(chord(cx, cy, ang, off))
+        o.append(_lbl(cx, cy + 74, t1, "tb", "middle"))
+        o.append(_lbl(cx, cy + 88, t2, "ts", "middle"))
+    return _fig(svg(680, 236, "".join(o), "Các cách bố trí đường siêu âm"),
+                "Hình 28.51 · Một số cách bố trí đường siêu âm trong ống kín. Dùng nhiều đường dẫn tới "
+                "yêu cầu đoạn ống thẳng ngắn hơn.",
+                "Figure 28.51 · Possible sonic path arrangements for transit time flowmeters in closed "
+                "conduits. Using multiple paths leads to reduced straight run requirements.",
+                "Bốn mặt cắt ống với một, hai, hai và bốn đường siêu âm",
+                "Four pipe cross-sections with one, two, two and four acoustic paths")
+
+
+def fig_28_52():
+    """The source art is a v–z plot, not a channel section: the mean velocity is
+    drawn as a curve against height above the bed, with the three acoustic paths
+    v̄a1…v̄a3 marked at their own heights z1…z3 and the total depth h dimensioned."""
+    o = [_defs()]
+    x0, y0, top = 120, 262, 58
+    hgt = y0 - top
+
+    def vx(v):
+        return x0 + (v - 0.28) * 520
+
+    # axes
+    o.append(_arr(x0, y0, x0, top - 16, E, "ah28", 1.3))
+    o.append(_arr(x0, y0, 620, y0, E, "ah28", 1.3))
+    o.append(_lbl(x0 - 6, top - 22, "z (m)", "tb", "end"))
+    o.append(_lbl(620, y0 + 22, "v (m/s)", "tb", "end"))
+
+    # mean vertical velocity profile
+    pts = []
+    for k in range(1, 61):
+        z = k / 60.0
+        v = 0.30 + 0.52 * _m.log10(1 + 40 * z) / _m.log10(41)
+        pts.append("%s,%s" % (_f(vx(v)), _f(y0 - z * hgt)))
+    o.append(_path("M" + " L".join(pts), E, 2.0))
+
+    # the three acoustic paths, each an arrow out to the profile
+    for zf, nm in ((0.15, "v̄a1"), (0.45, "v̄a2"), (0.75, "v̄a3")):
+        y = y0 - zf * hgt
+        v = 0.30 + 0.52 * _m.log10(1 + 40 * zf) / _m.log10(41)
+        o.append(_arr(x0 + 4, y, vx(v), y, S, "ah28s", 1.4))
+        o.append(_lbl(x0 + 8, y - 6, nm, "ts"))
+    # free-surface path
+    o.append(_arr(x0 + 4, top + 2, vx(0.82), top + 2, S, "ah28s", 1.4))
+    o.append(_lbl(vx(0.82) + 6, top + 6, "v̄a", "ts"))
+
+    # depth dimension
+    o.append(_darr(470, y0, 470, top, E))
+    o.append(_lbl(462, (y0 + top) / 2, "h", "tb", "end"))
+    # path-height dimensions, measured from the bed
+    for xd, zf, nm in ((512, 0.15, "z₁"), (554, 0.45, "z₂"), (596, 0.75, "z₃")):
+        y = y0 - zf * hgt
+        o.append(_darr(xd, y0, xd, y, E))
+        o.append(_lbl(xd + 7, (y0 + y) / 2 + 4, nm, "ts"))
+    return _fig(svg(680, 300, "".join(o), "Phân bố vận tốc theo phương đứng trong kênh hở"),
+                "Hình 28.52 · Kênh hở: một dạng phân bố vận tốc theo phương đứng có thể gặp.",
+                "Figure 28.52 · Open channel: possible vertical velocity distribution.",
+                "Đồ thị vận tốc trung bình theo độ cao z trên đáy, với ba đường âm ở các độ cao "
+                "z1, z2, z3 và chiều sâu nước h",
+                "Mean velocity against height z above the bed, with three acoustic paths at "
+                "heights z1, z2, z3 and the water depth h")
+
+
+def fig_28_53():
+    """Source art: v–z plot of the logarithmic profile with a three-level
+    dimension chain (h, z, z₀) on the left and v̄* marked at the free surface."""
+    o = [_defs()]
+    x0, y0, top = 240, 292, 84
+    hgt = y0 - top
+
+    def vx(v):
+        return x0 + (v - 0.28) * 420
+
+    o.append(_arr(x0, y0, x0, top - 34, E, "ah28", 1.4))
+    o.append(_arr(x0, y0, 620, y0, E, "ah28", 1.4))
+    o.append(_lbl(x0 - 8, top - 38, "z (m)", "tb", "end"))
+    o.append(_lbl(620, y0 + 22, "v (m/s)", "tb", "end"))
+
+    # logarithmic profile
+    pts = []
+    for k in range(1, 61):
+        z = k / 60.0
+        v = 0.30 + 0.52 * _m.log10(1 + 40 * z) / _m.log10(41)
+        pts.append("%s,%s" % (_f(vx(v)), _f(y0 - z * hgt)))
+    o.append(_path("M" + " L".join(pts), E, 2.0))
+
+    # free surface
+    o.append(_line(x0, top, 480, top, E, 1.4))
+    for dx in (22, 40, 58):
+        o.append(_line(x0 + dx, top + 4, x0 + dx + 14, top + 4, S, 1.0))
+    o.append(_lbl(x0 + 96, top - 6, "v̄*", "tb"))
+
+    # v(z) annotation arrow
+    yz = y0 - 0.45 * hgt
+    vz = 0.30 + 0.52 * _m.log10(1 + 40 * 0.45) / _m.log10(41)
+    o.append(_arr(x0 + 4, yz, vx(vz), yz, S, "ah28s", 1.3))
+    o.append(_lbl((x0 + vx(vz)) / 2 - 10, yz - 8, "v(z)", "ts"))
+
+    # dimension chain: h, then z, then z₀, each from the bed
+    for xd, ytop, nm, side, yl in ((122, top, "h", "end", (y0 + top) / 2),
+                                   (166, yz, "z", "end", (y0 + yz) / 2),
+                                   (206, y0 - 20, "z₀", "end", y0 - 10)):
+        o.append(_darr(xd, y0, xd, ytop, E))
+        for yy in (y0, ytop):
+            o.append(_line(xd, yy, x0 - 2, yy, S, 0.8, "7 3 2 3"))
+        if side == "end":
+            o.append(_lbl(xd - 7, yl + 4, nm, "tb", "end"))
+        else:
+            o.append(_lbl(xd + 7, yl, nm, "ts"))
+    return _fig(svg(680, 330, "".join(o), "Quy luật logarit của prôfin vận tốc kênh hở"),
+                "Hình 28.53 · Quy luật logarit mô tả prôfin vận tốc trong kênh hở.",
+                "Figure 28.53 · Logarithmic law describing the open-channel velocity profile.",
+                "Đồ thị vận tốc theo độ cao z, đường cong logarit, với các kích thước h, z và z₀",
+                "Velocity against height z: a logarithmic curve, with h, z and z₀ dimensioned")
+
+
+def fig_28_54():
+    return _kh_chart("Hình 28.54 · Hệ số k<sub>h</sub> theo quy luật logarit trong kênh hở với hai độ "
+                     "nhám đáy k<sub>s</sub> khác nhau.",
+                     "Figure 28.54 · Logarithmic k_h factor in open channels for two different "
+                     "roughnesses k_s.",
+                     "Đồ thị k_h theo z/h với hai đường: đáy nhám và đáy trơn",
+                     "A k_h against z/h plot with rough-bed and smooth-bed curves",
+                     rough="nhám", smooth="trơn")
+
+
+def fig_28_56():
+    return _kh_chart("Hình 28.56 · Hệ số hiệu chỉnh k<sub>h</sub> theo quy luật luỹ thừa trong kênh hở "
+                     "với hai độ nhám khác nhau.",
+                     "Figure 28.56 · Power law k_h factor in open channels for two different "
+                     "roughnesses.",
+                     "Đồ thị k_h theo z/h cho m = 5 (nhám) và m = 10 (trơn)",
+                     "A k_h against z/h plot for m = 5 (rough) and m = 10 (smooth)",
+                     rough="nhám, m = 5", smooth="trơn, m = 10")
+
+
+def _kh_chart(cap_vi, cap_en, aria_vi, aria_en, rough, smooth):
+    o = [_defs()]
+    x0, x1, y0, y1 = 150, 560, 60, 300
+
+    def X(z):
+        return x0 + z * (x1 - x0)
+
+    def Y(k):
+        return y1 - (k - 0.7) / (1.4 - 0.7) * (y1 - y0)
+
+    o.append(_rect(x0, y0, x1 - x0, y1 - y0, P, E, 1.3))
+    for z in (0, 0.2, 0.4, 0.6, 0.8, 1.0):
+        o.append(_line(X(z), y0, X(z), y1, "#d8d8d8", 0.9))
+        o.append(_lbl(X(z), y1 + 14, "%g" % z, "ts", "middle"))
+    for k in (0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4):
+        o.append(_line(x0, Y(k), x1, Y(k), "#d8d8d8", 0.9))
+        o.append(_lbl(x0 - 6, Y(k) + 3, "%.1f" % k, "ts", "end"))
+    # rough: high near the bed, falling below the smooth curve
+    pr = [(0.02, 1.36), (0.05, 1.20), (0.10, 1.11), (0.20, 1.03), (0.35, 0.97),
+          (0.50, 0.935), (0.70, 0.895), (0.90, 0.868), (1.00, 0.860)]
+    ps = [(0.02, 1.18), (0.05, 1.10), (0.10, 1.055), (0.20, 1.015), (0.35, 0.978),
+          (0.50, 0.952), (0.70, 0.928), (0.90, 0.912), (1.00, 0.906)]
+    o.append(_path("M" + " L".join("%s,%s" % (_f(X(a)), _f(Y(b))) for a, b in pr), E, 2.0))
+    o.append(_path("M" + " L".join("%s,%s" % (_f(X(a)), _f(Y(b))) for a, b in ps),
+                   S, 1.8, "none", "7 4"))
+    # legend
+    o.append(_line(400, 78, 436, 78, E, 2.0))
+    o.append(_lbl(442, 82, rough, "ts"))
+    o.append(_line(400, 96, 436, 96, S, 1.8, "7 4"))
+    o.append(_lbl(442, 100, smooth, "ts"))
+    o.append(_lbl((x0 + x1) / 2, y1 + 34, "z/h", "ts", "middle"))
+    o.append(_lbl(x0 - 10, y0 - 8, "k_h", "tb", "end"))
+    return _fig(svg(680, 350, "".join(o), "Hệ số hiệu chỉnh kênh hở"), cap_vi, cap_en,
+                aria_vi, aria_en)
+
+
+def fig_28_55():
+    o = [_defs()]
+    x0, y0 = 210, 300
+    o.append(_arr(x0, y0, x0, 70, E, "ah28", 1.4))
+    o.append(_arr(x0, y0, 600, y0, E, "ah28", 1.4))
+    o.append(_lbl(x0 - 8, 66, "z (m)", "tb", "end"))
+    o.append(_lbl(608, y0 + 4, "v (m/s)", "tb"))
+    pts = []
+    for k in range(1, 61):
+        z = k / 60.0
+        v = z ** 0.20
+        pts.append("%s,%s" % (_f(x0 + v * 300), _f(y0 - z * 210)))
+    o.append(_path("M" + " L".join(pts), E, 2.0))
+    o.append(_line(x0, y0 - 210, 520, y0 - 210, S, 0.9, "4 3"))
+    o.append(_lbl(526, y0 - 206, "v̄ₛ", "tb"))
+    o.append(_darr(180, y0, 180, y0 - 210, E))
+    o.append(_lbl(174, 190, "h", "tb", "end"))
+    o.append(_lbl(330, 150, "v(z) = v̄ₛ (z/h)", "ts"))
+    # exponent raised clear of the formula baseline so the two never collide
+    o.append(_lbl(416, 136, "1/m", "ts"))
+    return _fig(svg(680, 330, "".join(o), "Quy luật luỹ thừa của prôfin vận tốc kênh hở"),
+                "Hình 28.55 · Quy luật luỹ thừa mô tả prôfin vận tốc trong kênh hở.",
+                "Figure 28.55 · Power law describing open-channel velocity profile.",
+                "Đường cong luỹ thừa của vận tốc theo độ cao z, với chiều sâu h",
+                "A power-law curve of velocity against height z, with the depth h marked")
+
+
+def fig_28_57():
+    o = [_defs()]
+    # channel cross-section
+    o.append(_path("M80,190 L110,86 L560,86 L590,190", E, 1.8))
+    o.append(_line(80, 190, 590, 190, E, 1.8))
+    o.append(_line(110, 86, 560, 86, BLUE, 1.3, "7 4"))
+    o.append(_lbl(120, 78, "mặt nước", "ts"))
+    # paths
+    ys = [110, 132, 154, 176]
+    names = ["v̄aN", "v̄ai+1", "v̄ai", "v̄a1"]
+    for y, nm in zip(ys, names):
+        o.append(_line(120, y, 550, y, G, 1.4, "7 4"))
+        o.append(_lbl(112, y + 4, nm, "ts", "end"))
+        o.append(_arr(130, y + 12, 200, y + 12, S, "ah28s", 1.2))
+    o.append(_lbl(90, 206, "các đường siêu âm", "ts"))
+    # section labels
+    o.append(_lbl(330, 122, "Q", "ts"))
+    o.append(_lbl(338, 126, "đỉnh", "ts"))
+    o.append(_lbl(330, 168, "Qᵢ", "ts"))
+    o.append(_lbl(330, 186, "Q", "ts"))
+    o.append(_lbl(338, 190, "đáy", "ts"))
+    # z dimension
+    o.append(_darr(470, 154, 470, 176, E))
+    o.append(_lbl(478, 168, "zᵢ", "ts"))
+    o.append(_lbl(478, 152, "zᵢ₊₁", "ts"))
+    o.append(_line(470, 154, 500, 154, S, 0.8, "2 3"))
+    o.append(_line(470, 176, 500, 176, S, 0.8, "2 3"))
+    # level transducer, mounted above the surface
+    o.append(_rect(520, 38, 26, 30, "#dce6f2", E, 1.4))
+    o.append(_arr(533, 68, 533, 84, S, "ah28s", 1.3))
+    o.append(_lbl(552, 50, "cảm biến", "ts"))
+    o.append(_lbl(552, 64, "mực nước", "ts"))
+    return _fig(svg(680, 220, "".join(o), "Đo nhiều đường trong kênh hở theo phương pháp mặt cắt trung bình"),
+                "Hình 28.57 · Đo nhiều đường trong kênh hở theo phương pháp mặt cắt trung bình. Vận tốc "
+                "dòng được đo ở nhiều mức khác nhau.",
+                "Figure 28.57 · Multipath measurement in open channels by the mean section method. The "
+                "flow velocity is measured at several levels.",
+                "Mặt cắt kênh hở với bốn đường siêu âm ngang ở các độ cao khác nhau",
+                "An open-channel section with four horizontal acoustic paths at different heights")
+
+
+def fig_28_58():
+    o = [_defs()]
+    # penstock, running left to right then bending down
+    o.append(_path("M60,170 L420,170 L470,214 L520,258", E, 3.0))
+    o.append(_path("M60,196 L420,196 L462,232 L508,276", E, 3.0))
+    o.append(_lbl(70, 244, "ống áp lực", "ts"))
+    # ultrasonic sections: one at the intake, one downstream of the surge chamber
+    for x in (120, 390):
+        o.append(_rect(x - 22, 166, 44, 34, "url(#hatch28)", E, 1.3))
+    o.append(_lbl(120, 156, "đoạn siêu âm", "ts", "middle"))
+    o.append(_lbl(436, 152, "đoạn siêu âm", "ts", "middle"))
+    # surge chamber
+    o.append(_rect(300, 40, 66, 96, FILL, E, 1.6))
+    o.append(_path("M300,136 L262,170 L404,170 L366,136", E, 1.6))
+    o.append(_line(300, 96, 366, 96, BLUE, 1.2, "7 4"))
+    o.append(_lbl(380, 44, "tháp điều áp", "ts"))
+    o.append(_lbl(380, 58, "(surge chamber)", "ts"))
+    # flow arrows, both pointing downstream
+    o.append(_arr(70, 183, 96, 183, S, "ah28s", 1.5))
+    o.append(_arr(320, 183, 360, 183, S, "ah28s", 1.5))
+    o.append(_lbl(70, 214, "Q vào", "ts"))
+    o.append(_lbl(346, 214, "Q ra", "ts"))
+    return _fig(svg(680, 310, "".join(o), "Phát hiện rò rỉ ống áp lực bằng lưu lượng kế thời gian truyền"),
+                "Hình 28.58 · Phát hiện rò rỉ ống áp lực bằng lưu lượng kế thời gian truyền. Ống áp lực "
+                "có tháp điều áp, gây dao động khối lượng khi tải tuabin thay đổi.",
+                "Figure 28.58 · Penstock leak detection by transit time flowmeter. The penstock "
+                "contains a surge chamber that causes mass oscillation in case of load changes of the "
+                "turbine.",
+                "Ống áp lực nằm ngang có tháp điều áp thẳng đứng và hai đoạn siêu âm ở hai đầu",
+                "A horizontal penstock with a vertical surge chamber and two ultrasonic sections")
+
+
 FIGS = [fig_28_1(), fig_28_2(), fig_28_3(), fig_28_4(), fig_28_5(), fig_28_6(),
         fig_28_7(), fig_28_8(), fig_28_9(), fig_28_10(), fig_28_11(), fig_28_12(),
         fig_28_13(), fig_28_14(), fig_28_15(), fig_28_16(), fig_28_17(), fig_28_18(),
@@ -2072,7 +2677,11 @@ FIGS = [fig_28_1(), fig_28_2(), fig_28_3(), fig_28_4(), fig_28_5(), fig_28_6(),
         fig_28_29(), fig_28_30(), fig_28_31(), fig_28_32(),
         fig_28_33(), fig_28_34(), fig_28_35(),
         fig_28_36(), fig_28_37(), fig_28_38(), fig_28_39(), fig_28_40(),
-        fig_28_41(), fig_28_42()]
+        fig_28_41(), fig_28_42(),
+        fig_28_43(), fig_28_44(), fig_28_45(), fig_28_46(), fig_28_47(),
+        fig_28_48(), fig_28_49(), fig_28_50(), fig_28_51(), fig_28_52(),
+        fig_28_53(), fig_28_54(), fig_28_55(), fig_28_56(), fig_28_57(),
+        fig_28_58()]
 
 
 def fig(n):
