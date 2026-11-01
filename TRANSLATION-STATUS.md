@@ -1762,6 +1762,76 @@ horizontal overflow (checked with a same-origin iframe probe that reports `scrol
 
 ---
 
+## Chapter 28 — Flow Measurement (IN PROGRESS, not yet published)
+
+**This chapter is not finished and is deliberately not registered in `DONE`.** Do not add it to
+`build/reader_handbook.py` or bump the progress counter until all eleven sections exist — `make_sitemap.py`
+walks the whole tree, so a half-built page would land in the sitemap and be crawlable.
+
+**Scale, for planning.** Chapter 28 is by far the largest in the book: **132 source pages, 11 sections,
+92 figures (28.1–28.92), 162 equations (28.1–28.99 plus suffixes), 23 tables**, and ten authors. Chapter 27
+was 26 pages and 21 figures. Expect roughly **150,000 px of page height** at a 1424 px viewport
+(28.1 alone measures 14,552 px).
+
+**Agreed treatment:** full-length faithful translation, one page, spanning several sessions.
+
+### Section map (source page → figures / equations / tables)
+
+| Section | Pages | Figures | Tables |
+|---|---|---|---|
+| 28.1 Differential Pressure Flowmeters | 3–13 | 1–6 | 28.1–28.4 |
+| 28.2 Variable Area Flowmeters | 14–23 | 7–15 | 28.5–28.7 |
+| 28.3 Positive Displacement Flowmeters | 24–33 | 16–20 | — |
+| 28.4 Turbine and Vane Flowmeters | 34–40 | 21–29 | — |
+| 28.5 Impeller Flowmeters | 41–57 | 30–33 | — |
+| 28.6 Electromagnetic Flowmeters | 58–63 | 34–35 | 28.8–28.9 |
+| 28.7 Ultrasonic Flowmeters | 64–74 | 36–41 | 28.10 |
+| 28.8 Vortex Shedding Flowmeters | 75–89 | 42–57 | 28.11 |
+| 28.9 Thermal Mass Flow Sensors | 90–99 | 59–67 | 28.12 |
+| 28.10 Coriolis Effect Mass Flowmeters | 100–118 | 68–80 | 28.13–28.23 |
+| 28.11 Drag Force Flowmeters | 119–132 | 81–92 | — |
+
+Figure 28.58 has no caption in the extracted text (its caption either failed to extract or is set
+differently); it needs to be read off the page image at p. 91 when 28.8 is reached.
+
+### Done so far
+
+- **Source extracted.** `work/Ch28.pdf` (copied from the junction), text in `work/hb_ch28.txt`
+  (338,511 chars), 132 page images in `work/ch28img/` at 140 dpi.
+- **`build/hb28fig.py`** — primitives for flow drawings (`_pipe`, `_tap`, `_profile`, `_flowarrow`)
+  plus **figures 1–6**, `work/qa_figs.py hb28fig` → **6 figures, problems 0**, visual pass done.
+- **`build/reader_hb_ch28.py`** — module scaffold plus **section 28.1 complete** in both languages:
+  6 figures, 6 equations, 4 tables, 14 references, defining-terms block. 57 kB per language.
+  Sections are added as `sec_NN_vi` / `sec_NN_en` and appended to the `SECTIONS_VI` / `SECTIONS_EN`
+  lists at the bottom; nothing else needs touching.
+- Generated page verified locally at 1424 px: no horizontal overflow, figures legible, tables fit.
+
+### Conventions set for this chapter
+
+- **Table 28.1 is transposed** (rows = attributes, columns = orifice / Venturi / nozzle). The source
+  has eleven columns and would not fit the reader column width.
+- **Defining-terms blocks render as a two-column `.tbl`**, not a `<dl>` — `library.css` has no
+  `.deflist` rule and I did not want to touch the shared stylesheet mid-chapter.
+- Equation numbers run 28.1–28.99 and then continue with letter suffixes; keep them as printed.
+- 28.2 onwards: add an in-page jump index (28.1–28.11) at the top of `body_vi()` / `body_en()` when
+  the last section lands — a 150,000 px page needs one.
+
+### To resume
+
+1. Read the next section's pages from `work/hb_ch28.txt`, and its figures from `work/ch28img/`.
+2. Append figures to `build/hb28fig.py`, extending the `FIGS` list.
+3. Append `sec_28_N_vi()` / `sec_28_N_en()` to `build/reader_hb_ch28.py` and add them to the two
+   `SECTIONS_*` lists.
+4. `PYTHONPATH=build python work/qa_figs.py hb28fig` and `PYTHONPATH=build python build/reader_hb_ch28.py`.
+5. When all eleven sections are in: register `28: "ch28-flow-measurement"` in `DONE`, bump
+   `("progress", 101, 27)` → `("progress", 101, 28)` in `books_site.py`, run the full pipeline,
+   then commit and push.
+
+The generated `books/read/…/ch28-flow-measurement/` and `vi/…` directories exist locally for preview
+but are **untracked on purpose** — commit them only together with the finished chapter.
+
+---
+
 ## Site shell — one masthead for every page
 
 The main site and the library sub-site had drifted into two different headers. The main one was a 66px
