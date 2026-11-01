@@ -75,7 +75,7 @@ CH = {
     21: ("Density Measurement", "Đo khối lượng riêng"),
     22: ("Strain Measurement", "Đo biến dạng"),
     23: ("Force Measurement", "Đo lực"),
-    24: ("Torque and Power Measurement", "Đo mô men xoắn và công suất"),
+    24: ("Torque and Power Measurement", "Đo mômen xoắn và công suất"),
     25: ("Tactile Sensing", "Cảm biến xúc giác"),
     26: ("Pressure and Sound Measurement", "Đo áp suất và âm thanh"),
     27: ("Acoustic Measurement", "Đo âm học"),
@@ -184,7 +184,8 @@ DONE = {1: "ch01-characteristics-of-instrumentation",
         20: "ch20-mass-and-weight-measurement",
         21: "ch21-density-measurement",
        22: "ch22-strain-measurement",
-       23: "ch23-force-measurement"}
+       23: "ch23-force-measurement",
+       24: "ch24-torque-and-power-measurement"}
 
 
 def num(n, lang):
