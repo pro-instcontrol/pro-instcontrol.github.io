@@ -123,9 +123,9 @@ def reader_block(pg):
             "The next section draws the line between the two disciplines. Both source pages are "
             "open below, in this page — scroll inside the frame, or open the full page if you want "
             "the navigation around it.",
-            "Phần tiếp theo vạch ranh giới giữa hai ngành. Cả hai trang gốc được mở ngay bên dưới, "
-            "trong chính trang này — cuộn trong khung, hoặc mở trang đầy đủ nếu muốn có menu "
-            "điều hướng.",
+            "Phần tiếp theo vạch ranh giới giữa hai ngành Điều khiển quá trình - Quan trắc địa "
+            "kỹ thuật. Cả hai trang gốc được mở ngay bên dưới, trong chính trang này — cuộn trong "
+            "khung, hoặc mở trang đầy đủ nếu muốn có menu điều hướng.",
         ),
         pg.span("Comparison", "So sánh"),
         pg.span("Geotechnical", "Địa kỹ thuật"),
