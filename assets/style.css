@@ -863,3 +863,86 @@ html.embed .wrap{padding:0 26px}
   .reader iframe{height:66vh;min-height:320px}
   .pane-open{margin-left:0}
 }
+
+/* ============================================================
+   Unified header — every page wears the same masthead as the
+   library (books) sub-site: a serif wordmark alone on the first
+   row, then a row of small grey links closed by the language
+   pill, with the current page underlined instead of set in a
+   tinted pill. Metrics come straight from books/assets/library.css
+   so the two headers cannot drift apart.
+
+   The breakpoint is 1100px: a 1440px window reports a 1424px
+   viewport once the scrollbar is removed, so the old 1439px rule
+   left ordinary desktops on the burger menu. Below 1100px the
+   burger keeps the navigation usable.
+
+   Grid rather than flex-wrap on purpose: with wrapping flex the
+   language pill drops onto a line of its own as soon as the links
+   are a few pixels too wide. Pinned to the second row's end it
+   cannot.
+   ============================================================ */
+@media (min-width:1100px){
+  .topbar .wrap{max-width:none}
+  /* .wrap and .bar are the same element, so the gutter lives here */
+  .topbar .bar{
+    display:grid;
+    grid-template-columns:1fr auto;
+    grid-template-areas:"brand brand" "nav pill";
+    align-items:center;
+    gap:10px 17px;
+    height:auto;
+    padding:14px 32px;
+  }
+  /* wordmark gets a row of its own — serif, black, no tagline */
+  .topbar .brand{grid-area:brand;color:var(--ink);gap:10px}
+  .topbar .brand .mark{color:var(--ink)}
+  .topbar .brand-txt{flex-direction:row;align-items:baseline}
+  .topbar .brand-txt strong{
+    font-family:"Cormorant Garamond","Playfair Display","Times New Roman",Georgia,serif;
+    font-size:1.32rem;font-weight:600;letter-spacing:.02em;color:var(--ink);
+  }
+  .topbar .brand-txt em{display:none}
+  /* link row — undo the drop-down panel styling from the mobile query */
+  .topbar .nav{
+    grid-area:nav;
+    display:flex;
+    position:static;
+    flex-direction:row;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:7px 17px;
+    min-width:0;
+    margin-left:0;
+    padding:0;
+    border:0;
+    box-shadow:none;
+    background:none;
+    font-size:.84rem;
+    letter-spacing:.02em;
+  }
+  .topbar .nav-link{
+    color:var(--ink2);font-size:.84rem;font-weight:400;
+    padding:0 0 2px;border-radius:0;background:none;
+    border-bottom:1px solid transparent;white-space:nowrap;
+    transition:border-color .25s,color .25s;
+  }
+  .topbar .nav-link:hover{
+    background:none;color:var(--ink);border-bottom-color:var(--ink);
+    text-decoration:none;
+  }
+  .topbar .nav-link.active{
+    background:none;color:var(--ink);border-bottom-color:var(--ink);
+    font-weight:500;
+  }
+  /* language pill — same border, radius and padding as .lang-switch */
+  .topbar .bar-right{grid-area:pill;justify-self:end}
+  .topbar .burger{display:none}
+  .topbar .lang{
+    border:1px solid var(--line);border-radius:999px;padding:5px 13px;
+    background:#fff;font-family:var(--sans);font-size:.8rem;
+    letter-spacing:.02em;color:var(--ink2);
+  }
+  .topbar .lang:hover{border-color:var(--ink);color:var(--ink)}
+  .topbar .lang .on{color:var(--ink);font-weight:500}
+}
