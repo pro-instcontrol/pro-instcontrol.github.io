@@ -1,10 +1,17 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-10-31 (session 25 — Chapter 25 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 28 — Chapters 100–101 and Appendix A added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 26** and onward. Chapters 1–25 are done, live,
-> and registered. `work/hb_ch25.txt` is translated; Chapter 26+ source PDFs must be extracted
-> from the 117-file handbook library before translation.
+> **Where to start next:** Handbook **Chapter 99** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **100, 101** and **Appendix A** are done, live
+> and registered; 28–99 are still `chờ dịch`. The reverse sequence is 99 (*Electropneumatic and
+> Electrohydraulic Instruments*), 98, 97 … down to and including 80 (*Bộ khuếch đại và điều hoà
+> tín hiệu*). Source text for every chapter is already extracted into `work/hb_chNN.txt`.
+>
+> **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
+> pushing; both of us have hit conflicts in `build/reader_handbook.py` (`DONE`) and in the two
+> book-TOC `index.html` files. Resolve by *merging both* entries and regenerating, never by
+> discarding the other agent's rows.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
 > Instrumented Systems (16/16) each have full Vietnamese translations and English companion
@@ -42,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–25** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -74,6 +81,12 @@ Chapters done, with their slugs and build scripts:
 | HB 22 | Strain Measurement | `ch22-strain-measurement` | `reader_hb_ch22.py` + `hb22fig.py` | 14 | ~13k |
 | HB 23 | Force Measurement | `ch23-force-measurement` | `reader_hb_ch23.py` + `hb23fig.py` | 17 | ~19k |
 | HB 24 | Torque and Power Measurement | `ch24-torque-and-power-measurement` | `reader_hb_ch24.py` + `hb24fig.py` | 7 | ~19k |
+| HB 25 | Tactile Sensing | `ch25-tactile-sensing` | `reader_hb_ch25.py` + `hb25fig.py` | — | — |
+| HB 26 | Pressure and Sound Measurement | `ch26-pressure-and-sound-measurement` | `reader_hb_ch26.py` + `hb26fig.py` | — | — |
+| HB 27 | Acoustic Measurement | `ch27-acoustic-measurement` | `reader_hb_ch27.py` + `hb27fig.py` | 21 | — |
+| HB 100 | Explosion-Proof Instruments | `ch100-explosion-proof-instruments` | `reader_hb_ch100.py` + `hb100fig.py` | 7 | ~9.5k |
+| HB 101 | Measurement and Identification of Brush, Brushless, and dc Stepping Motors | `ch101-measurement-and-identification-of-stepping-motors` | `reader_hb_ch101.py` + `hb101fig.py` | 5 | ~7.5k |
+| App. A | Units and Conversions | `appendix-a-units-and-conversions` | `reader_hb_app.py` | 0 | ~3k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
@@ -1779,3 +1792,73 @@ Below 1100px the burger menu keeps the navigation usable, unchanged from before.
 `ASSET_VER` goes 12 → 13 so browsers refetch the stylesheet; all 20 main pages plus `404.html` were
 rebuilt and now reference `style.css?v=13`. Library and reader pages keep their own `library.css` and
 were unaffected. Link check after the change: **533 pages, 14,571 local references, 0 broken**.
+
+---
+
+## Session 28 — Appendix A, Chapter 101 and Chapter 100 (working the book backwards)
+
+The owner asked for the handbook to be finished **from the back**: start at Appendix A, then 101,
+100, 99 … down to 80. This session shipped the first three of that sequence, all live.
+
+**Appendix A — Units and Conversions** (`build/reader_hb_app.py`, slug
+`appendix-a-units-and-conversions`). No appendix had ever been built, so the slug, the `APPENDIX`
+and `APP_TITLE` maps in `reader_handbook.py`, the TOC row and the nav slot all had to be invented.
+`DONE` is keyed by chapter *number*, so the appendix is registered separately and
+`chapter_nav.py` gained a `FIRST_APPENDIX` branch: the last chapter's right-hand slot now points at
+Appendix A instead of greying out. Five tables — A.1 SI base units, A.2 the seven international
+definitions, A.3 derived units, A.4 the twenty prefixes (two-column layout via `_rows_a4`), A.5
+seventeen quantity groups and 117 conversion rows. 236 `<tr>`, 0 figures, 0 equations.
+
+Two new table classes were needed in `library.css` because the generic `.tbl` misbehaved:
+`.tbl.defs` (lets the long definition column wrap — the one-column table had inherited
+`.tbl.moc`'s `white-space: nowrap` and clipped at the right edge) and `.tbl.units` (nowrap from
+column 2, `min-width` on column 1 — unit expressions were breaking mid-token as `m·kg·s-` / `²`).
+`.tbl.conv` keeps the factor column nowrap and right-aligned with tabular figures.
+
+Print/OCR defects corrected and listed in a translator's note on the page: ton-force 8,896,443 N;
+the missing in.² unit; the point (0.351 46 mm) added; light year recomputed 9.640 73 → 9.460 730 ×
+10¹⁵ m; rhe 10 Pa⁻¹·s⁻¹; Btu_IT/h 0.293 071 1 W; teaspoon 4.928 922 mL.
+
+**Chapter 101 — Stepping Motors** (`reader_hb_ch101.py` + `hb101fig.py`). Five figures, exactly
+the five in the source, nothing padded. 101.1 is a torque–speed curve computed from
+`T(f) = 1/(1 + (f/348)^0.887)` on a log speed axis; 101.2 is an H-bridge with a real 75 % duty
+train; 101.3/101.4 are the four-block closed-loop diagrams with summing junctions; 101.5 adds the
+microprocessor boundary. 24 equations (101.1)–(101.14) with subscripts, 7 references.
+Equation 101.5 is printed with `sin θ_ref` twice in the source; kept as printed and flagged.
+
+**Chapter 100 — Explosion-Proof Instruments** (`reader_hb_ch100.py` + `hb100fig.py`). Seven
+figures, 5 equation blocks (the four lumped-parameter equations keep the source's numbers
+100.1–100.4; the Z<sub>w</sub> equation is unnumbered in the print and stays so), three tables,
+ten references, four defined terms.
+
+### The bug that cost the most time — `<sub>` inside `<svg>`
+
+The first render of figures 100.1–100.5 was wrecked: parameter columns collapsed into one
+horizontal run of text, captions appeared twice, and labels sat outside their boxes. The cause is
+not geometry. **`<sub>` and `<sup>` are on the HTML parser's "breakout" list**: inside SVG foreign
+content the parser pops out of the SVG at the first one and every following element is parsed as
+loose HTML. So `<text>V<sub>min</sub> = 12 V</text>` silently closes the figure.
+
+**Rule: never emit `<sub>`/`<sup>` inside `<svg>` text.** Use `<tspan font-size="7.5" dy="2.5">`
+for subscripts and `<tspan dy="-2.5">` to come back up — that is what `_rich()` in `hb100fig.py`
+does. `<sub>` is fine in HTML contexts (figcaptions, equations, body text).
+
+Related: raw `$_{sc}$` markup leaked into two axis titles of figure 100.2, and `_zener_v()` drew
+the lead straight through the triangle. All fixed; `_panel()` now also accepts an x-axis title as
+a `[(text, is_sub), …]` list so the subscripts survive.
+
+### Verification
+
+- `reader_handbook.py` → 102 TOC rows, 30 done rows, 14 sections, 101 chapters.
+- `chapter_nav.py` → 58 pages updated. Chapter 100 reads `← Chương 99 … Chương 101 →`; Chapter 101
+  now reads `← Chương 100 … Phụ lục A →`.
+- `check_links.py` → 539 pages, 14,777 local references, **0 broken**.
+- `make_sitemap.py` → 537 URLs, 524 with EN/VI pairs.
+- Chapter 100 page: 7 figures, 5 equations, 3 tables, 29 `<tr>`, 0 `<sub>` inside any SVG.
+
+### Note for the next session
+
+`books_site.TRANSLATED["measurement, instrumentation and sensors handbook"]` is
+`("progress", 101, 29)` — bump the third number with every chapter that lands, or the books
+catalogue shows a stale count. The `DONE` dict currently holds 27 chapters plus 100, 101 and
+Appendix A; the book TOC renders 28–99 as `chờ dịch`, which is correct.

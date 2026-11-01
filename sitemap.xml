@@ -356,6 +356,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch10-position-location-altitude/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch100-explosion-proof-instruments/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch100-explosion-proof-instruments/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch100-explosion-proof-instruments/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch100-explosion-proof-instruments/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch101-measurement-and-identification-of-stepping-motors/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch101-measurement-and-identification-of-stepping-motors/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch101-measurement-and-identification-of-stepping-motors/"/>
@@ -1947,6 +1953,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch10-position-location-altitude/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch10-position-location-altitude/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch10-position-location-altitude/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch100-explosion-proof-instruments/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch100-explosion-proof-instruments/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch100-explosion-proof-instruments/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch100-explosion-proof-instruments/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch101-measurement-and-identification-of-stepping-motors/</loc>
