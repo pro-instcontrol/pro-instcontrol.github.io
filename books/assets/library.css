@@ -515,6 +515,8 @@ p.tblcap {
 }
 .toc-list .st { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-mid); flex: none; }
 .toc-list li.done .st { color: #047857; }
+.toc-list .st a { color: inherit; border-bottom: none; cursor: pointer; }
+.toc-list .st a:hover { border-bottom: 1px solid currentColor; }
 
 .progress-bar {
   height: 6px; background: var(--gray-light); border-radius: 3px;

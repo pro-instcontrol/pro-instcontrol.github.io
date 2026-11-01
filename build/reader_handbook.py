@@ -178,7 +178,8 @@ DONE = {1: "ch01-characteristics-of-instrumentation",
         14: "ch14-angle-measurement",
         15: "ch15-tilt-measurement",
         16: "ch16-velocity-measurement",
-        17: "ch17-acceleration-vibration-shock-measurement"}
+        17: "ch17-acceleration-vibration-shock-measurement",
+        18: "ch18-time-measurement"}
 
 
 def num(n, lang):
@@ -244,8 +245,9 @@ def toc(lang):
                 rows.append(
                     '<li class="done"><span class="n">%d</span>'
                     '<span class="t"><a href="%s%s/">%s</a></span>'
-                    '<span class="st">%s</span></li>'
+                    '<span class="st"><a href="%s%s/">%s</a></span></li>'
                     % (c, base, DONE[c], esc(label),
+                       base, DONE[c],
                        "translated" if lang == "en" else "đã dịch"))
             else:
                 rows.append('<li><span class="n">%d</span>'
