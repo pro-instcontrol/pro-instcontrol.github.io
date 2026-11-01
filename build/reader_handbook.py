@@ -186,7 +186,8 @@ DONE = {1: "ch01-characteristics-of-instrumentation",
        22: "ch22-strain-measurement",
        23: "ch23-force-measurement",
        24: "ch24-torque-and-power-measurement",
-       25: "ch25-tactile-sensing"}
+       25: "ch25-tactile-sensing",
+       26: "ch26-pressure-and-sound-measurement"}
 
 
 def num(n, lang):

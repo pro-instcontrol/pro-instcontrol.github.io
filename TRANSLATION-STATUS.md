@@ -1639,3 +1639,46 @@ clickable badges**; progress pill reads 25/101 (`🟠 Đang dịch · 25/101 ch�
 **Chapters 1–25 done; 76 to go.** Next unit is Chapter 26. Same junction + `library/pdfindex.json`
 workflow; copy the needed `ChNN.pdf` into `work/`, extract, then follow the §4 recipe — and remember
 `books_site.py`. Build only the real figures the source contains — do not pad.
+
+## Session 26 — Chapter 26 (*Pressure and Sound Measurement*) added
+
+**Delivered:** Handbook Chapter 26 — K. H.-L. Chau (Analog Devices); R. Goehner, E. Drubetsky,
+H. M. Brady, W. H. Bayles Jr. (The Fredericks Company); P. C. Pedersen (Worcester Polytechnic Institute),
+58 source pages, `work/hb_ch26.txt` 2,331 lines. Full Vietnamese translation plus English companion at
+`/vi/books/read/…/ch26-pressure-and-sound-measurement/` and `/books/read/…/ch26-pressure-and-sound-measurement/`.
+Handbook progress 25/101 → **26/101**.
+
+**Structure:** 26.1 pressure measurement (basic definitions + unit conversion; sensing principles —
+sensing elements, detection methods, capacitive, piezoresistive; silicon micromachined sensors;
+limitations) · 26.2 vacuum measurement (background/history; direct-reading gages; indirect-reading gages;
+partial pressure and mass spectrometers) · 26.3 ultrasound measurement (applications; basic parameters;
+conceptual description; sound velocity; wave propagation; intensity and sound levels; reflection/
+refraction at boundaries; attenuation; CW piston fields; single-element/array transducers and the
+piezoelectric/magnetostrictive phenomena; selection criteria; basic parameters; theory and applications
+incl. Doppler and diffraction; review of applications; manufacturers; advanced topics).
+**37 figures, 52 equations, 4 tables.**
+
+**Reconstruction note.** The figure-detail vision pass was rate-limited for the whole of this session
+(resets 2026-11-02 09:08 UTC+8). All 37 figures were therefore reconstructed from their printed captions
+plus standard textbook geometry (`build/hb26fig.py`, `FIGS 37`), and the 52 equations were transcribed
+from the text dump plus standard physics. Equations whose OCR form was too mangled to trust carry an
+inline `# NOTE: reconstructed …` marker in the reader — 26.4, 26.13, 26.30, 26.31, 26.32, 26.34, 26.35,
+26.38, 26.39 and the diffraction set 26.46–26.52. **A visual QA pass on `work/ch26img/*.png` is still
+pending** and must confirm every figure's geometry and every equation's sub/superscripts once vision is
+available.
+
+**Figure QA.** `work/qa_figs.py hb26fig` went 22 → 11 → 8 problems. The 8 remaining are the known
+`Box.axes` systemic artefact (y-axis label placed at x = 10 and rotated, flagged off-canvas and
+overlapping the `0,5` tick on chart figures 16/18/20/30) — accepted exactly as in prior chapters. Genuine
+defects fixed: **26.1** (three-column grid 28/248/468 → 80/290/500 so the left-column labels clear the
+canvas edge), **26.9** (canvas height 510 → 560 so the x-axis label is not clipped; bar extents recomputed
+with `min/max` so bars no longer invert for downward ranges), **26.16** (N₂ and He labels separated to
+(2.4, 0.12) and (0.8, 0.45)), **26.23** (the `C (bản thu mỏng)` label moved below the collector to
+(360, 200) so it no longer runs into the ion-current box).
+
+**Verification:** 37 figures, 52 equations and 4 tables on both sides; 3 `h2` and 26 `h3` both sides
+(heading parity checked). Local build: TOC **26 done rows with clickable badges**; progress pill reads
+26/101 (`🟠 Đang dịch · 26/101 chương` / `🟠 Translating · 26 of 101 chapters`). Sitemap **531 URLs, 516
+EN/VI pairs**; link check **533 pages, 14,491 local references, 0 broken**.
+
+**Chapters 1–26 done; 75 to go.** Next unit is Chapter 27.
