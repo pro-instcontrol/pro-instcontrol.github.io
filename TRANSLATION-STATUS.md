@@ -1,9 +1,9 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-10-31 (session 22 — Chapter 22 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-10-31 (session 23 — Chapter 23 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 23** (and onward). Chapters
-> 1–22 are done, live, and registered. `work/hb_ch22.txt` is translated; Chapter 23+ source
+> **Where to start next:** Handbook **Chapter 24** (and onward). Chapters
+> 1–23 are done, live, and registered. `work/hb_ch23.txt` is translated; Chapter 24+ source
 > PDFs must be extracted from the 117-file handbook library before translation.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
@@ -42,7 +42,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–22** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–23** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -72,6 +72,7 @@ Chapters done, with their slugs and build scripts:
 | HB 20 | Mass and Weight Measurement | `ch20-mass-and-weight-measurement` | `reader_hb_ch20.py` + `hb20fig.py` | 3 | ~6k |
 | HB 21 | Density Measurement | `ch21-density-measurement` | `reader_hb_ch21.py` + `hb21fig.py` | 16 | ~12k |
 | HB 22 | Strain Measurement | `ch22-strain-measurement` | `reader_hb_ch22.py` + `hb22fig.py` | 14 | ~13k |
+| HB 23 | Force Measurement | `ch23-force-measurement` | `reader_hb_ch23.py` + `hb23fig.py` | 17 | ~19k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
@@ -111,7 +112,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `(level, total_chapters, done_chapters)`.
-  Currently `("progress", 101, 22)`, `("full", 16, 16)`, `("full", 14, 14)`.
+  Currently `("progress", 101, 23)`, `("full", 16, 16)`, `("full", 14, 14)`.
 - `build/books_site.py` → `FLAG_LABEL = {level: (vi_format, en_format)}` — **the pill text
   is derived from `level`, not hard-coded.** Add a level here as well as in the CSS, or the
   pill will read "Translating" on a finished book.
@@ -610,7 +611,56 @@ TOC, and the live VI page reports 16 figures. Library pill now `Đang dịch · 
 follow the §4 recipe. Note the registry edits (`DONE[16]`, `("progress", 101, 16)`) were applied cleanly this
 session — reconfirmed both before committing.
 
-### 2026-10-31, session 22 — Handbook Chapter 22, Strain Measurement
+### 2026-10-31, session 23 — Handbook Chapter 23, Force Measurement
+
+**Shipped:** Handbook chapter 23, *Force Measurement* (M. A. Elbestawi, McMaster University) — 17 source
+pages. Full Vietnamese translation + English companion at
+`/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch23-force-measurement/`.
+Handbook progress 22/101 → 23/101; `DONE[23]`, `("progress", 101, 23)`, and the §2 table all updated.
+
+**What was written this session:**
+
+- `build/hb23fig.py` — **all 17** real figures: 23.1 the three loading modes; 23.2 stress/strain
+  definitions with their formulas; 23.3 thin-diaphragm, hydraulic and pneumatic load cells; 23.4 foil
+  gage configurations; 23.5 Wheatstone bridge; 23.6 beam load cell and bridge gage positions; 23.7 ring
+  load cell, bridge and LVDT variant; 23.8 piezoelectric plate modes; 23.9 twister and bender; 23.10
+  three-component transducer and the four-transducer sandwich; 23.11 spindle telemetry system with
+  numbered callouts; 23.12 capacitive cell; 23.13 FSR structure; 23.14 FSR resistance curve; 23.15
+  tactile array; 23.16 taxel stack and circuit; 23.17 sensor-array block diagram. The source has exactly
+  17 figures, so nothing was padded. All 17 validated: 0 malformed, 0 off-canvas, 0 label collisions.
+- `build/reader_hb_ch23.py` — full VI translation + EN companion. 17/17 figure parity, 1/1 table parity;
+  equations 23.1–23.6 (Poisson, Hooke, bulk modulus), 23.7 (bridge balance), 23.8 (gage factor), 23.9–23.11
+  (beam cell), 23.12–23.16 (piezoelectric), 23.17 (capacitance); 10 references plus 7 further-reading
+  entries. `work/hb_ch23.txt` extracted from `pdf-store/Ch23__409b681c05d67a79.pdf` (17 pages).
+- **Typography gotcha (new, important):** Unicode subscript *letters* — `ᵢ` (U+1D62), `ₛ` (U+209B),
+  `ᵣ` (U+1D63) — are **not in the Inter/Helvetica stack** and render as blanks, so `Eᵢ`, `Pₛ` and `εᵣ`
+  came out as `E`, `P` and `ε`. Subscript *digits* (`₀₁₂₃₄`) are fine. Added a `_subs()` helper that
+  emits `<tspan font-size="8" dy="3">` and undoes the `dy` on the next normal run; use it for any
+  lettered subscript.
+- **Visual QA this session:** beyond the usual label-box checker, the 17 figures were rendered to PNG
+  with headless Chrome and inspected. That caught six defects the box checker cannot see — a stray
+  decorative curl, an F arrow drawn straight through a label (23.10, 23.12, 23.13, 23.16), a gage
+  annotation crossed by the load arrow (23.6), and a cramped three-grid rosette in 23.4 that read as
+  noise (redrawn as stacked grids with orientation arrows). Worth repeating on figure-heavy chapters.
+- **Source defects handled:** the source prints "120 W" and "50 MW" where the units are clearly Ω
+  (ohm) — rendered as 120 Ω and 50 MΩ; Table 23.1's caption typo "Arrays Sensors" corrected; Figure
+  23.12 is printed as "Photo not available" in the original, so it was redrawn from the surrounding
+  text with a translator's note; the phrase "at a ratio of 2 × 10⁵" is unexplained in the original and
+  is glossed in a note as the dynamic range. Figure 23.8's modes are unlabelled in the source and were
+  drawn as d₃₃ / d₃₁ / d₁₅, also noted.
+- Figure parity: VI 17/17 and EN 17/17, IDs `fig-23-1`…`fig-23-17`; VI 102 kB, EN 90 kB.
+
+**Deploy:** `build.py` → `cp -r dist/. ./` → `reader_hb_ch23.py` → `reader_handbook.py` (23 done rows),
+`books_site.py` (progress 101→23), `make_sitemap.py` (525 URLs, 510 EN/VI pairs), `check_links.py` (527
+pages, 14,293 references, **0 broken**). Committed `145cf40`; remote was at `da35298` (no rebase) →
+pushed `da35298..145cf40` on `main`.
+
+**Chapters 1–23 done; 78 to go.** Next unit is Chapter 24 (*Torque and Power Measurement*,
+`pdf-store/Ch24__9dc2fad066692930.pdf`). Same junction + `library/pdfindex.json` workflow; copy the
+needed `ChNN.pdf` into `work/`, extract, then follow the §4 recipe. Build only the real figures the
+source contains — do not pad.
+
+
 
 **Shipped:** Handbook chapter 22, *Strain Measurement* (Christopher S. Lynch, Georgia Institute of
 Technology) — 20 source pages. Full Vietnamese translation + English companion at
