@@ -398,7 +398,7 @@ DESC = {
 # `level` is both the CSS hook (.translated-flag[data-level=...]) and the key
 # into FLAG_LABEL below — a book that is finished must never read "Translating".
 TRANSLATED = {
-    "measurement, instrumentation and sensors handbook": ("progress", 101, 30),
+    "measurement, instrumentation and sensors handbook": ("progress", 101, 31),
     "safety instrumented systems - design, analysis, and justification": ("full", 16, 16),
     "pc_process control": ("full", 14, 14),
 }

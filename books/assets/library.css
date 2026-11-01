@@ -472,6 +472,22 @@ p.tblcap {
   position: absolute; right: 0.9rem; top: 0.7rem;
   font-family: var(--sans); font-size: 0.76rem; color: var(--gray-mid);
 }
+/* bracketed matrices inside an equation */
+.eq .mxw {
+  display: inline-block; position: relative; vertical-align: middle;
+  padding: 0 8px; margin: 0 0.35rem;
+}
+.eq .mxw::before, .eq .mxw::after {
+  content: ""; position: absolute; top: 1px; bottom: 1px; width: 6px;
+  border: 1.8px solid var(--gray-dark);
+}
+.eq .mxw::before { left: 0; border-right: 0; }
+.eq .mxw::after { right: 0; border-left: 0; }
+.eq .mxw table.mx { border-collapse: collapse; border: 0; margin: 0; }
+.eq table.mx td {
+  padding: 1px 9px; text-align: center; font-size: 1rem; line-height: 1.5;
+  border: 0; background: none; white-space: nowrap;
+}
 .ref-list { margin: 0.8rem 0 1.4rem 1.2rem; font-size: 0.94rem; }
 .ref-list li { margin-bottom: 0.5rem; }
 

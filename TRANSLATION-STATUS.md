@@ -1,10 +1,10 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 29 — Chapter 99 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 30 — Chapter 98 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 98** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **99, 100, 101** and **Appendix A** are done,
-> live and registered; 28–98 are still `chờ dịch`. The reverse sequence is 98, 97 … down to and
+> **Where to start next:** Handbook **Chapter 97** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **98, 99, 100, 101** and **Appendix A** are done,
+> live and registered; 28–97 are still `chờ dịch`. The reverse sequence is 97, 96 … down to and
 > including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source text for every chapter is already
 > extracted into `work/hb_chNN.txt`.
 >
@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -1926,3 +1926,106 @@ figure against 2× screenshots. Defects found and fixed:
 Control**, then 97 (PID Control) — both are control-theory chapters with block diagrams and
 step-response figures, so the `_bode()` and `_sum()` helpers in `hb99fig.py` are worth copying
 rather than rewriting.
+
+---
+
+## Session 30 — 2026-11-01 · Handbook Chapter 98 (*Optimal Control*)
+
+Halit Eren (Curtin University of Technology). 6 figures, **68 numbered equations** (98.1–98.63
+plus 98.21a–98.21e), 18 defining terms, 4 references, List of Manufacturers. Reverse sequence
+continues: 97 is next.
+
+### Files
+
+- `build/hb98fig.py` — new, 6 figures. Reuses the `_sum`/`_blk`/`_path` idiom from `hb99fig.py`,
+  plus three new helpers: `_contour()` (closed irregular contour for the 98.2 hill-climb maps),
+  `_smooth()` (Catmull-Rom-ish cubic through a point list) and an analytic `J(u)`/`dJ/du` pair.
+- `build/reader_hb_ch98.py` — new, both languages.
+- `build/reader_handbook.py` — `98:` added to `DONE` (7-space indent, as always).
+- `build/books_site.py` — `TRANSLATED` progress 30 → **31**.
+- `books/assets/library.css` — new `.eq .mxw` rule for bracketed matrices.
+
+### The matrix rule
+
+Chapter 98 is the first chapter in the book that needs real 2×2 block matrices (Eqs. 98.57–98.60).
+A bare `<table class="mx">` with `border-left/right` renders as two detached vertical rules, which
+reads as a determinant rather than a matrix. The fix is a wrapper span with pseudo-element arms:
+
+```css
+.eq .mxw { display: inline-block; position: relative; vertical-align: middle; padding: 0 8px; }
+.eq .mxw::before, .eq .mxw::after {
+  content: ""; position: absolute; top: 1px; bottom: 1px; width: 6px;
+  border: 1.8px solid var(--gray-dark);
+}
+.eq .mxw::before { left: 0; border-right: 0; }
+.eq .mxw::after  { right: 0; border-left: 0; }
+```
+
+Do **not** put the pseudo-elements on the table itself — on a `display: table` box they generate
+anonymous table cells and the brackets land in the wrong place.
+
+### Figure defects found and fixed
+
+- **Figure 98.1 (first pass) was invented.** The hand-drawn `J(u)` had its marked extrema
+  nowhere near the zeros of the drawn `dJ/du`. Rewritten analytically: `dJ/du = −(u−u1)(u−u2)(u−u3)`
+  with `u1,u2,u3 = 0.26,0.46,0.72`, and `J(u)` obtained by trapezoidal integration of `dJ/du`, so
+  the gold curve crosses its zero line exactly beneath the three stationary points of the black one.
+- **Figure 98.2 point counts did not match the source.** The original has six points `sT0…sT5` in
+  panel (a) and eight `sT0…sT7` in panel (b); the first pass drew five and six. Also the markers
+  are ellipses, not circles, and panel (b)'s motion arrow points up-*right* while panel (a)'s
+  points up-*left*. All four corrected.
+- **Figure 98.2 panel (b) label collision** — `sT4` was left-anchored straight on top of `sT5`'s
+  marker. `sT4` now anchors right, `sT6` moved out to `cx+44`.
+- **Figure 98.2 caption detached from its arrow** in panel (b): the text was right-anchored at
+  x=536 while the arrow sat at 600–634. Now centred at 617.
+- **Figure 98.3 labels sat on their curves.** `ITAE`/`IAE`/`ISE` were at hard-coded heights that
+  no longer matched the plotted finals. They are now placed from the computed final values and
+  pushed apart by 14 px, so they can never collide whatever the integrator outputs.
+- **Figure 98.5 was missing the outer rail.** The source has *two* taps on the output line: the
+  inner one feeds the `A` loop back into the summing junction, the outer one runs down the full
+  width of the diagram and back up into the `x(k)` input of `−K(k)`. Only the inner loop had been
+  drawn. Canvas grew 300 → 350 px to make room; the precomputation box is now centred over
+  `−K(k)` instead of hanging over the gap between `−K(k)` and `B`.
+- **Figure 98.6 had a zero-length arrow.** `_arr(468, y, 470, y)` was a 2 px segment whose head
+  pointed *out* of the observer box instead of into it, and the observer → `K` leg had no head at
+  all. Rebuilt: the whole horizontal run from the measurement tap is one arrow ending on the
+  observer's right edge, then a second arrow from the observer's left edge into `K`, then a
+  vertical arrow up into the junction.
+
+### Print defects in the source (recorded in the translator's note)
+
+1. **Fig. 98.4's feedback block prints `G`**, although both the caption and the body text call it
+   the gain `K(k)`. The redrawn figure labels it `K(k)`.
+2. **Eqs. 98.7 and 98.12 are identical** in the original; both kept as printed.
+3. The `*` in Eqs. 98.23–98.44 means *transpose*, not conjugate transpose — stated in the text.
+4. **Eqs. 98.17 and 98.19 are font-corrupted** in the printed page; set out in the standard form
+   of the calculus of variations.
+
+### Typography
+
+- `û` was typed as precomposed U+00FB while `x̂` was decomposed (`x` + U+0302). In Cormorant
+  Garamond the precomposed glyph's circumflex collapses to a dot at 18 px, so `û` read as `u̇`.
+  Both are now `u`/`x` + U+0302. **Use the combining mark, never the precomposed letter, for hats
+  and dots in equations.**
+- At 1× the capital `H` of the Hamiltonian looks like `|1` — that is Cormorant Garamond's hairline
+  crossbar, not a bug; it is legible at 4× and on a real screen. No font change made.
+
+### Verification
+
+- `reader_handbook.py` → 102 TOC rows, **32** done rows, 14 sections, 101 chapters.
+- `chapter_nav.py` → **62** pages updated. Chapter 98 reads `← Chương 97 Điều khiển PID …
+  Chương 99 → Thiết bị điện – khí nén và điện – thuỷ lực`; Chapter 99 now reads
+  `← Chương 98 Điều khiển tối ưu`.
+- `check_links.py` → **543 pages, 14,881 local references, 0 broken**.
+- `make_sitemap.py` → **541 URLs, 528 with EN/VI pairs**.
+- Chapter 98 page (both languages): 6 figures, 69 `.eq` blocks (68 numbered + the unnumbered
+  system model in §98.5), 11 `.mxw` matrices, 7 `<svg>` (6 figures + site logo), **zero** `<sub>`
+  or `<sup>` inside any `<svg>`.
+
+### Note for the next session
+
+`books_site.TRANSLATED["measurement, instrumentation and sensors handbook"]` is now
+`("progress", 101, 31)`. `DONE` holds 31 entries — chapters 1–27 plus 98, 99, 100 and 101 — and the
+book TOC renders 28–97 as `chờ dịch`, which is correct. Next in the reverse sequence: **97, PID
+Control** — also a control-theory chapter, so `hb98fig.py`'s `_sum`, `_blk`, `_smooth` and `_path`
+are directly reusable.

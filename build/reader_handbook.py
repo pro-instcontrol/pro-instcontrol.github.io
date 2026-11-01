@@ -189,6 +189,7 @@ DONE = {1: "ch01-characteristics-of-instrumentation",
        25: "ch25-tactile-sensing",
        26: "ch26-pressure-and-sound-measurement",
        27: "ch27-acoustic-measurement",
+       98: "ch98-optimal-control",
        99: "ch99-electropneumatic-and-electrohydraulic-instruments",
        100: "ch100-explosion-proof-instruments",
        101: "ch101-measurement-and-identification-of-stepping-motors"}
