@@ -1805,15 +1805,15 @@ so in the caption.
   (338,511 chars), 132 page images in `work/ch28img/` at 140 dpi.
 - **`build/hb28fig.py`** — primitives for flow drawings (`_pipe`, `_tap`, `_profile`, `_flowarrow`),
   positive-displacement primitives (`_tip`, `_thick`, `_stub`, `_bellows`, `_peanut`),
-  turbine primitives (`_num`, `_blade_row`) plus **figures 1–33**, `work/qa_figs.py hb28fig` →
-  **33 figures, problems 0**, visual pass done.
-- **`build/reader_hb_ch28.py`** — module scaffold plus **sections 28.1 through 28.4 complete** in
-  both languages: 33 figures, 57 equations, 11 tables, 59 references. 315 kB (EN) / 309 kB (VI) per
+  turbine primitives (`_num`, `_blade_row`) plus **figures 1–35**, `work/qa_figs.py hb28fig` →
+  **35 figures, problems 0**, visual pass done.
+- **`build/reader_hb_ch28.py`** — module scaffold plus **sections 28.1 through 28.5 complete** in
+  both languages: 35 figures, 57 equations, 12 tables, 64 references. 351 kB (EN) / 344 kB (VI) per
   page. Sections are added as `sec_NN_vi` / `sec_NN_en` and appended to the `SECTIONS_VI` /
   `SECTIONS_EN` lists at the bottom; nothing else needs touching.
-- Generated page verified locally at 1424 px: **70,433 px tall (VI) / 72,057 px (EN)**, no horizontal
-  overflow, figures legible, tables fit. 28.1 was 14,552 px, 28.2 ~24,000, 28.3 ~10,600 and 28.4
-  ~22,000 — just under half of the projected 150,000.
+- Generated page verified locally at 1424 px: **79,229 px tall (VI) / 81,020 px (EN)**, no horizontal
+  overflow, figures legible, tables fit. 28.1 was 14,552 px, 28.2 ~24,000, 28.3 ~10,600, 28.4
+  ~22,000 and 28.5 ~8,800 — a little over half of the projected 150,000.
 - **§28.2 covers:** variable-area definition and the rotameter / movable-vane / weir-flume families;
   rotameter construction (conical tube, bobs, scales, glass vs metal, limit switches, transmitters,
   thirteen bullet characteristics); movable vane meter; weir and flume (thin-plate, notch,
@@ -1848,6 +1848,18 @@ so in the caption.
   in both languages.
 - **§28.4's figures are drawn from the source art**, except 28.33, which the source gives as a product
   photograph and which is redrawn as a sectioned schematic of the same assembly.
+- **§28.5 covers:** the impeller/paddlewheel family and what separates it from the turbine meter
+  (transverse axis, not parallel); the insertion and in-line types; the naming history from Pelton's
+  impulse turbine, with the six-name numbered list; sensing principles (six numbered detection
+  methods, 0.2 Hz–500 Hz output); flow ranges (10 cm/s, Re 5000, 0.3–10 m/s, down to 0.07 m/s);
+  installation as five sub-headings (pipe sizes, 10D/5D straight runs, 2.7 MPa, calibration, accuracy
+  including the ±1 % FS versus ±2 % reading worked example); design features; seven application
+  bullets; and the manufacturer survey with Table 28.10 and eight company entries.
+- **§28.5 has no equations**, which is why six source pages add only ~8,800 px. Figures 28.34 and
+  28.35 are both redrawn: 28.35 is a product photograph in the source, rebuilt as a sectioned
+  schematic of the same insertion sensor.
+- **The source's Hoffer entry reads “57 mL min⁻¹ to 11.5 rpm”** — a unit inconsistency in the
+  original, reproduced as printed and marked `[nguyên văn]` / `[as printed]`.
 
 ### Conventions set for this chapter
 
@@ -1874,9 +1886,25 @@ so in the caption.
   double-quoted style attribute inside a double-quoted Python string is a syntax error.
 - **The QA script skips `<text>` elements carrying a `transform`** — its bounding-box model is
   axis-aligned, so rotated axis titles produced false off-canvas and overlap reports before that.
+- **The QA script only compares label against label.** It cannot see a label printed on top of a
+  drawn shape, and that was the §28.5 defect: “lỗ phun” and “dòng tuần hoàn” sat across the rotor
+  circle and read as struck-through. Every figure still needs the eye test at 1424 px.
+- **`fig(num, key, lang)` must be called with the language spelled out.** The default is `"vi"`, so
+  an `_en` section that writes `fig(30, F.fig(30))` renders the Vietnamese caption on the English
+  page. Figures 30–35 were shipped that way before it was noticed; all twelve calls now pass
+  `"vi"` / `"en"` explicitly, and the check is
+  `grep -c 'figcaption'` per language rather than eyeballing one page.
+- **`h4(t, en)` duplicates the heading when the two strings are identical.** Company names are the
+  same in both languages, so `h4("SeaMetrics", "SeaMetrics")` printed “SeaMetrics SeaMetrics”. Pass
+  the single-argument form for proper nouns.
+- **`ol()` exists as of §28.5.** The source uses numbered lists where the order carries meaning (the
+  six naming variants, the six sensing methods); `ul()` was the only list helper before.
 - **Measure page heights only after `document.fonts.ready`.** A `--dump-dom` probe that reads
   `scrollHeight` on load under-reports by ~1,000 px at the bottom of a 70,000 px page, because the
   serif web font has not swapped in yet and every line of body text is slightly shorter.
+- **To screenshot a region far down the page, shrink the iframe to the clip height and
+  `scrollTo` inside it.** Offsetting a 30,000 px-tall iframe with `top:-70000px` leaves the viewport
+  looking at blank page — the frame ends 40,000 px above it.
 - Equation numbers run 28.1–28.99 and then continue with letter suffixes; keep them as printed.
 - 28.2 onwards: add an in-page jump index (28.1–28.11) at the top of `body_vi()` / `body_en()` when
   the last section lands — a 150,000 px page needs one.

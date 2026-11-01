@@ -100,6 +100,14 @@ def ul(items):
             % "".join("<li>%s</li>" % i for i in items))
 
 
+def ol(items):
+    """Numbered list. The source uses numbered lists for enumerations whose
+    order carries meaning (the naming variants, the six sensing methods), so
+    the numbering is reproduced rather than flattened to bullets."""
+    return ('<ol style="margin:-.2rem 0 1.3rem">%s</ol>'
+            % "".join("<li>%s</li>" % i for i in items))
+
+
 # ================================================================ table data
 
 def _t281(lang):
@@ -2961,7 +2969,7 @@ def sec_28_4_vi():
         "— có thể tới vài · 10⁴ vòng/phút với các lưu lượng kế nhỏ — được phát hiện bởi một đầu thu, "
         "thường là loại từ tính; việc ghi nhận mỗi lần một cánh rôto đi qua cho phép suy ra sự đi qua "
         "của một thể tích chất lưu xác định."))
-    b.append(fig(30, F.fig(30)))
+    b.append(fig(30, F.fig(30), "vi"))
 
     b.append(h4("Đặc tính làm việc chung", "General Performance Characteristics"))
     b.append(p(
@@ -3013,7 +3021,7 @@ def sec_28_4_vi():
         "sao cho vectơ vận tốc dòng chất lưu tại bề mặt cánh được giữ nguyên. Hình 28.31 là giản đồ "
         "vectơ cho một rôto cánh phẳng có góc nghiêng cánh bằng β. Giả thiết cánh rôto phẳng và vận "
         "tốc đồng đều ở mọi nơi, song song với trục rôto, khi đó từ Hình 28.31 ta có:"))
-    b.append(fig(31, F.fig(31)))
+    b.append(fig(31, F.fig(31), "vi"))
     b.append(eq("rω<sub>i</sub> = tanβ / V", "28.47"))
     b.append(p("Khi đưa tổng lưu lượng vào, phương trình trở thành:"))
     b.append(eq("ω<sub>i</sub> / Q = tanβ / (<span style='text-decoration:overline'>r</span> A)", "28.48"))
@@ -3121,7 +3129,7 @@ def sec_28_4_vi():
         "tuyến theo số Strouhal phụ thuộc Re, hoặc theo số Roshko. Cách này chưa được dùng rộng rãi, "
         "nhưng đặc biệt thích hợp cho những ứng dụng đòi hỏi độ chính xác cao và nhiệt độ khắc "
         "nghiệt, vì nó còn cho phép bù đúng sai số do giãn nở nhiệt của lưu lượng kế."))
-    b.append(fig(32, F.fig(32)))
+    b.append(fig(32, F.fig(32), "vi"))
     b.append(p(
         "Độ chính xác của lưu lượng kế tuabin hướng trục bị giảm bởi dòng chảy không được xử lý, đặc "
         "biệt là dòng xoáy. Nhìn chung nên dùng một cách lắp đặt có bộ xử lý dòng chảy cùng những "
@@ -3319,7 +3327,7 @@ def sec_28_4_vi():
         "riêng của Onicon, Inc. và chủ yếu dùng để đo lưu lượng nước lạnh trong hệ thống điều hoà "
         "không khí, đòi hỏi ít xử lý dòng chảy hơn các thiết kế một rôto. Cụm tuabin hai rôto của "
         "Onicon được vẽ trên Hình 28.33."))
-    b.append(fig(33, F.fig(33)))
+    b.append(fig(33, F.fig(33), "vi"))
     b.append(p(
         "Thiết bị gồm hai rôto quay ngược chiều. Đầu ra dựa trên tốc độ trung bình của hai rôto. Mọi "
         "dòng xoáy hiện diện do xử lý dòng chảy kém sẽ làm thay đổi tốc độ quay của mỗi rôto một "
@@ -3586,7 +3594,7 @@ def sec_28_4_en():
         "experience a torque that drives the rotor. The rate of rotation — up to several × 10⁴ rpm for "
         "smaller meters — is detected by a pickup, usually of the magnetic type, and registration of "
         "each rotor blade passing infers the passage of a fixed volume of fluid."))
-    b.append(fig(30, F.fig(30)))
+    b.append(fig(30, F.fig(30), "en"))
 
     b.append(h4("General Performance Characteristics", "General Performance Characteristics"))
     b.append(p(
@@ -3639,7 +3647,7 @@ def sec_28_4_en():
         "surfaces. Figure 28.31 is a vector diagram for a flat-bladed rotor with a blade pitch angle "
         "equal to β. Assuming that the rotor blades are flat and that the velocity is everywhere "
         "uniform and parallel to the rotor axis, then referring to Figure 28.31, one obtains:"))
-    b.append(fig(31, F.fig(31)))
+    b.append(fig(31, F.fig(31), "en"))
     b.append(eq("rω<sub>i</sub> = tanβ / V", "28.47"))
     b.append(p("When one introduces the total flow rate, this becomes:"))
     b.append(eq("ω<sub>i</sub> / Q = tanβ / (<span style='text-decoration:overline'>r</span> A)", "28.48"))
@@ -3754,7 +3762,7 @@ def sec_28_4_en():
         "number versus Re, or Roshko number. This approach is not widely adopted, but is particularly "
         "relevant to high-accuracy and extreme-temperature applications because it further allows "
         "correct compensation for flowmeter thermal expansion errors."))
-    b.append(fig(32, F.fig(32)))
+    b.append(fig(32, F.fig(32), "en"))
     b.append(p(
         "The accuracy of axial turbine flowmeters is reduced by unconditioned flow, especially swirl. "
         "An installation incorporating flow conditioners along with specific upstream and downstream "
@@ -3968,7 +3976,7 @@ def sec_28_4_en():
         "primarily used for chilled-water flow measurement in HVAC systems, requires less flow "
         "conditioning than single-rotor designs. An Onicon dual-rotor turbine assembly is depicted in "
         "Figure 28.33."))
-    b.append(fig(33, F.fig(33)))
+    b.append(fig(33, F.fig(33), "en"))
     b.append(p(
         "It comprises two rotors that rotate in opposite directions. The output is based on the "
         "average rotor speed. Any flow swirl present due to poor flow conditioning changes the speed "
@@ -4202,10 +4210,638 @@ def sec_28_4_en():
     return "".join(b)
 
 
+def _t2810(lang):
+    """Table 28.10 — U.S. manufacturers of impeller flowmeters."""
+    if lang == "vi":
+        hd = ("Nhà chế tạo", "Thành phố, bang", "Điện thoại")
+        cap = ("Bảng 28.10 · Các nhà chế tạo lưu lượng kế cánh guồng tại Hoa Kỳ. Số điện thoại của "
+               "Hoffer bị cắt cụt ngay trong bản gốc vì cột quá hẹp.")
+    else:
+        hd = ("Manufacturer", "City, State", "Phone number")
+        cap = ("Table 28.10 · U.S. manufacturers of impeller flowmeters. Hoffer's second number is "
+               "truncated in the original, where the column runs out of width.")
+    rows = [
+        ["Data Industrial Corp.", "Mattapoisett, MA", "(508) 758-6390"],
+        ["G. Fischer (Signet)", "Tustin, CA", "(714) 731-8800"],
+        ["SeaMetrics", "Kent, WA", "(206) 872-0284"],
+        ["Roper Flow Technology, Inc.", "Phoenix, AZ", "(602) 437-1315"],
+        ["Blancett", "Altus, OK", "(405) 482-0036"],
+        ["Hoffer Flow Controls, Inc.", "Elizabeth City, NC", "(800) 628-4584; (919) 331…"],
+        ["McMillan Co.", "Georgetown, TX", "(512) 863-0231"],
+        ["Flowmetrics, Inc.", "Canoga Park, CA", "(818) 346-4492"],
+        ["Proteus Industries, Inc.", "Mountain View, CA", "(415) 964-4163"],
+    ]
+    return table(hd, rows, cap, widths=("45%", "30%", "25%"))
+
+
+def sec_28_5_vi():
+    b = []
+    b.append(h2("28.5 Lưu lượng kế cánh guồng", "Impeller Flowmeters"))
+    b.append(p("Harold M. Miller — Data Industrial."))
+    b.append(p(
+        "Lưu lượng kế cánh guồng, đôi khi gọi là lưu lượng kế bánh guồng, là một trong những loại "
+        "lưu lượng kế được dùng phổ biến nhất. Cảm biến lưu lượng kiểu cánh guồng là hậu duệ trực "
+        "tiếp của chiếc guồng nước cấp dưới cổ điển. Đây là một phương án thay thế tiết kiệm cho lưu "
+        "lượng kế tuabin, và có thể dùng trong những ứng dụng khó xử lý bằng các loại thiết bị đo "
+        "lưu lượng khác. Về kết cấu cơ khí, chúng thường rất đơn giản; mọi sự tinh xảo đều nằm ở "
+        "phần điện tử dùng để phát hiện tốc độ quay của cánh guồng, và ở việc chọn vật liệu chế tạo "
+        "phù hợp với tính ăn mòn hoá học của chất lưu được đo. Chúng có họ hàng với lưu lượng kế "
+        "tuabin ở chỗ cả hai loại đều dùng một phần tử cơ khí quay để tạo ra tín hiệu đầu ra. Chúng "
+        "khác ở chỗ lưu lượng kế cánh guồng có trục quay vuông góc với dòng chảy, trong khi trục của "
+        "lưu lượng kế tuabin song song với dòng chảy."))
+    b.append(p(
+        "Những thiết bị này có hai kiểu cơ bản. Kiểu chèn là phổ biến nhất (xem Hình 28.34(b) và "
+        "28.35). Cảm biến được lắp trực tiếp vào một lỗ trên thành ống, với bộ nối kiểu yên ngựa "
+        "hoặc bộ nối hàn đặt tại chỗ xuyên qua để làm kín cảm biến với ống. Cảm biến cũng có thể "
+        "được lắp sẵn trong những ống chữ T phù hợp trên tuyến. Hầu hết nhà cung cấp đều có thiết kế "
+        "lắp được vào hệ thống đường ống đang vận hành, gần như không mất chất lưu trong quá trình "
+        "lắp. Kiểu cánh guồng còn được cung cấp dưới dạng cảm biến nối tiếp (xuyên dòng) cho những "
+        "ứng dụng cần đến kiểu này (Hình 28.34(a)). Lưu lượng kế nối tiếp thường có độ chính xác "
+        "cao hơn kiểu chèn một chút."))
+    b.append(fig(34, F.fig(34), "vi"))
+    b.append(p(
+        "Lưu lượng kế nối tiếp là những lưu lượng kế thể tích, suy diễn, tuyến tính, dùng để đo dòng "
+        "chất lỏng và chất khí, và nhạy hơn ở lưu lượng thấp so với, chẳng hạn, lưu lượng kế tuabin "
+        "hướng trục. (Điều này tất nhiên là do góc tới của dòng lên cánh lớn hơn nhiều.) Ngược lại, "
+        "lưu lượng kế cánh guồng kiểu chèn chỉ đo vận tốc dòng trong một vùng nhỏ bên trong ống."))
+    b.append(p(
+        "Nhìn chung, lưu lượng kế cánh guồng phù hợp với những dải lưu lượng thấp hơn nhiều so với "
+        "tuabin hướng trục cùng cỡ, và vì thế thường được dùng ở những nơi không thể dùng tuabin "
+        "hướng trục. Đó là ưu điểm chính, cùng với xu hướng giá thành thấp hơn và độ tin cậy cao. Sự "
+        "cạnh tranh với tuabin hướng trục nối tiếp chỉ xảy ra ở những dải lưu lượng thiết kế chồng "
+        "lấn nhau."))
+    b.append(p(
+        "Một số lưu lượng kế nối tiếp có các cỡ tấm orifice thay thế được, cho phép dùng cùng một "
+        "thân cho nhiều dải lưu lượng khác nhau. Lưu lượng kế nối tiếp có tấm orifice điển hình là "
+        "không nhạy với điều kiện dòng. Ngược lại, lưu lượng kế kiểu chèn rất nhạy với điều kiện dòng "
+        "nếu lưu lượng thể tích được suy ra từ vận tốc cục bộ. Đây là một phân biệt quan trọng, và có "
+        "thể mở rộng thành những khác biệt về yêu cầu đối với từng phiên bản nối tiếp cụ thể. Việc "
+        "lắp đặt là quan trọng: nó ảnh hưởng tới người dùng khi thiết kế một hệ lắp đặt, khi chọn lưu "
+        "lượng kế, và khi quyết định đặt bao nhiêu tin cậy vào số đọc."))
+    b.append(fig(35, F.fig(35), "vi"))
+    b.append(p(
+        "Lưu lượng kế bánh guồng không bao giờ được dùng cho các ứng dụng chuyển giao thương mại "
+        "hydrocarbon lỏng. Năng lực đo lưu lượng không đủ để cạnh tranh trong việc theo dõi những "
+        "lượng chuyển giao lớn, và độ chính xác cũng không đủ cho những chất lưu có giá trị cao."))
+    b.append(p(
+        "Những lưu lượng kế này có nhiều tên gọi khác nhau, tuỳ theo tên mà nhà chế tạo chọn và tuỳ "
+        "theo ứng dụng. Một nguồn gốc lịch sử thường được nhắc tới là tuabin xung kích do Pelton phát "
+        "minh ở thế kỷ 19, và chính nó đã sinh ra cách gọi “tuabin bánh xe Pelton” mà một số nhà cung "
+        "cấp hiện dùng. Một thiết bị như vậy nguyên thuỷ được dùng để dẫn động trực tiếp các bánh "
+        "nghiền quay quanh trục thẳng đứng, chứ không qua một bộ truyền bánh răng vuông góc như ở "
+        "bánh xe cấp dưới đã mô tả. Một tên gọi phổ biến khác, ngoài bánh guồng và kiểu cánh guồng — "
+        "ít nhất là theo cách mô tả của các nhà cung cấp cho loại nối tiếp — là tuabin tiếp tuyến một "
+        "tia, hay gọn hơn là tuabin tiếp tuyến. Cách gọi thứ nhất phân biệt thiết kế này với lưu "
+        "lượng kế tuabin tiếp tuyến đa tia, nên đáng được nhắc tới. Như vậy hiện có một loạt tên gọi "
+        "gây lẫn lộn, tất cả đều chỉ về cùng một nguyên lý đo lưu lượng bằng cánh có guồng:"))
+    b.append(ol([
+        "Kiểu cánh guồng: kiểu chèn và kiểu nối tiếp",
+        "Kiểu bánh guồng: kiểu chèn và kiểu nối tiếp",
+        "Kiểu bánh xe tuabin Pelton: kiểu nối tiếp",
+        "Lưu lượng kế tuabin tiếp tuyến: kiểu chèn và kiểu nối tiếp",
+        "Lưu lượng kế tuabin tiếp tuyến một tia: kiểu nối tiếp",
+        "Lưu lượng kế tuabin xung kích: kiểu nối tiếp",
+    ]))
+    b.append(p(
+        "Về lịch sử, cảm biến cánh guồng bắt nguồn từ những đồng hồ tốc độ điện tử đời đầu dùng trên "
+        "ca nô giải trí. Signet, rồi ngay sau đó là Data Industrial, đã cải biến thiết kế cơ bản của "
+        "những dụng cụ hàng hải ấy để đáp ứng yêu cầu tuổi thọ phục vụ khắt khe hơn nhiều của đo "
+        "lường công nghiệp. Những lưu lượng kế thu được, cùng các thế hệ sau của chúng, đã được dùng "
+        "rộng rãi từ năm 1975. Những nỗ lực kỹ thuật đáng kể đã cho ra đời những thiết bị có độ tin "
+        "cậy cao, dùng trong nhiều ứng dụng cực kỳ khắt khe."))
+
+    # ---------------------------------------------------------------- sensing
+    b.append(h3("Nguyên lý cảm biến", "Sensing Principles"))
+    b.append(p(
+        "Mọi cảm biến lưu lượng kiểu cánh guồng đều phải phát hiện chuyển động quay của cánh guồng, "
+        "và ở dạng thông thường thì truyền đi một chuỗi xung có tần số liên quan tới vận tốc quay của "
+        "cánh. Vì đầu ra về bản chất là tín hiệu số, cảm biến cánh guồng thường truyền được tín hiệu "
+        "đi khá xa, tới 1 km khi cần. Các nguyên lý phát hiện được dùng gồm:"))
+    b.append(ol([
+        "Một hay nhiều nam châm giữ trong cánh guồng hoặc nối cơ khí với nó, dùng điểm cắt không của "
+        "một từ trường xoay chiều cảm ứng để tạo chuỗi xung.",
+        "Một hay nhiều phần tử ghép nằm trong cánh guồng, điều chế một tần số được truyền đi rồi xử "
+        "lý để tạo chuỗi xung.",
+        "Một hay nhiều bia kim loại đặt trong cảm biến, được phát hiện bằng bất kỳ kỹ thuật đầu thu "
+        "tiệm cận nào có bán trên thị trường, để tạo xung đầu ra.",
+        "Một hay nhiều nam châm giữ trong cánh guồng, dùng để đóng cắt một phần tử hiệu ứng Hall, "
+        "tạo chuỗi xung đầu ra.",
+        "Các phần tử quang, cả kiểu truyền qua lẫn kiểu phản xạ, đã được dùng để phát hiện mỗi lần "
+        "cánh guồng đi qua và tạo chuỗi xung đầu ra.",
+        "Đo sự thay đổi điện kháng do các cánh guồng đi qua vùng từ trường đo, rồi xử lý thành chuỗi "
+        "xung đầu ra.",
+    ]))
+    b.append(p(
+        "Mỗi nhà cung cấp có thể chế tạo nhiều kiểu lưu lượng kế cánh guồng, mỗi kiểu dùng một phương "
+        "pháp phát hiện khác nhau tuỳ yêu cầu thị trường. Vì cánh guồng có thể quay tới 4000 "
+        "vòng/phút hoặc hơn, tần số đầu ra có thể cao tới 500 Hz. Ở lưu lượng thấp, tần số có thể "
+        "thấp tới 0,2 Hz. Yếu tố này cần được xét sớm trong quá trình chọn thiết bị, vì thiết bị đầu "
+        "ra được chọn phải đáp ứng được dải tần số đầu ra của cảm biến."))
+    b.append(p(
+        "Hầu hết nhà chế tạo cảm biến đều có thể cung cấp hoặc chỉ định một bộ hiển thị phù hợp để "
+        "liên hệ đầu ra của cảm biến với lưu lượng theo đơn vị kỹ thuật, hoặc theo hệ đo Hoa Kỳ hoặc "
+        "theo SI. Những bộ hiển thị này thường hiển thị được cả lưu lượng tức thời lẫn lưu lượng "
+        "tích luỹ của cảm biến nối với nó. Có thêm các đầu ra khác, dạng độc lập hoặc kết hợp với bộ "
+        "hiển thị, cung cấp xung định kỳ theo những bước lưu lượng đặt được, hoặc đầu ra tương tự "
+        "được chia tỷ lệ theo lưu lượng. Ngoài ra, một số chức năng điều khiển, cảnh báo và những "
+        "tính năng đặc biệt khác mà các thị trường khác nhau yêu cầu cũng thường được tích hợp trong "
+        "những bộ hiển thị này."))
+
+    # ---------------------------------------------------------------- ranges
+    b.append(h3("Dải lưu lượng", "Flow Ranges"))
+    b.append(p(
+        "Lưu lượng kế cánh guồng kiểu chèn, kể cả khi được lắp qua ống chữ T, vẫn là một thiết bị cảm "
+        "biến cục bộ: nó chỉ đo vận tốc dòng trong một phần của dòng chảy. Nhà chế tạo hiệu chuẩn lưu "
+        "lượng kế theo lưu lượng trung bình trên toàn mặt cắt ống. Vị trí bánh guồng thường nằm gần "
+        "đường kính trong của ống, trong một vùng dòng có vận tốc thấp hơn đáng kể so với vận tốc "
+        "trung bình trong ống. Nhờ cách hiệu chuẩn đúng của nhà chế tạo, lưu lượng kế vẫn làm việc "
+        "hiệu quả ở lưu lượng ứng với vận tốc trung bình chỉ 10 cm/s, bất chấp vận tốc cục bộ thấp "
+        "tại cánh guồng. Nói chung, có thể đo những dòng có số Reynolds thấp tới 5000 mà không cần "
+        "hiệu chuẩn đặc biệt, và thường vẫn xử lý được những số Reynolds thấp hơn mà không gặp khó "
+        "khăn gì. Đặc tả dải thông thường là lưu lượng tương ứng với vận tốc trung bình từ 0,3 đến "
+        "10 m/s. Sự đa dạng của sản phẩm cho phép làm việc ở vận tốc thấp hơn 0,3 m/s khá nhiều, thực "
+        "tế xuống tới 0,07 m/s ở một số lưu lượng kế cánh guồng chuyên dụng."))
+
+    # ---------------------------------------------------------------- install
+    b.append(h3("Lắp đặt", "Installation"))
+    b.append(h4("Cỡ ống", "Pipe sizes"))
+    b.append(p(
+        "Các cỡ ống mà những cảm biến này đã được lắp trải rộng từ ống cỡ nhỏ tới ống có đường kính "
+        "ngoài 2,3 m. Chính những cỡ ống lớn là nơi tiết kiệm được nhiều nhất về chi phí lắp đặt so "
+        "với các hệ đo khác. Thực vậy, lưu lượng kế cánh guồng có thể tiết kiệm trong bất kỳ ứng dụng "
+        "đo lưu lượng nào phù hợp với độ chính xác của thiết bị, đặc biệt nếu ứng dụng có liên quan "
+        "tới điều khiển bơm hoặc van."))
+    b.append(h4("Hạn chế của hệ thống đường ống", "Piping system restrictions"))
+    b.append(p(
+        "Hầu hết nhà cung cấp yêu cầu tối thiểu 10 lần đường kính ống đoạn thẳng phía thượng nguồn "
+        "và 5 lần phía hạ nguồn tính từ chỗ lắp. Những điều kiện này nhằm giảm thiểu tính bất đối "
+        "xứng của dòng chảy quanh cánh guồng trong tuyến ống đã lắp, vốn có thể do khuỷu, ống chữ T "
+        "và van gây ra. Càng dài càng tốt; không nhà cung cấp nào phàn nàn rằng đoạn thẳng thượng "
+        "nguồn quá dài. Ngắn hơn có thể ảnh hưởng xấu tới hiệu chuẩn của cảm biến do vận tốc biến "
+        "thiên cục bộ gây ra bởi nhiễu dòng."))
+    b.append(h4("Áp suất làm việc", "Operating pressure"))
+    b.append(p(
+        "Các sản phẩm tiêu chuẩn của nhà chế tạo thường phù hợp với giới hạn áp suất của vật liệu chế "
+        "tạo đường ống — với hệ ống nhựa là giới hạn của nhựa, còn với ống thép hoặc đồng thau thì "
+        "thường tới 2,7 MPa. Áp suất cao hơn có sẵn nhưng thường đắt hơn một chút. Độ sụt áp do lưu "
+        "lượng kế đã lắp thường thấp; nhà chế tạo thường cung cấp được thông tin về độ sụt áp dự "
+        "kiến."))
+    b.append(h4("Hiệu chuẩn", "Calibration"))
+    b.append(p(
+        "Việc hiệu chuẩn cảm biến thường do nhà chế tạo quy định. Một số nhà chế tạo cung cấp hệ số "
+        "hiệu chuẩn theo gallon trên xung hoặc xung trên gallon. Những hãng khác, như Data "
+        "Industrial, cung cấp số liệu liên hệ tần số với lưu lượng theo GPM hoặc đơn vị lưu lượng "
+        "thể tích khác. Với cảm biến kiểu chèn, bất kỳ thiết bị nào như vậy cũng phải hiệu chuẩn được "
+        "tại hiện trường để thích ứng với sự thay đổi quan hệ giữa vận tốc quay của cánh guồng và lưu "
+        "lượng trung bình khi cỡ ống thay đổi."))
+    b.append(h4("Độ chính xác", "Accuracy"))
+    b.append(p(
+        "Độ chính xác của lưu lượng kế cánh guồng nối tiếp thay đổi đáng kể nhưng có thể cao, từ "
+        "±0,2 % giá trị đọc với chất lỏng ở một nhà chế tạo, tới vài phần trăm toàn thang ở một số "
+        "hãng khác. Cần đặc biệt lưu ý sự khác nhau giữa độ chính xác đặc tả theo % toàn thang và "
+        "theo % giá trị đọc. Các nhà chế tạo dùng cả hai cách, đặc biệt với loại lưu lượng kế này. "
+        "Một thiết bị ±1 % toàn thang thường kém chính xác hơn nhiều so với, chẳng hạn, một thiết bị "
+        "±2 % giá trị đọc: ở lưu lượng nhỏ nhất của dải đo với tỷ số giảm 10:1, thiết bị thứ nhất "
+        "mắc sai số 10 %, trong khi thiết bị ±2 % giá trị đọc vẫn chỉ mắc sai số ±2 %."))
+    b.append(p(
+        "Độ chính xác của đầu ra thường được đặc tả là ±1 % lưu lượng danh định lớn nhất. Đặc tả này "
+        "đủ rộng để bao trùm những biến thiên về kích thước và ma sát của cảm biến khi chế tạo. Một "
+        "số nhà sản xuất hiệu chuẩn riêng cho từng cảm biến để đáp ứng yêu cầu đặc biệt, nhưng chỉ "
+        "nên làm vậy khi có thể gửi được cả đoạn ống vào và ra lắp với cảm biến tới nhà chế tạo và "
+        "nhà chế tạo nhận lắp được. Ngoài ra, nhà chế tạo thường có thể cung cấp giá trị hiệu chuẩn "
+        "mới nếu biết mã hiệu bộ hiển thị đang dùng, biết số đọc của nó và biết lưu lượng thực tại ít "
+        "nhất hai điểm trên đường cong lưu lượng. Khi buộc phải hiệu chuẩn tại chỗ, độ chính xác dự "
+        "kiến nằm trong khoảng ±0,5 % toàn thang hoặc 1 % lưu lượng chỉ thị, lấy giá trị nào lớn hơn."))
+    b.append(p(
+        "Độ lặp lại của số đọc thường vào cỡ 0,5 %. Độ tuyến tính, trừ ở hai đầu mút của dải lưu "
+        "lượng, cũng được kỳ vọng không kém hơn 0,5 %, và trên toàn dải thiết kế của lưu lượng kế "
+        "thường chính xác trong phạm vi ±1 % lưu lượng danh định lớn nhất."))
+    b.append(p(
+        "Để đạt được những độ chính xác nêu trên, phải hết sức chú ý lắp đặt đúng, đặc biệt là độ "
+        "sâu chèn."))
+    b.append(h4("Đặc điểm kết cấu", "Design features"))
+    b.append(p(
+        "Những cảm biến lưu lượng này được cung cấp với vật liệu chế tạo tương thích với một loạt "
+        "rộng các dung dịch nước, cả pH cao lẫn pH thấp, và với nước khử ion. Với dịch vụ nước khử "
+        "ion, cần xem lại lịch sử của cảm biến, đặc biệt về khả năng sinh hạt. Những dòng có nồng độ "
+        "chất rắn cao, đặc biệt là chất rắn dạng sợi, cần được xem xét cẩn thận khi cân nhắc dùng "
+        "cảm biến cánh guồng. Kết cấu khá dễ dung nạp với hạt rắn, nhưng vẫn cần thận trọng trong "
+        "những ứng dụng như vậy. Chất lưu truyền nhiệt cũng tương thích với cảm biến của ít nhất hai "
+        "nhà cung cấp. Cần thảo luận các giới hạn ứng dụng cơ bản với nhà cung cấp, vì họ phải có "
+        "lịch sử ứng dụng thành công rộng để hậu thuẫn cho khuyến nghị của mình, cũng như có vật liệu "
+        "cảm biến với kết quả thử nghiệm riêng cho chất lưu được đo. Có các phiên bản “khoan nóng” "
+        "hay “khoan ướt” để lắp vào đường ống đang vận hành và cho dịch vụ nối tiếp hoặc trực tuyến. "
+        "Một số nhà cung cấp có phiên bản chịu ngập, đo được trong hố bơm ngập nước trong thời gian "
+        "dài. Ít nhất hai nhà chế tạo cung cấp cảm biến “an toàn tia lửa” cho môi trường nguy hiểm "
+        "cháy nổ."))
+    b.append(h4("Lĩnh vực ứng dụng", "Areas of application"))
+    b.append(p(
+        "Cảm biến lưu lượng cánh guồng được dùng rộng rãi và khá thành công trong các lĩnh vực sau:"))
+    b.append(ul([
+        "Tưới tiêu nông nghiệp và trồng trọt",
+        "Hệ thống nước khử ion, kể cả chế tạo wafer silic",
+        "Sưởi, thông gió và điều hoà không khí, quản lý năng lượng",
+        "Xử lý chất thải công nghiệp",
+        "Hệ thống lọc công nghiệp",
+        "Định lượng và pha chế hoá chất",
+        "Hệ thống nước cấp đô thị (nước uống được)",
+    ]))
+    b.append(p(
+        "Cảm biến có thể được cung cấp với đầu ra tương tự cho các ứng dụng điều khiển, nếu muốn."))
+    b.append(p(
+        "Một số nhà cung cấp đã phát triển những lưu lượng kế cánh guồng chuyên dụng, được điều chỉnh "
+        "để có tuổi thọ dài, độ chắc chắn và khả năng bảo trì mà những ứng dụng khắt khe hơn đòi hỏi. "
+        "Cần xem lại với nhà cung cấp lịch sử làm việc được chấp nhận trong những ứng dụng tương tự "
+        "với ứng dụng đang dự kiến cho hệ đo. Các ứng dụng chuyển giao thương mại thường không phù "
+        "hợp với cảm biến cánh guồng."))
+
+    # ---------------------------------------------------------------- makers
+    b.append(h3("Nhà chế tạo", "Manufacturers"))
+    b.append(p(
+        "Dưới đây là một số nhà chế tạo tại Hoa Kỳ. Địa chỉ và số điện thoại của họ được liệt kê "
+        "trong Bảng 28.10."))
+    b.append(_t2810("vi"))
+    b.append(h4("Data Industrial"))
+    b.append(p(
+        "Lưu lượng kế nối tiếp và kiểu chèn: vận tốc chất lưu 0,07 đến 18 m/s (0,25 đến 60 ft/s). Vật "
+        "liệu sẵn có đáp ứng hầu hết chất lưu công nghiệp. Nhiệt độ từ −29 °C đến 152 °C (−20 °F đến "
+        "305 °F). Theo dõi năng lượng. Đầu ra dạng số và/hoặc tương tự. Kết cấu NEMA 4, 4X và 6P. "
+        "Chứng nhận FM, CSA."))
+    b.append(h4("G. Fischer (Signet)"))
+    b.append(p(
+        "Lưu lượng kế nối tiếp và kiểu chèn: vận tốc chất lưu 0,1 đến 7 m/s (0,3 đến 20 ft/s). Vật "
+        "liệu sẵn có đáp ứng hầu hết chất lưu công nghiệp. Nhiệt độ tới 149 °C (300 °F). Theo dõi "
+        "năng lượng. Đầu ra dạng số và/hoặc tương tự. Kết cấu NEMA 4, 4X. Chứng nhận FM, CE."))
+    b.append(h4("SeaMetrics"))
+    b.append(p(
+        "Loại nối tiếp: cỡ 3/8 in. đến 2 in.; nhựa, đồng thau; ứng dụng nước sạch; lưu lượng 0,05 đến "
+        "40,0 gpm; độ chính xác ±1 % toàn thang (FS). Loại chèn: dải đầu đo IP; nhựa, đồng thau, thép "
+        "không gỉ; ổ trục sapphire và trục cacbua; tới 250 °F; 0,3 đến 30 ft/s; độ chính xác ±1 % đến "
+        "±2 % FS."))
+    b.append(h4("Roper Flow Technology"))
+    b.append(p(
+        "Lưu lượng kế nối tiếp: OmniFlow®, chất lỏng và chất khí, độ chính xác cao; dải 7,6 đến 5677 "
+        "mL/phút (chất lỏng), 0,0025 đến 0,68 A m³/h (chất khí). Chịu lạnh sâu tới 593 °C, áp suất tới "
+        "60.000 psi, có bù độ nhớt. Optiflo®, kết cấu nhựa, chỉ cho chất lỏng, với khả năng làm việc "
+        "giảm đi đôi chút."))
+    b.append(h4("Hoffer"))
+    b.append(p(
+        "Dòng MF (Miniflow): lưu lượng kế nối tiếp lưu lượng thấp, hiệu năng cao, dùng “rôto Pelton” "
+        "cho chất lỏng và chất khí. Dải lưu lượng chất lỏng từ 57 mL/phút đến 11,5 rpm [nguyên văn]. "
+        "Độ tuyến tính ±1 % giá trị đọc trên dải 10:1. Độ lặp lại điển hình ±0,1 %. Dải lưu lượng khí "
+        "tuỳ khối lượng riêng, từ 0,02 ACFM đến 1,0 ACFM; độ tuyến tính ±1,5 % giá trị đọc; độ lặp "
+        "lại ±0,2 %. Nhiều loại ổ trục khác nhau; ổ bi dùng cho ứng dụng đòi hỏi độ chính xác cao. Có "
+        "đường cong UVC. Có bộ truyền “thông minh” để bù nhiệt – độ nhớt và tuyến tính hoá."))
+    b.append(h4("McMillan"))
+    b.append(p(
+        "Chất lỏng độ nhớt thấp: lưu lượng kế nối tiếp, dải 13 mL/phút đến 10 L/phút, độ chính xác "
+        "±1 % đến ±3 % toàn thang, cảm biến tốc độ quay hồng ngoại. Có phiên bản Teflon cho chất ăn "
+        "mòn."))
+    b.append(p(
+        "Chất khí: phiên bản Teflon cho clo, flo, v.v., độ chính xác ±3 % toàn thang, dải 25 A mL/phút "
+        "đến 5 A mL/phút."))
+    b.append(h4("Flowmetrics"))
+    b.append(p(
+        "Series 600: tuabin tiếp tuyến nối tiếp bằng thép không gỉ cho chất khí và chất lỏng. Dải: "
+        "0,001 đến 2,0 GPM với chất lỏng; 0,001 đến 2,0 ACFM với chất khí. Độ tuyến tính thay đổi "
+        "theo dải, từ ±1 % FS đến ±5 % FS. Độ lặp lại ±0,05 %, truy xuất chuẩn NIST."))
+    b.append(h4("Proteus"))
+    b.append(p(
+        "Lưu lượng kế bánh guồng nối tiếp và công tắc dòng — chỉ cho chất lỏng. Thường dùng cho đường "
+        "nước làm mát của thiết bị điện hoặc thiết bị chân không. Được công bố dùng với chất lỏng tới "
+        "120 cSt. Môi chất gồm nước, nước đã xử lý, nước khử ion, ethylene glycol, dầu nhẹ, v.v. Dải "
+        "0,08 đến 60 gpm. Độ chính xác thay đổi giữa các model trong khoảng ±3 % đến ±4 % FS. Thân "
+        "đồng hồ có thể tích hợp thêm đầu đo nhiệt độ và áp suất. Những lưu lượng kế này còn có sẵn "
+        "giao thức ghép nối máy tính Fluid Talk™ cùng phần mềm PC để xây dựng hệ điều khiển nhúng cho "
+        "lưu lượng, nhiệt độ và áp suất."))
+
+    # ---------------------------------------------------------------- refs
+    b.append(h3("Tài liệu tham khảo", "References"))
+    b.append(wl([
+        "[1] N. P. Cheremisinoff, <i>Applied Fluid Flow Measurement</i>, New York: Marcel Dekker, "
+        "1979, 106.",
+        "[2] H. S. Bean (chủ biên), <i>Fluid Meters</i>, ấn bản 6, New York: American Society of "
+        "Mechanical Engineers, 1971, 99.",
+        "[3] <i>Flow Meter Finder™ Impeller-Type Flow Meters</i>, "
+        "http://www.seametrics.com/flowmeter-finder/impeller.htm.",
+        "[4] R. Koch và D. Palmer, <i>Revisiting Measurement Technologies, Multijet vs. Positive "
+        "Displacement Meters in 1996</i>, "
+        "http://www.wateronline.com/companies/mastermeterinc/tech.html.",
+        "[5] L. C. Kjelstrom, “Methods of measuring pumpage through closed conduit irrigation "
+        "systems”, <i>J. Irrigation Drainage Eng.-ASCE</i>, 117, 748–757, 1991.",
+    ]))
+    return "".join(b)
+
+
+def sec_28_5_en():
+    b = []
+    b.append(h2("28.5 Impeller Flowmeters", "Impeller Flowmeters"))
+    b.append(p("Harold M. Miller — Data Industrial."))
+    b.append(p(
+        "Impeller flowmeters, sometimes called paddlewheel meters, are one of the most commonly used "
+        "flowmeter varieties. The impeller flow sensor is a direct offshoot of the old-fashioned "
+        "undershot waterwheel. They are a cost-effective alternative to turbine meters, and can be "
+        "used in applications that are difficult to handle with other types of flow metering "
+        "instruments. In their mechanical construction they are usually very simple, with any "
+        "sophistication residing in the electronics used to detect the rotation rate of the impeller, "
+        "and in the choice of materials of construction for the chemical corrosion attributes of the "
+        "metered fluids. They are related to turbine meters in that both types use a rotating "
+        "mechanical element to produce the output signal. They differ in that the impeller meter has "
+        "its rotary axis transverse to the flow stream, as opposed to the turbine meter axis, which "
+        "is parallel thereto."))
+    b.append(p(
+        "These devices are available in two basic types. The insertion style is the most common (see "
+        "Figures 28.34(b) and 28.35). The sensor is installed directly into a hole in a pipe, with a "
+        "saddle or welded fitting installed at the entry to seal the sensor to the pipe. The sensor "
+        "can also be preinstalled in appropriate tees in the pipeline. Most suppliers have designs "
+        "that can be installed in operating pipe systems, with little, if any, loss of fluid during "
+        "the installation process. The impeller design is also supplied in in-line (through-flow) "
+        "sensors for those applications where such use is desirable (Figure 28.34(a)). The in-line "
+        "meters are commonly of somewhat higher accuracy than the insertion style."))
+    b.append(fig(34, F.fig(34), "en"))
+    b.append(p(
+        "In-line meters are linear, inferential, volumetric flowmeters for measuring liquid and gas "
+        "flows, and are more sensitive at lower flow rates compared with, for example, axial turbine "
+        "flowmeters. (This is of course because the flow blade incidence angle is much greater.) "
+        "Insertion impeller flowmeters instead measure the flow velocity in a small region within a "
+        "flow conduit."))
+    b.append(p(
+        "Impeller flowmeters are generally suited to much lower flow rate ranges than the same size "
+        "axial turbines, and hence often find applications where axial turbines cannot be used. This, "
+        "and a tendency for lower cost and high reliability, are key strengths. Competition with "
+        "in-line axial turbines can only occur in overlapping design flow ranges."))
+    b.append(p(
+        "Some in-line meters have interchangeable orifice sizes, allowing the same body to be used "
+        "over different flow ranges. The orificed in-line meters are typically insensitive to flow "
+        "condition. Insertion meters are, of course, very sensitive to flow condition if volumetric "
+        "measurements are inferred. This is an important distinction and can extend to differences "
+        "between requirements for specific in-line versions. Installation is important: it affects "
+        "the user when designing an installation, selecting a flowmeter, and deciding how much "
+        "confidence to place in the measurement reading."))
+    b.append(fig(35, F.fig(35), "en"))
+    b.append(p(
+        "Paddlewheel flowmeters are never used in liquid hydrocarbon custody transfer applications. "
+        "The flow measurement capacity is insufficient to compete in monitoring large-volume "
+        "transfers, and accuracy is not sufficient for valuable fluids."))
+    b.append(p(
+        "These meters go by a variety of names, depending on which name the manufacturer selects and "
+        "also the application. One often-quoted historical root is the impulse turbine invented by "
+        "Pelton in the 19th century, which has given rise to the “Pelton wheel turbine” description "
+        "currently used by some suppliers. A device like this was originally used to drive milling "
+        "wheels directly about the vertical axis, rather than through a right-angle gear as in the "
+        "“undershot” wheel described. Another common name, besides paddlewheel and impeller-type — "
+        "based at least on suppliers' descriptions for the in-line variety — is single-jet "
+        "tangential, or simply tangential, turbine. The former description distinguishes this design "
+        "from that of multijet tangential turbine flowmeters and therefore deserves mention. There "
+        "are thus a confusing variety of names in current use, all relating to essentially the same "
+        "impeller-like, vaned flowmetering principle:"))
+    b.append(ol([
+        "Impeller type: insertion and in-line",
+        "Paddlewheel type: insertion and in-line",
+        "Pelton turbine wheel type: in-line",
+        "Tangential turbine flowmeter: insertion and in-line",
+        "Single-jet tangential turbine flowmeter: in-line",
+        "Impulse turbine flowmeter: in-line",
+    ]))
+    b.append(p(
+        "Historically, the impeller sensor is based on early electronic speedometers used in pleasure "
+        "boating. Signet, followed quickly by Data Industrial, moved to modify the basic design of "
+        "such marine instruments to meet the significantly more demanding service life requirements "
+        "of industrial flow measurement. The resulting flowmeters, and their descendants, have been "
+        "widely used since 1975. Significant engineering efforts have resulted in highly reliable "
+        "instruments used in many extremely demanding applications."))
+
+    # ---------------------------------------------------------------- sensing
+    b.append(h3("Sensing Principles", "Sensing Principles"))
+    b.append(p(
+        "All impeller flow sensors must detect the rotation of the impeller, and in their usual form "
+        "transmit a pulse train at a frequency related to the rotational velocity of the impeller. "
+        "Being essentially a digital output, impeller sensors can typically transmit signals over "
+        "quite long distances, up to 1 km when so required. Detection principles used include:"))
+    b.append(ol([
+        "One or more magnets retained in the impeller or mechanically connected thereto, using the "
+        "zero crossing of an induced ac field to generate the pulse train.",
+        "One or more coupling devices contained within the impeller, modulating a transmitted "
+        "frequency that is processed to produce the pulse train.",
+        "One or more metallic targets installed within the sensor, sensed by any of the proximity "
+        "pickup techniques commercially available, to produce output pulses.",
+        "One or more magnets retained in the impeller, used to switch a Hall effect device, producing "
+        "the output pulse train.",
+        "Optical devices, both transmissive and reflective, used to sense the passage of the impeller "
+        "blades to produce the output pulse train.",
+        "Measurement of the change in electric reactance due to the passage of impeller vanes through "
+        "the measurement field area, conditioned to produce the output pulse train.",
+    ]))
+    b.append(p(
+        "Any given supplier can produce several types of impeller flowmeter, each type using a "
+        "different detection method depending on market requirements. Since the impeller can operate "
+        "to rotational velocities of 4000 rpm or higher, output frequencies can be as high as 500 Hz. "
+        "At low flow rates the frequencies can be as low as 0.2 Hz. This factor should be addressed "
+        "early in the selection procedure, because the chosen output device must be capable of the "
+        "frequency output range of the sensor."))
+    b.append(p(
+        "Most sensor manufacturers can either supply or specify an appropriate meter to relate sensor "
+        "output to flow rate in engineering units, either U.S. Customary or SI. These meters are "
+        "usually capable of displaying both flow rate and accumulated flow for the sensor to which "
+        "they are connected. Additional outputs are available, either stand-alone or in combination "
+        "with the meter, providing periodic pulse outputs at definable flow increments or analog "
+        "outputs scaled to flow rate. In addition, certain control functions, alarms and other "
+        "special features required by the various markets served are often incorporated in these "
+        "meters."))
+
+    # ---------------------------------------------------------------- ranges
+    b.append(h3("Flow Ranges", "Flow Ranges"))
+    b.append(p(
+        "The insertion style of impeller meter, even when tee-installed, is a local sensing device, "
+        "measuring the flow velocity in only part of the flow stream. The manufacturer calibrates the "
+        "meter for average flow across the entire cross-section of the pipe. The paddlewheel location "
+        "is usually close to the inner diameter of the pipe, in a region of flow with a velocity "
+        "significantly below the average flow velocity in the pipe. Proper calibration practices by "
+        "the manufacturer make the meters effective at flow rates as low as 10 cm/s average velocity, "
+        "in spite of the low local velocities at the impeller. Generally speaking, flows at Reynolds "
+        "numbers as low as 5000 can be run with no requirement for special calibration, and "
+        "frequently lower numbers can be handled with no difficulty. The usual range specification is "
+        "a flow rate equivalent to 0.3 to 10 m/s average flow velocity. The diversity of products "
+        "available allows operation to velocities considerably lower than the 0.3 m/s range, indeed "
+        "to as low as 0.07 m/s in certain specialty impeller flowmeters."))
+
+    # ---------------------------------------------------------------- install
+    b.append(h3("Installation", "Installation"))
+    b.append(h4("Pipe sizes", "Pipe sizes"))
+    b.append(p(
+        "Pipe sizes in which these sensors have been installed run the gamut from small-bore tubing "
+        "to 2.3 m outside diameter. The larger pipe sizes are those that show the greatest installed "
+        "cost savings over alternative metering systems. The impeller meter, in fact, can be "
+        "cost-effective in any flowmeter application that is consistent with the accuracy of the "
+        "instrument, particularly if the application involves pump or valve control."))
+    b.append(h4("Piping system restrictions", "Piping system restrictions"))
+    b.append(p(
+        "Most suppliers require at least 10 pipe-diameter lengths of straight pipe upstream of the "
+        "installed meter, and 5 downstream. These conditions are required to minimize the asymmetry "
+        "of the flow stream in the neighbourhood of the impeller, in the installed piping, which can "
+        "be caused by elbows, tees and valves. More is better; no supplier is likely to complain that "
+        "there is too great a straight pipe length upstream. Less can adversely affect the "
+        "calibration of the sensor, due to the local variations of velocity resulting from flow "
+        "disturbances."))
+    b.append(h4("Operating pressure", "Operating pressure"))
+    b.append(p(
+        "Manufacturers' standard offerings are usually consistent with the pressure limitations of "
+        "the materials of construction of the piping system — with plastic piping systems, the "
+        "plastic limit; with steel or brass piping, commonly as high as 2.7 MPa. Higher pressures are "
+        "available, but are usually somewhat more expensive. Pressure drop generated by the installed "
+        "flowmeter is usually low. Manufacturers can usually supply information on the anticipated "
+        "pressure drop."))
+    b.append(h4("Calibration", "Calibration"))
+    b.append(p(
+        "Calibration of the sensors is usually specified by the manufacturer. Some manufacturers "
+        "provide a calibration factor in terms of gallons per pulse or in pulses per gallon. Others, "
+        "such as Data Industrial, provide data relating frequency to flow rate in GPM or other "
+        "volumetric rate units. For insertion-style sensors, any such instrument must be field "
+        "calibratable to accommodate the variation in the relation of impeller rotational velocity "
+        "with average flow rate with pipe size variation."))
+    b.append(h4("Accuracy", "Accuracy"))
+    b.append(p(
+        "Accuracies for in-line impeller flowmeters vary considerably but can be high, ranging from "
+        "±0.2% of reading for liquids for one manufacturer to several percent of full scale for "
+        "several others. The difference between accuracies specified as % full scale and % reading "
+        "should be particularly noted. Manufacturers use both, particularly with this class of "
+        "meter. A ±1% full-scale device is often far less accurate than, for example, a ±2% reading "
+        "device: it is in error by 10% at the minimum of its flow range if the turndown is 10:1, "
+        "whereas the ±2% reading device is still only in error by ±2%."))
+    b.append(p(
+        "Output accuracy is usually specified as ±1% of full rated flow. This specification is broad "
+        "enough to handle the dimensional and frictional variations in the sensors as manufactured. "
+        "Some producers will custom-calibrate the sensors to meet special needs, but this task should "
+        "be performed only when the mating pipe entry and exit can be shipped to, and accommodated "
+        "by, the manufacturer. Alternatively, the manufacturer can usually provide new calibration "
+        "values if the meter used is identified, the meter reading is known, and the actual flow is "
+        "known for at least two points on the flow curve. When calibration in place is required, the "
+        "anticipated accuracy is in the range of ±0.5% of full scale or 1% of indicated flow, "
+        "whichever is greater."))
+    b.append(p(
+        "Repeatability of readings is usually on the order of 0.5%. Linearity, except at the extremes "
+        "of the flow range, is also expected to be no worse than 0.5%, and over the full design range "
+        "of the meter is normally accurate within ±1% of full rated flow."))
+    b.append(p(
+        "To achieve the accuracies noted above, careful attention must be paid to proper "
+        "installation, particularly with regard to insertion depth."))
+    b.append(h4("Design features", "Design features"))
+    b.append(p(
+        "These flow sensors are offered in materials of construction compatible with a broad range of "
+        "aqueous solutions, of both high and low pH, and with deionized water. For this latter "
+        "service, the history of the sensor — particularly for particle generation — should be "
+        "reviewed. Flow streams with high concentrations of solids, and particularly of fibrous "
+        "solids, should be carefully reviewed when the impeller sensor is under consideration. "
+        "Construction is reasonably forgiving with particulates, but caution in such applications is "
+        "warranted. Heat transfer fluids are also compatible with sensors from at least two of the "
+        "suppliers. Basic application limits should be discussed with the supplier, who should have a "
+        "broad history of successful applications to back up recommendations, as well as sensor "
+        "materials with test results specific to the measured fluid. So-called “hot tap” or “wet tap” "
+        "versions are available for installation in operating pipelines and in-line or on-line "
+        "service. A submersible version capable of metering in flooded well pits for extended periods "
+        "of time is available from some suppliers. At least two manufacturers provide “intrinsically "
+        "safe” sensors for application in hazardous environments."))
+    b.append(h4("Areas of application", "Areas of application"))
+    b.append(p("Impeller flow sensors are widely used in the following fields with considerable success:"))
+    b.append(ul([
+        "Agricultural and horticultural irrigation",
+        "Deionized water systems, including silicon wafer fabrication",
+        "Heating, ventilating and air conditioning, energy management",
+        "Industrial waste treatment",
+        "Industrial filtration systems",
+        "Chemical reagent metering and batching",
+        "Municipal water systems (potable water)",
+    ]))
+    b.append(p(
+        "The sensors can be supplied with analog output for control applications, if desired."))
+    b.append(p(
+        "Some suppliers have developed specialty impeller meters adapted to provide the long life, "
+        "ruggedness and maintainability required in more demanding applications. The history of "
+        "acceptable operation in applications similar to that proposed for the metering system should "
+        "be reviewed with the supplier. Custodial transfer applications are normally unsuitable for "
+        "the impeller sensor."))
+
+    # ---------------------------------------------------------------- makers
+    b.append(h3("Manufacturers", "Manufacturers"))
+    b.append(p(
+        "The following is a selection of U.S. manufacturers. Their locations and phone numbers are "
+        "listed in Table 28.10."))
+    b.append(_t2810("en"))
+    b.append(h4("Data Industrial"))
+    b.append(p(
+        "In-line and insertion meters: 0.07 to 18 m/s (0.25 to 60 fps) fluid velocity. Available "
+        "materials to accommodate most industrial fluids. Temperatures from −29 °C to 152 °C (−20 °F "
+        "to 305 °F). Energy monitoring. Digital and/or analog meter outputs. NEMA 4, 4X and 6P "
+        "constructions. FM, CSA approvals."))
+    b.append(h4("G. Fischer (Signet)"))
+    b.append(p(
+        "In-line and insertion meters: 0.1 to 7 m/s (0.3 to 20 fps) fluid velocity. Available "
+        "materials to accommodate most industrial fluids. Temperatures to 149 °C (300 °F). Energy "
+        "monitoring. Digital and/or analog meter outputs. NEMA 4, 4X constructions. FM, CE approvals."))
+    b.append(h4("SeaMetrics"))
+    b.append(p(
+        "In-line meter: sizes 3/8 in. to 2 in.; plastic, brass; clean water applications; flows from "
+        "0.05 to 40.0 gpm; accuracy ±1% of full scale (FS). Insertion: range of IP probes; plastic, "
+        "brass, stainless; sapphire bearings and carbide shafts; up to 250 °F; 0.3 to 30 fps; "
+        "accuracy ±1% to ±2% FS."))
+    b.append(h4("Roper Flow Technology"))
+    b.append(p(
+        "In-line meters: OmniFlow®, liquids and gases, highly precise, range 7.6 to 5677 mL/min "
+        "(liquid), 0.0025 to 0.68 A m³/h (gases). Cryogenics to 593 °C, pressure to 60,000 psi, "
+        "viscosity compensated. Optiflo®, plastic construction for liquids only, with some reduction "
+        "in performance capabilities."))
+    b.append(h4("Hoffer"))
+    b.append(p(
+        "MF Series (Miniflow): high-performance, in-line low-flow meters using a “Pelton rotor” for "
+        "liquids and gases. Liquid flow ranges from 57 mL/min to 11.5 rpm [sic]. Linearity ±1% "
+        "reading over 10:1 range. Repeatability ±0.1% typical. Gas flow ranges depending on density "
+        "from 0.02 ACFM to 1.0 ACFM; linearity ±1.5% reading; repeatability ±0.2%. Various bearings "
+        "available; ball bearings used for high-accuracy applications. UVC curves available. “Smart” "
+        "transmitter available for temperature–viscosity correction plus linearization."))
+    b.append(h4("McMillan"))
+    b.append(p(
+        "Low-viscosity liquids: in-line meters, ranges from 13 mL/min to 10 L/min, accuracies ±1% to "
+        "±3% full scale, IR rotation sensors. Have a Teflon version for corrosives."))
+    b.append(p(
+        "Gases: Teflon version for chlorine, fluorine, etc., accuracy ±3% full scale, ranges 25 A "
+        "mL/min to 5 A mL/min."))
+    b.append(h4("Flowmetrics"))
+    b.append(p(
+        "Series 600: stainless steel, in-line tangential turbine for gases and liquids. Ranges: 0.001 "
+        "to 2.0 GPM liquids; 0.001 to 2.0 ACFM gases. Linearities vary according to range from ±1% FS "
+        "to ±5% FS. Repeatabilities ±0.05%, traceable NIST."))
+    b.append(h4("Proteus"))
+    b.append(p(
+        "In-line paddlewheel flowmeters and flow switches — liquids only. Typically used for water "
+        "cooling lines on electrical or vacuum equipment. Quoted for use with liquids up to 120 cSt. "
+        "Media include water, treated water, deionized water, ethylene glycol, light oils, etc. Range "
+        "0.08 to 60 gpm. Accuracies vary between models in the ±3% to ±4% FS range. Meter bodies can "
+        "incorporate optional integral temperature and pressure transducers. These meters are also "
+        "available with a Fluid Talk™ computer interface protocol and PC software for constructing "
+        "embedded control systems for flow, temperature and pressure."))
+
+    # ---------------------------------------------------------------- refs
+    b.append(h3("References", "References"))
+    b.append(wl([
+        "[1] N. P. Cheremisinoff, <i>Applied Fluid Flow Measurement</i>, New York: Marcel Dekker, "
+        "1979, 106.",
+        "[2] H. S. Bean (ed.), <i>Fluid Meters</i>, 6th ed., New York: American Society of Mechanical "
+        "Engineers, 1971, 99.",
+        "[3] <i>Flow Meter Finder™ Impeller-Type Flow Meters</i>, "
+        "http://www.seametrics.com/flowmeter-finder/impeller.htm.",
+        "[4] R. Koch and D. Palmer, <i>Revisiting Measurement Technologies, Multijet vs. Positive "
+        "Displacement Meters in 1996</i>, "
+        "http://www.wateronline.com/companies/mastermeterinc/tech.html.",
+        "[5] L. C. Kjelstrom, “Methods of measuring pumpage through closed conduit irrigation "
+        "systems”, <i>J. Irrigation Drainage Eng.-ASCE</i>, 117, 748–757, 1991.",
+    ]))
+    return "".join(b)
+
+
 # ================================================================ build
 
-SECTIONS_VI = [sec_28_1_vi, sec_28_2_vi, sec_28_3_vi, sec_28_4_vi]
-SECTIONS_EN = [sec_28_1_en, sec_28_2_en, sec_28_3_en, sec_28_4_en]
+SECTIONS_VI = [sec_28_1_vi, sec_28_2_vi, sec_28_3_vi, sec_28_4_vi, sec_28_5_vi]
+SECTIONS_EN = [sec_28_1_en, sec_28_2_en, sec_28_3_en, sec_28_4_en, sec_28_5_en]
 
 
 def body_vi():
@@ -4245,8 +4881,8 @@ def build(lang):
              'Chương 28' % BASE_VI if vi else
              '<a href="/books/">Books</a> · <a href="%s">Measurement, Instrumentation and Sensors '
              'Handbook</a> · Chapter 28' % BASE_EN)
-    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 4/11 mục" if vi else
-            "Chapter 28 · in progress: 4 of 11 sections")
+    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 5/11 mục" if vi else
+            "Chapter 28 · in progress: 5 of 11 sections")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
             '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'

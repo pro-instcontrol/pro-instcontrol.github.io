@@ -1561,13 +1561,165 @@ def fig_28_33():
                 "U-shaped fork")
 
 
+# ================================================================ 28.5 impeller
+
+def fig_28_34():
+    o = [_defs()]
+    o.append(_lbl(40, 24, "(a)", "tb"))
+    # ---- panel (a) left: body cross-section, chamber and six-blade rotor
+    o.append(_rect(115, 60, 190, 190, WARM, E, 1.8, rx=4))
+    o.append(_circ(210, 155, 68, P, E, 1.6))
+    o += _blade_row(210, 155, 60, 6, 0.35, "#8fa3b8", 4)
+    o.append(_circ(210, 155, 5, E, E, 1.0))
+    # pickup port above the chamber
+    o.append(_rect(238, 20, 14, 40, "#dce6f2", E, 1.4))
+    o.append(_rect(232, 6, 26, 14, "#dce6f2", E, 1.4))
+    o.append(_lbl(264, 16, "đầu thu", "ts"))
+    # jet orifice cut into the left wall, labelled outside the body
+    o.append(_rect(115, 127, 11, 14, "#dce6f2", E, 1.2))
+    o.append(_line(96, 134, 113, 134, S, 0.9, "3 3"))
+    o.append(_lbl(92, 128, "lỗ phun", "ts", "end"))
+    o.append(_lbl(92, 141, "hoặc cửa vào", "ts", "end"))
+    # circulating flow inside the chamber, label above the rotor
+    o.append('<path d="M176,192 A58,58 0 0 1 152,96" fill="none" stroke="%s" '
+             'stroke-width="1.3" marker-end="url(#ah28s)"/>' % S)
+    o.append(_lbl(118, 82, "dòng tuần hoàn", "ts"))
+    # section plane A–A' through the chamber axis
+    o.append(_line(210, 16, 210, 300, S, 1.0, "7 3 2 3"))
+    o.append(_lbl(210, 12, "A", "ts", "middle"))
+    o.append(_lbl(210, 310, "A\u2032", "ts", "middle"))
+    # flow in and out
+    o.append(_arr(70, 190, 108, 190, S, "ah28s", 1.5))
+    o.append(_arr(335, 190, 312, 190, S, "ah28s", 1.5))
+    # ---- panel (a) right: the two rotor profiles on section A–A'
+    for y0, kind in ((56, "flat"), (186, "t")):
+        o.append(_rect(345, y0, 80, 96, FILL, E, 1.6))
+        o.append(_line(345, y0 + 48, 425, y0 + 48, S, 0.9, "4 3"))
+        o.append(_rect(350, y0 + 43, 70, 10, "#9aa4b2", E, 1.2))
+        if kind == "flat":
+            o.append(_rect(378, y0 + 22, 14, 21, "#dce6f2", E, 1.2))
+            o.append(_rect(378, y0 + 53, 14, 21, "#dce6f2", E, 1.2))
+        else:
+            o.append(_rect(368, y0 + 22, 34, 8, "#dce6f2", E, 1.2))
+            o.append(_rect(380, y0 + 30, 10, 13, "#dce6f2", E, 1.2))
+            o.append(_rect(380, y0 + 53, 10, 13, "#dce6f2", E, 1.2))
+            o.append(_rect(368, y0 + 66, 34, 8, "#dce6f2", E, 1.2))
+        o.append(_lbl(334, y0 + 2, "A", "ts", "end"))
+        o.append(_lbl(334, y0 + 100, "A\u2032", "ts", "end"))
+    o.append(_lbl(438, 84, "kiểu prôfin", "tb"))
+    o.append(_lbl(438, 98, "phẳng", "tb"))
+    o.append(_lbl(438, 214, "kiểu prôfin", "tb"))
+    o.append(_lbl(438, 228, "chữ T", "tb"))
+    o.append(_line(430, 124, 418, 116, S, 0.9, "3 3"))
+    o.append(_lbl(438, 128, "khe hở lớn", "ts"))
+    # ---- panel (b): insertion rotors, straight and angled
+    o.append(_lbl(40, 322, "(b)", "tb"))
+    o.append(_line(60, 344, 420, 344, S, 1.4, "8 5"))
+    o.append(_lbl(64, 336, "thành ống", "ts"))
+    for cx, kind in ((150, "straight"), (330, "angled")):
+        o.append(_rect(cx - 6, 344, 12, 40, "#dce6f2", E, 1.4))
+        o.append(_circ(cx, 396, 24, "none", E, 1.2))
+        for i in range(6):
+            a = i * _m.pi / 3 + (0.5 if kind == "angled" else 0.0)
+            dx, dy = 20 * _m.cos(a), 20 * _m.sin(a)
+            if kind == "straight":
+                o.append(_thick(cx, 396, cx + dx, 396 + dy, "#8fa3b8", 4))
+            else:
+                o.append(_thick(cx - dy * 0.5, 396 + dx * 0.5,
+                                cx + dx * 0.85, 396 + dy * 0.85, "#8fa3b8", 4))
+        o.append(_circ(cx, 396, 4, E, E, 1.0))
+        o.append(_lbl(cx, 442, "thẳng" if kind == "straight" else "nghiêng", "tb", "middle"))
+    o.append(_arr(72, 396, 108, 396, S, "ah28s", 1.4))
+    o.append(_arr(252, 396, 288, 396, S, "ah28s", 1.4))
+    o.append(_lbl(72, 386, "dòng chảy", "ts"))
+    o.append(_lbl(196, 378, "cán", "ts"))
+    o.append(_line(192, 374, 158, 362, S, 0.9, "3 3"))
+    o.append(_lbl(452, 400, "Số cánh điển hình = 6 hoặc 8", "ts"))
+    return _fig(svg(680, 456, "".join(o), "Các kiểu rôto lưu lượng kế cánh guồng"),
+                "Hình 28.34 · Các kiểu rôto của lưu lượng kế cánh guồng: (a) lưu lượng kế nối tiếp "
+                "kiểu toàn phần — mặt cắt ngang thân (trái) và hai kiểu prôfin rôto theo mặt cắt "
+                "A–A′ (phải); (b) lưu lượng kế kiểu chèn, với cánh thẳng và cánh nghiêng. Ở kiểu "
+                "chèn, trục quay của cánh guồng vuông góc với dòng chảy — đây chính là điểm khác "
+                "biệt so với lưu lượng kế tuabin, vốn có trục song song với dòng. Số cánh điển hình "
+                "là 6 hoặc 8. (Theo David Wadlow.)",
+                "Figure 28.34 · Impeller flowmeter rotor design variations: (a) in-line meters — body "
+                "cross-section (left) and the two rotor profiles on section A–A′ (right); (b) "
+                "insertion meters, with straight and angled blades. In the insertion type the "
+                "impeller's rotary axis is transverse to the flow, which is what distinguishes it "
+                "from the turbine meter. Typical number of blades is 6 or 8. (Courtesy of David "
+                "Wadlow.)",
+                "Hai pa-nen: mặt cắt thân lưu lượng kế nối tiếp với hai prôfin rôto, và hai kiểu "
+                "cánh chèn thẳng và nghiêng",
+                "Two panels: a body cross-section with two rotor profiles, and straight and angled "
+                "insertion blades")
+
+
+def fig_28_35():
+    o = [_defs()]
+    # pipe wall
+    o.append(_rect(40, 210, 600, 14, "url(#hatch28)", E, 1.4))
+    o.append(_lbl(46, 202, "thành ống", "ts"))
+    # welded boss and fitting
+    o.append(_path("M300,210 L300,176 L380,176 L380,210 Z", E, 1.6, FILL))
+    o.append(_rect(312, 160, 56, 16, "#dce6f2", E, 1.5, rx=2))
+    # threaded stem
+    o.append(_rect(326, 60, 28, 100, "#dce6f2", E, 1.5))
+    for i in range(6):
+        y = 96 + i * 11
+        o.append(_line(326, y, 354, y - 6, S, 0.8))
+    # collar with flow arrow
+    o.append(_rect(326, 66, 28, 22, P, E, 1.4))
+    o.append(_arr(332, 77, 348, 77, G, "ah28g", 1.6))
+    # top flange and rods
+    o.append(_rect(302, 44, 76, 14, "#dce6f2", E, 1.5, rx=2))
+    for x in (310, 366):
+        o.append(_line(x, 30, x, 44, E, 2.2))
+        o.append(_circ(x, 28, 3, E, E, 1.0))
+    # cable lead and its label sit above the flange, clear of the two rods
+    o.append(_line(340, 44, 340, 22, E, 2.2))
+    o.append(_lbl(340, 14, "cáp tín hiệu", "ts", "middle"))
+    # impeller inside the pipe
+    o.append(_rect(326, 224, 28, 30, "#dce6f2", E, 1.4))
+    o += _blade_row(340, 272, 30, 6, 0.5)
+    o.append(_circ(340, 272, 30, "none", E, 1.2))
+    # flow
+    o.append(_arr(60, 272, 104, 272, S, "ah28s", 1.6))
+    o.append(_arr(580, 272, 536, 272, S, "ah28s", 1.6))
+    o.append(_lbl(62, 262, "dòng chảy", "ts"))
+    # callout labels
+    o.append(_line(354, 108, 392, 100, S, 0.9, "3 3"))
+    o.append(_lbl(396, 98, "ren", "ts"))
+    o.append(_line(368, 168, 400, 162, S, 0.9, "3 3"))
+    o.append(_lbl(404, 160, "đai ốc", "ts"))
+    o.append(_line(356, 78, 400, 70, S, 0.9, "3 3"))
+    o.append(_lbl(404, 68, "mũi tên chỉ chiều dòng", "ts"))
+    o.append(_line(370, 272, 408, 268, S, 0.9, "3 3"))
+    o.append(_lbl(412, 266, "cánh guồng", "ts"))
+    o.append(_line(300, 194, 268, 190, S, 0.9, "3 3"))
+    o.append(_lbl(264, 188, "đế hàn", "ts", "end"))
+    return _fig(svg(680, 322, "".join(o), "Cảm biến cánh guồng kiểu chèn"),
+                "Hình 28.35 · Một cảm biến cánh guồng kiểu chèn điển hình. Cảm biến được lắp vào một "
+                "lỗ trên thành ống qua đế hàn hoặc bộ nối kẹp; phần thân ren cho phép điều chỉnh độ "
+                "sâu chèn, và mũi tên trên thân cho biết chiều dòng chảy. Cánh guồng nằm ở đầu dưới "
+                "của cán chèn, quay quanh một trục vuông góc với dòng. Các kiểu “hot tap” cho phép "
+                "lắp vào đường ống đang vận hành mà gần như không mất chất lưu.",
+                "Figure 28.35 · A typical insertion type impeller flow sensor. The sensor enters the "
+                "pipe through a welded boss or clamp-on fitting; the threaded body sets the insertion "
+                "depth and the arrow on the body shows the flow direction. The impeller sits at the "
+                "bottom of the stem and rotates about an axis transverse to the flow. “Hot tap” "
+                "versions allow installation into a live pipeline with little or no loss of fluid.",
+                "Cảm biến chèn qua thành ống với thân ren, đai ốc, mũi tên chiều dòng và cánh guồng ở đầu dưới",
+                "An insertion sensor through the pipe wall with threaded body, hex nut, flow arrow and "
+                "impeller at the bottom")
+
+
 FIGS = [fig_28_1(), fig_28_2(), fig_28_3(), fig_28_4(), fig_28_5(), fig_28_6(),
         fig_28_7(), fig_28_8(), fig_28_9(), fig_28_10(), fig_28_11(), fig_28_12(),
         fig_28_13(), fig_28_14(), fig_28_15(), fig_28_16(), fig_28_17(), fig_28_18(),
         fig_28_19(), fig_28_20(), fig_28_21(), fig_28_22(), fig_28_23(),
         fig_28_24(), fig_28_25(), fig_28_26(), fig_28_27(), fig_28_28(),
         fig_28_29(), fig_28_30(), fig_28_31(), fig_28_32(),
-        fig_28_33()]
+        fig_28_33(), fig_28_34(), fig_28_35()]
 
 
 def fig(n):
