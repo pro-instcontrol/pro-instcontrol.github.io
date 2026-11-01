@@ -1,12 +1,12 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 28 — Chapters 100–101 and Appendix A added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 29 — Chapter 99 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 99** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **100, 101** and **Appendix A** are done, live
-> and registered; 28–99 are still `chờ dịch`. The reverse sequence is 99 (*Electropneumatic and
-> Electrohydraulic Instruments*), 98, 97 … down to and including 80 (*Bộ khuếch đại và điều hoà
-> tín hiệu*). Source text for every chapter is already extracted into `work/hb_chNN.txt`.
+> **Where to start next:** Handbook **Chapter 98** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **99, 100, 101** and **Appendix A** are done,
+> live and registered; 28–98 are still `chờ dịch`. The reverse sequence is 98, 97 … down to and
+> including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source text for every chapter is already
+> extracted into `work/hb_chNN.txt`.
 >
 > **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
 > pushing; both of us have hit conflicts in `build/reader_handbook.py` (`DONE`) and in the two
@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -1862,3 +1862,67 @@ a `[(text, is_sub), …]` list so the subscripts survive.
 `("progress", 101, 29)` — bump the third number with every chapter that lands, or the books
 catalogue shows a stale count. The `DONE` dict currently holds 27 chapters plus 100, 101 and
 Appendix A; the book TOC renders 28–99 as `chờ dịch`, which is correct.
+
+---
+
+## Session 29 — Chapter 99 (*Electropneumatic and Electrohydraulic Instruments*)
+
+Next step in the reverse sequence after Chapter 100. Source `work/Ch99.pdf`, text
+`work/hb_ch99.txt`, page renders `work/png99/`. Chapter title in `CH[99]` is *Thiết bị điện – khí
+nén và điện – thuỷ lực*, which is what the live Chapter 100 nav slot already pointed at.
+
+### What landed
+
+`build/hb99fig.py` (10 figures, ~40 kB) and `build/reader_hb_ch99.py` (~1,000 lines, VI + EN).
+Slug `ch99-electropneumatic-and-electrohydraulic-instruments`. 26 equations (99.1a–99.25),
+10 figures, one nomenclature table, 7 references, plus a translator's note covering four print
+defects in the source.
+
+### Figure rebuild — what the first pass got wrong
+
+The whole module was rewritten once before it ever reached the page, then re-QA'd figure by
+figure against 2× screenshots. Defects found and fixed:
+
+- **`_bode()` was lost in the rewrite** and every call raised `NameError`. Rebuilt: log-x in rad/s,
+  magnitude panel above, phase panel 62 px below, decade grid, phase unwrapping, `dash="+"` means
+  "sample as dots" rather than "draw a line".
+- **Figure 99.2 was topologically wrong.** Panel (a) drew the `c/b` feedback block inline after
+  the summing junction, so the signal ran sum → block → x_f and both arrows pointed *into* the
+  block. The source has the junction feeding x_v to the right and `c/b` hanging *below* it,
+  fed from the right by x_f and feeding the junction from underneath. Panels (b) and (c) were
+  re-drawn to the same pattern; the G(s) label and its dashed box had been placed in panel (b)
+  where they collided with the `c/b` block, when they belong to panel (c).
+- **Figure 99.4/99.9 axis titles were clipped** by a canvas 4 px too short, and 99.9's phase axis
+  ran 0…100 so every short-period marker clamped to 0. Replaced the ad-hoc transfer functions
+  with an honest pair: `sp(s) = 10(s+2)/((s+1.2)(s+6))` and `full(s) = sp(s)/(s+0.05)` — the extra
+  phugoid pole at 0.05 rad/s is exactly the effect the caption claims.
+- **Summing-junction signs sat on the signal lines.** `_sum()` placed `+` at `cx-r-7` and `−` at
+  `cy+r+10`, i.e. directly under the incoming arrowhead and on the vertical feedback line. Moved
+  to `(cx-r-10, cy-5)` and `(cx+5, cy+r+11)`, which is clear in every figure.
+- **Figure 99.6 hatch escaped the damping block** on the right; the 45° lines are now clipped to
+  the rectangle analytically. Torque arcs were raised clear of the shaft.
+- **Figure 99.7** drew the ram ending in nothing; added an explicit hinge, a lever to the surface,
+  a clipped R_h dimension and smaller τ arcs.
+- **Figure 99.8** used `_frac()` for a 172 px-wide block, so the fraction rule read as a signal
+  line crossing the block; replaced with a short rule. Removed a redundant feedback rectangle and
+  added arrowheads to the top path.
+- **Figure 99.1** routed the "feedback linkage" into the cylinder. It now runs from the bell crank,
+  left along the bottom, and up the far side to point *c* on the lever, as in the source.
+
+### Verification
+
+- `reader_handbook.py` → 102 TOC rows, **31** done rows, 14 sections, 101 chapters.
+- `chapter_nav.py` → **60** pages updated. Chapter 99 reads `← Chương 98 Điều khiển tối ưu …
+  Chương 100 → Thiết bị phòng nổ`; Chapter 100 now reads `← Chương 99 … Chương 101 →`.
+- `check_links.py` → **541 pages, 14,829 local references, 0 broken**.
+- `make_sitemap.py` → **539 URLs, 526 with EN/VI pairs**.
+- Chapter 99 page (both languages): 10 figures, 26 equations, 1 table, nav correct.
+
+### Note for the next session
+
+`books_site.TRANSLATED["measurement, instrumentation and sensors handbook"]` is now
+`("progress", 101, 30)`. `DONE` holds 30 entries — chapters 1–27 plus 99, 100 and 101 — and the book TOC renders
+28–98 as `chờ dịch`, which is correct. Next chapter in the reverse sequence: **98, Optimal
+Control**, then 97 (PID Control) — both are control-theory chapters with block diagrams and
+step-response figures, so the `_bode()` and `_sum()` helpers in `hb99fig.py` are worth copying
+rather than rewriting.
