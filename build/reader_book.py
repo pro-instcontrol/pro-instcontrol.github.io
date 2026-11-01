@@ -263,11 +263,12 @@ def toc(lang, spec):
         cen, cvi = chapters[c]
         label = cen if lang == "en" else cvi
         if c in done:
+            url = "%s%s/" % (base, done[c])
             rows.append(
                 '<li class="done"><span class="n">%d</span>'
-                '<span class="t"><a href="%s%s/">%s</a></span>'
-                '<span class="st">%s</span></li>'
-                % (c, base, done[c], esc(label),
+                '<span class="t"><a href="%s">%s</a></span>'
+                '<span class="st"><a href="%s">%s</a></span></li>'
+                % (c, url, esc(label), url,
                    "translated" if lang == "en" else "đã dịch"))
         else:
             rows.append('<li><span class="n">%d</span>'
