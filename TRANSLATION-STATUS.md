@@ -1823,9 +1823,12 @@ differently); it needs to be read off the page image at p. 91 when 28.8 is reach
 3. Append `sec_28_N_vi()` / `sec_28_N_en()` to `build/reader_hb_ch28.py` and add them to the two
    `SECTIONS_*` lists.
 4. `PYTHONPATH=build python work/qa_figs.py hb28fig` and `PYTHONPATH=build python build/reader_hb_ch28.py`.
-5. When all eleven sections are in: register `28: "ch28-flow-measurement"` in `DONE`, bump
-   `("progress", 101, 27)` → `("progress", 101, 28)` in `books_site.py`, run the full pipeline,
-   then commit and push.
+5. When all eleven sections are in: register `28: "ch28-flow-measurement"` in `DONE`, bump the
+   progress counter in `books_site.py` (`("progress", 101, N)` — read the current N from the file,
+   it moves as other chapters land), run the full pipeline, then commit and push.
+
+Note: this repo is worked on from more than one place — chapters 97–101 and Appendix A landed from a
+separate session while 28.1 was being written. **Always `git fetch` and rebase before pushing.**
 
 The generated `books/read/…/ch28-flow-measurement/` and `vi/…` directories exist locally for preview
 but are **untracked on purpose** — commit them only together with the finished chapter.
