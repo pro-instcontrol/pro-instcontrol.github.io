@@ -4838,10 +4838,890 @@ def sec_28_5_en():
     return "".join(b)
 
 
+def _t2811(lang):
+    """Table 28.11 — manufacturers of electromagnetic flowmeters."""
+    if lang == "vi":
+        hd = ("Nhà chế tạo", "Địa chỉ", "Điện thoại / Fax")
+        cap = ("Bảng 28.11 · Danh sách một số nhà chế tạo lưu lượng kế điện từ. Địa chỉ và số điện "
+               "thoại in lại đúng như bản gốc năm 1999.")
+    else:
+        hd = ("Manufacturer", "Address", "Phone / Fax")
+        cap = ("Table 28.11 · A list of several manufacturers of electromagnetic flowmeters. "
+               "Addresses and telephone numbers are reproduced as printed in the 1999 original.")
+    rows = [
+        ["ABB K-Flow Inc.", "P.O. Box 849, 45 Reese Rd., Millville, NJ 08332",
+         "Tel: (800) 294-8116<br>Fax: (609) 825-1678"],
+        ["Control Warehouse", "Shores Industrial Park, Ocala, FL 34472",
+         "Tel: (800) 633-0319<br>Fax: (352) 687-8925"],
+        ["Davis Instruments", "4701 Mount Hope Dr., Baltimore, MD 21215",
+         "Tel: (410) 358-3900<br>Fax: (410) 358-0252"],
+        ["Fischer Porter", "50 Northwestern Dr., P.O. Box 1167T, Salem, NH 03079-1137",
+         "Tel: (603) 893-9181<br>Fax: (603) 893-7690"],
+        ["Johnson Yokogawa", "Dept. P, Dart Rd., Newman, GA 30265",
+         "Tel: (800) 394-9134<br>Fax: (770) 251-6427"],
+        ["Marsh-McBirney, Inc.", "4539 Metropolitan Court, Frederick, MD 21704",
+         "Tel: (301) 879-5599<br>Fax: (301) 874-2172"],
+        ["Nusonics Inc.", "11391 E. Tecumseh St., Tulsa, OK 74116-1606",
+         "Tel: (918) 438-1010<br>Fax: (918) 438-6420"],
+        ["Rosemount Inc.", "Dept. MCA 15, 12001 Technology Dr., Eden Prairie, MN 55344",
+         "Tel: (612) 828-3006<br>Fax: (612) 828-3088"],
+        ["Sparling Instruments Co., Inc.", "4097 Temple City Blvd., P.O. Box 5988, "
+         "El Monte, CA 91734-1988", "Tel: (800) 423-4539"],
+        ["Universal Flow Monitors, Inc.", "1751 E. Nine Mile Rd., Hazel Park, MI 48030",
+         "Tel: (313) 542-9635<br>Fax: (313) 398-4274"],
+    ]
+    return table(hd, rows, cap, widths=("26%", "44%", "30%"))
+
+
+def sec_28_6_vi():
+    b = []
+    b.append(h2("28.6 Lưu lượng kế điện từ", "Electromagnetic Flowmeters"))
+    b.append(p("Halit Eren."))
+    b.append(p(
+        "Lưu lượng kế từ đã được dùng rộng rãi trong công nghiệp từ nhiều năm nay. Khác với nhiều "
+        "loại lưu lượng kế khác, chúng cho phép đo thực sự không xâm nhập. Chúng dễ lắp đặt và dễ sử "
+        "dụng đến mức những đường ống đang tồn tại trong một quy trình có thể biến thành lưu lượng kế "
+        "chỉ bằng cách thêm các điện cực bên ngoài và nam châm phù hợp. Chúng đo được dòng chảy ngược "
+        "và không nhạy với độ nhớt, khối lượng riêng và nhiễu loạn dòng. Lưu lượng kế điện từ đáp ứng "
+        "nhanh với thay đổi lưu lượng và là thiết bị tuyến tính trên một dải đo rộng. Những năm gần "
+        "đây, các cải tiến công nghệ đã cho ra những thiết bị kinh tế hơn, chính xác hơn và nhỏ gọn "
+        "hơn nhiều so với các phiên bản trước."))
+    b.append(p(
+        "Như với nhiều thiết bị điện khác, nguyên lý nền tảng của lưu lượng kế điện từ là định luật "
+        "cảm ứng điện từ Faraday. Điện áp cảm ứng trong lưu lượng kế điện từ tỷ lệ tuyến tính với vận "
+        "tốc trung bình của chất lỏng, hoặc với lưu lượng thể tích. Như trong nhiều ứng dụng, nếu "
+        "thành ống làm bằng vật liệu không dẫn điện thì điện áp cảm ứng không phụ thuộc vào tính chất "
+        "của chất lưu."))
+    b.append(p(
+        "Độ chính xác của những thiết bị này có thể tốt tới 0,25 %, và trong phần lớn ứng dụng người "
+        "ta dùng độ chính xác 1 %. Trong trường hợp xấu nhất, một số ứng dụng khó chỉ đạt 5 %, khi "
+        "chất lỏng có tạp chất và điện trở tiếp xúc của điện cực kém, như với các dung dịch natri có "
+        "độ tinh khiết thấp."))
+
+    # ---------------------------------------------------------------- faraday
+    b.append(h3("Định luật cảm ứng Faraday", "Faraday's Law of Induction"))
+    b.append(p(
+        "Định luật này phát biểu rằng nếu một vật dẫn có chiều dài <i>l</i> (m) chuyển động với vận "
+        "tốc <i>v</i> (m s<sup>−1</sup>) vuông góc với một từ trường có mật độ từ thông <i>B</i> "
+        "(Tesla), thì điện áp cảm ứng <i>e</i> trên hai đầu vật dẫn được biểu diễn bằng:"))
+    b.append(eq("e = B l v", "28.57"))
+    b.append(p(
+        "Nguyên lý áp dụng định luật Faraday cho lưu lượng kế điện từ được trình bày ở Hình 28.36. Từ "
+        "trường, chiều chuyển động của vật dẫn và suất điện động cảm ứng đôi một vuông góc với nhau."))
+    b.append(fig(36, F.fig(36), "vi"))
+    b.append(p(
+        "Hình 28.37 minh hoạ chi tiết hơn một lưu lượng kế điện từ giản lược. Các nam châm điện đặt "
+        "bên ngoài tạo ra một từ trường đều xuyên qua ống và chất lỏng bên trong. Khi chất lỏng dẫn "
+        "điện đang chảy cắt qua từ trường, một điện áp được sinh ra dọc theo đường đi của chất lỏng, "
+        "giữa hai điện cực đặt ở hai phía đối diện của ống."))
+    b.append(p(
+        "Với lưu lượng kế điện từ, vật dẫn chính là chất lỏng chảy trong ống, và chiều dài vật dẫn là "
+        "khoảng cách giữa hai điện cực, tức bằng đường kính ống. Vận tốc của vật dẫn tỷ lệ với vận "
+        "tốc trung bình của chất lỏng. Do đó điện áp cảm ứng trở thành:"))
+    b.append(eq("e = B D v", "28.58"))
+    b.append(p(
+        "trong đó <i>D</i> (m) là đường kính ống. Nếu từ trường không đổi và đường kính ống cố định "
+        "thì độ lớn của điện áp cảm ứng chỉ tỷ lệ với vận tốc chất lỏng. Nếu hai đầu vật dẫn — ở đây "
+        "là các cảm biến — được nối vào một mạch ngoài thì điện áp cảm ứng sẽ gây ra dòng điện "
+        "<i>i</i>, và dòng này có thể được xử lý thích hợp để làm thước đo lưu lượng. Điện trở của "
+        "vật dẫn chuyển động ký hiệu là <i>R</i>, cho ta điện áp đầu cực <i>v</i><sub>T</sub> của vật "
+        "dẫn chuyển động: <i>v</i><sub>T</sub> = <i>e</i> − <i>iR</i>."))
+    b.append(p(
+        "Lưu lượng kế điện từ thường được hiệu chuẩn để xác định lưu lượng thể tích của chất lỏng. Lưu "
+        "lượng thể tích <i>Q</i> (L s<sup>−1</sup>) liên hệ với vận tốc trung bình của chất lưu theo:"))
+    b.append(eq("Q = A v", "28.59"))
+    b.append(p("Viết diện tích <i>A</i> (m<sup>2</sup>) của ống dưới dạng:"))
+    b.append(eq("A = πD<sup>2</sup> / 4", "28.60"))
+    b.append(p("ta được điện áp cảm ứng như một hàm của lưu lượng:"))
+    b.append(eq("e = 4BQ / πD", "28.61"))
+    b.append(p(
+        "Phương trình 28.61 cho thấy rằng ở một lưu lượng kế được thiết kế cẩn thận, nếu mọi tham số "
+        "khác giữ không đổi thì điện áp cảm ứng chỉ tỷ lệ tuyến tính với lưu lượng chất lỏng."))
+    b.append(p(
+        "Dựa trên định luật cảm ứng Faraday, có nhiều loại lưu lượng kế điện từ khác nhau: loại xoay "
+        "chiều, loại một chiều và loại dùng nam châm vĩnh cửu. Hai loại dùng phổ biến nhất là xoay "
+        "chiều và một chiều; mục này chủ yếu tập trung vào hai loại đó."))
+    b.append(p(
+        "Mặc dù điện áp cảm ứng tỷ lệ trực tiếp với giá trị trung bình của lưu lượng, khó khăn chính "
+        "khi dùng lưu lượng kế điện từ là biên độ điện áp cảm ứng nhỏ so với các điện áp lạ và nhiễu. "
+        "Các nguồn nhiễu gồm:"))
+    b.append(ul([
+        "Điện áp lạ trong chất lỏng công nghệ",
+        "Ghép điện dung giữa mạch tín hiệu và mạch nguồn",
+        "Ghép điện dung trong dây dẫn nối",
+        "Suất điện động điện–cơ cảm ứng trong điện cực và trong chất lưu",
+        "Ghép cảm ứng của nam châm bên trong lưu lượng kế",
+    ]))
+
+    # ---------------------------------------------------------------- construction
+    b.append(h3("Kết cấu và nguyên lý làm việc", "Construction and Operation of Electromagnetic Flowmeters"))
+    b.append(p(
+        "Điểm chung của cả lưu lượng kế điện từ xoay chiều và một chiều là các cuộn dây tạo ra từ "
+        "trường xuyên qua ống và chất lưu. Khi chất lưu dẫn điện chảy qua lưu lượng kế, một điện áp "
+        "được cảm ứng giữa các điện cực tiếp xúc với chất lỏng. Các điện cực được đặt ở vị trí có "
+        "chênh lệch điện thế lớn nhất. Điện cực được cách điện với thành ống bằng lớp lót không dẫn "
+        "điện để tránh làm ngắn mạch tín hiệu điện cực. Lớp lót còn bảo vệ ống khỏi ăn mòn điện ly và "
+        "ăn mòn do tiếp xúc kim loại. Điện cực được giữ bởi các bộ giữ, đồng thời làm luôn nhiệm vụ "
+        "làm kín."))
+    b.append(p(
+        "Về kích thước, lưu lượng kế từ được chế tạo với đường kính từ 2 mm đến 1,2 m. Trong một ứng "
+        "dụng cụ thể, việc xác định cỡ lưu lượng kế là chọn thiết bị xử lý được vận tốc chất lỏng dự "
+        "kiến. Vận tốc dự kiến phải nằm trong dải tuyến tính của thiết bị. Như một ví dụ hướng dẫn "
+        "chọn cỡ, khả năng của các cỡ lưu lượng kế khác nhau được cho ở Hình 28.38."))
+    b.append(fig(37, F.fig(37), "vi"))
+    b.append(p(
+        "Một số lưu lượng kế điện từ được làm với ống dòng thay thế được, trong đó cuộn dây đặt hoàn "
+        "toàn bên ngoài ống. Ở loại này, hai mặt bích được đặt cách xa nhau để giảm ảnh hưởng xấu của "
+        "chúng tới độ chính xác, nên kích thước tổng thể tương đối lớn. Ở loại khác, cuộn dây đặt gần "
+        "ống hơn hoặc tích hợp hẳn vào ống; khi đó mặt bích có thể đặt gần nam châm và điện cực hơn, "
+        "cho kích thước nhỏ hơn. Còn các lưu lượng kế điện từ kiểu thu nhỏ và kiểu không điện cực thì "
+        "nhỏ gọn đến mức khoảng cách mặt bích – mặt bích đủ ngắn để lắp vào giữa hai mặt bích của "
+        "đường ống."))
+    b.append(fig(38, F.fig(38), "vi"))
+    b.append(p(
+        "Các bộ phận ướt của lưu lượng kế từ gồm lớp lót, điện cực và bộ giữ điện cực. Nhiều vật liệu "
+        "khác nhau như cao su, teflon, polyurethane, polyethylene… được dùng trong chế tạo để phù hợp "
+        "với tính ăn mòn, tính mài mòn và giới hạn nhiệt độ của quy trình. Thân lưu lượng kế và điện "
+        "cực có thể chế tạo từ thép không gỉ, tantan, titan và nhiều hợp kim khác. Lớp lót được chọn "
+        "chủ yếu để chịu được tính mài mòn và ăn mòn của chất lỏng. Điện cực phải được chọn sao cho "
+        "không bị phủ lớp cặn cách điện của chất lỏng trong thời gian vận hành dài."))
+    b.append(p(
+        "Ống nằm giữa các nam châm điện của lưu lượng kế phải làm bằng vật liệu không nhiễm từ để từ "
+        "trường xuyên qua chất lưu mà không bị méo. Vì vậy ống dòng thường được chế tạo bằng thép "
+        "không gỉ hoặc nhựa. Dùng thép là lựa chọn tốt hơn vì tăng độ bền kết cấu. Mặt bích được bảo "
+        "vệ bằng lớp lót thích hợp và không tiếp xúc với chất lưu."))
+    b.append(p(
+        "Ở một số lưu lượng kế điện từ, điện cực được làm sạch liên tục hoặc định kỳ bằng siêu âm hay "
+        "bằng điện. Siêu âm được chỉ định cho cả lưu lượng kế từ xoay chiều và một chiều khi dự kiến "
+        "điện cực thường xuyên bị phủ lớp cách điện dày, có thể làm lưu lượng kế ngừng làm việc đúng "
+        "như mong đợi."))
+    b.append(p(
+        "Vận hành của lưu lượng kế từ nói chung bị giới hạn bởi các yếu tố như đặc tính tuyến tính, "
+        "cấp áp suất của mặt bích và nhiệt độ của chất lưu. Giới hạn nhiệt độ lớn nhất phụ thuộc "
+        "phần lớn vào vật liệu lớp lót và thường được đặt khoảng 200 °C. Chẳng hạn, lớp lót gốm chịu "
+        "được nhiệt độ cao nhưng dễ nứt nếu nhiệt độ chất lưu thay đổi đột ngột."))
+    b.append(p(
+        "Khi chọn lưu lượng kế điện từ, cần đánh giá cẩn thận các ràng buộc về vận tốc để bảo đảm "
+        "hiệu năng chính xác trên dải dự kiến. Vận tốc toàn thang của lưu lượng kế điển hình là 0,3 "
+        "đến 10 m s<sup>−1</sup>. Một số lưu lượng kế đo được vận tốc thấp hơn với độ chính xác kém "
+        "hơn đôi chút. Nói chung, nên cân nhắc kỹ khi dùng lưu lượng kế điện từ ở vận tốc trên "
+        "5 m s<sup>−1</sup>, vì ống và lớp lót có thể bị xói mòn đáng kể."))
+    b.append(p(
+        "Độ chính xác của lưu lượng kế từ thông thường được biểu diễn theo phần trăm toàn thang (FS), "
+        "điển hình 0,5 % đến 1 % FS. Tuy nhiên lưu lượng kế một chiều có điểm không xác định rõ nhờ "
+        "khả năng tự chỉnh không, nên độ chính xác theo phần trăm giá trị đọc tốt hơn loại xoay "
+        "chiều, điển hình 0,5 % đến 2 %."))
+
+    # ---------------------------------------------------------------- types
+    b.append(h3("Các loại lưu lượng kế điện từ", "Types of Electromagnetic Flowmeters"))
+    b.append(h4("Lưu lượng kế điện từ xoay chiều", "AC magnetic flowmeters"))
+    b.append(p(
+        "Ở nhiều lưu lượng kế điện từ thương mại, dòng xoay chiều 50 Hz đến 60 Hz chạy trong cuộn dây "
+        "tạo ra từ trường kích thích chất lỏng chảy trong ống. Một điện áp được cảm ứng trong chất "
+        "lỏng theo định luật cảm ứng Faraday như đã trình bày. Giá trị điển hình của suất điện động "
+        "cảm ứng ở một lưu lượng kế xoay chiều lắp trên ống đường kính trong 50 mm, lưu lượng "
+        "500 L phút<sup>−1</sup>, vào khoảng 2,5 mV."))
+    b.append(p(
+        "Trong lịch sử, lưu lượng kế từ xoay chiều là loại được dùng phổ biến nhất vì chúng giảm hiệu "
+        "ứng phân cực ở điện cực. Nói chung chúng ít bị ảnh hưởng bởi prôfin dòng chảy trong ống. "
+        "Chúng cho phép dùng bộ khuếch đại trở kháng vào cao, độ trôi thấp, cùng bộ lọc thông cao để "
+        "loại bỏ các trôi điện áp chậm và giả tạo, chủ yếu sinh ra từ hiệu ứng cặp nhiệt điện và hiệu "
+        "ứng điện ly. Những lưu lượng kế này có nhiều ứng dụng đa dạng, tới mức đo lưu lượng máu "
+        "trong cơ thể sống. Cảm biến thu nhỏ cho phép đo trên ống và bình chỉ 2 mm đường kính; ở những "
+        "ứng dụng này tần số kích thích cao hơn loại công nghiệp, từ 200 Hz đến 1000 Hz."))
+    b.append(p(
+        "Nhược điểm chính của lưu lượng kế xoay chiều là từ trường xoay chiều mạnh cảm ứng các tín "
+        "hiệu xoay chiều giả trong mạch đo. Điều này buộc phải chỉnh điểm không của đầu ra một cách "
+        "định kỳ ở điều kiện lưu lượng bằng không — thường xuyên hơn so với loại một chiều. Ngoài ra, "
+        "trong một số ứng dụng công nghiệp khắc nghiệt, dòng trong từ trường có thể thay đổi do điện "
+        "áp và tần số lưới biến động. Ảnh hưởng của biến động từ trường có thể được giảm thiểu bằng "
+        "một điện áp chuẩn tỷ lệ với cường độ từ trường để bù các thay đổi đó. Để tránh ảnh hưởng của "
+        "nhiễu và biến động, phải dùng cách đi dây và cách hiệu chuẩn đặc biệt theo khuyến nghị của "
+        "nhà chế tạo. Thường phải dùng hai ống dẫn riêng — một cho tín hiệu và một cho nguồn. Chiều "
+        "dài cáp cũng phải đặt ở một mức nhất định để giảm thiểu vấn đề nhiễu và độ nhạy."))
+    b.append(p(
+        "Lưu lượng kế xoay chiều làm việc ở 50, 60 hoặc 400 Hz đều sẵn có. Nói chung lưu lượng kế xoay "
+        "chiều làm việc được từ 10 Hz đến 5000 Hz. Tần số cao được ưa dùng khi cần xác định hành vi "
+        "tức thời của quá độ và dòng nhấp nháy. Tuy vậy, ở những ứng dụng dùng chất lưu dẫn điện rất "
+        "tốt và kim loại lỏng, tần số phải giữ thấp để tránh hiệu ứng bề mặt. Ngược lại, nếu chất lưu "
+        "dẫn điện kém thì tần số không được cao đến mức quá trình giãn điện môi không còn tức thời."))
+    b.append(h4("Lưu lượng kế điện từ một chiều", "DC magnetic flowmeters"))
+    b.append(p(
+        "Khác với lưu lượng kế từ xoay chiều, lưu lượng kế từ một chiều hay xung kích thích chất lỏng "
+        "bằng từ trường làm việc ở 3 Hz đến 8 Hz. Khi bật dòng điện vào nam châm, một điện áp một "
+        "chiều được cảm ứng ở các điện cực. Tín hiệu quan sát tại điện cực là tổng của điện áp cảm "
+        "ứng và nhiễu, như ở Hình 28.39. Khi ngắt dòng trong cuộn dây, tín hiệu chỉ còn là nhiễu. Lấy "
+        "số đo khi không có dòng qua nam châm trừ đi số đo khi có dòng sẽ khử được ảnh hưởng của "
+        "nhiễu."))
+    b.append(fig(39, F.fig(39), "vi"))
+    b.append(p(
+        "Nếu cuộn dây được nuôi bằng dòng một chiều thông thường thì có thể xảy ra một số vấn đề: "
+        "phân cực — tức sự hình thành một lớp khí quanh điện cực đo — cùng các hiệu ứng điện hoá và "
+        "điện–cơ. Một số vấn đề này có thể khắc phục bằng cách kích thích cuộn dây ở tần số cao hơn "
+        "hoặc bằng xoay chiều. Tuy nhiên tần số cao và xoay chiều lại sinh ra hiệu ứng biến áp trong "
+        "dây tín hiệu và trong đường đi của chất lưu. Vì vậy cuộn dây được kích bằng xung một chiều "
+        "với tần số lặp thấp để loại bỏ hiệu ứng biến áp. Ở một số lưu lượng kế, nhờ kỹ thuật lấy mẫu "
+        "và xử lý tín hiệu số thích hợp, sai số điểm không và nhiễu được loại bỏ đáng kể."))
+    b.append(p(
+        "Khả năng bù không cố hữu của lưu lượng kế từ một chiều loại bỏ nhu cầu chỉnh điểm không. Điều "
+        "này cho phép tách tín hiệu lưu lượng bất kể sự dịch điểm không do nhiễu giả tạo hay do phủ "
+        "cặn điện cực. Khác với lưu lượng kế xoay chiều, ở đây chịu được lớp phủ cách điện dày hơn, "
+        "có thể làm thay đổi độ dẫn điện hiệu dụng đáng kể mà không ảnh hưởng tới hiệu năng. Chừng "
+        "nào độ dẫn điện hiệu dụng còn đủ cao thì lưu lượng kế một chiều vẫn làm việc tốt. Vì thế "
+        "lưu lượng kế một chiều ít bị ảnh hưởng bởi trôi, bởi lớp phủ điện cực và bởi thay đổi điều "
+        "kiện công nghệ hơn so với lưu lượng kế xoay chiều thông thường."))
+    b.append(p(
+        "Lưu lượng kế từ một chiều không có thời gian đáp ứng tốt do bản chất xung chậm. Tuy nhiên, "
+        "chừng nào prôfin dòng không thay đổi nhanh thì thời gian đáp ứng từ không đến toàn thang cỡ "
+        "vài giây không gây vấn đề gì trong phần lớn ứng dụng. Yêu cầu về nguồn cũng nhỏ hơn nhiều vì "
+        "nam châm chỉ được cấp điện một phần thời gian, cho lợi ích tiết kiệm điện tới 75 %."))
+    b.append(p(
+        "Nếu dòng một chiều vào nam châm không đổi thì từ trường tỷ lệ theo cũng giữ được ổn định, do "
+        "đó biên độ điện áp một chiều sinh ra ở điện cực sẽ tỷ lệ tuyến tính với lưu lượng. Nhưng "
+        "trong thực tế dòng vào nam châm thay đổi chút ít do điện áp và tần số lưới biến động. Như "
+        "với lưu lượng kế xoay chiều, biến động điện áp và tần số có thể buộc phải dùng một điện áp "
+        "chuẩn. Vì ảnh hưởng của nhiễu dễ loại bỏ hơn nên yêu cầu về cáp không ngặt nghèo bằng."))
+    b.append(p(
+        "Để tránh phân cực điện ly ở điện cực, người ta đã thiết kế lưu lượng kế một chiều xung lưỡng "
+        "cực. Việc cải tiến lưu lượng kế một chiều cũng dẫn tới sự ra đời của lưu lượng kế từ một "
+        "chiều thu nhỏ kiểu wafer cho một số ứng dụng hạn chế; kiểu wafer giảm cả khối lượng lẫn yêu "
+        "cầu về nguồn."))
+    b.append(p("Bảng 28.11 liệt kê một số nhà chế tạo lưu lượng kế điện từ."))
+    b.append(_t2811("vi"))
+
+    # ---------------------------------------------------------------- installation
+    b.append(h3("Lắp đặt và ứng dụng thực tế", "Installation and Practical Applications"))
+    b.append(p(
+        "Lưu lượng kế từ xoay chiều và một chiều thông thường có mặt bích ở đầu vào và đầu ra, cần bắt "
+        "bu-lông vào mặt bích của đường ống. Khoảng cách mặt bích – mặt bích của lưu lượng kế từ khác "
+        "nhau giữa các nhà chế tạo; do đó khi thay một lưu lượng kế bằng thiết bị của hãng khác, có "
+        "thể phải làm lại hệ thống đường ống."))
+    b.append(p(
+        "Yêu cầu về đoạn ống thẳng phía trước và phía sau khác nhau tuỳ lưu lượng kế và tuỳ đặc tả của "
+        "nhà chế tạo. Theo quy tắc kinh nghiệm, đoạn ống thẳng phải dài ít nhất 5D/2D tính từ điện "
+        "cực và 5D/5D tính từ mặt bích lưu lượng kế, tương ứng theo chiều thượng nguồn và hạ nguồn. "
+        "Để có độ chính xác tốt, nên tuân thủ cẩn thận khuyến nghị của nhà chế tạo về yêu cầu đường "
+        "ống. Ở một số lưu lượng kế từ, cuộn dây được bố trí sao cho từ trường phân bố trong cuộn nhằm "
+        "giảm thiểu ảnh hưởng của đường ống."))
+    b.append(p(
+        "Để đo chính xác, lưu lượng kế từ phải luôn đầy chất lỏng. Nếu chất lỏng không tiếp xúc với "
+        "điện cực thì không thể đo được. Hình 28.40 minh hoạ điểm này. Nếu phép đo được thực hiện ở "
+        "dòng không phải thẳng đứng thì nên đặt điện cực theo phương nằm ngang để loại trừ ảnh hưởng "
+        "xấu của bọt khí, vì bọt khí có xu hướng tập trung ở phần trên của chất lỏng."))
+    b.append(fig(40, F.fig(40), "vi"))
+    b.append(p(
+        "Khi chọn lưu lượng kế từ, phải tính đến một số yếu tố như:"))
+    b.append(ul([
+        "Chi phí, tính đơn giản, độ chính xác và độ tái lập",
+        "Các khía cạnh luyện kim",
+        "Prôfin vận tốc và nhiễu loạn phía thượng nguồn",
+    ]))
+    b.append(p(
+        "Phần lớn quy trình dùng ống tròn, điều này làm cho việc xây dựng hệ thống đơn giản hơn. Lưu "
+        "lượng kế nối với ống tròn cho kết quả tương đối tốt hơn so với ống chữ nhật hay ống vuông, "
+        "và prôfin vận tốc của chất lỏng không bị ảnh hưởng bởi tính bất đối xứng. Tuy nhiên ở ống "
+        "tròn, hiện tượng rìa của từ trường có thể đáng kể, khiến phải dùng hiệu chuẩn thực nghiệm."))
+    b.append(p(
+        "Việc chọn vật liệu chế tạo kênh dẫn của lưu lượng kế từ đòi hỏi cẩn trọng. Nếu chất lưu không "
+        "phải kim loại thì một kênh không dẫn điện hoặc được cách điện là đủ; khi đó phải dùng điện "
+        "cực ướt. Điện cực phải được thiết kế đủ lớn để giữ trở kháng đầu ra ở mức chấp nhận được. "
+        "Đồng thời phải xử lý tín hiệu điện cực cẩn thận, vì trong nhiều trường hợp, hỏng hóc của "
+        "phần điện tử xử lý tín hiệu chuẩn là nguyên nhân chính làm lưu lượng kế ngừng làm việc."))
+    b.append(fig(41, F.fig(41), "vi"))
+    b.append(p(
+        "Lưu lượng kế từ không cần bảo trì liên tục, trừ việc hiệu chuẩn định kỳ. Tuy vậy vẫn có thể "
+        "xảy ra phủ cặn điện cực, hư hỏng lớp lót và hỏng phần điện tử. Mọi sửa đổi hay sửa chữa phải "
+        "được xử lý cẩn thận vì khi lắp lại có thể mất một phần độ chính xác; sau mỗi lần sửa đổi hay "
+        "sửa chữa thường phải hiệu chuẩn lại."))
+    b.append(p(
+        "Lớp lót của lưu lượng kế từ thường bị hư hỏng do có mảnh vụn và chất rắn trong chất lỏng. "
+        "Ngoài ra, việc dùng chất lỏng không tương thích với lớp lót, mài mòn, nhiệt độ quá cao, cùng "
+        "việc lắp đặt và tháo dỡ cũng góp phần làm hỏng lớp lót. Ăn mòn điện cực cũng có thể là yếu "
+        "tố góp phần. Trong một số trường hợp, lưu lượng kế từ có thể sửa tại chỗ dù hư hỏng nặng; "
+        "trong trường hợp khác phải gửi về nhà chế tạo. Thường nhà chế tạo cung cấp phụ tùng cho điện "
+        "cực, lớp lót, ống dòng và các linh kiện điện tử."))
+    b.append(p(
+        "Hiệu chuẩn lưu lượng kế điện từ được thực hiện bằng bộ hiệu chuẩn lưu lượng kế từ hoặc bằng "
+        "phương pháp điện tử. Bộ hiệu chuẩn là thiết bị chính xác đưa tín hiệu đầu ra mô phỏng của "
+        "phần sơ cấp vào bộ biến đổi, dùng để kiểm tra hoạt động đúng của các linh kiện điện tử và "
+        "chỉnh mạch điện tử. Cách khác là đưa tín hiệu thử thích hợp vào từng linh kiện điện tử rời. "
+        "Trong một số trường hợp phải hiệu chuẩn thực nghiệm ở lưu lượng bằng không, khi lưu lượng kế "
+        "đã đầy chất lưu đứng yên."))
+    b.append(p(
+        "Chỉ có thể ứng dụng lưu lượng kế từ với chất lỏng dẫn điện như axit, bazơ, bùn, thực phẩm, "
+        "thuốc nhuộm, polymer, nhũ tương và các hỗn hợp phù hợp có độ dẫn điện lớn hơn mức tối thiểu "
+        "yêu cầu. Nói chung lưu lượng kế từ không phù hợp với chất lỏng chứa vật liệu hữu cơ và "
+        "hydrocarbon. Theo quy tắc kinh nghiệm, có thể dùng lưu lượng kế từ nếu hỗn hợp chứa tối "
+        "thiểu khoảng 10 % chất lỏng dẫn điện."))
+    b.append(p(
+        "Việc không có ràng buộc trực tiếp nào về số Reynolds cùng thiết kế không có vật cản của lưu "
+        "lượng kế từ khiến chúng thực dụng cho những ứng dụng có chất lỏng dẫn điện độ nhớt cao — loại "
+        "có thể làm tắc các lưu lượng kế khác. Chúng cũng đo được dòng hai chiều."))
+    b.append(p(
+        "Trái với niềm tin phổ biến, lưu lượng kế từ thể hiện một mức độ nhạy nhất định với prôfin "
+        "dòng. Một khía cạnh quan trọng khác là ảnh hưởng của dòng rối. Đáng tiếc là có rất ít thông "
+        "tin về hành vi của dòng rối khi nằm trong từ trường ngang. Hình 28.41 cho một ví dụ về prôfin "
+        "dòng bị nhiễu loạn: chất lưu bị hãm gần tâm kênh và được gia tốc ở phía trên và phía dưới, "
+        "gần các điện cực."))
+    b.append(p(
+        "Một điểm quan trọng ở lưu lượng kế điện từ là hiệu ứng thuỷ động lực từ, đặc biệt rõ ở chất "
+        "lưu có tính từ. Thuỷ động lực từ là khả năng của từ trường làm biến đổi prôfin dòng. Ở một số "
+        "ứng dụng, nhiễu loạn vận tốc do hiệu ứng này đủ lớn để ảnh hưởng tới độ chính xác, như với "
+        "natri lỏng và các dung dịch của nó."))
+
+    # ---------------------------------------------------------------- conductivity
+    b.append(h3("Ảnh hưởng của độ dẫn điện của chất lưu", "Effects of Electric Conductivity of Fluid"))
+    b.append(p(
+        "Để lưu lượng kế điện từ làm việc chính xác, chất lỏng phải có độ dẫn điện tối thiểu từ "
+        "1 µS cm<sup>−1</sup> đến 5 µS cm<sup>−1</sup>. Phần lớn ứng dụng thông thường dùng chất lỏng "
+        "có độ dẫn điện lớn hơn 5 µS cm<sup>−1</sup>. Tuy vậy, để làm việc chính xác, yêu cầu về độ "
+        "dẫn điện tối thiểu có thể bị ảnh hưởng bởi chiều dài dây dẫn từ cảm biến tới phần điện tử của "
+        "bộ biến đổi."))
+    b.append(p(
+        "Lưu lượng kế xoay chiều nhạy với lớp phủ không dẫn điện trên điện cực, có thể gây dịch "
+        "hiệu chuẩn hoặc mất tín hiệu hoàn toàn. Ngược lại, lưu lượng kế một chiều không bị ảnh hưởng "
+        "nhiều đến vậy, trừ khi độ dẫn điện giữa hai điện cực xuống dưới mức tối thiểu. Ở một số lưu "
+        "lượng kế, điện cực thay thế dễ dàng; ở loại khác, điện cực có thể được làm sạch bằng phương "
+        "pháp thích hợp. Nếu phủ cặn là vấn đề thường xuyên thì nên xét tới biện pháp làm sạch bằng "
+        "siêu âm và các phương pháp khác."))
+    b.append(p(
+        "Việc chỉnh điểm không của lưu lượng kế từ xoay chiều đòi hỏi bù nhiễu. Nếu chỉnh điểm không "
+        "bằng chất lưu nào khác ngoài chất lưu công nghệ thì có thể gây sai số nghiêm trọng do độ dẫn "
+        "điện khác nhau. Tương tự, nếu điện cực bị phủ một chất cách điện thì độ dẫn điện hiệu dụng "
+        "của điện cực thay đổi, gây dịch hiệu chuẩn. Nếu lớp phủ thay đổi theo thời gian thì lưu lượng "
+        "kế có thể liên tục phải hiệu chuẩn lại mới cho số đọc tái lập được."))
+    b.append(p(
+        "Điện trở giữa hai điện cực có thể tính gần đúng bằng <i>R</i> = 1/<i>δd</i>, trong đó "
+        "<i>δ</i> là độ dẫn điện của chất lưu và <i>d</i> là đường kính điện cực. Với nước máy, "
+        "<i>δ</i> = 200 µS cm<sup>−1</sup>; với xăng, <i>δ</i> = 0,01 µS cm<sup>−1</sup>; với cồn, "
+        "<i>δ</i> = 0,2 µS cm<sup>−1</sup>. Một điện cực đường kính 0,74 cm tiếp xúc với nước máy cho "
+        "điện trở 6756 Ω."))
+
+    # ---------------------------------------------------------------- demodulation
+    b.append(h3("Thu nhận tín hiệu và giải điều chế", "Signal Pickup and Demodulation Techniques"))
+    b.append(p(
+        "Lưu lượng kế từ là thiết bị bốn dây, cần nguồn điện ngoài để làm việc. Riêng với lưu lượng kế "
+        "từ xoay chiều, cáp nguồn cao áp và cáp tín hiệu hạ áp phải đi riêng, tốt nhất là trong hai "
+        "ống dẫn khác nhau; còn với lưu lượng kế một chiều, cáp nguồn và cáp tín hiệu có thể đi chung "
+        "một ống, vì điện áp và tần số kích thích nam châm thấp hơn nhiều. Một số nhà chế tạo cung cấp "
+        "cáp đặc biệt kèm theo lưu lượng kế."))
+    b.append(p(
+        "Ở lưu lượng kế xoay chiều, tín hiệu điện cực có thể được khuếch đại dễ dàng hơn nhiều so với "
+        "loại một chiều. Đó là lý do lưu lượng kế xoay chiều đã được dùng thành công để đo lưu lượng "
+        "rất nhỏ, cũng như dòng của chất lưu dẫn điện rất yếu. Tuy vậy, lưu lượng kế xoay chiều phức "
+        "tạp hơn, cồng kềnh hơn, đắt hơn và cần nam châm điện có gông ghép lá thép cùng nguồn nuôi ổn "
+        "định. Ở một số lưu lượng kế, có thể thu được đầu ra tín hiệu đủ lớn mà không cần gông, bằng "
+        "cách tạo từ trường bằng cuộn dây trần; khi đó hiệu ứng biến áp lên dây nối giảm đáng kể."))
+    b.append(p(
+        "Một trong những nhược điểm chính của lưu lượng kế xoay chiều là khó tách tín hiệu do hiệu ứng "
+        "biến áp ra khỏi tín hiệu có ích. Việc tách hai tín hiệu dựa trên thực tế là tín hiệu phụ "
+        "thuộc lưu lượng và tín hiệu biến áp lệch pha nhau 90°: tín hiệu có ích tỷ lệ với cường độ từ "
+        "trường, còn tín hiệu biến áp tỷ lệ với đạo hàm theo thời gian của cường độ từ trường. Tổng "
+        "điện áp <i>v</i><sub>T</sub> có thể viết:"))
+    b.append(eq("v<sub>T</sub> = v<sub>F</sub> + v<sub>t</sub> = V<sub>F</sub> sin(ωt) + "
+                "V<sub>t</sub> cos(ωt)", "28.62"))
+    b.append(p("trong đó <i>v</i><sub>F</sub> là điện áp cảm ứng do lưu lượng chất lỏng, còn "
+               "<i>v</i><sub>t</sub> là điện áp do hiệu ứng biến áp trên dây dẫn, v.v."))
+    b.append(p(
+        "Có thể dùng kỹ thuật giải điều chế nhạy pha để loại bỏ điện áp do hiệu ứng biến áp. Dòng từ "
+        "hoá cuộn dây <i>i</i><sub>m</sub> = <i>I</i><sub>m</sub> sin(ω<i>t</i>) được cảm nhận và nhân "
+        "với tổng điện áp <i>v</i><sub>T</sub>, cho:"))
+    b.append(eq("v<sub>T</sub> i<sub>m</sub> = [V<sub>F</sub> sin(ωt) + V<sub>t</sub> cos(ωt)] "
+                "I<sub>m</sub> sin(ωt)", "28.63"))
+    b.append(p(
+        "Lấy tích phân Phương trình 28.63 trên một chu kỳ từ 0 đến 2π sẽ loại bỏ điện áp biến áp, chỉ "
+        "còn lại điện áp tỷ lệ với lưu lượng:"))
+    b.append(eq("V<sub>f</sub> = V<sub>F</sub> I<sub>m</sub> π", "28.64"))
+    b.append(p(
+        "trong đó <i>V</i><sub>f</sub> là điện áp sau khi tích phân. Điện áp này tỷ lệ với điện áp cảm "
+        "ứng, có điều chỉnh bởi các hằng số <i>I</i><sub>m</sub> và π."))
+    b.append(p(
+        "Trong thực tế tình hình có thể phức tạp hơn nhiều do dịch pha gây ra bởi dòng xoáy trong các "
+        "vật rắn và vật dẫn gần đó. Các lý do khác làm phức tạp thêm gồm các hài do tính phi tuyến "
+        "như hiện tượng trễ, và ghép điện dung."))
+    b.append(p(
+        "Cần nối đất tốt cho lưu lượng kế từ, như ở Hình 28.42, để cách ly điện thế đồng pha tương "
+        "đối cao. Nguồn điện thế đất có thể nằm trong chất lỏng hoặc trong đường ống. Trong thực tế, "
+        "nếu ống dẫn điện và tiếp xúc với chất lỏng thì phải nối đất lưu lượng kế vào ống. Nếu ống làm "
+        "bằng vật liệu không dẫn điện thì phải lắp các vòng nối đất để duy trì tiếp xúc với chất lỏng."))
+    b.append(fig(42, F.fig(42), "vi"))
+    b.append(p(
+        "Nếu lưu lượng kế không được nối đất cẩn thận theo điện thế của chất lưu trong ống thì các "
+        "điện cực có thể phải chịu điện áp đồng pha quá lớn, làm giảm nghiêm trọng độ chính xác. "
+        "Trong một số trường hợp, điện thế đất quá cao có thể làm hỏng phần điện tử, vì đường có trở "
+        "kháng thấp nhất xuống đất của mọi điện áp lạ trong chất lỏng sẽ là qua các điện cực."))
+    b.append(p(
+        "Một số lưu lượng kế từ thương mại đã được phát triển để làm việc với dạng sóng răng cưa hoặc "
+        "xung vuông. Cho tới nay vẫn chưa có chuẩn thống nhất cho lưu lượng kế từ cũng như quy trình "
+        "hiệu chuẩn chung; các nhà chế tạo dùng thiết kế riêng cho kênh dẫn, nam châm điện, cuộn dây "
+        "và bộ xử lý tín hiệu. Phần lớn nhà chế tạo cung cấp dữ liệu hiệu chuẩn của riêng mình."))
+
+    # ---------------------------------------------------------------- further
+    b.append(h3("Thông tin thêm", "Further Information"))
+    b.append(wl([
+        "J. P. Bentley, <i>Principles of Measurement Systems</i>, ấn bản 2, New York: Longman "
+        "Scientific and Technical, 1988.",
+        "E. O. Doebelin, <i>Measurement Systems: Application and Design</i>, ấn bản 4, New York: "
+        "McGraw-Hill, 1990.",
+        "J. P. Holman, <i>Experimental Methods for Engineers</i>, ấn bản 5, New York: McGraw-Hill, "
+        "1989.",
+        "J. A. Shercliff, <i>Electromagnetic Flow-Measurements</i>, New York: Cambridge University "
+        "Press, 1987.",
+        "D. W. Spitzer, <i>Industrial Flow Measurement</i>, Research Triangle Park, NC: Instrument "
+        "Society of America, 1990.",
+    ]))
+    return "".join(b)
+
+
+def sec_28_6_en():
+    b = []
+    b.append(h2("28.6 Electromagnetic Flowmeters", "Electromagnetic Flowmeters"))
+    b.append(p("Halit Eren."))
+    b.append(p(
+        "Magnetic flowmeters have been widely used in industry for many years. Unlike many other types "
+        "of flowmeters, they offer true noninvasive measurements. They are easy to install and use to "
+        "the extent that existing pipes in a process can be turned into meters simply by adding "
+        "external electrodes and suitable magnets. They can measure reverse flows and are insensitive "
+        "to viscosity, density, and flow disturbances. Electromagnetic flowmeters can rapidly respond "
+        "to flow changes and they are linear devices for a wide range of measurements. In recent "
+        "years, technological refinements have resulted in much more economical, accurate, and smaller "
+        "instruments than the previous versions."))
+    b.append(p(
+        "As in the case of many electric devices, the underlying principle of the electromagnetic "
+        "flowmeter is Faraday's law of electromagnetic induction. The induced voltages in an "
+        "electromagnetic flowmeter are linearly proportional to the mean velocity of liquids or to the "
+        "volumetric flow rates. As is the case in many applications, if the pipe walls are made from "
+        "nonconducting elements, then the induced voltage is independent of the properties of the "
+        "fluid."))
+    b.append(p(
+        "The accuracy of these meters can be as low as 0.25% and, in most applications, an accuracy of "
+        "1% is used. At worst, 5% accuracy is obtained in some difficult applications where impurities "
+        "of liquids and the contact resistances of the electrodes are inferior as in the case of "
+        "low-purity sodium liquid solutions."))
+
+    # ---------------------------------------------------------------- faraday
+    b.append(h3("Faraday's Law of Induction", "Faraday's Law of Induction"))
+    b.append(p(
+        "This law states that if a conductor of length <i>l</i> (m) is moving with a velocity <i>v</i> "
+        "(m s<sup>−1</sup>), perpendicular to a magnetic field of flux density <i>B</i> (Tesla), then "
+        "the induced voltage <i>e</i> across the ends of the conductor can be expressed by:"))
+    b.append(eq("e = B l v", "28.57"))
+    b.append(p(
+        "The principle of application of Faraday's law to an electromagnetic flowmeter is given in "
+        "Figure 28.36. The magnetic field, the direction of the movement of the conductor, and the "
+        "induced emf are all perpendicular to each other."))
+    b.append(fig(36, F.fig(36), "en"))
+    b.append(p(
+        "Figure 28.37 illustrates a simplified electromagnetic flowmeter in greater detail. Externally "
+        "located electromagnets create a homogeneous magnetic field passing through the pipe and the "
+        "liquid inside it. When a conducting flowing liquid cuts through the magnetic field, a voltage "
+        "is generated along the liquid path between two electrodes positioned on the opposite sides "
+        "of the pipe."))
+    b.append(p(
+        "In the case of electromagnetic flowmeters, the conductor is the liquid flowing through the "
+        "pipe, and the length of the conductor is the distance between the two electrodes, which is "
+        "equal to the tube diameter. The velocity of the conductor is proportional to the mean flow "
+        "velocity of the liquid. Hence, the induced voltage becomes:"))
+    b.append(eq("e = B D v", "28.58"))
+    b.append(p(
+        "where <i>D</i> (m) is the diameter of the pipe. If the magnetic field is constant and the "
+        "diameter of the pipe is fixed, the magnitude of the induced voltage will only be proportional "
+        "to the velocity of the liquid. If the ends of the conductor, in this case the sensors, are "
+        "connected to an external circuit, the induced voltage causes a current, <i>i</i>, to flow, "
+        "which can be processed suitably as a measure of the flow rate. The resistance of the moving "
+        "conductor can be represented by <i>R</i> to give the terminal voltage <i>v</i><sub>T</sub> of "
+        "the moving conductor as <i>v</i><sub>T</sub> = <i>e</i> − <i>iR</i>."))
+    b.append(p(
+        "Electromagnetic flowmeters are often calibrated to determine the volumetric flow of the "
+        "liquid. The volume of liquid flow, <i>Q</i> (L s<sup>−1</sup>), can be related to the average "
+        "fluid velocity as:"))
+    b.append(eq("Q = A v", "28.59"))
+    b.append(p("Writing the area, <i>A</i> (m<sup>2</sup>), of the pipe as:"))
+    b.append(eq("A = πD<sup>2</sup> / 4", "28.60"))
+    b.append(p("gives the induced voltage as a function of the flow rate:"))
+    b.append(eq("e = 4BQ / πD", "28.61"))
+    b.append(p(
+        "Equation 28.61 indicates that in a carefully designed flowmeter, if all other parameters are "
+        "kept constant, then the induced voltage is linearly proportional to the liquid flow only."))
+    b.append(p(
+        "Based on Faraday's law of induction, there are many different types of electromagnetic "
+        "flowmeters available, such as ac, dc, and permanent magnet types. The two most commonly used "
+        "ones are the ac and dc types; this section concentrates mainly on those two."))
+    b.append(p(
+        "Although the induced voltage is directly proportional to the mean value of the liquid flow, "
+        "the main difficulty in the use of electromagnetic flowmeters is that the amplitude of the "
+        "induced voltage is small relative to extraneous voltages and noise. Noise sources include:"))
+    b.append(ul([
+        "Stray voltage in the process liquid",
+        "Capacitive coupling between signal and power circuits",
+        "Capacitive coupling in connection leads",
+        "Electromechanical emf induced in the electrodes and the process fluid",
+        "Inductive coupling of the magnets within the flowmeter",
+    ]))
+
+    # ---------------------------------------------------------------- construction
+    b.append(h3("Construction and Operation of Electromagnetic Flowmeters",
+                "Construction and Operation of Electromagnetic Flowmeters"))
+    b.append(p(
+        "Common to both ac and dc electromagnetic flowmeters, the magnetic coils create a magnetic "
+        "field that passes through the flow tube and process fluid. As the conductive fluid flows "
+        "through the flowmeter, a voltage is induced between the electrodes in contact with the "
+        "process liquid. The electrodes are placed at positions where maximum potential differences "
+        "occur. The electrodes are electrically isolated from the pipe walls by nonconductive liners "
+        "to prevent short-circuiting of electrode signals. The liner also serves as protection to the "
+        "flow tube to eliminate galvanic action and possible corrosion due to metal contacts. "
+        "Electrodes are held in place by holders that also act as sealing."))
+    b.append(p(
+        "Dimensionally, magnetic flowmeters are manufactured from 2 mm to 1.2 m in diameter. In a "
+        "particular application, the determination of the size of the flowmeter is a matter of "
+        "selecting the one that can handle the anticipated liquid velocities. The anticipated velocity "
+        "of the liquid must be within the linear range of the device. As an example of a typical guide "
+        "for selection, the capacities of various size flowmeters are given in Figure 28.38."))
+    b.append(fig(37, F.fig(37), "en"))
+    b.append(p(
+        "Some electromagnetic flowmeters are made from replaceable flow tubes whereby the field coils "
+        "are located external to the tubes. In these flowmeters, the flanges are located far apart in "
+        "order to reduce their adverse effects on the accuracy of measurements; hence, they are "
+        "relatively larger in dimensions. Whereas in others, the field coils are located closer to the "
+        "flow tube or even totally integrated together; in this case the flanges could be located "
+        "closer to the magnets and the electrodes, giving relatively smaller dimensions. On the other "
+        "hand, the miniature and electrodeless magnetic flowmeters are so compact in size that "
+        "face-to-face dimensions are short enough to allow them to be installed between two flanges."))
+    b.append(fig(38, F.fig(38), "en"))
+    b.append(p(
+        "The wetted parts of a magnetic flowmeter include the liners, electrodes, and electrode "
+        "holders. Many different materials such as rubber, teflon, polyurethane, polyethylene, etc. are "
+        "used in the construction to suit process corrosivity, abrasiveness, and temperature "
+        "constraints. The main body of a flowmeter and electrodes can be manufactured from stainless "
+        "steel, tantalum, titanium, and various other alloys. Liners are selected mainly to withstand "
+        "the abrasive and corrosive properties of the liquid. The electrodes must be selected such "
+        "that they cannot be coated with insulating deposits of the process liquid during long periods "
+        "of operation."))
+    b.append(p(
+        "The pipe between the electromagnets of a flowmeter must be made from nonmagnetic materials to "
+        "allow the field to penetrate the fluid without any distortion. Therefore, the flow tubes are "
+        "usually constructed of stainless steel or plastics. The use of steel is a better option "
+        "because it adds strength to the construction. Flanges are protected with appropriate liners "
+        "and do not make contact with the process fluid."))
+    b.append(p(
+        "In some electromagnetic flowmeters, electrodes are cleaned continuously or periodically by "
+        "ultrasonic or electric means. Ultrasonics are specified for ac and dc type magnetic "
+        "flowmeters when frequent severe insulating coating is expected on the electrodes, which might "
+        "cause the flowmeter to cease to operate in an anticipated manner."))
+    b.append(p(
+        "The operation of a magnetic flowmeter is generally limited by factors such as linear "
+        "characteristics, pressure ratings of flanges, and temperatures of the process fluids. The "
+        "maximum temperature limit is largely dependent on the liner material selection and usually is "
+        "set to around 200 °C. For example, ceramic liners can withstand high temperatures, but are "
+        "subject to cracking in case of sudden changes in temperature of the process fluid."))
+    b.append(p(
+        "During the selection of electromagnetic flowmeters, the velocity constraints should be "
+        "evaluated carefully to secure accurate performance over the expected range. The full-scale "
+        "velocity of the flowmeter is typically 0.3 m s<sup>−1</sup> to 10 m s<sup>−1</sup>. Some "
+        "flowmeters can measure lower velocities with somewhat poorer accuracy. Generally, employment "
+        "of electromagnetic flowmeters over a velocity of 5 m s<sup>−1</sup> should be considered "
+        "carefully because erosion of the pipe and damage to liners can be significant."))
+    b.append(p(
+        "The accuracy of a conventional magnetic flowmeter is usually expressed as a function of full "
+        "scale (FS), typically 0.5% to 1% FS. However, dc flowmeters have a well-defined zero due to "
+        "their automatic zeroing capabilities; therefore, they have a percentage rate of accuracy "
+        "better than ac types, typically 0.5% to 2%."))
+
+    # ---------------------------------------------------------------- types
+    b.append(h3("Types of Electromagnetic Flowmeters", "Types of Electromagnetic Flowmeters"))
+    b.append(h4("AC magnetic flowmeters", "AC magnetic flowmeters"))
+    b.append(p(
+        "In many commercial electromagnetic flowmeters, an alternating current of 50 Hz to 60 Hz in "
+        "coils creates the magnetic field to excite the liquid flowing within the pipe. A voltage is "
+        "induced in the liquid due to Faraday's law of induction, as explained above. A typical value "
+        "of the induced emf in an ac flowmeter fixed on a 50 mm internal diameter pipe carrying "
+        "500 L min<sup>−1</sup> is about 2.5 mV."))
+    b.append(p(
+        "Historically, ac magnetic flowmeters were the most commonly used types because they reduced "
+        "polarization effects at the electrodes. In general, they are less affected by the flow "
+        "profiles of the liquid inside the pipes. They allow the use of high-input-impedance amplifiers "
+        "with low drift and high pass filters to eliminate slow and spurious voltage drifts emanating "
+        "mainly from thermocouple and galvanic actions. These flowmeters find many applications as "
+        "diverse as the measurement of blood flow in living specimens. Miniaturized sensors allow "
+        "measurements on pipes and vessels as small as 2 mm in diameter; in these applications the "
+        "excitation frequencies are higher than industrial types, 200 Hz to 1000 Hz."))
+    b.append(p(
+        "A major disadvantage of the ac flowmeter is that the powerful ac field induces spurious ac "
+        "signals in the measurement circuits. This necessitates periodic adjustment of zero output at "
+        "zero velocity conditions — more frequently than for dc counterparts. Also, in some harsh "
+        "industrial applications, currents in the magnetic field can vary, due to voltage fluctuations "
+        "and frequency variations in the power lines. The effect of fluctuations in the magnetic field "
+        "can be minimized by the use of a reference voltage proportional to the strength of the "
+        "magnetic field to compensate for these variations. To avoid the effects of noise and "
+        "fluctuations, special cabling and calibration practices recommended by the manufacturers must "
+        "be used to ensure accurate operation. Usually, the use of two conduits is required — one for "
+        "signals and one for power. The cable lengths should also be set to certain levels to minimize "
+        "noise and sensitivity problems."))
+    b.append(p(
+        "Ac flowmeters operating at 50, 60, or 400 Hz are readily available. In general, ac flowmeters "
+        "can operate from 10 Hz to 5000 Hz. High frequencies are preferred in determining the "
+        "instantaneous behavior of transients and pulsating flows. Nevertheless, in applications where "
+        "extremely good conducting fluids and liquid metals are used, the frequency must be kept low "
+        "to avoid skin effects. On the other hand, if the fluid is a poor conductor, the frequency must "
+        "not be so high that dielectric relaxation is not instantaneous."))
+    b.append(h4("DC magnetic flowmeters", "DC magnetic flowmeters"))
+    b.append(p(
+        "Unlike ac magnetic flowmeters, direct current or pulsed magnetic flowmeters excite the "
+        "flowing liquid with a field operating at 3 Hz to 8 Hz. As the current to the magnet is turned "
+        "on, a dc voltage is induced at the electrodes. The signals observed at the electrodes "
+        "represent the sum of the induced voltage and the noise, as illustrated in Figure 28.39. When "
+        "the current in the magnetic coils is turned off, the signal represents only the noise. "
+        "Subtracting the measurement of the flowmeter when no current flows through the magnet from "
+        "the measurement when current flows through the magnet effectively cancels out the effect of "
+        "noise."))
+    b.append(fig(39, F.fig(39), "en"))
+    b.append(p(
+        "If the magnetic field coils are energized by normal direct current, then several problems can "
+        "occur: polarization, which is the formation of a layer of gas around the measured electrodes, "
+        "as well as electrochemical and electromechanical effects. Some of these problems can be "
+        "overcome by energizing the field coils at higher frequencies or ac. However, higher "
+        "frequencies and ac generate transformer action in the signal leads and fluid path. Therefore, "
+        "the coils are excited by dc pulses at low repetition rates to eliminate the transformer "
+        "action. In some flowmeters, by appropriate sampling and digital signal processing techniques, "
+        "the zero errors and the noise can be rejected substantially."))
+    b.append(p(
+        "The zero compensation inherent in dc magnetic flowmeters eliminates the necessity of zero "
+        "adjustment. This allows the extraction of flow signals regardless of zero shifts due to "
+        "spurious noise or electrode coating. Unlike ac flowmeters, a larger insulating electrode "
+        "coating can be tolerated that could shift the effective conductivity significantly without "
+        "affecting performance. If the effective conductivity remains high enough, a dc flowmeter will "
+        "operate satisfactorily. Therefore, dc flowmeters are less susceptible to drifts, electrode "
+        "coatings, and changes in process conditions in comparison with conventional ac flowmeters."))
+    b.append(p(
+        "Dc magnetic flowmeters do not have good response times due to the slow pulsed nature of their "
+        "operation. However, as long as there are no rapid variations in the flow patterns, zero to "
+        "full-scale response times of a few seconds do not create problems in the majority of "
+        "applications. Power requirements are also much less as the magnet is energized part of the "
+        "time. This gives an advantage in power saving of up to 75%."))
+    b.append(p(
+        "If the dc current to the magnet is constant, the proportional magnetic field can be kept "
+        "steady, so the amplitudes of the dc voltages generated at the electrodes will be linearly "
+        "proportional to the flow. However, in practice, the current to the magnet varies slightly due "
+        "to line voltage and frequency variations. As in the case of ac flowmeters, voltage and "
+        "frequency variations could necessitate the use of a reference voltage. Because the effect of "
+        "noise can be eliminated more easily, the cabling requirements are not as stringent."))
+    b.append(p(
+        "To avoid electrolytic polarization of the electrodes, bipolar pulsed dc flowmeters have been "
+        "designed. Modification of dc flowmeters also led to the development of miniature dc magnetic "
+        "flowmeters with wafer design for a limited range of applications; the wafer design reduces "
+        "the weight as well as the power requirements."))
+    b.append(p("Table 28.11 provides a listing of several manufacturers of electromagnetic flowmeters."))
+    b.append(_t2811("en"))
+
+    # ---------------------------------------------------------------- installation
+    b.append(h3("Installation and Practical Applications",
+                "Installation and Practical Applications"))
+    b.append(p(
+        "Conventional ac and dc magnetic flowmeters have flanges at the inlet and the outlet that need "
+        "to be bolted to the flanges of the pipe. Face-to-face dimensions of magnetic flowmeters differ "
+        "between manufacturers; therefore, once the flowmeter is installed, new piping arrangements "
+        "could be necessary if a flowmeter is replaced by one from a different manufacturer."))
+    b.append(p(
+        "Upstream and downstream straight piping requirements can vary from one flowmeter to another, "
+        "depending on the manufacturer's specifications. As a rule of thumb, the straight portion of "
+        "the pipe should be at least 5D/2D from the electrodes and 5D/5D from the face of the flowmeter "
+        "in upstream and downstream directions, respectively. For good accuracy, one should adhere "
+        "carefully to the recommendations of manufacturers for piping requirements. In some magnetic "
+        "flowmeters, coils are used in such a way that the magnetic field is distributed in the coil to "
+        "minimize the piping effect."))
+    b.append(p(
+        "For accurate measurements, magnetic flowmeters must be kept full of liquid at all times. If "
+        "the liquid does not contact the electrodes, measurements cannot be taken. Figure 28.40 "
+        "illustrates this point. If the measurements are made in other than vertical flows, the "
+        "electrodes should be located in horizontal directions to eliminate the possible adverse "
+        "effect of air bubbles, because air bubbles tend to concentrate on the top vertical part of the "
+        "liquid."))
+    b.append(fig(40, F.fig(40), "en"))
+    b.append(p(
+        "In the selection of magnetic flowmeters, a number of considerations must be taken into "
+        "account, such as:"))
+    b.append(ul([
+        "Cost, simplicity, precision, and reproducibility",
+        "Metallurgical aspects",
+        "Velocity profiles and upstream disturbances",
+    ]))
+    b.append(p(
+        "Most processes employ circular piping, which adds simplicity to the construction of the "
+        "system. Flowmeters connected to circular pipes give relatively better results compared with "
+        "rectangular or square-shaped pipes, and velocity profiles of the liquid are not affected by "
+        "the asymmetry. However, in circular pipes, the fringing of the magnetic field can be "
+        "significant, making it necessary to employ empirical calibrations."))
+    b.append(p(
+        "Selection of materials for constructing the channel of the magnetic flowmeter demands care. "
+        "If the fluid is nonmetallic, a nonconducting or an insulated channel should be sufficient; in "
+        "this case, wetted electrodes must be used. Electrodes must be designed to have sufficiently "
+        "large dimensions to keep the output impedance at acceptable levels. Also, careful handling of "
+        "electrode signals must be observed because, in many cases, malfunctioning of reference signal "
+        "electronics is the main cause of flowmeter failure."))
+    b.append(fig(41, F.fig(41), "en"))
+    b.append(p(
+        "Magnetic flowmeters do not require continuous maintenance, except for periodic calibration. "
+        "Nevertheless, electrode coating, damage to the liners, and electronic failures can occur. Any "
+        "modification or repair must be treated carefully because, when installed again, some accuracy "
+        "can be lost; after each modification or repair, recalibration is usually necessary."))
+    b.append(p(
+        "Often, magnetic flowmeter liners are damaged by the presence of debris and solids in the "
+        "process liquid. The use of liquid incompatible with the liners, wear due to abrasion, excess "
+        "temperature, and installation and removal can also contribute to damage of the liners. "
+        "Corrosion in the electrodes can be a further contributing factor. In some cases, magnetic "
+        "flowmeters can be repaired on site even if severe damage occurs; in other cases, they must be "
+        "shipped to the manufacturer for repair. Usually, manufacturers supply spare parts for "
+        "electrodes, liners, flow tubes and electronic components."))
+    b.append(p(
+        "Calibration of electromagnetic flowmeters is achieved with a magnetic flowmeter calibrator or "
+        "by electronic means. Magnetic flowmeter calibrators are precision instruments that inject "
+        "simulated output signals of the primary flowmeter into the transmitter; effectively, this "
+        "signal is used to check correct operation of electronic components and make adjustments to the "
+        "electronic circuits. Alternatively, calibrations can also be made by injecting suitable test "
+        "signals into discrete electronic components. In some cases, empirical calibrations must be "
+        "performed at zero flow while the flowmeter is filled with the stationary process liquid."))
+    b.append(p(
+        "Application of magnetic flowmeters can only be realized with conductive liquids such as "
+        "acids, bases, slurries, foods, dyes, polymers, emulsions, and suitable mixtures that have "
+        "conductivities greater than the minimum conductivity requirements. Generally, magnetic "
+        "flowmeters are not suitable for liquids containing organic materials and hydrocarbons. As a "
+        "rule of thumb, magnetic flowmeters can be applied if the process liquid constitutes a minimum "
+        "of about 10% conductive liquid in the mixture."))
+    b.append(p(
+        "The lack of any direct Reynolds number constraints and the obstructionless design of magnetic "
+        "flowmeters make them practical for applications that involve conductive liquids of high "
+        "viscosity, which could plug other flowmeters. They also measure bidirectional flows."))
+    b.append(p(
+        "Despite the contrary belief, magnetic flowmeters demonstrate a certain degree of sensitivity "
+        "to flow profiles. Another important aspect is the effect of turbulence. Unfortunately, there "
+        "is very little information available on the behavior of turbulent flows when they are in "
+        "transverse magnetic fields. Figure 28.41 shows an example of a flow profile in which the "
+        "velocity profile is perturbed: the fluid is being retarded near the center of the channel and "
+        "accelerated at the top and bottom near the electrodes."))
+    b.append(p(
+        "An important point in electromagnetic flowmeters is the effect of magneto-hydrodynamics, "
+        "especially prominent in fluids with magnetic properties. Hydrodynamics here is the ability of "
+        "a magnetic field to modify the flow pattern. In some applications, the velocity perturbation "
+        "due to the magneto-hydrodynamic effect can be serious enough to influence the accuracy of "
+        "operation, as in the case of liquid sodium and its solutions."))
+
+    # ---------------------------------------------------------------- conductivity
+    b.append(h3("Effects of Electric Conductivity of Fluid", "Effects of Electric Conductivity of Fluid"))
+    b.append(p(
+        "For electromagnetic flowmeters to operate accurately, the process liquid must have a minimum "
+        "conductivity of 1 µS cm<sup>−1</sup> to 5 µS cm<sup>−1</sup>. Most common applications involve "
+        "liquids with conductivities greater than 5 µS cm<sup>−1</sup>. Nevertheless, for accurate "
+        "operation, the requirement for the minimum conductivity of the liquid can be affected by the "
+        "length of the leads from the sensors to the transmitter electronics."))
+    b.append(p(
+        "Ac flowmeters are sensitive to the nonconductive coating of the electrodes that may result in "
+        "calibration shift or complete loss of signal. The dc flowmeters, on the other hand, should not "
+        "be affected by nonconductive coating to such a great extent, unless the conductivity between "
+        "the electrodes is less than the minimum required value. In some flowmeters, electrodes can be "
+        "replaced easily; in others, they can be cleaned by suitable methods. If coating is a continual "
+        "problem, ultrasonic and other cleaning methods should be considered."))
+    b.append(p(
+        "Zero adjustment of ac magnetic flowmeters requires compensation for noise. If the zero "
+        "adjustment is performed with any fluid other than the process fluid, serious errors can result "
+        "because of possible differences in conductivity. Similarly, if the electrodes are coated with "
+        "an insulating substance, the effective conductivity of the electrodes can be altered, thereby "
+        "causing a calibration shift. If the coating changes with time, the flowmeter can continually "
+        "require calibration for repeatable readings."))
+    b.append(p(
+        "The resistance between electrodes can be approximated by <i>R</i> = 1/<i>δd</i>, where "
+        "<i>δ</i> is the fluid conductivity and <i>d</i> is the electrode diameter. For tap water, "
+        "<i>δ</i> = 200 µS cm<sup>−1</sup>; for gasoline, <i>δ</i> = 0.01 µS cm<sup>−1</sup>; and for "
+        "alcohol, <i>δ</i> = 0.2 µS cm<sup>−1</sup>. A typical electrode with a 0.74 cm diameter in "
+        "contact with tap water results in a resistance of 6756 Ω."))
+
+    # ---------------------------------------------------------------- demodulation
+    b.append(h3("Signal Pickup and Demodulation Techniques",
+                "Signal Pickup and Demodulation Techniques"))
+    b.append(p(
+        "Magnetic flowmeters are four-wire devices that require an external power source for "
+        "operation. Particularly in ac magnetic flowmeters, the high-voltage power cables and "
+        "low-voltage signal cables must run separately, preferably in different conduits; whereas in dc "
+        "magnetic flowmeters, the power and signal cables can be run in one conduit, because in dc-type "
+        "magnetic flowmeters the voltage and the frequency of excitation of the electromagnets are "
+        "relatively much lower. Some manufacturers supply special cables along with their flowmeters."))
+    b.append(p(
+        "In ac flowmeters, the electrode signals can be amplified much more readily compared with their "
+        "dc counterparts. That is the reason why ac flowmeters have been used successfully to measure "
+        "very low flow rates, as well as the flow of very weakly conducting fluids. Nevertheless, ac "
+        "flowmeters tend to be more complicated, bulky and expensive, and they require electromagnets "
+        "with laminated yokes together with stabilized power supplies. In some magnetic flowmeters, it "
+        "is feasible to obtain sufficiently large flow signal outputs without the use of a yoke, by "
+        "producing a magnetic field with naked coils; in this case, the transformer action to the "
+        "connecting leads can be reduced considerably."))
+    b.append(p(
+        "One of the main drawbacks of ac-type flowmeters is that it is difficult to eliminate the "
+        "signals due to transformer action from the useful signals. The separation of the two signals "
+        "is achieved by exploiting the fact that the flow-dependent signal and the transformer signal "
+        "are in quadrature: the useful signal is proportional to the field strength, and the "
+        "transformer action is proportional to the time derivative of the field strength. The total "
+        "voltage <i>v</i><sub>T</sub> can be expressed as:"))
+    b.append(eq("v<sub>T</sub> = v<sub>F</sub> + v<sub>t</sub> = V<sub>F</sub> sin(ωt) + "
+                "V<sub>t</sub> cos(ωt)", "28.62"))
+    b.append(p("where <i>v</i><sub>F</sub> is the induced voltage due to liquid flow and "
+               "<i>v</i><sub>t</sub> is the voltage due to transformer action on wires, etc."))
+    b.append(p(
+        "Phase-sensitive demodulation techniques can be employed to eliminate the transformer action "
+        "voltage. The coil magnetizing current, <i>i</i><sub>m</sub> = <i>I</i><sub>m</sub> sin(ω<i>t</i>), "
+        "is sensed and multiplied by the total voltage <i>v</i><sub>T</sub>, giving:"))
+    b.append(eq("v<sub>T</sub> i<sub>m</sub> = [V<sub>F</sub> sin(ωt) + V<sub>t</sub> cos(ωt)] "
+                "I<sub>m</sub> sin(ωt)", "28.63"))
+    b.append(p(
+        "Integration of Equation 28.63 over one period between 0 and 2π eliminates the transformer "
+        "voltage, yielding only the voltage that is proportional to the flow:"))
+    b.append(eq("V<sub>f</sub> = V<sub>F</sub> I<sub>m</sub> π", "28.64"))
+    b.append(p(
+        "where <i>V</i><sub>f</sub> is the voltage after integration. This voltage is proportional to "
+        "the induced voltage modified by the constants <i>I</i><sub>m</sub> and π."))
+    b.append(p(
+        "In reality, this situation can be much more complicated because of phase shift due to eddy "
+        "currents in nearby solids and conductors. Other reasons for complexity include the harmonics "
+        "because of nonlinearity such as hysteresis, and capacitive pickup."))
+    b.append(p(
+        "A good electrical grounding of magnetic flowmeters, as illustrated in Figure 28.42, is "
+        "required to isolate relatively high common mode potential. The sources of ground potential "
+        "can be in the liquid or in the pipes. In practice, if the pipe is conductive and makes contact "
+        "with the liquid, the flowmeter should be grounded to the pipe. If the pipe is made from "
+        "nonconductive materials, ground rings should be installed to maintain contact with the process "
+        "liquid."))
+    b.append(fig(42, F.fig(42), "en"))
+    b.append(p(
+        "If the flowmeter is not grounded carefully relative to the potential of the fluid in the pipe, "
+        "then the flowmeter electrodes could be exposed to excessive common mode voltages that can "
+        "severely limit the accuracy. In some cases, excessive ground potential can damage the "
+        "electronics because the least-resistance path to ground for any stray voltage in the liquid "
+        "would be via the electrodes."))
+    b.append(p(
+        "Some commercial magnetic flowmeters have been developed that can operate on saw-tooth or "
+        "square waveforms. Universally standardized magnetic flowmeters and generalized calibration "
+        "procedures still do not exist, and manufacturers use their own particular design of flow "
+        "channels, electromagnets, coils, and signal processors. Most manufacturers provide their own "
+        "calibration data."))
+
+    # ---------------------------------------------------------------- further
+    b.append(h3("Further Information", "Further Information"))
+    b.append(wl([
+        "J. P. Bentley, <i>Principles of Measurement Systems</i>, 2nd ed., New York: Longman "
+        "Scientific and Technical, 1988.",
+        "E. O. Doebelin, <i>Measurement Systems: Application and Design</i>, 4th ed., New York: "
+        "McGraw-Hill, 1990.",
+        "J. P. Holman, <i>Experimental Methods for Engineers</i>, 5th ed., New York: McGraw-Hill, 1989.",
+        "J. A. Shercliff, <i>Electromagnetic Flow-Measurements</i>, New York: Cambridge University "
+        "Press, 1987.",
+        "D. W. Spitzer, <i>Industrial Flow Measurement</i>, Research Triangle Park, NC: Instrument "
+        "Society of America, 1990.",
+    ]))
+    return "".join(b)
+
+
 # ================================================================ build
 
-SECTIONS_VI = [sec_28_1_vi, sec_28_2_vi, sec_28_3_vi, sec_28_4_vi, sec_28_5_vi]
-SECTIONS_EN = [sec_28_1_en, sec_28_2_en, sec_28_3_en, sec_28_4_en, sec_28_5_en]
+SECTIONS_VI = [sec_28_1_vi, sec_28_2_vi, sec_28_3_vi, sec_28_4_vi, sec_28_5_vi, sec_28_6_vi]
+SECTIONS_EN = [sec_28_1_en, sec_28_2_en, sec_28_3_en, sec_28_4_en, sec_28_5_en, sec_28_6_en]
 
 
 def body_vi():
@@ -4881,8 +5761,8 @@ def build(lang):
              'Chương 28' % BASE_VI if vi else
              '<a href="/books/">Books</a> · <a href="%s">Measurement, Instrumentation and Sensors '
              'Handbook</a> · Chapter 28' % BASE_EN)
-    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 5/11 mục" if vi else
-            "Chapter 28 · in progress: 5 of 11 sections")
+    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 6/11 mục" if vi else
+            "Chapter 28 · in progress: 6 of 11 sections")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
             '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'

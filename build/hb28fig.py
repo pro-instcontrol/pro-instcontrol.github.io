@@ -1713,13 +1713,366 @@ def fig_28_35():
                 "impeller at the bottom")
 
 
+# ================================================================ 28.6 electromagnetic
+
+def fig_28_36():
+    o = [_defs()]
+    # ---- the flow tube, drawn as a vertical cylinder
+    o.append(_ell(340, 96, 96, 26, FILL, E, 1.5))
+    o.append(_line(244, 96, 244, 292, E, 1.5))
+    o.append(_line(436, 96, 436, 292, E, 1.5))
+    o.append(_path("M244,292 A96,26 0 0 0 436,292", E, 1.5))
+    o.append(_path("M244,292 A96,26 0 0 1 436,292", E, 1.0, "none", "5 4"))
+    # flow entering from below
+    o.append(_arr(340, 384, 340, 306, S, "ah28s", 1.6))
+    o.append(_lbl(350, 378, "dòng chảy", "ts"))
+    # axes through the centre of the tube
+    o.append(_arr(340, 300, 340, 44, E, "ah28", 1.4))
+    o.append(_lbl(348, 42, "Z", "tb"))
+    o.append(_arr(340, 194, 486, 250, E, "ah28", 1.4))
+    o.append(_lbl(492, 258, "X", "tb"))
+    o.append(_arr(340, 194, 194, 250, E, "ah28", 1.4))
+    o.append(_lbl(176, 258, "Y", "tb"))
+    # the electrode pair, a virtual conductor across the tube
+    o.append(_line(250, 236, 430, 152, S, 1.0, "4 3"))
+    o.append(_circ(250, 236, 5, E, E, 1.2))
+    o.append(_circ(430, 152, 5, E, E, 1.2))
+    o.append(_lbl(238, 250, "S₁", "tb", "end"))
+    o.append(_lbl(442, 148, "S₂", "tb"))
+    o.append(_line(430, 138, 462, 108, S, 0.9, "3 3"))
+    o.append(_lbl(466, 104, "cảm biến", "ts"))
+    # magnetic field along Y
+    o.append(_arr(392, 214, 330, 240, G, "ah28g", 1.5))
+    o.append(_lbl(396, 226, "từ trường B", "ts"))
+    return _fig(svg(680, 412, "".join(o), "Nguyên lý làm việc của lưu lượng kế điện từ"),
+                "Hình 28.36 · Nguyên lý làm việc của lưu lượng kế điện từ. Định luật Faraday phát biểu "
+                "rằng một điện áp được cảm ứng trong một vật dẫn chuyển động trong từ trường. Ở lưu "
+                "lượng kế điện từ, chiều chuyển động của vật dẫn, từ trường và suất điện động cảm ứng "
+                "vuông góc với nhau theo các trục x, y và z. Hai cảm biến S₁ và S₂ “nhìn thấy” một vật "
+                "dẫn ảo chính là chất lưu trong ống.",
+                "Figure 28.36 · Operational principle of electromagnetic flowmeters. Faraday's law "
+                "states that a voltage is induced in a conductor moving in a magnetic field. In "
+                "electromagnetic flowmeters, the direction of movement of the conductor, the magnetic "
+                "field, and the induced emf are perpendicular to each other on x, y and z axes. "
+                "Sensors S₁ and S₂ experience a virtual conductor due to liquid in the pipe.",
+                "Ống trụ thẳng đứng có dòng chảy đi lên, ba trục toạ độ và hai điện cực S1, S2 đặt đối diện nhau",
+                "A vertical flow tube with flow rising through it, three coordinate axes and two "
+                "electrodes S1 and S2 on opposite walls")
+
+
+def fig_28_37():
+    o = [_defs()]
+    # ---- flanges
+    o.append(_ell(340, 84, 118, 24, FILL, E, 1.5))
+    o.append(_ell(340, 336, 118, 24, FILL, E, 1.5))
+    for a in range(8):
+        ang = a * _m.pi / 4
+        o.append(_circ(340 + 100 * _m.cos(ang), 84 + 20 * _m.sin(ang), 3, P, E, 1.0))
+        o.append(_circ(340 + 100 * _m.cos(ang), 336 + 20 * _m.sin(ang), 3, P, E, 1.0))
+    # ---- flow channel
+    o.append(_rect(268, 84, 144, 252, P, E, 1.4))
+    # ---- coils and laminated cores, mirrored about the bore axis
+    for x in (196, 450):
+        o.append(_rect(x, 116, 34, 190, "#dce6f2", E, 1.5, rx=6))
+        for k in range(9):
+            o.append(_line(x + 4, 130 + k * 20, x + 30, 130 + k * 20, S, 0.8))
+    for x in (176, 488):
+        o.append(_rect(x, 110, 16, 202, FILL, E, 1.5))
+    # ---- flux across the bore
+    for y in (176, 196, 216):
+        o.append(_arr(238, y, 444, y, G, "ah28g", 1.3))
+    o.append(_lbl(300, 168, "từ thông", "ts"))
+    # ---- electrodes
+    o.append(_rect(262, 190, 12, 12, P, E, 1.4))
+    o.append(_rect(406, 190, 12, 12, P, E, 1.4))
+    o.append(_line(274, 192, 286, 150, S, 0.9, "3 3"))
+    o.append(_lbl(290, 146, "điện cực", "ts"))
+    # ---- diameter dimension
+    o.append(_darr(268, 292, 412, 292, E))
+    o.append(_lbl(340, 286, "đường kính D", "ts", "middle"))
+    # ---- callouts
+    o.append(_line(286, 84, 248, 56, S, 0.9, "3 3"))
+    o.append(_lbl(244, 52, "kênh dòng chảy", "ts", "end"))
+    o.append(_line(470, 150, 512, 140, S, 0.9, "3 3"))
+    o.append(_lbl(516, 138, "cuộn dây", "ts"))
+    o.append(_lbl(516, 152, "nam châm", "ts"))
+    o.append(_line(486, 240, 522, 232, S, 0.9, "3 3"))
+    o.append(_lbl(526, 230, "lõi ghép", "ts"))
+    o.append(_lbl(526, 244, "lá thép", "ts"))
+    o.append(_line(430, 336, 486, 344, S, 0.9, "3 3"))
+    o.append(_lbl(490, 348, "mặt bích", "ts"))
+    o.append(_lbl(340, 76, "V", "tb", "middle"))
+    return _fig(svg(680, 380, "".join(o), "Kết cấu của một lưu lượng kế điện từ thực tế"),
+                "Hình 28.37 · Kết cấu của lưu lượng kế điện từ thực tế. Nam châm điện đặt bên ngoài tạo "
+                "ra một từ trường đều xuyên qua ống và chất lưu bên trong. Các cảm biến được đặt lệch "
+                "90° so với từ trường và so với chiều dòng chảy, và được cách điện với thành ống. Mặt "
+                "bích dùng để bắt lưu lượng kế vào đường ống bên ngoài. Nhà chế tạo thường cung cấp "
+                "thông tin về chiều dài tối thiểu của các đoạn ống thẳng phía trước và phía sau.",
+                "Figure 28.37 · Construction of practical flowmeters. External electromagnets create a "
+                "homogeneous magnetic field that passes through the pipe and the liquid inside. "
+                "Sensors are located 90° to the magnetic field and the direction of the flow. Sensors "
+                "are insulated from the pipe walls. Flanges are provided for fixing the flowmeter to "
+                "external pipes. Usually, manufacturers supply information about the minimum lengths "
+                "of the straight portions of external pipes.",
+                "Mặt cắt ống có hai mặt bích, hai cuộn dây nam châm điện hai bên và cặp điện cực trên thành ống",
+                "A pipe section with two flanges, two electromagnet coils either side and a pair of "
+                "electrodes in the wall")
+
+
+def fig_28_38():
+    o = [_defs()]
+    x0, x1, y0, y1 = 178, 566, 80, 440
+    lo, hi = _m.log10(0.01), _m.log10(10000.0)
+
+    def yq(q):
+        return y1 - (_m.log10(q) - lo) / (hi - lo) * (y1 - y0)
+
+    def xr(r):
+        return x0 + (r - 0.01) / 0.99 * (x1 - x0)
+
+    o.append(_rect(x0, y0, x1 - x0, y1 - y0, P, E, 1.4))
+    # one gridline and one label per 1-2-5 step; a 5-7 pair would collide
+    ticks = []
+    for dec in range(-2, 5):
+        for m in (1, 2, 5):
+            q = m * 10.0 ** dec
+            if 0.01 <= q <= 10000:
+                ticks.append(q)
+    for q in ticks:
+        yy = yq(q)
+        o.append(_line(x0, yy, x1, yy, "#cfcfcf", 1.0))
+        o.append(_lbl(x0 - 7, yy + 3, "%g" % q, "ts", "end"))
+    # meter-size lines: Q = A v, with v = 10 m/s at 100 % of range
+    for d in (2.5, 4, 6, 10, 15, 25, 40, 50, 80, 100):
+        a = _m.pi * (d / 2000.0) ** 2
+        q100 = a * 10.0 * 60000.0
+        o.append(_line(xr(0.01), yq(q100 / 100.0), xr(1.0), yq(q100), E, 1.3))
+        xm, ym = xr(0.58), yq(q100 * 0.58)
+        o.append(_rect(xm - 16, ym - 8, 32, 12, P, P, 0))
+        o.append(_lbl(xm, ym + 2, "%g" % d, "ts", "middle"))
+    # axis titles
+    o.append(_lbl(172, 56, "lưu lượng", "ts", "end"))
+    o.append(_lbl(172, 68, "(lít/phút)", "ts", "end"))
+    o.append(_lbl(372, 52, "cỡ đồng hồ (mm)", "ts", "middle"))
+    for xv, t in ((x0, "1 %"), (372, "50 %"), (x1, "100 %")):
+        o.append(_line(xv, y1, xv, y1 + 6, E, 1.2))
+        o.append(_lbl(xv, y1 + 18, t, "ts", "middle"))
+    o.append(_lbl(372, y1 + 36, "dải đo", "ts", "middle"))
+    # annotation, kept clear of the plot frame
+    o.append(_rect(x0, y1 + 48, x1 - x0, 34, P, E, 1.0))
+    o.append(_lbl(x0 + 10, y1 + 62, "có thể chọn bất kỳ dải làm việc 10:1 nào", "ts"))
+    o.append(_lbl(x0 + 10, y1 + 75, "(trong giới hạn của đồng hồ)", "ts"))
+    return _fig(svg(680, 530, "".join(o), "Biểu đồ chọn cỡ lưu lượng kế điện từ"),
+                "Hình 28.38 · Chọn cỡ lưu lượng kế. Khi chọn một lưu lượng kế phù hợp cho một ứng dụng "
+                "cụ thể, phải hết sức chú ý tới vận tốc chất lưu dự kiến: vận tốc phải nằm trong dải "
+                "tuyến tính của thiết bị. Ví dụ, một lưu lượng kế đường kính trong 100 mm xử lý được "
+                "lưu lượng từ 50 L/phút đến 4000 L/phút; chế độ làm việc tối ưu đạt được ở khoảng "
+                "500 L/phút.",
+                "Figure 28.38 · Selection of flowmeters. In the selection of a suitable flowmeter for a "
+                "particular application, care must be exercised in handling the anticipated liquid "
+                "velocities. The velocity of liquid must be within the linear range of the device. For "
+                "example, a flowmeter with 100 mm internal diameter can handle flows between 50 L "
+                "min⁻¹ and 4000 L min⁻¹. An optimum operation will be achieved at a flow rate of "
+                "500 L min⁻¹.",
+                "Biểu đồ logarit hai trục: lưu lượng theo dải đo, với mười đường chéo ứng với mười cỡ đồng hồ",
+                "A log-log selection chart of flow rate against range, with ten diagonal lines, one "
+                "per meter size")
+
+
+def fig_28_39():
+    o = [_defs()]
+    o.append(_arr(150, 250, 150, 74, E, "ah28", 1.4))
+    o.append(_arr(150, 250, 610, 250, E, "ah28", 1.4))
+    o.append(_lbl(156, 72, "điện áp e", "ts"))
+    o.append(_lbl(604, 264, "t", "tb"))
+    # noise floor
+    o.append(_line(150, 196, 600, 196, S, 0.9, "6 4"))
+    o.append(_lbl(556, 190, "nhiễu", "ts"))
+    # the sampled waveform: noise only, flow+noise, noise only, flow
+    d = ("M156,196 L206,196 C216,196 216,120 232,120 L292,120 "
+         "C306,120 306,196 320,196 L370,196 "
+         "C380,196 380,148 396,148 L458,148 C472,148 472,196 486,196 L600,196")
+    o.append(_path(d, E, 1.6))
+    # the two signal spans
+    o.append(_darr(262, 120, 262, 196, E))
+    o.append(_lbl(268, 152, "tín hiệu dòng", "ts"))
+    o.append(_lbl(268, 166, "+ nhiễu", "ts"))
+    o.append(_darr(430, 148, 430, 196, E))
+    o.append(_lbl(436, 166, "tín hiệu", "ts"))
+    o.append(_lbl(436, 180, "dòng", "ts"))
+    # sample instants and the magnet periods
+    for x in (196, 292, 340, 458):
+        o.append(_line(x, 196, x, 288, S, 0.9))
+        o.append(_arr(x - 10, 268, x - 2, 262, S, "ah28s", 1.0))
+        o.append(_lbl(x - 14, 282, "lấy mẫu", "ts", "end"))
+    for a, b, t in ((150, 292, "nam châm BẬT"), (292, 396, "nam châm TẮT"),
+                    (396, 600, "nam châm BẬT")):
+        o.append(_line(a, 304, b, 304, E, 1.2))
+        o.append(_line(a, 298, a, 310, E, 1.2))
+        o.append(_line(b, 298, b, 310, E, 1.2))
+        o.append(_lbl((a + b) / 2, 322, t, "ts", "middle"))
+    return _fig(svg(680, 336, "".join(o), "Dạng sóng của lưu lượng kế điện từ một chiều xung"),
+                "Hình 28.39 · Tín hiệu quan sát tại các điện cực là tổng của điện áp cảm ứng và nhiễu. "
+                "Khi ngắt dòng điện trong cuộn dây nam châm, tín hiệu trên các điện cực chỉ còn là "
+                "nhiễu. Lấy số đo khi không có dòng qua nam châm trừ đi số đo khi có dòng qua nam "
+                "châm sẽ khử được ảnh hưởng của nhiễu một cách hiệu quả.",
+                "Figure 28.39 · The signals observed at the electrodes represent the sum of the induced "
+                "voltage and the noise. When the current in the magnetic coils is turned off, the "
+                "signal across the electrodes represents only the noise. Subtracting the measurement "
+                "of the flowmeter when no current flows through the magnet from the measurement when "
+                "current flows through the magnet effectively cancels out the effect of noise.",
+                "Giản đồ thời gian: mức nhiễu nằm ngang, hai xung tín hiệu dòng, các mốc lấy mẫu và chu kỳ nam châm bật tắt",
+                "A timing diagram: a noise floor with two flow-signal pulses, sample instants and the "
+                "magnet on/off periods")
+
+
+def fig_28_40():
+    o = [_defs()]
+    cx, cy, r = 320, 196, 96
+    o.append(_circ(cx, cy, r, "#3a3a3a", E, 1.6))
+    # air pocket at the top of the pipe
+    dy = 60.0
+    hw = _m.sqrt(r * r - dy * dy)
+    wave = []
+    for k in range(17):
+        x = cx + hw - k * (2 * hw / 16)
+        y = cy - dy + 3.2 * _m.sin(k * 1.35)
+        wave.append("%s,%s" % (_f(x), _f(y)))
+    o.append(_path("M%s,%s A%s,%s 0 0 1 %s,%s L%s Z"
+                   % (_f(cx - hw), _f(cy - dy), _f(r), _f(r), _f(cx + hw), _f(cy - dy),
+                      " L".join(wave)), E, 1.3, P))
+    # bubbles
+    for bx, by, br in ((cx - 52, cy - 78, 6), (cx - 22, cy - 84, 4), (cx + 8, cy - 79, 5),
+                       (cx + 40, cy - 86, 4), (cx + 62, cy - 76, 5)):
+        o.append(_circ(bx, by, br, P, E, 1.1))
+    # electrodes, top and bottom — the top one is in the air pocket
+    o.append(_rect(cx - 7, cy - r - 4, 14, 12, P, E, 1.4))
+    o.append(_rect(cx - 7, cy + r - 8, 14, 12, P, E, 1.4))
+    o.append(_line(cx - 8, cy - r - 2, cx - 62, cy - r - 20, S, 0.9, "3 3"))
+    o.append(_lbl(cx - 66, cy - r - 24, "điện cực 1", "ts", "end"))
+    o.append(_line(cx - 8, cy + r - 2, cx - 62, cy + r + 18, S, 0.9, "3 3"))
+    o.append(_lbl(cx - 66, cy + r + 26, "điện cực 2", "ts", "end"))
+    o.append(_line(cx + 30, cy - 88, cx + 92, cy - 104, S, 0.9, "3 3"))
+    o.append(_lbl(cx + 96, cy - 108, "bọt khí", "ts"))
+    return _fig(svg(680, 400, "".join(o), "Ống không đầy chất lưu trong lưu lượng kế điện từ"),
+                "Hình 28.40 · Ống của lưu lượng kế điện từ phải luôn đầy chất lưu thì phép đo mới chính "
+                "xác. Nếu chất lưu không tiếp xúc đầy đủ với các điện cực, trở kháng cao sẽ chặn dòng "
+                "điện nên không thể đo được. Ngoài ra, nếu ống không đầy, thì dù chất lưu vẫn tiếp xúc "
+                "với điện cực, phần rỗng của ống cũng làm cho lưu lượng tính ra bị sai.",
+                "Figure 28.40 · The pipes of electromagnetic flowmeters must be full of liquid at all "
+                "times for accurate measurement. If the liquid does not make full contact with "
+                "electrodes, the high impedance prevents the current flow; hence, measurements cannot "
+                "be taken. Also, if the pipe is not full, even if contact is maintained between the "
+                "liquid and electrodes, the empty portions of the pipe will lead to miscalculated flow "
+                "rates.",
+                "Mặt cắt ống chứa đầy chất lưu nhưng có túi khí ở phía trên, điện cực 1 nằm trong túi khí",
+                "A pipe cross-section full of liquid but with an air pocket at the top, electrode 1 "
+                "sitting inside the pocket")
+
+
+def fig_28_41():
+    o = [_defs()]
+    ax, ay = 330, 292
+    o.append(_arr(ax, ay, ax, 62, E, "ah28", 1.4))
+    o.append(_arr(110, ay, 600, ay, E, "ah28", 1.4))
+    o.append(_lbl(ax + 8, 60, "Y", "tb"))
+    o.append(_lbl(608, ay + 4, "X", "tb"))
+    # ideal profile: a tall parabola
+    o.append(_path("M156,292 C196,120 244,84 330,84 C416,84 464,120 504,292", E, 1.7))
+    # edge effect: steep at the walls, flat across the middle
+    o.append(_path("M156,292 C168,150 196,116 244,116 L416,116 C464,116 492,150 504,292",
+                   G, 1.5))
+    # field effect: a lower parabola
+    o.append(_path("M176,292 C216,176 254,150 330,150 C406,150 444,176 484,292", BLUE, 1.5))
+    o.append(_line(156, 292, 156, 84, S, 0.8, "3 3"))
+    o.append(_line(504, 292, 504, 84, S, 0.8, "3 3"))
+    # callouts
+    o.append(_line(340, 84, 372, 74, S, 0.9, "3 3"))
+    o.append(_lbl(376, 72, "prôfin vận tốc lý tưởng", "ts"))
+    o.append(_line(430, 116, 470, 100, S, 0.9, "3 3"))
+    o.append(_lbl(474, 98, "hiệu ứng biên", "ts"))
+    o.append(_line(300, 152, 262, 176, S, 0.9, "3 3"))
+    o.append(_lbl(258, 180, "hiệu ứng", "ts", "end"))
+    o.append(_lbl(258, 194, "từ trường", "ts", "end"))
+    return _fig(svg(680, 312, "".join(o), "Prôfin vận tốc trong ống của lưu lượng kế điện từ"),
+                "Hình 28.41 · Prôfin dòng chảy trong ống. Lưu lượng kế điện từ thể hiện một mức độ nhạy "
+                "nhất định với prôfin dòng. Prôfin vận tốc lý tưởng có thể bị méo do hiệu ứng biên và "
+                "do hiệu ứng từ trường, gọi là thuỷ động lực từ. Ở một số ứng dụng, nhiễu loạn vận tốc "
+                "do hiệu ứng thuỷ động lực từ có thể đủ lớn để ảnh hưởng nghiêm trọng tới độ chính xác.",
+                "Figure 28.41 · Flow profiles in the pipes. Magnetic flowmeters demonstrate a certain "
+                "degree of sensitivity to flow profiles. The ideal velocity profile can be distorted "
+                "due to edge effects and also field effects known as magneto-hydrodynamics. In some "
+                "applications, the velocity perturbation due to the magnetohydrodynamic effect can be "
+                "serious enough to severely influence the accuracy of operations.",
+                "Ba đường cong prôfin vận tốc trên hệ trục: lý tưởng, hiệu ứng biên và hiệu ứng từ trường",
+                "Three velocity-profile curves on a pair of axes: ideal, edge effect and field effect")
+
+
+def fig_28_42():
+    o = [_defs()]
+    # ---- pipe and flanges
+    o.append(_rect(52, 196, 116, 34, FILL, E, 1.5))
+    o.append(_rect(512, 196, 116, 34, FILL, E, 1.5))
+    for x in (168, 512):
+        o.append(_rect(x - 10, 180, 20, 66, "#dce6f2", E, 1.5))
+    # ---- meter body
+    o.append(_rect(178, 158, 324, 110, WARM, E, 1.7, rx=4))
+    o.append(_rect(216, 108, 248, 52, "#dce6f2", E, 1.6, rx=3))
+    o.append(_rect(292, 118, 96, 30, P, E, 1.3))
+    # ---- bore through the body, and the liner
+    o.append(_rect(178, 200, 324, 26, P, E, 1.2))
+    o.append(_line(178, 200, 502, 200, BLUE, 2.4))
+    o.append(_line(178, 226, 502, 226, BLUE, 2.4))
+    # ---- electrodes on top of the body
+    for x in (262, 418):
+        o.append(_rect(x - 6, 148, 12, 12, P, E, 1.3))
+        o.append(_line(x, 148, x, 160, E, 1.2))
+    # ---- ground straps: a short loop from the body top to each flange
+    o.append(_path("M202,158 Q170,150 172,204", E, 2.4))
+    o.append(_path("M478,158 Q510,150 508,204", E, 2.4))
+    # ---- ground wire up to the earth symbol
+    o.append(_path("M340,108 C340,80 372,72 392,64", E, 2.0))
+    o.append(_line(392, 64, 470, 44, E, 2.0))
+    for k, w in enumerate((30, 20, 12, 6)):
+        o.append(_line(452 - w, 44 + k * 7, 452 + w, 44 + k * 7, E, 1.6))
+    o.append(_lbl(486, 40, "về đất tốt", "ts"))
+    # ---- labels
+    o.append(_line(168, 176, 120, 152, S, 0.9, "3 3"))
+    o.append(_lbl(116, 148, "dây nối đất", "ts", "end"))
+    o.append(_lbl(116, 162, "(strap)", "ts", "end"))
+    o.append(_line(470, 213, 540, 246, S, 0.9, "3 3"))
+    o.append(_lbl(544, 250, "lớp lót ống", "ts"))
+    o.append(_arr(60, 213, 104, 213, S, "ah28s", 1.6))
+    o.append(_lbl(60, 250, "dòng chảy", "ts"))
+    o.append(_lbl(262, 142, "điện cực", "ts", "middle"))
+    return _fig(svg(680, 300, "".join(o), "Nối đất cho lưu lượng kế điện từ"),
+                "Hình 28.42 · Nối đất cho lưu lượng kế điện từ. Nối đất tốt là điều kiện tuyệt đối cần "
+                "thiết để cách ly nhiễu và điện thế đồng pha cao. Nếu ống dẫn điện và tiếp xúc với chất "
+                "lưu thì phải nối đất lưu lượng kế vào chính ống. Nếu ống làm bằng vật liệu không dẫn "
+                "điện thì phải lắp các vòng nối đất để duy trì tiếp xúc với chất lưu. Nối đất không đúng "
+                "sẽ đặt lưu lượng kế dưới điện thế đồng pha quá lớn, làm giảm nghiêm trọng độ chính xác "
+                "và có thể làm hỏng phần điện tử.",
+                "Figure 28.42 · Grounding of electromagnetic flowmeters. A good grounding is absolutely "
+                "essential to isolate noise and high common mode potential. If the pipe is conductive "
+                "and makes contact with the liquid, the flowmeter should be grounded to the pipe. If "
+                "the pipe is made from nonconductive materials, ground rings should be installed to "
+                "maintain contact with the process liquid. Improper grounding results in excessive "
+                "common mode voltages that can severely limit the accuracy and also damage the "
+                "processing electronics.",
+                "Thân lưu lượng kế giữa hai mặt bích, hai dây nối đất và dây dẫn về cọc tiếp địa",
+                "A meter body between two flanges, with two ground straps and a lead to an earth "
+                "symbol")
+
+
 FIGS = [fig_28_1(), fig_28_2(), fig_28_3(), fig_28_4(), fig_28_5(), fig_28_6(),
         fig_28_7(), fig_28_8(), fig_28_9(), fig_28_10(), fig_28_11(), fig_28_12(),
         fig_28_13(), fig_28_14(), fig_28_15(), fig_28_16(), fig_28_17(), fig_28_18(),
         fig_28_19(), fig_28_20(), fig_28_21(), fig_28_22(), fig_28_23(),
         fig_28_24(), fig_28_25(), fig_28_26(), fig_28_27(), fig_28_28(),
         fig_28_29(), fig_28_30(), fig_28_31(), fig_28_32(),
-        fig_28_33(), fig_28_34(), fig_28_35()]
+        fig_28_33(), fig_28_34(), fig_28_35(),
+        fig_28_36(), fig_28_37(), fig_28_38(), fig_28_39(), fig_28_40(),
+        fig_28_41(), fig_28_42()]
 
 
 def fig(n):
