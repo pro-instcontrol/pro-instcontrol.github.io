@@ -1687,3 +1687,36 @@ with `min/max` so bars no longer invert for downward ranges), **26.16** (N₂ an
 EN/VI pairs**; link check **533 pages, 14,491 local references, 0 broken**.
 
 **Chapters 1–26 done; 75 to go.** Next unit is Chapter 27.
+
+---
+
+## Site shell — one masthead for every page
+
+The main site and the library sub-site had drifted into two different headers. The main one was a 66px
+single row: a two-line sans wordmark ("Instrumentation & Control / FIELD GUIDE") with the current page in
+a tinted teal pill and a segmented `EN / VI` control at the right. The library had a serif wordmark on its
+own line, small grey links beneath it with the current page underlined, and a single bordered language
+pill. Reading the two in sequence felt like crossing between two sites.
+
+Every page now wears the library masthead. The main `.topbar` borrows the library's metrics outright —
+serif wordmark at 1.32rem, 32px gutters, 0.84rem links with 17px gaps, a 1px underline on hover/active
+instead of a tinted pill, and the language switch as a bordered rounded pill. Cormorant Garamond is now
+loaded on main pages, which previously only asked for Inter and IBM Plex Mono, so the wordmark does not
+fall back to Times.
+
+Three implementation notes, all learned the hard way:
+
+- **Breakpoint 1100px, not 1440px.** A 1440px window reports a 1424px viewport once the scrollbar is
+  taken out, so the old `@media (max-width:1439px)` rule left ordinary desktops on the burger menu and
+  the new header never appeared where it was most needed.
+- **The second row is a grid** (`"brand brand"` / `"nav pill"`), not wrapping flex. With flex, the
+  language pill drops onto a line of its own the moment the links run a few pixels wide — which is
+  exactly what happened at 1280px. Pinned to the second row's end it cannot.
+- The gutters live on `.bar`, not `.wrap`: they are the same element (`<div class="wrap bar">`), so
+  `.bar{padding:14px 0}` was silently wiping the horizontal padding.
+
+Below 1100px the burger menu keeps the navigation usable, unchanged from before.
+
+`ASSET_VER` goes 12 → 13 so browsers refetch the stylesheet; all 20 main pages plus `404.html` were
+rebuilt and now reference `style.css?v=13`. Library and reader pages keep their own `library.css` and
+were unaffected. Link check after the change: **533 pages, 14,571 local references, 0 broken**.
