@@ -1,9 +1,9 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-10-31 (session 18 — Chapter 18 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-10-31 (session 19 — Chapter 19 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 19** (and onward). Chapters
-> 1–18 are done, live, and registered. `work/hb_ch18.txt` is translated; Chapter 19+ source
+> **Where to start next:** Handbook **Chapter 20** (and onward). Chapters
+> 1–19 are done, live, and registered. `work/hb_ch19.txt` is translated; Chapter 20+ source
 > PDFs must be extracted from the 117-file handbook library before translation.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
@@ -42,7 +42,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–18** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–19** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -68,6 +68,7 @@ Chapters done, with their slugs and build scripts:
 | HB 16 | Velocity Measurement | `ch16-velocity-measurement` | `reader_hb_ch16.py` + `hb16fig.py` | 16 | ~8.0k |
 | HB 17 | Acceleration, Vibration, and Shock Measurement | `ch17-acceleration-vibration-shock-measurement` | `reader_hb_ch17.py` + `hb17fig.py` | 23 | ~11k |
 | HB 18 | Time Measurement | `ch18-time-measurement` | `reader_hb_ch18.py` + `hb18fig.py` | 3 | ~9k |
+| HB 19 | Frequency Measurement | `ch19-frequency-measurement` | `reader_hb_ch19.py` + `hb19fig.py` | 15 | ~14k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
@@ -107,7 +108,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `(level, total_chapters, done_chapters)`.
-  Currently `("progress", 101, 18)`, `("full", 16, 16)`, `("full", 14, 14)`.
+  Currently `("progress", 101, 19)`, `("full", 16, 16)`, `("full", 14, 14)`.
 - `build/books_site.py` → `FLAG_LABEL = {level: (vi_format, en_format)}` — **the pill text
   is derived from `level`, not hard-coded.** Add a level here as well as in the CSS, or the
   pill will read "Translating" on a finished book.
@@ -605,6 +606,40 @@ TOC, and the live VI page reports 16 figures. Library pill now `Đang dịch · 
 `pdf-store-b` junctions and `library/pdfindex.json`; copy the needed `ChNN.pdf` into `work/`, extract, then
 follow the §4 recipe. Note the registry edits (`DONE[16]`, `("progress", 101, 16)`) were applied cleanly this
 session — reconfirmed both before committing.
+
+### 2026-10-31, session 19 — Handbook Chapter 19, Frequency Measurement
+
+**Shipped:** Handbook chapter 19, *Frequency Measurement* (Michael A. Lombardi, NIST) — 25 source pages.
+Full Vietnamese translation + English companion at
+`/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch19-frequency-measurement/`.
+Handbook progress 18/101 → 19/101; `DONE[19]`, `("progress", 101, 19)`, and the §2 table all updated.
+
+**What was written this session:**
+
+- `build/hb19fig.py` — **all 15** real figures (19.1 phase-comparison graphs; 19.2 unstable vs stable; 19.3 Allan
+  deviation; 19.4 accuracy↔stability; 19.5 quartz oscillator block; 19.6 LORAN-C path noise; 19.7 LORAN-C vs
+  cesium 96 h; 19.8 GPS vs cesium 100 s; 19.9 GPS vs cesium 1 week; 19.10 oscillator outputs; 19.11 one sine
+  cycle; 19.12 changing phase relationship; 19.13 TIC measuring interval; 19.14 time-interval system; 19.15
+  DMTD system). All 15 SVGs validated (0 malformed).
+- `build/reader_hb_ch19.py` — full VI translation + EN companion. Embeds all 15 figures (15/15 parity),
+  equations 19.1–19.8 (offset = −Δt/T, the +1 µs/24 h example, Hz conversion, Allan deviation, confidence
+  1/√M, f=(E₂−E₁)/h), and all **4 tables** (19.1 offset↔phase; 19.2 stability estimate worked example; 19.3
+  oscillator-type summary; 19.4 transfer-standard traceability). 28-item reference list reproduced.
+  `work/hb_ch19.txt` extracted from `pdf-store/Ch19__8d16dd873aee7ed2.pdf` (25 pages).
+- **Bugs fixed during the build:** a Python string-concat bug in the path builders (`d="M" + " L".join(...)`
+  → `d="M' + " L".join(...)`, 15 sites); two literal `<` in SVG text (`TUR < 10:1`, `< 1 ns`) escaped to
+  `&lt;`; and literal `<` in Table 19.3 cells (`<10 s`, `<5 min`) escaped for HTML.
+- Figure parity: VI 15/15 and EN 15/15, IDs `fig-19-1`…`fig-19-15`; 16 SVGs/page (15 figures + brand); VI
+  166 kB (4 tables), EN 114 kB.
+
+**Deploy:** `build.py` → `cp -r dist/. ./` → `reader_hb_ch19.py` → `reader_handbook.py` (19 done rows),
+`books_site.py` (progress 101→19), `make_sitemap.py` (517 URLs, 502 EN/VI pairs), `check_links.py` (519 pages,
+14,097 references, **0 broken**). Committed `0326b21`; remote already at `29a7610` (no rebase) → pushed
+`29a7610..0326b21` on `main`. Live: 200 on both VI/EN, 15 figures each, TOC shows **19/101**.
+
+**Chapters 1–19 done; 82 to go.** Next unit is Chapter 20. Same junction + `library/pdfindex.json` workflow;
+copy the needed `ChNN.pdf` into `work/`, extract, then follow the §4 recipe. Registry edits (`DONE[19]`,
+`("progress", 101, 19)`) applied and reconfirmed before committing.
 
 ### 2026-10-31, session 18 — Handbook Chapter 18, Time Measurement (+ TOC badge links)
 
