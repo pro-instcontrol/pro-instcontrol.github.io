@@ -2585,3 +2585,56 @@ Terms block as `<p><b>term:</b> def</p>` via a local `dt()` helper, so **their t
 glossary automatically" therefore holds only for the chapters in `SRC`. Wiring 94 and 96–101 in
 means emitting `<dl class="glossary"><dt>…</dt><dd>…</dd></dl>` and adding both-language headwords
 to `BOOK_EN`; that is a self-contained follow-up, deliberately not bundled with a chapter commit.
+
+### Session 34 (cont.) — Chapter 93 survey
+
+Started **Chapter 93, *Plasma-Driven Flat Panel Displays*** (R.T. McGrath, R. Veerasingam,
+Penn State; W.C. Moffatt, R.B. Campbell, Sandia). It is the largest chapter in the reverse run so
+far and was **not** started in code this session; the survey below is the handoff.
+
+| Property | Value |
+|---|---|
+| Source | `work/hb_ch93.txt`, 1045 lines; `work/Ch93.pdf`, 31 pages, rendered to `work/png93/` |
+| Sections | 6 — 93.1 Introduction (Development History and Present Status · dc and ac Plasma Pixels · General Attributes), 93.2 Fundamentals of Plasma Pixel Operation (Atomic Physics Processes · Discharge Physics · Plasma Surface Interactions), 93.3 Pixel Electrical Properties (dc Pixels · ac Pixels), 93.4 Display Priming, Addressing, Refresh, and Gray Scale, 93.5 Color Plasma Flat Panel Displays (Color Pixel Structures · VUV Photon Production · Phosphor Excitation · Lifetime), 93.6 Inspection and Metrology |
+| Figures | **20** (93.1–93.20) |
+| Tables | **4** (93.1 display specs and manufacturers' plans, 93.2 relative quantum efficiencies and chromaticity, 93.3 noncontact profiling and chemical characterisation equipment, 93.4 advanced noncontact profiling techniques) |
+| Equations | **11** — 93.1, 93.2a, 93.2b, 93.3 … 93.11 |
+| References | **64** |
+| Defining Terms | **none** — no glossary block, so this chapter adds nothing to `/glossary.html` |
+
+Figure inventory (from the caption lines, to be confirmed against the page images):
+
+| Fig | Subject |
+|---|---|
+| 93.1 | ac plasma display structure invented at the University of Illinois (1966) |
+| 93.2 | simple dot-matrix plasma display with data scanning switches |
+| 93.3 | 40-in. diagonal dc-driven plasma display from NHK (photograph) |
+| 93.4 | 40-in. diagonal ac-driven plasma display from Photonics Imaging (photograph) |
+| 93.5 | schematic of (a) dc and (b) ac opposed-electrode plasma pixels |
+| 93.6 | structure of the Fujitsu ac colour plasma display |
+| 93.7 | collisional and surface interactions in a gas discharge |
+| 93.8 | quantum energy level diagrams for He, Ne, Ar, Xe and Xe₂⁺ |
+| 93.9 | ionising collisions vs E/p, one curve per gas |
+| 93.10 | breakdown voltage vs pressure–gap product (Paschen curves) |
+| 93.11 | potential profiles in the pixel gap for high and low electron density |
+| 93.12 | current–voltage characteristic for gas breakdown with load lines |
+| 93.13 | voltage and current traces for a 45 × 45 ac pixel array, on and off states |
+| 93.14 | discharge charge displacement for a 45 × 45 ac array |
+| 93.15 | sustain and address voltage waveforms |
+| 93.16 | pulsed memory operation of the NHK dc display, driver block diagram |
+| 93.17 | structure of the 40-in. NHK colour display |
+| 93.18 | VUV emission spectra from opposed-electrode ac pixels in He/Xe |
+| 93.19 | relative quantum efficiency of Tb-activated lanthanum phosphate vs YAG |
+| 93.20 | photon transmission through MgO films before and after bake-out |
+
+Notes for whoever picks this up:
+
+- **93.3 and 93.4 are photographs, not diagrams.** They cannot be redrawn as SVG; follow the
+  established convention for photo figures in this book (see how Chapters 96–101 handled them) and
+  substitute a captioned placeholder or omit with a note, rather than inventing a schematic.
+- **93.8 needs real energy-level data** — the term manifolds for He, Ne, Ar, Xe and the Xe₂⁺
+  excimer band are printed in the figure and must be transcribed from the page image.
+- **93.10 is a family of Paschen curves** on a log–log axis; the `Box` log-axis trick from
+  Chapter 95 carries over.
+- The PDF text layer again drops µ and × ("100 mm" for 100 µm, "852 ´ 480" for 852 × 480), so the
+  same restoration pass as Chapters 94 and 95 applies.
