@@ -8,8 +8,9 @@ FIGS is a 37-figure set — nothing is padded.
 
 NOTE: the figure-detail vision pass was rate-limited when this module was
 first drafted, so every drawing below is reconstructed from its printed
-caption plus standard textbook geometry. A visual QA pass against the
-source PDF is still pending.
+caption plus standard textbook geometry. The 52 equations were later
+verified against the rendered PDF pages (work/ch26img) and corrected where
+the OCR dump was wrong; the figure geometry itself remains caption-based.
 """
 import math as _m
 

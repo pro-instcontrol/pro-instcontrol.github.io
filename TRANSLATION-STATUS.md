@@ -1658,14 +1658,19 @@ piezoelectric/magnetostrictive phenomena; selection criteria; basic parameters; 
 incl. Doppler and diffraction; review of applications; manufacturers; advanced topics).
 **37 figures, 52 equations, 4 tables.**
 
-**Reconstruction note.** The figure-detail vision pass was rate-limited for the whole of this session
-(resets 2026-11-02 09:08 UTC+8). All 37 figures were therefore reconstructed from their printed captions
-plus standard textbook geometry (`build/hb26fig.py`, `FIGS 37`), and the 52 equations were transcribed
-from the text dump plus standard physics. Equations whose OCR form was too mangled to trust carry an
-inline `# NOTE: reconstructed …` marker in the reader — 26.4, 26.13, 26.30, 26.31, 26.32, 26.34, 26.35,
-26.38, 26.39 and the diffraction set 26.46–26.52. **A visual QA pass on `work/ch26img/*.png` is still
-pending** and must confirm every figure's geometry and every equation's sub/superscripts once vision is
-available.
+**Equation QA (vision restored).** The vision tool was rate-limited when the chapter was first drafted,
+but came back later in the session. All 52 equations were then checked against the rendered PDF pages in
+`work/ch26img/`, and the reconstruction errors were corrected — notably Eq. 26.11 (the temperature factor
+is a square root, `c₀ = c_ref √(1 + T/273)`, not linear), Eq. 26.13 (the water polynomial is
+`1402.4 + 5.01T − 0.055T² + 0.00022T³ + 1.6×10⁻⁶P₀`), the sound-level block 26.23–26.26 (which had been
+shifted by one — 26.23 is the time-average intensity integral, 26.24 the `P²/2ρ₀c₀` form, 26.25 SPL,
+26.26 IL), the layer coefficients 26.31/26.32 (full `cos k₂L`/`sin k₂L` forms), the attenuation pair
+26.34/26.35 (with the transmission-loss and `1/2d` terms), the piston-field set 26.38–26.41 (axial
+pressure with `√(x²/a²+1)`, far field `(ρ₀c₀U₀/2)(ka)(a/r)`, the directivity ratio and
+`D = (ka)³/(ka − J₁(2ka))`), and the diffraction integrals 26.46–26.52 (Fresnel/Fraunhofer prefactor
+`A₀/jλz` and the received-signal double convolution). The temporary `# NOTE: reconstructed` markers were
+removed and replaced with variable definitions. The 37 figures remain caption-based reconstructions —
+their geometry was not re-checked against the source.
 
 **Figure QA.** `work/qa_figs.py hb26fig` went 22 → 11 → 8 problems. The 8 remaining are the known
 `Box.axes` systemic artefact (y-axis label placed at x = 10 and rotated, flagged off-canvas and
