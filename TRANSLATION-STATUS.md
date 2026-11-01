@@ -1803,15 +1803,16 @@ so in the caption.
 
 - **Source extracted.** `work/Ch28.pdf` (copied from the junction), text in `work/hb_ch28.txt`
   (338,511 chars), 132 page images in `work/ch28img/` at 140 dpi.
-- **`build/hb28fig.py`** — primitives for flow drawings (`_pipe`, `_tap`, `_profile`, `_flowarrow`)
-  plus **figures 1–20**, `work/qa_figs.py hb28fig` → **20 figures, problems 0**, visual pass done.
-- **`build/reader_hb_ch28.py`** — module scaffold plus **sections 28.1 and 28.2 complete** in both
-  languages: 20 figures, 46 equations, 7 tables, 30 references. 171 kB (EN) / 169 kB (VI) per page.
-  Sections are added as `sec_NN_vi` / `sec_NN_en` and appended to the `SECTIONS_VI` / `SECTIONS_EN`
-  lists at the bottom; nothing else needs touching.
-- Generated page verified locally at 1424 px: **38,645 px tall (VI) / 39,086 px (EN)**, no horizontal
-  overflow, figures legible, tables fit. 28.1 alone was 14,552 px, so 28.2 is ~24,000 px of the
-  projected 150,000.
+- **`build/hb28fig.py`** — primitives for flow drawings (`_pipe`, `_tap`, `_profile`, `_flowarrow`),
+  positive-displacement primitives (`_tip`, `_thick`, `_stub`, `_bellows`, `_peanut`) plus
+  **figures 1–29**, `work/qa_figs.py hb28fig` → **29 figures, problems 0**, visual pass done.
+- **`build/reader_hb_ch28.py`** — module scaffold plus **sections 28.1, 28.2 and 28.3 complete** in
+  both languages: 29 figures, 46 equations, 7 tables, 30 references. 236 kB (EN) / 231 kB (VI) per
+  page. Sections are added as `sec_NN_vi` / `sec_NN_en` and appended to the `SECTIONS_VI` /
+  `SECTIONS_EN` lists at the bottom; nothing else needs touching.
+- Generated page verified locally at 1424 px: **49,288 px tall (VI) / 50,434 px (EN)**, no horizontal
+  overflow, figures legible, tables fit. 28.1 alone was 14,552 px and 28.2 ~24,000, so 28.3 is the
+  remaining ~10,600 — one third of the projected 150,000 done.
 - **§28.2 covers:** variable-area definition and the rotameter / movable-vane / weir-flume families;
   rotameter construction (conical tube, bobs, scales, glass vs metal, limit switches, transmitters,
   thirteen bullet characteristics); movable vane meter; weir and flume (thin-plate, notch,
@@ -1819,6 +1820,19 @@ so in the caption.
   (28.7–28.18), similarity analysis with Reynolds and Ruppel numbers (28.19–28.25), weir and flume
   discharge derivations (28.26–28.39), and the rotameter CFD internal-flow study (28.40–28.46 with
   figures 28.18–28.20) — plus the section summary and its own 16-item reference list.
+- **§28.3 covers:** the positive-displacement definition and what separates it from inferential
+  meters; design and construction (the three functional parts, single- vs double-walled housing,
+  counter and output mechanisms); then the mechanism catalogue, one figure each — sliding vane,
+  trirotor, birotor, piston, oval gear, nutating disk, Roots, CVM and diaphragm; advantages and
+  disadvantages; applications (the Poiseuille leakage path and viscous-drag torque limit);
+  accessories (air eliminator, direct-coupled shut-off valve); price and performance; and a
+  six-item “Further Information” list. **No equations and no tables** — the section is descriptive
+  throughout, which is why the page grows by only ~10,600 px for seven source pages.
+- **§28.3's figures are redrawn schematics, not photographs.** The source illustrates the mechanisms
+  with cutaway photographs that cannot be traced usefully; each was rebuilt as a cross-section
+  drawing that shows the working principle, and the caption says so.
+- **The §28.3 “Further Information” list sits on p. 41**, immediately before the 28.4 heading — not on
+  p. 40 with the rest of the section. Easy to miss when slicing the source by page range.
 
 ### Conventions set for this chapter
 

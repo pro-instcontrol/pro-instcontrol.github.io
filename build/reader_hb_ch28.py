@@ -2134,10 +2134,630 @@ def sec_28_2_en():
     return "".join(b)
 
 
+# ================================================================ 28.3
+
+def sec_28_3_vi():
+    b = []
+    b.append(h2("28.3 Lưu lượng kế thể tích", "Positive Displacement Flowmeters"))
+    b.append(p("Zaki D. Husain và Donald J. Wass — Daniel Flow Products."))
+    b.append(p(
+        "Lưu lượng kế thể tích, thường gọi tắt là lưu lượng kế PD, đo lưu lượng thể tích của một "
+        "dòng chảy liên tục bằng cách nhốt tạm thời một phần chất lưu vào một buồng có thể tích đã "
+        "biết rồi xả phần đó trở lại dòng chảy ở phía cửa ra của lưu lượng kế. Bằng cách theo dõi số "
+        "lần nhốt trong một khoảng thời gian xác định, hoặc số lần nhốt trong một đơn vị thời gian, "
+        "có thể xác định được tổng thể tích dòng chảy hoặc lưu lượng của dòng. Tổng thể tích và lưu "
+        "lượng sau đó có thể hiển thị tại chỗ hoặc truyền về trạm giám sát từ xa."))
+    b.append(p(
+        "Lưu lượng kế thể tích đã được dùng từ nhiều chục năm nay để đo cả dòng chất lỏng lẫn dòng "
+        "khí. Có thể xem lưu lượng kế PD như một động cơ thuỷ lực có hiệu suất thể tích cao, thường "
+        "hấp thụ một lượng năng lượng nhỏ từ chất lưu đang chảy. Năng lượng bị hấp thụ chủ yếu để "
+        "thắng trở lực bên trong của các chi tiết chuyển động và phụ kiện của thiết bị. Phần năng "
+        "lượng mất đi này được quan sát thấy dưới dạng độ sụt áp qua lưu lượng kế. Chênh áp qua lưu "
+        "lượng kế chính là động lực làm quay các chi tiết bên trong của nó."))
+
+    b.append(h3("Kết cấu và chế tạo", "Design and Construction"))
+    b.append(p(
+        "Một lưu lượng kế thể tích có ba bộ phận cơ bản: vỏ ngoài, cơ cấu bên trong tạo ra buồng chia "
+        "nhờ chuyển động lặp lại của nó, và bộ hiển thị hoặc bộ đếm xác định số lần nhốt chất lưu "
+        "trong buồng chia để suy ra lưu lượng và tổng thể tích dòng chảy qua lưu lượng kế."))
+    b.append(p(
+        "Vỏ ngoài đóng vai trò buồng chứa chất lưu trước và sau mỗi lần bị cơ cấu bên trong nhốt. Với "
+        "áp suất đường ống thấp, vỏ thường là một lớp; với áp suất làm việc cao hơn, vỏ là hai lớp, "
+        "trong đó lớp trong là thành chịu lực của buồng nhốt còn lớp ngoài là bình chịu áp. Với vỏ "
+        "hai lớp, thành buồng nhốt chỉ chịu chênh áp qua lưu lượng kế trong khi vỏ ngoài chịu toàn bộ "
+        "áp suất đường ống. Nhờ vậy có thể chế tạo buồng trong thành mỏng mà vẫn giữ được hình dạng "
+        "và kích thước chính xác, không phụ thuộc áp suất đường ống."))
+    b.append(p(
+        "Cơ cấu đo gồm những phần tử đo chính xác, đòi hỏi dung sai rất chặt giữa các bề mặt lắp ghép. "
+        "Các phần tử này gồm thành bao của buồng đo và những chi tiết chuyển động tạo nên thể tích "
+        "nhốt nhờ chuyển động tuần hoàn hay lặp lại của chúng. Những kiểu lưu lượng kế thể tích thông "
+        "dụng nhất là kiểu pít-tông dao động, đĩa nghiêng, bánh răng oval, cánh trượt, hai rôto, ba "
+        "rôto và kiểu màng."))
+    b.append(p(
+        "Cơ cấu đếm hay cơ cấu đầu ra chuyển đổi chuyển động của buồng đo bên trong thành số chỉ lưu "
+        "lượng hoặc tổng lưu lượng, bằng cách liên hệ số lần nhốt với thể tích nhốt mỗi lần. Nhiều "
+        "lưu lượng kế thể tích dùng bộ truyền bánh răng cơ khí, đòi hỏi các vòng bít và hộp nhồi để "
+        "truyền chuyển động của cơ cấu bên trong ra bộ đếm bên ngoài. Kiểu hiển thị này cần thêm công "
+        "suất dẫn động để thắng trở lực của các chi tiết chuyển động và của các vòng bít, kết quả là "
+        "lưu lượng kế có thêm độ sụt áp. Nhiều lưu lượng kế PD truyền chuyển động của cơ cấu bên "
+        "trong ra bộ đếm qua đầu ra dạng xung, dùng kỹ thuật cơ điện, từ, quang hoặc hoàn toàn điện "
+        "tử để đếm số lần nhốt và hiển thị lưu lượng cùng tổng thể tích. Các kỹ thuật xử lý sau này "
+        "thường gây ít sụt áp hơn phương pháp truyền hoàn toàn cơ khí hoặc bán cơ khí. Bộ đếm dẫn "
+        "động hoàn toàn cơ khí không cần nguồn điện ngoài và, nếu chọn đúng bộ bánh răng, có thể hiển "
+        "thị trực tiếp thể tích hoặc lưu lượng thực. Nhờ vậy có thể đặt lưu lượng kế ở những vị trí "
+        "xa không có nguồn điện nào. Lưu lượng kế hiển thị cơ khí không dễ hiệu chỉnh sự thay đổi thể "
+        "tích do buồng đo giãn nở hay co lại vì nhiệt độ dòng chảy, và — với vỏ một lớp — không dễ "
+        "hiệu chỉnh sự thay đổi thể tích nhốt do áp suất đường ống thay đổi. Một thiết bị đầu ra xử "
+        "lý điện tử có thể theo dõi cả áp suất và nhiệt độ của lưu lượng kế để hiệu chỉnh cần thiết "
+        "cho đầu ra. Với công nghệ điện tử không ngừng thay đổi và tiến bộ, nhiều lưu lượng kế PD nay "
+        "được lắp đầu ra điện tử dùng pin hoặc pin mặt trời cho những nơi không có nguồn điện. Nhiều "
+        "bộ hiển thị điện tử cho phép truy cập dữ liệu của lưu lượng kế từ một trạm giám sát trung "
+        "tâm qua vô tuyến hoặc vệ tinh."))
+
+    b.append(h3("Một số thiết kế lưu lượng kế thể tích trên thị trường",
+                "Some Commercially Available PD Meter Designs"))
+    b.append(p(
+        "Các lưu lượng kế thể tích bán trên thị trường có cơ cấu làm việc khác nhau rõ rệt, và một "
+        "vài thiết kế là độc quyền. Dù mỗi thiết kế và cơ cấu làm việc có thể rất khác nhau, mọi lưu "
+        "lượng kế thể tích đều có một thành giữ chất lưu cố định và một cơ cấu nhốt tạm thời chất "
+        "lưu đầu vào vào một buồng đã chia rồi xả ra phía hạ lưu của lưu lượng kế. Việc nhốt và xả "
+        "chất lưu diễn ra với chuyển động lặp lại và quét liên tục đến mức, trong hầu hết ứng dụng "
+        "thực tế, lưu lượng có vẻ đều và ổn định, dù trên thực tế dòng ra vẫn có dao động. Dao động "
+        "lưu lượng ra khỏi lưu lượng kế có thể rõ hơn ở một số thiết kế so với các thiết kế khác. Với "
+        "mọi thiết kế, dao động này rõ hơn ở lưu lượng thấp. Một số thiết kế phù hợp hơn cho dòng chất "
+        "lỏng hoặc dòng khí, một số khác đo được cả hai. Với chất lỏng, lưu lượng kế thể tích làm việc "
+        "tốt nhất với chất lỏng có độ nhớt cao. Hầu như mọi lưu lượng kế thể tích đều đòi hỏi các bề "
+        "mặt lắp ghép được gia công chính xác, dung sai chặt; do đó chất lưu được đo phải sạch để "
+        "lưu lượng kế có tuổi thọ cao và giữ được độ chính xác đo."))
+
+    b.append(h4("Lưu lượng kế thể tích kiểu cánh trượt", "Sliding-Vane Type PD Meter"))
+    b.append(p(
+        "Hình 28.21 trình bày một chu trình làm việc của lưu lượng kế thể tích kiểu cánh trượt, trong "
+        "đó các cánh được thiết kế để trượt ra vào cơ cấu quay bên trong. Vị trí của mỗi cánh trượt "
+        "tương ứng với một góc quay xác định của rôto thường được duy trì bằng một cam cơ khí. Trong "
+        "thiết kế ở Hình 28.21, mỗi lá cánh được giữ độc lập trong rãnh của nó. Cũng có những thiết "
+        "kế dùng số cánh chẵn, trong đó hai cánh đối xứng qua tâm là một chi tiết liền. Ứng dụng áp "
+        "suất cao sẽ dùng kết cấu vỏ hai lớp."))
+    b.append(fig(21, F.fig(21), "vi"))
+
+    b.append(h4("Lưu lượng kế thể tích kiểu ba rôto", "Tri-Rotor Type PD Meter"))
+    b.append(p(
+        "Thiết kế này có ba chi tiết quay nhốt chất lưu giữa các rôto và thành vỏ. Chu trình làm việc "
+        "của kiểu này được trình bày trên Hình 28.22. Trong thiết kế này, một vòng quay của cơ cấu "
+        "trên ứng với hai vòng quay của cánh. Cơ cấu dẫn động và tương quan quay giữa các cánh được "
+        "duy trì bằng một cụm ba bánh răng, trong đó trục của mỗi cánh quay nối với một bánh răng của "
+        "cụm để giữ đúng tốc độ quay tương đối. Thiết kế này dùng để đo lưu lượng chất lỏng."))
+    b.append(fig(22, F.fig(22), "vi"))
+
+    b.append(h4("Lưu lượng kế thể tích kiểu hai rôto", "Birotor PD Meter"))
+    b.append(p(
+        "Cụm đo của lưu lượng kế hai rôto có hai rôto dạng xoắn được giữ đồng bộ tuyệt đối bằng một "
+        "bộ bánh răng chính xác, và được dùng để đo lưu lượng chất lỏng. Dòng chảy có thể vào lưu "
+        "lượng kế theo phương vuông góc hoặc song song với trục quay của hai rôto ăn khớp, như trên "
+        "Hình 28.23. Bản hai rôto hướng trục giống bản chuẩn cả về chi tiết lẫn nguyên lý; chỉ khác là "
+        "cụm đo được lắp song song — chứ không vuông góc — với dòng chảy. Đầu ra của lưu lượng kế được "
+        "ghi nhận cơ khí qua một bộ bánh răng đặt ngoài buồng đo, hoặc ghi nhận điện tử bằng một cụm "
+        "cảm biến lắp cùng bánh răng định thời. Cách bố trí hướng trục cho phép lắp đặt gọn, độ chính "
+        "xác cao hơn và tổn thất áp suất thấp. Bản hướng trục lý tưởng cho những ứng dụng lưu lượng "
+        "lớn."))
+    b.append(fig(23, F.fig(23), "vi"))
+
+    b.append(h4("Lưu lượng kế thể tích kiểu pít-tông", "Piston Type PD Meter"))
+    b.append(p(
+        "Một thiết kế điển hình của lưu lượng kế thể tích kiểu pít-tông được trình bày trên Hình "
+        "28.24. Một chi tiết quay đặt ở giữa tạo ra chuyển động tịnh tiến cho cả bốn pít-tông của lưu "
+        "lượng kế. Chuyển động tịnh tiến của từng pít-tông được định thời sao cho mỗi xi-lanh xả theo "
+        "một chu trình, tạo ra dòng xả bán liên tục từ lưu lượng kế. Loại này dùng cho lưu lượng chất "
+        "lỏng rất nhỏ. Kết cấu pít-tông – xi-lanh chịu được chênh áp lớn qua lưu lượng kế, nên có thể "
+        "đo chất lỏng có độ nhớt cao với độ chính xác rất cao. Các chi tiết cơ khí của loại này đòi "
+        "hỏi dung sai rất chặt, làm tăng giá thành sản phẩm."))
+    b.append(fig(24, F.fig(24), "vi"))
+
+    b.append(h4("Lưu lượng kế thể tích kiểu bánh răng oval", "Oval Gear PD Meter"))
+    b.append(p(
+        "Lưu lượng kế bánh răng oval đo lưu lượng thể tích bằng cách tách những thể tích riêng phần "
+        "hình thành giữa các bánh răng oval và thành buồng đo, như trên Hình 28.25. Các bánh răng oval "
+        "quay được là nhờ chênh áp qua lưu lượng kế. Trong một vòng quay của hai bánh răng, bốn thể "
+        "tích riêng phần được chuyển qua. Chuyển động quay của bánh răng được truyền từ buồng đo ra "
+        "trục ra trực tiếp qua các vòng bít cơ khí hoặc qua một khớp nối từ. Loại này dùng để đo chất "
+        "lỏng có dải độ nhớt rộng."))
+    b.append(fig(25, F.fig(25), "vi"))
+
+    b.append(h4("Lưu lượng kế thể tích kiểu đĩa nghiêng", "Nutating-Disk Type PD Meters"))
+    b.append(p(
+        "Một đĩa đặt trong giới hạn của một thành bao, theo một hướng xác định, có thể gây ra một bất "
+        "ổn định dòng chảy làm đĩa lắc hoặc nghiêng qua lại. Chu trình làm việc của một thiết kế như "
+        "vậy được trình bày trên Hình 28.26. Việc nhốt và xả chất lưu vào, ra hai buồng diễn ra ở "
+        "những pha khác nhau của chu trình lặp lại của đĩa nghiêng. Loại này dùng để đo chất lỏng. "
+        "Thiết kế cho phép đo lưu lượng một cách kinh tế ở những nơi không đòi hỏi độ chính xác cao, "
+        "và thường được dùng trong đồng hồ nước."))
+    b.append(fig(26, F.fig(26), "vi"))
+    b.append(p(
+        "Các thiết kế mô tả dưới đây dùng cho dòng khí. Lưu lượng kế thể tích đo khí đòi hỏi dung sai "
+        "rất chặt của các chi tiết chuyển động để giảm đường rò, và do đó khí phải sạch vì các lưu "
+        "lượng kế này kém chịu được hạt rắn."))
+
+    b.append(h4("Lưu lượng kế thể tích kiểu Roots", "Roots PD Meter"))
+    b.append(p(
+        "Thiết kế lưu lượng kế Roots được trình bày trên Hình 28.27. Đây là loại lưu lượng kế thể tích "
+        "được dùng phổ biến nhất để đo dòng khí, và là một trong những thiết kế lâu đời nhất của lưu "
+        "lượng kế thể tích. Khe hở cơ khí giữa các rôto và vỏ đòi hỏi các chi tiết được gia công "
+        "chính xác. Lưu lượng kế Roots bị ảnh hưởng xấu nếu dòng vào có mức dao động tương đối cao. "
+        "Nhược điểm chính của loại này là nó đưa dao động chu kỳ vào dòng chảy. Lưu lượng kế này không "
+        "chịu được bẩn và cần lọc phía thượng lưu. Bản một lớp vỏ của lưu lượng kế Roots được dùng ở "
+        "áp suất đường ống gần áp suất khí quyển. Thiết kế này được dùng rất rộng rãi trên thị trường "
+        "truyền tải và phân phối khí thiên nhiên áp suất thấp. Nếu lưu lượng kế bị kẹt ở bất kỳ vị trí "
+        "nào, dòng chảy bị chặn hoàn toàn."))
+    b.append(fig(27, F.fig(27), "vi"))
+
+    b.append(h4("Lưu lượng kế CVM", "The CVM Meter"))
+    b.append(p(
+        "Lưu lượng kế CVM (Hình 28.28) là một thiết kế độc quyền của lưu lượng kế thể tích dùng để đo "
+        "dòng khí. Lưu lượng kế này có một bộ bốn cánh quay trong một không gian vành khuyên quanh "
+        "tâm của vỏ tròn. Một cửa chắn có hình dạng giống chi tiết giữa của thiết kế ba rôto (Hình "
+        "28.22) cho các cánh đi qua nhưng không cho khí đi qua. Độ chính xác đo của lưu lượng kế CVM "
+        "tương tự lưu lượng kế Roots, nhưng biên độ dao động cửa ra nhỏ hơn lưu lượng kế Roots với "
+        "cùng cỡ và cùng lưu lượng. Thiết kế này cũng ít nhạy với dao động dòng vào hơn, và được dùng "
+        "rộng rãi trên thị trường phân phối khí thiên nhiên áp suất thấp ở châu Âu."))
+    b.append(fig(28, F.fig(28), "vi"))
+
+    b.append(h4("Đồng hồ kiểu màng", "Diaphragm Meter"))
+    b.append(p(
+        "Đồng hồ kiểu màng, còn gọi là đồng hồ kiểu ống xếp, đơn giản, tương đối rẻ, có độ chính xác "
+        "đo đáng tin cậy và được dùng rộng rãi làm đồng hồ đo khí trong hộ gia đình. Thiết kế này, "
+        "trình bày trên Hình 28.29, hoạt động như một lưu lượng kế pít-tông tịnh tiến, trong đó các "
+        "ống xếp đóng vai pít-tông. Hoạt động được điều khiển bằng một van trượt đôi. Ở một vị trí, "
+        "van trượt nối cửa vào với mặt trong của ống xếp trong khi mặt ngoài của ống xếp thông với "
+        "cửa ra. Ở vị trí kia, mặt ngoài nối với cửa vào trong khi mặt trong của ống xếp thông với "
+        "cửa ra. Thiết kế này đo được lưu lượng cực nhỏ (ví dụ bấc đánh lửa của bếp gas)."))
+    b.append(fig(29, F.fig(29), "vi"))
+
+    b.append(h3("Ưu điểm và nhược điểm của lưu lượng kế thể tích",
+                "Advantages and Disadvantages of PD Meters"))
+    b.append(p(
+        "Lưu lượng kế thể tích chất lượng cao đo với độ chính xác cao trên một dải lưu lượng rộng và "
+        "rất đáng tin cậy trong thời gian dài. Khác với phần lớn lưu lượng kế, lưu lượng kế thể tích "
+        "không nhạy với méo dạng mặt cắt dòng vào. Nhờ vậy có thể lắp lưu lượng kế PD sát ngay sau "
+        "hoặc trước bất kỳ đoạn ống và phụ kiện nào mà không mất độ chính xác. Nói chung lưu lượng kế "
+        "thể tích có độ sụt áp nhỏ, nên có thể lắp trong đường ống có áp suất rất thấp. Cho đến khi "
+        "xuất hiện các bộ hiệu chỉnh điện tử và các bộ điều khiển lưu lượng trên những loại lưu lượng "
+        "kế khác, lưu lượng kế thể tích được dùng rộng rãi nhất trong các ứng dụng nạp và phân phối "
+        "theo lô. Mọi thiết bị cơ khí đều có thể lắp ở những vị trí xa."))
+    b.append(p(
+        "Lưu lượng kế thể tích nói chung cồng kềnh, đặc biệt ở các cỡ lớn. Do khe hở rất nhỏ cần thiết "
+        "giữa các bề mặt lắp ghép, chất lưu phải sạch để bảo đảm độ chính xác đo và tuổi thọ của lưu "
+        "lượng kế. Các lưu lượng kế thể tích chính xác hơn thì khá đắt. Nếu lưu lượng kế bị kẹt, dòng "
+        "chảy sẽ bị chặn hoàn toàn. Nhiều lưu lượng kế thể tích có quán tính lớn ở các chi tiết "
+        "chuyển động; do đó thay đổi lưu lượng đột ngột có thể làm hỏng thiết bị. Lưu lượng kế thể "
+        "tích thường chỉ phù hợp trong những dải áp suất và nhiệt độ hạn chế. Một số thiết kế đưa dao "
+        "động khá mạnh vào dòng chảy. Phần lớn lưu lượng kế thể tích cần chế độ bảo trì tốt và là "
+        "những thiết bị có chi phí sửa chữa và bảo trì cao. Chi phí thường xuyên cho việc bảo trì lưu "
+        "lượng kế thể tích có thể là một phần đáng kể trong tổng chi phí của lưu lượng kế."))
+
+    b.append(h3("Ứng dụng", "Applications"))
+    b.append(p(
+        "Lưu lượng kế thể tích đo chất lỏng có thể đo được chất lưu có dải độ nhớt và khối lượng riêng "
+        "rộng. Thay đổi nhỏ về độ nhớt của chất lưu ảnh hưởng không đáng kể tới độ chính xác của lưu "
+        "lượng kế thể tích. Tuy vậy không có một thiết kế lưu lượng kế thể tích cụ thể nào đáp ứng "
+        "được dải ứng dụng rộng như vậy. Tính chất vật lý của chất lưu, đặc biệt là độ nhớt, phải được "
+        "xem xét để chọn đúng lưu lượng kế cho ứng dụng. Nhiều thiết kế lưu lượng kế thể tích đo chính "
+        "xác vận tốc dòng trên một dải rộng."))
+    b.append(p(
+        "Cần kiểm soát kích thước cẩn thận để tạo ra những khe hở được quy định chặt quanh các chi "
+        "tiết chuyển động của lưu lượng kế thể tích. Các khe hở này tạo ra đường rò quanh cơ cấu đo; "
+        "lượng rò phụ thuộc vận tốc tương đối của các chi tiết chuyển động, độ nhớt của chất lưu và "
+        "khe hở giữa các chi tiết. Nói chung lưu lượng rò tuân theo phương trình Poiseuille, nghĩa là "
+        "lượng rò tỉ lệ thuận với chênh áp và tỉ lệ nghịch với độ nhớt tuyệt đối cùng chiều dài đường "
+        "rò."))
+    b.append(p(
+        "Lưu lượng rò, tính theo phần trăm tổng lưu lượng, là thông tin hữu ích để đánh giá sai số. Ở "
+        "lưu lượng thấp, sai số do rò tính theo phần trăm có thể đáng kể; còn ở lưu lượng vừa phải "
+        "thì lượng rò có thể không đáng kể. Tuy nhiên chênh áp qua lưu lượng kế thể tích tăng theo "
+        "hàm mũ khi lưu lượng tăng. Do đó ở lưu lượng rất cao, lưu lượng rò lại có thể chiếm một phần "
+        "đáng kể của tổng lưu lượng. Kết quả là lưu lượng kế thể tích có xu hướng cấp nhiều chất lưu "
+        "hơn số chỉ của bộ đếm ở cả hai vùng lưu lượng rất thấp và rất cao. Mức sai số do rò phụ thuộc "
+        "thiết kế lưu lượng kế và độ nhớt của chất lưu."))
+    b.append(p(
+        "Lưu lượng kế thể tích được dẫn động bằng chênh áp qua nó. Các tổn thất chính bên trong lưu "
+        "lượng kế là tổn thất ma sát và lực cản nhớt của chất lưu tác dụng lên các chi tiết chuyển "
+        "động. Ở lưu lượng rất thấp, tổn thất ở ổ trục chiếm ưu thế; còn ở lưu lượng cao, lực cản "
+        "nhớt chiếm ưu thế. Lực cản nhớt tỉ lệ thuận với độ nhớt của chất lưu và vận tốc tương đối "
+        "của các chi tiết chuyển động, và tỉ lệ nghịch với khe hở. Trong mỗi thiết kế, chênh áp được "
+        "giới hạn ở một giá trị định trước. Chênh áp quá lớn có thể làm hỏng lưu lượng kế. Có thể "
+        "tránh chênh áp cao bằng cách giới hạn lưu lượng cực đại, giảm độ nhớt bằng cách gia nhiệt "
+        "chất lưu, tăng khe hở, hoặc kết hợp các biện pháp này. Nói chung, nếu giải quyết được giới "
+        "hạn chênh áp thì lưu lượng kế thể tích đo chất lưu có độ nhớt cao có sai số đo nhỏ hơn trên "
+        "một dải lưu lượng rộng."))
+    b.append(p(
+        "Độ nhớt của phần lớn chất khí quá thấp để gây ra những vấn đề ứng dụng liên quan tới lực cản "
+        "nhớt như đã bàn với lưu lượng kế thể tích đo chất lỏng. Lưu lượng kế thể tích đo khí dùng "
+        "khe hở nhỏ hơn lưu lượng kế đo chất lỏng; do đó khí phải rất sạch. Chỉ một hạt tạp chất nhỏ "
+        "cũng có thể làm hỏng lưu lượng kế thể tích đo khí. Lưu lượng kế thể tích dùng trong đo dòng "
+        "khí chủ yếu thuộc nhóm áp suất đường ống thấp."))
+
+    b.append(h3("Phụ kiện", "Accessories"))
+    b.append(p(
+        "Có nhiều phụ kiện cho lưu lượng kế thể tích. Trong số những phụ kiện thông dụng và hữu ích "
+        "nhất cho lưu lượng kế thể tích đo chất lỏng là bộ tách khí tự động và van đóng cắt nối trực "
+        "tiếp dùng cho các thao tác nạp theo lô. Bộ tách khí tự động gồm một vỏ chịu áp bao quanh một "
+        "van phao. Khi khí trong dòng chất lỏng đi vào buồng, phao hạ xuống do trọng lực và cho van "
+        "phao mở ra để xả khí. Bộ tách khí làm tăng độ chính xác của phép đo lưu lượng trong nhiều "
+        "ứng dụng, và là thứ tuyệt đối cần thiết ở những nơi không khí hoặc khí bị giữ lại trong dòng "
+        "chảy."))
+    b.append(p(
+        "Van đóng cắt nối trực tiếp được liên kết trực tiếp với bộ đếm cơ khí. Có thể nhập vào bộ đếm "
+        "một lượng chất lưu định trước. Khi lượng đã cấp bằng lượng nhập vào bộ đếm, liên kết cơ khí "
+        "sẽ đóng van lại. Van đóng cắt hai cấp thường được dùng để tránh va đập thuỷ lực trong những "
+        "ứng dụng cấp lưu lượng lớn. Tương tự, các thiết bị hoàn toàn điện tử có thể điều khiển các "
+        "thao tác theo lô. Thiết bị hoàn toàn điện tử rất thuận tiện trong xử lý dữ liệu. Tuy vậy van "
+        "cơ khí dẫn động từ bộ đếm lại có ưu điểm về đơn giản trong thiết kế, về bảo trì hay sửa chữa "
+        "tại hiện trường và về chi phí ban đầu."))
+    b.append(p(
+        "Lưu lượng kế thể tích đo khí có thể được trang bị bộ đếm cơ khí hiệu chỉnh tổng lưu lượng "
+        "theo áp suất và nhiệt độ. Dải bù áp suất và nhiệt độ của các thiết bị cơ khí bị hạn chế "
+        "nhưng, nếu áp dụng đúng, giới hạn này không thành vấn đề. Bộ tổng hoá điện tử cho lưu lượng "
+        "kế thể tích đo khí có thể hiệu chỉnh trên dải nhiệt độ và áp suất rộng. Phụ kiện điện tử có "
+        "thể cung cấp nhiều khả năng lưu trữ, ghi dữ liệu và truy cập dữ liệu từ xa."))
+
+    b.append(h3("Giá và hiệu năng", "Price and Performance"))
+    b.append(p(
+        "Nói chung độ chính xác của lưu lượng kế thể tích được phản ánh qua giá bán. Tuy vậy có nhiều "
+        "yếu tố khác ảnh hưởng tới giá. Ứng dụng dự kiến, vật liệu chế tạo và cấp áp suất có ảnh "
+        "hưởng mạnh tới giá. Dù cho độ chính xác rất tốt, các lưu lượng kế thể tích cỡ nhỏ dùng cho "
+        "nước sinh hoạt hoặc khí thiên nhiên hộ gia đình lại rất rẻ. Lưu lượng kế sản xuất cho thị "
+        "trường công nghiệp nói chung cho độ chính xác tốt với giá hợp lý, còn lưu lượng kế chế tạo "
+        "cho thị trường đường ống hoặc hoá dầu cho độ chính xác rất tốt nhưng đắt."))
+    b.append(p(
+        "Có những lưu lượng kế thể tích rất rẻ với vỏ nhựa hoặc cơ cấu bên trong bằng nhựa. Lưu lượng "
+        "kế bằng nhôm, đồng thau, gang dẻo hoặc gang có giá trung bình. Lưu lượng kế bằng thép tương "
+        "đối đắt, đặc biệt với ứng dụng áp suất cao. Nếu phải dùng thép không gỉ hoặc vật liệu đặc "
+        "biệt cho chất lưu ăn mòn hay yêu cầu dịch vụ đặc biệt thì giá rất cao. Lưu lượng kế thể tích "
+        "được chế tạo với nhiều cỡ, nhiều cấp áp suất và nhiều loại vật liệu, với vô số dải lưu lượng "
+        "và độ chính xác phù hợp hầu hết yêu cầu. Giá thành liên quan trực tiếp tới yêu cầu về hiệu "
+        "năng."))
+
+    b.append(h3("Thông tin thêm", "Further Information"))
+    b.append(wl([
+        "D. W. Spitzer (chủ biên), <i>Flow Measurement: Practical Guides for Measurement and "
+        "Control</i>, Research Triangle Park, NC: ISA, 1991.",
+        "R. W. Miller, <i>Flow Measurement Engineering Handbook</i>, New York: McGraw-Hill, 1989.",
+        "<i>Fluid Meters: Their Theory and Application</i>, 6th ed., báo cáo của ASME Research "
+        "Committee on Fluid Meters, American Society of Mechanical Engineers, 1971.",
+        "V. L. Streeter, <i>Fluid Mechanics</i>, 4th ed., New York: McGraw-Hill, 1966.",
+        "V. L. Streeter, <i>Handbook of Fluid Dynamics</i>, New York: McGraw-Hill, 1961.",
+        "<i>Measurement of Liquid Hydrocarbons by Displacement Meters</i>, Manual of Petroleum "
+        "Measurement Standard, Chapter 5.2, American Petroleum Institute, 1992.",
+    ]))
+    return "".join(b)
+
+
+
+def sec_28_3_en():
+    b = []
+    b.append(h2("28.3 Positive Displacement Flowmeters", "Lưu lượng kế thể tích"))
+    b.append(p("Zaki D. Husain and Donald J. Wass — Daniel Flow Products."))
+    b.append(p(
+        "A positive displacement flowmeter, commonly called a PD meter, measures the volume flow rate "
+        "of a continuous flow stream by momentarily entrapping a segment of the fluid into a chamber "
+        "of known volume and releasing that fluid back into the flow stream on the discharge side of "
+        "the meter. By monitoring the number of entrapments for a known period of time or number of "
+        "entrapments per unit time, the total volume of flow or the flow rate of the stream can be "
+        "ascertained. The total volume and the flow rate can then be displayed locally or transmitted "
+        "to a remote monitoring station."))
+    b.append(p(
+        "The positive displacement flowmeter has been in use for many decades to measure both liquid "
+        "and gas flows. A PD meter can be viewed as a hydraulic motor with high volumetric efficiency "
+        "that generally absorbs a small amount of energy from the flowing fluid. The energy absorption "
+        "is primarily to overcome the internal resistance of the moving parts of the meter and its "
+        "accessories. This loss of energy is observed as the pressure drop across the meter. The "
+        "differential pressure across the meter is the driving force for the internals of the PD "
+        "meter."))
+
+    b.append(h3("Design and Construction", "Kết cấu và chế tạo"))
+    b.append(p(
+        "A positive displacement meter has three basic components: an outer housing, the internal "
+        "mechanism that creates the dividing chamber through its repetitive motion, and the display or "
+        "counter accessories that determines the number of entrapments of fluid in the dividing "
+        "chamber and infers the flow rate and the total volume of flow through the meter."))
+    b.append(p(
+        "The external housing acts as the holding chamber of the flowing fluid before and after the "
+        "entrapments by the internals. For low line pressures, the housing is usually single walled "
+        "while, for higher operating pressures, the housing is double walled where the inner wall is "
+        "the containment wall for the entrapment chamber and the outer wall is the pressure vessel. "
+        "For the double-walled housing, the entrapment chamber walls are subjected to the differential "
+        "pressure across the meter while the external housing is subjected to the total line pressure. "
+        "This allows fabrication of a thin-walled inner chamber that can retain its precise shape and "
+        "dimensions independent of line pressure."))
+    b.append(p(
+        "The measuring mechanism consists of precise metering elements that require tight tolerances "
+        "on the mating parts. The metering elements consist of the containment wall of the metering "
+        "chamber and the moving components of the meter that form the entrapment volume of the flowing "
+        "fluid by cyclic or repetitive motion of those elements. The most common types of positive "
+        "displacement meters are the oscillating piston, nutating disk, oval gear, sliding vane, "
+        "birotor, trirotor, and diaphragm designs."))
+    b.append(p(
+        "The counter or output mechanism converts the motion of the internal measuring chamber of a PD "
+        "meter and displays the flow rate or total flow by correlating the number of entrapments and "
+        "each entrapped volume. Many positive displacement meters have a mechanical gear train that "
+        "requires seals and packing glands to transmit the motion of the inner mechanism to the "
+        "outside counters. This type of display requires more driving power to overcome resistance of "
+        "the moving parts and the seals, which results in an additional pressure drop for the meter. "
+        "Many PD meters transmit the motion of the inner mechanism to the counters through switch "
+        "output utilizing electromechanical, magnetic, optical, or purely electronic techniques in "
+        "counting the entrapments and displaying the flow rate and total flow volume. The latter "
+        "processing techniques normally have less pressure drop than the all-mechanical or "
+        "part-mechanical transmission methods. All-mechanical drive counters do not require external "
+        "power and, through proper selection of gear train, can display the actual flow volume or the "
+        "flow rate. Thus, meters can be installed at remote locations devoid of any external power "
+        "source. Meters with mechanical display cannot easily correct for the changes in volume due to "
+        "thermal expansion or contraction of the measuring chamber due to flow temperature variation "
+        "and, in the case of single-walled housing, the changes in the entrapment volume due to "
+        "variations of the line pressure. An electronically processed output device could monitor both "
+        "the pressure and temperature of the meter and provide necessary corrections to the meter "
+        "output. With constantly changing and improving electronics technology, many PD meters are now "
+        "installed with solar or battery-powered electronic output for installations at remote "
+        "locations with no external power source. Many electronic displays allow access to meter data "
+        "from a central monitoring station via radio or satellite communication."))
+
+    b.append(h3("Some Commercially Available PD Meter Designs",
+                "Một số thiết kế lưu lượng kế thể tích trên thị trường"))
+    b.append(p(
+        "Commercially available PD meters have many noticeably different working mechanisms and a few "
+        "designs are unique and proprietary. Although each design and working mechanism can be "
+        "noticeably different from another, all positive displacement meters have a stationary fluid "
+        "retaining wall and a mechanism that momentarily entraps inlet fluid into a partitioned "
+        "chamber before releasing it to the downstream side of the meter. This entrapment and release "
+        "of the flowing fluid occur with such repetitive and sweeping motion that, for most practical "
+        "purposes, the flow rate appears to be uniform and steady, even though, in reality, the exit "
+        "flow does have some pulsation. The flow pulsation out of the meter may be more pronounced for "
+        "some designs of positive displacement meters than others. These flow pulsations are more "
+        "pronounced at the lower flow rates for all designs. Some designs are more suitable for either "
+        "liquid or gas flows, while some designs can measure both gas and liquid. For liquid "
+        "applications, PD meters work best for liquids with heavy viscosities. Almost all PD meters "
+        "require precisely machined, high-tolerance mating parts; thus, measured fluid must be clean "
+        "for longevity of the meter and to maintain the measurement precision."))
+
+    b.append(h4("Sliding-Vane Type Positive Displacement Meter",
+                "Lưu lượng kế thể tích kiểu cánh trượt"))
+    b.append(p(
+        "Figure 28.21 shows a working cycle of a sliding-vane type PD meter where vanes are designed "
+        "to move in and out of the rotating inner mechanism. The position of each sliding vane "
+        "relative to specific angular rotation of the rotor is usually maintained by a mechanical cam. "
+        "In the design shown in Figure 28.21, each blade is independently retained in the slots. There "
+        "are designs with even numbers of blades where diametrically opposite blades are one integral "
+        "unit. High-pressure application would utilize dual wall construction."))
+    b.append(fig(21, F.fig(21), "en"))
+
+    b.append(h4("Tri-Rotor Type PD Meter", "Lưu lượng kế thể tích kiểu ba rôto"))
+    b.append(p(
+        "This design has three rotating parts that entrap fluid between the rotors and an outer wall. "
+        "The working cycle of this type of meter is shown in Figure 28.22. In this design, for one "
+        "rotation of the top mechanism, two blades rotate twice. The driving mechanism and rotation of "
+        "each blade with respect to the others is maintained by a three-gear assembly where each "
+        "rotating blade shaft is connected to one gear of the three-gear assembly to maintain relative "
+        "rotational speed. This design is used to measure liquid flows."))
+    b.append(fig(22, F.fig(22), "en"))
+
+    b.append(h4("Birotor PD Meter", "Lưu lượng kế thể tích kiểu hai rôto"))
+    b.append(p(
+        "The measuring unit of the birotor PD meter has two spiral type rotors kept in perfect timing "
+        "by a set of precision gears and is used to measure liquid flows. Flow can enter the meter "
+        "either perpendicular or parallel to the axis of rotation of the mating rotors, as shown in "
+        "Figure 28.23. The axial design birotor is identical to the standard model in component parts "
+        "and in principle; however, it utilizes a measuring unit mounted parallel, rather than "
+        "perpendicular, to flow. Meter output is registered mechanically through a gear train located "
+        "outside the measuring chamber or, electronically, using a pickup assembly mounted with a "
+        "timing gear. Axial orientation results in compact installation, improved accuracy, and low "
+        "pressure loss. The axial design is ideal for high flow rate applications."))
+    b.append(fig(23, F.fig(23), "en"))
+
+    b.append(h4("Piston Type PD Meter", "Lưu lượng kế thể tích kiểu pít-tông"))
+    b.append(p(
+        "A typical design of a piston type PD meter is shown in Figure 28.24. A centrally located "
+        "rotating part generates the reciprocating motion for each of the four pistons of the meter. "
+        "The reciprocating motion of each of the pistons is timed such that the discharge from an "
+        "individual piston cylinder occurs in a cycle to generate a semicontinuous discharge from the "
+        "meter. These PD meters are used for very low flow rates of liquid flows. A piston-cylinder "
+        "design can withstand large differential pressures across the meter, so high viscous liquids "
+        "can be measured by this type of meters and measurements are very precise. Mechanical "
+        "components of this type of meter require very precise mechanical tolerances, which increase "
+        "the product cost."))
+    b.append(fig(24, F.fig(24), "en"))
+
+    b.append(h4("Oval Gear PD Meter", "Lưu lượng kế thể tích kiểu bánh răng oval"))
+    b.append(p(
+        "The measurement of volumetric flow of an oval gear meter is obtained by separating partial "
+        "volumes formed between oval gears and the measuring chamber wall, as shown in Figure 28.25. "
+        "The rotation of the oval gears results from the differential pressure across the flowmeter. "
+        "During one revolution of the oval gears, four partial volumes are transferred. The rotation "
+        "of the gears is transmitted from the measuring chamber to the output shaft directly with "
+        "mechanical seals or via a magnetic coupling. This type of meter is used to measure liquids "
+        "having a wide range of viscosity."))
+    b.append(fig(25, F.fig(25), "en"))
+
+    b.append(h4("Nutating-Disk Type PD Meters", "Lưu lượng kế thể tích kiểu đĩa nghiêng"))
+    b.append(p(
+        "A disk placed within the confines of a boundary wall at a specific orientation can induce a "
+        "flow instability that can generate a wobbling or nutating motion to the disk. The operating "
+        "cycle of one such design is shown in Figure 28.26. The entrapment and discharge of the fluid "
+        "to and from the two chambers occur during different phases of the repetitive cycle of the "
+        "nutating disk. This type of meter is used to measure liquids. The design provides economic "
+        "flow measurement where accuracy is not of great importance and is often used in water "
+        "meters."))
+    b.append(fig(26, F.fig(26), "en"))
+    b.append(p(
+        "Meter designs described hereafter are for gas flows. PD meters for gas flows require very "
+        "tight tolerances of the moving parts to reduce leak paths and, therefore, the gas must be "
+        "clean because the meters are less tolerant to solid particles."))
+
+    b.append(h4("Roots PD Meter", "Lưu lượng kế thể tích kiểu Roots"))
+    b.append(p(
+        "The Roots meter design is shown in Figure 28.27. This is the most commonly used PD meter to "
+        "measure gas flows. This is one of the oldest designs of a positive displacement meter. The "
+        "mechanical clearance between the rotors and the housing requires precisely machined parts. "
+        "Roots meters are adversely affected if inlet flow to the meter has a relatively high level of "
+        "pulsation. The main disadvantage of this meter is that it introduces cyclic pulsations into "
+        "the flow. This meter cannot tolerate dirt and requires filtering upstream of the meter. A "
+        "Roots meter in single-case design is used at near-ambient line pressures. This meter design "
+        "is very widely used in the low-pressure transmission and distribution market of natural gas. "
+        "If this meter ever seizes up at any position, the flow is completely blocked."))
+    b.append(fig(27, F.fig(27), "en"))
+
+    b.append(h4("The CVM Meter", "Lưu lượng kế CVM"))
+    b.append(p(
+        "The CVM meter (Figure 28.28) is a proprietary design of a positive displacement meter used to "
+        "measure gas flows. This meter has a set of four vanes rotating in an annular space about the "
+        "center of the circular housing. A gate similar in shape to the center piece of the trirotor "
+        "design (Figure 28.22) allows the vanes to pass — but not the gas. The measurement accuracy of "
+        "the CVM meter is similar to the Roots meter, but the amplitude of exit pulsation is lower "
+        "than the Roots meter for similar meter size and flow rate. This design is also not as "
+        "sensitive to inlet flow fluctuations, and is widely used in the low-pressure, natural gas "
+        "distribution market in Europe."))
+    b.append(fig(28, F.fig(28), "en"))
+
+    b.append(h4("Diaphragm Meter", "Đồng hồ kiểu màng"))
+    b.append(p(
+        "The diaphragm meter, also known as a bellows-type meter, is simple, relatively inexpensive, "
+        "has reliable metering accuracy, and is widely used as a domestic gas meter. This design, "
+        "shown in Figure 28.29, acts like a reciprocating piston meter, where the bellows act as the "
+        "piston. The operation is controlled by a double slide valve. In one position, the slide valve "
+        "connects the inlet to the inside of the bellows, while the outside of the bellows is open to "
+        "the outlet. In the other position, the outside is connected to the inlet while the inside of "
+        "the bellows is open to the outlet. This design can measure extremely low flow rates (e.g., "
+        "pilot light of a gas burner)."))
+    b.append(fig(29, F.fig(29), "en"))
+
+    b.append(h3("Advantages and Disadvantages of PD Meters",
+                "Ưu điểm và nhược điểm của lưu lượng kế thể tích"))
+    b.append(p(
+        "High-quality, positive displacement meters will measure with high accuracy over a wide range "
+        "of flow rates, and are very reliable over long periods. Unlike most flowmeters, a positive "
+        "displacement meter is insensitive to inlet flow profile distortions. Thus, PD meters can be "
+        "installed in close proximity to any upstream or downstream piping installations without any "
+        "loss of accuracy. In general, PD meters have minimal pressure drop across the meter; hence, "
+        "they can be installed in a pipeline with very low line pressures. Until the introduction of "
+        "electronic correctors and flow controls on other types of meters, PD meters were most widely "
+        "used in batch loading and dispensing applications. All mechanical units can be installed in "
+        "remote locations."))
+    b.append(p(
+        "Positive displacement meters are generally bulky, especially in the larger sizes. Due to the "
+        "tight clearance necessary between mating parts, the fluid must be clean for measurement "
+        "accuracy and longevity of the meter. More accurate PD meters are quite expensive. If a PD "
+        "meter ever seizes up, it would completely block the flow. Many PD meters have high inertia of "
+        "the moving parts; therefore, a sudden change in the flow rate can damage the meter. PD meters "
+        "are normally suitable over only limited ranges of pressure and temperature. Some designs will "
+        "introduce noticeably high pulsations into the flow. Most PD meters require a good maintenance "
+        "schedule and are high repair and maintenance meters. Recurring costs in maintaining a "
+        "positive displacement flowmeter can be a significant factor in overall flowmeter cost."))
+
+    b.append(h3("Applications", "Ứng dụng"))
+    b.append(p(
+        "Liquid PD meters are capable of measuring fluids with a wide range of viscosity and density. "
+        "Minor changes in viscosity of the fluid have minimal influence on the accuracy of a PD meter. "
+        "However, no one specific design of PD meter is capable of such a broad application range. The "
+        "physical properties of the fluid, especially the fluid viscosity, must be reviewed for proper "
+        "selection of a meter for the application. Many PD meter designs accurately measure flow "
+        "velocities over a wide range."))
+    b.append(p(
+        "Careful dimensional control is required to produce well-regulated clearances around the "
+        "moving parts of the PD meter. The clearances provide a leakage path around the flow "
+        "measurement mechanism, and the amount of leakage depends on the relative velocity of the "
+        "moving parts, the viscosity of the fluid, and the clearances between parts. In general, the "
+        "leakage flow rate follows the Poiseuille equation; that is, leakage is directly proportional "
+        "to the differential pressure and inversely proportional to the absolute viscosity and the "
+        "length of the leakage path."))
+    b.append(p(
+        "The leakage flow, in percentage of the total flow rate, is useful information for error "
+        "measurement. At low flow rates, percent leakage error can be significant; while with modest "
+        "flow rates, leakage can be insignificant. However, the differential pressure across the PD "
+        "meter increases exponentially with increasing flow rates. Therefore, at very high flow rates, "
+        "leakage flow can again be a significant portion of the total flow. As a result, PD meters "
+        "tend to dispense more fluid than is indicated by the register at the very low and very high "
+        "flow rates. The amount of error due to leakage depends on the meter design and on the "
+        "viscosity of the fluid."))
+    b.append(p(
+        "PD meters are driven by the differential pressure across the meter. The primary losses within "
+        "the meter can be attributed to the friction losses and the viscous drag of the fluid on the "
+        "moving parts. At very low flow rates, the bearing losses are predominant, while at high flow "
+        "rates, the viscous drags predominate. The viscous drag is directly proportional to the fluid "
+        "viscosity and the relative velocity of the moving parts and inversely proportional to the "
+        "clearance. Within each design, the differential pressure is limited to a predetermined value. "
+        "Excessive differential pressures can damage the meter. High differential pressure can be "
+        "avoided by limiting the maximum flow rate, lowering viscosity by heating the fluid, "
+        "increasing clearances, or by various combinations of these techniques. In general, if the "
+        "differential pressure limit can be addressed, PD meters measuring high-viscosity fluids have "
+        "less measurement error over a wide flow rate range."))
+    b.append(p(
+        "The viscosity of most gases is too low to cause application problems relating to viscous drag "
+        "of the form discussed for liquid PD meters. Gas PD meters utilize smaller clearances than "
+        "liquid PD meters; therefore, gas must be very clean. Even small particles of foreign material "
+        "can damage gas PD meters. PD meters used in gas flow measurement are primarily in the low "
+        "line pressure application."))
+
+    b.append(h3("Accessories", "Phụ kiện"))
+    b.append(p(
+        "Many accessories are available for PD meters. Among the most common and useful accessories "
+        "for liquid PD meters are the automatic air eliminator and the direct-coupled shut-off valve "
+        "for batch loading operations. The automatic air eliminator consists of a pressure-containing "
+        "case surrounding a float valve. When gas in the liquid flow enters the chamber, the float "
+        "descends by gravity and allows the float valve to open and purge the gas. An air eliminator "
+        "improves the precision of flow measurement in many applications and is an absolute necessity "
+        "in applications where air or gas is trapped in the flow stream."))
+    b.append(p(
+        "The direct-coupled shut-off valve is directly linked to the mechanical register. A "
+        "predetermined fluid quantity can be entered into the register. When the dispensed amount "
+        "equals the amount entered in the register, the mechanical linkage closes the valve. Two-stage "
+        "shut-off valves are often used to avoid line shock in high flow rate dispensing applications. "
+        "Similarly, all-electronic units can control batch operations. The all-electronic units "
+        "provide great convenience in the handling of data. However, the register-driven mechanical "
+        "valves have advantages in simplicity of design, field maintenance or repair, and initial "
+        "cost."))
+    b.append(p(
+        "Gas PD meters can be equipped with mechanical registers that correct the totals for pressure "
+        "and temperature. The pressure and temperature compensation range is limited in the mechanical "
+        "units but with appropriate application, the range limitation is not a problem. Electronic "
+        "totalizers for gas PD meters can correct for broad ranges of temperature and pressure. "
+        "Electronic accessories can provide various data storage, logging, and remote data access "
+        "capabilities."))
+
+    b.append(h3("Price and Performance", "Giá và hiệu năng"))
+    b.append(p(
+        "In general, the accuracy of the PD meter is reflected in the sales price. However, several "
+        "additional factors influence the cost. The intended application, the materials of "
+        "construction, and the pressure rating have a strong influence on the cost. Although they "
+        "provide excellent accuracy, small PD meters for residential water or residential natural gas "
+        "service are very inexpensive. Meters produced for the general industrial market provide good "
+        "accuracy at a reasonable cost, and meters manufactured for the pipeline or petrochemical "
+        "markets provide excellent accuracy and are expensive."))
+    b.append(p(
+        "Very inexpensive PD meters are available with plastic cases or plastic internal mechanisms. "
+        "Aluminum, brass, ductile iron, or cast iron PD meters are moderately priced. Steel PD meters "
+        "are relatively expensive, especially for high-pressure applications. If stainless steel or "
+        "unusual materials are necessary for corrosive fluids or special service requirements, the "
+        "costs are very high. PD meters are manufactured in a wide range of sizes, pressure ratings, "
+        "and materials, with a multitude of flow rate ranges, and with an accuracy to match most "
+        "requirements. The cost is directly related to the performance requirements."))
+
+    b.append(h3("Further Information", "Thông tin thêm"))
+    b.append(wl([
+        "D. W. Spitzer, Ed., <i>Flow Measurement: Practical Guides for Measurement and Control</i>, "
+        "Research Triangle Park, NC: ISA, 1991.",
+        "R. W. Miller, <i>Flow Measurement Engineering Handbook</i>, New York: McGraw-Hill, 1989.",
+        "<i>Fluid Meters: Their Theory and Application</i>, 6th ed., Report of ASME Research "
+        "Committee on Fluid Meters, American Society of Mechanical Engineers, 1971.",
+        "V. L. Streeter, <i>Fluid Mechanics</i>, 4th ed., New York: McGraw-Hill, 1966.",
+        "V. L. Streeter, <i>Handbook of Fluid Dynamics</i>, New York: McGraw-Hill, 1961.",
+        "<i>Measurement of Liquid Hydrocarbons by Displacement Meters</i>, Manual of Petroleum "
+        "Measurement Standard, Chapter 5.2, American Petroleum Institute, 1992.",
+    ]))
+    return "".join(b)
+
+
+
 # ================================================================ build
 
-SECTIONS_VI = [sec_28_1_vi, sec_28_2_vi]
-SECTIONS_EN = [sec_28_1_en, sec_28_2_en]
+SECTIONS_VI = [sec_28_1_vi, sec_28_2_vi, sec_28_3_vi]
+SECTIONS_EN = [sec_28_1_en, sec_28_2_en, sec_28_3_en]
 
 
 def body_vi():
@@ -2177,8 +2797,8 @@ def build(lang):
              'Chương 28' % BASE_VI if vi else
              '<a href="/books/">Books</a> · <a href="%s">Measurement, Instrumentation and Sensors '
              'Handbook</a> · Chapter 28' % BASE_EN)
-    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 2/11 mục" if vi else
-            "Chapter 28 · in progress: 2 of 11 sections")
+    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 3/11 mục" if vi else
+            "Chapter 28 · in progress: 3 of 11 sections")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
             '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'

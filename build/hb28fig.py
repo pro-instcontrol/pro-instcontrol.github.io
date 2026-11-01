@@ -912,10 +912,370 @@ def fig_28_20():
                 "Six small panels, each a velocity profile at a different axial station z")
 
 
+# ================================================================ 28.3 PD meters
+
+def _tip(a, R, d):
+    """Radius from an offset rotor centre to the bore wall along angle a.
+
+    The rotor centre sits d px from the bore centre on the +y (SVG downward)
+    axis; a is measured from +x in radians. Used for the sliding-vane meter,
+    where the vanes must reach the wall across the crescent."""
+    uy = _m.sin(a)
+    b = uy * d
+    return -b + _m.sqrt(b * b + R * R - d * d)
+
+
+def _thick(x1, y1, x2, y2, col=E, sw=6):
+    return ('<path d="M%s,%s L%s,%s" stroke="%s" stroke-width="%s" '
+            'stroke-linecap="round" fill="none"/>'
+            % (_f(x1), _f(y1), _f(x2), _f(y2), col, sw))
+
+
+def _stub(cx, cy, R, side, y1, y2, ln=30):
+    """A short pipe stub leaving the bore wall on one side, capped at the end."""
+    sgn = -1 if side == "l" else 1
+    xa = cx + sgn * _m.sqrt(max(1.0, R * R - (cy - y1) * (cy - y1)))
+    xb = cx + sgn * (R + ln)
+    o = [_line(xa, y1, xb, y1, E, 1.5), _line(xa, y2, xb, y2, E, 1.5),
+         _line(xb, y1, xb, y2, E, 1.5)]
+    return o
+
+
+def _bellows(x, y, w, h, n=7):
+    """Vertical accordion: zigzag left edge, mirrored right edge, closed box."""
+    left, right = [], []
+    for i in range(n + 1):
+        yy = y + h * i / float(n)
+        bulge = w * 0.30 if i % 2 else 0.0
+        left.append((x + bulge, yy))
+        right.append((x + w - bulge, yy))
+    d = "M" + " L".join("%s,%s" % (_f(a), _f(b)) for a, b in left)
+    d += " L" + " L".join("%s,%s" % (_f(a), _f(b)) for a, b in reversed(right))
+    d += " Z"
+    return d
+
+
+def _peanut(cx, cy, R, gap):
+    """Union outline of two equal circles of radius R whose centres are gap apart."""
+    h = _m.sqrt(R * R - (gap / 2.0) ** 2)
+    return ("M%s,%s A%s,%s 0 1 0 %s,%s A%s,%s 0 1 0 %s,%s Z"
+            % (_f(cx), _f(cy - h), _f(R), _f(R), _f(cx), _f(cy + h),
+               _f(R), _f(R), _f(cx), _f(cy - h)))
+
+
+def fig_28_21():
+    o = [_defs()]
+    cy, R, r, d = 128, 64, 40, -24
+    for k, cx in enumerate((118, 340, 562)):
+        o.append(_circ(cx, cy, R + 9, "none", E, 1.1))
+        o.append(_circ(cx, cy, R, WARM, E, 2.4))
+        o += _stub(cx, cy, R, "l", cy - 38, cy - 8, 26)
+        o += _stub(cx, cy, R, "r", cy - 38, cy - 8, 26)
+        o.append(_circ(cx, cy + d, r, P, E, 1.9))
+        o.append(_circ(cx, cy + d, 7, E, E, 1.0))
+        base = _m.radians(20 + 24 * k)
+        for i in range(4):
+            a = base + i * _m.pi / 2
+            t = _tip(a, R, d) - 2
+            o.append(_thick(cx, cy + d, cx + t * _m.cos(a), cy + d + t * _m.sin(a),
+                            "#8fa3b8", 7))
+        o.append(_lbl(cx, cy + R + 34, "vị trí %d" % (k + 1), "ts", "middle"))
+    o.append(_arr(34, cy - 23, 54, cy - 23, S, "ah28s", 1.4))
+    o.append(_lbl(28, cy - 50, "vào", "ts"))
+    o.append(_arr(646, cy - 23, 626, cy - 23, S, "ah28s", 1.4))
+    o.append(_lbl(652, cy - 50, "ra", "ts", "end"))
+    return _fig(svg(680, 232, "".join(o), "Ba pha làm việc của lưu lượng kế thể tích kiểu cánh trượt"),
+                "Hình 28.21 · Ba pha trong một vòng quay của lưu lượng kế thể tích kiểu cánh trượt. "
+                "Rôto lệch tâm trong vỏ tròn; mỗi cánh trượt ra vào rãnh để luôn áp sát thành, nhốt "
+                "một thể tích chất lưu ở vành khuyên rồi đẩy sang cửa ra.",
+                "Figure 28.21 · Three phases of one revolution of a sliding-vane PD meter. The rotor "
+                "is eccentric inside the round housing; each vane slides in and out of its slot to "
+                "stay against the wall, trapping a volume in the crescent and sweeping it to the "
+                "outlet.",
+                "Ba vỏ tròn cạnh nhau, mỗi vỏ có rôto bốn cánh trượt ở một góc quay khác nhau",
+                "Three round housings side by side, each with a four-vane rotor at a different angle")
+
+
+def fig_28_22():
+    o = [_defs()]
+    cy, R = 128, 66
+    for k, cx in enumerate((118, 340, 562)):
+        o.append(_circ(cx, cy, R + 9, "none", E, 1.1))
+        o.append(_circ(cx, cy, R, WARM, E, 2.4))
+        o.append(_path("M%s,%s C%s,%s %s,%s %s,%s C%s,%s %s,%s %s,%s Z" % (
+            _f(cx), _f(cy - 26), _f(cx + 20), _f(cy - 26), _f(cx + 26), _f(cy - 2),
+            _f(cx), _f(cy + 20), _f(cx - 26), _f(cy - 2), _f(cx - 20), _f(cy - 26),
+            _f(cx), _f(cy - 26)), E, 1.8, P))
+        base = _m.radians(15 + 22 * k)
+        for i in range(3):
+            a = base + i * 2 * _m.pi / 3
+            a2 = a + 0.30
+            o.append('<path d="M%s,%s Q%s,%s %s,%s" stroke="#8fa3b8" stroke-width="9" '
+                     'fill="none" stroke-linecap="round"/>'
+                     % (_f(cx + 24 * _m.cos(a)), _f(cy + 24 * _m.sin(a)),
+                        _f(cx + 52 * _m.cos(a + 0.08)), _f(cy + 52 * _m.sin(a + 0.08)),
+                        _f(cx + 60 * _m.cos(a2)), _f(cy + 60 * _m.sin(a2))))
+        o.append(_lbl(cx, cy + R + 34, "vị trí %d" % (k + 1), "ts", "middle"))
+    o.append(_arr(16, cy - 23, 48, cy - 23, S, "ah28s", 1.4))
+    o.append(_lbl(14, cy - 52, "vào", "ts"))
+    o.append(_arr(664, cy - 23, 632, cy - 23, S, "ah28s", 1.4))
+    o.append(_lbl(666, cy - 52, "ra", "ts", "end"))
+    return _fig(svg(680, 232, "".join(o), "Ba pha của lưu lượng kế thể tích kiểu ba rôto"),
+                "Hình 28.22 · Nguyên lý lưu lượng kế ba rôto: ba cánh quay trong vỏ tròn, chất lưu bị "
+                "nhốt giữa cánh và thành vỏ rồi được quét qua cửa ra. Một vòng của cơ cấu trên "
+                "ứng với hai vòng của cánh, do bộ ba bánh răng định thời.",
+                "Figure 28.22 · The trirotor principle: three blades turn inside a round housing, "
+                "trapping liquid between blade and wall and sweeping it to the outlet. One turn of "
+                "the top mechanism corresponds to two turns of the blades, set by a three-gear "
+                "timing assembly.",
+                "Ba vỏ tròn, mỗi vỏ có ba cánh quay quanh một cửa chắn hình tim ở giữa",
+                "Three round housings, each with three blades sweeping past a heart-shaped gate")
+
+
+def fig_28_23():
+    o = [_defs()]
+    o.append(_lbl(40, 24, "Nguyên lý BiRotor chuẩn — dòng vuông góc với trục rôto", "t"))
+    for k, cx in enumerate((120, 340, 560)):
+        x0, y0, w, h = cx - 92, 40, 184, 96
+        o.append(_arr(x0 - 30, y0 + h / 2, x0 - 4, y0 + h / 2, S, "ah28s", 1.3))
+        o.append(_arr(x0 + w + 4, y0 + h / 2, x0 + w + 30, y0 + h / 2, S, "ah28s", 1.3))
+        o.append(_rect(x0, y0, w, h, WARM, E, 2.0, rx=4))
+        for s in (-1, 1):
+            ax, ay = cx + s * 40, y0 + h / 2
+            rot = _m.radians(30 * k) + (0 if s < 0 else _m.pi / 2)
+            for lobe in (-1, 1):
+                lx = ax + lobe * 15 * _m.cos(rot + _m.pi / 2)
+                ly = ay + lobe * 15 * _m.sin(rot + _m.pi / 2)
+                o.append(_circ(lx, ly, 21, P, E, 1.8))
+            o.append(_line(ax - 15 * _m.cos(rot + _m.pi / 2), ay - 15 * _m.sin(rot + _m.pi / 2),
+                           ax + 15 * _m.cos(rot + _m.pi / 2), ay + 15 * _m.sin(rot + _m.pi / 2),
+                           E, 1.2))
+            o.append(_circ(ax, ay, 3.4, E, E, 0.8))
+    for cx, txt in ((120, "dòng vào"), (340, "chuyển tiếp"), (560, "dòng ra")):
+        o.append(_lbl(cx, 158, txt, "ts", "middle"))
+    o.append(_lbl(40, 196, "Nguyên lý dòng hướng trục — trục rôto song song với dòng chảy", "t"))
+    for k, cx in enumerate((120, 340, 560)):
+        x0, y0, w, h = cx - 92, 212, 184, 76
+        o.append(_arr(x0 - 30, y0 + h / 2, x0 - 4, y0 + h / 2, S, "ah28s", 1.3))
+        o.append(_arr(x0 + w + 4, y0 + h / 2, x0 + w + 30, y0 + h / 2, S, "ah28s", 1.3))
+        o.append(_rect(x0, y0, w, h, WARM, E, 2.0, rx=4))
+        for s in (-1, 1):
+            ax, ay = cx + s * 40, y0 + h / 2
+            o.append(_circ(ax, ay, 26, P, E, 1.8))
+            rot = _m.radians(30 * k) + (0 if s < 0 else _m.pi / 2)
+            o.append(_thick(ax - 20 * _m.cos(rot), ay - 20 * _m.sin(rot),
+                            ax + 20 * _m.cos(rot), ay + 20 * _m.sin(rot), "#8fa3b8", 10))
+            o.append(_circ(ax, ay, 3.4, E, E, 0.9))
+    o.append(_lbl(340, 314, "cụm đo đặt song song với dòng: lắp gọn hơn, chính xác hơn, tổn thất thấp hơn",
+                  "ts", "middle"))
+    return _fig(svg(680, 330, "".join(o), "Nguyên lý lưu lượng kế hai rôto kiểu BiRotor"),
+                "Hình 28.23 · Lưu lượng kế hai rôto. Hàng trên: bản chuẩn, dòng chảy vuông góc với "
+                "trục rôto. Hàng dưới: bản dòng hướng trục, cùng chi tiết và cùng nguyên lý nhưng "
+                "cụm đo đặt song song với dòng — lắp gọn hơn, chính xác hơn và tổn thất thấp hơn.",
+                "Figure 28.23 · The birotor meter. Top row: the standard version, with flow "
+                "perpendicular to the rotor axes. Bottom row: the axial-flow version, identical in "
+                "parts and principle but with the measuring unit parallel to the flow — more "
+                "compact, more accurate and with lower loss.",
+                "Hai hàng, mỗi hàng ba ô, mỗi ô hai rôto hình số tám trong vỏ chữ nhật",
+                "Two rows of three panels, each panel showing two figure-eight rotors in a "
+                "rectangular housing")
+
+
+def fig_28_24():
+    o = [_defs()]
+    cx, cy = 340, 133
+    o.append(_rect(110, 58, 460, 150, WARM, E, 2.2, rx=10))
+    o.append(_circ(cx, cy, 26, P, E, 1.9))
+    o.append(_circ(cx, cy, 6, E, E, 1.0))
+    for a in (_m.radians(55), _m.radians(125), _m.radians(235), _m.radians(305)):
+        bx, by = cx + 64 * _m.cos(a), cy + 64 * _m.sin(a)
+        o.append(_line(cx + 24 * _m.cos(a), cy + 24 * _m.sin(a),
+                       cx + 46 * _m.cos(a), cy + 46 * _m.sin(a), E, 3.0))
+        o.append('<rect x="%s" y="%s" width="30" height="36" rx="4" fill="%s" stroke="%s" '
+                 'stroke-width="1.8" transform="rotate(%s %s %s)"/>'
+                 % (_f(bx - 15), _f(by - 18), P, E, _f(_m.degrees(a) + 90), _f(bx), _f(by)))
+    o.append(_arr(44, cy, 104, cy, S, "ah28s", 1.5))
+    o.append(_lbl(40, cy - 12, "vào", "ts"))
+    o.append(_arr(636, cy, 576, cy, S, "ah28s", 1.5))
+    o.append(_lbl(640, cy - 12, "ra", "ts"))
+    o.append(_line(cx, cy + 26, cx, 232, S, 1.0, "3 3"))
+    o.append(_lbl(cx, 246, "rôto lệch tâm (tay quay)", "ts", "middle"))
+    o.append(_line(470, 240, 392, 100, S, 1.0, "3 3"))
+    o.append(_lbl(474, 246, "pít-tông (4 chiếc)", "ts"))
+    return _fig(svg(680, 268, "".join(o), "Lưu lượng kế thể tích kiểu pít-tông bốn xi-lanh"),
+                "Hình 28.24 · Lưu lượng kế kiểu pít-tông. Một chi tiết quay ở giữa tạo chuyển động "
+                "tịnh tiến cho cả bốn pít-tông; các pít-tông xả lệch pha nhau nên dòng ra gần như "
+                "liên tục. Kiểu này chịu được chênh áp lớn nên đo được chất lỏng rất nhớt.",
+                "Figure 28.24 · The piston meter. A central rotating part drives all four pistons; "
+                "their discharges are phased so the outlet flow is nearly continuous. The "
+                "piston-cylinder design withstands large differential pressures, so very viscous "
+                "liquids can be metered.",
+                "Một vỏ chữ nhật với rôto giữa và bốn pít-tông toả ra bốn phía",
+                "A rectangular housing with a central rotor and four pistons radiating outwards")
+
+
+def fig_28_25():
+    o = [_defs()]
+    cy = 118
+    for k, cx in enumerate((120, 340, 560)):
+        o.append(_rect(cx - 96, cy - 52, 192, 104, WARM, E, 2.2, rx=6))
+        for s in (-1, 1):
+            ax, ay = cx + s * 28, cy
+            ang = 40 * k + (0 if s < 0 else 90)
+            o.append('<ellipse cx="%s" cy="%s" rx="28" ry="21" fill="%s" stroke="%s" '
+                     'stroke-width="1.9" transform="rotate(%s %s %s)"/>'
+                     % (_f(ax), _f(ay), P, E, _f(ang), _f(ax), _f(ay)))
+            o.append(_circ(ax, ay, 3.2, E, E, 0.8))
+        o.append(_arr(cx - 122, cy, cx - 98, cy, S, "ah28s", 1.3))
+        o.append(_arr(cx + 98, cy, cx + 122, cy, S, "ah28s", 1.3))
+    o.append(_lbl(340, 200, "mỗi vòng quay chuyển bốn thể tích riêng phần", "ts", "middle"))
+    return _fig(svg(680, 220, "".join(o), "Ba pha của lưu lượng kế bánh răng oval"),
+                "Hình 28.25 · Lưu lượng kế bánh răng oval. Hai bánh răng oval ăn khớp, quay nhờ chênh "
+                "áp; mỗi vòng quay chuyển bốn thể tích riêng phần giữa bánh răng và thành buồng đo. "
+                "Truyền động ra trục ra qua kín cơ khí hoặc khớp từ.",
+                "Figure 28.25 · The oval-gear meter. Two oval gears mesh and turn on the differential "
+                "pressure; each revolution transfers four partial volumes between gear and chamber "
+                "wall. Drive reaches the output shaft through a mechanical seal or a magnetic "
+                "coupling.",
+                "Ba ô, mỗi ô hai bánh răng oval ăn khớp trong vỏ chữ nhật",
+                "Three panels, each with two meshing oval gears in a rectangular housing")
+
+
+def fig_28_26():
+    o = [_defs()]
+    for k, (cx, cy) in enumerate(((112, 86), (282, 86), (112, 232), (282, 232))):
+        o.append(_circ(cx, cy, 54, WARM, E, 2.2))
+        o.append('<ellipse cx="%s" cy="%s" rx="44" ry="15" fill="%s" stroke="%s" '
+                 'stroke-width="1.8" transform="rotate(%s %s %s)"/>'
+                 % (_f(cx), _f(cy), P, E, _f(22 * k), _f(cx), _f(cy)))
+        px = cx + 40 * _m.cos(_m.radians(22 * k))
+        py = cy + 40 * _m.sin(_m.radians(22 * k))
+        o.append(_circ(px, py, 4.5, E, E, 0.9))
+        o.append(_lbl(cx, cy + 76, "pha %d" % (k + 1), "ts", "middle"))
+    lx = 400
+    o.append(_lbl(lx, 62, "Cấu tạo", "t"))
+    for i, (name, note) in enumerate((
+            ("Đĩa nghiêng (nutator)", "quay lắc trong buồng cầu"),
+            ("Chốt dẫn", "truyền chuyển động ra bộ đếm"),
+            ("Vách chia", "tách hai buồng thể tích"),
+            ("Cửa vào / cửa ra", "lệch nhau nửa vòng"),
+            ("Buồng đo", "một buồng đầy, một buồng xả"))):
+        y = 92 + i * 34
+        o.append(_lbl(lx, y, "• " + name, "t"))
+        o.append(_lbl(lx + 12, y + 14, note, "ts"))
+    return _fig(svg(680, 320, "".join(o), "Bốn pha của lưu lượng kế đĩa nghiêng"),
+                "Hình 28.26 · Lưu lượng kế đĩa nghiêng. Đĩa đặt nghiêng trong buồng cầu lắc như con "
+                "quay; mỗi pha nhốt đầy một buồng và xả buồng kia. Kết cấu rẻ, độ chính xác vừa "
+                "phải, thường gặp trong đồng hồ nước.",
+                "Figure 28.26 · The nutating-disk meter. A disk set at an angle inside a spherical "
+                "chamber wobbles; each phase fills one chamber while emptying the other. Cheap and "
+                "of moderate accuracy, it is common in water meters.",
+                "Bốn vòng tròn thể hiện bốn pha lắc của đĩa, kèm danh sách chi tiết bên phải",
+                "Four circles showing four phases of the disk, with a parts list at the right")
+
+
+def fig_28_27():
+    o = [_defs()]
+    cx, cy, R, gap = 330, 132, 52, 76
+    o.append(_path(_peanut(cx, cy, R, gap), E, 2.4, WARM))
+    for s in (-1, 1):
+        ax = cx + s * gap / 2
+        for lobe in (-1, 1):
+            o.append(_circ(ax, cy + lobe * 17, 25, P, E, 1.9))
+        o.append(_line(ax, cy - 18, ax, cy + 18, E, 1.2))
+        o.append(_circ(ax, cy, 3.6, E, E, 0.8))
+        # rotation sense
+        o.append('<path d="M%s,%s A26,14 0 0 %d %s,%s" stroke="%s" stroke-width="1.4" '
+                 'fill="none" marker-end="url(#ah28s)"/>'
+                 % (_f(ax - 16), _f(cy - 70), 1 if s < 0 else 0,
+                    _f(ax + 16), _f(cy - 70), S))
+    o.append(_arr(150, cy + 24, 258, cy + 24, S, "ah28s", 1.5))
+    o.append(_lbl(146, cy + 34, "vào", "ts"))
+    o.append(_arr(cx + 96, cy - 46, cx + 150, cy - 76, S, "ah28s", 1.5))
+    o.append(_lbl(cx + 156, cy - 82, "ra", "ts"))
+    o.append(_lbl(cx, cy + 96, "hai rôto hình số tám quay ngược chiều, không chạm nhau", "ts", "middle"))
+    return _fig(svg(680, 260, "".join(o), "Sơ đồ lưu lượng kế kiểu Roots"),
+                "Hình 28.27 · Sơ đồ lưu lượng kế Roots — loại thể tích phổ biến nhất để đo khí. Hai "
+                "rôto hình số tám quay ngược chiều trong vỏ đôi; khe hở cơ khí rất nhỏ nên khí phải "
+                "sạch, và dòng ra dao động theo chu kỳ.",
+                "Figure 28.27 · Schematic of a Roots meter — the commonest PD meter for gas. Two "
+                "figure-eight rotors turn in opposite directions inside a twin-bore housing; the "
+                "mechanical clearance is very small, so the gas must be clean, and the outlet flow "
+                "pulsates cyclically.",
+                "Vỏ hình số tám với hai rôto, mũi tên dòng vào bên trái và dòng ra phía trên",
+                "A figure-eight housing with two rotors, inlet arrow at the left and outlet above")
+
+
+def fig_28_28():
+    o = [_defs()]
+    cy = 118
+    for k, cx in enumerate((170, 470)):
+        o.append(_circ(cx, cy, 62, WARM, E, 2.4))
+        o.append(_path("M%s,%s C%s,%s %s,%s %s,%s C%s,%s %s,%s %s,%s Z" % (
+            _f(cx), _f(cy - 30), _f(cx + 18), _f(cy - 30), _f(cx + 26), _f(cy - 4),
+            _f(cx), _f(cy + 18), _f(cx - 26), _f(cy - 4), _f(cx - 18), _f(cy - 30),
+            _f(cx), _f(cy - 30)), E, 1.8, P))
+        base = _m.radians(12 + 30 * k)
+        for i in range(4):
+            a = base + i * _m.pi / 2
+            o.append(_thick(cx + 22 * _m.cos(a), cy + 22 * _m.sin(a),
+                            cx + 54 * _m.cos(a), cy + 54 * _m.sin(a), "#8fa3b8", 9))
+        o.append(_lbl(cx, cy + 82, "pha %d" % (k + 1), "ts", "middle"))
+    o.append(_arr(40, cy, 100, cy, S, "ah28s", 1.5))
+    o.append(_lbl(36, cy - 12, "vào", "ts"))
+    o.append(_arr(580, cy, 640, cy, S, "ah28s", 1.5))
+    o.append(_lbl(644, cy - 12, "ra", "ts"))
+    o.append(_lbl(320, 232, "bốn cánh quay trong vành khuyên; cửa chắn cho cánh đi qua nhưng chặn khí",
+                  "ts", "middle"))
+    return _fig(svg(680, 252, "".join(o), "Hai pha làm việc của lưu lượng kế CVM"),
+                "Hình 28.28 · Nguyên lý lưu lượng kế CVM. Bốn cánh quay trong vành khuyên quanh vỏ "
+                "tròn; một cửa chắn giống chi tiết giữa của kiểu ba rôto cho cánh đi qua nhưng không "
+                "cho khí lọt. Độ chính xác tương đương kiểu Roots nhưng dao động cửa ra nhỏ hơn.",
+                "Figure 28.28 · The CVM principle. Four vanes rotate in an annulus around the round "
+                "housing; a gate shaped like the centre piece of the trirotor lets the vanes pass "
+                "but not the gas. Accuracy matches the Roots meter, with smaller outlet pulsation.",
+                "Hai vỏ tròn, mỗi vỏ bốn cánh quay quanh một cửa chắn ở giữa",
+                "Two round housings, each with four vanes rotating past a central gate")
+
+
+def fig_28_29():
+    o = [_defs()]
+    for k, x0 in enumerate((70, 370)):
+        y0, w, h = 78, 240, 150
+        o.append(_rect(x0, y0, w, h, WARM, E, 2.2, rx=6))
+        for j in range(2):
+            bx = x0 + 34 + j * 96
+            filled = (j == k)
+            o.append(_path(_bellows(bx, y0 + 46, 76, 84, 7),
+                           E, 1.7, P if not filled else "#dce6f2"))
+        vx = x0 + 60 + (0 if k == 0 else 62)
+        o.append(_rect(vx, y0 + 12, 60, 22, "#cfd8e6", E, 1.6, rx=3))
+        o.append(_line(vx + 30, y0 + 12, vx + 30, y0 - 4, E, 1.6))
+        o.append(_lbl(x0 + 18, y0 - 12, "vào", "ts"))
+        o.append(_lbl(x0 + w - 18, y0 - 12, "ra", "ts", "end"))
+        o.append(_arr(x0 + 30, y0 - 8, x0 + 30, y0 + 10, S, "ah28s", 1.2))
+        o.append(_arr(x0 + w - 30, y0 + 10, x0 + w - 30, y0 - 8, S, "ah28s", 1.2))
+        o.append(_lbl(x0 + w / 2, y0 + h + 22, "van trượt ở vị trí %d" % (k + 1), "ts", "middle"))
+    o.append(_lbl(340, 274, "van trượt nối cửa vào với mặt trong của một ống xếp, mặt ngoài ống kia "
+                            "thông cửa ra; chu kỳ sau đảo lại", "ts", "middle"))
+    return _fig(svg(680, 288, "".join(o), "Hai pha của đồng hồ khí kiểu màng xếp"),
+                "Hình 28.29 · Đồng hồ khí kiểu màng (ống xếp). Hai ống xếp đóng vai pít-tông, van "
+                "trượt đôi đảo chiều nối luân phiên; nhờ vậy đo được lưu lượng rất nhỏ như bấc "
+                "đánh lửa của bếp gas.",
+                "Figure 28.29 · The diaphragm (bellows) gas meter. Two bellows act as pistons and a "
+                "double slide valve alternates the connections; this design measures extremely low "
+                "flow rates such as a gas burner pilot light.",
+                "Hai vỏ chữ nhật, mỗi vỏ hai ống xếp và một van trượt ở hai vị trí khác nhau",
+                "Two rectangular housings, each with two bellows and a slide valve in different "
+                "positions")
+
+
 FIGS = [fig_28_1(), fig_28_2(), fig_28_3(), fig_28_4(), fig_28_5(), fig_28_6(),
         fig_28_7(), fig_28_8(), fig_28_9(), fig_28_10(), fig_28_11(), fig_28_12(),
         fig_28_13(), fig_28_14(), fig_28_15(), fig_28_16(), fig_28_17(), fig_28_18(),
-        fig_28_19(), fig_28_20()]
+        fig_28_19(), fig_28_20(), fig_28_21(), fig_28_22(), fig_28_23(),
+        fig_28_24(), fig_28_25(), fig_28_26(), fig_28_27(), fig_28_28(),
+        fig_28_29()]
 
 
 def fig(n):
