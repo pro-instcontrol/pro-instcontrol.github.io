@@ -1,10 +1,10 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-10-31 (session 24 — Chapter 24 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-10-31 (session 25 — Chapter 25 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 25** (*Tactile Sensing*) and onward. Chapters
-> 1–24 are done, live, and registered. `work/hb_ch24.txt` is translated; Chapter 25+ source
-> PDFs must be extracted from the 117-file handbook library before translation.
+> **Where to start next:** Handbook **Chapter 26** and onward. Chapters 1–25 are done, live,
+> and registered. `work/hb_ch25.txt` is translated; Chapter 26+ source PDFs must be extracted
+> from the 117-file handbook library before translation.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
 > Instrumented Systems (16/16) each have full Vietnamese translations and English companion
@@ -42,7 +42,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–24** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–25** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -113,7 +113,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `(level, total_chapters, done_chapters)`.
-  Currently `("progress", 101, 24)`, `("full", 16, 16)`, `("full", 14, 14)`.
+  Currently `("progress", 101, 25)`, `("full", 16, 16)`, `("full", 14, 14)`.
 - `build/books_site.py` → `FLAG_LABEL = {level: (vi_format, en_format)}` — **the pill text
   is derived from `level`, not hard-coded.** Add a level here as well as in the CSS, or the
   pill will read "Translating" on a finished book.
@@ -1568,3 +1568,74 @@ check **529 pages, 14,399 local references, 0 broken**.
 **Chapters 1–24 done; 77 to go.** Next unit is Chapter 25 (*Tactile Sensing*). Same junction +
 `library/pdfindex.json` workflow; copy the needed `ChNN.pdf` into `work/`, extract, then follow the §4
 recipe — and remember `books_site.py`. Build only the real figures the source contains — do not pad.
+
+---
+
+## Session 25 — Chapter 25 (*Tactile Sensing*) added
+
+**Delivered:** Handbook Chapter 25 — R. E. Saad, A. Bonen, K. C. Smith and B. Benhabib (University of
+Toronto), 18 source pages, `work/hb_ch25.txt` 41,843 bytes. Full Vietnamese translation plus English
+companion at `/vi/books/read/…/ch25-tactile-sensing/` and `/books/read/…/ch25-tactile-sensing/`.
+Commit `e35e8d2`. Handbook progress 24/101 → **25/101**.
+
+**Structure:** 25.1 sensing classification · 25.2 mechanical effects of contact (25.2.1 simplified theory,
+25.2.2 requirements for tactile sensors) · 25.3 technologies (25.3.1 resistive, 25.3.2 capacitive,
+25.3.3 piezoelectric, 25.3.4 optical, 25.3.5 photoelastic). **12 figures, 19 equations, 0 tables,
+44 references.**
+
+**Reading the equations.** This chapter is metrology-heavy and its 19 equations arrived from the text
+extractor as disconnected token soup — e.g. Eq. 25.2 came out as
+`hx d v d v vx rE x d z () =− () + () − − [] π+ () 21 1 22 22 2`. Every equation was therefore transcribed
+from the rendered PDF pages (`work/ch25img/page-0004.png` onward) at 1.4–1.6×, not from the text dump.
+Four source errata were found and recorded in a translator's note rather than silently corrected:
+
+1. Eq. 25.2 prints the denominator as `πrE(x² + d²)²`. The `r` is almost certainly a typographical
+   error — both the dimensions and the standard Boussinesq plane-strain kernel require `πE(x² + d²)²`.
+   Confirmed at 3× with an HTML viewport crop (`work/crop.py`), so it is *as printed*, not an extraction
+   artefact. Reproduced as printed.
+2. §25.3.3 reads "the force applied to the photoelastic material" in the piezoelectric section — a slip
+   for *piezoelectric*. Corrected in the translation.
+3. Eq. 25.13 prints the term `Δh/h₀` twice in succession. Only one occurrence kept.
+4. "3 mm CMOS process" is almost certainly 3 µm. Left as printed.
+
+**Figure QA.** `work/qa_figs.py hb25fig` reported `FIGS 12, problems 0` after the label folding, but as
+usual the box checker passed on figures that still had real defects. Rewritten or repaired after visual
+inspection at 1.7–2.2×:
+
+- 25.9 — the membrane was a rect plus five separate arcs, so the web's bottom edge drew a line straight
+  across the bump tops. Rebuilt as **one closed path** whose underside scallops into the five bumps; the
+  scatter fans ran parallel to the zig-zag and were changed to a symmetric left/right pair; the mirror
+  floated 40 px above the glass and was lowered to meet the entry rays.
+- 25.11 — the four layers were all near-identical greys and read as one mat. Differentiated by tone *and*
+  bar width (black 8 px → light grey 5 px) and the spacing opened to 16 px. The layer-2 light arrows were
+  drawn from `P(t,0)` pointing *along* the bar, so they were hidden inside it; moved to the far end
+  `P(t,1)`. Arrows are now only on layers 1–2, which is also physically right — 3 and 4 are the passive
+  corrugation layers, not the active fibres.
+- 25.12 — rebuilt wholesale. The tactels and the `s` dimension had been placed on the *front face* rather
+  than the top surface; the `l` dimension ran straight through the field of incident-light arrows; the
+  force patch sat half off the beam's edge; "bộ phân cực" was printed across the λ/4 plate. Tactels moved
+  to the top face at depth d = 0.5, `l` moved clear above the light plane, patch moved to the right of the
+  tactels, λ/4 plate shortened to h = 44 so the label clears it.
+- 25.7 — the capacitor was drawn edge-on so a wire ran through its plates; the plate is now vertical with
+  the lead stopping at the top plate, and the four-line annotation collapsed to one `_subs()` run.
+
+**New helpers in `build/hb25fig.py`:** `_arc(cx, cy, r, a0, a1)` (sampled polyline arc — used for the α
+angles in 25.9, because SVG arc sweep flags are easy to get backwards), `_wavy(x1, y1, x2, y2)` (zig-zag
+light arrow for fibre ends and light paths) and `_bar(x1, y1, x2, y2, col, w)` (round-capped thick line for
+the isometric fibres).
+
+**New work tools:** `work/crop.py <img> <x> <y> <w> <h> <scale> <name>` and the generic
+`work/crop2.py` (same but reads the PNG's real width) — both build an `overflow:hidden` viewport with an
+absolutely-positioned oversized `<img>`, which is how a region of a page PNG gets read at 2.5–4× without
+PIL, which is not installed in this environment.
+
+**Verification:** 12 figures and 19 equations on both sides; 0 tables; 3 `h2` and 8 `h3` both sides
+(heading parity checked, as after the Chapter 24 slip); 44 references both sides. Local server: both
+chapter URLs, both TOC URLs and both library landing pages return 200. TOC shows **25 done rows with 25
+clickable badges**; progress pill reads 25/101 (`🟠 Đang dịch · 25/101 chương` /
+`🟠 Translating · 25 of 101 chapters`). Sitemap **529 URLs, 514 EN/VI pairs**; link check **531 pages,
+14,445 local references, 0 broken**.
+
+**Chapters 1–25 done; 76 to go.** Next unit is Chapter 26. Same junction + `library/pdfindex.json`
+workflow; copy the needed `ChNN.pdf` into `work/`, extract, then follow the §4 recipe — and remember
+`books_site.py`. Build only the real figures the source contains — do not pad.
