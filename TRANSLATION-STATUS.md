@@ -1,10 +1,10 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 31 — Chapter 97 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 32 — Chapter 96 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 96** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **97, 98, 99, 100, 101** and **Appendix A** are
-> done, live and registered; 28–96 are still `chờ dịch`. The reverse sequence is 96, 95 … down to
+> **Where to start next:** Handbook **Chapter 95** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **96, 97, 98, 99, 100, 101** and **Appendix A** are
+> done, live and registered; 28–95 are still `chờ dịch`. The reverse sequence is 95, 94 … down to
 > and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source text for every chapter is already
 > extracted into `work/hb_chNN.txt`.
 >
@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -2282,3 +2282,67 @@ the book TOC renders 28–96 as `chờ dịch`. Next in the reverse sequence: **
 Devices**. Chapter 96 is hardware-oriented (pen recorders, magnetic tape, optical disks), so expect
 mechanical drawings rather than control block diagrams — `_frame`, `_line`, `_arr` and `_rich` carry
 over, but `_sum` and `_blk` will mostly not be needed.
+
+---
+
+## Session 32 — 2026-11-01 — Handbook Chapter 96, *Reading/Recording Devices*
+
+### What shipped
+
+Chapter 96, `ch96-reading-recording-devices`, both languages, live. Three authors, three
+independent numbering schemes, all preserved as printed:
+
+| Section | Author | Figures | Tables | Equations |
+|---|---|---|---|---|
+| 96.1 Graphic Recorders | Herman Vermariën | — | 96.1–96.5 | — |
+| 96.2 Data Acquisition Systems | Edward McConnell | 96.1–96.12 | 96.6–96.7 | unnumbered |
+| 96.3 Magnetic and Optical Recorders | Yufeng Li | 96.13–96.29 | 96.8–96.11 | 96.1–96.32 |
+
+29 figures, 11 numbered tables (13 rendered blocks — 96.2 and 96.4 are each split in the source and
+stay split), 32 numbered equations, three separate **Defining Terms** blocks (96.1 and 96.2 have
+their own; 96.3 has none), 19 references split 5 + 14 across 96.1 and 96.3, and the
+**Further Information** list that 96.2 uses in place of references.
+
+### Build notes worth keeping
+
+- `reader_hb_ch96.py` carries an `_EQ` dict keyed `"96.1"`…`"96.32"` plus `_eq(lang, num)`, so the
+  Vietnamese and English bodies render the *same* equation markup and cannot drift. Only 96.9 and
+  96.31 carry language-bearing words (`nếu` / `if`, `có hố` / `there is a pit`); those two branch
+  inside `_eq`.
+- All eleven tables are built by `_tN(lang)` functions returning `(hd, rows, cap, cls)` and consumed
+  as `table(*_tN(lang))`. Table 96.1 and 96.3 rows store both an English and a Vietnamese
+  description, so the Vietnamese page translates the catalogue blurbs (`Test, meas.; 4,6,8 c. ch.`
+  → `Thử nghiệm, đo; 4, 6, 8 kênh liên tục`) instead of leaving them as opaque option codes.
+- Prices are given with dot thousands on the Vietnamese page (`11.500`) and comma thousands on the
+  English page (`11,500`), matching the two decimal conventions.
+
+### Source defects recorded in the translator's note
+
+1. Figure 96.12's caption reads **45 µs**; the drawing itself reads **50 µs**. Both reproduced.
+2. The continuous-scanning passage claims two sine waves **90° out of phase** always sum to zero.
+   Only 180° does. Reproduced as printed and flagged.
+3. The simultaneous-sampling passage prints **ms** for intervals that are 5 µs and 5 ns. The
+   translation gives µs and ns, which agree with Figure 96.11 and with 1/200 kS/s.
+4. Table 96.9's resistivity column is printed `ρ (mW.cm)` in the text layer of the PDF but is
+   `ρ (µΩ·cm)` on the page image; the page image wins.
+
+### Verification
+
+- `reader_handbook.py` → 102 TOC rows, **34** done rows, 14 sections, 101 chapters.
+- `chapter_nav.py` → **66** pages updated. Chapter 96 reads `← Chương 95 Hiển thị LED … Chương 97
+  → Điều khiển PID`.
+- `check_links.py` → **547 pages, 14,985 local references, 0 broken**.
+- `make_sitemap.py` → **545 URLs, 532 with EN/VI pairs**.
+- Chapter 96 page (both languages): 29 figures, 32 numbered equations, 13 table blocks, 35 list
+  items (5 + 11 + 19), **zero** `<sub>` or `<sup>` inside any `<svg>`.
+- Live: VI **200**, EN **200**; book index reads **33 / 101**.
+
+### Note for the next session
+
+`books_site.TRANSLATED["measurement, instrumentation and sensors handbook"]` is now
+`("progress", 101, 33)`. `DONE` holds 34 entries — chapters 1–27 plus 96, 97, 98, 99, 100 and
+101 — and the book TOC renders 28–95 as `chờ dịch`. Next in the reverse sequence: **95, Light-
+Emitting Diode Displays**. That chapter is display-physics oriented (LED materials, drive
+circuits, multiplexing), so expect energy-band diagrams and current/voltage curves; `_frame`,
+`_line`, `_arr`, `_rich` and `_path` carry over, and band diagrams will want a filled-region
+helper rather than the recorder-style `_blk`.
