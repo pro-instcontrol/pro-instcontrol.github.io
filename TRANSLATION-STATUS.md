@@ -1780,31 +1780,45 @@ was 26 pages and 21 figures. Expect roughly **150,000 px of page height** at a 1
 | Section | Pages | Figures | Tables |
 |---|---|---|---|
 | 28.1 Differential Pressure Flowmeters | 3–13 | 1–6 | 28.1–28.4 |
-| 28.2 Variable Area Flowmeters | 14–23 | 7–15 | 28.5–28.7 |
-| 28.3 Positive Displacement Flowmeters | 24–33 | 16–20 | — |
-| 28.4 Turbine and Vane Flowmeters | 34–40 | 21–29 | — |
-| 28.5 Impeller Flowmeters | 41–57 | 30–33 | — |
-| 28.6 Electromagnetic Flowmeters | 58–63 | 34–35 | 28.8–28.9 |
-| 28.7 Ultrasonic Flowmeters | 64–74 | 36–41 | 28.10 |
-| 28.8 Vortex Shedding Flowmeters | 75–89 | 42–57 | 28.11 |
-| 28.9 Thermal Mass Flow Sensors | 90–99 | 59–67 | 28.12 |
-| 28.10 Coriolis Effect Mass Flowmeters | 100–118 | 68–80 | 28.13–28.23 |
-| 28.11 Drag Force Flowmeters | 119–132 | 81–92 | — |
+| 28.2 Variable Area Flowmeters | 14–33 | 7–20 | 28.5–28.7 |
+| 28.3 Positive Displacement Flowmeters | 34–40 | 21–29 | — |
+| 28.4 Turbine and Vane Flowmeters | 41–57 | 30–33 | 28.8–28.9 |
+| 28.5 Impeller Flowmeters | 58–63 | 34–35 | 28.10 |
+| 28.6 Electromagnetic Flowmeters | 64–74 | 36–41 | 28.11 |
+| 28.7 Ultrasonic Flowmeters | 75–89 | 42–57 | 28.12 |
+| 28.8 Vortex Shedding Flowmeters | 90–99 | 59–67 | — |
+| 28.9 Thermal Mass Flow Sensors | 100–118 | 68–80 | 28.13–28.23 |
+| 28.10 Coriolis Effect Mass Flowmeters | 119–122 | 81–84 | — |
+| 28.11 Drag Force Flowmeters | 123–132 | 85–92 | — |
+
+A first pass at this table was shifted by one section (28.2 given as 14–23, everything after it a
+section early). Corrected above from the actual heading positions; 28.2 is 20 pages, not 10.
 
 Figure 28.58 has no caption in the extracted text (its caption either failed to extract or is set
-differently); it needs to be read off the page image at p. 91 when 28.8 is reached.
+differently); it needs to be read off the page image at p. 91 when 28.8 is reached. Figure 28.18 is
+marked “Figure not available” in the source itself — redraw it from the surrounding description and say
+so in the caption.
 
 ### Done so far
 
 - **Source extracted.** `work/Ch28.pdf` (copied from the junction), text in `work/hb_ch28.txt`
   (338,511 chars), 132 page images in `work/ch28img/` at 140 dpi.
 - **`build/hb28fig.py`** — primitives for flow drawings (`_pipe`, `_tap`, `_profile`, `_flowarrow`)
-  plus **figures 1–6**, `work/qa_figs.py hb28fig` → **6 figures, problems 0**, visual pass done.
-- **`build/reader_hb_ch28.py`** — module scaffold plus **section 28.1 complete** in both languages:
-  6 figures, 6 equations, 4 tables, 14 references, defining-terms block. 57 kB per language.
+  plus **figures 1–20**, `work/qa_figs.py hb28fig` → **20 figures, problems 0**, visual pass done.
+- **`build/reader_hb_ch28.py`** — module scaffold plus **sections 28.1 and 28.2 complete** in both
+  languages: 20 figures, 46 equations, 7 tables, 30 references. 171 kB (EN) / 169 kB (VI) per page.
   Sections are added as `sec_NN_vi` / `sec_NN_en` and appended to the `SECTIONS_VI` / `SECTIONS_EN`
   lists at the bottom; nothing else needs touching.
-- Generated page verified locally at 1424 px: no horizontal overflow, figures legible, tables fit.
+- Generated page verified locally at 1424 px: **38,645 px tall (VI) / 39,086 px (EN)**, no horizontal
+  overflow, figures legible, tables fit. 28.1 alone was 14,552 px, so 28.2 is ~24,000 px of the
+  projected 150,000.
+- **§28.2 covers:** variable-area definition and the rotameter / movable-vane / weir-flume families;
+  rotameter construction (conical tube, bobs, scales, glass vs metal, limit switches, transmitters,
+  thirteen bullet characteristics); movable vane meter; weir and flume (thin-plate, notch,
+  broad-crested); then the measurement-principles half — rotameter force balance and drag laws
+  (28.7–28.18), similarity analysis with Reynolds and Ruppel numbers (28.19–28.25), weir and flume
+  discharge derivations (28.26–28.39), and the rotameter CFD internal-flow study (28.40–28.46 with
+  figures 28.18–28.20) — plus the section summary and its own 16-item reference list.
 
 ### Conventions set for this chapter
 
@@ -1812,6 +1826,16 @@ differently); it needs to be read off the page image at p. 91 when 28.8 is reach
   has eleven columns and would not fit the reader column width.
 - **Defining-terms blocks render as a two-column `.tbl`**, not a `<dl>` — `library.css` has no
   `.deflist` rule and I did not want to touch the shared stylesheet mid-chapter.
+- **Sub-headings below `h3` use a local `h4()` helper with inline size** (1rem/700). There is no
+  `.prose h4` rule either, so an unstyled `h4` came out at browser default and looked heavier than the
+  italic `h3` above it.
+- **Fractions in §28.2 use a plain `/`, not the typographic `⁄`** used in 28.1. In the display
+  equations the `⁄` glyph is so short that `∂ρ⁄∂t` reads as `∂ρ+∂t` at normal size. §28.1's few
+  fractions are spaced, so they survive it; the derivative equations here do not.
+- **`_path(d, col, sw, fill)` — argument order bites.** Seven figure calls had been written
+  `_path(d, "#eef2f7", E, 1.6)`, i.e. colour as stroke, `E` as width and the width as fill; browsers
+  silently drop all three and draw a solid black shape. Fixed; bobs and weir plates now render as
+  light fill with a dark outline as intended.
 - Equation numbers run 28.1–28.99 and then continue with letter suffixes; keep them as printed.
 - 28.2 onwards: add an in-page jump index (28.1–28.11) at the top of `body_vi()` / `body_en()` when
   the last section lands — a 150,000 px page needs one.

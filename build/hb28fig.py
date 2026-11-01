@@ -416,7 +416,506 @@ def fig_28_6():
                 "Two pipe sections with the nozzle in solid black and tappings above")
 
 
-FIGS = [fig_28_1(), fig_28_2(), fig_28_3(), fig_28_4(), fig_28_5(), fig_28_6()]
+# ================================================================ 28.2
+
+def fig_28_7():
+    o = [_defs()]
+    # tapered vertical tube, wider at the top
+    o.append(_line(250, 320, 272, 66, E, 1.8))
+    o.append(_line(404, 320, 428, 66, E, 1.8))
+    o.append(_line(272, 66, 428, 66, E, 1.8))
+    o.append(_line(250, 320, 404, 320, E, 1.8))
+    # flanges
+    o.append(_rect(232, 40, 236, 16, "#e8ecf2", E, 1.4, rx=2))
+    o.append(_rect(226, 320, 248, 16, "#e8ecf2", E, 1.4, rx=2))
+    # scale ticks along the left wall
+    for i in range(13):
+        y = 96 + i * 17
+        t = 0.55 + i * 0.035
+        x = 250 + (y - 320) * (272 - 250) / (66 - 320)
+        o.append(_line(x + 6, y, x + 6 + 9 * t, y, S, 1.0))
+    # bob
+    o.append(_path("M325,196 L341,196 L341,214 L333,226 L325,214 Z", E, 1.5, "#cfd8e6"))
+    o.append(_line(333, 196, 333, 214, E, 1.0))
+    # flow arrows
+    for x in (300, 333, 366):
+        o.append(_arr(x, 296, x, 246, S, "ah28s", 1.2))
+    o.append(_lbl(446, 120, "Ống thuỷ tinh hình côn", "t"))
+    o.append(_lbl(446, 134, "conical glass tube", "ts"))
+    o.append(_arr(440, 128, 424, 118, S, "ah28s", 1.0))
+    o.append(_lbl(446, 210, "Phao (bob)", "t"))
+    o.append(_lbl(446, 224, "float", "ts"))
+    o.append(_arr(440, 214, 346, 212, S, "ah28s", 1.0))
+    o.append(_lbl(446, 300, "Thang chia trên ống", "t"))
+    o.append(_lbl(446, 314, "scale engraved on the tube", "ts"))
+    o.append(_arr(440, 300, 286, 250, S, "ah28s", 1.0))
+    o.append(_lbl(120, 200, "Dòng đi lên", "ts", "middle"))
+    o.append(_arr(120, 292, 120, 240, S, "ah28s", 1.3))
+    return _fig(svg(680, 366, "".join(o), "Mặt cắt ống đo lưu lượng kiểu rotameter"),
+                "Hình 28.7 · Mặt cắt một rotameter. Mức phao dâng tuyến tính theo lưu lượng tăng. "
+                "Ống hình côn nên tiết diện vành khuyên quanh phao tăng dần theo chiều cao — đó "
+                "chính là “diện tích biến thiên”.",
+                "Figure 28.7 · Cross-section of a rotameter. The level of the bob rises linearly with "
+                "increasing flow rate. The conical tube makes the annular area around the bob grow "
+                "with height — this is the “variable area”.",
+                "Mặt cắt dọc ống côn thuỷ tinh có phao và thang chia, mũi tên dòng đi lên",
+                "Section through a conical glass tube with a bob and scale, flow arrow upward")
+
+
+def fig_28_8():
+    o = [_defs()]
+    yc = 130
+    # reading line
+    o.append(_line(66, yc, 640, yc, E, 1.0, "6 4"))
+    o.append('<path d="M66,%s l12,-4 l0,8 z" fill="%s"/>' % (_f(yc), E))
+    o.append(_lbl(72, yc - 7, "Reading line", "ts", "start"))
+    o.append(_lbl(300, 56, "guided", "ts", "middle"))
+    # six bob shapes
+    shapes = [
+        ("M150,96 L150,140 L166,166 L182,140 L182,96 Z", "trụ + mũi côn"),
+        ("M228,96 L228,140 L244,166 L260,140 L260,96 Z", "có thanh dẫn"),
+        ("circle", "cầu"),
+        ("M368,96 L368,150 L384,150 L384,96 Z", "trụ có rãnh"),
+        ("M446,96 L446,150 L462,150 L462,96 Z", "trụ có rãnh"),
+        ("M524,96 L524,136 L540,162 L556,136 L556,96 Z", "côn"),
+    ]
+    xs = [166, 244, 316, 376, 454, 540]
+    for (d, name), cx in zip(shapes, xs):
+        if d == "circle":
+            o.append(_circ(cx, 120, 26, "#eef2f7", E, 1.6))
+        else:
+            o.append(_path(d, E, 1.6, "#eef2f7"))
+    # guide rod on the second bob
+    o.append(_line(244, 62, 244, 166, E, 1.3))
+    # slots on the ribbed bobs
+    for cx in (376, 454):
+        for i in range(3):
+            o.append(_line(cx + 4, 108 + i * 14, cx + 12, 112 + i * 14, S, 1.2))
+    for cx, name in zip(xs, [s[1] for s in shapes]):
+        o.append(_lbl(cx, 196, name, "ts", "middle"))
+    return _fig(svg(680, 230, "".join(o), "Các dạng phao rotameter thường gặp"),
+                "Hình 28.8 · Các dạng phao rotameter thường gặp. Hình dạng phao quyết định mức độ "
+                "phụ thuộc độ nhớt; phao cầu dùng trong ống nhỏ, phao có rãnh nghiêng làm phao tự "
+                "quay chậm để giữ vị trí ổn định.",
+                "Figure 28.8 · Typical rotameter bob geometries. The shape sets how strongly the "
+                "reading depends on viscosity; spherical bobs suit small tubes, and inclined grooves "
+                "make the bob spin slowly to hold a stable position.",
+                "Sáu dạng phao khác nhau đặt trên một đường đọc chung",
+                "Six bob shapes arranged along a common reading line")
+
+
+def fig_28_9():
+    o = [_defs()]
+    # duct
+    o.append(_line(60, 250, 600, 250, E, 1.7))
+    o.append(_line(60, 300, 600, 300, E, 1.7))
+    # hinge and flap
+    o.append(_circ(330, 232, 5, E, E, 1.2))
+    o.append(_path("M330,232 L392,282 L404,268 L342,218 Z", E, 1.6, "#cfd8e6"))
+    # magnet block above the duct
+    o.append(_rect(316, 150, 30, 56, "#eef2f7", E, 1.5, rx=3))
+    o.append(_lbl(331, 172, "N", "tb", "middle"))
+    o.append(_lbl(331, 198, "S", "tb", "middle"))
+    o.append(_line(331, 206, 331, 228, E, 1.4))
+    # indicator
+    o.append(_rect(232, 150, 66, 46, P, E, 1.5, rx=3))
+    o.append(_path("M240,188 A24,24 0 0 1 288,188", E, 1.2))
+    o.append(_line(264, 188, 276, 166, E, 1.6))
+    o.append(_lbl(265, 148, "chỉ thị", "ts", "middle"))
+    o.append(_line(298, 172, 316, 172, S, 1.2))
+    # spring
+    d = "M392,268"
+    for i in range(5):
+        d += " l8,-9 l8,9"
+    o.append(_path(d, E, 1.2))
+    o.append(_line(472, 264, 472, 300, E, 1.2))
+    # flow arrow
+    o.append(_arr(470, 275, 540, 275, S, "ah28s", 1.3))
+    o.append(_lbl(504, 292, "dòng", "ts", "middle"))
+    o.append(_lbl(331, 132, "nam châm vĩnh cửu truyền vị trí lá chắn", "ts", "middle"))
+    return _fig(svg(680, 330, "".join(o), "Lưu lượng kế lá chắn di động"),
+                "Hình 28.9 · Lưu lượng kế lá chắn di động. Nam châm (N, S) truyền vị trí lá chắn tới "
+                "bộ chỉ thị. Lá chắn mở cho tới khi lực động học của dòng cân bằng với lực hồi phục "
+                "của lò xo hoặc đối trọng.",
+                "Figure 28.9 · Movable vane meter. The magnet (N, S) transmits the vane position to an "
+                "indicator. The vane opens until the dynamic force of the flow balances the restoring "
+                "force of a spring or weight.",
+                "Lá chắn bản lề trong ống, nam châm và bộ chỉ thị kim",
+                "A hinged vane in a duct, a magnet and a pointer indicator")
+
+
+def fig_28_10():
+    o = [_defs()]
+    o.append(_rect(180, 70, 320, 190, P, E, 1.8, rx=4))
+    o.append(_rect(192, 82, 296, 166, "#f6f8fa", "#b8c0cb", 1.0, rx=2))
+    # flap seen through the window
+    o.append(_circ(300, 96, 5, E, E, 1.2))
+    o.append(_path("M300,96 L372,158 L384,146 L312,84 Z", E, 1.6, "#cfd8e6"))
+    # scale arc
+    o.append(_path("M300,96 m-70,0 a70,70 0 0 1 40,-62", S, 1.0, "none", "4 3"))
+    for a in range(0, 5):
+        ang = _m.radians(-18 - a * 11)
+        o.append(_line(300 + 70 * _m.cos(ang), 96 + 70 * _m.sin(ang),
+                       300 + 60 * _m.cos(ang), 96 + 60 * _m.sin(ang), S, 1.1))
+    o.append(_lbl(300, 236, "cửa sổ thuỷ tinh / nhựa", "ts", "middle"))
+    o.append(_lbl(300, 282, "Góc của lá chắn là thước đo lưu lượng", "t", "middle"))
+    o.append(_lbl(300, 298, "The angle of the vane provides a measure of the flow rate", "ts", "middle"))
+    o.append(_lbl(540, 160, "thang chia", "ts"))
+    return _fig(svg(680, 320, "".join(o), "Bộ chỉ thị lưu lượng kiểu cửa sổ"),
+                "Hình 28.10 · Bộ chỉ thị lưu lượng. Góc của lá chắn là thước đo lưu lượng; loại rẻ "
+                "tiền dùng cửa sổ thuỷ tinh hoặc nhựa để nhìn trực tiếp lá chắn.",
+                "Figure 28.10 · Flow indicator. The angle of the vane provides a measure of the flow "
+                "rate; low-cost units use a glass or plastic window for a direct view of the flap.",
+                "Cửa sổ trong suốt nhìn thấy lá chắn nghiêng và thang chia",
+                "A transparent window showing the inclined flap and a scale")
+
+
+def _weir_crest(o, x1, x2, ybase, h, label=""):
+    """Channel floor plus a weir plate standing h above it."""
+    o.append(_line(x1, ybase, x2, ybase, E, 1.6))
+    o.append(_line(x1, ybase - h, x2, ybase - h, E, 1.6))
+
+
+def fig_28_11():
+    o = [_defs()]
+    # side elevation of the channel with the weir plate
+    yb = 300
+    o.append(_line(60, yb, 250, yb, E, 1.7))
+    o.append(_line(250, yb, 250, yb - 120, E, 1.7))
+    o.append(_line(250, yb - 120, 262, yb - 120, E, 1.7))
+    o.append(_line(262, yb - 120, 262, yb, E, 1.7))
+    o.append(_line(262, yb, 620, yb, E, 1.7))
+    # water surface upstream and the nappe falling over the crest
+    o.append(_line(60, 150, 250, 150, "#7aa7c7", 1.6))
+    o.append(_path("M250,150 C286,152 300,196 316,238 C330,274 356,290 392,292", "#7aa7c7", 1.8))
+    o.append(_path("M250,150 C290,154 306,200 322,240", "#7aa7c7", 1.0, "none", "5 4"))
+    o.append(_lbl(268, 168, "màng nước", "ts"))
+    o.append(_lbl(268, 182, "nappe", "ts"))
+    o.append(_lbl(150, 142, "mặt nước thượng lưu", "ts", "middle"))
+    # ventilation hole under the nappe
+    o.append(_circ(284, 258, 8, P, E, 1.3))
+    o.append(_lbl(300, 274, "lỗ thông hơi", "ts"))
+    # dimensions
+    o.append(_darr(200, 150, 200, 180, S, 1.0))
+    o.append(_lbl(192, 172, "h", "tb", "end"))
+    o.append(_darr(214, 180, 214, yb, S, 1.0))
+    o.append(_lbl(206, 250, "P", "tb", "end"))
+    o.append(_darr(250, 330, 262, 330, S, 1.0))
+    o.append(_lbl(256, 348, "b", "tb", "middle"))
+    # inset: crest bevel
+    o.append(_circ(556, 96, 52, P, E, 1.2))
+    o.append(_path("M520,72 L592,72 L592,86 L520,86 Z", E, 1.3, "#eef2f7"))
+    o.append(_line(592, 72, 570, 100, E, 1.3))
+    o.append(_lbl(600, 96, "45°", "ts"))
+    o.append(_lbl(556, 168, "cạnh đỉnh vát 45°", "ts", "middle"))
+    o.append(_lbl(556, 182, "45° bevel", "ts", "middle"))
+    return _fig(svg(680, 366, "".join(o), "Đập tràn thành mỏng toàn chiều rộng"),
+                "Hình 28.11 · Đập tràn thành mỏng toàn chiều rộng. Lưu lượng Q biến thiên theo mức "
+                "nước h trên đỉnh tràn (Q ~ h^(3/2)) và theo hệ số lưu lượng C_d phụ thuộc lưu lượng.",
+                "Figure 28.11 · Full-width thin plate weir. Flow rate Q varies with water level h "
+                "above the weir crest (Q ~ h^(3/2)) and with a flow-dependent discharge coefficient.",
+                "Mặt cắt đập tràn thành mỏng với màng nước đổ, kích thước h và P, và hình phóng to cạnh vát",
+                "Side view of a thin plate weir with the falling nappe, the h and P dimensions, and a bevel inset")
+
+
+def fig_28_12():
+    o = [_defs()]
+    yb = 300
+    # front elevation: channel B with a rectangular notch b
+    o.append(_line(90, yb, 90, 120, E, 1.7))
+    o.append(_line(90, 120, 250, 120, E, 1.7))
+    o.append(_line(250, 120, 250, 190, E, 1.7))
+    o.append(_line(250, 190, 430, 190, E, 1.7))
+    o.append(_line(430, 190, 430, 120, E, 1.7))
+    o.append(_line(430, 120, 590, 120, E, 1.7))
+    o.append(_line(590, 120, 590, yb, E, 1.7))
+    # water surface
+    o.append(_line(96, 158, 424, 158, "#7aa7c7", 1.4))
+    o.append(_lbl(260, 176, "màng nước / nappe", "ts", "middle"))
+    # dimensions
+    o.append(_darr(90, 336, 590, 336, S, 1.0))
+    o.append(_lbl(340, 354, "B — chiều rộng kênh", "ts", "middle"))
+    o.append(_darr(250, 214, 430, 214, S, 1.0))
+    o.append(_lbl(340, 232, "b — chiều rộng cửa tràn", "ts", "middle"))
+    o.append(_darr(466, 158, 466, 190, S, 1.0))
+    o.append(_lbl(476, 178, "h", "tb"))
+    o.append(_darr(466, 190, 466, yb, S, 1.0))
+    o.append(_lbl(476, 250, "p", "tb"))
+    return _fig(svg(680, 372, "".join(o), "Đập tràn thành mỏng hình chữ nhật"),
+                "Hình 28.12 · Đập tràn thành mỏng hình chữ nhật (cửa tràn hẹp hơn kênh). Hệ số lưu "
+                "lượng C_d phụ thuộc lưu lượng, nên phải hiệu chuẩn hoặc dùng công thức thực nghiệm.",
+                "Figure 28.12 · Thin plate rectangular notch weir — the notch is narrower than the "
+                "channel. The discharge coefficient depends on flow, so calibration or an empirical "
+                "correction is needed.",
+                "Mặt đứng đập tràn chữ nhật với kích thước B, b, h và p",
+                "Front elevation of a rectangular notch weir with the B, b, h and p dimensions")
+
+
+def fig_28_13():
+    o = [_defs()]
+    yb = 300
+    o.append(_line(90, yb, 90, 110, E, 1.7))
+    o.append(_line(90, 110, 590, 110, E, 1.7))
+    o.append(_line(590, 110, 590, yb, E, 1.7))
+    # V notch
+    o.append(_path("M250,110 L340,238 L430,110", E, 1.8))
+    o.append(_line(90, yb, 250, yb, E, 1.7))
+    o.append(_line(430, yb, 590, yb, E, 1.7))
+    o.append(_line(250, yb, 250, 110, "#eef2f7", 0))
+    # water surface
+    o.append(_line(96, 160, 424, 160, "#7aa7c7", 1.4))
+    # angle
+    o.append(_path("M340,238 m0,-56 a56,56 0 0 0 -30,10", S, 1.0, "none", "4 3"))
+    o.append(_lbl(348, 196, "θ", "tb"))
+    o.append(_darr(466, 160, 466, 238, S, 1.0))
+    o.append(_lbl(476, 204, "h", "tb"))
+    o.append(_darr(466, 238, 466, yb, S, 1.0))
+    o.append(_lbl(476, 276, "p", "tb"))
+    o.append(_lbl(340, 278, "màng nước hình chữ V", "ts", "middle"))
+    return _fig(svg(680, 372, "".join(o), "Đập tràn thành mỏng hình chữ V"),
+                "Hình 28.13 · Đập tràn thành mỏng hình chữ V. Vì chiều dài mép ướt thay đổi theo mức "
+                "nước nên hệ số lưu lượng gần như không đổi, và dải đo rộng hơn cửa tràn chữ nhật.",
+                "Figure 28.13 · Thin plate V-notch weir. Because the wetted edge changes with head, "
+                "the discharge coefficient is almost independent of flow, and the range is wider "
+                "than a rectangular notch.",
+                "Mặt đứng đập tràn chữ V với góc đỉnh và kích thước h, p",
+                "Front elevation of a V-notch weir with the apex angle and h, p dimensions")
+
+
+def fig_28_14():
+    o = [_defs()]
+    yb = 300
+    # sill of length l standing above the floor
+    o.append(_line(60, yb, 180, yb, E, 1.7))
+    o.append(_line(180, yb, 180, 220, E, 1.7))
+    o.append(_line(180, 220, 470, 220, E, 1.7))
+    o.append(_line(470, 220, 470, yb, E, 1.7))
+    o.append(_line(470, yb, 620, yb, E, 1.7))
+    # water surfaces
+    o.append(_line(60, 150, 180, 150, "#7aa7c7", 1.6))
+    o.append(_path("M180,150 C210,152 224,164 250,166 L470,166", "#7aa7c7", 1.6))
+    o.append(_path("M470,166 C500,190 512,244 528,286", "#7aa7c7", 1.6))
+    o.append(_lbl(96, 142, "mặt nước thượng lưu", "ts", "middle"))
+    o.append(_lbl(340, 158, "mặt nước trên đỉnh", "ts", "middle"))
+    # dimensions
+    o.append(_darr(140, 150, 140, 220, S, 1.0))
+    o.append(_lbl(132, 190, "h₁", "tb", "end"))
+    o.append(_darr(340, 166, 340, 220, S, 1.0))
+    o.append(_lbl(332, 198, "h₂", "tb", "end"))
+    o.append(_darr(180, 250, 470, 250, S, 1.0))
+    o.append(_lbl(325, 268, "l — chiều dài đỉnh tràn", "ts", "middle"))
+    o.append(_lbl(325, 336, "Lưu lượng cực đại khi h₂ = 2h₁/3", "t", "middle"))
+    o.append(_lbl(325, 352, "Maximum discharge when h₂ = 2h₁/3", "ts", "middle"))
+    return _fig(svg(680, 372, "".join(o), "Đập tràn đỉnh rộng"),
+                "Hình 28.14 · Đập tràn đỉnh rộng. Đỉnh đủ dài để các đường dòng phía trên trở nên "
+                "thẳng và song song; lưu lượng đạt cực đại khi độ sâu trên đỉnh bằng 2/3 cột nước "
+                "tổng, và đây cũng là trạng thái ổn định của đập.",
+                "Figure 28.14 · Broad-crested weir. The sill is long enough for straight, parallel "
+                "streamlines to form above it; discharge peaks when the depth over the crest is "
+                "two thirds of the total head, which is also the stable condition.",
+                "Mặt cắt đập tràn đỉnh rộng với hai mức nước h1 và h2 và chiều dài đỉnh l",
+                "Section through a broad-crested weir with h1, h2 and the sill length l")
+
+
+def fig_28_15():
+    o = [_defs()]
+    # plan view: channel narrowing to a throat then widening
+    o.append(_path("M60,110 L200,110 L300,150 L400,150 L500,110 L620,110", E, 1.7))
+    o.append(_path("M60,230 L200,230 L300,190 L400,190 L500,230 L620,230", E, 1.7))
+    o.append(_line(60, 110, 60, 230, E, 1.7))
+    o.append(_line(620, 110, 620, 230, E, 1.7))
+    o.append(_lbl(340, 92, "nhìn bằng / plan view", "ts", "middle"))
+    o.append(_lbl(340, 172, "họng", "ts", "middle"))
+    o.append(_darr(200, 262, 300, 262, S, 1.0))
+    o.append(_lbl(250, 280, "2 h_max", "ts", "middle"))
+    o.append(_darr(300, 262, 400, 262, S, 1.0))
+    o.append(_lbl(350, 280, "L", "ts", "middle"))
+    o.append(_darr(500, 262, 620, 262, S, 1.0))
+    o.append(_lbl(560, 280, "≥ 3 (B − b)", "ts", "middle"))
+    # section view
+    o.append(_line(60, 400, 200, 400, E, 1.7))
+    o.append(_path("M200,400 L300,360 L400,360 L500,400 L620,400", E, 1.7))
+    o.append(_line(60, 340, 200, 340, "#7aa7c7", 1.6))
+    o.append(_path("M200,340 L300,352 L400,352 L500,372", "#7aa7c7", 1.6))
+    o.append(_lbl(130, 332, "mặt nước", "ts", "middle"))
+    o.append(_darr(120, 340, 120, 400, S, 1.0))
+    o.append(_lbl(112, 372, "P", "tb", "end"))
+    o.append(_lbl(340, 430, "mặt cắt dọc / section", "ts", "middle"))
+    return _fig(svg(680, 448, "".join(o), "Máng Venturi đo lưu lượng hở"),
+                "Hình 28.15 · Máng Venturi. Thu hẹp chiều rộng kênh làm vận tốc trong đoạn hẹp tăng "
+                "và mức nước hạ xuống; phần lớn cột nước được phục hồi ở đoạn loe. Lưu lượng cực đại "
+                "khi độ sâu họng bằng 2/3 cột nước tổng.",
+                "Figure 28.15 · Venturi flume. Narrowing the channel raises the velocity in the throat "
+                "and lowers the water level; most of the head is recovered in the diverging section. "
+                "Maximum discharge when the throat depth is 2/3 of the total head.",
+                "Máng Venturi nhìn bằng và mặt cắt dọc, có kích thước họng và chiều dài",
+                "Venturi flume in plan and section with the throat dimensions and lengths")
+
+
+def _coef_axes(o, xlab, ylab, w=560, h=300):
+    """Log–log axes for the two rotameter coefficient plots."""
+    b = Box(w, h, (1, 100), (0.3, 10), pad=(56, 18, 18, 42))
+    o.append(b.axes(xlab, ylab,
+                    xt=[(1, "1"), (3, "3"), (10, "10"), (30, "30"), (100, "100")],
+                    yt=[(0.3, "0,3"), (1, "1"), (3, "3"), (10, "10")]))
+    return b
+
+
+def fig_28_16():
+    o = [_defs()]
+    b = _coef_axes(o, "Ru", "α")
+    for m, off in ((1.0, 0.0), (2.0, 0.55)):
+        pts = []
+        for i in range(60):
+            ru = 1.0 * (100.0 ** (i / 59.0))
+            val = (3.4 + off) / (1.0 + (ru / (14.0 - 4 * off)) ** 0.85)
+            pts.append((ru, max(0.35, val)))
+        o.append(b.curve(pts))
+    o.append(b.label(2.0, 5.4, "m nhỏ", "ts"))
+    o.append(b.label(2.0, 3.1, "m lớn", "ts"))
+    return _fig(svg(560, 300, "".join(o), "Hệ số lưu lượng α theo số Ruppel"),
+                "Hình 28.16 · Hệ số lưu lượng α của rotameter theo số Ruppel Ru và tỉ số diện tích mở "
+                "m. Với hình học cho trước, α không đổi ở Ru thấp (chảy tầng) rồi giảm khi Ru tăng.",
+                "Figure 28.16 · Rotameter flow coefficient α as a function of Ruppel number Ru and "
+                "open area ratio m. For a given geometry α is constant at low Ru (laminar flow) and "
+                "falls as Ru rises.",
+                "Đồ thị log–log của α theo Ru với hai đường ứng với hai giá trị m",
+                "Log–log plot of α against Ru with two curves for two values of m")
+
+
+def fig_28_17():
+    o = [_defs()]
+    b = _coef_axes(o, "Ru", "β")
+    for m, off in ((1.0, 0.0), (2.0, 0.5)):
+        pts = []
+        for i in range(60):
+            ru = 1.0 * (100.0 ** (i / 59.0))
+            val = (0.30 + off * 0.22) * (ru ** 0.42) / (1.0 + (ru / 9.0) ** 0.42 * 0.0)
+            val = min(val, 3.2 + off * 1.1)
+            pts.append((ru, max(0.32, val)))
+        o.append(b.curve(pts))
+    o.append(b.label(1.45, 4.4, "vùng tầng", "ts"))
+    o.append(b.label(96, 4.4, "vùng rối", "ts", "end"))
+    return _fig(svg(560, 300, "".join(o), "Hệ số lưu lượng β theo số Ruppel"),
+                "Hình 28.17 · Hệ số lưu lượng β theo số Ruppel Ru và tỉ số diện tích mở m. Trong vùng "
+                "tầng, log β tăng tuyến tính theo log Ru; sau đó chuyển dần sang đường nằm ngang khi "
+                "dòng hoàn toàn rối.",
+                "Figure 28.17 · Rotameter flow coefficient β against Ruppel number Ru and open area "
+                "ratio m. In the laminar region log β rises linearly with log Ru, then turns over "
+                "into a horizontal line once the flow is fully turbulent.",
+                "Đồ thị log–log của β theo Ru với hai đường cong",
+                "Log–log plot of β against Ru with two curves")
+
+
+def fig_28_18():
+    o = [_defs()]
+    # half diametral plane: tube wall on the right, axis on the left
+    o.append(_line(90, 60, 90, 330, S, 1.2, "6 4"))
+    o.append(_path("M470,60 L470,150 Q470,196 452,236 L452,330", E, 1.7))
+    # bob outline
+    o.append(_path("M300,150 L360,150 L360,196 L330,222 L300,196 Z", E, 1.5, "#eef2f7"))
+    o.append(_lbl(330, 240, "phao", "ts", "middle"))
+    # vector field: strong near the wall gap, recirculation above the bob
+    import random as _r
+    _r.seed(7)
+    for gy in range(80, 330, 26):
+        for gx in range(110, 460, 30):
+            if 290 < gx < 370 and 140 < gy < 230:
+                continue
+            ux = 0.55 + 0.9 * ((gx - 90) / 380.0)
+            uy = 0.0
+            if gy < 140:
+                uy = -0.15
+            elif 230 < gy < 300 and gx < 330:
+                ux = -0.35
+            o.append(_arr(gx, gy, gx + 18 * ux, gy + 18 * uy, "#5b6b7c", "ah28s", 0.9))
+    o.append(_lbl(280, 46, "trục đối xứng", "ts", "middle"))
+    o.append(_lbl(90, 348, "trục", "ts", "middle"))
+    return _fig(svg(680, 366, "".join(o), "Vector vận tốc tính toán cho dòng tầng qua rotameter"),
+                "Hình 28.18 · Vector vận tốc tính toán cho dòng tầng qua rotameter, trên nửa mặt phẳng "
+                "đường kính, dòng đối xứng trục, Re = 220. (Hình gốc trong sách ghi “Figure not "
+                "available”; hình này dựng lại theo mô tả trong mục “Computed Flow Field”.)",
+                "Figure 28.18 · Computed velocity vectors for laminar flow through a rotameter, in a "
+                "half diametral plane for axisymmetric flow at Reynolds number 220. (The original is "
+                "marked “Figure not available”; this is redrawn from the description in “Computed "
+                "Flow Field”.)",
+                "Trường vector vận tốc quanh phao trong nửa mặt phẳng đường kính",
+                "Velocity vector field around the bob in a half diametral plane")
+
+
+def fig_28_19():
+    o = [_defs()]
+    o.append(_line(90, 60, 90, 330, S, 1.2, "6 4"))
+    o.append(_path("M470,60 L470,150 Q470,196 452,236 L452,330", E, 1.7))
+    o.append(_path("M300,150 L360,150 L360,196 L330,222 L300,196 Z", E, 1.5, "#eef2f7"))
+    # streamlines: converging in the annulus, recirculating above the bob
+    for i, x0 in enumerate(range(110, 470, 26)):
+        d = "M%s,330 C%s,250 %s,180 %s,80" % (_f(x0), _f(x0 + 4), _f(x0 + 10), _f(x0 + 6))
+        o.append(_path(d, "#5b6b7c", 1.1))
+    for i in range(4):
+        cy = 96 + i * 14
+        o.append(_path("M120,%s C200,%s 260,%s 300,%s" % (_f(cy), _f(cy - 10), _f(cy + 12),
+                                                          _f(cy + 4)), "#5b6b7c", 1.0))
+    labels = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"]
+    for i, lab in enumerate(labels):
+        x = 120 + i * 28
+        o.append(_lbl(x, 74 + (i % 2) * 12, lab, "ts", "middle"))
+    return _fig(svg(680, 366, "".join(o), "Đường dòng tính toán cho dòng tầng qua rotameter"),
+                "Hình 28.19 · Đường dòng tính toán cho dòng tầng qua rotameter (Re = 220). Dòng bị ép "
+                "qua vành khuyên hẹp giữa phao và thành ống, rồi tạo vùng hồi lưu ngay trên phao.",
+                "Figure 28.19 · Computed streamlines for laminar flow through a rotameter "
+                "(Reynolds number 220). The flow is forced through the narrow annulus between bob "
+                "and wall, then forms a recirculation region just above the bob.",
+                "Các đường dòng trong ống quanh phao, có nhãn a đến l",
+                "Streamlines in the tube around the bob, labelled a to l")
+
+
+def fig_28_20():
+    o = [_defs()]
+    # six small profile panels, one per axial station
+    stations = ["45", "65", "88", "110", "135", "210"]
+    import math as _mm
+    for i, z in enumerate(stations):
+        ox = 40 + i * 104
+        oy = 200
+        w, h = 84, 96
+        o.append(_line(ox, oy, ox + w, oy, E, 1.1))
+        o.append(_line(ox, oy, ox, oy - h, E, 1.1))
+        for j in range(1, 4):
+            o.append(_line(ox + j * w / 4.0, oy, ox + j * w / 4.0, oy - 3, S, 1.0))
+        # computed profile (solid): peak in the annulus
+        pts = []
+        for k in range(25):
+            r = k / 24.0
+            u = (0.92 if z in ("65", "88") else 0.62) * (r ** 0.5) * _mm.exp(-((r - 0.78) ** 2) / 0.06)
+            pts.append((ox + w * r, oy - h * min(1.0, u * 1.5)))
+        o.append(_path("M" + " L".join("%s,%s" % (_f(a), _f(b)) for a, b in pts), E, 1.6))
+        # measured profile (dashed): slightly rounded, peak further out
+        pts2 = []
+        for k in range(25):
+            r = k / 24.0
+            u = (0.86 if z in ("65", "88") else 0.58) * (r ** 0.55) * _mm.exp(-((r - 0.84) ** 2) / 0.09)
+            pts2.append((ox + w * r, oy - h * min(1.0, u * 1.5)))
+        o.append(_path("M" + " L".join("%s,%s" % (_f(a), _f(b)) for a, b in pts2), E, 1.3, "none", "4 3"))
+        o.append(_lbl(ox + w / 2, oy + 18, "z = %s" % z, "ts", "middle"))
+    o.append(_lbl(40, 44, "U_z — thành phần dọc trục (m/s)", "ts"))
+    o.append(_lbl(40, 58, "nét liền: tính toán · nét đứt: đo được", "ts"))
+    o.append(_lbl(340, 300, "r — vị trí hướng kính", "ts", "middle"))
+    return _fig(svg(680, 320, "".join(o), "So sánh mặt cắt vận tốc đo được và tính toán"),
+                "Hình 28.20 · So sánh mặt cắt vận tốc đo được (nét đứt) và tính toán (nét liền) cho "
+                "dòng tầng qua rotameter, Re = 220, tại sáu vị trí dọc trục z. Đỉnh vận tốc nằm "
+                "trong vành khuyên sát thành ống; trên phao xuất hiện vùng hồi lưu.",
+                "Figure 28.20 · Measured (dashed) and computed (solid) velocity profiles for laminar "
+                "flow through a rotameter at Re = 220, at six axial stations z. The peak sits in the "
+                "annulus near the tube wall; a recirculation region appears above the bob.",
+                "Sáu ô nhỏ, mỗi ô một mặt cắt vận tốc tại một vị trí z khác nhau",
+                "Six small panels, each a velocity profile at a different axial station z")
+
+
+FIGS = [fig_28_1(), fig_28_2(), fig_28_3(), fig_28_4(), fig_28_5(), fig_28_6(),
+        fig_28_7(), fig_28_8(), fig_28_9(), fig_28_10(), fig_28_11(), fig_28_12(),
+        fig_28_13(), fig_28_14(), fig_28_15(), fig_28_16(), fig_28_17(), fig_28_18(),
+        fig_28_19(), fig_28_20()]
 
 
 def fig(n):

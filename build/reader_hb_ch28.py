@@ -86,6 +86,18 @@ def table(hd, rows, cap, cls="tbl"):
             % (cls, "".join("<th>%s</th>" % h for h in hd), body, cap))
 
 
+def h4(t, en=""):
+    """Sub-heading one level below h3. There is no .prose h4 rule in library.css,
+    so the size and spacing are set inline to sit between h3 and body text."""
+    return ('<h4 style="font-size:1rem;font-weight:700;margin:1.7rem 0 .5rem">%s%s</h4>'
+            % (t, (' <span class="en">%s</span>' % en) if en else ""))
+
+
+def ul(items):
+    return ('<ul style="margin:-.2rem 0 1.3rem">%s</ul>'
+            % "".join("<li>%s</li>" % i for i in items))
+
+
 # ================================================================ table data
 
 def _t281(lang):
@@ -222,6 +234,112 @@ def _t284(lang):
             ["ISO (Genève)", "ISO 5167-1", "Measurement of fluid flow by means of pressure differential devices"],
             ["ISO (Genève)", "ISO 9300", "Measurement of gas flow by means of critical flow Venturi nozzles"],
         ]
+    return hd, rows, cap
+
+
+def _t285(lang):
+    """Table 28.5 — rotameter prices. The plastic column is empty for metal meters."""
+    if lang == "vi":
+        hd = ("Loại", "Cỡ", "Giá (nhựa)", "Giá (thép không gỉ, thuỷ tinh borosilicat)")
+        cap = ("Bảng 28.5 · Giá tham khảo của rotameter (USD, khoảng năm 1998). Cột “nhựa” để "
+               "trống ở các cỡ kim loại vì loại này chỉ có bản kim loại.")
+        rows = [
+            ["Thuỷ tinh", "&lt; 1/2 in. (12,7 mm)", "50 $", "200 $"],
+            ["Nhựa", "1/2 in. (12,7 mm)", "50 $", "200 $"],
+            ["Nhựa", "1 in. (25,4 mm)", "70 $", "150 $"],
+            ["Nhựa", "2 in. (50,8 mm)", "200 $", "500 $"],
+            ["Kim loại", "1/2 in. (12,7 mm)", "—", "500 $"],
+            ["Kim loại", "1 in. (25,4 mm)", "—", "600 $"],
+            ["Kim loại", "2 in. (50,8 mm)", "—", "700 $"],
+            ["Kim loại", "3 in. (76,2 mm)", "—", "1 100 $"],
+            ["Kim loại", "4 in. (101,6 mm)", "—", "1 400 $"],
+            ["<i>Phụ thêm</i>", "Công tắc giới hạn điện", "—", "100 $"],
+            ["<i>Phụ thêm</i>", "Bộ chuyển đổi dòng điện", "—", "500 $"],
+            ["<i>Phụ thêm</i>", "Truyền tín hiệu khí nén", "—", "1 200 $"],
+        ]
+    else:
+        hd = ("Type", "Size", "Price (plastic)", "Price (stainless steel, borosilicate glass)")
+        cap = ("Table 28.5 · Approximate rotameter prices (US$, circa 1998). The plastic column is "
+               "empty for the metal sizes, which are supplied in metal only.")
+        rows = [
+            ["Glass", "&lt; 1/2 in. (12.7 mm)", "$50", "$200"],
+            ["Plastic", "1/2 in. (12.7 mm)", "$50", "$200"],
+            ["Plastic", "1 in. (25.4 mm)", "$70", "$150"],
+            ["Plastic", "2 in. (50.8 mm)", "$200", "$500"],
+            ["Metal", "1/2 in. (12.7 mm)", "—", "$500"],
+            ["Metal", "1 in. (25.4 mm)", "—", "$600"],
+            ["Metal", "2 in. (50.8 mm)", "—", "$700"],
+            ["Metal", "3 in. (76.2 mm)", "—", "$1100"],
+            ["Metal", "4 in. (101.6 mm)", "—", "$1400"],
+            ["<i>Extras</i>", "Electric limit switch", "—", "$100"],
+            ["<i>Extras</i>", "Current transducer", "—", "$500"],
+            ["<i>Extras</i>", "Pneumatic transmitter", "—", "$1200"],
+        ]
+    return hd, rows, cap
+
+
+def _t286(lang):
+    if lang == "vi":
+        hd = ("Loại", "Giá")
+        cap = ("Bảng 28.6 · Giá tham khảo của lưu lượng kế cánh quay (USD, khoảng năm 1998). "
+               "Bản có kim chỉ nối trực tiếp đã bao gồm công tắc lưu lượng điện.")
+        rows = [
+            ["Bản nhựa (cỡ nhỏ)", "từ 10 $"],
+            ["Bản kim chỉ nối trực tiếp, kèm công tắc lưu lượng điện: kim loại, đầu nối ren "
+             "1/2 in. (12,7 mm) đến 2 in. (50,8 mm)",
+             "400 $ (đồng thau) đến 600 $ (thép không gỉ)"],
+            ["Bản mặt bích", "cộng thêm 200 $ (1/2 in., 12,7 mm) đến 400 $ (2 in., 50,8 mm)"],
+            ["Chỉ thị ghép từ, thép không gỉ", "1 200 $ (1/2 in., 12,7 mm) đến 2 100 $ (8 in., 203 mm)"],
+        ]
+    else:
+        hd = ("Type", "Price")
+        cap = ("Table 28.6 · Approximate movable vane meter prices (US$, circa 1998). The direct "
+               "coupled pointer version includes an electric flow switch.")
+        rows = [
+            ["Plastic versions (small scale)", "From $10"],
+            ["Direct coupled pointer versions incl. electric flow switch: metal, screw connections "
+             "1/2 in. (12.7 mm) to 2 in. (50.8 mm)",
+             "$400 (brass) to $600 (stainless steel)"],
+            ["Flanged versions", "Add $200 (1/2 in., 12.7 mm) to $400 (2 in., 50.8 mm)"],
+            ["Magnetic coupled indicator, stainless steel", "$1200 (1/2 in., 12.7 mm) to $2100 (8 in., 203 mm)"],
+        ]
+    return hd, rows, cap
+
+
+def _t287(lang):
+    if lang == "vi":
+        hd = ("Công ty", "Địa chỉ · điện thoại")
+        cap = "Bảng 28.7 · Các hãng chế tạo rotameter và lưu lượng kế cánh quay."
+    else:
+        hd = ("Company", "Address · telephone")
+        cap = "Table 28.7 · Manufacturers of rotameters and movable vane meters."
+    rows = [
+        ["Tokyo Keiso Co. Ltd.", "Shiba Toho Building, 1-7-24 Shibakoen, Minato-ku, Tokyo 105, "
+         "Nhật Bản · +81-3-3431-1625 · fax +81-3-3433-4922"],
+        ["Brooks Instrument Division, Emerson Electric", "407 W. Vine St., Hatfield, PA 19440, "
+         "Hoa Kỳ · (215) 362-3500 · fax (215) 362-3745"],
+        ["Krohne America Inc.", "7 Dearborn Rd., Peabody, MA 01960, Hoa Kỳ · (508) 535-6060, "
+         "(800) 356-9464 · fax (508) 535-1720"],
+        ["Bailey Fischer &amp; Porter Co.", "County Line Rd., Warminster, PA 18974, Hoa Kỳ · "
+         "(215) 674-6000 · fax (215) 674-7183"],
+        ["Bopp &amp; Reuther Heinrichs Messtechnik GmbH", "Stolberger Str. 393, D-50933 Köln, "
+         "Đức · +49-221-49708-0 · fax +49-221-497088"],
+        ["Porter Instruments Co.", "245 Township Line Road, Hatfield, PA 19440, Hoa Kỳ · "
+         "(215) 723-4000 · fax (215) 723-2199"],
+        ["Wallace &amp; Tiernan, Inc.", "25 Main St., Belleville, NJ 07109, Hoa Kỳ · "
+         "(201) 759-8000 · fax (201) 759-9333"],
+        ["KDG-Mobrey Ltd.", "Crompton Way, Crawley, West Sussex RH10 2YZ, Anh · "
+         "+44-1293-518632 · fax +44-1293-533095"],
+        ["CT Platon", "Jays Close, Viables, Basingstoke, Hampshire RG22 4BS, Anh · "
+         "+44-1256-470456 · fax +44-1256-363345"],
+        ["Kobold Messring GmbH", "Nordring 22-24, D-65719 Hofheim/Taunus, Đức · "
+         "+49 6192 2990 · fax +49 6192 23398"],
+        ["Rota Yokogawa GmbH &amp; Co. KG", "Rheinstrasse 8, D-79664 Wehr, Đức · "
+         "+49-7761-567-0 · fax +49-7761-567-126"],
+    ]
+    if lang != "vi":
+        rows = [[a, b.replace("Nhật Bản", "Japan").replace("Hoa Kỳ", "USA").replace("Đức", "Germany")
+                 .replace(", Anh ·", ", England ·")] for a, b in rows]
     return hd, rows, cap
 
 
@@ -939,10 +1057,1087 @@ def sec_28_1_en():
     return "".join(b)
 
 
+# ================================================================ 28.2
+
+def sec_28_2_vi():
+    b = []
+    b.append(h2("28.2 Lưu lượng kế biến diện tích", "Variable Area Flowmeters"))
+    b.append(p("Adrian Melling, Herbert Köchner và Reinhard Haak — Đại học Erlangen-Nürnberg."))
+    b.append(p(
+        "Thuật ngữ <b>lưu lượng kế biến diện tích</b> dùng để chỉ những lưu lượng kế trong đó diện "
+        "tích mặt cắt tối thiểu mà dòng chảy đi qua thay đổi theo lưu lượng. Các loại thuộc nhóm này "
+        "được bàn ở mục này gồm rotameter và lưu lượng kế cánh quay dùng cho dòng chảy trong ống, "
+        "cùng đập tràn và máng dùng cho dòng chảy hở. Đại lượng được đo là một đại lượng hình học: "
+        "độ cao của phao trong rotameter, góc của cánh, hay độ thay đổi mực nước tự do của chất lỏng "
+        "chảy qua đập tràn hoặc qua máng."))
+    b.append(p(
+        "Phần lớn nội dung dưới đây dành cho rotameter, thứ nhất vì số rotameter và lưu lượng kế cánh "
+        "quay đã lắp đặt lớn hơn nhiều so với số đập tràn và máng, thứ hai vì cánh quay thường chỉ "
+        "được dùng làm chỉ báo lưu lượng hơn là làm dụng cụ đo."))
+    b.append(p(
+        "Mục tiếp theo trình bày thông tin cơ bản về đặc điểm kết cấu và ứng dụng của từng loại thiết "
+        "bị. Mục thứ ba mô tả khá chi tiết nguyên lý đo và thiết kế của rotameter và lưu lượng kế "
+        "kênh hở; lưu lượng kế cánh quay không được bàn thêm vì phần lớn khía cạnh thiết kế của nó "
+        "giống rotameter. Sau đó là đóng góp của các phương pháp cơ học chất lưu tính toán và thực "
+        "nghiệm hiện đại cho việc thiết kế lưu lượng kế, minh hoạ bằng kết quả của một nghiên cứu "
+        "chi tiết dòng chảy bên trong thiết bị."))
+    b.append(p(
+        "Thông tin về các hãng chế tạo rotameter và lưu lượng kế cánh quay, cùng giá tham khảo của "
+        "chúng, được lập thành bảng ở Bảng 28.5 đến Bảng 28.7."))
+
+    b.append(h3("Mô tả chung lưu lượng kế biến diện tích", "General Description of Variable Area Flowmeters"))
+
+    b.append(h4("Rotameter"))
+    b.append(p(
+        "Rotameter là một lưu lượng kế chắc chắn và đơn giản dùng cho khí và chất lỏng, chiếm thị phần "
+        "lớn với đường kính ống nhỏ hơn khoảng 100 mm. Ở dạng cơ bản, rotameter gồm một ống thuỷ tinh "
+        "trong suốt, thẳng đứng, có dạng côn, chứa một “phao” (Hình 28.7); phao dâng lên trong ống khi "
+        "lưu lượng tăng cho tới khi đạt cân bằng giữa trọng lực, lực đẩy và lực cản tác dụng lên nó. "
+        "Trong phạm vi của một lưu lượng kế cụ thể (tuỳ hình dạng và khối lượng riêng của phao, hình "
+        "dạng ống và khối lượng riêng, độ nhớt của chất lưu), lưu lượng tỉ lệ tuyến tính với độ cao "
+        "của phao trong ống và được xác định đơn giản bằng cách đọc mức mép trên của phao. Rotameter "
+        "còn được gọi là “lưu lượng kế phần tử nổi”, dù lực đẩy tác dụng lên “phần tử nổi” không đủ "
+        "để làm nó nổi."))
+    b.append(fig(7, F.fig(7), "vi"))
+    b.append(p(
+        "Phao thường được tạo thành từ tổ hợp các đoạn trụ và đoạn côn, nhưng với ống đường kính nhỏ "
+        "người ta hay dùng phao hình cầu (Hình 28.8). Những dạng phao phức tạp hơn có thể làm giảm độ "
+        "nhạy của số đọc với độ nhớt của chất lưu. Phao thường có vài rãnh nông nghiêng quanh vành "
+        "trên, gây ra chuyển động quay chậm (tần số khoảng 1 Hz) giúp phao giữ được vị trí ổn định. "
+        "Ở các rotameter lớn hơn, nơi ma sát phụ thêm là chấp nhận được, phao có thể trượt lên xuống "
+        "theo một thanh dẫn đặt trên trục ống để chống mọi chuyển động ngang."))
+    b.append(fig(8, F.fig(8), "vi"))
+    b.append(p(
+        "Nhiều dạng hình học ống đang được dùng. Yêu cầu cơ bản là diện tích mặt cắt phải tăng dần "
+        "theo chiều cao của ống, dẫn tới ống hình côn. Một dạng khác dùng ba gờ xếp theo chu vi ống để "
+        "dẫn hướng phao; diện tích dòng chảy giữa các gờ tăng dần theo chiều cao ống. Với phao hình "
+        "cầu, ống tiết diện tam giác — trong đó phao luôn tiếp xúc với ba mặt trên suốt chiều cao ống "
+        "— vừa chống được chuyển động ngang của phao vừa giữ ma sát ở mức tối thiểu. Thông thường ống "
+        "được làm bằng thuỷ tinh để tiện đọc lưu lượng trên thang khắc thẳng lên ống. Với ứng dụng đa "
+        "năng, thang có thể khắc theo milimét; khi đó lưu lượng được xác định bằng một hệ số chuyển "
+        "đổi phụ thuộc kích thước ống, khối lượng phao, áp suất, nhiệt độ và tính chất của chất lưu. "
+        "Với ứng dụng riêng cho một chất lưu trong điều kiện xác định, khắc thẳng lưu lượng lên ống "
+        "thuận tiện hơn."))
+    b.append(p(
+        "Với sử dụng trong phòng thí nghiệm, thiết bị y tế và các ứng dụng lưu lượng nhỏ khác, ống "
+        "thuỷ tinh gần như phổ dụng. Các lưu lượng kế phòng thí nghiệm thường có kèm một van lưu lượng "
+        "cho phép đặt và đọc lưu lượng trực tiếp. Với nhiều rotameter nhỏ, người ta cung cấp bộ điều "
+        "khiển lưu lượng tích hợp; bộ này giữ độ sụt áp và giá trị đặt lưu lượng không đổi ngay cả khi "
+        "áp suất thượng lưu hay hạ lưu thay đổi."))
+    b.append(p(
+        "Phần lớn rotameter có sẵn công tắc giới hạn điện hoặc bộ chuyển đổi tín hiệu điện tương tự. "
+        "Với các lưu lượng kế thuỷ tinh và nhựa, người ta dùng công tắc cảm ứng hoặc quang, đặt được "
+        "tại mức mong muốn của phao. Trong khi một số thiết bị chỉ phát hiện phao nằm trong vùng tác "
+        "động của chúng, những công tắc khác có chế độ hai trạng thái, trong đó công tắc được lật "
+        "trạng thái khi phao đi qua."))
+    b.append(p(
+        "Với ứng dụng công nghiệp, việc đo chất lưu ăn mòn hoặc chất lưu ở nhiệt độ, áp suất cao dẫn "
+        "tới việc dùng ống thép không gỉ hoặc nhiều loại vật liệu khác được chọn cho phù hợp yêu cầu "
+        "ứng dụng (ví dụ nhiệt độ, áp suất, ăn mòn). Phần lớn rotameter kim loại dùng khớp nối từ vĩnh "
+        "cửu giữa phao và kim chỉ của bộ chỉ thị, cho phép đọc lưu lượng tương tự trực tiếp mà không "
+        "cần nguồn điện. Tuy vậy vẫn có thể thêm công tắc điện vào bộ chỉ thị, và phần lớn nhà sản "
+        "xuất đều cung cấp bộ truyền tín hiệu điện và khí nén cho số đọc lưu lượng. Một số thiết bị có "
+        "các tuỳ chọn như bộ tổng hoá lưu lượng, bộ tính lưu lượng khối cho ứng dụng khí (kết hợp cảm "
+        "biến nhiệt độ và áp suất), hoặc bộ tính năng lượng. Do rotameter được dùng thường xuyên trong "
+        "công nghiệp hoá chất và hoá dầu, các tuỳ chọn điện thường được thiết kế để dùng trong vùng "
+        "nguy hiểm cháy nổ."))
+    b.append(p("Rotameter có các đặc điểm:"))
+    b.append(ul([
+        "Kết cấu đơn giản và chắc chắn",
+        "Độ tin cậy cao",
+        "Tổn thất áp suất thấp",
+        "Dùng được cho rất nhiều loại khí và chất lỏng",
+        "Dải lưu lượng điển hình 0,04 L h⁻¹ đến 150 m³ h⁻¹ với nước",
+        "Dải lưu lượng điển hình 0,5 L h⁻¹ đến 3 000 m³ h⁻¹ với không khí",
+        "Dải đo 10:1 với một tổ hợp phao–ống cho trước",
+        "Độ bất định 0,4 % đến 4 % lưu lượng cực đại",
+        "Không nhạy với sự không đồng đều của dòng vào (không cần đoạn ống thẳng thượng lưu)",
+        "Nhiệt độ cực đại điển hình 400 °C",
+        "Áp suất cực đại điển hình 4 MPa (40 bar)",
+        "Chi phí đầu tư thấp",
+        "Chi phí lắp đặt thấp",
+    ]))
+    b.append(table(*_t285("vi")))
+    b.append(table(*_t287("vi")))
+
+    b.append(h4("Lưu lượng kế cánh quay", "Movable Vane Meter"))
+    b.append(p(
+        "Lưu lượng kế cánh quay là thiết bị chắc chắn, phù hợp để đo lưu lượng lớn khi yêu cầu về độ "
+        "chính xác đo chỉ ở mức vừa phải. Chất lưu bẩn cũng đo được. Thiết bị có một cánh lật mà khi "
+        "lưu lượng bằng không được giữ đóng bằng một quả cân hoặc một lò xo (Hình 28.9). Dòng chảy "
+        "đẩy cánh mở ra cho tới khi lực động của dòng cân bằng với lực phục hồi của quả cân hay lò "
+        "xo. Góc của cánh do đó là thước đo lưu lượng, và có thể được chỉ trực tiếp bằng một kim gắn "
+        "trên trục của cánh, trên một thang đã chia độ. Lực cản do cánh tạo ra phụ thuộc vị trí cánh, "
+        "do đó phụ thuộc lưu lượng hay số Reynolds; vì vậy phải hiệu chuẩn lại khi đổi chất lưu. Một "
+        "ứng dụng quan trọng là đo lưu lượng khí nạp trong động cơ ô tô phun xăng điện tử."))
+    b.append(fig(9, F.fig(9), "vi"))
+    b.append(p(
+        "Trong các chỉ báo lưu lượng giá rẻ, một cửa sổ thuỷ tinh hay nhựa cho phép nhìn trực tiếp "
+        "cánh lật (Hình 28.10). Đôi khi người ta dùng công tắc quang hoặc công tắc lưỡi gà kết hợp "
+        "với một nam châm vĩnh cửu gắn trên cánh làm công tắc lưu lượng điện. Các thiết bị toàn kim "
+        "loại dùng khớp nối từ giữa cánh và kim chỉ của bộ chỉ thị, nhờ đó tránh được phần lớn vấn đề "
+        "ma sát và vấn đề chọn vật liệu. Nhiều ứng dụng dùng lưu lượng kế cánh quay như một công tắc "
+        "lưu lượng với công tắc cơ khí, từ, cảm ứng hoặc quang thích hợp. Việc đặt ngưỡng công tắc "
+        "được làm một lần duy nhất khi lắp đặt. Vì không cần chỉ thị lưu lượng liên tục nên độ bất "
+        "định của số đọc không thành vấn đề."))
+    b.append(fig(10, F.fig(10), "vi"))
+    b.append(p(
+        "Phần lớn khía cạnh thiết kế và ứng dụng của rotameter áp dụng được cho lưu lượng kế cánh "
+        "quay, dù loại sau có độ bất định của số đọc cao hơn. Đặc điểm chung của cả hai loại lưu lượng "
+        "kế biến diện tích được tóm tắt, ví dụ, trong tài liệu [1]. Vì kết cấu cơ bản của hai loại rất "
+        "giống nhau nên giá thành đơn vị cũng nằm trong cùng một khoảng."))
+    b.append(table(*_t286("vi")))
+
+    b.append(h4("Đập tràn, máng", "Weir, Flume"))
+    b.append(p(
+        "Trong số các phương pháp đo lưu lượng chất lỏng (thường là nước) trong dòng chảy hở, đập tràn "
+        "và máng thuộc phạm vi bàn của mục về lưu lượng kế biến diện tích này. Trong cả hai trường hợp, "
+        "phép đo dựa trên việc xác định độ chênh mực nước <i>h</i> giữa mặt nước tại chỗ có vật cản "
+        "ngang kênh và mặt nước ở vị trí đủ xa về phía thượng lưu. Có rất nhiều dạng hình học đang "
+        "được dùng (xem tài liệu [2]), nhưng phần lớn có thể xem là biến thể của ba dạng cơ bản. Trong "
+        "<b>đập tràn thành mỏng</b>, còn gọi là đập tràn tấm mỏng (Hình 28.11), ngưỡng hay đỉnh tràn "
+        "chỉ dày khoảng 1 mm đến 2 mm. Tấm chất lỏng chảy qua đập tràn, gọi là <i>nappe</i> hay "
+        "<i>vein</i>, tách khỏi thân đập sau khi vượt qua đỉnh. Một vùng chứa khí ở áp suất khí quyển "
+        "hình thành bên dưới dòng chảy ra, và các đường dòng phía trên đập tràn bị uốn mạnh. Nếu "
+        "chiều rộng đập nhỏ hơn chiều rộng kênh thượng lưu (Hình 28.12 và Hình 28.13) thì người ta "
+        "thường dùng thuật ngữ “cửa tràn” (notch). <b>Đập tràn đỉnh rộng</b> (Hình 28.14) có ngưỡng đủ "
+        "dài để các đường dòng thẳng, song song hình thành phía trên đỉnh. Trong phần này, thuật ngữ "
+        "“đập tràn” được dùng chung cho cả đập tràn và cửa tràn."))
+    b.append(fig(11, F.fig(11), "vi"))
+    b.append(p(
+        "Lực cản mà đập tràn đưa vào dòng chảy làm mực nước thượng lưu dâng lên. Nếu giả thiết vận tốc "
+        "dòng chảy ở một khoảng cách nào đó phía thượng lưu bằng không thì chỉ cần một phép đo đơn "
+        "giản mực nước thượng lưu là đủ để xác định lưu lượng qua một đập tràn có hình học đã biết. "
+        "Cũng như trường hợp tấm orifice trong dòng chảy trong ống, sẽ có sự co thắt của <i>nappe</i> "
+        "và sức cản ma sát ở hai bên khi nước chảy qua đập tràn. Lưu lượng thực nhỏ hơn lưu lượng lý "
+        "thuyết theo một hệ số lưu lượng <i>C</i><sub>d</sub> xác định bằng thực nghiệm. Khi phân tích "
+        "cửa tràn và đập tràn chữ nhật, người ta thường giả thiết chiều rộng kênh không đổi, do đó "
+        "<i>nappe</i> chỉ co thắt theo phương thẳng đứng khi nước tăng tốc qua vật cản. Khi đập tràn "
+        "hẹp hơn kênh thượng lưu thì có thêm co thắt theo phương ngang. Ảnh hưởng của vận tốc tới "
+        "(vận tốc dòng chảy phía thượng lưu) đáng kể được kể đến bằng thực nghiệm."))
+    b.append(fig(12, F.fig(12), "vi"))
+    b.append(fig(13, F.fig(13), "vi"))
+    b.append(fig(14, F.fig(14), "vi"))
+    b.append(p(
+        "Như một phương án thay thế đập tràn, <b>máng</b> (Hình 28.15) cho một cách đo lưu lượng với "
+        "tổn thất áp suất tương đối nhỏ. Bằng cách thu hẹp chiều rộng kênh — tương tự ống Venturi "
+        "trong dòng chảy trong ống — vận tốc dòng trong đoạn hẹp của kênh tăng lên và mực nước hạ "
+        "xuống tương ứng. Phần lớn cột nước được thu hồi trong đoạn khuếch tán của máng. Mực nước "
+        "thượng lưu và tại họng máng có thể xác định bằng các phao đơn giản và ghi lên băng giấy bằng "
+        "bút vẽ dẫn động cơ khí từ phao. Để theo dõi từ xa, dùng máy dội âm (echo sounder) là thuận "
+        "lợi."))
+    b.append(fig(15, F.fig(15), "vi"))
+    b.append(p(
+        "Đập tràn được ưu tiên dùng ở lòng sông tự nhiên, còn máng dùng ở các tuyến dẫn nước đã được "
+        "kênh hoá. Máng phải được dùng ở những dòng có vận chuyển bùn cát để tránh tích tụ cặn — điều "
+        "sẽ xảy ra ở đoạn dẫn vào đập tràn. Đập tràn và máng có các đặc điểm:"))
+    b.append(ul([
+        "Đo mực nước đơn giản",
+        "Bảo trì đơn giản",
+        "Đo lưu lượng lớn một cách tin cậy ở vận tốc dòng nhỏ",
+        "Độ chính xác đo hạn chế (tốt nhất khoảng 2 %)",
+        "Chi phí lắp đặt cao, đặc biệt với máng",
+    ]))
+    b.append(p(
+        "Các khuyến nghị về lắp đặt đập tràn và máng, về vị trí trạm đo cột nước phía thượng lưu và về "
+        "cách xác định lưu lượng từ cột nước đo được được trình bày, ví dụ, trong [2] và [3] cũng như "
+        "trong các tiêu chuẩn thích hợp (ví dụ [4–6])."))
+
+    b.append(h3("Nguyên lý đo của lưu lượng kế biến diện tích",
+                "Measuring Principles of Variable Area Flowmeters"))
+
+    b.append(h4("Rotameter: phân tích lưu lượng", "Rotameter: Flow Rate Analysis"))
+    b.append(p(
+        "Các lực tác dụng lên phao dẫn tới cân bằng giữa trọng lượng của phao ρ<sub>b</sub><i>gV</i>"
+        "<sub>b</sub> hướng xuống dưới với lực đẩy Archimedes ρ<i>gV</i><sub>b</sub> và lực cản "
+        "<i>F</i><sub>d</sub> hướng lên trên, trong đó <i>V</i><sub>b</sub> là thể tích và "
+        "ρ<sub>b</sub> là khối lượng riêng của phao, ρ là khối lượng riêng của chất lưu, và <i>g</i> "
+        "là gia tốc trọng trường:"))
+    b.append(eq("ρ<sub>b</sub>gV<sub>b</sub> = ρgV<sub>b</sub> + F<sub>d</sub>", "28.7"))
+    b.append(p(
+        "Lực cản sinh ra từ trường dòng bao quanh phao, đặc biệt từ vùng vệt xoáy phía sau phao. "
+        "Trong các phân tích dòng dựa trên nguyên lý tương tự, những ảnh hưởng này được kể đến bằng "
+        "các hệ số thực nghiệm <i>C</i><sub>L</sub> hoặc <i>C</i><sub>T</sub> trong định luật cản:"))
+    b.append(eq('<span style="font-style:italic;margin-right:1.4rem">chảy tầng</span>'
+                'F<sub>d</sub> = C<sub>L</sub>μD<sub>b</sub>U', "28.8"))
+    b.append(eq('<span style="font-style:italic;margin-right:1.4rem">chảy rối</span>'
+                'F<sub>d</sub> = C<sub>T</sub>ρD<sub>b</sub>²U²', "28.9"))
+    b.append(p(
+        "trong đó μ là độ nhớt chất lưu, <i>D</i><sub>b</sub> là đường kính lớn nhất của phao, và "
+        "<i>U</i> là vận tốc trong khe vành khuyên quanh phao tại tiết diện nhỏ nhất."))
+    b.append(p("Lưu lượng thể tích qua rotameter là:"))
+    b.append(eq("Q̇ = (π/4)(D² − D<sub>b</sub>²)U", "28.10"))
+    b.append(p("hay"))
+    b.append(eq("Q̇ = m(π/4)D<sub>b</sub>²U", "28.11"))
+    b.append(p("trong đó <i>m</i> là tỉ số diện tích mở, định nghĩa là:"))
+    b.append(eq("m = (D² − D<sub>b</sub>²) / D<sub>b</sub>²", "28.12"))
+    b.append(p("và <i>D</i> là đường kính ống tại độ cao của phao."))
+    b.append(p("Kết hợp các Phương trình 28.7, 28.8 và 28.10 ta được với chảy tầng:"))
+    b.append(eq("Q̇ = αD<sub>b</sub>⁴(ρ<sub>b</sub> − ρ)g / μ", "28.13"))
+    b.append(p(
+        "trong đó tham số α được định nghĩa qua một hằng số <i>K</i> = <i>V</i><sub>b</sub> / "
+        "<i>D</i><sub>b</sub>³ đặc trưng cho hình dạng của phao:"))
+    b.append(eq("α = πmK / (4C<sub>L</sub>)", "28.14"))
+    b.append(p("Dùng Phương trình 28.9 thay cho 28.8 ta được với chảy rối:"))
+    b.append(eq("Q̇ = βD<sub>b</sub><sup>5/2</sup>√[(ρ<sub>b</sub> − ρ)g / ρ]", "28.15"))
+    b.append(p("trong đó"))
+    b.append(eq("β = (πm / 4)√(K / C<sub>T</sub>)", "28.16"))
+    b.append(p(
+        "Với cả chảy tầng lẫn chảy rối qua rotameter, rõ ràng từ các Phương trình 28.13 và 28.15 rằng "
+        "lưu lượng tỉ lệ với <i>m</i>. Nếu diện tích mặt cắt của ống được làm tăng tuyến tính theo "
+        "chiều dài, tức là:"))
+    b.append(eq("D = D<sub>b</sub>(1 + h tan φ)", "28.17"))
+    b.append(p(
+        "thì vì góc côn φ của ống nhỏ, Phương trình 28.12 có thể viết thành:"))
+    b.append(eq("m = 2h tan φ", "28.18"))
+    b.append(p("và lưu lượng tỉ lệ trực tiếp với độ cao <i>h</i> của phao."))
+
+    b.append(h4("Phân tích tương tự", "Similarity Analysis"))
+    b.append(p(
+        "Trong các nghiên cứu đầu tiên về lưu lượng kế phần tử nổi, Ruppel và Umpfenbach [7] đề xuất "
+        "đưa vào các đại lượng không thứ nguyên đặc trưng để có thể dùng các hệ số lưu lượng xác định "
+        "bằng thực nghiệm trong phân tích lưu lượng kế. Lutz [8] mở rộng các ý tưởng này bằng cách chỉ "
+        "ra rằng có thể chuyển hệ số lưu lượng từ lưu lượng kế này sang lưu lượng kế khác nếu tồn tại "
+        "tương tự hình học. Các công trình gần đây hơn [9–12] dùng những nguyên lý này để xây dựng các "
+        "phương án thiết kế bằng đồ thị hoặc bằng máy tính, và đề xuất các hướng dẫn chung để bố trí "
+        "các hệ đo lưu lượng trong thực tế."))
+    b.append(p("Tham số tỉ lệ cơ bản của dòng chảy là số Reynolds, định nghĩa là:"))
+    b.append(eq("Re = ρU<sub>IN</sub>D<sub>b</sub> / μ", "28.19"))
+    b.append(p(
+        "trong đó <i>U</i><sub>IN</sub> là vận tốc tại lối vào rotameter, và đường kính ống <i>D</i> "
+        "được biểu diễn bằng giá trị tại lối vào, tức bằng đường kính phao <i>D</i><sub>b</sub>. Qua "
+        "số Reynolds có thể phân biệt các chế độ chảy tầng hoặc chảy rối, và đặc biệt quan trọng với "
+        "rotameter là các chế độ phụ thuộc mạnh hay yếu vào độ nhớt. Xuất phát từ công trình [7], với "
+        "rotameter người ta thấy thực tế hơn khi dùng một đặc số thay thế, gọi là số Ruppel, định "
+        "nghĩa là:"))
+    b.append(eq("Ru = μ / √[m<sub>b</sub>gρ(1 − ρ/ρ<sub>b</sub>)]", "28.20"))
+    b.append(p(
+        "trong đó <i>m</i><sub>b</sub> = ρ<sub>b</sub><i>D</i><sub>b</sub>³ là khối lượng của phao. "
+        "Kết hợp các Phương trình 28.15, 28.16 và 28.20, lưu lượng khối ṁ qua rotameter có thể viết "
+        "là:"))
+    b.append(eq("ṁ = (π/4)·mD<sub>b</sub>μ / (√C<sub>T</sub>·Ru)", "28.21"))
+    b.append(p("Hoặc, từ định nghĩa:"))
+    b.append(eq("ṁ = ρQ̇ = ρU<sub>IN</sub>(π/4)D<sub>b</sub>²", "28.22"))
+    b.append(p("và Phương trình 28.19, lưu lượng là:"))
+    b.append(eq("ṁ = (π/4)D<sub>b</sub>μRe", "28.23"))
+    b.append(p(
+        "Các Phương trình 28.21 và 28.23 cho quan hệ sau giữa số Ruppel và số Reynolds:"))
+    b.append(eq("Ru = m / (√C<sub>T</sub>·Re)", "28.24"))
+    b.append(p("Phân tích cho chảy tầng dẫn tới quan hệ:"))
+    b.append(eq("Ru = √(m / (C<sub>L</sub>Re))", "28.25"))
+    b.append(p(
+        "Ưu điểm của số Ruppel là nó không phụ thuộc lưu lượng. Vì số Ruppel chỉ chứa tính chất chất "
+        "lưu cùng khối lượng và khối lượng riêng của phao, nó là hằng số với một thiết bị cụ thể."))
+    b.append(p(
+        "Ở số Ruppel thấp, định luật cản tuyến tính giả thiết trong Phương trình 28.8 đúng và α là "
+        "hằng số với <i>m</i> cho trước, như chỉ ra trên Hình 28.16. Ở số Ruppel cao hơn, dòng là quá "
+        "độ hoặc chảy rối, và log α giảm tuyến tính theo log <i>Ru</i>. Trên Hình 28.17, các đường "
+        "cong của β theo số Ruppel cho thấy log β tăng tuyến tính theo log <i>Ru</i> trong vùng chảy "
+        "tầng, sau đó chuyển dần sang các đường nằm ngang khi dòng chảy rối hoàn toàn."))
+    b.append(fig(16, F.fig(16), "vi"))
+    b.append(fig(17, F.fig(17), "vi"))
+    b.append(p(
+        "Phân tích tương tự rotameter cho phép tính dễ dàng số đọc lưu lượng khi khối lượng riêng và "
+        "độ nhớt của chất lưu thay đổi. Với độ nhớt thấp hơn, chỉ cần kể đến ảnh hưởng của khối lượng "
+        "riêng; do đó với phần lớn phép đo khí có thể dùng các hệ số chuyển đổi đơn giản. Với độ nhớt "
+        "cao hơn, nhà sản xuất cung cấp hoặc hệ số chuyển đổi gắn với số Ruppel, hoặc bảng hệ số "
+        "chuyển đổi hai chiều áp dụng cho các độ cao khác nhau của phao. Một số nhà sản xuất có dịch "
+        "vụ hiệu chuẩn lại, cho phép người dùng đặt thang mới cho thiết bị sẽ dùng trong ứng dụng và "
+        "môi trường đã thay đổi. Với khách hàng mua số lượng lớn, một số nhà sản xuất cung cấp chương "
+        "trình máy tính đơn giản để tính thang đo."))
+    b.append(p(
+        "Các lý thuyết dựa trên lập luận tương tự có thể dự báo sự thay đổi của hệ số lưu lượng theo "
+        "số Ruppel trong chế độ chảy tầng và chảy rối, nhưng không dự báo được ở vùng chuyển tiếp "
+        "tầng–rối. Các nghiên cứu thực nghiệm và tính toán chi tiết có thể hỗ trợ phân tích dòng chảy "
+        "của lưu lượng kế phần tử nổi. Một ví dụ được trình bày ở mục “Rotameter: phân tích dòng chảy "
+        "bên trong”."))
+
+    b.append(h4("Đập tràn và máng: phân tích lưu lượng", "Weir, Flume: Flow Rate Analysis"))
+    b.append(p(
+        "Mặc dù việc xác định lưu lượng qua một đập tràn hay máng nói chung đòi hỏi phải biết một "
+        "hoặc nhiều hệ số thực nghiệm, các phương trình cơ bản mô tả đặc tính cột nước–lưu lượng của "
+        "những dạng hình học khác nhau có thể suy ra dễ dàng từ những lập luận cơ học chất lưu đơn "
+        "giản."))
+    b.append(p(
+        "Lưu lượng qua một đập tràn thành mỏng rộng <i>b</i> (Hình 28.11) khi mực nước trên ngưỡng là "
+        "<i>h</i> được phân tích bằng cách xét một dải nước nằm ngang dày δ<i>y</i> ở độ sâu <i>y</i> "
+        "dưới mặt nước. Vì vận tốc của nước qua dải này là √(2<i>gy</i>), lưu lượng qua dải là:"))
+    b.append(eq("δQ̇ = bδy√(2gy)", "28.26"))
+    b.append(p("Lưu lượng toàn phần thu được bằng tích phân, có đưa vào hệ số lưu lượng <i>C</i><sub>d</sub>:"))
+    b.append(eq("Q̇ = C<sub>d</sub>√(2g)·b∫₀ʰ √y dy", "28.27"))
+    b.append(eq("Q̇ = (2/3)C<sub>d</sub>√(2g)·bh<sup>3/2</sup>", "28.28"))
+    b.append(p(
+        "Các hiệu chỉnh thực nghiệm cho Phương trình 28.28 để kể đến chiều cao đập tràn <i>p</i> được "
+        "nêu, ví dụ, trong [3]; nhưng miễn là <i>h</i>/<i>p</i> không vượt quá 0,5 thì dùng Phương "
+        "trình 28.28 với hệ số lưu lượng 0,63 là đủ để đạt dung sai lưu lượng 3 %."))
+    b.append(p(
+        "Với cửa tràn chữ nhật, Phương trình 28.28 cũng áp dụng được với hệ số lưu lượng 0,59 và dung "
+        "sai lưu lượng 3 %. Vì trên thực tế hệ số lưu lượng thay đổi chút ít theo cột nước với cả đập "
+        "tràn lẫn cửa tràn, đôi khi người ta thích thay Phương trình 28.28 bằng Q̇ = <i>Kbh</i><sup>n</sup>, "
+        "trong đó <i>K</i> và <i>n</i> được xác định bằng hiệu chuẩn."))
+    b.append(p(
+        "Cửa tràn tam giác (Hình 28.13) có ưu điểm là chiều dài mép ướt thay đổi theo cột nước, ngược "
+        "với cửa tràn chữ nhật nơi chiều dài này không đổi. Do đó hệ số lưu lượng của cửa tràn tam "
+        "giác là hằng số với mọi cột nước. Hơn nữa, dải đo đạt được (tỉ số lưu lượng cực đại trên cực "
+        "tiểu) của dạng tam giác lớn hơn. Nếu <i>h</i> là chiều cao mặt nước và θ là góc của cửa tràn, "
+        "thì một dải ngang của cửa tràn dày δ<i>y</i> ở độ sâu <i>y</i> có chiều rộng "
+        "2(<i>h</i> − <i>y</i>)tan(θ/2). Lưu lượng qua dải này là:"))
+    b.append(eq("δQ̇ = 2(h − y)tan(θ/2)δy√(2gy)·C<sub>d</sub>", "28.29"))
+    b.append(p("cho lưu lượng toàn phần qua cửa tràn:"))
+    b.append(eq("Q̇ = 2C<sub>d</sub>√(2g)·tan(θ/2)∫₀ʰ (h − y)√y dy", "28.30"))
+    b.append(eq("Q̇ = (8/15)C<sub>d</sub>√(2g)·tan(θ/2)·h<sup>5/2</sup>", "28.31"))
+    b.append(p("Hệ số lưu lượng vào khoảng 0,58."))
+    b.append(p(
+        "Các góc cửa tràn thường dùng là 90° (tan θ/2 = 1; <i>C</i><sub>d</sub> = 0,578), 53,13° "
+        "(tan θ/2 = 0,5; <i>C</i><sub>d</sub> = 0,577) và 28,07° (tan θ/2 = 0,25; <i>C</i><sub>d</sub> "
+        "= 0,587). Cửa tràn có θ = 53,13° và θ = 28,07° cho lưu lượng tương ứng bằng một nửa và một "
+        "phần tư lưu lượng của cửa tràn 90° ở cùng cột nước."))
+    b.append(p(
+        "Các suy dẫn trên giả thiết nước chảy ra từ một hồ chứa có diện tích mặt cắt lớn hơn nhiều "
+        "diện tích dòng chảy tại đập tràn, sao cho vận tốc thượng lưu không đáng kể. Khi đập tràn được "
+        "xây trong một kênh có diện tích mặt cắt <i>A</i>, nước sẽ có vận tốc tới hữu hạn "
+        "<i>v</i>₁ = Q̇/<i>A</i>. Ở mức xấp xỉ đầu tiên, Q̇ thu được từ Phương trình 28.28 với giả thiết "
+        "vận tốc tới bằng không. Giả thiết thêm rằng <i>v</i>₁ phân bố đều trên đập tràn, sẽ có thêm "
+        "một cột nước <i>v</i>₁²/2<i>g</i> tác dụng trên toàn bộ đập tràn. Theo Hình 28.11, lưu lượng "
+        "toàn phần khi đó là:"))
+    b.append(eq("Q̇ = C<sub>d</sub>√(2g)·b∫<sub>v₁²/2g</sub><sup>h+v₁²/2g</sup> √y dy", "28.32"))
+    b.append(eq("Q̇ = (2/3)C<sub>d</sub>√(2g)·b[(h + v₁²/2g)<sup>3/2</sup> − (v₁²/2g)<sup>3/2</sup>]", "28.33"))
+    b.append(p(
+        "Từ Phương trình 28.33 có thể xác định một giá trị hiệu chỉnh của <i>v</i>₁. Các lần lặp tiếp "
+        "theo hội tụ nhanh tới giá trị cuối cùng của lưu lượng Q̇. Phương trình 28.33 có thể viết là:"))
+    b.append(eq("Q̇ = (2/3)C<sub>v</sub>C<sub>d</sub>√(2g)·bh<sup>3/2</sup>", "28.34"))
+    b.append(p("trong đó"))
+    b.append(eq("C<sub>v</sub> = (1 + v₁²/2gh)<sup>3/2</sup> − (v₁²/2gh)<sup>3/2</sup>", "28.35"))
+    b.append(p("là hệ số vận tốc, thường được xác định bằng thực nghiệm."))
+    b.append(p(
+        "Qua một đập tràn đỉnh rộng (Hình 28.14), lưu lượng phụ thuộc cột nước <i>h</i>₁, chiều rộng "
+        "<i>b</i> và chiều dài <i>l</i> của ngưỡng. Lưu lượng còn phụ thuộc độ nhám bề mặt ngưỡng và "
+        "độ nhớt. Do đó có tổn thất cột nước khi nước chảy qua ngưỡng. Người ta giả thiết ngưỡng đủ "
+        "dài để vận tốc phân bố đều với giá trị <i>v</i> trên suốt độ sâu <i>h</i>₂ của nước ở mép hạ "
+        "lưu của ngưỡng. Bỏ qua tổn thất:"))
+    b.append(eq("v = √[2g(h₁ − h₂)]", ""))
+    b.append(p("và lưu lượng là:"))
+    b.append(eq("Q̇ = C<sub>d</sub>bh₂v = C<sub>d</sub>b√[2g(h₁h₂² − h₂³)]", "28.36"))
+    b.append(p(
+        "Từ Phương trình 28.36, lưu lượng đạt cực đại khi (<i>h</i>₁<i>h</i>₂² − <i>h</i>₂³) đạt cực "
+        "đại, tức khi <i>h</i>₂ = 2<i>h</i>₁/3. Lưu lượng khi đó là:"))
+    b.append(eq("Q̇ = (2/3)<sup>3/2</sup>C<sub>d</sub>b√g·h₁<sup>3/2</sup>", "28.37"))
+    b.append(p("Trạng thái ổn định của đập tràn nằm ở lưu lượng cực đại."))
+    b.append(p(
+        "<b>Phân tích lưu lượng cho máng.</b> Lưu lượng qua một máng phụ thuộc mực nước <i>h</i>, "
+        "chiều rộng kênh <i>b</i> và vận tốc <i>v</i> tại mỗi mặt cắt 1 (thượng lưu) và 2 (tại tiết "
+        "diện nhỏ nhất) trên Hình 28.15. Áp dụng phương trình Bernoulli cho lối vào và họng máng, bỏ "
+        "qua mọi tổn thất, ta được:"))
+    b.append(eq("ρgH = ρgh₁ + ½ρv₁² = ρgh₂ + ½ρv₂²", "28.38"))
+    b.append(p(
+        "trong đó <i>H</i> là cột nước toàn phần. Phân tích sau đó về hình thức giống hệt phân tích "
+        "cho đập tràn đỉnh rộng, cho cùng biểu thức lưu lượng như Phương trình 28.37. Dòng qua máng "
+        "đạt cực đại khi độ sâu tại họng bằng hai phần ba cột nước toàn phần. Thông thường người ta "
+        "đưa vào một hệ số vận tốc để phương trình lưu lượng trở thành:"))
+    b.append(eq("Q̇ = (2/3)<sup>3/2</sup>C<sub>v</sub>C<sub>d</sub>b√g·h₁<sup>3/2</sup>", "28.39"))
+    b.append(p(
+        "Hệ số tổ hợp được xác định bằng thực nghiệm. Trong [3] có nêu giá trị "
+        "<i>C</i><sub>v</sub><i>C</i><sub>d</sub> = 1,061 − 0,085."))
+    b.append(p(
+        "Tính đúng đắn của các hệ số thực nghiệm nêu trên, hoặc của các hệ số khác cho trong các tiêu "
+        "chuẩn về đo lưu lượng kênh hở, chỉ có thể bảo đảm với một mức tin cậy nhất định khi hệ đo "
+        "thoả mãn những ràng buộc hình học nhất định. Các giới hạn về những đại lượng như <i>b</i>, "
+        "<i>h</i>, <i>h</i>/<i>b</i>, v.v. được nêu trong [3] và trong các tiêu chuẩn."))
+
+    b.append(h4("Rotameter: phân tích dòng chảy bên trong",
+                "Rotameter: Internal Flow Analysis"))
+    b.append('<p style="font-weight:650;margin:1.4rem 0 .45rem">Tính toán dòng chảy bên trong. '
+             '<span class="en">Computation of Internal Flow.</span></p>')
+    b.append(p(
+        "Việc cải tiến thiết kế rotameter có thể được hỗ trợ nhờ hiểu biết chi tiết trường dòng bên "
+        "trong — nơi đặc trưng bởi gradient vận tốc rất dốc và các vùng dòng tách. Việc đo trường dòng "
+        "bên trong gặp khó khăn vì kích thước khe quanh phao nhỏ và thành ống thuỷ tinh cong mạnh. "
+        "Bückle và cộng sự [13] đã dùng thành công phép đo vận tốc bằng laser Doppler [14] cho một "
+        "rotameter. Chất lưu làm việc là dung dịch glycerin có chiết suất (1,455) gần với chiết suất "
+        "của thuỷ tinh (1,476). Nhờ vậy tránh được vấn đề khúc xạ tia laser tại thành ống cong, nhưng "
+        "độ nhớt cao của glycerin hạn chế thí nghiệm ở chế độ chảy tầng với số Reynolds "
+        "<i>Re</i> = ρ<i>U</i><sub>IN</sub><i>D</i><sub>b</sub>/μ &lt; 400."))
+    b.append(p(
+        "Việc áp dụng động lực học chất lưu tính toán cho dòng chảy trong rotameter [13] bao gồm việc "
+        "giải bằng thể tích hữu hạn các phương trình bảo toàn khối lượng và động lượng. Với dòng chảy "
+        "tầng hai chiều, các phương trình này có thể viết trong hệ toạ độ trụ cực như sau:"))
+    b.append(eq("∂ρ/∂t + ∂(ρu)/∂z + (1/r)·∂(ρrv)/∂r = 0", "28.40"))
+    b.append(eq("∂(ρu)/∂t + ∂/∂z(ρuu − 2μ∂u/∂z) + (1/r)·∂/∂r[ρruv − μr(∂u/∂r + ∂v/∂z)] = −∂p/∂z", "28.41"))
+    b.append(eq("∂(ρv)/∂t + ∂/∂z[ρuv − μ(∂u/∂r + ∂v/∂z)] + (1/r)·∂/∂r(ρrvv − 2μr∂v/∂r) = −∂p/∂r", "28.42"))
+    b.append(p(
+        "trong đó ρ là khối lượng riêng, <i>u</i>, <i>v</i> và <i>r</i>, <i>z</i> là các thành phần vận "
+        "tốc và các hướng toạ độ theo phương trục và phương bán kính, μ là độ nhớt động lực, và "
+        "<i>p</i> là áp suất."))
+    b.append(p(
+        "Để giải số, các phương trình chủ đạo cho một biến vận chuyển tổng quát φ (tức <i>u</i> hoặc "
+        "<i>v</i>) được tích phân hình thức trên từng thể tích kiểm soát của lưới tính. Phương trình "
+        "cân bằng thông lượng thu được lại có thể rời rạc hoá thành một phương trình đại số cho φ tại "
+        "tâm P của mỗi thể tích kiểm soát, theo các giá trị φ<sub>nb</sub> tại bốn điểm lân cận gần "
+        "nhất của điểm P và các hàm đã biết <i>A</i>:"))
+    b.append(eq("A<sub>P</sub>φ<sub>P</sub> + Σ<sub>nb</sub>A<sub>nb</sub>φ<sub>nb</sub> = S<sub>φ</sub>", "28.43"))
+    b.append(p(
+        "Với toàn miền nghiệm, ta thu được một hệ phương trình có thể giải bằng một thuật toán thích "
+        "hợp (ví dụ [15])."))
+    b.append(p(
+        "Với rotameter, tính đối xứng của bài toán cho phép chọn miền tính là một nửa mặt phẳng qua "
+        "trục. Các điều kiện biên là:"))
+    b.append(eq("u = v = 0", "28.44"))
+    b.append(p("dọc theo thành, và"))
+    b.append(eq("∂u/∂r = v = 0", "28.45"))
+    b.append(p(
+        "dọc theo trục đối xứng. Tại biên lối vào, mặt cắt ban đầu của thành phần vận tốc <i>u</i> "
+        "được lấy từ thực nghiệm. Tại biên lối ra, giả thiết gradient bằng không với mọi biến phụ "
+        "thuộc."))
+    b.append('<p style="font-weight:650;margin:1.4rem 0 .45rem">Trường dòng tính được. '
+             '<span class="en">Computed Flow Field.</span></p>')
+    b.append(p(
+        "Các tính toán đại diện cho số Reynolds 220 được trình bày dưới dạng vectơ vận tốc (Hình "
+        "28.18) và đường dòng (Hình 28.19). Các mặt cắt vận tốc đo được và tính được trên một bán "
+        "kính của ống lưu lượng kế được so sánh trên Hình 28.20."))
+    b.append(fig(18, F.fig(18), "vi"))
+    b.append(fig(19, F.fig(19), "vi"))
+    b.append(fig(20, F.fig(20), "vi"))
+    b.append(p(
+        "Tại <i>z</i> = 45 mm, kết quả tính cho thấy một điểm dừng tại mũi phao, nhưng phép đo cho một "
+        "vận tốc trục nhỏ nhưng hữu hạn. Độ lệch khỏi giá trị không là do vị trí phao hơi không ổn "
+        "định và do gradient vận tốc hướng tâm rất dốc bị làm nhoè trên thể tích đo. Hiệu ứng này "
+        "cũng thấy rõ ở các bán kính tới khoảng 5 mm, nơi kết quả tính cho gradient vận tốc dốc hơn "
+        "hẳn so với phép đo. Vận tốc đỉnh đo được và tính được khớp tốt với nhau, dù đỉnh đo được nằm "
+        "ở bán kính lớn hơn."))
+    b.append(p(
+        "Trong vành khuyên hội tụ mạnh giữa phao và thành ống (<i>z</i> = 65 mm) và trên mặt phẳng "
+        "<i>z</i> = 88 mm, kết quả tính tái hiện tốt xu hướng của kết quả đo, đặc biệt gần thành lưu "
+        "lượng kế. Sự khác biệt trong vùng sát phao là do mặt cắt đo bị bất đối xứng vì đoạn ống nối "
+        "phía thượng lưu ống rotameter."))
+    b.append(p(
+        "Phía trên phao (<i>z</i> = 110 mm) có một dòng hướng lên mạnh trong vùng vành khuyên sát thành "
+        "ống và một vùng tuần hoàn quanh trục chiếm gần nửa mặt cắt ống. Các vận tốc thuận chiều khớp "
+        "tốt giữa tính toán và đo đạc, nhưng có sự khác biệt rất rõ trong vùng tuần hoàn. Tại "
+        "<i>z</i> = 135 mm, vùng tuần hoàn đã kết thúc nhưng vệt xoáy sau phao vẫn còn rất rõ. Ngoài "
+        "sai lệch khoảng 10 % trên trục, kết quả của hai phương pháp khớp nhau đáng kể."))
+    b.append(p(
+        "Ảnh hưởng của chuyển động quay của phao lên trường dòng được xét bằng tính toán có kể thêm "
+        "phương trình cho thành phần vận tốc phương vị <i>w</i>."))
+    b.append(eq("∂(ρw)/∂t + ∂/∂z(ρuw − μ∂w/∂z) + (1/r)·∂/∂r[ρrvw − μr∂w/∂r] = −ρvw/r − μw/r²", "28.46"))
+    b.append(p(
+        "Các tính toán với tần số quay 1 Hz cho thấy vận tốc xoáy lớn nhất ở gần trục, phía trên phao. "
+        "Không thấy ảnh hưởng rõ rệt của chuyển động quay lên các thành phần vận tốc <i>u</i> và "
+        "<i>v</i> [16]."))
+
+    b.append(h3("Tóm tắt", "Summary"))
+    b.append(p(
+        "Với dòng chảy trong ống, lưu lượng kế biến diện tích phù hợp nhất cho lưu lượng nhỏ của khí "
+        "hoặc chất lỏng ở nhiệt độ và áp suất vừa phải. Các ưu điểm gồm kết cấu chắc chắn, độ tin cậy "
+        "cao, tổn thất áp suất thấp, lắp đặt dễ và giá thành thấp. Nhược điểm gồm độ bất định đo từ "
+        "1 % trở lên, dải đo hạn chế (10:1), đáp ứng chậm và hạn chế về hướng đặt thiết bị. Tỉ số "
+        "giá/hiệu năng nói chung tốt đã khiến loại lưu lượng kế này được dùng rộng rãi trong nhiều "
+        "dụng cụ khoa học và y tế, và trong nhiều ứng dụng công nghiệp để theo dõi lưu lượng."))
+    b.append(p(
+        "Lưu lượng kế biến diện tích dùng cho dòng chảy hở có ứng dụng đo lưu lượng ở nhà máy xử lý "
+        "nước thải, nhà máy nước, sông suối, hệ thống tưới tiêu và kênh thoát nước. Các ứng dụng thuỷ "
+        "văn của đập tràn có ngưỡng hay đỉnh điều chỉnh được gồm điều tiết lưu lượng, đo lưu lượng, "
+        "kiểm soát mực nước thượng lưu và xả lưu lượng dư trên sông suối, kênh mương. Sự chắc chắn, "
+        "đơn giản và chi phí bảo trì thấp là những đặc tính thuận lợi cho việc dùng các lưu lượng kế "
+        "này ngoài hiện trường."))
+
+    b.append(h3("Tài liệu tham khảo", "References"))
+    b.append(wl([
+        "1. R. A. Furness, BS7045: the principles of flowmeter selection, <i>Flow Meas. Instrum.</i>, "
+        "2, 233–242, 1991.",
+        "2. W. Boiten, Flow-measuring structures, <i>Flow Meas. Instrum.</i>, 4, 17–24, 1993.",
+        "3. R. Hershey, General purpose flow measurement equations for flumes and thin plate weirs, "
+        "<i>Flow Meas. Instrum.</i>, 6, 283–293, 1995.",
+        "4. ISO 1438, <i>Thin Plate Weirs</i>, International Standards Organisation, Geneva, 1980.",
+        "5. ISO 4359, <i>Rectangular, Trapezoidal and U-shaped Flumes</i>, International Standards "
+        "Organisation, Geneva, 1983.",
+        "6. ISO 8368, <i>Guidelines for the Selection of Flow Gauging Structures</i>, International "
+        "Standards Organisation, Geneva, 1985.",
+        "7. G. Ruppel and K. J. Umpfenbach, Strömungstechnische Untersuchungen an Schwimmermessern, "
+        "<i>Technische Mechanik und Thermodynamik</i>, 1, 225–233, 257–267, 290–296, 1930.",
+        "8. K. Lutz, Die Berechnung des Schwebekörper-Durchflußmessers, <i>Regelungstechnik</i>, 10, "
+        "355–360, 1959.",
+        "9. D. Bender, Ähnlichkeitsparameter und Durchflußgleichungen für "
+        "Schwebekörperdurchflußmesser, <i>ATM-Archiv für Technisches Messen</i>, 391, 97–102, 1968.",
+        "10. VDE/VDI-Fachgruppe Meßtechnik 3513, <i>Schwebekörperdurchflußmesser, "
+        "Berechnungsverfahren</i>, VDE/VDI 3513, 1971.",
+        "11. H. Nikolaus, Berechnungsverfahren für Schwebekörperdurchflußmesser, theoretische "
+        "Grundlagen und Aufbereitung für die Datenverarbeitungsanlage, <i>ATM-Archiv für Technisches "
+        "Messen</i>, 435, 49–55, 1972.",
+        "12. H. Nikolaus and M. Feck, Graphische Verfahren zur Bestimmung von Durchflußkennlinien für "
+        "Schwebekörperdurchflußmeßgeräte, <i>ATM-Archiv für Technisches Messen</i>, 1247-5, 171–176, "
+        "1974.",
+        "13. U. Bückle, F. Durst, B. Howe, and A. Melling, Investigation of a floating element flow "
+        "meter, <i>Flow Meas. Instrum.</i>, 3, 215–225, 1992.",
+        "14. F. Durst, A. Melling, and J. H. Whitelaw, <i>Principles and Practice of Laser-Doppler "
+        "Anemometry</i>, 2nd ed., London: Academic Press, 1981.",
+        "15. M. Perić, M. Schäfer, and E. Schreck, Computation of fluid flow with a parallel multigrid "
+        "solver, <i>Proc. Conf. Parallel Computational Fluid Dynamics</i>, Stuttgart, 1991.",
+        "16. U. Bückle, F. Durst, H. Köchner, and A. Melling, Further investigation of a floating "
+        "element flowmeter, <i>Flow Meas. Instrum.</i>, 6, 75–78, 1995.",
+    ]))
+    return "".join(b)
+
+
+def sec_28_2_en():
+    b = []
+    b.append(h2("28.2 Variable Area Flowmeters", "Lưu lượng kế biến diện tích"))
+    b.append(p("Adrian Melling, Herbert Köchner and Reinhard Haak — Universität Erlangen-Nürnberg."))
+    b.append(p(
+        "The term <b>variable area flowmeters</b> refers to those meters in which the minimum "
+        "cross-sectional area available to the flow through the meter varies with the flow rate. "
+        "Meters of this type discussed in this section include the rotameter and the movable vane "
+        "meter used in pipe flows, and the weir or flume used in open-channel flows. The measure of "
+        "the flow rate is a geometrical quantity such as the height of a bob in the rotameter, the "
+        "angle of the vane, or the change in height of the free surface of the liquid flowing over "
+        "the weir or through the flume."))
+    b.append(p(
+        "Most of the discussion here is devoted to the rotameter, firstly because the number of "
+        "installed rotameters and movable vane meters is large relative to the number of weirs and "
+        "flumes, and secondly because the movable vane is often used simply as a flow indicator "
+        "rather than as a meter."))
+    b.append(p(
+        "The following section includes basic information describing the main constructional "
+        "features and applications of each type of meter. In the third section, the principles of "
+        "measurement and design of rotameters and open-channel meters are described in some detail; "
+        "the movable vane meter is not considered further because most design aspects are similar "
+        "to those of rotameters. Then, the contribution of modern computational and experimental "
+        "methods of fluid mechanics to flowmeter design is discussed, using the results of a "
+        "detailed investigation of the internal flow."))
+    b.append(p(
+        "Details of manufacturers of rotameters and movable vane meters, together with approximate "
+        "costs of these meters, are also tabulated in Tables 28.5 through 28.7."))
+
+    b.append(h3("General Description of Variable Area Flowmeters", "Mô tả chung lưu lượng kế biến diện tích"))
+
+    b.append(h4("Rotameter"))
+    b.append(p(
+        "The rotameter is a robust and simple flowmeter for gases and liquids, and holds a large "
+        "share of the market for pipe diameters smaller than about 100 mm. In its basic form, the "
+        "rotameter consists of a conical transparent vertical glass tube containing a “bob” (Figure "
+        "28.7), which rises in the tube with increasing flow rate until a balance is reached between "
+        "gravitational, buoyancy, and drag forces on the bob. Within the range of a particular "
+        "flowmeter (depending on the bob shape and density, the tube shape and the fluid density and "
+        "viscosity), the flow rate is linearly proportional to the height of the bob in the tube and "
+        "is determined simply by reading the level of the upper edge of the bob. The rotameter is "
+        "also known as “floating element flowmeter,” although the buoyancy force on the “floating "
+        "element” is not sufficient to make it float."))
+    b.append(fig(7, F.fig(7), "en"))
+    b.append(p(
+        "The bob is commonly formed of a combination of cylindrical and conical sections, but a "
+        "spherical bob is often used in small diameter tubes (see Figure 28.8). More complicated bob "
+        "geometries can reduce the sensitivity to viscosity of the fluid. Frequently, the bob has "
+        "several shallow inclined grooves around the upper rim that induce a slow rotation (frequency "
+        "about 1 Hz) of the bob, which helps to maintain a stable position of the bob. In larger "
+        "rotameters where the additional friction is acceptable, the bob can be allowed to slide up "
+        "and down a rod on the tube axis to prevent any sideways motion."))
+    b.append(fig(8, F.fig(8), "en"))
+    b.append(p(
+        "Various tube geometries are in use. The basic requirement for an increase in the "
+        "cross-sectional area up the height of the tube leads to the conical tube. An alternative "
+        "form uses three ribs arranged circumferentially around the tube to guide the bob; the flow "
+        "area between the ribs increases along the tube height. For spherical bobs, a triangular tube "
+        "in which the bob remains in contact with three surfaces over the whole height of the tube "
+        "prevents lateral movement of the bob with minimum friction. Commonly, the tube is made of "
+        "glass to facilitate the reading of the flow rate from a scale engraved on the tube. For "
+        "general-purpose applications, the scale can be marked in millimeters; the flow rate is then "
+        "determined by a conversion factor depending on the tube dimensions, the mass of the bob, the "
+        "pressure and temperature, and the properties of the fluid. For specific application to a "
+        "single fluid under controlled conditions, it is more convenient to have the flow rate "
+        "directly marked on the tube."))
+    b.append(p(
+        "For laboratory use, medical equipment, and other applications with small flow rates, the "
+        "glass tube is almost universal. Laboratory meters are often equipped with a flow valve that "
+        "allows direct flow setting and reading. For many small rotameters, integrated flow "
+        "controllers are offered; these hold the pressure drop and the flow setting constant, even "
+        "with changing upstream or downstream pressure."))
+    b.append(p(
+        "For most rotameters, electric limit switches or analog electric signal transducers are "
+        "available. For glass and plastic meters, inductive or optical switches are used that can be "
+        "positioned to the desired level of the bob. While some units just detect the bob within "
+        "their active area, other switches have bistable operation, wherein the switch is toggled by "
+        "the float passing the switch."))
+    b.append(p(
+        "For industrial applications, the metering of corrosive fluids or fluids at high temperature "
+        "or pressure leads to the use of stainless steel tubes or a wide range of other materials "
+        "chosen to suit the application requirements (e.g., temperature, pressure, corrosion). Most "
+        "metal rotameters use a permanent magnetic coupling between the float and the pointer of the "
+        "indicator, enabling a direct analog flow reading without electric supply. Electric switches "
+        "can, however, be added to the indicator, and electric and pneumatic transmitters for the "
+        "flow reading are offered by most producers. Some units are equipped with options such as "
+        "flow totalizers, mass flow calculation units for gas applications in conjunction with "
+        "temperature and pressure sensors, or energy calculation units. Due to the frequent "
+        "application of the rotameter in the chemical and petrochemical industry, electric options "
+        "are often designed for use in hazardous areas."))
+    b.append(p("The rotameter is characterized by:"))
+    b.append(ul([
+        "Simple and robust construction",
+        "High reliability",
+        "Low pressure drop",
+        "Applicable to a wide variety of gases and liquids",
+        "Flow range typically 0.04 L h⁻¹ to 150 m³ h⁻¹ for water",
+        "Flow range typically 0.5 L h⁻¹ to 3000 m³ h⁻¹ for air",
+        "10:1 flow range for a given bob-tube combination",
+        "Uncertainty 0.4% to 4% of maximum flow",
+        "Insensitivity to nonuniformity in the inflow (no upstream straight piping needed)",
+        "Typical maximum temperature 400 °C",
+        "Typical maximum pressure 4 MPa (40 bar)",
+        "Low investment cost",
+        "Low installation cost",
+    ]))
+    b.append(table(*_t285("en")))
+    b.append(table(*_t287("en")))
+
+    b.append(h4("Movable Vane Meter", "Lưu lượng kế cánh quay"))
+    b.append(p(
+        "The movable vane meter is a robust device suitable for the measurement of high flow rates "
+        "where only moderate requirements on the measurement accuracy are made. Dirty fluids can also "
+        "be metered. It contains a flap that at zero flow is held closed by a weight or a spring "
+        "(Figure 28.9). A flow forces the vane open until the dynamic force of the flow is in balance "
+        "with the restoring force of the weight or the spring. The angle of the vane is thus a "
+        "measure of the flow rate, which can be directly indicated by a pointer attached to the shaft "
+        "of the vane on a calibrated scale. The resistance provided by the vane depends on the vane "
+        "position and hence on the flow rate or Reynolds number; a recalibration is therefore "
+        "necessary when the fluid is changed. An important application is the metering of the air "
+        "flow in automotive engines with fuel injection."))
+    b.append(fig(9, F.fig(9), "en"))
+    b.append(p(
+        "In low-cost flow indicators, a glass or plastic window allows a direct view of the flap "
+        "(Figure 28.10). Sometimes, optical or reed switches in combination with a permanent magnet "
+        "attached to the flap are used as electric flow switches. All-metal units use a magnetic "
+        "coupling between the vane and the pointer of the indicator, thus avoiding most of the "
+        "friction and material selection problems. Many applications use the movable vane meter as a "
+        "flow switch with appropriate mechanical, magnetic, inductive, or optical switches. The "
+        "setting of the switch is done once for all during the installation. Since a continuous flow "
+        "indication is not needed, flow reading uncertainties are not of concern."))
+    b.append(fig(10, F.fig(10), "en"))
+    b.append(p(
+        "Most aspects of design and application of rotameters can be applied to movable vane meters, "
+        "although the latter are characterized by a higher uncertainty of the flow reading. General "
+        "features of both types of variable area flowmeter are summarized, for example, in reference "
+        "[1]. Since the basic construction of the two meter types is very similar, the unit costs "
+        "also lie in the same range."))
+    b.append(table(*_t286("en")))
+
+    b.append(h4("Weir, Flume", "Đập tràn, máng"))
+    b.append(p(
+        "Of the methods available for the metering of a liquid (generally water) in open-channel "
+        "flow, the weir and the flume fall within the scope of this discussion on variable area "
+        "flowmeters. In each case, the flow metering depends on measurement of the difference in "
+        "height <i>h</i> of the water surface over an obstruction across the channel and the surface "
+        "sufficiently far upstream. There is a wide variety of geometries in use (see reference [2]), "
+        "but most of these can be described as variants of three basic types. In the <b>sharp "
+        "crested weir</b>, also known as the thin plate weir (Figure 28.11), the sill or crest is "
+        "only about 1 mm to 2 mm thick. The sheet of liquid flowing over the weir, called the "
+        "<i>nappe</i> or <i>vein</i>, separates from the weir body after passing over the crest. An "
+        "air-filled zone at atmospheric pressure is formed underneath the outflowing jet, and the "
+        "streamlines above the weir are strongly curved. If the width of the weir is less than that "
+        "of the upstream channel (Figures 28.12 and 28.13), the term “notch” is frequently used. A "
+        "<b>broad crested weir</b> (Figure 28.14) has a sill which is long enough for straight, "
+        "parallel streamlines to form above the crest. In this review, the term “weir” is applied "
+        "generally to both the weir and the notch."))
+    b.append(fig(11, F.fig(11), "en"))
+    b.append(p(
+        "The resistance to flow introduced by the weir causes the water level upstream to rise. If it "
+        "is assumed that the flow velocity some distance upstream of the weir is zero, then a simple "
+        "measure of the upstream water level suffices to determine the discharge over a weir of known "
+        "geometry. As in the case of an orifice in pipe flow, there will be a contraction of the "
+        "nappe and a frictional resistance at the sides as water flows over a weir. The actual "
+        "discharge is less than the theoretical discharge according to an empirically determined "
+        "coefficient of discharge <i>C</i><sub>d</sub>. In the analysis of rectangular notches and "
+        "weirs, it is frequently assumed that the channel width remains constant so that a "
+        "contraction of the nappe occurs only in the vertical direction as the water accelerates over "
+        "the obstacle. When the weir is narrower than the upstream channel, there is an additional "
+        "horizontal contraction. The effect of a significant upstream velocity is accounted for "
+        "empirically."))
+    b.append(fig(12, F.fig(12), "en"))
+    b.append(fig(13, F.fig(13), "en"))
+    b.append(fig(14, F.fig(14), "en"))
+    b.append(p(
+        "As an alternative to the weir, the <b>flume</b> (Figure 28.15) provides a method for flow "
+        "metering with relatively low pressure loss. By restricting the channel width, analogous to "
+        "the Venturi tube used in pipe flow, the flow velocity in the narrow portion of the channel is "
+        "increased and the water level sinks accordingly. Most of the head of water is recovered in "
+        "the diffusing section of the flume. The water levels upstream and in the throat of the flume "
+        "can be determined by simple floats and recorded on a chart by pens driven mechanically from "
+        "the floats. For remote monitoring, the use of echo sounders is advantageous."))
+    b.append(fig(15, F.fig(15), "en"))
+    b.append(p(
+        "The weir is preferentially used in natural river beds and the flume in canalized water "
+        "courses. The flume must be used in streams with sediment transport to avoid the accumulation "
+        "of deposits that would occur at the approach to a weir. Weirs and flumes are characterized "
+        "by:"))
+    b.append(ul([
+        "Simple measurement of the water level",
+        "Simple maintenance",
+        "Reliable measurement of large flow rates at low stream velocity",
+        "Limited measurement accuracy (at best about 2%)",
+        "High installation costs, particularly for flumes",
+    ]))
+    b.append(p(
+        "Recommendations for installation of weirs and flumes, for the location of the head measuring "
+        "station upstream, and for determining the discharge from the measured head are given, for "
+        "example, in [2] and [3] as well as in appropriate standards (e.g., [4–6])."))
+
+    b.append(h3("Measuring Principles of Variable Area Flowmeters",
+                "Nguyên lý đo của lưu lượng kế biến diện tích"))
+
+    b.append(h4("Rotameter: Flow Rate Analysis", "Rotameter: phân tích lưu lượng"))
+    b.append(p(
+        "The forces acting on the bob lead to equilibrium between the weight of the bob "
+        "ρ<sub>b</sub><i>gV</i><sub>b</sub> acting downwards and the buoyancy force "
+        "ρ<i>gV</i><sub>b</sub> and the drag force <i>F</i><sub>d</sub> acting upwards, where "
+        "<i>V</i><sub>b</sub> is the volume and ρ<sub>b</sub> is the density of the bob, ρ is the "
+        "density of the fluid, and <i>g</i> is the gravitational acceleration:"))
+    b.append(eq("ρ<sub>b</sub>gV<sub>b</sub> = ρgV<sub>b</sub> + F<sub>d</sub>", "28.7"))
+    b.append(p(
+        "The drag force results from the flow field surrounding the bob and particularly from the "
+        "wake of the bob. In flow analyses based on similarity principles, these influences are "
+        "accounted for by empirical coefficient <i>C</i><sub>L</sub> or <i>C</i><sub>T</sub> in the "
+        "drag law for:"))
+    b.append(eq('<span style="font-style:italic;margin-right:1.4rem">laminar flow</span>'
+                'F<sub>d</sub> = C<sub>L</sub>μD<sub>b</sub>U', "28.8"))
+    b.append(eq('<span style="font-style:italic;margin-right:1.4rem">turbulent flow</span>'
+                'F<sub>d</sub> = C<sub>T</sub>ρD<sub>b</sub>²U²', "28.9"))
+    b.append(p(
+        "where μ is the fluid viscosity, <i>D</i><sub>b</sub> is the maximum bob diameter, and "
+        "<i>U</i> is the velocity in the annular gap around the bob at the minimum cross-section."))
+    b.append(p("The volume flow rate through the rotameter is:"))
+    b.append(eq("Q̇ = (π/4)(D² − D<sub>b</sub>²)U", "28.10"))
+    b.append(p("or"))
+    b.append(eq("Q̇ = m(π/4)D<sub>b</sub>²U", "28.11"))
+    b.append(p("where <i>m</i> is the open area ratio, defined as:"))
+    b.append(eq("m = (D² − D<sub>b</sub>²) / D<sub>b</sub>²", "28.12"))
+    b.append(p("and <i>D</i> is the tube diameter at the height of the bob."))
+    b.append(p("Combining Equations 28.7, 28.8, and 28.10 gives for laminar flow:"))
+    b.append(eq("Q̇ = αD<sub>b</sub>⁴(ρ<sub>b</sub> − ρ)g / μ", "28.13"))
+    b.append(p(
+        "where the parameter α is defined in terms of a constant <i>K</i> = <i>V</i><sub>b</sub> / "
+        "<i>D</i><sub>b</sub>³ characteristic of the shape of the bob:"))
+    b.append(eq("α = πmK / (4C<sub>L</sub>)", "28.14"))
+    b.append(p("Using Equation 28.9 instead of Equation 28.8 yields for turbulent flow:"))
+    b.append(eq("Q̇ = βD<sub>b</sub><sup>5/2</sup>√[(ρ<sub>b</sub> − ρ)g / ρ]", "28.15"))
+    b.append(p("where"))
+    b.append(eq("β = (πm / 4)√(K / C<sub>T</sub>)", "28.16"))
+    b.append(p(
+        "With either laminar or turbulent flow through the rotameter, it is clear from Equations "
+        "28.13 and 28.15 that the flow rate is proportional to <i>m</i>. If the cross-sectional area "
+        "of the tube is made to increase linearly with length, i.e.,"))
+    b.append(eq("D = D<sub>b</sub>(1 + h tan φ)", "28.17"))
+    b.append(p(
+        "then since the cone angle φ of the tube is small, Equation 28.12 can be written as:"))
+    b.append(eq("m = 2h tan φ", "28.18"))
+    b.append(p("and the flow rate is directly proportional to the height <i>h</i> of the bob."))
+
+    b.append(h4("Similarity Analysis", "Phân tích tương tự"))
+    b.append(p(
+        "In early studies of floating element flowmeters, Ruppel and Umpfenbach [7] proposed the "
+        "introduction of characteristic dimensionless quantities, to permit the use of "
+        "experimentally determined flow coefficients in flowmeter analysis. Lutz [8] extended these "
+        "ideas by showing that the transfer of flow coefficients from one flowmeter to another is "
+        "possible if geometrical similarity exists. More recent works [9–12] have used these "
+        "principles to produce graphical or computer-based design schemes and have proposed general "
+        "guidelines for laying out practical flow metering systems."))
+    b.append(p("The basic scaling parameter for flow is the Reynolds number, defined as:"))
+    b.append(eq("Re = ρU<sub>IN</sub>D<sub>b</sub> / μ", "28.19"))
+    b.append(p(
+        "where <i>U</i><sub>IN</sub> is the velocity at the rotameter inlet, and the tube diameter "
+        "<i>D</i> is represented by its value at the inlet, equal to the bob diameter "
+        "<i>D</i><sub>b</sub>. Through the Reynolds number regimes of laminar or turbulent flow, and "
+        "particularly important for the rotameter flow regimes with strong or weak viscosity "
+        "dependence, can be distinguished. Originating in the work [7], it has been found to be "
+        "practical for rotameters to use an alternative characteristic number, the Ruppel number, "
+        "defined as:"))
+    b.append(eq("Ru = μ / √[m<sub>b</sub>gρ(1 − ρ/ρ<sub>b</sub>)]", "28.20"))
+    b.append(p(
+        "where <i>m</i><sub>b</sub> = ρ<sub>b</sub><i>D</i><sub>b</sub>³ is the mass of the bob. By "
+        "combining Equations 28.15, 28.16, and 28.20, the mass flow ṁ through the rotameter can be "
+        "written as:"))
+    b.append(eq("ṁ = (π/4)·mD<sub>b</sub>μ / (√C<sub>T</sub>·Ru)", "28.21"))
+    b.append(p("Alternatively, from the definition:"))
+    b.append(eq("ṁ = ρQ̇ = ρU<sub>IN</sub>(π/4)D<sub>b</sub>²", "28.22"))
+    b.append(p("and Equation 28.19, the flow rate is:"))
+    b.append(eq("ṁ = (π/4)D<sub>b</sub>μRe", "28.23"))
+    b.append(p(
+        "Equations 28.21 and 28.23 give the following relationship between the Ruppel number and the "
+        "Reynolds number:"))
+    b.append(eq("Ru = m / (√C<sub>T</sub>·Re)", "28.24"))
+    b.append(p("An analysis for laminar flow leads to the relationship:"))
+    b.append(eq("Ru = √(m / (C<sub>L</sub>Re))", "28.25"))
+    b.append(p(
+        "The advantage of the Ruppel number is its independence of the flow rate. Since the Ruppel "
+        "number contains only fluid properties and the mass and the density of the bob, it is a "
+        "constant for a particular instrument."))
+    b.append(p(
+        "At low Ruppel numbers the linear resistance law assumed in Equation 28.8 applies and α is a "
+        "constant for given <i>m</i>, as shown in Figure 28.16. At higher Ruppel numbers, the flow is "
+        "transitional or turbulent, and log α decreases linearly with log <i>Ru</i>. In Figure 28.17, "
+        "curves for β against Ruppel number show a linear increase of log β with log <i>Ru</i> in the "
+        "laminar region, followed by a gradual transition to horizontal curves in fully turbulent "
+        "flow."))
+    b.append(fig(16, F.fig(16), "en"))
+    b.append(fig(17, F.fig(17), "en"))
+    b.append(p(
+        "Similarity analysis of rotameters allows the easy calculation of the flow reading with "
+        "changing density and viscosity of the fluid. For lower viscosities, only the density effect "
+        "has to be taken into account; hence, for most gas measurements, simple conversion factors "
+        "can be used. With higher viscosity, manufacturers offer either Ruppel number-related "
+        "conversion factors or two-dimensional tables of conversion factors to be applied to "
+        "different heights of the bob. Some manufacturers offer recalibration services, allowing the "
+        "user to order new scales for instruments to be used in changed applications and "
+        "environments. For large-order users, simple computer programs are available from some "
+        "manufacturers for scale calculations."))
+    b.append(p(
+        "Theories based on similarity considerations can predict the variation of the flow "
+        "coefficient with the Ruppel number in the laminar and turbulent flow regimes but not in "
+        "laminar-turbulent transitional flow. Detailed experimental and computational studies can "
+        "assist the flow analysis of floating element flowmeters. An example is given in the section "
+        "“Rotameter Internal Flow Analysis.”"))
+
+    b.append(h4("Weir, Flume: Flow Rate Analysis", "Đập tràn và máng: phân tích lưu lượng"))
+    b.append(p(
+        "Although the determination of the discharge across a weir or a flume generally requires the "
+        "knowledge of one or more empirical coefficients, the basic equations describing the "
+        "head-discharge characteristics of the various geometrical forms are readily derived from "
+        "simple fluid mechanics considerations."))
+    b.append(p(
+        "The discharge over a sharp crested weir of width <i>b</i> (Figure 28.11) when the water "
+        "level over the sill is <i>h</i> is analyzed by considering a horizontal strip of water of "
+        "thickness δ<i>y</i> at a depth <i>y</i> below the water surface. Since the velocity of the "
+        "water through this strip is √(2<i>gy</i>), the discharge is:"))
+    b.append(eq("δQ̇ = bδy√(2gy)", "28.26"))
+    b.append(p(
+        "The total discharge is obtained by integration, introducing a coefficient of discharge "
+        "<i>C</i><sub>d</sub>:"))
+    b.append(eq("Q̇ = C<sub>d</sub>√(2g)·b∫₀ʰ √y dy", "28.27"))
+    b.append(eq("Q̇ = (2/3)C<sub>d</sub>√(2g)·bh<sup>3/2</sup>", "28.28"))
+    b.append(p(
+        "Empirical corrections to Equation 28.28 to account for the weir height <i>p</i> are given, "
+        "for example, in [3], but provided <i>h</i>/<i>p</i> does not exceed 0.5, it is adequate to "
+        "use Equation 28.28 with a discharge coefficient of 0.63 to achieve a flow rate tolerance of "
+        "3%."))
+    b.append(p(
+        "For the rectangular notch, Equation 28.28 also applies with a discharge coefficient of 0.59 "
+        "and a flow rate tolerance of 3%. Since in practice the discharge coefficient varies slightly "
+        "with the head of water for both weirs and notches, it is sometimes preferred to replace "
+        "Equation 28.28 by Q̇ = <i>Kbh</i><sup>n</sup>, where <i>K</i> and <i>n</i> are determined by "
+        "calibration."))
+    b.append(p(
+        "The triangular notch (Figure 28.13) offers the advantage that the length of the wetted edge "
+        "varies with the head of water, in contrast with the rectangular notch where it is constant. "
+        "Consequently, the discharge coefficient of the triangular notch is constant for all heads. "
+        "Furthermore, the achievable range (ratio of maximum to minimum flow rates) is higher for the "
+        "triangular geometry. If <i>h</i> is the height of the water surface and θ is the angle of "
+        "the notch, then a horizontal strip of the notch of thickness δ<i>y</i> at depth <i>y</i> has "
+        "a width 2(<i>h</i> − <i>y</i>)tan(θ/2). The discharge through this strip is"))
+    b.append(eq("δQ̇ = 2(h − y)tan(θ/2)δy√(2gy)·C<sub>d</sub>", "28.29"))
+    b.append(p("giving a total discharge through the notch:"))
+    b.append(eq("Q̇ = 2C<sub>d</sub>√(2g)·tan(θ/2)∫₀ʰ (h − y)√y dy", "28.30"))
+    b.append(eq("Q̇ = (8/15)C<sub>d</sub>√(2g)·tan(θ/2)·h<sup>5/2</sup>", "28.31"))
+    b.append(p("The discharge coefficient is about 0.58."))
+    b.append(p(
+        "Commonly used notch angles are 90° (tan θ/2 = 1, <i>C</i><sub>d</sub> = 0.578), 53.13° "
+        "(tan θ/2 = 0.5, <i>C</i><sub>d</sub> = 0.577), and 28.07° (tan θ/2 = 0.25, "
+        "<i>C</i><sub>d</sub> = 0.587). Notches with θ = 53.13° and θ = 28.07° deliver, "
+        "respectively, one half and one quarter of the discharge of the 90° notch at the same head."))
+    b.append(p(
+        "The above derivations assume that the water is discharging from a reservoir with "
+        "cross-sectional area far exceeding the flow area at the weir, so that the velocity upstream "
+        "is negligible. When the weir is built into a channel of cross-sectional area <i>A</i>, the "
+        "water will have a finite velocity of approach <i>v</i>₁ = Q̇/<i>A</i>. As a first "
+        "approximation, Q̇ is obtained from Equation 28.28 assuming zero velocity of approach. "
+        "Assuming further that <i>v</i>₁ is uniform over the weir, there will be an additional head "
+        "<i>v</i>₁²/2<i>g</i> acting over the entire weir. Referring to Figure 28.11, the total "
+        "discharge is then:"))
+    b.append(eq("Q̇ = C<sub>d</sub>√(2g)·b∫<sub>v₁²/2g</sub><sup>h+v₁²/2g</sup> √y dy", "28.32"))
+    b.append(eq("Q̇ = (2/3)C<sub>d</sub>√(2g)·b[(h + v₁²/2g)<sup>3/2</sup> − (v₁²/2g)<sup>3/2</sup>]", "28.33"))
+    b.append(p(
+        "From Equation 28.33, a corrected value of <i>v</i>₁ can be determined. Further iterations "
+        "converge rapidly to the final value of the discharge Q̇. Equation 28.33 can be written as:"))
+    b.append(eq("Q̇ = (2/3)C<sub>v</sub>C<sub>d</sub>√(2g)·bh<sup>3/2</sup>", "28.34"))
+    b.append(p("where"))
+    b.append(eq("C<sub>v</sub> = (1 + v₁²/2gh)<sup>3/2</sup> − (v₁²/2gh)<sup>3/2</sup>", "28.35"))
+    b.append(p("is the coefficient of velocity, which is frequently determined empirically."))
+    b.append(p(
+        "Over a broad-crested weir (Figure 28.14), the discharge depends on the head <i>h</i>₁, the "
+        "width <i>b</i>, and the length <i>l</i> of the sill. There is also a dependence on the "
+        "roughness of the sill surface and the viscosity. Consequently, there is a loss of head as "
+        "the water flows over the sill. It is assumed that the sill is of sufficient length to allow "
+        "the velocity to be uniform at a value <i>v</i> throughout the depth <i>h</i>₂ of the water "
+        "at the downstream edge of the sill. Neglecting losses"))
+    b.append(eq("v = √[2g(h₁ − h₂)]", ""))
+    b.append(p("and the discharge is:"))
+    b.append(eq("Q̇ = C<sub>d</sub>bh₂v = C<sub>d</sub>b√[2g(h₁h₂² − h₂³)]", "28.36"))
+    b.append(p(
+        "From Equation 28.36, the discharge is a maximum when (<i>h</i>₁<i>h</i>₂² − <i>h</i>₂³) "
+        "reaches a maximum, i.e., when <i>h</i>₂ = 2<i>h</i>₁/3. This discharge is then:"))
+    b.append(eq("Q̇ = (2/3)<sup>3/2</sup>C<sub>d</sub>b√g·h₁<sup>3/2</sup>", "28.37"))
+    b.append(p("The stable condition of the weir lies at the maximum discharge."))
+    b.append(p(
+        "<b>Flow rate analysis for flumes.</b> The discharge through a flume depends on the water "
+        "level <i>h</i>, the channel width <i>b</i>, and velocity <i>v</i> at each of the stations 1 "
+        "(upstream) and 2 (at the minimum cross-section) in Figure 28.15. Applying Bernoulli’s "
+        "equation to the inlet and the throat, neglecting all losses, one obtains:"))
+    b.append(eq("ρgH = ρgh₁ + ½ρv₁² = ρgh₂ + ½ρv₂²", "28.38"))
+    b.append(p(
+        "where <i>H</i> is the total head. The analysis is then formally the same as that for the "
+        "broad-crested weir, giving the same expression for the discharge as in Equation 28.37. The "
+        "flow through the flume is a maximum when the depth at the throat is two thirds of the total "
+        "head. Normally, a coefficient of velocity is introduced so that the discharge equation is:"))
+    b.append(eq("Q̇ = (2/3)<sup>3/2</sup>C<sub>v</sub>C<sub>d</sub>b√g·h₁<sup>3/2</sup>", "28.39"))
+    b.append(p(
+        "The combined coefficient is determined empirically. In [3], a value "
+        "<i>C</i><sub>v</sub><i>C</i><sub>d</sub> = 1.061 − 0.085 is quoted."))
+    b.append(p(
+        "The validity of the empirical coefficients quoted above, or of other coefficients given in "
+        "the various standards for metering of open-channel flows, can only be guaranteed with a "
+        "given confidence level for meter installations satisfying certain geometrical constraints. "
+        "Limits on quantities such as <i>b</i>, <i>h</i>, <i>h</i>/<i>b</i>, etc. are given in [3] "
+        "and the standards."))
+
+    b.append(h4("Rotameter: Internal Flow Analysis", "Rotameter: phân tích dòng chảy bên trong"))
+    b.append('<p style="font-weight:650;margin:1.4rem 0 .45rem">Computation of internal flow. '
+             '<span class="en">Tính toán dòng chảy bên trong.</span></p>')
+    b.append(p(
+        "Improvement of rotameter design could be assisted by detailed knowledge of the internal flow "
+        "field, which is characterized by steep velocity gradients and regions of separated flow. "
+        "Measurements of the internal flow field are complicated by the small dimensions of the gap "
+        "around the bob and the strongly curved glass tube. Bückle et al. [13] successfully used "
+        "laser Doppler anemometry [14] for velocity measurements in a rotameter. The working fluid "
+        "was a glycerine solution with an index of refraction (1.455) close to that of glass (1.476). "
+        "Problems with refraction of the laser beams at the curved tube wall were thus avoided, but "
+        "the high viscosity of glycerine restricted the experiments to laminar flow at Reynolds "
+        "numbers <i>Re</i> = ρ<i>U</i><sub>IN</sub><i>D</i><sub>b</sub>/μ &lt; 400."))
+    b.append(p(
+        "The application of computational fluid dynamics to the flow in a rotameter [13] involves the "
+        "finite volume solution of the conservation equations for mass and momentum. For a "
+        "two-dimensional laminar flow, these equations can be written in a cylindrical polar "
+        "coordinate system as:"))
+    b.append(eq("∂ρ/∂t + ∂(ρu)/∂z + (1/r)·∂(ρrv)/∂r = 0", "28.40"))
+    b.append(eq("∂(ρu)/∂t + ∂/∂z(ρuu − 2μ∂u/∂z) + (1/r)·∂/∂r[ρruv − μr(∂u/∂r + ∂v/∂z)] = −∂p/∂z", "28.41"))
+    b.append(eq("∂(ρv)/∂t + ∂/∂z[ρuv − μ(∂u/∂r + ∂v/∂z)] + (1/r)·∂/∂r(ρrvv − 2μr∂v/∂r) = −∂p/∂r", "28.42"))
+    b.append(p(
+        "where ρ is the density, <i>u</i>, <i>v</i> and <i>r</i>, <i>z</i> are the velocity "
+        "components and coordinate directions in the axial and radial directions, respectively, μ is "
+        "the dynamic viscosity, and <i>p</i> is the pressure."))
+    b.append(p(
+        "For the numerical solution, the governing equations for a generalized transport variable φ "
+        "(i.e., <i>u</i> or <i>v</i>) are formally integrated over each control volume (CV) of the "
+        "computational grid. The resulting flux balance equation can in turn be discretized as an "
+        "algebraic equation for φ at the center P of each CV in terms of the values φ<sub>nb</sub> at "
+        "the four nearest neighbors of point P and known functions <i>A</i>:"))
+    b.append(eq("A<sub>P</sub>φ<sub>P</sub> + Σ<sub>nb</sub>A<sub>nb</sub>φ<sub>nb</sub> = S<sub>φ</sub>", "28.43"))
+    b.append(p(
+        "For the whole solution domain, a system of equations results that can be solved by a "
+        "suitable algorithm (e.g. [15])."))
+    b.append(p(
+        "For a rotameter, the symmetry of the problem allows the computational solution domain to be "
+        "chosen as one half diametral plane of the rotameter. The boundary conditions are:"))
+    b.append(eq("u = v = 0", "28.44"))
+    b.append(p("along the walls, and"))
+    b.append(eq("∂u/∂r = v = 0", "28.45"))
+    b.append(p(
+        "along the axis of symmetry. At the input boundary, the initial profile for the "
+        "<i>u</i>-velocity is taken from the experiment. At the outlet boundary, zero gradient is "
+        "assumed for all dependent variables."))
+    b.append('<p style="font-weight:650;margin:1.4rem 0 .45rem">Computed flow field. '
+             '<span class="en">Trường dòng tính được.</span></p>')
+    b.append(p(
+        "Representative calculations for Reynolds number 220 are shown as velocity vectors (Figure "
+        "28.18) and streamlines (Figure 28.19). Experimental and computed velocity profiles over a "
+        "radius of the flowmeter tube are shown in Figure 28.20."))
+    b.append(fig(18, F.fig(18), "en"))
+    b.append(fig(19, F.fig(19), "en"))
+    b.append(fig(20, F.fig(20), "en"))
+    b.append(p(
+        "At <i>z</i> = 45 mm, the computations indicate a stagnation point at the bob tip, but the "
+        "measurements show a low but finite axial velocity. The deviation from zero is attributable "
+        "to slight unsteadiness in the position of the bob and to smearing of the steep radial "
+        "velocity gradient along the measuring volume. This effect is also apparent at radii up to "
+        "about 5 mm, where the computations show a notably steeper velocity gradient than the "
+        "measurements. The measured and computed peak velocities agree well, although the measured "
+        "peak is located at a larger radius."))
+    b.append(p(
+        "In the strongly converging annulus between the bob and the tube wall (<i>z</i> = 65 mm) and "
+        "in the plane <i>z</i> = 88 mm, the computations reproduce well the trend of the measured "
+        "results, particularly near the flowmeter wall. Discrepancies in the region adjacent to the "
+        "bob are attributable to asymmetry in measured profiles arising from the piping upstream of "
+        "the rotameter tube."))
+    b.append(p(
+        "Above the bob (<i>z</i> = 110 mm), there is a strong upward flow in an annular region near "
+        "the tube wall and a recirculation region around the axis occupying almost half the tube "
+        "cross-section. The forward velocities show a good match between computations and "
+        "measurements, but there is a very marked discrepancy in the recirculation zone. At "
+        "<i>z</i> = 135 mm, the recirculation zone is finished, but the wake of the bob is still very "
+        "evident. Except for a discrepancy of about 10% on the axis, the results from the two methods "
+        "agree remarkably well."))
+    b.append(p(
+        "The effect of rotation of the bob on the flow field was considered by computations, "
+        "including an equation for the azimuthal velocity component <i>w</i>."))
+    b.append(eq("∂(ρw)/∂t + ∂/∂z(ρuw − μ∂w/∂z) + (1/r)·∂/∂r[ρrvw − μr∂w/∂r] = −ρvw/r − μw/r²", "28.46"))
+    b.append(p(
+        "Calculations for 1 Hz rotation frequency showed the highest swirl velocities close to the "
+        "axis above the bob. There was no observable influence of the rotation on the <i>u</i>- and "
+        "<i>v</i>-velocity components [16]."))
+
+    b.append(h3("Summary", "Tóm tắt"))
+    b.append(p(
+        "For pipe flows, variable area flowmeters are most suitable for low flow rates of gases or "
+        "liquids at moderate temperatures and pressures. Favorable features include rugged "
+        "construction, high reliability, low pressure drop, easy installation, and low cost. "
+        "Disadvantages include measurement uncertainty of 1% or more, limited range (10:1), slow "
+        "response, and restrictions on the meter orientation. A generally good price/performance "
+        "ratio has led to widespread use of these meters in numerous scientific and medical "
+        "instruments and in many industrial applications for flow monitoring."))
+    b.append(p(
+        "Variable area flowmeters in open-channel flows have applications for flow measurements in "
+        "waste water plants, waterworks, rivers and streams, irrigation, and drainage canals. "
+        "Hydrological applications of weirs with adjustable sill or crest height include flow "
+        "regulation, flow measurement, upstream water level control, and discharge of excess flow in "
+        "streams, rivers, and canals. Ruggedness, simplicity, and low maintenance costs are favorable "
+        "characteristics for field applications of these meters."))
+
+    b.append(h3("References", "Tài liệu tham khảo"))
+    b.append(wl([
+        "1. R. A. Furness, BS7045: the principles of flowmeter selection, <i>Flow Meas. Instrum.</i>, "
+        "2, 233–242, 1991.",
+        "2. W. Boiten, Flow-measuring structures, <i>Flow Meas. Instrum.</i>, 4, 17–24, 1993.",
+        "3. R. Hershey, General purpose flow measurement equations for flumes and thin plate weirs, "
+        "<i>Flow Meas. Instrum.</i>, 6, 283–293, 1995.",
+        "4. ISO 1438, <i>Thin Plate Weirs</i>, International Standards Organisation, Geneva, 1980.",
+        "5. ISO 4359, <i>Rectangular, Trapezoidal and U-shaped Flumes</i>, International Standards "
+        "Organisation, Geneva, 1983.",
+        "6. ISO 8368, <i>Guidelines for the Selection of Flow Gauging Structures</i>, International "
+        "Standards Organisation, Geneva, 1985.",
+        "7. G. Ruppel and K. J. Umpfenbach, Strömungstechnische Untersuchungen an Schwimmermessern, "
+        "<i>Technische Mechanik und Thermodynamik</i>, 1, 225–233, 257–267, 290–296, 1930.",
+        "8. K. Lutz, Die Berechnung des Schwebekörper-Durchflußmessers, <i>Regelungstechnik</i>, 10, "
+        "355–360, 1959.",
+        "9. D. Bender, Ähnlichkeitsparameter und Durchflußgleichungen für "
+        "Schwebekörperdurchflußmesser, <i>ATM-Archiv für Technisches Messen</i>, 391, 97–102, 1968.",
+        "10. VDE/VDI-Fachgruppe Meßtechnik 3513, <i>Schwebekörperdurchflußmesser, "
+        "Berechnungsverfahren</i>, VDE/VDI 3513, 1971.",
+        "11. H. Nikolaus, Berechnungsverfahren für Schwebekörperdurchflußmesser, theoretische "
+        "Grundlagen und Aufbereitung für die Datenverarbeitungsanlage, <i>ATM-Archiv für Technisches "
+        "Messen</i>, 435, 49–55, 1972.",
+        "12. H. Nikolaus and M. Feck, Graphische Verfahren zur Bestimmung von Durchflußkennlinien für "
+        "Schwebekörperdurchflußmeßgeräte, <i>ATM-Archiv für Technisches Messen</i>, 1247-5, 171–176, "
+        "1974.",
+        "13. U. Bückle, F. Durst, B. Howe, and A. Melling, Investigation of a floating element flow "
+        "meter, <i>Flow Meas. Instrum.</i>, 3, 215–225, 1992.",
+        "14. F. Durst, A. Melling, and J. H. Whitelaw, <i>Principles and Practice of Laser-Doppler "
+        "Anemometry</i>, 2nd ed., London: Academic Press, 1981.",
+        "15. M. Perić, M. Schäfer, and E. Schreck, Computation of fluid flow with a parallel multigrid "
+        "solver, <i>Proc. Conf. Parallel Computational Fluid Dynamics</i>, Stuttgart, 1991.",
+        "16. U. Bückle, F. Durst, H. Köchner, and A. Melling, Further investigation of a floating "
+        "element flowmeter, <i>Flow Meas. Instrum.</i>, 6, 75–78, 1995.",
+    ]))
+    return "".join(b)
+
+
 # ================================================================ build
 
-SECTIONS_VI = [sec_28_1_vi]
-SECTIONS_EN = [sec_28_1_en]
+SECTIONS_VI = [sec_28_1_vi, sec_28_2_vi]
+SECTIONS_EN = [sec_28_1_en, sec_28_2_en]
 
 
 def body_vi():
@@ -982,8 +2177,8 @@ def build(lang):
              'Chương 28' % BASE_VI if vi else
              '<a href="/books/">Books</a> · <a href="%s">Measurement, Instrumentation and Sensors '
              'Handbook</a> · Chapter 28' % BASE_EN)
-    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 1/11 mục" if vi else
-            "Chapter 28 · in progress: 1 of 11 sections")
+    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 2/11 mục" if vi else
+            "Chapter 28 · in progress: 2 of 11 sections")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
             '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'
