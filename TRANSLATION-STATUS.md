@@ -1,9 +1,9 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-10-31 (session 17 — Chapter 17 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-10-31 (session 18 — Chapter 18 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 18** (and onward). Chapters
-> 1–17 are done, live, and registered. `work/hb_ch17.txt` is translated; Chapter 18+ source
+> **Where to start next:** Handbook **Chapter 19** (and onward). Chapters
+> 1–18 are done, live, and registered. `work/hb_ch18.txt` is translated; Chapter 19+ source
 > PDFs must be extracted from the 117-file handbook library before translation.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
@@ -42,7 +42,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–17** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–18** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -67,6 +67,7 @@ Chapters done, with their slugs and build scripts:
 | HB 15 | Tilt Measurement | `ch15-tilt-measurement` | `reader_hb_ch15.py` + `hb15fig.py` | 5 | ~5.0k |
 | HB 16 | Velocity Measurement | `ch16-velocity-measurement` | `reader_hb_ch16.py` + `hb16fig.py` | 16 | ~8.0k |
 | HB 17 | Acceleration, Vibration, and Shock Measurement | `ch17-acceleration-vibration-shock-measurement` | `reader_hb_ch17.py` + `hb17fig.py` | 23 | ~11k |
+| HB 18 | Time Measurement | `ch18-time-measurement` | `reader_hb_ch18.py` + `hb18fig.py` | 3 | ~9k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
@@ -106,7 +107,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `(level, total_chapters, done_chapters)`.
-  Currently `("progress", 101, 17)`, `("full", 16, 16)`, `("full", 14, 14)`.
+  Currently `("progress", 101, 18)`, `("full", 16, 16)`, `("full", 14, 14)`.
 - `build/books_site.py` → `FLAG_LABEL = {level: (vi_format, en_format)}` — **the pill text
   is derived from `level`, not hard-coded.** Add a level here as well as in the CSS, or the
   pill will read "Translating" on a finished book.
@@ -604,6 +605,39 @@ TOC, and the live VI page reports 16 figures. Library pill now `Đang dịch · 
 `pdf-store-b` junctions and `library/pdfindex.json`; copy the needed `ChNN.pdf` into `work/`, extract, then
 follow the §4 recipe. Note the registry edits (`DONE[16]`, `("progress", 101, 16)`) were applied cleanly this
 session — reconfirmed both before committing.
+
+### 2026-10-31, session 18 — Handbook Chapter 18, Time Measurement (+ TOC badge links)
+
+**Shipped:** Handbook chapter 18, *Time Measurement* (Michael A. Lombardi, NIST) — 18 source pages.
+Full Vietnamese translation + English companion at
+`/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch18-time-measurement/`.
+Handbook progress 17/101 → 18/101; `DONE[18]`, `("progress", 101, 18)`, and the §2 table all updated.
+
+**What was written this session:**
+
+- `build/hb18fig.py` — **all 3** real figures (18.1 one-way time transfer; 18.2 common-view time transfer;
+  18.3 two-way time transfer). No padding — the source has exactly 3 figures; everything else is 8 data
+  tables. All 3 SVGs validated (parse OK).
+- `build/reader_hb_ch18.py` — full VI translation + EN companion. Embeds all 3 figures (3/3 parity), equation
+  18.1 `f=(E₂−E₁)/h`, and all **8 tables** (18.1 frequency↔timing uncertainty; 18.2 clock evolution; 18.3 GPS
+  one-way uncertainty SPS/PPS; 18.4 radio-signal performance; 18.5 radio-clock makers; 18.6 ACTS time code;
+  18.7 dial-up services; 18.8 Internet time protocols). Covers §18.1 clocks → §18.8 future, plus the 32-item
+  reference list. `work/hb_ch18.txt` extracted from `pdf-store/Ch18__b0fda379dc6815d6.pdf` (18 pages).
+- **TOC fix (user request):** the "đã dịch" / "translated" status badges on the handbook TOC were plain text,
+  so clicking them did nothing. `reader_handbook.py` now wraps each done-row badge in an `<a>` to the same
+  chapter page, and `books/assets/library.css` gained `.toc-list .st a { color: inherit; border-bottom: none; }`
+  (+ hover underline). All 18 done rows on both VI and EN TOCs now link from the badge.
+- Figure parity: VI 3/3 and EN 3/3, IDs `fig-18-1`…`fig-18-3` confirmed; VI page 69 kB (8 tables), EN 14 kB.
+
+**Deploy:** `build.py` → `cp -r dist/. ./` (from project root) → `reader_hb_ch18.py` → `reader_handbook.py`
+(18 done rows), `books_site.py` (progress 101→18), `make_sitemap.py` (515 URLs, 500 EN/VI pairs),
+`check_links.py` (517 pages, 14,047 references, **0 broken**). Committed `82496e6`; remote already at
+`2c7c2a6` (no rebase) → pushed `2c7c2a6..82496e6` on `main`. Live: 200 on both VI/EN, 3 figures each, TOC
+badges now clickable, `library.css` carries the badge rule, TOC shows **18/101**.
+
+**Chapters 1–18 done; 83 to go.** Next unit is Chapter 19. Same junction + `library/pdfindex.json` workflow;
+copy the needed `ChNN.pdf` into `work/`, extract, then follow the §4 recipe. Registry edits (`DONE[18]`,
+`("progress", 101, 18)`) applied and reconfirmed before committing.
 
 ### 2026-10-31, session 17 — Handbook Chapter 17, Acceleration, Vibration, and Shock Measurement
 
