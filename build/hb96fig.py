@@ -735,3 +735,333 @@ _FIGS = {
 
 def fig(n):
     return _FIGS[n]()
+
+
+# ---------------------------------------------------------------- 96.13
+def fig_96_13():
+    tag = "9613"
+    o = [_defs(tag)]
+
+    # ---- (a) head / medium cross-section
+    o.append(_rect(70, 206, 550, 40, 1.1, "#ececec"))
+    o.append(_lbl(84, 262, "Magnetic medium", "ts"))
+
+    mx = 118
+    for k in range(8):
+        d = 1 if k % 2 == 0 else -1
+        x = mx + k * 62
+        o.append(_arr(x - 22 * d, 226, x + 22 * d, 226, tag, 1.1))
+
+    o.append('<path d="M376,190 L320,190 L320,112 L440,112 L440,190 L384,190" '
+             'fill="none" stroke="%s" stroke-width="26" stroke-linejoin="round" '
+             'stroke-linecap="butt"/>' % E)
+    o.append(_lbl(380, 168, "Gap", "ts", "middle"))
+    o.append(_arr(380, 172, 380, 196, tag, 1.0))
+    o.append(_lbl(400, 220, "\u03c6", "tf"))
+
+    for k in range(6):
+        o.append('<ellipse cx="%s" cy="112" rx="5.5" ry="13" fill="#ffffff" '
+                 'stroke="%s" stroke-width="1.1"/>' % (_f(344 + k * 14), E))
+    o.append(_lbl(438, 92, "Coil", "ts"))
+
+    o.append(_arr(300, 74, 300, 96, tag, 1.1))
+    o.append(_lbl(292, 68, "i", "tf", "end"))
+    o.append(_arr(462, 96, 462, 74, tag, 1.1))
+    o.append(_lbl(470, 68, "i", "tf"))
+
+    o.append(_arr(556, 186, 600, 186, tag, 1.2))
+    o.append(_lbl(606, 190, "V", "tf"))
+
+    o.append(_line(430, 250, 430, 262, 1.0))
+    o.append(_line(560, 250, 560, 262, 1.0))
+    o.append(_arr(431, 256, 559, 256, tag, 1.0))
+    o.append(_arr(559, 256, 431, 256, tag, 1.0))
+    o.append(_lbl(495, 278, "B", "tf", "middle"))
+
+    o.append(_lbl(380, 44, "(a)", "ts", "middle"))
+
+    # ---- (b) write / read timing
+    x0, x1 = 190, 600
+    cells = 6
+    cw = (x1 - x0) / float(cells)
+    bits = [1, 0, 1, 0, 0, 1]
+
+    o.append(_lbl(96, 320, "Encoded data", "ts"))
+    for k, b in enumerate(bits):
+        o.append(_lbl(x0 + cw * (k + 0.5), 320, str(b), "tm", "middle"))
+
+    # current i
+    yi = 350
+    o.append(_lbl(96, yi + 4, "i", "tf"))
+    o.append(_line(x0, yi, x1, yi, 1.0, S, "4 3"))
+    cur = [1, -1, 1, -1, 1, -1]
+    for k, c in enumerate(cur):
+        xa, xb = x0 + cw * k, x0 + cw * (k + 1)
+        yy = yi - 13 if c > 0 else yi + 13
+        o.append(_line(xa, yy, xb, yy, 1.6))
+        if k:
+            o.append(_line(xa, yy, xa, yi - 13 if cur[k - 1] > 0 else yi + 13, 1.6))
+    o.append(_lbl(164, yi - 12, "+", "ts", "middle"))
+    o.append(_lbl(164, yi + 16, "\u2212", "ts", "middle"))
+
+    # magnetization M
+    ym = 396
+    o.append(_lbl(96, ym + 4, "M", "tf"))
+    o.append(_line(x0, ym, x1, ym, 1.1))
+    for k, b in enumerate(bits):
+        if not b:
+            continue
+        xa, xb = x0 + cw * k + 6, x0 + cw * (k + 1) - 6
+        d = 1 if k % 4 == 0 else -1
+        xm = (xa + xb) / 2.0
+        o.append(_arr(xm - 14 * d, ym, xm + 14 * d, ym, tag, 1.1))
+
+    # reproducing voltage v
+    yv = 442
+    o.append(_lbl(96, yv + 4, "v", "tf"))
+    o.append(_line(x0, yv, x1, yv, 1.0, S, "4 3"))
+    for k, b in enumerate(bits):
+        if not b:
+            continue
+        xm = x0 + cw * (k + 0.5)
+        d = -1 if k % 4 == 0 else 1
+        pts = [(xm - 20, yv), (xm - 8, yv + 16 * d), (xm + 4, yv),
+               (xm + 14, yv - 6 * d), (xm + 22, yv)]
+        o.append(_path(pts, 1.5))
+
+    # output pulse
+    yp = 486
+    o.append(_lbl(96, yp + 4, "Output pulse", "ts"))
+    o.append(_line(x0, yp, x1, yp, 1.1))
+    for k, b in enumerate(bits):
+        if not b:
+            continue
+        xa, xb = x0 + cw * k + 10, x0 + cw * (k + 1) - 10
+        o.append(_path([(xa, yp), (xa, yp - 20), (xb, yp - 20), (xb, yp)], 1.5))
+
+    # process brackets
+    o.append(_line(632, 338, 632, 410, 1.1))
+    o.append(_lbl(640, 378, "Write process", "ts"))
+    o.append(_line(632, 428, 632, 492, 1.1))
+    o.append(_lbl(640, 464, "Read process", "ts"))
+
+    return _fig(svg(700, 510, "".join(o),
+                    "Nguyên lý ghi từ và quá trình ghi/đọc"),
+                "Sơ đồ khái niệm minh hoạ nguyên lý ghi từ (a), và quá trình ghi/đọc "
+                "lại (b).",
+                "Conceptual diagrams illustrating the magnetic recording principle (a), "
+                "and recording/reproducing process (b).",
+                "Phần (a) là mặt cắt đầu từ hình vành khuyên với khe hở và cuộn dây trên "
+                "môi trường từ; phần (b) là các dạng sóng dòng điện, từ độ, điện áp và "
+                "xung ra khi ghi rồi đọc lại",
+                "Part (a) is a cross-section of a ring head with gap and coil above the "
+                "medium; part (b) shows the current, magnetization, voltage and output "
+                "pulse waveforms for writing then reading")
+
+
+# ---------------------------------------------------------------- 96.14
+def fig_96_14():
+    tag = "9614"
+    o = [_defs(tag)]
+    cx, cy = 250, 160
+    sx, sy = 78.0, 96.0
+
+    o.append(_line(cx - 200, cy, cx + 200, cy, 1.2))
+    o.append(_arr(cx + 186, cy, cx + 202, cy, tag, 1.2))
+    o.append(_line(cx, cy + 120, cx, cy - 120, 1.2))
+    o.append(_arr(cx, cy - 106, cx, cy - 122, tag, 1.2))
+    o.append(_lbl(cx + 208, cy + 4, "H", "tf"))
+    o.append(_lbl(cx + 6, cy - 126, "M", "tf"))
+
+    Ms, Hc, k = 1.0, 0.40, 0.32
+    Mr = Ms * math.tanh(Hc / k)   # remanence: ascending branch at H = 0
+
+    def branch(shift):
+        pts = []
+        N = 160
+        for i in range(N + 1):
+            h = -2.4 + i * 4.8 / N
+            m = Ms * math.tanh((h + shift) / k)
+            pts.append((cx + h * sx, cy - m * sy))
+        return pts
+
+    o.append(_path(branch(Hc), 1.6))     # ascending (H increasing)
+    o.append(_path(branch(-Hc), 1.6))    # descending
+
+    for v, lab in ((Ms, "M"), (Mr, "M")):
+        pass
+    o.append(_lbl(cx - 8, cy - Ms * sy + 4, "M", "tf", "end"))
+    o.append(_rich(cx - 6, cy - Ms * sy + 7, [("s", True)], "end", "ts"))
+    o.append(_lbl(cx - 8, cy - Mr * sy + 4, "M", "tf", "end"))
+    o.append(_rich(cx - 6, cy - Mr * sy + 7, [("r", True)], "end", "ts"))
+    o.append(_line(cx - 4, cy - Ms * sy, cx + 4, cy - Ms * sy, 1.1, S, "3 3"))
+    o.append(_line(cx - 4, cy - Mr * sy, cx + 4, cy - Mr * sy, 1.1, S, "3 3"))
+
+    o.append(_lbl(cx + Hc * sx + 2, cy + 18, "H", "tf", "middle"))
+    o.append(_rich(cx + Hc * sx + 5, cy + 22, [("c", True)], "middle", "ts"))
+    o.append(_line(cx + Hc * sx, cy - 3, cx + Hc * sx, cy + 3, 1.1))
+
+    return _fig(svg(560, 330, "".join(o),
+                    "Vòng từ trễ của vật liệu từ"),
+                "Vòng từ trễ của một vật liệu từ, thể hiện quan hệ phi tuyến giữa M và H "
+                "tạo nên khả năng nhớ từ.",
+                "Hysteresis loop of a magnetic material shows the nonlinear relationship "
+                "between M and H which results in magnetic memory.",
+                "Đường cong từ trễ với từ độ bão hoà Ms, từ dư Mr và lực kháng từ Hc",
+                "A hysteresis loop showing saturation magnetization Ms, remanence Mr and "
+                "coercivity Hc")
+
+
+# ---------------------------------------------------------------- 96.15
+def fig_96_15():
+    tag = "9615"
+    o = [_defs(tag)]
+    x0, w = 120, 200
+
+    # --- particulate tape
+    o.append(_rect(x0, 62, w, 34, 1.0, "#dcdcdc"))
+    for r in range(2):
+        for c in range(7):
+            cx0 = x0 + 14 + c * 26 + (13 if r % 2 else 0)
+            cy0 = 72 + r * 14
+            o.append('<path d="M%s,%s L%s,%s L%s,%s L%s,%s z" fill="#2a2a2a"/>'
+                     % (_f(cx0 - 8), _f(cy0), _f(cx0), _f(cy0 - 5),
+                        _f(cx0 + 8), _f(cy0), _f(cx0), _f(cy0 + 5)))
+    o.append(_rect(x0, 96, w, 54, 1.0, "#f6f6f6"))
+    o.append(_rect(x0, 150, w, 18, 1.0, "#dcdcdc"))
+
+    o.append(_lbl(x0 + w + 12, 82, "Magnetic coat (2 \u2013 5 \u00b5m)", "ts"))
+    o.append(_lbl(x0 + w + 12, 127, "Substrate (10 \u2013 20 \u00b5m)", "ts"))
+    o.append(_lbl(x0 + w + 12, 163, "Back coat (1 \u2013 3 \u00b5m)", "ts"))
+
+    o.append(_lbl(40, 52, "Magnetic", "ts"))
+    o.append(_lbl(40, 64, "particle", "ts"))
+    o.append(_arr(92, 56, 118, 74, tag, 1.0))
+    o.append(_lbl(196, 50, "Binder", "ts"))
+    o.append(_arr(198, 54, 176, 70, tag, 1.0))
+
+    # --- thin film disk
+    y = 208
+    layers = [("Lubricant (1 \u2013 3 nm)", 9, "#e8e8e8"),
+              ("Overcoat (8 \u2013 15 nm)", 14, "#cfcfcf"),
+              ("Magnetic film (15 \u2013 50 nm)", 18, "#8f8f8f"),
+              ("Underlayer (20 \u2013 100 nm)", 26, "#dedede"),
+              ("Undercoat (10 \u2013 20 \u00b5m)", 28, "#f2f2f2"),
+              ("Substrate (0.4 \u2013 1.5 mm)", 52, "#b8b8b8")]
+    for name, hh, col in layers:
+        o.append(_rect(x0, y, w, hh, 1.0, col))
+        o.append(_lbl(x0 + w + 12, y + hh / 2.0 + 3.4, name, "ts"))
+        y += hh
+
+    return _fig(svg(620, 400, "".join(o),
+                    "Mặt cắt băng từ dạng hạt và đĩa cứng màng mỏng"),
+                "Mặt cắt của một băng từ dạng hạt (trên) và của một đĩa cứng màng mỏng "
+                "(dưới).",
+                "Cross-sectional views of a particulate magnetic tape (top) and a thin "
+                "film hard disk (bottom).",
+                "Hai chồng lớp: băng từ gồm lớp từ, đế và lớp phủ sau; đĩa cứng màng "
+                "mỏng gồm chất bôi trơn, lớp phủ, màng từ, lớp đệm, lớp lót và đế",
+                "Two layer stacks: tape with magnetic coat, substrate and back coat; "
+                "thin film disk with lubricant, overcoat, magnetic film, underlayer, "
+                "undercoat and substrate")
+
+
+# ---------------------------------------------------------------- 96.16
+def fig_96_16():
+    tag = "9616"
+    o = [_defs(tag)]
+
+    # (a) laminated head
+    for k in range(5):
+        off = k * 5
+        o.append('<path d="M%s,%s L%s,%s L%s,%s L%s,%s" fill="none" stroke="%s" '
+                 'stroke-width="3.2" stroke-linejoin="round"/>'
+                 % (_f(72 + off), _f(196), _f(72 + off), _f(74 + off),
+                    _f(196 - off), _f(74 + off), _f(196 - off), _f(196), E))
+    o.append(_lbl(120, 60, "Gap", "ts"))
+    o.append(_arr(128, 64, 134, 72, tag, 1.0))
+    o.append(_lbl(206, 66, "Laminations", "ts"))
+    for k in range(5):
+        o.append(_arr(214, 72, 178, 76 + k * 5, tag, 0.9))
+    for k in range(6):
+        o.append('<ellipse cx="%s" cy="130" rx="5" ry="8" fill="none" stroke="%s" '
+                 'stroke-width="1.1"/>' % (_f(196 + k * 11), E))
+    o.append(_lbl(268, 116, "coil", "ts"))
+    o.append(_lbl(134, 226, "(a)", "ts", "middle"))
+
+    # (b) MIG head
+    o.append('<path d="M404,196 L404,96 L446,58 L474,58 L516,96 L516,196" '
+             'fill="none" stroke="%s" stroke-width="2" stroke-linejoin="round"/>' % E)
+    o.append(_rect(444, 46, 10, 22, 1.0, "#cfcfcf"))
+    o.append(_rect(466, 46, 10, 22, 1.0, "#cfcfcf"))
+    o.append(_lbl(430, 38, "Gap", "ts", "middle"))
+    o.append(_rich(486, 38, [("High B", False), ("s", True)], "start", "ts"))
+    o.append(_lbl(486, 50, "films", "ts"))
+    o.append('<path d="M446,68 L474,68 L488,110 L432,110 z" fill="#efefef" stroke="%s" '
+             'stroke-width="1"/>' % E)
+    o.append(_lbl(460, 128, "Bonding", "ts", "middle"))
+    for k in range(6):
+        o.append('<ellipse cx="%s" cy="150" rx="5" ry="8" fill="none" stroke="%s" '
+                 'stroke-width="1.1"/>' % (_f(522 + k * 10), E))
+    o.append(_lbl(556, 136, "Coil", "ts"))
+    o.append(_lbl(416, 176, "Ferrite core", "ts"))
+    o.append(_lbl(460, 226, "(b)", "ts", "middle"))
+
+    # (c) thin film head
+    o.append(_rect(60, 268, 44, 150, 1.0, "#e4e4e4"))
+    o.append(_lbl(62, 264, "Substrate", "ts"))
+    o.append(_rect(104, 268, 26, 150, 1.0, "#f4f4f4"))
+    o.append(_lbl(100, 452, "Undercoat", "ts"))
+    o.append(_rect(130, 268, 74, 150, 1.0, "#fbfbfb"))
+    o.append(_rect(186, 268, 74, 150, 1.0, "#fbfbfb"))
+    o.append('<path d="M150,292 L214,292 L214,336 L196,336 L196,306 L168,306 L168,336 '
+             'L150,336 z" fill="#d9d9d9" stroke="%s" stroke-width="1.2"/>' % E)
+    o.append(_lbl(214, 286, "Core", "ts"))
+    o.append(_lbl(160, 276, "Gap", "ts"))
+    for r in range(4):
+        for c in range(2):
+            o.append(_rect(226 + c * 16, 300 + r * 18, 11, 11, 1.0, "#fff"))
+    o.append(_lbl(268, 330, "Coil", "ts"))
+    o.append(_rect(130, 418, 130, 14, 1.0, "#ececec"))
+    o.append(_lbl(262, 430, "Overcoat", "ts"))
+    o.append(_lbl(160, 478, "(c)", "ts", "middle"))
+
+    # (d) MR sensor
+    o.append(_rect(420, 292, 150, 96, 1.2, "#f7f7f7"))
+    o.append(_rect(400, 292, 20, 96, 1.1, "#dcdcdc"))
+    o.append(_rect(570, 292, 20, 96, 1.1, "#dcdcdc"))
+    o.append(_lbl(430, 286, "MRE", "ts"))
+    o.append(_lbl(478, 402, "Leads", "ts"))
+    o.append(_line(404, 300, 586, 300, 1.0, S, "3 3"))
+    o.append(_line(440, 292, 440, 388, 1.0))
+    o.append(_arr(440, 384, 440, 292, tag, 1.0))
+    o.append(_lbl(434, 344, "h", "tf", "end"))
+    o.append(_line(420, 366, 570, 366, 1.0))
+    o.append(_arr(566, 366, 420, 366, tag, 1.0))
+    o.append(_lbl(495, 380, "w", "tf", "middle"))
+    o.append(_lbl(524, 302, "t", "tf"))
+    o.append(_arr(498, 350, 540, 318, tag, 1.4))
+    o.append(_lbl(546, 314, "M", "tf"))
+    o.append('<path d="M498,350 A 40,40 0 0 0 522,342" fill="none" stroke="%s" '
+             'stroke-width="1"/>' % E)
+    o.append(_lbl(512, 340, "\u03b8", "tf"))
+    o.append(_arr(470, 352, 520, 352, tag, 1.1))
+    o.append(_lbl(526, 356, "J", "tf"))
+    o.append(_lbl(495, 478, "(d)", "ts", "middle"))
+
+    return _fig(svg(700, 496, "".join(o),
+                    "Bốn kiểu đầu từ: lá thép, MIG, màng mỏng và cảm biến từ trở"),
+                "Sơ đồ minh hoạ (a) đầu từ lá thép, (b) mặt cắt đầu từ MIG, (c) mặt cắt "
+                "đầu từ màng mỏng, và (d) cảm biến từ trở có các điện cực.",
+                "Schematic illustrations of (a) a laminated head, (b) cross-section of a "
+                "MIG head, (c) cross-section of a thin film head, and (d) an MR sensor "
+                "with leads.",
+                "Bốn pa-nô: đầu từ lá thép có khe hở và cuộn dây, đầu từ MIG với màng "
+                "từ tính cao ở khe, đầu từ màng mỏng nhiều lớp, và cảm biến từ trở có "
+                "chiều cao h, chiều rộng w, vectơ từ độ M lệch góc theta",
+                "Four panels: laminated head with gap and coil, MIG head with high-Bs "
+                "films at the gap, multilayer thin film head, and an MR sensor of height "
+                "h and width w with magnetization M at angle theta")
+
+
+_FIGS.update({13: fig_96_13, 14: fig_96_14, 15: fig_96_15, 16: fig_96_16})
