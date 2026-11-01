@@ -1,11 +1,11 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 30 — Chapter 98 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 31 — Chapter 97 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 97** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **98, 99, 100, 101** and **Appendix A** are done,
-> live and registered; 28–97 are still `chờ dịch`. The reverse sequence is 97, 96 … down to and
-> including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source text for every chapter is already
+> **Where to start next:** Handbook **Chapter 96** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **97, 98, 99, 100, 101** and **Appendix A** are
+> done, live and registered; 28–96 are still `chờ dịch`. The reverse sequence is 96, 95 … down to
+> and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source text for every chapter is already
 > extracted into `work/hb_chNN.txt`.
 >
 > **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -2029,3 +2029,90 @@ anonymous table cells and the brackets land in the wrong place.
 book TOC renders 28–97 as `chờ dịch`, which is correct. Next in the reverse sequence: **97, PID
 Control** — also a control-theory chapter, so `hb98fig.py`'s `_sum`, `_blk`, `_smooth` and `_path`
 are directly reusable.
+
+---
+
+## Session 31 — 2026-11-01 · Handbook Chapter 97 (*PID Control*)
+
+F. Greg Shinskey, 9 source pages. Four figures, seven equations, five numbered sections, fifteen
+defining terms, three references, no List of Manufacturers. VI translation plus the matching EN
+companion essay.
+
+### Source facts
+
+| Item | Count | Pages |
+|---|---|---|
+| Figures | 4 | 97.1 p3, 97.2/97.3 p4, 97.4 p6 |
+| Equations | 7 (97.1–97.7) | 97.1/97.2 p3, 97.3 p4, 97.4–97.6 p5, 97.7 p6 |
+| Defining terms | 15 | p8–9 |
+| References | 3 | p9 |
+
+Sections: 97.1 Introduction · 97.2 Open and Closed Loops · 97.3 Mode Selection · 97.4 Controller
+Hardware · 97.5 Tuning Controllers.
+
+### Figures (`build/hb97fig.py`)
+
+1. **97.1** — loop diagram. `q`/Load → `g_q` → `−` into `K_p`; `g_m` → `+` → `K_p` → `+`/`−`
+   junction with `u`/Noise from above; `c`/Controlled var. out; dashed Process/Controller divider;
+   `f`/Set point → `g_r` → junction (`t:"−"`, `r:"+"`) → `K_c g_c` → `m`/Manipulated var. → up the
+   left side into `g_m`.
+2. **97.2** — open-loop exponential (dashed) vs closed-loop return to set point (solid).
+3. **97.3** — second-order step, `ζ=0.35` dashed ("No filter") vs `ζ=0.70` solid ("Set-point
+   filter").
+4. **97.4** — interacting PID controller: Filter `(1 + G_r Is)/(1 + Is)` → Σ(`l:+`,`b:−`) → `e` →
+   Σ(`b:−`) → `K_c` → Σ(`l:+`,`b:+`) → Limits → `m`; `c` taps down to the Derivative box
+   `Ds/(1 + αDs)`; dashed `f` from `m` back through `1/(1 + Is)` into the third junction.
+
+### Defects found and fixed
+
+- **97.1's `m` line did not reach `g_m`** — the horizontal stopped at x=196 while the box sat at
+  108–182, with a broken vertical stub. Replaced with `_line(250, 300, 145, 300, 1.3)` plus
+  `_arr(145, 300, 145, 146)`.
+- **97.4 was missing the wire between its two summing junctions**, so `e` had nowhere to go. Added
+  `_arr(205, YM, 284, YM)` and moved the first junction's signs to `l`/`b`.
+- **97.4's `f` arrow was a degenerate 4 px segment** into the Integral box. Replaced with
+  `_arr(522, YL, 509, YL)` plus `_arr(236, YL, 249, YL)` into the Derivative box.
+- **Subscripts `r`, `q`, `m`, `p`, `c` were too small to read** inside the boxes. Raised
+  `<tspan font-size="7.5" dy="2.6">` to `8.2 / 2.4` and `.tf` from 10 px to 11.5 px.
+- **`Load` overlapped the `q` label** in 97.1. Moved to `(136, 60)`.
+
+### Terminology defect (caught only by reading the rendered page)
+
+The first draft rendered *tuning* as **"định cỡ"** throughout — 19 occurrences, including the
+section heading `97.5 Định cỡ bộ điều khiển` and the defining term `Định cỡ (tuning)`. In Vietnamese
+engineering usage **"định cỡ" means *sizing*** (valve sizing = định cỡ van), not tuning; the
+established term is **"chỉnh định"**, which is what every other chapter on the site uses. Normalised:
+
+- `định cỡ` → `chỉnh định` (19 replacements in `reader_hb_ch97.py`)
+- `Tự định cỡ` → `Tự chỉnh định` (autotuning), keeping `Tự chỉnh` for self-tuning
+- heading → `97.5 Chỉnh định bộ điều khiển`
+- defining term → `Chỉnh định (tuning)`
+
+A second, related slip: the 97.3 caption said **"Bộ lọc chỉnh định"** for *set-point filter*. The
+chapter uses "lệnh đặt" for set point everywhere else, so it became **"Bộ lọc lệnh đặt"**.
+
+**Trap worth remembering:** the captions in `hb97fig.py` are written as `\uXXXX` escapes, not literal
+UTF-8. A plain `str.replace("định cỡ", …)` over the source silently does nothing — the file contains
+`\u0111\u1ecbnh c\u1ee1`. Always grep the generator for the **escaped** form, or edit the tuple
+directly.
+
+### Verification
+
+- `reader_handbook.py` → 102 TOC rows, **33** done rows, 14 sections, 101 chapters.
+- `chapter_nav.py` → **64** pages updated. Chapter 97 reads `← Chương 96 Thiết bị đọc và ghi …
+  Chương 98 → Điều khiển tối ưu`; Chapter 98 now reads `← Chương 97 Điều khiển PID`.
+- `check_links.py` → **545 pages, 14,933 local references, 0 broken**.
+- `make_sitemap.py` → **543 URLs, 530 with EN/VI pairs**.
+- Chapter 97 page (both languages): 4 figures, 7 numbered equations, 15 defining terms, 3
+  references, 5 `<svg>` (4 figures + site logo), **zero** `<sub>` or `<sup>` inside any `<svg>`,
+  zero residual `định cỡ`.
+- Live: VI **200**, EN **200**; book index reads **32 / 101**.
+
+### Note for the next session
+
+`books_site.TRANSLATED["measurement, instrumentation and sensors handbook"]` is now
+`("progress", 101, 32)`. `DONE` holds 33 entries — chapters 1–27 plus 97, 98, 99, 100 and 101 — and
+the book TOC renders 28–96 as `chờ dịch`. Next in the reverse sequence: **96, Reading/Recording
+Devices**. Chapter 96 is hardware-oriented (pen recorders, magnetic tape, optical disks), so expect
+mechanical drawings rather than control block diagrams — `_frame`, `_line`, `_arr` and `_rich` carry
+over, but `_sum` and `_blk` will mostly not be needed.
