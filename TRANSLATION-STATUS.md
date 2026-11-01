@@ -1,12 +1,12 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 33 — Chapter 95 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 34 — Chapter 94 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 94** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **95, 96, 97, 98, 99, 100, 101** and **Appendix A**
-> are done, live and registered; 28–94 are still `chờ dịch`. The reverse sequence is 94, 93 … down
-> to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source text for every chapter is
-> already extracted into `work/hb_chNN.txt`.
+> **Where to start next:** Handbook **Chapter 93** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **94, 95, 96, 97, 98, 99, 100, 101** and
+> **Appendix A** are done, live and registered; 28–93 are still `chờ dịch`. The reverse sequence
+> is 93, 92 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source text for
+> every chapter is already extracted into `work/hb_chNN.txt`.
 >
 > **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
 > pushing; both of us have hit conflicts in `build/reader_handbook.py` (`DONE`) and in the two
@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -84,6 +84,8 @@ Chapters done, with their slugs and build scripts:
 | HB 25 | Tactile Sensing | `ch25-tactile-sensing` | `reader_hb_ch25.py` + `hb25fig.py` | — | — |
 | HB 26 | Pressure and Sound Measurement | `ch26-pressure-and-sound-measurement` | `reader_hb_ch26.py` + `hb26fig.py` | — | — |
 | HB 27 | Acoustic Measurement | `ch27-acoustic-measurement` | `reader_hb_ch27.py` + `hb27fig.py` | 21 | — |
+| HB 94 | Electroluminescent Displays | `ch94-electroluminescent-displays` | `reader_hb_ch94.py` + `hb94fig.py` | 10 | ~9.5k |
+| HB 95 | Light-Emitting Diode Displays | `ch95-light-emitting-diode-displays` | `reader_hb_ch95.py` + `hb95fig.py` | 8 | ~9k |
 | HB 100 | Explosion-Proof Instruments | `ch100-explosion-proof-instruments` | `reader_hb_ch100.py` + `hb100fig.py` | 7 | ~9.5k |
 | HB 101 | Measurement and Identification of Brush, Brushless, and dc Stepping Motors | `ch101-measurement-and-identification-of-stepping-motors` | `reader_hb_ch101.py` + `hb101fig.py` | 5 | ~7.5k |
 | App. A | Units and Conversions | `appendix-a-units-and-conversions` | `reader_hb_app.py` | 0 | ~3k |
@@ -2456,3 +2458,130 @@ index shows **34 / 101**. Live: VI 200 / EN 200.
 acceleration of electrons, luminescent centres, drive waveforms), so expect field/energy diagrams
 and brightness-vs-voltage curves; `_band`, `_slab`, `_opto` and the `Box` log-axis trick all carry
 over.
+
+---
+
+## Session 34 — Chapter 94 (*Electroluminescent Displays*) added
+
+**Commit** `46d7f3d` (chapter + ledger, rebased onto `85ce27b` and pushed as `5aec715`).
+Chapter 94 of the CRC handbook, by William A. Barrow (Planar Systems). Ten sections, ten figures,
+six numbered equations, two tables, a nine-term Defining Terms block and 13 references.
+
+### Figures (`build/hb94fig.py`)
+
+| Fig | Content | Notes |
+|---|---|---|
+| 94.1 | ACTFEL cross-section | hatched glass substrate, five thin layers, leader labels right, LIGHT arrow left, ac source below |
+| 94.2 | Colour ACTFEL | seven alternating RED/GREEN/BLUE phosphor cells, all layer labels |
+| 94.3 | Bipolar trapezoidal drive waveform | A–L markers; V_to / V_th / V_P as level indicators standing in the clear gap between the two pulses |
+| 94.4 | Energy band diagram at peak pulse | interface-state ticks at the left phosphor boundary, tunnelling arrow, hot-electron drift, three Mn²⁺ impact-excitation pairs |
+| 94.5 | Idealised QV loop | open loop above threshold, dashed straight line below; A–L placed on the curve; V_to / V_th / V_P as downward ticks on the voltage axis |
+| 94.6 | Q_P F_P loop | near-rectangular loop with chamfered corners, letters at the corners |
+| 94.7 | Luminance/efficiency measurement system | `_rack(..., "photo")` — photometer, no HV, no PMT, no 1 kΩ |
+| 94.8 | Luminance and efficiency vs peak voltage | dual axis, solid S-curve + dashed efficiency peak near 200 V |
+| 94.9 | Decay-time apparatus | `_rack(..., "pmt")` — HV supply, PMT, 1 kΩ load tapped into the scope |
+| 94.10 | Time-resolved spectrum system | `_rack(..., "mono")` — PMT + monochrometer, GPIB to the monochrometer |
+
+**`_rack(tag, mode)` is the single block diagram behind 94.7, 94.9 and 94.10.** Three modes —
+`"photo"`, `"pmt"`, `"mono"` — differ only in which detector boxes exist and whether the HV supply
+and the 1 kΩ load are drawn. The topology is:
+
+```
+COMPUTER --GPIB--> PHOTOMETER / MONOCHROMETER      (photo and mono modes only)
+COMPUTER <--GPIB--> OSCILLOSCOPE
+COMPUTER --GPIB--> ARBITRARY WAVEFORM GENERATOR
+AWG --> AMP --> DUT (Al top electrode)
+DUT (transparent bottom electrode) --> SENSE RESISTOR --> earth
+DUT --LIGHT--> PHOTOMETER / PMT(+mono)
+OSC CH1: V(t) tapped on the Al run
+OSC CH2: I(t) tapped above the sense resistor
+PMT anode --> 1 kΩ --> earth, tapped into the scope   (pmt and mono modes only)
+```
+
+Every net has its own routing channel, so no wire runs through a box and the only crossing is the
+detector-GPIB bus passing the PMT output wire — drawn without a junction dot, which is the correct
+convention for "no connection".
+
+### What went wrong first, and how it was fixed
+
+1. **The first `_rack()` was wrong on all three counts.** It fed the HV supply into the *photometer*,
+   put a PMT in Fig. 94.7 (which has none), hung the 1 kΩ off the photometer output, and let the
+   AWG→amp and amp→DUT wires form a stray rectangle across the canvas. The source page images
+   (rendered to `work/png94/`) showed the real topology: 94.7 has **seven** boxes and no HV supply
+   at all; 94.9 adds HV + PMT + 1 kΩ; 94.10 adds a monochrometer and a GPIB link to it. Rewritten
+   from scratch against the scan.
+2. **The PMT/1 kΩ node never reached the oscilloscope** in the first rewrite — the caption says the
+   scope measures the light signal across that load, so the tap had to be added.
+3. **`SENSE RESISTOR` was drawn across the I(t) channel wire.** Moved to the right of the resistor,
+   under the DUT, where nothing crosses.
+4. **The detector GPIB and the PMT tap were 2 px apart and read as one thick line.** Separated to
+   y = 112 and y = 124; the resulting single crossing is deliberate.
+5. **Fig. 94.3 had `V_th` drawn on top of the falling edge and `V_to` floating after the zero
+   crossing.** Both arrows now stand in the empty column between the positive and negative pulses,
+   labelled above their tops. The pulse was widened from 92 to 124 px so the labels clear the
+   falling edge.
+6. **Fig. 94.4 printed `STATES` above `INTERFACE`.** Swapped; also nudged `UPPER INSULATOR` left so
+   it no longer runs into the Al block.
+7. **Fig. 94.5's three voltage markers floated in a row at y ≈ −0.3 µC/cm².** Replaced with
+   downward ticks standing on the voltage axis, keyed to points B, C and D/E. `D` and `E` at the
+   apex were separated vertically. `L` sat on the loop's bottom edge and was lifted 8 px.
+8. **Fig. 94.8's `AMP` label ran into the triangle's right edge.** Moved from x = 580 to x = 573.
+9. **The English companion page was built with zero figures.** `body_en()` had all the prose but
+   none of the ten `fig(...)` calls — the VI page had 10 and the EN page had 0. Caught by the
+   post-build count (`figs 0 | svg blocks 1`). Both pages now carry all ten.
+
+### Lessons worth carrying
+
+- **Count the figures on *both* pages after every build.** The VI page was complete and the EN page
+  was silently empty; a single `s.count('class="figure"')` on each file catches it in one line.
+- **Trace a block diagram from the rendered page image, not from the caption text.** The caption of
+  Fig. 94.7 mentions only V(t), I(t) and the photometer, and says nothing about the HV supply that
+  is *not* there — the presence/absence of boxes is only visible in the scan.
+- **`_rack(mode)` beats three near-copies.** 94.7/94.9/94.10 differ by two boxes and three wires;
+  one parameterised builder keeps the shared geometry identical and makes the differences legible.
+- **A single crossing without a junction dot is fine.** Trying to eliminate it produced a GPIB bus
+  routed around the whole top of the canvas, which read worse than the crossing.
+- **Level indicators belong on an axis, not floating in the plot area.** Fig. 94.5's ticks on the
+  voltage axis are unambiguous; the earlier floating row was not.
+- **Pulse-body annotations need the body to be wide enough first.** Fig. 94.3's labels only cleared
+  the falling edge after the plateau was widened, not by nudging label offsets.
+
+### Source defects logged in the translator's note
+
+1. The PDF text layer drops µ, Ω and ×: "5 to 15 W/square" is Ω/square, "30 ms" in the Fig. 94.3
+   caption is 30 µs, "10 ms pulse width" is 10 µs, "100 ms to a few milliseconds" is 100 µs to a few
+   ms, "320 ´ 240" is 320 × 240. Restored — a 30 ms pulse cannot fit in a 16.7 ms frame at 60 Hz.
+2. Two Greek letters were replaced by Latin ones: efficiency "h" is η (including Eq. 94.2, printed
+   as "h p = LA / P"), and decay time "t" is τ. Restored.
+3. The ITO thickness is printed as "350 and 120 nm", an inverted range. Left as printed; the
+   plausible value is 35–120 nm, since 350 nm ITO is far too thick for 5–15 Ω/square.
+4. Two conflicting pulse widths: 30 µs (Fig. 94.3 caption) and 10 µs (§94.7). Both kept — they
+   refer to different experiments.
+5. `V_to` ↔ B and `V_th` ↔ C per the body text and the Defining Terms block, i.e. the reverse of
+   the left-to-right order in the source figure. Fig. 94.5 follows the text.
+6. "mura" is a Japanese term of art with no settled Vietnamese equivalent; kept untranslated and
+   glossed as "khuyết tật vệt".
+
+### Verification
+
+`toc rows: 102`, `done rows: 36`, `sections: 14`, `chapters: 101`, `chapter-nav: 70 pages updated`,
+`sitemap.xml: 549 URLs, 536 pairs`, `check_links.py → 551 pages, 15,089 local references, 0 broken`.
+Page: 10 figures, 6 numbered equations (94.1–94.6), 2 tables, 13 `h2`, 13 `h3`, 9 glossary terms,
+zero `<sub>`/`<sup>` inside any `<svg>`. Nav renders `← Chương 93 Hiển thị phẳng plasma ·
+Mục lục sách · Chương 95 → Hiển thị LED`; index shows **35 / 101**. Live: VI 200 / EN 200.
+
+### State after this session
+
+`TRANSLATED` is `("progress", 101, 35)`. `DONE` holds 36 entries — chapters 1–27 plus 94, 95, 96,
+97, 98, 99, 100 and 101 — and the book TOC renders 28–93 as `chờ dịch`. Next in the reverse
+sequence: **93, Plasma-Driven Flat Panel Displays**.
+
+### Known gap (not introduced this session)
+
+`build/make_glossary.py` only parses `<dl class="glossary">` blocks and only reads the chapters
+listed in its `SRC` map (ch05, ch06-4, ch06-5, ch06-6). Chapters 94 and 96–101 emit their Defining
+Terms block as `<p><b>term:</b> def</p>` via a local `dt()` helper, so **their terms never reach
+`/glossary.html`**. The banner claim that "adding a chapter that defines terms adds them to the
+glossary automatically" therefore holds only for the chapters in `SRC`. Wiring 94 and 96–101 in
+means emitting `<dl class="glossary"><dt>…</dt><dd>…</dd></dl>` and adding both-language headwords
+to `BOOK_EN`; that is a self-contained follow-up, deliberately not bundled with a chapter commit.
