@@ -2669,6 +2669,332 @@ def fig_28_58():
                 "A horizontal penstock with a vertical surge chamber and two ultrasonic sections")
 
 
+def fig_28_59():
+    """Von Karman vortex street: a square bluff body of width d, with the
+    vortices shedding alternately above and below the wake."""
+    o = [_defs()]
+    # approach flow
+    o.append(_arr(20, 96, 86, 96, S, "ah28s", 1.6))
+    o.append(_lbl(20, 80, "dòng chảy", "ts"))
+    # bluff body
+    o.append(_rect(96, 66, 30, 60, E, E, 1.0))
+    o.append(_darr(88, 66, 88, 126, E))
+    o.append(_lbl(82, 100, "d", "tb", "end"))
+    # shed vortices, alternating above and below the centreline
+    vort = [(168, 52, 1), (232, 118, -1), (296, 52, 1), (360, 118, -1)]
+    for cx, cy, sgn in vort:
+        o.append(_path("M%d,%d A13,13 0 1 1 %d,%d" % (cx - 12, cy + 4 * sgn,
+                                                     cx + 12, cy + 4 * sgn), E, 1.8))
+        # the arrow head closing the curl
+        o.append(_path("M%d,%d L%d,%d L%d,%d" % (cx + 6, cy - 9 * sgn,
+                                                 cx + 12, cy - 2 * sgn,
+                                                 cx + 4, cy + 2 * sgn), E, 1.5))
+    # wake envelope
+    o.append(_path("M126,66 C160,54 200,44 260,44", G, 1.0, "none", "5 4"))
+    o.append(_path("M126,126 C160,138 200,148 260,148", G, 1.0, "none", "5 4"))
+    return _fig(svg(680, 190, "".join(o), "Dãy xoáy von Kármán"),
+                "Hình 28.59 · Dãy xoáy von Kármán.",
+                "Figure 28.59 · Von Karman vortex street.",
+                "Một vật cản vuông có bề rộng d và các xoáy mọc xen kẽ trên, dưới dòng khí phía sau",
+                "A square bluff body of width d with vortices shedding alternately above and below "
+                "the wake")
+
+
+def fig_28_60():
+    """Vortex shedding in a pipe: the cross-section with the shedder spanning
+    the bore, and the side view with the shedder and its wake."""
+    o = [_defs()]
+    # (a) cross-section
+    o.append(_circ(120, 96, 62, FILL, E, 1.6))
+    o.append(_rect(58, 88, 124, 16, E, E, 1.0))
+    o.append(_lbl(120, 176, "mặt cắt ống", "ts", "middle"))
+    # (b) side view
+    o.append(_line(250, 40, 620, 40, E, 2.4))
+    o.append(_line(250, 152, 620, 152, E, 2.4))
+    # shedder, drawn as the tapered body used in the source art
+    o.append(_rect(284, 40, 16, 112, E, E, 1.0))
+    o.append(_path("M300,74 L332,80 L332,112 L300,118 Z", E, E, 1.2))
+    o.append(_lbl(292, 176, "vật cản", "ts", "middle"))
+    # wake
+    for cx, cy, sgn in ((372, 66, 1), (430, 126, -1), (488, 66, 1)):
+        o.append(_path("M%d,%d A11,11 0 1 1 %d,%d" % (cx - 10, cy + 3 * sgn,
+                                                     cx + 10, cy + 3 * sgn), E, 1.6))
+        o.append(_path("M%d,%d L%d,%d L%d,%d" % (cx + 5, cy - 8 * sgn,
+                                                 cx + 10, cy - 2 * sgn,
+                                                 cx + 3, cy + 2 * sgn), E, 1.4))
+    o.append(_arr(548, 96, 596, 96, S, "ah28s", 1.4))
+    o.append(_lbl(534, 96, "Ū", "tb", "end"))
+    o.append(_lbl(435, 176, "mặt cắt dọc ống", "ts", "middle"))
+    return _fig(svg(680, 200, "".join(o), "Sự phát xoáy trong ống"),
+                "Hình 28.60 · Sự phát xoáy trong ống.",
+                "Figure 28.60 · Vortex shedding in a pipe.",
+                "Mặt cắt ngang ống có thanh vật cản vắt qua đường kính, và mặt cắt dọc với các xoáy "
+                "phía sau vật cản",
+                "A pipe cross-section with the shedder bar spanning the diameter, and a side view "
+                "with the vortices behind the shedder")
+
+
+def fig_28_61():
+    """K-factor variation against pipe Reynolds number, as printed: the vertical
+    axis is the percentage variation of K, not K itself."""
+    o = [_defs()]
+    x0, x1, y0, y1 = 150, 590, 60, 250
+    lo, hi = 3.0, 7.0
+
+    def X(r):
+        return x0 + (_m.log10(r) - lo) / (hi - lo) * (x1 - x0)
+
+    def Y(v):
+        return y1 - (v + 2.0) / 10.0 * (y1 - y0)
+
+    o.append(_rect(x0, y0, x1 - x0, y1 - y0, P, E, 1.3))
+    # log grid: decades solid, 2..9 minor
+    for e in range(3, 8):
+        o.append(_line(X(10 ** e), y0, X(10 ** e), y1, "#cfcfcf", 1.0))
+        for m in range(2, 10):
+            if m * 10 ** e < 10 ** hi:
+                o.append(_line(X(m * 10 ** e), y0, X(m * 10 ** e), y1, "#ececec", 0.7))
+    for v in (-2, 0, 2, 4, 6, 8):
+        o.append(_line(x0, Y(v), x1, Y(v), "#cfcfcf", 1.0))
+        o.append(_lbl(x0 - 6, Y(v) + 3, "%d" % v, "ts", "end"))
+    for e in range(3, 8):
+        o.append(_lbl(X(10 ** e), y1 + 14, "1E+%02d" % e, "ts", "middle"))
+    # ±0.5 % band
+    for v in (0.5, -0.5):
+        o.append(_line(x0, Y(v), x1, Y(v), S, 0.8, "3 3"))
+    # the curve
+    pts = [(5500, 7.0), (7000, 5.2), (9000, 2.8), (11000, 1.2), (14000, 0.4),
+           (18000, -0.2), (24000, -0.4), (35000, -0.2), (50000, 0.1), (70000, 0.45),
+           (100000, 0.55), (150000, 0.5), (250000, 0.35), (400000, 0.2),
+           (600000, 0.0), (800000, -0.3), (1000000, -0.5), (1300000, -0.45)]
+    o.append(_path("M" + " L".join("%s,%s" % (_f(X(r)), _f(Y(v))) for r, v in pts),
+                   E, 2.0))
+    # the ±0.5 % callout with its diamond marker
+    o.append(_path("M%d,%d L%d,%d L%d,%d L%d,%d Z"
+                   % (X(1.3e6), Y(-0.45) - 7, X(1.3e6) + 7, Y(-0.45),
+                      X(1.3e6), Y(-0.45) + 7, X(1.3e6) - 7, Y(-0.45), ), E, E, 1.2))
+    o.append(_path("M%d,%d L%d,%d L%d,%d" % (X(1.3e6) + 9, Y(-0.45),
+                                             X(1.3e6) + 40, Y(-0.45),
+                                             X(1.3e6) + 40, Y(2.0)), E, 1.0))
+    o.append(_lbl(X(1.3e6) + 46, Y(2.0) + 4, "&lt; ± 0,5 %", "ts"))
+    o.append(_lbl(x0 - 44, (y0 + y1) / 2, "K", "tb", "middle"))
+    o.append(_lbl((x0 + x1) / 2, y1 + 34, "số Reynolds của ống", "ts", "middle"))
+    return _fig(svg(680, 300, "".join(o), "Đường cong hệ số K điển hình"),
+                "Hình 28.61 · Đường cong hệ số K điển hình. Trục đứng là độ biến thiên của K theo "
+                "phần trăm, không phải bản thân K.",
+                "Figure 28.61 · Typical K factor curve. The vertical axis is the percentage variation "
+                "of K, not K itself.",
+                "Đồ thị độ biến thiên phần trăm của hệ số K theo số Reynolds, có dải ±0,5 %",
+                "A plot of the percentage variation of the K factor against Reynolds number, with a "
+                "±0.5 % band")
+
+
+def fig_28_62():
+    """The two body styles: wafer and flanged, each with its transmitter."""
+    o = [_defs()]
+
+    def body(cx, flanged):
+        out = []
+        if flanged:
+            out.append(_rect(cx - 62, 96, 14, 78, "#dce6f2", E, 1.4))
+            out.append(_rect(cx + 48, 96, 14, 78, "#dce6f2", E, 1.4))
+            out.append(_rect(cx - 48, 102, 96, 66, FILL, E, 1.5))
+        else:
+            out.append(_rect(cx - 34, 102, 68, 66, FILL, E, 1.5))
+            out.append(_line(cx - 34, 102, cx - 34, 168, E, 3.0))
+            out.append(_line(cx + 34, 102, cx + 34, 168, E, 3.0))
+        # bore and shedder
+        out.append(_line(cx - 34, 135, cx + 34, 135, S, 0.8, "4 3"))
+        out.append(_rect(cx - 3, 112, 6, 46, E, E, 1.0))
+        # stem and transmitter head
+        out.append(_rect(cx - 7, 78, 14, 24, "#dce6f2", E, 1.3))
+        out.append(_rect(cx - 24, 46, 48, 32, FILL, E, 1.5))
+        out.append(_circ(cx, 62, 9, "none", E, 1.0))
+        return "".join(out)
+
+    o.append(body(190, False))
+    o.append(body(470, True))
+    o.append(_lbl(190, 192, "kiểu wafer", "tb", "middle"))
+    o.append(_lbl(470, 192, "kiểu mặt bích", "tb", "middle"))
+    o.append(_lbl(190, 34, "bộ truyền", "ts", "middle"))
+    o.append(_lbl(470, 34, "bộ truyền", "ts", "middle"))
+    o.append(_lbl(234, 132, "thân", "ts"))
+    o.append(_line(230, 132, 224, 132, S, 0.7, "2 3"))
+    return _fig(svg(680, 210, "".join(o), "Kết cấu lưu lượng kế xoáy"),
+                "Hình 28.62 · Kết cấu lưu lượng kế xoáy: kiểu wafer và kiểu mặt bích, mỗi kiểu có bộ "
+                "truyền gắn trên thân.",
+                "Figure 28.62 · Vortex flowmeter construction: the wafer and flanged body styles, each "
+                "with its transmitter mounted on the body.",
+                "Hai lưu lượng kế cạnh nhau: một kiểu wafer mỏng, một kiểu có hai mặt bích, cả hai có "
+                "bộ truyền phía trên",
+                "Two flowmeters side by side: a thin wafer type and a flanged type, both with a "
+                "transmitter on top")
+
+
+def fig_28_63():
+    """The four shedder cross-sections printed in the source, left to right."""
+    o = [_defs()]
+    # tapered nose with a stem
+    o.append(_path("M70,60 L70,120 L96,120 L96,104 L132,104 L132,76 L96,76 L96,60 Z",
+                   E, E, 1.0))
+    # rectangle
+    o.append(_rect(176, 60, 34, 60, E, E, 1.0))
+    # circle
+    o.append(_circ(280, 90, 30, E, E, 1.0))
+    # triangle
+    o.append(_path("M356,60 L356,120 L410,90 Z", E, E, 1.0))
+    for cx, t in ((101, "(a)"), (193, "(b)"), (280, "(c)"), (383, "(d)")):
+        o.append(_lbl(cx, 146, t, "ts", "middle"))
+    return _fig(svg(680, 170, "".join(o), "Mặt cắt ngang của vật cản"),
+                "Hình 28.63 · Mặt cắt ngang của vật cản.",
+                "Figure 28.63 · Shedder cross-sections.",
+                "Bốn mặt cắt vật cản: dạng thuôn có chuôi, chữ nhật, tròn và tam giác",
+                "Four shedder cross-sections: a tapered nose on a stem, a rectangle, a circle and a "
+                "triangle")
+
+
+def fig_28_64():
+    """Section through a vortex flowmeter showing the shedder spanning the bore
+    and the piezoelectric sensor in its upper part."""
+    o = [_defs()]
+    # body in section
+    o.append(_rect(70, 96, 300, 96, FILL, E, 1.6))
+    o.append(_rect(70, 96, 300, 12, "#dce6f2", E, 1.2))
+    o.append(_rect(70, 180, 300, 12, "#dce6f2", E, 1.2))
+    # shedder across the bore
+    o.append(_rect(200, 108, 16, 72, E, E, 1.0))
+    o.append(_path("M216,124 L246,130 L246,160 L216,166 Z", E, E, 1.1))
+    # sensor in the upper part of the shedder
+    o.append(_rect(202, 92, 12, 18, WARM, E, 1.2))
+    o.append(_line(208, 92, 208, 66, S, 1.2))
+    o.append(_lbl(214, 60, "đầu dò xoáy", "ts"))
+    # oscillating signal above
+    pts = []
+    for k in range(0, 81):
+        xx = 380 + k * 1.5
+        pts.append("%s,%s" % (_f(xx), _f(70 - 16 * _m.sin(k / 81.0 * 4 * _m.pi))))
+    o.append(_path("M" + " L".join(pts), G, 1.4))
+    o.append(_lbl(440, 30, "tín hiệu điện", "ts", "middle"))
+    o.append(_lbl(384, 152, "vật cản", "ts"))
+    o.append(_line(378, 148, 248, 146, S, 0.7, "2 3"))
+    o.append(_arr(120, 152, 176, 152, S, "ah28s", 1.4))
+    o.append(_lbl(126, 144, "dòng chảy", "ts"))
+    return _fig(svg(680, 210, "".join(o), "Ví dụ về đầu dò xoáy"),
+                "Hình 28.64 · Ví dụ về đầu dò xoáy: phần tử áp điện đặt ở phần trên của vật cản, biến "
+                "chênh áp dao động giữa hai phía vật cản thành tín hiệu điện.",
+                "Figure 28.64 · Example of a vortex sensor: the piezoelectric element sits in the upper "
+                "part of the shedder and turns the oscillating differential pressure across it into an "
+                "electric signal.",
+                "Mặt cắt lưu lượng kế với vật cản vắt ngang lòng ống, đầu dò áp điện ở trên và dạng "
+                "sóng tín hiệu phía trên",
+                "A flowmeter section with the shedder across the bore, the piezoelectric sensor above "
+                "it and the signal waveform shown above")
+
+
+def fig_28_65():
+    """Isolation manifold between the flow tube and the transmitter, so the
+    sensor can be changed with the line still under pressure."""
+    o = [_defs()]
+    # flow tube with flanges
+    o.append(_rect(150, 128, 200, 54, FILL, E, 1.5))
+    o.append(_rect(140, 118, 14, 74, "#dce6f2", E, 1.4))
+    o.append(_rect(346, 118, 14, 74, "#dce6f2", E, 1.4))
+    o.append(_line(164, 155, 336, 155, S, 0.8, "4 3"))
+    o.append(_rect(244, 136, 12, 38, E, E, 1.0))
+    # sensor boss up to the manifold
+    o.append(_rect(244, 112, 12, 24, "#dce6f2", E, 1.2))
+    # manifold block
+    o.append(_rect(228, 84, 44, 30, FILL, E, 1.5))
+    for x in (238, 262):
+        o.append(_circ(x, 84, 6, "#dce6f2", E, 1.1))
+        o.append(_line(x, 84, x, 70, S, 1.2))
+        o.append(_line(x - 8, 70, x + 8, 70, S, 1.2))
+    # transmitter head
+    o.append(_rect(216, 34, 68, 34, FILL, E, 1.5))
+    o.append(_circ(250, 51, 11, "none", E, 1.0))
+    o.append(_lbl(250, 22, "bộ truyền", "ts", "middle"))
+    o.append(_lbl(300, 100, "cụm van cách ly", "ts"))
+    o.append(_line(296, 96, 272, 92, S, 0.7, "2 3"))
+    o.append(_lbl(250, 200, "đoạn ống đo", "ts", "middle"))
+    return _fig(svg(680, 220, "".join(o), "Cụm van cách ly để thay đầu dò"),
+                "Hình 28.65 · Cụm van cách ly để thay đầu dò ngay khi quy trình đang chạy.",
+                "Figure 28.65 · Isolation manifold for sensor replacement under process conditions.",
+                "Đoạn ống đo có mặt bích, phía trên là cụm van cách ly hai van và bộ truyền",
+                "A flanged metering section with a two-valve isolation manifold and the transmitter "
+                "above it")
+
+
+def fig_28_66():
+    """The 4-20 mA and pulse outputs against flow rate, with the low flow cut-in."""
+    o = [_defs()]
+    x0, x1, y0, y1 = 150, 560, 50, 230
+
+    def X(f):
+        return x0 + f * (x1 - x0)
+
+    def Y(m):
+        return y1 - m / 20.0 * (y1 - y0)
+
+    o.append(_rect(x0, y0, x1 - x0, y1 - y0, P, E, 1.3))
+    for m in (0, 4, 8, 12, 16, 20):
+        o.append(_line(x0, Y(m), x1, Y(m), "#ececec", 0.8))
+        o.append(_lbl(x0 - 6, Y(m) + 3, "%d" % m, "ts", "end"))
+    # the transfer line: 4 mA at LFCI up to 20 mA at URV
+    o.append(_line(X(0.14), Y(4), X(1.0), Y(20), E, 2.0))
+    o.append(_line(x0, Y(4), x1, Y(4), S, 1.0, "4 3"))
+    o.append(_line(X(0.14), y1, X(0.14), Y(4), S, 0.9, "2 3"))
+    o.append(_lbl(X(0.14), y1 + 14, "LFCI", "ts", "middle"))
+    o.append(_lbl(X(1.0), y1 + 14, "URV", "ts", "middle"))
+    o.append(_lbl((x0 + x1) / 2, y1 + 32, "lưu lượng", "ts", "middle"))
+    o.append(_lbl(x0 - 34, (y0 + y1) / 2, "dòng (mA)", "tb", "middle"))
+    # right-hand pulse axis: 0 pulses at 4 mA, f_URV at 20 mA
+    o.append(_subs(x1 + 6, Y(20) + 4, [("f", False), ("URV", True)], cls="ts"))
+    o.append(_lbl(x1 + 6, Y(4) + 4, "0", "ts"))
+    o.append(_lbl(x1 + 50, (Y(20) + Y(4)) / 2, "xung ra", "tb", "middle"))
+    return _fig(svg(680, 290, "".join(o), "Đầu ra 4 mA đến 20 mA và xung"),
+                "Hình 28.66 · Đầu ra 4 mA – 20 mA và xung. Dưới lưu lượng cắt LFCI cả hai đầu ra đều "
+                "về 0.",
+                "Figure 28.66 · 4 mA to 20 mA and pulse outputs. Below the LFCI flow rate both outputs "
+                "fall to zero.",
+                "Đồ thị hai trục: dòng 4–20 mA và tần số xung theo lưu lượng, có mốc LFCI và URV",
+                "A two-axis plot of the 4-20 mA current and the pulse frequency against flow rate, "
+                "with LFCI and URV marked")
+
+
+def fig_28_67():
+    """The raw vortex signal and the squared-up pulse train derived from it."""
+    o = [_defs()]
+    # vortex signal
+    pts = []
+    for k in range(0, 161):
+        xx = 120 + k * 2.6
+        pts.append("%s,%s" % (_f(xx), _f(96 - 26 * _m.sin(k / 161.0 * 8 * _m.pi))))
+    o.append(_line(120, 96, 540, 96, S, 0.9, "5 4"))
+    o.append(_path("M" + " L".join(pts), E, 1.8))
+    o.append(_lbl(80, 100, "tín hiệu xoáy", "ts", "end"))
+    # raw pulse: square wave with the same period
+    hi, lo = 176, 236
+    seg = ["M120,%d" % hi]
+    for k in range(4):
+        xa = 120 + k * 105.0
+        seg.append("L%s,%d" % (_f(xa + 52.5), hi))
+        seg.append("L%s,%d" % (_f(xa + 52.5), lo))
+        seg.append("L%s,%d" % (_f(xa + 105.0), lo))
+        if k < 3:
+            seg.append("L%s,%d" % (_f(xa + 105.0), hi))
+    o.append(_path(" ".join(seg), E, 1.8))
+    o.append(_lbl(64, 212, "xung thô", "ts", "end"))
+    o.append(_lbl(330, 268, "thời gian", "ts", "middle"))
+    o.append(_arr(120, 250, 540, 250, E, "ah28", 1.2))
+    return _fig(svg(680, 285, "".join(o), "Đầu ra xung thô"),
+                "Hình 28.67 · Đầu ra xung thô: xung vuông hoá từ tín hiệu xoáy, cùng chu kỳ với tín hiệu.",
+                "Figure 28.67 · Raw pulse output: the pulse train squared up from the vortex signal, "
+                "with the same period.",
+                "Hai dạng sóng xếp trên nhau: tín hiệu xoáy hình sin và xung vuông cùng chu kỳ",
+                "Two stacked waveforms: the sinusoidal vortex signal and the square pulse train of "
+                "the same period")
+
+
 FIGS = [fig_28_1(), fig_28_2(), fig_28_3(), fig_28_4(), fig_28_5(), fig_28_6(),
         fig_28_7(), fig_28_8(), fig_28_9(), fig_28_10(), fig_28_11(), fig_28_12(),
         fig_28_13(), fig_28_14(), fig_28_15(), fig_28_16(), fig_28_17(), fig_28_18(),
@@ -2681,7 +3007,9 @@ FIGS = [fig_28_1(), fig_28_2(), fig_28_3(), fig_28_4(), fig_28_5(), fig_28_6(),
         fig_28_43(), fig_28_44(), fig_28_45(), fig_28_46(), fig_28_47(),
         fig_28_48(), fig_28_49(), fig_28_50(), fig_28_51(), fig_28_52(),
         fig_28_53(), fig_28_54(), fig_28_55(), fig_28_56(), fig_28_57(),
-        fig_28_58()]
+        fig_28_58(),
+        fig_28_59(), fig_28_60(), fig_28_61(), fig_28_62(), fig_28_63(),
+        fig_28_64(), fig_28_65(), fig_28_66(), fig_28_67()]
 
 
 def fig(n):

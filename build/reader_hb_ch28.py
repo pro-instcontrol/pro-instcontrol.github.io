@@ -49,10 +49,16 @@ def p(t):
 
 
 def h2(t, en=""):
+    # A heading whose gloss repeats the title (the usual case on the English
+    # page) prints the title twice; drop the redundant span instead.
+    if en == t:
+        en = ""
     return '<h2>%s%s</h2>' % (t, (' <span class="en">%s</span>' % en) if en else "")
 
 
 def h3(t, en=""):
+    if en == t:
+        en = ""
     return '<h3>%s%s</h3>' % (t, (' <span class="en">%s</span>' % en) if en else "")
 
 
@@ -91,7 +97,20 @@ def table(hd, rows, cap, cls="tbl", widths=None):
 def h4(t, en=""):
     """Sub-heading one level below h3. There is no .prose h4 rule in library.css,
     so the size and spacing are set inline to sit between h3 and body text."""
+    if en == t:
+        en = ""
     return ('<h4 style="font-size:1rem;font-weight:700;margin:1.7rem 0 .5rem">%s%s</h4>'
+            % (t, (' <span class="en">%s</span>' % en) if en else ""))
+
+
+def h5(t, en=""):
+    """Third-level run-in heading. The source prints these as bold italic leads
+    inside the paragraph (Flowmeter Body, Shedder, Sensors under Flow Tube); they
+    are set as a smaller heading so the nesting stays visible and linkable."""
+    if en == t:
+        en = ""
+    return ('<h5 style="font-size:.92rem;font-weight:700;margin:1.35rem 0 .3rem;'
+            'padding-left:.6rem;border-left:2px solid #d8d2c4;color:#2f2f2f">%s%s</h5>'
             % (t, (' <span class="en">%s</span>' % en) if en else ""))
 
 
@@ -6719,12 +6738,1023 @@ def sec_28_7_en():
     return "".join(b)
 
 
+def sec_28_8_vi():
+    b = []
+    b.append(h2("28.8 Lưu lượng kế xoáy", "Vortex Shedding Flowmeters"))
+    b.append(p("Wade M. Mattar và James H. Vignos."))
+    b.append(p(
+        "Lưu lượng kế xoáy xuất hiện cách đây 25 đến 30 năm và kể từ đó đã từng bước được chấp nhận "
+        "rộng rãi để trở thành một kỹ thuật đo lưu lượng chủ yếu. Sức hấp dẫn của nó một phần nằm ở "
+        "chỗ thiết bị không có chi tiết chuyển động mà vẫn cho ra tín hiệu tần số biến thiên tuyến "
+        "tính theo lưu lượng trên một dải số Reynolds rộng. Lưu lượng kế xoáy có kết cấu rất đơn "
+        "giản, đạt độ chính xác (1 % hoặc tốt hơn) tương đương với những kỹ thuật đắt tiền hơn "
+        "và/hoặc đòi hỏi bảo trì nhiều hơn, và làm việc tốt như nhau với chất lỏng cũng như chất "
+        "khí. Ngoài ra, thiết bị chủ yếu được nuôi bằng chính chất lưu nên dễ dùng ở chế độ hai dây "
+        "hơn các thiết bị đo lưu lượng tuyến tính khác. So với tấm orifice, lưu lượng kế xoáy có độ "
+        "chính xác và dải đo rộng hơn, không cần đường xung áp phức tạp, ít nhạy với mài mòn hơn, "
+        "và khi đo lưu lượng thể tích thì không cần bù theo khối lượng riêng của chất lưu."))
+    b.append(p(
+        "Lưu lượng kế xoáy công nghiệp thường có các cỡ ống từ 15 mm đến 300 mm (1/2 in. đến "
+        "12 in.), một số hãng chào tới cỡ 400 mm (16 in.). Dải đo bao phủ phụ thuộc tính chất chất "
+        "lưu và thiết kế đồng hồ. Dải điển hình của một đồng hồ cỡ 15 mm là:"))
+    b.append(ul([
+        "Nước ở 21 °C (70 °F): 0,06 – 2,2 L s<sup>−1</sup> (1 – 35 gallon mỗi phút)",
+        "Không khí ở 16 °C (60 °F) và 101 kPa (14,7 psia): 1,1 – 15,7 L s<sup>−1</sup> "
+        "(140 – 2000 ft<sup>3</sup> mỗi giờ)",
+        "Hơi nước bão hoà khô ở 689 kPa (100 psig): 4,5 – 225 kg h<sup>−1</sup> "
+        "(10 – 500 pound mỗi giờ)",
+    ]))
+    b.append(p("Dải điển hình của một đồng hồ cỡ 300 mm (12 in.) là:"))
+    b.append(ul([
+        "Nước ở 21 °C (70 °F): 5,4 – 5400 L s<sup>−1</sup> (85 – 8500 gallon mỗi phút)",
+        "Không khí ở 16 °C (60 °F) và 101 kPa (14,7 psia): 157 – 12 500 L s<sup>−1</sup> "
+        "(20 000 – 1 600 000 ft<sup>3</sup> mỗi giờ)",
+        "Hơi nước bão hoà khô ở 689 kPa (100 psig): 1240 – 124 000 kg h<sup>−1</sup> "
+        "(2750 – 275 000 pound mỗi giờ)",
+    ]))
+    b.append(p(
+        "Khả năng chịu nhiệt trải từ nhiệt độ đông lạnh sâu lên tới 427 °C (800 °F). Khả năng chịu "
+        "áp có thể lên tới 20,7 MPa (3000 psig)."))
+
+    # ---------------------------------------------------------------- principle
+    b.append(h3("Nguyên lý làm việc", "Principle of Operation"))
+    b.append(p(
+        "Có lẽ ngay từ lần đầu tiên, cách đây rất lâu, khi ai đó đặt một vật cản tù vào trong một "
+        "dòng chất lưu, họ đã quan sát thấy những xoáy nước hình thành một cách tự nhiên rồi tách ra "
+        "và trôi xuôi dòng. Trong đời sống hằng ngày, ví dụ về sự tách xoáy rất nhiều. Lá cờ phấp "
+        "phới là do xoáy tách ra từ cán cờ, còn tiếng rít của dây điện thoại trong gió mạnh là do "
+        "xoáy tách ra từ chính sợi dây. Công trình phân tích của Theodore von Karman năm 1911 đã mô "
+        "tả tiêu chuẩn ổn định của dãy xoáy tách ra. Vì vậy, khi một dãy xoáy ổn định hình thành ở "
+        "hạ lưu một vật cản, người ta thường gọi đó là dãy xoáy von Karman (Hình 28.59)."))
+    b.append(fig(59, F.fig(59), "vi"))
+    b.append(p(
+        "Ngay từ rất sớm, người ta đã nhận thấy rằng với một lớp rộng các vật cản, khi vận tốc tăng "
+        "thì số xoáy tách ra trong một khoảng thời gian nhất định (tức tần số tách xoáy) cũng tăng "
+        "tỷ lệ thuận với vận tốc. Số Strouhal không thứ nguyên, St, được dùng để mô tả quan hệ giữa "
+        "tần số tách xoáy và vận tốc chất lưu, và được cho bởi:"))
+    b.append(eq("St = (f × d) / U", "28.86"))
+    b.append(defs([
+        ("<i>f</i>", "Tần số tách xoáy"),
+        ("<i>d</i>", "Bề rộng của vật tạo xoáy"),
+        ("<i>U</i>", "Vận tốc chất lưu"),
+    ]))
+    b.append(p("Cách khác:"))
+    b.append(eq("U = (f × d) / St", "28.87"))
+    b.append(p(
+        "Mặc dù các nghiên cứu ban đầu được tiến hành trong dòng không bị giới hạn, về sau người ta "
+        "nhận thấy sự tách xoáy cũng xảy ra trong dòng bị giới hạn, chẳng hạn như dòng trong một ống "
+        "dẫn (xem Hình 28.60). Trong trường hợp này, vận tốc chất lưu trung bình "
+        "Ū và số Strouhal của đồng hồ St′ lần lượt thay cho vận tốc chất lưu và số Strouhal trong "
+        "phương trình 28.87, cho ta:"))
+    b.append(eq("Ū = (f × d) / St′", "28.88"))
+    b.append(fig(60, F.fig(60), "vi"))
+    b.append(p(
+        "Vì diện tích mặt cắt ngang <i>A</i> của ống là cố định, có thể định nghĩa một hệ số "
+        "<i>K</i> của lưu lượng kế, liên hệ lưu lượng thể tích (<i>Q</i>) với tần số tách xoáy. Với:"))
+    b.append(eq("Q = A × Ū", "28.89"))
+    b.append(p("Từ phương trình 28.88, ta được:"))
+    b.append(eq("Q = [ (A × d) / St′ ] × f", "28.90"))
+    b.append(p("Đặt:"))
+    b.append(eq("K = St′ / (A × d)", "28.91"))
+    b.append(p("ta được:"))
+    b.append(eq("Q = f / K", "28.92"))
+    b.append(p(
+        "Tần số tách xoáy trải từ dưới 1 Hz đến trên 3000 Hz; giá trị nhỏ ứng với đồng hồ lớn ở vận "
+        "tốc thấp, giá trị lớn ứng với đồng hồ nhỏ ở vận tốc cao."))
+    b.append(p(
+        "Với một lưu lượng kế xoáy, người ta chọn vật cản sao cho cho ra một hệ số <i>K</i> không "
+        "đổi trên một dải số Reynolds của ống rộng. Như vậy, chỉ cần đếm số xoáy tách ra trong một "
+        "khoảng thời gian nhất định rồi chia cho hệ số <i>K</i> là sẽ có được phép đo tổng thể tích "
+        "chất lưu đã đi qua đồng hồ. Một đường cong hệ số <i>K</i> theo số Reynolds điển hình được "
+        "trình bày trên Hình 28.61."))
+    b.append(fig(61, F.fig(61), "vi"))
+    b.append(p(
+        "Độ biến thiên của hệ số <i>K</i> trên một dải số Reynolds xác định đôi khi được gọi là "
+        "<i>độ tuyến tính</i>. Với ví dụ trên Hình 28.61, có thể thấy rằng trong khoảng số Reynolds "
+        "từ 15 000 đến 2 000 000, hệ số <i>K</i> tuyến tính nhất. Đây được gọi là "
+        "<i>dải tuyến tính</i> của bộ tạo xoáy. Dải tuyến tính của bộ tạo xoáy càng rộng thì thiết "
+        "bị càng thích hợp làm lưu lượng kế."))
+    b.append(p(
+        "Ở những số Reynolds dưới dải tuyến tính, vẫn có thể tuyến tính hoá được, nhưng độ không "
+        "đảm bảo đo của lưu lượng kế có thể tăng lên."))
+
+    # ---------------------------------------------------------------- mass flow
+    b.append(h3("Tính lưu lượng khối lượng và thể tích chuẩn",
+                "Calculation of Mass Flow and Standard Volume"))
+    b.append(p(
+        "Mặc dù lưu lượng kế xoáy là một lưu lượng kế thể tích, nó thường được kết hợp với các phép "
+        "đo bổ sung để tính hoặc suy ra lưu lượng khối lượng hay thể tích chuẩn. Để xác định lưu "
+        "lượng khối lượng Ṁ:"))
+    b.append(eq("Ṁ = ρ<sub>f</sub> × Q = ρ<sub>f</sub> × (f / K)", "28.93"))
+    b.append(p("trong đó ρ<sub>f</sub> là khối lượng riêng của chất lưu ở điều kiện làm việc."))
+    b.append(p(
+        "Người ta thường muốn biết lưu lượng thể tích sẽ là bao nhiêu ở điều kiện quá trình tiêu "
+        "chuẩn về áp suất và nhiệt độ. Đại lượng này được gọi là <i>thể tích chuẩn</i>. Ở những nơi "
+        "khác nhau trên thế giới và với những ngành công nghiệp khác nhau, nhiệt độ và áp suất tiêu "
+        "chuẩn có thể khác nhau. Khối lượng riêng của chất lưu ở điều kiện tiêu chuẩn được gọi là "
+        "<i>khối lượng riêng gốc</i>, ρ<sub>b</sub>."))
+    b.append(p("Để tính thể tích chuẩn <i>Q</i><sub>V</sub>:"))
+    b.append(eq("Q<sub>V</sub> = (ρ<sub>f</sub> / ρ<sub>b</sub>) × (f / K)", "28.94"))
+
+    # ---------------------------------------------------------------- construction
+    b.append(h3("Cấu tạo lưu lượng kế", "Flowmeter Construction"))
+    b.append(p(
+        "Có thể mô tả lưu lượng kế xoáy gồm hai bộ phận chính: <i>ống đo</i> và <i>bộ truyền</i>. "
+        "Cả hai được trình bày dưới đây."))
+
+    b.append(h4("Ống đo", "Flow Tube"))
+    b.append(p(
+        "Ống đo gồm ba phần chức năng: <i>thân</i> lưu lượng kế, chứa chất lưu và làm vỏ bọc cho các "
+        "chi tiết thuỷ lực; <i>bộ tạo xoáy</i>, sinh ra các xoáy khi chất lưu đi qua; và "
+        "<i>(các) cảm biến</i>, nhờ một phương thức biến đổi nào đó phát hiện các xoáy và tạo ra một "
+        "tín hiệu điện dùng được."))
+
+    b.append(h5("Thân lưu lượng kế", "Flowmeter Body"))
+    b.append(p(
+        "Phần chịu áp của lưu lượng kế xoáy, đôi khi được gọi là <i>thân lưu lượng kế</i>, có hai "
+        "kiểu: wafer hoặc mặt bích (xem Hình 28.62). Kiểu wafer, được kẹp giữa hai mặt bích của "
+        "đoạn ống kề bên, nói chung rẻ hơn kiểu mặt bích, nhưng việc sử dụng nó thường bị hạn chế "
+        "bởi các quy chuẩn về đường ống."))
+    b.append(fig(62, F.fig(62), "vi"))
+
+    b.append(h5("Bộ tạo xoáy", "Shedder"))
+    b.append(p(
+        "<i>Bộ tạo xoáy</i> bắc ngang thân lưu lượng kế theo đường kính và có mặt cắt ngang không "
+        "đổi dọc theo chiều dài của nó. Các dạng mặt cắt ngang điển hình được trình bày trên "
+        "Hình 28.63."))
+    b.append(fig(63, F.fig(63), "vi"))
+
+    b.append(h5("Cảm biến", "Sensors"))
+    b.append(p(
+        "Khi có sự tách xoáy, cả trường áp suất lẫn trường vận tốc ở vùng lân cận bộ tạo xoáy đều "
+        "dao động với tần số tách xoáy. Người ta dùng cảm biến áp suất hoặc cảm biến vận tốc để "
+        "chuyển các trường dao động này thành một tín hiệu điện — dòng điện hoặc điện áp — từ đó có "
+        "thể tách ra tần số tách xoáy."))
+    b.append(p(
+        "Hình 28.64 trình bày một ví dụ về cảm biến áp suất vi sai kiểu áp điện đặt ở phần trên của "
+        "bộ tạo xoáy, biến áp suất vi sai dao động tồn tại giữa hai mặt của bộ tạo xoáy thành một "
+        "tín hiệu điện. Một số phương thức cảm biến khác được dùng để phát hiện sự tách xoáy là điện "
+        "dung, nhiệt và siêu âm. Phần điện tử của lưu lượng kế thường được gắn cách xa ống đo. Điều "
+        "này có thể đòi hỏi một bộ tiền khuếch đại tại chỗ để cấp nguồn cho cảm biến hoặc nâng mức "
+        "tín hiệu của nó."))
+    b.append(fig(64, F.fig(64), "vi"))
+    b.append(p(
+        "Vì cảm biến là chi tiết cơ khí dễ hỏng nhất trong một lưu lượng kế xoáy, hầu hết các thiết "
+        "kế đều có phương án thay thế cảm biến. Trong một số trường hợp, có thể thay cảm biến mà "
+        "không cần tháo lưu lượng kế ra khỏi đường ống. Hình 28.65 trình bày một ví dụ về cụm van "
+        "cách ly dùng để thay cảm biến ngay trong điều kiện quá trình."))
+    b.append(fig(65, F.fig(65), "vi"))
+
+    # ---------------------------------------------------------------- transmitter
+    b.append(h4("Bộ truyền", "Transmitter"))
+    b.append(p(
+        "Bộ truyền của lưu lượng kế xoáy có thể chia thành hai nhóm lớn: tương tự và thông minh. Việc "
+        "trao đổi với bộ truyền tương tự được thực hiện bằng các phương tiện thủ công tại chỗ, gồm "
+        "công tắc và dây nhảy. Việc trao đổi với thiết bị thông minh mới hơn được thực hiện bằng các "
+        "kỹ thuật điện tử số. Cả hai loại bộ truyền đều là thiết bị hai dây. Một trong những đặc "
+        "điểm quan trọng hơn của bộ truyền thông minh là nó cho phép nạp vào bộ truyền những thông "
+        "tin riêng cho từng ứng dụng. Thông tin này sau đó được dùng bên trong để tự động thích ứng "
+        "bộ truyền với ứng dụng, kể cả việc hiệu chuẩn đầu ra 4 mA – 20 mA. Trước khi mô tả các "
+        "thiết bị này, cần xem xét ba dạng tín hiệu đo lưu lượng thông dụng nhất do bộ truyền xoáy "
+        "cung cấp."))
+
+    b.append(h5("Tín hiệu đầu ra đo", "Measurement Output Signals"))
+    b.append(p(
+        "Ba cách thông dụng nhất để một bộ truyền truyền thông tin đo ra bên ngoài là tín hiệu "
+        "4 mA – 20 mA, tín hiệu số và tín hiệu xung."))
+    b.append(p(
+        "Tín hiệu 4 mA – 20 mA là dòng điện một chiều chạy trong các dây cấp nguồn cho bộ truyền. "
+        "Dòng điện này tỷ lệ trực tiếp với tần số tách xoáy, và do đó cũng tuyến tính với lưu lượng "
+        "(xem Hình 28.66). 4 mA ứng với lưu lượng bằng không và 20 mA ứng với lưu lượng lớn nhất, "
+        "tức giá trị trên của dải đo (URV) của đồng hồ. Một bộ biến đổi tần số–tương tự trong đồng "
+        "hồ tương tự và một bộ biến đổi số–tương tự trong đồng hồ thông minh tạo ra đầu ra này."))
+    b.append(fig(66, F.fig(66), "vi"))
+    b.append(p(
+        "Tín hiệu số là một giá trị số đã được số hoá của lưu lượng đo được, theo đơn vị kỹ thuật, "
+        "được truyền trên chính hai dây cấp nguồn cho đồng hồ."))
+    b.append(p(
+        "Tín hiệu xung là phiên bản đã được vuông hoá của tín hiệu xoáy thô từ cảm biến (xem "
+        "Hình 28.67), và có thể truy cập được qua một cặp đầu nối điện bên trong vỏ bộ truyền. Tần "
+        "số của tín hiệu xung hoặc giống hệt tần số tách xoáy (xung thô), hoặc là một bội số nào đó "
+        "của tần số này (xung đã chia tỷ lệ). Như đã trình bày trong mục Nguyên lý làm việc, trong "
+        "cả hai trường hợp, tần số của tín hiệu xung đều tỷ lệ tuyến tính với lưu lượng, đi từ không "
+        "đến tần số tại URV, <i>f</i><sub>URV</sub> (xem Hình 28.66)."))
+    b.append(fig(67, F.fig(67), "vi"))
+    b.append(p(
+        "Như trình bày trên Hình 28.66, ở một lưu lượng thấp nhưng khác không, tín hiệu tần số và "
+        "tín hiệu mA lần lượt tụt xuống 0 Hz và 4 mA. Lưu lượng tại đó xảy ra sự thay đổi đột ngột "
+        "này thường được gọi là <i>ngưỡng cắt lưu lượng thấp</i>, LFCI, hay ngưỡng cắt. Lý do của "
+        "việc ép về không này là để tránh những phép đo lưu lượng sai ở lưu lượng thấp, gây ra bởi "
+        "nhiễu quá trình, bao gồm dao động thuỷ động, rung cơ khí và nhiễu điện. Tín hiệu số cũng "
+        "tụt về không ở lưu lượng dưới LFCI."))
+
+    b.append(h5("Bộ truyền tương tự", "Analog Transmitter"))
+    b.append(p(
+        "Ban đầu, bộ truyền tương tự được chế tạo hoàn toàn bằng các linh kiện điện tử tương tự. "
+        "Ngày nay, chúng được xây dựng trên sự kết hợp giữa linh kiện điện tử tương tự và số. Trong "
+        "cả hai trường hợp, đầu ra đo đều ở dạng xung thô và/hoặc tín hiệu 4 mA – 20 mA. Tuỳ theo "
+        "từng bộ truyền cụ thể, một hoặc nhiều chức năng sau đây có sẵn để thích ứng thiết bị với "
+        "ứng dụng cụ thể bằng các phương tiện cơ khí."))
+    b.append(
+        '<ol style="margin:-.2rem 0 1.3rem">'
+        '<li><b>Chọn tín hiệu đầu ra:</b> nếu bộ truyền cung cấp cả tín hiệu xung thô và tín hiệu '
+        '4 mA – 20 mA nhưng không đồng thời, sẽ có phương tiện để chọn loại mong muốn.</li>'
+        '<li><b>Hiệu chuẩn 4 mA – 20 mA:</b> việc dùng tín hiệu này đòi hỏi 20 mA phải ứng với URV '
+        'mong muốn. Điều này được thực hiện bằng cách đưa vào, qua một bộ phát tín hiệu hoặc bộ phát '
+        'xung, một tín hiệu tuần hoàn có tần số ứng với tần số trên của dải đo (URF), rồi chỉnh dòng '
+        'điện đầu ra cho đến khi nó chỉ 20 mA. URF, tức tần số ứng với tần số tách xoáy tại URV mong '
+        'muốn, được tính theo công thức URF = <i>K</i> · URV.'
+        '<div style="margin:.7rem 0 0">'
+        + p("Để đạt được độ chính xác mà nhà chế tạo công bố, hệ số <i>K</i> dùng trong phép tính "
+            "trên phải được hiệu chỉnh theo ảnh hưởng của nhiệt độ quá trình và của đường ống, theo "
+            "hướng dẫn của nhà chế tạo. Ảnh hưởng nhiệt độ là kết quả của sự giãn nở nhiệt của ống "
+            "đo, và được mô tả bởi:")
+        + eq("ΔK (%) = −300 × α × (T − T<sub>o</sub>)", "28.95")
+        + p("trong đó α là hệ số giãn nở nhiệt của vật liệu ống đo, và <i>T</i><sub>o</sub> là nhiệt "
+            "độ chất lưu tại đó đồng hồ được hiệu chuẩn. Nếu vật liệu bộ tạo xoáy và vật liệu thân "
+            "đồng hồ khác nhau thì phải thay α bằng (2α<sub>1</sub> + α<sub>2</sub>)/3, trong đó "
+            "α<sub>1</sub> là hệ số giãn nở nhiệt của vật liệu thân đồng hồ và α<sub>2</sub> là hệ "
+            "số giãn nở nhiệt của bộ tạo xoáy.")
+        + p("Nhiễu loạn do đường ống cũng ảnh hưởng đến hệ số <i>K</i> vì chúng làm thay đổi biên "
+            "dạng dòng trong ống đo. Vấn đề này sẽ được bàn kỹ hơn trong mục “Đường ống lân cận”.")
+        + '</div></li>'
+        '<li><b>LFCI:</b> để có hiệu năng đo tối ưu, ngưỡng cắt lưu lượng thấp nên được đặt cho phù '
+        'hợp với ứng dụng cụ thể. Mục tiêu là đặt nó càng thấp càng tốt, đồng thời tránh được đầu ra '
+        'đo lưu lượng sai.</li>'
+        '<li><b>Cài đặt bộ lọc:</b> để giảm nhiễu có trên tín hiệu từ cảm biến, các bộ lọc điện tử '
+        'được tích hợp trong bộ truyền. Thông thường có sẵn phương tiện để điều chỉnh các bộ lọc '
+        'này, tức đặt các tần số mà tại đó chúng bắt đầu tác động. Nhờ làm suy giảm những tần số nằm '
+        'ngoài dải tần số tách xoáy — dải này thay đổi theo từng ứng dụng — sẽ đạt được hiệu năng đo '
+        'tốt hơn.</li>'
+        '</ol>')
+
+    b.append(h5("Bộ truyền thông minh", "Intelligent Transmitters"))
+    b.append(p(
+        "<i>Bộ truyền thông minh</i>, là những thiết bị điện tử số dựa trên vi xử lý, có các đầu ra "
+        "đo thường bao gồm hai hoặc nhiều hơn trong số: xung thô, xung đã chia tỷ lệ, 4 mA – 20 mA và "
+        "tín hiệu số. Về đầu ra số, hiện chưa có một giao thức duy nhất được chấp nhận phổ quát cho "
+        "truyền thông số; tuy nhiên, tồn tại một số giao thức độc quyền và không độc quyền."))
+    b.append(p(
+        "Sự có mặt của vi xử lý trong bộ truyền thông minh cho phép nâng cao chức năng và tính năng "
+        "so với bộ truyền tương tự, bao gồm:"))
+    b.append(ul([
+        "Loại bỏ nhu cầu hiệu chuẩn 4 mA – 20 mA",
+        "Tự động đặt ngưỡng cắt lưu lượng thấp",
+        "Tự động đặt các bộ lọc",
+        "Lọc thích nghi (bộ lọc chủ động bám theo tần số xoáy)",
+        "Điều hoà tín hiệu số",
+        "Hiệu chỉnh hệ số <i>K</i> theo nhiệt độ và nhiễu loạn đường ống",
+        "Hiệu chỉnh độ phi tuyến của đường cong hệ số <i>K</i>, kể cả độ phi tuyến rõ rệt ở số "
+        "Reynolds thấp (xem Hình 28.61)",
+        "Tổng hợp lưu lượng tích phân",
+        "Đầu ra đo dạng số theo đơn vị kỹ thuật mong muốn",
+    ]))
+    b.append(p(
+        "Việc cấu hình — tức thích ứng bộ truyền với một ứng dụng cụ thể — được thực hiện bằng một "
+        "hoặc nhiều bộ cấu hình số sau đây:"))
+    b.append(ul([
+        "<b>Bộ cấu hình tại chỗ:</b> bộ cấu hình tích hợp trong bộ truyền, có màn hiển thị và bàn "
+        "phím",
+        "<b>Thiết bị cầm tay:</b> thiết bị số cỡ lòng bàn tay được lập trình cho mục đích cấu hình",
+        "<b>Bộ cấu hình trên PC:</b> một máy tính cá nhân có phần mềm cấu hình",
+        "<b>Bộ cấu hình hệ thống:</b> một hệ đo và điều khiển số có phần mềm cấu hình nhúng",
+    ]))
+    b.append(p(
+        "Dùng một trong các bộ cấu hình này, có thể sửa đổi tập tham số xác định cấu hình cho phù hợp "
+        "với ứng dụng đang xét. Chi tiết của tập tham số này thay đổi tuỳ theo từng bộ truyền cụ "
+        "thể; tuy nhiên, các nhóm thông tin chung được liệt kê dưới đây đều áp dụng."))
+    b.append(ul([
+        "Tham số ống đo (ví dụ: đường kính trong, hệ số <i>K</i>, số sê-ri)",
+        "Tham số nhận dạng người dùng (ví dụ: số thẻ, vị trí)",
+        "Tuỳ chọn bộ truyền (ví dụ: đơn vị đo, lựa chọn chức năng)",
+        "Tham số chất lưu quá trình (ví dụ: khối lượng riêng và độ nhớt của chất lưu, nhiệt độ quá "
+        "trình)",
+        "Tham số ứng dụng (ví dụ: hiệu chỉnh hệ số <i>K</i>, URV, mức LFCI)",
+        "Tuỳ chọn đầu ra (ví dụ: chế độ đầu ra đo, tắt dần, trạng thái an toàn khi hỏng)",
+    ]))
+
+    # ---------------------------------------------------------------- application
+    b.append(h3("Các vấn đề ứng dụng", "Application Considerations"))
+
+    b.append(h4("Chọn lưu lượng kế", "Meter Selection"))
+    b.append(p(
+        "Từ góc độ an toàn, điều thiết yếu là lưu lượng kế xoáy phải thoả mãn các yêu cầu an toàn "
+        "điện thích hợp và phải tương thích với quá trình, tức là chịu được nhiệt độ, áp suất và "
+        "tính chất hoá học của chất lưu quá trình. Từ góc độ cơ khí, thiết bị phải có các đầu nối "
+        "đúng kiểu và, nếu ứng dụng đòi hỏi quan trọng, phải có cảm biến có thể thay thế mà không "
+        "phải dừng quá trình. Cỡ đồng hồ và loại tín hiệu đầu ra đo cũng là những yếu tố lựa chọn "
+        "rất quan trọng."))
+
+    b.append(h4("Cỡ", "Size"))
+    b.append(p(
+        "Trái với điều người ta có thể nghĩ, cỡ đồng hồ cần thiết không phải lúc nào cũng trùng với "
+        "cỡ danh nghĩa của đường ống nơi nó được lắp. Trong một số ứng dụng, nếu chọn cỡ theo đường "
+        "ống kề bên thì sẽ không đo được đầu dưới của dải lưu lượng yêu cầu. Tiêu chí thích hợp để "
+        "chọn cỡ đồng hồ là đồng hồ phải cho phép đo tin cậy và chính xác trên toàn bộ dải lưu lượng "
+        "yêu cầu. Điều này có thể dẫn đến một cỡ đồng hồ nhỏ hơn đường ống kề bên."))
+    b.append(p("Tổn thất áp suất là một tiêu chí chọn cỡ cạnh tranh với tiêu chí vừa nêu. Tổn thất "
+               "này được cho bởi:"))
+    b.append(eq("ΔP = C × ρ<sub>f</sub> × Q<sup>2</sup> / D<sup>4</sup>", "28.96"))
+    b.append(p(
+        "trong đó <i>C</i> là một hằng số phụ thuộc thiết kế đồng hồ, và <i>D</i> là đường kính trong "
+        "của ống đo. Xu hướng thường thấy là chọn ống đo có cùng đường kính danh nghĩa với đường ống "
+        "kề bên để loại bỏ phần tổn thất áp suất tăng thêm do đồng hồ nhỏ hơn gây ra. Tuy nhiên, "
+        "trong phần lớn trường hợp, phần tổn thất tăng thêm này không đáng kể."))
+    b.append(p(
+        "Nhà chế tạo đồng hồ có thể cung cấp những thông tin cần thiết để lựa chọn đúng. Trong một số "
+        "trường hợp, các chương trình chọn cỡ của nhà chế tạo có sẵn trên Internet, dưới dạng tương "
+        "tác hoặc tải về được."))
+
+    b.append(h4("Tuỳ chọn đầu ra đo", "Measurement Output Options"))
+    b.append(p(
+        "Như đã nói ở trên, hiện đang dùng ba loại đầu ra đo: tín hiệu tương tự 4 mA – 20 mA, một "
+        "chuỗi xung, và tín hiệu số. Một số đồng hồ xoáy cung cấp cả ba loại đầu ra này, nhưng không "
+        "phải lúc nào cũng đồng thời. Điều thiết yếu là đồng hồ phải có (các) đầu ra mà ứng dụng yêu "
+        "cầu."))
+
+    b.append(h4("Lắp đặt lưu lượng kế", "Meter Installation"))
+    b.append(p(
+        "Các chỉ tiêu hiệu năng của một lưu lượng kế xoáy thường được xác lập trong những điều kiện "
+        "sau: (1) ống đo được lắp trong một đường ống chảy đầy với chất lưu một pha; (2) đường ống "
+        "kề bên ống đo gồm những đoạn thẳng bằng ống có cấp dày quy định (thông thường là Schedule "
+        "40), điển hình dài tối thiểu 30 PD (đường kính ống) ở thượng lưu và 5 PD ở hạ lưu ống đo, "
+        "không có chi tiết gây nhiễu dòng nào nằm trong các đoạn này; và (3) đồng hồ được đặt trong "
+        "môi trường không rung và không có nhiễu điện. Do đó, nếu muốn đạt được các chỉ tiêu hiệu "
+        "năng đã công bố thì phải có những ràng buộc nhất định về chỗ và cách lắp đồng hồ trong "
+        "đường ống quá trình. Các ràng buộc này được bàn dưới đây. Vì đồng hồ của các nhà cung cấp "
+        "khác nhau có độ nhạy khác nhau với những ảnh hưởng nêu trên, các phát biểu ở đây mang tính "
+        "định tính. Cần tham khảo nhà chế tạo cụ thể để có thông tin định lượng hơn."))
+
+    b.append(h4("Vị trí", "Location"))
+    b.append(p(
+        "Nên đặt lưu lượng kế ở nơi có mức rung và mức nhiễu điện thấp. Cả hai ảnh hưởng này đều có "
+        "thể làm giảm tỷ số tín hiệu trên nhiễu ở đầu vào bộ truyền. Sự suy giảm đó có thể làm giảm "
+        "khả năng đo lưu lượng thấp của đồng hồ."))
+    b.append(p(
+        "Không nên lắp đồng hồ trên một đường ống thẳng đứng có dòng chảy hướng xuống, vì khả năng "
+        "ống không chảy đầy là khá cao."))
+
+    b.append(h4("Đường ống lân cận", "Adjacent Piping"))
+    b.append(p(
+        "Thực hành được khuyến nghị là lắp lưu lượng kế vào đường ống quá trình theo đúng yêu cầu về "
+        "chiều dài đoạn thẳng tối thiểu ở thượng lưu và hạ lưu mà nhà chế tạo công bố. Các giá trị "
+        "này điển hình là 15 – 30 PD và 5 PD. Những chi tiết đường ống như khuỷu hoặc ống thu, ống "
+        "mở ở thượng lưu đồng hồ thường ảnh hưởng đến hệ số <i>K</i> của nó, nhưng không ảnh hưởng "
+        "đến độ tuyến tính. Điều này cho phép áp dụng một hiệu chỉnh độ lệch cho hệ số <i>K</i>. "
+        "Nhiều nhà chế tạo cung cấp các hệ số độ lệch cho những cách bố trí đường ống thượng lưu "
+        "thông dụng. Một số hãng cung cấp lưu lượng kế thông minh còn thực hiện các hiệu chỉnh này "
+        "ngay bên trong thiết bị, sau khi người dùng đã chọn cấu hình thích hợp từ một danh sách. "
+        "Với những chi tiết và cách bố trí đường ống mà chưa có hiệu chỉnh độ lệch, cần tiến hành "
+        "hiệu chuẩn tại chỗ nếu muốn đạt độ không đảm bảo đo mà nhà chế tạo công bố. Nếu không thể, "
+        "phải hiệu chuẩn tại một cơ sở thử nghiệm có cấu hình giống hệt."))
+    b.append(p(
+        "Tình huống tương tự như trên cũng áp dụng nếu cấp dày của ống kề bên đồng hồ khác với cấp "
+        "dày mà đồng hồ đã được hiệu chuẩn theo."))
+    b.append(p(
+        "Để tránh gây nhiễu dòng, gioăng mặt bích không bao giờ được lồi vào trong chất lưu quá "
+        "trình."))
+    b.append(p(
+        "Những khuyến nghị sau đây áp dụng khi cần đặt một van điều khiển ở gần lưu lượng kế xoáy. "
+        "Trong ứng dụng chất lỏng, van điều khiển nên được đặt cách lưu lượng kế tối thiểu 5 PD về "
+        "phía hạ lưu. Điều này không chỉ tránh gây nhiễu biên dạng dòng trong ống đo mà còn giúp "
+        "ngăn ngừa hiện tượng bốc hơi chớp và xâm thực (xem dưới đây). Trong ứng dụng chất khí, van "
+        "điều khiển nên được lắp ở thượng lưu đồng hồ, điển hình tối thiểu 30 PD về phía thượng lưu "
+        "để bảo đảm biên dạng dòng không bị nhiễu. Việc để tổn thất áp suất qua van nằm ở thượng lưu "
+        "đồng hồ dẫn đến khối lượng riêng giảm và do đó vận tốc tại lưu lượng kế tăng lên. Điều này "
+        "giúp đạt được phép đo tốt ở lưu lượng thấp."))
+    b.append(p(
+        "Với các chất khí ngưng tụ được, chẳng hạn hơi nước, cách bố trí này cũng giúp giảm lượng "
+        "nước ngưng có thể có mặt tại lưu lượng kế."))
+
+    b.append(h4("Hướng lắp", "Orientation"))
+    b.append(p(
+        "Nói chung, hướng lắp không phải là vấn đề với lưu lượng kế xoáy, đặc biệt với các lắp đặt "
+        "trên ống đứng. Tuy nhiên, với những đồng hồ có phần điện tử gắn trên ống đo, trong ứng dụng "
+        "ống ngang ở nhiệt độ cao, nên định hướng ống đo sao cho phần điện tử nằm ở phía dưới đồng "
+        "hồ."))
+    b.append(p(
+        "Mặc dù lưu lượng kế xoáy không được khuyến nghị cho ứng dụng đa pha, chúng vẫn làm việc được "
+        "với hiệu năng giảm đi phần nào khi gặp chất lưu bẩn (tức là có một lượng nhỏ bọt khí trong "
+        "chất lỏng, hạt rắn trong chất lỏng, hoặc giọt chất lỏng trong chất khí). Mức độ suy giảm "
+        "trong ứng dụng ống ngang phụ thuộc ở một mức nào đó vào thiết kế cụ thể của đồng hồ. Định "
+        "hướng ống đo theo khuyến nghị của nhà chế tạo cho loại chất lưu bẩn đang xét có thể giúp "
+        "giảm bớt vấn đề này."))
+
+    b.append(h4("Điểm lấy áp và nhiệt độ", "Pressure and Temperature Taps"))
+    b.append(p(
+        "Vị trí các điểm lấy áp và nhiệt độ dùng để xác định khối lượng riêng của chất khí, nếu cần, "
+        "cũng là một vấn đề quan trọng. Các khuyến nghị về vị trí những điểm lấy này thay đổi tuỳ "
+        "theo nhà chế tạo. Đầu dò nhiệt độ điển hình được đưa vào cách ống đo 6 PD về phía hạ lưu. "
+        "Điều này tránh mọi nhiễu dòng trong đồng hồ, đồng thời đưa đầu dò đến gần đồng hồ nhất có "
+        "thể. Điểm lấy áp điển hình được làm cách đồng hồ 4 PD về phía hạ lưu. Mặc dù một điểm lấy áp "
+        "không ảnh hưởng đáng kể đến dòng chảy, vị trí của nó lại mang tính quyết định để có được "
+        "một phép đo khối lượng riêng chính xác."))
+
+    b.append(h4("Điều kiện quá trình", "Process Conditions"))
+    b.append(p(
+        "Hiện tượng bốc hơi chớp và xâm thực có thể xảy ra trong một ứng dụng chất lỏng ngay ở hạ lưu "
+        "bộ tạo xoáy, nếu tổn thất áp suất qua đồng hồ làm cho áp suất hạ lưu xuống dưới áp suất hơi "
+        "của chất lỏng. Những hiện tượng này dẫn đến sai số đo không xác định được và có thể gây hỏng "
+        "kết cấu, vì vậy phải tránh. Thông thường điều này được thực hiện bằng cách tăng áp suất đầu "
+        "vào hoặc lắp một van áp suất ngược ở hạ lưu đồng hồ. Để tránh bốc hơi chớp và xâm thực, áp "
+        "suất hạ lưu sau khi phục hồi (khoảng 5 PD về phía hạ lưu) phải bằng hoặc lớn hơn "
+        "<i>P</i><sub>dmin</sub>, trong đó:"))
+    b.append(eq("P<sub>dmin</sub> = c<sub>1</sub> × ΔP + c<sub>2</sub> × P<sub>vap</sub>", "28.97"))
+    b.append(defs([
+        ("<i>P</i><sub>dmin</sub>", "Áp suất tuyệt đối nhỏ nhất ở hạ lưu sau khi phục hồi"),
+        ("<i>P</i><sub>vap</sub>", "Áp suất hơi của chất lỏng ở nhiệt độ làm việc"),
+        ("Δ<i>P</i>", "Tổng tổn thất áp suất"),
+        ("<i>c</i><sub>1</sub>, <i>c</i><sub>2</sub>",
+         "Các hằng số thực nghiệm cho một đồng hồ cụ thể (thường do nhà chế tạo đồng hồ cung cấp)"),
+    ]))
+    b.append(p(
+        "Dòng chảy dao động, trong một số hoàn cảnh, cũng có thể dẫn đến sai số đo. Tốt nhất là "
+        "tránh đặt đồng hồ trên những tuyến quá trình có dao động đáng kể."))
+
+    b.append(h4("Cấu hình lưu lượng kế", "Meter Configuration"))
+    b.append(p(
+        "Khi lắp đặt một lưu lượng kế xoáy tương tự hoặc thông minh, điều quan trọng là nó phải được "
+        "cấu hình cho ứng dụng cụ thể (xem mục Cấu tạo lưu lượng kế ở trên). Việc này thường được "
+        "nhà cung cấp thực hiện trước khi giao hàng, nếu người dùng cung cấp thông tin liên quan vào "
+        "lúc đặt hàng. Nếu không, người dùng phải tự thực hiện các thủ tục cấu hình do nhà chế tạo "
+        "cung cấp."))
+
+    # ---------------------------------------------------------------- recent
+    b.append(h3("Những phát triển gần đây", "Recent Developments"))
+    b.append(p(
+        "Thời gian gần đây đã có những nỗ lực biến lưu lượng kế xoáy thành một thiết bị đo lưu lượng "
+        "khối lượng theo thời gian thực. Như đã trình bày trong mục “Nguyên lý làm việc”, đầu ra của "
+        "đồng hồ, dựa trên tần số tách xoáy, liên hệ với lưu lượng thể tích thực (xem phương trình "
+        "28.92). Trong các bộ truyền thông minh, khối lượng riêng ở điều kiện làm việc và khối lượng "
+        "riêng gốc có thể được nhập vào cơ sở dữ liệu của bộ truyền. Dựa trên các giá trị này, có "
+        "thể tính được lưu lượng khối lượng hoặc lưu lượng thể tích chuẩn (xem phương trình 28.93 và "
+        "28.94). Thủ tục này chỉ đúng nếu khối lượng riêng ở điều kiện làm việc không biến đổi theo "
+        "thời gian. Nếu không đúng như vậy, phải có một phép đo khối lượng riêng trực tuyến, theo "
+        "thời gian thực. Người ta đã dùng hai cách tiếp cận khác nhau. Một cách (đa cảm biến) dùng "
+        "thêm các cảm biến bên cạnh cảm biến xoáy; cách kia (một cảm biến) dựa vào việc khai thác "
+        "thêm thông tin từ chính tín hiệu tách xoáy."))
+
+    b.append(h4("Đa cảm biến", "Multisensor"))
+    b.append(p(
+        "Trong phương pháp này, ngoài tần số xoáy còn thực hiện các phép đo nhiệt độ và áp suất. Cách "
+        "tiếp cận này tương tự cách dùng trong đo lưu lượng khối lượng bằng orifice kết hợp chênh "
+        "áp, khi đó các cổng nhiệt độ và áp suất được bố trí trên ống, thường ở hạ lưu tấm orifice. "
+        "Tuy nhiên, với lưu lượng kế xoáy đa cảm biến, các cảm biến nhiệt độ và áp suất được tích "
+        "hợp vào chính lưu lượng kế thay vì đặt trên đường ống kề bên. Dùng hai phép đo bổ sung này, "
+        "khối lượng riêng ở điều kiện làm việc được tính từ phương trình trạng thái của chất lưu quá "
+        "trình."))
+
+    b.append(h4("Một cảm biến", "Single Sensor"))
+    b.append(p(
+        "Cách tiếp cận này tận dụng thực tế là, về nguyên tắc, với một cảm biến tách xoáy kiểu lực "
+        "hoặc kiểu áp suất, biên độ của tín hiệu tách xoáy tỷ lệ trực tiếp với khối lượng riêng nhân "
+        "với bình phương vận tốc chất lưu; nghĩa là:"))
+    b.append(eq("Biên độ tín hiệu ∝ ρ<sub>f</sub> × U<sup>2</sup>", "28.98"))
+    b.append(p("Vận tốc chất lưu có thể xác định được từ tần số xoáy; nghĩa là:"))
+    b.append(eq("Tần số ∝ U", "28.99"))
+    b.append(p("Do đó:"))
+    b.append(eq("(Biên độ tín hiệu) / (Tần số) ∝ ρ<sub>f</sub> × U ∝ lưu lượng khối lượng", "28.100"))
+    b.append(p(
+        "Về nguyên tắc, cách tiếp cận này độc lập với chất lưu quá trình và không cần thêm cảm biến "
+        "nào."))
+
+    # ---------------------------------------------------------------- further
+    b.append(h3("Thông tin thêm", "Further Information"))
+    b.append(ul([
+        "R. W. Miller, <i>Flow Measurement Engineering Handbook</i>, 3rd ed., New York: McGraw-Hill, "
+        "1996, chương 14.",
+        "W. C. Gotthardt, Oscillatory flowmeters, trong <i>Practical Guides for Measurement and "
+        "Control: Flow Measurement</i>, D. W. Spitzer (chủ biên), Research Triangle Park, NC: "
+        "Instrument Society of America, 1991, chương 12.",
+        "J. P. DeCarlo, <i>Fundamentals of Flow Measurement</i>, Research Triangle Park, NC: "
+        "Instrument Society of America, 1984, chương 8.",
+        "ASME MFC-6M, <i>Measurement of Fluid Flow in Closed Conduits Using Vortex Flowmeters</i>, "
+        "American Society of Mechanical Engineers, 1998.",
+    ]))
+    return "".join(b)
+
+
+def sec_28_8_en():
+    b = []
+    b.append(h2("28.8 Vortex Shedding Flowmeters", "Vortex Shedding Flowmeters"))
+    b.append(p("Wade M. Mattar and James H. Vignos."))
+    b.append(p(
+        "The vortex shedding flowmeter first emerged 25 to 30 years ago and has steadily grown in "
+        "acceptance since then to be a major flow measurement technique. Its appeal is due, in part, "
+        "to the fact that it has no moving parts yet produces a frequency output that varies "
+        "linearly with flow rate over a wide range of Reynolds numbers. The vortex meter has a very "
+        "simple construction, provides accuracy (1% or better) comparable to higher priced and/or "
+        "more maintenance-intensive techniques, and works equally well on liquids and gases. In "
+        "addition, it is powered primarily by the fluid and lends itself more readily than other "
+        "linear flow devices to two-wire operation. Comparing the vortex shedding flowmeter to an "
+        "orifice plate, the former has higher accuracy and rangeability, does not require complex "
+        "pressure impulse lines, is less sensitive to wear and, for volumetric flow measurement, "
+        "does not require the need to compensate for fluid density."))
+    b.append(p(
+        "Industrial vortex shedding flowmeters are normally available in pipe sizes ranging from "
+        "15 mm to 300 mm (1/2 in. to 12 in.), with some manufacturers offering sizes up to 400 mm "
+        "(16 in.). Flow ranges covered depend on fluid properties and meter design. Typical ranges "
+        "for a 15 mm meter are:"))
+    b.append(ul([
+        "Water at 21 °C (70 °F): 0.06 to 2.2 L s<sup>−1</sup> (1 to 35 gallons per minute)",
+        "Air at 16 °C (60 °F) and 101 kPa (14.7 psia): 1.1 to 15.7 L s<sup>−1</sup> "
+        "(140 to 2000 cubic feet per hour)",
+        "Dry saturated steam at 689 kPa (100 psig): 4.5 to 225 kg h<sup>−1</sup> "
+        "(10 to 500 pounds per hour)",
+    ]))
+    b.append(p("Typical ranges for a 300 mm (12 in.) meter are:"))
+    b.append(ul([
+        "Water at 21 °C (70 °F): 5.4 to 5400 L s<sup>−1</sup> (85 to 8500 gallons per minute)",
+        "Air at 16 °C (60 °F) and 101 kPa (14.7 psia): 157 to 12,500 L s<sup>−1</sup> "
+        "(20,000 to 1,600,000 cubic feet per hour)",
+        "Dry saturated steam at 689 kPa (100 psig): 1240 to 124,000 kg h<sup>−1</sup> "
+        "(2750 to 275,000 pounds per hour)",
+    ]))
+    b.append(p(
+        "Temperature capability ranges from cryogenic temperatures up to 427 °C (800 °F). Pressure "
+        "capability as high as 20.7 MPa (3000 psig) is available."))
+
+    # ---------------------------------------------------------------- principle
+    b.append(h3("Principle of Operation", "Nguyên lý làm việc"))
+    b.append(p(
+        "Probably the first time, ages ago, that anyone placed a blunt obstacle in a flowing fluid, "
+        "he or she observed the whirlpools or vortices that naturally form and shed downstream. In "
+        "everyday life, examples of vortex shedding are numerous. The undulation of a flag is due to "
+        "vortex shedding from the pole, and the singing of telephone wires in a strong wind is due "
+        "to shedding from the wires. Analysis by Theodore von Karman in 1911 described the stability "
+        "criterion for the array of shed vortices. Consequently, when a stable array of vortices "
+        "forms downstream from an obstacle, it is often referred to as the von Karman vortex street "
+        "(Figure 28.59)."))
+    b.append(fig(59, F.fig(59), "en"))
+    b.append(p(
+        "Very early on, it was noted that, for a large class of obstacles, as the velocity "
+        "increased, the number of vortices shed in a given time (or frequency of vortex shedding) "
+        "increased in direct proportion to the velocity. The dimensionless Strouhal number, St, is "
+        "used to describe the relationship between vortex shedding frequency and fluid velocity and "
+        "is given by:"))
+    b.append(eq("St = (f × d) / U", "28.86"))
+    b.append(defs([
+        ("<i>f</i>", "Vortex shedding frequency"),
+        ("<i>d</i>", "Width of shedding body"),
+        ("<i>U</i>", "Fluid velocity"),
+    ]))
+    b.append(p("Alternatively:"))
+    b.append(eq("U = (f × d) / St", "28.87"))
+    b.append(p(
+        "Although early studies were conducted in unconfined flow, it was later observed that "
+        "vortex shedding also occurred in confined flow, such as exists in a pipe (see Figure "
+        "28.60). For this case, the average fluid velocity, Ū, and the meter Strouhal number, St′, "
+        "replace the fluid velocity and Strouhal number, respectively, in Equation 28.87 to give:"))
+    b.append(eq("Ū = (f × d) / St′", "28.88"))
+    b.append(fig(60, F.fig(60), "en"))
+    b.append(p(
+        "Since the cross-sectional area, <i>A</i>, of the pipe is fixed, it is possible to define a "
+        "flowmeter <i>K</i> factor, <i>K</i>, that relates the volumetric flow rate (<i>Q</i>) to "
+        "the vortex shedding frequency. Given that:"))
+    b.append(eq("Q = A × Ū", "28.89"))
+    b.append(p("From Equation 28.88, one obtains:"))
+    b.append(eq("Q = [ (A × d) / St′ ] × f", "28.90"))
+    b.append(p("Defining:"))
+    b.append(eq("K = St′ / (A × d)", "28.91"))
+    b.append(p("results in:"))
+    b.append(eq("Q = f / K", "28.92"))
+    b.append(p(
+        "Vortex shedding frequencies range from less than 1 Hz to greater than 3000 Hz, the former "
+        "being for large meters at low velocities and the latter for small meters at high "
+        "velocities."))
+    b.append(p(
+        "For a vortex shedding flowmeter, an obstacle is chosen that will produce a constant "
+        "<i>K</i> factor over a wide range of pipe Reynolds numbers. Thus, simply counting the "
+        "vortices that are shed in a given amount of time and dividing by the <i>K</i> factor will "
+        "give a measurement of the total volume of fluid that has passed through the meter. A "
+        "typical <i>K</i> factor vs. Reynolds number curve is shown in Figure 28.61."))
+    b.append(fig(61, F.fig(61), "en"))
+    b.append(p(
+        "The variation in <i>K</i> factor over a specified Reynolds number range is sometimes "
+        "referred to as <i>linearity</i>. For the example in Figure 28.61, it can be seen that "
+        "between Reynolds numbers from 15,000 to 2,000,000, the <i>K</i> factor is the most linear. "
+        "This is referred to as the <i>linear range</i> of the shedder. The wider the linear range a "
+        "shedder exhibits, the more suitable the device is as a flowmeter."))
+    b.append(p(
+        "At Reynolds numbers below the linear range, linearization is possible but flowmeter "
+        "uncertainty can increase."))
+
+    # ---------------------------------------------------------------- mass flow
+    b.append(h3("Calculation of Mass Flow and Standard Volume",
+                "Tính lưu lượng khối lượng và thể tích chuẩn"))
+    b.append(p(
+        "Although the vortex flowmeter is a volumetric flowmeter, it is often combined with "
+        "additional measurements to calculate or infer mass flow or standard volume. To determine "
+        "mass flow, Ṁ:"))
+    b.append(eq("Ṁ = ρ<sub>f</sub> × Q = ρ<sub>f</sub> × (f / K)", "28.93"))
+    b.append(p("where ρ<sub>f</sub> is the fluid density at flowing conditions."))
+    b.append(p(
+        "It is often desirable to know what the volumetric flow rate would be at standard process "
+        "conditions with respect to pressure and temperature. This is referred to as <i>standard "
+        "volume</i>. In different parts of the world and for different industries, the standard "
+        "temperature and pressure can be different. The fluid density at standard conditions is "
+        "referred to as the <i>base density</i>, ρ<sub>b</sub>."))
+    b.append(p("To calculate standard volume, <i>Q</i><sub>V</sub>:"))
+    b.append(eq("Q<sub>V</sub> = (ρ<sub>f</sub> / ρ<sub>b</sub>) × (f / K)", "28.94"))
+
+    # ---------------------------------------------------------------- construction
+    b.append(h3("Flowmeter Construction", "Cấu tạo lưu lượng kế"))
+    b.append(p(
+        "The vortex shedding flowmeter can be described as having two major components: the "
+        "<i>flow tube</i> and the <i>transmitter</i>. Both are described below."))
+
+    b.append(h4("Flow Tube", "Ống đo"))
+    b.append(p(
+        "The flow tube is composed of three functional parts: the flowmeter <i>body</i>, which "
+        "contains the fluid and acts as a housing for the hydraulic components; the <i>shedder</i>, "
+        "which generates the vortices when the fluid passes by; and the <i>sensor(s)</i>, which by "
+        "some transducing means detects the vortices and produces a usable electric signal."))
+
+    b.append(h5("Flowmeter Body", "Thân lưu lượng kế"))
+    b.append(p(
+        "The pressure-containing portion of the vortex flowmeter, sometimes referred to as the "
+        "<i>flowmeter body</i>, is available in two forms: wafer or flanged (see Figure 28.62). The "
+        "wafer design, which is sandwiched between flanges of adjacent pipe, is generally lower in "
+        "cost than the flanged design, but often its use is limited by piping codes."))
+    b.append(fig(62, F.fig(62), "en"))
+
+    b.append(h5("Shedder", "Bộ tạo xoáy"))
+    b.append(p(
+        "The <i>shedder</i> spans the flowmeter body along the diameter and has a constant "
+        "cross-section along its length. Typical cross-sections are shown in Figure 28.63."))
+    b.append(fig(63, F.fig(63), "en"))
+
+    b.append(h5("Sensors", "Cảm biến"))
+    b.append(p(
+        "When shedding is present, both the pressure and velocity fields in the vicinity of the "
+        "shedder will oscillate at the vortex shedding frequency. <i>Pressure or velocity "
+        "sensors</i> are used to transform the oscillating fields to an electric signal, current or "
+        "voltage, from which the vortex shedding frequency can be extracted."))
+    b.append(p(
+        "Figure 28.64 shows an example of a piezoelectric differential pressure sensor located in "
+        "the upper portion of the shedder, which converts the oscillating differential pressure that "
+        "exists between the two sides of the shedder into an electric signal. Some other sensing "
+        "means utilized to detect vortex shedding are capacitive, thermal, and ultrasonic. Often "
+        "times the flowmeter electronics are mounted remotely from the flow tube. This might require "
+        "a local preamplifier to power the sensor or boost its signal strength."))
+    b.append(fig(64, F.fig(64), "en"))
+    b.append(p(
+        "Since the sensor is the most likely mechanical component in a vortex flowmeter to fail, "
+        "most designs have a provision for replacement of the sensors. In some cases, they can be "
+        "replaced without removing the flowmeter from the pipeline. An example of an isolation "
+        "manifold for sensor replacement under process conditions is shown in Figure 28.65."))
+    b.append(fig(65, F.fig(65), "en"))
+
+    # ---------------------------------------------------------------- transmitter
+    b.append(h4("Transmitter", "Bộ truyền"))
+    b.append(p(
+        "Vortex flowmeter transmitters can be classified into two broad groups: analog and "
+        "intelligent (or smart). Communication with the analog transmitter is carried out via local "
+        "manual means, including switches and jumper wires. Communication with the newer "
+        "intelligent device is carried out via digital electronic techniques. Both types of "
+        "transmitters are two-wire devices. One of the more important features of the intelligent "
+        "transmitter is that it allows application-specific information to be loaded into the "
+        "transmitter. This information is then used internally to automatically tailor the "
+        "transmitter to the application, including calibration of the 4 mA to 20 mA output. Before "
+        "describing these devices, it is useful to consider the three most common forms of flow "
+        "measurement signals provided by vortex transmitters."))
+
+    b.append(h5("Measurement Output Signals", "Tín hiệu đầu ra đo"))
+    b.append(p(
+        "The three most common ways for a transmitter to communicate measurement information to the "
+        "outside world are 4 mA to 20 mA, digital, and pulse signals."))
+    b.append(p(
+        "The 4 mA to 20 mA signal is the dc current flowing in the power leads to the transmitter. "
+        "This current is directly proportional to the vortex shedding frequency and, hence, is also "
+        "linear with flow (see Figure 28.66). 4 mA corresponds to zero flow and 20 mA to the maximum "
+        "flow rate, i.e., the upper range value (URV) of the meter. A frequency-to-analog converter "
+        "in the analog meter and a digital-to-analog converter in the intelligent meter produce this "
+        "output."))
+    b.append(fig(66, F.fig(66), "en"))
+    b.append(p(
+        "The digital signal is a digitized numeric value of the measured flow rate in engineering "
+        "units transmitted over the two wires powering the meter."))
+    b.append(p(
+        "The pulse signal is a squared-up version of the raw vortex signal coming from the sensor "
+        "(see Figure 28.67), and is accessible via a pair of electric terminals inside the "
+        "transmitter housing. The frequency of the pulse signal is either identical to the vortex "
+        "shedding frequency (raw pulse) or some multiple thereof (scaled pulse). As discussed in the "
+        "Principle of Operation section, in either case, the frequency of the pulse signal is "
+        "linearly proportional to flow rate, going from zero to the frequency at the URV, "
+        "<i>f</i><sub>URV</sub> (see Figure 28.66)."))
+    b.append(fig(67, F.fig(67), "en"))
+    b.append(p(
+        "As shown in Figure 28.66, at a low but nonzero flow rate, the frequency and mA signals drop "
+        "to 0 Hz and 4 mA, respectively. The flow rate at which this abrupt change takes place is "
+        "normally referred to as the <i>low flow cut-in</i>, LFCI, or cut-off. The reason for this "
+        "forced zero is to avoid erroneous flow measurements at low flow, which result from process "
+        "noise, including hydrodynamic fluctuations, mechanical vibration, and electrical "
+        "interference. The digital signal also drops to zero below the LFCI flow rate."))
+
+    b.append(h5("Analog Transmitter", "Bộ truyền tương tự"))
+    b.append(p(
+        "Originally, analog transmitters were constructed entirely of analog electronic components. "
+        "Today, they are built around a combination of analog and digital electronic components. In "
+        "either case, the measurement output is in the form of a raw pulse and/or a 4 mA to 20 mA "
+        "signal. Depending on the particular transmitter, one or more of the following functions are "
+        "available for tailoring the device via mechanical means to the specific application."))
+    b.append(
+        '<ol style="margin:-.2rem 0 1.3rem">'
+        '<li><b>Signal output selection:</b> if the transmitter provides both raw pulse and 4 mA to '
+        '20 mA signals, but not simultaneously, a means is available for selecting the one '
+        'desired.</li>'
+        '<li><b>4 mA to 20 mA calibration:</b> use of this signal requires that 20 mA correspond to '
+        'the desired URV. This is accomplished by inputting, via a signal or pulse generator, a '
+        'periodic signal whose frequency corresponds to the upper range frequency (URF), and '
+        'adjusting the output current until it reads 20 mA. The URF, which is the frequency '
+        'corresponding to the vortex shedding frequency at the desired URV, is calculated using the '
+        'equation URF = <i>K</i> · URV.'
+        '<div style="margin:.7rem 0 0">'
+        + p("In order to achieve the accuracy specified by the manufacturer, the <i>K</i> used in "
+            "the above calculation must be corrected for process temperature and piping effects "
+            "according to the manufacturer’s instructions. The temperature effect is a result of "
+            "thermal expansion of the flow tube, and is described by:")
+        + eq("ΔK (%) = −300 × α × (T − T<sub>o</sub>)", "28.95")
+        + p("where α is the thermal expansion coefficient of the flow tube material, and "
+            "<i>T</i><sub>o</sub> is the fluid temperature at which the meter was calibrated. If the "
+            "shedder and meter body materials are different, α must be replaced by "
+            "(2α<sub>1</sub> + α<sub>2</sub>)/3, where α<sub>1</sub> is the thermal expansion "
+            "coefficient of the meter body material and α<sub>2</sub> that of the shedder.")
+        + p("Piping disturbances also affect the <i>K</i> factor because they alter the flow profile "
+            "within the flow tube. This will be discussed in more detail in the section entitled "
+            "“Adjacent Piping.”")
+        + '</div></li>'
+        '<li><b>LFCI:</b> for optimum measurement performance, the low flow cut-in should be set to '
+        'fit the specific application. The goal is to set it as low as possible, while at the same '
+        'time avoiding an erroneous flow measurement output.</li>'
+        '<li><b>Filter settings:</b> to reduce noise present on the signal from the sensor, '
+        'electronic filters are built into the transmitter. Normally, means are provided for '
+        'adjusting these filters, that is, setting the frequencies at which they become active. By '
+        'attenuating frequencies outside the range of the vortex shedding frequency, which varies '
+        'from one application to another, better measurement performance is achieved.</li>'
+        '</ol>')
+
+    b.append(h5("Intelligent Transmitters", "Bộ truyền thông minh"))
+    b.append(p(
+        "<i>Intelligent transmitters</i>, which are microprocessor-based digital electronic devices, "
+        "have measurement outputs that usually include two or more of the following: raw pulse, "
+        "scaled pulse, 4 mA to 20 mA and digital. With regard to the digital output, there is at "
+        "present no single, universally accepted protocol for digital communication; however, a "
+        "number of proprietary and nonproprietary protocols exist."))
+    b.append(p(
+        "The presence of a microprocessor in the intelligent transmitter allows for improved "
+        "functionality and features compared to the analog transmitter, including:"))
+    b.append(ul([
+        "Elimination of the need for 4 mA to 20 mA calibration",
+        "Automatic setting of low flow cut-in",
+        "Automatic setting of filters",
+        "Adaptive filtering (active filters that track the vortex frequency)",
+        "Digital signal conditioning",
+        "<i>K</i> factor correction for temperature and piping disturbances",
+        "Correction for nonlinearity of <i>K</i> factor curve, including the pronounced "
+        "nonlinearity at low Reynolds numbers (see Figure 28.61)",
+        "Integral flow totalization",
+        "Digital measurement output in desired engineering units",
+    ]))
+    b.append(p(
+        "Configuring — that is, tailoring the transmitter to a specific application — is carried out "
+        "by one or more of the following digital communicators:"))
+    b.append(ul([
+        "<b>Local configurator:</b> a configurator, built into a transmitter, that has a display and "
+        "keypad",
+        "<b>Hand-held terminal:</b> a palm-size digital device programmed for configuration purposes",
+        "<b>PC configurator:</b> a personal computer containing configuration software",
+        "<b>System configurator:</b> a digital measurement and control system with imbedded "
+        "configuration software",
+    ]))
+    b.append(p(
+        "Using one of these configurators, the dataset of parameters that defines the configuration "
+        "can be modified to fit the application in question. The details of this dataset vary, "
+        "depending on the specific transmitter; however, the general categories of information "
+        "listed below apply."))
+    b.append(ul([
+        "Flowtube parameters (e.g., tube bore, <i>K</i> factor, serial no.)",
+        "User identification parameters (e.g., tag no., location)",
+        "Transmitter options (e.g., measurement units, function selections)",
+        "Process fluid parameters (e.g., fluid density and viscosity, process temperature)",
+        "Application parameters (e.g., <i>K</i> factor corrections, URV, LFCI level)",
+        "Output options (e.g., measurement output modes, damping, fail-safe state)",
+    ]))
+
+    # ---------------------------------------------------------------- application
+    b.append(h3("Application Considerations", "Các vấn đề ứng dụng"))
+
+    b.append(h4("Meter Selection", "Chọn lưu lượng kế"))
+    b.append(p(
+        "From a safety viewpoint, it is essential that the vortex flowmeter satisfy the appropriate "
+        "electrical safety requirements and be compatible with the process, that is, be able to "
+        "withstand the temperature, pressure, and chemical nature of the process fluid. From a "
+        "mechanical viewpoint, it must have the proper end connections and, if required for "
+        "critical applications, have a sensor that can be replaced without shutting down the "
+        "process. Meter size and measurement output signal type are also very important selection "
+        "factors."))
+
+    b.append(h4("Size", "Cỡ"))
+    b.append(p(
+        "Contrary to what one might expect, the required <i>meter size</i> is not always the same as "
+        "the nominal size of the piping in which it is to be installed. In some applications, "
+        "selecting the size based on adjacent piping will not allow the low end of the required flow "
+        "range to be measured. The appropriate criteria for selecting meter size is that the meter "
+        "provides a reliable and accurate measurement over the entire required flow range. This "
+        "could dictate a meter size that is less than the adjacent piping."))
+    b.append(p(
+        "Pressure drop is a competing sizing criteria to that described above. This drop is given "
+        "by:"))
+    b.append(eq("ΔP = C × ρ<sub>f</sub> × Q<sup>2</sup> / D<sup>4</sup>", "28.96"))
+    b.append(p(
+        "where <i>C</i> is a constant dependent on meter design, and <i>D</i> is the bore diameter "
+        "of the flow tube. The tendency is to pick a flow tube with the same nominal diameter as the "
+        "adjacent piping to eliminate the extra pressure drop introduced by a smaller-sized meter. "
+        "However, in the majority of cases, this added drop is of little consequence."))
+    b.append(p(
+        "The meter manufacturer can provide the needed information for making the proper selection. "
+        "In some cases, sizing programs from manufacturers are available on the Internet in either "
+        "an interactive or downloadable form."))
+
+    b.append(h4("Measurement Output Options", "Tuỳ chọn đầu ra đo"))
+    b.append(p(
+        "As mentioned previously, three types of measurement outputs are in current use: a 4 mA to "
+        "20 mA analog signal, a pulse train, and a digital signal. Some vortex meters will provide "
+        "all three of these outputs, but not always simultaneously. It is essential that the meter "
+        "has the output(s) required by the application."))
+
+    b.append(h4("Meter Installation", "Lắp đặt lưu lượng kế"))
+    b.append(p(
+        "The performance specifications of a vortex flowmeter are normally established under the "
+        "following conditions: (1) the flow tube is installed in a pipeline running full with a "
+        "single-phase fluid; (2) the piping adjacent to the flow tube consists of straight sections "
+        "of specified schedule pipe (normally Schedule 40), typically a minimum of 30 PD (pipe "
+        "diameters) in length upstream and 5 PD downstream of the flow tube with no flow-disturbing "
+        "elements located within these sections; and (3) the meter is located in a vibration free "
+        "and electrical interference free environment. As a consequence, certain constraints are "
+        "placed on where and how the meter is installed in process piping if published performance "
+        "specifications are to be achieved. These constraints are discussed below. Because meters "
+        "from different suppliers differ in their sensitivity to the above influences, the "
+        "statements made are of a qualitative nature. The specific manufacturer should be consulted "
+        "for more quantitative information."))
+
+    b.append(h4("Location", "Vị trí"))
+    b.append(p(
+        "The flowmeter should be located in a place where vibration and electrical interference "
+        "levels are low. Both of these influences can decrease the signal-to-noise ratio at the "
+        "input to the transmitter. This reduction can degrade the ability of the meter to measure "
+        "low flows."))
+    b.append(p(
+        "The meter should not be installed in a vertical line in which the fluid is flowing down "
+        "because there is a good possibility that the pipe will not be full."))
+
+    b.append(h4("Adjacent Piping", "Đường ống lân cận"))
+    b.append(p(
+        "Recommended practice is to mount the flowmeter in the process piping according to the "
+        "manufacturer’s stated upstream and downstream minimum straight-length piping requirements. "
+        "These are typically 15 to 30 PD and 5 PD, respectively. Piping elements such as elbows or "
+        "reducers upstream of the meter normally affect its <i>K</i> factor, but not its linearity. "
+        "This allows a bias correction to be applied to the <i>K</i> factor. Many manufacturers "
+        "provide bias factors for common upstream piping arrangements. Some who offer intelligent "
+        "flowmeters make the corrections internally once the user has selected the appropriate "
+        "configuration from a picklist. For piping elements and arrangements where the bias "
+        "correction is not available, an in situ calibration should be run if the manufacturer’s "
+        "specified uncertainty is to be achieved. If this is not possible, calibration in a test "
+        "facility with an identical configuration should be run."))
+    b.append(p(
+        "The same situation as above applies if the pipe schedule adjacent to the meter differs from "
+        "that under which the meter was calibrated."))
+    b.append(p(
+        "To avoid disturbance to the flow, flange gaskets should never protrude into the process "
+        "fluid."))
+    b.append(p(
+        "The following recommendations apply if a control valve is to be situated near a vortex "
+        "flowmeter. In liquid applications, the control valve should be located a minimum of 5 PD "
+        "downstream of the flowmeter. This not only prevents disturbance to the flow profile in the "
+        "flow tube, but also aids in preventing flashing and cavitation (see below). In gas "
+        "applications, the control valve should be installed upstream of the meter, typically a "
+        "minimum of 30 PD upstream of the meter to ensure an undisturbed flow profile. Having the "
+        "pressure drop across the valve upstream of the meter results in a decreased density and "
+        "subsequent increased velocity at the flowmeter. This helps in achieving good measurements "
+        "at low flows."))
+    b.append(p(
+        "For condensable gases, such as steam, it also helps to reduce the amount of condensate that "
+        "might otherwise be present at the flowmeter."))
+
+    b.append(h4("Orientation", "Hướng lắp"))
+    b.append(p(
+        "In general, meter orientation is not an issue for vortex flowmeters, particularly for "
+        "vertical pipe installations. However, for meters having electronics at the flow tube, it is "
+        "recommended in high-temperature horizontal pipe applications that the flow tube be oriented "
+        "with the electronics beneath the meter."))
+    b.append(p(
+        "Although vortex flowmeters are not recommended for multiphase applications, they do operate "
+        "with somewhat degraded performance with dirty fluids (i.e., small amounts of gas bubbles in "
+        "liquid, solid particles in liquid, or liquid droplets in gas). The degree of degradation in "
+        "horizontal pipe applications depends to some extent on the specific meter design. Orienting "
+        "the flow tube according to manufacturer’s recommendations for the dirty fluid in question "
+        "can help to alleviate this problem."))
+
+    b.append(h4("Pressure and Temperature Taps", "Điểm lấy áp và nhiệt độ"))
+    b.append(p(
+        "The placement of pressure and temperature taps for determining gas densities, if required, "
+        "is also an important consideration. Recommendations for location of these taps vary, "
+        "depending on the manufacturer. The temperature probe is inserted typically 6 PD downstream "
+        "of the flow tube. This prevents any flow disturbance in the meter, and at the same time "
+        "gets the probe as close to the meter as possible. The pressure tap is made typically 4 PD "
+        "downstream of the meter. Although a pressure tap does not significantly affect the flow, "
+        "its placement is critical for achieving an accurate density measurement."))
+
+    b.append(h4("Process Conditions", "Điều kiện quá trình"))
+    b.append(p(
+        "Flashing and cavitation can occur in a liquid application just downstream of the shedder if "
+        "the pressure drop across the meter results in the downstream pressure being below the vapor "
+        "pressure of the liquid. These phenomena lead to undefined measurement errors and possibly "
+        "to structural damage, and hence should be avoided. This is usually accomplished by "
+        "increasing the inlet pressure or inserting a back-pressure valve downstream of the meter. "
+        "To avoid flashing and cavitation, the downstream pressure after recovery (approximately "
+        "5 PD downstream) must be equal to or greater than <i>P</i><sub>dmin</sub>, where:"))
+    b.append(eq("P<sub>dmin</sub> = c<sub>1</sub> × ΔP + c<sub>2</sub> × P<sub>vap</sub>", "28.97"))
+    b.append(defs([
+        ("<i>P</i><sub>dmin</sub>", "Minimum absolute downstream pressure after recovery"),
+        ("<i>P</i><sub>vap</sub>", "Vapor pressure of the liquid at the flowing temperature"),
+        ("Δ<i>P</i>", "Overall pressure drop"),
+        ("<i>c</i><sub>1</sub>, <i>c</i><sub>2</sub>",
+         "Empirical constants for a specific meter (normally available from the meter manufacturer)"),
+    ]))
+    b.append(p(
+        "Pulsating flow can also, in some circumstances, lead to measurement errors. It is best to "
+        "avoid placing the meter in process lines where noticeable pulsation exists."))
+
+    b.append(h4("Meter Configuration", "Cấu hình lưu lượng kế"))
+    b.append(p(
+        "It is important when installing an analog or intelligent vortex flowmeter that it be "
+        "configured for the specific application (see section above on Flowmeter Construction). This "
+        "is often done by the supplier prior to shipping if the user supplies the relevant "
+        "information at the time the order is placed. If this is not the case, the user must carry "
+        "out the configuration procedures provided by the manufacturer."))
+
+    # ---------------------------------------------------------------- recent
+    b.append(h3("Recent Developments", "Những phát triển gần đây"))
+    b.append(p(
+        "Recent efforts have been made to make the vortex flowmeter into a real-time mass flow "
+        "measurement device. As was demonstrated in the “Principle of Operation” section, the output "
+        "of the meter, based on the frequency of vortex shedding, is related to actual volumetric "
+        "flow (see Equation 28.92). In intelligent transmitters, the flowing density (the density at "
+        "flowing conditions) and the base density can be entered into the transmitter’s database. "
+        "Based on these values, mass flow or standard volumetric flow can be computed (see Equations "
+        "28.93 and 28.94). This procedure is valid if the flowing density does not vary in time. If "
+        "this is not the case, an on-line, real-time measure of the density must be provided. Two "
+        "different approaches have been used. One (multisensor) employs sensors in addition to the "
+        "vortex sensor; the other (single sensor) relies on additional information being extracted "
+        "from the vortex shedding signal."))
+
+    b.append(h4("Multisensor", "Đa cảm biến"))
+    b.append(p(
+        "In this method, temperature and pressure measurements are made in addition to the vortex "
+        "frequency. This approach is similar to that used in orifice-d/p mass flowmetering, in which "
+        "case temperature and pressure ports are located in the pipe normally downstream of the "
+        "orifice plate. However, for the multisensor vortex, the temperature and pressure sensors "
+        "are incorporated into the flowmeter rather than located in the adjacent piping. Using these "
+        "two additional measurements, the flowing density is calculated from the equation of state "
+        "for the process fluid."))
+
+    b.append(h4("Single Sensor", "Một cảm biến"))
+    b.append(p(
+        "This approach takes advantage of the fact that, in principle, for a force- or pressure-based "
+        "vortex shedding sensor, the amplitude of the vortex shedding signal is directly "
+        "proportional to the density times the square of the fluid velocity; that is:"))
+    b.append(eq("Signal amplitude ∝ ρ<sub>f</sub> × U<sup>2</sup>", "28.98"))
+    b.append(p("The fluid velocity can be determined from the vortex frequency; that is:"))
+    b.append(eq("Frequency ∝ U", "28.99"))
+    b.append(p("Hence:"))
+    b.append(eq("(Signal amplitude) / (Frequency) ∝ ρ<sub>f</sub> × U ∝ mass flow", "28.100"))
+    b.append(p(
+        "This approach, in principle, is independent of the process fluid, and requires no "
+        "additional sensors."))
+
+    # ---------------------------------------------------------------- further
+    b.append(h3("Further Information", "Thông tin thêm"))
+    b.append(ul([
+        "R. W. Miller, <i>Flow Measurement Engineering Handbook</i>, 3rd ed., New York: McGraw-Hill, "
+        "1996, chap. 14.",
+        "W. C. Gotthardt, Oscillatory flowmeters, in <i>Practical Guides for Measurement and "
+        "Control: Flow Measurement</i>, D. W. Spitzer (ed.), Research Triangle Park, NC: Instrument "
+        "Society of America, 1991, chap. 12.",
+        "J. P. DeCarlo, <i>Fundamentals of Flow Measurement</i>, Research Triangle Park, NC: "
+        "Instrument Society of America, 1984, chap. 8.",
+        "ASME MFC-6M, <i>Measurement of Fluid Flow in Closed Conduits Using Vortex Flowmeters</i>, "
+        "American Society of Mechanical Engineers, 1998.",
+    ]))
+    return "".join(b)
+
+
 # ================================================================ build
 
 SECTIONS_VI = [sec_28_1_vi, sec_28_2_vi, sec_28_3_vi, sec_28_4_vi, sec_28_5_vi, sec_28_6_vi,
-               sec_28_7_vi]
+               sec_28_7_vi, sec_28_8_vi]
 SECTIONS_EN = [sec_28_1_en, sec_28_2_en, sec_28_3_en, sec_28_4_en, sec_28_5_en, sec_28_6_en,
-               sec_28_7_en]
+               sec_28_7_en, sec_28_8_en]
 
 
 def body_vi():
@@ -6764,8 +7794,8 @@ def build(lang):
              'Chương 28' % BASE_VI if vi else
              '<a href="/books/">Books</a> · <a href="%s">Measurement, Instrumentation and Sensors '
              'Handbook</a> · Chapter 28' % BASE_EN)
-    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 7/11 mục" if vi else
-            "Chapter 28 · in progress: 7 of 11 sections")
+    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 8/11 mục" if vi else
+            "Chapter 28 · in progress: 8 of 11 sections")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
             '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'

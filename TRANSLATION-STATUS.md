@@ -1788,7 +1788,7 @@ was 26 pages and 21 figures. Expect roughly **150,000 px of page height** at a 1
 | 28.5 Impeller Flowmeters | 58–63 | 34–35 | 28.10 |
 | 28.6 Electromagnetic Flowmeters | 64–74 | 36–42 | 28.11 |
 | 28.7 Ultrasonic Flowmeters | 75–89 | 43–58 | 28.12 |
-| 28.8 Vortex Shedding Flowmeters | 90–99 | 59–67 | — |
+| 28.8 Vortex Shedding Flowmeters | 90–100 | 59–67 | — |
 | 28.9 Thermal Mass Flow Sensors | 100–118 | 68–80 | 28.13–28.23 |
 | 28.10 Coriolis Effect Mass Flowmeters | 119–122 | 81–84 | — |
 | 28.11 Drag Force Flowmeters | 123–132 | 85–92 | — |
@@ -1807,12 +1807,13 @@ caption.
   (338,511 chars), 132 page images in `work/ch28img/` at 140 dpi.
 - **`build/hb28fig.py`** — primitives for flow drawings (`_pipe`, `_tap`, `_profile`, `_flowarrow`),
   positive-displacement primitives (`_tip`, `_thick`, `_stub`, `_bellows`, `_peanut`),
-  turbine primitives (`_num`, `_blade_row`) plus **figures 1–35**, `work/qa_figs.py hb28fig` →
-  **35 figures, problems 0**, visual pass done.
-- **`build/reader_hb_ch28.py`** — module scaffold plus **sections 28.1 through 28.7 complete** in
-  both languages: 58 figures, 85 equations, 23 defining-term blocks and numbered tables, 64 + 14
-  references. 523 kB (EN) / 509 kB (VI) per page, **117,502 px (EN) / 114,122 px (VI)** at 1424 px. Sections are added as `sec_NN_vi` / `sec_NN_en` and appended to the `SECTIONS_VI` /
-  `SECTIONS_EN` lists at the bottom; nothing else needs touching.
+  turbine primitives (`_num`, `_blade_row`) plus **figures 1–67**, `work/qa_figs.py hb28fig` →
+  **67 figures, problems 0**, visual pass done.
+- **`build/reader_hb_ch28.py`** — module scaffold plus **sections 28.1 through 28.8 complete** in
+  both languages: 67 figures, 100 equations (28.1–28.100), 25 defining-term blocks and numbered
+  tables, 64 + 14 references. 588 kB (EN) / 574 kB (VI) per page, **133,339 px (EN) /
+  129,658 px (VI)** at 1424 px. Sections are added as `sec_NN_vi` / `sec_NN_en` and appended to the
+  `SECTIONS_VI` / `SECTIONS_EN` lists at the bottom; nothing else needs touching.
 - Generated page verified locally at 1424 px: **79,229 px tall (VI) / 81,020 px (EN)**, no horizontal
   overflow, figures legible, tables fit. 28.1 was 14,552 px, 28.2 ~24,000, 28.3 ~10,600, 28.4
   ~22,000 and 28.5 ~8,800 — a little over half of the projected 150,000.
@@ -1885,6 +1886,29 @@ caption.
   straight through the fitting sketches; 28.50's “chảy rối, theo Nikuradse” was printed on the curve;
   28.51's “crossed” arrangements were drawn as parallel chords; 28.55's `1/m` exponent sat on the
   curve; and 28.58's flow arrows pointed in opposite directions. All redrawn.
+- **§28.8 covers:** the case for the vortex meter against the orifice plate; the size and flow-range
+  envelopes for 15 mm and 300 mm meters in three fluids; the von Karman street and the Strouhal
+  number (28.86–28.88); the K factor and its derivation (28.89–28.92); the linear range and the
+  K-factor curve; mass flow and standard volume (28.93–28.94); construction — body, shedder,
+  sensors, the isolation manifold; transmitters — the three output signals with LFCI, the analog
+  transmitter's four mechanical adjustments and the temperature correction (28.95), the intelligent
+  transmitter's nine features and four configurators; application — meter selection, sizing and
+  pressure drop (28.96), installation, location, adjacent piping, orientation, pressure and
+  temperature taps, flashing and cavitation (28.97), configuration; and recent developments —
+  multisensor and single-sensor density (28.98–28.100). Nine figures (28.59–28.67) and fifteen
+  equations (28.86–28.100). **No table and no numbered reference list** — only a four-item
+  “Further Information” block, unlike every section since 28.5.
+- **§28.8's figures were drawn from the source art, and two needed a second pass.** Figure 28.66 is
+  a two-axis plot in the original — 4–20 mA on the left, pulse frequency on the right, with the
+  right-hand zero sitting at the 4 mA level, not at the frame bottom — and the first draft had a
+  floating “xung ra” label and no pulse axis at all. Figure 28.67's square wave is aligned to the
+  sine's zero crossings in the original; the first draft used a 105 px period against the sine's
+  104.65 px, which drifts by half an edge over four cycles.
+- **§28.8's heading hierarchy is one level deeper than the rest of the chapter.** The source sets
+  “Flowmeter Body”, “Shedder” and “Sensors” as bold italic run-ins *under* “Flow Tube”, and
+  “Measurement Output Signals”, “Analog Transmitter” and “Intelligent Transmitters” under
+  “Transmitter”. Flattening all eight to `h4` lost that grouping, so a local `h5()` helper
+  (0.92 rem, 700, 2 px left rule) was added and the six grandchildren demoted.
 
 
 ### Conventions set for this chapter
@@ -1906,7 +1930,9 @@ caption.
 - **Never put `<sub>`/`<sup>` inside SVG `<text>`.** The HTML parser treats them as a breakout from
   foreign (SVG) content: everything after the tag is re-parsed as HTML and the rest of the figure
   collapses into one run of stray text. Use the `_subs()` tspan helper instead. This is what broke
-  Figure 28.32 on the first build; it is silent — the markup is still well-formed XML.
+  Figure 28.32 on the first build; it is silent — the markup is still well-formed XML. `_lbl()` is
+  just as vulnerable as a hand-written `<text>`: `_lbl(x, y, "f<sub>URV</sub>")` on Figure 28.66
+  hoisted the `URV` to the SVG origin and swallowed the two labels that followed it.
 - **`r̄` (r + U+0304) has no glyph in the serif stack** and renders as an acute accent. It is written
   as `<span style='text-decoration:overline'>r</span>` throughout §28.4 — note the single quotes, a
   double-quoted style attribute inside a double-quoted Python string is a syntax error.
@@ -1928,9 +1954,12 @@ caption.
   page. Figures 30–35 were shipped that way before it was noticed; all twelve calls now pass
   `"vi"` / `"en"` explicitly, and the check is
   `grep -c 'figcaption'` per language rather than eyeballing one page.
-- **`h4(t, en)` duplicates the heading when the two strings are identical.** Company names are the
-  same in both languages, so `h4("SeaMetrics", "SeaMetrics")` printed “SeaMetrics SeaMetrics”. Pass
-  the single-argument form for proper nouns.
+- **`h2`/`h3`/`h4` now drop a gloss that repeats the title.** Company names and section titles are
+  the same in both languages, so `h4("SeaMetrics", "SeaMetrics")` printed “SeaMetrics SeaMetrics”
+  and every English-page heading did the same until §28.8. All three helpers carry an
+  `if en == t: en = ""` guard, which cleaned up 77 headings at once; new English sections should
+  still pass the *Vietnamese* title as the gloss (as §28.1–28.3 and now §28.8 do) so the page stays
+  bilingual rather than merely de-duplicated.
 - **`ol()` exists as of §28.5.** The source uses numbered lists where the order carries meaning (the
   six naming variants, the six sensing methods); `ul()` was the only list helper before.
 - **Measure page heights only after `document.fonts.ready`.** A `--dump-dom` probe that reads
