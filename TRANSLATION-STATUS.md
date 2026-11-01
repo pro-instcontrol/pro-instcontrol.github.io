@@ -1688,6 +1688,65 @@ EN/VI pairs**; link check **533 pages, 14,491 local references, 0 broken**.
 
 **Chapters 1–26 done; 75 to go.** Next unit is Chapter 27.
 
+## Session 27 — Chapter 27 (*Acoustic Measurement*) added
+
+**Delivered:** Handbook Chapter 27 — Per Rasmussen (G.R.A.S. Sound and Vibration). Source
+`Ch27.pdf` (26 pages) from the junction at
+`/d/Process Control and Automation/The Measurement, Instrumentation and Sensors Handbook/`, copied to
+`work/Ch27.pdf`. Text in `work/hb_ch27.txt` (53,788 chars), page renders in `work/ch27img/`
+(26 PNGs, 150 dpi, 1050×1503).
+
+Structure follows the source exactly: an unnumbered introduction (longitudinal waves, the three field
+variables, free field / diffuse field / closed coupler, why pressure is the only parameter measured
+directly) then ten sections — 27.1 the wave equation, 27.2 plane waves, 27.3 spherical waves, 27.4
+acoustic measurements with the condenser-microphone subsection, 27.5 sound pressure level, 27.6
+frequency analyzers, 27.7 pressure-based measurements, 27.8 sound intensity, 27.9 near-field acoustic
+holography, 27.10 calibration — closing with the three references.
+
+**Toolchain note.** PyMuPDF still refuses to import on this Python 3.13 build
+(`ImportError: DLL load failed while importing _extra`), so text came from `pypdf` and the page images
+from `pypdfium2` (`page.render(scale=150/72).to_pil()`). Both are already installed; no skill was needed.
+
+**Equations.** All 19 (27.1–27.19) were read back off the page images rather than trusted from the text
+layer, which scrambles stacked fractions into one line. Two are odd but correct as printed, and were
+re-checked at 2× zoom before being kept:
+
+- **27.5** is `p = A cos[(ωt − k)(x + φ₀)]` — a *product* of two brackets, not `(ωt − kx)`. Dimensionally
+  strange, but that is what the book sets, and 27.6 copies the same argument.
+- **27.14** is `P = A Σ I_n = (2πr/ρc) Σ p_n²` — `2πr`, not `πr²`, in the prefactor.
+
+Subscripts inside equations (`v_f`, `v_n`, `I_n`, `p_n`) are written as real `<sub>` elements; the
+earlier chapters' bare `v_f` style reads as a typo at body size.
+
+**Figures.** `build/hb27fig.py`, 21 figures, `work/qa_figs.py hb27fig` → **21 figures, problems 0**.
+Five of the originals are photographs (27.1, 27.8, 27.11, 27.13, 27.20) and were redrawn as line art;
+the rest are diagrams. 27.10 is a genuine IEC A-weighting curve computed from the standard pole-zero
+form, plotted 10 Hz–20 kHz on a log axis. 27.12 places its ten points from Table 27.3 rather than by eye.
+
+Two defects caught in the visual pass, both worth remembering:
+
+- **27.1** had a capsule labelled `1″` that the caption never mentions ("½″ and ¼″"). The photograph
+  shows a set of ½″ and ¼″ microphones; relabelled to two of each, and the fourth capsule narrowed from
+  d = 46 to 40 so it reads as a ¼″.
+- **27.19** labelled the transform plane `2D-ℱ` with U+2131 SCRIPT CAPITAL F, which renders in this
+  font as a struck-through F. Replaced with plain `2D-FFT` and `FFT⁻¹`.
+
+**Tables.** Five, all reproduced: 27.1 IEC 651 tolerances (33 frequency rows × 4 type columns, `−∞`
+entries intact), 27.2 the 31 1/3-octave bands with exact centres and passbands, 27.3 the ten hemisphere
+coordinates, 27.4 instrumentation types with 1999 prices and makers, 27.5 company addresses. In 27.5 the
+source lists Brüel & Kjær and Rion with no address; those cells carry an em dash and the caption says so
+rather than inventing a street.
+
+**Verification:** 21 figures, 19 equations and 5 tables on both sides; 10 `h2` and 2 `h3` both sides
+(heading parity checked). Local build: TOC **27 done rows with clickable badges**; progress pill reads
+27/101 (`🟠 Đang dịch · 27/101 chương` / `🟠 Translating · 27 of 101 chapters`). Chapter nav wired both
+ways — 26 now points forward to 27, and 27's "next" points at Chapter 28 (*Flow Measurement*), which
+falls back to the book TOC until it exists. Sitemap **533 URLs, 518 EN/VI pairs**; link check
+**535 pages, 14,623 local references, 0 broken**. Page height 29,116 px at 1424 px viewport with no
+horizontal overflow (checked with a same-origin iframe probe that reports `scrollWidth`).
+
+**Chapters 1–27 done; 74 to go.** Next unit is Chapter 28.
+
 ---
 
 ## Site shell — one masthead for every page
