@@ -79,11 +79,13 @@ def defs(items):
     return ('<div class="table-wrap"><table class="tbl"><tbody>%s</tbody></table></div>' % rows)
 
 
-def table(hd, rows, cap, cls="tbl"):
+def table(hd, rows, cap, cls="tbl", widths=None):
     body = "".join("<tr>%s</tr>" % "".join("<td>%s</td>" % c for c in r) for r in rows)
+    ths = "".join('<th%s>%s</th>' % ((' style="width:%s"' % widths[i]) if widths else "", h)
+                  for i, h in enumerate(hd))
     return ('<div class="table-wrap"><table class="%s"><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>'
             '<p style="font-size:.84rem;color:#888;font-style:italic">%s</p>'
-            % (cls, "".join("<th>%s</th>" % h for h in hd), body, cap))
+            % (cls, ths, body, cap))
 
 
 def h4(t, en=""):
@@ -2754,10 +2756,1456 @@ def sec_28_3_en():
 
 
 
+def _t288(lang):
+    """Table 28.8 — examples of turbine and vaned flowmeters."""
+    if lang == "vi":
+        hd = ("Kiểu", "Cỡ (in.)", "Mô tả", "Ứng dụng tiêu biểu", "Nhà chế tạo", "Giá tham khảo")
+        cap = ("Bảng 28.8 · Ví dụ về lưu lượng kế tuabin và lưu lượng kế có cánh. Giá là giá tham "
+               "khảo thời điểm sách xuất bản, tính bằng USD.")
+        na, tbd = "—", "Không có"
+    else:
+        hd = ("Type", "Size(s), in.", "Description", "Example application(s)", "Manufacturer",
+              "Approx. price range")
+        cap = ("Table 28.8 · Examples of turbine and vaned flowmeters. Prices are those quoted at the "
+               "time of publication, in US dollars.")
+        na, tbd = "—", "Not available"
+    rows = [
+        ["Axial", "0,5" if lang == "vi" else "0.5", "FT 4-8, with SIL smart transmitter",
+         "Máy bay trực thăng — nhiên liệu" if lang == "vi" else "Helicopters — fuel",
+         "EG&amp;G Flow Technology", "$2,500"],
+        ["Axial", "1", "6700 series, type 60",
+         "Sữa tươi, nước khử ion" if lang == "vi" else "Raw milk, de-ionized water",
+         "Flow Automation", "$1,500"],
+        ["Axial", "16", "Parity series",
+         "Chuyển giao dầu thương mại" if lang == "vi" else "Custody transfer oil",
+         "Fisher-Rosemount Petroleum", "$30,000–$38,000"],
+        ["Axial " + ("hai rôto" if lang == "vi" else "dual rotor"), "12",
+         "Auto-Adjust Turbo-Meter",
+         "Chuyển giao khí thương mại" if lang == "vi" else "Custody transfer gas",
+         "Equimeter", "$42,000"],
+        ["Axial " + ("hai rôto" if lang == "vi" else "dual rotor"), "0,25–2" if lang == "vi" else "0.25–2",
+         "DR Series",
+         "Nhiên liệu — bệ thử động cơ phản lực lớn" if lang == "vi"
+         else "Fuel — large jet engine test stands",
+         "Exact Flow", "$1,300–$1,800"],
+        ["Propeller" if lang == "vi" else "Propeller", "48", "FM182 (150 PSI)",
+         "Nước cấp đô thị" if lang == "vi" else "Municipal water", "Sparling", "$6,500"],
+        ["Propeller" if lang == "vi" else "Propeller", "6", "FM102 (150 PSI)",
+         "Tưới tiêu" if lang == "vi" else "Irrigation", "Sparling", "$850"],
+        ["Tiếp tuyến đặc biệt" if lang == "vi" else "Special tangential", na, "Wright Mark 8",
+         "Phế dung kế theo dõi" if lang == "vi" else "Monitoring spirometer",
+         "Ferraris Medical", "$800"],
+        ["Axial", na, "MS03/MS04 MicroPlus",
+         "Phế dung kế chẩn đoán" if lang == "vi" else "Diagnostic spirometer",
+         "Micro Medical", "$600"],
+        ["Axial", "4", "WTX802",
+         "Định lượng hoá chất xử lý nước" if lang == "vi"
+         else "Chemical dosing for water treatment",
+         "SeaMetrics", "$450–$550"],
+        ["Axial " + ("kiểu chèn" if lang == "vi" else "insertion"), "1,5–10" if lang == "vi" else "1.5–10",
+         "TX101",
+         "Nước cấp đô thị, nước — điều hoà không khí" if lang == "vi"
+         else "Municipal water, water — HVAC",
+         "SeaMetrics", "$450"],
+        ["Axial " + ("kiểu chèn" if lang == "vi" else "insertion"), "2+", "VTS-300",
+         "Hơi nước áp suất cao" if lang == "vi" else "High pressure steam",
+         "Flow Automation", "$2,900"],
+        ["Axial " + ("kiểu chèn" if lang == "vi" else "insertion"), "3+", "VL-150-LP",
+         "Điều khiển đốt đuốc" if lang == "vi" else "Flare stack control",
+         "Flow Automation", "$2,500"],
+        ["Axial " + ("kiểu chèn hai rôto" if lang == "vi" else "insertion dual rotor"),
+         "2,5–72" if lang == "vi" else "2.5–72", "F-1200",
+         "Nước — điều hoà không khí" if lang == "vi" else "Water — HVAC", "Onicon", "$900"],
+        ["Mômen động lượng" if lang == "vi" else "Angular momentum", na,
+         "Model 9-217 True Mass Fuel Flowmeter",
+         "Máy bay phản lực lớn, ví dụ Airbus A320, A321" if lang == "vi"
+         else "Large jet aircraft, e.g. Airbus A320, A321",
+         "Eldec", tbd],
+        ["Đa tia" if lang == "vi" else "Multijet", "1", "1720",
+         "Nước sinh hoạt" if lang == "vi" else "Domestic water",
+         "ABB Kent Messtechnik", "$170"],
+        ["Đa tia" if lang == "vi" else "Multijet", "1,5" if lang == "vi" else "1.5", "AMD3000",
+         "Chiết rót và định lượng chất lỏng hoá chất" if lang == "vi"
+         else "Chemical liquid filling and dosing",
+         "Aquametro AG", "$950"],
+        ["Đa tia hướng trục" if lang == "vi" else "Multijet axial", "9/32", "DFS-2W",
+         ("Dây chuyền chiết rót dược phẩm, thẩm phân thận, bình chiết đồ uống, OEM" if lang == "vi"
+          else "Pharmaceutical filling lines, kidney dialysis dialyte, beverage dispensers, OEM"),
+         "Digiflow Systems",
+         ("$42 trở xuống, phần đầu đo; $235 phần điện tử" if lang == "vi"
+          else "$42 or less, transducer; $235 electronics")],
+    ]
+    return table(hd, rows, cap, widths=("13%", "9%", "19%", "25%", "17%", "17%"))
+
+
+def _t289(lang):
+    """Table 28.9 — manufacturer contact information."""
+    if lang == "vi":
+        hd = ("Nhà chế tạo", "Nhà phân phối tại Hoa Kỳ", "Loại sản phẩm liên quan")
+        cap = ("Bảng 28.9 · Thông tin liên hệ của nhà chế tạo. Địa chỉ và số điện thoại giữ nguyên "
+               "như trong bản gốc năm 1999.")
+        ax = ("Tuabin hướng trục — chất lỏng và khí, gồm loại vệ sinh 3A",)
+        axl = "Tuabin hướng trục — chất lỏng"
+        ins = "Tuabin hướng trục kiểu chèn — chất lỏng và khí"
+        insl = "Tuabin hướng trục kiểu chèn — chất lỏng"
+        dual_g = "Tuabin hướng trục hai rôto — khí"
+        dual_l = "Tuabin hướng trục hai rôto — chất lỏng"
+        prop = "Đồng hồ cánh quạt"
+        spi_t = "Phế dung kế theo dõi kiểu tuabin tiếp tuyến"
+        spi_a = "Phế dung kế chẩn đoán kiểu tuabin hướng trục"
+        mj = "Tuabin đa tia"
+        ang = "Lưu lượng kế mômen động lượng"
+        mjx = "Tuabin hướng trục “đa tia” — chất lỏng"
+        na = "Không áp dụng"
+    else:
+        hd = ("Manufacturer", "U.S. distributor", "Relevant types")
+        cap = ("Table 28.9 · Manufacturer contact information. Addresses and telephone numbers are "
+               "reproduced as printed in the 1999 original.")
+        ax = ("Axial turbines — liquid and gas, including 3A sanitary",)
+        axl = "Axial turbines — liquid"
+        ins = "Insertion axial turbines — liquid and gas"
+        insl = "Insertion axial turbines — liquid"
+        dual_g = "Dual rotor axial turbines — gas"
+        dual_l = "Dual rotor axial turbines — liquid"
+        prop = "Propeller meters"
+        spi_t = "Tangential turbine monitoring spirometers"
+        spi_a = "Axial turbine diagnostic spirometers"
+        mj = "Multijet turbines"
+        ang = "Angular momentum flowmeters"
+        mjx = "‘Multijet’ axial turbines — liquid"
+        na = "Not applicable"
+    rows = [
+        ["EG&amp;G Flow Technology, Inc.<br><span style=\"font-size:.8rem;color:#666\">4250E Broadway "
+         "Road<br>Phoenix, AZ 85040<br>Tel: (602) 437-1315</span>", na,
+         ax[0] + "<br>" + ins],
+        ["Flow Automation, Inc.<br><span style=\"font-size:.8rem;color:#666\">9303 W. Sam Houston "
+         "Pkwy S.<br>Houston, TX 77099<br>Tel: (713) 272-0404</span>", na,
+         ins + "<br>" + ax[0]],
+        ["Fisher-Rosemount Petroleum<br><span style=\"font-size:.8rem;color:#666\">Highway 301 "
+         "North<br>P.O. Box 450<br>Statesboro, GA 30459<br>Tel: (912) 489-0200</span>", na, axl],
+        ["Equimeter, Inc.<br><span style=\"font-size:.8rem;color:#666\">805 Liberty Blvd.<br>DuBois, "
+         "PA 15801<br>Tel: (814) 371-8000</span>", na, ax[0] + "<br>" + dual_g],
+        ["Exact Flow, LLC<br><span style=\"font-size:.8rem;color:#666\">P.O. Box 14515<br>Scottsdale, "
+         "AZ 85267-4545<br>Tel: (602) 922-7446</span>", na, dual_l],
+        ["Sparling Instruments Co., Inc.<br><span style=\"font-size:.8rem;color:#666\">4097 North "
+         "Temple City Blvd.<br>P.O. Box 5988<br>El Monte, CA 91734<br>Tel: (818) 444-0571</span>",
+         na, prop],
+        ["Ferraris Medical, Ltd<br><span style=\"font-size:.8rem;color:#666\">Ferraris House<br>Aden "
+         "Road<br>Enfield, Middlesex EN3 7SE<br>U.K.<br>Tel: 44 (0)181 805 9055</span>",
+         "Ferraris Medical, Inc.<br><span style=\"font-size:.8rem;color:#666\">P.O. Box 344<br>9681 "
+         "Wagner Road<br>Holland, NY 14080<br>(716) 537-2391</span>", spi_t],
+        ["Micro Medical, Ltd.<br><span style=\"font-size:.8rem;color:#666\">The Admiral’s "
+         "Offices<br>The Chatham Historic Dockyard<br>Chatham, Kent ME4 4TQ<br>U.K.<br>44 (0)163 "
+         "843383</span>",
+         "Micro Direct, Inc.<br><span style=\"font-size:.8rem;color:#666\">P.O. Box 239<br>Auburn, ME "
+         "04212<br>(800) 588-3381</span>", spi_a],
+        ["SeaMetrics Inc.<br><span style=\"font-size:.8rem;color:#666\">P.O. Box 1589<br>Kent, WA "
+         "98035<br>Tel: (206) 872-0284</span>", na,
+         axl + "<br>" + insl + "<br>" + mj],
+        ["Onicon, Inc.<br><span style=\"font-size:.8rem;color:#666\">2161 Logan St.<br>Clearwater, FL "
+         "34625<br>Tel: (813) 447-6140</span>", na,
+         axl + "<br>" + ("Tuabin hướng trục kiểu chèn, một và hai rôto — chất lỏng" if lang == "vi"
+                         else "Insertion axial turbines, single and dual rotor — liquid")],
+        ["Eldec Corporation<br><span style=\"font-size:.8rem;color:#666\">16700 13th Avenue W.<br>P.O. "
+         "Box 97027<br>Lynnwood, WA 98046<br>Tel: (206) 743-8499</span>", na, ang],
+        ["ABB Kent Messtechnik GmbH<br><span style=\"font-size:.8rem;color:#666\">Otto-Hahn-Strasse "
+         "25<br>D-68623 Lampertheim<br>Germany<br>49 6206 9330</span>",
+         "ISTEC Corporation<br><span style=\"font-size:.8rem;color:#666\">415 Hope Avenue<br>Roselle, "
+         "NJ 07203<br>(908) 241-8880</span>", mj],
+        ["Aquametro AG<br><span style=\"font-size:.8rem;color:#666\">Ringstrasse 75<br>CH-4106 "
+         "Therwil<br>061 725 11 22</span>",
+         "ISTEC Corporation<br><span style=\"font-size:.8rem;color:#666\">415 Hope Avenue<br>Roselle, "
+         "NJ 07203<br>(908) 241-8880</span>", mj],
+        ["Digiflow Systems B.V.<br><span style=\"font-size:.8rem;color:#666\">Postbus 46<br>6580 AA "
+         "Malden<br>The Netherlands<br>31 243 582929</span>",
+         "Digiflow Systems<br><span style=\"font-size:.8rem;color:#666\">781 Clifton Blvd.<br>"
+         "Mansfield, OH 44907<br>(419) 756-1746</span>", mjx],
+    ]
+    return table(hd, rows, cap)
+
+
+def sec_28_4_vi():
+    b = []
+    b.append(h2("28.4 Lưu lượng kế tuabin và cánh", "Turbine and Vane Flowmeters"))
+    b.append(p("David Wadlow — Sensors Research Consulting."))
+    b.append(p(
+        "Mục này mô tả một loạt lưu lượng kế cho ống kín dùng phần tử chuyển đổi dạng cánh quay, "
+        "trọng tâm là lưu lượng kế tuabin hướng trục. Lưu lượng kế tuabin một tia và tuabin tiếp "
+        "tuyến kiểu chèn — còn gọi là lưu lượng kế bánh guồng — được trình bày ở một mục khác. Các "
+        "loại lưu lượng kế có cánh dùng cho đo lưu lượng trong kênh hở và dòng chảy tự do không thuộc "
+        "phạm vi mục này."))
+
+    # ---------------------------------------------------------------- axial
+    b.append(h3("Lưu lượng kế tuabin hướng trục", "Axial Turbine Flowmeters"))
+    b.append(p(
+        "Lưu lượng kế tuabin hướng trục hiện đại, khi được lắp đặt và hiệu chuẩn đúng, là một thiết "
+        "bị đáng tin cậy có thể đạt độ chính xác cao nhất trong số các cảm biến lưu lượng hiện có, "
+        "với cả đo thể tích chất lỏng lẫn chất khí. Nó là kết quả của nhiều thập kỷ đổi mới và hoàn "
+        "thiện nguyên lý cánh hướng trục, vốn được ghi nhận lần đầu cho Woltman năm 1790 và khi đó "
+        "được ứng dụng để đo dòng nước. Động lực ban đầu cho những phát triển hiện đại phần lớn đến "
+        "từ nhu cầu ngày càng tăng của ngành khí tự nhiên Hoa Kỳ trong cuối thập niên 1940 và thập "
+        "niên 1950 về một phương tiện đo chính xác lưu lượng trong các tuyến ống khí liên bang có "
+        "đường kính lớn và áp suất cao. Ngày nay, nhờ thành công to lớn của nguyên lý này, các lưu "
+        "lượng kế tuabin hướng trục với nhiều thiết kế khác nhau — thường là độc quyền — được dùng "
+        "cho nhiều ứng dụng đòi hỏi độ chính xác, độ tin cậy và dải đo rộng trong nhiều ngành công "
+        "nghiệp lớn ngoài nước và khí tự nhiên, gồm dầu khí, hoá dầu, công nghệ hoá chất, kỹ thuật "
+        "lạnh sâu, sữa và đồ uống, hàng không vũ trụ, y sinh và nhiều ngành khác."))
+    b.append(p(
+        "Hình 28.30 là mặt cắt dọc theo trục đối xứng, mô tả các bộ phận chính của một lưu lượng kế "
+        "điển hình. Có thể thấy thiết bị là một cảm biến nối tiếp, gồm một rôto tuabin duy nhất lắp "
+        "đồng tâm trên một trục trong vỏ hình trụ mà dòng chảy đi qua. Trục hoặc các ổ trục được định "
+        "vị bằng các gối tựa ở hai đầu, nằm trong những kết cấu khí động học treo ở phía trước và "
+        "phía sau, gọi là bộ khuếch tán, cánh dẫn hướng, hay đơn giản là hình nón. Nhờ vậy dòng chảy "
+        "đi qua một vùng vành khuyên có các cánh rôto. Cánh, thường phẳng nhưng có thể hơi xoắn, "
+        "nghiêng một góc so với vận tốc dòng tới và do đó chịu một mômen làm quay rôto. Tốc độ quay "
+        "— có thể tới vài · 10⁴ vòng/phút với các lưu lượng kế nhỏ — được phát hiện bởi một đầu thu, "
+        "thường là loại từ tính; việc ghi nhận mỗi lần một cánh rôto đi qua cho phép suy ra sự đi qua "
+        "của một thể tích chất lưu xác định."))
+    b.append(fig(30, F.fig(30)))
+
+    b.append(h4("Đặc tính làm việc chung", "General Performance Characteristics"))
+    b.append(p(
+        "Tuabin hướng trục làm việc tốt nhất khi đo những dòng chảy sạch, đã được xử lý và ổn định "
+        "của khí và chất lỏng có độ nhớt động học thấp (dưới khoảng 10⁻⁵ m²/s, tức 10 cSt, mặc dù "
+        "chúng vẫn được dùng tới 10⁻⁴ m²/s, tức 100 cSt), và có đáp tuyến tuyến tính với dòng chảy "
+        "rối dưới âm. Trong những điều kiện này, độ ổn định cơ học cố hữu của kết cấu lưu lượng kế "
+        "đem lại độ lặp lại rất tốt. Không kể trường hợp riêng của đồng hồ nước sẽ nói ở phần sau, "
+        "các đặc tính làm việc chính là:"))
+    b.append(ul([
+        "Kích thước (đường kính trong) từ 6 mm đến 760 mm (1/4 in. đến 30 in.).",
+        "Lưu lượng đo lớn nhất từ 0,025 A m³/h đến 25.500 A m³/h (0,015 ACFM đến 15.000 ACFM) với "
+        "khí, và từ 0,036 m³/h đến 13.000 m³/h (0,16 gpm đến 57.000 gpm, tức 82.000 thùng mỗi giờ) "
+        "với chất lỏng, trong đó A có nghĩa là “thực tế”.",
+        "Độ lặp lại điển hình là ±0,1 % giá trị đọc với chất lỏng và ±0,25 % với khí, có thể tới "
+        "±0,02 % với những lưu lượng kế độ chính xác cao. Độ tuyến tính điển hình (trước khi tuyến "
+        "tính hoá bằng điện tử) nằm giữa ±0,25 % và ±0,5 % giá trị đọc với chất lỏng, và giữa ±0,5 % "
+        "và ±1,0 % với khí. Các lưu lượng kế độ chính xác cao có độ tuyến tính ±0,15 % với chất lỏng "
+        "và ±0,25 % với khí, thường được đặc tả trên dải động 10:1 dưới lưu lượng danh định lớn nhất. "
+        "Khả năng truy xuất chuẩn tới NIST (National Institute of Standards and Technology) thường có "
+        "sẵn, cho phép ước lượng độ chính xác tuyệt đối tổng thể của lưu lượng kế trong những điều "
+        "kiện xác định. Trong điều kiện lý tưởng, độ chính xác tuyệt đối của những thiết kế và cách "
+        "lắp đặt tối ưu có thể xấp xỉ năng lực của NIST, vốn được công bố là ±0,13 % với dòng chất "
+        "lỏng và ±0,25 % với không khí.",
+        "Dải đo, khi định nghĩa là tỷ số các lưu lượng mà đặc tả tuyến tính còn đúng, điển hình từ "
+        "10:1 đến 100:1.",
+        "Nhiệt độ làm việc trải từ −270 °C đến 650 °C (−450 °F đến 1200 °F).",
+        "Áp suất làm việc trải từ chân không thô đến 414 MPa (60.000 psi).",
+        "Độ sụt áp tại lưu lượng danh định lớn nhất từ khoảng 0,3 kPa (0,05 psi) với khí đến khoảng "
+        "70 kPa (10 psi) với chất lỏng.",
+    ]))
+
+    # ---------------------------------------------------------------- theory
+    b.append(h3("Lý thuyết", "Theory"))
+    b.append(p(
+        "Tài liệu hiện hành mô tả hai cách phân tích đặc tính của tuabin hướng trục. Cách thứ nhất mô "
+        "tả mômen dẫn động của chất lưu theo trao đổi động lượng, cách thứ hai mô tả nó theo lực nâng "
+        "khí động qua lý thuyết cánh. Cách thứ nhất có ưu điểm là cho ngay những kết quả giải tích mô "
+        "tả nguyên lý làm việc cơ bản, trong đó có một số kết quả chưa từng xuất hiện trong phân tích "
+        "theo lý thuyết cánh. Cách thứ hai có ưu điểm cho phép mô tả đầy đủ hơn với ít giả thiết hơn, "
+        "nhưng nặng về toán và nhanh chóng dẫn tới các lời giải phải tính trên máy. Một trong những "
+        "người tiên phong nổi bật của cách tiếp cận động lượng là Lee [1], người sau đó đã phát minh "
+        "một trong số ít lưu lượng kế tuabin hai rôto đang thành công hiện nay; trong khi Thompson và "
+        "Grey [2] đưa ra một trong những mô hình đầy đủ nhất hiện có theo lý thuyết cánh, mô hình này "
+        "chẳng hạn đã tính tới hiệu ứng tương tác giữa các cánh. Phần dưới đây dùng cách tiếp cận "
+        "trao đổi động lượng để làm nổi bật những khái niệm cơ bản của lưu lượng kế tuabin hướng trục."))
+    b.append(p(
+        "Trong một tình huống giả định, khi không có lực nào làm chậm rôto, rôto sẽ quay với tốc độ "
+        "sao cho vectơ vận tốc dòng chất lưu tại bề mặt cánh được giữ nguyên. Hình 28.31 là giản đồ "
+        "vectơ cho một rôto cánh phẳng có góc nghiêng cánh bằng β. Giả thiết cánh rôto phẳng và vận "
+        "tốc đồng đều ở mọi nơi, song song với trục rôto, khi đó từ Hình 28.31 ta có:"))
+    b.append(fig(31, F.fig(31)))
+    b.append(eq("rω<sub>i</sub> = tanβ / V", "28.47"))
+    b.append(p("Khi đưa tổng lưu lượng vào, phương trình trở thành:"))
+    b.append(eq("ω<sub>i</sub> / Q = tanβ / (<span style='text-decoration:overline'>r</span> A)", "28.48"))
+    b.append(defs([
+        ("ω<sub>i</sub>", "tốc độ quay “lý tưởng”"),
+        ("Q", "lưu lượng thể tích"),
+        ("A", "diện tích mặt cắt vành khuyên của dòng chảy"),
+        ("<span style='text-decoration:overline'>r</span>", "trung bình bình phương của bán kính trong và bán kính ngoài của cánh, (R, a)"),
+    ]))
+    b.append(p(
+        "Khử chiều thời gian ở vế trái sẽ quy đại lượng này về số vòng quay của rôto trên một đơn vị "
+        "thể tích chất lưu, về bản chất chính là hệ số K mà hầu hết nhà chế tạo công bố. Như vậy, theo "
+        "phương trình 28.48, trong điều kiện lý tưởng đáp tuyến của lưu lượng kế là hoàn toàn tuyến "
+        "tính và chỉ do hình học quyết định. (Trong một số thiết kế, cánh rôto được xoắn theo đường "
+        "vít để tăng hiệu suất, đặc biệt với các cánh có tỷ số bán kính (R/a) lớn. Nếu giả thiết biên "
+        "dạng vận tốc phẳng thì góc cánh trong trường hợp này được mô tả bằng tanβ = hằng số · r; "
+        "đôi khi gọi là cánh xoắn “lý tưởng”.) Trong thực tế lại tồn tại một số mômen cản của rôto "
+        "với độ lớn tương đối khác nhau. Dưới dòng chảy ổn định, rôto nhận tốc độ thoả mãn cân bằng "
+        "sau:"))
+    b.append(eq(
+        "Mômen dẫn động của chất lưu = mômen cản do ma sát chất lưu trên mặt cánh rôto<br>"
+        "+ mômen cản do ma sát chất lưu ở moay-ơ và khe hở đỉnh cánh<br>"
+        "+ mômen cản của cảm biến tốc độ quay + mômen cản do ma sát ổ trục", "28.49"))
+    b.append(p(
+        "Trở lại Hình 28.31, hiệu giữa tốc độ thực của rôto, rω, và tốc độ lý tưởng, rω<sub>i</sub>, "
+        "là vận tốc trượt của rôto gây ra bởi tác động tổng hợp của mọi mômen cản đã mô tả trong "
+        "phương trình 28.49; chính vì thế vectơ vận tốc chất lưu bị lệch đi một góc gọi là góc ra hay "
+        "góc xoáy, θ. Ký hiệu biến bán kính là r và cho tốc độ thay đổi tổng mômen động lượng của "
+        "chất lưu đi qua rôto bằng mômen cản, ta được:"))
+    b.append(eq("∫<sub>a</sub><sup>R</sup> [ρQ·2πr²(rω<sub>i</sub> − rω)] / [π(R² − a²)] dr = N<sub>T</sub>", "28.50"))
+    b.append(p("từ đó:"))
+    b.append(eq("<span style='text-decoration:overline'>r</span>²ρQ(ω<sub>i</sub> − ω) = N<sub>T</sub>", "28.51"))
+    b.append(p(
+        "trong đó ρ là khối lượng riêng của chất lưu và N<sub>T</sub> là tổng mômen cản. Kết hợp các "
+        "phương trình 28.47 và 28.51 rồi sắp xếp lại, ta được:"))
+    b.append(eq("ω / Q = tanβ / (<span style='text-decoration:overline'>r</span> A) − N<sub>T</sub> / (<span style='text-decoration:overline'>r</span>²ρQ²)", "28.52"))
+    b.append(p(
+        "Các xu hướng thể hiện trong phương trình 28.52 phản ánh sự suy giảm đặc trưng của đáp tuyến "
+        "lưu lượng kế ở lưu lượng rất thấp, và giải thích vì sao người ta hay dùng ổ trục ít ma sát "
+        "hơn cùng đầu thu ít cản hơn cho khí so với chất lỏng, và cho các lưu lượng kế đường kính nhỏ. "
+        "Trong hầu hết thiết kế, đặc biệt với chất lỏng, ba trong bốn mômen cản nêu ở phương trình "
+        "28.49 là nhỏ trong điều kiện làm việc bình thường so với mômen do lực cản cảm ứng trên bề mặt "
+        "cánh. Như chỉ ra trên Hình 28.31, lực F do hiệu ứng này tác dụng theo phương dọc bề mặt cánh "
+        "và có độ lớn:"))
+    b.append(eq("F = (ρV² / 2) C<sub>D</sub> S", "28.53"))
+    b.append(p(
+        "trong đó C<sub>D</sub> là hệ số cản và S là diện tích bề mặt cánh tính cho một phía. Dùng "
+        "biểu thức hệ số cản ứng với dòng chảy rối, được Pate và cộng sự [3] cùng nhiều tác giả khác "
+        "chọn, có thể ước lượng lực này bằng:"))
+    b.append(eq("F = ρV² · 0,074 Re<sup>−0,2</sup> · S", "28.54"))
+    b.append(p(
+        "trong đó Re là số Reynolds của dòng chảy tính theo dây cung cánh, ký hiệu là kích thước c ở "
+        "Hình 28.31. Giả thiết θ nhỏ so với β, sau khi tích phân, độ lớn mômen cản do lực cản cảm ứng "
+        "dọc bề mặt cánh của một rôto có n cánh là:"))
+    b.append(eq("N<sub>D</sub> = n(R + a)ρV² · 0,037 Re<sup>−0,2</sup> · S · sinβ", "28.55"))
+    b.append(p("Kết hợp các phương trình 28.55 và 28.52 rồi sắp xếp lại, ta được:"))
+    b.append(eq("ω / Q = tanβ / (<span style='text-decoration:overline'>r</span> A) − 0,036 n(R + a) S A² Re<sup>−0,2</sup> sinβ / <span style='text-decoration:overline'>r</span>²", "28.56"))
+    b.append(note(
+        "<b>Ghi chú của người dịch.</b> Ba chỗ trong bản in gốc có sai sót, được giữ nguyên như đã in. "
+        "Thứ nhất, (28.47) phải là rω<sub>i</sub> = V·tanβ: dạng in ra không cùng thứ nguyên với "
+        "(28.48) và trái với giản đồ vectơ ở Hình 28.31. Thứ hai, thừa số trong (28.56) phải là "
+        "S/A² — tức mẫu số <span style='text-decoration:overline'>r</span>²A² — chứ không phải S·A², nếu không thì không thể suy ra từ (28.52) và "
+        "(28.55). Thứ ba, hệ số 0,036 ở (28.56) đáng lẽ là 0,037 như ở (28.55)."))
+    b.append(p(
+        "Phương trình 28.56 là một biểu thức gần đúng cho hệ số K, vì nó bỏ qua ảnh hưởng của một số "
+        "mômen cản của rôto cùng nhiều yếu tố thiết kế và khí động quan trọng, chẳng hạn độ đặc của "
+        "rôto và biên dạng vận tốc dòng chảy. Tuy vậy, nó cho thấy rằng các biến thiên tuyến tính "
+        "trong điều kiện làm việc danh định thông thường là hàm của một số yếu tố hình học cơ bản và "
+        "của số Reynolds. Những kết quả này phản ánh các xu hướng chung chi phối thiết kế và hiệu "
+        "chuẩn. Ngoài ra, sự lệch rõ rệt khỏi quan hệ xấp xỉ ρV² — thực ra là ρ<sup>0,8</sup>V<sup>1,8</sup>"
+        "μ<sup>−0,2</sup> qua Re trong phương trình 28.54 — của mômen cản do lực cản chất lưu theo các "
+        "tính chất dòng chảy trong chế độ rối, chuyển sang những quan hệ khác trong chế độ chuyển tiếp "
+        "và chảy tầng, gây ra những biến thiên lớn của hệ số K theo lưu lượng và theo tính chất môi "
+        "chất ở số Reynolds thấp. Đây là lý do then chốt khiến lưu lượng kế tuabin hướng trục thường "
+        "được khuyến nghị dùng để đo dòng chảy rối."))
+
+    # ---------------------------------------------------------------- calibration
+    b.append(h3("Hiệu chuẩn, lắp đặt và bảo trì", "Calibration, Installation, and Maintenance"))
+    b.append(p(
+        "Lưu lượng kế tuabin hướng trục có dải động làm việc ít nhất 10:1 mà trên đó độ tuyến tính "
+        "được đặc tả. Lưu lượng lớn nhất do các yếu tố thiết kế liên quan tới kích thước so với độ "
+        "sụt áp lớn nhất và tốc độ rôto lớn nhất quyết định. Giới hạn dưới của dải do chính đặc tả "
+        "tuyến tính quyết định. Do những sai lệch chế tạo nhỏ không tránh được, đường cong sai số "
+        "tuyến tính là duy nhất cho từng lưu lượng kế và thường do nhà chế tạo cung cấp. Tuy nhiên, "
+        "dù được khuyến nghị khi có thể, điều kiện của ứng dụng thường không thể và cũng không nhất "
+        "thiết phải trùng với điều kiện của lần hiệu chuẩn ban đầu, thậm chí cả những lần sau. Điều "
+        "này có tầm quan trọng then chốt với những ứng dụng mà điều kiện làm việc thực tế là khắc "
+        "nghiệt, hoặc môi chất đắt tiền hay khó xử lý. Hình 28.32 mô tả một đường cong hiệu chuẩn "
+        "điển hình — độ tuyến tính theo lưu lượng — biểu diễn qua nhiều cách đo thay thế, và người ta "
+        "có thể gặp nhiều tổ hợp khác nhau của chúng trong thực tế. Trục tung vì thế có thể là sai số "
+        "tuyến tính tính theo phần trăm lưu lượng, là hệ số K biểu diễn bằng số xung từ đầu ra của "
+        "cảm biến tốc độ quay trên một đơn vị thể tích chất lưu, hoặc là độ lệch so với mức đăng ký "
+        "100 % — cách cuối chỉ áp dụng cho lưu lượng kế có đầu thu cơ khí. Trục hoành có thể là lưu "
+        "lượng tính theo thể tích/thời gian, là số Reynolds (Re), hoặc là tần số xung (từ cảm biến "
+        "tốc độ quay với loại không cơ khí) chia cho độ nhớt động học, (f/v), với đơn vị Hz trên "
+        "m²/s (Hz/cSt hay Hz/SSU; 10⁻⁶ m²/s = 1 centistoke = 31,0 giây Saybolt Universal), trong đó "
+        "độ nhớt động học là tỷ số giữa độ nhớt tuyệt đối (μ) và khối lượng riêng. Việc hiệu chuẩn "
+        "tốt nhất nên biểu diễn theo Re hoặc f/v, vì f/v tỷ lệ với Re. Chỗ gồ lên trên đường cong là "
+        "đặc điểm thường gặp ở Re thấp, do ảnh hưởng của biên dạng vận tốc. Đường cong hiệu chuẩn hệ "
+        "số K theo f/v được gọi riêng là đường cong độ nhớt phổ dụng (UVC) và với hầu hết lưu lượng "
+        "kế đều có thể mua từ nhà chế tạo với một khoản phụ phí. Công dụng then chốt của UVC là khi "
+        "loại và tính chất môi chất khác đáng kể so với lần hiệu chuẩn gốc, vẫn có thể đạt được độ "
+        "chính xác cao hơn hẳn sai số tuyến tính tổng thể nhờ UVC của lưu lượng kế, miễn là biết độ "
+        "nhớt động học của ứng dụng. Một kỹ thuật hiệu chuẩn tiên tiến khác [4] là biểu diễn đáp "
+        "tuyến theo số Strouhal phụ thuộc Re, hoặc theo số Roshko. Cách này chưa được dùng rộng rãi, "
+        "nhưng đặc biệt thích hợp cho những ứng dụng đòi hỏi độ chính xác cao và nhiệt độ khắc "
+        "nghiệt, vì nó còn cho phép bù đúng sai số do giãn nở nhiệt của lưu lượng kế."))
+    b.append(fig(32, F.fig(32)))
+    b.append(p(
+        "Độ chính xác của lưu lượng kế tuabin hướng trục bị giảm bởi dòng chảy không được xử lý, đặc "
+        "biệt là dòng xoáy. Nhìn chung nên dùng một cách lắp đặt có bộ xử lý dòng chảy cùng những "
+        "đoạn ống thẳng xác định ở thượng nguồn và hạ nguồn [5]. Một số lưu lượng kế tuabin hướng trục "
+        "có thể đặt mua kèm bộ nắn thẳng dòng cỡ lớn gắn ngay trước thân lưu lượng kế, hoặc tấm xử lý "
+        "dòng chảy tích hợp vào thân. Nhà chế tạo là nguồn thông tin đầu tiên về lắp đặt. Sai số do "
+        "mạch động vận tốc dòng chảy là một mối lo khác, đặc biệt trong một số hệ thống khí. Tuy "
+        "nhiên, chưa có kỹ thuật chuẩn nào được chấp nhận để chống lại một cách hiệu quả nguồn sai số "
+        "này. Cần bảo trì, kiểm tra và hiệu chuẩn lại định kỳ, vì đường hiệu chuẩn sẽ dịch chuyển "
+        "theo thời gian do mài mòn, hư hỏng hoặc nhiễm bẩn. Với một số ứng dụng, đặc biệt những ứng "
+        "dụng liên quan tới chuyển giao thương mại dầu và khí tự nhiên, đã có các tiêu chuẩn quốc "
+        "gia, tiêu chuẩn quốc tế và những khuyến nghị khác quy định yêu cầu tối thiểu cho lưu lượng "
+        "kế tuabin về các mặt này [6–10]."))
+
+    # ---------------------------------------------------------------- design
+    b.append(h3("Kết cấu và chế tạo", "Design and Construction"))
+    b.append(p(
+        "Có rất nhiều thiết kế — thường là độc quyền — với những biến thể về rôto, ổ trục, đầu thu và "
+        "các bộ phận khác, về hình thức và vật liệu, nhằm phục vụ những ứng dụng khác nhau. Thân lưu "
+        "lượng kế có nhiều loại đầu nối tiêu chuẩn. Trong giới hạn của ứng dụng, mục tiêu chính "
+        "thường là tối ưu độ ổn định cơ học tổng thể và độ khít lắp, để đạt được độ lặp lại tốt. Các "
+        "cân nhắc về hiệu năng, ứng dụng và chế tạo tác động tới từng bộ phận bên trong, nhưng nhiều "
+        "nhất là tới rôto — về hình dạng và bước cánh, số cánh, cân bằng và độ cứng so với lực cản, "
+        "ứng suất và quán tính; tới ổ trục — về độ chính xác so với ma sát, tốc độ danh định và độ "
+        "bền; và tới bộ thu tốc độ quay — về hiệu năng và lực cản."))
+    b.append(p(
+        "Hầu hết cánh có tỷ số bán kính thấp được phay phẳng, còn cánh tỷ số cao thường xoắn. Số cánh "
+        "thay đổi từ khoảng 6 đến 20 hoặc hơn, tuỳ góc nghiêng và tỷ số bán kính cánh, sao cho đạt độ "
+        "đặc rôto cần thiết. Độ đặc rôto là thước đo mức “thoáng” của rôto đối với dòng chảy: rôto có "
+        "độ đặc cao gắn kết chặt hơn với dòng chảy và đạt dải động tốt hơn. Góc nghiêng, yếu tố chủ "
+        "yếu quyết định tốc độ rôto, điển hình là 30° đến 45° nhưng có thể nhỏ hơn ở những lưu lượng "
+        "kế dành cho khí có khối lượng riêng thấp. Cụm rôto thường lắp khít với mặt trong của vỏ. Với "
+        "lưu lượng kế đường kính lớn, rôto thường có thêm vành bao quanh chu vi ngoài để tăng độ ổn "
+        "định. Ngoài ra, vì lưu lượng kế lớn thường dùng cho sản phẩm dầu nặng, bằng cách chọn khe hở "
+        "thành thích hợp, lực cản chất lưu sinh ra ở khe hở này thường được thiết kế để bù lại xu "
+        "hướng tăng tốc của lưu lượng kế ở số Reynolds thấp khi môi chất có độ nhớt cao. Vật liệu chế "
+        "tạo trải từ thép không từ tính đến thép từ tính và chất dẻo."))
+    b.append(p(
+        "Ổ bi thép không gỉ thường dùng cho lưu lượng kế khí và cho chất lỏng ít bôi trơn như chất "
+        "lỏng lạnh sâu và freon, trong khi ổ trượt và ổ chặn bằng cacbua vonfram hoặc gốm tổ hợp "
+        "thường được coi là tốt nhất cho nhiều lưu lượng kế chất lỏng khác, tuỳ độ bôi trơn của môi "
+        "chất. Ổ chất lưu (đôi khi gọi là thiết kế “không ổ trục”) thường được dùng kèm loại sau, "
+        "nhưng đôi khi cả với khí, để giảm lực cản. Chúng làm việc theo nhiều thiết kế khác nhau, "
+        "dùng lực do dòng chảy sinh ra để giữ rôto cân bằng, tách khỏi hai đầu trục. Việc bôi trơn ổ "
+        "trục hoặc lấy từ chính môi chất được đo, hoặc nhờ một hệ thống bôi trơn trong hay ngoài. Các "
+        "ổ trục chóp chống tâm bằng đá quý, mỏng manh hơn, cũng được dùng trong một số ứng dụng khí và "
+        "lưu lượng kế nhỏ. Lưu lượng kế cho ngành thực phẩm dược phẩm có thể có lỗ xả trong cụm ổ trục "
+        "để đáp ứng tiêu chuẩn 3A về khe nứt và khe khuất."))
+    b.append(p(
+        "Các loại cảm biến tốc độ quay thông dụng nhất là từ tính, sóng mang điều chế và cơ khí, "
+        "ngoài ra còn dùng loại quang, điện dung và điện trở. Trong nghiên cứu, người ta cũng đã báo "
+        "cáo một cảm biến tốc độ quay dùng thông lượng bức xạ hạt nhân được điều chế, để dùng trong "
+        "một số lò phản ứng hạt nhân [11, 12]. Đầu thu cơ khí, đôi khi có khớp nối từ, là truyền "
+        "thống trong một số ứng dụng và có thể có độ phân giải cao; một ưu điểm là không cần nguồn "
+        "điện. Tuy nhiên lực cản của đầu thu thường lớn. Loại từ tính và loại sóng mang điều chế đều "
+        "dùng ít nhất một cuộn dây trong một cụm đầu thu vặn vào vỏ lưu lượng kế gần rôto. Ở loại cảm "
+        "ứng từ, nay ít phổ biến hơn, cánh hoặc vành bao mang các miếng chèn đã từ hoá và tín hiệu "
+        "được cảm ứng trong cuộn dây nhờ từ trường đi qua. Ở loại từ trở phổ biến hơn — một ví dụ "
+        "được vẽ trên Hình 28.30 — cuộn dây quấn quanh một nam châm vĩnh cửu hoặc một cực từ trong "
+        "cụm đầu thu, cụm này được gắn cạnh một rôto có cánh (hoặc vành bao được gia công) bằng vật "
+        "liệu có độ từ thẩm cao. Vật liệu sau thường là một mác thép không gỉ từ tính như 416, 430 "
+        "hoặc 17-4Ph. Khi rôto quay, từ trở của mạch từ thay đổi, sinh ra tín hiệu trong cuộn dây. Ở "
+        "loại sóng mang điều chế đắt hơn, rôto chỉ cần dẫn điện. Cuộn dây là một phần của mạch dao "
+        "động tần số vô tuyến (RF) và sự lại gần của cánh rôto làm thay đổi trở kháng mạch, tạo ra "
+        "điều chế ở một tần số thấp hơn và được tách ra. Loại RF có lực cản nhỏ hơn nhiều, mức tín "
+        "hiệu cao hơn ở lưu lượng thấp, và có thể làm việc ở nhiệt độ trên điểm Curie của các vật "
+        "liệu sắt từ thông thường. Chúng được ưu tiên cho ứng dụng dải động rộng và nhiệt độ cao. Lưu "
+        "lượng kế hai chiều thường có hai đầu thu từ để xác định chiều dòng chảy; điều này hữu ích, "
+        "chẳng hạn khi theo dõi việc nạp và xả bồn chứa trong các ứng dụng thực phẩm dược phẩm. Một "
+        "số thiết kế còn dùng nhiều đầu thu từ để tăng độ phân giải đo."))
+    b.append(p(
+        "Về đầu ra, có nhiều loại khuếch đại xung, bộ tổng hợp, máy tính lưu lượng để hiệu chỉnh áp "
+        "suất và nhiệt độ khí, cùng các giao thức ghép nối tiêu chuẩn như 4–20 mA, phù hợp với từng "
+        "ứng dụng. Như một ví dụ về bộ truyền tiên tiến, ít nhất một nhà chế tạo (EG&G Flow "
+        "Technology, Inc.) cung cấp một bộ truyền “thông minh” thu nhỏ, lập trình lại được, làm việc "
+        "theo thời gian thực, tích hợp trong vỏ đầu thu cùng một cảm biến nhiệt độ thân lưu lượng kế, "
+        "để bù độ nhớt đầy đủ và tuyến tính hoá theo UVC. Những thiết bị này dùng cho các ứng dụng "
+        "chuyên biệt, chẳng hạn quản lý nhiên liệu trên máy bay, nơi đã biết quan hệ độ nhớt – nhiệt "
+        "độ của môi chất."))
+    b.append(p(
+        "Một số ứng dụng có yêu cầu thiết kế và lời giải hoàn toàn khác biệt; hai trường hợp được bàn "
+        "riêng dưới đây."))
+
+    b.append(h4("Đồng hồ cánh quạt", "Propeller Meters"))
+    b.append(p(
+        "Đồng hồ cánh quạt được dùng để đo lưu lượng nước cấp đô thị, nước tưới tiêu hoặc nước thải. "
+        "Mặc dù trong một số thiết kế, đồng hồ cánh quạt và đồng hồ tuabin trông gần như giống hệt "
+        "nhau và làm việc theo cùng nguyên lý rôto hướng trục, loại lưu lượng kế này hiện được phân "
+        "biệt về mặt thương mại và tiêu chuẩn [13, 14] thành một phạm trù riêng, tách khỏi tuabin "
+        "hướng trục. Đường kính có thể tới 2440 mm (96 in.). Lưu lượng của một đồng hồ cánh quạt "
+        "đường kính 1800 mm (72 in.) lên tới khoảng 25.000 m³/h (110.000 gpm). Độ chính xác điển hình "
+        "là ±2 % giá trị đọc. Yêu cầu hàng đầu là độ chắc chắn, và chính ở những thiết kế phù hợp "
+        "nhất với môi trường khắc nghiệt thì hình thức mới khác biệt rõ nhất. Cụm rôto và đầu thu "
+        "thường được bắt mặt bích vào vỏ và có thể tháo ra. Rôto có khe hở lớn, thường được công xôn "
+        "vào dòng chảy và đỡ bằng một ổ trục kín không có cánh dẫn hướng. Rôto điển hình làm bằng chất "
+        "dẻo hoặc cao su, mang chỉ ba cánh xoắn mạnh với tỷ số bán kính lớn. Đầu thu luôn là loại cơ "
+        "khí và thường có khớp nối từ."))
+
+    b.append(h4("Phế dung kế", "Spirometers"))
+    b.append(p(
+        "Phế dung kế theo dõi đo thể tích khí đi vào và đi ra phổi, và cũng có thể được tích hợp vào "
+        "các mạch máy thở. Phế dung kế chẩn đoán dùng để theo dõi mức độ và tính chất của hô hấp. Với "
+        "những thiết bị này, bác sĩ có thể xác định tình trạng hô hấp của bệnh nhân qua nhiều phép đo "
+        "và nghiệm pháp lâm sàng khác nhau. Chi phí thấp, khối lượng nhẹ, đáp ứng nhanh và an toàn "
+        "cho bệnh nhân là những yêu cầu chính. Năng lực đo gồm thể tích khí của một lần thở ra, và "
+        "với loại chẩn đoán còn có lưu lượng thở ra đỉnh, đo tương ứng bằng lít và lít trên giây. "
+        "Nhiều công nghệ khác nhau được sử dụng. Tuy nhiên, phế dung kế Wright — mang tên người phát "
+        "minh ban đầu [15] — ngày nay dùng để chỉ một loại phế dung kế theo dõi cầm tay dùng một kiểu "
+        "đầu đo tuabin tiếp tuyến đặc biệt với rôto hai cánh nối với đầu thu cơ khí và mặt số hiển "
+        "thị thể tích. Những phế dung kế này được các kỹ thuật viên hô hấp dùng thường quy để cai máy "
+        "thở cho bệnh nhân và kiểm tra máy thở. Cũng có những lưu lượng kế dựa trên tuabin hướng trục "
+        "khác dùng cho đo thông khí, chẳng hạn đo chuyển hoá của bệnh nhân. Một phế dung kế chẩn đoán "
+        "dựa trên tuabin hướng trục do Micro Medical, Ltd. chế tạo hiện chiếm phần lớn thị trường "
+        "châu Âu. Thiết bị này dùng đầu thu quang hồng ngoại và có màn hiển thị điều khiển bằng vi xử "
+        "lý chạy pin. Trong các thiết bị y tế này, rôto thường bằng chất dẻo với tỷ số bán kính cánh "
+        "lớn. Việc xử lý dòng chảy là tối thiểu hoặc không có. Các lưu lượng kế này thường chính xác "
+        "tới ± vài phần trăm giá trị đọc. Tại Hoa Kỳ, phế dung kế được xếp vào thiết bị y tế loại 2, "
+        "vì thế cần một số phê duyệt của FDA về chế tạo và tiếp thị. Ở EU, chúng là thiết bị y tế loại "
+        "IIb theo một hệ thống khác, và cần những phê duyệt khác."))
+
+    b.append(h4("Tuabin hướng trục hai rôto", "Dual-Rotor Axial Turbines"))
+    b.append(p(
+        "Tuabin hướng trục hai rôto có những đặc tính mà thiết kế một rôto không có. Năm 1981, Lee và "
+        "cộng sự [16] được cấp bằng sáng chế Hoa Kỳ cho một lưu lượng kế tuabin hai rôto tự hiệu "
+        "chỉnh và tự kiểm tra, hiện chỉ do Equimeter, Inc. chế tạo và bán với tên Auto-Adjust. Đây là "
+        "lưu lượng kế độ chính xác cao, chủ yếu dành cho các tuyến ống khí tự nhiên lớn, nơi ngay cả "
+        "những sai số đo nhỏ không bị phát hiện cũng có thể gây tốn kém. Thiết bị gồm hai rôto tuabin "
+        "ghép sát nhau, quay cùng chiều. Rôto thượng nguồn là rôto chính, còn rôto thứ hai — có góc "
+        "cánh nông hơn nhiều — là rôto cảm biến. Việc hiệu chỉnh liên tục và tự động các sai số đo do "
+        "ma sát ổ trục thay đổi được thực hiện bằng cách tính lưu lượng dựa trên hiệu tốc độ hai rôto. "
+        "Như chỉ ra trên Hình 28.31 và đã bàn trong phần lý thuyết, góc ra của dòng chảy là do tổng "
+        "mômen cản của rôto. Nếu mômen này tăng ở rôto chính, làm giảm tốc độ của nó, thì góc ra tăng "
+        "và tốc độ rôto cảm biến cũng giảm theo. Lưu lượng kế cũng không nhạy với góc xoáy ở đầu vào, "
+        "vì dòng xoáy ảnh hưởng tới cả hai tốc độ rôto theo cùng một chiều và hiệu ứng này bị trừ đi "
+        "khi tính lưu lượng. Thiết bị còn tự kiểm tra mài mòn và hư hỏng bằng cách theo dõi tỷ số hai "
+        "tốc độ rôto và so sánh con số này với giá trị lúc lắp đặt [17]."))
+    b.append(p(
+        "Một lưu lượng kế chất lỏng hai rôto do Ruffner và cộng sự [18] phát minh gần đây được Exact "
+        "Flow, LLC giới thiệu. Nó được chào bán như một lưu lượng kế độ chính xác cao (tới ±0,1 % độ "
+        "chính xác và ±0,02 % độ lặp lại), với dải động rộng bất thường 500:1 cho một chất lỏng có "
+        "một độ nhớt. Lưu lượng kế này đã thành công thương mại bước đầu trong đo lưu lượng nhiên "
+        "liệu tại các bệ thử động cơ phản lực lớn, nơi dải động rộng đặc biệt hữu ích [19]. Thiết bị "
+        "gồm hai rôto ghép sát nhau về mặt thuỷ lực, quay ngược chiều. Nhờ góc ra do rôto thứ nhất tạo "
+        "ra, rôto thứ hai vẫn tiếp tục quay tới những lưu lượng thấp hơn nhiều so với rôto thứ nhất."))
+
+    b.append(h4("Đo dòng hai pha bằng tuabin hướng trục", "Two-Phase Flow Measurement Using Axial Turbines"))
+    b.append(p(
+        "Một lưu lượng kế tạo chênh áp, chẳng hạn ống Venturi mắc nối tiếp với một tuabin, được biết "
+        "là phương pháp phù hợp về kỹ thuật và đơn giản để đo lưu lượng thể tích và khối lượng của "
+        "một số sol khí rắn mịn. Tuy nhiên, mục này nêu bật một hướng nghiên cứu hiện nay về việc áp "
+        "dụng lưu lượng kế tuabin rôto hướng trục cho một loạt bài toán đo lưu lượng công nghiệp có "
+        "dòng hai pha khí/lỏng. Thông thường, lưu lượng kế tuabin không được thiết kế cho và không thể "
+        "đo chính xác những dòng như vậy. Sai số cỡ 10 % xuất hiện khi đo chất lỏng có phần rỗng "
+        "khoảng 20 %. Những dòng như thế thường được đo sau các thiết bị tách khí. Mặc dù vấn đề này "
+        "không chỉ giới hạn ở các ngành đó, động lực chính hiện nay cho nghiên cứu là đo trực tiếp "
+        "dầu thô trong các hệ thống khai thác đa pha ngoài khơi, đo hỗn hợp nước/hơi trong vòng làm "
+        "mát của lò phản ứng hạt nhân, và đo dòng freon lỏng – hơi trong thiết bị lạnh và điều hoà "
+        "không khí. Một số kỹ thuật đã được khảo sát tới nay dùng thêm một cảm biến phụ, có thể là cảm "
+        "biến phần rỗng hoặc một thiết bị đo độ sụt áp như ống Venturi hay đĩa cản, trong đó cách tiếp "
+        "cận dùng độ sụt áp có vẻ hứa hẹn hơn về kỹ thuật [20, 21]. Xét về mặt thực tiễn, các tỷ trọng "
+        "kế gamma để đo phần rỗng là thiết bị bổ sung, đắt tiền và chẳng hạn không thích hợp lắm cho "
+        "các mỏ dầu dưới đáy biển. Hai kỹ thuật đang được nghiên cứu không cần cảm biến phụ nối tiếp. "
+        "Kỹ thuật thứ nhất dùng chính lưu lượng kế tuabin làm vật cản và kết hợp tín hiệu của tuabin "
+        "với tín hiệu của một cảm biến chênh áp nhỏ mắc song song qua vùng vào và vùng ra. Kỹ thuật "
+        "này cần một bộ đồng nhất hoá trước tuabin, và độ chính xác ±3 % cho lưu lượng thể tích của "
+        "cả hai pha đã được báo cáo gần đây với hỗn hợp không khí/nước có phần rỗng tới 80 % [22]. Kỹ "
+        "thuật thứ hai hoàn toàn dựa trên phân tích tín hiệu ra của tuabin và đã cho những tương quan "
+        "đáng kể giữa dao động tín hiệu với phần rỗng. Độ chính xác ±2 % khi đo lưu lượng thể tích "
+        "nước đã được báo cáo với hỗn hợp không khí/nước có phần rỗng tới 25 % [23]."))
+
+    b.append(h4("Lưu lượng kế tuabin hướng trục kiểu chèn", "Insertion Axial Turbine Flowmeters"))
+    b.append(p(
+        "Những lưu lượng kế này gồm một rôto hướng trục nhỏ lắp trên một cán chèn xuyên qua thành ống "
+        "theo phương bán kính, thường qua một van khoá. Chúng đo vận tốc dòng tại vị trí rôto, từ đó "
+        "suy ra lưu lượng thể tích. Đây là lời giải kinh tế cho bài toán đo lưu lượng khi đường kính "
+        "ống lớn và yêu cầu độ chính xác vừa phải, và cũng có thể được ưu tiên về kỹ thuật khi độ sụt "
+        "áp không đáng kể là một lợi thế, như trong dòng chảy tốc độ cao. Chúng thường tuyến tính hơn "
+        "lưu lượng kế tuabin tiếp tuyến kiểu chèn và cạnh tranh cả với lưu lượng kế kiểu chèn điện từ "
+        "và kiểu xoáy. Chúng có sẵn để đo nhiều loại chất lỏng và khí, kể cả hơi nước, tương tự dải "
+        "môi chất của tuabin hướng trục toàn phần, và có đáp tuyến tuyến tính tương tự. Flow "
+        "Automation, Inc. hiện là nhà chế tạo hàng đầu. Rôto, thường bằng kim loại nhưng có thể bằng "
+        "chất dẻo, điển hình có đường kính 25 mm đến 51 mm (1 in. đến 2 in.). Chúng có thể chèn vào "
+        "ống có đường kính từ 51 mm đến 2032 mm (2 in. đến 80 in.). Dải đo vận tốc phủ 0,046 m/s đến "
+        "91 m/s (9 ft/phút đến 18.000 ft/phút) với khí và 0,03 m/s đến 30 m/s (6 ft/phút đến 6.000 "
+        "ft/phút) với chất lỏng. Dải động thay đổi giữa 10:1 và 100:1. Lưu lượng đo lớn nhất trong "
+        "một ống đường kính 1836 mm (72 in.) có thể lên tới gần 56.500 m³/h (khoảng 250.000 gpm). Vì "
+        "đây là cảm biến vận tốc cục bộ, muốn tính lưu lượng thể tích phải biết biên dạng vận tốc "
+        "theo diện tích và diện tích dòng chảy thực. Do đó việc xử lý dòng chảy đặc biệt quan trọng "
+        "đối với đo thể tích chính xác, còn việc định vị theo phương bán kính — thêm một trách nhiệm "
+        "của người dùng — phải theo khuyến nghị của nhà chế tạo, có thể là ở đường tâm, ở một phần ba "
+        "đường kính, ở 12 % đường kính, hoặc xác định bằng cách “lấy biên dạng”. Quick [24] bàn về "
+        "vận hành và lắp đặt cho đo khí tự nhiên. Mặc dù độ tuyến tính hay “độ chính xác” có thể được "
+        "công bố tới ±1 % vận tốc, đạt được độ chính xác tương tự cho lưu lượng thể tích thì tuy có "
+        "thể nhưng thường khó hoặc không thực tế. Ở khía cạnh này, một thiết kế hai rôto độc đáo, "
+        "riêng của Onicon, Inc. và chủ yếu dùng để đo lưu lượng nước lạnh trong hệ thống điều hoà "
+        "không khí, đòi hỏi ít xử lý dòng chảy hơn các thiết kế một rôto. Cụm tuabin hai rôto của "
+        "Onicon được vẽ trên Hình 28.33."))
+    b.append(fig(33, F.fig(33)))
+    b.append(p(
+        "Thiết bị gồm hai rôto quay ngược chiều. Đầu ra dựa trên tốc độ trung bình của hai rôto. Mọi "
+        "dòng xoáy hiện diện do xử lý dòng chảy kém sẽ làm thay đổi tốc độ quay của mỗi rôto một "
+        "lượng như nhau nhưng ngược dấu. Vì thế sai số do xoáy gần như không còn trong đầu ra đã lấy "
+        "trung bình. Ngoài ra, việc lấy mẫu biên dạng dòng chảy cũng tốt hơn so với một rôto. Các "
+        "thiết bị được hiệu chuẩn bằng bình chuẩn thể tích, và độ chính xác công bố ±2 % giá trị đọc "
+        "là cho lưu lượng thể tích chứ không phải vận tốc. Đây là sai số tổng, đã bao gồm dung sai cho "
+        "các biến thiên kích thước của ống tiêu chuẩn công nghiệp."))
+
+    b.append(h4("Lưu lượng kế mômen động lượng", "Angular Momentum Flowmeters"))
+    b.append(p(
+        "Đây là những lưu lượng kế khối lượng chất lỏng chính xác, tuyến tính, dùng các bộ phận có "
+        "cánh, và được dùng trong các ứng dụng hàng không vũ trụ. Hiện chúng là thiết bị được chọn "
+        "cho đo lưu lượng nhiên liệu trên máy bay, trong các động cơ phản lực của máy bay thương mại "
+        "lớn và một số máy bay quân sự cho ứng dụng đốt tăng lực. Chúng đắt hơn các lưu lượng kế tuabin "
+        "tương đương dùng cho ứng dụng này, nhưng cho kết quả đo lưu lượng khối lượng một cách trực "
+        "tiếp và không bị ảnh hưởng bởi biến thiên khối lượng riêng của nhiên liệu. Độ chính xác điển "
+        "hình nằm giữa ±0,5 % và ±1,0 % trên dải động 40:1 hoặc rộng hơn. Dải đo có sẵn cho lưu lượng "
+        "nhiên liệu từ khoảng 0,01 đến 6 kg/s (70 đến 46.000 PPH)."))
+    b.append(p(
+        "Nguyên lý làm việc đã có từ lâu và dựa trên việc truyền mômen động lượng cho dòng chất lưu "
+        "bằng một bánh công tác cánh phẳng được dẫn động. Lực cần thiết để dẫn động bánh công tác ở "
+        "tốc độ không đổi được theo dõi như một chỉ báo tỷ lệ với lưu lượng khối lượng khi đại lượng "
+        "này thay đổi. Một số thiết kế dùng động cơ điện để dẫn động bánh công tác, nhưng xu hướng "
+        "thiết kế hiện nay là không dùng động cơ. Trong thiết bị như vậy, tốc độ dẫn động không đổi "
+        "khoảng 100 vòng/phút đến 200 vòng/phút do một hoặc nhiều rôto tuabin được dòng chảy dẫn động "
+        "tạo ra. Một cụm van tiết lưu song song thay đổi được, đặt cạnh rôto tuabin, đóng mở bằng cơ "
+        "khí theo áp suất động của dòng và nhờ đó tự động duy trì tốc độ quay không đổi, miễn là lưu "
+        "lượng còn trên giới hạn dưới của dải đo. Bánh công tác được dẫn động mang các cánh song song "
+        "với dòng chảy và nằm trên cùng một trục với rôto tuabin. Một bộ nắn thẳng dòng bảo đảm dòng "
+        "song song đi qua bánh công tác. Giữa trục tuabin và bánh công tác có một khớp lò xo có tốc "
+        "độ không đổi được thiết kế cẩn thận, sao cho góc lệch giữa hai chi tiết tỷ lệ với mômen tác "
+        "dụng, và đại lượng này tỷ lệ trực tiếp với lưu lượng khối lượng. Hai cuộn dây thu cảm nhận "
+        "chuyển động quay của tuabin và của bánh công tác có cánh, và người ta chỉ đo chênh lệch thời "
+        "gian giữa các xung trong hai tín hiệu này để tính lưu lượng. Chiles và cộng sự [25] trình bày "
+        "hình minh hoạ và giải thích chi tiết về cơ cấu tinh xảo này."))
+
+    b.append(h4("Lưu lượng kế tuabin đa tia", "Multijet Turbine Flowmeters"))
+    b.append(p(
+        "Đây là những lưu lượng kế thể tích tuyến tính dành cho đo chất lỏng, gồm một bánh công tác "
+        "một tầng cánh hướng tâm, lắp thẳng đứng trên một ổ trục trong một buồng dòng bị chia theo "
+        "phương thẳng đứng, đôi khi gọi là bộ phân phối. Bánh công tác thường bằng chất dẻo và thậm "
+        "chí có thể cân bằng nổi trong nước. Có nhiều thiết kế khác nhau, nhưng điển hình thì cả hai "
+        "ngăn đều thông với một loạt tia phân bố theo phương bán kính và đặt nghiêng. Các tia ở ngăn "
+        "dưới nối với cửa vào của lưu lượng kế và phân phối dòng chảy theo phương tiếp tuyến vào vùng "
+        "dưới của cánh bánh công tác, còn loạt tia ở ngăn trên — nghiêng theo chiều ngược lại — cho "
+        "dòng chảy thoát ra. Nhờ vậy dạng dòng trong buồng là một đường xoắn ốc thẳng đứng, và áp suất "
+        "động làm bánh công tác quay bám theo dòng. Thiết kế này cho lưu lượng kế độ nhạy tốt ở lưu "
+        "lượng thấp. Nhờ nguyên lý phân phối, lưu lượng kế cũng không nhạy với điều kiện dòng ở "
+        "thượng nguồn. Đầu thu chuyển động quay của bánh công tác luôn là loại cơ khí, thường ghép từ, "
+        "và thường cũng nối với bộ truyền tiếp điểm điện. Chúng chủ yếu được dùng trong đo nước, gồm "
+        "đo nước uống cho mục đích tính tiền của hộ gia đình và cơ sở kinh doanh, và dùng cùng các hệ "
+        "thống quản lý năng lượng như toà nhà dùng nước nóng hay hệ thống sưởi tập trung; ít hơn nhiều "
+        "là trong một số ngành hoá chất và dược phẩm cho các hệ thống định lượng và chiết rót liên "
+        "quan tới dung môi, chất làm lạnh, axit và kiềm có độ nhớt tuyệt đối dưới 4,5 mPa·s "
+        "(0,045 poise). Kích thước có sẵn từ 15 mm đến 50 mm. Dải động nằm giữa 25:1 và 130:1, lưu "
+        "lượng đo phủ 0,03 đến 30 m³/h (0,13 đến 130 gpm). Độ tuyến tính đo nằm giữa ±1 % và ±2 %, độ "
+        "lặp lại điển hình ±0,3 %. Nhiệt độ làm việc từ bình thường đến 90 °C (200 °F) và áp suất làm "
+        "việc lớn nhất có sẵn tới 6,9 MPa (1000 psi). Một số hệ thống đo nước uống đi kèm các tuỳ chọn "
+        "viễn trắc tinh vi cho phép truy vấn từ xa qua vô tuyến hoặc điện thoại. Với ứng dụng nước "
+        "uống tại Hoa Kỳ, các lưu lượng kế này thường tuân theo tiêu chuẩn AWWA áp dụng [26], còn ở "
+        "châu Âu thì áp dụng tiêu chuẩn EEC, DIN và các tiêu chuẩn quốc gia khác."))
+    b.append(p(
+        "Theo ý tác giả, còn một loại lưu lượng kế có cánh nữa có thể xếp vào kiểu tuabin đa tia. Loại "
+        "này gồm một bánh công tác có cánh lắp theo phương trục, với một bộ phận ở thượng nguồn tạo "
+        "xoáy xoắn ốc cho dòng chảy. Đầu đo điển hình là một chi tiết chất dẻo nhỏ, giá thấp, đôi khi "
+        "dùng một lần, và thường được thiết kế cho chất lỏng (nhưng cả cho khí với độ chính xác thấp "
+        "hơn), cho lưu lượng nhỏ (xuống tới 50 mL/phút). Dải động cao và độ chính xác tới ±0,5 %. Goss "
+        "[27] mô tả một thiết kế cụ thể đang được dùng. Các ứng dụng chuyên biệt phủ các ngành dược "
+        "phẩm, y tế và đồ uống."))
+
+    b.append(h4("Lưu lượng kế rôto trụ", "Cylindrical Rotor Flowmeter"))
+    b.append(p(
+        "Thay vì ghép với dòng rối nhờ áp suất động hay thông lượng động lượng của chất lưu như ở hầu "
+        "hết tuabin hướng trục và tiếp tuyến, một thiết bị nghiên cứu đã được chứng minh của Wadlow "
+        "và cộng sự [28] cho phép đo thể tích tuyến tính ở lưu lượng khí thấp bằng một rôto tiếp tuyến "
+        "hình trụ nhẵn, quán tính thấp, quay nhờ ma sát bề mặt khi ghép với dòng chảy tầng. Về hình "
+        "học, đây là một cánh quay một mặt. Một dòng Poiseuille phẳng được tạo ra, đi theo phương vị "
+        "qua phần lớn bề mặt cong của rôto trong một khe vành khuyên hẹp giữa rôto và vỏ đồng tâm. "
+        "Rôto được động cơ dẫn động qua một mạch điều khiển phản hồi nối với một cảm biến chênh áp "
+        "sinh tín hiệu sai lệch, mắc song song qua các cửa khí, sao cho độ sụt áp của lưu lượng kế "
+        "luôn bằng không. Trong điều kiện đó, đáp tuyến — thể hiện qua tốc độ trục động cơ — là tuyến "
+        "tính chính xác, chỉ do hình học quyết định và không phụ thuộc khối lượng riêng hay độ nhớt "
+        "của khí. Thiết bị đã báo cáo có rôto đường kính 40 mm và cửa khí đường kính 15 mm. Nó đo tối "
+        "đa 25 L/phút theo cả hai chiều, có dải động tuyến tính lớn hơn 100:1, không nhạy với điều "
+        "kiện dòng thượng nguồn, và có thời gian đáp ứng bước 1/e là 42 ms, chỉ bị giới hạn bởi mômen "
+        "động cơ ngoài cùng quán tính tổng hợp của động cơ và rôto."))
+
+    # ---------------------------------------------------------------- makers
+    b.append(h3("Nhà chế tạo", "Manufacturers"))
+    b.append(p(
+        "Có sự cạnh tranh mạnh và năng động giữa nhiều nhà chế tạo các loại lưu lượng kế mô tả trong "
+        "mục này. Ở mọi loại lưu lượng kế, phần lớn nhà chế tạo đều có quyền sáng chế độc quyền cho "
+        "một hay nhiều chi tiết thiết kế khiến sản phẩm của họ làm việc khác với sản phẩm cạnh tranh. "
+        "Cứ vài năm lại có thể nhận ra một hay nhiều công ty lưu lượng kế tuabin lớn đã đổi chủ và đổi "
+        "tên, hoặc lập quan hệ đối tác mới. Việc nhận diện đối thủ và chọn nhà chế tạo là những phần "
+        "quan trọng và đôi khi tốn thời gian của quá trình chọn và đặc tả lưu lượng kế. Để hỗ trợ việc "
+        "này, Bảng 28.8 nêu một vài ví dụ chọn lọc từ các nhà chế tạo khác nhau, cho tất cả các loại "
+        "lưu lượng kế đã mô tả trong mục này. Bảng 28.9 cho thông tin liên hệ tương ứng của những nhà "
+        "chế tạo được chọn đó, cùng các loại sản phẩm nói chung mà mỗi hãng cung cấp."))
+    b.append(_t288("vi"))
+    b.append(_t289("vi"))
+
+    # ---------------------------------------------------------------- conclusion
+    b.append(h3("Kết luận", "Conclusion"))
+    b.append(p(
+        "Dù những cảm biến cơ khí tinh xảo có vẻ lỗi thời đến đâu giữa công nghệ cao thường ngày hiện "
+        "nay, vẫn có những lý do cơ bản khiến tuabin hướng trục nhiều khả năng tiếp tục được duy trì "
+        "và phát triển chứ không bị đào thải, đặc biệt với các ứng dụng nối tiếp đòi hỏi độ chính xác "
+        "thể tích cỡ phần mười phần trăm. Ghép nối cơ khí là tương tác thể tích trực tiếp nhất với "
+        "một chất lưu đang chảy, và đó là lý do vì sao các lưu lượng kế cơ khí ra đời sớm nhất trong "
+        "lịch sử và vẫn tiếp tục là loại lưu lượng kế chính xác và đáng tin cậy nhất cho rất nhiều "
+        "chất lưu khác nhau. Vì thế, những cách tiếp cận phi cơ khí khác — có lẽ công nghệ cao hơn, "
+        "hoặc mới hơn — phải đối mặt với yêu cầu cao về bù trừ chính xác để làm cho những kỹ thuật "
+        "ghép thể tích kém trực tiếp hơn ấy trở nên chính xác nói chung, hoặc chính xác hơn. Đó là vì "
+        "sai số của từng hệ số hiệu chỉnh hay từng giả thiết trong một kỹ thuật gián tiếp đều đóng "
+        "góp vào sai số tổng. Công nghệ lưu lượng kế độ chính xác cao tiếp tục được các ứng dụng thúc "
+        "đẩy, chẳng hạn chuyển giao thương mại dầu và khí tự nhiên có giá trị lớn, vốn đòi hỏi độ "
+        "chính xác và độ tin cậy cao. Nhu cầu về lưu lượng kế nước chính xác và đáng tin cậy vẫn tiếp "
+        "diễn. Nhờ kinh nghiệm thực địa lâu năm đã được chứng minh, tuabin và các thiết bị kiểu cánh "
+        "khác đã trở thành một trong số ít kỹ thuật được chấp nhận rộng rãi trong nhiều ứng dụng lớn "
+        "như vậy, nơi nhu cầu về cảm biến lưu lượng là đáng kể hoặc đang tăng."))
+
+    # ---------------------------------------------------------------- refs
+    b.append(h3("Tài liệu tham khảo", "References"))
+    b.append(wl([
+        "[1] W. F. Z. Lee và H. J. Evans, “Density effect and Reynolds number effect on gas turbine "
+        "flowmeters”, <i>Trans. ASME, J. Basic Eng.</i>, 87(4): 1043–1057, 1965.",
+        "[2] R. E. Thompson và J. Grey, “Turbine flowmeter performance model”, <i>Trans. ASME, J. Basic "
+        "Eng.</i>, 92(4), 712–723, 1970.",
+        "[3] M. B. Pate, A. Myklebust và J. H. Cole, “A computer simulation of the turbine flow meter "
+        "rotor as a drag body”, <i>Proc. Int. Comput. in Eng. Conf. and Exhibit 1984</i>, Las Vegas: "
+        "184–191, New York: ASME, 1984.",
+        "[4] P. D. Olivier và D. Ruffner, “Improved turbine meter accuracy by utilization of "
+        "dimensionless data”, <i>Proc. 1992 National Conf. Standards Labs. (NCSL) Workshop and "
+        "Symp.</i>, Boulder, CO: NCSL, 1992, 595–607.",
+        "[5] ISA-RP 31.1, <i>Specification, Installation and Calibration of Turbine Flowmeters</i>, "
+        "Research Triangle Park, NC: ISA, 1977.",
+        "[6] ANSI/ASME MFC-4M-1986 (R1990), <i>Measurement of Gas Flow by Turbine Meters</i>, New York: "
+        "ASME.",
+        "[7] API MPM, <i>Measurement of Liquid Hydrocarbons by Turbine Meters</i>, 3rd ed., "
+        "Washington, D.C.: API (Amer. Petroleum Inst.), 1995, chap. 5.3.",
+        "[8] AGA Transmission Meas. Committee Rep. No. 7, <i>Measurement of fuel gas by turbine "
+        "meters</i>, Arlington, VA: AGA (Amer. Gas Assoc.), 1981.",
+        "[9] Int. Recommendation R32, <i>Rotary piston gas meters and turbine gas meters</i>, Paris: "
+        "OIML (Int. Organization of Legal Metrology), 1989.",
+        "[10] ISO 9951:1993, <i>Measurement of gas flow in closed conduits — turbine meters</i>, "
+        "Geneva, Switzerland: Int. Organization for Standardization (also available ANSI), 1993.",
+        "[11] T. H. J. J. Van Der Hagen, “Proof of principle of a nuclear turbine flowmeter”, "
+        "<i>Nucl. Technol.</i>, 102(2), 167–176, 1993.",
+        "[12] K. Termaat, W. J. Oosterkamp và W. Nissen, “Nuclear turbine coolant flow meter”, U.S. "
+        "Patent No. 5,425,064, 1995.",
+        "[13] AWWA C704-92, <i>Propeller-type meters for waterworks applications</i>, Denver, CO: "
+        "Amer. Water Works Assoc., 1992.",
+        "[14] ANSI/AWWA C701-88, <i>Cold water meters — turbine type, for customer service</i>, "
+        "Denver, CO: Amer. Water Works Assoc., 1988.",
+        "[15] B. M. Wright và C. B. McKerrow, “Maximum forced expiratory flow rate as a measure of "
+        "ventilatory capacity”, <i>Br. Med. J.</i>, 1041–1047, 1959.",
+        "[16] W. F. Z. Lee, R. V. White, F. M. Sciulli và A. Charwat, “Self-correcting self-checking "
+        "turbine meter”, U.S. Patent No. 4,305,281, 1981.",
+        "[17] W. F. Z. Lee, D. C. Blakeslee và R. V. White, “A self-correcting and self-checking gas "
+        "turbine meter”, <i>Trans. ASME, J. Fluids Eng.</i>, 104, 143–149, 1982.",
+        "[18] D. F. Ruffner và P. D. Olivier, “Wide range, high accuracy flow meter”, U.S. Patent No. "
+        "5,689,071, 1997.",
+        "[19] D. F. Ruffner, trao đổi riêng, 1996.",
+        "[20] A. Abdul-Razzak, M. Shoukri và J. S. Chang, “Measurement of two-phase refrigerant "
+        "liquid-vapor mass flow rate. III. Combined turbine and venturi meters and comparison with "
+        "other methods”, <i>ASHRAE Trans.: Research</i>, 101(2), 532–538, 1995.",
+        "[21] W. J. Shim, T. J. Dougherty và H. Y. Cheh, “Turbine meter response in two-phase flows”, "
+        "<i>Proc. Int. Conf. Nucl. Eng. — 4</i>, 1 part B: 943–953, New York: ASME, 1996.",
+        "[22] K. Minemura, K. Egashira, K. Ihara, H. Furuta và K. Yamamoto, “Simultaneous measuring "
+        "method for both volumetric flow rates of air-water mixture using a turbine flowmeter”, "
+        "<i>Trans. ASME, J. Energy Resources Technol.</i>, 118, 29–35, 1996.",
+        "[23] M. W. Johnson và S. Farroll, “Development of a turbine meter for two-phase flow "
+        "measurement in vertical pipes”, <i>Flow Meas. Instrum.</i>, 6(4), 279–282, 1995.",
+        "[24] L. A. Quick, “Gas measurement by insertion turbine meter”, <i>Proc. 70th Int. School "
+        "Hydrocarbon Meas.</i>, OK, 1995. (Có thể lấy từ E. Blanchard, Arrangements Chair, Shreveport, "
+        "LA, (318) 868–0603.)",
+        "[25] W. E. Chiles, L. E. Vetsch và J. V. Peterson, “Shrouded flowmeter turbine and improved "
+        "fluid flowmeter using the same”, U.S. Patent No. 4,012,957, 1977.",
+        "[26] ANSI/AWWA C708-91, <i>Cold-water meters, multi-jet-type</i>, Denver, CO: Amer. Water "
+        "Works Assoc., 1991.",
+        "[27] J. Goss, “Flow meter”, U.S. Patent No. 5,337,615, 1994.",
+        "[28] D. Wadlow và L. M. Layden, “Controlled flow volumetric flowmeter”, U.S. Patent No. "
+        "5,284,053, 1994.",
+        "[29] C. R. Sparks, trao đổi riêng, 1996.",
+    ]))
+
+    b.append(h3("Thông tin thêm", "Further Information"))
+    b.append(p(
+        "D. W. Spitzer (chủ biên), <i>Flow Measurement</i>, Research Triangle Park, NC: ISA, 1991, là "
+        "một cẩm nang kỹ thuật thực hành phổ biến dày 646 trang, trong đó bốn chương bàn về lưu lượng "
+        "kế tuabin, lưu lượng kế cho ngành thực phẩm dược phẩm, lưu lượng kế kiểu chèn và các vấn đề "
+        "chuyển giao thương mại."))
+    b.append(p(
+        "A. J. Nicholl, “Factors affecting the performance of turbine meters”, <i>Brown Bov. Rev.</i>, "
+        "64(11), 684–692, 1977, mô tả một số yếu tố thiết kế cơ bản ít được bàn ở nơi khác."))
+    b.append(p(
+        "J. W. DeFeo, “Turbine flowmeters for measuring cryogenic liquids”, <i>Adv. Instrum. Proc.</i>, "
+        "47 pt.1, 465–472, ISA, 1992, đưa ra hướng dẫn cho một ứng dụng ít được bàn tới, trong đó "
+        "tuabin hướng trục làm việc tốt."))
+    b.append(p(
+        "ATS, “Standardization of spirometry, 1994 Update”, <i>Am. J. Respir. Care Med.</i>, 152, "
+        "1107–1136, 1995, là bản mới nhất của hướng dẫn chính thức Hoa Kỳ về phế dung do Hiệp hội Lồng "
+        "ngực Hoa Kỳ soạn."))
+    b.append(p(
+        "M. D. Lebowitz, “The use of expiratory flow rate measurements in respiratory disease”, "
+        "<i>Ped. Pulmonol.</i>, 11, 166–174, 1991, điểm lại giá trị chẩn đoán của lưu lượng thở ra "
+        "đỉnh (PEFR) khi dùng phế dung kế xách tay."))
+    b.append(p(
+        "W. M. Jungowski và M. H. Weiss, “Effects of flow pulsation on a single-rotor turbine meter”, "
+        "<i>Trans. ASME, J. Fluids Eng.</i>, 118(1), 198–201, 1996."))
+    b.append(p(
+        "C. R. Sparks và R. J. McKee, “Method and apparatus for assessing and quantifying pulsation "
+        "induced error in gas turbine flow meters”, U.S. Patent No. 5,481,924, 1996, được giao cho Gas "
+        "Research Institute, Chicago, là một lời giải tiềm năng cho bài toán đo chính xác dòng khí "
+        "mạch động, sẽ cần được phát triển kỹ thuật và một cảm biến tốc độ quay hiệu năng cao [29]."))
+    b.append(p(
+        "K. Ogawa, S. Ito và C. Kuroda, “Laminar-turbulent velocity profile transition for flows in "
+        "concentric annuli, parallel plates and pipes”, <i>J. Chem. Eng. Japan</i>, 13(3), 183–188, "
+        "1990, trình bày mô tả toán học của các biên dạng vận tốc."))
+    b.append(p(
+        "J. Lui và B. Huan, “Turbine meter for the measurement of bulk solids flow rate”, <i>Powder "
+        "Technol.</i>, 82, 145–151, 1995, mô tả lý thuyết và thực nghiệm của một thiết kế rất đơn giản "
+        "cho một ứng dụng độc đáo, đó là đo thể tích dòng nút của cát trong ống."))
+    return "".join(b)
+
+
+def sec_28_4_en():
+    b = []
+    b.append(h2("28.4 Turbine and Vane Flowmeters", "Turbine and Vane Flowmeters"))
+    b.append(p("David Wadlow — Sensors Research Consulting."))
+    b.append(p(
+        "This section describes a range of closed-conduit flowmeters that use rotating vaned "
+        "transduction elements, with particular emphasis on axial turbine flowmeters. Single-jet and "
+        "insertion tangential turbines, also known as paddlewheel flowmeters, are described in "
+        "another section. The various vaned flowmeters used for open-channel and free-field flow "
+        "measurement are not included here."))
+
+    # ---------------------------------------------------------------- axial
+    b.append(h3("Axial Turbine Flowmeters", "Axial Turbine Flowmeters"))
+    b.append(p(
+        "The modern axial turbine flowmeter, when properly installed and calibrated, is a reliable "
+        "device capable of providing the highest accuracies attainable by any currently available "
+        "flow sensor for both liquid and gas volumetric flow measurement. It is the product of "
+        "decades of intensive innovation and refinement of the original axial vaned flowmeter "
+        "principle first credited to Woltman in 1790, at that time applied to measuring water flow. "
+        "The initial impetus for modern development activity was largely the increasing need of the "
+        "U.S. natural gas industry in the late 1940s and 1950s for a means to measure accurately the "
+        "flow in large-diameter, high-pressure, interstate natural gas lines. Today, because of the "
+        "tremendous success of this principle, axial turbine flowmeters of different and often "
+        "proprietary designs are used in a variety of applications where accuracy, reliability and "
+        "rangeability are required, in numerous major industries besides water and natural gas — oil, "
+        "petrochemical, chemical process, cryogenics, milk and beverage, aerospace, biomedical and "
+        "others."))
+    b.append(p(
+        "Figure 28.30 is a schematic longitudinal section through the axis of symmetry depicting the "
+        "key components of a typical meter. The meter is an in-line sensor comprising a single turbine "
+        "rotor, concentrically mounted on a shaft within a cylindrical housing through which the flow "
+        "passes. The shaft or shaft bearings are located by end supports inside suspended upstream and "
+        "downstream aerodynamic structures called diffusers, stators, or simply cones. The flow thus "
+        "passes through an annular region occupied by the rotor blades. The blades, usually flat but "
+        "sometimes slightly twisted, are inclined at an angle to the incident flow velocity and hence "
+        "experience a torque that drives the rotor. The rate of rotation — up to several × 10⁴ rpm for "
+        "smaller meters — is detected by a pickup, usually of the magnetic type, and registration of "
+        "each rotor blade passing infers the passage of a fixed volume of fluid."))
+    b.append(fig(30, F.fig(30)))
+
+    b.append(h4("General Performance Characteristics", "General Performance Characteristics"))
+    b.append(p(
+        "Axial turbines perform best when measuring clean, conditioned, steady flows of gases and "
+        "liquids with low kinematic viscosities (below about 10⁻⁵ m²/s, 10 cSt, although they are used "
+        "up to 10⁻⁴ m²/s, 100 cSt), and are linear for subsonic, turbulent flows. Under these "
+        "conditions the inherent mechanical stability of the meter design gives rise to excellent "
+        "repeatability. Not including the special case of water meters, described later, the main "
+        "performance characteristics are:"))
+    b.append(ul([
+        "Sizes (internal diameter) range from 6 mm to 760 mm (1/4 in. to 30 in.).",
+        "Maximum measurement capacities range from 0.025 A m³/h to 25,500 A m³/h (0.015 ACFM to "
+        "15,000 ACFM) for gases and 0.036 m³/h to 13,000 m³/h (0.16 gpm to 57,000 gpm, or 82,000 "
+        "barrels per hour) for liquids, where A denotes actual.",
+        "Typical measurement repeatability is ±0.1% of reading for liquids and ±0.25% for gases, with "
+        "up to ±0.02% for high-accuracy meters. Typical linearities (before electronic linearization) "
+        "are between ±0.25% and ±0.5% of reading for liquids, and ±0.5% and ±1.0% for gases. "
+        "High-accuracy meters have linearities of ±0.15% for liquids and ±0.25% for gases, usually "
+        "specified over a 10:1 dynamic range below maximum rated flow. Traceability to NIST (National "
+        "Institute of Standards and Technology) is frequently available, allowing one to estimate the "
+        "overall absolute accuracy of a flowmeter under specified conditions. Under ideal conditions, "
+        "absolute accuracies for optimum designs and installations can come close to the accuracy "
+        "capabilities at NIST, which are stated as ±0.13% for liquid flows and ±0.25% for air.",
+        "Rangeability, when defined as the ratio of flow rates over which the linearity specification "
+        "applies, is typically between 10:1 and 100:1.",
+        "Operating temperature ranges span −270 °C to 650 °C (−450 °F to 1200 °F).",
+        "Operating pressure ranges span coarse vacuum to 414 MPa (60,000 psi).",
+        "Pressure drop at the maximum rated flow rate ranges from around 0.3 kPa (0.05 psi) for gases "
+        "to in the region of 70 kPa (10 psi) for liquids.",
+    ]))
+
+    # ---------------------------------------------------------------- theory
+    b.append(h3("Theory", "Theory"))
+    b.append(p(
+        "There are two approaches described in the current literature for analysing axial turbine "
+        "performance. The first describes the fluid driving torque in terms of momentum exchange; the "
+        "second describes it in terms of aerodynamic lift via airfoil theory. The former has the "
+        "advantage that it readily produces analytical results describing basic operation, some of "
+        "which have not appeared via airfoil analysis. The latter allows more complete descriptions "
+        "using fewer approximations, but is mathematically intensive and leads rapidly into "
+        "computer-generated solutions. One prominent pioneer of the momentum approach is Lee [1] who, "
+        "using this approach, later went on to invent one of the few currently successful dual-rotor "
+        "turbine flowmeters, while Thompson and Grey [2] provided one of the most comprehensive models "
+        "currently available using the airfoil approach, which for example took into account blade "
+        "interference effects. In the following, the momentum exchange approach is used to highlight "
+        "the basic concepts of the axial turbine flowmeter."))
+    b.append(p(
+        "In a hypothetical situation where there are no forces acting to slow down the rotor, it will "
+        "rotate at a speed that exactly maintains the fluid flow velocity vector at the blade "
+        "surfaces. Figure 28.31 is a vector diagram for a flat-bladed rotor with a blade pitch angle "
+        "equal to β. Assuming that the rotor blades are flat and that the velocity is everywhere "
+        "uniform and parallel to the rotor axis, then referring to Figure 28.31, one obtains:"))
+    b.append(fig(31, F.fig(31)))
+    b.append(eq("rω<sub>i</sub> = tanβ / V", "28.47"))
+    b.append(p("When one introduces the total flow rate, this becomes:"))
+    b.append(eq("ω<sub>i</sub> / Q = tanβ / (<span style='text-decoration:overline'>r</span> A)", "28.48"))
+    b.append(defs([
+        ("ω<sub>i</sub>", "“ideal” rotational speed"),
+        ("Q", "volumetric flow rate"),
+        ("A", "area of the annular flow cross-section"),
+        ("<span style='text-decoration:overline'>r</span>", "root-mean-square of the inner and outer blade radii, (R, a)"),
+    ]))
+    b.append(p(
+        "Eliminating the time dimension from the left-hand-side quantity reduces it to the number of "
+        "rotor rotations per unit fluid volume, which is essentially the flowmeter K factor specified "
+        "by most manufacturers. Hence, according to Equation 28.48, in the ideal situation the meter "
+        "response is perfectly linear and determined only by geometry. (In some designs the rotor "
+        "blades are helically twisted to improve efficiency, especially blades with large radius "
+        "ratios, (R/a). If the flow velocity profile is assumed flat, the blade angle in this case can "
+        "be described by tanβ = constant × r; this is sometimes called the “ideal” helical blade.) In "
+        "practice there are instead a number of rotor retarding torques of varying relative "
+        "magnitudes. Under steady flow, the rotor assumes a speed that satisfies the following "
+        "equilibrium:"))
+    b.append(eq(
+        "Fluid driving torque = rotor blade surfaces fluid drag torque<br>"
+        "+ rotor hub and tip clearance fluid drag torque<br>"
+        "+ rotation sensor drag torque + bearing friction retarding torque", "28.49"))
+    b.append(p(
+        "Referring again to Figure 28.31, the difference between the actual rotor speed, rω, and the "
+        "ideal rotor speed, rω<sub>i</sub>, is the rotor slip velocity due to the combined effect of "
+        "all the rotor retarding torques described in Equation 28.49; as a result the fluid velocity "
+        "vector is deflected through an exit or swirl angle, θ. Denoting the radius variable by r, and "
+        "equating the total rate of change of angular momentum of the fluid passing through the rotor "
+        "to the retarding torque, one obtains:"))
+    b.append(eq("∫<sub>a</sub><sup>R</sup> [ρQ·2πr²(rω<sub>i</sub> − rω)] / [π(R² − a²)] dr = N<sub>T</sub>", "28.50"))
+    b.append(p("which yields:"))
+    b.append(eq("<span style='text-decoration:overline'>r</span>²ρQ(ω<sub>i</sub> − ω) = N<sub>T</sub>", "28.51"))
+    b.append(p(
+        "where ρ is the fluid density and N<sub>T</sub> is the total retarding torque. Combining "
+        "Equations 28.47 and 28.51 and rearranging yields:"))
+    b.append(eq("ω / Q = tanβ / (<span style='text-decoration:overline'>r</span> A) − N<sub>T</sub> / (<span style='text-decoration:overline'>r</span>²ρQ²)", "28.52"))
+    b.append(p(
+        "The trends evident in Equation 28.52 reflect the characteristic decline in meter response at "
+        "very low flows, and why lower-friction bearings and lower-drag pickups tend to be used in gas "
+        "versus liquid applications and in small-diameter meters. In most designs, especially for "
+        "liquids, the latter three of the four retarding torques described in Equation 28.49 are small "
+        "under normal operating conditions compared with the torque due to induced drag across the "
+        "blade surfaces. As shown in Figure 28.31, the force F due to this effect acts along the blade "
+        "surface and has a magnitude given by:"))
+    b.append(eq("F = (ρV² / 2) C<sub>D</sub> S", "28.53"))
+    b.append(p(
+        "where C<sub>D</sub> is the drag coefficient and S is the blade surface area per side. Using "
+        "the expression for drag coefficient corresponding to turbulent flow, selected by Pate et al. "
+        "[3] and others, this force can be estimated by:"))
+    b.append(eq("F = ρV² × 0.074 Re<sup>−0.2</sup> × S", "28.54"))
+    b.append(p(
+        "where Re is the flow Reynolds number based on the blade chord shown as dimension c in Figure "
+        "28.31. Assuming θ is small compared with β, then after integration the magnitude of the "
+        "retarding torque due to induced drag along the blade surfaces of a rotor with n blades is "
+        "found to be:"))
+    b.append(eq("N<sub>D</sub> = n(R + a)ρV² × 0.037 Re<sup>−0.2</sup> × S × sinβ", "28.55"))
+    b.append(p("Combining Equations 28.55 and 28.52, and rearranging, yields:"))
+    b.append(eq("ω / Q = tanβ / (<span style='text-decoration:overline'>r</span> A) − 0.036 n(R + a) S A² Re<sup>−0.2</sup> sinβ / <span style='text-decoration:overline'>r</span>²", "28.56"))
+    b.append(note(
+        "<b>Translator’s note.</b> Three slips in the printed source are reproduced as they stand. "
+        "First, (28.47) should read rω<sub>i</sub> = V·tanβ: the printed form is not dimensionally "
+        "consistent with (28.48) and contradicts the vector diagram of Figure 28.31. Second, the "
+        "factor in (28.56) should be S/A² — that is, a denominator of <span style='text-decoration:overline'>r</span>²A² — not S·A², otherwise it "
+        "does not follow from (28.52) and (28.55). Third, the coefficient 0.036 in (28.56) should be "
+        "0.037 as in (28.55)."))
+    b.append(p(
+        "Equation 28.56 is an approximate expression for the K factor because it neglects several of "
+        "the rotor retarding torques and a number of important detailed design and aerodynamic "
+        "factors, such as rotor solidity and flow velocity profile. Nevertheless it reveals that "
+        "linearity variations under normal specified operating conditions are a function of certain "
+        "basic geometric factors and Reynolds number. These results reflect general trends that "
+        "influence design and calibration. Additionally, the marked departure from an approximate ρV² "
+        "(actually ρ<sup>0.8</sup>V<sup>1.8</sup>μ<sup>−0.2</sup> via Re in Equation 28.54) dependence "
+        "of the fluid drag retarding torque on flow properties under turbulent flow, to other "
+        "relationships under transitional and laminar flow, gives rise to major variations in the K "
+        "factor versus flow rate and media properties at low flow Reynolds numbers. This is the key "
+        "reason why axial turbine flowmeters are generally recommended for turbulent flow "
+        "measurement."))
+
+    # ---------------------------------------------------------------- calibration
+    b.append(h3("Calibration, Installation, and Maintenance", "Calibration, Installation, and Maintenance"))
+    b.append(p(
+        "Axial turbine flowmeters have a working dynamic range of at least 10:1 over which linearity "
+        "is specified. The maximum flow rate is determined by design factors relating size to maximum "
+        "pressure drop and maximum rotor speed; the minimum of the range is determined by the "
+        "linearity specification itself. Owing to small, unavoidable manufacturing variances, "
+        "linearity error curves are unique to individual meters and are normally provided by the "
+        "manufacturer. However, although recommended where possible, the conditions of the "
+        "application cannot usually — and need not necessarily — duplicate those of the initial or "
+        "even subsequent calibrations. This has pivotal importance where actual operating conditions "
+        "are extreme or the medium is expensive or difficult to handle. Figure 28.32 depicts a "
+        "typically shaped calibration curve of linearity versus flow rate expressed in multiple "
+        "alternative measures, various combinations of which can be found in current use. The "
+        "vertical axis thus represents either the linearity error as a percentage of flow rate, a K "
+        "factor expressed as the number of pulses from the rotation sensor output per volume of "
+        "fluid, or the deviation from 100% registration; the latter applies only to flowmeters with "
+        "mechanical pickups. The horizontal axis can be expressed as flow rate in volume units per "
+        "time, Reynolds number (Re), or pulse frequency (from the rotation sensor, for non-mechanical "
+        "types) divided by kinematic viscosity, (f/v), in units of Hz per m²/s (Hz/cSt or Hz/SSU; "
+        "10⁻⁶ m²/s = 1 centistoke = 31.0 seconds, Saybolt Universal), where kinematic viscosity is the "
+        "ratio of absolute viscosity (μ) to density. Calibrations are preferably expressed versus Re "
+        "or f/v, which is proportional to Re. The hump shown in the curve is a characteristic "
+        "frequently observed at lower Re and is due to velocity profile effects. K factor versus f/v "
+        "calibration curves are specifically called universal viscosity curves (UVC) and, for most "
+        "meters, are available from the manufacturer for an extra charge. A key utility of the UVC is "
+        "that where media type and properties differ significantly from those of the original "
+        "calibration, accuracies much greater than the overall linearity error can still readily be "
+        "obtained via the flowmeter UVC if the kinematic viscosity of the application is known. An "
+        "alternative, advanced calibration technique [4] is to provide response in terms of Strouhal "
+        "number versus Re, or Roshko number. This approach is not widely adopted, but is particularly "
+        "relevant to high-accuracy and extreme-temperature applications because it further allows "
+        "correct compensation for flowmeter thermal expansion errors."))
+    b.append(fig(32, F.fig(32)))
+    b.append(p(
+        "The accuracy of axial turbine flowmeters is reduced by unconditioned flow, especially swirl. "
+        "An installation incorporating flow conditioners along with specific upstream and downstream "
+        "straight pipe lengths is generally recommended [5]. Some axial turbine flowmeters can be "
+        "purchased with additional large flow straighteners that mount directly ahead of the meter "
+        "body, or with conditioning plates integral to the body. The manufacturer is the first source "
+        "of information regarding installation. Errors due to flow velocity pulsations are another "
+        "concern, particularly in certain gas installations; however, no standard technique for "
+        "effectively counteracting this source of error has yet been adopted. Periodic maintenance, "
+        "testing and recalibration is required because the calibration will shift over time due to "
+        "wear, damage or contamination. For certain applications, especially those involving custody "
+        "transfer of oil and natural gas, national standards, international standards and other "
+        "recommendations exist that specify the minimum requirements for turbine meters with respect "
+        "to these aspects [6–10]."))
+
+    # ---------------------------------------------------------------- design
+    b.append(h3("Design and Construction", "Design and Construction"))
+    b.append(p(
+        "There are numerous, often proprietary designs incorporating variations in rotors, bearings, "
+        "pickups and other components in form and materials, tailored to different applications. "
+        "Meter bodies are available with a wide range of standard end-fittings. Within application "
+        "constraints, the primary objective is usually to optimize overall mechanical stability and "
+        "fit in order to achieve good repeatability. Design considerations for performance, "
+        "application and manufacture affect every internal component, but most of all the rotor — "
+        "with respect to blade shape and pitch, blade count, balance and rigidity versus drag, stress "
+        "and inertia; the bearings — with respect to precision versus friction, speed rating and "
+        "durability; and the rotation pickup — with respect to performance and drag."))
+    b.append(p(
+        "Most low-radius-ratio blades are machined flat, while high-ratio blades tend to be twisted. "
+        "The blade count varies from about 6 to 20 or more, depending on the pitch angle and blade "
+        "radius ratio, so that the required rotor solidity is achieved. Rotor solidity is a measure of "
+        "the “openness” to the flow: higher-solidity rotors are more highly coupled to the flow and "
+        "achieve a better dynamic range. The pitch angle, which primarily determines rotor speed, is "
+        "typically 30° to 45° but can be lower in flowmeters designed for low-density gas "
+        "applications. Rotor assemblies are usually a close fit to the inside of the housing. In "
+        "large-diameter meters the rotor often incorporates a shroud around the outer perimeter for "
+        "enhanced stability. Also, since large meters are often used for heavy petroleum products, by "
+        "selection of a suitable wall clearance the fluid drag resulting from this clearance gap is "
+        "often designed to offset the tendency at high media viscosities for the meter to speed up at "
+        "lower Reynolds numbers. Materials of construction range from non-magnetic to magnetic steels "
+        "to plastics."))
+    b.append(p(
+        "Stainless steel ball bearings tend to be used for gas meters and low-lubricity liquids such "
+        "as cryogenic liquids and freon, while combination tungsten carbide or ceramic journal and "
+        "thrust bearings are often considered best for many other liquid meters, depending on the "
+        "medium lubricity. Fluid bearings (sometimes called “bearingless” designs) are often used in "
+        "conjunction with the latter, but also sometimes with gases, to reduce drag. They operate by "
+        "various designs that use flow-induced forces to balance the rotor away from the shaft ends. "
+        "Bearing lubrication is either derived from the metered medium or provided by an internal or "
+        "external system. The more fragile jewelled pivot bearings are also used in certain gas "
+        "applications and small meters. Sanitary meters can incorporate flush holes in the bearing "
+        "assembly to meet 3A crack and crevice standards."))
+    b.append(p(
+        "The most common types of rotation sensor are magnetic, modulated carrier and mechanical, "
+        "while optical, capacitive and electric resistance types are also used. In research, a "
+        "modulated nuclear radiation flux rotation sensor for use in certain nuclear reactors has also "
+        "been reported [11, 12]. Mechanical pickups, which sometimes incorporate a magnetic coupling, "
+        "are traditional in some applications and can have high resolution; one advantage is that "
+        "they require no electric power, but the pickup drag tends to be high. The magnetic and "
+        "modulated carrier types use at least a coil in a pickup assembly that screws into the meter "
+        "housing near the rotor. In magnetic inductance types, now less common, the blades or shroud "
+        "carry magnetized inserts and signals are induced in the coil by the traversing magnetic "
+        "fields. In the more prevalent magnetic reluctance type — an example of which is schematically "
+        "depicted in Figure 28.30 — the coil is wrapped around a permanent magnet or magnet pole piece "
+        "in the pickup assembly, mounted next to a high-permeability bladed rotor (or machined "
+        "shroud). The latter is typically made of a magnetic grade of stainless steel such as 416, 430 "
+        "or 17-4Ph. As the rotor turns, the reluctance of the magnetic circuit varies, producing "
+        "signals in the coil. In the more expensive modulated carrier types the rotor need only be "
+        "electrically conductive: the coil is part of a radio frequency (RF) oscillator circuit and "
+        "the proximity of the rotor blades changes the circuit impedance, giving rise to modulation at "
+        "a lower frequency that is recovered. RF types have much lower drag, higher signal levels at "
+        "low flow, and can operate at temperatures above the Curie point of typical ferromagnetic "
+        "materials; they are preferred for wide dynamic range and high-temperature applications. "
+        "Bidirectional flowmeters usually have two magnetic pickups to determine flow direction, which "
+        "is useful for example in monitoring container filling and emptying in sanitary applications. "
+        "Multiple magnetic pickups are also used in some designs to provide increased measurement "
+        "resolution."))
+    b.append(p(
+        "Regarding output, various pulse amplifiers, totalizers, flow computers for gas pressure and "
+        "temperature correction, along with 4–20 mA and other standard interface protocols, are "
+        "available to suit particular applications. As an example of advanced transmitters, at least "
+        "one manufacturer (EG&amp;G Flow Technology, Inc.) provides a real-time, miniature, "
+        "reprogrammable “smart” transmitter integrated into the pickup housing together with a meter "
+        "body temperature sensor, for full viscosity compensation and UVC linearization. These are for "
+        "dedicated applications, such as airborne fuel management, where the medium "
+        "viscosity–temperature relationship is known."))
+    b.append(p(
+        "Certain applications have uniquely different design requirements and solutions; two are "
+        "discussed separately below."))
+
+    b.append(h4("Propeller Meters", "Propeller Meters"))
+    b.append(p(
+        "Propeller meters are used in municipal, irrigation or wastewater measurement. Although in "
+        "some designs propeller and turbine meters look almost identical and operate on the same "
+        "axial rotor principle, this type of flowmeter is currently commercially and officially [13, "
+        "14] distinguished as a separate category, distinct from the axial turbine. Diameters up to "
+        "2440 mm (96 in.) are available. The flow capacity of a 1800 mm (72 in.) diameter propeller "
+        "meter is up to about 25,000 m³/h (110,000 gpm). Typical accuracies are ±2% of reading. A "
+        "primary requirement is ruggedness, and it is in the designs most suited to harsh environments "
+        "that the formats are most distinctive. Rotor and pickup assemblies are generally flanged to "
+        "the housing and removable. The rotors have large clearances, are often cantilevered into the "
+        "flow, and are supported via a sealed bearing without stators. They are typically made of "
+        "plastic or rubber and carry as few as three highly twisted, high-radius-ratio blades. Pickups "
+        "are always mechanical and frequently have magnetic couplings."))
+
+    b.append(h4("Spirometers", "Spirometers"))
+    b.append(p(
+        "Monitoring spirometers measure the volumes of gas flows entering and leaving the lungs and "
+        "can also be incorporated in ventilator circuits. Diagnostic spirometers monitor the degree "
+        "and nature of respiration; with these a clinician can determine patient respiratory condition "
+        "by various measures and clinical manoeuvres. Low cost, light weight, speed of response and "
+        "patient safety are major considerations. Measurement capabilities include the gas volume of a "
+        "single exhalation and, for diagnostic types, the peak expiratory flow, measured in litres and "
+        "litres per second respectively. Various technologies are used. However, the Wright "
+        "respirometer, named after the original inventor [15], today refers to a type of hand-held "
+        "monitoring spirometer that uses a special tangential turbine transducer with a two-bladed "
+        "rotor connected to a mechanical pickup and a dial readout for the volume. These spirometers "
+        "are routinely used by respiratory therapists for patient weaning and ventilator checking. "
+        "Other axial-turbine-based flowmeters are available for ventilation measurements, for example "
+        "patient metabolic measurements. One axial-turbine-based diagnostic spirometer made by Micro "
+        "Medical, Ltd. currently claims most of the European market; it uses an infrared optical "
+        "pickup and has a battery-powered microprocessor-controlled display. In these medical devices "
+        "the rotors tend to be plastic with a large blade radius ratio, flow conditioning is minimal "
+        "or absent, and the meters are typically accurate to ± a few percent of reading. In the U.S., "
+        "spirometers are designated class 2 medical devices and as such certain FDA approvals are "
+        "required concerning manufacture and marketing; in the EU they are class IIb devices under a "
+        "different system, and other approvals are required."))
+
+    b.append(h4("Dual-Rotor Axial Turbines", "Dual-Rotor Axial Turbines"))
+    b.append(p(
+        "Dual-rotor axial turbines have performance features not found in single-rotor designs. In "
+        "1981 Lee et al. [16] were issued a U.S. patent for a self-correcting, self-checking "
+        "dual-rotor turbine flowmeter, currently manufactured exclusively by Equimeter, Inc. and sold "
+        "as the Auto-Adjust. This is a high-accuracy flowmeter primarily intended for large natural "
+        "gas lines where even small undetected measurement errors can be costly. It incorporates two "
+        "closely coupled turbine rotors that rotate in the same direction. The upstream rotor is the "
+        "main rotor; the second rotor, which has a much shallower blade angle, is the sensor rotor. "
+        "Continuous and automatic correction of measurement errors due to varying bearing friction is "
+        "achieved by calculating the flow rate from the difference between the rotor speeds. As shown "
+        "in Figure 28.31 and discussed in the theory section, the flow exit angle is due to the net "
+        "rotor retarding torque: if this torque increases in the main rotor, reducing its speed, the "
+        "exit angle increases and the speed of the sensor rotor is also reduced. The meter is also "
+        "insensitive to inlet swirl angle, because swirl affects both rotor speeds in the same sense "
+        "and the effect is then subtracted in the flow calculation. The meter also checks itself for "
+        "wear and faults by monitoring the ratio of the two rotor speeds and comparing this with the "
+        "installation value [17]."))
+    b.append(p(
+        "A dual-rotor liquid flowmeter invented by Ruffner et al. [18] was recently introduced by "
+        "Exact Flow, LLC. It is offered as a high-accuracy flowmeter (up to ±0.1% accuracy and ±0.02% "
+        "repeatability) with an extraordinarily wide dynamic range of 500:1 on a single-viscosity "
+        "liquid. It has had early commercial success in fuel flow measurement in large jet engine test "
+        "stands, where the wide dynamic range is particularly useful [19]. The meter comprises two "
+        "closely and hydraulically coupled rotors that rotate in opposite directions; because of the "
+        "exit angle generated by the first rotor, the second continues to rotate to much lower flow "
+        "rates than the first."))
+
+    b.append(h4("Two-Phase Flow Measurement Using Axial Turbines",
+                "Two-Phase Flow Measurement Using Axial Turbines"))
+    b.append(p(
+        "A differential-pressure-producing flowmeter such as a venturimeter in series with a turbine "
+        "is known to be a technically appropriate and straightforward method for measuring the "
+        "volumetric and mass flow rates of some fine solid aerosols. This section, however, "
+        "highlights a current research area in the application of axial rotor turbine meters to a "
+        "range of industrial flow measurement problems where gas/liquid two-phase flows are "
+        "encountered. Customarily, turbine meters are not designed for and cannot measure such flows "
+        "accurately: errors of the order of 10% arise in metering liquids with void fractions of "
+        "around 20%. Such flows are normally measured after gas separators. Although the problem is "
+        "not restricted to these industries, the current main impetuses for research are direct "
+        "measurement of crude oil in offshore multiphase production systems, measurement of "
+        "water/steam mixtures in the cooling loops of nuclear reactors, and measurement of freon "
+        "liquid–vapour flows in refrigeration and air conditioning equipment. Several techniques "
+        "investigated so far use an auxiliary sensor — either a void fraction sensor or a pressure "
+        "drop device such as a venturimeter or drag disk, of which the pressure drop approach appears "
+        "technically more promising [20, 21]. From a practical standpoint, gamma densitometers for "
+        "measuring void fraction are additional and expensive equipment, and are not, for example, "
+        "well adapted to undersea oil fields. Two techniques currently being studied do not require an "
+        "auxiliary in-line sensor. The first uses the turbine meter itself as the drag body and "
+        "combines the turbine output with that of a small differential pressure sensor connected "
+        "across the inlet and outlet regions; it requires a homogenizer ahead of the turbine, and "
+        "accuracies of ±3% for the volumetric flow rates of both phases have recently been reported "
+        "for air/water mixtures up to a void fraction of 80% [22]. The second is based entirely on "
+        "analysis of the turbine output signal and has provided significant correlations of the signal "
+        "fluctuations with void fraction; accuracies of ±2% for water volumetric flow rate have been "
+        "reported for air/water mixtures with void fractions up to 25% [23]."))
+
+    b.append(h4("Insertion Axial Turbine Flowmeters", "Insertion Axial Turbine Flowmeters"))
+    b.append(p(
+        "These flowmeters comprise a small axial rotor mounted on a stem inserted radially through the "
+        "conduit wall, often through a shut-off valve. They measure the flow velocity at the rotor "
+        "position, from which the volumetric flow rate is inferred. They are an economical solution "
+        "where pipe diameters are large and accuracy requirements moderate, and may also be "
+        "technically preferred where negligible pressure drop is an advantage, as in high-speed flows. "
+        "They are typically more linear than insertion tangential turbine flowmeters and compete also "
+        "with magnetic and vortex shedding insertion flowmeters. They are available for a range of "
+        "liquids and gases, including steam, similar to the media range of full-bore axial turbines, "
+        "and have a similarly linear response. Flow Automation, Inc. is currently the leading "
+        "manufacturer. The rotors, usually metal but sometimes plastic, typically have diameters of 25 "
+        "mm to 51 mm (1 in. to 2 in.) and can be inserted into pipes from 51 mm to 2032 mm (2 in. to "
+        "80 in.). Velocity ranges cover 0.046 m/s to 91 m/s (9 fpm to 18,000 fpm) for gases and 0.03 "
+        "m/s to 30 m/s (6 fpm to 6000 fpm) for liquids; dynamic ranges vary between 10:1 and 100:1. "
+        "The maximum flow capacity in a 1836 mm (72 in.) pipe can be nearly 56,500 m³/h (about "
+        "250,000 gpm). Since these devices are local velocity sensors, calculating the volumetric flow "
+        "rate requires knowledge of the area velocity profile and the actual flow area. Flow "
+        "conditioning is therefore particularly important for accurate volumetric measurement, while "
+        "radial positioning — a further responsibility of the user — must follow the manufacturer’s "
+        "recommendation, which can be centreline, one third of the diameter, 12% of the diameter, or "
+        "determined by “profiling”. Quick [24] discusses operation and installation for natural gas "
+        "measurement. Although linearities or “accuracies” can be quoted to ±1% of velocity, achieving "
+        "the same accuracy for volumetric flow rate, although possible, can be difficult or "
+        "impractical. In this respect a unique dual-rotor design, exclusive to Onicon, Inc. and "
+        "primarily used for chilled-water flow measurement in HVAC systems, requires less flow "
+        "conditioning than single-rotor designs. An Onicon dual-rotor turbine assembly is depicted in "
+        "Figure 28.33."))
+    b.append(fig(33, F.fig(33)))
+    b.append(p(
+        "It comprises two rotors that rotate in opposite directions. The output is based on the "
+        "average rotor speed. Any flow swirl present due to poor flow conditioning changes the speed "
+        "of each rotor by the same but opposite amounts, so swirl-induced error is virtually absent "
+        "from the averaged output; flow profile sampling is also improved over a single rotor. The "
+        "devices are calibrated using a volumetric prover and the specified accuracy of ±2% of reading "
+        "is for volumetric flow rate rather than velocity. This is the total error and includes an "
+        "allowance for dimensional variations in industry-standard pipes."))
+
+    b.append(h4("Angular Momentum Flowmeters", "Angular Momentum Flowmeters"))
+    b.append(p(
+        "These are accurate, linear, liquid mass flowmeters that use vaned components and are used in "
+        "aerospace applications. They are currently the instrument of choice for airborne jet engine "
+        "fuel flow measurement on large commercial aircraft and some military aircraft for afterburner "
+        "applications. They are more expensive than the equivalent turbine flowmeters for this "
+        "application, but provide mass flow rate directly and are unaffected by fuel density "
+        "variations. Typical accuracies lie between ±0.5% and ±1.0% over a 40:1 or greater dynamic "
+        "range; measurement ranges are available for fuel flows from about 0.01 to 6 kg/s (70 to "
+        "46,000 PPH)."))
+    b.append(p(
+        "The principle of operation is long established and based on imparting angular momentum to the "
+        "flow using a driven, flat-bladed impeller. The force required to drive the impeller at "
+        "constant speed is monitored as a proportional indication of mass flow rate as this quantity "
+        "varies. Some designs use an electric motor to drive the impeller, but the current trend is "
+        "motorless: a constant driving speed in the region of 100 to 200 rpm is provided by one or "
+        "more flow-driven turbine rotors. A variable shunt metering valve assembly adjacent to the "
+        "turbine rotor mechanically opens and closes in response to flow dynamic pressure and thereby "
+        "automatically maintains a constant speed of rotation, provided the flow rate is above the "
+        "minimum of the range. The driven impeller carries vanes parallel to the flow and resides on a "
+        "common axis with the turbine rotor; a flow straightener ensures parallel flow past the "
+        "impeller. A carefully engineered constant-rate spring connection between turbine shaft and "
+        "impeller makes the angular deflection between the two proportional to the applied torque, and "
+        "this quantity is directly proportional to mass flow rate. Two pickup coils sense the "
+        "rotations of the turbine and the vaned impeller, and only the time difference between the "
+        "pulses in these two signals is measured and used to calculate the flow rate. Chiles et al. "
+        "[25] provide a detailed illustration and explanation of the intricate mechanism."))
+
+    b.append(h4("Multijet Turbine Flowmeters", "Multijet Turbine Flowmeters"))
+    b.append(p(
+        "These are linear volumetric flowmeters designed for liquid measurement, comprising a single "
+        "radial-vaned impeller mounted vertically on a shaft bearing within a vertically divided flow "
+        "chamber, sometimes called a distributor. The impeller is often plastic and can even be "
+        "neutrally buoyant in water. There are various designs, but typically both chambers access a "
+        "series of radially distributed and angled jets: the lower chamber jets connect to the meter "
+        "input port and distribute the flow tangentially onto the lower region of the impeller blades, "
+        "while the upper series, angled oppositely, allow the flow to exit. The flow pattern within "
+        "the chamber is thus a vertical spiral, and dynamic pressure drives the impeller to track the "
+        "flow. This design gives good sensitivity at low flow rates and, because of the distribution "
+        "principle, the meters are also insensitive to upstream flow condition. Impeller rotation "
+        "pickups are always mechanical, often magnetically coupled, and frequently also connect with "
+        "electric contact transmitters. They are primarily used in water measurement, including "
+        "potable water for domestic and business billing and in conjunction with energy management "
+        "systems such as hot water building or district heating, and to a much lesser extent in some "
+        "chemical and pharmaceutical industries for dosing and filling systems involving solvents, "
+        "refrigerants, acids and alkalis with absolute viscosities below 4.5 mPa·s (0.045 poise). "
+        "Available sizes range from 15 mm to 50 mm; dynamic ranges lie between 25:1 and 130:1 and flow "
+        "ranges cover 0.03 to 30 m³/h (0.13 to 130 gpm). Measurement linearities range between ±1% and "
+        "±2%, with typical repeatabilities of ±0.3%. Operating temperatures range from normal to 90 °C "
+        "(200 °F) and maximum operating pressures are available up to 6.9 MPa (1000 psi). A number of "
+        "potable water measurement systems come with sophisticated telemetry options allowing remote "
+        "interrogation by radio or telephone. For potable water in the U.S. these meters normally "
+        "comply with the applicable AWWA standard [26], while in Europe EEC, DIN and other national "
+        "standards apply."))
+    b.append(p(
+        "In the author’s opinion there is also another type of vaned flowmeter that could be classified "
+        "as a multijet turbine: an axially mounted vaned impeller with an upstream element that imparts "
+        "a helical swirl to the flow. The transducer is typically a small, low-cost, sometimes "
+        "disposable plastic component, usually designed for liquids (but also, to lower accuracies, "
+        "gases) at low flow rates (down to 50 mL/min). The dynamic range is high and accuracies range "
+        "up to ±0.5%. Goss [27] describes one particular design in current use; specialized "
+        "applications cover the pharmaceutical, medical and beverage industries."))
+
+    b.append(h4("Cylindrical Rotor Flowmeter", "Cylindrical Rotor Flowmeter"))
+    b.append(p(
+        "Instead of coupling to a turbulent flow through fluid dynamic pressure or momentum flux, as "
+        "in most axial and tangential turbines, a demonstrated research device due to Wadlow et al. "
+        "[28] provides linear volumetric low-gas-flow measurement using a single low-inertia smooth "
+        "cylindrical tangential rotor that couples to a laminar flow via surface friction. The "
+        "geometry is conceptually that of a single-surfaced rotating vane. A plane Poiseuille flow is "
+        "created that passes azimuthally over most of the curved rotor surface in a narrow annular "
+        "passage between rotor and concentric housing. The rotor is motor-driven through a feedback "
+        "control loop connected to an error-signal-producing differential pressure sensor across the "
+        "gas ports, so as to maintain meter pressure drop equal to zero. Under this condition the "
+        "response, indicated by motor shaft speed, is exactly linear, determined only by geometry, and "
+        "independent of gas density and viscosity. The demonstration device reported has a 40 mm "
+        "diameter rotor and 15 mm diameter gas ports; it measures up to 25 Lpm bidirectionally, has a "
+        "linear dynamic range greater than 100:1, is insensitive to upstream flow condition, and has a "
+        "1/e step response time of 42 ms, limited only by external motor torque and combined motor and "
+        "rotor inertia."))
+
+    # ---------------------------------------------------------------- makers
+    b.append(h3("Manufacturers", "Manufacturers"))
+    b.append(p(
+        "There is significant and dynamic competition among the numerous manufacturers of the "
+        "different types of flowmeter described in this section. In all types, most manufacturers have "
+        "exclusive patent rights concerning one or more detailed design aspects that make their "
+        "products perform differently from those of the competition. Every few years one or more "
+        "major turbine flowmeter companies can be identified that have changed ownership and name, or "
+        "formed a new partnership. Identifying the competition and selecting the manufacturer are "
+        "important and sometimes time-consuming parts of the flowmeter selection and specification "
+        "process. To assist with this, Table 28.8 gives a few selected examples from different "
+        "manufacturers of all the flowmeter types described in this section. Table 28.9 gives the "
+        "corresponding contact information, along with the general types offered by each."))
+    b.append(_t288("en"))
+    b.append(_t289("en"))
+
+    # ---------------------------------------------------------------- conclusion
+    b.append(h3("Conclusion", "Conclusion"))
+    b.append(p(
+        "However anachronistic intricate mechanical sensors might appear amid everyday high "
+        "technology, there are fundamental reasons why axial turbines are likely to experience "
+        "continued support and development rather than obsolescence, especially for in-line "
+        "applications requiring in the region of tenth-percent volumetric accuracy. Mechanical "
+        "coupling is the most direct volume interaction for a flowing fluid, which is why mechanical "
+        "meters historically developed first and continue to be the most accurate and reliable types "
+        "of flowmeter for so many different fluids. Other non-mechanical — perhaps higher-technology "
+        "or newer — approaches thus face high demands for accurate compensation to render such less "
+        "directly volume-coupled techniques as generally accurate, or more accurate. This is because "
+        "the error in each corrected factor or assumption in an indirect technique contributes to the "
+        "overall error. The technology of high-accuracy flowmeters continues to be driven by "
+        "applications such as custody transfer of valuable oil and natural gas, which demand high "
+        "accuracy and reliability. There is a continuing demand for accurate and reliable water "
+        "flowmeters. By reason of long proven field experience, turbine and other vane-type devices "
+        "have become one of a few broadly accepted techniques in many major applications such as these "
+        "where the demand for flow sensors is significant or growing."))
+
+    # ---------------------------------------------------------------- refs
+    b.append(h3("References", "References"))
+    b.append(wl([
+        "[1] W. F. Z. Lee and H. J. Evans, “Density effect and Reynolds number effect on gas turbine "
+        "flowmeters”, <i>Trans. ASME, J. Basic Eng.</i>, 87(4): 1043–1057, 1965.",
+        "[2] R. E. Thompson and J. Grey, “Turbine flowmeter performance model”, <i>Trans. ASME, J. "
+        "Basic Eng.</i>, 92(4), 712–723, 1970.",
+        "[3] M. B. Pate, A. Myklebust and J. H. Cole, “A computer simulation of the turbine flow meter "
+        "rotor as a drag body”, <i>Proc. Int. Comput. in Eng. Conf. and Exhibit 1984</i>, Las Vegas: "
+        "184–191, New York: ASME, 1984.",
+        "[4] P. D. Olivier and D. Ruffner, “Improved turbine meter accuracy by utilization of "
+        "dimensionless data”, <i>Proc. 1992 National Conf. Standards Labs. (NCSL) Workshop and "
+        "Symp.</i>, Boulder, CO: NCSL, 1992, 595–607.",
+        "[5] ISA-RP 31.1, <i>Specification, Installation and Calibration of Turbine Flowmeters</i>, "
+        "Research Triangle Park, NC: ISA, 1977.",
+        "[6] ANSI/ASME MFC-4M-1986 (R1990), <i>Measurement of Gas Flow by Turbine Meters</i>, New "
+        "York: ASME.",
+        "[7] API MPM, <i>Measurement of Liquid Hydrocarbons by Turbine Meters</i>, 3rd ed., "
+        "Washington, D.C.: API (Amer. Petroleum Inst.), 1995, chap. 5.3.",
+        "[8] AGA Transmission Meas. Committee Rep. No. 7, <i>Measurement of fuel gas by turbine "
+        "meters</i>, Arlington, VA: AGA (Amer. Gas Assoc.), 1981.",
+        "[9] Int. Recommendation R32, <i>Rotary piston gas meters and turbine gas meters</i>, Paris: "
+        "OIML (Int. Organization of Legal Metrology), 1989.",
+        "[10] ISO 9951:1993, <i>Measurement of gas flow in closed conduits — turbine meters</i>, "
+        "Geneva, Switzerland: Int. Organization for Standardization (also available ANSI), 1993.",
+        "[11] T. H. J. J. Van Der Hagen, “Proof of principle of a nuclear turbine flowmeter”, <i>Nucl. "
+        "Technol.</i>, 102(2), 167–176, 1993.",
+        "[12] K. Termaat, W. J. Oosterkamp and W. Nissen, “Nuclear turbine coolant flow meter”, U.S. "
+        "Patent No. 5,425,064, 1995.",
+        "[13] AWWA C704-92, <i>Propeller-type meters for waterworks applications</i>, Denver, CO: "
+        "Amer. Water Works Assoc., 1992.",
+        "[14] ANSI/AWWA C701-88, <i>Cold water meters — turbine type, for customer service</i>, "
+        "Denver, CO: Amer. Water Works Assoc., 1988.",
+        "[15] B. M. Wright and C. B. McKerrow, “Maximum forced expiratory flow rate as a measure of "
+        "ventilatory capacity”, <i>Br. Med. J.</i>, 1041–1047, 1959.",
+        "[16] W. F. Z. Lee, R. V. White, F. M. Sciulli and A. Charwat, “Self-correcting "
+        "self-checking turbine meter”, U.S. Patent No. 4,305,281, 1981.",
+        "[17] W. F. Z. Lee, D. C. Blakeslee and R. V. White, “A self-correcting and self-checking gas "
+        "turbine meter”, <i>Trans. ASME, J. Fluids Eng.</i>, 104, 143–149, 1982.",
+        "[18] D. F. Ruffner and P. D. Olivier, “Wide range, high accuracy flow meter”, U.S. Patent No. "
+        "5,689,071, 1997.",
+        "[19] D. F. Ruffner, private communication, 1996.",
+        "[20] A. Abdul-Razzak, M. Shoukri and J. S. Chang, “Measurement of two-phase refrigerant "
+        "liquid-vapor mass flow rate. III. Combined turbine and venturi meters and comparison with "
+        "other methods”, <i>ASHRAE Trans.: Research</i>, 101(2), 532–538, 1995.",
+        "[21] W. J. Shim, T. J. Dougherty and H. Y. Cheh, “Turbine meter response in two-phase flows”, "
+        "<i>Proc. Int. Conf. Nucl. Eng. — 4</i>, 1 part B: 943–953, New York: ASME, 1996.",
+        "[22] K. Minemura, K. Egashira, K. Ihara, H. Furuta and K. Yamamoto, “Simultaneous measuring "
+        "method for both volumetric flow rates of air-water mixture using a turbine flowmeter”, "
+        "<i>Trans. ASME, J. Energy Resources Technol.</i>, 118, 29–35, 1996.",
+        "[23] M. W. Johnson and S. Farroll, “Development of a turbine meter for two-phase flow "
+        "measurement in vertical pipes”, <i>Flow Meas. Instrum.</i>, 6(4), 279–282, 1995.",
+        "[24] L. A. Quick, “Gas measurement by insertion turbine meter”, <i>Proc. 70th Int. School "
+        "Hydrocarbon Meas.</i>, OK, 1995. (Available from E. Blanchard, Arrangements Chair, "
+        "Shreveport, LA, (318) 868–0603.)",
+        "[25] W. E. Chiles, L. E. Vetsch and J. V. Peterson, “Shrouded flowmeter turbine and improved "
+        "fluid flowmeter using the same”, U.S. Patent No. 4,012,957, 1977.",
+        "[26] ANSI/AWWA C708-91, <i>Cold-water meters, multi-jet-type</i>, Denver, CO: Amer. Water "
+        "Works Assoc., 1991.",
+        "[27] J. Goss, “Flow meter”, U.S. Patent No. 5,337,615, 1994.",
+        "[28] D. Wadlow and L. M. Layden, “Controlled flow volumetric flowmeter”, U.S. Patent No. "
+        "5,284,053, 1994.",
+        "[29] C. R. Sparks, private communication, 1996.",
+    ]))
+
+    b.append(h3("Further Information", "Further Information"))
+    b.append(p(
+        "D. W. Spitzer (ed.), <i>Flow Measurement</i>, Research Triangle Park, NC: ISA, 1991, is a "
+        "popular 646-page practical engineering guide of which four chapters concern turbine "
+        "flowmeters, sanitary flowmeters, insertion flowmeters and custody transfer issues."))
+    b.append(p(
+        "A. J. Nicholl, “Factors affecting the performance of turbine meters”, <i>Brown Bov. Rev.</i>, "
+        "64(11), 684–692, 1977, describes some basic design factors not commonly discussed "
+        "elsewhere."))
+    b.append(p(
+        "J. W. DeFeo, “Turbine flowmeters for measuring cryogenic liquids”, <i>Adv. Instrum. Proc.</i>, "
+        "47 pt.1, 465–472, ISA, 1992, provides guidance for a less frequently discussed application in "
+        "which axial turbines perform well."))
+    b.append(p(
+        "ATS, “Standardization of spirometry, 1994 Update”, <i>Am. J. Respir. Care Med.</i>, 152, "
+        "1107–1136, 1995, is the latest version of the official U.S. guideline for spirometry "
+        "generated by the American Thoracic Society."))
+    b.append(p(
+        "M. D. Lebowitz, “The use of expiratory flow rate measurements in respiratory disease”, "
+        "<i>Ped. Pulmonol.</i>, 11, 166–174, 1991, reviews the diagnostic usefulness of PEFR using "
+        "portable spirometers."))
+    b.append(p(
+        "W. M. Jungowski and M. H. Weiss, “Effects of flow pulsation on a single-rotor turbine meter”, "
+        "<i>Trans. ASME, J. Fluids Eng.</i>, 118(1), 198–201, 1996."))
+    b.append(p(
+        "C. R. Sparks and R. J. McKee, “Method and apparatus for assessing and quantifying pulsation "
+        "induced error in gas turbine flow meters”, U.S. Patent No. 5,481,924, 1996, assigned to the "
+        "Gas Research Institute, Chicago, is a potential solution to the accurate measurement of "
+        "pulsating gas flows which will require engineering development and a high-performance "
+        "rotation sensor [29]."))
+    b.append(p(
+        "K. Ogawa, S. Ito and C. Kuroda, “Laminar-turbulent velocity profile transition for flows in "
+        "concentric annuli, parallel plates and pipes”, <i>J. Chem. Eng. Japan</i>, 13(3), 183–188, "
+        "1990, provides mathematical descriptions of velocity profiles."))
+    b.append(p(
+        "J. Lui and B. Huan, “Turbine meter for the measurement of bulk solids flow rate”, <i>Powder "
+        "Technol.</i>, 82, 145–151, 1995, describes theory and experiments relating to a very simple "
+        "design for a unique application: the volumetric measurement of plug flows of sands in a "
+        "pipe."))
+    return "".join(b)
+
+
 # ================================================================ build
 
-SECTIONS_VI = [sec_28_1_vi, sec_28_2_vi, sec_28_3_vi]
-SECTIONS_EN = [sec_28_1_en, sec_28_2_en, sec_28_3_en]
+SECTIONS_VI = [sec_28_1_vi, sec_28_2_vi, sec_28_3_vi, sec_28_4_vi]
+SECTIONS_EN = [sec_28_1_en, sec_28_2_en, sec_28_3_en, sec_28_4_en]
 
 
 def body_vi():
@@ -2797,8 +4245,8 @@ def build(lang):
              'Chương 28' % BASE_VI if vi else
              '<a href="/books/">Books</a> · <a href="%s">Measurement, Instrumentation and Sensors '
              'Handbook</a> · Chapter 28' % BASE_EN)
-    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 3/11 mục" if vi else
-            "Chapter 28 · in progress: 3 of 11 sections")
+    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 4/11 mục" if vi else
+            "Chapter 28 · in progress: 4 of 11 sections")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
             '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'

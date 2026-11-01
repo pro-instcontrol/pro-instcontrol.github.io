@@ -1270,12 +1270,304 @@ def fig_28_29():
                 "positions")
 
 
+# ================================================================ 28.4 turbines
+
+def _num(x, y, n, tx, ty):
+    """Circled callout number with a thin leader to the part it identifies."""
+    return ('<line x1="%s" y1="%s" x2="%s" y2="%s" stroke="%s" stroke-width="0.9" '
+            'stroke-dasharray="2 2"/>' % (_f(x), _f(y), _f(tx), _f(ty), S)
+            + _circ(x, y, 8, P, E, 1.1)
+            + '<text class="ts" x="%s" y="%s" text-anchor="middle">%d</text>'
+            % (_f(x), _f(y + 3.5), n))
+
+
+def _blade_row(cx, cy, R, n=5, phase=0.0, col="#8fa3b8", sw=5):
+    """A rotor seen end-on: hub plus n radial blades."""
+    o = []
+    for i in range(n):
+        a = phase + i * 2 * _m.pi / n
+        o.append(_thick(cx + 8 * _m.cos(a), cy + 8 * _m.sin(a),
+                        cx + (R - 1) * _m.cos(a), cy + (R - 1) * _m.sin(a), col, sw))
+    o.append(_circ(cx, cy, 8, E, E, 1.0))
+    return o
+
+
+def fig_28_30():
+    o = [_defs()]
+    yc = 185
+    # ---- housing: bore is symmetric about the axis, 105..265
+    o.append(_rect(86, 91, 508, 14, "url(#hatch28)", E, 1.6))
+    o.append(_rect(86, 265, 508, 14, "url(#hatch28)", E, 1.6))
+    for x in (72, 594):
+        o.append(_rect(x, 55, 14, 36, "url(#hatch28)", E, 1.6))
+        o.append(_rect(x, 279, 14, 36, "url(#hatch28)", E, 1.6))
+    # ---- diffusers, with a support plate above and below each
+    for cx in (200, 480):
+        o.append(_ell(cx, yc, 74, 46, WARM, E, 1.8))
+        o.append(_line(cx - 58, yc, cx + 58, yc, S, 0.9, "4 3"))
+    for x in (144, 164, 516, 536):
+        o.append(_rect(x, 105, 7, 34, "url(#hatch28b)", E, 1.0))
+        o.append(_rect(x, 231, 7, 34, "url(#hatch28b)", E, 1.0))
+    # ---- rotor: shaft, bearings, hub, two blades with tip clearance
+    o.append(_line(296, yc, 384, yc, E, 2.6))
+    o.append(_rect(331, 110, 18, 54, "url(#hatch28b)", E, 1.5))
+    o.append(_rect(331, 206, 18, 54, "url(#hatch28b)", E, 1.5))
+    o.append(_rect(324, 168, 32, 34, "#dce6f2", E, 1.8, rx=4))
+    o.append(_rect(321, 172, 6, 26, "#9aa4b2", E, 1.1))
+    o.append(_rect(353, 172, 6, 26, "#9aa4b2", E, 1.1))
+    # ---- rotation pickup well
+    o.append(_rect(334, 36, 28, 55, P, E, 1.6))
+    o.append(_rect(338, 40, 20, 11, E, E, 1.0))
+    o.append(_rect(338, 56, 20, 30, "url(#hatch28)", E, 1.3))
+    o.append(_line(348, 36, 348, 22, E, 1.1))
+    o.append('<polyline points="262,20 272,20 272,8 282,8 282,20 292,20 292,8 302,8 '
+             '302,20 312,20 312,8 322,8 322,20" fill="none" stroke="%s" stroke-width="1.3"/>' % E)
+    o.append(_lbl(256, 16, "1 V", "ts", "end"))
+    # ---- flow through the annulus
+    o.append(_arr(286, 122, 324, 122, S, "ah28s", 1.4))
+    o.append(_arr(286, 248, 324, 248, S, "ah28s", 1.4))
+    o.append(_line(26, yc, 104, yc, S, 0.9, "8 3 2 3"))
+    o.append(_lbl(28, yc - 10, "trục đối xứng", "ts"))
+    # ---- conditioning plate
+    o.append(_line(110, 105, 110, 265, S, 1.4, "5 4"))
+    # ---- numbered callouts
+    o.append(_num(52, 66, 1, 72, 72))
+    o.append(_num(210, 70, 2, 210, 91))
+    o.append(_num(402, 36, 3, 362, 42))
+    o.append(_num(402, 60, 4, 359, 46))
+    o.append(_num(402, 84, 5, 359, 70))
+    o.append(_num(626, 132, 6, 352, 120))
+    o.append(_num(626, 164, 7, 356, 176))
+    o.append(_num(626, 196, 8, 352, 200))
+    o.append(_num(626, 228, 9, 384, 186))
+    o.append(_num(170, 330, 10, 168, 250))
+    o.append(_num(480, 330, 11, 480, 232))
+    o.append(_num(96, 330, 12, 110, 250))
+    return _fig(svg(680, 352, "".join(o), "Mặt cắt dọc lưu lượng kế tuabin hướng trục"),
+                "Hình 28.30 · Mặt cắt dọc theo trục của một lưu lượng kế tuabin hướng trục, "
+                "mô tả các bộ phận chính. Thân thường bằng thép không gỉ không từ tính như 304. "
+                "Đầu nối thường là mặt bích (như hình), ren hoặc kiểu tri-clover. Hai bộ khuếch tán "
+                "trước và sau giống nhau ở lưu lượng kế hai chiều, và thường được đỡ bằng ba tấm "
+                "phẳng trở lên, hoặc bằng kết cấu ống, đặt dọc theo thân và đồng thời làm bộ nắn "
+                "thẳng dòng. Tỷ lệ khe vành khuyên tại rôto khác nhau giữa các thiết kế. Ổ trượt "
+                "thường dùng cho chất lỏng, ổ bi thường dùng cho khí. Đầu thu từ trở (như hình) rất "
+                "phổ biến; ngoài ra còn loại cơ khí và loại sóng mang điều chế. (1) Đầu nối — vẽ "
+                "kiểu mặt bích; (2) thân lưu lượng kế; (3) đầu thu tốc độ quay — vẽ kiểu từ trở; "
+                "(4) nam châm vĩnh cửu; (5) cuộn dây quấn trên cực từ; (6) cánh rôto; (7) moay-ơ "
+                "rôto; (8) ổ trục rôto — vẽ kiểu ổ trượt; (9) trục rôto; (10) gối đỡ và bộ nắn "
+                "thẳng dòng của bộ khuếch tán; (11) bộ khuếch tán; (12) tấm xử lý dòng chảy (nét "
+                "đứt) — tuỳ chọn ở một số lưu lượng kế.",
+                "Figure 28.30 · Longitudinal section of an axial turbine flowmeter depicting the key "
+                "components. The body is usually a magnetically transparent stainless steel such as "
+                "304; end-fittings include face flanges (depicted), threaded fittings and tri-clover "
+                "fittings. The diffusers are the same in bidirectional meters and are generally "
+                "supported by three or more flat plates aligned with the body, which also act as flow "
+                "straighteners. (1) end fitting — flange shown; (2) flowmeter body; (3) rotation "
+                "pickup — magnetic, reluctance type shown; (4) permanent magnet; (5) pickup coil "
+                "wound on pole piece; (6) rotor blade; (7) rotor hub; (8) rotor shaft bearing — "
+                "journal type shown; (9) rotor shaft; (10) diffuser support and flow straightener; "
+                "(11) diffuser; (12) flow conditioning plate (dotted) — optional with some meters.",
+                "Mặt cắt dọc thân lưu lượng kế với hai bộ khuếch tán, rôto ở giữa và đầu thu từ "
+                "trở phía trên",
+                "Longitudinal section of the meter body with two diffusers, the central rotor and a "
+                "magnetic reluctance pickup on top")
+
+
+def fig_28_31():
+    o = [_defs()]
+    # ---- developed blade row
+    o.append(_rect(90, 50, 160, 200, FILL, "none", 0))
+    ang = _m.radians(32)
+    for y0 in (60, 140):
+        o.append(_thick(90, y0, 250, y0 + 160 * _m.tan(ang), E, 9))
+    # chord, dimensioned just above the upper blade so it stays visible
+    o.append(_darr(94, 53, 254, 153, S, 1.1))
+    o.append(_line(94, 53, 90, 60, S, 0.9))
+    o.append(_line(254, 153, 250, 160, S, 0.9))
+    o.append(_lbl(178, 98, "c", "t", "middle"))
+    o.append(_line(90, 60, 76, 60, S, 0.9, "3 3"))
+    o.append(_line(90, 140, 76, 140, S, 0.9, "3 3"))
+    o.append(_darr(80, 60, 80, 140, E, 1.2))
+    o.append(_lbl(72, 104, "s", "t", "end"))
+    o.append(_line(26, 185, 90, 185, S, 0.9, "8 3 2 3"))
+    o.append(_lbl(28, 177, "Trục rôto", "ts"))
+    o.append(_arr(34, 36, 104, 36, E, "ah28", 1.4))
+    o.append(_lbl(69, 28, "V", "tb", "middle"))
+    # ---- velocity triangle
+    ox, oy = 330, 170
+    o.append(_arr(ox, oy, 500, oy, E, "ah28", 1.6))
+    o.append(_lbl(415, 162, "V", "tb", "middle"))
+    o.append(_arr(ox, oy, 500, 222, E, "ah28", 1.6))
+    o.append(_subs(496, 240, [("V", False), ("E", True)], "end", "tb"))
+    o.append(_path("M390,170 A60,60 0 0 1 390,176", E, 1.1))
+    o.append(_lbl(398, 184, "θ", "t"))
+    o.append(_line(ox, oy, 455, 248, S, 1.1, "5 4"))
+    o.append(_path("M440,170 A110,110 0 0 1 423,228", S, 1.0, "none", "4 3"))
+    o.append(_lbl(438, 212, "β", "t"))
+    # tangential velocity bars: actual and ideal
+    o.append(_line(500, 170, 500, 222, E, 2.4))
+    o.append(_line(494, 222, 506, 222, E, 1.6))
+    o.append(_line(522, 170, 522, 240, E, 2.4))
+    o.append(_line(516, 240, 528, 240, E, 1.6))
+    o.append(_line(500, 222, 522, 222, S, 0.9, "3 3"))
+    o.append(_subs(492, 198, [("r × ω", False)], "end", "t"))
+    o.append(_subs(530, 188, [("r × ω", False), ("i", True)], "start", "t"))
+    # force along the blade surface
+    o.append(_arr(452, 262, 522, 306, G, "ah28g", 1.8))
+    o.append(_lbl(530, 312, "F", "tb"))
+    return _fig(svg(680, 330, "".join(o), "Giản đồ vectơ cho rôto tuabin hướng trục cánh phẳng"),
+                "Hình 28.31 · Giản đồ vectơ cho rôto tuabin hướng trục cánh phẳng. Hiệu giữa vectơ "
+                "vận tốc tiếp tuyến lý tưởng (chỉ số i) và thực là vận tốc trượt của rôto, gây ra "
+                "bởi tác động tổng hợp của các mômen cản; chính hiệu này tạo nên sai số tuyến tính "
+                "và dòng xoáy ở cửa ra. V — vectơ vận tốc dòng tới; V<sub>E</sub> — vectơ vận tốc "
+                "dòng ra; θ — góc xoáy ở cửa ra do mômen cản của rôto; β — góc nghiêng cánh, cũng "
+                "là góc tới khi dòng song song; ω — vectơ vận tốc góc của rôto; r — vectơ bán kính "
+                "rôto; F — lực cản do dòng chảy tác dụng lên mỗi mặt cánh; c — dây cung cánh; "
+                "s — bước cánh dọc theo moay-ơ; c/s — hệ số đặc của rôto.",
+                "Figure 28.31 · Vector diagram for a flat-bladed axial turbine rotor. The difference "
+                "between the ideal (subscript i) and actual tangential velocity vectors is the rotor "
+                "slip velocity, caused by the net effect of the rotor retarding torques; it gives "
+                "rise to linearity errors and creates swirl in the exit flow. V — incident fluid "
+                "velocity vector; V<sub>E</sub> — exit fluid velocity vector; θ — exit flow swirl "
+                "angle due to rotor retarding torques; β — blade pitch angle, the same as the angle "
+                "of attack for parallel flow; ω — rotor angular velocity vector; r — rotor radius "
+                "vector; F — flow-induced drag force on each blade surface; c — blade chord; s — "
+                "blade spacing along the hub; c/s — rotor solidity factor.",
+                "Bên trái là dãy cánh nghiêng góc beta với dây cung c và bước s; bên phải là tam "
+                "giác vectơ V, V-E và các thanh vận tốc tiếp tuyến",
+                "On the left a blade row inclined at beta with chord c and spacing s; on the right "
+                "the vector triangle of V, V-E and the tangential velocity bars")
+
+
+def fig_28_32():
+    o = [_defs()]
+    x0, x1, yt, yb = 190, 640, 56, 196
+    # tolerance band
+    for y in (92, 112, 132):
+        o.append(_line(x0, y, x1, y, S, 0.9, "5 4"))
+    # axes
+    o.append(_line(x0, yt - 8, x0, yb, E, 1.4))
+    for y in (92, 112, 132):
+        o.append(_line(x0 - 4, y, x0, y, E, 1.2))
+    # calibration curve
+    o.append(_path("M236,196 C248,160 254,110 270,94 C282,82 292,100 302,114 "
+                   "C316,132 340,122 390,117 C460,110 550,113 632,112", E, 2.2))
+    for x in (236, 632):
+        o.append(_line(x, yb, x, 250, S, 0.9, "5 4"))
+    # range annotation
+    o.append(_darr(246, 216, 622, 216, G, 1.3))
+    o.append(_lbl(434, 208, "Dải lưu lượng cho một độ nhớt", "ts", "middle"))
+    # three alternative horizontal axes
+    rows = ((258, "Lưu lượng, thể tích/thời gian", "đo 1, 2 hoặc 3 theo",
+             [("Q", False), ("min", True)], [("Q", False), ("max", True)]),
+            (306, "Số Reynolds (Re)", "đo 1, 2 hoặc 3 theo",
+             [("vài × 10⁴", False)], [("vài × 10⁶", False)]),
+            (354, "Tần số xung / độ nhớt động học, f/ν", "đo 1 (UVC) hoặc 3 theo", None, None))
+    for y, lab, pre, t1, t2 in rows:
+        o.append(_line(x0, y, x1, y, E, 1.3))
+        o.append(_lbl((x0 + x1) / 2, y - 8, lab, "tb", "middle"))
+        o.append(_lbl(x0 - 6, y + 4, pre, "ts", "end"))
+        if t1:
+            # NB: never put <sub> inside SVG text — the HTML parser breaks out
+            # of the SVG context there and the rest of the figure collapses.
+            o.append(_subs(236, y + 16, t1, "middle", "ts"))
+            o.append(_subs(632, y + 16, t2, "middle", "ts"))
+    # the three vertical-axis titles
+    for x, lab, n in ((36, "Hệ số K, xung/thể tích", "1"), (62, "% Đăng ký", "2"),
+                      (88, "Sai số tuyến tính, %", "3")):
+        o.append('<text class="ts" x="%s" y="126" text-anchor="middle" '
+                 'transform="rotate(-90 %s 126)">%s</text>' % (_f(x), _f(x), lab))
+        o.append(_lbl(x, 204, n, "ts", "middle"))
+    # tick labels for the two families of scales
+    for y, a, b in ((92, "100 + x", "+x"), (112, "100", "0"), (132, "100 − x", "−x")):
+        o.append(_lbl(164, y + 4, a, "ts", "end"))
+        o.append(_lbl(104, y + 4, b, "ts", "end"))
+    return _fig(svg(680, 378, "".join(o), "Đường cong hiệu chuẩn điển hình của tuabin hướng trục một rôto"),
+                "Hình 28.32 · Đường cong sai số tuyến tính — tức đường cong hiệu chuẩn — điển hình "
+                "của một tuabin hướng trục một rôto với chất lưu độ nhớt thấp, vẽ theo các cách "
+                "trình bày thay thế đang dùng. Đặc tả độ chính xác cao thường ứng với dải lưu lượng "
+                "10:1 tính từ Q<sub>max</sub> xuống, còn dải làm việc mở rộng thường ứng với độ "
+                "chính xác thấp hơn. Chỗ gồ trên đường cong là đặc điểm do biên dạng vận tốc thay "
+                "đổi khi Re tiến tới miền chảy tầng; độ lớn của nó khác nhau giữa các lưu lượng kế. "
+                "Độ nhạy và độ lặp lại suy giảm ở Re thấp. Phần trăm đăng ký chỉ dùng cho lưu lượng "
+                "kế có đầu thu cơ khí; mọi lưu lượng kế khác dùng hệ số K. Đường cong độ nhớt phổ "
+                "dụng (UVC) và hiệu chuẩn theo Re vẫn đúng ở các độ nhớt môi chất đã biết khác, "
+                "miễn là Re hay f/v còn trong dải đã đặc tả. Re tính theo đường kính ống nối và nhỏ "
+                "hơn bên trong lưu lượng kế, nên dải Re trên hình chỉ là gần đúng và có thể lệch "
+                "một bậc tuỳ lưu lượng kế. Sai số tuyến tính cũng có thể biểu diễn theo số Strouhal "
+                "(fD/V) phụ thuộc Re (VD/ν) hoặc theo số Roshko (fD²/ν), khi đó D là đường kính "
+                "chuẩn của lưu lượng kế [4]. – – –, ảnh hưởng của vành bao rôto trong một lưu lượng "
+                "kế có bù độ nhớt.",
+                "Figure 28.32 · A typical single-rotor axial turbine linearity error, or calibration, "
+                "curve for a low-viscosity fluid, showing the main alternative presentations in "
+                "current use. Higher accuracy specifications usually correspond to a 10:1 flow range "
+                "down from Q<sub>max</sub>, while extended operating ranges correspond to reduced "
+                "accuracies. The hump is a characteristic feature caused by flow velocity profile "
+                "changes as Re approaches the laminar region, and varies in magnitude between meters. "
+                "Sensitivity and repeatability degrade at low Re. Percent registration is used only "
+                "with meters that have mechanical pickups; all others have a K factor. Universal "
+                "viscosity curve (UVC) and Re calibrations remain in effect at different known media "
+                "viscosities provided Re or f/v stays within the specified range. Re is referenced to "
+                "the connecting conduit diameter and is less within the flowmeter, so the Re range "
+                "shown is approximate and can vary by an order of magnitude. Linearity error can also "
+                "be expressed as Strouhal number (fD/V) versus Re (VD/ν) or Roshko number (fD²/ν), "
+                "when D is a flowmeter reference diameter [4]. – – –, effect of a rotor shroud in a "
+                "viscosity-compensated flowmeter.",
+                "Đường cong hiệu chuẩn có chỗ gồ nhô lên khỏi dải dung sai rồi phẳng dần; ba trục "
+                "hoành thay thế phía dưới",
+                "A calibration curve with a hump above the tolerance band then flattening; three "
+                "alternative horizontal axes below")
+
+
+def fig_28_33():
+    o = [_defs()]
+    # pipe wall the stem passes through
+    o.append(_line(250, 96, 660, 96, S, 1.6, "8 5"))
+    o.append(_lbl(256, 88, "thành ống", "ts"))
+    # stem and fork
+    o.append(_rect(392, 30, 16, 66, "#dce6f2", E, 1.6))
+    o.append(_rect(300, 96, 220, 12, "#dce6f2", E, 1.6))
+    o.append(_rect(300, 108, 12, 144, "#dce6f2", E, 1.6))
+    o.append(_rect(508, 108, 12, 144, "#dce6f2", E, 1.6))
+    o.append(_line(312, 180, 508, 180, E, 2.4))
+    # the two rotors, counter-rotating
+    for cx, ph in ((368, 0.35), (452, 0.35)):
+        o += _blade_row(cx, 180, 34, 5, ph)
+        o.append(_circ(cx, 180, 34, "none", E, 1.3))
+    o.append('<path d="M336,140 A36,36 0 0 1 400,140" fill="none" stroke="%s" '
+             'stroke-width="1.4" marker-end="url(#ah28)"/>' % G)
+    o.append('<path d="M484,140 A36,36 0 0 0 420,140" fill="none" stroke="%s" '
+             'stroke-width="1.4" marker-end="url(#ah28)"/>' % G)
+    # sensors in the stem
+    for y, n in ((44, 1), (66, 2)):
+        o.append(_rect(396, y, 8, 13, "url(#hatch28)", E, 1.1))
+        o.append(_lbl(414, y + 10, "cảm biến %d" % n, "ts"))
+    # flow
+    o.append(_arr(240, 180, 296, 180, S, "ah28s", 1.5))
+    o.append(_lbl(240, 172, "dòng chảy", "ts"))
+    return _fig(svg(680, 300, "".join(o), "Cụm rôto của lưu lượng kế tuabin hướng trục hai rôto kiểu chèn"),
+                "Hình 28.33 · Cụm rôto của một lưu lượng kế tuabin hướng trục hai rôto kiểu chèn dùng "
+                "đo lưu lượng nước. Thiết kế đã được cấp bằng sáng chế này làm cho lưu lượng kế "
+                "không nhạy với sai số do dòng xoáy — một nguồn sai số quan trọng ở lưu lượng kế "
+                "tuabin hướng trục một rôto. Chuyển động quay được cảm nhận bởi hai cảm biến trở "
+                "kháng điện riêng biệt. (Theo Onicon Incorporated.)",
+                "Figure 28.33 · The rotor assembly of a dual-rotor insertion axial turbine flowmeter "
+                "for water flow measurement. This patented design renders the meter insensitive to "
+                "errors due to flow swirl, an important source of potential error in single-rotor "
+                "axial turbine flowmeters. The rotations are sensed by two separate electric "
+                "impedance sensors. (Courtesy of Onicon Incorporated.)",
+                "Cán chèn qua thành ống, hai rôto quay ngược chiều trên một trục chung trong khung chữ U",
+                "A stem through the pipe wall with two counter-rotating rotors on a common axle in a "
+                "U-shaped fork")
+
+
 FIGS = [fig_28_1(), fig_28_2(), fig_28_3(), fig_28_4(), fig_28_5(), fig_28_6(),
         fig_28_7(), fig_28_8(), fig_28_9(), fig_28_10(), fig_28_11(), fig_28_12(),
         fig_28_13(), fig_28_14(), fig_28_15(), fig_28_16(), fig_28_17(), fig_28_18(),
         fig_28_19(), fig_28_20(), fig_28_21(), fig_28_22(), fig_28_23(),
         fig_28_24(), fig_28_25(), fig_28_26(), fig_28_27(), fig_28_28(),
-        fig_28_29()]
+        fig_28_29(), fig_28_30(), fig_28_31(), fig_28_32(),
+        fig_28_33()]
 
 
 def fig(n):

@@ -1804,15 +1804,16 @@ so in the caption.
 - **Source extracted.** `work/Ch28.pdf` (copied from the junction), text in `work/hb_ch28.txt`
   (338,511 chars), 132 page images in `work/ch28img/` at 140 dpi.
 - **`build/hb28fig.py`** — primitives for flow drawings (`_pipe`, `_tap`, `_profile`, `_flowarrow`),
-  positive-displacement primitives (`_tip`, `_thick`, `_stub`, `_bellows`, `_peanut`) plus
-  **figures 1–29**, `work/qa_figs.py hb28fig` → **29 figures, problems 0**, visual pass done.
-- **`build/reader_hb_ch28.py`** — module scaffold plus **sections 28.1, 28.2 and 28.3 complete** in
-  both languages: 29 figures, 46 equations, 7 tables, 30 references. 236 kB (EN) / 231 kB (VI) per
+  positive-displacement primitives (`_tip`, `_thick`, `_stub`, `_bellows`, `_peanut`),
+  turbine primitives (`_num`, `_blade_row`) plus **figures 1–33**, `work/qa_figs.py hb28fig` →
+  **33 figures, problems 0**, visual pass done.
+- **`build/reader_hb_ch28.py`** — module scaffold plus **sections 28.1 through 28.4 complete** in
+  both languages: 33 figures, 57 equations, 11 tables, 59 references. 315 kB (EN) / 309 kB (VI) per
   page. Sections are added as `sec_NN_vi` / `sec_NN_en` and appended to the `SECTIONS_VI` /
   `SECTIONS_EN` lists at the bottom; nothing else needs touching.
-- Generated page verified locally at 1424 px: **49,288 px tall (VI) / 50,434 px (EN)**, no horizontal
-  overflow, figures legible, tables fit. 28.1 alone was 14,552 px and 28.2 ~24,000, so 28.3 is the
-  remaining ~10,600 — one third of the projected 150,000 done.
+- Generated page verified locally at 1424 px: **70,433 px tall (VI) / 72,057 px (EN)**, no horizontal
+  overflow, figures legible, tables fit. 28.1 was 14,552 px, 28.2 ~24,000, 28.3 ~10,600 and 28.4
+  ~22,000 — just under half of the projected 150,000.
 - **§28.2 covers:** variable-area definition and the rotameter / movable-vane / weir-flume families;
   rotameter construction (conical tube, bobs, scales, glass vs metal, limit switches, transmitters,
   thirteen bullet characteristics); movable vane meter; weir and flume (thin-plate, notch,
@@ -1833,6 +1834,20 @@ so in the caption.
   drawing that shows the working principle, and the caption says so.
 - **The §28.3 “Further Information” list sits on p. 41**, immediately before the 28.4 heading — not on
   p. 40 with the rest of the section. Easy to miss when slicing the source by page range.
+- **§28.4 covers:** the axial turbine family — history and the Woltman principle, the construction read
+  off Figure 28.30, the seven-bullet performance envelope, the momentum-exchange theory with
+  equations 28.47–28.56, calibration and the universal viscosity curve (Figure 28.32), installation
+  and maintenance; then design and construction (rotor, bearings, the four sensor families, output
+  options) and eight sub-sections — propeller meters, spirometers, dual-rotor turbines, two-phase
+  measurement, insertion turbines, angular momentum meters, multijet turbines, cylindrical rotor
+  meters — followed by the manufacturer survey with Tables 28.8–28.9, the conclusion, 29 references
+  and a nine-item “Further Information” list.
+- **Three slips in the printed source are reproduced as printed and flagged in a translator's note**
+  after (28.56): (28.47) should read rω<sub>i</sub> = V·tanβ, (28.56)'s factor should be S/A² not
+  S·A², and its coefficient 0.036 should be 0.037 as in (28.55). The note is a bordered `.note` block
+  in both languages.
+- **§28.4's figures are drawn from the source art**, except 28.33, which the source gives as a product
+  photograph and which is redrawn as a sectioned schematic of the same assembly.
 
 ### Conventions set for this chapter
 
@@ -1850,6 +1865,18 @@ so in the caption.
   `_path(d, "#eef2f7", E, 1.6)`, i.e. colour as stroke, `E` as width and the width as fill; browsers
   silently drop all three and draw a solid black shape. Fixed; bobs and weir plates now render as
   light fill with a dark outline as intended.
+- **Never put `<sub>`/`<sup>` inside SVG `<text>`.** The HTML parser treats them as a breakout from
+  foreign (SVG) content: everything after the tag is re-parsed as HTML and the rest of the figure
+  collapses into one run of stray text. Use the `_subs()` tspan helper instead. This is what broke
+  Figure 28.32 on the first build; it is silent — the markup is still well-formed XML.
+- **`r̄` (r + U+0304) has no glyph in the serif stack** and renders as an acute accent. It is written
+  as `<span style='text-decoration:overline'>r</span>` throughout §28.4 — note the single quotes, a
+  double-quoted style attribute inside a double-quoted Python string is a syntax error.
+- **The QA script skips `<text>` elements carrying a `transform`** — its bounding-box model is
+  axis-aligned, so rotated axis titles produced false off-canvas and overlap reports before that.
+- **Measure page heights only after `document.fonts.ready`.** A `--dump-dom` probe that reads
+  `scrollHeight` on load under-reports by ~1,000 px at the bottom of a 70,000 px page, because the
+  serif web font has not swapped in yet and every line of body text is slightly shorter.
 - Equation numbers run 28.1–28.99 and then continue with letter suffixes; keep them as printed.
 - 28.2 onwards: add an in-page jump index (28.1–28.11) at the top of `body_vi()` / `body_en()` when
   the last section lands — a 150,000 px page needs one.
