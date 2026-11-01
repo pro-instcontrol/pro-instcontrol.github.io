@@ -1,9 +1,9 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-10-31 (session 19 — Chapter 19 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-10-31 (session 20 — Chapter 20 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 20** (and onward). Chapters
-> 1–19 are done, live, and registered. `work/hb_ch19.txt` is translated; Chapter 20+ source
+> **Where to start next:** Handbook **Chapter 21** (and onward). Chapters
+> 1–20 are done, live, and registered. `work/hb_ch20.txt` is translated; Chapter 21+ source
 > PDFs must be extracted from the 117-file handbook library before translation.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
@@ -42,7 +42,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–19** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–20** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -69,6 +69,7 @@ Chapters done, with their slugs and build scripts:
 | HB 17 | Acceleration, Vibration, and Shock Measurement | `ch17-acceleration-vibration-shock-measurement` | `reader_hb_ch17.py` + `hb17fig.py` | 23 | ~11k |
 | HB 18 | Time Measurement | `ch18-time-measurement` | `reader_hb_ch18.py` + `hb18fig.py` | 3 | ~9k |
 | HB 19 | Frequency Measurement | `ch19-frequency-measurement` | `reader_hb_ch19.py` + `hb19fig.py` | 15 | ~14k |
+| HB 20 | Mass and Weight Measurement | `ch20-mass-and-weight-measurement` | `reader_hb_ch20.py` + `hb20fig.py` | 3 | ~6k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
@@ -108,7 +109,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `(level, total_chapters, done_chapters)`.
-  Currently `("progress", 101, 19)`, `("full", 16, 16)`, `("full", 14, 14)`.
+  Currently `("progress", 101, 20)`, `("full", 16, 16)`, `("full", 14, 14)`.
 - `build/books_site.py` → `FLAG_LABEL = {level: (vi_format, en_format)}` — **the pill text
   is derived from `level`, not hard-coded.** Add a level here as well as in the CSS, or the
   pill will read "Translating" on a finished book.
@@ -606,6 +607,45 @@ TOC, and the live VI page reports 16 figures. Library pill now `Đang dịch · 
 `pdf-store-b` junctions and `library/pdfindex.json`; copy the needed `ChNN.pdf` into `work/`, extract, then
 follow the §4 recipe. Note the registry edits (`DONE[16]`, `("progress", 101, 16)`) were applied cleanly this
 session — reconfirmed both before committing.
+
+### 2026-10-31, session 20 — Handbook Chapter 20, Mass and Weight Measurement
+
+**Shipped:** Handbook chapter 20, *Mass and Weight Measurement* (Mark Fritz and Emil Hazarian, Denver
+Instrument Company) — 11 source pages. Full Vietnamese translation + English companion at
+`/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch20-mass-and-weight-measurement/`.
+Handbook progress 19/101 → 20/101; `DONE[20]`, `("progress", 101, 20)`, and the §2 table all updated.
+
+**What was written this session:**
+
+- `build/hb20fig.py` — **all 3** real figures (20.1 Ainsworth equal-arm two-pan balance; 20.2 beam balance
+  with offset beam and sliding weights; 20.3 force-restorative load cell with LED/photodiode null detector,
+  coil between magnet poles, servo amplifier, sense resistor and digital readout). The source chapter has
+  exactly 3 figures and **no tables**, so nothing was padded. All 3 SVGs validated (0 malformed) and a
+  label bounding-box check found 0 real collisions.
+- `build/reader_hb_ch20.py` — full VI translation + EN companion. 3/3 figure parity; **19 equations**
+  (20.1 M=V×D; 20.2 W=M×G; 20.3 S·G=U·G; 20.4 single substitution; 20.5–20.6 air density and saturation
+  vapour pressure; 20.7–20.8 single-substitution buoyancy correction and conventional mass; 20.9–20.10
+  double substitution; 20.11–20.13 the three differences a, b, c; 20.14–20.16 least-squares difference, mass
+  and conventional mass; 20.17–20.18 check standard; 20.19 short-term standard deviation) plus the
+  unnumbered F-statistic ratio; the O₁…O₁₂ reading list of the three-in-one design; and all 12 references.
+  `work/hb_ch20.txt` extracted from `pdf-store-b/Ch20__9227e67687723541.pdf` (11 pages).
+- **OCR reconstruction note:** the source equations were badly mangled in text extraction (e.g.
+  `US O O O O =+ − ( )( ) () − 21 32 SW`). They were rebuilt from the surviving token order and the standard
+  NBS/NIST mass-metrology forms (Eq. 20.4 = S + (O₂−O₁)·SW/(O₃−O₂); Eq. 20.5 air-density formula; Eq. 20.8
+  conventional mass `CM = M_u(1 − 0.0012/ρ_u)/0.99985`). A translator's note was added under 20.19 explaining
+  that the sign convention for a, b, c depends on the difference definition and that NIST's Mass Code handles
+  it consistently, so real calculations must use the software's convention.
+- Figure parity: VI 3/3 and EN 3/3, IDs `fig-20-1`…`fig-20-3`; VI 43 kB (19 equations, 12 refs), EN 21 kB.
+
+**Deploy:** `build.py` → `cp -r dist/. ./` → `reader_hb_ch20.py` → `reader_handbook.py` (20 done rows),
+`books_site.py` (progress 101→20), `make_sitemap.py` (519 URLs, 504 EN/VI pairs), `check_links.py` (521 pages,
+14,147 references, **0 broken**). Committed `45ff3a7`; remote was at `33a1b98` (no rebase) → pushed
+`33a1b98..45ff3a7` on `main`. Live: 200 on both VI/EN, 3 figures each, TOC shows **20/101** with clickable
+`đã dịch` badges (20 badge links on both TOCs).
+
+**Chapters 1–20 done; 81 to go.** Next unit is Chapter 21 (*Density Measurement*, `Ch21.pdf` in
+`pdf-store/`). Same junction + `library/pdfindex.json` workflow; copy the needed `ChNN.pdf` into `work/`,
+extract, then follow the §4 recipe. Build only the real figures the source contains — do not pad.
 
 ### 2026-10-31, session 19 — Handbook Chapter 19, Frequency Measurement
 
