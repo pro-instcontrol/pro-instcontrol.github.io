@@ -13,10 +13,11 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from reader_handbook import SLUG, CH, DONE  # noqa: E402
+from reader_handbook import SLUG, CH, DONE, APPENDIX, APP_TITLE  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NCH = max(CH)
+FIRST_APPENDIX = "A" if "A" in APPENDIX else None
 
 BOOK_EN = "Measurement, Instrumentation and Sensors Handbook"
 BOOK_VI = "Sổ tay Đo lường, Thiết bị đo và Cảm biến"
@@ -48,7 +49,12 @@ def nav(lang, cur):
 
     # ---- next
     n = cur + 1
-    if n <= NCH:
+    if cur == NCH and FIRST_APPENDIX:
+        title = APP_TITLE[FIRST_APPENDIX][0 if en else 1]
+        k = ("Appendix %s →" if en else "Phụ lục %s →") % FIRST_APPENDIX
+        out.append('<a href="%s%s/" style="text-align:right"><span class="k">%s</span>%s</a>'
+                   % (base, APPENDIX[FIRST_APPENDIX], k, title))
+    elif n <= NCH:
         title = CH[n][0] if en else CH[n][1]
         k = ("Chapter %d →" if en else "Chương %d →") % n
         out.append('<a href="%s" style="text-align:right"><span class="k">%s</span>%s</a>'

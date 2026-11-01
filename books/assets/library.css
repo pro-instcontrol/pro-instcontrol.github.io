@@ -395,6 +395,25 @@ table.tbl.led tbody td:first-child { white-space: nowrap; }
 /* MOC procedure table: the item column holds a short label, so stop it breaking mid-word */
 table.tbl.moc th:first-child, table.tbl.moc td:first-child { white-space: nowrap; }
 
+/* units appendix: symbols and unit expressions must never break mid-token
+   ("m·kg·s⁻²" printed as "m·kg·s-" / "²" is unreadable) */
+table.tbl.units th, table.tbl.units td { padding: 6px 10px; font-size: 0.88rem; }
+table.tbl.units td:nth-child(n+2), table.tbl.units th:nth-child(n+2) {
+  white-space: nowrap; overflow-wrap: normal;
+}
+table.tbl.units.w1 td:first-child, table.tbl.units.w1 th:first-child { min-width: 12rem; }
+
+/* the definition table of the units appendix: one wide text column, so let it wrap */
+table.tbl.defs th, table.tbl.defs td { padding: 8px 12px; font-size: 0.9rem; }
+table.tbl.defs td { line-height: 1.65; }
+
+/* conversion-factor table: the unit column may wrap, the equivalent never does */
+table.tbl.conv th, table.tbl.conv td { padding: 6px 10px; font-size: 0.88rem; }
+table.tbl.conv td:nth-child(2), table.tbl.conv th:nth-child(2) {
+  white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums;
+}
+table.tbl.conv td:first-child { width: 55%; }
+
 /* vendor survey table: product names are single tokens, so never split them; let the
    class and description columns absorb the slack instead */
 table.tbl.prod th, table.tbl.prod td { padding: 7px 9px; font-size: 0.86rem; }

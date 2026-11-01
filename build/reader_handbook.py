@@ -188,7 +188,17 @@ DONE = {1: "ch01-characteristics-of-instrumentation",
        24: "ch24-torque-and-power-measurement",
        25: "ch25-tactile-sensing",
        26: "ch26-pressure-and-sound-measurement",
-       27: "ch27-acoustic-measurement"}
+       27: "ch27-acoustic-measurement",
+       101: "ch101-measurement-and-identification-of-stepping-motors"}
+
+# appendices that already exist as reader pages (letter -> slug)
+APPENDIX = {
+    "A": "appendix-a-units-and-conversions",
+}
+
+APP_TITLE = {
+    "A": ("Units and Conversions", "Đơn vị và quy đổi"),
+}
 
 
 def num(n, lang):
@@ -273,10 +283,23 @@ def toc(lang):
     app = ("Appendix · Units and Conversions" if lang == "en"
            else "Phụ lục · Đơn vị và quy đổi")
     appst = "pending" if lang == "en" else "chờ dịch"
-    out.append('<h3>%s</h3><ul class="toc-list"><li><span class="n">A</span>'
-               '<span class="t">%s</span><span class="st">%s</span></li></ul>'
-               % ("Appendix" if lang == "en" else "Phụ lục",
-                  esc(app.split("· ")[1] if "· " in app else app), appst))
+    arows = []
+    for letter in ("A",):
+        ten, tvi = APP_TITLE[letter]
+        label = ten if lang == "en" else tvi
+        if letter in APPENDIX:
+            url = "%s%s/" % (base, APPENDIX[letter])
+            arows.append('<li class="done"><span class="n">%s</span>'
+                         '<span class="t"><a href="%s">%s</a></span>'
+                         '<span class="st"><a href="%s">%s</a></span></li>'
+                         % (letter, url, esc(label), url,
+                            "translated" if lang == "en" else "đã dịch"))
+        else:
+            arows.append('<li><span class="n">%s</span><span class="t">%s</span>'
+                         '<span class="st">%s</span></li>'
+                         % (letter, esc(label), appst))
+    out.append('<h3>%s</h3><ul class="toc-list">%s</ul>'
+               % ("Appendix" if lang == "en" else "Phụ lục", "".join(arows)))
     return "".join(out)
 
 
