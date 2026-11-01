@@ -1,12 +1,12 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 32 — Chapter 96 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 33 — Chapter 95 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 95** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **96, 97, 98, 99, 100, 101** and **Appendix A** are
-> done, live and registered; 28–95 are still `chờ dịch`. The reverse sequence is 95, 94 … down to
-> and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source text for every chapter is already
-> extracted into `work/hb_chNN.txt`.
+> **Where to start next:** Handbook **Chapter 94** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **95, 96, 97, 98, 99, 100, 101** and **Appendix A**
+> are done, live and registered; 28–94 are still `chờ dịch`. The reverse sequence is 94, 93 … down
+> to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source text for every chapter is
+> already extracted into `work/hb_chNN.txt`.
 >
 > **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
 > pushing; both of us have hit conflicts in `build/reader_handbook.py` (`DONE`) and in the two
@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -2346,3 +2346,81 @@ Emitting Diode Displays**. That chapter is display-physics oriented (LED materia
 circuits, multiplexing), so expect energy-band diagrams and current/voltage curves; `_frame`,
 `_line`, `_arr`, `_rich` and `_path` carry over, and band diagrams will want a filled-region
 helper rather than the recorder-style `_blk`.
+
+---
+
+## Session 33 — Chapter 95 (*Light-Emitting Diode Displays*) added
+
+**Shipped:** Chapter 95, `ch95-light-emitting-diode-displays`, VI + EN, live and registered.
+Commit `8571548`.
+
+### Source shape
+
+Far more compact than Ch. 96: **8 figures, 1 table, 20 numbered equations** (23 expressions
+counting 95.8a/b, 95.9a/b, 95.17a/b), 5 references, **no Defining Terms block**. The chapter is one
+continuous essay with no numbered sections, so the eleven thematic `h2` headings are ours — bilingual,
+in the house style. Author: Mohammad A. Karim, University of Tennessee, Knoxville.
+
+### The eight figures (`build/hb95fig.py`)
+
+| Fig | Content | Approach |
+|---|---|---|
+| 95.1 | *E* vs *k*, direct and indirect gap | sampled parabolas via `_band()`; two panels |
+| 95.2 | Spectral luminous efficiency *V*<sub>λ</sub> / *V*′<sub>λ</sub> | asymmetric Gaussians, peaks 555 / 507 nm |
+| 95.3 | *E*<sub>g</sub> vs *x* in GaAs<sub>1−x</sub>P<sub>x</sub> | two lines crossing at (0.45, 1.977) |
+| 95.4 | Nitrogen doping: (a) η vs *x*, (b) λ<sub>peak</sub> vs *x* | log axis mapped through `log10`; panel (b) in a `translate` group |
+| 95.5 | Surface vs edge emitter | cabinet-projection `_slab()` |
+| 95.6 | Encapsulation geometries + radiation patterns | domes + two overlaid lobes (solid narrow, dashed wide) |
+| 95.7 | Chopper circuit with amplifier | `_opto()` block helper, 4 terminals each |
+| 95.8 | Display formats + 16-segment character chart | `_SEG16` map of 42 glyphs over a 36×56 design space |
+
+### Lessons worth carrying forward
+
+1. **`_slab(x, y, w, h, dx, dy)` wants `dy` positive.** The top face is `y - dy`; passing a negative
+   `dy` inverts the box and the slab renders inside-out. Cost one full redraw of Fig. 95.5.
+2. **Curves must be clamped to the frame, not extrapolated.** Fig. 95.1b's valence parabola ran off
+   the bottom-right corner because the sampled range exceeded the plotted range. Parameterise the
+   parabola by a half-width so both ends land inside by construction.
+3. **Labels on a rising line need a side, not a nudge.** `E`<sub>g</sub> callouts in Fig. 95.3 kept
+   being cut by the direct-gap line; the fix was to put them *below* the shallow line / *above* the
+   steep one, plus a dashed leader from the crossing — not to shift them a few pixels.
+4. **Legends beat inline labels when two curves cross.** Fig. 95.4b's "with/without nitrogen" labels
+   sat between the curves and were crossed by both; a three-line legend in the empty upper-right
+   corner is unambiguous.
+5. **A 16-segment glyph needs a segment map, not per-character geometry.** `_GEO` (12 rects) +
+   `_DIA` (4 diagonals) in a 36×56 design space, wrapped in `<g transform="translate() scale()">`,
+   renders all 42 glyphs from `_SEG16` string sets. Subscripts are irrelevant here but the *breakout*
+   rule still applies: no `<sub>`/`<sup>` anywhere inside `<svg>`.
+6. **`_rich`/`_lbl` argument order is `(x, y, text, cls, anchor)`.** Passing the anchor into the `cls`
+   slot silently changes the font class instead of the alignment — it looks like a layout bug.
+
+### Source defects (all recorded in the page's translator's note)
+
+- Table 95.1 lists **SnO<sub>2</sub>** as II–VI; tin is group IV, so it is not a II–VI compound.
+  Kept as printed.
+- Table 95.1 is **not monotonic in *E*<sub>g</sub>** (CuBr 2.9 eV follows BeTe 2.8 eV). Kept as printed.
+- The text prints "**x = 0.05**" where the context (direct→indirect crossover at *x* ≈ 0.45) requires
+  **0.5**. Translated as 0,5 and flagged.
+- Eq. **95.17a** is printed with exponent **1/2**, but Eq. 95.14 forces
+  τ<sub>r</sub> = [*B*<sub>r</sub>(*n*<sub>0</sub> + *p*<sub>0</sub>)]<sup>−1</sup> as Δ*n* → 0;
+  1/2 is dimensionally wrong. Kept as printed and flagged.
+- Eqs. 95.8a/b use **δ²/δ*x*²**; normalised to ∂²/∂*x*² to match Eq. 95.6.
+- **R**<sub>nr</sub> in Eqs. 95.13/95.14 is the *net* recombination rate, not the nonradiative rate,
+  despite the "nr" subscript. Kept as printed.
+
+### Verification
+
+`toc rows: 102`, `done rows: 35`, `sections: 14`, `chapters: 101`, `chapter-nav: 68 pages updated`,
+`sitemap.xml: 547 URLs, 534 pairs`, `check_links.py → 549 pages, 15,037 local references, 0 broken`.
+Page: 8 figures, 23 numbered equation items, 1 table, 7 `h2`, zero `<sub>`/`<sup>` inside any `<svg>`.
+Nav renders `← Chương 94 Hiển thị điện phát quang · Mục lục sách · Chương 96 → Thiết bị đọc và ghi`;
+index shows **34 / 101**. Live: VI 200 / EN 200.
+
+### State after this session
+
+`TRANSLATED` is `("progress", 101, 34)`. `DONE` holds 35 entries — chapters 1–27 plus 95, 96, 97, 98,
+99, 100 and 101 — and the book TOC renders 28–94 as `chờ dịch`. Next in the reverse sequence:
+**94, Electroluminescent Displays**. That chapter is phosphor-physics oriented (destruction and
+acceleration of electrons, luminescent centres, drive waveforms), so expect field/energy diagrams
+and brightness-vs-voltage curves; `_band`, `_slab`, `_opto` and the `Box` log-axis trick all carry
+over.
