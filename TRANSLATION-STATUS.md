@@ -1,9 +1,9 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-10-31 (session 23 — Chapter 23 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-10-31 (session 24 — Chapter 24 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 24** (and onward). Chapters
-> 1–23 are done, live, and registered. `work/hb_ch23.txt` is translated; Chapter 24+ source
+> **Where to start next:** Handbook **Chapter 25** (*Tactile Sensing*) and onward. Chapters
+> 1–24 are done, live, and registered. `work/hb_ch24.txt` is translated; Chapter 25+ source
 > PDFs must be extracted from the 117-file handbook library before translation.
 >
 > **Both translated books are finished.** Practical Process Control (14/14) and Safety
@@ -42,7 +42,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–23** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 | **1–24** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -73,6 +73,7 @@ Chapters done, with their slugs and build scripts:
 | HB 21 | Density Measurement | `ch21-density-measurement` | `reader_hb_ch21.py` + `hb21fig.py` | 16 | ~12k |
 | HB 22 | Strain Measurement | `ch22-strain-measurement` | `reader_hb_ch22.py` + `hb22fig.py` | 14 | ~13k |
 | HB 23 | Force Measurement | `ch23-force-measurement` | `reader_hb_ch23.py` + `hb23fig.py` | 17 | ~19k |
+| HB 24 | Torque and Power Measurement | `ch24-torque-and-power-measurement` | `reader_hb_ch24.py` + `hb24fig.py` | 7 | ~19k |
 | PC 1 | Introduction | `ch01-introduction` | *none kept* | — | — |
 | PC 2 | Process Measurement and Transducers | `ch02-process-measurement-and-transducers` | `work/build_pc_ch2_en.py` + `_vi.py` | — | — |
 | PC 3 | Basic Principles of Control Valves and Actuators | `ch03-basic-principles-of-control-valves-and-actuators` | `reader_pc.py` → `pc_ch03.py` + `pcfig.py` | 24 | 8.2k |
@@ -112,7 +113,7 @@ Chapters done, with their slugs and build scripts:
 Progress pills on the library cards are driven by numbers, not by the page contents:
 
 - `build/books_site.py` → `TRANSLATED = {...}` — tuple `(level, total_chapters, done_chapters)`.
-  Currently `("progress", 101, 23)`, `("full", 16, 16)`, `("full", 14, 14)`.
+  Currently `("progress", 101, 24)`, `("full", 16, 16)`, `("full", 14, 14)`.
 - `build/books_site.py` → `FLAG_LABEL = {level: (vi_format, en_format)}` — **the pill text
   is derived from `level`, not hard-coded.** Add a level here as well as in the CSS, or the
   pill will read "Translating" on a finished book.
@@ -1504,3 +1505,66 @@ end-to-end in both languages for both books. The sitewide nav standardisation fr
   book TOC reads `Đang dịch · 5/101 chương`; all four URLs return 200.
 - Downloaded and extracted **Chapter 6** for the next session (`work/hb_ch06.txt`,
   167 pages, 63,446 words) and worked out the per-section split described in §3.
+
+### 2026-10-31, session 24 — Handbook Chapter 24, Torque and Power Measurement
+
+**Shipped:** Handbook chapter 24, *Torque and Power Measurement* (Ivan J. Garshelis, Magnova, Inc.) — 16
+source pages. Full Vietnamese translation + English companion at
+`/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch24-torque-and-power-measurement/`.
+Handbook progress 23/101 → 24/101; `DONE[24]`, `("progress", 101, 24)` and the §2 table all updated.
+Pushed `fbeffc4` on `main`.
+
+**What was written this session:**
+
+- `build/hb24fig.py` — all **7** figures the source actually contains, no padding: 24.1 (off-axis force
+  producing torque, plus a shaft twisted through φ), 24.2 (generalised apparatus block diagram B–C–D–E–F
+  with reactions A and G), 24.3 (the four sensing techniques in one four-panel plate: strain gages with
+  slip rings, two toothed wheels on a torsion bar, grooved solenoid regions with sense windings, magnetised
+  ring with field sensor), 24.4 (modular transducer section with bearings, keyways, signal cable and
+  optional feet), 24.5 (reaction-torque support table with calibrating-weight arm), 24.6 (prony brake),
+  24.7 (eddy current dynamometer, cross-section + front view).
+- `build/reader_hb_ch24.py` — full VI translation with **7 numbered equations** (24.1 `T = (F cos β)l`,
+  24.2 `T = Iα`, 24.3 `τm = 16T/πd³`, 24.4 `γm = τm/G`, 24.5 `φ = 32LT/πd⁴G`, 24.6 `W = Tθ`,
+  24.7 `P = Tω`), **0 tables** (the source has none), 30 references, and two translator's notes: one on
+  retaining *dynamometer* untranslated, one recording that the source's Equations 24.2–24.5 arrive as
+  disconnected fragments and have been restored to standard form. EN companion follows the established
+  prose-only convention but carries the full reference list.
+- Registry: `reader_handbook.py` TOC title for ch24 normalised from `Đo mô men xoắn` to `Đo mômen xoắn`
+  so the TOC and the page heading agree.
+
+**Two build-pipeline findings:**
+
+1. **`books_site.py` had been dropped from the loop.** It is documented in §4.4 but was not run in
+   sessions 17–23, so `books/index.html` and `vi/books/index.html` were frozen at
+   `Đang dịch · 16/101 chương` for eight chapters while the TOC pages were correct. Running it this
+   session moved the counter to 24/101 with a one-line diff per file. **Always run `python build/books_site.py`
+   before the sitemap** — it is the only writer of the library landing pages.
+2. **`<sub>`/`<sup>` are safe in body text.** The CSS rule that looked like it restyled them
+   (`books/assets/library.css:221`) is `.section-title .sub` — a *class*, not the element. Verified at
+   3× by rendering `F<sub>t</sub>`, `τ<sub>m</sub>`, `d<sup>3</sup>`, `s<sup>−1</sup>` on a scratch page
+   with the real stylesheet: proper subscript/superscript, inherited colour. This is the right way to set
+   subscript *letters* in prose, since the Unicode forms (`ₘ`, `ₜ`) are missing from the Inter stack —
+   the same trap recorded for SVG labels in session 23.
+
+**Figure QA (the part that took the time).** `work/qa_figs.py hb24fig` passed cleanly after two box fixes,
+but visual inspection at 2–3× found five defects the box checker cannot see, all fixed:
+
+- 24.6 — the coolant leader ended ~30 px short of the drum rim, in empty space; extended to touch it.
+- 24.6 — "khối ma sát" was struck through by the cooling-jacket arc; moved above the arc.
+- 24.1 — the tangential arrow ran straight through its own `F_t` label; arrow lengthened to 60 px and the
+  label placed beyond the tip, clear of the circle.
+- 24.1 — the lever-arm label `l` sat on the dashed radius; moved off the line.
+- 24.4 — "rãnh then" floated 40 px from the keyway notch; a short leader added.
+
+24.7 was rewritten wholesale (the rotor was not visibly between the two stators and the teeth floated);
+24.6 had already been rewritten earlier in the session for three leaders ending in nothing.
+
+**Verification:** VI 7/7 figures and EN 7/7 figures; 7 VI equations, 0 EN numbered equations (convention);
+0 tables both sides; 5 `h2` and 15 `h3` both sides (an EN `h2` that should have been `h3` was caught by the
+heading count). Local server: both chapter URLs and both TOC URLs return 200; TOC shows **24 done rows with
+24 clickable badges** in each language; progress reads 24/101. Sitemap **527 URLs, 512 EN/VI pairs**; link
+check **529 pages, 14,399 local references, 0 broken**.
+
+**Chapters 1–24 done; 77 to go.** Next unit is Chapter 25 (*Tactile Sensing*). Same junction +
+`library/pdfindex.json` workflow; copy the needed `ChNN.pdf` into `work/`, extract, then follow the §4
+recipe — and remember `books_site.py`. Build only the real figures the source contains — do not pad.
