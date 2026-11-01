@@ -10,6 +10,7 @@ import os
 
 import hb26fig as F
 from reader_handbook import SLUG, head, header, footer
+from chapter_nav import nav as chapter_nav
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CSLUG = "ch26-pressure-and-sound-measurement"
@@ -888,9 +889,9 @@ def build(lang):
             "Chapter 26 · 37 figures, 52 equations, 4 tables")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
-            '<div class="meta-line">%s</div></div><div class="prose">%s</div></article></main>'
+            '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'
             % (crumb, TITLE_VI if vi else TITLE_EN, BYLINE, meta,
-               body_vi() if vi else body_en()))
+               body_vi() if vi else body_en(), chapter_nav(lang, 26)))
     return head(lang, title, desc) + header(lang, switch) + body + footer(lang)
 
 
