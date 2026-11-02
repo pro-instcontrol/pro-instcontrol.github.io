@@ -1,11 +1,11 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 40 — Chapter 88 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 41 — Chapter 87 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 87** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
-> 100, 101** and **Appendix A** are done, live and registered; 28–87 are still `chờ dịch`. The
-> reverse sequence is 87, 86 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*).
+> **Where to start next:** Handbook **Chapter 86** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98,
+> 99, 100, 101** and **Appendix A** are done, live and registered; 28–86 are still `chờ dịch`. The
+> reverse sequence is 86, 85 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*).
 > Source text for every chapter is already extracted into `work/hb_chNN.txt`.
 >
 > **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -84,6 +84,7 @@ Chapters done, with their slugs and build scripts:
 | HB 25 | Tactile Sensing | `ch25-tactile-sensing` | `reader_hb_ch25.py` + `hb25fig.py` | — | — |
 | HB 26 | Pressure and Sound Measurement | `ch26-pressure-and-sound-measurement` | `reader_hb_ch26.py` + `hb26fig.py` | — | — |
 | HB 27 | Acoustic Measurement | `ch27-acoustic-measurement` | `reader_hb_ch27.py` + `hb27fig.py` | 21 | — |
+| HB 87 | Telemetry | `ch87-telemetry` | `reader_hb_ch87.py` + `hb87fig.py` | 11 | ~10.2k |
 | HB 88 | Sensor Networks and Communication | `ch88-sensor-networks-and-communication` | `reader_hb_ch88.py` + `hb88fig.py` | 5 | ~13.6k |
 | HB 89 | Electromagnetic Compatibility | `ch89-electromagnetic-compatibility` | `reader_hb_ch89.py` + `hb89fig.py` | 5 | ~14.3k |
 | HB 90 | Human Factors in Displays | `ch90-human-factors-in-displays` | `reader_hb_ch90.py` + `hb90fig.py` | 1 | ~7.7k |
@@ -3177,3 +3178,155 @@ table, 1 equation and 25 `dt`.
 title; source at `work/hb_ch87.txt`. Chapter 88's "previous" link currently falls back to the
 book TOC — `chapter_nav`'s documented behaviour for an untranslated neighbour — and will resolve
 itself when 87 lands, provided `chapter_nav.py` is re-run afterwards.
+
+---
+
+### Session 41 — Chapter 87 shipped
+
+**Chapter 87, *Telemetry* (Albert Lozano-Nieto, Penn State University)** is live at
+`/books/read/the-measurement-instrumentation-and-sensors-handbook/ch87-telemetry/` and its VI
+mirror. Eleven figures, three tables, fifteen display equations, fourteen glossary terms,
+twelve references. `DONE[87] = "ch87-telemetry"`; `TRANSLATED` is now `("progress", 101, 42)`.
+
+#### The chapter's equations had no text layer worth having
+
+Every display equation in this chapter was destroyed by the PDF's text layer. Equation 87.6 comes
+out as `f t tt t = t p [] + () = p + () 1 22`; 87.10 as a vertical column of single characters
+(`S`, `N`, `B`, `F`, `f`, `f`, `F`, then `3`, `4`, `12`). None could be read from the extract. All
+fifteen were re-read from 200–300 dpi page rasters:
+
+| # | Equation | Page |
+|---|---|---|
+| 87.1 | `v(t) = A_c[1 + m(t)] cos(ω_c t)` | 8 |
+| 87.2 | `m(t) = m × cos(ω_m t)` | 8 |
+| 87.3 | `P = m × 100 (%)` | 8 |
+| 87.4 | `P/100% = [A_c(max) − A_c(min)] / 2A_c` | 8 |
+| 87.5 | `v(t) = A cos[ω_c t + φ(t)]` | 9 |
+| 87.6 | `f = (1/2π)(d/dt)[ω_c t + φ(t)] = ω_c/2π + (d/dt)φ(t)` | 10 |
+| 87.7 | `f = ω_c/2π + (βω_m/2π)cos(ω_m t) = f_c + βf_m cos(ω_m t)` | 10 |
+| 87.8 | `Δf = βf_m` | 10 |
+| 87.9 | `v(t) = A cos[ω_c t + (Δf/f_m) sin(ω_m t)]` | 10 |
+| 87.10 | `(S/N)_d = (S/N)_c (3/4)^½ (B_c/F_ud)(f_dc/f_s)(f_ds/F_ud)` | 11 |
+| 87.11 | `τ = 1/(2πB)` | 12 |
+| 87.12 | `k = −54.5 T_g (dB)` | 13 |
+| 87.13 | `BEP = 0.5 e^(k·SNR)` | 17 |
+| 87.14 | NRZ: `S = sin²(πfT)/(πfT)²` | 17 |
+| 87.15 | Biphase: `S = sin⁴(πfT/2)/(πfT/2)⁴` | 17 |
+
+**The print numbers none of them.** They are numbered 87.1–87.15 here so the running text can
+refer to them, and the translator's note says so plainly. If a future chapter turns out to be
+unnumbered too, follow this precedent rather than inventing bracketed numbers silently.
+
+Note 87.12: the extract reads `k =-54.5Tg () dB`, and it is tempting to "correct" 54.5 to 54.57.
+The raster shows **−54,5**, not −54,57. Trust the raster.
+
+#### Six places where the print contradicts itself
+
+All kept as printed, all flagged in the translator's note:
+
+1. **87.3, the FDM/TDM slip.** "Figure 87.7a shows a basic block diagram for an **FDM** system" —
+   but 87.7a is a TDM diagram and the whole surrounding passage is about TDM. The translation
+   renders "FDM" and adds a footnote in place.
+2. **87.5a, triple `f_osc1`.** All three subcarrier multipliers are labelled `f_osc1`, while
+   87.5b — the other half of the same figure — marks `f_osc1`, `f_osc2`, `f_osc3`.
+3. **87.4, duplicate "CONDITIONING CIRCUIT 3".** Two different conditioning boxes carry the same
+   number; there is no "CIRCUIT 2".
+4. **87.11, 512 vs 1024.** The figure caption gives the maximum minor-frame length as "8192 bits
+   or **512** for class I"; the body text and Table 87.3 both say "< 8192 bits or < **1024**
+   words".
+5. **87.11, 16,284 vs 16,384.** Same caption says class II tops out at **16,284** bits; body and
+   Table 87.3 say **16,384**.
+6. **Table 87.1 row order.** The 467 MHz row is printed *before* the 458–468 MHz row, i.e. out of
+   ascending order. Kept as printed.
+
+Also noted: the 87.10 caption appears in the extract as "Bif-L", "Bif-M", "Bif-S" — that is the
+character Ø lost by extraction, not a different code family.
+
+#### Figure 87.10 is generated, not transcribed
+
+The printed rows are only a few pixels tall per transition, and the right-hand edge of the
+biphase rows is ambiguous even at 400 dpi. Rather than guess, the figure is **generated from the
+definitions the caption states**, one level per half-cell, with the starting level of each row
+chosen so the definition is satisfied end to end:
+
+```
+NRZ-L  [1,1,0,0,1,1,1,1,0,0]   NRZ-M  [1,1,1,1,0,0,1,1,1,1]   NRZ-S  [0,0,1,1,1,1,1,1,0,0]
+Biø-L  [0,1,1,0,0,1,0,1,1,0]   Biø-M  [0,1,0,1,1,0,0,1,0,1]   Biø-S  [1,0,0,1,0,1,0,1,1,0]
+```
+
+for the bit string `1 0 1 1 0`. The five NRZ/Biø rows that *can* be read off the raster match
+these sequences bit for bit, which is the check that makes the generation trustworthy. Note the
+caption's wording for Biø-L — "a 1 is represented by a transition to the lower level" — only
+reads correctly if "transition" means the *mid-bit* transition; that is how it is drawn.
+
+#### `_hump()` was inverted, and had been since it was written
+
+The channel-spectrum helper in `hb87fig.py` returned points with the peak at the *edges* and a
+dip at the centre, and every caller then mapped them through `ax - y`, which turned each spectrum
+into an upside-down valley. It was never caught because 87.2 had only been smoke-tested for SVG
+length, not looked at. Rewritten to return `(x, height above baseline)` with a `dip` parameter:
+
+```python
+v = (1.0 - a ** 3) * (dip + (1.0 - dip) * (1.0 - math.exp(-(a * a) / 0.03)))
+```
+
+`dip=0` gives a clean two-lobed channel spectrum; `dip=0.5` gives the amplitude-modulated
+sideband of 87.6b, whose notch stands at exactly ½M(0).
+
+#### Other rendering fixes made after looking at the screenshots
+
+- `_hrect()` painted its outline with `_rect(x, y, w, h, 1.2)`, whose default fill is `#fff` — so
+  it repainted white straight over the hatching it had just drawn. Every TDM sample pulse in
+  87.7 and 87.8 came out blank. Fixed by passing `"none"` as the fill.
+- 87.1's "Đo từ xa không dây" sat on top of the THÍCH ỨNG ĐƯỜNG DÂY box. It now sits under the RF
+  run at (540, 366).
+- 87.3 rows (b) and (c) ran 58 px past the right edge, because the mid box shifted the whole tail.
+  The row is now laid out from both ends: the display box is right-aligned at 540–656 and the
+  transmission line stretches to fill whatever is left.
+- 87.5b's guard-band labels were wider than the gap between channels, so they spilled onto the
+  curves. Channel half-width dropped 60 → 52 px and the labels to 8 px.
+- 87.7 drew its `1/f` tag twice, once from `_dimb`'s own tag and once from a separate `_r` call,
+  so the two overprinted.
+- 87.11's bottom row was placed at y=292 while its dashed "major frame" box ended at 312 — the
+  row hung outside the box it is supposed to be inside. `by` corrected to 264.
+
+#### A terminology decision
+
+*Minor frame* is rendered **khung nhỏ**, *major frame* **khung lớn**, and *subframe* **khung
+con** — three distinct words for three distinct things. Figure 87.11 was relabelled to match
+after the first draft used "khung con" for both minor frames and subframes, which made the figure
+unreadable.
+
+#### Fractions
+
+`library.css` still has no fraction class. The construction chapter 90 uses is copied verbatim
+(`vertical-align:middle`, numerator carrying `border-bottom`, `line-height:1.25`). The first
+attempt used `vertical-align:-0.58em`, which pushed the numerator up through the `.eq` block's
+top border and clipped it — visible in the screenshot as a fraction sliced in half.
+
+#### Verification
+
+| | EN | VI |
+|---|---|---|
+| `<figure class="figure">` | 11 | 11 |
+| `<svg>` (11 figures + 1 site logo) | 12 | 12 |
+| `<figcaption>` | 11 | 11 |
+| `<table class="tbl">` | 3 | 3 |
+| `.eq` | 15 | 15 |
+| `h2` / `h3` / `h4` | 6 / 7 / 8 | 6 / 7 / 8 |
+| glossary `dt` | 14 | 14 |
+| `<li>` | 19 | 19 |
+| `<p>` | 52 | 52 |
+| `<sub>`/`<sup>` inside `<svg>` | **0** | **0** |
+
+Words: **8,104 EN / 10,240 VI**. Files 179,393 B / 176,226 B. Rebuild chain clean: sitemap **563
+URLs / 550 pairs**, link check **565 pages, 15,453 local references, 0 broken**, book TOC
+**42/101** on both sides, `chapter_nav` **84 pages updated**. At 390 px the document width stays
+at 390 — the three tables scroll inside `.table-wrap` because each carries a `min-width` of
+560–600 px. Committed `d887db4`, pushed, both live URLs return **200** with 11 figures, 3 tables,
+15 equations and 14 `dt`.
+
+**Next in the reverse sequence: 86, *Computers* (Máy tính).** `DONE[86]` is `None`;
+`CH[86]` holds the title; source at `work/hb_ch86.txt`. Chapter 87's "next" link already points
+at 88 and its "previous" at 86 — the latter currently falls back to the book TOC until 86 lands,
+and resolves only if `chapter_nav.py` is re-run afterwards.
