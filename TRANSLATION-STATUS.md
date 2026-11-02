@@ -1,12 +1,12 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 36 — Chapter 92 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 37 — Chapter 91 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 91** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **92, 93, 94, 95, 96, 97, 98, 99, 100, 101** and
-> **Appendix A** are done, live and registered; 28–91 are still `chờ dịch`. The reverse sequence
-> is 91, 90 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source text for
-> every chapter is already extracted into `work/hb_chNN.txt`.
+> **Where to start next:** Handbook **Chapter 90** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101**
+> and **Appendix A** are done, live and registered; 28–90 are still `chờ dịch`. The reverse
+> sequence is 90, 89 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source
+> text for every chapter is already extracted into `work/hb_chNN.txt`.
 >
 > **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
 > pushing; both of us have hit conflicts in `build/reader_handbook.py` (`DONE`) and in the two
@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -84,6 +84,7 @@ Chapters done, with their slugs and build scripts:
 | HB 25 | Tactile Sensing | `ch25-tactile-sensing` | `reader_hb_ch25.py` + `hb25fig.py` | — | — |
 | HB 26 | Pressure and Sound Measurement | `ch26-pressure-and-sound-measurement` | `reader_hb_ch26.py` + `hb26fig.py` | — | — |
 | HB 27 | Acoustic Measurement | `ch27-acoustic-measurement` | `reader_hb_ch27.py` + `hb27fig.py` | 21 | — |
+| HB 91 | Cathode Ray Tube Displays | `ch91-cathode-ray-tube-displays` | `reader_hb_ch91.py` + `hb91fig.py` | 2 | ~9k |
 | HB 92 | Liquid Crystal Displays | `ch92-liquid-crystal-displays` | `reader_hb_ch92.py` + `hb92base.py`/`hb92fig.py`/`hb92figb.py`/`hb92figc.py` | 16 | ~19k |
 | HB 93 | Plasma-Driven Flat Panel Displays | `ch93-plasma-driven-flat-panel-displays` | `reader_hb_ch93.py` + `hb93base.py`/`hb93fig.py`/`hb93figb.py` | 20 | ~14k |
 | HB 94 | Electroluminescent Displays | `ch94-electroluminescent-displays` | `reader_hb_ch94.py` + `hb94fig.py` | 10 | ~9.5k |
@@ -2791,3 +2792,67 @@ references, 0 broken**. Live: both URLs return 200.
 "previous chapter" link names Chapter 91 but falls back to the book TOC, because 91 is not yet in
 `DONE` — that is `chapter_nav`'s documented behaviour, not a regression, and it will resolve the
 moment 91 is built.
+
+---
+
+### Session 37 — Chapter 91 shipped
+
+**Handbook Chapter 91, *Cathode Ray Tube Displays* (Christopher J. Sherman)** is translated,
+built, verified and live. Book progress **38/101** on both TOCs.
+
+**Inventory.** Twelve sections, two subsections under 91.3 and two under 91.7, **2 figures**,
+**3 tables**, **0 numbered equations**, **28 references**, plus "Further Information" and
+"Internet Resources" blocks. The smallest chapter in the reverse run so far, and the first with
+no equations at all — which is why it needed no `_EQ` dict and no equation-count check.
+
+| File | What it holds |
+|---|---|
+| `build/hb91fig.py` | figures 91.1 and 91.2, digitised spectra, Bezier/offset helpers |
+| `build/reader_hb_ch91.py` | the chapter, the three tables, 28 references |
+
+**91.1 was redrawn three times before it read as a CRT.** The first pass put the funnel's
+widest point at x=494 with a flat plateau running into the faceplate, which made the tube look
+like a light bulb. The second pass fixed the proportions (faceplate half-height 148 against a
+neck half-height of 26, i.e. 5.7:1) but built the lower wall cubic in the wrong direction —
+`_bez((394,334), …, (250,266))` runs right-to-left, so the outline picked up a stray second
+bottom wall crossing the funnel. **Lesson: every cubic in a wall pair must be authored in the
+same direction (left to right); reversing one silently duplicates the wall.** The third pass
+also replaced vertical offsets on the deflection bands with true normal offsets (`_off()`), so
+the coils hug the cone instead of standing off it on the steep section.
+
+**91.2 is measured data, not a formula.** A phosphor emission spectrum cannot be computed from
+stated physics, so the two curves were rebuilt from the printed graph: the page image was
+extracted with PyMuPDF, the plot box located from the axis line row/column sums (left axis
+x=144.5, baseline y=1153.5, 19 x-ticks at 92.9 px per 20 nm, 11 y-ticks at 112.55 px per 10 %),
+and the curve traced column-wise taking the midpoint of the first dark run. Two passes of a
+median-3 filter killed the jitter, a Douglas–Peucker pass at ε=0.30 % cut 1668 samples to 28
+points (blue) and 60 (red), and the monotone flanks of the 612 nm line were enforced — then the
+duplicate-value points that clamp created were dropped, because they showed up as visible
+stair-steps on a near-vertical stroke. Peaks land at 452 nm and 612 nm exactly as the caption
+states.
+
+**Table 91.3 needed the printed page, not the text extract.** The source's two-column layout
+flattens into a single stream, which made it look as though "U.S. address / 25358 Avenue
+Stanford / Valencia, California" belonged to Sony. Rendering PDF page 11 shows it belongs to
+**Rank Brimar**, and that the "Discrete Products Division / Riviera Beach, Florida" block belongs
+to **Philips**, not Hitachi. Fourteen suppliers, addresses reproduced as printed, each with an
+italic "Địa chỉ Hoa Kỳ" sub-heading.
+
+**Source defects logged** (translator's note on both pages): `£` is a mangled `≤` and `³` a
+mangled `≥`; `1.3 ´ 10–4 Pa (10–6 torr)` has lost its superscripts; `21/2` is the mixed number
+2½; chemical subscripts are missing (Zn(Cd)S:Cu:Al, Y₂O₂S:Eu); **`£25 mm` / `£15 mm` /
+`£150 mm` / `£250 mm` must be µm** — a 25 mm spot is impossible on a 12 mm tube; "Standford
+Resources" is a misspelling of Stanford (correct in the references); "electromagnetic yolks" is
+*yokes*; "whether of not" is *whether or not*; 91.6's "both require precise beam control" has
+no antecedent and refers to the delta and in-line configurations; Table 91.3 prints "Phillips"
+(the company is Philips), "1-chrome" (1-chome), "Tyoko" (Tokyo) and "Minato-KU".
+
+**Verification.** `reader_hb_ch91.py` → 68 kB / 67 kB. **2 figures, 3 tables, 28 reference list
+items, 15 `<h2>` and 5 `<h3>` on both pages**; zero `<sub>`/`<sup>` inside any `<svg>`.
+Registries: `DONE[91]` in `build/reader_handbook.py`, `TRANSLATED[...] = ("progress", 101, 38)`
+in `build/books_site.py`. Rebuild chain clean: sitemap **555 URLs / 542 EN/VI pairs**, link check
+**557 pages, 15,245 local references, 0 broken**. Chapter 92's "previous chapter" link now
+resolves to 91 — the fallback noted at the end of session 36 is gone. Live: both URLs return 200.
+
+**Next in the reverse sequence: 90, *Human Factors in Displays*.** It is already in `CH` as
+`("Human Factors in Displays", "Yếu tố con người trong hiển thị")`; source at `work/hb_ch90.txt`.
