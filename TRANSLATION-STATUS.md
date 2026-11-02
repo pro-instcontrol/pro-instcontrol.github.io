@@ -1,11 +1,11 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 37 — Chapter 91 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 38 — Chapter 90 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 90** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101**
-> and **Appendix A** are done, live and registered; 28–90 are still `chờ dịch`. The reverse
-> sequence is 90, 89 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source
+> **Where to start next:** Handbook **Chapter 89** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100,
+> 101** and **Appendix A** are done, live and registered; 28–89 are still `chờ dịch`. The reverse
+> sequence is 89, 88 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source
 > text for every chapter is already extracted into `work/hb_chNN.txt`.
 >
 > **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -84,6 +84,7 @@ Chapters done, with their slugs and build scripts:
 | HB 25 | Tactile Sensing | `ch25-tactile-sensing` | `reader_hb_ch25.py` + `hb25fig.py` | — | — |
 | HB 26 | Pressure and Sound Measurement | `ch26-pressure-and-sound-measurement` | `reader_hb_ch26.py` + `hb26fig.py` | — | — |
 | HB 27 | Acoustic Measurement | `ch27-acoustic-measurement` | `reader_hb_ch27.py` + `hb27fig.py` | 21 | — |
+| HB 90 | Human Factors in Displays | `ch90-human-factors-in-displays` | `reader_hb_ch90.py` + `hb90fig.py` | 1 | ~7.7k |
 | HB 91 | Cathode Ray Tube Displays | `ch91-cathode-ray-tube-displays` | `reader_hb_ch91.py` + `hb91fig.py` | 2 | ~9k |
 | HB 92 | Liquid Crystal Displays | `ch92-liquid-crystal-displays` | `reader_hb_ch92.py` + `hb92base.py`/`hb92fig.py`/`hb92figb.py`/`hb92figc.py` | 16 | ~19k |
 | HB 93 | Plasma-Driven Flat Panel Displays | `ch93-plasma-driven-flat-panel-displays` | `reader_hb_ch93.py` + `hb93base.py`/`hb93fig.py`/`hb93figb.py` | 20 | ~14k |
@@ -2856,3 +2857,76 @@ resolves to 91 — the fallback noted at the end of session 36 is gone. Live: bo
 
 **Next in the reverse sequence: 90, *Human Factors in Displays*.** It is already in `CH` as
 `("Human Factors in Displays", "Yếu tố con người trong hiển thị")`; source at `work/hb_ch90.txt`.
+
+---
+
+### Session 38 — Chapter 90 shipped
+
+**Chapter 90, *Human Factors in Displays*** (Steven A. Murray, SPAWAR Systems Center; Barrett S.
+Caldwell, University of Wisconsin — Madison). 11 sections, 8 subsections, 1 figure, 6 equations,
+0 tables, 10 references, a 6-term "Defining Terms" glossary and 4 further-reading items.
+
+| File | Change |
+|---|---|
+| `build/reader_hb_ch90.py` | new — VI + EN pages, 6 equations, glossary, references |
+| `build/hb90fig.py` | new — figure 90.1, the four alphanumeric fonts |
+| `build/reader_handbook.py` | `DONE[90] = "ch90-human-factors-in-displays"` |
+| `build/books_site.py` | `TRANSLATED` progress `(101, 38)` → `(101, 39)` |
+
+**Every one of the six equations was corrupt in the text extract** and had to be re-read from a
+300 dpi raster of the page, not repaired by guesswork. The extract renders the pi-times sign as
+`p´`, drops the Δ from `ΔI`, flattens two fraction bars, and swaps the sub/superscripts in 90.4
+and 90.6:
+
+| | printed | extract had |
+|---|---|---|
+| 90.1 | `R = π × luminance/illuminance` | `R =p´` |
+| 90.2 | `K = ΔI/I` | `K I / I = D` → "DI" |
+| 90.3 | `VA = 3438H/D` | `VA = 3438H D` |
+| 90.4 | `E = Eₘ cos⁴θ` | `EE = m cos4 q` |
+| 90.5 | `C_R = (L_bright − L_dark)/L_bright` | flattened to one line |
+| 90.6 | `CFF = a log Lₐ + b` | `CFF a L b =+ log a` |
+
+Worth remembering: **90.6 is `a·log Lₐ + b`, not `a + b·log Lₐ`** — the extract's token order
+suggests the latter and would have produced a plausible-looking but wrong formula. Always raster
+the page for an equation you cannot parse with certainty.
+
+**Fractions.** `library.css` has no fraction class, and adding one would touch every reader page.
+The four stacked fractions are therefore built by a local `_frac(num, den, size)` helper that
+emits two inline-block spans with a `border-bottom` rule between them. At 390 px the 90.5
+numerator wraps to two lines and `C_R =` moves to its own line — ugly but contained, no
+horizontal overflow. Verify equations at mobile width, not just at 1100 px.
+
+**Figure 90.1 was digitised, not invented.** The four panels were read off the extracted page
+image by locating the dot grids from column/row dark-pixel profiles and sampling cell centres:
+
+- 5 × 7 matrix spells **R**; 9 × 11 matrix spells **K** (single-column stem — that is what the
+  book prints, not a drawing error on our side);
+- seven-segment shows **5** with a, f, g, c, d lit (the source hatches its unlit segments, which
+  is why b and e are pale here);
+- the starburst lights both verticals plus the two upper diagonals, giving **M**.
+
+The source labels that last panel "16-segment font" although only **fourteen** segment positions
+are drawn. The printed label is kept and the discrepancy is in the translator's note.
+
+**Source defects recorded in the note rather than silently repaired.** Beyond the equations:
+`»0.02` for ≈0.02; `2 ´ 10–7 lx` for 2×10⁻⁷; `cd/m2` (the page really prints cd/m², the
+superscript is lost only in extraction); `;,` in the *Transillumination* definition; "does no
+flicker"; "graceful degrades"; "an excellent summaries"; "two of the primary colors — red, blue,
+and green" (three are listed); the stray closing parenthesis in "Helander (1987) and Grandjean
+[3])"; and "Handbook of Human Factors (Reference 2)" for Grandjean's chapter, which is reference
+**3** — reference 2 is Sanders and McCormick. Three substantive points are also flagged: the prose
+definition of reflectance in 90.2 is inverted relative to its own equation; "International
+Lighting Commission (CIE)" should be *International Commission on Illumination*; and the printed
+cone peaks (670/470/400 nm) are not the values usually quoted (~564/534/420 nm).
+
+**Verification.** Both pages built at 56 kB / 55 kB. Parity checked mechanically on both: 1
+figure, 6 equations, 14 list items in the reference region (10 + 4), 14 `h2`, 9 `h3`, 6 glossary
+`dt`, and **0 `<sub>`/`<sup>` inside any `<svg>`**. Rebuild chain clean: sitemap **557 URLs / 544
+EN/VI pairs**, link check **559 pages, 15,297 local references, 0 broken**. Chapter 91's
+"previous" link now resolves to 90, so the reverse chain 101 → 90 is continuous. Book TOC shows
+**39/101** on both language sides.
+
+**Next in the reverse sequence: 89, *Electromagnetic Compatibility*.** It is already in `CH` as
+`("Electromagnetic Compatibility", "Tương thích điện từ")` and needs only a slug plus a
+`DONE[89]` entry; source at `work/hb_ch89.txt`.
