@@ -1,12 +1,12 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 41 — Chapter 87 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 42 — Chapter 86 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 86** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98,
-> 99, 100, 101** and **Appendix A** are done, live and registered; 28–86 are still `chờ dịch`. The
-> reverse sequence is 86, 85 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*).
-> Source text for every chapter is already extracted into `work/hb_chNN.txt`.
+> **Where to start next:** Handbook **Chapter 85** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
+> 98, 99, 100, 101** and **Appendix A** are done, live and registered; 28–85 are still `chờ dịch`.
+> The reverse sequence is 85, 84 … down to and including 80 (*Bộ khuếch đại và điều hoà tín
+> hiệu*). Source text for every chapter is already extracted into `work/hb_chNN.txt`.
 >
 > **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
 > pushing; both of us have hit conflicts in `build/reader_handbook.py` (`DONE`) and in the two
@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -84,6 +84,7 @@ Chapters done, with their slugs and build scripts:
 | HB 25 | Tactile Sensing | `ch25-tactile-sensing` | `reader_hb_ch25.py` + `hb25fig.py` | — | — |
 | HB 26 | Pressure and Sound Measurement | `ch26-pressure-and-sound-measurement` | `reader_hb_ch26.py` + `hb26fig.py` | — | — |
 | HB 27 | Acoustic Measurement | `ch27-acoustic-measurement` | `reader_hb_ch27.py` + `hb27fig.py` | 21 | — |
+| HB 86 | Computers | `ch86-computers` | `reader_hb_ch86.py` + `hb86fig.py` | 7 | ~16.9k |
 | HB 87 | Telemetry | `ch87-telemetry` | `reader_hb_ch87.py` + `hb87fig.py` | 11 | ~10.2k |
 | HB 88 | Sensor Networks and Communication | `ch88-sensor-networks-and-communication` | `reader_hb_ch88.py` + `hb88fig.py` | 5 | ~13.6k |
 | HB 89 | Electromagnetic Compatibility | `ch89-electromagnetic-compatibility` | `reader_hb_ch89.py` + `hb89fig.py` | 5 | ~14.3k |
@@ -3330,3 +3331,86 @@ at 390 — the three tables scroll inside `.table-wrap` because each carries a `
 `CH[86]` holds the title; source at `work/hb_ch86.txt`. Chapter 87's "next" link already points
 at 88 and its "previous" at 86 — the latter currently falls back to the book TOC until 86 lands,
 and resolves only if `chapter_nav.py` is re-run afterwards.
+
+---
+
+### Session 42 — Chapter 86 shipped
+
+**Chapter 86, *Computers*** (A. M. MacLeod, P. F. Martin, W. A. Gillespie, University of Abertay
+Dundee). 23 printed pages, 7 figures, 6 tables, 10 references. Slug `ch86-computers`;
+generators `build/reader_hb_ch86.py` + `build/hb86fig.py`.
+
+**The chapter has no display equations at all.** It is a hardware survey — SBC, bus
+architectures, VME/Multibus II, the PC buses, peripherals, software — and every non-prose
+passage is either a table or a code fragment. So nothing is numbered, unlike Chapter 87 where
+the whole equation set had to be rebuilt from rasters.
+
+**The one piece of code is printed broken, and that is a printing fault, not a transcription
+slip.** The C fragment in §86.6 reads, in the print:
+
+```
+#define PABASE
+#define PBBASE+1
+#define CONTROLBASE+3
+...
+outportb(CONTROL, 153)/* set port A as input, port B as output */
+```
+
+Three `#define` lines have lost the space between the name and `BASE`, and the first `outportb()`
+call has no semicolon. Verified at 220 dpi against `work/qa86/code.png` — the print really does
+set it that way. Reproduced verbatim and the corrected lines given in the translator's note.
+
+**Four printed self-contradictions, all kept as printed:**
+
+1. The IEEE-488 bus is **1.5 MB/s** under "IEEE-488 Adapter" (§86.5 Internal Cards) and
+   **1 MB/s** under "IEEE 488 Devices" (§86.5 External Peripherals) — about 300 lines apart.
+2. **Table 86.5 lists "Linearity" twice**, with two different definitions. The second restates
+   the first ("the extent to which the conversion is linear"). Both rows kept.
+3. Multibus II cards are **220 × 233.65 mm** while the double-height VME card of the same
+   Eurocard family is **233.35 mm** (the correct value) — 233.65 is a misprint.
+4. §86.4 opens by naming **three** PC bus standards — ISA, EISA and MCA — and then never
+   describes MCA. The text says so explicitly, so it is not a truncation.
+
+Separately, **Figure 86.3 draws four rails** (data, control, arbitration, utility) while the
+prose says one group of tracks carries *both* data and address information. The figure has no
+address rail. Drawn as printed.
+
+Also worth recording: the extract's `Table 86.5` "Conversion speed … typically 1 s to 1 ms" is
+an OCR slip for **1 s to 1 µs** — confirmed on the raster; the µ was read as m.
+
+**Table 86.3** is printed as two side-by-side panels (System | Supplier, twice). Reflowed into
+one table grouped by system with `rowspan`, no entry dropped. Labtech's malformed
+`800-8799-5228` kept.
+
+**Figure work.** All seven read off 200 dpi rasters; 86.5 additionally at 600 dpi because the pin
+mnemonics are about 6 pt. Nothing is generated from a formula — every wire in 86.5 and every
+level in 86.6 is transcribed. Two construction lessons:
+
+- The shared `.tm` class in `hb93base._defs()` is 9.5 px, sized for the dense schematics of
+  Chapters 87 and 93. These seven are block diagrams with very few words, and at 9.5 px every
+  label sat at about a third of the box width the print gives it. `hb86fig.py` declares a local
+  `.tl` at **12.5 px** *after* `_defs()`, which wins on source order. Do this for any future
+  block-diagram chapter rather than editing the shared module.
+- `_blocks()` for the PWM waveform in 86.6 was first written with the polarity inverted, so
+  waveform C started low and produced a diagonal at the right-hand end. It must append
+  `(b, hi), (b, lo)` per block and `(a, lo), (a, hi)` *between* blocks, with the closing
+  `(x1, lo)`.
+
+Other layout fixes: the dashed address-bus branches in 86.2 landed on the RAM/ROM box corners
+(moved from y=180/290 to 168/278); the rails in 86.3 were too close together for the staircase
+to read (spacing 18 → 24 px, stub spacing matched); the two null-modem panels in 86.5 were
+cramped into a 56 px gap, making four crossing wires illegible (gap 56 → 94 px); 86.7's canvas
+was mostly empty (200 → 168 tall).
+
+**Verification (both built pages):** 7 figures, 8 `<svg>` (7 + site logo), 7 `<figcaption>`,
+6 tables, 5 `<pre>` blocks, 9 `h2` / 17 `h3` / 18 `h4`, 14 `dt`, 36 `<li>`, 98 `<p>`,
+**0 `<sub>`/`<sup>` inside any `<svg>`**. Words **12,767 EN / 16,879 VI**; files 115,013 B /
+115,226 B. Rebuild chain clean: sitemap **565 URLs / 552 pairs**, link check **567 pages, 15,505
+local references, 0 broken**, book TOC **43/101** on both sides, `chapter_nav` **86 pages
+updated**. At 390 px the document width stays at 390 and the six tables scroll inside
+`.table-wrap` (min-width 540–600 px).
+
+**Next in the reverse sequence: 85, *Bộ chuyển đổi tương tự – số* (Analog-to-Digital
+Converters).** `DONE[85]` is `None`; `CH[85]` holds the title; source at `work/hb_ch85.txt`.
+Chapter 86's "previous" link already points at 85 and currently falls back to the book TOC until
+85 lands — it resolves only if `chapter_nav.py` is re-run afterwards.

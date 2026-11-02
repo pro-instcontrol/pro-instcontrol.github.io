@@ -470,6 +470,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch27-acoustic-measurement/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch86-computers/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch86-computers/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch86-computers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch86-computers/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch87-telemetry/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch87-telemetry/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch87-telemetry/"/>
@@ -2145,6 +2151,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch27-acoustic-measurement/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch27-acoustic-measurement/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch27-acoustic-measurement/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch86-computers/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch86-computers/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch86-computers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch86-computers/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch87-telemetry/</loc>
