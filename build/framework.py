@@ -4,17 +4,24 @@
 Every translatable leaf element carries data-i18n="<key>"; the paired strings
 are serialised into the page as window.I18N and swapped client-side by
 assets/app.js. No build step is needed at runtime - the output is plain HTML.
+
+Spanish rides on top as an overlay: build/es_data.py maps English source text
+to Spanish, and render() attaches an "es" entry to every string it covers.
+app.js falls back to English where the map has no entry yet.
 """
+
 import json
 import os
 import re
+
+from es_data import ES_MAP
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, "dist")
 
 # Single cache-busting version for every generated page. Bump this whenever
 # style.css or app.js changes; the env var exists only for one-off experiments.
-ASSET_VER = os.environ.get("ASSET_VER", "17")
+ASSET_VER = os.environ.get("ASSET_VER", "18")
 
 _NEST_OPEN = re.compile(r"<(h[1-4]|p|li)([^>]*)><\1([^>]*)>")
 _NEST_CLOSE = re.compile(r"</(h[1-4]|p|li)></\1>")
@@ -415,9 +422,11 @@ def topbar(active):
       %s
     </nav>
     <div class="bar-right">
-      <button class="lang" id="lang" type="button" aria-label="Switch language">
-        <span class="lang-opt on">EN</span><span class="lang-sep">/</span><span class="lang-opt">VI</span>
-      </button>
+      <div class="lang" id="lang" role="group" aria-label="Language / Idioma / Ngôn ngữ">
+        <button class="lang-opt on" type="button" data-lang="en">EN</button>
+        <button class="lang-opt" type="button" data-lang="es">ES</button>
+        <button class="lang-opt" type="button" data-lang="vi">VI</button>
+      </div>
       <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav">
         <span></span><span></span>
       </button>
@@ -447,10 +456,25 @@ def render(pg, body, active):
     body = apply_chain(body, pg, active)
     strings = {k: {"en": v[0], "vi": v[1]} for k, v in SHELL.items()}
     strings.update(pg.strings)
+    # Spanish overlay: any string whose English text is in es_data.ES_MAP gains
+    # an "es" entry. app.js falls back to English where none exists, so the map
+    # can grow page by page without a page ever rendering a hole.
+    for v in strings.values():
+        if "es" not in v:
+            es = ES_MAP.get(v["en"])
+            if es is not None:
+                v["es"] = es
     payload = json.dumps(strings, ensure_ascii=False, separators=(",", ":"))
-    meta = json.dumps(
-        {"title": pg.title, "desc": pg.desc}, ensure_ascii=False, separators=(",", ":")
-    )
+    meta = {
+        "title": pg.title,
+        "desc": pg.desc,
+    }
+    for kind in ("title", "desc"):
+        src_en = pg.title["en"] if kind == "title" else pg.desc["en"]
+        es = ES_MAP.get(src_en)
+        if es is not None:
+            meta[kind]["es"] = es
+    meta = json.dumps(meta, ensure_ascii=False, separators=(",", ":"))
     out = head(pg)
     out += topbar(active)
     out += body

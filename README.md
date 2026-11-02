@@ -46,11 +46,15 @@ window.I18N = { "cmp.31": { "en": "...", "vi": "..." }, ... };
 `assets/app.js` swaps `innerHTML` for every `[data-i18n]` node, updates `<html lang>`, the
 document title and meta description, and remembers the choice in `localStorage`.
 
-- Toggle: the `EN / VI` button in the header.
-- Shareable link: append `?lang=vi` (or `?lang=en`) to any page.
+- Toggle: the `EN / ES / VI` pills in the header.
+- Shareable link: append `?lang=vi` (or `?lang=en`, `?lang=es`) to any page.
 - Attribute strings (placeholders, aria-labels) use `data-i18n-attr="placeholder"`.
 - Elements whose text is generated at runtime (simulator readouts) keep the value outside the
   translated node.
+- **Spanish is an overlay**: `build/es_data.py` maps English source text to Spanish and
+  `render()` attaches an `es` entry to every covered string. Pages carry Spanish only where
+  the map has an entry and fall back to English elsewhere — the map grows page by page
+  (`?lang=es`), so no page ever renders a hole.
 
 Four sections exist twice as **real URLs** rather than as swapped text — `/books/`,
 `/video-library/`, `/advanced/` and `/hot-topics/`, each with a `/vi/` twin. `app.js` retargets

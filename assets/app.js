@@ -13,12 +13,14 @@
     try { localStorage.setItem(KEY, l); } catch (e) {}
   }
   function initial() {
-    var m = /[?&]lang=(en|vi)/.exec(location.search);
+    var m = /[?&]lang=(en|es|vi)/.exec(location.search);
     if (m) return m[1];
     var s = stored();
-    if (s === "en" || s === "vi") return s;
+    if (s === "en" || s === "es" || s === "vi") return s;
     var n = (navigator.language || "en").toLowerCase();
-    return n.indexOf("vi") === 0 ? "vi" : "en";
+    if (n.indexOf("vi") === 0) return "vi";
+    if (n.indexOf("es") === 0) return "es";
+    return "en";
   }
 
   var lang = initial();
@@ -97,6 +99,8 @@
       var url = base + "?embed=1";
       if (l === "vi") {
         url = (TWINS[base] ? "vi/" + base : base) + "?embed=1&lang=vi";
+      } else if (l === "es") {
+        url = base + "?embed=1&lang=es";
       }
       if (f.getAttribute("src") !== url) f.setAttribute("src", url);
     }
@@ -113,7 +117,9 @@
       var el = nodes[i];
       var entry = DICT[el.getAttribute("data-i18n")];
       if (!entry) continue;
-      var val = entry[l];
+      /* Spanish is an overlay: pages carry it only where the build map has an
+         entry, so an absent string falls back to English rather than a hole. */
+      var val = entry[l] != null ? entry[l] : entry.en;
       if (val == null) continue;
       var attr = el.getAttribute("data-i18n-attr");
       if (attr) {
@@ -123,17 +129,25 @@
       }
     }
 
-    if (META.title && META.title[l]) document.title = META.title[l];
+    if (META.title && (META.title[l] || META.title.en)) {
+      document.title = META.title[l] || META.title.en;
+    }
     var md = document.querySelector('meta[name="description"]');
-    if (md && META.desc && META.desc[l]) md.setAttribute("content", META.desc[l]);
+    if (md && META.desc && (META.desc[l] || META.desc.en)) {
+      md.setAttribute("content", META.desc[l] || META.desc.en);
+    }
 
-    var opts = document.querySelectorAll(".lang-opt");
-    if (opts.length === 2) {
-      opts[0].className = "lang-opt" + (l === "en" ? " on" : "");
-      opts[1].className = "lang-opt" + (l === "vi" ? " on" : "");
+    var opts = document.querySelectorAll("#lang .lang-opt");
+    for (var j = 0; j < opts.length; j++) {
+      opts[j].className = "lang-opt" + (opts[j].getAttribute("data-lang") === l ? " on" : "");
     }
     var btn = document.getElementById("lang");
-    if (btn) btn.setAttribute("aria-label", l === "en" ? "Chuyển sang tiếng Việt" : "Switch to English");
+    if (btn) {
+      btn.setAttribute("aria-label",
+        l === "en" ? "Switch to Español or Tiếng Việt"
+        : l === "es" ? "Cambiar a English o Tiếng Việt"
+        : "Chuyển sang English hoặc Español");
+    }
 
     document.dispatchEvent(new CustomEvent("langchange", { detail: l }));
 
@@ -149,11 +163,16 @@
 
     var btn = document.getElementById("lang");
     if (btn) {
-      btn.addEventListener("click", function () {
-        var next = lang === "en" ? "vi" : "en";
-        save(next);
-        apply(next);
-      });
+      /* The pill is three buttons now (EN · ES · VI), one per language. */
+      var pills = btn.querySelectorAll(".lang-opt");
+      for (var p = 0; p < pills.length; p++) {
+        pills[p].addEventListener("click", function () {
+          var next = this.getAttribute("data-lang");
+          if (!next || next === lang) return;
+          save(next);
+          apply(next);
+        });
+      }
     }
 
     var burger = document.getElementById("burger");
