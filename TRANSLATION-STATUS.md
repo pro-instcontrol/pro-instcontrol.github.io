@@ -1,11 +1,11 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 38 — Chapter 90 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 39 — Chapter 89 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 89** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100,
-> 101** and **Appendix A** are done, live and registered; 28–89 are still `chờ dịch`. The reverse
-> sequence is 89, 88 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source
+> **Where to start next:** Handbook **Chapter 88** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100,
+> 101** and **Appendix A** are done, live and registered; 28–88 are still `chờ dịch`. The reverse
+> sequence is 88, 87 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source
 > text for every chapter is already extracted into `work/hb_chNN.txt`.
 >
 > **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -84,6 +84,7 @@ Chapters done, with their slugs and build scripts:
 | HB 25 | Tactile Sensing | `ch25-tactile-sensing` | `reader_hb_ch25.py` + `hb25fig.py` | — | — |
 | HB 26 | Pressure and Sound Measurement | `ch26-pressure-and-sound-measurement` | `reader_hb_ch26.py` + `hb26fig.py` | — | — |
 | HB 27 | Acoustic Measurement | `ch27-acoustic-measurement` | `reader_hb_ch27.py` + `hb27fig.py` | 21 | — |
+| HB 89 | Electromagnetic Compatibility | `ch89-electromagnetic-compatibility` | `reader_hb_ch89.py` + `hb89fig.py` | 5 | ~7.6k |
 | HB 90 | Human Factors in Displays | `ch90-human-factors-in-displays` | `reader_hb_ch90.py` + `hb90fig.py` | 1 | ~7.7k |
 | HB 91 | Cathode Ray Tube Displays | `ch91-cathode-ray-tube-displays` | `reader_hb_ch91.py` + `hb91fig.py` | 2 | ~9k |
 | HB 92 | Liquid Crystal Displays | `ch92-liquid-crystal-displays` | `reader_hb_ch92.py` + `hb92base.py`/`hb92fig.py`/`hb92figb.py`/`hb92figc.py` | 16 | ~19k |
@@ -2927,6 +2928,111 @@ EN/VI pairs**, link check **559 pages, 15,297 local references, 0 broken**. Chap
 "previous" link now resolves to 90, so the reverse chain 101 → 90 is continuous. Book TOC shows
 **39/101** on both language sides.
 
-**Next in the reverse sequence: 89, *Electromagnetic Compatibility*.** It is already in `CH` as
-`("Electromagnetic Compatibility", "Tương thích điện từ")` and needs only a slug plus a
-`DONE[89]` entry; source at `work/hb_ch89.txt`.
+### Session 39 — Chapter 89 shipped
+
+**Chapter 89, *Electromagnetic Compatibility*.** Two authors in one chapter: 89.1 *Grounding and
+Shielding in Industrial Electronic Systems* by Daryl Gerke and William Kimmel (Kimmel Gerke
+Associates, Ltd.), and 89.2 *EMI and EMC Test Methods* by Jeffrey P. Mills (Illinois Institute of
+Technology). The chapter is unusually unequal — 89.1 is about three quarters of it, and its
+structure is a single deep hierarchy (Understanding EMI Problems → Grounding → Shielding, each with
+run-in sub-heads and italic sub-sub-heads) with **no numbered sections inside 89.1**, which is why
+the translated page uses `h2` for 89.1/89.2 and `h3` for the three top blocks, then bold run-in
+paragraphs below that, mirroring the printed typography.
+
+| File | What it is |
+|---|---|
+| `build/hb89fig.py` | 89.1–89.5, new |
+| `build/reader_hb_ch89.py` | the chapter, VI + EN, ~11.2k / ~14.3k words |
+| `build/reader_handbook.py` | `DONE[89] = "ch89-electromagnetic-compatibility"` between 27 and 90 |
+| `build/books_site.py` | `("progress", 101, 39)` → `40` |
+
+**The text extract destroys every unit and every symbol.** The extract's substitution table is
+worth writing down because it will recur in the remaining chapters: Ω → `W`, µ → `m`, π → `p`,
+λ → `l`, ε → `e`, × → `´`, ≈ → `»`, and every super/subscript is flattened onto the baseline.
+So `377 W` is 377 Ω, `64 W` is 64 Ω, `1 to 10 W` is 1–10 Ω, `1 to 100 mH` is 1–100 µH,
+`0.4p (approximately 1.257) mT·m/A` is 0,4π µT·m/A, `10–8/3` is 10⁻⁸/3, `3·108/f` is 3×10⁸/f,
+`l/2p` is λ/2π, and `W/m2` is W/m².
+
+**All three display equations and all four tables were re-read from the page rasters.**
+
+| Where | Extract says | Page says |
+|---|---|---|
+| (89.1) | `f = 1/(ptr)` | *f* = 1/(π*t*ᵣ) |
+| (89.2) | `E() Vm = 5.5 PA d` | *E*(V/m) = 5,5 √(PA)/*d* — radical **and** division both lost |
+| (89.3) | `SE dB () = RA () dB + () dB` | SE (dB) = *R*(dB) + *A*(dB) |
+| Table 89.1 | ok | ok |
+| Table 89.2 | `mH/m` | **µH/m** |
+| Table 89.3 | `mW` throughout | **µΩ** in the upper block, **mΩ** in the lower |
+| Table 89.4 | ok | ok |
+
+Two things in that table matter beyond cosmetics. First, **Table 89.3 changes unit mid-table**:
+60 Hz–1 MHz are micro-ohms, 10 MHz–1000 MHz are milli-ohms, and the printed table puts a unit only
+in the first cell of each block. Rendering the whole column as mΩ would be wrong by three orders of
+magnitude for five of the eight rows. Second, **Table 89.2's title says "10-cm-Length Wires" but
+its first two columns are per-metre values** — only the three `Z` columns are for the 10 cm length.
+Both facts are now stated in the table captions rather than left for the reader to trip over.
+
+**One substantive extraction error.** The sentence after (89.1) gives the lightning rise time as
+**1 µs** on the page; the extract says "1 ms". 1/(π × 1 µs) ≈ 318 kHz, which is the 300 kHz the
+author then quotes, so the printed figure is right and the extract is not. Same test on ESD:
+1/(π × 1 ns) ≈ 318 MHz ≈ the quoted 300 MHz. The two numbers cross-check each other, which is how
+this was caught.
+
+**Figure work.** 89.3 is the only measured figure in the chapter and was digitised, not modelled:
+the 400 dpi raster gave the plot box (left axis x=642, 300 dB at y=426, 0 dB at y=1794) and nine
+decade lines from 0.1 kHz to 10 GHz, then each of the four curves was sampled column-wise with the
+grid lines and the four in-figure label boxes masked out (±5 px, not ±2 — at ±2 the runs merged).
+The three reflection curves converge on the plane-wave value near 300 MHz exactly as the printed
+figure shows, which is a useful check that the sampling did not drift.
+
+The other four are line drawings rebuilt from the page:
+
+- 89.1 — three columns (sources / paths / receptors) with the nested `·` sub-items under
+  Radiated→Crosstalk and Conducted. Converted to `(level, text)` tuples so indentation is
+  structural rather than a string-replace hack.
+- 89.2 — two boxes, a signal pair, two ground drops and a shared return, with the loop drawn as a
+  251° circular arrow and a tangential arrowhead. The two ground symbols are deliberately
+  different: diagonal hatch (earth) on the left, cross-hatch (chassis) on the right, matching the
+  original.
+- 89.4 — redrawn twice. The first version put a vertical bar through a horizontal line on the right
+  panel, which read as a shield split in half. The page shows the opposite: the **plate is
+  horizontal and the conductor passes through it vertically**, with the wavefront fans sitting
+  above the plate on both sides of the conductor. The left panel's slot is dimensioned with a
+  vertical `_dimv()` callout rather than a label sitting on the bar.
+- 89.5 — the perspective open-field site. Dimensions moved below the ellipse (the original puts
+  them on the major axis, where they collide with the table legs), and the two buried cables were
+  rerouted to enter from the left and right instead of from the bottom corners, because the
+  bottom-corner diagonals crossed the dimension row.
+
+**Two rendering bugs found in QA and fixed.** (1) `Frame.yticks(pairs, dx=-8)` pushes the labels
+*right* of the axis — `dx` is subtracted from `self.x`, so a negative value puts them on top of the
+axis line. Use a positive `dx`. (2) At 390 px, `table.tbl.dense` with `table-layout:fixed` squeezes
+a seven-column table until every cell wraps to one character per line. `.table-wrap` only scrolls if
+the table has a `min-width`; table 89.4 now carries `min-width:700px`, table 89.2 has none (six
+short numeric columns fit at 390 px unaided). Verified: no row in the 390 px screenshot reaches the
+right edge except the two full-width rules.
+
+**Source defects preserved, not silently repaired** (all listed in the translator's note): the
+Figure 89.1 caption reads "All three elements must be necessary" where the body text says "must
+exist at the same time"; 89.2 prints "superhetrodyne" and "It is expected that that wireless LANs"
+(doubled *that*); and 89.1 says "greater than 1/6 wavelength" while 89.2 says λ/2π ≈ λ/6 — the same
+threshold spelled two ways.
+
+**Known site-wide inconsistency, left alone.** The five figures carry Vietnamese labels on both
+language sides. Roughly half the existing EN chapter pages do the same, so this follows the
+precedent set by the immediately preceding chapters in this reverse run rather than the older
+fully-English figures. Making the five figure modules bilingual is a clean follow-up if the
+convention is ever settled.
+
+**Verification.** Both pages built at 107 kB / 102 kB. Parity checked mechanically on both: **5
+figures, 4 tables, 3 equations, 7 `h2`, 6 `h3`, 34 glossary `dt`, 28 `<li>`**, and **0
+`<sub>`/`<sup>` inside any `<svg>`**. Rebuild chain clean: sitemap **559 URLs / 546 EN/VI pairs**,
+link check **561 pages, 15,349 local references, 0 broken**. Chapter 90's "previous" link now
+resolves to 89, so the reverse chain 101 → 89 is continuous. Book TOC shows **40/101** on both
+language sides. Both live URLs return 200.
+
+**Next in the reverse sequence: 88, *Sensor Networks and Communication*.** `DONE[88]` is `None` and
+`CH[88]` already holds `("Sensor Networks and Communication", ...)`; source at `work/hb_ch88.txt`.
+Note that Chapter 89's "previous" link therefore currently falls back to the book TOC — that is
+`chapter_nav`'s documented behaviour for an untranslated neighbour, not a bug, and it resolves
+itself the moment 88 lands.
