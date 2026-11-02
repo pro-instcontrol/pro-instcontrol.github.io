@@ -1,12 +1,12 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 39 — Chapter 89 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 40 — Chapter 88 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 88** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100,
-> 101** and **Appendix A** are done, live and registered; 28–88 are still `chờ dịch`. The reverse
-> sequence is 88, 87 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source
-> text for every chapter is already extracted into `work/hb_chNN.txt`.
+> **Where to start next:** Handbook **Chapter 87** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
+> 100, 101** and **Appendix A** are done, live and registered; 28–87 are still `chờ dịch`. The
+> reverse sequence is 87, 86 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*).
+> Source text for every chapter is already extracted into `work/hb_chNN.txt`.
 >
 > **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
 > pushing; both of us have hit conflicts in `build/reader_handbook.py` (`DONE`) and in the two
@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -84,7 +84,8 @@ Chapters done, with their slugs and build scripts:
 | HB 25 | Tactile Sensing | `ch25-tactile-sensing` | `reader_hb_ch25.py` + `hb25fig.py` | — | — |
 | HB 26 | Pressure and Sound Measurement | `ch26-pressure-and-sound-measurement` | `reader_hb_ch26.py` + `hb26fig.py` | — | — |
 | HB 27 | Acoustic Measurement | `ch27-acoustic-measurement` | `reader_hb_ch27.py` + `hb27fig.py` | 21 | — |
-| HB 89 | Electromagnetic Compatibility | `ch89-electromagnetic-compatibility` | `reader_hb_ch89.py` + `hb89fig.py` | 5 | ~7.6k |
+| HB 88 | Sensor Networks and Communication | `ch88-sensor-networks-and-communication` | `reader_hb_ch88.py` + `hb88fig.py` | 5 | ~13.6k |
+| HB 89 | Electromagnetic Compatibility | `ch89-electromagnetic-compatibility` | `reader_hb_ch89.py` + `hb89fig.py` | 5 | ~14.3k |
 | HB 90 | Human Factors in Displays | `ch90-human-factors-in-displays` | `reader_hb_ch90.py` + `hb90fig.py` | 1 | ~7.7k |
 | HB 91 | Cathode Ray Tube Displays | `ch91-cathode-ray-tube-displays` | `reader_hb_ch91.py` + `hb91fig.py` | 2 | ~9k |
 | HB 92 | Liquid Crystal Displays | `ch92-liquid-crystal-displays` | `reader_hb_ch92.py` + `hb92base.py`/`hb92fig.py`/`hb92figb.py`/`hb92figc.py` | 16 | ~19k |
@@ -3036,3 +3037,143 @@ language sides. Both live URLs return 200.
 Note that Chapter 89's "previous" link therefore currently falls back to the book TOC — that is
 `chapter_nav`'s documented behaviour for an untranslated neighbour, not a bug, and it resolves
 itself the moment 88 lands.
+
+---
+
+### Session 40 — Chapter 88 shipped
+
+**Chapter 88, *Sensor Networks and Communication*** (Robert M. Crovella, NVIDIA Corporation) is
+translated, built, verified and live. 19 PDF pages, 61 kB of extracted text, five figures, one
+equation, one table, twenty references. Progress **41/101**.
+
+| File | What |
+|---|---|
+| `build/hb88fig.py` | new, 294 lines — figures 88.1–88.5 |
+| `build/reader_hb_ch88.py` | new, 2,091 lines — the chapter, VI + EN, ~10.4k / ~13.6k words |
+| `build/reader_handbook.py` | `DONE[88] = "ch88-sensor-networks-and-communication"` |
+| `build/books_site.py` | `TRANSLATED` → `("progress", 101, 41)` |
+
+#### The extract corrupts exactly one symbol
+
+Unlike Chapter 89, the text layer of Ch88.pdf is nearly clean — no Ω→W / µ→m substitution
+cascade. The single casualty is equation 88.1, which extracts as `T N =- () - 21 1`. On the page
+(page 3 raster) it is
+
+> **T = 2^(N−1) − 1**
+
+which is what the translation prints.
+
+**Worth flagging for the next reader:** that formula is *not* the number of edges in a complete
+graph. The text says <i>T</i> is the number of cables needed to connect each user to each other
+user, which would be <i>N</i>(<i>N</i>−1)/2. The two agree only at <i>N</i> = 2 (2 = 2) and
+<i>N</i> = 3 (3 = 3) and diverge from <i>N</i> = 4 onward (7 against 6, 15 against 10). The
+translator's note says so explicitly and the formula is left exactly as printed rather than
+silently corrected — this is a source defect, not a transcription error.
+
+#### Figure 88.4 has no text layer at all
+
+The page numbers it as a figure; the content is an 11 × 7 comparison table. `pymupdf` returns
+**no words above y = 210 pt on page 12** — the whole table is a bitmap. Every cell was therefore
+re-read from the 200 dpi raster, column by column, and the four notes under it transcribed by
+hand. Two traps in it:
+
+- **The units are inconsistent.** Interbus-S is listed as `25.6 km*` while the note reads
+  `* Maximum 400 m between stations`. Both are printed; they only reconcile if 25.6 km is the
+  total of many chained segments.
+- **`UP = unshielded pair`** in the printed note, where current usage would write UTP. Left as
+  printed.
+
+Because a seven-column table cannot be drawn as SVG without becoming unreadable on a phone, it is
+emitted as a real `<table>` — first column as `<th scope="row">`, others `scope="col"` — wrapped
+in `<figure id="fig-88-4">` so the figure number survives. That is why the page has **5 figures
+but only 4 `<figcaption>`s**: 88.4's caption is a `<p>` under the table. Vietnamese number
+formatting (`.` thousands, `,` decimal) is applied cell by cell by `_vnum()`, so `1200 m` becomes
+`1.200 m` and `25.6 km*` becomes `25,6 km*` on the VI side only.
+
+#### Figure 88.3 was measured, not sketched
+
+The RS-485 waveform is the only figure whose geometry had to be recovered numerically, and the
+numbers are worth keeping because they settle what the drawing actually shows:
+
+- V1 trace at raster **y = 269**, V2 at **y = 358**, axis at **y = 432**.
+- Nine bit boundaries **90 px apart**, at x = 344, 434, 524, 614, 704, 794, 884, 973.
+- The two traces cross in a narrow notch at **x = 344, 434, 614, 793, 973** and are flat at
+  524, 704, 884.
+
+For the bit string `0 1 1 0 0 1 1 0` those are boundaries 0, 1, 3, 5, 7 — i.e. **the notches fall
+exactly where the bit value changes**. The redrawn figure notches at the same boundaries and
+stays flat at 2, 4 and 6. Note that the traces return to their original levels after each
+crossing rather than swapping, so the printed waveform is a diagram of *where the transitions
+are*, not a held differential state; that is reproduced as printed and described in the caption.
+
+#### Four rendering bugs caught in QA
+
+1. **88.1 — the dotted tap stopped short.** The tap ran from the block link down to y = 272 while
+   its two-line caption sat at y = 296/310, leaving a visible gap. Extended to 284.
+2. **88.1 — "Đại lượng / đo" split across two lines** for no reason (the original breaks
+   *Measured / Variable* only because its label column is narrow). Put on one line.
+3. **88.4 — the last column was clipped.** `min-width:660px` on a 700 px column pushed `Tô-pô`
+   past the right edge. Dropped to **560 px**, which fits seven columns at `0.78rem` and still
+   scrolls on a phone.
+4. **88.5 — bottom labels sat on the canvas edge.** Canvas raised from 330 to **340** and the two
+   lower panel labels moved to y = 312.
+
+#### The rebuild chain has two steps I had been skipping
+
+Both are easy to forget and both leave the site subtly stale:
+
+- **`build/make_sitemap.py` is separate from `build/books_site.py`.** `books_site.py` writes the
+  book index pages and the reader pages but *not* `sitemap.xml`. Without it the new chapter is
+  live but invisible to the sitemap. After running it: **561 URLs, 548 with EN/VI pairs**.
+- **`build/chapter_nav.py` post-processes every chapter page in place.** The per-chapter
+  generators call `chapter_nav(lang, n)` themselves, but that call is frozen into the HTML at
+  build time — so Chapter 89's "previous" link kept pointing at the book TOC because 88 was not
+  in `DONE` when 89 was generated last session. Running `chapter_nav.py` after the generators
+  fixed it (**82 pages updated**), and 89's previous link now resolves to
+  `/…/ch88-sensor-networks-and-communication/`.
+
+The full order that worked: `reader_hb_ch88.py` → `books_site.py` → `reader_handbook.py` →
+`make_sitemap.py` → `chapter_nav.py` → `check_links.py`.
+
+#### Terminology
+
+`station` → **trạm** (a network node, not a physical site — said so in the note), `media` →
+**môi trường truyền**, `media access` → **truy nhập môi trường**, `signaling` → **tín hiệu hoá**,
+`arbitration` → **trọng tài**, `code book` → **sổ mã**, `gateway` → **cổng nối**, `repeater` /
+`bridge` / `router` → **bộ lặp / cầu nối / bộ định tuyến**. A 25-term glossary was added at the
+end of the chapter, clearly marked as the translator's addition — the original chapter has no
+"Defining Terms" section, so the entries are gathered from the inline definitions in 88.2.
+
+**Note for whoever maintains `/glossary.html`:** `build/make_glossary.py` reads chapter glossaries
+through a **whitelist** (`SRC` in that file currently holds only `ch05` and the three `ch06-*`
+sections), not by scanning every translated chapter. Chapter 88's 25 terms therefore stay on the
+chapter page and do **not** flow into the site glossary. Regenerating it is a no-op right now —
+`glossary.html` is unchanged at 98 entries.
+
+#### Verification
+
+Both pages built at 85,793 B (EN) / 104,550 B (VI). Parity checked mechanically on both sides:
+
+| | EN | VI |
+|---|---|---|
+| `<figure class="figure">` | 5 | 5 |
+| `<svg>` | 5 | 5 |
+| `<figcaption>` | 4 | 4 |
+| `<table>` | 1 | 1 |
+| `.eq` | 1 | 1 |
+| `h2` / `h3` | 8 / 50 | 8 / 50 |
+| glossary `dt` | 25 | 25 |
+| `<li>` | 23 | 23 |
+| `<p>` | 67 | 67 |
+| `<sub>`/`<sup>` inside `<svg>` | **0** | **0** |
+
+Words: **10,449 EN / 13,572 VI**. Rebuild chain clean: sitemap **561 URLs / 548 pairs**, link
+check **563 pages, 15,401 local references, 0 broken**, book TOC **41/101** on both language
+sides. At 390 px only two rows reach the right edge — the two full-width rules — so nothing
+overflows. Committed `54ae494`, pushed, and both live URLs return **200** with 5 figures, 1
+table, 1 equation and 25 `dt`.
+
+**Next in the reverse sequence: 87, *Telemetry*.** `DONE[87]` is `None`; `CH[87]` holds the
+title; source at `work/hb_ch87.txt`. Chapter 88's "previous" link currently falls back to the
+book TOC — `chapter_nav`'s documented behaviour for an untranslated neighbour — and will resolve
+itself when 87 lands, provided `chapter_nav.py` is re-run afterwards.
