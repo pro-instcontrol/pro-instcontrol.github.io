@@ -9,6 +9,9 @@ Thumbs.db
 kb/
 .playwright-cli/
 
+# scratch files from splicing a section into a chapter module
+build/_*.py
+
 # PDF stores are separate Pages repositories, junctioned in for local testing
 pdf-store/
 pdf-store-b/

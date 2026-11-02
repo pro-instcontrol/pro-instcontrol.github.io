@@ -1,10 +1,10 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-02 (sessions 42 and 43 — Chapters 86 and 28 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-02 (session 44 — Chapter 29 added) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook **Chapter 85** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–28, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
-> 98, 99, 100, 101** and **Appendix A** are done, live and registered; 29–85 are still `chờ dịch`.
+> book in reverse from the back. Chapters 1–29, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
+> 98, 99, 100, 101** and **Appendix A** are done, live and registered; 30–85 are still `chờ dịch`.
 > The reverse sequence is 85, 84 … down to and including 80 (*Bộ khuếch đại và điều hoà tín
 > hiệu*). Source text for every chapter is already extracted into `work/hb_chNN.txt`.
 >
@@ -2100,6 +2100,65 @@ and the two book-TOC `index.html` files.
 
 ---
 
+## Chapter 29 — Point Velocity Measurement (DONE)
+
+**Published.** Three sections, all translated, registered as `29: "ch29-point-velocity-measurement"`
+in `DONE`; the handbook counter now reads **45/101**. Source: `Ch29.pdf`, **55 pages, 3 sections,
+31 figures (29.1–29.31), 71 numbered equations (29.1–29.71), 4 numbered tables**, three authors.
+
+**Final measurements.** 31 figures, 71 equations, 4 numbered tables, 3 section anchors (`s29-1`,
+`s29-2`, `s29-3`), 337 kB (EN) / 322 kB (VI), zero figure-geometry problems from `qa_figs.py`.
+
+### Section map (source page → figures / equations / tables)
+
+| Section | Pages | Author | Figures | Equations | Tables |
+|---|---|---|---|---|---|
+| 29.1 Pitot Probe Anemometry | 3–16 | Kleppe, Olin | 1–14 | 29.1–29.52 | 29.1–29.2 |
+| 29.2 Thermal Anemometry | 17–37 | Olin | 15–23 | 29.53–29.64 | 29.3–29.4 |
+| 29.3 Laser Anemometry | 38–55 | Menon | 24–31 | 29.65–29.71 | — |
+
+**Verification:** both languages report 31 figure captions numbered 1–31 in order, 71 equations
+numbered 29.1–29.71 with no gap or duplicate, all three anchors present, the in-page contents list
+linking all three, and 32 `aria-label` values on the English page **none of which contains a
+Vietnamese diacritic** (the §29.2 aria fix holds for this chapter).
+
+### What §29.3 cost, and why
+
+It is short in equations (seven) and long in prose — 115.6 kB of HTML in Vietnamese, 122.8 kB in
+English — and it carries the chapter's densest figures. Eight new figures (`fig_29_24` … `fig_29_31`)
+needed four review rounds. The failures are worth recording because three of them were *invisible*
+to `qa_figs.py`, which only checks bounding boxes:
+
+- **A raw `<` in SVG text.** `θ < 90°` in figure 29.28 is an invalid XML token and collapsed the
+  whole figure to a blank box. It has to be `&lt;`. `qa_figs.py` reported
+  `MALFORMED: not well-formed (invalid token)` — the one class of error it does catch.
+- **`font-size` on a `<text class="ts">` is silently ignored.** `.t` and `.ts` set the `font`
+  *shorthand* through a class rule, and a class rule beats a presentation attribute. Twelve box
+  labels in figure 29.30 overflowed their boxes until every element-level size was switched to an
+  inline `style="font-size:8px"` (helper `_fs()`). On a `<tspan>` there is no matching rule, so the
+  attribute does work there — which is why only element-level sizes needed changing.
+- **Rotated labels placed by eye sit on the plotted lines.** The four `freq. shift = 0 / f_s` labels
+  in figure 29.26(b) were positioned at the line's own y, so the line ran through the letters.
+  Because a label rotated to the line's angle is *parallel* to it, the fix is a constant
+  **perpendicular** offset (≈10 px), not a vertical one — and the glyphs extend upward from the
+  baseline, so a label "below" a line needs its baseline pushed down by more than the cap height.
+- **A stepped connector reads as a stray box.** The fibre feed in figure 29.30(a) was a four-segment
+  polyline under the "Transmitting optics" box; at 720 px it looked like a second, smaller box
+  hanging off the first. Replaced with one diagonal.
+- **A 7 px dimension cannot hold two arrowheads.** The acoustic wavelength `Λ` in figure 29.26(a)
+  collapsed into a blob. The wavefront spacing was widened from 7 px to 12 px so the dimension has
+  somewhere to live, and the arrowheads are now drawn explicitly rather than with the shared marker.
+
+### Notation
+
+The source sets vectors in bold italic with arrows (`u⃗`, `r̂`, `Ŝ`). A probe
+(`work/qa29/probe2.html`) showed that `u⃗` (U+20D7 combining arrow) renders as an **empty box** in
+Inter/Helvetica at every size, while `r̂` and `Ŝ` (U+0302) render acceptably. The chapter therefore
+uses `<b>u</b>` for the velocity vector and `r̂` / `Ŝ` for unit vectors, with a translator's note on
+equation 29.67 explaining the departure.
+
+---
+
 ## Site shell — one masthead for every page
 
 The main site and the library sub-site had drifted into two different headers. The main one was a 66px
@@ -3571,3 +3630,55 @@ displayed at 850 px is downscaled 0.6×. At that scale several "defects" turned 
 wording or superscript error against the source markup before "fixing" it**; only layout problems
 (overlap, clipping, a detached caption, a leader that misses its target) are reliable at that
 scale. Letter-level review needs a 1:1 crop of a few hundred pixels.
+
+---
+
+## Session 44 — 2026-11-02 · Handbook Chapter 29 (*Point Velocity Measurement*) finished and published
+
+Chapter 29 is three sections and 55 pages: Pitot probes, thermal anemometry and laser anemometry.
+§29.1 and §29.2 were finished in earlier sessions; this one closed §29.3 and published the chapter.
+
+**§29.3 Laser Anemometry** is seven equations and eight figures behind a long, discursive text —
+the dual-beam system, the fringe and Doppler descriptions of the same signal, Bragg-cell frequency
+shifting, fibre-optic probes, three-component systems, signal processing, particle seeding, data
+analysis, and the extension to particle sizing. It was written as one section pair
+(`sec_29_3_vi` / `sec_29_3_en`, 115.6 kB and 122.8 kB of HTML) with its own reference list (67
+entries) and a ten-item "Further Information", titles left in the original language like §29.1 and
+§29.2.
+
+**Registered and published.** `29: "ch29-point-velocity-measurement"` added to `DONE`;
+`books_site.py` counter moved from 44 to 45. Re-ran `reader_handbook.py`, `books_site.py`,
+`make_sitemap.py`, `chapter_nav.py` and `check_links.py`. Results: book TOC and both books indexes
+read **45/101**, sitemap **571 URLs / 556 EN–VI pairs**, chapter nav **90 pages updated**, link check
+**573 pages, 15,609 local references, 0 broken**.
+
+**Five figure defects in §29.3, only one of which the checker could see.** `qa_figs.py` finished at
+`FIGS 31, problems 0` while three of the defects were still on the page:
+
+1. **A raw `<` collapsed figure 29.28.** `θ < 90°` in SVG text is an invalid token; it must be
+   `&lt;`. This is the one failure mode the checker reports (`MALFORMED`).
+2. **`font-size` on `<text class="ts">` does nothing.** `.t`/`.ts` set the `font` shorthand via a
+   class rule, and a class rule outranks a presentation attribute, so twelve labels in figure 29.30
+   silently stayed at 10 px and overflowed their boxes. Fixed with `_fs(n)`, which emits an inline
+   style; a `<tspan>` has no matching rule, so attribute sizes still work there.
+3. **Rotated labels sat on the plotted lines in figure 29.26(b).** Each label's baseline was placed
+   at the line's own y. A label rotated to the line's angle is *parallel* to it, so the correction
+   is a perpendicular offset (≈10 px), and because glyphs rise from the baseline a label placed
+   *below* a line needs more offset than one placed above.
+4. **A stepped connector read as a stray box** in figure 29.30(a): the four-segment fibre feed under
+   "Transmitting optics" looked like a second small box. Replaced with one diagonal.
+5. **A 7 px dimension cannot hold two arrowheads.** `Λ` in figure 29.26(a) collapsed into a blob, so
+   the wavefront spacing went from 7 px to 12 px and the heads are now drawn explicitly.
+
+**Two more traps worth remembering**
+
+- **Combining characters do not render in the house font.** `u⃗` (U+20D7) is an empty box in
+  Inter/Helvetica at every size; `r̂` and `Ŝ` (U+0302) survive. The chapter uses `<b>u</b>` for the
+  velocity vector with a translator's note on equation 29.67, rather than reproducing the source's
+  arrows. Probe file: `work/qa29/probe2.html`.
+- **The `meta` line is the only place the reader learns the chapter's size**, and it had gone stale
+  at 16/27/2 while the page held 23/64/4. It now reads **31 figures, 71 equations, 4 tables** in both
+  languages, and the comment above it says to recount on every section.
+
+**Owed, still:** the `aria-label` sweep across the other 34 `reader_hb_*` modules. Chapter 29 is
+clean (0 Vietnamese labels on the English page), but chapters 1–27 and 94–101 predate the fix.
