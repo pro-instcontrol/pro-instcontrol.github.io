@@ -1,11 +1,11 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 34 — Chapter 94 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-01 (session 36 — Chapter 92 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 93** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **94, 95, 96, 97, 98, 99, 100, 101** and
-> **Appendix A** are done, live and registered; 28–93 are still `chờ dịch`. The reverse sequence
-> is 93, 92 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source text for
+> **Where to start next:** Handbook **Chapter 91** and *downward* — the second agent works the
+> book in reverse from the back. Chapters 1–27, **92, 93, 94, 95, 96, 97, 98, 99, 100, 101** and
+> **Appendix A** are done, live and registered; 28–91 are still `chờ dịch`. The reverse sequence
+> is 91, 90 … down to and including 80 (*Bộ khuếch đại và điều hoà tín hiệu*). Source text for
 > every chapter is already extracted into `work/hb_chNN.txt`.
 >
 > **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -84,6 +84,7 @@ Chapters done, with their slugs and build scripts:
 | HB 25 | Tactile Sensing | `ch25-tactile-sensing` | `reader_hb_ch25.py` + `hb25fig.py` | — | — |
 | HB 26 | Pressure and Sound Measurement | `ch26-pressure-and-sound-measurement` | `reader_hb_ch26.py` + `hb26fig.py` | — | — |
 | HB 27 | Acoustic Measurement | `ch27-acoustic-measurement` | `reader_hb_ch27.py` + `hb27fig.py` | 21 | — |
+| HB 92 | Liquid Crystal Displays | `ch92-liquid-crystal-displays` | `reader_hb_ch92.py` + `hb92base.py`/`hb92fig.py`/`hb92figb.py`/`hb92figc.py` | 16 | ~19k |
 | HB 93 | Plasma-Driven Flat Panel Displays | `ch93-plasma-driven-flat-panel-displays` | `reader_hb_ch93.py` + `hb93base.py`/`hb93fig.py`/`hb93figb.py` | 20 | ~14k |
 | HB 94 | Electroluminescent Displays | `ch94-electroluminescent-displays` | `reader_hb_ch94.py` + `hb94fig.py` | 10 | ~9.5k |
 | HB 95 | Light-Emitting Diode Displays | `ch95-light-emitting-diode-displays` | `reader_hb_ch95.py` + `hb95fig.py` | 8 | ~9k |
@@ -2741,3 +2742,52 @@ Book TOC now reads *Đang dịch · 36/101* / *Translating · 36 of 101*.
 energy-level data must be transcribed from the page image) and 93.10 (the `Frame` log-axis helper
 carries over) are now resolved in code; 92 starts from `work/Ch92.pdf` and needs the same
 µ/× restoration pass.
+
+### Session 36 — Chapter 92 shipped
+
+**Chapter 92, *Liquid Crystal Displays*** (Kalluri R. Sarma, Honeywell) is translated, drawn,
+registered and live. Six sections, **16 figures, 16 numbered equations** (92.1–92.16), **30
+references**, no tables and no glossary block.
+
+| File | Role |
+|---|---|
+| `build/hb92base.py` | re-exports the Chapter 93 primitives and adds the LCD helpers: `rod`, `rod_field`, `flat_rod`, `layer_plane`, `cell_side`, `isocell`, `legend_line`, `arrow_light`, `sine_wave` |
+| `build/hb92fig.py` | figures 92.1–92.6 — phase diagrams, order parameter, ε(T), index ellipsoid, n(λ) |
+| `build/hb92figb.py` | figures 92.7–92.12 — the three deformations, passive-matrix plan and cross-section, the assembly flowchart, TN, STN, ECB |
+| `build/hb92figc.py` | figures 92.13–92.16 — AM module block diagram plus array schematic, cross-section, pixel layout, equivalent circuit and waveforms |
+| `build/reader_hb_ch92.py` | the chapter: `_EQ`, `_REFS`, `body_vi()`, `body_en()`, translator's note |
+
+**Curves computed from stated physics.** 92.3 is the Haller form `S = (1 − T/Tc)^β` fitted to the
+printed PAA points; 92.6b is Cauchy's `n = n∞ + α/λ²` through the two printed anchor pairs; 92.10c
+is a logistic electro-optic curve with the NW/NB branches mirrored; 92.11 is a family of five
+midplane-tilt logistics whose steepness rises with the twist angle (Φ = 180–270°), numbered and
+keyed in the right margin. 92.4 and 92.6a are rebuilt from the printed markers, so the data points
+and the interpolated line are visually distinct.
+
+**The U+2225 trap.** `∥` (U+2225) collapses into a solid block at 9.5 px bold in this SVG stack;
+`‖` (U+2016) renders as two clear bars. Every SVG label uses U+2016 — see the note at the top of
+`hb92base.py`. The HTML prose keeps U+2225, which renders correctly in the body font.
+
+**Figure fixes worth remembering.** 92.8's cross-section was unreadable until the stack was
+lengthened and the eleven labels fanned left and right in ascending order (leaders cannot cross if
+both lists are sorted). 92.14 had the ITO and the white gap swapped, putting the pixel electrode
+under the TFT; its TFT label also sat inside the LC layer and was moved outside with a leader.
+92.13's power rail crossed the row-driver → panel arrow, so the vertical run now carries a 12 px
+gap (a line hop, no join). 92.15 carried two "TFT" labels; one was removed.
+
+**Source defects logged** (translator's note on both pages): the cell gap is printed "5 to 10 mm"
+and the colour-filter thickness "2 mm" — both are µm; the response times are printed "tr, tf"
+where the text means τr, τd (Eq. 92.13 is τd); Eqs. 92.9–92.13 were OCR-mangled and are restored
+to the standard Freedericksz and Jakeman–Raynes forms; Fig. 92.3's caption says "PPA" where the
+text says PAA.
+
+**Verification.** `reader_hb_ch92.py` → 247 kB / 250 kB. **16 figures, 16 equation blocks and 30
+list items on both pages**; zero `<sub>`/`<sup>` inside any `<svg>`. Registries: `DONE[92]` in
+`build/reader_handbook.py`, `TRANSLATED[...] = ("progress", 101, 37)` in `build/books_site.py`.
+Rebuild chain clean: sitemap **553 URLs / 540 EN/VI pairs**, link check **555 pages, 15,193 local
+references, 0 broken**. Live: both URLs return 200.
+
+**Next in the reverse sequence: 91, *Cathode Ray Tube Displays*.** Note that the 92 page's
+"previous chapter" link names Chapter 91 but falls back to the book TOC, because 91 is not yet in
+`DONE` — that is `chapter_nav`'s documented behaviour, not a regression, and it will resolve the
+moment 91 is built.
