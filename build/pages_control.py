@@ -773,6 +773,12 @@ def build():
     body += """
 <section class="sec">
   <div class="wrap">
+    <div class="note bk-note">
+      <span class="lbl">%s</span>
+      <p class="bk-title"><a href="books/read/pc-process-control/">Practical Process Control for Engineers and Technicians</a></p>
+      <p>%s</p>
+      <p style="margin-bottom:0"><a class="btn btn-s" href="books/read/pc-process-control/">%s <span class="arw">→</span></a></p>
+    </div>
     <div class="nextprev">
       <a href="install.html"><span class="k">%s</span>%s</a>
       <a href="safety.html" style="text-align:right"><span class="k">%s</span>%s</a>
@@ -780,6 +786,16 @@ def build():
   </div>
 </section>
 """ % (
+        pg.span("Go deeper — the book on this site", "Đi sâu hơn — cuốn sách trên site này"),
+        pg.p(
+            "A hands-on training manual covering process dynamics, measurement, valves, control modes, "
+            "PID tuning, feedforward, fuzzy logic and statistical process control. Full text is on this "
+            "site, in Vietnamese and English.",
+            "Giáo trình thực hành về động học quá trình, đo lường, van, các mode điều khiển, tìm điểm "
+            "PID, feedforward, lô-gic mờ và điều khiển thống kê quá trình. Toàn văn có trên site này, "
+            "bằng tiếng Việt và tiếng Anh.",
+        ),
+        pg.span("Open the book", "Mở cuốn sách"),
         pg.span("Back", "Quay lại"),
         pg.span("Installation", "Lắp đặt"),
         pg.span("Next", "Tiếp"),

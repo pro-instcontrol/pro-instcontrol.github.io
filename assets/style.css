@@ -267,6 +267,11 @@ table.tbl code{font-size:12.4px;background:var(--bg3);padding:1px 5px;border-rad
 }
 .note.warn{border-left-color:var(--amber);background:var(--amber-soft)}
 .note.warn .lbl{color:var(--amber)}
+/* book pointer at the foot of a page */
+.bk-note{border-left-color:var(--accent-2)}
+.bk-note .bk-title{font-size:17px;font-weight:700;margin:0 0 4px}
+.bk-note .bk-title a{color:var(--ink)}
+.bk-note .bk-title a:hover{color:var(--accent-2);text-decoration:underline}
 
 /* ---------- definition list / specs ---------- */
 .spec{border-top:1px solid var(--line);margin:0}

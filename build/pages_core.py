@@ -939,6 +939,12 @@ def build_instruments():
   <span class="lbl">%s</span>
   %s
 </div>
+<div class="note bk-note">
+  <span class="lbl">%s</span>
+  <p class="bk-title"><a href="books/read/the-measurement-instrumentation-and-sensors-handbook/">The Measurement, Instrumentation and Sensors Handbook</a></p>
+  <p>%s</p>
+  <p style="margin-bottom:0"><a class="btn btn-s" href="books/read/the-measurement-instrumentation-and-sensors-handbook/">%s <span class="arw">→</span></a></p>
+</div>
 <div class="nextprev">
   <a href="fundamentals.html"><span class="k">%s</span>%s</a>
   <a href="install.html" style="text-align:right"><span class="k">%s</span>%s</a>
@@ -995,6 +1001,17 @@ def build_instruments():
             "với % giá trị đọc, cùng nhiệt độ môi trường, cùng tỷ số điều chỉnh. Một công bố 0,05&nbsp;% "
             "ở tỷ số 10:1 là thiết bị khác với công bố 0,05&nbsp;% ở 1:1.",
         ),
+        pg.span("Go deeper — the book on this site", "Đi sâu hơn — cuốn sách trên site này"),
+        pg.p(
+            "The reference work of the field: 101 chapters by different authors, from the "
+            "characteristics of instrumentation through every measured variable to signal "
+            "processing and displays. Full text is on this site, being translated into "
+            "Vietnamese chapter by chapter.",
+            "Công trình tham khảo của ngành: 101 chương do nhiều tác giả viết, từ đặc tính thiết bị "
+            "đo qua mọi đại lượng đo đến xử lý tín hiệu và hiển thị. Toàn văn có trên site này, "
+            "đang được dịch sang tiếng Việt theo từng chương.",
+        ),
+        pg.span("Open the handbook", "Mở cuốn sách"),
         pg.span("Back", "Quay lại"),
         pg.span("Fundamentals", "Kiến thức cơ bản"),
         pg.span("Next", "Tiếp"),

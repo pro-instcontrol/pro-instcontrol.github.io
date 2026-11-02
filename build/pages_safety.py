@@ -769,6 +769,12 @@ def build():
   <span class="lbl">%s</span>
   %s
 </div>
+<div class="note bk-note">
+  <span class="lbl">%s</span>
+  <p class="bk-title"><a href="books/read/safety-instrumented-systems-design-analysis-justification/">Safety Instrumented Systems — Design, Analysis, and Justification</a></p>
+  <p>%s</p>
+  <p style="margin-bottom:0"><a class="btn btn-s" href="books/read/safety-instrumented-systems-design-analysis-justification/">%s <span class="arw">→</span></a></p>
+</div>
 <div class="nextprev">
   <a href="control.html"><span class="k">%s</span>%s</a>
   <a href="tools.html" style="text-align:right"><span class="k">%s</span>%s</a>
@@ -795,6 +801,15 @@ def build():
             "nhận mô tả một thiết bị trên bàn thử; quy trình mô tả điều thực sự sẽ xảy ra tại nhà máy của "
             "bạn, lúc ba giờ sáng, bởi kỹ thuật viên đang trực.",
         ),
+        pg.span("Go deeper — the book on this site", "Đi sâu hơn — cuốn sách trên site này"),
+        pg.p(
+            "Gruhn and Cheddie on SIS design, analysis and justification — the SIL lifecycle as "
+            "engineering work rather than paperwork. Full text is on this site, in Vietnamese and "
+            "English.",
+            "Gruhn và Cheddie về thiết kế, phân tích và biện minh SIS — vòng đời SIL như công việc kỹ "
+            "thuật chứ không phải giấy tờ. Toàn văn có trên site này, bằng tiếng Việt và tiếng Anh.",
+        ),
+        pg.span("Open the book", "Mở cuốn sách"),
         pg.span("Back", "Quay lại"),
         pg.span("Control &amp; tuning", "Điều khiển &amp; hiệu chỉnh"),
         pg.span("Next", "Tiếp"),
