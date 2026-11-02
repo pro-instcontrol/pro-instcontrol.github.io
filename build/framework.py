@@ -14,7 +14,7 @@ DIST = os.path.join(ROOT, "dist")
 
 # Single cache-busting version for every generated page. Bump this whenever
 # style.css or app.js changes; the env var exists only for one-off experiments.
-ASSET_VER = os.environ.get("ASSET_VER", "14")
+ASSET_VER = os.environ.get("ASSET_VER", "17")
 
 _NEST_OPEN = re.compile(r"<(h[1-4]|p|li)([^>]*)><\1([^>]*)>")
 _NEST_CLOSE = re.compile(r"</(h[1-4]|p|li)></\1>")
@@ -458,8 +458,9 @@ def render(pg, body, active):
     # The twin set travels with the page so app.js retargets the header and the
     # foot pair from the same list the build used, instead of a copy of its own.
     twins = json.dumps(sorted(TWIN_PATHS), ensure_ascii=False, separators=(",", ":"))
-    out += ("<script>window.I18N=%s;window.I18N_META=%s;window.TWINS=%s;</script>\n"
-            % (payload, meta, twins))
+    vbooks = json.dumps(vi_books(), ensure_ascii=False, separators=(",", ":"))
+    out += ("<script>window.I18N=%s;window.I18N_META=%s;window.TWINS=%s;window.VI_BOOKS=%s;</script>\n"
+            % (payload, meta, twins, vbooks))
     out += '<script src="assets/app.js?v=%s"></script>\n</body>\n</html>\n' % ASSET_VER
     return tidy(out)
 
@@ -467,6 +468,34 @@ def render(pg, body, active):
 # Every path this run wrote, so the build can report what it left behind in
 # dist/ from an earlier run instead of wiping the tree.
 WRITTEN = []
+
+
+def vi_books():
+    """Book paths that exist in both languages, for app.js to retarget.
+
+    Content links (the education reading list, the glossary's sources, the
+    book pointers on topic pages) sit outside .nav/.nextprev, so retargetNav
+    never sees them; the language-switched pages carry this manifest instead,
+    and app.js swaps the vi/ prefix on every anchor whose target is in it.
+
+    Only the depths the switched pages actually link to are listed: the
+    landing page, book roots under read/, and the work pages. Chapter pages
+    are only linked from the book pages themselves, which are real /vi/ URLs
+    with their own links, so they stay out of the payload.
+    """
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base = os.path.join(root, "vi", "books")
+    out = {}
+    if os.path.isfile(os.path.join(base, "index.html")):
+        out["books/"] = 1
+    for sub in ("read", "work"):
+        d = os.path.join(base, sub)
+        if not os.path.isdir(d):
+            continue
+        for name in os.listdir(d):
+            if os.path.isfile(os.path.join(d, name, "index.html")):
+                out["books/%s/%s/" % (sub, name)] = 1
+    return out
 
 
 def write(path, content):

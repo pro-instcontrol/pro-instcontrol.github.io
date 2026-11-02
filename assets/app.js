@@ -52,6 +52,37 @@
     }
   }
 
+  /* Content links into the library — the education reading list, the
+     glossary's sources, the book pointers on topic pages — sit outside
+     .nav/.nextprev, so retargetNav never sees them. The build emits the set
+     of book paths that exist in both languages (window.VI_BOOKS, derived
+     from the vi/books tree on disk); any anchor whose target is in the set
+     takes the vi/ prefix in Vietnamese and loses it again in English. */
+  function retargetBookLinks(l) {
+    var VI = window.VI_BOOKS || {};
+    var links = document.querySelectorAll("a[href]");
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      var raw = a.getAttribute("href");
+      if (!raw) continue;
+      var pre = /^(\.\.\/)*/.exec(raw)[0];
+      var rest = raw.slice(pre.length);
+      var isVi = rest.indexOf("vi/") === 0;
+      var base = isVi ? rest.slice(3) : rest;
+      /* root-absolute links (/books/...) resolve against the site root just
+         like a bare relative link from a root-level page; the manifest is
+         keyed on the root-relative path either way. */
+      var abs = base.charAt(0) === "/";
+      var path = abs ? base.slice(1) : base;
+      var cut = /[?#]/.exec(path);
+      var key = cut ? path.slice(0, cut.index) : path;
+      var suffix = cut ? path.slice(cut.index) : "";
+      if (!VI[key]) continue;
+      var want = pre + (abs ? "/" : "") + (l === "vi" ? "vi/" : "") + key + suffix;
+      if (raw !== want) a.setAttribute("href", want);
+    }
+  }
+
   /* The home page embeds comparison.html and geotechnical.html in reader
      iframes. A frame has no language of its own: it takes whatever its src
      asks for, so the src is rebuilt from data-embed on every switch instead
@@ -105,6 +136,12 @@
     if (btn) btn.setAttribute("aria-label", l === "en" ? "Chuyển sang tiếng Việt" : "Switch to English");
 
     document.dispatchEvent(new CustomEvent("langchange", { detail: l }));
+
+    /* Book links go last: some of them live inside data-i18n elements, and the
+       swap above re-creates those anchors with the href baked into the string.
+       Retargeting after that pass — and after any langchange listener has
+       re-rendered — is what makes the swap stick. */
+    retargetBookLinks(l);
   }
 
   document.addEventListener("DOMContentLoaded", function () {
