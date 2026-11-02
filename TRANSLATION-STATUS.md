@@ -1,10 +1,10 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-01 (session 42 — Chapter 86 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-02 (sessions 42 and 43 — Chapters 86 and 28 added) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook **Chapter 85** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–27, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
-> 98, 99, 100, 101** and **Appendix A** are done, live and registered; 28–85 are still `chờ dịch`.
+> book in reverse from the back. Chapters 1–28, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
+> 98, 99, 100, 101** and **Appendix A** are done, live and registered; 29–85 are still `chờ dịch`.
 > The reverse sequence is 85, 84 … down to and including 80 (*Bộ khuếch đại và điều hoà tín
 > hiệu*). Source text for every chapter is already extracted into `work/hb_chNN.txt`.
 >
@@ -1772,16 +1772,17 @@ horizontal overflow (checked with a same-origin iframe probe that reports `scrol
 
 ---
 
-## Chapter 28 — Flow Measurement (IN PROGRESS, not yet published)
+## Chapter 28 — Flow Measurement (DONE)
 
-**This chapter is not finished and is deliberately not registered in `DONE`.** Do not add it to
-`build/reader_handbook.py` or bump the progress counter until all eleven sections exist — `make_sitemap.py`
-walks the whole tree, so a half-built page would land in the sitemap and be crawlable.
+**Published.** All eleven sections are translated, the page is registered as `28: "ch28-flow-measurement"`
+in `DONE`, the handbook counter reads 36/101, and both language pages are in `sitemap.xml`. Chapter 28
+is the largest chapter in the book: **132 source pages, 11 sections, 92 figures (28.1–28.92),
+164 numbered equations, 23 numbered tables**, and ten authors.
 
-**Scale, for planning.** Chapter 28 is by far the largest in the book: **132 source pages, 11 sections,
-92 figures (28.1–28.92), 162 equations (28.1–28.99 plus suffixes), 23 tables**, and ten authors. Chapter 27
-was 26 pages and 21 figures. Expect roughly **150,000 px of page height** at a 1424 px viewport
-(28.1 alone measures 14,552 px).
+**Final measurements.** 92 figures, 164 equations, 23 numbered tables (40 `<table>` elements — the
+extra 17 are uncaptioned continuation halves where a source table broke across a page),
+9 translator's notes, 11 section anchors, 867 kB (EN) / 824 kB (VI) per page, **~160,000 px (VI)**
+at a 1424 px viewport, no horizontal overflow.
 
 **Agreed treatment:** full-length faithful translation, one page, spanning several sessions.
 
@@ -1813,15 +1814,14 @@ caption.
 
 - **Source extracted.** `work/Ch28.pdf` (copied from the junction), text in `work/hb_ch28.txt`
   (338,511 chars), 132 page images in `work/ch28img/` at 140 dpi.
-- **`build/hb28fig.py`** — primitives for flow drawings (`_pipe`, `_tap`, `_profile`, `_flowarrow`),
-  positive-displacement primitives (`_tip`, `_thick`, `_stub`, `_bellows`, `_peanut`),
-  turbine primitives (`_num`, `_blade_row`) plus **figures 1–67**, `work/qa_figs.py hb28fig` →
-  **67 figures, problems 0**, visual pass done.
-- **`build/reader_hb_ch28.py`** — module scaffold plus **sections 28.1 through 28.8 complete** in
-  both languages: 67 figures, 100 equations (28.1–28.100), 25 defining-term blocks and numbered
-  tables, 64 + 14 references. 588 kB (EN) / 574 kB (VI) per page, **133,339 px (EN) /
-  129,658 px (VI)** at 1424 px. Sections are added as `sec_NN_vi` / `sec_NN_en` and appended to the
-  `SECTIONS_VI` / `SECTIONS_EN` lists at the bottom; nothing else needs touching.
+- **`build/reader_hb_ch28.py`** — module scaffold plus **sections 28.1 through 28.11 complete** in
+  both languages: **92 figures, 164 equations, 23 numbered tables, 9 translator's notes**. 867 kB (EN)
+  / 824 kB (VI) per page, **~160,000 px (VI)** at 1424 px, no horizontal overflow. Sections are added
+  as `sec_NN_vi` / `sec_NN_en` and appended to the `SECTIONS_VI` / `SECTIONS_EN` lists at the bottom;
+  nothing else needs touching. The page opens with a `sec_index()` jump index (§28.1–28.11) and each
+  section heading carries an `id="s28-N"` anchor.
+- **`build/hb28fig.py`** — **all 92 figures**, `work/qa_figs.py hb28fig` → **92 figures, problems 0**,
+  visual pass done.
 - Generated page verified locally at 1424 px: **79,229 px tall (VI) / 81,020 px (EN)**, no horizontal
   overflow, figures legible, tables fit. 28.1 was 14,552 px, 28.2 ~24,000, 28.3 ~10,600, 28.4
   ~22,000 and 28.5 ~8,800 — a little over half of the projected 150,000.
@@ -1906,6 +1906,41 @@ caption.
   multisensor and single-sensor density (28.98–28.100). Nine figures (28.59–28.67) and fifteen
   equations (28.86–28.100). **No table and no numbered reference list** — only a four-item
   “Further Information” block, unlike every section since 28.5.
+- **§28.9 covers:** thermal mass flow sensing in full — the two families (heat-loss and
+  heat-transfer) and why the measurement is inherently a mass measurement; the three sensor
+  geometries (immersed probe, capillary bypass, thin-film on wall); the constant-temperature
+  (CTA) and constant-current (CCA) anemometer bridges with their control loops; King's law and its
+  calibration; the four gas-property corrections (k, c<sub>p</sub>, µ, and the composition
+  dependence) with the correction equations; the CTA/CCA comparison table; the bypass and
+  micromachined silicon variants; the full derivation block 28.120–28.135 (heat balance, Nusselt
+  correlations, the sensitivity coefficients); the thermal sigma–delta modulator; and the
+  seventeen-row manufacturer survey in Tables 28.13–28.23. **Thirteen figures (28.68–28.80),
+  eleven tables, 44 equations (28.101–28.144), 22 references** — the heaviest section after 28.2.
+- **§28.9's figures are circuit-heavy** and needed primitives the chapter did not have:
+  `_zig` (resistor), `_gnd`, `_amp` (triangle), `_wire_sym`, `_bridge` (Wheatstone). All live in
+  `hb28fig.py` above `fig_28_68`.
+- **Equation (2.118) is printed as (2.118), not (28.118)**, in the source — the chapter's numbering
+  slips for one equation. Reproduced as printed and flagged in a `.note` block in both languages.
+- **Table 28.19's “Wire” turbulent column reuses the flat-plate formula** — reproduced as printed.
+- **§28.10 covers:** the case for a meter that measures mass directly; the history and the naming
+  after Gaspard G. Coriolis (1792–1843); the two-paragraph case for industrial adoption; the theory
+  of operation — the vibrating tube, the axis of rotation at peak amplitude, acceleration toward
+  that point and deceleration away from it, lag on the inlet side and lead on the outlet side, the
+  twist proportional to mass flow; the electromagnetic drive and the detector's phase measurement;
+  equation 28.145 (F = 2mωv̄); construction (wetted tube only, stainless, Hastelloy, Teflon lining,
+  thin-wall variants); advantages (accuracy, turndown, no swirl sensitivity, no moving parts, no
+  recalibration, multiple process variables); disadvantages (cost, 150 mm line-size ceiling, thin
+  installed base, API approval); applications; a look ahead (straight tubes, gas, steam); and a
+  four-item unnumbered reference list. **Four figures (28.81–28.84), one equation, no tables.**
+- **§28.10's equation is printed as a scalar magnitude.** The translator's note gives the vector
+  form **F** = −2m(**ω** × **v**) and says the two agree in magnitude for a straight tube with the
+  flow normal to the axis of vibration — so the printed equation is still usable.
+- **§28.10's figures 28.81 and 28.83 are axonometric in the source**; both are redrawn as flat
+  schematics (tube in the plane of the page) and the captions say so. The source also marks
+  “Coriolis acceleration” at the same points where it marks “fluid reactive force”; the redraw keeps
+  the latter and notes the equivalence in the caption.
+- **§28.10's reference list is unnumbered**, unlike 28.4–28.9 — it is rendered with `wl()` and no
+  `1.` prefixes, as printed.
 - **§28.8's figures were drawn from the source art, and two needed a second pass.** Figure 28.66 is
   a two-axis plot in the original — 4–20 mA on the left, pulse frequency on the right, with the
   right-hand zero sitting at the 4 mA level, not at the frame bottom — and the first draft had a
@@ -1917,6 +1952,36 @@ caption.
   “Measurement Output Signals”, “Analog Transmitter” and “Intelligent Transmitters” under
   “Transmitter”. Flattening all eight to `h4` lost that grouping, so a local `h5()` helper
   (0.92 rem, 700, 2 px left rule) was added and the six grandchildren demoted.
+
+- **§28.11 covers:** the case for a target-type meter in dirty, abrasive and two-phase flow; the
+  design of the flow sensor (the square rubber cantilever, the sphere on its free end, the four
+  gauges as two half bridges); the drag equation (28.146) and the Reynolds relation (28.147); the
+  bending derivation (28.148–28.156) from 1/ρ = M/EI through the second moment of area to the
+  quadratic strain–velocity law; the two-component wind vector and its magnitude and direction
+  (28.157–28.159); implementation with resistive gauges — the 165 × 13.5 mm polybutadiene beam, the
+  20 mm table-tennis-ball drag element, the 50 ms response and 30 ms time constant; the calibration
+  against wind speed (Figure 28.87) and against angle (Figures 28.88–28.89); the optical fibre
+  variant — the grooved PMMA fibre and bend loss, the 633 nm source, the 0.980 mm fibre with 20 µm
+  cladding, the 35 m/s two-channel instrument; and a conclusion. **Eight figures (28.85–28.92),
+  19 equations (28.146–28.164), no tables, six numbered references.**
+- **§28.11's equation 28.147 is dimensionally wrong in the source** — it gives Re = ρVA/η, which
+  carries a length, where the Reynolds number needs ρVd/η with d a characteristic length (fibre or
+  sphere diameter). Reproduced as printed and flagged in a translator's note that supplies the
+  correct form.
+- **The source uses ρ for two different quantities in §28.11** — fluid density in 28.146 and the
+  radius of curvature of the beam in 28.148–28.152. Reproduced as printed and flagged in a second
+  translator's note, which points out that the strength-of-materials literature writes R.
+- **“Approximately 20 mm” for the cladding of a 1 mm fibre is a misprint.** Corrected to 20 µm in
+  the text and flagged in a third translator's note — a 20 mm cladding on a 1 mm core is not a
+  physical object.
+- **§28.11's figures 28.87–28.89 are the chapter's only scatter plots** and needed `_axis()` plus
+  `_mark()`. `_axis()` takes the axis *ranges* and returns `mx`/`my` closures; an earlier version
+  took tick positions as fractions, which put every label at the wrong place (38 QA problems) and
+  made the plots unreadable.
+- **Figure 28.85 needed a second pass.** The first draft sent both the `G4` and the `G1` leader to
+  the *same* front-face gauge, leaving the second gauge unlabelled and the pair reading as one gauge
+  named twice. `G1`'s leader now runs under the left gauge and lands on the right one. Neither
+  `qa_figs.py` nor a caption check can catch this — it is a content error, not a collision.
 
 
 ### Conventions set for this chapter
@@ -1962,6 +2027,19 @@ caption.
   page. Figures 30–35 were shipped that way before it was noticed; all twelve calls now pass
   `"vi"` / `"en"` explicitly, and the check is
   `grep -c 'figcaption'` per language rather than eyeballing one page.
+- **The `aria-label` on every `<svg>` is baked in Vietnamese and does not follow the language
+  switch.** `hbfig.svg(w, h, body, title)` writes `aria-label="<title>"` when the figure is
+  *defined*, and `_fig()` stores the Vietnamese and English accessible descriptions as elements 4
+  and 5 of the 5-tuple — which `fig()` used to discard. The result: all 92 figures on the English
+  page announced a Vietnamese description to a screen reader. `fig()` now rewrites the attribute
+  from `aria_en` on the English path. **This is fixed for chapter 28 only.** The same `fig()` helper
+  is duplicated in 34 other `reader_hb_ch2x/ch9x/ch10x` modules, so chapters 1–27 and 94–101 have
+  the same defect and need the same three-line change plus a rebuild. Check with
+  `grep -o 'aria-label="[^"]*"' page.html | grep -c '[ăâđêôơư]'` — it must be 0 on an English page.
+- **A jump index at the top of a very long chapter is not optional.** At ~160,000 px the chapter is
+  180 screens tall. `sec_index(lang)` builds a `.toc-list` of eleven `<a href="#s28-N">` rows from
+  the `SECTIONS` table, and `h2()` attaches `id="s28-N"` to any heading that begins `28.<digits> `.
+  No new CSS was needed — `.toc-list` / `.n` / `.t` already exist in `library.css` for the book TOCs.
 - **`h2`/`h3`/`h4` now drop a gloss that repeats the title.** Company names and section titles are
   the same in both languages, so `h4("SeaMetrics", "SeaMetrics")` printed “SeaMetrics SeaMetrics”
   and every English-page heading did the same until §28.8. All three helpers carry an
@@ -1970,6 +2048,22 @@ caption.
   bilingual rather than merely de-duplicated.
 - **`ol()` exists as of §28.5.** The source uses numbered lists where the order carries meaning (the
   six naming variants, the six sensing methods); `ul()` was the only list helper before.
+- **`_tube(d, w, fill, col)` draws a tube from its centreline** — a wide dark stroke with a slightly
+  narrower light one on top leaves a 1.3 px wall each side, so no offset curves are needed. But its
+  round line caps stick out half the stroke width past each end: **draw the manifold blocks *after*
+  the tube**, or the caps show as light bumps printed inside the block.
+- **A vector arrow should touch the thing it acts on.** §28.81's first draft left a 2.5 px gap
+  between each force arrow's tail and the tube wall, which at 1424 px reads as a detached arrow.
+  Compute the tail from the tube's edge (centreline ± half the stroke width), not from a round number.
+- **Full-page screenshots of this page are silently clipped at about 130,000 px.** Chromium stops
+  capturing and the PNG is padded with white up to the true `scrollHeight`, so the file height is
+  right but “where the content ends” is not — the first §28.10 check concluded the page was
+  truncated when it was the *capture* that was. Measure height from the PNG, and to look at anything
+  past ~130,000 px **extract the section into a standalone page** (`<h2>28.N` up to
+  `<div class="chapter-nav">`, wrapped in the original `<head>`) and screenshot that. The iframe +
+  `scrollTo` trick does not work here — the inner page resets its scroll after load.
+- **Never read a 4× downscaled crop.** A 1,124 × 3,750 crop shown at 261 px wide made the vision pass
+  invent a section order that did not exist. Crop at 1:1 in ~950 px slices of the content column.
 - **Measure page heights only after `document.fonts.ready`.** A `--dump-dom` probe that reads
   `scrollHeight` on load under-reports by ~1,000 px at the bottom of a 70,000 px page, because the
   serif web font has not swapped in yet and every line of body text is slightly shorter.
@@ -1982,20 +2076,27 @@ caption.
 
 ### To resume
 
-1. Read the next section's pages from `work/hb_ch28.txt`, and its figures from `work/ch28img/`.
-2. Append figures to `build/hb28fig.py`, extending the `FIGS` list.
-3. Append `sec_28_N_vi()` / `sec_28_N_en()` to `build/reader_hb_ch28.py` and add them to the two
-   `SECTIONS_*` lists.
-4. `PYTHONPATH=build python work/qa_figs.py hb28fig` and `PYTHONPATH=build python build/reader_hb_ch28.py`.
-5. When all eleven sections are in: register `28: "ch28-flow-measurement"` in `DONE`, bump the
-   progress counter in `books_site.py` (`("progress", 101, N)` — read the current N from the file,
-   it moves as other chapters land), run the full pipeline, then commit and push.
+**Nothing left in this chapter.** It is complete and published. If it ever needs re-opening, the
+rebuild sequence is:
+
+```
+cd build
+PYTHONPATH=. python ../work/qa_figs.py hb28fig    # expect: FIGS 92, problems 0
+python reader_hb_ch28.py                          # both language pages
+python reader_handbook.py                         # book TOC + progress bar
+python books_site.py                              # books index, 36/101
+python make_sitemap.py                            # 554 URLs
+python check_links.py                             # expect: broken 0
+```
+
+Then serve the repo root (`python -m http.server 8899`) and check both pages at 1424 px —
+`library.css` is referenced as an absolute `/books/assets/library.css`, so a `file://` render comes
+out unstyled and will mislead you.
 
 Note: this repo is worked on from more than one place — chapters 97–101 and Appendix A landed from a
-separate session while 28.1 was being written. **Always `git fetch` and rebase before pushing.**
-
-The generated `books/read/…/ch28-flow-measurement/` and `vi/…` directories exist locally for preview
-but are **untracked on purpose** — commit them only together with the finished chapter.
+separate session while 28.1 was being written, and the reverse agent is working downward from 93.
+**Always `git fetch` and rebase before pushing**: both sides touch `DONE` in `reader_handbook.py`
+and the two book-TOC `index.html` files.
 
 ---
 
@@ -3414,3 +3515,59 @@ updated**. At 390 px the document width stays at 390 and the six tables scroll i
 Converters).** `DONE[85]` is `None`; `CH[85]` holds the title; source at `work/hb_ch85.txt`.
 Chapter 86's "previous" link already points at 85 and currently falls back to the book TOC until
 85 lands — it resolves only if `chapter_nav.py` is re-run afterwards.
+
+---
+
+## Session 43 — 2026-11-02 · Handbook Chapter 28 (*Flow Measurement*) finished and published
+
+Chapter 28 is the last of the eleven-section monsters: 132 source pages, ten authors, and it had
+been sitting at ten of eleven sections since session 27. §28.11 (Drag Force Flowmeters, pp. 123–132,
+figures 28.85–28.92, six references) closed it out, and the chapter is now registered, in the
+sitemap and live.
+
+**What went in this session**
+
+- **§28.11, both languages.** The target-type meter: drag equation (28.146), the Reynolds relation
+  (28.147), the full bending derivation (28.148–28.156) from 1/ρ = M/EI through I = ba³/12 to the
+  quadratic strain–velocity law, the two-component wind vector (28.157–28.159), the resistive-gauge
+  implementation with its calibration curves, the optical-fibre variant with its grooved PMMA fibre,
+  and the conclusion. 19 equations, 8 figures, no tables.
+- **Three source defects reproduced as printed and flagged** in translator's notes: Re = ρVA/η is
+  dimensionally wrong (needs ρVd/η); ρ is used for both fluid density and radius of curvature; and
+  "approximately 20 mm" of cladding on a 1 mm fibre is corrected to 20 µm.
+- **`_axis()` and `_mark()` added to `hb28fig.py`** for figures 28.87–28.89, the chapter's only
+  scatter plots. `_axis()` takes axis *ranges* and returns `mx`/`my` closures; a first version that
+  took tick positions as fractions put every label in the wrong place and produced 38 QA problems.
+- **Jump index.** `sec_index(lang)` builds a `.toc-list` of eleven anchors at the top of the page and
+  `h2()` now attaches `id="s28-N"` to any heading that starts `28.<digits> `. No CSS was added —
+  `.toc-list` already existed for the book TOCs.
+- **The progress label is now a content label.** `đang dịch: 11/11 mục` was replaced with
+  `92 hình, 164 phương trình, 23 bảng`, matching chapters 26 and 27. A finished chapter must not
+  advertise itself as in progress.
+- **Registered and published.** `28: "ch28-flow-measurement"` added to `DONE`; `books_site.py`
+  counter moved from 43 to 44; `reader_handbook.py`, `books_site.py`, `make_sitemap.py` and
+  `check_links.py` all re-run. Results: book TOC and both books indexes read **44/101**
+  (*Translating · 44 of 101 chapters* / *Đang dịch · 44/101*), sitemap 569 URLs / 554 EN–VI
+  pairs, **0 broken links across 571 pages and 15,557 local references**.
+
+**Two defects worth remembering**
+
+1. **Every `<svg>` on the English page had a Vietnamese `aria-label`.** `hbfig.svg()` bakes the
+   title into the tag when the figure is *defined*, and `fig()` was discarding the English
+   accessible description that `_fig()` stores as element 5 of its tuple. All 92 figures announced
+   Vietnamese to a screen reader on the English page. `fig()` now rewrites the attribute on the
+   English path. **Chapters 1–27 and 94–101 still have this** — the helper is duplicated across 35
+   modules — so a sweep is owed. Check with
+   `grep -o 'aria-label="[^"]*"' page.html | grep -c '[ăâđêôơư]'`; it must be 0 on an English page.
+2. **Figure 28.85 sent two leaders to the same gauge.** `G4` and `G1` both terminated on the
+   left-hand front gauge, so the right-hand gauge was unlabelled and the pair read as one gauge
+   named twice. `G1`'s leader now runs under the left gauge and lands on the right one. This is a
+   *content* error: `qa_figs.py` sees no collision and the caption is correct, so only reading the
+   drawing against the source catches it.
+
+**A note on reading screenshots.** At 1424 px the capture has to be sliced, and a 1820 px slice
+displayed at 850 px is downscaled 0.6×. At that scale several "defects" turned out to be artefacts —
+`các rãnh` read as `cách rãnh`, `Độ thay đổi` as `Độ chạy dồi`, `a²` as `a³`. **Check any suspected
+wording or superscript error against the source markup before "fixing" it**; only layout problems
+(overlap, clipping, a detached caption, a leader that misses its target) are reliable at that
+scale. Letter-level review needs a 1:1 crop of a few hundred pixels.

@@ -7,7 +7,7 @@ Consulting; Harold M. Miller — Data Industrial; Halit Eren — Curtin
 University of Technology; Hans-Peter Vaterlaus).
 
 The largest chapter in the handbook: 132 source pages, eleven sections,
-92 figures, 162 equations and 23 tables. It is translated section by section;
+92 figures, 164 equations and 23 tables. It is translated section by section;
 each section is a pair of functions (sec_NN_vi / sec_NN_en) appended to the
 two body builders at the bottom, so a later session can add a section without
 touching the ones already written.
@@ -38,8 +38,19 @@ PREV_T_VI = "Đo âm học"
 
 
 def fig(num, key, lang="vi"):
-    svg, cap_vi, cap_en, _av, _ae = key
-    cap = cap_vi if lang == "vi" else cap_en
+    svg, cap_vi, cap_en, aria_vi, aria_en = key
+    if lang == "vi":
+        cap = cap_vi
+    else:
+        cap = cap_en
+        # The <svg> tag is built once, in hb28fig, with a Vietnamese aria-label
+        # baked in by hbfig.svg(). Swap it for the English one, otherwise a screen
+        # reader on this page announces Vietnamese.
+        k = svg.find('aria-label="')
+        if k >= 0:
+            a = k + len('aria-label="')
+            b = svg.find('"', a)
+            svg = svg[:a] + (aria_en or aria_vi) + svg[b:]
     return ('<figure class="figure" id="fig-28-%d">%s<figcaption class="figcap">%s</figcaption></figure>'
             % (num, svg, cap))
 
@@ -53,7 +64,14 @@ def h2(t, en=""):
     # page) prints the title twice; drop the redundant span instead.
     if en == t:
         en = ""
-    return '<h2>%s%s</h2>' % (t, (' <span class="en">%s</span>' % en) if en else "")
+    # Section headings carry an anchor so the jump index at the top of the page
+    # can link to them. A 160,000 px page is unusable without one.
+    sid = ""
+    if t.startswith("28."):
+        head = t[3:].split(" ", 1)[0]
+        if head.isdigit():
+            sid = ' id="s28-%s"' % head
+    return '<h2%s>%s%s</h2>' % (sid, t, (' <span class="en">%s</span>' % en) if en else "")
 
 
 def h3(t, en=""):
@@ -7751,17 +7769,2554 @@ def sec_28_8_en():
 
 # ================================================================ build
 
+# ================================================================ 28.9 tables
+
+def _t2813(lang):
+    """Table 28.13 — the six operational modes, flattened to three columns."""
+    if lang == "vi":
+        hd = ("Điều khiển bộ gia nhiệt", "Đại lượng đánh giá", "Loại cảm biến")
+        cap = ("Bảng 28.13 · Sáu chế độ làm việc của cảm biến lưu lượng khối lượng nhiệt, hình "
+               "thành từ hai chế độ điều khiển bộ gia nhiệt và hai cách đánh giá. Bảng gốc in dạng "
+               "ma trận hai hàng tiêu đề; ở đây được trải phẳng thành ba cột.")
+        rows = [
+            ["Công suất gia nhiệt không đổi", "Nhiệt độ bộ gia nhiệt", "Dây nóng và màng nóng"],
+            ["Công suất gia nhiệt không đổi", "Chênh lệch nhiệt độ", "Nhiệt lượng"],
+            ["Nhiệt độ bộ gia nhiệt không đổi", "Công suất gia nhiệt", "Dây nóng và màng nóng"],
+            ["Nhiệt độ bộ gia nhiệt không đổi", "Chênh lệch nhiệt độ", "Nhiệt lượng"],
+            ["—", "Thời gian bay", "Thời gian bay"],
+            ["—", "Thời gian bay", "Thời gian bay"],
+        ]
+    else:
+        hd = ("Heater control", "Evaluated quantity", "Sensor type")
+        cap = ("Table 28.13 · The six operational modes of thermal mass flow sensors, formed from "
+               "two heater-control modes and two evaluation modes. The source prints this as a "
+               "two-header-row matrix; it is flattened to three columns here.")
+        rows = [
+            ["Constant heating power", "Heater temperature", "Hot-wire and hot-film"],
+            ["Constant heating power", "Temperature difference", "Calorimetric"],
+            ["Constant heater temperature", "Heating power", "Hot-wire and hot-film"],
+            ["Constant heater temperature", "Temperature difference", "Calorimetric"],
+            ["—", "Time of flight", "Time-of-flight"],
+            ["—", "Time of flight", "Time-of-flight"],
+        ]
+    return hd, rows, cap
+
+
+def _t2814(lang):
+    """Table 28.14 — two flow-channel arrangements (source: drawings)."""
+    if lang == "vi":
+        hd = ("Cách bố trí", "Mô tả")
+        cap = ("Bảng 28.14 · Hai cách bố trí kênh dòng điển hình cho cảm biến dây nóng và màng "
+               "nóng. Bảng gốc trình bày bằng hình vẽ mặt cắt; nội dung được tóm tắt bằng lời.")
+        rows = [
+            ["Kênh hở hai đầu", "Cảm biến đặt ngang giữa lòng kênh, dòng chảy bao quanh trực tiếp "
+             "phần tử cảm biến; dùng cho ống dẫn hở hoặc ống có tiết diện lớn."],
+            ["Kênh có ống thu hẹp", "Cảm biến đặt trong một đoạn ống thu nhỏ nối tiếp với kênh "
+             "chính; tiết diện nhỏ giữ vận tốc cục bộ cao và cố định, nhờ đó tín hiệu ổn định hơn."],
+        ]
+    else:
+        hd = ("Arrangement", "Description")
+        cap = ("Table 28.14 · Two typical flow-channel arrangements for hot-wire and hot-film "
+               "sensors. The source shows these as sectional drawings; the content is summarised "
+               "in words here.")
+        rows = [
+            ["Open channel", "The sensor sits across the middle of the channel and the flow washes "
+             "the sensing element directly; used for open ducts or large cross-sections."],
+            ["Restricted channel", "The sensor sits inside a narrowed section in series with the "
+             "main channel; the small cross-section keeps the local velocity high and fixed, which "
+             "steadies the signal."],
+        ]
+    return hd, rows, cap
+
+
+def _t2815(lang):
+    """Table 28.15 — numbered legend of the hot-wire / hot-film sensor parts."""
+    if lang == "vi":
+        hd = ("Số", "Bộ phận")
+        cap = ("Bảng 28.15 · Chú thích các bộ phận của cảm biến dây nóng và màng nóng. Bảng gốc "
+               "in kèm hình dạng cơ bản và các dạng khác của phần tử cảm biến; ở đây giữ lại phần "
+               "chú thích đánh số.")
+        rows = [
+            ["1", "Dây nóng"],
+            ["2", "Giá đỡ cảm biến"],
+            ["3", "Dây dẫn điện"],
+            ["4", "Màng nóng"],
+            ["5", "Nắp tiếp xúc"],
+            ["6", "Thanh thạch anh"],
+        ]
+    else:
+        hd = ("No.", "Part")
+        cap = ("Table 28.15 · Legend for the parts of the hot-wire and hot-film sensors. The source "
+               "prints the basic shape and further shapes of the sensing element alongside; only the "
+               "numbered legend is kept here.")
+        rows = [
+            ["1", "Hot wire"],
+            ["2", "Sensor supports"],
+            ["3", "Electric leads"],
+            ["4", "Hot film"],
+            ["5", "Contact caps"],
+            ["6", "Quartz rod"],
+        ]
+    return hd, rows, cap
+
+
+def _t2816(lang):
+    if lang == "vi":
+        hd = ("Thông số", "Dây nóng", "Màng nóng")
+        cap = ("Bảng 28.16 · Thông số điển hình của cảm biến dây nóng và màng nóng [3].")
+        rows = [
+            ["Phần tử cảm biến", "Dây bạch kim (đường kính 70 µm)",
+             "Màng bạch kim phủ alumin"],
+            ["Chế độ làm việc", "Nhiệt độ bộ gia nhiệt không đổi, trong không khí",
+             "Nhiệt độ bộ gia nhiệt không đổi, trong không khí"],
+            ["Dải nhiệt độ làm việc", "−30 đến 200 °C", "−30 đến 200 °C"],
+            ["Đặc tính", "Phi tuyến", "Phi tuyến"],
+            ["Độ chính xác (%)", "±4", "±2"],
+            ["Thời gian đáp ứng (ms)", "&lt; 5", "12"],
+            ["Độ nhạy (mV kg<sup>−1</sup> h<sup>−1</sup>)", "1", "5"],
+        ]
+    else:
+        hd = ("Parameter", "Hot-wire", "Hot-film")
+        cap = "Table 28.16 · Typical parameters of hot-wire and hot-film sensors [3]."
+        rows = [
+            ["Sensor element", "Platinum hot-wire (70 µm diameter)",
+             "Platinum hot-film (alumina coated)"],
+            ["Operational mode", "Constant heater temperature in air",
+             "Constant heater temperature in air"],
+            ["Working temperature range", "−30 to 200 °C", "−30 to 200 °C"],
+            ["Characteristics", "Nonlinear", "Nonlinear"],
+            ["Accuracy (%)", "±4", "±2"],
+            ["Time response (ms)", "&lt; 5", "12"],
+            ["Sensitivity (mV kg<sup>−1</sup> h<sup>−1</sup>)", "1", "5"],
+        ]
+    return hd, rows, cap
+
+
+def _t2817(lang):
+    if lang == "vi":
+        hd = ("Kiểu", "Bố trí")
+        cap = ("Bảng 28.17 · Hai kiểu cảm biến nhiệt lượng điển hình. Bảng gốc trình bày bằng hình "
+               "vẽ mặt cắt; nội dung được tóm tắt bằng lời.")
+        rows = [
+            ["Kiểu xâm nhập", "Bộ gia nhiệt và các cảm biến nhiệt độ nhô vào lòng chất lưu; cảm "
+             "biến thượng lưu và hạ lưu đặt hai bên bộ gia nhiệt."],
+            ["Kiểu không xâm nhập", "Bộ gia nhiệt và các cảm biến nhiệt độ quấn quanh mặt ngoài "
+             "ống dẫn; không phần tử nào tiếp xúc với chất lưu."],
+        ]
+    else:
+        hd = ("Type", "Arrangement")
+        cap = ("Table 28.17 · The two typical calorimetric sensor types. The source shows these as "
+               "sectional drawings; the content is summarised in words here.")
+        rows = [
+            ["Intrusive", "The heater and the temperature sensors protrude into the fluid, with the "
+             "upstream and downstream sensors either side of the heater."],
+            ["Non-intrusive", "The heater and the temperature sensors are wound round the outside of "
+             "the tube; no element touches the fluid."],
+        ]
+    return hd, rows, cap
+
+
+def _t2818(lang):
+    if lang == "vi":
+        hd = ("Thông số", "Chất khí", "Chất lỏng")
+        cap = "Bảng 28.18 · Thông số điển hình của cảm biến nhiệt lượng [4]."
+        rows = [
+            ["Nhiệt độ làm việc", "0 °C đến 70 °C", "0 °C đến 70 °C"],
+            ["Độ chính xác (%)", "±1 %", "±1 %"],
+            ["Độ tuyến tính", "±0,2 %", "±0,2 %"],
+            ["Dải lưu lượng 1:50", "nhỏ nhất 5 mL min<sup>−1</sup><br>lớn nhất 100 L min<sup>−1</sup>",
+             "nhỏ nhất 5 g h<sup>−1</sup><br>lớn nhất 1000 g h<sup>−1</sup>"],
+        ]
+    else:
+        hd = ("Parameter", "Gases", "Liquids")
+        cap = "Table 28.18 · Typical parameters of calorimetric sensors [4]."
+        rows = [
+            ["Working temperature", "0 °C to 70 °C", "0 °C to 70 °C"],
+            ["Accuracy (%)", "±1 %", "±1 %"],
+            ["Linearity", "±0.2 %", "±0.2 %"],
+            ["Flow range 1:50", "min. 5 mL min<sup>−1</sup><br>max. 100 L min<sup>−1</sup>",
+             "min. 5 g h<sup>−1</sup><br>max. 1000 g h<sup>−1</sup>"],
+        ]
+    return hd, rows, cap
+
+
+def _t2819(lang):
+    """Table 28.19 — Nusselt-number formulae for forced convection."""
+    if lang == "vi":
+        hd = ("Vật thể", "Nu<sub>lam</sub> — chảy tầng", "Nu<sub>turb</sub> — chảy rối",
+              "Nu trung bình")
+        cap = ("Bảng 28.19 · Công thức tính số Nusselt cho đối lưu cưỡng bức [6]. Các đại lượng "
+               "chất lưu (độ nhớt động học ν và số Prandtl Pr) lấy ở nhiệt độ trung bình T<sub>av</sub>.")
+        rows = [
+            ["Tấm phẳng",
+             "Nu<sub>lam</sub> = 0,664 Re<sup>1/2</sup> Pr<sup>1/3</sup><br>"
+             "<span style='color:#777'>Re &lt; 10<sup>5</sup>; 0,6 &lt; Pr &lt; 2000</span>",
+             "Nu<sub>turb</sub> = 0,037 Re<sup>0,8</sup> Pr / [1 + 2,443 Re<sup>−0,1</sup>"
+             "(Pr<sup>2/3</sup> − 1)]<br>"
+             "<span style='color:#777'>5×10<sup>5</sup> &lt; Re &lt; 10<sup>7</sup></span>",
+             "Nu = √(Nu<sub>lam</sub><sup>2</sup> + Nu<sub>turb</sub><sup>2</sup>)<br>"
+             "<span style='color:#777'>10 &lt; Re &lt; 10<sup>7</sup></span>"],
+            ["Ống trụ",
+             "Nu<sub>lam</sub> = 3,65 + 0,19(Re Pr d/l)<sup>0,8</sup> / "
+             "[1 + 0,117(Re Pr d/l)<sup>0,467</sup>]<br>"
+             "<span style='color:#777'>Re &lt; 2300; 0,1 &lt; Re Pr d/l &lt; 10<sup>4</sup></span>",
+             "Nu<sub>turb</sub> = [ξ/8 (Re − 1000) Pr] / [1 + 12,7√(ξ/8)(Pr<sup>2/3</sup> − 1)]"
+             " × [1 + (d/l)<sup>2/3</sup>]<br>"
+             "<span style='color:#777'>ξ = (1,28 log<sub>10</sub>Re − 1,64)<sup>−2</sup></span>",
+             "—"],
+            ["Ống trụ ngắn<br>0,1 &lt; d/l &lt; 1",
+             "Nu<sub>lam</sub> = 0,664 Pr<sup>1/3</sup>√(Re d/l)<br>"
+             "<span style='color:#777'>Re &lt; 2300</span>",
+             "Đoạn nhiệt đầu vào, dòng phát triển đầy đủ, 2300 &lt; Re &lt; 10<sup>4</sup>:<br>"
+             "Nu<sub>turb</sub> = ∛(3,66<sup>3</sup> + 1,61<sup>3</sup> Re Pr d/l)<br>"
+             "Dòng đang phát triển, 2300 &lt; Re &lt; 10<sup>6</sup>",
+             "—"],
+            ["Dây",
+             "Nu<sub>lam</sub> = 0,664 Re<sup>1/2</sup> Pr<sup>1/3</sup><br>"
+             "<span style='color:#777'>10 &lt; Re &lt; 10<sup>7</sup>; 0,6 &lt; Pr &lt; 1000</span>",
+             "Như tấm phẳng",
+             "Nu = 0,3 + √(Nu<sub>lam</sub><sup>2</sup> + Nu<sub>turb</sub><sup>2</sup>)"],
+        ]
+    else:
+        hd = ("Object", "Nu<sub>lam</sub> — laminar", "Nu<sub>turb</sub> — turbulent",
+              "Average Nu")
+        cap = ("Table 28.19 · Formulae for the Nusselt number in forced convection [6]. Fluid "
+               "properties (kinematic viscosity ν and Prandtl number Pr) are taken at the mean "
+               "temperature T<sub>av</sub>.")
+        rows = [
+            ["Flat plate",
+             "Nu<sub>lam</sub> = 0.664 Re<sup>1/2</sup> Pr<sup>1/3</sup><br>"
+             "<span style='color:#777'>Re &lt; 10<sup>5</sup>; 0.6 &lt; Pr &lt; 2000</span>",
+             "Nu<sub>turb</sub> = 0.037 Re<sup>0.8</sup> Pr / [1 + 2.443 Re<sup>−0.1</sup>"
+             "(Pr<sup>2/3</sup> − 1)]<br>"
+             "<span style='color:#777'>5×10<sup>5</sup> &lt; Re &lt; 10<sup>7</sup></span>",
+             "Nu = √(Nu<sub>lam</sub><sup>2</sup> + Nu<sub>turb</sub><sup>2</sup>)<br>"
+             "<span style='color:#777'>10 &lt; Re &lt; 10<sup>7</sup></span>"],
+            ["Cylindrical tube",
+             "Nu<sub>lam</sub> = 3.65 + 0.19(Re Pr d/l)<sup>0.8</sup> / "
+             "[1 + 0.117(Re Pr d/l)<sup>0.467</sup>]<br>"
+             "<span style='color:#777'>Re &lt; 2300; 0.1 &lt; Re Pr d/l &lt; 10<sup>4</sup></span>",
+             "Nu<sub>turb</sub> = [ξ/8 (Re − 1000) Pr] / [1 + 12.7√(ξ/8)(Pr<sup>2/3</sup> − 1)]"
+             " × [1 + (d/l)<sup>2/3</sup>]<br>"
+             "<span style='color:#777'>ξ = (1.28 log<sub>10</sub>Re − 1.64)<sup>−2</sup></span>",
+             "—"],
+            ["Short cylindrical tube<br>0.1 &lt; d/l &lt; 1",
+             "Nu<sub>lam</sub> = 0.664 Pr<sup>1/3</sup>√(Re d/l)<br>"
+             "<span style='color:#777'>Re &lt; 2300</span>",
+             "Thermal entrance, fully developed flow, 2300 &lt; Re &lt; 10<sup>4</sup>:<br>"
+             "Nu<sub>turb</sub> = ∛(3.66<sup>3</sup> + 1.61<sup>3</sup> Re Pr d/l)<br>"
+             "Developing flow, 2300 &lt; Re &lt; 10<sup>6</sup>",
+             "—"],
+            ["Wire",
+             "Nu<sub>lam</sub> = 0.664 Re<sup>1/2</sup> Pr<sup>1/3</sup><br>"
+             "<span style='color:#777'>10 &lt; Re &lt; 10<sup>7</sup>; 0.6 &lt; Pr &lt; 1000</span>",
+             "As for the flat plate",
+             "Nu = 0.3 + √(Nu<sub>lam</sub><sup>2</sup> + Nu<sub>turb</sub><sup>2</sup>)"],
+        ]
+    return hd, rows, cap
+
+
+def _t2820(lang):
+    if lang == "vi":
+        hd = ("Trường hợp", "Công thức", "Tài liệu")
+        cap = "Bảng 28.20 · Số Nusselt trung bình của đối lưu tự nhiên trong một số trường hợp."
+        rows = [
+            ["Tấm phẳng đứng hoặc dây", "Nu = 0,55(Gr Pr)<sup>1/4</sup>", "[7]"],
+            ["Tấm phẳng nằm ngang — mặt trên", "Nu = 0,76(Gr Pr)<sup>1/4</sup>", "[8]"],
+            ["Tấm phẳng nằm ngang — mặt dưới", "Nu = 0,38(Gr Pr)<sup>1/4</sup>", "[8]"],
+        ]
+    else:
+        hd = ("Case", "Equation", "Ref.")
+        cap = "Table 28.20 · The average Nusselt number of free convection in some special cases."
+        rows = [
+            ["Vertical flat plate or wire", "Nu = 0.55(Gr Pr)<sup>1/4</sup>", "[7]"],
+            ["Horizontal flat plate — upper surface", "Nu = 0.76(Gr Pr)<sup>1/4</sup>", "[8]"],
+            ["Horizontal flat plate — lower surface", "Nu = 0.38(Gr Pr)<sup>1/4</sup>", "[8]"],
+        ]
+    return hd, rows, cap
+
+
+def _t2821(lang):
+    if lang == "vi":
+        hd = ("Nguyên lý biến đổi", "Cách thực hiện", "Ứng dụng")
+        cap = "Bảng 28.21 · Nguyên lý biến đổi của cảm biến lưu lượng vi mô."
+        rows = [
+            ["Nhiệt trở",
+             "Màng kim loại (bạch kim), silic đa tinh thể, silic đơn tinh thể hoặc hợp kim kim loại",
+             "Đo nhiệt độ, chênh lệch nhiệt độ và công suất gia nhiệt"],
+            ["Nhiệt điện",
+             "Cặp nhiệt điện pSi–Al (công nghệ lưỡng cực), polySi–Al (công nghệ CMOS) hoặc "
+             "pPolySi–nPolySi",
+             "Đo nhiệt độ và chênh lệch nhiệt độ"],
+            ["Nhiệt điện tử", "Transistor, điốt", "Đo nhiệt độ và chênh lệch nhiệt độ"],
+            ["Hoả điện",
+             "Vật liệu hoả điện (LiTaO<sub>3</sub>) với điện trở kim loại hoặc silic làm bộ gia "
+             "nhiệt và điện cực",
+             "Đo công suất gia nhiệt"],
+            ["Tần số tương tự", "Bộ dao động sóng âm bề mặt (SAW)", "Đo nhiệt độ"],
+        ]
+    else:
+        hd = ("Transducing principle", "Realization", "Application")
+        cap = "Table 28.21 · The transducing principle of microflow sensors."
+        rows = [
+            ["Thermoresistive",
+             "Metal film (platinum), polycrystalline silicon, single-crystalline silicon or metal "
+             "alloys",
+             "Measurement of temperature, temperature difference and heat power"],
+            ["Thermoelectric",
+             "pSi–Al (bipolar technology), polySi–Al (CMOS technology) or pPolySi–nPolySi "
+             "thermopiles",
+             "Measurement of temperature and temperature difference"],
+            ["Thermoelectronic", "Transistors, diodes",
+             "Measurement of temperature and temperature difference"],
+            ["Pyroelectric",
+             "Pyroelectric materials (LiTaO<sub>3</sub>) with metal or silicon resistors as heater "
+             "and electrodes",
+             "Measurement of heat power"],
+            ["Frequency analogue", "SAW oscillators", "Measurement of temperature"],
+        ]
+    return hd, rows, cap
+
+
+def _t2822(lang):
+    """Table 28.22 — realised microflow sensors (source: device cross-sections)."""
+    if lang == "vi":
+        hd = ("Nguyên lý", "Dây nóng hoặc màng nóng", "Nhiệt lượng")
+        cap = ("Bảng 28.22 · Một số cảm biến lưu lượng khối lượng vi mô đã được chế tạo. Bảng gốc "
+               "trình bày bằng hình vẽ mặt cắt thiết bị; ở đây tóm tắt cấu trúc mà hình vẽ thể hiện.")
+        rows = [
+            ["Nhiệt trở [13, 14]",
+             "Dải silic pha tạp nhẹ và pha tạp mạnh trên nền có lớp thuỷ tinh phosphosilicat, "
+             "lớp nhôm và lớp silic",
+             "Bộ gia nhiệt và cảm biến nhiệt trên màng nổi, có rãnh dẫn dòng"],
+            ["Nhiệt điện [15, 16]",
+             "Bộ gia nhiệt màng mỏng với các cặp nhiệt điện bố trí hai bên",
+             "Bộ gia nhiệt trung tâm, các cặp nhiệt điện đối xứng hai phía"],
+            ["Nhiệt điện tử [17, 18]",
+             "Điốt trên chip silic, có lớp phủ nhôm và điện tử CMOS",
+             "Điốt gia nhiệt ở giữa, các điốt cảm biến hai bên, trên nền thuỷ tinh"],
+            ["Hoả điện [19]",
+             "Đế LiTaO<sub>3</sub> có điện cực, bộ gia nhiệt và các tiếp điểm vàng",
+             "—"],
+            ["Tần số tương tự [20]",
+             "Bộ gia nhiệt đặt cạnh bộ dao động sóng âm bề mặt",
+             "—"],
+        ]
+    else:
+        hd = ("Principle", "Hot-wire or hot-film", "Calorimetric")
+        cap = ("Table 28.22 · Some realised microthermal mass flow sensors. The source prints device "
+               "cross-sections; the structures they show are summarised here.")
+        rows = [
+            ["Thermoresistive [13, 14]",
+             "Lightly and heavily doped silicon strips on a phosphosilicate-glass layer over "
+             "aluminium and silicon",
+             "Heater and temperature sensor on a suspended membrane with a flow channel"],
+            ["Thermoelectric [15, 16]",
+             "Thin-film heater with thermopiles on either side",
+             "Central heater with symmetric thermopiles"],
+            ["Thermoelectronic [17, 18]",
+             "Diode on a silicon chip with an aluminium cover and CMOS electronics",
+             "Heating diode in the middle, sensor diodes either side, on a glass substrate"],
+            ["Pyroelectric [19]",
+             "LiTaO<sub>3</sub> substrate with electrodes, heater and gold contacts",
+             "—"],
+            ["Frequency analogue [20]",
+             "Heater beside a surface-acoustic-wave oscillator",
+             "—"],
+        ]
+    return hd, rows, cap
+
+
+def _t2823(lang):
+    if lang == "vi":
+        hd = ("Hãng", "Địa chỉ", "Chủng loại và thông số", "Giá tham khảo")
+        cap = ("Bảng 28.23 · Các hãng chế tạo và kinh doanh cảm biến lưu lượng khối lượng nhiệt.")
+        rows = [
+            ["KOBOLD Instruments Inc.", "1801 Parkway View Drive, Pittsburg, PA 15205",
+             "Kiểu nhiệt lượng: dòng MAS; không khí; dải nhỏ nhất 0–10 mL min<sup>−1</sup>, lớn "
+             "nhất 0–40 L min<sup>−1</sup>; T<sub>max</sub> 50 °C; áp tối đa 10 bar; độ chính xác ±2 %",
+             "~ 850 US$"],
+            ["", "", "Kiểu dây nóng: dòng ANE; không khí; dải 0–20 m s<sup>−1</sup>; nhiệt độ làm "
+             "việc 20–70 °C", "~ 1200 US$"],
+            ["HÖNTZSCH GmbH", "Box 1324, Robert-Bosch Str. 8, D-7050 Waiblingen, Đức",
+             "Kiểu dây nóng: dải 0,05–20 m s<sup>−1</sup>", "—"],
+            ["BRONKHORST HI-TEC", "Nijverheidstraat 1A, 7261 AK Ruurlo, Hà Lan",
+             "Kiểu nhiệt lượng: khí và lỏng; dải nhỏ nhất (khí) 0–5 mL min<sup>−1</sup>, lớn nhất "
+             "(lỏng) 0–1000 mL min<sup>−1</sup>; áp tối đa 400 bar", "~ 1800 US$"],
+            ["HONEYWELL, MicroSwitch", "Freeport, IL",
+             "Kiểu nhiệt lượng: khí; dải 0–1000 mL min<sup>−1</sup>; áp tối đa 1,75 bar", "—"],
+            ["SIERRA INSTRUMENTS INC.", "5 Harris Ct., Bldg. L, Monterey, CA 93924",
+             "Kiểu nhiệt lượng: mọi loại khí từ 1 mL min<sup>−1</sup> đến 10 000 L min<sup>−1</sup>; "
+             "−40 đến 100 °C; tối đa 30 bar; độ chính xác 1 %", "~ 400–1200 US$"],
+            ["", "", "Kiểu dây nóng vỏ thép không gỉ: khí từ 0–100 m s<sup>−1</sup>; −40 đến "
+             "400 °C; tối đa 100 bar; độ chính xác 2 %", "~ 60–2000 US$"],
+            ["BROOKS INSTRUMENT DIVISION", "Emerson Electric Co., 407 W. Vine Street, Hatfield, "
+             "PA 19440",
+             "Kiểu nhiệt lượng: mọi loại khí từ 1 mL min<sup>−1</sup> đến 10 000 L min<sup>−1</sup>; "
+             "−40 đến 100 °C; tối đa 100 bar; độ chính xác 1 %", "~ 400–1200 US$"],
+        ]
+    else:
+        hd = ("Manufacturer", "Address", "Types and data", "Approximate price")
+        cap = "Table 28.23 · Manufacturers and suppliers of thermal mass flow sensors."
+        rows = [
+            ["KOBOLD Instruments Inc.", "1801 Parkway View Drive, Pittsburg, PA 15205",
+             "Calorimetric type: MAS series; air; min. range 0–10 mL min<sup>−1</sup>, max. range "
+             "0–40 L min<sup>−1</sup>; T<sub>max</sub> 50 °C; max. pressure 10 bar; accuracy ±2 %",
+             "~ US$850"],
+            ["", "", "Hot-wire type: ANE series; air; range 0–20 m s<sup>−1</sup>; working "
+             "temperature 20–70 °C", "~ US$1200"],
+            ["HÖNTZSCH GmbH", "Box 1324, Robert-Bosch Str. 8, D-7050 Waiblingen, Germany",
+             "Hot-wire type: range 0.05–20 m s<sup>−1</sup>", "—"],
+            ["BRONKHORST HI-TEC", "Nijverheidstraat 1A, 7261 AK Ruurlo, Netherlands",
+             "Calorimetric type: gases and liquids; min. range (gas) 0–5 mL min<sup>−1</sup>, max. "
+             "range (liquid) 0–1000 mL min<sup>−1</sup>; max. pressure 400 bar", "~ US$1800"],
+            ["HONEYWELL, MicroSwitch", "Freeport, IL",
+             "Calorimetric type: gases; range 0–1000 mL min<sup>−1</sup>; max. pressure 1.75 bar",
+             "—"],
+            ["SIERRA INSTRUMENTS INC.", "5 Harris Ct., Bldg. L, Monterey, CA 93924",
+             "Calorimetric type: all gases from 1 mL min<sup>−1</sup> to 10 000 L min<sup>−1</sup>; "
+             "−40 to 100 °C; 30 bar max.; 1 % accuracy", "~ US$400–1200"],
+            ["", "", "Hot-wire type in a stainless-steel sheath: gases from 0–100 m s<sup>−1</sup>; "
+             "−40 to 400 °C; 100 bar max.; 2 % accuracy", "~ US$60–2000"],
+            ["BROOKS INSTRUMENT DIVISION", "Emerson Electric Co., 407 W. Vine Street, Hatfield, "
+             "PA 19440",
+             "Calorimetric type: all gases from 1 mL min<sup>−1</sup> to 10 000 L min<sup>−1</sup>; "
+             "−40 to 100 °C; 100 bar max.; 1 % accuracy", "~ US$400–1200"],
+        ]
+    return hd, rows, cap
+
+
+# ================================================================ 28.9
+
+def sec_28_9_vi():
+    b = []
+    b.append(h2("28.9 Cảm biến lưu lượng khối lượng nhiệt", "Thermal Mass Flow Sensors"))
+    b.append(p("Nam-Trung Nguyen."))
+    b.append(p(
+        "Mục này trình bày về lưu lượng kế khối lượng nhiệt. Câu hỏi hiển nhiên đặt ra là lưu lượng "
+        "khối lượng và lưu lượng kế khối lượng nhiệt thực chất có nghĩa gì. Để trả lời, trước hết "
+        "phải hiểu dòng chảy là gì và đại lượng vật lý mà đồng hồ đo là gì. Ở đây có thể hiểu dòng "
+        "chảy là chuyển động của một môi trường liên tục (chất lưu) trong một kết cấu kín (kênh, "
+        "lỗ tiết lưu), và vật được đo chính là môi trường ấy. Đại lượng vật lý gắn với nó mà đồng hồ "
+        "đo là thông lượng khối lượng đi qua một đơn vị diện tích mặt cắt. Phương trình cho lưu "
+        "lượng thể tích <i>F</i><sub>v</sub> là:"))
+    b.append(eq("Φ<sub>v</sub> = dV/dt = vA", "28.101"))
+    b.append(defs([
+        ("<i>V</i>", "Thể tích đi qua trong khoảng thời gian <i>t</i>"),
+        ("<i>v</i>", "Vận tốc trung bình trên diện tích mặt cắt <i>A</i> của kênh"),
+    ]))
+    b.append(p(
+        "Với quan hệ giữa thể tích <i>V</i>, khối lượng <i>M</i> và khối lượng riêng ρ của chất lưu:"))
+    b.append(eq("V = M/ρ", "28.102"))
+    b.append(p(
+        "có thể suy ra lưu lượng khối lượng <i>F</i><sub>m</sub> bằng cách dùng phương trình 28.101 "
+        "và 28.102:"))
+    b.append(eq("Φ<sub>m</sub> = d(ρV)/dt = Φ<sub>v</sub>ρ + V(dρ/dt)", "28.103"))
+    b.append(p("Với khối lượng riêng của chất lưu không đổi theo thời gian, ta được:"))
+    b.append(eq("Φ<sub>m</sub> = Φ<sub>v</sub>ρ = Avρ", "28.104"))
+    b.append(p(
+        "Một cảm biến lưu lượng khối lượng nhiệt nói chung cho ra tín hiệu liên quan đến thông "
+        "lượng khối lượng:"))
+    b.append(eq("φ<sub>m</sub> = Φ<sub>m</sub>/A = vρ", "28.105"))
+    b.append(p(
+        "và chuyển đại lượng cơ học (lưu lượng khối lượng) qua một đại lượng nhiệt (truyền nhiệt) "
+        "thành tín hiệu điện (dòng điện hoặc điện áp) để có thể xử lý bằng, chẳng hạn, một vi điều "
+        "khiển. Hình 28.68 minh hoạ nguyên lý làm việc này. Dải làm việc của bất kỳ cảm biến thông "
+        "lượng khối lượng nào đều phụ thuộc phần nào vào tính chất chất lưu, như độ dẫn nhiệt, "
+        "nhiệt dung riêng và khối lượng riêng, nhưng không phụ thuộc vào trạng thái vật lý (khí hay "
+        "lỏng) của chất lưu."))
+    b.append(fig(68, F.fig(68), "vi"))
+
+    # ------------------------------------------------------------ principles
+    b.append(h3("Nguyên lý của lưu lượng kế khối lượng nhiệt thông dụng",
+                "Principles of Conventional Thermal Mass Flowmeters"))
+    b.append(p(
+        "Với hai chế độ điều khiển bộ gia nhiệt và hai chế độ đánh giá, có sáu chế độ làm việc được "
+        "trình bày trong Bảng 28.13 và ba kiểu lưu lượng kế khối lượng nhiệt:"))
+    b.append(ul([
+        "Lưu lượng kế khối lượng nhiệt đo tác dụng của dòng chất lưu lên một vật nóng (công suất "
+        "gia nhiệt tăng khi giữ nhiệt độ bộ gia nhiệt không đổi, nhiệt độ bộ gia nhiệt giảm khi giữ "
+        "công suất gia nhiệt không đổi). Chúng thường được gọi là cảm biến dây nóng, cảm biến màng "
+        "nóng hoặc cảm biến phần tử nóng.",
+        "Lưu lượng kế khối lượng nhiệt đo độ dịch chuyển của prôfin nhiệt độ quanh bộ gia nhiệt, "
+        "prôfin này bị dòng chảy điều biến. Chúng được gọi là cảm biến nhiệt lượng.",
+        "Lưu lượng kế khối lượng nhiệt đo thời gian lan truyền của một xung nhiệt trên một khoảng "
+        "cách đã biết. Chúng thường được gọi là cảm biến thời gian bay.",
+    ]))
+    b.append(table(*_t2813("vi")))
+
+    # ------------------------------------------------------------ hot wire
+    b.append(h3("Cảm biến dây nóng và màng nóng", "Hot-Wire and Hot-Film Sensors"))
+    b.append(p(
+        "Sự phụ thuộc của tổn thất nhiệt giữa một dây mảnh cũng như một màng mỏng với chất lưu xung "
+        "quanh từ lâu đã là phương pháp được chấp nhận rộng rãi nhất để đo dòng chảy của chất lưu: "
+        "phương pháp dây nóng. Phương pháp màng nóng dùng cảm biến màng để phát hiện dòng chảy. Dưới "
+        "đây trình bày các phần tử cơ bản của kiểu cảm biến này."))
+    b.append(p(
+        "<b>Kênh dòng.</b> Khác với nhiệt kế gió trình bày ở Chương 29 dùng cho phép đo điểm, cảm "
+        "biến lưu lượng khối lượng nhiệt kiểu dây nóng và màng nóng có một kênh dòng xác định lưu "
+        "lượng khối lượng. Bảng 28.14 trình bày hai cách bố trí điển hình."))
+    b.append(table(*_t2814("vi")[:3], widths=("28%", "72%")))
+    b.append(p(
+        "<b>Phần tử cảm biến.</b> Cảm biến dây nóng được chế tạo từ bạch kim, vonfram phủ bạch kim "
+        "hoặc hợp kim bạch kim–iridi. Vì cảm biến dây cực kỳ mảnh, cảm biến dây nóng thường chỉ dùng "
+        "cho không khí hoặc khí sạch. Ngược lại, cảm biến màng nóng rất chắc chắn, nên có thể dùng "
+        "trong cả môi trường lỏng lẫn môi trường khí bị nhiễm bẩn. Trong cảm biến màng nóng, màng "
+        "bạch kim có độ tinh khiết cao được gắn lên thanh. Màng mỏng được bảo vệ bằng một lớp phủ "
+        "mỏng alumin nếu cảm biến dùng trong khí, hoặc bằng thạch anh nếu dùng trong chất lỏng. Lớp "
+        "phủ alumin có độ chịu mài mòn cao và độ dẫn nhiệt cao. Lớp phủ thạch anh ít xốp hơn và có "
+        "thể dùng dày hơn để cách điện. Các cảm biến dây nóng và màng nóng điển hình được trình bày "
+        "trong Bảng 28.15."))
+    b.append(table(*_t2815("vi")))
+    b.append(p(
+        "Phần tử cảm biến, dù là dây hay màng, phải là một điện trở có hệ số nhiệt độ α lớn. Với hầu "
+        "hết vật liệu cảm biến, sự phụ thuộc nhiệt độ có thể biểu diễn đơn giản bằng hàm bậc nhất:"))
+    b.append(eq("R = R<sub>r</sub>[1 + α(T − T<sub>r</sub>)]", "28.106"))
+    b.append(defs([
+        ("<i>R</i>", "Điện trở ở nhiệt độ làm việc <i>T</i>"),
+        ("<i>R</i><sub>r</sub>", "Điện trở ở nhiệt độ chuẩn <i>T</i><sub>r</sub>"),
+        ("α", "Hệ số nhiệt độ"),
+    ]))
+    b.append(p(
+        "Với mục đích nghiên cứu, cảm biến dạng trụ là phổ biến nhất, hoặc một dây mảnh (đường kính "
+        "điển hình 1–15 µm) hoặc một màng trụ (đường kính điển hình 25–150 µm). Cảm biến công nghiệp "
+        "thường là một dây điện trở quấn quanh một đế gốm có đường kính điển hình từ 0,02 mm đến "
+        "2 mm. Bảng 28.16 trình bày một số thông số điển hình của cảm biến dây nóng và màng nóng "
+        "công nghiệp."))
+    b.append(table(*_t2816("vi")))
+    b.append(p(
+        "<b>Mạch điều khiển và đánh giá.</b> Cầu dòng không đổi và cầu nhiệt độ không đổi là những "
+        "mạch thông dụng để điều khiển và đánh giá cảm biến dây nóng hoặc màng nóng."))
+    b.append(p(
+        "Một cầu Wheatstone dòng không đổi với cảm biến dây nóng được trình bày trên Hình 28.69(a). "
+        "Trong mạch này, các điện trở R3 và R4 lớn hơn nhiều so với điện trở cảm biến R1. Do đó dòng "
+        "qua R1 hầu như không phụ thuộc vào sự thay đổi của chính điện trở cảm biến R1. Dòng chảy "
+        "trong kênh làm nguội dây nóng, giảm điện trở của nó theo phương trình 28.106 và làm mất cân "
+        "bằng cầu. Cầu mất cân bằng tạo ra một điện áp ra V<sub>o</sub> liên quan đến lưu lượng khối "
+        "lượng. Vì điện áp ra V<sub>o</sub> của cầu nhỏ, phải khuếch đại nó trước khi ghi lại. Hệ số "
+        "nhiệt độ α của R1 và R2 phải bằng nhau để loại trừ sai số tín hiệu do nhiệt độ môi trường "
+        "thay đổi. Tương tự, hệ số nhiệt độ của R3 và R4 cũng phải bằng nhau."))
+    b.append(fig(69, F.fig(69), "vi"))
+    b.append(p(
+        "Cầu Wheatstone nhiệt độ không đổi được trình bày trên Hình 28.69(b). Cầu được cân bằng ở "
+        "điều kiện không có dòng chảy bằng biến trở R2. Dòng chảy làm nguội dây nóng, điện trở của "
+        "nó giảm và làm mất cân bằng cầu. Một bộ khuếch đại vi sai cân bằng lại cầu bằng điện áp hồi "
+        "tiếp. Tín hiệu ra có thể được tuyến tính hoá trước khi ghi lại."))
+    b.append(p(
+        "Vì tín hiệu ra có đặc tính dạng căn bậc hai, bộ tuyến tính hoá có thể được thực hiện dễ "
+        "dàng bằng một bộ nhân (ví dụ AD534 của Analog Devices) với hai đầu vào bằng nhau (một bộ "
+        "bình phương). Hình 28.70 minh hoạ kết quả. Với phương pháp này, vẫn còn sai số tuyến tính "
+        "ở vùng lưu lượng nhỏ."))
+    b.append(fig(70, F.fig(70), "vi"))
+
+    # ------------------------------------------------------------ calorimetric
+    b.append(h3("Cảm biến nhiệt lượng", "Calorimetric Sensors"))
+    b.append(p(
+        "Độ dịch chuyển của prôfin nhiệt độ do dòng chất lưu gây ra quanh một phần tử gia nhiệt có "
+        "thể được dùng để đo lưu lượng khối lượng rất nhỏ. Tuỳ theo vị trí của bộ gia nhiệt và các "
+        "phần tử cảm biến, có hai kiểu cảm biến nhiệt lượng: kiểu xâm nhập, nằm trong lòng chất lưu, "
+        "và kiểu không xâm nhập, đặt bên ngoài dòng chảy. Bảng 28.17 minh hoạ hai kiểu cảm biến "
+        "nhiệt lượng điển hình."))
+    b.append(table(*_t2817("vi")[:3], widths=("26%", "74%")))
+    b.append(p(
+        "Kiểu xâm nhập có nhiều hạn chế. Bộ gia nhiệt và các cảm biến nhiệt độ phải nhô vào lòng "
+        "chất lưu, nên ăn mòn và xói mòn dễ làm hỏng các phần tử này. Hơn nữa, tính toàn vẹn của "
+        "đường ống bị hy sinh bởi các phần nhô vào dòng chảy, làm tăng nguy cơ rò rỉ."))
+    b.append(p(
+        "Ở kiểu không xâm nhập, bộ gia nhiệt và các cảm biến nhiệt độ về cơ bản bao quanh dòng chảy "
+        "bằng cách nằm ở mặt ngoài ống dẫn chất lưu. Ưu điểm chính của kiểu này là không phần tử nào "
+        "tiếp xúc với dòng chất lưu vốn có thể rất ăn mòn. Kỹ thuật này nói chung được áp dụng cho "
+        "dòng chảy trong khoảng 1 mL min<sup>−1</sup> đến 500 L min<sup>−1</sup>. Lưu lượng lớn hơn "
+        "được đo bằng bố trí rẽ nhánh. Hình 28.71(a) trình bày độ dịch chuyển đo được của phân bố "
+        "nhiệt độ quanh bộ gia nhiệt. Độ bất đối xứng của prôfin nhiệt độ tăng theo lưu lượng. Phép "
+        "đo được thực hiện bằng một hệ thống ảnh nhiệt [10]. Để hiểu nguyên lý làm việc, cần xem lại "
+        "tác dụng của cơ học chất lưu và truyền nhiệt. Lý thuyết toán học cho bài toán này được bàn "
+        "ở phần sau của chương này. Hình 28.71(b) minh hoạ ảnh hưởng của dòng chảy lên phân bố "
+        "nhiệt độ."))
+    b.append(fig(71, F.fig(71), "vi"))
+    b.append(p(
+        "Vì cảm biến lưu lượng khối lượng nhiệt lượng nhạy ở dải lưu lượng thấp, các thiết kế rẽ "
+        "nhánh đã được đưa ra để làm cho cảm biến phù hợp với việc đo dải lưu lượng lớn hơn. Phần tử "
+        "cảm biến là một ống mao dẫn nhỏ (thường có đường kính dưới 3 mm). Chúng bảo đảm dòng chảy "
+        "tầng trên toàn dải đo. Các phần tử chảy tầng được đặt song song với phần tử cảm biến như "
+        "một nhánh rẽ (Hình 28.72(a)). Chúng thường là một bó ống nhỏ, một chồng đĩa có kênh mao "
+        "dẫn khắc [4] (Hình 28.72(b)), hoặc một kênh vành được gia công."))
+    b.append(fig(72, F.fig(72), "vi"))
+    b.append(p(
+        "Bảng 28.18 trình bày các thông số điển hình của cảm biến lưu lượng nhiệt lượng. So với cảm "
+        "biến dây nóng hoặc màng nóng, kiểu cảm biến này có độ tuyến tính tốt và chỉ bị giới hạn bởi "
+        "nhiễu tín hiệu ở lưu lượng thấp và bởi bão hoà ở lưu lượng cao. Trong khi dải tuyến tính có "
+        "thể vượt quá tỉ số 100:1, dải đo được có thể lớn tới 10 000:1 [21]. Kích thước nhỏ của ống "
+        "cảm biến mao dẫn có lợi ở chỗ giảm thiểu yêu cầu công suất điện và cũng tăng thời gian đáp "
+        "ứng. Vì ống nhỏ, cần dùng bộ lọc thượng lưu để chống tắc do hạt bụi. Với bố trí rẽ nhánh, "
+        "có thể đạt được một dải lưu lượng tương đối rộng."))
+    b.append(table(*_t2818("vi")))
+
+    # ------------------------------------------------------------ time of flight
+    b.append(h3("Cảm biến thời gian bay", "Time-of-Flight Sensors"))
+    b.append(p(
+        "Cảm biến thời gian bay gồm một bộ gia nhiệt và một hoặc nhiều cảm biến nhiệt độ ở hạ lưu, "
+        "Hình 28.73(a). Bộ gia nhiệt được kích hoạt bằng một xung dòng. Việc vận chuyển nhiệt sinh "
+        "ra là sự kết hợp của khuếch tán và đối lưu cưỡng bức. Trường nhiệt độ tạo thành có thể được "
+        "phát hiện bằng các cảm biến nhiệt độ đặt ở hạ lưu. Tín hiệu nhiệt độ phát hiện được của cảm "
+        "biến là một hàm của thời gian và vận tốc dòng chảy. Đầu ra của cảm biến là hiệu thời gian "
+        "giữa thời điểm bắt đầu xung nhiệt sinh ra và thời điểm nhiệt độ đạt cực đại tại cảm biến hạ "
+        "lưu, Hình 28.73(b). Ở tốc độ dòng tương đối thấp, hiệu thời gian này phụ thuộc chủ yếu vào "
+        "độ khuếch tán nhiệt của môi trường chất lưu. Ở tốc độ dòng tương đối cao, hiệu thời gian "
+        "có xu hướng liên hệ với tỉ số giữa khoảng cách bộ gia nhiệt – cảm biến và vận tốc dòng "
+        "trung bình [5]."))
+    b.append(fig(73, F.fig(73), "vi"))
+    b.append(p(
+        "Vì cách bố trí như trên Hình 28.73(a), cảm biến thời gian bay có cùng những hạn chế như "
+        "kiểu xâm nhập của cảm biến nhiệt lượng: ăn mòn, xói mòn và rò rỉ. Do việc xử lý tín hiệu "
+        "cần một khoảng thời gian để đo hiệu thời gian, kiểu cảm biến này không thích hợp cho phép đo "
+        "động. Ưu điểm của kiểu cảm biến lưu lượng thể tích này là không phụ thuộc vào tính chất "
+        "chất lưu cũng như nhiệt độ chất lưu ở dải lưu lượng cao hơn. Ảnh hưởng của tính chất chất "
+        "lưu lên đầu ra của cảm biến lưu lượng khối lượng được mô tả trong [21], cùng với một cách "
+        "bù cho sự thay đổi của các tính chất này, có hiệu lực cho cả cảm biến phần tử nóng lẫn cảm "
+        "biến nhiệt lượng."))
+
+    # ------------------------------------------------------------ heat transfer
+    b.append(h3("Truyền khối và truyền nhiệt", "Mass and Heat Transfer"))
+    b.append(p(
+        "Tín hiệu quan trọng nhất của quá trình truyền được trình bày trên Hình 28.68 là tín hiệu "
+        "nhiệt. Có nhiều loại tín hiệu nhiệt khác nhau: nhiệt độ, nhiệt lượng, nhiệt dung và nhiệt "
+        "trở. Dưới đây, việc truyền nhiệt và tương tác giữa nhiệt lượng với nhiệt độ sẽ được giải "
+        "thích qua ba quá trình truyền nhiệt chính: dẫn nhiệt, đối lưu và bức xạ. Hai quá trình đầu "
+        "có thể được mô tả bằng phương trình tổng quát của một quá trình truyền. Các đại lượng truyền "
+        "trong phương trình có thể là động lượng (phương trình động lượng), nhiệt độ (phương trình "
+        "năng lượng) hoặc khối lượng (phương trình khối lượng)."))
+    b.append(p(
+        "Một quá trình truyền gồm bốn yếu tố: tích luỹ, dẫn, cảm ứng và đối lưu. Quá trình tích luỹ "
+        "mô tả sự phụ thuộc thời gian của đại lượng truyền. Dẫn biểu thị sự truyền ở mức phân tử. "
+        "Đối lưu là kết quả tương tác giữa trường dòng chảy và trường của đại lượng truyền. Cảm ứng "
+        "mô tả ảnh hưởng của các trường và nguồn bên ngoài."))
+
+    b.append(h4("Dẫn nhiệt", "Conduction"))
+    b.append(p(
+        "Khi trong một vật có gradient nhiệt độ, nhiệt sẽ truyền từ vùng nóng hơn sang vùng lạnh hơn, "
+        "và dòng nhiệt <i>q</i> (đơn vị W m<sup>−2</sup>) sẽ tỉ lệ trực tiếp với độ lớn của gradient "
+        "nhiệt độ:"))
+    b.append(eq("q = −λ(dT/dx)", "28.107"))
+    b.append(p(
+        "trong đó <i>T</i> là nhiệt độ. Biểu thức trên được gọi là định luật Fourier về dẫn nhiệt và "
+        "xác định hằng số vật liệu λ (đơn vị W K<sup>−1</sup> m<sup>−1</sup>), tức độ dẫn nhiệt. "
+        "Hình 28.74 trình bày thứ tự độ dẫn nhiệt λ của các vật liệu khác nhau."))
+    b.append(fig(74, F.fig(74), "vi"))
+    b.append(p(
+        "Dạng vi phân của phương trình dẫn nhiệt là một trường hợp riêng của phương trình năng lượng "
+        "(xem mục nhỏ tiếp theo về đối lưu). Phương trình truyền chỉ gồm các số hạng tích luỹ, dẫn "
+        "và cảm ứng:"))
+    b.append(eq("∂T/∂t = (λ/ρc)(∂<sup>2</sup>T/∂x<sup>2</sup> + ∂<sup>2</sup>T/∂y<sup>2</sup> + "
+                "∂<sup>2</sup>T/∂z<sup>2</sup>) + q′/(ρc)", "28.108"))
+    b.append(p(
+        "trong đó ρ là khối lượng riêng, <i>c</i> là nhiệt dung riêng ở áp suất không đổi và "
+        "<i>q</i>′ (đơn vị W m<sup>−3</sup>) là lượng nhiệt (tính bằng joule) trên một đơn vị thể "
+        "tích và thời gian có thể sinh ra bên trong vật liệu, hoặc nhờ tác dụng của một nguồn nhiệt "
+        "riêng, hoặc nhờ sự chuyển pha của vật chất."))
+    b.append(p(
+        "Ở trạng thái dừng không có nguồn nhiệt bên trong, phương trình dẫn nhiệt rút gọn thành:"))
+    b.append(eq("∂<sup>2</sup>T/∂x<sup>2</sup> + ∂<sup>2</sup>T/∂y<sup>2</sup> + "
+                "∂<sup>2</sup>T/∂z<sup>2</sup> = 0", "28.109"))
+
+    b.append(h4("Đối lưu", "Convection"))
+    b.append(p(
+        "Nói chung có hai kiểu đối lưu: đối lưu cưỡng bức và đối lưu tự nhiên. Kiểu thứ nhất do dòng "
+        "chất lưu gây ra, kiểu thứ hai tự sinh ra do sự phụ thuộc nhiệt độ của khối lượng riêng chất "
+        "lưu và các lực nổi. Để mô tả đối lưu cần ba phương trình bảo toàn:"))
+    b.append(ul([
+        "Bảo toàn khối lượng: phương trình liên tục",
+    ]))
+    b.append(eq("∂ρ/∂t + ∇(ρv) = 0", "28.110"))
+    b.append(ul(["Bảo toàn động lượng: phương trình Navier–Stokes"]))
+    b.append(eq("ρ(∂v/∂t + v∇v) = −∇p + η∇<sup>2</sup>v + ρg", "28.111"))
+    b.append(ul(["Bảo toàn năng lượng: phương trình năng lượng"]))
+    b.append(eq("∂T/∂t + v∇T = (λ/ρc)∇<sup>2</sup>T + q′/(ρc)", "28.112"))
+    b.append(p(
+        "trong đó η là độ nhớt động lực của chất lưu. Trường nhiệt độ và công suất nhiệt có thể tìm "
+        "được bằng cách giải ba phương trình này. Để thiết kế và hiểu cảm biến lưu lượng nhiệt, có "
+        "thể biểu diễn truyền nhiệt đối lưu ở dạng đơn giản nhất:"))
+    b.append(eq("Q = εAΔT", "28.113"))
+    b.append(defs([
+        ("<i>Q</i> (W)", "Tốc độ truyền nhiệt (hay công suất nhiệt)"),
+        ("ε", "Hệ số truyền nhiệt giữa bề mặt được gia nhiệt <i>A</i> và chất lưu"),
+        ("Δ<i>T</i>", "Chênh lệch nhiệt độ giữa vật được gia nhiệt và môi trường"),
+    ]))
+    b.append(p(
+        "Số Nusselt không thứ nguyên mô tả sự truyền nhiệt. Quan hệ giữa hệ số truyền nhiệt ε và số "
+        "Nusselt Nu có thể biểu diễn như sau:"))
+    b.append(eq("ε = Nu(λ/L)", "28.114"))
+    b.append(p(
+        "trong đó <i>L</i> là chiều dài đặc trưng (chiều dài <i>L</i> của một tấm phẳng, đường kính "
+        "thuỷ lực <i>D</i><sub>h</sub> của một ống, và một nửa chu vi của một dây, Hình 28.75). "
+        "Đường kính thuỷ lực <i>D</i><sub>h</sub> có thể tính từ chu vi ướt <i>U</i> và diện tích "
+        "mặt cắt <i>A</i> của ống:"))
+    b.append(eq("D<sub>h</sub> = 4A/U", "28.115"))
+    b.append(p(
+        "Số không thứ nguyên liên quan mô tả dòng chảy là số Reynolds Re:"))
+    b.append(eq("Re = vL/ν", "28.116"))
+    b.append(p(
+        "trong đó <i>v</i> là vận tốc dòng trung bình và ν là độ nhớt động học của chất lưu, được "
+        "xác định bởi khối lượng riêng ρ và độ nhớt động lực η:"))
+    b.append(eq("ν = η/ρ", "28.117"))
+    b.append(p(
+        "Bảng 28.19 trình bày tập hợp các công thức tính số Nusselt. Các tính chất chất lưu (độ nhớt "
+        "động học ν và số Prandtl Pr) nên được chọn ở nhiệt độ trung bình <i>T</i><sub>av</sub> giữa "
+        "nhiệt độ bộ gia nhiệt <i>T</i> + Δ<i>T</i> và nhiệt độ chất lưu <i>T</i>:"))
+    b.append(eq("T<sub>av</sub> = T + ΔT/2", "2.118"))
+    b.append(note(
+        "Phương trình cuối được in là (2.118) trong bản gốc; theo trình tự của chương, số đúng phải "
+        "là (28.118). Nội dung được giữ nguyên như đã in."))
+    b.append(p(
+        "Trong trường hợp đối lưu tự nhiên, số Nusselt phụ thuộc số Grashof Gr, số này mô tả ảnh "
+        "hưởng của các lực nổi:"))
+    b.append(eq("Gr = gβL<sup>3</sup>ΔT/ν<sup>2</sup>", "28.119"))
+    b.append(p(
+        "trong đó <i>g</i> là gia tốc trọng trường (9,81 m s<sup>−2</sup>), β là hệ số giãn nở nhiệt "
+        "của chất lưu, và Δ<i>T</i> là chênh lệch nhiệt độ giữa chất lưu nóng và môi trường. Số "
+        "Nusselt trung bình có thể tính cho dòng chảy tầng (10<sup>4</sup> &lt; GrPr &lt; "
+        "10<sup>8</sup>) theo Bảng 28.20."))
+    b.append(fig(75, F.fig(75), "vi"))
+    b.append(table(*_t2819("vi")))
+    b.append(table(*_t2820("vi")))
+
+    b.append(h4("Bức xạ", "Radiation"))
+    b.append(p(
+        "Một vật có thể phát xạ hoặc hấp thụ bức xạ nhiệt. Bức xạ không quan trọng đối với nguyên lý "
+        "làm việc của cảm biến lưu lượng khối lượng nhiệt vì độ lớn của nó tương đối nhỏ."))
+    b.append(p(
+        "Tiếp theo, nền tảng vật lý và toán học của ba kiểu cảm biến này được bàn chi tiết. Nguyên "
+        "lý làm việc và ảnh hưởng của tính chất chất lưu lên tín hiệu cảm biến có thể xác định bằng "
+        "các mô hình toán học này. Tuy nhiên, các mô hình toán học chỉ mô tả quan hệ giữa các đại "
+        "lượng nhiệt (công suất nhiệt, nhiệt độ) và vận tốc trung bình. Các quan hệ tiếp theo giữa "
+        "lưu lượng khối lượng, thông lượng khối lượng, các đại lượng nhiệt và điện có thể suy ra từ "
+        "các phương trình 28.101 đến 28.106."))
+
+    # ------------------------------------------------------------ models
+    b.append(h3("Mô hình giải tích cho lưu lượng kế nhiệt lượng",
+                "Analytical Models for Calorimetric Flowmeters"))
+
+    b.append(h4("Mô hình cho kiểu xâm nhập của cảm biến nhiệt lượng",
+                "Model for the Intrusive Type of Calorimetric Sensors"))
+    b.append(p(
+        "Trong một tình huống gần dừng, nhiệt đi vào tại một điểm nhất định trong chất lưu phải bằng "
+        "nhiệt đi ra. Nhiệt được vận chuyển hoặc bằng dẫn nhiệt trong chất lưu và/hoặc trong các "
+        "thanh đỡ, hoặc bằng đối lưu qua khối lượng nhiệt của chất lưu. Cuối cùng, nhiệt được vận "
+        "chuyển tới thành ống; xem Hình 28.76 và Bảng 28.18. Một phương trình cân bằng nhiệt dẫn "
+        "đến một phương trình vi phân cho <i>T</i> theo <i>x</i>. Prôfin nhiệt độ theo các phương "
+        "<i>y</i> và <i>z</i> được giả thiết tương ứng là hằng số và tuyến tính [9]."))
+    b.append(p(
+        "Tham chiếu Hình 28.76 và dùng <i>A</i> là diện tích mặt cắt của kênh dòng "
+        "(<i>A</i> = l<sub>y</sub>·2l<sub>z</sub>), ρ là khối lượng riêng chất lưu, <i>c</i> là "
+        "nhiệt dung của chất lưu (ở áp suất không đổi), <i>v</i> là vận tốc trung bình của chất lưu "
+        "và λ là độ dẫn nhiệt của chất lưu, ta có:"))
+    b.append(eq("∂<sup>2</sup>T/∂x<sup>2</sup> − (vρc/λ)(∂T/∂x) − (T/l<sub>z</sub><sup>2</sup>) = 0",
+                "28.120"))
+    b.append(p("hay"))
+    b.append(eq("∂<sup>2</sup>T/∂x<sup>2</sup> − (v/a)(∂T/∂x) − (T/l<sub>z</sub><sup>2</sup>) = 0",
+                "28.121"))
+    b.append(p(
+        "trong đó <i>a</i> = λ/ρc là độ khuếch tán nhiệt của chất lưu. Phương trình 28.121 là tuyến "
+        "tính theo <i>T</i>. Giải phương trình vi phân này với chiều dài bộ gia nhiệt "
+        "l<sub>H</sub>, công suất gia nhiệt <i>Q</i> và điều kiện biên:"))
+    b.append(eq("lim<sub>x→±∞</sub> T(x) = 0", "28.122"))
+    b.append(p("ta được phân bố nhiệt độ sau:"))
+    b.append(eq("x &lt; −l<sub>H</sub>/2: T(x) = T<sub>0</sub>exp[γ<sub>1</sub>(x + "
+                "l<sub>H</sub>/2)]", "28.123"))
+    b.append(eq("−l<sub>H</sub>/2 &lt; x &lt; l<sub>H</sub>/2: T(x) = T<sub>0</sub>", "28.124"))
+    b.append(eq("x &gt; l<sub>H</sub>/2: T(x) = T<sub>0</sub>exp[γ<sub>2</sub>(x − "
+                "l<sub>H</sub>/2)]", "28.125"))
+    b.append(p("trong đó"))
+    b.append(eq("γ<sub>1,2</sub> = [v ± √(v<sup>2</sup> + 2a<sup>2</sup>/l<sub>z</sub><sup>2</sup>)]"
+                " / (2a)", "28.126"))
+    b.append(eq("T<sub>0</sub> = P / [(2λl<sub>y</sub>l<sub>H</sub>/l<sub>z</sub>) + "
+                "Aλ(γ<sub>1</sub> − γ<sub>2</sub>)]", "28.127"))
+    b.append(p(
+        "Chênh lệch nhiệt độ giữa hai phía, thượng lưu (tại x = l<sub>s</sub>) và hạ lưu (tại "
+        "x = −l<sub>s</sub>), khi đó có thể tính được là:"))
+    b.append(eq("ΔT(v) = T<sub>0</sub>{exp[γ<sub>2</sub>((l<sub>s</sub> − l<sub>H</sub>)/2)] − "
+                "exp[γ<sub>1</sub>((−l<sub>s</sub> + l<sub>H</sub>)/2)]}", "28.128"))
+    b.append(fig(76, F.fig(76), "vi"))
+
+    b.append(h4("Mô hình cho kiểu không xâm nhập của cảm biến nhiệt lượng",
+                "Model for the Nonintrusive Type of Calorimetric Sensors"))
+    b.append(p(
+        "Một mô hình một chiều đơn giản được dùng để chỉ ra nguyên lý làm việc của kiểu không xâm "
+        "nhập với ống mao dẫn và dây gia nhiệt quấn quanh nó. Các tham số hình học và giả thiết được "
+        "cho trên Hình 28.77. Do tính đối xứng, chỉ xét một nửa ống mao dẫn cho mô hình tính toán. "
+        "Sự bảo toàn năng lượng nhiệt trong một phần tử tập trung (Hình 28.77(c)) có thể viết như "
+        "sau:"))
+    b.append(eq("Q<sub>cond.,x,fluid</sub> + Q<sub>conv.,x,fluid</sub> + Q<sub>cond.,x,wall</sub> + "
+                "Q<sub>cond.,y,fluid</sub> = 0", "28.129"))
+    b.append(p(
+        "Các chỉ số xác định dẫn nhiệt hay đối lưu theo trục <i>x</i> hoặc <i>y</i>, trong chất lưu "
+        "cũng như trong thành được gia nhiệt. Ký hiệu nhiệt độ dọc trục <i>x</i> là <i>T</i>(x), vận "
+        "tốc dòng trung bình là <i>v</i>, độ dẫn nhiệt của vật liệu thành là λ<sub>w</sub> và của "
+        "chất lưu là λ, độ khuếch tán nhiệt của chất lưu <i>a</i> = λ/(ρc), và độ dày của lớp biên "
+        "nhiệt trung bình là δ, ta được phương trình cân bằng nhiệt:"))
+    b.append(eq("[1/2 + (λ<sub>w</sub>d<sub>w</sub>)/(λδ)]∂<sup>2</sup>T/∂x<sup>2</sup> − "
+                "(v/(2a))(∂T/∂x) − T(x)/δ<sup>2</sup> = 0", "28.130"))
+    b.append(p(
+        "Độ dày của lớp biên nhiệt trung bình δ phụ thuộc vận tốc dòng [15]. Với chất khí có số "
+        "Prandtl nhỏ (Pr &lt; 1) hoặc chất lỏng có số Reynolds thấp, có thể giả thiết rằng:"))
+    b.append(eq("δ = r", "28.131"))
+    b.append(p(
+        "Sau khi giải phương trình 28.130 trong các hệ toạ độ địa phương 1 và 2 (Hình 28.77(b)), ta "
+        "được chênh lệch nhiệt độ Δ<i>T</i>(v) giữa các cảm biến nhiệt độ:"))
+    b.append(eq("ΔT(v) = ϑ<sub>0</sub>[exp(γ<sub>2</sub>l<sub>s</sub>) − "
+                "exp(γ<sub>1</sub>l<sub>s</sub>)]", "28.132"))
+    b.append(p("với:"))
+    b.append(eq("γ<sub>1,2</sub> = [v ± √(v<sup>2</sup> + 16a<sup>2</sup>κ<sup>2</sup>/δ<sup>2</sup>)]"
+                " / (4aκ)", "28.133"))
+    b.append(p("Hệ số không thứ nguyên:"))
+    b.append(eq("κ = 1/2 + (λ<sub>w</sub>d<sub>w</sub>)/(λδ)", "28.134"))
+    b.append(p(
+        "mô tả ảnh hưởng của thành lên cân bằng nhiệt. Nếu bỏ qua thành, ta được κ = 1/2 như trong "
+        "trường hợp tương tự của phương trình 28.121. Nhiệt độ bộ gia nhiệt <i>T</i><sub>0</sub> có "
+        "thể tính cho công suất gia nhiệt không đổi <i>Q</i>:"))
+    b.append(eq("T<sub>0</sub> = Q / {2πλ[l<sub>H</sub>/δ + √(v<sup>2</sup>δ<sup>2</sup>/"
+                "(4a<sup>2</sup>) + 4)]}", "28.135"))
+    b.append(fig(77, F.fig(77), "vi"))
+
+    b.append(h4("Mô hình cho kiểu thời gian bay", "Model for the Time-of-Flight Type"))
+    b.append(p(
+        "Việc vận chuyển nhiệt sinh ra trong một nguồn dạng đường qua một chất lưu được chi phối bởi "
+        "phương trình năng lượng (28.112). Nghiệm giải tích của phương trình vi phân này cho một tín "
+        "hiệu xung với cường độ đầu vào <i>q</i>′<sub>0</sub> (W m<sup>−1</sup>) được cho trong [11] "
+        "là:"))
+    b.append(eq("T(x, y, t) = (q′<sub>0</sub>/(4πλt))·exp{−[(x − vt)<sup>2</sup> + y<sup>2</sup>]/"
+                "(4at)}", "28.136"))
+    b.append(p(
+        "trong đó <i>a</i> là độ khuếch tán nhiệt. Bằng cách đo thời gian đỉnh <i>t</i> mà tại đó "
+        "tín hiệu đi qua phần tử phát hiện (y = 0), nói cách khác là lấy vi phân phương trình 28.136 "
+        "theo thời gian, có thể thu được phương trình cơ bản cho cái gọi là “thời gian bay” của xung "
+        "nhiệt:"))
+    b.append(eq("v = x/t", "28.137"))
+    b.append(p(
+        "Để phương trình 28.136 có hiệu lực, số hạng 4<i>at</i> phải nhỏ hơn nhiều so với khoảng cách "
+        "bộ gia nhiệt – cảm biến <i>x</i>. Điều này giả định rằng đối lưu cưỡng bức do dòng chảy "
+        "chiếm ưu thế so với thành phần khuếch tán. Nói cách khác, phương trình 28.136 đúng ở vận "
+        "tốc dòng cao. Khi tính đến hiệu ứng khuếch tán, thời gian bay được cho bởi:"))
+    b.append(eq("Δt = [−2a + √(4a<sup>2</sup> + v<sup>2</sup>x<sup>2</sup>)]/v<sup>2</sup> "
+                "(v ≠ 0)", "28.138"))
+    b.append(eq("τ = x<sup>2</sup>/(4a)   (v = 0)", "28.139"))
+
+    # ------------------------------------------------------------ microflow
+    b.append(h3("Nguyên lý của cảm biến lưu lượng vi mô", "Principles of Microflow Sensors"))
+    b.append(p(
+        "Trong các bài báo nghiên cứu, tài liệu tham khảo đầu tiên về cảm biến lưu lượng khối lượng "
+        "nhiệt thường được trích dẫn là công trình của King năm 1914. Kể từ đó, công nghệ vi hệ thống "
+        "đã phát triển. Việc chế tạo cảm biến lưu lượng nhiệt có thể thực hiện ở kích thước micromet "
+        "bằng ba công nghệ hiện hành: gia công vi mô khối, gia công vi mô bề mặt, gia công vi mô "
+        "epi và kỹ thuật LIGA (LIGA: cách gọi tiếng Đức của “Lithographie, Galvanoformung, "
+        "Abformung”). Các kỹ thuật chế tạo này (trừ LIGA) tương thích với công nghệ xử lý vi điện tử "
+        "thông thường. Cảm biến lưu lượng nhiệt chế tạo bằng các công nghệ này sẽ được gọi là “cảm "
+        "biến lưu lượng vi mô” trong mục này. Các chế độ làm việc tương tự cảm biến lưu lượng nhiệt "
+        "thông thường. Trong Bảng 28.21, cảm biến lưu lượng vi mô được phân loại theo nguyên lý biến "
+        "đổi. Với các cảm biến mới này, có thể đo được những lưu lượng rất nhỏ trong dải nanolit và "
+        "microlit. Bảng 28.22 trình bày một số ví dụ đã được chế tạo của cảm biến lưu lượng vi mô."))
+    b.append(table(*_t2821("vi")))
+    b.append(table(*_t2822("vi")))
+
+    # ------------------------------------------------------------ smart
+    b.append(h3("Cảm biến lưu lượng nhiệt thông minh và mạch đánh giá tiên tiến",
+                "Smart Thermal Flow Sensors and Advanced Evaluation Circuits"))
+    b.append(p(
+        "Cảm biến thông thường thường có phần điện tử tách rời, gây chi phí cao và cản trở sản xuất "
+        "hàng loạt lớn. Một cảm biến lưu lượng nhiệt thông minh tích hợp được định nghĩa là một chip "
+        "chứa một hoặc nhiều cảm biến, mạch điều hoà tín hiệu, chuyển đổi A/D và đầu ra bus [15]. Do "
+        "đó cần có các phương pháp đánh giá tiên tiến chuyển trực tiếp tín hiệu nhiệt thành đầu ra "
+        "tần số và độ rộng xung."))
+
+    b.append(h4("Điều chế độ rộng xung cho cảm biến dây nóng",
+                "The Duty-Cycle Modulation for the Hot-Wire Sensors"))
+    b.append(p(
+        "Nhiệt độ bộ gia nhiệt không đổi có thể được điều khiển bằng cách điều biến biên độ điện áp "
+        "gia nhiệt (nguyên lý thông thường) hoặc bằng cách điều biến độ rộng xung. Bộ gia nhiệt được "
+        "kích hoạt khi tín hiệu ra ở mức cao. Đầu ra điều khiển bộ gia nhiệt này xuống mức thấp khi "
+        "đạt mức nhiệt độ <i>T</i><sub>0</sub> + Δ<i>T</i>. Trong thời gian đầu ra ở mức thấp, nhiệt "
+        "độ gia nhiệt giảm xuống mức <i>T</i><sub>0</sub> + Δ<i>T</i>, tại đó đầu ra lại lên mức cao "
+        "và bắt đầu lại chu trình gia nhiệt. Mức nhiệt độ được xác định bởi một điện trở chuẩn và "
+        "một biến trở. Khi lưu lượng tăng, việc làm nguội đối lưu bộ gia nhiệt tăng, và cần thời "
+        "gian lâu hơn để đạt mức nhiệt độ. Điều đó dẫn đến thời gian đầu ra cao hơn "
+        "<i>t</i><sub>H</sub>. Hình 28.78 trình bày nguyên lý làm việc của điều chế độ rộng xung, "
+        "trong đó <i>t</i><sub>d</sub> là thời gian trễ trong tác động đóng cắt. Đặt công suất gia "
+        "nhiệt cực đại là <i>Q</i><sub>max</sub> (tín hiệu ra luôn ở mức cao), ta được quan hệ:"))
+    b.append(eq("Q = Q<sub>max</sub>(t<sub>H</sub>/t<sub>total</sub>)", "28.140"))
+    b.append(fig(78, F.fig(78), "vi"))
+
+    b.append(h4("Điều chế sigma–delta điện cho cảm biến nhiệt lượng",
+                "The Electrical Sigma–Delta Modulation for Calorimetric Sensors"))
+    b.append(p(
+        "Các mạch điều hoà tín hiệu thông thường dùng một bộ chuyển đổi tương tự – số (ADC) để có số "
+        "đọc cảm biến dạng số, có thể coi như một bộ khuếch đại hoặc một vôn kế. Chúng đọc tín hiệu "
+        "thông tin từ cảm biến nhưng không tương tác với cảm biến. Ngược lại, bộ chuyển đổi "
+        "sigma–delta là một phần của chức năng cảm biến vì chúng hoạt động như một bộ khuếch đại hồi "
+        "tiếp cho đầu ra cảm biến. Do đó, chuyển đổi sigma–delta thường cho tín hiệu cảm biến vững "
+        "chắc hơn nhiều so với ADC thông thường. Dưới đây trình bày nguyên lý chuyển đổi sigma–delta "
+        "áp dụng cho cảm biến lưu lượng nhiệt lượng."))
+    b.append(p(
+        "Các transistor T1 và T2 đại diện cho hai bộ chuyển mạch đưa dòng không đổi <i>I</i><sub>0</sub> "
+        "vào mạng RC. Trong ví dụ này giả thiết nhiệt độ trên điện trở R<sub>s2</sub> cao hơn nhiệt "
+        "độ trên R<sub>s1</sub>. Do đó điện trở của R<sub>s2</sub> lớn hơn R<sub>s1</sub>, dẫn đến "
+        "hằng số thời gian nạp của C<sub>2</sub> lớn hơn. Nhờ các bộ so sánh và flip-flop D, dòng "
+        "không đổi <i>I</i><sub>0</sub> có thể được đóng cắt. Các tín hiệu đóng cắt "
+        "<i>f</i><sub>1</sub> và <i>f</i><sub>2</sub> có số xung khác nhau trong cùng một chu kỳ, "
+        "N + S và N:"))
+    b.append(eq("R<sub>s2</sub>/R<sub>s1</sub> = (N + S)/N = 1 + ΔR/R<sub>s1</sub>", "28.141"))
+    b.append(p("Do đó:"))
+    b.append(eq("ΔR/R<sub>s1</sub> = S/N", "28.142"))
+    b.append(p("với:"))
+    b.append(eq("R<sub>s1</sub> = (V<sub>ref</sub>/I<sub>0</sub>)(N/G)", "28.143"))
+    b.append(p("Có thể tính được cả chênh lệch điện trở lẫn chênh lệch nhiệt độ:"))
+    b.append(eq("ΔR = (SV<sub>ref</sub>)/(GI<sub>0</sub>)", "28.144"))
+    b.append(p("Việc đếm và ghi lại S và G được trình bày trên Hình 28.79."))
+    b.append(fig(79, F.fig(79), "vi"))
+
+    b.append(h4("Điều chế sigma–delta nhiệt", "The Thermal Sigma–Delta Modulation"))
+    b.append(p(
+        "Nguyên lý điều chế sigma–delta nhiệt dựa trên sigma–delta điện thông thường: bộ chuyển đổi "
+        "sigma–delta nhiệt dùng một bộ tích phân nhiệt (mạng R/C nhiệt) thay cho bộ tích phân điện "
+        "(mạng R/C điện). Hình 28.80 trình bày nguyên lý điều chế sigma–delta nhiệt. Đầu ra bộ so "
+        "sánh điều biến flip-flop. Flip-flop đồng bộ hoá tín hiệu gia nhiệt theo nhịp đồng hồ của "
+        "nó. Do đó các chu kỳ gia nhiệt được băm thành những xung nhỏ hơn phụ thuộc tần số đồng hồ. "
+        "Bộ gia nhiệt được tác động từng bước cho đến khi bộ so sánh chuyển trạng thái lần nữa, và "
+        "ta được một đầu ra tương tự tần số tại flip-flop [22]."))
+    b.append(fig(80, F.fig(80), "vi"))
+
+    # ------------------------------------------------------------ calibration
+    b.append(h3("Điều kiện hiệu chuẩn", "Calibration Conditions"))
+    b.append(h4("Hiệu chuẩn cảm biến dây nóng và màng nóng",
+                "Calibration of Hot-Wire and Hot-Film Sensors"))
+    b.append(p(
+        "Cảm biến dây nóng và màng nóng dựa trên phép đo vận tốc điểm (xem Bảng 28.14). Do đó kết "
+        "quả đo phụ thuộc phân bố vận tốc bên trong kênh dòng. Vì vậy, để đạt tỉ số tín hiệu trên "
+        "nhiễu cao có thể cần đến các dãy cảm biến dây nóng và màng nóng, cung cấp thêm thông tin về "
+        "trường vận tốc và do đó cho kết quả chính xác hơn về lưu lượng khối lượng trong kênh. Dùng "
+        "một vòi phun, một ống Venturi hoặc một bộ điều hoà dòng, prôfin dòng được tạo điều kiện "
+        "trước, dẫn đến độ chính xác chấp nhận được."))
+    b.append(h4("Sự phụ thuộc nhiệt độ của tính chất chất lưu",
+                "Temperature Dependence of Fluid Properties"))
+    b.append(p(
+        "Hầu hết tính chất chất lưu phụ thuộc nhiệt độ làm việc. Quá trình truyền nhiệt phụ thuộc "
+        "tính chất chất lưu. Việc đo nhiệt độ chất lưu (xem Bảng 28.14) giữ bộ gia nhiệt ở một "
+        "chênh lệch nhiệt độ không đổi so với chất lưu và cũng có thể dùng để bù cho sự thay đổi "
+        "nhiệt độ. Vì những lý do này, cảm biến lưu lượng khối lượng nhiệt chính xác đòi hỏi cả "
+        "hiệu chuẩn lưu lượng lẫn hiệu chuẩn bù nhiệt độ. Hơn nữa, có thể suy ra ảnh hưởng của nhiệt "
+        "độ và/hoặc thành phần chất lưu bằng các quan hệ đã xây dựng trong phần mô hình hoá (các "
+        "phương trình 28.120–28.135)."))
+
+    b.append(h3("Thiết bị và linh kiện", "Instrumentation and Components"))
+    b.append(p("Bảng 28.23 liệt kê một số hãng chế tạo và kinh doanh lưu lượng kế khối lượng nhiệt."))
+    b.append(table(*_t2823("vi")[:3], widths=("20%", "24%", "40%", "16%")))
+
+    # ------------------------------------------------------------ references
+    b.append(h3("Tài liệu tham khảo", "References"))
+    b.append(ol([
+        "Béla G. Lipták, <i>Flow Measurement</i>, Radnor, PA: Chilton Book, 1993.",
+        "H. Strickert, <i>Hitzdraht und Hitzfilmanemometrie</i> (Đo gió bằng dây nóng và màng nóng), "
+        "Berlin: Verlag Technik, 1974.",
+        "G. Schnell, <i>Sensoren in der Automatisierungstechnik</i> (Cảm biến trong kỹ thuật tự động "
+        "hoá), Braunschweig: Verlag Viehweg, 1993.",
+        "<i>Mass Flow and Pressure Meters/Controllers</i>, Hà Lan: Bronkhorst Hi-Tec B.V., 1994.",
+        "T. S. J. Lammerink, F. Dijkstra, Z. Houkes và J. van Kuijk, “Intelligent gas-mixture flow "
+        "sensor”, <i>Sensors and Actuators A</i>, 46/47, 380–384, 1995.",
+        "<i>VDI-Wärmeatlas</i>, VDI-Verlag, 1994.",
+        "H. Schlichting, <i>Boundary Layer Theory</i>, ấn bản 7, New York: McGraw-Hill, 1979.",
+        "A. J. Chapman, <i>Heat Transfer</i>, ấn bản 4, New York: Macmillan, 1984.",
+        "T. S. J. Lammerink, Niels R. Tas, Miko Elwenspoek và J. H. J. Fluitman, “Micro-liquid flow "
+        "sensor”, <i>Sensors and Actuators A</i>, 37/38, 45–50, 1993.",
+        "N. T. Nguyen và W. Dötzel, “A novel method for designing multi-range electrocaloric mass "
+        "flow sensors: asymmetrical locating with heater- and sensor arrays”, <i>Sensors and "
+        "Actuators A</i>, 62, 506–512, 1997.",
+        "J. van Kuijk, T. S. T. Lammerink, H.-E. de Bree, M. Elwenspoek và J. H. J. Fluitman, "
+        "“Multi-parameter detection in fluid flows”, <i>Sensors and Actuators A</i>, 46/47, "
+        "380–384, 1995.",
+        "S. M. Sze, <i>Semiconductor Sensors</i>, New York: John Wiley &amp; Sons, 1994.",
+        "You-Chong Tai và Richard S. Muller, “Lightly-doped polysilicon bridge as a flow meter”, "
+        "<i>Sensors and Actuators A</i>, 15, 63–75, 1988.",
+        "R. G. Johnson và R. E. Higashi, “A highly sensitive silicon chip microtransducer for air "
+        "flow and differential pressure sensing applications”, <i>Sensors and Actuators A</i>, 11, "
+        "63–67, 1987.",
+        "H. J. Verhoeven và J. H. Huijsing, “An integrated gas flow sensor with high sensitivity, "
+        "low response time and pulse-rate output”, <i>Sensors and Actuators A</i>, 41/42, "
+        "217–220, 1994.",
+        "F. Mayer, G. Salis, J. Funk, O. Paul và H. Baltes, “Scaling of thermal CMOS gas flow "
+        "microsensors: experiment and simulation”, <i>MEMS '96</i>, San Diego, 1996, 116–121.",
+        "Göran Stemme, “A CMOS integrated silicon gas-flow sensor with pulse-modulated output”, "
+        "<i>Sensors and Actuators A</i>, 14, 293–303, 1988.",
+        "Canqian Yang và Heinrik Soeberg, “Monolithic flow sensor for measuring millilitre per "
+        "minute liquid flow”, <i>Sensors and Actuators A</i>, 33, 143–153, 1992.",
+        "Dun Yu, H. Y. Hsieh và J. N. Zemel, “Microchannel pyroelectric anemometer”, <i>Sensors and "
+        "Actuators A</i>, 39, 29–35, 1993.",
+        "S. G. Joshi, “Flow sensors based on surface acoustic waves”, <i>Sensors and Actuators A</i>, "
+        "44, 63–72, 1994.",
+        "U. Bonne, “Fully compensated flow microsensor for electronic gas metering”, <i>Proc. Int. "
+        "Gas Research Conf.</i>, 16–19 tháng 11 năm 1992, Orlando, FL, 3, 859, 1992.",
+        "J. H. Huijsing, F. R. Riedijk và G. van der Horn, “Developments in integrated smart "
+        "sensors”, <i>Proc. of Transducer 93</i>, Yokohama, Nhật Bản, 1993, 320–326.",
+    ]))
+    return "".join(b)
+
+
+def sec_28_9_en():
+    b = []
+    b.append(h2("28.9 Thermal Mass Flow Sensors", "Thermal Mass Flow Sensors"))
+    b.append(p("Nam-Trung Nguyen."))
+    b.append(p(
+        "This section deals with thermal mass flowmeters. The obvious question that arises is what "
+        "is actually meant by mass flow and by a thermal mass flowmeter. To answer it, one should "
+        "first understand what the flow is and what physical quantity the meter measures. The flow "
+        "can be understood here as the motion of a continuum (a fluid) in a closed structure "
+        "(a channel, an orifice), and the object measured is that continuum. The associated "
+        "physical quantity measured by the meter is the mass flux that flows through a unit "
+        "cross-section. The equation for the volume flow rate <i>F</i><sub>v</sub> is:"))
+    b.append(eq("Φ<sub>v</sub> = dV/dt = vA", "28.101"))
+    b.append(defs([
+        ("<i>V</i>", "Volume flowing through in the time <i>t</i>"),
+        ("<i>v</i>", "Average velocity over the cross-sectional area <i>A</i> of the channel"),
+    ]))
+    b.append(p(
+        "With the relation between volume <i>V</i>, mass <i>M</i> and the density ρ of the fluid:"))
+    b.append(eq("V = M/ρ", "28.102"))
+    b.append(p(
+        "the mass flow rate <i>F</i><sub>m</sub> can be derived using Equations 28.101 and 28.102 "
+        "to obtain:"))
+    b.append(eq("Φ<sub>m</sub> = d(ρV)/dt = Φ<sub>v</sub>ρ + V(dρ/dt)", "28.103"))
+    b.append(p("For a fluid density that does not vary with time, one obtains:"))
+    b.append(eq("Φ<sub>m</sub> = Φ<sub>v</sub>ρ = Avρ", "28.104"))
+    b.append(p(
+        "A thermal mass flow sensor will generally output a signal related to the mass flux:"))
+    b.append(eq("φ<sub>m</sub> = Φ<sub>m</sub>/A = vρ", "28.105"))
+    b.append(p(
+        "and convert the mechanical variable (mass flow) via a thermal variable (heat transfer) into "
+        "an electrical signal (current or voltage) that can be processed by, for example, a "
+        "microcontroller. Figure 28.68 illustrates this working principle. The working range of any "
+        "mass flux sensor depends somewhat on the fluid properties, such as thermal conductivity, "
+        "specific heat and density, but not on the physical state (gas or liquid) of the fluid."))
+    b.append(fig(68, F.fig(68), "en"))
+
+    b.append(h3("Principles of Conventional Thermal Mass Flowmeters",
+                "Principles of Conventional Thermal Mass Flowmeters"))
+    b.append(p(
+        "With two heater control modes and two evaluation modes, there are six operational modes, "
+        "shown in Table 28.13, and three types of thermal mass flowmeter:"))
+    b.append(ul([
+        "Thermal mass flowmeters that measure the effect of the flowing fluid on a hot body "
+        "(increase of heating power at constant heater temperature, decrease of heater temperature "
+        "at constant heating power). They are usually called hot-wire, hot-film or hot-element "
+        "sensors.",
+        "Thermal mass flowmeters that measure the displacement of the temperature profile around "
+        "the heater, which is modulated by the fluid flow. These are called calorimetric sensors.",
+        "Thermal mass flowmeters that measure the passage time of a heat pulse over a known "
+        "distance. They are usually called time-of-flight sensors.",
+    ]))
+    b.append(table(*_t2813("en")))
+
+    b.append(h3("Hot-Wire and Hot-Film Sensors", "Hot-Wire and Hot-Film Sensors"))
+    b.append(p(
+        "The dependence of the heat loss between a fine wire as well as a thin film and the "
+        "surrounding fluid has traditionally been the most accepted method for measuring a fluid "
+        "flow: the hot-wire method. The hot-film method uses film sensors for detecting the flow. "
+        "The basic elements of this sensor type are discussed below."))
+    b.append(p(
+        "<b>Flow channel.</b> In contrast to the thermal anemometer described in Chapter 29 for "
+        "point measurement, thermal mass flow sensors of the hot-wire and hot-film type have a flow "
+        "channel defining the mass flow. Table 28.14 shows two typical arrangements."))
+    b.append(table(*_t2814("en")[:3], widths=("28%", "72%")))
+    b.append(p(
+        "<b>Sensor element.</b> Hot-wire sensors are fabricated from platinum, platinum-coated "
+        "tungsten or a platinum–iridium alloy. Since the wire sensor is extremely fragile, hot-wire "
+        "sensors are usually used only for clean air or gas applications. On the other hand, "
+        "hot-film sensors are extremely rugged, so they can be used in both liquid and contaminated "
+        "gas environments. In the hot-film sensor the high-purity platinum film is bonded to the "
+        "rod. The thin film is protected by a thin coating of alumina if the sensor is to be used in "
+        "a gas, or of quartz if it is to be used in a liquid. Alumina coatings have a high abrasion "
+        "resistance and a high thermal conductivity. Quartz coatings are less porous and can be used "
+        "in heavier layers for electrical insulation. Typical hot-wire and hot-film sensors are "
+        "shown in Table 28.15."))
+    b.append(table(*_t2815("en")))
+    b.append(p(
+        "The sensor element, whether a wire or a film, should be a resistor that has a resistance "
+        "with a high temperature coefficient α. For most sensor materials the temperature dependence "
+        "can be expressed simply by a first-order function:"))
+    b.append(eq("R = R<sub>r</sub>[1 + α(T − T<sub>r</sub>)]", "28.106"))
+    b.append(defs([
+        ("<i>R</i>", "Resistance at the operating temperature <i>T</i>"),
+        ("<i>R</i><sub>r</sub>", "Resistance at the reference temperature <i>T</i><sub>r</sub>"),
+        ("α", "Temperature coefficient"),
+    ]))
+    b.append(p(
+        "For research applications, cylindrical sensors are most common, either a fine wire "
+        "(typical diameters from 1 to 15 µm) or a cylindrical film (typical diameters from 25 to "
+        "150 µm). Industrial sensors are often a resistance wire wrapped around a ceramic substrate "
+        "with typical diameters from 0.02 mm to 2 mm. Table 28.16 shows some typical parameters of "
+        "industrial hot-wire and hot-film sensors."))
+    b.append(table(*_t2816("en")))
+    b.append(p(
+        "<b>Control and evaluation circuit.</b> The constant-current and constant-temperature "
+        "bridges are conventional circuits for the control and evaluation of hot-wire or hot-film "
+        "sensors."))
+    b.append(p(
+        "A constant-current Wheatstone bridge with a hot-wire sensor is shown schematically in "
+        "Figure 28.69(a). In this circuit, resistors R3 and R4 are much larger than the sensor "
+        "resistor R1, so the current through R1 is essentially independent of changes in the sensor "
+        "resistance R1. Any flow in the channel cools the hot wire, decreases its resistance as "
+        "given by Equation 28.106 and unbalances the bridge. The unbalanced bridge produces an "
+        "output voltage V<sub>o</sub>, which is related to the mass flow. Because the output voltage "
+        "V<sub>o</sub> from the bridge is small, it must be amplified before it is recorded. The "
+        "value of the temperature coefficient α for R1 and R2 should be equal in order to eliminate "
+        "signal errors due to changes in ambient temperature. Similarly, the temperature "
+        "coefficients of R3 and R4 should also be equal."))
+    b.append(fig(69, F.fig(69), "en"))
+    b.append(p(
+        "The constant-temperature Wheatstone bridge is shown in Figure 28.69(b). The bridge is "
+        "balanced under no-flow conditions with the variable resistor R2. The flow cools the hot "
+        "wire, its resistance decreases and the bridge is unbalanced. A differential amplifier "
+        "balances the bridge with the feedback voltage. The output signal can be linearised before "
+        "recording."))
+    b.append(p(
+        "Because the output signal has a square-root-like characteristic, the lineariser can be "
+        "realised easily with a multiplier (for example the AD534 from Analog Devices) with two "
+        "equal input signals, that is, a squarer. Figure 28.70 illustrates the results. With this "
+        "method there is still a linearisation error in the low flow range."))
+    b.append(fig(70, F.fig(70), "en"))
+
+    b.append(h3("Calorimetric Sensors", "Calorimetric Sensors"))
+    b.append(p(
+        "The displacement of the temperature profile caused by the fluid flow around a heating "
+        "element can be used for measuring very small mass flow. Depending on the location of the "
+        "heating and sensing elements there are two types of calorimetric sensor: the intrusive "
+        "type, which lies in the fluid, and the non-intrusive type, which is located outside the "
+        "flow. Table 28.17 illustrates the two typical calorimetric sensors."))
+    b.append(table(*_t2817("en")[:3], widths=("26%", "74%")))
+    b.append(p(
+        "The intrusive type has many limitations. The heater and the temperature sensors must "
+        "protrude into the fluid, so corrosion and erosion damage these elements easily. "
+        "Furthermore, the integrity of the piping is sacrificed by the protrusions into the flow, "
+        "increasing the danger of leakage."))
+    b.append(p(
+        "In the non-intrusive type, the heater and the temperature sensors essentially surround the "
+        "flow by being located on the outside of the tube that contains the flow. The major "
+        "advantage of this type is that no sensor is exposed to the flowing fluid, which can be very "
+        "corrosive. This technique is generally applied to flows in the range 1 mL min<sup>−1</sup> "
+        "to 500 L min<sup>−1</sup>. Larger flows are measured using the bypass arrangement. "
+        "Figure 28.71(a) shows the measured shift of the temperature distribution around the "
+        "heater. The asymmetry of the temperature profile increases with flow. The measurement was "
+        "carried out using a thermography system [10]. To understand the working principle, the "
+        "effect of fluid mechanics and heat transfer should be reviewed. The mathematical theory for "
+        "this problem is discussed later in this chapter. Figure 28.71(b) illustrates the influence "
+        "of the flow on the temperature distribution."))
+    b.append(fig(71, F.fig(71), "en"))
+    b.append(p(
+        "Because calorimetric mass flow sensors are sensitive in low-flow ranges, bypass designs "
+        "have been introduced to make the sensors suitable for measuring larger flow ranges. The "
+        "sensor element is a small capillary tube (usually less than 3 mm in diameter). It ensures "
+        "laminar flow over the full measurement range. The laminar flow elements are located "
+        "parallel to the sensor element as a bypass (Figure 28.72(a)). They are usually a small tube "
+        "bundle, a stack of disks with etched capillary channels [4] (Figure 28.72(b)), or a "
+        "machined annular channel."))
+    b.append(fig(72, F.fig(72), "en"))
+    b.append(p(
+        "Table 28.18 shows typical parameters of calorimetric flow sensors. Compared with the "
+        "hot-wire or hot-film sensors, this type has good linearity and is limited only by signal "
+        "noise at low flows and by saturation at high flows. While the linear range may exceed a "
+        "100:1 ratio, the measurable range may be as large as 10 000:1 [21]. The small size of the "
+        "capillary sensor tube is advantageous in minimising the electric power requirement and "
+        "also in increasing the response time. Because of the small size of the tube, upstream "
+        "filters are needed to protect against plugging by dust particles. With the bypass "
+        "arrangement a relatively wide flow range is possible."))
+    b.append(table(*_t2818("en")))
+
+    b.append(h3("Time-of-Flight Sensors", "Time-of-Flight Sensors"))
+    b.append(p(
+        "The time-of-flight sensor consists of a heater and one or more temperature sensors "
+        "downstream, Figure 28.73(a). The heater is activated by a current pulse. The transport of "
+        "the generated heat is a combination of diffusion and forced convection. The resulting "
+        "temperature field can be detected by temperature sensors located downstream. The detected "
+        "temperature output signal of the temperature sensor is a function of time and flow "
+        "velocity. The sensor output is the time difference between the starting point of the "
+        "generated heat pulse and the point in time at which a maximum temperature is reached at the "
+        "downstream sensor, Figure 28.73(b). At relatively low flow rates the time difference "
+        "depends mainly on the thermal diffusivity of the fluid medium. At relatively high flow "
+        "rates the time difference tends to relate to the ratio of the heater–sensor distance to the "
+        "average flow velocity [5]."))
+    b.append(fig(73, F.fig(73), "en"))
+    b.append(p(
+        "Because of the arrangement shown in Figure 28.73(a), time-of-flight sensors have the same "
+        "limitations as the intrusive type of calorimetric sensor: corrosion, erosion and leakage. "
+        "Since the signal processing needs a while to measure the time difference, this sensor type "
+        "is not suitable for dynamic measurement. The advantage of this type of volumetric flow "
+        "sensor is its independence of fluid properties as well as fluid temperature in the higher "
+        "flow range. The influence of fluid properties on the mass flow sensor output is described "
+        "in [21], together with an approach to compensating for changes in these properties, which "
+        "is valid for both hot-element and calorimetric sensors."))
+
+    b.append(h3("Mass and Heat Transfer", "Mass and Heat Transfer"))
+    b.append(p(
+        "The most important signal of the transfer process shown in Figure 28.68 is the thermal "
+        "signal. There are different kinds of thermal signal: temperature, heat, heat capacity and "
+        "thermal resistance. In the following, the transfer of heat and the interaction between heat "
+        "and temperature are explained through the three main heat transfer processes: conduction, "
+        "convection and radiation. The first two can be described by the general equation of a "
+        "transfer process. The transfer variables in that equation can be the momentum (momentum "
+        "equation), the temperature (energy equation) or the mass (mass equation)."))
+    b.append(p(
+        "A transfer process consists of four elements: accumulation, conduction, induction and "
+        "convection. The accumulation process describes the time dependence of the transfer "
+        "variable. Conduction presents the molecular transfer. Convection is the result of the "
+        "interaction between the flow field and the field of the transfer variable. Induction "
+        "describes the influence of external fields and sources."))
+
+    b.append(h4("Conduction", "Conduction"))
+    b.append(p(
+        "When there is a temperature gradient in a substance, heat flows from the hotter to the "
+        "colder region, and this heat flow <i>q</i> (in W m<sup>−2</sup>) is directly proportional "
+        "to the value of the temperature gradient:"))
+    b.append(eq("q = −λ(dT/dx)", "28.107"))
+    b.append(p(
+        "where <i>T</i> is the temperature. The expression above is called Fourier's law of heat "
+        "conduction and defines the material constant λ (in W K<sup>−1</sup> m<sup>−1</sup>), the "
+        "thermal conductivity. Figure 28.74 shows the order of the thermal conductivity λ of "
+        "different materials."))
+    b.append(fig(74, F.fig(74), "en"))
+    b.append(p(
+        "The differential form of the heat-conduction equation is a special case of the energy "
+        "equation (see the next subsection on convection). The transfer equation consists only of "
+        "the accumulative, conductive and inductive terms:"))
+    b.append(eq("∂T/∂t = (λ/ρc)(∂<sup>2</sup>T/∂x<sup>2</sup> + ∂<sup>2</sup>T/∂y<sup>2</sup> + "
+                "∂<sup>2</sup>T/∂z<sup>2</sup>) + q′/(ρc)", "28.108"))
+    b.append(p(
+        "where ρ is the density, <i>c</i> is the specific heat at constant pressure and <i>q</i>′ "
+        "(in W m<sup>−3</sup>) is the amount of heat (in joules) per unit volume and time that can "
+        "be generated inside the material itself, either through the action of a separate heat "
+        "source or through a change of phase of matter."))
+    b.append(p(
+        "In the steady state without internal heat sources, the conduction equation reduces to:"))
+    b.append(eq("∂<sup>2</sup>T/∂x<sup>2</sup> + ∂<sup>2</sup>T/∂y<sup>2</sup> + "
+                "∂<sup>2</sup>T/∂z<sup>2</sup> = 0", "28.109"))
+
+    b.append(h4("Convection", "Convection"))
+    b.append(p(
+        "In general there are two kinds of convection: forced convection and natural convection. The "
+        "first is caused by a fluid flow, the second arises by itself because of the temperature "
+        "dependence of the fluid density and the buoyancy forces. To describe convection, three "
+        "conservation equations are required:"))
+    b.append(ul(["Conservation of mass: continuity equation"]))
+    b.append(eq("∂ρ/∂t + ∇(ρv) = 0", "28.110"))
+    b.append(ul(["Conservation of momentum: Navier–Stokes equation"]))
+    b.append(eq("ρ(∂v/∂t + v∇v) = −∇p + η∇<sup>2</sup>v + ρg", "28.111"))
+    b.append(ul(["Conservation of energy: energy equation"]))
+    b.append(eq("∂T/∂t + v∇T = (λ/ρc)∇<sup>2</sup>T + q′/(ρc)", "28.112"))
+    b.append(p(
+        "where η is the dynamic viscosity of the fluid. The temperature field and the heat power can "
+        "be found by solving these three equations. For designing and understanding the thermal flow "
+        "sensor, the convective heat transfer can be expressed in the simplest form:"))
+    b.append(eq("Q = εAΔT", "28.113"))
+    b.append(defs([
+        ("<i>Q</i> (W)", "Heat transfer rate (or heat power)"),
+        ("ε", "Heat transfer coefficient between the heated surface <i>A</i> and the fluid"),
+        ("Δ<i>T</i>", "Temperature difference between the heated body and ambient"),
+    ]))
+    b.append(p(
+        "The dimensionless Nusselt number describes the heat transfer. The relationship between the "
+        "heat transfer coefficient ε and the Nusselt number Nu can be expressed as follows:"))
+    b.append(eq("ε = Nu(λ/L)", "28.114"))
+    b.append(p(
+        "where <i>L</i> is the characteristic length (the length <i>L</i> of a flat plate, the "
+        "hydraulic diameter <i>D</i><sub>h</sub> of a tube, and half the perimeter of a wire, "
+        "Figure 28.75). The hydraulic diameter <i>D</i><sub>h</sub> can be calculated from the wetted "
+        "perimeter <i>U</i> and the cross-sectional area <i>A</i> of the tube:"))
+    b.append(eq("D<sub>h</sub> = 4A/U", "28.115"))
+    b.append(p(
+        "The relevant dimensionless number describing the flow is the Reynolds number Re:"))
+    b.append(eq("Re = vL/ν", "28.116"))
+    b.append(p(
+        "where <i>v</i> is the average flow velocity and ν the kinematic viscosity of the fluid, "
+        "defined by the density ρ and the dynamic viscosity η:"))
+    b.append(eq("ν = η/ρ", "28.117"))
+    b.append(p(
+        "Table 28.19 shows a collection of formulae for calculating the Nusselt number. The fluid "
+        "properties (kinematic viscosity ν and Prandtl number Pr) should be chosen at the average "
+        "temperature <i>T</i><sub>av</sub> between the heater temperature <i>T</i> + Δ<i>T</i> and "
+        "the fluid temperature <i>T</i>:"))
+    b.append(eq("T<sub>av</sub> = T + ΔT/2", "2.118"))
+    b.append(note(
+        "This equation is printed as (2.118) in the source; by the numbering of the chapter it "
+        "should be (28.118). The text is reproduced as printed."))
+    b.append(p(
+        "In the case of natural convection, the Nusselt number depends on the Grashof number Gr, "
+        "which describes the influence of buoyancy forces:"))
+    b.append(eq("Gr = gβL<sup>3</sup>ΔT/ν<sup>2</sup>", "28.119"))
+    b.append(p(
+        "where <i>g</i> is the acceleration due to gravity (9.81 m s<sup>−2</sup>), β the thermal "
+        "expansion coefficient of the fluid, and Δ<i>T</i> the temperature difference between the "
+        "hot fluid and the ambient. The average Nusselt number can be calculated for laminar flow "
+        "(10<sup>4</sup> &lt; GrPr &lt; 10<sup>8</sup>) from Table 28.20."))
+    b.append(fig(75, F.fig(75), "en"))
+    b.append(table(*_t2819("en")))
+    b.append(table(*_t2820("en")))
+
+    b.append(h4("Radiation", "Radiation"))
+    b.append(p(
+        "A body can either emit or absorb thermal radiation. Radiation is not important for the "
+        "operational principle of thermal mass flow because of its relatively low magnitude."))
+    b.append(p(
+        "In the following, the physical and mathematical backgrounds of these three sensor types "
+        "are discussed in detail. The working principle and the influence of fluid properties on the "
+        "sensor signal can be determined using these mathematical models. However, the models "
+        "describe only the relationship between thermal variables (heat power, temperature) and the "
+        "average velocity. Further relationships between mass flow, mass flux, thermal and "
+        "electrical variables can be derived using Equations 28.101 to 28.106."))
+
+    b.append(h3("Analytical Models for Calorimetric Flowmeters",
+                "Analytical Models for Calorimetric Flowmeters"))
+
+    b.append(h4("Model for the Intrusive Type of Calorimetric Sensors",
+                "Model for the Intrusive Type of Calorimetric Sensors"))
+    b.append(p(
+        "In a quasi-static situation, the incoming heat at a certain point in the fluid must equal "
+        "the outgoing heat. The heat is transported either by conduction in the fluid and/or "
+        "supporting beams, or by convection through the thermal mass of the fluid. Ultimately the "
+        "heat is transported to the walls of the tube; see Figure 28.76 and Table 28.18. A heat "
+        "balance equation results in a differential equation for <i>T</i> in <i>x</i>. The "
+        "temperature profile in the <i>y</i> and <i>z</i> directions is assumed to be constant and "
+        "linear, respectively [9]."))
+    b.append(p(
+        "Referring to Figure 28.76 and using <i>A</i> as the cross-sectional area of the flow "
+        "channel (<i>A</i> = l<sub>y</sub>·2l<sub>z</sub>), ρ as the fluid density, <i>c</i> as the "
+        "fluid heat capacity (at constant pressure), <i>v</i> as the average fluid velocity and λ as "
+        "the fluid thermal conductivity, one finds that:"))
+    b.append(eq("∂<sup>2</sup>T/∂x<sup>2</sup> − (vρc/λ)(∂T/∂x) − (T/l<sub>z</sub><sup>2</sup>) = 0",
+                "28.120"))
+    b.append(p("or"))
+    b.append(eq("∂<sup>2</sup>T/∂x<sup>2</sup> − (v/a)(∂T/∂x) − (T/l<sub>z</sub><sup>2</sup>) = 0",
+                "28.121"))
+    b.append(p(
+        "where <i>a</i> = λ/ρc is the thermal diffusivity of the fluid. Equation 28.121 is linear in "
+        "<i>T</i>. Solving the differential equation with a heater length l<sub>H</sub>, a heater "
+        "power <i>Q</i> and the boundary condition:"))
+    b.append(eq("lim<sub>x→±∞</sub> T(x) = 0", "28.122"))
+    b.append(p("the following temperature distribution results:"))
+    b.append(eq("x &lt; −l<sub>H</sub>/2: T(x) = T<sub>0</sub>exp[γ<sub>1</sub>(x + "
+                "l<sub>H</sub>/2)]", "28.123"))
+    b.append(eq("−l<sub>H</sub>/2 &lt; x &lt; l<sub>H</sub>/2: T(x) = T<sub>0</sub>", "28.124"))
+    b.append(eq("x &gt; l<sub>H</sub>/2: T(x) = T<sub>0</sub>exp[γ<sub>2</sub>(x − "
+                "l<sub>H</sub>/2)]", "28.125"))
+    b.append(p("where"))
+    b.append(eq("γ<sub>1,2</sub> = [v ± √(v<sup>2</sup> + 2a<sup>2</sup>/l<sub>z</sub><sup>2</sup>)]"
+                " / (2a)", "28.126"))
+    b.append(eq("T<sub>0</sub> = P / [(2λl<sub>y</sub>l<sub>H</sub>/l<sub>z</sub>) + "
+                "Aλ(γ<sub>1</sub> − γ<sub>2</sub>)]", "28.127"))
+    b.append(p(
+        "The temperature difference between the two sides, upstream (at x = l<sub>s</sub>) and "
+        "downstream (at x = −l<sub>s</sub>), can then be calculated as:"))
+    b.append(eq("ΔT(v) = T<sub>0</sub>{exp[γ<sub>2</sub>((l<sub>s</sub> − l<sub>H</sub>)/2)] − "
+                "exp[γ<sub>1</sub>((−l<sub>s</sub> + l<sub>H</sub>)/2)]}", "28.128"))
+    b.append(fig(76, F.fig(76), "en"))
+
+    b.append(h4("Model for the Nonintrusive Type of Calorimetric Sensors",
+                "Model for the Nonintrusive Type of Calorimetric Sensors"))
+    b.append(p(
+        "A simple one-dimensional model is used to show the working principle of the non-intrusive "
+        "type with a capillary tube and a heater wire wound round it. Geometric parameters and "
+        "assumptions are given in Figure 28.77. Because of the symmetry, only half of the capillary "
+        "tube is considered in the calculation model. The conservation of thermal energy in a lumped "
+        "element (Figure 28.77(c)) can be written as:"))
+    b.append(eq("Q<sub>cond.,x,fluid</sub> + Q<sub>conv.,x,fluid</sub> + Q<sub>cond.,x,wall</sub> + "
+                "Q<sub>cond.,y,fluid</sub> = 0", "28.129"))
+    b.append(p(
+        "The indices define conduction or convection in the <i>x</i> or <i>y</i> direction, in the "
+        "fluid as well as in the heated wall. Defining the temperature along the <i>x</i> axis as "
+        "<i>T</i>(x), the average flow velocity as <i>v</i>, the thermal conductivities of the wall "
+        "material as λ<sub>w</sub> and of the fluid as λ, the thermal diffusivity of the fluid "
+        "<i>a</i> = λ/(ρc), and the thickness of the average thermal boundary layer as δ, one finds "
+        "the heat balance equation:"))
+    b.append(eq("[1/2 + (λ<sub>w</sub>d<sub>w</sub>)/(λδ)]∂<sup>2</sup>T/∂x<sup>2</sup> − "
+                "(v/(2a))(∂T/∂x) − T(x)/δ<sup>2</sup> = 0", "28.130"))
+    b.append(p(
+        "The thickness of the average thermal boundary layer δ depends on the flow velocity [15]. "
+        "For gases with a small Prandtl number (Pr &lt; 1) or liquids with a low Reynolds number, "
+        "one can assume that:"))
+    b.append(eq("δ = r", "28.131"))
+    b.append(p(
+        "After solving Equation 28.130 in the local coordinate systems 1 and 2 (Figure 28.77(b)), "
+        "one obtains the temperature difference Δ<i>T</i>(v) between the temperature sensors:"))
+    b.append(eq("ΔT(v) = ϑ<sub>0</sub>[exp(γ<sub>2</sub>l<sub>s</sub>) − "
+                "exp(γ<sub>1</sub>l<sub>s</sub>)]", "28.132"))
+    b.append(p("with:"))
+    b.append(eq("γ<sub>1,2</sub> = [v ± √(v<sup>2</sup> + 16a<sup>2</sup>κ<sup>2</sup>/δ<sup>2</sup>)]"
+                " / (4aκ)", "28.133"))
+    b.append(p("The dimensionless factor:"))
+    b.append(eq("κ = 1/2 + (λ<sub>w</sub>d<sub>w</sub>)/(λδ)", "28.134"))
+    b.append(p(
+        "describes the influence of the wall on the heat balance. If the wall is neglected we get "
+        "κ = 1/2, as in the similar case of Equation 28.121. The heater temperature "
+        "<i>T</i><sub>0</sub> can be calculated for the constant heat power <i>Q</i>:"))
+    b.append(eq("T<sub>0</sub> = Q / {2πλ[l<sub>H</sub>/δ + √(v<sup>2</sup>δ<sup>2</sup>/"
+                "(4a<sup>2</sup>) + 4)]}", "28.135"))
+    b.append(fig(77, F.fig(77), "en"))
+
+    b.append(h4("Model for the Time-of-Flight Type", "Model for the Time-of-Flight Type"))
+    b.append(p(
+        "The transport of the heat generated in a line source through a fluid is governed by the "
+        "energy equation (28.112). The analytical solution of this differential equation for a pulse "
+        "signal with input strength <i>q</i>′<sub>0</sub> (W m<sup>−1</sup>) is given in [11] as:"))
+    b.append(eq("T(x, y, t) = (q′<sub>0</sub>/(4πλt))·exp{−[(x − vt)<sup>2</sup> + y<sup>2</sup>]/"
+                "(4at)}", "28.136"))
+    b.append(p(
+        "where <i>a</i> denotes the thermal diffusivity. By measuring the peak time <i>t</i> at which "
+        "the signal passes the detection element (y = 0), in other words by differentiating Equation "
+        "28.136 with respect to time, one obtains the basic equation for the so-called time of flight "
+        "of the heat pulse:"))
+    b.append(eq("v = x/t", "28.137"))
+    b.append(p(
+        "For Equation 28.136 to be valid, the term 4<i>at</i> must be much smaller than the "
+        "heater–sensor distance <i>x</i>. This assumes that forced convection by the flow dominates "
+        "over the diffusive component. In other words, Equation 28.136 is true at high flow "
+        "velocities. When the diffusive effect is taken into account, the time of flight is given "
+        "by:"))
+    b.append(eq("Δt = [−2a + √(4a<sup>2</sup> + v<sup>2</sup>x<sup>2</sup>)]/v<sup>2</sup> "
+                "(v ≠ 0)", "28.138"))
+    b.append(eq("τ = x<sup>2</sup>/(4a)   (v = 0)", "28.139"))
+
+    b.append(h3("Principles of Microflow Sensors", "Principles of Microflow Sensors"))
+    b.append(p(
+        "In research papers, the first reference to a thermal mass flow sensor normally cited is that "
+        "of King in 1914. Since then, microsystems technology has been developed. Thermal flow "
+        "sensors can be realised at micron size using the three current technologies: bulk "
+        "micromachining, surface micromachining, epimicromachining and LIGA techniques (LIGA: the "
+        "German description of “Lithographie, Galvanoformung, Abformung”). These fabrication "
+        "techniques (except LIGA) are compatible with conventional microelectronic processing. "
+        "Thermal flow sensors developed with these technologies are called “microflow sensors” in "
+        "this section. The operational modes are similar to the conventional thermal flow sensor. In "
+        "Table 28.21 the microflow sensors are classified by their transducing principle. With these "
+        "new sensors, very small flows in the nanolitre and microlitre range can be measured. "
+        "Table 28.22 shows some realised examples of microflow sensors."))
+    b.append(table(*_t2821("en")))
+    b.append(table(*_t2822("en")))
+
+    b.append(h3("Smart Thermal Flow Sensors and Advanced Evaluation Circuits",
+                "Smart Thermal Flow Sensors and Advanced Evaluation Circuits"))
+    b.append(p(
+        "Conventional sensors usually have separate electronics, which causes high cost and prevents "
+        "large serial production. An integrated smart thermal flow sensor is defined as a chip that "
+        "contains one or more sensors, signal conditioning, A/D conversion and a bus output [15]. "
+        "There is therefore a need for advanced evaluation methods that convert the thermal signal "
+        "directly into a frequency and duty-cycle output."))
+
+    b.append(h4("The Duty-Cycle Modulation for the Hot-Wire Sensors",
+                "The Duty-Cycle Modulation for the Hot-Wire Sensors"))
+    b.append(p(
+        "The constant heater temperature can be controlled by modulating the amplitude of the heater "
+        "voltage (the conventional principle) or by modulating the duty cycle. The heater is "
+        "activated when the output signal is high. This heater-control output goes low when the "
+        "temperature level <i>T</i><sub>0</sub> + Δ<i>T</i> is reached. During the low output the "
+        "heater temperature decreases to the level <i>T</i><sub>0</sub> + Δ<i>T</i>, at which the "
+        "output goes high again and restarts the heating cycle. The temperature level is determined "
+        "by a reference resistor and a variable resistor. An increase in flow rate increases the "
+        "convective cooling of the heater, and it takes longer to reach the temperature level. That "
+        "results in a higher output time <i>t</i><sub>H</sub>. Figure 28.78 shows the working "
+        "principle of the duty-cycle modulation, where <i>t</i><sub>d</sub> is the time delay in the "
+        "switching action. Defining the maximum heating power as <i>Q</i><sub>max</sub> (the output "
+        "signal is always high), one obtains the relation:"))
+    b.append(eq("Q = Q<sub>max</sub>(t<sub>H</sub>/t<sub>total</sub>)", "28.140"))
+    b.append(fig(78, F.fig(78), "en"))
+
+    b.append(h4("The Electrical Sigma–Delta Modulation for Calorimetric Sensors",
+                "The Electrical Sigma–Delta Modulation for Calorimetric Sensors"))
+    b.append(p(
+        "Conventional signal-conditioning circuits use an analogue-to-digital converter (ADC) to get "
+        "a digital sensor readout, which can be regarded as an amplifier or a voltmeter. They read "
+        "the information signal from the sensor but do not interact with it. In contrast, "
+        "sigma–delta converters are part of the sensor function, since they act as a feedback "
+        "amplifier for the sensor output. Hence sigma–delta conversion normally results in a much "
+        "more robust sensor signal than conventional ADCs provide. Below, the principle of "
+        "sigma–delta conversion applied to calorimetric flow sensors is explained."))
+    b.append(p(
+        "Transistors T1 and T2 represent two switches that feed the constant current "
+        "<i>I</i><sub>0</sub> into the RC network. In this example it is assumed that the temperature "
+        "on resistor R<sub>s2</sub> is higher than the temperature on R<sub>s1</sub>. Therefore the "
+        "resistance of R<sub>s2</sub> is larger than that of R<sub>s1</sub>, which gives a larger "
+        "time constant for charging C<sub>2</sub>. With the help of the comparators and the D "
+        "flip-flop, the constant current <i>I</i><sub>0</sub> can be switched on and off. The "
+        "switching signals <i>f</i><sub>1</sub> and <i>f</i><sub>2</sub> have, in the same time "
+        "period, different pulse numbers, N + S and N:"))
+    b.append(eq("R<sub>s2</sub>/R<sub>s1</sub> = (N + S)/N = 1 + ΔR/R<sub>s1</sub>", "28.141"))
+    b.append(p("Thus:"))
+    b.append(eq("ΔR/R<sub>s1</sub> = S/N", "28.142"))
+    b.append(p("with:"))
+    b.append(eq("R<sub>s1</sub> = (V<sub>ref</sub>/I<sub>0</sub>)(N/G)", "28.143"))
+    b.append(p("The resistance difference as well as the temperature difference can be calculated:"))
+    b.append(eq("ΔR = (SV<sub>ref</sub>)/(GI<sub>0</sub>)", "28.144"))
+    b.append(p("The counting and recording of S and G are shown in Figure 28.79."))
+    b.append(fig(79, F.fig(79), "en"))
+
+    b.append(h4("The Thermal Sigma–Delta Modulation", "The Thermal Sigma–Delta Modulation"))
+    b.append(p(
+        "The principle of thermal sigma–delta modulation is based on the conventional electrical "
+        "sigma–delta: the thermal sigma–delta converter uses a thermal integrator (a thermal R/C "
+        "network) instead of an electric integrator (an electric R/C network). Figure 28.80 shows "
+        "the principle of thermal sigma–delta modulation. The comparator output modulates the "
+        "flip-flop. The flip-flop synchronises the heating signal with its clock. Therefore the "
+        "heating periods are chopped into further small pulses that depend on the clock frequency. "
+        "The heater is actuated step by step until the comparator switches again, and one obtains a "
+        "frequency-analogue output at the flip-flop [22]."))
+    b.append(fig(80, F.fig(80), "en"))
+
+    b.append(h3("Calibration Conditions", "Calibration Conditions"))
+    b.append(h4("Calibration of Hot-Wire and Hot-Film Sensors",
+                "Calibration of Hot-Wire and Hot-Film Sensors"))
+    b.append(p(
+        "The hot-wire and hot-film sensors are based on point velocity measurement (see "
+        "Table 28.14). Therefore the measurement results depend on the velocity distribution inside "
+        "the flow channel. Achieving a high signal-to-noise ratio can thus require spatial arrays of "
+        "hot-wire and hot-film sensors that give more information about the velocity field and thus "
+        "more accurate results for the mass flow in the channel. With the use of a nozzle, a Venturi "
+        "or a flow conditioner, the flow profile is preconditioned, which leads to an acceptable "
+        "accuracy."))
+    b.append(h4("Temperature Dependence of Fluid Properties",
+                "Temperature Dependence of Fluid Properties"))
+    b.append(p(
+        "Most fluid properties depend on the working temperature. The heat transfer process depends "
+        "on the fluid properties. The measurement of fluid temperature (see Table 28.14) keeps the "
+        "heater at a constant temperature difference to the fluid and can also be used to compensate "
+        "for variations in temperature. For these reasons, accurate thermal mass flow sensors "
+        "require both flow calibration and calibration for temperature compensation. Furthermore, "
+        "the influence of temperature and/or fluid composition can be derived using the "
+        "relationships developed in the modelling sections (Equations 28.120–28.135)."))
+
+    b.append(h3("Instrumentation and Components", "Instrumentation and Components"))
+    b.append(p("Table 28.23 lists some companies that manufacture and market thermal mass flowmeters."))
+    b.append(table(*_t2823("en")[:3], widths=("20%", "24%", "40%", "16%")))
+
+    b.append(h3("References", "References"))
+    b.append(ol([
+        "Béla G. Lipták, <i>Flow Measurement</i>, Radnor, PA: Chilton Book, 1993.",
+        "H. Strickert, <i>Hitzdraht und Hitzfilmanemometrie</i> (Hot-wire and hot-film anemometry), "
+        "Berlin: Verlag Technik, 1974.",
+        "G. Schnell, <i>Sensoren in der Automatisierungstechnik</i> (Sensors in automation), "
+        "Braunschweig: Verlag Viehweg, 1993.",
+        "<i>Mass Flow and Pressure Meters/Controllers</i>, The Netherlands: Bronkhorst Hi-Tec B.V., "
+        "1994.",
+        "T. S. J. Lammerink, F. Dijkstra, Z. Houkes and J. van Kuijk, “Intelligent gas-mixture flow "
+        "sensor”, <i>Sensors and Actuators A</i>, 46/47, 380–384, 1995.",
+        "<i>VDI-Wärmeatlas</i>, VDI-Verlag, 1994.",
+        "H. Schlichting, <i>Boundary Layer Theory</i>, 7th ed., New York: McGraw-Hill, 1979.",
+        "A. J. Chapman, <i>Heat Transfer</i>, 4th ed., New York: Macmillan, 1984.",
+        "T. S. J. Lammerink, Niels R. Tas, Miko Elwenspoek and J. H. J. Fluitman, “Micro-liquid flow "
+        "sensor”, <i>Sensors and Actuators A</i>, 37/38, 45–50, 1993.",
+        "N. T. Nguyen and W. Dötzel, “A novel method for designing multi-range electrocaloric mass "
+        "flow sensors: asymmetrical locating with heater- and sensor arrays”, <i>Sensors and "
+        "Actuators A</i>, 62, 506–512, 1997.",
+        "J. van Kuijk, T. S. T. Lammerink, H.-E. de Bree, M. Elwenspoek and J. H. J. Fluitman, "
+        "“Multi-parameter detection in fluid flows”, <i>Sensors and Actuators A</i>, 46/47, "
+        "380–384, 1995.",
+        "S. M. Sze, <i>Semiconductor Sensors</i>, New York: John Wiley &amp; Sons, 1994.",
+        "You-Chong Tai and Richard S. Muller, “Lightly-doped polysilicon bridge as a flow meter”, "
+        "<i>Sensors and Actuators A</i>, 15, 63–75, 1988.",
+        "R. G. Johnson and R. E. Higashi, “A highly sensitive silicon chip microtransducer for air "
+        "flow and differential pressure sensing applications”, <i>Sensors and Actuators A</i>, 11, "
+        "63–67, 1987.",
+        "H. J. Verhoeven and J. H. Huijsing, “An integrated gas flow sensor with high sensitivity, "
+        "low response time and pulse-rate output”, <i>Sensors and Actuators A</i>, 41/42, "
+        "217–220, 1994.",
+        "F. Mayer, G. Salis, J. Funk, O. Paul and H. Baltes, “Scaling of thermal CMOS gas flow "
+        "microsensors: experiment and simulation”, <i>MEMS '96</i>, San Diego, 1996, 116–121.",
+        "Göran Stemme, “A CMOS integrated silicon gas-flow sensor with pulse-modulated output”, "
+        "<i>Sensors and Actuators A</i>, 14, 293–303, 1988.",
+        "Canqian Yang and Heinrik Soeberg, “Monolithic flow sensor for measuring millilitre per "
+        "minute liquid flow”, <i>Sensors and Actuators A</i>, 33, 143–153, 1992.",
+        "Dun Yu, H. Y. Hsieh and J. N. Zemel, “Microchannel pyroelectric anemometer”, <i>Sensors and "
+        "Actuators A</i>, 39, 29–35, 1993.",
+        "S. G. Joshi, “Flow sensors based on surface acoustic waves”, <i>Sensors and Actuators A</i>, "
+        "44, 63–72, 1994.",
+        "U. Bonne, “Fully compensated flow microsensor for electronic gas metering”, <i>Proc. Int. "
+        "Gas Research Conf.</i>, 16–19 November 1992, Orlando, FL, 3, 859, 1992.",
+        "J. H. Huijsing, F. R. Riedijk and G. van der Horn, “Developments in integrated smart "
+        "sensors”, <i>Proc. of Transducer 93</i>, Yokohama, Japan, 1993, 320–326.",
+    ]))
+    return "".join(b)
+
+
+def sec_28_10_vi():
+    b = []
+    b.append(h2("28.10 Lưu lượng kế khối theo hiệu ứng Coriolis",
+                "Coriolis Effect Mass Flowmeters"))
+    b.append(p("Jesse Yoder."))
+    b.append(p(
+        "Lưu lượng kế Coriolis ra đời vào những năm 1980 nhằm đáp ứng nhu cầu về một loại lưu "
+        "lượng kế đo trực tiếp khối lượng, thay vì đo vận tốc hay thể tích. Vì không phụ thuộc "
+        "vào các thông số thay đổi của lưu chất, lưu lượng kế Coriolis được ứng dụng rộng rãi. "
+        "Nhiều lưu lượng kế đo vận tốc và đo thể tích chịu ảnh hưởng của sự thay đổi áp suất, "
+        "nhiệt độ, độ nhớt và khối lượng riêng của lưu chất. Lưu lượng kế Coriolis thì gần như "
+        "không bị ảnh hưởng bởi những thay đổi đó. Bằng cách đo trực tiếp khối lượng khi nó đi "
+        "qua đồng hồ, lưu lượng kế Coriolis cho một phép đo có độ chính xác cao và gần như độc "
+        "lập với điều kiện công nghệ thay đổi. Nhờ vậy, có thể dùng lưu lượng kế Coriolis cho "
+        "nhiều loại lưu chất khác nhau mà không cần hiệu chuẩn lại và không cần bù theo các "
+        "thông số riêng của từng loại lưu chất. Lưu lượng kế Coriolis mang tên Gaspard G. "
+        "Coriolis (1792–1843), một kỹ sư xây dựng và nhà vật lý người Pháp, người đã để lại tên "
+        "mình cho lực Coriolis."))
+    b.append(p(
+        "Lưu lượng kế Coriolis đã trở nên phổ biến rộng rãi trong môi trường công nghiệp vì "
+        "chúng có độ chính xác cao nhất trong tất cả các loại lưu lượng kế. Chúng đo trực tiếp "
+        "khối lượng chứ không suy ra một cách gián tiếp. Lưu lượng kế Coriolis không có bộ phận "
+        "chuyển động như lưu lượng kế tuabin và lưu lượng kế thể tích dương — những loại có các "
+        "chi tiết dễ mài mòn. Yêu cầu bảo trì của lưu lượng kế Coriolis thấp và không cần hiệu "
+        "chuẩn thường xuyên. Các bộ phận tiếp xúc lưu chất có thể được chế tạo từ nhiều loại vật "
+        "liệu khác nhau, giúp đồng hồ thích ứng với nhiều loại lưu chất. Lưu lượng kế Coriolis "
+        "xử lý được lưu chất ăn mòn và lưu chất có chứa chất rắn hoặc hạt. Khi mới ra đời, loại "
+        "đồng hồ này chủ yếu dùng cho chất lỏng; gần đây chúng đã thích ứng được với các ứng "
+        "dụng khí."))
+
+    b.append(h3("Nguyên lý hoạt động", "Theory of Operation"))
+    b.append(p(
+        "Lưu lượng kế Coriolis thường gồm một hoặc hai ống dao động, có một đầu vào và một đầu "
+        "ra. Một số ống có dạng chữ U, nhưng phần lớn lưu lượng kế Coriolis có dạng hình học "
+        "phức tạp riêng của từng nhà chế tạo. Lưu chất đi vào đồng hồ qua đầu vào, và lưu lượng "
+        "khối được xác định dựa trên tác dụng của lưu chất lên các ống dao động. Hình 28.81 cho "
+        "thấy đáp ứng của ống dẫn với gia tốc Coriolis."))
+    b.append(fig(81, F.fig(81), "vi"))
+    b.append(p(
+        "Điểm chung của các lưu lượng kế Coriolis là một điểm giữa đóng vai trò trục quay. Điểm "
+        "này đồng thời là điểm có biên độ dao động lớn nhất. Điều đặc biệt ở điểm này là lưu chất "
+        "xử sự khác nhau tùy theo nó đang ở phía nào của trục quay, tức phía nào của điểm có biên "
+        "độ đỉnh. Khi lưu chất chảy về phía điểm giữa này, nó nhận gia tốc nhờ chính dao động của "
+        "ống. Khi lưu chất chảy ra xa điểm có biên độ dao động đỉnh, nó giảm tốc trên đường tới "
+        "đầu ra của ống. Ở phía đầu vào của ống, lực làm tăng tốc của dòng lưu chất khiến ống trễ "
+        "lại so với vị trí không có dòng. Ở phía đầu ra của ống, lực làm giảm tốc của dòng lưu "
+        "chất khiến ống vượt lên trước vị trí không có dòng. Hệ quả của hai lực này là ống có "
+        "thêm chuyển động xoắn khi đi qua mỗi chu kỳ dao động; độ xoắn tỉ lệ trực tiếp với lưu "
+        "lượng khối qua ống. Hình 28.82 cho thấy ống Coriolis ở trạng thái không có dòng, và Hình "
+        "28.83 cho thấy đáp ứng của ống Coriolis khi có dòng."))
+    b.append(fig(82, F.fig(82), "vi"))
+    b.append(fig(83, F.fig(83), "vi"))
+    b.append(p(
+        "Ống Coriolis (hay các ống, với loại nhiều ống) được kích dao động bằng các cơ cấu điện "
+        "từ. Ống có một cụm dẫn động và có một dạng dao động dự đoán được ở vị trí không có dòng. "
+        "Khi có dòng và ống xoắn lại để đáp ứng với dòng, nó lệch khỏi dạng dao động dự đoán được "
+        "này. Mức độ xoắn của ống được hệ thống cảm biến của lưu lượng kế Coriolis thu nhận. Tại "
+        "bất kỳ điểm nào trên ống, chuyển động của ống là một sóng sin. Khi có lưu lượng khối, "
+        "xuất hiện một độ lệch pha giữa phía đầu vào và phía đầu ra. Điều này được thể hiện trên "
+        "Hình 28.84."))
+    b.append(fig(84, F.fig(84), "vi"))
+    b.append(eq("F = 2mω<span style='text-decoration:overline'>v</span>", "28.145"))
+    b.append(p(
+        "Trong phương trình 28.145, F là lực, m là khối lượng đặt tại một điểm đã biết cách trục "
+        "0–0 một khoảng L, ω là vectơ biểu diễn chuyển động góc, và "
+        "<span style='text-decoration:overline'>v</span> là vectơ biểu diễn vận tốc trung bình."))
+    b.append(note(
+        "<b>Ghi chú của người dịch.</b> Nguyên bản in dạng độ lớn vô hướng. Dạng vectơ đầy đủ là "
+        "<b>F</b> = −2m(<b>ω</b> × <b>v</b>): lực Coriolis vuông góc với cả trục quay và vectơ vận "
+        "tốc, và ngược dấu với gia tốc Coriolis. Với ống thẳng và dòng chảy vuông góc với trục "
+        "dao động, hai dạng cho cùng một độ lớn 2mωv, nên phương trình in trong sách vẫn dùng "
+        "được để tính độ lớn của lực."))
+
+    b.append(h3("Kết cấu", "Construction"))
+    b.append(p(
+        "Phần bên trong ống Coriolis là bộ phận duy nhất của đồng hồ tiếp xúc với lưu chất. Vật "
+        "liệu chế tạo điển hình là thép không gỉ. Các kim loại chịu ăn mòn khác như Hastelloy "
+        "cũng được dùng để chế tạo ống. Một số đồng hồ được lót Teflon."))
+    b.append(p(
+        "Một số thiết kế có ống thành mỏng bên cạnh loại ống tiêu chuẩn. Thiết kế thành mỏng làm "
+        "đồng hồ hữu ích hơn cho ứng dụng khí và chất lỏng vận tốc thấp — những nơi độ xoắn của "
+        "ống bị giảm. Cần lưu ý mức độ lưu chất làm suy giảm hoặc ăn mòn thành ống hay lớp lót. "
+        "Nếu lưu chất ăn mòn thành ống, độ chính xác của đồng hồ có thể giảm."))
+
+    b.append(h3("Ưu điểm", "Advantages"))
+    b.append(p(
+        "Ưu điểm đáng kể nhất của lưu lượng kế Coriolis là độ chính xác cao trong dải lưu lượng "
+        "và dải điều kiện rộng. Vì đo trực tiếp lưu lượng khối, đồng hồ có ít nguồn sai số hơn. "
+        "Lưu lượng kế Coriolis có độ chuyển đổi cao, nên dùng được trong dải lưu lượng rộng. Điều "
+        "này cho nó lợi thế rõ rệt so với lưu lượng kế tấm orifice — loại thường có độ chuyển đổi "
+        "thấp. Lưu lượng kế Coriolis cũng không nhạy với hiệu ứng xoáy, nên không cần bộ ổn định "
+        "dòng. Bộ ổn định dòng được đặt phía thượng lưu một số lưu lượng kế để giảm xoáy và rối "
+        "cho những loại mà độ chính xác hoặc độ tin cậy bị ảnh hưởng bởi các yếu tố này. Lưu "
+        "lượng kế Coriolis có chi phí sở hữu thấp. Khác với lưu lượng kế tuabin và lưu lượng kế "
+        "thể tích dương, lưu lượng kế Coriolis không có bộ phận chuyển động nào bị mài mòn theo "
+        "thời gian. Chuyển động duy nhất là do ống dao động và do lưu chất chảy bên trong ống. Vì "
+        "được thiết kế để không bị ảnh hưởng bởi các thông số lưu chất như độ nhớt, áp suất, "
+        "nhiệt độ và khối lượng riêng, đồng hồ không phải hiệu chuẩn lại cho từng loại lưu chất. "
+        "Lắp đặt cũng đơn giản hơn nhiều loại lưu lượng kế khác, đặc biệt so với tấm orifice, vì "
+        "lưu lượng kế Coriolis có ít bộ phận hơn."))
+    b.append(p(
+        "Lưu lượng kế Coriolis có thể đo nhiều hơn một biến quá trình. Ngoài lưu lượng khối, "
+        "chúng còn đo được khối lượng riêng, nhiệt độ và độ nhớt. Điều này khiến chúng đặc biệt "
+        "có giá trị trong các ứng dụng công nghệ, nơi thông tin về các biến ấy giúp giảm chi phí. "
+        "Nó cũng loại bỏ nhu cầu phải có thiết bị riêng để đo các biến bổ sung đó."))
+
+    b.append(h3("Nhược điểm", "Disadvantages"))
+    b.append(p(
+        "Nhược điểm chính của lưu lượng kế Coriolis là giá ban đầu. Một số đồng hồ cỡ nhỏ có giá "
+        "chỉ 4 000 USD, nhưng giá cơ bản của phần lớn lưu lượng kế Coriolis là 6 000 USD trở lên. "
+        "Giá tăng đáng kể khi cỡ ống tăng. Kích thước vật lý của lưu lượng kế Coriolis cũng tăng "
+        "đáng kể theo cỡ ống, khiến 150 mm (6 in.) là giới hạn cỡ ống trên của lưu lượng kế "
+        "Coriolis hiện nay. Kích thước lớn của một số đồng hồ gây khó khăn khi vận chuyển và đôi "
+        "khi cả khi lắp đặt."))
+    b.append(p(
+        "Việc thiếu một khối kiến thức đã được xác lập về lưu lượng kế Coriolis là một nhược điểm "
+        "đáng kể. Vì lưu lượng kế Coriolis mới được phát minh, lượng dữ liệu về chúng còn ít hơn "
+        "nhiều so với lưu lượng kế dựa trên chênh áp. Điều này khiến việc xin chấp thuận của các "
+        "hiệp hội công nghiệp như Viện Dầu khí Hoa Kỳ (American Petroleum Institute) trở nên khó "
+        "khăn. Tình hình sẽ thay đổi theo thời gian, khi thêm nhiều nhà chế tạo tham gia thị "
+        "trường và người dùng tích lũy được nhiều kinh nghiệm hơn."))
+
+    b.append(h3("Ứng dụng", "Applications"))
+    b.append(p(
+        "Lưu lượng kế Coriolis không bị ràng buộc bởi số Reynolds và có thể dùng cho hầu như mọi "
+        "chất lỏng hoặc chất khí chảy với lưu lượng khối đủ lớn để tác động lên dao động của đồng "
+        "hồ. Các ứng dụng chất lỏng điển hình gồm thực phẩm, bùn, hóa chất khắc nghiệt và hệ "
+        "thống pha trộn. Tính linh hoạt của lưu lượng kế Coriolis khi xử lý nhiều loại lưu chất "
+        "khiến chúng rất hữu ích cho những nhà máy phải đo lưu lượng của nhiều loại lưu chất. Số "
+        "ứng dụng khí của lưu lượng kế Coriolis đang tăng lên. Tuy ứng dụng khí vẫn còn rất ít, "
+        "việc dùng đồng hồ này để đo khí nhiều khả năng sẽ tăng khi hiểu biết về nó trong mục "
+        "đích này được mở rộng."))
+
+    b.append(h3("Triển vọng", "A Look Ahead"))
+    b.append(p(
+        "Có một số hướng nghiên cứu quan trọng cho lưu lượng kế Coriolis. Trong khi phần lớn lưu "
+        "lượng kế Coriolis dùng ống uốn cong, một số nhà chế tạo gần đây đã đưa ra thiết kế ống "
+        "thẳng. Các nhà chế tạo sẽ tiếp tục tinh chỉnh việc chọn một ống hay hai ống, và tiếp tục "
+        "nghiên cứu hình học ống. Như đã nêu, việc dùng lưu lượng kế Coriolis cho khí và cả cho "
+        "hơi nước là một hướng phát triển khác trong tương lai."))
+
+    b.append(h3("Tài liệu tham khảo", "References"))
+    b.append(wl([
+        "E. O. Doebelin, <i>Measurement Systems: Application and Design</i>, 4th ed., New York: "
+        "McGraw Hill, 1990, 603–605.",
+        "R. S. Figliola và D. E. Beasley, <i>Theory and Design for Mechanical Measurements</i>, "
+        "2nd ed., New York: John Wiley &amp; Sons, 1995, 475–478.",
+        "K. O. Plache, Coriolis/Gyroscopic Flowmeter, <i>Mechanical Engineering</i>, MicroMotion "
+        "Inc., Boulder, CO, tháng 3 năm 1979, 36–41.",
+        "L. Smith và J. R. Ruesch, <i>Flow Measurement</i>, D. W. Spitzer (chủ biên), Research "
+        "Triangle Park, NC: Instrument Society of America, 1996, 221–247.",
+    ]))
+    return "".join(b)
+
+
+def sec_28_10_en():
+    b = []
+    b.append(h2("28.10 Coriolis Effect Mass Flowmeters", "Lưu lượng kế khối theo hiệu ứng Coriolis"))
+    b.append(p("Jesse Yoder."))
+    b.append(p(
+        "Coriolis flowmeters were developed in the 1980s to fill the need for a flowmeter that "
+        "measures mass directly, as opposed to those that measure velocity or volume. Because they "
+        "are independent of changing fluid parameters, Coriolis meters have found wide application. "
+        "Many velocity and volumetric meters are affected by changes in fluid pressure, "
+        "temperature, viscosity, and density. Coriolis meters, on the other hand, are virtually "
+        "unaffected by these types of changes. By measuring mass directly as it passes through the "
+        "meter, Coriolis meters make a highly accurate measurement that is virtually independent "
+        "of changing process conditions. As a result, Coriolis meters can be used on a variety of "
+        "process fluids without recalibration and without compensating for parameters specific to "
+        "a particular type of fluid. Coriolis flowmeters are named after Gaspard G. Coriolis "
+        "(1792–1843), a French civil engineer and physicist for whom the Coriolis force is named."))
+    b.append(p(
+        "Coriolis meters have become widely used in industrial environments because they have the "
+        "highest accuracy of all types of flowmeters. They measure mass directly, rather than "
+        "inferentially. Coriolis meters do not have moving parts like turbine and positive "
+        "displacement meters, which have parts that are subject to wear. Maintenance requirements "
+        "for Coriolis meters are low, and they do not require frequent calibration. Wetted parts "
+        "can be made from a variety of materials to make these meters adaptable to many types of "
+        "fluids. Coriolis meters can handle corrosive fluids and fluids that contain solids or "
+        "particulate matter. While these meters were used mainly for liquids when they were first "
+        "introduced, they have recently become adaptable for gas applications."))
+
+    b.append(h3("Theory of Operation", "Nguyên lý hoạt động"))
+    b.append(p(
+        "Coriolis meters typically consist of one or two vibrating tubes with an inlet and an "
+        "outlet. While some are U-shaped, most Coriolis meters have some type of complex geometric "
+        "shape that is proprietary to the manufacturer. Fluid enters the meter in the inlet, and "
+        "mass flow is determined based on the action of the fluid on the vibrating tubes. Figure "
+        "28.81 shows flow tube response to Coriolis acceleration."))
+    b.append(fig(81, F.fig(81), "en"))
+    b.append(p(
+        "Common to Coriolis meters is a central point that serves as the axis of rotation. This "
+        "point is also the peak amplitude of vibration. What is distinctive about this point is "
+        "that fluid behaves differently, depending on which side of the axis of rotation, or point "
+        "of peak amplitude, it is on. As fluid flows toward this central point, the fluid takes on "
+        "acceleration due to the vibration of the tube. As the fluid flows away from the amplitude "
+        "of peak vibration, it decelerates as it moves toward the tube outlet. On the inlet side of "
+        "the tube, the accelerating force of the flowing fluid causes the tube to lag behind its "
+        "no-flow position. On the outlet side of the tube, the decelerating force of the flowing "
+        "fluid causes the tube to lead ahead of its no-flow position. As a result of these forces, "
+        "the tube takes on a twisting motion as it passes through each vibrational cycle; the "
+        "amount of twist is directly proportional to the mass flow through the tube. Figure 28.82 "
+        "shows the Coriolis flow tube in a no flow situation, and Figure 28.83 shows Coriolis tube "
+        "response to flow."))
+    b.append(fig(82, F.fig(82), "en"))
+    b.append(fig(83, F.fig(83), "en"))
+    b.append(p(
+        "The Coriolis tube (or tubes, for multitube devices) is vibrated through the use of "
+        "electromagnetic devices. The tube has a drive assembly, and has a predictable vibratory "
+        "profile in the no-flow position. As flow occurs and the tube twists in response to the "
+        "flow, it departs from this predictable profile. The degree of tube twisting is sensed by "
+        "the Coriolis meter's detector system. At any point on the tube, tube motion represents a "
+        "sine wave. As mass flow occurs, there is a phase shift between the inlet side and the "
+        "outlet side. This is shown in Figure 28.84."))
+    b.append(fig(84, F.fig(84), "en"))
+    b.append(eq("F = 2mω<span style='text-decoration:overline'>v</span>", "28.145"))
+    b.append(p(
+        "In Equation 28.145, F is force, m is the mass to be applied to a known point at a "
+        "distance L from the axis 0–0, ω is a vector representing angular motion, and "
+        "<span style='text-decoration:overline'>v</span> is a vector that represents average "
+        "velocity."))
+    b.append(note(
+        "<b>Translator's note.</b> The printed form is the scalar magnitude. The full vector form "
+        "is <b>F</b> = −2m(<b>ω</b> × <b>v</b>): the Coriolis force is perpendicular to both the "
+        "axis of rotation and the velocity vector, and opposite in sign to the Coriolis "
+        "acceleration. For a straight tube with the flow normal to the axis of vibration the two "
+        "forms give the same magnitude, 2mωv, so the printed equation can still be used to compute "
+        "the magnitude of the force."))
+
+    b.append(h3("Construction", "Kết cấu"))
+    b.append(p(
+        "The internal part of the Coriolis tube is the only part of the meter that is wetted. A "
+        "typical material of construction is stainless steel. Other corrosion-resistant metals "
+        "such as Hastelloy are used for tube construction. Some meters are lined with Teflon."))
+    b.append(p(
+        "Some designs have thin-wall as well as standard tubes. A thin-wall design makes the meter "
+        "more useful for gas and low-velocity liquid applications, where the amount of twist by the "
+        "tube is reduced. It is important to be aware of the extent to which the fluid degrades or "
+        "attacks the tube wall or lining. If the fluid eats away at the wall, this can reduce the "
+        "accuracy of the meter."))
+
+    b.append(h3("Advantages", "Ưu điểm"))
+    b.append(p(
+        "The most significant advantage of Coriolis meters is high accuracy under wide flow ranges "
+        "and conditions. Because Coriolis meters measure mass flow directly, they have fewer "
+        "sources of errors. Coriolis meters have a high turndown, which makes them applicable over "
+        "a wide flow range. This gives them a strong advantage over orifice plate meters, which "
+        "typically have low turndown. Coriolis meters are also insensitive to swirl effects, making "
+        "flow conditioning unnecessary. Flow conditioners are placed upstream from some flowmeters "
+        "to reduce swirl and turbulence for flowmeters whose accuracy or reliability is affected "
+        "by these factors. Coriolis meters have a low cost of ownership. Unlike turbine and "
+        "positive displacement meters, Coriolis meters have no moving parts to wear down over time. "
+        "The only motion is due to the vibration of the tube, and the motion of the fluid flowing "
+        "inside the tube. Because Coriolis flowmeters are designed not to be affected by fluid "
+        "parameters such as viscosity, pressure, temperature, and density, they do not have to be "
+        "recalibrated for different fluids. Installation is simpler than installation for many "
+        "other flowmeters, especially orifice plate meters, because Coriolis meters have fewer "
+        "components."))
+    b.append(p(
+        "Coriolis meters can measure more than one process variable. Besides mass flow, they can "
+        "also measure density, temperature, and viscosity. This makes them especially valuable in "
+        "process applications where information about these variables reduces costs. It also makes "
+        "it unnecessary to have a separate instrument to measure these additional variables."))
+
+    b.append(h3("Disadvantages", "Nhược điểm"))
+    b.append(p(
+        "The chief disadvantage of Coriolis meters is their initial cost. While some small meters "
+        "have prices as low as $4,000, the base price for most Coriolis meters is $6,000 and up. "
+        "The cost of Coriolis meters rises significantly as line sizes increase. The physical size "
+        "of Coriolis meters increases substantially with the increase in line size, making 150 mm "
+        "(6 in.) the upper line size limit on Coriolis meters today. The large size of some "
+        "Coriolis meters makes them difficult to handle, and can also make installation difficult "
+        "in some cases."))
+    b.append(p(
+        "The lack of an established body of knowledge about Coriolis meters is a substantial "
+        "disadvantage. Because Coriolis meters were recently invented, not nearly as much data are "
+        "available about them as are for differential pressure-based flowmeters. This has made it "
+        "difficult for Coriolis meters to gain approvals from industry associations such as the "
+        "American Petroleum Institute. This will change with time, as more manufacturers enter the "
+        "market and users build up a larger base of experience."))
+
+    b.append(h3("Applications", "Ứng dụng"))
+    b.append(p(
+        "Coriolis meters have no Reynolds number constraints, and can be applied to almost any "
+        "liquid or gas flowing at a sufficient mass flow to affect vibration of the flowmeter. "
+        "Typical liquid applications include foods, slurries, harsh chemicals, and blending "
+        "systems. The versatility of Coriolis meters in handling multiple fluids makes them very "
+        "useful for plants where the flow of multiple fluid types must be measured. There are an "
+        "increasing number of gas applications for Coriolis meters. While gas applications are "
+        "still very much in the minority, the use of this meter to measure gas is likely to "
+        "increase as more is learned about its use for this purpose."))
+
+    b.append(h3("A Look Ahead", "Triển vọng"))
+    b.append(p(
+        "There are some important areas of research for Coriolis meters. While most Coriolis "
+        "meters have been bent, several manufacturers have recently introduced straight-tube "
+        "designs. Manufacturers will continue to fine-tune the single-tube vs. double-tube design, "
+        "and to work on tube geometry. As noted above, the use of Coriolis meters for gas and also "
+        "for steam applications is another area for future development."))
+
+    b.append(h3("References", "Tài liệu tham khảo"))
+    b.append(wl([
+        "E. O. Doebelin, <i>Measurement Systems: Application and Design</i>, 4th ed., New York: "
+        "McGraw Hill, 1990, 603–605.",
+        "R. S. Figliola and D. E. Beasley, <i>Theory and Design for Mechanical Measurements</i>, "
+        "2nd ed., New York: John Wiley &amp; Sons, 1995, 475–478.",
+        "K. O. Plache, Coriolis/Gyroscopic Flowmeter, <i>Mechanical Engineering</i>, MicroMotion "
+        "Inc., Boulder, CO, March 1979, 36–41.",
+        "L. Smith and J. R. Ruesch, <i>Flow Measurement</i>, D. W. Spitzer (ed.), Research "
+        "Triangle Park, NC: Instrument Society of America, 1996, 221–247.",
+    ]))
+    return "".join(b)
+
+
+def sec_28_11_vi():
+    b = []
+    b.append(h2("28.11 Lưu lượng kế kiểu lực kéo", "Drag Force Flowmeters"))
+    b.append(p("Rekha Philip-Chandy, Roger Morgan và Patricia J. Scully."))
+    b.append(p(
+        "Trong lưu lượng kế kiểu bia (target), một vật rắn gọi là phần tử kéo được đặt trong dòng "
+        "lưu chất cần đo. Lực mà lưu chất tác dụng lên phần tử kéo được đo rồi quy đổi thành tốc độ "
+        "dòng."))
+    b.append(p(
+        "Phần tử cảm biến dòng không có bộ phận quay, nhờ vậy thiết bị dùng được trong những điều "
+        "kiện mà sự mài mòn, nhiễm bẩn hoặc ăn mòn khiến các thiết bị thông thường không phù hợp. Một "
+        "ứng dụng quan trọng của loại lưu lượng kế này là quan trắc môi trường trong các lĩnh vực như "
+        "khí tượng, thủy văn và hải dương học, để đo tốc độ dòng không khí hay nước và độ rối gần mặt "
+        "đất. Trong những ứng dụng ấy, dòng chảy xuất hiện từng đợt và đổi hướng liên tục."))
+    b.append(p(
+        "Một ưu điểm nữa của thiết bị là nó có thể cho ra số đo hướng dòng theo hai chiều, thậm chí "
+        "ba chiều, bên cạnh tốc độ dòng. Để làm được điều này, phần tử kéo phải đối xứng theo đúng số "
+        "chiều cần đo, và phải đo lực tác dụng lên nó theo vectơ, cũng theo đúng số chiều ấy. Miễn là "
+        "các lực làm lệch trong các hướng cảm biến là độc lập với nhau, có thể cộng các đầu ra theo "
+        "vectơ để thu được giá trị độc lập của tốc độ và hướng dòng. Lưu lượng kế kiểu bia dùng cảm "
+        "biến biến dạng đã được các ngành công nghiệp, điện lực, hàng không vũ trụ và các phòng thí "
+        "nghiệm nghiên cứu sử dụng. Chúng đã đo thành công dòng chất lỏng một chiều và hai chiều (kể "
+        "cả cryogen), dòng khí và hơi nước (cả hơi bão hòa lẫn hơi quá nhiệt) trong gần nửa thế kỷ."))
+    b.append(p(
+        "Dù có những ưu điểm đó, lưu lượng kế kiểu bia dường như vẫn bị bỏ qua để nhường chỗ cho những "
+        "thiết bị phức tạp và tinh vi hơn. Các tác giả đã tìm cách khắc phục sự bỏ quên này bằng việc "
+        "phát triển một cảm biến phù hợp để đo dòng đa hướng trong hai chiều, thay vì chỉ đo dòng hai "
+        "chiều trong một chiều không gian."))
+
+    b.append(h3("Thiết kế cảm biến", "Design of the Flow Sensor"))
+    b.append(p(
+        "Cảm biến trình bày trong mục này rất phù hợp để đo dòng trong môi trường tự nhiên. Nguyên lý "
+        "hoạt động dựa trên việc đo biến dạng của một dầm công-xôn đàn hồi bằng cao su, chịu lực do "
+        "một phần tử kéo đối xứng cầu tác dụng (Hình 28.85). Cảm biến này có nhiều ưu điểm: gọn nhẹ, "
+        "kết cấu đơn giản, không cần cơ sở hạ tầng nào ngoài một giá đỡ cứng, và có thể làm việc với "
+        "lưu chất chứa chất rắn như bùn và huyền phù, miễn là chúng không quấn vào phần tử kéo hay "
+        "dầm cao su."))
+    b.append(fig(85, F.fig(85), "vi"))
+    b.append(p(
+        "Theo Clarke [1], phần tử kéo lý tưởng là một đĩa phẳng, vì cấu hình này cho hệ số kéo không "
+        "phụ thuộc lưu lượng. Với phần tử kéo hình cầu — khác với hình mẫu đĩa phẳng [1] — hệ số kéo "
+        "có khả năng thay đổi theo tốc độ dòng, nên đồng hồ phải được hiệu chuẩn và tối ưu theo đúng "
+        "điều kiện sử dụng dự kiến. Trong phần này, một đồng hồ được phát triển cho dòng không khí "
+        "trong dải thường gặp ở môi trường tự nhiên."))
+    b.append(p(
+        "Có thể đo biến dạng bằng các cảm biến biến dạng thông thường, nhưng như vậy ứng dụng của "
+        "thiết bị bị giới hạn ở những điều kiện tránh được ăn mòn đường dẫn điện trở bằng kim loại "
+        "của cảm biến. Vì thế, một cảm biến biến dạng bằng sợi quang đã được phát triển để thay thế."))
+
+    b.append(h3("Nguyên lý đo lưu lượng", "Principle of Fluid Flow Measurement"))
+    b.append(p(
+        "Lực kéo F<sub>D</sub> mà lưu chất tác dụng lên một vật rắn đặt trong dòng được cho bởi "
+        "phương trình lực kéo, theo động lực học lưu chất không nén được:"))
+    b.append(eq("F<sub>D</sub> = C<sub>D</sub> ρ A V² / 2", "28.146"))
+    b.append(defs([
+        ("ρ", "khối lượng riêng của lưu chất"),
+        ("V", "vận tốc của lưu chất tại điểm đo"),
+        ("A", "diện tích hình chiếu của vật theo phương vuông góc với dòng"),
+        ("C<sub>D</sub>", "hệ số kéo tổng"),
+    ]))
+    b.append(p(
+        "C<sub>D</sub> là một hệ số không thứ nguyên, độ lớn của nó chủ yếu phụ thuộc hình dạng vật "
+        "lý của vật và hướng của vật so với dòng lưu chất. Hệ số kéo C<sub>D</sub> của một quả cầu "
+        "liên hệ với số Reynolds (Re) — một đại lượng không thứ nguyên khác — theo công thức:"))
+    b.append(eq("Re = ρ V A / η", "28.147"))
+    b.append(p("trong đó η là độ nhớt của lưu chất."))
+    b.append(note(
+        "<b>Ghi chú của người dịch.</b> Phương trình 28.147 được in đúng như nguyên bản, nhưng theo "
+        "định nghĩa chuẩn thì số Reynolds phải là ρVd/η, với d là một kích thước đặc trưng (đường "
+        "kính đĩa hoặc đường kính quả cầu). Dùng diện tích A ở tử số thì kết quả không còn là đại "
+        "lượng không thứ nguyên nữa. Cần lưu ý điều này khi đọc các đường cong trên Hình 28.86."))
+    b.append(p(
+        "Đồ thị C<sub>D</sub> theo số Reynolds (rút ra từ Clarke [1]) được trình bày trên Hình "
+        "28.86(a) cho đĩa phẳng và Hình 28.86(b) cho quả cầu; từ đó thấy rõ rằng C<sub>D</sub> tuy "
+        "không phải hằng số nhưng cũng không biến thiên nhiều trong phạm vi của đồ thị."))
+    b.append(fig(86, F.fig(86), "vi"))
+    b.append(p(
+        "Bây giờ xét tác dụng của lực F<sub>D</sub> lên một dầm đàn hồi mà phần tử kéo được gắn vào "
+        "(như trên Hình 28.85). Nếu có thể bỏ qua khối lượng của dầm thì độ võng của dầm chỉ do lực "
+        "mà lưu chất tác dụng lên phần tử kéo gây ra. Theo lý thuyết đàn hồi cho dầm công-xôn dài L "
+        "chịu tải trọng tập trung ở đầu tự do [2], lực cắt P sẽ không đổi dọc theo dầm. Mômen uốn M "
+        "tại một điểm cách một khoảng x dọc theo dầm sẽ bằng P(L − x), nên nó biến thiên tuyến tính "
+        "từ PL tại x = 0 xuống 0 tại x = L. Khoảng cách y được đo từ mặt trung hòa, với tiết diện chữ "
+        "nhật thì đó là mặt giữa. Nghịch đảo bán kính cong được cho bởi:"))
+    b.append(eq("1 / ρ = M / EI", "28.148"))
+    b.append(p(
+        "trong đó E là môđun đàn hồi hay môđun Young và I là mômen quán tính của tiết diện, với giả "
+        "thiết lực tác dụng vuông góc với mặt rộng có bề rộng b."))
+    b.append(eq("I = b a³ / 12", "28.149"))
+    b.append(note(
+        "<b>Ghi chú của người dịch.</b> Ký hiệu ρ được nguyên bản dùng cho hai đại lượng hoàn toàn "
+        "khác nhau: khối lượng riêng của lưu chất ở phương trình 28.146 và bán kính cong của dầm ở "
+        "các phương trình 28.148–28.152. Trong tài liệu sức bền vật liệu, bán kính cong thường được "
+        "ký hiệu là R."))
+    b.append(p(
+        "Qua chiều dày a của dầm, biến dạng là ε<sub>x</sub>."))
+    b.append(eq("ε<sub>x</sub> = σ<sub>x</sub> / E = Y / ρ", "28.150"))
+    b.append(p("Thay phương trình 28.148 vào phương trình 28.150 ta được:"))
+    b.append(eq("ε<sub>x</sub> = Y M / EI", "28.151"))
+    b.append(p("Biến dạng tại các mặt là:"))
+    b.append(eq("ε<sub>x</sub> = a / (2ρ) = Y M / (2EI)", "28.152"))
+    b.append(p(
+        "Thay phương trình 28.149 và mômen uốn vào phương trình 28.151 ta được:"))
+    b.append(eq("ε<sub>x</sub> = 6 P (L − x) / (E a² b)", "28.153"))
+    b.append(p("hay, lực cắt P là:"))
+    b.append(eq("P = ε E a² b / [6(L − x)]", "28.154"))
+    b.append(p("Do đó,"))
+    b.append(eq("C<sub>D</sub> ρ A V² / 2 = ε E a² b / [6(L − x)]", "28.155"))
+    b.append(p("Vậy biến dạng là:"))
+    b.append(eq("ε = 3 C<sub>D</sub> ρ A V² (L − x) / (E a² b)", "28.156"))
+    b.append(p(
+        "Từ phương trình 28.156, biến dạng là hàm bậc hai của tốc độ lưu chất."))
+    b.append(p(
+        "Với phần lớn dòng lưu chất trong môi trường tự nhiên, cần đo theo hai chiều vì dòng trong "
+        "môi trường tự nhiên gần như luôn là dòng hai chiều. Để đo tốc độ và hướng dòng, cần liên hệ "
+        "tốc độ gió với biến dạng đo được theo hai hướng trực giao, trên giả thiết (đã được thực "
+        "nghiệm chứng minh) rằng vectơ vận tốc có thành phần bằng không dọc theo (song song với) giá "
+        "đỡ dầm cao su, tức U<sub>z</sub> = 0. Tốc độ gió U có các thành phần trực giao U<sub>x</sub> "
+        "và U<sub>y</sub> tỉ lệ với biến dạng đo được theo hướng x (strain<sub>x</sub>) và hướng y "
+        "(strain<sub>y</sub>). Vì U<sub>x</sub> tỉ lệ với √strain<sub>x</sub> và U<sub>y</sub> tỉ lệ "
+        "với √strain<sub>y</sub>, nên độ lớn vận tốc |U| có thể viết là"))
+    b.append(eq("|U| = √(U<sub>x</sub>² + U<sub>y</sub>²)", "28.157"))
+    b.append(p("do đó,"))
+    b.append(eq("|U| ∝ √(strain<sub>x</sub> + strain<sub>y</sub>)", "28.158"))
+    b.append(p(
+        "Vậy độ lớn của vận tốc, |U|, tỉ lệ với căn bậc hai của tổng các thành phần biến dạng trực "
+        "giao, strain<sub>x</sub> và strain<sub>y</sub>. Hướng của vận tốc, θ, được tính theo hệ "
+        "thức:"))
+    b.append(eq("θ = tan<sup>−1</sup>[ √(strain<sub>y</sub>) / √(strain<sub>x</sub>) ]", "28.159"))
+
+    b.append(h3("Thực hiện bằng cảm biến biến dạng điện trở",
+                "Implementation Using Resistive Strain Gages"))
+    b.append(p(
+        "Một cảm biến đã được chế tạo để đo dòng một chiều bằng cách dán hai cảm biến biến dạng lên "
+        "hai mặt đối diện của một dầm đàn hồi tiết diện vuông, dài 165 mm và 13,5 mm mỗi cạnh, làm "
+        "từ polyme polybutadien (cao su lưu hóa không độn) do Hiệp hội Nghiên cứu Sản phẩm Cao su "
+        "Malaysia cung cấp. Môđun của dầm, khoảng 1,2 × 10⁶ N m⁻², được chọn tương đối thấp để có độ "
+        "nhạy tốt. Phần tử kéo là một quả bóng bàn đường kính 20 mm, dán vào đầu dầm cao su. Các cảm "
+        "biến biến dạng là hợp kim đồng-niken trên màng polyimit, được dán vào dầm cao su bằng keo "
+        "epoxy. Hai phần tử cảm biến được ghép theo cấu hình nửa cầu, và đầu ra được đưa tới một chỉ "
+        "thị biến dạng số đọc trực tiếp theo đơn vị microstrain."))
+    b.append(p(
+        "Cảm biến được lắp trong một ống khí động đã hiệu chuẩn, sao cho một cảm biến chịu nén và "
+        "cảm biến kia chịu kéo. Tốc độ gió được đặt ở các giá trị khác nhau và ghi lại các số đọc "
+        "biến dạng tương ứng. Kết quả được vẽ thành đồ thị tốc độ gió theo căn bậc hai của biến dạng "
+        "(Hình 28.87). Đồ thị thu được là tuyến tính với hệ số tương quan 0,98. Tính tuyến tính cho "
+        "thấy biến dạng là hàm bậc hai của tốc độ, xác nhận lý thuyết trình bày ở trên."))
+    b.append(fig(87, F.fig(87), "vi"))
+    b.append(p(
+        "Ở nguyên mẫu đầu tiên này, dải đo bị giới hạn bởi dao động của dầm ở tốc độ lớn hơn 23 m/s, "
+        "gây ra tín hiệu giả. Tuy nhiên, về nguyên tắc có thể theo dõi được tốc độ lớn hơn nhiều, tới "
+        "50 m/s, nếu kết cấu phù hợp."))
+    b.append(p(
+        "Một cảm biến thứ hai đã được chế tạo để đo dòng hai chiều, trong đó một dầm cao su tiết diện "
+        "vuông tương tự dầm trước được gắn bốn cảm biến biến dạng lên bốn mặt dọc của dầm. Mỗi cặp "
+        "cảm biến đối diện được ghép theo cấu hình nửa cầu như trước. Hai đầu ra được đưa tới các "
+        "khuếch đại đo lường rồi tới một bo thu thập dữ liệu nối với gói phần mềm đo lường LabView "
+        "(National Instruments Corporation). Sau khi phần mềm xử lý tín hiệu thích hợp, các giá trị "
+        "strain<sub>x</sub> và strain<sub>y</sub> từ cả hai kênh được cộng lại, rồi lấy căn bậc hai "
+        "của trị tuyệt đối của tổng đó."))
+    b.append(p(
+        "Thiết bị được kẹp trên một bàn xoay và bàn này được quay quanh trục dọc của nó từ 0° đến "
+        "90° theo các bước 15°. Tại mỗi góc, đầu ra của cảm biến biến dạng theo x và y được ghi lại "
+        "theo vận tốc, trong dải từ 0 đến 23 m/s. Đồ thị tốc độ theo (strain<sub>x</sub> + "
+        "strain<sub>y</sub>)<sup>1/2</sup> ứng với các góc khác nhau được trình bày trên Hình 28.88. "
+        "Số liệu trên Hình 28.88 có thể dùng để lập đường hiệu chuẩn tốc độ cho cảm biến, đường này "
+        "sẽ đúng cho dòng không khí đa hướng."))
+    b.append(fig(88, F.fig(88), "vi"))
+    b.append(p(
+        "Hướng của dòng gió được tính theo phương trình 28.159 cho các tốc độ gió khác nhau. Hình "
+        "28.89 trình bày đồ thị hướng dòng gió ở các tốc độ gió khác nhau ứng với các vị trí cảm biến "
+        "khác nhau. Nhiều tác giả đã công bố về việc không thể tính chính xác hướng gió ở tốc độ thấp. "
+        "Trường hợp này cũng tương tự: các số đọc trở nên chính xác hơn khi tốc độ gió tăng, đặc biệt "
+        "là trên 11 m/s."))
+    b.append(fig(89, F.fig(89), "vi"))
+    b.append(p(
+        "Để đo các cơn gió giật, thời gian đáp ứng của cảm biến trở thành thông số quyết định. Các "
+        "thí nghiệm đã được thực hiện để đo thời gian đáp ứng bằng cách thả các quả cân đã biết lên "
+        "đầu tự do của cảm biến và dùng một chương trình viết riêng trong LabView để thu và ghi lại "
+        "đáp ứng. Cảm biến cho thời gian đáp ứng 95 % là 50 ms và hằng số thời gian là 30 ms."))
+
+    b.append(h3("Lưu lượng kế lực kéo dùng cảm biến biến dạng sợi quang",
+                "Optical Fiber Strain Gage Drag Force Flowmeter"))
+    b.append(p(
+        "Sợi quang đã được ứng dụng để đo dòng lưu chất và đo biến dạng, bằng các kỹ thuật giao thoa "
+        "và bằng tổn thất do uốn [3–5]. Thiết bị mô tả ở các mục trên có thể được cải biến để dùng "
+        "phép đo biến dạng quang thay cho cảm biến biến dạng điện trở. Bằng cách đó vẫn giữ được các "
+        "ưu điểm của thiết bị, đồng thời có thêm những lợi ích thường thấy của cảm biến sợi quang như "
+        "không bị nhiễu điện từ và an toàn nội tại trong môi trường nguy hiểm cháy nổ."))
+    b.append(p(
+        "Nguyên lý của cảm biến biến dạng sợi quang dựa trên tác dụng của một hay nhiều rãnh được khía "
+        "theo phương hướng kính vào một sợi PMMA đường kính 1 mm; các rãnh này gây tổn thất truyền "
+        "ánh sáng. Khi sợi quang bị uốn, như trong một dầm công-xôn, góc của các rãnh thay đổi. Những "
+        "thay đổi góc này làm ánh sáng bị suy giảm tại mỗi rãnh. Có thể liên hệ sự biến thiên cường "
+        "độ với sự thay đổi góc của rãnh do dầm bị uốn gây ra."))
+    b.append(p(
+        "Để tạo sự tương tự giữa phép đo biến dạng quang và phép đo biến dạng điện trở, biến dạng "
+        "quang được tính theo công thức:"))
+    b.append(eq("Strain<sub>opt</sub> = (Độ thay đổi công suất đầu ra) / (Công suất đầu ra ban đầu) "
+                "= ΔP / P", "28.160"))
+    b.append(p("Như vậy,"))
+    b.append(eq("strain<sub>x</sub> = ΔP<sub>x</sub> / P<sub>x</sub> và strain<sub>y</sub> = "
+                "ΔP<sub>y</sub> / P<sub>y</sub>", "28.161"))
+    b.append(p("Do đó, độ lớn của vận tốc, |U|, được cho bởi:"))
+    b.append(eq("|U| = √(U<sub>x</sub>² + U<sub>y</sub>²) = √(strain<sub>x</sub> + strain<sub>y</sub>)"))
+    b.append(p(
+        "Thay phương trình 28.161 vào |U|, độ lớn căn bậc hai của biến dạng quang là:"))
+    b.append(eq("|U| = √( ΔP<sub>x</sub> / P<sub>x</sub> + ΔP<sub>y</sub> / P<sub>y</sub> )", "28.162"))
+    b.append(fig(90, F.fig(90), "vi"))
+    b.append(p("và hướng của vận tốc gió, θ:"))
+    b.append(eq("θ = tan<sup>−1</sup>[ U<sub>y</sub> / U<sub>x</sub> ] = "
+                "tan<sup>−1</sup>√( Strain<sub>y</sub> / Strain<sub>x</sub> )", "28.163"))
+    b.append(p("Thay phương trình 28.161 vào θ, hướng biến dạng quang là:"))
+    b.append(eq("θ = tan<sup>−1</sup>[ √(ΔP<sub>y</sub> / P<sub>y</sub>) / "
+                "√(ΔP<sub>x</sub> / P<sub>x</sub>) ]", "28.164"))
+    b.append(p(
+        "Ở đây mô tả hai kiểu cảm biến lưu lượng dùng sợi quang. Ở kiểu thứ nhất, dầm cao su đóng "
+        "vai trò phần tử bị uốn và các cảm biến biến dạng sợi quang được dán lên dầm đó. Kiểu thứ "
+        "hai dùng một sợi quang nhựa đường kính 1 mm đã được cảm quang, không có giá đỡ, tự uốn theo "
+        "dòng khí."))
+
+    b.append(h4("Cảm biến sợi quang có dầm cao su", "Fiber Optic Flow Sensor WITH Rubber Beam"))
+    b.append(p(
+        "Cảm biến được chế tạo bằng một dầm cao su tiết diện chữ nhật và một phần tử kéo hình cầu, "
+        "với một sợi quang nhựa đường kính 1 mm dán vào dầm bằng epoxy. Sợi được quấn vòng bên trong "
+        "phần tử kéo để tăng độ nhạy của thiết bị. Trên mặt sợi người ta khía các rãnh ăn sâu vào lõi "
+        "sợi nhằm tăng tổn thất theo độ uốn của dầm cao su (Hình 28.90). Các rãnh vuông góc với dầm "
+        "cao su trên mặt ngoài của nó, và độ sâu của rãnh chỉ ảnh hưởng tới lớp vỏ của sợi. Khi dầm "
+        "công-xôn uốn do lực của dòng khí, góc của các rãnh thay đổi. Góc rãnh tăng khi dòng khí thổi "
+        "trực diện vào cảm biến và giảm trong trường hợp ngược lại. Những thay đổi góc rãnh này gây "
+        "điều chế cường độ ánh sáng truyền qua sợi, vì ánh sáng bị mất tại mỗi rãnh. Có thể liên hệ "
+        "sự thay đổi cường độ với sự thay đổi góc do lực làm uốn dầm gây ra, và do đó với vận tốc của "
+        "lưu chất."))
+    b.append(p(
+        "Các thành phần trực giao của biến dạng được đo bằng cách gắn hai sợi quang có rãnh lên hai "
+        "mặt kề nhau của dầm cao su, vuông góc với nhau, như minh họa trên Hình 28.91. Hai sợi này đo "
+        "hai thành phần x và y của biến dạng quang."))
+    b.append(fig(91, F.fig(91), "vi"))
+    b.append(p(
+        "Ánh sáng từ một laser heli-neon công suất 1 mW có bước sóng đỉnh 633 nm được chia thành hai "
+        "phần bằng nhau bằng một bộ chia chùm kiểu khối, rồi ghép vào mỗi sợi. Cường độ truyền qua "
+        "mỗi sợi được theo dõi bằng một máy đo công suất. Tín hiệu từ máy đo công suất được gửi tới "
+        "một máy tính xách tay 486 DX2 qua một card thu thập dữ liệu để thu và xử lý bằng LabView. "
+        "Thí nghiệm cho thấy phiên bản cảm biến này có thể đo tốc độ gió tới 30 m/s với độ phân giải "
+        "1,3 m/s."))
+
+    b.append(h4("Cảm biến sợi quang không có dầm cao su",
+                "Fiber Optic Flow Sensor WITHOUT Rubber Beam"))
+    b.append(p(
+        "Phiên bản này dùng sợi polyme đường kính 1 mm làm phần tử uốn, với đường kính lõi 0,980 mm "
+        "và một lớp vỏ mỏng khoảng 20 µm [6]. Nhiều rãnh được khía theo phương hướng kính vào mặt sợi "
+        "tới độ sâu 0,5 mm, ăn vào lõi sợi, bằng một dao mổ nóng và một khuôn rãnh chữ V chế tạo sẵn "
+        "để bảo đảm các rãnh đều nhau. Sáu rãnh được xác định là số tối ưu, dung hòa giữa tổn thất "
+        "ghép nối và độ nhạy biến dạng, cách nhau 0,4 cm, trên một đoạn dài 2,5 cm."))
+    b.append(note(
+        "<b>Ghi chú của người dịch.</b> Nguyên bản in “approximately 20 mm” cho lớp vỏ. Với một sợi "
+        "đường kính 1 mm thì đó rõ ràng là lỗi in — lớp vỏ phải là 20 µm."))
+    b.append(p(
+        "Để đo biến dạng theo hai hướng trực giao, vuông góc với trục dọc của sợi, người ta dùng hai "
+        "sợi như trên Hình 28.92, với các rãnh của hai sợi hướng vuông góc nhau (90°). Điều này đạt "
+        "được bằng cách đặt hai sợi trên hai mặt kề nhau của một dầm tiết diện vuông. Dầm này đủ ngắn "
+        "để không hạn chế độ uốn, nhưng cũng đủ dài để giữ và đỡ các sợi quang. Các sợi được quấn "
+        "vòng sao cho các đầu quấn vòng đóng vai trò phần tử kéo. Đoạn sợi có rãnh không được đỡ nên "
+        "tự do uốn trong dòng khí. Hiệu chuẩn trong ống khí động cho thấy cảm biến có thể đo dòng hai "
+        "chiều tới 35 m/s với độ phân giải 0,96 m/s."))
+    b.append(fig(92, F.fig(92), "vi"))
+
+    b.append(h3("Kết luận", "Conclusion"))
+    b.append(p(
+        "Phép đo vận tốc lưu chất một chiều và hai chiều, dùng cả sợi quang lẫn cảm biến biến dạng "
+        "thông thường trên một dầm bị uốn, trong dải 0 đến 30 m/s, đã được chứng minh bằng thực "
+        "nghiệm. Mặc dù các kỹ thuật hiển thị và mô hình hóa dòng chảy đã tiến bộ nhiều trong kỹ "
+        "thuật, vẫn còn nhu cầu về những phép đo thực, đặc biệt trong môi trường tự nhiên. Các cảm "
+        "biến mô tả trong nghiên cứu này đặc biệt phù hợp cho những phép đo như vậy, vốn gần như luôn "
+        "là hai chiều. Các đầu ra của cảm biến biểu diễn tốc độ và hướng dòng lưu chất là độc lập với "
+        "nhau, nên cảm biến phù hợp cho các ứng dụng môi trường như đo gió hay đo dòng sông, nơi lưu "
+        "chất tạo thành từng đợt gió giật và có thể đổi cả hướng lẫn tốc độ. Một đặc điểm đáng chú ý "
+        "của cảm biến là thời gian đáp ứng nhanh, 50 ms, đủ để đo các cơn gió giật một cách dễ dàng. "
+        "Kích thước và vật liệu của cảm biến phải được chọn cho phù hợp với lưu chất. Về độ nhạy và "
+        "độ phân giải, cảm biến biến dạng điện trở là lựa chọn tốt hơn, nhưng thay các cảm biến biến "
+        "dạng thông thường bằng cảm biến biến dạng sợi quang sẽ bảo đảm khả năng miễn nhiễu điện và "
+        "an toàn nội tại khi dùng trong môi trường nguy hiểm cháy nổ."))
+
+    b.append(h3("Tài liệu tham khảo", "References"))
+    b.append(wl([
+        "1. T. Clarke, Design and operation of target flowmeters, <i>Encyclopedia of Fluid "
+        "Mechanics</i>, Vol 1, Houston, TX: Gulf Publishing Company, 1986.",
+        "2. F. H. Newman và V. H. L. Searle, <i>The general properties of matter</i>, Edward Arnold, "
+        "1948.",
+        "3. S. Webster, R. McBride, J. S. Barton và J. D. C. Jones, Air flow measurement by vortex "
+        "shedding from multimode and monomode fibres, <i>Measurement, Science and Technology</i>, 3, "
+        "210–216, 1992.",
+        "4. J. S. Barton và M. Saudi, A fibre optic vortex flowmeter, <i>J. Phys. E: Sci. "
+        "Instrum.</i> 19, 64–66, 1986.",
+        "5. N. Narendran, A. Shukla và S. Letcher, Optical fibre interferometric strain sensor using "
+        "a single fibre, <i>Experimental Techniques</i>, 16(2), 33–36, 1992.",
+        "6. R. Philip-Chandy, Luận án tiến sĩ <i>Fluid flow measurement using electrical and optical "
+        "fibre strain gauges</i>, Liverpool John Moores University, Anh, 1997.",
+    ]))
+    return "".join(b)
+
+
+def sec_28_11_en():
+    b = []
+    b.append(h2("28.11 Drag Force Flowmeters", "Lưu lượng kế kiểu lực kéo"))
+    b.append(p("Rekha Philip-Chandy, Roger Morgan, and Patricia J. Scully."))
+    b.append(p(
+        "In a target flowmeter a solid object known as a drag element is exposed to the flow of fluid "
+        "that is to be measured. The force exerted by the fluid on the drag element is measured and "
+        "converted to a value for speed of flow."))
+    b.append(p(
+        "The flow-sensing element has no rotating parts, and this makes the instrument suitable for "
+        "conditions where abrasion, contamination, or corrosion make more conventional instruments "
+        "unsuitable. An important application of such flowmeters involves environmental monitoring in "
+        "areas such as meteorology, hydrology, and maritime studies to measure speeds of air or water "
+        "flow and turbulence close to the surface. In these applications, the fluid flows are "
+        "sporadic and multidirectional."))
+    b.append(p(
+        "A further advantage of the instrument is that it can be made to generate a measurement of "
+        "flow direction in two dimensions, or even in three dimensions, as well as of flow speed. To "
+        "implement this feature, the drag element must be symmetrical in the appropriate number of "
+        "dimensions, and it is necessary to measure the force on it vectorially, again in the "
+        "appropriate number of dimensions. Provided that the deflecting forces are independent in the "
+        "sensing directions, the resulting outputs can be added vectorially to generate independent "
+        "values for flow speed and direction. Target flowmeters using strain gage technology have "
+        "been used by industry, utilities, aerospace, and research laboratories. They have been used "
+        "to successfully measure the flow of uni- and bidirectional liquids (including cryogenic), "
+        "gases, and steam (both saturated and superheated) for almost half a century."))
+    b.append(p(
+        "Despite these advantages, the target flowmeter appears to have been neglected in favor of "
+        "more complex and sophisticated devices. The authors have sought to remedy this neglect by "
+        "developing a sensor suitable for measuring multidirectional flows in two dimensions, instead "
+        "of measuring only bidirectional flows in a single dimension."))
+
+    b.append(h3("Design of the Flow Sensor", "Thiết kế cảm biến"))
+    b.append(p(
+        "The sensor described in this chapter section is ideally suited for environmental flow "
+        "measurement. The operation is based on strain measurement of deformation of an elastic "
+        "rubber cantilever, to which a force is applied by a spherically symmetrical drag element "
+        "(Figure 28.85). This sensor has many advantages, including compactness and a simple "
+        "construction requiring no infrastructure other than a rigid support, and it can cope with "
+        "fluids containing solid matter such as sludge and slurries provided that they do not tangle "
+        "with the drag element or the rubber beam."))
+    b.append(fig(85, F.fig(85), "en"))
+    b.append(p(
+        "According to Clarke [1], the ideal drag element is a flat disk, because this configuration "
+        "gives a drag coefficient independent of flow rate. Using a spherical drag element, which "
+        "departs from the ideal of a flat disk [1], the drag coefficient is likely to vary with flow "
+        "speed, and therefore the gage must be calibrated and optimized for the conditions of "
+        "intended use. In this discussion, a gage is developed for air flows in the range normally "
+        "encountered in the natural environment."))
+    b.append(p(
+        "The strain measurement can be performed with conventional strain gages, but this limits the "
+        "applications of the device to conditions where corrosion of the metal-resistive track of the "
+        "strain gage can be avoided. Therefore, an optical fiber strain gage has been developed as an "
+        "alternative."))
+
+    b.append(h3("Principle of Fluid Flow Measurement", "Nguyên lý đo lưu lượng"))
+    b.append(p(
+        "The drag force F<sub>D</sub> exerted by a fluid on a solid object exposed to it is given by "
+        "the drag equation, which from incompressible fluid dynamics is:"))
+    b.append(eq("F<sub>D</sub> = C<sub>D</sub> ρ A V² / 2", "28.146"))
+    b.append(defs([
+        ("ρ", "Fluid density"),
+        ("V", "Fluid's velocity at the point of measurement"),
+        ("A", "Projected area of the body normal to the flow"),
+        ("C<sub>D</sub>", "Overall drag coefficient"),
+    ]))
+    b.append(p(
+        "C<sub>D</sub> is a dimensionless factor, whose magnitude depends primarily on the physical "
+        "shape of the object and its orientation relative to the fluid stream. The drag coefficient "
+        "C<sub>D</sub> for a sphere is related to the Reynolds number (Re), another dimensionless "
+        "factor, given by:"))
+    b.append(eq("Re = ρ V A / η", "28.147"))
+    b.append(p("where η = viscosity of the fluid."))
+    b.append(note(
+        "<b>Translator's note.</b> Equation 28.147 is printed as it stands in the source, but the "
+        "standard definition of the Reynolds number is ρVd/η, with d a characteristic length (the "
+        "diameter of the disk or of the sphere). Putting the area A in the numerator leaves a result "
+        "that is no longer dimensionless. The point matters when reading the curves of Figure 28.86."))
+    b.append(p(
+        "A graph of C<sub>D</sub> against Reynolds number (derived from Clarke [1]) is shown in "
+        "Figure 28.86(a) for a flat disk and Figure 28.86(b) for a sphere, from which it is evident "
+        "that the value of C<sub>D</sub>, although not constant, is not subject to wide variation over "
+        "the range of the graph."))
+    b.append(fig(86, F.fig(86), "en"))
+    b.append(p(
+        "Now consider the effect of the force F<sub>D</sub> on an elastic beam to which the drag "
+        "element is attached (as in Figure 28.85). If the mass of the beam can be ignored, the "
+        "deflection of the beam will be due only to force exerted on the drag element by the fluid. "
+        "From the theory of elasticity for a cantilever beam of length L with point load at its end "
+        "[2], the shear force P will be constant along the beam. The bending moment, M at a point x "
+        "along the beam will be P(L − x) so that it varies linearly from PL at x = 0 to 0 at x = L. "
+        "The distance y is measured from the neutral plane, which for a rectangular section is the "
+        "mid-plane. The inverse of the radius of curvature is given by:"))
+    b.append(eq("1 / ρ = M / EI", "28.148"))
+    b.append(p(
+        "where E is the modulus of elasticity or the Young's modulus and I is the moment of inertia "
+        "of the cross-section where it is assumed that the force is applied perpendicular to the "
+        "broad face of width b."))
+    b.append(eq("I = b a³ / 12", "28.149"))
+    b.append(note(
+        "<b>Translator's note.</b> The source uses the symbol ρ for two quite different quantities: "
+        "the density of the fluid in Equation 28.146 and the radius of curvature of the beam in "
+        "Equations 28.148–28.152. In the strength-of-materials literature the radius of curvature is "
+        "normally written R."))
+    b.append(p("Through the thickness a of the beam, the strain is ε<sub>x</sub>."))
+    b.append(eq("ε<sub>x</sub> = σ<sub>x</sub> / E = Y / ρ", "28.150"))
+    b.append(p("Substituting Equation 28.148 in Equation 28.150 gives:"))
+    b.append(eq("ε<sub>x</sub> = Y M / EI", "28.151"))
+    b.append(p("The strain at the surfaces is:"))
+    b.append(eq("ε<sub>x</sub> = a / (2ρ) = Y M / (2EI)", "28.152"))
+    b.append(p("Substituting Equation 28.149 and the bending moment into Equation 28.151 gives:"))
+    b.append(eq("ε<sub>x</sub> = 6 P (L − x) / (E a² b)", "28.153"))
+    b.append(p("or, the shear force P is:"))
+    b.append(eq("P = ε E a² b / [6(L − x)]", "28.154"))
+    b.append(p("Consequently,"))
+    b.append(eq("C<sub>D</sub> ρ A V² / 2 = ε E a² b / [6(L − x)]", "28.155"))
+    b.append(p("Therefore, the strain is:"))
+    b.append(eq("ε = 3 C<sub>D</sub> ρ A V² (L − x) / (E a² b)", "28.156"))
+    b.append(p("From Equation 28.156, the strain is a square law function of fluid speed."))
+    b.append(p(
+        "For most fluid flows in the natural environment, a two-dimensional measurement is necessary "
+        "as the flow in the natural environment is almost always two-dimensional. For a measurement "
+        "of flow speed and direction, it is necessary to relate wind speed to strain measured in two "
+        "orthogonal directions, on the assumption (which has been justified by experiment) that the "
+        "velocity vector has a zero component along (parallel to) the rubber beam support (i.e., "
+        "U<sub>z</sub> = 0). The wind speed U has orthogonal components U<sub>x</sub> and "
+        "U<sub>y</sub> that are proportional to the strain measured in the x (strain<sub>x</sub>) and "
+        "y directions (strain<sub>y</sub>), respectively. Since U<sub>x</sub> is proportional to "
+        "√strain<sub>x</sub> and U<sub>y</sub> is proportional to √strain<sub>y</sub>, then the "
+        "velocity magnitude |U| can be written as"))
+    b.append(eq("|U| = √(U<sub>x</sub>² + U<sub>y</sub>²)", "28.157"))
+    b.append(p("thus,"))
+    b.append(eq("|U| ∝ √(strain<sub>x</sub> + strain<sub>y</sub>)", "28.158"))
+    b.append(p(
+        "Therefore, the magnitude of the velocity, |U|, is proportional to the square root of the sum "
+        "of the orthogonal strain components, strain<sub>x</sub> and strain<sub>y</sub>. The velocity "
+        "direction, θ, is calculated using the relation:"))
+    b.append(eq("θ = tan<sup>−1</sup>[ √(strain<sub>y</sub>) / √(strain<sub>x</sub>) ]", "28.159"))
+
+    b.append(h3("Implementation Using Resistive Strain Gages",
+                "Thực hiện bằng cảm biến biến dạng điện trở"))
+    b.append(p(
+        "A sensor was constructed for measuring one-dimensional flows by bonding two strain gages on "
+        "to the opposite sides of a square-sectioned elastic beam, 165 mm long and 13.5 mm square, "
+        "made from polybutadiene polymer (unfilled vulcanized rubber) supplied by the Malaysian Rubber "
+        "Products Research Association. The modulus of the beam, at approximately 1.2 × 10⁶ N m⁻², "
+        "was relatively low in order to achieve good sensitivity. The drag element was a table tennis "
+        "ball of diameter 20 mm, glued to the end of the rubber beam. The strain gages were "
+        "cupro-nickel alloy on a polyimide film, and were bonded to the rubber beam with epoxy resin. "
+        "The two gage elements were connected in a half-bridge configuration, and the output was "
+        "taken to a digital strain-gage indicator reading directly in microstrain units."))
+    b.append(p(
+        "The sensor was mounted in a calibrated wind tunnel, in such a way that one gage underwent "
+        "compression and the other gage underwent extension. The wind speed was set at different "
+        "values and the corresponding strain readings were noted. Results were plotted as wind speed "
+        "against square root of strain (Figure 28.87). The graph obtained was linear with a "
+        "correlation co-efficient of 0.98. The linearity shows that the strain is a square-law "
+        "function of speed, which confirms the theory above."))
+    b.append(fig(87, F.fig(87), "en"))
+    b.append(p(
+        "In this first prototype of the sensor, the range was limited by beam oscillations at speeds "
+        "greater than 23 m/s, causing spurious signals. In principle, however, much greater speeds up "
+        "to 50 m/s can be monitored by this sensor, if the construction is suitable."))
+    b.append(p(
+        "A second sensor was constructed for measuring two-dimensional flows, in which a "
+        "square-sectioned rubber beam similar to the previous one was set up with four strain gages "
+        "attached to the four longitudinal surfaces of the beam. Each opposite pair of strain gage "
+        "elements was connected in a half-bridge configuration as before. The two outputs were taken "
+        "to instrumentation amplifiers and then to a data acquisition board interfaced to the LabView "
+        "instrumentation software package (National Instruments Corporation). After appropriate "
+        "signal processing by the software, the values of strain<sub>x</sub> and strain<sub>y</sub> "
+        "from both the channels are added and then the square root of the absolute value of this sum "
+        "is found."))
+    b.append(p(
+        "The device was clamped on a turntable and this was rotated about its longitudinal axis from "
+        "0° to 90° at 15° intervals. At each angle, the x and y strain gage outputs were recorded as "
+        "a function of velocity, over a range from 0 to 23 m/s. The graph of speed vs. "
+        "(strain<sub>x</sub> + strain<sub>y</sub>)<sup>1/2</sup> for different angles is shown in "
+        "Figure 28.88. The data presented in Figure 28.88 can be used to obtain a speed calibration "
+        "curve for the sensor, which will be valid for multidirectional air flow."))
+    b.append(fig(88, F.fig(88), "en"))
+    b.append(p(
+        "The direction of wind flow was calculated according to Equation 28.159 for the different "
+        "wind speeds. Figure 28.89 shows the plots of the wind flow direction at different wind "
+        "speeds for various sensor positions. Several authors have published the inability of "
+        "calculating the wind direction accurately at low wind speeds. The situation is similar in "
+        "this case and the readings get more accurate as the wind speed increases, especially beyond "
+        "11 m/s."))
+    b.append(fig(89, F.fig(89), "en"))
+    b.append(p(
+        "For the measurement of gusts, the time response of the sensor becomes a critical parameter. "
+        "Experiments were performed to measure the response time by dropping known weights on the "
+        "free end of the sensor and using a specially written program in Labview to acquire and "
+        "record the response. The sensor indicated a 95% response time of 50 ms and a time constant "
+        "of 30 ms."))
+
+    b.append(h3("Optical Fiber Strain Gage Drag Force Flowmeter",
+                "Lưu lượng kế lực kéo dùng cảm biến biến dạng sợi quang"))
+    b.append(p(
+        "Optical fibers have been applied to measurement of fluid flow, and strain measurement, using "
+        "interferometric techniques and bending losses [3–5]. The instrument described in the "
+        "previous sections can be adapted to use optical strain measurement instead of resistive "
+        "strain gages. In this way, the advantages of the instrument can be preserved; in addition, "
+        "the flowmeter has the usual benefits of optical fiber sensors such as immunity to "
+        "electromagnetic interference and intrinsic safety in hazardous environments."))
+    b.append(p(
+        "The principle of an optical fiber strain gage is based on the effect of one or more grooves "
+        "inserted radially into a 1 mm diameter PMMA fiber, which cause a loss in light transmission. "
+        "As the optical fiber is bent, as in a cantilever, the angle of the grooves varies. These "
+        "changes of angle cause light to be attenuated at each groove. The intensity variation can be "
+        "related to the change of the angle of the groove caused by the bending of the cantilever."))
+    b.append(p(
+        "To develop an analogy between the optical strain measurement and the resistive strain "
+        "measurement, the optical strain was calculated using the formula:"))
+    b.append(eq("Strain<sub>opt</sub> = (Change in power output) / (Original power output) = ΔP / P",
+                "28.160"))
+    b.append(p("Hence,"))
+    b.append(eq("strain<sub>x</sub> = ΔP<sub>x</sub> / P<sub>x</sub> and strain<sub>y</sub> = "
+                "ΔP<sub>y</sub> / P<sub>y</sub>", "28.161"))
+    b.append(p("Therefore, the magnitude of the velocity, |U| is given by:"))
+    b.append(eq("|U| = √(U<sub>x</sub>² + U<sub>y</sub>²) = √(strain<sub>x</sub> + strain<sub>y</sub>)"))
+    b.append(p(
+        "Substituting Equation 28.161 in |U|, the optical root strain magnitude is:"))
+    b.append(eq("|U| = √( ΔP<sub>x</sub> / P<sub>x</sub> + ΔP<sub>y</sub> / P<sub>y</sub> )", "28.162"))
+    b.append(fig(90, F.fig(90), "en"))
+    b.append(p("and the direction of wind velocity, θ:"))
+    b.append(eq("θ = tan<sup>−1</sup>[ U<sub>y</sub> / U<sub>x</sub> ] = "
+                "tan<sup>−1</sup>√( Strain<sub>y</sub> / Strain<sub>x</sub> )", "28.163"))
+    b.append(p("Substituting Equation 28.161 in θ, the optical strain direction is:"))
+    b.append(eq("θ = tan<sup>−1</sup>[ √(ΔP<sub>y</sub> / P<sub>y</sub>) / "
+                "√(ΔP<sub>x</sub> / P<sub>x</sub>) ]", "28.164"))
+    b.append(p(
+        "Two types of the optical fiber flow sensor are described here. In the first type, the rubber "
+        "beam is used as the deflected device with optical fiber strain gages attached to the "
+        "deflected beam. The second version of this flow sensor uses an unsupported sensitised 1 mm "
+        "diameter plastic optical fiber that undergoes deflection in the airflow."))
+
+    b.append(h4("Fiber Optic Flow Sensor WITH Rubber Beam", "Cảm biến sợi quang có dầm cao su"))
+    b.append(p(
+        "The sensor has been built using a rectangular cross-sectioned rubber beam and a spherical "
+        "drag element with a 1 mm plastic optical fiber glued to the beam with epoxy. The fiber is "
+        "looped inside the drag element to enhance the sensitivity of the device. Grooves have been "
+        "made in the fiber surface that extends into the core of the fiber to increase the losses as "
+        "a function of the bending of the rubber beam (Figure 28.90). The grooves are normal to the "
+        "rubber beam on its outside face, and their depths affect only the cladding of the fiber. As "
+        "the cantilever bends due to the force exerted by the air flow, the angle of the grooves "
+        "vary. The groove angle increases when the air flow is facing the sensor, and vice versa. "
+        "These changes of groove angle cause an intensity modulation of the light transmitted through "
+        "the fiber because light is lost at each groove. Changes in intensity can be related to "
+        "changes in the angle caused by the force inducing the bending of the cantilever, and "
+        "therefore to the velocity of the fluid."))
+    b.append(p(
+        "The orthogonal components of strain were measured by attaching two grooved optical fibers on "
+        "adjacent sides of the rubber beam, orthogonal to each other, as illustrated in Figure 28.91. "
+        "These two fibers measured the x and y components of optical strain."))
+    b.append(fig(91, F.fig(91), "en"))
+    b.append(p(
+        "Light from a 1 mW helium-neon laser of peak wavelength 633 nm was split into equal "
+        "components using a cubic beam splitter, and coupled into each fiber. The transmitted "
+        "intensity through each of the two fibers was monitored using a power meter. The signals from "
+        "the power meter were sent to a 486 DX2 laptop computer via a data acquisition card to be "
+        "acquired and processed by Labview. Experiments indicated that this version of the flow "
+        "sensor could measure wind speeds up to 30 m/s with a resolution of 1.3 m/s."))
+
+    b.append(h4("Fiber Optic Flow Sensor WITHOUT Rubber Beam",
+                "Cảm biến sợi quang không có dầm cao su"))
+    b.append(p(
+        "This version of the sensor uses 1 mm diameter polymer fiber as the deflection element, with a "
+        "core diameter of 0.980 mm, and a thin cladding layer of approximately 20 µm [6]. Multiple "
+        "grooves were etched radially into the fiber surface to a depth of 0.5 mm, extending into the "
+        "core of the fiber, using a hot scalpel, and a manufactured V-groove template to ensure "
+        "uniformity of grooves. Six grooves were determined as the optimum number to achieve a "
+        "compromise between insertion losses and strain sensitivity, spaced 0.4 cm apart, over a "
+        "length of 2.5 cm."))
+    b.append(note(
+        "<b>Translator's note.</b> The source prints “approximately 20 mm” for the cladding layer. On "
+        "a fibre of 1 mm diameter that is plainly a misprint — the cladding must be 20 µm."))
+    b.append(p(
+        "In order to measure strain in two orthogonal directions, perpendicular to the longitudinal "
+        "axis of the fiber, two fibers were used, as shown in Figure 28.92, with the grooves oriented "
+        "at 90° to each other. This was achieved by positioning the fibers on two adjacent faces of a "
+        "beam of square cross-section. This beam was short enough to prevent any restriction to the "
+        "deflection and yet long enough to hold and support the optical fibers. The fibers were "
+        "looped around so that the looped ends acted as drag elements. The grooved portion of the "
+        "fiber was unsupported and free to deflect in the air stream. Wind tunnel calibration "
+        "indicated that the sensor could measure two-dimensional flow up to 35 m/s with a resolution "
+        "of 0.96 m/s."))
+    b.append(fig(92, F.fig(92), "en"))
+
+    b.append(h3("Conclusion", "Kết luận"))
+    b.append(p(
+        "The measurement of one- and two-dimensional fluid velocity, using both optical fiber and "
+        "conventional strain gages on a deflected beam, for a range of 0 to 30 m/s, has been "
+        "demonstrated experimentally. Although flow visualization and modeling techniques are well "
+        "advanced in engineering, there is still a need for real measurements, especially in the "
+        "natural environment. The sensors described in this study are particularly suited for such "
+        "measurements, which are almost always two-dimensional. The outputs of the sensor "
+        "representing speed and direction of fluid flow are independent of each other, so the sensor "
+        "is suitable for environmental applications such as wind measurement or river flow, where the "
+        "fluid forms gusts and can change direction as well as speed. One noteworthy feature of this "
+        "sensor is its quick response time of 50 ms, which easily enables the measurement of gusts. "
+        "The dimensions and materials of the sensor must be chosen to suit the fluid. In terms of "
+        "sensitivity and resolution, the resistive strain gage sensor is a better option, but "
+        "replacing the conventional strain gages with optical fiber strain gages ensures electrical "
+        "noise immunity and intrinsic safety for use in hazardous environments."))
+
+    b.append(h3("References", "Tài liệu tham khảo"))
+    b.append(wl([
+        "1. T. Clarke, Design and operation of target flowmeters, <i>Encyclopedia of Fluid "
+        "Mechanics</i>, Vol 1, Houston, TX: Gulf Publishing Company, 1986.",
+        "2. F. H. Newman and V. H. L. Searle, <i>The general properties of matter</i>, Edward Arnold, "
+        "1948.",
+        "3. S. Webster, R. McBride, J. S. Barton, and J. D. C. Jones, Air flow measurement by vortex "
+        "shedding from multimode and monomode fibres, <i>Measurement, Science and Technology</i>, 3, "
+        "210–216, 1992.",
+        "4. J. S. Barton and M. Saudi, A fibre optic vortex flowmeter, <i>J. Phys. E: Sci. "
+        "Instrum.</i> 19, 64–66, 1986.",
+        "5. N. Narendran, A. Shukla, and S. Letcher, Optical fibre interferometric strain sensor using "
+        "a single fibre, <i>Experimental Techniques</i>, 16(2), 33–36, 1992.",
+        "6. R. Philip-Chandy, Ph.D. thesis <i>Fluid flow measurement using electrical and optical "
+        "fibre strain gauges</i>, Liverpool John Moores University, UK, 1997.",
+    ]))
+    return "".join(b)
+
+
 SECTIONS_VI = [sec_28_1_vi, sec_28_2_vi, sec_28_3_vi, sec_28_4_vi, sec_28_5_vi, sec_28_6_vi,
-               sec_28_7_vi, sec_28_8_vi]
+               sec_28_7_vi, sec_28_8_vi, sec_28_9_vi, sec_28_10_vi, sec_28_11_vi]
 SECTIONS_EN = [sec_28_1_en, sec_28_2_en, sec_28_3_en, sec_28_4_en, sec_28_5_en, sec_28_6_en,
-               sec_28_7_en, sec_28_8_en]
+               sec_28_7_en, sec_28_8_en, sec_28_9_en, sec_28_10_en, sec_28_11_en]
+
+
+SECTIONS = [
+    ("28.1", "Lưu lượng kế chênh áp", "Differential Pressure Flowmeters"),
+    ("28.2", "Lưu lượng kế biến diện tích", "Variable Area Flowmeters"),
+    ("28.3", "Lưu lượng kế thể tích", "Positive Displacement Flowmeters"),
+    ("28.4", "Lưu lượng kế tuabin và cánh", "Turbine and Vane Flowmeters"),
+    ("28.5", "Lưu lượng kế cánh guồng", "Impeller Flowmeters"),
+    ("28.6", "Lưu lượng kế điện từ", "Electromagnetic Flowmeters"),
+    ("28.7", "Lưu lượng kế siêu âm", "Ultrasonic Flowmeters"),
+    ("28.8", "Lưu lượng kế xoáy", "Vortex Shedding Flowmeters"),
+    ("28.9", "Cảm biến lưu lượng khối lượng nhiệt", "Thermal Mass Flow Sensors"),
+    ("28.10", "Lưu lượng kế khối theo hiệu ứng Coriolis", "Coriolis Effect Mass Flowmeters"),
+    ("28.11", "Lưu lượng kế kiểu lực kéo", "Drag Force Flowmeters"),
+]
+
+
+def sec_index(lang):
+    """The in-page jump index. Eleven sections over ~160,000 px of page need one."""
+    vi = lang == "vi"
+    li = []
+    for n, tvi, ten in SECTIONS:
+        li.append('<li><span class="n">%s</span><span class="t"><a href="#s28-%s">%s</a></span></li>'
+                  % (n, n.split(".")[1], tvi if vi else ten))
+    return ('<ul class="toc-list sec-index" aria-label="%s">%s</ul>'
+            % ("Mục lục trong chương" if vi else "Contents of this chapter", "".join(li)))
 
 
 def body_vi():
     out = ['<p class="lede">Chương này trình bày mười một họ lưu lượng kế — từ tấm orifice chênh áp '
            'cổ điển tới lưu lượng kế Coriolis — cùng nguyên lý, cách chế tạo, lắp đặt và sai số của '
-           'từng loại. Đây là chương dài nhất trong sổ tay: 132 trang gốc, 92 hình, 162 phương trình '
-           'và 23 bảng.</p>']
+           'từng loại. Đây là chương dài nhất trong sổ tay: 132 trang gốc, 92 hình, 164 phương trình '
+           'và 23 bảng.</p>', sec_index("vi")]
     for f in SECTIONS_VI:
         out.append(f())
     return "".join(out)
@@ -7771,7 +10326,7 @@ def body_en():
     out = ['<p class="lede">This chapter covers eleven families of flowmeter — from the classical '
            'differential pressure orifice plate to the Coriolis meter — with the principle, '
            'construction, installation and error sources of each. It is the longest chapter in the '
-           'handbook: 132 source pages, 92 figures, 162 equations and 23 tables.</p>']
+           'handbook: 132 source pages, 92 figures, 164 equations and 23 tables.</p>', sec_index("en")]
     for f in SECTIONS_EN:
         out.append(f())
     return "".join(out)
@@ -7794,8 +10349,8 @@ def build(lang):
              'Chương 28' % BASE_VI if vi else
              '<a href="/books/">Books</a> · <a href="%s">Measurement, Instrumentation and Sensors '
              'Handbook</a> · Chapter 28' % BASE_EN)
-    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · đang dịch: 8/11 mục" if vi else
-            "Chapter 28 · in progress: 8 of 11 sections")
+    meta = ("Chương 28 · theo Ch28.pdf (CRC Press, 1999) · 92 hình, 164 phương trình, 23 bảng" if vi else
+            "Chapter 28 · 92 figures, 164 equations, 23 tables")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
             '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'

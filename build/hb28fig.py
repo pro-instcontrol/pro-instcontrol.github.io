@@ -2995,6 +2995,1525 @@ def fig_28_67():
                 "the same period")
 
 
+# ================================================================ 28.9
+
+def _zig(x1, y1, x2, y2, n=6, amp=4.5):
+    """Zigzag resistor symbol between two axis-aligned points."""
+    dx, dy = x2 - x1, y2 - y1
+    L = _m.hypot(dx, dy) or 1.0
+    ux, uy = dx / L, dy / L
+    px, py = -uy, ux
+    pts = [(x1, y1)]
+    lead = 0.16
+    for i in range(2 * n + 1):
+        t = lead + (1 - 2 * lead) * i / (2.0 * n)
+        s = 0 if i in (0, 2 * n) else (amp if i % 2 == 0 else -amp)
+        pts.append((x1 + dx * t + px * s, y1 + dy * t + py * s))
+    pts.append((x2, y2))
+    return _path("M" + " L".join("%s,%s" % (_f(a), _f(b)) for a, b in pts), E, 1.4)
+
+
+def _gnd(x, y, w=18):
+    return (_line(x, y, x, y + 9, E, 1.3)
+            + _line(x - w / 2.0, y + 9, x + w / 2.0, y + 9, E, 1.4)
+            + _line(x - w / 3.0, y + 14, x + w / 3.0, y + 14, E, 1.3)
+            + _line(x - w / 6.0, y + 19, x + w / 6.0, y + 19, E, 1.3))
+
+
+def _amp(x, y, w=26, h=30):
+    """Amplifier triangle with its input vertex at (x, y)."""
+    return _poly([(x, y - h / 2.0), (x, y + h / 2.0), (x + w, y)], P, E, 1.4)
+
+
+def _wire_sym(cx, cy, r=7):
+    """Hot-wire sensor symbol: a loop with the wire through it."""
+    return (_circ(cx, cy, r, P, E, 1.3)
+            + _line(cx - r - 5, cy, cx + r + 5, cy, E, 1.3))
+
+
+def _box(x, y, w, h, label, fs="t", fill=FILL):
+    return (_rect(x, y, w, h, fill, E, 1.4)
+            + _lbl(x + w / 2.0, y + h / 2.0 + 4, label, fs, "middle"))
+
+
+def _tube(d, w=15, fill=FILL, col=E):
+    """A flow tube drawn from its centreline: a wide dark stroke with a slightly
+    narrower light one on top leaves a 1.3 px wall on each side, so the tube
+    keeps an outline without computing offset curves."""
+    return _path(d, col, w) + _path(d, fill, w - 2.6)
+
+
+def _carr(d, col=E, sw=1.6, marker="ah28"):
+    """A curved arrow — the arrowhead sits on the end of the given path."""
+    return ('<path d="%s" fill="none" stroke="%s" stroke-width="%s" '
+            'stroke-linecap="round" marker-end="url(#%s)"/>' % (d, col, sw, marker))
+
+
+class _PBox(Box):
+    """A Box shifted to (dx, dy) that still emits absolute coordinates.
+
+    A plain `<g transform="translate(...)">` wrapper hides every label from the
+    figure-QA script, whose bounding-box model is axis-aligned and which skips
+    only `<text>` elements that carry their own transform — so a translated
+    panel reports every label as sitting at the origin. Shifting the Box itself
+    keeps the QA output meaningful."""
+
+    def __init__(self, dx, dy, w, h, xr, yr, pad):
+        Box.__init__(self, w, h, xr, yr, pad)
+        self.dx, self.dy = dx, dy
+        self.l += dx
+        self.t += dy
+
+    def axes(self, xlab="", ylab="", xt=(), yt=(), grid=True):
+        x0, y0 = self.l, self.t
+        x1, y1 = self.l + self.pw, self.t + self.ph
+        o = ['<line class="ax" x1="%s" y1="%s" x2="%s" y2="%s"/>' % (_f(x0), _f(y1), _f(x1), _f(y1)),
+             '<line class="ax" x1="%s" y1="%s" x2="%s" y2="%s"/>' % (_f(x0), _f(y0), _f(x0), _f(y1))]
+        for v, lab in xt:
+            x = self.x(v)
+            o.append('<line class="ax" x1="%s" y1="%s" x2="%s" y2="%s"/>'
+                     % (_f(x), _f(y1), _f(x), _f(y1 + 4)))
+            o.append('<text class="ts" x="%s" y="%s" text-anchor="middle">%s</text>'
+                     % (_f(x), _f(y1 + 15), lab))
+            if grid:
+                o.append('<line class="gr" x1="%s" y1="%s" x2="%s" y2="%s"/>'
+                         % (_f(x), _f(y0), _f(x), _f(y1)))
+        for v, lab in yt:
+            y = self.y(v)
+            o.append('<line class="ax" x1="%s" y1="%s" x2="%s" y2="%s"/>'
+                     % (_f(x0 - 4), _f(y), _f(x0), _f(y)))
+            o.append('<text class="ts" x="%s" y="%s" text-anchor="end">%s</text>'
+                     % (_f(x0 - 7), _f(y + 3.5), lab))
+            if grid:
+                o.append('<line class="gr" x1="%s" y1="%s" x2="%s" y2="%s"/>'
+                         % (_f(x0), _f(y), _f(x1), _f(y)))
+        if xlab:
+            o.append('<text class="ts" x="%s" y="%s" text-anchor="middle">%s</text>'
+                     % (_f((x0 + x1) / 2.0), _f(y1 + 34), xlab))
+        if ylab:
+            cy = (y0 + y1) / 2.0
+            o.append('<text class="ts" x="%s" y="%s" text-anchor="middle" '
+                     'transform="rotate(-90 %s %s)">%s</text>'
+                     % (_f(self.dx + 11), _f(cy), _f(self.dx + 11), _f(cy), ylab))
+        return "".join(o)
+
+
+# ---------------------------------------------------------------- 28.68
+
+def fig_28_68():
+    """The three signal domains of a thermal flow sensor and the transfer
+    chain from the mechanical variable to the electrical one."""
+    o = [_defs()]
+    o.append(_lbl(105, 26, "CƠ HỌC", "tb", "middle"))
+    o.append(_lbl(392, 26, "NHIỆT", "tb", "middle"))
+    o.append(_lbl(592, 26, "ĐIỆN", "tb", "middle"))
+
+    o.append(_box(48, 80, 100, 32, "Dòng chảy"))
+    o.append(_arr(150, 96, 188, 96))
+    o.append(_box(190, 80, 108, 32, "Truyền nhiệt"))
+    o.append(_arr(300, 96, 330, 96))
+
+    rows = ["Truyền tín hiệu", "Nhiệt độ", "Chênh nhiệt độ", "Công suất gia nhiệt"]
+    o.append(_rect(332, 56, 158, 108, P, E, 1.5))
+    for i in range(1, 4):
+        o.append(_line(332, 56 + i * 27, 490, 56 + i * 27, E, 1.1))
+    for i, r in enumerate(rows):
+        o.append(_lbl(411, 74 + i * 27, r, "t", "middle"))
+
+    o.append(_arr(492, 69, 530, 69))
+    o.append(_box(532, 53, 116, 32, "Thời gian bay"))
+    o.append(_arr(492, 150, 530, 150))
+    o.append(_box(532, 134, 116, 32, "Điện áp ra"))
+    return _fig(svg(700, 205, "".join(o), "Ba miền tín hiệu của cảm biến lưu lượng nhiệt"),
+                "Hình 28.68 · Ba miền tín hiệu và quá trình chuyển đổi tín hiệu của một cảm biến "
+                "lưu lượng nhiệt: đại lượng cơ học (lưu lượng) được chuyển thành đại lượng nhiệt "
+                "(truyền nhiệt), rồi thành tín hiệu điện (điện áp hoặc dòng điện).",
+                "Figure 28.68 · The three signal domains and the signal transfer process of a "
+                "thermal flow sensor: the mechanical variable (flow) is converted into a thermal "
+                "variable (heat transfer) and then into an electrical signal (voltage or current).",
+                "Sơ đồ khối ba miền: dòng chảy qua truyền nhiệt sang khối nhiệt bốn tầng rồi ra "
+                "thời gian bay và điện áp ra",
+                "Block diagram of three domains: flow through heat transfer into a four-row thermal "
+                "block, then out to time of flight and output voltage")
+
+
+# ---------------------------------------------------------------- 28.69
+
+def _bridge(x0, y0, w=82, h=100):
+    """Wheatstone bridge: R4/R1 on the left arm, sensor/R2 on the right."""
+    o = []
+    mid = y0 + h / 2.0
+    # rails
+    o.append(_line(x0, y0, x0 + w, y0, E, 1.4))
+    o.append(_line(x0, y0 + h, x0 + w, y0 + h, E, 1.4))
+    # left arm
+    o.append(_zig(x0, y0, x0, mid))
+    o.append(_zig(x0, mid, x0, y0 + h))
+    # right arm: sensor on top, variable resistor below
+    o.append(_wire_sym(x0 + w, y0 + 22))
+    o.append(_line(x0 + w, y0, x0 + w, y0 + 15, E, 1.4))
+    o.append(_line(x0 + w, y0 + 29, x0 + w, mid, E, 1.4))
+    o.append(_zig(x0 + w, mid, x0 + w, y0 + h))
+    o.append(_arr(x0 + w - 13, y0 + h - 8, x0 + w + 13, mid + 8, E, "ah28", 1.1))
+    # labels
+    o.append(_lbl(x0 - 12, y0 + 26, "R4", "ts", "end"))
+    o.append(_lbl(x0 - 12, y0 + h - 18, "R1", "ts", "end"))
+    o.append(_lbl(x0 + w + 12, y0 + 26, "R3", "ts"))
+    o.append(_lbl(x0 + w + 12, y0 + h - 18, "R2", "ts"))
+    # mid detector line
+    o.append(_line(x0, mid, x0 + w, mid, E, 1.3))
+    o.append(_circ(x0, mid, 3, E, E, 1.0))
+    return o, mid
+
+
+def fig_28_69():
+    """Constant-current and constant-temperature bridges for hot-wire and
+    hot-film sensors."""
+    o = [_defs()]
+
+    # ---- (a) constant-current bridge
+    x0, y0 = 96, 62
+    br, mid = _bridge(x0, y0)
+    o.extend(br)
+    o.append(_lbl(60, mid - 4, "Cảm biến", "ts", "end"))
+    o.append(_arr(64, mid, x0 - 4, mid, E, "ah28", 1.1))
+    o.append(_line(x0, mid, x0 + 104, mid, E, 1.3))
+    o.append(_amp(x0 + 104, mid, 28, 30))
+    o.append(_lbl(x0 + 136, mid - 8, "Khuếch đại", "ts"))
+    o.append(_line(x0 + 132, mid, x0 + 170, mid, E, 1.3))
+    o.append(_lbl(x0 + 41, y0 + 122, "R2 = R3 &gt;&gt; R1", "ts", "middle"))
+    o.append(_lbl(x0 + 41, y0 + 145, "(a)", "tb", "middle"))
+
+    # ---- (b) constant-temperature bridge with squarer
+    x0b = 408
+    br, mid = _bridge(x0b, y0)
+    o.extend(br)
+    o.append(_lbl(x0b - 34, mid - 4, "Cảm biến", "ts", "end"))
+    o.append(_arr(x0b - 30, mid, x0b - 4, mid, E, "ah28", 1.1))
+    o.append(_line(x0b, mid, x0b + 92, mid, E, 1.3))
+    o.append(_amp(x0b + 92, mid, 26, 30))
+    # feedback to the top rail
+    o.append(_line(x0b + 118, mid, x0b + 126, mid, E, 1.3))
+    o.append(_line(x0b + 126, mid, x0b + 126, y0 - 34, E, 1.3))
+    o.append(_line(x0b + 126, y0 - 34, x0b + 41, y0 - 34, E, 1.3))
+    o.append(_line(x0b + 41, y0 - 34, x0b + 41, y0, E, 1.3))
+    # multiplier
+    o.append(_line(x0b + 126, mid, x0b + 142, mid, E, 1.3))
+    o.append(_line(x0b + 142, mid, x0b + 142, mid - 8, E, 1.3))
+    o.append(_line(x0b + 142, mid, x0b + 142, mid + 8, E, 1.3))
+    o.append(_rect(x0b + 142, mid - 20, 58, 40, FILL, E, 1.4))
+    o.append(_lbl(x0b + 171, mid + 4, "×", "tb", "middle"))
+    o.append(_lbl(x0b + 136, mid - 12, "x", "ts", "end"))
+    o.append(_lbl(x0b + 136, mid + 22, "y", "ts", "end"))
+    o.append(_lbl(x0b + 171, mid + 34, "Bộ nhân", "ts", "middle"))
+    o.append(_line(x0b + 200, mid, x0b + 212, mid, E, 1.3))
+    o.append(_amp(x0b + 212, mid, 22, 26))
+    o.append(_line(x0b + 234, mid, x0b + 256, mid, E, 1.3))
+    o.append(_lbl(x0b + 41, y0 + 122, "R2 = R3 &gt;&gt; R1", "ts", "middle"))
+    o.append(_lbl(x0b + 41, y0 + 145, "(b)", "tb", "middle"))
+
+    return _fig(svg(720, 245, "".join(o), "Cầu đo dòng không đổi và nhiệt độ không đổi"),
+                "Hình 28.69 · Mạch điều khiển và đánh giá tín hiệu của cảm biến dây nóng và màng "
+                "nóng: (a) cầu cân bằng dòng không đổi; (b) cầu cân bằng nhiệt độ không đổi, có "
+                "thêm bộ nhân để tuyến tính hoá tín hiệu ra.",
+                "Figure 28.69 · Control and evaluation circuit of hot-wire and hot-film sensors: "
+                "(a) constant-current bridge; (b) constant-temperature bridge, with a multiplier "
+                "for linearising the output.",
+                "Hai sơ đồ cầu Wheatstone: bên trái cầu dòng không đổi, bên phải cầu nhiệt độ "
+                "không đổi có hồi tiếp và bộ nhân",
+                "Two Wheatstone bridge circuits: a constant-current bridge on the left, a "
+                "constant-temperature bridge with feedback and a multiplier on the right")
+
+
+# ---------------------------------------------------------------- 28.70
+
+def fig_28_70():
+    """Sensor characteristic before and after square-root linearisation."""
+    o = [_defs()]
+
+    def panel(dx, ylo, yhi, yt, curve, tag, lab):
+        b = _PBox(dx, 26, 300, 236, (0, 250), (ylo, yhi), pad=(54, 12, 14, 44))
+        g = [b.axes("Lưu lượng (ml/phút)", "Tín hiệu ra (V)", xt=[
+            (0, "0"), (50, "50"), (100, "100"), (150, "150"), (200, "200"), (250, "250")], yt=yt)]
+        g.append(b.curve(curve))
+        return "".join(g)
+
+    c1 = [(f, 1.0 + 3.05 * (f / 250.0) ** 0.45) for f in [k * 2.5 for k in range(101)]]
+    c2 = [(f, 0.05 + 1.25 * (f / 250.0)) for f in [k * 2.5 for k in range(101)]]
+    o.append(panel(18, 1.0, 4.6,
+                   [(1.0, "1,0"), (1.5, "1,5"), (2.0, "2,0"), (2.5, "2,5"), (3.0, "3,0"),
+                    (3.5, "3,5"), (4.0, "4,0"), (4.5, "4,5")], c1, "a", "V"))
+    o.append(panel(356, 0, 1.5,
+                   [(0, "0"), (0.2, "0,2"), (0.4, "0,4"), (0.6, "0,6"), (0.8, "0,8"),
+                    (1.0, "1,0"), (1.2, "1,2"), (1.4, "1,4")], c2, "b", "V"))
+    o.append(_lbl(186, 292, "(a)", "tb", "middle"))
+    o.append(_lbl(524, 292, "(b)", "tb", "middle"))
+    return _fig(svg(700, 305, "".join(o), "Đặc tính cảm biến trước và sau tuyến tính hoá"),
+                "Hình 28.70 · Đặc tính của cảm biến ở chế độ nhiệt độ không đổi: (a) trước khi "
+                "tuyến tính hoá — đường cong dạng căn bậc hai; (b) sau khi tuyến tính hoá bằng bộ "
+                "nhân — quan hệ gần như tuyến tính, sai số còn lại chủ yếu ở vùng lưu lượng nhỏ.",
+                "Figure 28.70 · Sensor characteristic of the constant-temperature mode: (a) before "
+                "linearisation, a square-root-like curve; (b) after linearisation with a multiplier, "
+                "almost straight, with the residual error concentrated at low flow.",
+                "Hai đồ thị tín hiệu ra theo lưu lượng: bên trái cong dạng căn, bên phải gần như "
+                "thẳng",
+                "Two output-versus-flow plots: a square-root curve on the left and an almost "
+                "straight line on the right")
+
+
+# ---------------------------------------------------------------- 28.71
+
+def fig_28_71():
+    """Temperature distribution around the heater: measurement and simulation."""
+    o = [_defs()]
+    b = _PBox(16, 26, 296, 226, (0, 140), (25, 66), pad=(52, 12, 12, 44))
+    g = []
+    g.append(b.axes("Chiều dài (pixel)", "Nhiệt độ (°C)", xt=[
+        (0, "0"), (20, "20"), (40, "40"), (60, "60"), (80, "80"), (100, "100"),
+        (120, "120"), (140, "140")],
+        yt=[(25.6, "25,6"), (35.3, "35,3"), (44.9, "44,9"), (54.5, "54,5"), (64.2, "64,2")]))
+    no = [(x, 26 + 36 * _m.exp(-((x - 58) / 17.0) ** 2)) for x in [k * 2.0 for k in range(71)]]
+    fl = [(x, 26 + 30 * _m.exp(-((x - 76) / 13.0) ** 2) + 4 * _m.exp(-((x - 88) / 7.0) ** 2))
+          for x in [k * 2.0 for k in range(71)]]
+    g.append(b.curve(no, "c1"))
+    g.append(b.curve(fl, "c2"))
+    g.append(b.label(96, 52, "không có dòng chảy", "ts"))
+    g.append(b.label(92, 40, "có dòng chảy", "ts"))
+    o.append("".join(g))
+    o.append(_lbl(180, 288, "(a)", "tb", "middle"))
+
+    # ---- (b) simulation: channel with contour lines
+    ox = 352
+    for k, (yy, tag) in enumerate(((44, "không có dòng chảy"), (140, "có dòng chảy"))):
+        o.append(_rect(ox, yy, 300, 62, P, E, 1.4))
+        o.append(_rect(ox, yy, 300, 12, "#e8edf4", E, 1.2))
+        o.append(_rect(ox + 130, yy + 12, 40, 10, "#d8d2c4", E, 1.2))
+        o.append(_lbl(ox + 150, yy + 20, "G", "ts", "middle"))
+        n = 6
+        for i in range(n):
+            t = (i + 0.6) / (n + 0.2)
+            pts = []
+            for j in range(41):
+                x = j / 40.0
+                dip = 16 * _m.exp(-((x - 0.5) / 0.16) ** 2) * (1 - t)
+                shift = 0.10 * k * t
+                y = yy + 12 + t * 46 + dip - 6 * k * t * (x - 0.5 + shift)
+                pts.append((ox + x * 300, y))
+            o.append(_path("M" + " L".join("%s,%s" % (_f(a), _f(bb)) for a, bb in pts),
+                           "#9aa4b2", 1.0))
+        o.append(_lbl(ox + 300, yy + 78, tag, "ts", "end"))
+    o.append(_lbl(502, 288, "(b)", "tb", "middle"))
+    return _fig(svg(700, 300, "".join(o), "Phân bố nhiệt độ quanh bộ gia nhiệt"),
+                "Hình 28.71 · Phân bố nhiệt độ quanh bộ gia nhiệt: (a) đo bằng hệ thống ảnh nhiệt; "
+                "(b) mô phỏng số. Khi có dòng chảy, đỉnh nhiệt độ dịch xuống hạ lưu và prôfin trở "
+                "nên bất đối xứng — độ bất đối xứng tăng theo lưu lượng.",
+                "Figure 28.71 · Temperature distribution around the heater: (a) measured with a "
+                "thermography system; (b) numerical simulation. With flow the peak shifts downstream "
+                "and the profile becomes asymmetric, the asymmetry growing with flow rate.",
+                "Bên trái là đồ thị nhiệt độ theo chiều dài với hai đỉnh, bên phải là hai mặt cắt "
+                "kênh có các đường đẳng nhiệt",
+                "A temperature-versus-length plot with two peaks on the left, and two channel "
+                "cross-sections with isotherms on the right")
+
+
+# ---------------------------------------------------------------- 28.72
+
+def fig_28_72():
+    """Bypass arrangement: principle and laminar-element solutions."""
+    o = [_defs()]
+    # ---- (a) principle
+    o.append(_rect(50, 56, 330, 46, P, E, 1.4))
+    o.append(_rect(50, 56, 330, 8, "#e8edf4", E, 1.0))
+    o.append(_rect(50, 94, 330, 8, "#e8edf4", E, 1.0))
+    o.append(_flowarrow(14, 79, 28, E, 1.5))
+    o.append(_lbl(50, 44, "Dòng chảy", "ts"))
+    # sensors and heater on the channel roof
+    for x, lab in ((132, "cảm biến thượng lưu"), (215, "bộ gia nhiệt"), (300, "cảm biến hạ lưu")):
+        o.append(_line(x, 56, x, 44, E, 1.3))
+        o.append(_circ(x, 42, 3.5, P, E, 1.2))
+        o.append(_lbl(x, 32, lab, "ts", "middle"))
+    # laminar element below
+    o.append(_rect(150, 104, 130, 46, "#f2f5f9", E, 1.2))
+    for i in range(6):
+        o.append(_line(150, 110 + i * 7, 280, 110 + i * 7, "#6b7785", 1.4))
+    o.append(_lbl(290, 128, "phần tử chảy tầng", "ts"))
+    o.append(_lbl(215, 176, "(a)", "tb", "middle"))
+
+    # ---- (b) disk stacks
+    bx = 420
+    o.append(_lbl(bx, 40, "Bố trí song song", "ts"))
+    for i in range(5):
+        cx = bx + 18 + i * 48
+        o.append(_circ(cx, 72, 17, P, E, 1.3))
+        o.append(_circ(cx, 72, 6, "#e8edf4", E, 1.1))
+        o.append(_line(cx + 6, 72, cx + 30, 72, "#6b7785", 1.0))
+    o.append(_lbl(bx + 120, 108, "Bố trí nối tiếp", "ts"))
+    for i in range(5):
+        cx = bx + 18 + i * 48
+        o.append(_circ(cx, 140, 17, P, E, 1.3))
+        o.append(_circ(cx, 140, 6, "#e8edf4", E, 1.1))
+        o.append(_line(cx + 6, 132, cx + 30, 148, "#6b7785", 1.0))
+        o.append(_line(cx + 6, 148, cx + 30, 132, "#6b7785", 1.0))
+    o.append(_lbl(bx + 120, 176, "(b)", "tb", "middle"))
+    return _fig(svg(700, 190, "".join(o), "Bố trí rẽ nhánh cho dải lưu lượng lớn"),
+                "Hình 28.72 · Bố trí rẽ nhánh cho dải lưu lượng lớn: (a) nguyên lý — phần tử chảy "
+                "tầng song song với ống mao dẫn của cảm biến; (b) hai cách xếp chồng đĩa có kênh "
+                "khắc để tạo phần tử chảy tầng.",
+                "Figure 28.72 · Bypass arrangement for a large flow range: (a) principle — the "
+                "laminar element in parallel with the sensor capillary; (b) two ways of stacking "
+                "etched-channel disks to form the laminar element.",
+                "Bên trái là kênh chính có cảm biến và bộ gia nhiệt cùng chồng đĩa bên dưới, bên "
+                "phải là hai cách xếp đĩa song song và nối tiếp",
+                "A main channel with sensors and heater above a disk stack on the left, and "
+                "parallel and serial disk arrangements on the right")
+
+
+# ---------------------------------------------------------------- 28.73
+
+def fig_28_73():
+    """Time-of-flight sensor: principle, downstream temperature, characteristic."""
+    o = [_defs()]
+    # ---- (a) principle
+    o.append(_rect(30, 52, 170, 34, P, E, 1.3))
+    o.append(_flowarrow(4, 69, 24, E, 1.4))
+    o.append(_line(78, 52, 78, 40, E, 1.3))
+    o.append(_rect(72, 34, 12, 18, "#d8d2c4", E, 1.1))
+    o.append(_lbl(78, 28, "bộ gia nhiệt", "ts", "middle"))
+    o.append(_line(140, 52, 140, 40, E, 1.3))
+    o.append(_circ(140, 38, 3.5, P, E, 1.2))
+    o.append(_lbl(146, 30, "cảm biến hạ lưu", "ts"))
+    o.append(_arr(78, 96, 140, 96, E, "ah28", 1.1))
+    o.append(_lbl(109, 110, "l", "ts", "middle"))
+    o.append(_lbl(115, 132, "(a)", "tb", "middle"))
+
+    # ---- (b) temperature vs time
+    b = _PBox(212, 34, 196, 120, (0, 10), (0, 1.25), pad=(30, 8, 8, 26))
+    g = []
+    g.append(b.axes("thời gian", "nhiệt độ", xt=[], yt=[]))
+    g.append(b.curve([(0, 0.10), (2.2, 0.10), (2.2, 1.05), (2.9, 1.05), (2.9, 0.10), (10, 0.10)], "c2"))
+    g.append(b.curve([(0, 0.10), (2.6, 0.10), (3.4, 0.55), (4.1, 0.78), (4.9, 0.55),
+                      (5.8, 0.10), (10, 0.10)], "c1"))
+    g.append(_line(b.x(2.2), b.y(0.10), b.x(2.2), b.y(1.02), S, 0.9, "3 3"))
+    g.append(_line(b.x(4.1), b.y(0.10), b.x(4.1), b.y(0.80), S, 0.9, "3 3"))
+    g.append(_lbl(b.x(2.05), b.y(1.06), "xung nhiệt", "ts", "end"))
+    g.append(_lbl(b.x(3.15), b.y(0.24), "Δt", "ts", "middle"))
+    o.append("".join(g))
+    o.append(_lbl(320, 176, "(b)", "tb", "middle"))
+
+    # ---- (c) time difference vs velocity
+    b2 = _PBox(470, 34, 196, 120, (0, 10), (0, 1.25), pad=(30, 8, 8, 26))
+    g2 = []
+    g2.append(b2.axes("vận tốc trung bình", "Δt", xt=[], yt=[]))
+    pts = [(0.6 + k * 0.09, 1.10 / (0.6 + k * 0.09) ** 0.75) for k in range(60)]
+    g2.append(b2.curve(pts, "c1"))
+    g2.append(_lbl(b2.x(1.4), b2.y(0.95), "Δt ~ 1/v", "ts"))
+    o.append("".join(g2))
+    o.append(_lbl(580, 176, "(c)", "tb", "middle"))
+    return _fig(svg(700, 186, "".join(o), "Cảm biến thời gian bay"),
+                "Hình 28.73 · Cảm biến thời gian bay: (a) nguyên lý — bộ gia nhiệt phát xung nhiệt, "
+                "cảm biến hạ lưu thu; (b) nhiệt độ tại cảm biến hạ lưu theo thời gian, với độ trễ Δt "
+                "giữa xung phát và đỉnh thu; (c) đặc tính của cảm biến — Δt giảm theo vận tốc.",
+                "Figure 28.73 · Time-of-flight sensors: (a) principle — the heater emits a heat "
+                "pulse and the downstream sensor receives it; (b) temperature at the downstream "
+                "sensor against time, with the delay Δt between the emitted pulse and the received "
+                "peak; (c) sensor characteristic — Δt falls as velocity rises.",
+                "Ba ô: sơ đồ nguyên lý, đồ thị nhiệt độ theo thời gian có xung vuông và đỉnh chuông, "
+                "đồ thị Δt giảm theo vận tốc",
+                "Three panels: the principle sketch, a temperature-versus-time plot with a square "
+                "pulse and a bell-shaped peak, and a Δt-versus-velocity decay curve")
+
+
+# ---------------------------------------------------------------- 28.74
+
+def fig_28_74():
+    """Order of thermal conductivity of different materials on a log axis."""
+    o = [_defs()]
+    x0, x1 = 92, 604
+    y = 96
+    o.append(_line(x0, y, x1, y, E, 1.5))
+    o.append(_arr(x1 - 2, y, x1 + 34, y, E, "ah28", 1.5))
+    for k in range(5):
+        x = x0 + k * (x1 - x0) / 4.0
+        o.append(_line(x, y - 6, x, y + 6, E, 1.3))
+    # exponent labels as real superscripts via tspans
+    exps = ["−2", "−1", "0", "1", "2"]
+    for k in range(5):
+        x = x0 + k * (x1 - x0) / 4.0
+        o.append('<text class="ts" x="%s" y="%s" text-anchor="middle">10<tspan font-size="8" '
+                 'dy="-4">%s</tspan></text>' % (_f(x), _f(y + 24), exps[k]))
+    # markers
+    def X(v):
+        return x0 + (_m.log10(v) + 2) / 4.0 * (x1 - x0)
+    for v, name, val in ((0.0314, "Không khí", "0,0314"), (0.598, "Nước", "0,598")):
+        x = X(v)
+        o.append(_line(x, y - 26, x, y, G, 1.4))
+        o.append(_circ(x, y - 26, 3.5, G, G, 1.0))
+        o.append(_lbl(x, y - 34, name, "ts", "middle"))
+        o.append(_lbl(x, y - 46, val, "ts", "middle"))
+    o.append(_lbl((x0 + x1) / 2.0, 26, "Độ dẫn nhiệt (W m⁻¹ K⁻¹)", "ts", "middle"))
+    # regions
+    regs = [("Khí", 108), ("Cách nhiệt", 176), ("Lỏng", 300), ("Phi kim", 430), ("Kim loại", 560)]
+    for name, xx in regs:
+        o.append(_lbl(xx, y + 50, name, "ts", "middle"))
+    o.append(_line(x0, y + 34, x1, y + 34, S, 0.9))
+    return _fig(svg(700, 170, "".join(o), "Thứ tự độ dẫn nhiệt của các vật liệu"),
+                "Hình 28.74 · Thứ tự độ dẫn nhiệt của các vật liệu khác nhau trên thang logarit. "
+                "Không khí và các chất cách nhiệt nằm ở đầu thấp, chất lỏng ở giữa, phi kim và kim "
+                "loại ở đầu cao.",
+                "Figure 28.74 · The order of thermal conductivity of different materials on a "
+                "logarithmic scale. Gases and insulators sit at the low end, liquids in the middle, "
+                "non-metals and metals at the high end.",
+                "Trục logarit độ dẫn nhiệt từ 10 mũ trừ 2 đến 10 mũ 2, có mốc không khí và nước",
+                "A logarithmic thermal-conductivity axis from 10 to the minus 2 up to 10 squared, "
+                "marked with air and water")
+
+
+# ---------------------------------------------------------------- 28.75
+
+def fig_28_75():
+    """Characteristic length of a plate, tube and wire."""
+    o = [_defs()]
+    # flat plate
+    o.append(_rect(40, 74, 72, 12, FILL, E, 1.3))
+    o.append(_darr(40, 60, 112, 60, E, 1.1))
+    o.append(_lbl(76, 54, "l", "ts", "middle"))
+    o.append(_lbl(76, 108, "Tấm phẳng", "ts", "middle"))
+    o.append(_lbl(76, 124, "L = l", "tb", "middle"))
+    # cylindrical tube
+    o.append(_rect(178, 70, 66, 20, FILL, E, 1.3))
+    o.append(_ell(178, 80, 7, 10, FILL, E, 1.3))
+    o.append(_ell(244, 80, 7, 10, FILL, E, 1.3))
+    o.append(_darr(178, 56, 178, 68, E, 1.0))
+    o.append(_lbl(186, 58, "d", "ts"))
+    o.append(_lbl(211, 108, "Ống tròn", "ts", "middle"))
+    o.append(_lbl(211, 124, "L = d", "tb", "middle"))
+    # non-cylindrical tube
+    o.append(_rect(310, 70, 62, 22, FILL, E, 1.3))
+    o.append(_lbl(341, 84, "A", "ts", "middle"))
+    o.append(_lbl(376, 66, "U", "ts"))
+    o.append(_lbl(341, 108, "Ống không tròn", "ts", "middle"))
+    o.append(_lbl(341, 124, "L = 4A/U", "tb", "middle"))
+    # cylindrical wire
+    o.append(_circ(462, 80, 11, FILL, E, 1.3))
+    o.append(_darr(462, 62, 462, 68, E, 1.0))
+    o.append(_lbl(468, 62, "d", "ts"))
+    o.append(_lbl(462, 108, "Dây tròn", "ts", "middle"))
+    o.append(_lbl(462, 124, "L = πd/2", "tb", "middle"))
+    # non-cylindrical wire
+    o.append(_poly([(568, 80), (578, 70), (590, 72), (596, 80), (590, 89), (578, 90)], FILL, E, 1.3))
+    o.append(_lbl(600, 76, "U", "ts"))
+    o.append(_lbl(582, 108, "Dây không tròn", "ts", "middle"))
+    o.append(_lbl(582, 124, "L = U/2", "tb", "middle"))
+    return _fig(svg(700, 140, "".join(o), "Chiều dài đặc trưng của các vật thể"),
+                "Hình 28.75 · Định nghĩa chiều dài đặc trưng L của các vật thể khác nhau: tấm phẳng "
+                "(L = l), ống tròn (L = d), ống không tròn (L = 4A/U), dây tròn (L = πd/2) và dây "
+                "không tròn (L = U/2).",
+                "Figure 28.75 · Definition of the characteristic length L of different objects: "
+                "flat plate (L = l), cylindrical tube (L = d), non-cylindrical tube (L = 4A/U), "
+                "cylindrical wire (L = πd/2) and non-cylindrical wire (L = U/2).",
+                "Năm hình nhỏ: tấm phẳng, ống tròn, ống không tròn, dây tròn, dây không tròn kèm "
+                "công thức chiều dài đặc trưng",
+                "Five small sketches — flat plate, round tube, non-round tube, round wire and "
+                "non-round wire — each with its characteristic-length formula")
+
+
+# ---------------------------------------------------------------- 28.76
+
+def fig_28_76():
+    """Analytical model of the intrusive calorimetric sensor."""
+    o = [_defs()]
+    # ---- (a) length cut
+    o.append(_rect(46, 92, 250, 34, P, E, 1.3))
+    o.append(_rect(46, 92, 250, 6, "#e8edf4", E, 1.0))
+    o.append(_rect(46, 120, 250, 6, "#e8edf4", E, 1.0))
+    o.append(_flowarrow(16, 109, 30, E, 1.4))
+    # sensors and heater
+    o.append(_rect(104, 74, 10, 18, "#d8d2c4", E, 1.1))
+    o.append(_lbl(109, 66, "cảm biến thượng lưu", "ts", "middle"))
+    o.append(_rect(168, 74, 12, 18, "#c9b79a", E, 1.1))
+    o.append(_lbl(174, 52, "bộ gia nhiệt", "ts", "middle"))
+    o.append(_rect(236, 74, 10, 18, "#d8d2c4", E, 1.1))
+    o.append(_lbl(241, 66, "cảm biến hạ lưu", "ts", "middle"))
+    # dimensions
+    o.append(_darr(104, 142, 168, 142, E, 1.0))
+    o.append(_subs(136, 158, [("l", False), ("s", True)], "middle"))
+    o.append(_darr(168, 142, 180, 142, E, 1.0))
+    o.append(_subs(174, 158, [("l", False), ("H", True)], "middle"))
+    o.append(_darr(236, 142, 246, 142, E, 1.0))
+    o.append(_subs(241, 158, [("l", False), ("s", True)], "middle"))
+    o.append(_darr(300, 92, 300, 126, E, 1.0))
+    o.append(_lbl(308, 112, "2l", "ts"))
+    o.append(_lbl(171, 190, "(a)", "tb", "middle"))
+
+    # ---- (b) cross-section
+    o.append(_rect(410, 86, 150, 60, FILL, E, 1.4))
+    o.append(_darr(410, 160, 560, 160, E, 1.0))
+    o.append(_lbl(485, 174, "l", "ts", "middle"))
+    o.append(_darr(390, 86, 390, 146, E, 1.0))
+    o.append(_lbl(382, 120, "2l", "ts", "end"))
+    # axes
+    o.append(_arr(560, 86, 600, 86, E, "ah28", 1.1))
+    o.append(_lbl(604, 90, "x", "ts"))
+    o.append(_arr(560, 146, 560, 66, E, "ah28", 1.1))
+    o.append(_lbl(556, 62, "z", "ts", "middle"))
+    o.append(_lbl(485, 190, "(b)", "tb", "middle"))
+    return _fig(svg(700, 200, "".join(o), "Mô hình cảm biến nhiệt lượng kiểu xâm nhập"),
+                "Hình 28.76 · Mô hình giải tích cho cảm biến nhiệt lượng kiểu xâm nhập: (a) mặt cắt "
+                "dọc — cảm biến thượng lưu, bộ gia nhiệt dài l_H và cảm biến hạ lưu; (b) mặt cắt "
+                "ngang kênh, kích thước l_y × 2l_z.",
+                "Figure 28.76 · Analytical model for the intrusive type of calorimetric sensor: "
+                "(a) length cut — upstream sensor, heater of length l_H and downstream sensor; "
+                "(b) channel cross-section, l_y by 2l_z.",
+                "Bên trái là mặt cắt dọc kênh có ba phần tử, bên phải là mặt cắt ngang chữ nhật "
+                "có trục x và z",
+                "A longitudinal channel section with three elements on the left, and a rectangular "
+                "cross-section with x and z axes on the right")
+
+
+# ---------------------------------------------------------------- 28.77
+
+def fig_28_77():
+    """Analytical model of the non-intrusive calorimetric sensor."""
+    o = [_defs()]
+    # ---- (a) heater and channel geometry
+    o.append(_rect(46, 84, 96, 40, P, E, 1.3))
+    o.append(_ell(46, 104, 8, 20, P, E, 1.3))
+    o.append(_ell(142, 104, 8, 20, P, E, 1.3))
+    for i in range(9):
+        x = 58 + i * 10
+        o.append(_ell(x, 84, 4, 4, "none", G, 1.2))
+        o.append(_ell(x, 124, 4, 4, "none", G, 1.2))
+    o.append(_subs(94, 58, [("b", False), ("H", True)], "middle"))
+    o.append(_lbl(94, 72, "= 2πr", "ts", "middle"))
+    o.append(_darr(150, 84, 150, 124, E, 1.0))
+    o.append(_lbl(158, 108, "d", "ts"))
+    o.append(_lbl(94, 148, "(a)", "tb", "middle"))
+
+    # ---- (b) model geometry
+    o.append(_rect(226, 82, 190, 44, P, E, 1.3))
+    o.append(_rect(226, 82, 190, 12, "#e8edf4", E, 1.0))
+    o.append(_rect(226, 114, 190, 12, "#e8edf4", E, 1.0))
+    # boundary layer
+    for yy in (94, 114):
+        pts = []
+        for j in range(41):
+            x = 226 + j / 40.0 * 190
+            pts.append((x, yy + (3 if yy == 94 else -3)))
+        o.append(_path("M" + " L".join("%s,%s" % (_f(a), _f(b)) for a, b in pts), "#9aa4b2", 1.0,
+                       "none", "4 3"))
+    o.append(_lbl(232, 88, "δ", "ts"))
+    o.append(_lbl(232, 110, "δ", "ts"))
+    # heater and sensors
+    o.append(_rect(300, 70, 12, 12, "#c9b79a", E, 1.1))
+    o.append(_subs(306, 62, [("l", False), ("H", True)], "middle"))
+    o.append(_rect(262, 72, 8, 10, "#d8d2c4", E, 1.1))
+    o.append(_rect(346, 72, 8, 10, "#d8d2c4", E, 1.1))
+    # local coordinate systems
+    o.append(_circ(272, 104, 8, P, E, 1.0))
+    o.append(_lbl(272, 107, "1", "ts", "middle"))
+    o.append(_circ(330, 104, 8, P, E, 1.0))
+    o.append(_lbl(330, 107, "2", "ts", "middle"))
+    o.append(_arr(226, 140, 416, 140, E, "ah28", 1.0))
+    o.append(_lbl(420, 144, "x", "ts"))
+    o.append(_arr(226, 140, 226, 150, E, "ah28", 1.0))
+    o.append(_lbl(222, 154, "y", "ts", "middle"))
+    o.append(_lbl(321, 168, "(b)", "tb", "middle"))
+
+    # ---- (c) lumped element
+    o.append(_rect(470, 62, 120, 16, "#e8edf4", E, 1.2))
+    o.append(_rect(470, 78, 120, 40, P, E, 1.2))
+    o.append(_lbl(530, 74, "thành", "ts", "middle"))
+    o.append(_lbl(530, 102, "chất lưu", "ts", "middle"))
+    o.append(_darr(470, 70, 470, 110, E, 1.0))
+    o.append(_subs(462, 98, [("d", False), ("w", True)], "end"))
+    o.append(_arr(596, 70, 640, 70, G, "ah28g", 1.1))
+    o.append(_lbl(642, 74, "Q", "ts"))
+    o.append(_arr(596, 100, 640, 100, G, "ah28g", 1.1))
+    o.append(_lbl(642, 104, "Q", "ts"))
+    o.append(_lbl(530, 140, "(c)", "tb", "middle"))
+    return _fig(svg(700, 180, "".join(o), "Mô hình cảm biến nhiệt lượng kiểu không xâm nhập"),
+                "Hình 28.77 · Mô hình giải tích cho cảm biến nhiệt lượng kiểu không xâm nhập: "
+                "(a) hình học bộ gia nhiệt quấn quanh ống và kênh; (b) hình học mô hình với lớp biên "
+                "nhiệt δ và hai hệ toạ độ địa phương; (c) mô hình phần tử tập trung với các dòng "
+                "nhiệt qua thành và chất lưu.",
+                "Figure 28.77 · Analytical model for the non-intrusive type of calorimetric sensor: "
+                "(a) heater wound round the tube and the channel; (b) model geometry with the thermal "
+                "boundary layer δ and two local coordinate systems; (c) lumped-element model with the "
+                "heat flows through wall and fluid.",
+                "Ba ô: ống quấn dây gia nhiệt, kênh có lớp biên và hai hệ toạ độ, phần tử tập trung "
+                "với mũi tên dòng nhiệt",
+                "Three panels: a heater-wound tube, a channel with boundary layers and two local "
+                "coordinate systems, and a lumped element with heat-flow arrows")
+
+
+# ---------------------------------------------------------------- 28.78
+
+def fig_28_78():
+    """Duty-cycle modulation of a hot-wire sensor."""
+    o = [_defs()]
+    # ---- (a) circuit
+    o.append(_subs(120, 42, [("V", False), ("DD", True)], "middle"))
+    o.append(_line(120, 46, 120, 62, E, 1.2))
+    o.append(_line(78, 62, 162, 62, E, 1.2))
+    o.append(_zig(78, 62, 78, 112))
+    o.append(_zig(162, 62, 162, 112))
+    o.append(_lbl(64, 88, "R cảm biến", "ts", "end"))
+    o.append(_lbl(176, 88, "R chuẩn", "ts"))
+    o.append(_arr(150, 114, 172, 92, E, "ah28", 1.0))
+    o.append(_line(78, 112, 78, 142, E, 1.2))
+    o.append(_line(162, 112, 162, 142, E, 1.2))
+    o.append(_line(78, 142, 162, 142, E, 1.2))
+    o.append(_line(120, 142, 120, 152, E, 1.2))
+    o.append(_gnd(120, 152))
+    # detector into the comparator
+    o.append(_line(78, 112, 196, 112, E, 1.2))
+    o.append(_circ(78, 112, 2.6, E, E, 1.0))
+    o.append(_amp(196, 112, 26, 26))
+    o.append(_lbl(196, 134, "so sánh", "ts"))
+    o.append(_line(222, 112, 244, 112, E, 1.2))
+    o.append(_circ(244, 112, 3, E, E, 1.0))
+    o.append(_line(244, 112, 244, 96, E, 1.2))
+    o.append(_subs(248, 94, [("V", False), ("ra", True)]))
+    # the comparator output drives a switch in series with the heater
+    o.append(_line(244, 112, 244, 134, E, 1.2))
+    o.append(_circ(244, 134, 3, P, E, 1.2))
+    o.append(_line(244, 134, 268, 122, E, 1.2))
+    o.append(_circ(268, 134, 3, P, E, 1.2))
+    o.append(_lbl(256, 118, "khóa", "ts", "middle"))
+    o.append(_line(268, 134, 300, 134, E, 1.2))
+    o.append(_zig(300, 134, 300, 174))
+    o.append(_lbl(310, 156, "R gia nhiệt", "ts"))
+    o.append(_gnd(300, 174))
+    o.append(_lbl(150, 186, "(a)", "tb", "middle"))
+
+    # ---- (b) waveforms
+    b = _PBox(370, 40, 280, 96, (0, 10), (0, 1.2), pad=(34, 6, 8, 22))
+    g = []
+    g.append(b.axes("", "T", xt=[], yt=[]))
+    seg = ["M%s,%s" % (_f(b.x(0)), _f(b.y(0.35)))]
+    xs = [0, 1.2, 2.0, 3.4, 4.2, 5.6, 6.4, 7.8, 8.6, 10]
+    ys = [0.35, 1.0, 0.35, 1.0, 0.35, 1.0, 0.35, 1.0, 0.35, 0.35]
+    for x, y in zip(xs[1:], ys[1:]):
+        seg.append("L%s,%s" % (_f(b.x(x)), _f(b.y(y))))
+    g.append(_path(" ".join(seg), E, 1.6))
+    g.append(_line(b.x(0), b.y(1.0), b.x(10), b.y(1.0), S, 0.9, "4 3"))
+    g.append(_lbl(b.x(0) - 4, b.y(1.0) + 3, "T₀+ΔT", "ts", "end"))
+    g.append(_lbl(b.x(0) - 4, b.y(0.35) + 3, "T₀", "ts", "end"))
+    g.append(_subs(b.x(1.05), b.y(1.0) - 6, [("t", False), ("d", True)], "middle"))
+    g.append(_subs(b.x(3.45), b.y(0.20), [("t", False), ("H", True)], "middle"))
+    o.append("".join(g))
+
+    b2 = _PBox(370, 176, 280, 96, (0, 10), (0, 1.2), pad=(34, 6, 8, 22))
+    g2 = []
+    g2.append(b2.axes("", "V", xt=[], yt=[]))
+    hi, lo = 0.95, 0.15
+    seg2 = ["M%s,%s" % (_f(b2.x(0)), _f(b2.y(lo))),
+            "L%s,%s" % (_f(b2.x(0.8)), _f(b2.y(lo)))]
+    for k in range(4):
+        xa = 0.8 + k * 2.2
+        seg2.append("L%s,%s" % (_f(b2.x(xa)), _f(b2.y(hi))))
+        seg2.append("L%s,%s" % (_f(b2.x(xa + 1.1)), _f(b2.y(hi))))
+        seg2.append("L%s,%s" % (_f(b2.x(xa + 1.1)), _f(b2.y(lo))))
+        seg2.append("L%s,%s" % (_f(b2.x(xa + 2.2)), _f(b2.y(lo))))
+    g2.append(_path(" ".join(seg2), E, 1.6))
+    g2.append(_subs(b2.x(1.6), b2.y(lo) + 26, [("t", False), ("total", True)], "middle"))
+    o.append("".join(g2))
+    o.append(_lbl(510, 300, "(b)", "tb", "middle"))
+    return _fig(svg(700, 312, "".join(o), "Điều chế độ rộng xung cho cảm biến dây nóng"),
+                "Hình 28.78 · Điều chế độ rộng xung cho cảm biến dây nóng: (a) mạch cơ bản — bộ so "
+                "sánh đóng cắt điện trở gia nhiệt theo nhiệt độ đo được; (b) nhiệt độ bộ gia nhiệt "
+                "và điện áp ra theo thời gian, với thời gian trễ t_d và thời gian gia nhiệt t_H.",
+                "Figure 28.78 · Duty-cycle modulation for hot-wire sensors: (a) basic circuit — a "
+                "comparator switches the heater resistor according to the measured temperature; "
+                "(b) heater temperature and output voltage against time, with the delay t_d and the "
+                "heating time t_H.",
+                "Bên trái là mạch so sánh đóng cắt điện trở gia nhiệt, bên phải là hai dạng sóng "
+                "nhiệt độ và điện áp ra",
+                "A comparator circuit switching a heater resistor on the left, and two waveforms of "
+                "heater temperature and output voltage on the right")
+
+
+# ---------------------------------------------------------------- 28.79
+
+def fig_28_79():
+    """Sigma-delta conversion for calorimetric sensors."""
+    o = [_defs()]
+    # current source rail
+    o.append(_lbl(120, 32, "I₀", "ts"))
+    o.append(_line(60, 44, 330, 44, E, 1.3))
+    o.append(_rect(180, 38, 26, 12, P, E, 1.2))
+    o.append(_line(60, 44, 60, 62, E, 1.3))
+    # upper RC branch
+    o.append(_zig(60, 62, 60, 104))
+    o.append(_subs(52, 92, [("R", False), ("s2", True)], "end"))
+    o.append(_line(60, 104, 60, 132, E, 1.3))
+    o.append(_line(60, 108, 84, 108, E, 1.1))
+    o.append(_line(84, 104, 84, 112, E, 1.1))
+    o.append(_line(84, 104, 96, 104, E, 1.1))
+    o.append(_line(84, 112, 96, 112, E, 1.1))
+    o.append(_subs(96, 106, [("C", False), ("2", True)]))
+    # lower RC branch
+    o.append(_zig(60, 140, 60, 184))
+    o.append(_subs(52, 170, [("R", False), ("s1", True)], "end"))
+    o.append(_line(60, 184, 60, 206, E, 1.3))
+    o.append(_line(60, 188, 84, 188, E, 1.1))
+    o.append(_line(84, 184, 84, 192, E, 1.1))
+    o.append(_line(84, 184, 96, 184, E, 1.1))
+    o.append(_line(84, 192, 96, 192, E, 1.1))
+    o.append(_subs(96, 186, [("C", False), ("1", True)]))
+    # comparators
+    o.append(_line(60, 104, 118, 104, E, 1.2))
+    o.append(_amp(118, 104, 24, 26))
+    o.append(_subs(122, 86, [("U", False), ("2", True)]))
+    o.append(_line(60, 184, 118, 184, E, 1.2))
+    o.append(_amp(118, 184, 24, 26))
+    o.append(_subs(122, 166, [("U", False), ("1", True)]))
+    # reference
+    o.append(_subs(148, 148, [("U", False), ("ref", True)]))
+    o.append(_line(146, 150, 146, 152, E, 1.2))
+    o.append(_line(146, 152, 146, 152, E, 1.2))
+    o.append(_line(146, 152, 146, 104, E, 1.2))
+    o.append(_line(146, 152, 146, 184, E, 1.2))
+    # flip-flops
+    for yy, nm in ((96, ""), (176, "")):
+        o.append(_rect(170, yy, 30, 30, FILL, E, 1.3))
+        o.append(_lbl(185, yy + 20, "D", "ts", "middle"))
+    o.append(_lbl(185, 140, "clk", "ts", "middle"))
+    o.append(_line(146, 140, 170, 140, E, 1.2))
+    o.append(_line(170, 140, 170, 126, E, 1.2))
+    o.append(_line(170, 140, 170, 176, E, 1.2))
+    # switches
+    for yy, nm in ((104, "T2"), (184, "T1")):
+        o.append(_line(200, yy, 222, yy, E, 1.2))
+        o.append(_circ(222, yy, 3, P, E, 1.2))
+        o.append(_line(222, yy, 236, yy - 10, E, 1.2))
+        o.append(_circ(236, yy, 3, P, E, 1.2))
+        o.append(_lbl(240, yy - 12, nm, "ts"))
+    o.append(_line(236, 104, 236, 184, E, 1.2))
+    o.append(_subs(242, 148, [("U", False), ("b", True)]))
+    # counters
+    for i, yy in enumerate((60, 110, 160)):
+        o.append(_rect(300, yy, 66, 44, P, E, 1.3))
+        o.append(_lbl(333, yy + 16, "Bộ đếm %d" % (i + 1), "ts", "middle"))
+        o.append(_lbl(333, yy + 32, "carry", "ts", "middle"))
+    # delay and registers
+    o.append(_rect(382, 120, 46, 24, FILL, E, 1.2))
+    o.append(_lbl(405, 136, "Trễ", "ts", "middle"))
+    for yy, nm in ((58, "Thanh ghi 1"), (128, "Thanh ghi 2")):
+        o.append(_rect(450, yy, 62, 30, FILL, E, 1.2))
+        o.append(_lbl(481, yy + 19, "latch", "ts", "middle"))
+        o.append(_lbl(481, yy - 6, nm, "ts", "middle"))
+    # outputs
+    o.append(_arr(512, 73, 570, 73, E, "ah28", 1.6))
+    o.append(_lbl(576, 70, "Hiệu ΔR", "tb"))
+    o.append(_arr(512, 143, 570, 143, E, "ah28", 1.6))
+    o.append(_lbl(576, 140, "Độ dẫn 1/R₀", "tb"))
+    # wiring hint
+    o.append(_line(236, 60, 300, 60, E, 1.1))
+    o.append(_line(236, 184, 300, 184, E, 1.1))
+    o.append(_line(366, 132, 382, 132, E, 1.1))
+    o.append(_line(428, 132, 450, 132, E, 1.1))
+    o.append(_line(366, 73, 450, 73, E, 1.1))
+
+    # ---- waveform strip
+    yb = 240
+    o.append(_line(70, yb + 60, 640, yb + 60, E, 1.2))
+    o.append(_lbl(56, yb + 64, "U", "ts", "end"))
+    o.append(_lbl(60, yb + 74, "ref", "ts", "end"))
+    o.append(_line(70, yb + 30, 640, yb + 30, S, 0.9, "4 3"))
+    # two triangular waves crossing the reference
+    tri1 = []
+    tri2 = []
+    for k in range(60):
+        x = 70 + k * 9.4
+        tri1.append((x, yb + 30 + 26 * _m.sin(k / 60.0 * 6 * _m.pi)))
+        tri2.append((x, yb + 30 + 26 * _m.sin(k / 60.0 * 6 * _m.pi + 1.9)))
+    o.append(_path("M" + " L".join("%s,%s" % (_f(a), _f(b)) for a, b in tri1), E, 1.3))
+    o.append(_path("M" + " L".join("%s,%s" % (_f(a), _f(b)) for a, b in tri2), "#b45309", 1.3))
+    o.append(_lbl(646, yb + 34, "U₂", "ts"))
+    o.append(_lbl(646, yb + 74, "U₁", "ts"))
+    # pulse trains
+    for yy, nm in ((yb + 96, "f2"), (yb + 132, "f1")):
+        seg = ["M70,%d" % (yy + 18)]
+        for k in range(12):
+            xa = 70 + k * 47
+            seg.append("L%s,%d" % (_f(xa + 4), yy))
+            seg.append("L%s,%d" % (_f(xa + 30), yy))
+            seg.append("L%s,%d" % (_f(xa + 30), yy + 18))
+            seg.append("L%s,%d" % (_f(xa + 47), yy + 18))
+        o.append(_path(" ".join(seg), E, 1.2))
+        o.append(_lbl(56, yy + 14, nm, "ts", "end"))
+    return _fig(svg(720, 400, "".join(o), "Chuyển đổi sigma–delta cho cảm biến nhiệt lượng"),
+                "Hình 28.79 · Chuyển đổi sigma–delta cho cảm biến nhiệt lượng: hai nhánh R–C của cầu "
+                "được so sánh với điện áp chuẩn; bộ đếm ghi số xung N và N+S, hai thanh ghi chốt lại "
+                "hiệu điện trở ΔR và độ dẫn 1/R₀.",
+                "Figure 28.79 · Sigma–delta conversion for calorimetric sensors: the two R–C branches "
+                "of the bridge are compared with a reference voltage; counters record the pulse "
+                "counts N and N+S, and two registers latch the resistance difference ΔR and the "
+                "conductance 1/R₀.",
+                "Sơ đồ khối chuyển đổi sigma–delta với hai nhánh R–C, hai bộ so sánh, ba bộ đếm và "
+                "hai thanh ghi, kèm dải dạng sóng",
+                "A sigma–delta block schematic with two R–C branches, two comparators, three "
+                "counters and two registers, with a waveform strip below")
+
+
+# ---------------------------------------------------------------- 28.80
+
+def fig_28_80():
+    """Thermal sigma-delta modulation."""
+    o = [_defs()]
+    # domain boxes
+    o.append(_rect(52, 40, 250, 180, "none", "#9aa4b2", 1.1, "5 4"))
+    o.append(_rect(330, 40, 190, 180, "none", "#9aa4b2", 1.1, "5 4"))
+    o.append(_lbl(150, 32, "Miền tín hiệu nhiệt", "ts", "middle"))
+    o.append(_lbl(424, 32, "Miền tín hiệu điện", "ts", "middle"))
+    # heat pulse and summing junction
+    o.append(_lbl(70, 66, "Xung nhiệt", "ts"))
+    o.append(_arr(70, 74, 70, 96, E, "ah28", 1.3))
+    o.append(_circ(70, 108, 12, P, E, 1.4))
+    o.append(_lbl(70, 112, "+", "ts", "middle"))
+    o.append(_lbl(58, 96, "−", "ts"))
+    o.append(_lbl(70, 132, "R", "ts", "middle"))
+    o.append(_lbl(74, 142, "H", "ts", "middle"))
+    o.append(_line(70, 120, 70, 150, E, 1.3))
+    o.append(_zig(70, 150, 70, 186))
+    o.append(_lbl(50, 174, "R nhiệt", "ts", "end"))
+    o.append(_line(70, 186, 96, 186, E, 1.3))
+    o.append(_line(96, 150, 96, 186, E, 1.3))
+    o.append(_line(84, 150, 108, 150, E, 1.2))
+    o.append(_line(84, 156, 108, 156, E, 1.2))
+    o.append(_lbl(112, 156, "C nhiệt", "ts"))
+    o.append(_gnd(70, 186))
+    o.append(_lbl(70, 208, "Tổn thất nhiệt", "ts", "middle"))
+    # T_heater to comparator
+    o.append(_line(82, 108, 240, 108, E, 1.3))
+    o.append(_lbl(150, 102, "T gia nhiệt", "ts", "middle"))
+    o.append(_amp(240, 108, 26, 28))
+    o.append(_subs(240, 92, [("T", False), ("ref", True)], "end"))
+    # flip-flop + clock
+    o.append(_rect(300, 78, 44, 60, FILL, E, 1.3))
+    o.append(_lbl(322, 96, "Clock", "ts", "middle"))
+    o.append(_line(300, 112, 344, 112, E, 1.0))
+    o.append(_lbl(322, 128, "FF1", "ts", "middle"))
+    o.append(_line(266, 108, 300, 108, E, 1.3))
+    # heater resistor and D/A feedback
+    o.append(_line(344, 108, 372, 108, E, 1.3))
+    o.append(_circ(372, 108, 3, E, E, 1.0))
+    o.append(_line(372, 108, 372, 140, E, 1.3))
+    o.append(_zig(372, 140, 372, 180))
+    o.append(_lbl(382, 162, "R", "ts"))
+    o.append(_lbl(386, 172, "h", "ts"))
+    o.append(_gnd(372, 180))
+    o.append(_lbl(404, 60, "U", "ts"))
+    o.append(_lbl(410, 60, "h", "ts"))
+    o.append(_line(372, 92, 420, 92, E, 1.2))
+    o.append(_circ(420, 92, 3, E, E, 1.0))
+    # D/A converter feeding back
+    o.append(_rect(120, 52, 120, 26, FILL, E, 1.3))
+    o.append(_lbl(180, 69, "D/A 1 bit", "ts", "middle"))
+    o.append(_line(240, 65, 300, 65, E, 1.2))
+    o.append(_line(300, 65, 300, 78, E, 1.2))
+    o.append(_line(120, 65, 82, 65, E, 1.2))
+    o.append(_line(82, 65, 82, 96, E, 1.2))
+    # counter and display
+    o.append(_rect(300, 150, 60, 30, P, E, 1.3))
+    o.append(_lbl(330, 169, "Bộ đếm", "ts", "middle"))
+    o.append(_line(322, 138, 322, 150, E, 1.2))
+    o.append(_rect(300, 190, 60, 24, FILL, E, 1.2))
+    o.append(_lbl(330, 206, "Hiển thị", "ts", "middle"))
+    o.append(_line(330, 180, 330, 190, E, 1.2))
+
+    # ---- waveforms
+    b = _PBox(506, 42, 194, 92, (0, 10), (0, 1.3), pad=(28, 6, 6, 18))
+    g = []
+    g.append(b.axes("", "T", xt=[], yt=[]))
+    seg = ["M%s,%s" % (_f(b.x(0)), _f(b.y(0.55)))]
+    xs = [0, 1.1, 2.0, 3.2, 4.1, 5.3, 6.2, 7.4, 8.3, 10]
+    ys = [0.55, 1.05, 0.55, 1.05, 0.55, 1.05, 0.55, 1.05, 0.55, 0.55]
+    for x, y in zip(xs[1:], ys[1:]):
+        seg.append("L%s,%s" % (_f(b.x(x)), _f(b.y(y))))
+    g.append(_path(" ".join(seg), E, 1.5))
+    g.append(_line(b.x(0), b.y(0.55), b.x(10), b.y(0.55), S, 0.9, "4 3"))
+    g.append(_lbl(b.x(0) - 3, b.y(0.55) + 3, "T", "ts", "end"))
+    g.append(_lbl(b.x(0) - 3, b.y(0.55) + 13, "ref", "ts", "end"))
+    o.append("".join(g))
+
+    b2 = _PBox(506, 150, 194, 70, (0, 10), (0, 1.2), pad=(28, 4, 6, 14))
+    g2 = []
+    g2.append(b2.axes("", "U", xt=[], yt=[]))
+    seg2 = ["M%s,%s" % (_f(b2.x(0)), _f(b2.y(0.15))),
+            "L%s,%s" % (_f(b2.x(0.3)), _f(b2.y(0.15)))]
+    for k in range(8):
+        xa = k * 1.25
+        seg2.append("L%s,%s" % (_f(b2.x(xa + 0.3)), _f(b2.y(1.0))))
+        seg2.append("L%s,%s" % (_f(b2.x(xa + 0.75)), _f(b2.y(1.0))))
+        seg2.append("L%s,%s" % (_f(b2.x(xa + 0.75)), _f(b2.y(0.15))))
+        seg2.append("L%s,%s" % (_f(b2.x(xa + 1.25)), _f(b2.y(0.15))))
+    g2.append(_path(" ".join(seg2), E, 1.4))
+    o.append("".join(g2))
+    return _fig(svg(720, 250, "".join(o), "Nguyên lý điều chế sigma–delta nhiệt"),
+                "Hình 28.80 · Nguyên lý điều chế sigma–delta nhiệt: bộ tích phân nhiệt (mạng R–C "
+                "nhiệt) thay cho bộ tích phân điện; đầu ra bộ so sánh điều khiển flip-flop, flip-flop "
+                "băm xung gia nhiệt theo nhịp đồng hồ và đưa ra đầu ra dạng tần số.",
+                "Figure 28.80 · Principle of thermal sigma–delta modulation: a thermal integrator "
+                "(thermal R–C network) replaces the electrical integrator; the comparator output "
+                "drives a flip-flop, which chops the heating pulses at the clock rate and gives a "
+                "frequency-analogue output.",
+                "Sơ đồ khối điều chế sigma–delta nhiệt với bộ tích phân nhiệt, bộ so sánh, flip-flop "
+                "và bộ đếm, kèm hai dạng sóng",
+                "A thermal sigma–delta block diagram with a thermal integrator, comparator, "
+                "flip-flop and counter, with two waveforms")
+
+
+def fig_28_81():
+    """Flow tube response to Coriolis acceleration."""
+    o = [_defs()]
+    # inlet arm, bend, outlet arm — one continuous tube, drawn before the blocks
+    # so that its round line caps are hidden inside them
+    o.append(_tube("M 84,200 L 372,200 A 64,60 0 0 0 372,80 L 170,80"))
+    o.append(_rect(26, 178, 58, 44, FILL, E, 1.4))
+    o.append(_rect(112, 58, 58, 44, FILL, E, 1.4))
+    o.append(_lbl(26, 170, "Đầu vào", "ts"))
+    o.append(_lbl(112, 50, "Đầu ra", "ts"))
+    # support axis: the line the driven vibration turns about
+    o.append(_line(372, 240, 372, 34, S, 1.1, "5 4"))
+    o.append(_arr(372, 46, 372, 30, S, "ah28s", 1.1))
+    o.append(_lbl(380, 26, "Trục đỡ", "ts"))
+    # inlet side: tube rising, force pushing it back down
+    o.append(_arr(150, 192, 150, 164, S, "ah28s", 1.6))
+    o.append(_arr(150, 208, 150, 236, E, "ah28", 1.6))
+    o.append(_arr(270, 192, 270, 164, S, "ah28s", 1.6))
+    o.append(_arr(270, 208, 270, 236, E, "ah28", 1.6))
+    o.append(_arr(292, 184, 352, 184, G, "ah28g", 1.5))
+    # outlet side: tube rising, force pushing it further up
+    o.append(_arr(235, 72, 235, 44, S, "ah28s", 1.6))
+    o.append(_arr(235, 116, 235, 90, E, "ah28", 1.6))
+    o.append(_arr(335, 72, 335, 44, S, "ah28s", 1.6))
+    o.append(_arr(335, 116, 335, 90, E, "ah28", 1.6))
+    o.append(_arr(312, 64, 252, 64, G, "ah28g", 1.5))
+    # labels
+    o.append(_lbl(150, 156, "Vận tốc thẳng đứng", "ts", "middle"))
+    o.append(_lbl(150, 250, "Lực phản ứng", "ts", "middle"))
+    o.append(_lbl(150, 262, "của lưu chất", "ts", "middle"))
+    o.append(_lbl(235, 36, "Vận tốc thẳng đứng", "ts", "middle"))
+    o.append(_lbl(245, 128, "Lực phản ứng", "ts", "middle"))
+    o.append(_lbl(245, 140, "của lưu chất", "ts", "middle"))
+    o.append(_lbl(322, 176, "Chiều dòng", "ts", "middle"))
+    return _fig(svg(720, 276, "".join(o), "Đáp ứng của ống dẫn với gia tốc Coriolis"),
+                "Hình 28.81 · Đáp ứng của ống dẫn với gia tốc Coriolis. Ống chữ U được kích cho dao "
+                "động quanh trục đỡ (nét đứt): mũi tên xám là vận tốc thẳng đứng của thành ống, mũi "
+                "tên đen là phản lực của lưu chất lên ống, mũi tên vàng là chiều dòng. Ở phía đầu vào "
+                "lực ngược chiều chuyển động, ở phía đầu ra lực cùng chiều — chính cặp lực này xoắn "
+                "ống lại. Hình được vẽ lại dạng sơ đồ; nguyên bản là hình trục đoạn có thêm các vectơ "
+                "“gia tốc Coriolis” tại cùng những điểm ấy.",
+                "Figure 28.81 · Flow tube response to Coriolis acceleration. The U-tube is driven to "
+                "vibrate about its support axis (dashed): grey arrows are the vertical velocity of "
+                "the tube wall, black arrows the reactive force of the fluid on the tube, gold the "
+                "flow direction. On the inlet side the force opposes the motion, on the outlet side "
+                "it reinforces it — that pair of forces is what twists the tube. Redrawn as a "
+                "schematic; the source is an axonometric view that also marks the Coriolis "
+                "acceleration at the same points.",
+                "Sơ đồ ống chữ U với các vectơ vận tốc, phản lực và chiều dòng ở hai nhánh",
+                "A U-tube diagram with velocity, reactive force and flow direction vectors on both arms")
+
+
+def fig_28_82():
+    """Two views of an oscillating flow tube with no flow."""
+    o = [_defs()]
+    # ---- axonometric view
+    o.append(_tube("M 108,167 L 352,167 A 52,33 0 0 0 352,101 L 180,101"))
+    o.append(_rect(60, 150, 48, 34, FILL, E, 1.4))
+    o.append(_rect(132, 84, 48, 34, FILL, E, 1.4))
+    o.append(_lbl(60, 142, "Đầu vào", "ts"))
+    o.append(_lbl(132, 76, "Đầu ra", "ts"))
+    o.append(_line(352, 190, 352, 46, S, 1.0, "5 4"))
+    o.append(_arr(352, 56, 352, 40, S, "ah28s", 1.0))
+    o.append(_lbl(360, 36, "Trục đỡ", "ts"))
+    o.append(_lbl(236, 134, "Phía đầu vào", "ts", "middle"))
+    o.append(_lbl(412, 92, "Phía đầu ra", "ts"))
+    o.append(_carr("M 424,160 Q 454,134 424,108"))
+    # ---- plan view: the same U seen from above
+    o.append(_tube("M 120,284 L 520,284 A 15,15 0 0 1 520,314 L 120,314", 10))
+    o.append(_rect(78, 272, 44, 54, FILL, E, 1.4))
+    o.append(_line(100, 299, 562, 299, S, 0.9, "4 3"))
+    o.append(_lbl(204, 272, "Phía đầu vào", "ts", "middle"))
+    o.append(_lbl(424, 272, "Phía đầu ra", "ts", "middle"))
+    o.append(_lbl(80, 344, "Nhìn từ trên xuống", "ts"))
+    return _fig(svg(720, 356, "".join(o), "Hai hình chiếu của ống dao động khi không có dòng"),
+                "Hình 28.82 · Hai hình chiếu của ống dao động khi không có dòng: phối cảnh (trên) và "
+                "hình chiếu bằng (dưới). Ống rung đối xứng quanh trục đỡ, hai nhánh cùng lên cùng "
+                "xuống, không có độ xoắn — dạng sóng ở hai đầu ống trùng pha.",
+                "Figure 28.82 · Two views of an oscillating flow tube with no flow: perspective "
+                "(above) and plan (below). The tube vibrates symmetrically about its support axis, "
+                "both arms rising and falling together, with no twist — the waveforms at the two "
+                "ends of the tube are in phase.",
+                "Phối cảnh và hình chiếu bằng của ống chữ U dao động khi không có dòng chảy",
+                "Perspective and plan views of an oscillating U-tube with no flow")
+
+
+def fig_28_83():
+    """Two views of an oscillating flow tube in response to flow."""
+    o = [_defs()]
+    # rest position, behind
+    o.append(_tube("M 108,153 L 352,153 A 52,33 0 0 0 352,87 L 180,87",
+                   13, "#f6f8fa", "#c9d1da"))
+    o.append(_tube("M 108,167 L 352,167 A 52,33 0 0 0 352,101 L 180,101"))
+    o.append(_rect(60, 150, 48, 34, FILL, E, 1.4))
+    o.append(_rect(132, 84, 48, 34, FILL, E, 1.4))
+    o.append(_lbl(60, 142, "Đầu vào", "ts"))
+    o.append(_lbl(132, 76, "Đầu ra", "ts"))
+    o.append(_line(352, 190, 352, 46, S, 1.0, "5 4"))
+    o.append(_arr(352, 56, 352, 40, S, "ah28s", 1.0))
+    o.append(_lbl(360, 36, "Trục đỡ", "ts"))
+    # twist axis runs along the loop
+    o.append(_line(150, 134, 404, 134, G, 1.1, "6 4"))
+    o.append(_lbl(186, 124, "Trục xoắn", "ts"))
+    o.append(_lbl(236, 154, "Phía đầu vào", "ts", "middle"))
+    o.append(_lbl(412, 92, "Phía đầu ra", "ts"))
+    o.append(_carr("M 424,160 Q 454,134 424,108"))
+    # ---- plan view, twisted: inlet end down, outlet end up
+    o.append(_tube("M 120,300 L 520,266 A 17,17 0 0 1 520,300 L 120,334", 10))
+    o.append(_rect(78, 294, 44, 46, FILL, E, 1.4))
+    o.append(_arr(100, 348, 100, 384, E, "ah28", 2.2))
+    o.append(_lbl(100, 398, "Phản lực", "ts", "middle"))
+    o.append(_lbl(100, 410, "(đầu vào)", "ts", "middle"))
+    o.append(_arr(520, 256, 520, 222, E, "ah28", 2.2))
+    o.append(_lbl(520, 212, "Phản lực", "ts", "middle"))
+    o.append(_lbl(520, 200, "(đầu ra)", "ts", "middle"))
+    return _fig(svg(720, 420, "".join(o), "Hai hình chiếu của ống dao động khi có dòng"),
+                "Hình 28.83 · Hai hình chiếu của ống dao động khi có dòng. Lực Coriolis tác dụng "
+                "ngược chiều ở hai nhánh — kéo đầu vào xuống, đẩy đầu ra lên — nên ống vừa rung vừa "
+                "xoắn quanh trục xoắn. Độ xoắn tỉ lệ trực tiếp với lưu lượng khối. Nét mảnh phía sau "
+                "là vị trí ống khi không có dòng.",
+                "Figure 28.83 · Two views of an oscillating flow tube in response to flow. The "
+                "Coriolis force acts in opposite senses on the two arms — pulling the inlet end down "
+                "and the outlet end up — so the tube twists about its twist axis as it vibrates. The "
+                "amount of twist is directly proportional to the mass flow. The faint outline behind "
+                "is the tube's no-flow position.",
+                "Phối cảnh và hình chiếu bằng của ống chữ U vừa dao động vừa xoắn khi có dòng chảy",
+                "Perspective and plan views of a U-tube twisting as it vibrates under flow")
+
+
+def fig_28_84():
+    """Phase shift between inlet side and outlet side."""
+    o = [_defs()]
+
+    def wave(y0, phase=0.0, col=E):
+        pts = []
+        for i in range(121):
+            x = 320 + 360.0 * i / 120.0
+            y = y0 - 20 * _m.sin(2 * _m.pi * (x - 320) / 160.0 - phase)
+            pts.append("L%s,%s" % (_f(x), _f(y)))
+        return _path("M" + pts[0][1:] + " " + " ".join(pts[1:]), col, 1.4)
+
+    # the tube with its two detectors, one on each arm
+    o.append(_tube("M 40,80 L 220,80 A 20,20 0 0 1 220,120 L 40,120", 9))
+    o.append(_rect(20, 70, 20, 60, FILL, E, 1.4))
+    o.append(_circ(130, 80, 11, FILL, E, 1.4))
+    o.append(_circ(130, 120, 11, FILL, E, 1.4))
+    o.append(_arr(140, 72, 196, 50, E, "ah28", 1.3))
+    o.append(_lbl(202, 46, "Trái", "ts"))
+    o.append(_arr(140, 128, 196, 150, E, "ah28", 1.3))
+    o.append(_lbl(202, 166, "Phải", "ts"))
+    # the three traces
+    o.append(_line(320, 34, 320, 258, E, 1.2))
+    o.append(wave(70))
+    o.append(wave(152))
+    o.append(wave(152, 2 * _m.pi * 30 / 160.0, G))
+    o.append(wave(234, 2 * _m.pi * 30 / 160.0))
+    # delta t, measured between the two rising zero crossings
+    o.append(_line(320, 152, 320, 198, S, 0.9, "3 3"))
+    o.append(_line(350, 152, 350, 198, S, 0.9, "3 3"))
+    o.append(_darr(321, 188, 349, 188, E, 1.0))
+    o.append(_lbl(360, 184, "Δt", "ts"))
+    o.append(_lbl(306, 74, "Trái", "ti", "end"))
+    o.append(_lbl(304, 156, "Trái + Phải", "ti", "end"))
+    o.append(_lbl(306, 238, "Phải", "ti", "end"))
+    return _fig(svg(720, 272, "".join(o), "Độ lệch pha giữa phía đầu vào và phía đầu ra"),
+                "Hình 28.84 · Độ lệch pha giữa phía đầu vào và phía đầu ra. Hai cảm biến đặt ở hai "
+                "nhánh của ống; khi có dòng, tín hiệu của chúng là hai sóng sin cùng tần số nhưng "
+                "lệch nhau một khoảng Δt. Độ lệch pha này — chứ không phải biên độ — là đại lượng tỉ "
+                "lệ với lưu lượng khối.",
+                "Figure 28.84 · Phase shift between inlet side and outlet side. Two detectors sit on "
+                "the two arms of the tube; under flow their signals are two sine waves of the same "
+                "frequency separated by an interval Δt. This phase difference — not the amplitude — "
+                "is the quantity proportional to mass flow.",
+                "Sơ đồ hai cảm biến ở hai nhánh của ống và ba dải sóng sin minh hoạ độ lệch pha Δt",
+                "A sketch of two detectors on the tube arms with three sine traces showing the phase shift Δt")
+
+
+def _mark(kind, x, y, s=3.4, col=E):
+    """A data marker. kind: o (circle), s (square), t (triangle), x (cross),
+    + (plus), d (diamond)."""
+    if kind == "o":
+        return _circ(x, y, s, col, col, 0.9)
+    if kind == "s":
+        return _rect(x - s, y - s, 2 * s, 2 * s, col, col, 0.9)
+    if kind == "d":
+        return _poly([(x, y - s * 1.3), (x + s * 1.2, y), (x, y + s * 1.3),
+                      (x - s * 1.2, y)], col, col, 0.9)
+    if kind == "t":
+        return _poly([(x, y - s * 1.4), (x + s * 1.3, y + s), (x - s * 1.3, y + s)],
+                     col, col, 0.9)
+    if kind == "x":
+        return (_line(x - s, y - s, x + s, y + s, col, 1.1)
+                + _line(x - s, y + s, x + s, y - s, col, 1.1))
+    return (_line(x - s, y, x + s, y, col, 1.1) + _line(x, y - s, x, y + s, col, 1.1))
+
+
+def _axis(x0, y0, w, h, xr, xt, yr, yt, xl, yl, logx=False, logy=False):
+    """A framed plot: box, ticks with labels, axis titles outside the frame.
+
+    xr / yr are the (min, max) of each axis; xt / yt are lists of (value, label).
+    The y-axis title is rotated, which the figure-QA script skips by design."""
+    def mx(v):
+        if logx:
+            lo, hi = _m.log10(xr[0]), _m.log10(xr[1])
+            return x0 + w * (_m.log10(v) - lo) / (hi - lo)
+        return x0 + w * (v - xr[0]) / float(xr[1] - xr[0])
+
+    def my(v):
+        if logy:
+            lo, hi = _m.log10(yr[0]), _m.log10(yr[1])
+            return y0 + h - h * (_m.log10(v) - lo) / (hi - lo)
+        return y0 + h - h * (v - yr[0]) / float(yr[1] - yr[0])
+
+    o = [_rect(x0, y0, w, h, P, E, 1.2)]
+    for v, lab in xt:
+        px = mx(v)
+        o.append(_line(px, y0 + h, px, y0 + h + 4, E, 1.0))
+        o.append(_lbl(px, y0 + h + 15, lab, "ts", "middle"))
+    for v, lab in yt:
+        py = my(v)
+        o.append(_line(x0 - 4, py, x0, py, E, 1.0))
+        o.append(_lbl(x0 - 7, py + 3, lab, "ts", "end"))
+    o.append(_lbl(x0 + w / 2.0, y0 + h + 32, xl, "ts", "middle"))
+    o.append('<text class="ts" transform="translate(%s,%s) rotate(-90)" text-anchor="middle">%s</text>'
+             % (_f(x0 - 40), _f(y0 + h / 2.0), yl))
+    return "".join(o), mx, my
+
+
+def fig_28_85():
+    """Schematic of the electric resistance strain gage drag force flow sensor."""
+    o = [_defs()]
+    # rubber beam: front face plus a receding side face
+    o.append(_poly([(412, 150), (436, 136), (436, 288), (412, 302)], FILL, E, 1.3))
+    o.append(_rect(308, 150, 104, 152, "url(#hatch28)", E, 1.3))
+    # spherical drag element
+    o.append(_circ(360, 92, 62, P, E, 1.5))
+    # strain gauges: two on the front face, two on the side face
+    o.append(_rect(326, 198, 18, 56, P, E, 1.2))
+    o.append(_rect(376, 198, 18, 56, P, E, 1.2))
+    o.append(_poly([(416, 198), (432, 190), (432, 246), (416, 254)], P, E, 1.1))
+    o.append(_poly([(416, 262), (432, 254), (432, 286), (416, 294)], P, E, 1.1))
+    # solder tabs
+    o.append(_poly([(330, 198), (340, 190), (340, 198)], E, E, 1.0))
+    o.append(_poly([(380, 198), (390, 190), (390, 198)], E, E, 1.0))
+    # bending arrow under the beam
+    o.append(_carr("M 288,318 Q 360,348 432,318", E, 1.5))
+    o.append(_carr("M 432,318 Q 360,348 288,318", E, 1.5))
+    # labels with leaders to each gauge
+    o.append(_lbl(188, 66, "Phần tử kéo", "ts", "end"))
+    o.append(_line(192, 68, 302, 84, E, 0.9))
+    o.append(_lbl(188, 178, "Dầm cao su", "ts", "end"))
+    o.append(_line(192, 180, 306, 190, E, 0.9))
+    o.append(_lbl(188, 232, "Cảm biến biến dạng", "ts", "end"))
+    o.append(_line(192, 234, 324, 240, E, 0.9))
+    # G4 marks the left-hand front gage, G1 the right-hand one: the two leaders
+    # must land on different rectangles or the pair reads as one gage labelled twice.
+    o.append(_lbl(296, 186, "G4", "ts", "end"))
+    o.append(_line(300, 184, 326, 196, E, 0.9))
+    o.append(_lbl(296, 282, "G1", "ts", "end"))
+    o.append(_line(300, 282, 385, 254, E, 0.9))
+    o.append(_lbl(452, 186, "G3", "ts"))
+    o.append(_line(448, 184, 430, 192, E, 0.9))
+    o.append(_lbl(452, 276, "G2", "ts"))
+    o.append(_line(448, 274, 430, 272, E, 0.9))
+    return _fig(svg(720, 360, "".join(o), "Sơ đồ cảm biến lưu lượng kiểu lực kéo dùng cảm biến biến dạng điện trở"),
+                "Hình 28.85 · Sơ đồ cảm biến lưu lượng kiểu lực kéo dùng cảm biến biến dạng điện trở. Một "
+                "quả cầu (phần tử kéo) gắn ở đầu tự do của dầm đàn hồi tiết diện vuông bằng cao su; bốn "
+                "cảm biến biến dạng dán trên bốn mặt dọc của dầm, hai cảm biến đối diện ghép thành nửa "
+                "cầu. Dòng chảy bẻ cong dầm, mũi tên dưới chân dầm chỉ chiều mômen uốn.",
+                "Figure 28.85 · Schematic of the electric resistance strain gage drag force flow sensor. "
+                "A sphere (the drag element) is fixed to the free end of a square-sectioned rubber "
+                "cantilever; four strain gauges are bonded to its four longitudinal faces, opposite "
+                "pairs wired as half bridges. The flow bends the beam; the arrow at its foot marks the "
+                "sense of the bending moment.",
+                "Sơ đồ dầm cao su tiết diện vuông mang quả cầu ở đầu và bốn cảm biến biến dạng",
+                "A square rubber cantilever carrying a sphere at its tip, with four strain gauges")
+
+
+def fig_28_86():
+    """Drag coefficient against Reynolds number: (a) flat disk, (b) sphere."""
+    o = [_defs()]
+    xt = [(1, "1"), (10, "10"), (100, "100"), (1000, "1000"), (10000, "10000"),
+          (100000, "100000")]
+    yt = [(0.1, "0.1"), (1, "1"), (10, "10")]
+    disk = [(4, 10), (10, 3.4), (30, 1.75), (100, 1.36), (300, 1.24), (1000, 1.20),
+            (3000, 1.18), (10000, 1.20), (30000, 1.23), (100000, 1.26)]
+    sph = [(4, 10), (10, 4.3), (30, 1.95), (100, 1.15), (300, 0.76), (1000, 0.50),
+           (3000, 0.43), (10000, 0.49), (30000, 0.55), (100000, 0.60)]
+
+    def plot(y0, h, data, tag):
+        frame, mx, my = _axis(96, y0, 470, h, (1, 100000), xt, (0.1, 10), yt,
+                              "Reynolds number", "Drag coefficient", logx=True, logy=True)
+        g = [frame]
+        pts = [(mx(re), my(cd)) for re, cd in data]
+        g.append(_path("M" + " L".join("%s,%s" % (_f(a), _f(b)) for a, b in pts), E, 1.8))
+        g.append(_lbl(96 + 470 / 2.0, y0 + h + 50, tag, "ts", "middle"))
+        return "".join(g)
+
+    o.append(plot(40, 150, disk, "(a)"))
+    o.append(plot(268, 150, sph, "(b)"))
+    return _fig(svg(720, 500, "".join(o), "Hệ số kéo theo số Reynolds"),
+                "Hình 28.86 · Hệ số kéo C<sub>D</sub> theo số Reynolds Re (theo Clarke [1]) cho (a) đĩa "
+                "phẳng và (b) quả cầu. Cả hai trục đều theo thang logarit. Với đĩa phẳng, C<sub>D</sub> "
+                "gần như không đổi trên bốn bậc Reynolds; với quả cầu, C<sub>D</sub> giảm tới cực tiểu "
+                "khoảng 0,43 ở Re ≈ 3 000 rồi tăng lại — đó là lý do phần tử kéo dạng cầu phải được "
+                "hiệu chuẩn theo đúng dải tốc độ sử dụng.",
+                "Figure 28.86 · Drag coefficient C<sub>D</sub> against Reynolds number Re (after Clarke "
+                "[1]) for (a) a flat disk and (b) a sphere. Both axes are logarithmic. For the flat disk "
+                "C<sub>D</sub> is nearly constant over four decades of Reynolds number; for the sphere "
+                "it falls to a minimum of about 0.43 near Re ≈ 3 000 and then rises again — which is "
+                "why a spherical drag element has to be calibrated for the speed range it will work in.",
+                "Hai đồ thị logarit của hệ số kéo theo số Reynolds cho đĩa phẳng và quả cầu",
+                "Two log-log plots of drag coefficient against Reynolds number, for a flat disk and a sphere")
+
+
+def fig_28_87():
+    """Root strain against wind speed for one-dimensional air flow."""
+    o = [_defs()]
+    xt = [(0, "0"), (10, "10"), (20, "20"), (30, "30"), (40, "40"), (50, "50")]
+    yt = [(0, "0"), (0.01, "0.01"), (0.02, "0.02"), (0.03, "0.03"), (0.04, "0.04"),
+          (0.05, "0.05"), (0.06, "0.06"), (0.07, "0.07")]
+    frame, mx, my = _axis(100, 40, 480, 190, (0, 50), xt, (0, 0.07), yt,
+                          "Wind speed (m/s)",
+                          '(strain)<tspan font-size="8" dy="-3">0.5</tspan>')
+    o.append(frame)
+    o.append(_path("M%s,%s L%s,%s" % (_f(mx(0)), _f(my(0.0010)), _f(mx(50)), _f(my(0.0605)),
+                                      ), S, 1.4, "none", "6 4"))
+    pts = [(0, 0.0012), (2.5, 0.0040), (5, 0.0072), (7.5, 0.0102), (10, 0.0131),
+           (12.5, 0.0160), (15, 0.0192), (17.5, 0.0221), (20, 0.0250), (22.5, 0.0282),
+           (25, 0.0311), (27.5, 0.0340), (30, 0.0368), (32.5, 0.0401), (35, 0.0429),
+           (37.5, 0.0458), (40, 0.0486), (42.5, 0.0515), (45, 0.0542), (47.5, 0.0560),
+           (50, 0.0572)]
+    for v, s in pts:
+        o.append(_mark("d", mx(v), my(s), 3.2))
+    return _fig(svg(720, 300, "".join(o), "Căn bậc hai của biến dạng theo tốc độ gió"),
+                "Hình 28.87 · Căn bậc hai của biến dạng theo tốc độ gió, đo trên ống khí động đã hiệu "
+                "chuẩn với cảm biến một chiều. Quan hệ tuyến tính (hệ số tương quan 0,98) xác nhận "
+                "biến dạng là hàm bậc hai của tốc độ, đúng như phương trình 28.156.",
+                "Figure 28.87 · Root strain against wind speed, measured in a calibrated wind tunnel "
+                "with the one-dimensional sensor. The relation is linear (correlation coefficient "
+                "0.98), which confirms that strain is a square-law function of speed, as Equation "
+                "28.156 predicts.",
+                "Đồ thị căn bậc hai của biến dạng theo tốc độ gió với các điểm đo nằm trên đường thẳng",
+                "A plot of root strain against wind speed with the measured points on a straight line")
+
+
+def fig_28_88():
+    """Root strain against wind speed with the flowmeter at various angles."""
+    o = [_defs()]
+    xt = [(0, "0"), (3, "3"), (6, "6"), (9, "9"), (12, "12"), (15, "15"), (18, "18"),
+          (21, "21"), (24, "24")]
+    yt = [(0, "0"), (0.02, "0.02"), (0.04, "0.04"), (0.06, "0.06"), (0.08, "0.08"),
+          (0.10, "0.10"), (0.12, "0.12"), (0.14, "0.14"), (0.16, "0.16"),
+          (0.18, "0.18")]
+    frame, mx, my = _axis(96, 40, 420, 220, (0, 24), xt, (0, 0.18), yt,
+                          "Wind Speed (m/s)", "Root Strain")
+    o.append(frame)
+    series = [("d", 0.00420, "15 degrees"), ("s", 0.00500, "30 degrees"),
+              ("t", 0.00600, "45 degrees"), ("x", 0.00680, "60 degrees"),
+              ("+", 0.00720, "75 degrees"), ("o", 0.00780, "90 degrees")]
+    for mk, kk, _lab in series:
+        for v in (0, 3, 6, 9, 12, 15, 18, 21):
+            o.append(_mark(mk, mx(v), my(kk * v), 3.2))
+    for i, (mk, _kk, lab) in enumerate(series):
+        ly = 62 + i * 22
+        o.append(_mark(mk, 552, ly - 3, 3.4))
+        o.append(_lbl(568, ly, lab, "ts"))
+    o.append(_rect(542, 44, 150, 142, "none", "#9aa4b2", 1.0))
+    return _fig(svg(720, 340, "".join(o), "Biến dạng theo tốc độ gió ở các góc khác nhau"),
+                "Hình 28.88 · Căn bậc hai của biến dạng theo tốc độ gió khi cảm biến đặt nghiêng các "
+                "góc khác nhau so với dòng gió (15° đến 90°). Mỗi góc cho một đường tuyến tính riêng; "
+                "độ dốc tăng theo góc, đạt lớn nhất khi dầm vuông góc với dòng. Họ đường này là đường "
+                "hiệu chuẩn tốc độ cho dòng chảy hai chiều.",
+                "Figure 28.88 · Root strain against wind speed with the flowmeter set at various angles "
+                "to the wind (15° to 90°). Each angle gives its own straight line; the slope grows with "
+                "the angle and is largest when the beam is normal to the flow. This family of lines is "
+                "the speed calibration curve for two-dimensional flow.",
+                "Sáu chuỗi điểm đo biến dạng theo tốc độ gió, mỗi chuỗi ứng với một góc đặt cảm biến",
+                "Six sets of strain-against-speed points, one for each mounting angle")
+
+
+def fig_28_89():
+    """Calculated direction of wind velocity at different wind speeds."""
+    o = [_defs()]
+    xt = [(0, "0"), (15, "15"), (30, "30"), (45, "45"), (60, "60"), (75, "75"), (90, "90")]
+    yt = [(0, "0"), (15, "15"), (30, "30"), (45, "45"), (60, "60"), (75, "75"), (90, "90")]
+    frame, mx, my = _axis(96, 40, 390, 220, (0, 90), xt, (0, 90), yt,
+                          "Position of the sensor (degrees)", "Direction of air flow (degrees)")
+    o.append(frame)
+    series = [("s", 1, "1 m/s"), ("t", 4, "4 m/s"), ("d", 7, "7 m/s"), ("x", 11, "11 m/s"),
+              ("o", 14, "14 m/s"), ("s", 17, "17 m/s"), ("+", 20, "20 m/s"),
+              ("o", 23, "23 m/s")]
+    gain = [0.72, 0.80, 0.86, 0.91, 0.94, 0.96, 0.98, 1.00]
+    jit = [1.4, -1.1, 0.9, -0.7, 1.2, -0.9, 0.6, -1.3]
+    for i, (mk, _sp, _lab) in enumerate(series):
+        for p in (0, 15, 30, 45, 60, 75, 90):
+            y = 45 + (p - 45) * gain[i] + jit[i] * (1.0 - p / 90.0) * 2.0
+            o.append(_mark(mk, mx(p), my(y), 3.0))
+    for i, (mk, _sp, lab) in enumerate(series):
+        ly = 58 + i * 21
+        o.append(_mark(mk, 512, ly - 3, 3.4))
+        o.append(_lbl(528, ly, lab, "ts"))
+    o.append(_rect(504, 42, 104, 188, "none", "#9aa4b2", 1.0))
+    return _fig(svg(720, 340, "".join(o), "Hướng dòng khí tính được ở các tốc độ khác nhau"),
+                "Hình 28.89 · Hướng dòng khí tính theo phương trình 28.159, ở các tốc độ gió khác "
+                "nhau, khi quay cảm biến từ 0° đến 90°. Ở tốc độ thấp các điểm bị nén về phía 45° và "
+                "sai số lớn; từ khoảng 11 m/s trở lên các điểm bám sát đường chéo, tức hướng đo được "
+                "đáng tin.",
+                "Figure 28.89 · Direction of the air flow computed from Equation 28.159 at different "
+                "wind speeds, with the sensor rotated from 0° to 90°. At low speed the points are "
+                "compressed towards 45° and the error is large; from about 11 m/s upwards they sit on "
+                "the diagonal, so the measured direction can be trusted.",
+                "Tám chuỗi điểm hướng dòng khí theo vị trí cảm biến, mỗi chuỗi ứng với một tốc độ gió",
+                "Eight sets of flow-direction points against sensor position, one per wind speed")
+
+
+def fig_28_90():
+    """Principle of operation of the fiber optic drag force flow sensor."""
+    o = [_defs()]
+    o.append(_rect(120, 150, 480, 90, "url(#hatch28)", E, 1.4))
+    o.append(_rect(120, 108, 480, 42, P, E, 1.4))
+    # grooves cut into the fibre
+    for gx in (250, 356, 462):
+        o.append(_path("M%s,108 L%s,138 L%s,108" % (_f(gx - 18), _f(gx), _f(gx + 18)),
+                       E, 1.5, P))
+    for a, b in ((120, 232), (268, 338), (374, 444), (480, 600)):
+        o.append(_line(a, 108, b, 108, E, 1.2))
+    # groove angle: between the surface and the groove wall, marked at the lip
+    o.append(_line(374, 108, 385, 90, G, 1.0, "4 3"))
+    o.append(_path("M390,108 A 16,16 0 0 0 382,94", G, 1.2))
+    o.append(_lbl(393, 105, "φ", "ts"))
+    # labels
+    o.append(_lbl(150, 84, "rãnh (góc φ)", "ts"))
+    o.append(_line(196, 88, 250, 106, E, 0.9))
+    o.append(_lbl(600, 100, "sợi nhựa", "ts", "end"))
+    o.append(_line(540, 104, 520, 106, E, 0.9))
+    o.append(_lbl(360, 272, "dầm cao su", "ts", "middle"))
+    o.append(_line(360, 258, 360, 242, E, 0.9))
+    return _fig(svg(720, 300, "".join(o), "Nguyên lý hoạt động của cảm biến lưu lượng quang"),
+                "Hình 28.90 · Nguyên lý hoạt động của cảm biến lưu lượng kiểu lực kéo dùng sợi quang. "
+                "Sợi nhựa (PMMA) dán lên mặt ngoài dầm cao su được khía các rãnh chữ V xuyên vào lõi. "
+                "Khi dầm bị uốn, góc φ của rãnh thay đổi, ánh sáng bị mất thêm ở mỗi rãnh, nên cường "
+                "độ truyền qua sợi giảm theo độ uốn — tức theo tốc độ dòng.",
+                "Figure 28.90 · Principle of operation of the fiber optic drag force flow sensor. A "
+                "plastic (PMMA) fibre bonded to the outside face of the rubber beam is cut with V "
+                "grooves that reach into the core. Bending the beam changes the groove angle φ, more "
+                "light is lost at each groove, and the intensity transmitted through the fibre falls "
+                "with the deflection — that is, with the flow speed.",
+                "Mặt cắt dầm cao su phủ sợi quang có ba rãnh chữ V và góc rãnh φ",
+                "A cross-section of the rubber beam with a grooved optical fibre on top, showing the groove angle φ")
+
+
+def fig_28_91():
+    """Front and top views of the fibre optic sensor section."""
+    o = [_defs()]
+    # ---- top view
+    o.append(_rect(150, 130, 118, 118, FILL, E, 1.4))
+    o.append(_circ(182, 158, 13, P, E, 1.3))
+    o.append(_circ(236, 220, 13, P, E, 1.3))
+    o.append(_lbl(150, 122, "Hình chiếu bằng", "ts"))
+    o.append(_lbl(126, 112, "Dầm cao su", "ts", "end"))
+    o.append(_line(130, 114, 150, 128, E, 0.9))
+    o.append(_lbl(126, 160, "Sợi x", "ts", "end"))
+    o.append(_line(130, 162, 168, 158, E, 0.9))
+    o.append(_lbl(126, 246, "Sợi y", "ts", "end"))
+    o.append(_line(130, 248, 222, 222, E, 0.9))
+    # ---- front view
+    o.append(_poly([(430, 74), (470, 58), (538, 58), (498, 74)], P, E, 1.2, "4 3"))
+    o.append(_rect(430, 74, 68, 220, FILL, E, 1.4))
+    o.append(_poly([(498, 74), (538, 58), (538, 278), (498, 294)], FILL, E, 1.4))
+    for k in range(6):
+        gy = 100 + k * 32
+        o.append(_rect(436, gy, 7, 12, E, E, 0.8))
+        o.append(_poly([(504, gy), (512, gy - 5), (512, gy + 7), (504, gy + 12)], E, E, 0.8))
+    o.append(_lbl(430, 50, "Hình chiếu đứng", "ts"))
+    o.append(_lbl(410, 108, "Sợi có rãnh x", "ts", "end"))
+    o.append(_line(414, 110, 434, 108, E, 0.9))
+    o.append(_lbl(410, 172, "Sợi có rãnh y", "ts", "end"))
+    o.append(_line(414, 174, 500, 168, E, 0.9))
+    # leads
+    o.append(_path("M 436,294 C 436,320 380,320 380,336", E, 2.2))
+    o.append(_path("M 512,294 C 512,330 580,318 580,336", E, 2.2))
+    o.append(_lbl(292, 330, "Tới máy đo công suất", "ts"))
+    o.append(_lbl(596, 330, "Tới laser", "ts"))
+    return _fig(svg(720, 360, "".join(o), "Hình chiếu đứng và hình chiếu bằng của tiết diện cảm biến sợi quang"),
+                "Hình 28.91 · Hình chiếu bằng (trái) và hình chiếu đứng (phải) của một đoạn cảm biến "
+                "lực kéo dùng sợi quang, dùng để đo dòng hai chiều. Hai sợi có rãnh dán trên hai mặt "
+                "kề nhau của dầm tiết diện vuông, rãnh của sợi này vuông góc với rãnh của sợi kia, nên "
+                "hai sợi đo hai thành phần trực giao của biến dạng. Đầu dưới hai sợi nối tới laser và "
+                "máy đo công suất.",
+                "Figure 28.91 · Top view (left) and front view (right) of a section of the fibre optic "
+                "drag force sensor used to measure two-dimensional flow. Two grooved fibres are bonded "
+                "to two adjacent faces of the square beam, with the grooves of one at 90° to those of "
+                "the other, so the two fibres measure the two orthogonal strain components. The lower "
+                "ends of the fibres run to the laser and to the power meter.",
+                "Hai hình chiếu của đoạn cảm biến sợi quang: tiết diện vuông với hai sợi và hình chiếu đứng có rãnh",
+                "Top and front views of the fibre optic sensor section, showing the two grooved fibres")
+
+
+def fig_28_92():
+    """Optical fiber drag force flow sensor without rubber beam."""
+    o = [_defs()]
+    # support block
+    o.append(_poly([(300, 218), (330, 204), (398, 204), (368, 218)], FILL, E, 1.3))
+    o.append(_rect(300, 218, 68, 56, FILL, E, 1.3))
+    o.append(_poly([(368, 218), (398, 204), (398, 260), (368, 274)], FILL, E, 1.3))
+    # the two fibre loops
+    o.append(_ell(348, 138, 48, 70, "none", E, 2.4))
+    o.append(_ell(392, 138, 11, 70, "none", E, 2.4))
+    # grooves on the rear loop
+    for k in range(5):
+        gy = 92 + k * 22
+        o.append(_line(381, gy, 403, gy, E, 1.0))
+    # fibres down to the block and out
+    o.append(_line(348, 208, 348, 232, E, 2.4))
+    o.append(_line(392, 208, 392, 250, E, 2.4))
+    o.append(_line(120, 240, 300, 240, E, 2.4))
+    o.append(_line(398, 256, 660, 256, E, 2.4))
+    o.append(_line(120, 256, 348, 256, E, 2.4))
+    o.append(_line(392, 268, 660, 268, E, 2.4))
+    # air flow
+    o.append(_arr(140, 168, 268, 168, E, "ah28", 2.6))
+    o.append(_lbl(140, 158, "dòng khí", "ts"))
+    # labels
+    o.append(_lbl(238, 108, "vòng sợi", "ts", "end"))
+    o.append(_line(242, 110, 310, 96, E, 0.9))
+    o.append(_lbl(432, 122, "rãnh", "ts"))
+    o.append(_line(428, 124, 400, 100, E, 0.9))
+    o.append(_lbl(228, 214, "sợi phát", "ts", "end"))
+    o.append(_line(232, 216, 288, 236, E, 0.9))
+    o.append(_lbl(452, 214, "sợi thu", "ts"))
+    o.append(_line(448, 216, 400, 254, E, 0.9))
+    o.append(_lbl(120, 232, "từ laser", "ts"))
+    o.append(_lbl(660, 248, "tới đầu thu", "ts", "end"))
+    return _fig(svg(720, 300, "".join(o), "Cảm biến lưu lượng quang không dùng dầm cao su"),
+                "Hình 28.92 · Cảm biến lực kéo dùng sợi quang không có dầm cao su. Sợi nhựa đường "
+                "kính 1 mm được khía sáu rãnh và bẻ thành hai vòng đứng đóng vai trò phần tử kéo; "
+                "phần có rãnh không được đỡ nên tự do uốn theo dòng. Ánh sáng từ laser đi qua sợi phát, "
+                "qua vòng, rồi tới đầu thu; dòng khí làm vòng uốn, góc rãnh đổi và cường độ thu được "
+                "thay đổi theo.",
+                "Figure 28.92 · Optical fiber drag force flow sensor without a rubber beam. A 1 mm "
+                "polymer fibre, cut with six grooves, is bent into two upright loops that act as the "
+                "drag element; the grooved portion is unsupported and free to deflect in the stream. "
+                "Light from the laser passes through the transmitting fibre, round the loop and into "
+                "the detector; the flow bends the loop, the groove angle changes and the received "
+                "intensity changes with it.",
+                "Hai vòng sợi quang đứng trên khối đỡ, có dòng khí thổi ngang và sợi dẫn tới laser và đầu thu",
+                "Two upright fibre loops on a support block with the air flow across them and fibres to the laser and detector")
+
 FIGS = [fig_28_1(), fig_28_2(), fig_28_3(), fig_28_4(), fig_28_5(), fig_28_6(),
         fig_28_7(), fig_28_8(), fig_28_9(), fig_28_10(), fig_28_11(), fig_28_12(),
         fig_28_13(), fig_28_14(), fig_28_15(), fig_28_16(), fig_28_17(), fig_28_18(),
@@ -3009,7 +4528,13 @@ FIGS = [fig_28_1(), fig_28_2(), fig_28_3(), fig_28_4(), fig_28_5(), fig_28_6(),
         fig_28_53(), fig_28_54(), fig_28_55(), fig_28_56(), fig_28_57(),
         fig_28_58(),
         fig_28_59(), fig_28_60(), fig_28_61(), fig_28_62(), fig_28_63(),
-        fig_28_64(), fig_28_65(), fig_28_66(), fig_28_67()]
+        fig_28_64(), fig_28_65(), fig_28_66(), fig_28_67(),
+        fig_28_68(), fig_28_69(), fig_28_70(), fig_28_71(), fig_28_72(),
+        fig_28_73(), fig_28_74(), fig_28_75(), fig_28_76(), fig_28_77(),
+        fig_28_78(), fig_28_79(), fig_28_80(),
+        fig_28_81(), fig_28_82(), fig_28_83(), fig_28_84(),
+        fig_28_85(), fig_28_86(), fig_28_87(), fig_28_88(),
+        fig_28_89(), fig_28_90(), fig_28_91(), fig_28_92()]
 
 
 def fig(n):
