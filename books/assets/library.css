@@ -359,6 +359,12 @@ table.tbl thead th {
   border-bottom: 2px solid var(--yin); background: var(--gray-bg);
 }
 
+/* dense data table: twelve columns in a single page column, so tighten the
+   padding, let the headers wrap and fix the layout so no column gets squeezed */
+table.tbl.dense { font-size: 0.78rem; table-layout: fixed; }
+table.tbl.dense th, table.tbl.dense td { padding: 6px 5px; }
+table.tbl.dense thead th { font-size: 0.78rem; white-space: normal; line-height: 1.25; }
+
 /* cause-and-effect matrix: many narrow columns, so tighten the padding and keep
    the tag / note columns from breaking mid-token */
 table.tbl.matrix th, table.tbl.matrix td { padding: 6px 8px; font-size: 0.86rem; }

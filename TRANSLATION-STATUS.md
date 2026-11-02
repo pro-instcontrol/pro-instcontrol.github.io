@@ -49,7 +49,7 @@ Order of work, fixed by the site owner:
 
 | Book | slug | Chapters | Translated | Reader generator |
 |---|---|---|---|---|
-| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
+| Measurement, Instrumentation and Sensors Handbook | `the-measurement-instrumentation-and-sensors-handbook` | 101 + app. A | **1–27, 93, 94, 95, 96, 97, 98, 99, 100, 101, App. A** | `build/reader_handbook.py` + `reader_hb_chNN.py` per chapter |
 | Safety Instrumented Systems | `safety-instrumented-systems-design-analysis-justification` | 16 | **1–16 ✅ done** | `build/reader_sis.py` (+ `sis_chNN.py`, `sisfig.py`) |
 | Practical Process Control | `pc-process-control` | 14 | **1–14 ✅ done** | `build/reader_pc.py` (+ `pc_chNN.py`, `pcfig.py` … `pc14fig.py`) |
 
@@ -84,6 +84,7 @@ Chapters done, with their slugs and build scripts:
 | HB 25 | Tactile Sensing | `ch25-tactile-sensing` | `reader_hb_ch25.py` + `hb25fig.py` | — | — |
 | HB 26 | Pressure and Sound Measurement | `ch26-pressure-and-sound-measurement` | `reader_hb_ch26.py` + `hb26fig.py` | — | — |
 | HB 27 | Acoustic Measurement | `ch27-acoustic-measurement` | `reader_hb_ch27.py` + `hb27fig.py` | 21 | — |
+| HB 93 | Plasma-Driven Flat Panel Displays | `ch93-plasma-driven-flat-panel-displays` | `reader_hb_ch93.py` + `hb93base.py`/`hb93fig.py`/`hb93figb.py` | 20 | ~14k |
 | HB 94 | Electroluminescent Displays | `ch94-electroluminescent-displays` | `reader_hb_ch94.py` + `hb94fig.py` | 10 | ~9.5k |
 | HB 95 | Light-Emitting Diode Displays | `ch95-light-emitting-diode-displays` | `reader_hb_ch95.py` + `hb95fig.py` | 8 | ~9k |
 | HB 100 | Explosion-Proof Instruments | `ch100-explosion-proof-instruments` | `reader_hb_ch100.py` + `hb100fig.py` | 7 | ~9.5k |
@@ -2667,3 +2668,76 @@ Notes for whoever picks this up:
   Chapter 95 carries over.
 - The PDF text layer again drops µ and × ("100 mm" for 100 µm, "852 ´ 480" for 852 × 480), so the
   same restoration pass as Chapters 94 and 95 applies.
+
+
+---
+
+### Session 35 — Chapter 93 shipped
+
+**Chapter 93, *Plasma-Driven Flat Panel Displays*** (McGrath & Veerasingam, Penn State; Moffatt &
+Campbell, Sandia) is translated, drawn, registered and live. The survey left at the end of session
+34 was accurate: six sections, **20 figures, 4 tables, 11 numbered equations** (93.1, 93.2a, 93.2b,
+93.3–93.11 — twelve rendered blocks), **64 references**, and **no Defining Terms block**, so
+`/glossary.html` gains nothing.
+
+| File | Role |
+|---|---|
+| `build/hb93base.py` | shared primitives: colour set, `_lbl`/`_r`/`_line`/`_arr`/`_poly`/`_path`/`_dot`/`_circ`/`_hatch`, the isometric `_slab`/`_isostrip`/`_isostrip_d`, and a `Frame` with linear **or** log axes and a top axis for the `E/P` and `Pd` scales |
+| `build/hb93fig.py` | figures 93.1–93.10 |
+| `build/hb93figb.py` | figures 93.11–93.20, plus `_mk`/`_glyph` marker helpers |
+| `build/reader_hb_ch93.py` | the chapter itself: `_EQ`, `_T1`/`_T1_EN`, `_T2`–`_T4`, `_REFS`, `body_vi()`, `body_en()`, translator's note |
+
+Twenty figures split into two modules because one file of forty kilobytes of SVG builders is
+unreviewable. The three source photographs (93.3, 93.4 and the screen content of both) are redrawn
+as line art with the display content explicitly omitted and said so in the caption, as Chapters 27
+and 28 did.
+
+**Curves are computed, not sketched.** 93.9 is the Townsend family `α/p = A·exp(−B/(E/P))` on
+log–log axes with the top scale in V/m/Pa; 93.10 is Paschen's law `V = B·pd / (ln(A·pd) − C)` with
+`C = ln(ln(1 + 1/γ))`, `γ = 0.01`, and the Ne/Ar minima checked against the printed ones (250 V and
+150 V). The measured curves — 93.13 current traces, 93.14 hysteresis, 93.18 VUV spectra, 93.19
+quantum efficiency, 93.20 MgO transmission — are rebuilt from the printed data points and drawn
+through markers, so a reader can see where the data are and where the line is interpolated.
+
+**Three figure bugs worth remembering.**
+
+1. `_lbl(x, F.Y(value), …)` is wrong when the second argument is already a *pixel* row. Three load
+   line labels in 93.12 were passed `F.Y(208)`, `F.Y(196)`, `F.Y(184)` — 208 "amps" on a 2.6-unit
+   axis — and were drawn 19,000 px below the canvas. The figure looked like it had lost its labels;
+   the labels existed, off-screen. Grep for `F.Y(` with a literal above the axis maximum.
+2. A sampling loop `for i in range(0, 101): x = i * 0.5` covers **half** the domain. 93.11a stopped
+   at 50 µm of a 100 µm gap, which read as a curve that simply ended. The canvas does not complain.
+3. `<sub>`/`<sup>` inside `<svg>` still eject the parser from foreign content. 93.14's
+   `V_erase`/`V_sustain`/`V_address` and 93.15's row labels now go through `_r()` with `<tspan
+   dy=…>`, which is the only safe subscript in an SVG here.
+
+**A twelve-column table needs its own layout.** Table 93.1 (eight manufacturers × twelve columns)
+was unreadable at first: the shared `table.tbl` padding of `8px 12px` left about 43 px of content
+per column and words broke mid-token (`Fujits|u`, `Mitsub|ishi`). Fixed by adding a `.dense`
+modifier to `books/assets/library.css` — smaller type, `padding: 6px 5px`, headers allowed to wrap,
+`table-layout: fixed` — plus a `<colgroup>` with explicit widths from the chapter's `table()`
+helper (`colw=`) and `white-space: nowrap` on the four short columns (`nw=`). **The reader pages
+load `/books/assets/library.css`, not `/assets/style.css`**; the first three attempts went into the
+wrong file and had no effect, which is exactly the kind of silent no-op worth writing down.
+
+**Source defects logged, not silently repaired** (all in the chapter's translator's note): the PDF
+text layer drops `µ` and `×` throughout (`100 mm` for 100 µm, `25 mm` for 25 µm, `10 ms` for
+10 µs, `1 ms` for 1 µs, `500 kW` for 500 kΩ, `5 MW` for 5 MΩ, `1 MW` for 1 MΩ); Greek letters are
+substituted (`g` for γ, `r(x)` for ρ(x), `lD` for λ_D, `hn` for hν); "3 Pa (~400 Torr)" is really
+3 × 10⁴ Pa; Hitachi's contrast "50.1" is 50:1; and Table 93.2's formulae arrive mangled and were
+restored to LuBO₃ / ScBO₃ / GdBO₃ / Zn₂SiO₄ / (Y,Gd)BO₃. Figure 93.12's printed load lines do not
+in fact intersect the negative-resistance branch at the voltages the text describes; the drawing
+follows the printed picture, the three operating regions are marked on the curve with a keyed
+legend rather than fake intersection callouts, and the inconsistency is called out in the note.
+
+**Verification.** `reader_hb_ch93.py` → 299 kB / 323 kB. **20 figures, 12 equation blocks, 64 list
+items on both pages** — parity holds. Registries updated: `DONE[93]` in `build/reader_handbook.py`,
+`TRANSLATED[...] = ("progress", 101, 36)` in `build/books_site.py`; `chapter_nav.py` rewrote 72
+pages and moved Chapter 94's "previous" link from the TOC to the new chapter. Rebuild chain clean:
+sitemap **551 URLs / 538 EN/VI pairs**, link check **553 pages, 15,141 local references, 0 broken**.
+Book TOC now reads *Đang dịch · 36/101* / *Translating · 36 of 101*.
+
+**Next in the reverse sequence: 92, *Liquid Crystal Displays*.** 93's survey notes on 93.8 (real
+energy-level data must be transcribed from the page image) and 93.10 (the `Frame` log-axis helper
+carries over) are now resolved in code; 92 starts from `work/Ch92.pdf` and needs the same
+µ/× restoration pass.
