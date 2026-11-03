@@ -109,6 +109,54 @@ def eq(body, num=""):
     return '<div class="eq"><span class="n">(%s)</span>%s</div>' % (num, body)
 
 
+def _frac(num, den, size="0.84em"):
+    """A stacked fraction from two inline-blocks. library.css has no .frac rule
+    and adding one would touch every reader page, so the styling stays inline.
+    §32.3 needs a dozen of these — the whole polynomial discussion is fractions."""
+    return ('<span style="display:inline-block;vertical-align:middle;text-align:center;'
+            'max-width:100%%;font-size:%s;line-height:1.22;margin:0 0.18em">'
+            '<span style="display:block;border-bottom:1.2px solid currentColor;'
+            'padding:0 0.35em 2px">%s</span>'
+            '<span style="display:block;padding:2px 0.35em 0">%s</span></span>'
+            % (size, num, den))
+
+
+def _sq(inner):
+    """A square root: radical sign plus an overlined radicand. The radicand is a
+    flex item rather than an inline span, because a stacked fraction is itself an
+    inline-block and overflows above an inline box's border — that is how the bar
+    came to run straight through the numerator of 32.69 instead of over it. The
+    flex line also centres the radical sign against the tall fraction."""
+    return ('<span style="display:inline-flex;align-items:center;vertical-align:middle">'
+            '<span style="font-size:1.32em;line-height:1">√</span>'
+            '<span style="border-top:1.2px solid currentColor;padding:.14em .12em 0">%s</span>'
+            '</span>' % inner)
+
+
+def _big(t, k=1.9):
+    """Large round delimiters around a stacked fraction. The book's typesetter used
+    stretchy brackets here; the plain character leaves a fraction sticking out of
+    both ends of a one-em parenthesis, so the glyph is scaled on the vertical axis
+    and the two are centred on the fraction with a flex line."""
+    p = ("display:inline-block;transform:scaleY(%s);line-height:1;margin:0 -.05em" % k)
+    return ('<span style="display:inline-flex;align-items:center;vertical-align:middle">'
+            '<span style="%s">(</span>%s<span style="%s">)</span></span>' % (p, t, p))
+
+
+def h4(t, en=""):
+    """A sub-sub-heading. The source nests the three electrical characteristics
+    under "Electrical Properties", and the three circuit techniques under
+    "Linearization"; flattening both to h3 would lose that."""
+    if en == t:
+        en = ""
+    a = ""
+    if _CUR[0]:
+        base = (en or t) if _LANG[0] == "vi" else t
+        a = ' id="s32-%s-%s"' % (_CUR[0], _slug(base))
+    return ('<h4%s style="font-size:1rem;font-weight:700;margin:1.7rem 0 .5rem">%s%s</h4>'
+            % (a, t, (' <span class="en">%s</span>' % en) if en else ""))
+
+
 def note(t):
     return '<div class="note">%s</div>' % t
 
@@ -390,6 +438,177 @@ def _t327(lang):
            "indicates gas thermometer point; TP indicates triple point; FP indicates freezing "
            "point; MP indicates melting point.")
     return table(hd, rows, cap, widths=["22%", "26%", "20%", "32%"], small=True)
+
+
+def _tbl2(h1, h2, rows, cap):
+    """A table with a two-row header. Tables 32.8 and 32.9 both group two
+    dissipation columns and two time-constant columns under single headings, and
+    the single-row helper cannot express that — the second row would land in the
+    wrong columns."""
+    top = "".join(('<th rowspan="2">%s</th>' % t) if s == 0
+                  else ('<th colspan="%d">%s</th>' % (s, t)) for t, s in h1)
+    sub = "".join("<th>%s</th>" % t for t in h2)
+    body = "".join("<tr>%s</tr>" % "".join("<td>%s</td>" % c for c in r) for r in rows)
+    return ('<div class="table-wrap"><table class="tbl" style="font-size:.84rem">'
+            '<thead><tr>%s</tr><tr>%s</tr></thead><tbody>%s</tbody></table></div>'
+            '<p style="font-size:.84rem;color:#888;font-style:italic">%s</p>'
+            % (top, sub, body, cap))
+
+
+def _t328(lang):
+    vi = lang == "vi"
+    h1 = [("Kiểu", 0), ("Đường kính (mm)", 0),
+          ("Hằng số tiêu tán (mW °C⁻¹)", 2), ("Hằng số thời gian (s)", 2)] if vi else \
+         [("Style", 0), ("Diameter (mm)", 0),
+          ("Dissipation constant (mW °C⁻¹)", 2), ("Time constant (s)", 2)]
+    h2 = ("Trong không khí", "Trong nước", "Trong không khí", "Khi nhúng nước") if vi else \
+         ("Still air", "Still water", "Still air", "Water plunge")
+    rows = [
+        ("Hạt phủ thủy tinh", "0,13", "0,045", "0,45", "0,12", "0,005"),
+        ("Hạt phủ thủy tinh", "0,25", "0,09", "0,9", "0,5", "0,010"),
+        ("Hạt phủ thủy tinh", "0,36", "0,10", "0,98", "1,0", "0,015"),
+        ("Hạt gia cố", "0,41", "0,12", "1,1", "1,2", "0,016"),
+        ("Đầu dò thủy tinh", "0,63", "0,19", "1,75", "1,9", "0,020"),
+        ("Hạt phủ thủy tinh", "0,89", "0,35", "3,8", "4,5", "0,10"),
+        ("Hạt phủ thủy tinh", "1,1", "0,40", "4,0", "5,5", "0,14"),
+        ("Hạt gia cố", "1,4", "0,51", "4,3", "7,0", "0,20"),
+        ("Đầu dò thủy tinh", "1,5", "0,72", "4,4", "12,0", "0,30"),
+        ("Đầu dò thủy tinh", "2,16", "0,90", "4,5", "16,0", "0,40"),
+        ("Đầu dò thủy tinh", "2,5", "1,0", "4,5", "22,0", "0,65"),
+    ] if vi else [
+        ("Glass-coated bead", "0.13", "0.045", "0.45", "0.12", "0.005"),
+        ("Glass-coated bead", "0.25", "0.09", "0.9", "0.5", "0.010"),
+        ("Glass-coated bead", "0.36", "0.10", "0.98", "1.0", "0.015"),
+        ("Ruggedized bead", "0.41", "0.12", "1.1", "1.2", "0.016"),
+        ("Glass probe", "0.63", "0.19", "1.75", "1.9", "0.020"),
+        ("Glass-coated bead", "0.89", "0.35", "3.8", "4.5", "0.10"),
+        ("Glass-coated bead", "1.1", "0.40", "4.0", "5.5", "0.14"),
+        ("Ruggedized bead", "1.4", "0.51", "4.3", "7.0", "0.20"),
+        ("Glass probe", "1.5", "0.72", "4.4", "12.0", "0.30"),
+        ("Glass probe", "2.16", "0.90", "4.5", "16.0", "0.40"),
+        ("Glass probe", "2.5", "1.0", "4.5", "22.0", "0.65"),
+    ]
+    cap = ("Bảng 32.8 · Tính chất nhiệt của hạt và đầu dò hàn kín. Theo Tài liệu tham khảo [1]."
+           if vi else
+           "Table 32.8 · Thermal properties of hermetically sealed beads and probes. From "
+           "Reference [1].")
+    return _tbl2(h1, h2, rows, cap)
+
+
+def _t329(lang):
+    vi = lang == "vi"
+    hd = ("Kiểu", "Đường kính (mm)", "Hằng số tiêu tán (mW °C⁻¹)",
+          "Hằng số thời gian (s)") if vi else \
+         ("Style", "Diameter (mm)", "Dissipation constant (mW °C⁻¹)", "Time constant (s)")
+    rows = [
+        ("Chip hoặc đĩa trong vỏ điốt thủy tinh", "2", "2–3", "7–8"),
+        ("Chip hoặc đĩa phủ epoxy loại lắp lẫn được", "2,4", "1", "10"),
+        ("Đĩa có dây dẫn hướng kính hoặc hướng trục", "2,5", "3–4", "8–15"),
+        ("Đĩa có dây dẫn hướng kính hoặc hướng trục", "5,1", "4–8", "13–50"),
+        ("Đĩa có dây dẫn hướng kính hoặc hướng trục", "7,6", "7–9", "35–85"),
+        ("Đĩa có dây dẫn hướng kính hoặc hướng trục", "10,2", "8–11", "28–150"),
+        ("Đĩa có dây dẫn hướng kính hoặc hướng trục", "12,7", "5–16", "50–175"),
+        ("Đĩa có dây dẫn hướng kính hoặc hướng trục", "19,6", "15–20", "90–300"),
+        ("Đĩa có dây dẫn hướng kính hoặc hướng trục", "25,4", "24–40", "110–230"),
+        ("Đĩa có dây dẫn hướng kính hoặc hướng trục", "1,3", "2,5–3", "16–20"),
+        ("Thanh có dây dẫn hướng kính hoặc hướng trục", "1,8", "4–10", "35–90"),
+        ("Thanh có dây dẫn hướng kính hoặc hướng trục", "4,4", "8–24", "80–125"),
+    ] if vi else [
+        ("Chip or disk in glass diode package", "2", "2–3", "7–8"),
+        ("Interchangeable epoxy coated chip or disk", "2.4", "1", "10"),
+        ("Disk with radial or axial leads", "2.5", "3–4", "8–15"),
+        ("Disk with radial or axial leads", "5.1", "4–8", "13–50"),
+        ("Disk with radial or axial leads", "7.6", "7–9", "35–85"),
+        ("Disk with radial or axial leads", "10.2", "8–11", "28–150"),
+        ("Disk with radial or axial leads", "12.7", "5–16", "50–175"),
+        ("Disk with radial or axial leads", "19.6", "15–20", "90–300"),
+        ("Disk with radial or axial leads", "25.4", "24–40", "110–230"),
+        ("Disk with radial or axial leads", "1.3", "2.5–3", "16–20"),
+        ("Rod with radial or axial leads", "1.8", "4–10", "35–90"),
+        ("Rod with radial or axial leads", "4.4", "8–24", "80–125"),
+    ]
+    cap = ("Bảng 32.9 · Tính chất nhiệt của nhiệt điện trở có điện cực bề mặt kim loại hóa. Theo "
+           "các Tài liệu tham khảo [1, 6, 9, 10]." if vi else
+           "Table 32.9 · Thermal properties of thermistors with metallized surface electrodes. "
+           "From References [1, 6, 9, 10].")
+    return table(hd, rows, cap, widths=["40%", "16%", "24%", "20%"], small=True)
+
+
+def _t3210(lang):
+    """Table 32.10 is four numbered groups of bulleted applications. As a table
+    it has one column and eleven rows, which reads worse than one cell per group
+    with the bullets broken by <br>."""
+    vi = lang == "vi"
+    groups = [
+        ("1. Thay đổi hằng số tiêu tán (đường tải cố định trên một họ đường cong)",
+         ["Áp kế chân không", "Máy đo gió, lưu lượng kế, vận tốc chất lưu",
+          "Phân tích độ dẫn nhiệt, máy dò khí, sắc ký khí",
+          "Đo, điều khiển và báo động mức chất lỏng"]),
+        ("2. Thay đổi tham số mạch (đường tải quay và/hoặc dịch trên một đường cong E–I cố định)",
+         ["Điều chỉnh biên độ và/hoặc tần số dao động",
+          "Ổn định và cân bằng độ lợi hoặc mức tín hiệu", "Hạn chế âm lượng",
+          "Nén và giãn điện áp", "Linh kiện chuyển mạch"]),
+        ("3. Thay đổi nhiệt độ môi trường (đường tải cố định hoặc thay đổi trên một họ đường cong)",
+         ["Điều khiển hoặc báo động nhiệt độ"]),
+        ("4. Đo công suất vi ba", ["Bolometer"]),
+    ] if vi else [
+        ("1. Variation in dissipation constant (fixed load line on a family of curves)",
+         ["Vacuum manometers", "Anemometers, flowmeters, fluid velocity",
+          "Thermal conductivity analysis, gas detectors, gas chromatography",
+          "Liquid level measurement, control, and alarm"]),
+        ("2. Variation in circuit parameters (rotation and/or translation of load line on a "
+         "fixed E–I curve)",
+         ["Oscillator amplitude and/or frequency regulation",
+          "Gain or level stabilization and equalization", "Volume limiters",
+          "Voltage compression and expansion", "Switching devices"]),
+        ("3. Variation in ambient temperature (fixed or variable load line on a family of curves)",
+         ["Temperature control or alarm"]),
+        ("4. Microwave power measurement", ["Bolometers"]),
+    ]
+    rows = []
+    for head_, items in groups:
+        rows.append("<b>%s</b><br>%s" % (head_, "<br>".join("• " + i for i in items)))
+    body = "".join("<tr><td>%s</td></tr>" % r for r in rows)
+    hd = "Ứng dụng dựa trên đặc tính dòng – áp của nhiệt điện trở" if vi else \
+         "Applications Based on the Voltage–Current Characteristic of Thermistors"
+    cap = ("Bảng 32.10 · Ứng dụng dựa trên đặc tính dòng – áp của nhiệt điện trở. Theo các Tài "
+           "liệu tham khảo [1, 14]." if vi else
+           "Table 32.10 · Applications based on the voltage–current characteristic of thermistors. "
+           "From References [1, 14].")
+    return ('<div class="table-wrap"><table class="tbl" style="font-size:.86rem">'
+            '<thead><tr><th>%s</th></tr></thead><tbody>%s</tbody></table></div>'
+            '<p style="font-size:.84rem;color:#888;font-style:italic">%s</p>'
+            % (hd, body, cap))
+
+
+def _t3211(lang):
+    vi = lang == "vi"
+    hd = ("Dải nhiệt độ (°C)", "Dải nhiệt độ khảo sát (°C)", "Sai số nội suy (°C)") if vi else \
+         ("Temperature range (°C)", "Temperature span (°C)", "Interpolation error (°C)")
+    rows = [
+        ("−80 đến 0", "50", "0,002–0,01"),
+        ("0 đến 200", "50", "0,001–0,003"),
+        ("−80 đến 0", "100", "0,02–0,03"),
+        ("0 đến 200", "100", "0,01"),
+        ("−60 đến 90", "150", "0,1"),
+        ("0 đến 150", "150", "0,045"),
+        ("50 đến 200", "150", "0,015"),
+        ("0 đến 200", "200", "0,08"),
+    ] if vi else [
+        ("–80 to 0", "50", "0.002–0.01"),
+        ("0 to 200", "50", "0.001–0.003"),
+        ("–80 to 0", "100", "0.02–0.03"),
+        ("0 to 200", "100", "0.01"),
+        ("–60 to 90", "150", "0.1"),
+        ("0 to 150", "150", "0.045"),
+        ("50 to 200", "150", "0.015"),
+        ("0 to 200", "200", "0.08"),
+    ]
+    cap = ("Bảng 32.11 · Sai số nội suy của ln <i>R</i><sub>T</sub> = <i>C</i><sub>0</sub> + "
+           "<i>C</i><sub>1</sub>/<i>T</i> + <i>C</i><sub>3</sub>/<i>T</i><sup>3</sup>." if vi else
+           "Table 32.11 · Interpolation errors for ln <i>R</i><sub>T</sub> = <i>C</i><sub>0</sub> + "
+           "<i>C</i><sub>1</sub>/<i>T</i> + <i>C</i><sub>3</sub>/<i>T</i><sup>3</sup>.")
+    return table(hd, rows, cap, widths=["34%", "33%", "33%"], small=True)
 
 
 # ================================================================ §32.1
@@ -2044,6 +2263,1235 @@ def sec_32_2_en():
 
 
 # ================================================================ back matter
+# ================================================================ §32.3
+def sec_32_3_vi():
+    b = [h2("32.3 Nhiệt kế nhiệt điện trở", "Thermistor Thermometers")]
+    b.append(authors("Meyer Sapoff", ""))
+
+    b.append(p(
+        "Nhiệt điện trở là một điện trở nhạy nhiệt, có chức năng chính là thể hiện sự thay đổi "
+        "điện trở khi nhiệt độ của thân nó thay đổi. Khác với cảm biến nhiệt điện trở (RTD) kiểu "
+        "quấn dây hay kiểu màng kim loại, nhiệt điện trở là một chất bán dẫn gốm. RTD có hệ số "
+        "nhiệt độ của điện trở tương đối nhỏ, cỡ 0,4 đến 0,5% °C⁻¹. Tùy theo hệ vật liệu dùng, "
+        "nhiệt điện trở có thể có hệ số nhiệt độ của điện trở dương lớn (linh kiện PTC) hoặc âm "
+        "lớn (linh kiện NTC)."))
+    b.append(p(
+        "Có hai loại nhiệt điện trở PTC. Nhiệt điện trở PTC silic dựa trên tính chất khối của "
+        "silic pha tạp và có đặc tính điện trở – nhiệt độ gần như tuyến tính. Chúng có hệ số nhiệt "
+        "độ của điện trở khoảng 0,7 đến 0,8% °C⁻¹. Ứng dụng phổ biến nhất của nhiệt điện trở PTC "
+        "silic là bù cho các linh kiện và mạch bán dẫn silic [1]. Vật liệu dùng cho nhiệt điện trở "
+        "PTC kiểu chuyển mạch là các hợp chất titanat bari, chì và stronti. Hình 32.16 cho thấy "
+        "đặc tính điện trở – nhiệt độ của một nhiệt điện trở PTC kiểu chuyển mạch thông dụng [2]. "
+        "Ở nhiệt độ thấp, từ dưới 0 °C đến <i>R</i><sub>min</sub>, giá trị điện trở nhỏ và "
+        "<i>R</i><sub>T</sub> theo <i>T</i> có hệ số nhiệt độ của điện trở âm nhỏ, cỡ −1% °C⁻¹. "
+        "Khi nhiệt độ tăng, hệ số nhiệt độ của điện trở trở thành dương và điện trở bắt đầu tăng. "
+        "Tại một nhiệt độ ngưỡng hay nhiệt độ chuyển mạch, tốc độ tăng trở nên rất nhanh và đặc "
+        "tính PTC trở nên rất dốc. Trong dải chuyển mạch của nó, hệ số nhiệt độ của điện trở có "
+        "thể lên tới 100% °C⁻¹ và linh kiện có giá trị điện trở cao. Ở nhiệt độ trên dải chuyển "
+        "mạch, điện trở đạt giá trị cực đại, vượt qua đó hệ số nhiệt độ lại trở thành âm. Có thể "
+        "thay đổi nhiệt độ chuyển mạch trong khoảng 80 °C đến 240 °C bằng cách thay đổi thành phần "
+        "hóa học của gốm. Ứng dụng điển hình của nhiệt điện trở PTC kiểu chuyển mạch là bảo vệ quá "
+        "nhiệt, hạn chế dòng và tự điều chỉnh nhiệt. Hệ số nhiệt độ của điện trở của một linh kiện "
+        "dùng làm phần tử gia nhiệt thường khoảng 25% °C⁻¹ ở nhiệt độ chuyển mạch 240 °C [1, 2]."))
+    b.append(fig(16, F.fig(16), "vi"))
+    b.append(p(
+        "Nhiệt điện trở NTC gồm các oxit kim loại như oxit của crom, coban, đồng, sắt, mangan, "
+        "niken và titan. Những linh kiện này có điện trở giảm đơn điệu khi nhiệt độ tăng. Đặc tính "
+        "điện trở – nhiệt độ của nhiệt điện trở NTC là phi tuyến và xấp xỉ đặc tính của chất bán "
+        "dẫn nội tại, ở đó sự phụ thuộc nhiệt độ của điện trở là do kích thích hạt tải vượt qua "
+        "một khe năng lượng. Do đó, logarit của điện trở nhiệt điện trở NTC gần như là một hàm "
+        "tuyến tính của nghịch đảo nhiệt độ tuyệt đối. Dưới nhiệt độ phòng, độ dốc của hàm giảm và "
+        "nhiệt điện trở hành xử giống chất bán dẫn ngoại lai hơn. Cơ chế dẫn thực tế tương đương "
+        "cơ chế “nhảy” quan sát thấy ở ferit và manganit có cấu trúc tinh thể spinel. Sự dẫn xảy "
+        "ra khi hạt tải điện nhảy từ một vị trí ion trong mạng spinel sang một vị trí kề bên. Kiểu "
+        "nhảy này xảy ra được khi các ion của cùng một nguyên tố, có hóa trị khác nhau 1, cùng nằm "
+        "trên những vị trí mạng tương đương."))
+    b.append(p(
+        "Do đặc tính điện trở – nhiệt độ phi tuyến, hệ số nhiệt độ của điện trở của nhiệt điện trở "
+        "NTC thay đổi theo nhiệt độ. Tùy hệ vật liệu, hệ số này ở 25 °C thường nằm trong khoảng −3 "
+        "đến −5% °C⁻¹. Ở −60 °C, nó nằm trong khoảng −6,4 đến −11,3% °C⁻¹; còn ở 100 °C, nó biến "
+        "thiên từ −2,1 đến −3,7% °C⁻¹. Tỉ số điện trở tương ứng so với 25 °C, "
+        "<i>R</i><sub>T</sub>/<i>R</i><sub>25</sub>, là 41 đến 228 ở −60 °C và 0,13 đến 0,03 ở "
+        "100 °C. Độ dốc của đặc tính log <i>R</i> theo 1/<i>T</i>, ký hiệu β, tương đối ổn định. "
+        "Các hệ vật liệu nêu số liệu trên có giá trị β từ 2930 đến 5135 K trong khoảng 25 đến "
+        "125 °C [1]."))
+    b.append(p(
+        "Dù đặc tính điện trở – nhiệt độ của nhiệt điện trở NTC là phi tuyến, vẫn có thể đạt độ "
+        "tuyến tính tốt cho đặc tính điện dẫn – nhiệt độ và điện trở – nhiệt độ bằng các mạng "
+        "nhiệt điện trở – điện trở. Mắc một điện trở nối tiếp với nhiệt điện trở cho ta một mạng "
+        "điện dẫn tuyến tính, ví dụ một cầu phân áp. Dòng điện thu được khi đặt một điện áp lên "
+        "mạng là tuyến tính theo nhiệt độ. Do đó, đầu ra của cầu phân áp (điện áp trên điện trở) là "
+        "tuyến tính theo nhiệt độ. Tổ hợp song song của một điện trở và một nhiệt điện trở là một "
+        "mạng điện trở tuyến tính. Có các kỹ thuật tối ưu hóa độ tuyến tính của mạng một nhiệt "
+        "điện trở [3, 4]."))
+    b.append(p(
+        "Những mạng như vậy có đường cong hình chữ S cho đặc tính điện áp – nhiệt độ hoặc điện trở "
+        "– nhiệt độ. Với dải nhiệt độ 20 °C đến 30 °C, độ lệch cực đại giữa một điểm bất kỳ trên "
+        "đường cong và đường thẳng xấp xỉ tốt nhất là nhỏ. Khi dải vượt quá 30 °C, độ lệch tuyến "
+        "tính cực đại tăng nhanh, từ khoảng 0,15 °C với dải 30 °C lên 0,7 °C với dải 50 °C. Dùng "
+        "mạng hai nhiệt điện trở có thể đạt độ lệch tuyến tính cực đại 0,22 °C trên dải 0 °C đến "
+        "100 °C, so với 2 °C khi dùng mạng một nhiệt điện trở [5]. Ứng dụng của nhiệt điện trở NTC "
+        "gồm đo, điều khiển và bù nhiệt độ."))
+    b.append(p(
+        "Khi có dòng điện chạy qua nhiệt điện trở, xuất hiện hiệu ứng tự đốt nóng do công suất tiêu "
+        "tán trong nó. Nhiệt độ nhiệt điện trở tăng cho đến khi tốc độ thất thoát nhiệt từ nhiệt "
+        "điện trở ra môi trường xung quanh bằng công suất tiêu tán. Ở điều kiện cân bằng nhiệt "
+        "này, độ tăng nhiệt tỉ lệ thuận với công suất tiêu tán trong nhiệt điện trở. Hằng số tỉ lệ "
+        "δ là hằng số tiêu tán của nhiệt điện trở. Theo định nghĩa, δ là tỉ số — ở một nhiệt độ môi "
+        "trường, điều kiện lắp đặt và môi trường xác định — giữa mức thay đổi công suất tiêu tán "
+        "trong nhiệt điện trở và mức thay đổi nhiệt độ thân tương ứng. Các yếu tố ảnh hưởng đến "
+        "hằng số tiêu tán là diện tích bề mặt nhiệt điện trở, độ dẫn nhiệt và tốc độ chuyển động "
+        "tương đối của môi trường quanh nhiệt điện trở, thất thoát nhiệt do đối lưu tự nhiên trong "
+        "môi trường đứng yên, truyền nhiệt giữa nhiệt điện trở và giá lắp qua dây dẫn, và thất "
+        "thoát nhiệt do bức xạ (đáng kể với chất khí ở áp suất thấp). Vì độ dẫn nhiệt của chất lưu "
+        "thay đổi theo nhiệt độ và đối lưu tự nhiên phụ thuộc chênh lệch nhiệt độ giữa nhiệt điện "
+        "trở và môi trường, δ không phải là một hằng số đúng nghĩa. Đặc biệt với chất khí, hằng số "
+        "tiêu tán thay đổi theo cả nhiệt độ thân nhiệt điện trở lẫn mức tự đốt nóng."))
+    b.append(p(
+        "Hằng số thời gian nhiệt τ là đáp ứng 63,2% khi nhiệt độ nhiệt điện trở thay đổi theo hàm "
+        "bậc thang, trong điều kiện công suất tiêu tán trong nhiệt điện trở không đáng kể. Hằng số "
+        "thời gian nhiệt chỉ có ý nghĩa khi đáp ứng là một hàm mũ đơn. Trong trường hợp đó, một "
+        "khoảng thời gian τ cho mức thay đổi 63,2% giữa nhiệt độ đầu và nhiệt độ xác lập cuối, còn "
+        "khoảng thời gian 5τ cho mức thay đổi 99,3%. Với một cấu trúc phức tạp hơn, chẳng hạn nhiệt "
+        "điện trở được bao trong vỏ cảm biến, có thể tồn tại nhiều hàm mũ và không thể đoán rằng "
+        "đáp ứng 99% sẽ đến sau năm hằng số thời gian. Cũng như hằng số tiêu tán, hằng số thời gian "
+        "nhiệt phụ thuộc tốc độ truyền nhiệt giữa nhiệt điện trở và môi trường. Do đó, mọi yếu tố "
+        "làm tăng hằng số tiêu tán đều làm giảm hằng số thời gian."))
+    b.append(p(
+        "Các kiểu linh kiện PTC silic thông dụng nhất là vỏ điốt thủy tinh có đường kính 1,8 mm "
+        "đến 2,5 mm và chiều dài 3,8 mm đến 7,5 mm, và vỏ epoxy đúc có đường kính 3,6 mm đến "
+        "6,0 mm và chiều dài 10,4 mm đến 15,0 mm. Những linh kiện này có dây dẫn hướng trục. Cũng "
+        "có loại chip và đĩa phủ epoxy với dây dẫn hướng kính, đường kính khoảng 3 mm. Nhiệt điện "
+        "trở PTC silic tuân theo MIL-T-23648 có dải nhiệt độ làm việc −55 °C đến 125 °C. Loại "
+        "thương mại có thể có dải −65 °C đến 150 °C [6]."))
+    b.append(p(
+        "Cấu hình thông dụng nhất của nhiệt điện trở PTC kiểu chuyển mạch là đĩa có dây dẫn hướng "
+        "kính, có hoặc không có lớp phủ cách điện. Linh kiện loại này có đường kính 4 mm đến "
+        "26 mm. Chiều dày nằm trong khoảng 0,5 mm đến 6,5 mm. Chúng cũng có loại gắn trên bề mặt, "
+        "loại đĩa không dây dẫn và loại vỏ điốt thủy tinh. Đĩa PTC kiểu chuyển mạch có dải nhiệt độ "
+        "bảo quản −25 °C đến 155 °C và dải làm việc 0 °C đến 55 °C [1]."))
+    b.append(p(
+        "Trọng tâm của phần này là nhiệt điện trở NTC. Hầu hết ứng dụng nhiệt điện trở dùng loại "
+        "này. Nhiệt điện trở NTC có hai nhóm chính. Nhiệt điện trở kiểu hạt có dây dẫn bằng hợp kim "
+        "bạch kim được thiêu kết vào thân gốm. Nhiệt điện trở kiểu chip, đĩa, gắn bề mặt, mảnh và "
+        "thanh có điện cực bề mặt kim loại hóa. Nhóm sau bao gồm vỏ điốt thủy tinh, trong đó dây "
+        "dumet được liên kết áp vào đĩa hoặc chip."))
+    b.append(p(
+        "Hạt phủ thủy tinh có cả cấu hình dây dẫn kề bên và đối diện, đường kính 0,125 mm đến "
+        "1,5 mm. Đầu dò thủy tinh có đường kính 0,4 mm đến 2,5 mm, chiều dài từ 1,5 mm đến "
+        "6,35 mm. Đầu dò đường kính 1,5 mm đến 2,5 mm có chiều dài 3 mm đến 12,7 mm, còn đầu dò lớn "
+        "hơn với đường kính 2 mm đến 2,5 mm có chiều dài tới 50 mm. Thanh thủy tinh thường dài "
+        "6,3 mm với đường kính 1,5 mm đến 2,5 mm. Đầu dò thủy tinh gồm một nhiệt điện trở kiểu hạt "
+        "trần được hàn kín ở đầu một thanh thủy tinh đặc, cùng dây dẫn dumet hướng kính. So sánh "
+        "thì thanh thủy tinh có hạt được hàn kín ở giữa một thanh thủy tinh đặc và dây dẫn dumet "
+        "hướng trục. Dải nhiệt độ quy định trong MIL-T-23648 là −55 °C đến 200 °C với hạt phủ thủy "
+        "tinh và −55 °C đến 275 °C với đầu dò và thanh thủy tinh. Loại thương mại của các linh kiện "
+        "bọc thủy tinh này thường có dải −80 °C đến 300 °C. Một số linh kiện được định mức làm việc "
+        "gián đoạn ở 600 °C, còn các linh kiện đông lạnh đặc biệt được định mức làm việc trong "
+        "khoảng −196 °C đến 25 °C."))
+    b.append(p(
+        "Nhiệt điện trở chip có dây dẫn hướng kính có tiết diện 0,25 mm × 0,25 mm đến 13 mm × "
+        "13 mm và chiều dày 0,175 mm đến 1,5 mm. Đĩa đường kính 1 mm đến 25 mm có cả loại dây dẫn "
+        "hướng kính và hướng trục, chiều dày 0,25 mm đến 6,35 mm. Chip và đĩa cũng có loại vỏ điốt "
+        "thủy tinh với dây dẫn dumet hướng trục. Chip gắn bề mặt có kích thước dài 2 mm đến "
+        "3,2 mm × rộng 1,1 mm đến 1,6 mm × dày 0,36 mm đến 1,3 mm. Nhiệt điện trở kiểu mảnh, có cả "
+        "dây dẫn kề bên và đối diện, có chiều dày 0,025 mm đến 0,125 mm với tiết diện 0,5 mm × "
+        "0,5 mm đến 3 mm × 3 mm. Dải nhiệt độ quy định cho chip, đĩa, thanh và vỏ điốt thủy tinh "
+        "trong MIL-T-23648 là −55 °C đến 125 °C. Chip và đĩa thương mại có dải nhiệt độ làm việc "
+        "−80 °C đến 155 °C [1]. Thanh có loại dùng trong dải −60 °C đến 150 °C [7], và vỏ điốt "
+        "thủy tinh có dải làm việc −60 °C đến 300 °C [8]."))
+
+    # ------------------------------------------------------------ thermal
+    b.append(h3("Tính chất nhiệt của nhiệt điện trở NTC", "Thermal Properties of NTC Thermistors"))
+    b.append(p(
+        "Năng lượng tiêu tán dưới dạng nhiệt trong một nhiệt điện trở mắc vào mạch điện làm nhiệt "
+        "độ thân nhiệt điện trở tăng lên trên nhiệt độ môi trường của nó. Tại mọi thời điểm, "
+        "phương trình truyền nhiệt áp dụng được là:"))
+    b.append(eq(_frac("d<i>H</i>", "d<i>t</i>") +
+                " = <i>P</i> = <i>E</i><sub>T</sub><i>I</i><sub>T</sub> = δ(<i>T</i> − "
+                "<i>T</i><sub>a</sub>) + <i>cm</i> " + _frac("d<i>T</i>", "d<i>t</i>"), "32.26"))
+    b.append(wl([
+        "<i>dH</i>/<i>dt</i> = <i>P</i> = <i>E</i><sub>T</sub><i>I</i><sub>T</sub> = tốc độ cấp "
+        "năng lượng nhiệt hay nhiệt lượng cho nhiệt điện trở",
+        "δ = hằng số tiêu tán",
+        "<i>T</i><sub>a</sub> = nhiệt độ môi trường",
+        "δ(<i>T</i> − <i>T</i><sub>a</sub>) = tốc độ thất thoát nhiệt ra môi trường xung quanh",
+        "<i>c</i> và <i>m</i> = tương ứng nhiệt dung riêng và khối lượng của nhiệt điện trở",
+        "<i>cm</i>(<i>dT</i>/<i>dt</i>) = tốc độ hấp thụ nhiệt của nhiệt điện trở",
+    ]))
+    b.append(p("Nghiệm của Phương trình 32.26 khi <i>P</i> không đổi là:"))
+    b.append(eq("<i>T</i> = <i>T</i><sub>a</sub> + " + _frac("<i>P</i>", "δ") +
+                "[1 − exp(−" + _frac("δ", "<i>cm</i>") + "<i>t</i>)]", "32.27"))
+    b.append(p(
+        "Nghiệm quá độ của Phương trình 32.27 là cơ sở cho đặc tính dòng – thời gian của nhiệt "
+        "điện trở. Khi <i>t</i> ≫ <i>cm</i>/δ thì <i>dT</i>/<i>dt</i> → 0, và nghiệm xác lập của "
+        "Phương trình 32.27 trở thành:"))
+    b.append(eq("<i>P</i> = <i>E</i><sub>T</sub><i>I</i><sub>T</sub> = δ(<i>T</i> − "
+                "<i>T</i><sub>a</sub>)", "32.28"))
+    b.append(p(
+        "trong đó <i>E</i><sub>T</sub> và <i>I</i><sub>T</sub> tương ứng là điện áp và dòng điện "
+        "xác lập của nhiệt điện trở. Phương trình 32.28 là cơ sở cho đặc tính dòng – áp của nhiệt "
+        "điện trở."))
+    b.append(p(
+        "Bằng cách giảm công suất của nhiệt điện trở xuống mức tự đốt nóng không đáng kể, "
+        "<i>P</i> → 0, Phương trình 32.26 trở thành:"))
+    b.append(eq(_frac("d<i>T</i>", "d<i>t</i>") + " = −" + _frac("δ", "<i>cm</i>") +
+                "(<i>T</i> − <i>T</i><sub>a</sub>)", "32.29"))
+    b.append(p(
+        "Phương trình 32.29 là phát biểu toán học của định luật làm nguội Newton và có nghiệm:"))
+    b.append(eq("<i>T</i> = <i>T</i><sub>a</sub> + (<i>T</i><sub>i</sub> − <i>T</i><sub>a</sub>) "
+                "exp(−<i>t</i>/τ)"))
+    b.append(wl([
+        "<i>T</i><sub>i</sub> = nhiệt độ thân ban đầu của nhiệt điện trở",
+        "<i>T</i><sub>a</sub> = nhiệt độ môi trường",
+        "τ = <i>cm</i>/δ = hằng số thời gian nhiệt",
+    ]))
+    b.append(p(
+        "Bảng 32.8 cho số liệu hằng số tiêu tán và hằng số thời gian của hạt phủ thủy tinh, đầu dò "
+        "thủy tinh và thanh thủy tinh. Bảng 32.9 liệt kê số liệu tương tự cho nhiệt điện trở kiểu "
+        "chip, đĩa và thanh có tiếp xúc bề mặt kim loại hóa. Số liệu hằng số tiêu tán và hằng số "
+        "thời gian là của nhiệt điện trở treo bằng dây dẫn ở 25 °C, theo quy trình quy định trong "
+        "MIL-T-23648A. Độ tăng nhiệt dùng để tính hằng số tiêu tán là kết quả của việc tự đốt nóng "
+        "nhiệt điện trở lên 75 °C từ môi trường 25 °C. Số liệu hằng số thời gian là kết quả của "
+        "việc để nhiệt điện trở nguội từ 75 °C xuống môi trường 25 °C. Số liệu hằng số thời gian "
+        "khi nhúng nước là kết quả của việc nhúng nhanh nhiệt điện trở từ không khí ở nhiệt độ "
+        "phòng vào nước đứng yên. Thời gian chuyển không đáng kể. Nhiệt độ không khí khoảng 25 °C "
+        "và nhiệt độ nước khoảng 5 °C. Đường kính ghi cho các linh kiện phủ epoxy lắp lẫn được là "
+        "đường kính cực đại. Để minh họa ảnh hưởng của môi trường đến tính chất nhiệt của các linh "
+        "kiện này, hằng số tiêu tán và hằng số thời gian là 8 mW °C⁻¹ và 1 s khi thử trong dầu "
+        "khuấy, so với 1 mW °C⁻¹ và 10 s khi thử trong không khí đứng yên. Hằng số tiêu tán và hằng "
+        "số thời gian của đĩa phụ thuộc chiều dày đĩa, đường kính dây dẫn, lượng thiếc hàn dùng để "
+        "gắn dây, khoảng cách giữa thân nhiệt điện trở và giá lắp, và vật liệu nhiệt điện trở. Hằng "
+        "số tiêu tán và hằng số thời gian của thanh phụ thuộc chiều dài thanh cùng các biến số đã "
+        "nêu cho đĩa."))
+    b.append(_t328("vi"))
+    b.append(_t329("vi"))
+
+    # ------------------------------------------------------------ electrical
+    b.append(h3("Tính chất điện của nhiệt điện trở NTC", "Electrical Properties of NTC Thermistors"))
+    b.append(p(
+        "Ứng dụng của nhiệt điện trở phụ thuộc ba đặc tính điện cơ bản. Đó là đặc tính dòng – áp, "
+        "đặc tính dòng – thời gian và đặc tính điện trở – nhiệt độ."))
+
+    b.append(h4("Đặc tính dòng – áp", "Voltage–Current Characteristics"))
+    b.append(p(
+        "Hình 32.17 cho thấy một đường cong dòng – áp điển hình. Ở dòng nhỏ, công suất tiêu tán "
+        "nhỏ so với hằng số tiêu tán và hiệu ứng tự đốt nóng không đáng kể. Trong điều kiện đó, "
+        "điện trở là hằng số, không phụ thuộc dòng điện, và điện áp tỉ lệ với dòng điện. Do đó, ở "
+        "dòng nhỏ, đường đặc tính tiếp tuyến với một đường điện trở không đổi bằng điện trở ở công "
+        "suất không của nhiệt điện trở. Khi dòng tăng, hiệu ứng tự đốt nóng trở nên rõ hơn; nhiệt "
+        "độ nhiệt điện trở tăng và điện trở bắt đầu giảm. Với mỗi mức tăng thêm của dòng điện đều "
+        "có một mức giảm tương ứng của điện trở. Vì vậy, độ dốc của đặc tính dòng – áp giảm khi "
+        "dòng tăng. Điều này tiếp diễn cho đến khi dòng đạt giá trị mà tại đó độ dốc bằng không. "
+        "Vượt qua điểm này, nơi điện áp đạt cực đại, độ dốc tiếp tục giảm và nhiệt điện trở thể "
+        "hiện đặc tính điện trở âm. Nhiệt độ, điện áp và dòng điện tương ứng với đỉnh đường cong "
+        "là:"))
+    b.append(eq("<i>T</i><sub>p</sub> = " +
+                _frac("β − " + _sq("β<sup>2</sup> − 4β<i>T</i><sub>a</sub>"), "2"), "32.30"))
+    b.append(eq("<i>E</i><sub>p</sub> = " +
+                _sq("<i>R</i><sub>p</sub> δ(<i>T</i><sub>p</sub> − <i>T</i><sub>a</sub>)"), "32.31"))
+    b.append(eq("<i>I</i><sub>p</sub> = " +
+                _sq(_frac("δ(<i>T</i><sub>p</sub> − <i>T</i><sub>a</sub>)",
+                          "<i>R</i><sub>p</sub>")), "32.32"))
+    b.append(wl([
+        "<i>T</i><sub>p</sub> = nhiệt độ tuyệt đối (K) tại đó đỉnh xuất hiện",
+        "<i>T</i><sub>a</sub> = nhiệt độ môi trường tuyệt đối (K)",
+        "<i>R</i><sub>p</sub> = điện trở của nhiệt điện trở tại <i>T</i><sub>p</sub>",
+    ]))
+    b.append(p(
+        "Các ứng dụng dựa trên đặc tính dòng – áp liên quan đến sự thay đổi điểm làm việc trên một "
+        "đường cong hoặc một họ đường cong. Những thay đổi đó là do thay đổi điều kiện môi trường "
+        "hoặc do biến thiên tham số mạch. Hình 32.17 cho một lời giải đồ thị để tìm điểm làm việc. "
+        "Đường cong biểu diễn quan hệ phi tuyến giữa điện áp và dòng điện của nhiệt điện trở. Mạch "
+        "tương đương Thevenin nhìn từ hai cực của nhiệt điện trở cho quan hệ nêu trong Phương trình "
+        "32.33."))
+    b.append(eq("<i>E</i><sub>T</sub> = <i>E</i><sub>THEV</sub> − "
+                "<i>I</i><sub>T</sub><i>R</i><sub>THEV</sub>", "32.33"))
+    b.append(p(
+        "trong đó <i>E</i><sub>T</sub> và <i>I</i><sub>T</sub> tương ứng là điện áp và dòng điện "
+        "của nhiệt điện trở. Quan hệ tuyến tính của Phương trình 32.33 là đường tải của nhiệt điện "
+        "trở tự đốt nóng. Giao điểm của nó với đặc tính dòng – áp là điểm làm việc. Bảng 32.10 phân "
+        "các ứng dụng quen thuộc hơn thành bốn nhóm, phân biệt theo dạng kích thích nhiệt điện trở "
+        "[1, 14]."))
+    b.append(_t3210("vi"))
+    b.append(fig(17, F.fig(17), "vi"))
+
+    b.append(h4("Đặc tính dòng – thời gian", "Current–Time Characteristics"))
+    b.append(p(
+        "Đặc tính dòng – áp trình bày ở trên nói về một nhiệt điện trở tự đốt nóng làm việc ở điều "
+        "kiện xác lập. Điều kiện này — trong đó điện trở của nhiệt điện trở giảm do một dòng điện "
+        "đủ lớn gây tự đốt nóng — không xảy ra tức thời. Trong mạch nhiệt điện trở tồn tại một "
+        "trạng thái quá độ kể từ lúc bắt đầu cấp nguồn (<i>t</i> = 0) cho đến khi đạt cân bằng "
+        "nhiệt (<i>t</i> ≫ τ). Quan hệ giữa dòng điện của nhiệt điện trở và thời gian cần để đạt "
+        "cân bằng nhiệt là đặc tính dòng – thời gian. Nói chung, kích thích là một hàm bậc thang "
+        "điện áp qua một nguồn tương đương Thevenin. Hình 32.18 cho thấy đặc tính dòng – thời gian "
+        "của một số đĩa nhiệt điện trở và nguồn điện áp. Với một đặc tính cho trước, điện áp nguồn, "
+        "điện trở nguồn và điện trở ở công suất không của nhiệt điện trở quyết định dòng điện ban "
+        "đầu. Điện áp nguồn, điện trở nguồn và đặc tính dòng – áp quyết định giá trị cân bằng cuối "
+        "cùng. Đường cong giữa giá trị ban đầu và giá trị cuối phụ thuộc các tham số thiết kế "
+        "mạch, cũng như hằng số tiêu tán và nhiệt dung của nhiệt điện trở. Việc chọn đúng nhiệt "
+        "điện trở và thiết kế mạch đúng cho thời gian quá độ trong khoảng vài mili giây đến vài "
+        "phút."))
+    b.append(fig(18, F.fig(18), "vi"))
+    b.append(p(
+        "Các ứng dụng dựa trên đặc tính dòng – thời gian là trễ thời gian, chống xung, bảo vệ dây "
+        "tóc, bảo vệ quá tải và chuyển mạch tuần tự."))
+
+    b.append(h4("Đặc tính điện trở – nhiệt độ", "Resistance–Temperature Characteristics"))
+    b.append(p(
+        "Thuật ngữ điện trở ở công suất không áp dụng cho nhiệt điện trở làm việc với mức tự đốt "
+        "nóng không đáng kể. Đặc tính này mô tả quan hệ giữa điện trở ở công suất không của một "
+        "nhiệt điện trở và nhiệt độ môi trường của nó. Trên những dải nhiệt độ nhỏ, quan hệ gần "
+        "tuyến tính giữa logarit của điện trở và nghịch đảo nhiệt độ tuyệt đối được cho bởi:"))
+    b.append(eq("ln <i>R</i><sub>T</sub> ≡ <i>A</i> + " + _frac("β", "<i>T</i>"), "32.34"))
+    b.append(wl([
+        "<i>T</i> = nhiệt độ tuyệt đối (K)",
+        "β = hằng số vật liệu của nhiệt điện trở",
+    ]))
+    b.append(p(
+        "Nếu đặt <i>R</i><sub>T</sub> = <i>R</i><sub>T0</sub> tại nhiệt độ chuẩn <i>T</i> = "
+        "<i>T</i><sub>0</sub> và giải ra <i>R</i><sub>T</sub>, ta được:"))
+    b.append(eq("<i>R</i><sub>T</sub> ≅ <i>R</i><sub>T0</sub> exp[ " +
+                _frac("β(<i>T</i><sub>0</sub> − <i>T</i>)", "<i>TT</i><sub>0</sub>") + " ]", "32.35"))
+    b.append(p("Hệ số nhiệt độ của điện trở α được định nghĩa là:"))
+    b.append(eq("α ≡ " + _frac("1", "<i>R</i><sub>T</sub>") + " " +
+                _frac("d<i>R</i><sub>T</sub>", "d<i>T</i>"), "32.36"))
+    b.append(p("Giải Phương trình 32.34 theo α ta được:"))
+    b.append(eq("α = − " + _frac("β", "<i>T</i><sup>2</sup>"), "32.37"))
+    b.append(p(
+        "Trong Phương trình 32.34, độ lệch khỏi tuyến tính gây ra sai số nhiệt độ 0,01 °C, 0,1 °C "
+        "và 0,3 °C tương ứng với các dải nhiệt độ 10 °C, 30 °C và 50 °C, trong khoảng 0 °C đến "
+        "50 °C. Dùng một đa thức cho ln <i>R</i><sub>T</sub> theo 1/<i>T</i> làm giảm sai số đáng "
+        "kể. Bậc của đa thức cần thiết phụ thuộc dải nhiệt độ và hệ vật liệu dùng. Đa thức bậc ba "
+        "là đủ cho hầu hết ứng dụng. Vì vậy, các biểu thức chính xác hơn cho đặc tính điện trở – "
+        "nhiệt độ là:"))
+    b.append(eq("ln <i>R</i><sub>T</sub> = <i>A</i><sub>0</sub> + " +
+                _frac("<i>A</i><sub>1</sub>", "<i>T</i>") + " + " +
+                _frac("<i>A</i><sub>2</sub>", "<i>T</i><sup>2</sup>") + " + " +
+                _frac("<i>A</i><sub>3</sub>", "<i>T</i><sup>3</sup>"), "32.38a"))
+    b.append(eq("ln <i>R</i><sub>T</sub> = <i>A</i><sub>0</sub> + " +
+                _frac("<i>A</i><sub>1</sub>", "<i>T</i>") + " + " +
+                _frac("<i>A</i><sub>2</sub>", "<i>T</i><sup>2</sup>") + " + " +
+                _frac("<i>A</i><sub>3</sub>", "<i>T</i><sup>3</sup>"), "32.38b"))
+    b.append(note(
+        "Trong bản gốc, Phương trình 32.38a và 32.38b được in giống hệt nhau. Bản dịch giữ nguyên "
+        "như đã in thay vì tự sửa, để người đọc đối chiếu được với sách."))
+    b.append(eq(_frac("1", "<i>T</i>") + " = α<sub>0</sub> + α<sub>1</sub> ln " +
+                "<i>R</i><sub>T</sub> + α<sub>2</sub>(ln <i>R</i><sub>T</sub>)<sup>2</sup> + "
+                "α<sub>3</sub>(ln <i>R</i><sub>T</sub>)<sup>3</sup>", "32.39"))
+    b.append(p(
+        "Steinhart và Hart đề nghị dùng Phương trình 32.39 cho dải hải dương học −2 °C đến 30 °C "
+        "[11]. Phân tích của họ cho thấy không mất độ chính xác đáng kể khi bỏ số hạng bình "
+        "phương α<sub>2</sub>(ln <i>R</i><sub>T</sub>)<sup>2</sup>. Vì vậy, họ đề nghị dùng "
+        "Phương trình 32.40."))
+    b.append(eq(_frac("1", "<i>T</i>") + " = <i>b</i><sub>0</sub> + <i>b</i><sub>1</sub> ln " +
+                "<i>R</i><sub>T</sub> + <i>b</i><sub>3</sub>(ln <i>R</i><sub>T</sub>)"
+                "<sup>3</sup>", "32.40"))
+    b.append(p(
+        "Mangum báo cáo rằng dùng Phương trình 32.40 cho sai số nội suy khoảng 0,001 °C trên dải "
+        "0 °C đến 70 °C [12]."))
+    b.append(p(
+        "Nhóm kỹ thuật của Thermometrics, Inc. đã đánh giá Phương trình 32.38 trên dải −80 °C đến "
+        "260 °C với 17 vật liệu nhiệt điện trở khác nhau. Các đầu dò thủy tinh được khảo sát trải "
+        "trên một dải điện trở suất từ 2 Ω cm đến 300 kΩ cm và một dải điện trở ở 25 °C từ 10 Ω đến "
+        "2 MΩ. Kết quả được trình bày tại Hội nghị Quốc tế lần thứ sáu về Nhiệt độ và cho thấy sai "
+        "số nội suy không vượt quá tổng độ không đảm bảo đo. Với các dải nhiệt độ 100 °C trong "
+        "khoảng −80 °C đến 260 °C, 150 °C trong khoảng −60 °C đến 260 °C, và 150 °C đến 200 °C "
+        "trong khoảng 0 °C đến 260 °C, sai số nội suy là 0,005 °C đến 0,01 °C [13]. Giảm dải nhiệt "
+        "độ xuống 50 °C trong khoảng 0 °C đến 260 °C làm sai số nội suy giảm còn 0,001 °C đến "
+        "0,003 °C."))
+    b.append(p(
+        "Sapoff và Siwek [14] đánh giá độ chính xác bị mất khi bỏ số hạng bậc hai trong Phương "
+        "trình 32.38. Trong điều kiện đó, Phương trình 32.38 rút gọn thành Phương trình 32.41."))
+    b.append(eq("ln <i>R</i><sub>T</sub> = <i>C</i><sub>0</sub> + " +
+                _frac("<i>C</i><sub>1</sub>", "<i>T</i>") + " + " +
+                _frac("<i>C</i><sub>3</sub>", "<i>T</i><sup>3</sup>"), "32.41"))
+    b.append(p(
+        "Sai số nội suy do Phương trình 32.40 và 32.41 gây ra phụ thuộc hệ vật liệu, dải nhiệt độ "
+        "(độ phi tuyến tăng ở nhiệt độ thấp) và dải nhiệt độ được khảo sát. Bảng 32.11 tóm tắt sai "
+        "số gắn với việc dùng Phương trình 32.41 cho các dải và khoảng nhiệt độ khác nhau."))
+    b.append(_t3211("vi"))
+    b.append(p("Có thể viết lại các Phương trình 32.38 đến 32.41 thành:"))
+    b.append(eq("<i>R</i><sub>T</sub> = exp( <i>A</i><sub>0</sub> + " +
+                _frac("<i>A</i><sub>1</sub>", "<i>T</i>") + " + " +
+                _frac("<i>A</i><sub>2</sub>", "<i>T</i><sup>2</sup>") + " + " +
+                _frac("<i>A</i><sub>3</sub>", "<i>T</i><sup>3</sup>") + " )", "32.42"))
+    b.append(eq("<i>T</i> = [ <i>a</i><sub>0</sub> + <i>a</i><sub>1</sub> ln "
+                "<i>R</i><sub>T</sub> + <i>a</i><sub>2</sub>(ln <i>R</i><sub>T</sub>)"
+                "<sup>2</sup> + <i>a</i><sub>3</sub>(ln <i>R</i><sub>T</sub>)<sup>3</sup> ]"
+                "<sup>−1</sup>", "32.43"))
+    b.append(eq("<i>T</i> = [ <i>b</i><sub>0</sub> + <i>b</i><sub>1</sub> ln "
+                "<i>R</i><sub>T</sub> + <i>b</i><sub>3</sub>(ln <i>R</i><sub>T</sub>)"
+                "<sup>3</sup> ]<sup>−1</sup>", "32.44"))
+    b.append(eq("<i>R</i><sub>T</sub> = exp( <i>C</i><sub>0</sub> + " +
+                _frac("<i>C</i><sub>1</sub>", "<i>T</i>") + " + " +
+                _frac("<i>C</i><sub>3</sub>", "<i>T</i><sup>3</sup>") + " )", "32.45"))
+    b.append(p(
+        "Nghiệm của các Phương trình 32.38, 32.39, 32.42 và 32.43 cần bốn điểm hiệu chuẩn và phải "
+        "giải hệ phương trình đồng thời. Tương tự, nghiệm của các Phương trình 32.40, 32.41, 32.44 "
+        "và 32.45 cần ba điểm hiệu chuẩn. Dùng phân tích hồi quy đa thức với thêm điểm hiệu chuẩn "
+        "có thể giảm thiểu ảnh hưởng của độ không đảm bảo đo khi hiệu chuẩn."))
+    b.append(p(
+        "Các ứng dụng phụ thuộc đặc tính điện trở – nhiệt độ là đo, điều khiển và bù nhiệt độ. Cũng "
+        "có những ứng dụng trong đó nhiệt độ của nhiệt điện trở phụ thuộc một hiện tượng vật lý "
+        "khác. Ví dụ, cao kế là dụng cụ trong đó nhiệt độ của một chất lỏng sôi cho biết áp suất hơi "
+        "của chất lỏng đó. Một ví dụ khác là dùng ống thông tim kiểu nhiệt điện trở để phân tích "
+        "pha loãng nhiệt. Một thể tích dung dịch nước muối hoặc dextroza đã biết, ở nhiệt độ đã "
+        "biết, được bơm vào dòng máu qua một lòng của ống thông. Dung dịch trộn với máu làm loãng "
+        "dung dịch và làm giảm nhiệt độ của máu khi máu chảy xuôi qua một nhiệt điện trở nằm trên "
+        "bề mặt một lòng khác của ống thông. Cung lượng tim tính từ dữ liệu đáp ứng nhiệt độ – thời "
+        "gian do nhiệt điện trở đo được cho biết hiệu suất bơm của tim."))
+
+    # ------------------------------------------------------------ linearization
+    b.append(h3("Kỹ thuật tuyến tính hóa và điều chế tín hiệu",
+                "Linearization and Signal Conditioning Techniques"))
+    b.append(p(
+        "Điện trở đo được và các hằng số tính từ Phương trình 32.43 và 32.44 có thể dùng với máy "
+        "tính để xác định nhiệt độ mà không cần mạng tuyến tính. Cách này hữu ích khi cần độ chính "
+        "xác cao trên dải nhiệt độ tương đối rộng. Tuy vậy, hầu hết ứng dụng dựa trên đặc tính điện "
+        "trở – nhiệt độ của nhiệt điện trở đều dùng một dạng tuyến tính hóa hoặc điều chế tín hiệu "
+        "nào đó. Dùng một nguồn dòng không đổi với một mạng điện trở tuyến tính cho đầu ra điện áp "
+        "tuyến tính theo nhiệt độ. Với tổ hợp đúng của dòng điện và mức điện trở, một vôn kế số mắc "
+        "qua mạng sẽ hiển thị trực tiếp nhiệt độ. Dùng một nguồn áp không đổi cho một mạng điện dẫn "
+        "tuyến tính với dòng điện tuyến tính theo nhiệt độ."))
+
+    b.append(h4("Mạng dẫn tuyến tính", "Linear Conductance Networks"))
+    b.append(p(
+        "Cầu phân áp, mạch ôm kế và mạch cầu Wheatstone là những mạng dẫn tuyến tính. Xét mạch "
+        "phân áp ở Hình 32.19. Dùng điện trở cố định làm lối ra sẽ loại bỏ ảnh hưởng của điện trở "
+        "tải. Để tiện phân tích, điện trở ký hiệu <i>R</i> là tổ hợp song song của điện trở tải và "
+        "điện trở phân áp cố định. Một ưu điểm nữa là với cách bố trí này, điện áp ra tăng theo "
+        "nhiệt độ. Tỉ số giữa điện áp ra và điện áp vào được cho bởi:"))
+    b.append(eq(_frac("<i>e</i><sub>0</sub>", "<i>e</i><sub>s</sub>") + " = " +
+                _frac("<i>R</i>", "<i>R</i> + <i>R</i><sub>T</sub>") + " = " +
+                _frac("1", "1 + <i>R</i><sub>T</sub>/<i>R</i>"), "32.46"))
+    b.append(wl([
+        "<i>e</i><sub>0</sub> = điện áp ra",
+        "<i>e</i><sub>s</sub> = điện áp nguồn",
+        "<i>R</i> = tổ hợp song song của điện trở tải và điện trở cố định",
+        "<i>R</i><sub>T</sub> = điện trở của nhiệt điện trở tại nhiệt độ xác định <i>T</i>",
+    ]))
+    b.append(fig(19, F.fig(19), "vi"))
+    b.append(p(
+        "Nếu chuẩn hóa điện trở của nhiệt điện trở theo giá trị của nó tại nhiệt độ chuẩn xác định "
+        "<i>T</i><sub>0</sub>, ta có:"))
+    b.append(eq("<i>r</i><sub>T</sub> = " + _frac("<i>R</i><sub>T</sub>",
+                                                 "<i>R</i><sub>T0</sub>"), "32.47"))
+    b.append(wl([
+        "<i>R</i><sub>T0</sub> = điện trở của nhiệt điện trở tại <i>T</i><sub>0</sub>",
+        "<i>r</i><sub>T</sub> = tỉ số điện trở",
+    ]))
+    b.append(p(
+        "Các nhà sản xuất nhiệt điện trở thường cung cấp đặc tính tỉ số điện trở – nhiệt độ trong "
+        "catalog của họ. Thay Phương trình 32.47 vào Phương trình 32.46 ta được:"))
+    b.append(eq(_frac("<i>e</i><sub>0</sub>", "<i>e</i><sub>s</sub>") + " = " +
+                _frac("1", "1 + <i>r</i><sub>T</sub><i>R</i><sub>T0</sub>/<i>R</i>"), "32.48"))
+    b.append(p(
+        "Nếu hằng số mạch σ = <i>R</i><sub>T0</sub>/<i>R</i> thì Phương trình 32.48 trở thành:"))
+    b.append(eq("<i>F</i>(<i>T</i>) = " + _frac("<i>e</i><sub>0</sub>", "<i>e</i><sub>s</sub>") +
+                " = " + _frac("1", "1 + <i>r</i><sub>T</sub>σ"), "32.49"))
+    b.append(p(
+        "Đầu ra của cầu phân áp ở Hình 32.19a là đường cong hình chữ S như trên Hình 32.19b. Giá "
+        "trị của hằng số mạch σ quyết định dải nhiệt độ mà trong đó tồn tại độ tuyến tính tốt giữa "
+        "<i>e</i><sub>0</sub> và <i>T</i>. Tài liệu [3, 4] đưa ra các họ đường cong hình chữ S trên "
+        "dải 0,01 ≤ σ ≤ 20,0 cho ba hệ vật liệu cơ bản của MIL-T-23648. Một tiêu chí tốt để đạt độ "
+        "tuyến tính tối ưu là cho độ dốc của hàm <i>F</i>(<i>T</i>) tại hai đầu mút của dải nhiệt "
+        "độ xác định bằng nhau, <i>T</i><sub>L</sub> ≤ σ ≤ <i>T</i><sub>H</sub>. Đặt "
+        "<i>dF</i>(<i>T</i><sub>L</sub>)/<i>dT</i> = <i>dF</i>(<i>T</i><sub>H</sub>)/<i>dT</i> cho "
+        "kết quả sau:"))
+    b.append(eq("σ = " + _frac("<i>X</i> − <i>Y</i>",
+                               "<i>Yr</i><sub>TL</sub> − <i>Xr</i><sub>TH</sub>"), "32.50"))
+    b.append(p(
+        "trong đó <i>X</i> và <i>Y</i> được xác định bởi các điều kiện ở hai đầu mút và các hằng số "
+        "của phương trình ln <i>R</i><sub>T</sub> theo <i>T</i>. Khi dùng Phương trình 32.41, "
+        "<i>X</i> và <i>Y</i> được cho bởi:"))
+    b.append(eq("<i>X</i> = <i>T</i><sub>H</sub> " +
+                _sq("<i>r</i><sub>TL</sub>(<i>C</i><sub>1</sub> + 3" +
+                    _frac("<i>C</i><sub>3</sub>", "<i>T</i><sub>H</sub><sup>2</sup>") + ")"), "32.51"))
+    b.append(eq("<i>Y</i> = <i>T</i><sub>L</sub> " +
+                _sq("<i>r</i><sub>TH</sub>(<i>C</i><sub>1</sub> + 3" +
+                    _frac("<i>C</i><sub>3</sub>", "<i>T</i><sub>L</sub><sup>2</sup>") + ")"), "32.52"))
+    b.append(p("Khi dùng Phương trình 32.38, <i>X</i> và <i>Y</i> được cho bởi:"))
+    b.append(eq("<i>X</i> = <i>T</i><sub>H</sub> " +
+                _sq("<i>r</i><sub>TL</sub>(<i>A</i><sub>1</sub> + 2" +
+                    _frac("<i>A</i><sub>2</sub>", "<i>T</i><sub>L</sub>") + " + 3" +
+                    _frac("<i>A</i><sub>3</sub>", "<i>T</i><sub>L</sub><sup>2</sup>") + ")"), "32.53"))
+    b.append(eq("<i>Y</i> = <i>T</i><sub>L</sub> " +
+                _sq("<i>r</i><sub>TH</sub>(<i>A</i><sub>1</sub> + 2" +
+                    _frac("<i>A</i><sub>2</sub>", "<i>T</i><sub>H</sub>") + " + 3" +
+                    _frac("<i>A</i><sub>3</sub>", "<i>T</i><sub>H</sub><sup>2</sup>") + ")"), "32.54"))
+    b.append(p(
+        "Cho phép <i>e</i><sub>s</sub> và <i>R</i> là điện áp và điện trở tương đương Thevenin nhìn "
+        "từ hai cực của nhiệt điện trở, phép phân tích cầu phân áp áp dụng được cho bất kỳ mạch "
+        "phức tạp hơn nào, ví dụ cầu Wheatstone [3, 4]."))
+    b.append(p(
+        "Ràng buộc về tự đốt nóng của nhiệt điện trở thường dẫn đến những nguồn điện áp không "
+        "chuẩn trong thiết kế mạch nhiệt kế. Các mạch phân áp biến đổi ở Hình 32.20 cho những mạch "
+        "tương đương dùng nguồn điện áp chuẩn. Ở Hình 32.20a chỉ một phần điện áp ra khả dụng xuất "
+        "hiện trên bộ phát hiện lối ra. Các nhiệt kế kiểu ôm kế dùng những mạch như vậy. Mạch ở "
+        "Hình 32.20a cho toàn bộ điện áp ra khả dụng. Tuy nhiên, việc biến đổi tạo ra một điện áp "
+        "phân cực mắc nối tiếp với đầu ra. Các nhiệt kế kiểu mạch cầu dùng mạch ở Hình 32.20b. Các "
+        "phương trình biến đổi áp dụng cho Hình 32.20a là:"))
+    b.append(eq("<i>K</i> = " + _frac("<i>R</i><sub>1</sub>",
+                                      "<i>R</i><sub>1</sub> + <i>R</i><sub>2</sub>") +
+                " = " + _frac("<i>E</i><sub>1</sub>", "<i>E</i><sub>2</sub>") +
+                " = " + _frac("<i>R</i><sub>4</sub>", "<i>R</i><sub>2</sub>"), "32.55"))
+    b.append(fig(20, F.fig(20), "vi"))
+    b.append(eq("<i>R</i> = <i>R</i><sub>3</sub> + <i>R</i><sub>4</sub> = "
+                "<i>R</i><sub>3</sub> + " +
+                _frac("<i>R</i><sub>1</sub><i>R</i><sub>2</sub>",
+                      "<i>R</i><sub>1</sub> + <i>R</i><sub>2</sub>"), "32.56"))
+    b.append(eq("<i>E</i><sub>2</sub> = nguồn điện áp mong muốn", "32.57"))
+    b.append(eq("<i>R</i><sub>2</sub> = " + _frac("<i>R</i><sub>4</sub>", "<i>K</i>"), "32.58"))
+    b.append(eq("<i>R</i><sub>1</sub> = " +
+                _frac("<i>R</i><sub>2</sub><i>R</i><sub>4</sub>",
+                      "<i>R</i><sub>2</sub> − <i>R</i><sub>4</sub>"), "32.59"))
+    b.append(eq(_big(_frac("<i>R</i><sub>3</sub>",
+                            "<i>R</i><sub>3</sub> + <i>R</i><sub>4</sub>")) +
+                " <i>F</i>(<i>T</i>)", "32.60"))
+    b.append(p("Các phương trình biến đổi áp dụng cho Hình 32.20b là:"))
+    b.append(eq("<i>K</i> = " + _frac("<i>R</i><sub>2</sub>",
+                                      "<i>R</i><sub>1</sub> + <i>R</i><sub>2</sub>") +
+                " = " + _frac("<i>E</i><sub>1</sub>", "<i>E</i><sub>2</sub>") +
+                " = " + _frac("<i>R</i>", "<i>R</i><sub>1</sub>"), "32.61"))
+    b.append(eq("<i>R</i> = " + _frac("<i>R</i><sub>1</sub><i>R</i><sub>2</sub>",
+                                      "<i>R</i><sub>1</sub> + <i>R</i><sub>2</sub>"), "32.62"))
+    b.append(eq("<i>E</i><sub>2</sub> = nguồn điện áp mong muốn", "32.63"))
+    b.append(eq("<i>R</i><sub>1</sub> = " + _frac("<i>R</i>", "<i>K</i>"), "32.64"))
+    b.append(eq("<i>R</i><sub>2</sub> = " +
+                _frac("<i>RR</i><sub>1</sub>", "<i>R</i><sub>1</sub> − <i>R</i>"), "32.65"))
+    b.append(eq("<i>e</i><sub>02</sub> = (<i>E</i><sub>2</sub> − <i>E</i><sub>1</sub>) + "
+                "<i>e</i><sub>01</sub>", "32.66"))
+    b.append(p("Tài liệu [15] có các ví dụ thiết kế dùng những phương trình biến đổi này."))
+
+    b.append(h4("Bộ điều khiển nhiệt độ", "Temperature Controllers"))
+    b.append(p(
+        "Các bộ điều khiển nhiệt độ dùng nhiệt điện trở thường dùng mạch phân áp và mạch cầu. Dùng "
+        "nhiệt điện trở trong một mạch như vậy cho độ nhạy cao hơn nhiều so với cặp nhiệt điện hoặc "
+        "RTD. Các cặp nhiệt điện chuẩn nhạy nhất có độ dốc điện áp ra 50 đến 55 µV °C⁻¹ trong dải "
+        "0 °C đến 300 °C. Cầu phân áp dùng nhiệt điện trở thường có độ dốc đầu ra khoảng 8 đến "
+        "10 mV °C⁻¹ trên mỗi vôn đặt vào cầu. Vì đầu vào của một cầu phân áp nhiệt điện trở thường "
+        "nằm trong khoảng 1 đến 5 V, nhiệt điện trở cho độ nhạy lớn hơn cặp nhiệt điện khoảng 200 "
+        "đến 1000 lần. Hệ số nhiệt độ của điện trở của nhiệt điện trở lớn hơn của RTD khoảng 10 "
+        "lần. Tuy nhiên, dải nhiệt độ quanh điểm điều khiển của một bộ điều khiển nhiệt điện trở "
+        "nhỏ so với dải mà cặp nhiệt điện hoặc RTD có được."))
+    b.append(p(
+        "Tài liệu [1] có một số bộ điều khiển nhiệt độ nhiệt điện trở giá rẻ điển hình. Có những "
+        "bộ điều khiển nhiệt độ nhiệt điện trở của Hart Scientific, Inc. cho độ ổn định điều khiển "
+        "tốt hơn 0,001 °C [16]."))
+
+    b.append(h4("Mạng điện trở tuyến tính", "Linear Resistance Networks"))
+    b.append(p(
+        "Một kỹ thuật phổ biến khi thiết kế mạch nhiệt kế là đặt một nguồn dòng không đổi vào một "
+        "mạng điện trở tuyến tính. Kết quả là một điện áp trên mạng tuyến tính theo nhiệt độ. Bù "
+        "nhiệt cho những thay đổi điện trở xảy ra trong cuộn dây, dụng cụ, rơ le, động cơ và máy "
+        "phát cũng dùng những mạng như vậy. Ví dụ, một cuộn dây đồng có hệ số nhiệt độ của điện trở "
+        "dương khoảng 0,39% °C⁻¹. Mạng nhiệt điện trở có hệ số nhiệt độ âm. Bộ bù được thiết kế để "
+        "cho độ dốc có cùng độ lớn nhưng ngược dấu với độ dốc của cuộn đồng. Vì vậy, độ dốc Ω theo "
+        "°C của bộ bù bằng mức thay đổi Ω/°C của cuộn dây. Kết quả là dòng điện qua cuộn dây không "
+        "phụ thuộc nhiệt độ. Các ứng dụng khác gồm bù trôi trong cảm biến biến dạng silic, máy dò "
+        "hồng ngoại, và các mạch chứa cả linh kiện thụ động lẫn tích cực."))
+    b.append(p("Với mạng điện trở tuyến tính cơ bản ở Hình 32.21a:"))
+    b.append(eq("<i>R</i><sub>12</sub> = <i>R</i><sub>C</sub> = " +
+                _frac("<i>RR</i><sub>T</sub>", "<i>R</i> + <i>R</i><sub>T</sub>") +
+                " = <i>R</i>(1 − " + _frac("1", "1 + <i>R</i><sub>T</sub>/<i>R</i>") + ")", "32.67"))
+    b.append(p(
+        "Chuẩn hóa theo <i>R</i> và thay <i>r</i><sub>T</sub> = <i>R</i><sub>T</sub>/"
+        "<i>R</i><sub>T0</sub> cùng <i>R</i><sub>T0</sub>/<i>R</i> = σ vào Phương trình 32.67 ta "
+        "được:"))
+    b.append(eq("<i>R</i><sub>n</sub> = " +
+                _frac("<i>R</i><sub>C</sub>", "<i>R</i>") + " = 1 − " +
+                _frac("1", "1 + <i>r</i><sub>T</sub>σ") + " = 1 − <i>F</i>(<i>T</i>)", "32.68"))
+    b.append(p(
+        "Do đó, những kỹ thuật dùng để tối ưu độ tuyến tính của cầu phân áp cũng áp dụng được cho "
+        "mạng điện trở tuyến tính. Dùng điện trở nối tiếp <i>R</i><sub>1</sub> ở Hình 32.21b sẽ "
+        "dịch đường cong lên một mức điện trở cao hơn và không ảnh hưởng đến đầu ra Ω/°C."))
+    b.append(fig(21, F.fig(21), "vi"))
+    b.append(p(
+        "Thường thì việc thiết kế một bộ bù cho đầu ra Ω/°C mong muốn dẫn đến một nhiệt điện trở có "
+        "giá trị <i>R</i><sub>T0</sub> không chuẩn. Mạch biến đổi ở Hình 32.21c cho phép dùng một "
+        "giá trị <i>R</i><sub>T0</sub> chuẩn. Các phương trình biến đổi như sau:"))
+    b.append(eq("<i>K</i><sub>1</sub> = " +
+                _sq(_frac("<i>R</i>′<sub>T0</sub>", "<i>R</i><sub>T0</sub>")), "32.69"))
+    b.append(eq("<i>R</i><sub>E</sub> = <i>R</i><sub>1</sub> − <i>R</i>(<i>K</i><sub>1</sub> − 1)",
+                "32.70"))
+    b.append(eq("<i>R</i><sub>A</sub> = <i>RK</i><sub>1</sub>(<i>K</i><sub>1</sub> − 1)", "32.71"))
+    b.append(eq("<i>R</i><sub>B</sub> = <i>RK</i><sub>1</sub>", "32.72"))
+    b.append(p(
+        "trong đó <i>R</i><sub>T0</sub> là giá trị không chuẩn và <i>R</i>′<sub>T0</sub> là giá trị "
+        "chuẩn. Yêu cầu là cả hai nhiệt điện trở phải có cùng đặc tính tỉ số điện trở – nhiệt độ. "
+        "Đặt <i>R</i><sub>1</sub> = <i>R</i>(<i>K</i><sub>1</sub> − 1) ở Hình 32.21b cho "
+        "<i>R</i><sub>E</sub> = 0 ở Hình 32.21c. Do đó, việc chuyển từ Hình 32.21a sang Hình 32.21c "
+        "đòi hỏi dùng điện trở chèn tối thiểu <i>R</i><sub>1</sub> = <i>R</i>(<i>K</i><sub>1</sub> "
+        "− 1)."))
+    b.append(p(
+        "Mạng này cho độ tuyến tính tốt với những dải nhiệt độ nhỏ 10 °C đến 30 °C. Tuy nhiên, sai "
+        "số tăng nhanh từ khoảng 0,15 °C với dải 30 °C lên 0,7 °C với dải 50 °C (0 °C đến 50 °C). "
+        "Dùng mạng hai nhiệt điện trở ở Hình 32.22 cho sai số tuyến tính cực đại 0,22 °C trên dải "
+        "0 °C đến 100 °C, còn mạng ba nhiệt điện trở cũng ở hình đó giảm sai số xuống 0,04 °C trên "
+        "cùng dải 0 °C đến 100 °C [5]. Các mạng ở Hình 32.22 là cầu phân áp tuyến tính. Mắc điện "
+        "trở <i>R</i><sub>1</sub> qua hai cực ra 3–4 sẽ biến các mạng này thành mạng điện trở tuyến "
+        "tính. Nhiều nhà sản xuất bán một nhiệt điện trở kép ba dây lắp lẫn được, phù hợp cho mạch "
+        "hai nhiệt điện trở ở Hình 32.22."))
+    b.append(fig(22, F.fig(22), "vi"))
+    b.append(p(
+        "Nhiệt điện trở lắp lẫn được và các kỹ thuật tuyến tính hóa mô tả ở trên đã có từ nhiều "
+        "năm. Ngoài ra, độ ổn định của nhiệt điện trở NTC tốt hơn của cặp nhiệt điện và thường tốt "
+        "hơn hoặc bằng của RTD thương mại [17]. Tuy vậy, đặc tính điện trở – nhiệt độ phi tuyến của "
+        "nhiệt điện trở vẫn tiếp tục hạn chế việc dùng chúng trong đo và điều khiển nhiệt độ công "
+        "nghiệp. Sự sẵn có của các bộ vi xử lý giá rẻ đã loại bỏ hạn chế này. Những linh kiện đó có "
+        "thể dùng các hằng số của Phương trình 32.38 hoặc 32.39 để tính và hiển thị nhiệt độ trực "
+        "tiếp. Chúng cũng có thể được dùng để tính bảng tra, cho độ không đảm bảo đo khi nội suy "
+        "trong khoảng 0,001 °C đến 0,01 °C. Có những dụng cụ mô tả trong tài liệu dùng các chip vi "
+        "xử lý như vậy [18, 19]. Thermometrics, Inc. bán một dụng cụ thương mại đọc các hằng số "
+        "phương trình từ một chip trong đầu nối của từng đầu dò cung cấp kèm dụng cụ [1]. Việc dùng "
+        "nhiệt điện trở cho ứng dụng công nghiệp sẽ tiếp tục tăng khi giá chip vi xử lý tiếp tục "
+        "giảm."))
+
+    b.append(_refs323("vi"))
+    return "".join(b)
+
+
+def sec_32_3_en():
+    b = [h2("32.3 Thermistor Thermometers", "Nhiệt kế nhiệt điện trở")]
+    b.append(authors("Meyer Sapoff", ""))
+
+    b.append(p(
+        "A thermistor is a thermally sensitive resistor whose primary function is to exhibit a "
+        "change in electric resistance with a change in body temperature. Unlike a wirewound or "
+        "metal film resistance temperature detector (RTD), a thermistor is a ceramic "
+        "semiconductor. An RTD exhibits a comparatively low temperature coefficient of resistance "
+        "on the order of 0.4 to 0.5% °C⁻¹. Depending on the type of material system used, a "
+        "thermistor can have either a large positive temperature coefficient of resistance (PTC "
+        "device) or a large negative temperature coefficient of resistance (NTC device)."))
+    b.append(p(
+        "Two types of PTC thermistors are available. Silicon PTC thermistors rely on the bulk "
+        "properties of doped silicon and exhibit resistance–temperature characteristics that are "
+        "approximately linear. They have temperature coefficients of resistance of about 0.7 to "
+        "0.8% °C⁻¹. The most common application of silicon PTC thermistors is compensation of "
+        "silicon semiconductor devices and circuits [1]. The materials used for switching-type PTC "
+        "thermistors are compounds of barium, lead, and strontium titanates. Figure 32.16 shows the "
+        "resistance–temperature characteristic of a typical switching-type PTC thermistor [2]. At "
+        "low temperatures, from below 0 °C to <i>R</i><sub>min</sub>, the resistance value is low, "
+        "and <i>R</i><sub>T</sub> vs. <i>T</i> exhibits a small negative temperature coefficient of "
+        "resistance on the order of −1% °C⁻¹. As the temperature increases, the temperature "
+        "coefficient of resistance becomes positive and the resistance begins to rise. At a "
+        "threshold or switching temperature, the rate of rise becomes very rapid and the PTC "
+        "characteristic becomes very steep. Within its switching range, the temperature coefficient "
+        "of resistance can be as high as 100% °C⁻¹ and the device exhibits a high resistance value. "
+        "At temperatures above the switching range, the resistance reaches a maximum value beyond "
+        "which the temperature coefficient becomes negative again. The switching temperature can be "
+        "varied between 80 °C and 240 °C by altering the chemical composition of the ceramic. "
+        "Typical applications for switching-type PTC thermistors are over-temperature protection, "
+        "current limiting, and self-regulated heating. The temperature coefficient of resistance of "
+        "a unit used as a heating element typically is about 25% °C⁻¹ at a switching temperature of "
+        "240 °C [1, 2]."))
+    b.append(fig(16, F.fig(16), "en"))
+    b.append(p(
+        "NTC thermistors consist of metal oxides such as the oxides of chromium, cobalt, copper, "
+        "iron, manganese, nickel, and titanium. Such units exhibit a monotonic decrease in electric "
+        "resistance with an increase in temperature. The resistance–temperature characteristics of "
+        "NTC thermistors are nonlinear and approximate the characteristics exhibited by intrinsic "
+        "semiconductors for which the temperature dependence of resistance is due to the excitation "
+        "of carriers across a single energy gap. As such, the logarithm of resistance of an NTC "
+        "thermistor is approximately a linear function of its inverse absolute temperature. Below "
+        "room temperature, the slope of the function decreases and the thermistor behaves more like "
+        "an extrinsic semiconductor. The actual conduction mechanism is comparable to the “hopping” "
+        "mechanism observed in ferrites and manganites that have a spinel crystal structure. "
+        "Conduction occurs when charge carriers hop from one ionic site in the spinel lattice to an "
+        "adjacent site. Such hopping can occur when ions of the same element, with valences "
+        "differing by 1, are present on equivalent lattice sites."))
+    b.append(p(
+        "Because of its nonlinear resistance–temperature characteristic, the temperature "
+        "coefficient of resistance of an NTC thermistor changes with temperature. Depending on the "
+        "material system used, the temperature coefficient at 25 °C typically is in the range of −3 "
+        "to −5% °C⁻¹. At −60 °C, it is in the range of −6.4 to −11.3% °C⁻¹; and at 100 °C, it "
+        "varies between −2.1 and −3.7% °C⁻¹. The corresponding resistance ratios with respect to "
+        "25 °C, <i>R</i><sub>T</sub>/<i>R</i><sub>25</sub>, are 41 to 228 at −60 °C and 0.13 to "
+        "0.03 at 100 °C. The slope of the log <i>R</i> vs. 1/<i>T</i> characteristic β is "
+        "relatively constant. The material systems for which the above data are presented exhibit "
+        "β values of 2930 to 5135 K over the range of 25 to 125 °C [1]."))
+    b.append(p(
+        "Although the resistance–temperature characteristic of an NTC thermistor is nonlinear, it "
+        "is possible to achieve good linearity of the conductance–temperature and "
+        "resistance–temperature characteristics using thermistor–resistor networks. The use of a "
+        "resistor in series with a thermistor results in a linear conductance network, such as a "
+        "voltage divider. The current obtained in response to a voltage applied to the network is "
+        "linear with temperature. Consequently, the output of the voltage divider (voltage across "
+        "the resistor) is linear with temperature. The parallel combination of a resistor and "
+        "thermistor is a linear resistance network. Techniques exist for optimizing the linearity "
+        "of single thermistor networks [3, 4]."))
+    b.append(p(
+        "Such networks exhibit S-shaped curves for their voltage–temperature or "
+        "resistance–temperature characteristics. For temperature spans of 20 °C to 30 °C, the "
+        "maximum deviation is small between any point on the curve and the best straight-line "
+        "approximation of the curve. As the span increases beyond 30 °C, the maximum deviation from "
+        "linearity increases rapidly from about 0.15 °C for a 30 °C span to 0.7 °C for a 50 °C "
+        "span. Using a two-thermistor network, a maximum linearity deviation of 0.22 °C can be "
+        "obtained over a range of 0 °C to 100 °C, as compared with a 2 °C deviation obtained with a "
+        "single-thermistor network [5]. Applications for NTC thermistors include temperature "
+        "measurement, control, and compensation."))
+    b.append(p(
+        "When current flows through a thermistor, there is a self-heating effect caused by the "
+        "power dissipated in it. The thermistor temperature rises until the rate of heat loss from "
+        "the thermistor to its surrounding environment equals the power dissipated. For this "
+        "condition of thermal equilibrium, the temperature rise is directly proportional to the "
+        "power dissipated in the thermistor. The constant of proportionality δ is the dissipation "
+        "constant of the thermistor. By definition, δ is the ratio — at a specified ambient "
+        "temperature, mounting condition, and environment — of the change in power dissipation in a "
+        "thermistor to the resultant body temperature change. Factors that affect the dissipation "
+        "constant are the thermistor surface area, the thermal conductivity and relative rate of "
+        "motion of the medium surrounding the thermistor, the heat loss due to free convection in a "
+        "still medium, the heat transfer between the thermistor and its mount through the thermistor "
+        "lead wires, and heat loss due to radiation (significant for gases at low pressure). Because "
+        "the thermal conductivities of fluids vary with temperature and free convection depends on "
+        "the temperature difference between the thermistor and its ambient, δ is not a true "
+        "constant. For gases in particular, the dissipation constant varies both with the "
+        "thermistor body temperature and the amount of self-heating."))
+    b.append(p(
+        "The thermal time constant τ is the 63.2% response to a step-function change in the "
+        "thermistor temperature when the power dissipated in the thermistor is negligible. The "
+        "thermal time constant only has meaning when there is a single exponential response. In "
+        "such a case, an elapsed time of τ results in a 63.2% change between the initial and final "
+        "steady-state temperatures, while an elapsed time of 5τ results in a 99.3% change. For a "
+        "more complex structure, such as a thermistor encapsulated in a sensor housing, multiple "
+        "exponentials can exist and one cannot predict that the 99% response will occur after an "
+        "interval of five time constants. As with the dissipation constant, the thermal time "
+        "constant is dependent on the rate of heat transfer between the thermistor and its "
+        "environment. Consequently, all of the factors that increase the dissipation constant "
+        "decrease the time constant."))
+    b.append(p(
+        "The most common types of silicon PTC devices are the glass diode package having diameters "
+        "of 1.8 mm to 2.5 mm and lengths of 3.8 mm to 7.5 mm, and the molded epoxy package with "
+        "diameters of 3.6 mm to 6.0 mm and lengths of 10.4 mm to 15.0 mm. Such units have axial "
+        "leads. Epoxy-coated chips and disks with radial leads also are available, with diameters of "
+        "approximately 3 mm. Silicon PTC thermistors that comply with MIL-T-23648 have an operating "
+        "temperature range of −55 °C to 125 °C. Commercial versions can be obtained with a range of "
+        "−65 °C to 150 °C [6]."))
+    b.append(p(
+        "The most common configuration for switching-type PTC thermistors is the radial lead disk, "
+        "with and without an insulating coating. Such units are available in diameters of 4 mm to "
+        "26 mm. The thickness dimension is in the range between 0.5 mm to 6.5 mm. They also are "
+        "available as surface-mount devices, disks without leads, and in glass diode packages. "
+        "Switching-type PTC disks have a storage temperature range of −25 °C to 155 °C and an "
+        "operating range of 0 °C to 55 °C [1]."))
+    b.append(p(
+        "The emphasis of this text will be on NTC thermistors. Most thermistor applications use "
+        "such devices. Two major categories of NTC thermistors exist. Bead-type thermistors have "
+        "platinum alloy lead wires sintered into the body of the ceramic. Chip, disk, surface-mount, "
+        "flake, and rod-type thermistors have metallized surface electrodes. The latter category "
+        "includes glass diode packages in which dumet leads are compression-bonded to disks or "
+        "chips."))
+    b.append(p(
+        "Glass-coated beads include both adjacent and opposite lead configurations with diameters "
+        "of 0.125 mm to 1.5 mm. Glass probes with diameters of 0.4 mm to 2.5 mm have lengths ranging "
+        "from 1.5 mm to 6.35 mm. Probes with diameters of 1.5 mm to 2.5 mm have lengths of 3 mm to "
+        "12.7 mm, while larger probes with diameters of 2 mm to 2.5 mm have lengths of up to 50 mm. "
+        "Glass rods typically are 6.3 mm long with diameters of 1.5 mm to 2.5 mm. A glass probe "
+        "consists of a bare-bead-type thermistor sealed at the tip of a solid glass rod and radial "
+        "dumet leads. A glass rod, by comparison, has its bead sealed in the center of a solid glass "
+        "rod and has axial dumet leads. The temperature range specified in MIL-T-23648 is −55 °C to "
+        "200 °C for glass-coated beads and −55 °C to 275 °C for glass probes and glass rods. "
+        "Commercial versions of such glass-enclosed devices typically have a range of −80 °C to "
+        "300 °C. Some units are rated for intermittent operation at 600 °C, while special cryogenic "
+        "devices are rated for operation in the range of −196 °C to 25 °C."))
+    b.append(p(
+        "Chip thermistors with radial leads are available with cross-sections of 0.25 mm × 0.25 mm "
+        "to 13 mm × 13 mm and a thickness range of 0.175 mm to 1.5 mm. Disks having diameters of "
+        "1 mm to 25 mm are available in both radial and axial lead configurations, with a thickness "
+        "range of 0.25 mm to 6.35 mm. Chips and disks also are available in glass diode packages "
+        "with axial dumet leads. Surface-mount chips are available in sizes ranging from 2 mm to "
+        "3.2 mm long × 1.1 mm to 1.6 mm wide × 0.36 mm to 1.3 mm thick. Flake thermistors with both "
+        "adjacent and opposite leads are available in a thickness range of 0.025 mm to 0.125 mm, "
+        "with cross-sections of 0.5 mm × 0.5 mm to 3 mm × 3 mm. The temperature range specified for "
+        "chips, disks, rods, and glass diode packages in MIL-T-23648 is −55 °C to 125 °C. Commercial "
+        "chips and disks are available with an operating temperature range of −80 °C to 155 °C [1]. "
+        "Rods are available for use over the range of −60 °C to 150 °C [7], and glass diode packages "
+        "are available with an operating range of −60 °C to 300 °C [8]."))
+
+    # ------------------------------------------------------------ thermal
+    b.append(h3("Thermal Properties of NTC Thermistors", "Tính chất nhiệt của nhiệt điện trở NTC"))
+    b.append(p(
+        "The energy dissipated as heat in a thermistor connected to an electric circuit causes the "
+        "thermistor body temperature to rise above the ambient temperature of its environment. At "
+        "any instant, the applicable heat transfer equation is:"))
+    b.append(eq(_frac("d<i>H</i>", "d<i>t</i>") +
+                " = <i>P</i> = <i>E</i><sub>T</sub><i>I</i><sub>T</sub> = δ(<i>T</i> − "
+                "<i>T</i><sub>a</sub>) + <i>cm</i> " + _frac("d<i>T</i>", "d<i>t</i>"), "32.26"))
+    b.append(wl([
+        "<i>dH</i>/<i>dt</i> = <i>P</i> = <i>E</i><sub>T</sub><i>I</i><sub>T</sub> = rate of "
+        "thermal energy or heat supplied to the thermistor",
+        "δ = dissipation constant",
+        "<i>T</i><sub>a</sub> = ambient temperature",
+        "δ(<i>T</i> − <i>T</i><sub>a</sub>) = rate of heat loss to the surrounding environment",
+        "<i>c</i> and <i>m</i> = respectively, specific heat and mass of the thermistor",
+        "<i>cm</i>(<i>dT</i>/<i>dt</i>) = rate of heat absorbed by the thermistor",
+    ]))
+    b.append(p("The solution of Equation 32.26 when <i>P</i> is constant is:"))
+    b.append(eq("<i>T</i> = <i>T</i><sub>a</sub> + " + _frac("<i>P</i>", "δ") +
+                "[1 − exp(−" + _frac("δ", "<i>cm</i>") + "<i>t</i>)]", "32.27"))
+    b.append(p(
+        "The transient solution of Equation 32.27 is the basis for the current–time characteristic "
+        "of a thermistor. When <i>t</i> ≫ <i>cm</i>/δ, then <i>dT</i>/<i>dt</i> → 0, and the steady "
+        "state solution of Equation 32.27 becomes:"))
+    b.append(eq("<i>P</i> = <i>E</i><sub>T</sub><i>I</i><sub>T</sub> = δ(<i>T</i> − "
+                "<i>T</i><sub>a</sub>)", "32.28"))
+    b.append(p(
+        "where <i>E</i><sub>T</sub> and <i>I</i><sub>T</sub> are the steady-state thermistor "
+        "voltage and current, respectively. Equation 32.28 is the basis for the voltage–current "
+        "characteristic of a thermistor."))
+    b.append(p(
+        "By reducing the thermistor power to a value that results in negligible self-heating, "
+        "<i>P</i> → 0, Equation 32.26 becomes:"))
+    b.append(eq(_frac("d<i>T</i>", "d<i>t</i>") + " = −" + _frac("δ", "<i>cm</i>") +
+                "(<i>T</i> − <i>T</i><sub>a</sub>)", "32.29"))
+    b.append(p(
+        "Equation 32.29 is a mathematical statement of Newton’s law of cooling and has the "
+        "solution:"))
+    b.append(eq("<i>T</i> = <i>T</i><sub>a</sub> + (<i>T</i><sub>i</sub> − <i>T</i><sub>a</sub>) "
+                "exp(−<i>t</i>/τ)"))
+    b.append(wl([
+        "<i>T</i><sub>i</sub> = initial thermistor body temperature",
+        "<i>T</i><sub>a</sub> = ambient temperature",
+        "τ = <i>cm</i>/δ = thermal time constant",
+    ]))
+    b.append(p(
+        "Table 32.8 gives dissipation and time constant data for glass-coated beads, glass probes, "
+        "and glass rods. Table 32.9 lists similar data for chip, disk, and rod-type thermistors with "
+        "metallized surface contacts. Data for the dissipation and time constants are for the "
+        "thermistor suspended by its leads at 25 °C using the procedure specified in MIL-T-23648A. "
+        "The temperature increment used for computing the dissipation constant results from "
+        "self-heating the thermistors to 75 °C from an ambient of 25 °C. The time constant data "
+        "result from allowing the thermistors to cool from 75 °C to an ambient of 25 °C. The "
+        "water-plunge time constant data result from rapidly immersing the thermistors from room "
+        "temperature air into still water. The transit time was negligible. The air temperature was "
+        "approximately 25 °C and the water temperature was about 5 °C. The diameters specified for "
+        "epoxy-coated interchangeable units are maximum diameters. To illustrate the effect of the "
+        "environment on the thermal properties of these units, the dissipation and time constants "
+        "are 8 mW °C⁻¹ and 1 s, respectively, when tested in stirred oil, as compared with "
+        "1 mW °C⁻¹ and 10 s, respectively, when tested in still air. The dissipation and time "
+        "constants for disks depend on the disk thickness, lead wire diameter, quantity of solder "
+        "used for lead attachment, distance between the thermistor body and its mount, and the "
+        "thermistor material. The dissipation and time constants for rods depend on the rod length "
+        "as well as the variables specified above for disks."))
+    b.append(_t328("en"))
+    b.append(_t329("en"))
+
+    # ------------------------------------------------------------ electrical
+    b.append(h3("Electrical Properties of NTC Thermistors",
+                "Tính chất điện của nhiệt điện trở NTC"))
+    b.append(p(
+        "Thermistor applications depend on three fundamental electrical characteristics. These are "
+        "the voltage–current characteristic, the current–time characteristic, and the "
+        "resistance–temperature characteristic."))
+
+    b.append(h4("Voltage–Current Characteristics", "Đặc tính dòng – áp"))
+    b.append(p(
+        "Figure 32.17 shows a typical voltage–current curve. At low currents, the power dissipated "
+        "is small compared with the dissipation constant and the self-heating effect is negligible. "
+        "Under these conditions, the resistance is constant, independent of the current, and the "
+        "voltage is proportional to the current. Consequently, at low currents, the characteristic "
+        "curve is tangent to a constant resistance line equal to the zero-power resistance of the "
+        "thermistor. As the current increases, the effects of self-heating become more evident; the "
+        "thermistor temperature rises, and its resistance begins to decrease. For each subsequent "
+        "incremental increase in current, there is a corresponding decrease in resistance. Hence, "
+        "the slope of the voltage–current characteristic decreases with increasing current. This "
+        "continues until the current reaches a value at which the slope becomes zero. Beyond this "
+        "point, at which the voltage exhibits its maximum value, the slope continues to decrease and "
+        "the thermistor exhibits a negative resistance characteristic. The temperature, voltage, and "
+        "current corresponding to the peak of the curve are:"))
+    b.append(eq("<i>T</i><sub>p</sub> = " +
+                _frac("β − " + _sq("β<sup>2</sup> − 4β<i>T</i><sub>a</sub>"), "2"), "32.30"))
+    b.append(eq("<i>E</i><sub>p</sub> = " +
+                _sq("<i>R</i><sub>p</sub> δ(<i>T</i><sub>p</sub> − <i>T</i><sub>a</sub>)"), "32.31"))
+    b.append(eq("<i>I</i><sub>p</sub> = " +
+                _sq(_frac("δ(<i>T</i><sub>p</sub> − <i>T</i><sub>a</sub>)",
+                          "<i>R</i><sub>p</sub>")), "32.32"))
+    b.append(wl([
+        "<i>T</i><sub>p</sub> = absolute temperature (in K) at which the peak occurs",
+        "<i>T</i><sub>a</sub> = absolute ambient temperature (in K)",
+        "<i>R</i><sub>p</sub> = thermistor resistance at <i>T</i><sub>p</sub>",
+    ]))
+    b.append(p(
+        "Applications based on the voltage–current characteristics involve changes in the "
+        "operating point on a single curve or family of curves. Such changes result from changes in "
+        "the environmental conditions or variations in circuit parameters. Figure 32.17 shows a "
+        "graphical solution for obtaining the operating point. The curve represents a nonlinear "
+        "relationship between the thermistor voltage and current. The Thevenin equivalent circuit "
+        "with respect to the thermistor terminals provides the relationship given by Equation "
+        "32.33."))
+    b.append(eq("<i>E</i><sub>T</sub> = <i>E</i><sub>THEV</sub> − "
+                "<i>I</i><sub>T</sub><i>R</i><sub>THEV</sub>", "32.33"))
+    b.append(p(
+        "where <i>E</i><sub>T</sub> and <i>I</i><sub>T</sub> are the thermistor voltage and "
+        "current, respectively. The straight-line relationship of Equation 32.33 is the load line of "
+        "the self-heated thermistor. Its intersection with the voltage–current characteristic is the "
+        "operating point. Table 32.10 categorizes the more familiar applications into four groups "
+        "distinguished by the form of thermistor excitation [1, 14]."))
+    b.append(_t3210("en"))
+    b.append(fig(17, F.fig(17), "en"))
+
+    b.append(h4("Current–Time Characteristics", "Đặc tính dòng – thời gian"))
+    b.append(p(
+        "The voltage–current characteristic discussed above deals with a self-heated thermistor "
+        "operated under steady-state conditions. This condition, for which a decrease in thermistor "
+        "resistance results from a current sufficiently high to cause self-heating, does not occur "
+        "instantaneously. A transient condition exists in a thermistor circuit from the time at "
+        "which power is first applied (<i>t</i> = 0) until the time equilibrium occurs "
+        "(<i>t</i> ≫ τ). The relationship between the thermistor current and the time required to "
+        "reach thermal equilibrium is the current–time characteristic. Generally, the excitation is "
+        "a step function in voltage through a Thevenin equivalent source. Figure 32.18 shows the "
+        "current–time characteristics for several thermistor disks and voltage sources. For any "
+        "given characteristic, the source voltage, source resistance, and thermistor zero-power "
+        "resistance determine the initial current. The source voltage, source resistance, and "
+        "voltage–current characteristic determine the final equilibrium value. The curve between the "
+        "initial and final values depends on the circuit design parameters, as well as the "
+        "dissipation constant and heat capacity of the thermistor. The proper choice of thermistor "
+        "and circuit design results in a transient time range of a few milliseconds to several "
+        "minutes."))
+    b.append(fig(18, F.fig(18), "en"))
+    b.append(p(
+        "Applications based on the current–time characteristic are time delay, surge suppression, "
+        "filament protection, overload protection, and sequential switching."))
+
+    b.append(h4("Resistance–Temperature Characteristics", "Đặc tính điện trở – nhiệt độ"))
+    b.append(p(
+        "The term zero-power resistance applies to thermistors operated with negligible "
+        "self-heating. This characteristic describes the relationship between the zero-power "
+        "resistance of a thermistor and its ambient temperature. Over small temperature spans, the "
+        "approximately linear relationship between the logarithm of resistance and inverse absolute "
+        "temperature is given by:"))
+    b.append(eq("ln <i>R</i><sub>T</sub> ≡ <i>A</i> + " + _frac("β", "<i>T</i>"), "32.34"))
+    b.append(wl([
+        "<i>T</i> = absolute temperature (K)",
+        "β = material constant of the thermistor",
+    ]))
+    b.append(p(
+        "If one lets <i>R</i><sub>T</sub> = <i>R</i><sub>T0</sub> at a reference temperature "
+        "<i>T</i> = <i>T</i><sub>0</sub> and solves for <i>R</i><sub>T</sub>, one obtains:"))
+    b.append(eq("<i>R</i><sub>T</sub> ≅ <i>R</i><sub>T0</sub> exp[ " +
+                _frac("β(<i>T</i><sub>0</sub> − <i>T</i>)", "<i>TT</i><sub>0</sub>") + " ]", "32.35"))
+    b.append(p("The temperature coefficient of resistance α is defined as:"))
+    b.append(eq("α ≡ " + _frac("1", "<i>R</i><sub>T</sub>") + " " +
+                _frac("d<i>R</i><sub>T</sub>", "d<i>T</i>"), "32.36"))
+    b.append(p("Solving Equation 32.34 for α yields:"))
+    b.append(eq("α = − " + _frac("β", "<i>T</i><sup>2</sup>"), "32.37"))
+    b.append(p(
+        "In Equation 32.34, the deviation from linearity results in temperature errors of 0.01 °C, "
+        "0.1 °C, and 0.3 °C for temperature spans of 10 °C, 30 °C, and 50 °C, respectively, within "
+        "the range of 0 °C to 50 °C. Using a polynomial for ln <i>R</i><sub>T</sub> vs. "
+        "1/<i>T</i> reduces the error considerably. The degree of the polynomial required depends on "
+        "the temperature range and material system used. The use of a third-degree polynomial is "
+        "adequate for most applications. Hence, more accurate expressions for the "
+        "resistance–temperature characteristic are:"))
+    b.append(eq("ln <i>R</i><sub>T</sub> = <i>A</i><sub>0</sub> + " +
+                _frac("<i>A</i><sub>1</sub>", "<i>T</i>") + " + " +
+                _frac("<i>A</i><sub>2</sub>", "<i>T</i><sup>2</sup>") + " + " +
+                _frac("<i>A</i><sub>3</sub>", "<i>T</i><sup>3</sup>"), "32.38a"))
+    b.append(eq("ln <i>R</i><sub>T</sub> = <i>A</i><sub>0</sub> + " +
+                _frac("<i>A</i><sub>1</sub>", "<i>T</i>") + " + " +
+                _frac("<i>A</i><sub>2</sub>", "<i>T</i><sup>2</sup>") + " + " +
+                _frac("<i>A</i><sub>3</sub>", "<i>T</i><sup>3</sup>"), "32.38b"))
+    b.append(note(
+        "Equations 32.38a and 32.38b are printed identically in the source. The translation keeps "
+        "them as printed rather than silently correcting one, so the reader can check against the "
+        "book."))
+    b.append(eq(_frac("1", "<i>T</i>") + " = α<sub>0</sub> + α<sub>1</sub> ln " +
+                "<i>R</i><sub>T</sub> + α<sub>2</sub>(ln <i>R</i><sub>T</sub>)<sup>2</sup> + "
+                "α<sub>3</sub>(ln <i>R</i><sub>T</sub>)<sup>3</sup>", "32.39"))
+    b.append(p(
+        "Steinhart and Hart proposed the use of Equation 32.39 for the oceanographic range of "
+        "−2 °C to 30 °C [11]. Their analysis showed that no significant loss in accuracy occurred by "
+        "eliminating the square term α<sub>2</sub>(ln <i>R</i><sub>T</sub>)<sup>2</sup>. "
+        "Consequently, they proposed the use of Equation 32.40."))
+    b.append(eq(_frac("1", "<i>T</i>") + " = <i>b</i><sub>0</sub> + <i>b</i><sub>1</sub> ln " +
+                "<i>R</i><sub>T</sub> + <i>b</i><sub>3</sub>(ln <i>R</i><sub>T</sub>)"
+                "<sup>3</sup>", "32.40"))
+    b.append(p(
+        "Mangum reported that the use of Equation 32.40 resulted in interpolation errors of "
+        "approximately 0.001 °C over the range of 0 °C to 70 °C [12]."))
+    b.append(p(
+        "The technical staff at Thermometrics, Inc. evaluated Equation 32.38 over the range of "
+        "−80 °C to 260 °C using 17 different thermistor materials. The glass probes investigated "
+        "encompassed a span of specific resistance values of 2 Ω cm to 300 kΩ cm and a resistance "
+        "range at 25 °C of 10 Ω to 2 MΩ. The results were presented at the Sixth International "
+        "Symposium on Temperature and show that the interpolation errors do not exceed the total "
+        "measurement uncertainties. For temperature spans of 100 °C within the range of −80 °C to "
+        "260 °C, 150 °C within the range of −60 °C to 260 °C, and 150 °C to 200 °C within the range "
+        "of 0 °C to 260 °C, the interpolation errors are 0.005 °C to 0.01 °C [13]. Lowering the "
+        "temperature span to 50 °C within the range of 0 °C to 260 °C reduces the interpolation "
+        "error to 0.001 °C to 0.003 °C."))
+    b.append(p(
+        "Sapoff and Siwek [14] evaluated the loss in accuracy introduced by eliminating the "
+        "quadratic term in Equation 32.38. For this condition, Equation 32.38 reduces to Equation "
+        "32.41."))
+    b.append(eq("ln <i>R</i><sub>T</sub> = <i>C</i><sub>0</sub> + " +
+                _frac("<i>C</i><sub>1</sub>", "<i>T</i>") + " + " +
+                _frac("<i>C</i><sub>3</sub>", "<i>T</i><sup>3</sup>"), "32.41"))
+    b.append(p(
+        "The interpolation errors introduced by Equations 32.40 and 32.41 depend on the material "
+        "system, temperature range (nonlinearity increases at low temperatures), and the "
+        "temperature span considered. Table 32.11 summarizes the errors associated with the use of "
+        "Equation 32.41 for various temperature spans and ranges."))
+    b.append(_t3211("en"))
+    b.append(p("Equations 32.38 through 32.41 can be rewritten as:"))
+    b.append(eq("<i>R</i><sub>T</sub> = exp( <i>A</i><sub>0</sub> + " +
+                _frac("<i>A</i><sub>1</sub>", "<i>T</i>") + " + " +
+                _frac("<i>A</i><sub>2</sub>", "<i>T</i><sup>2</sup>") + " + " +
+                _frac("<i>A</i><sub>3</sub>", "<i>T</i><sup>3</sup>") + " )", "32.42"))
+    b.append(eq("<i>T</i> = [ <i>a</i><sub>0</sub> + <i>a</i><sub>1</sub> ln "
+                "<i>R</i><sub>T</sub> + <i>a</i><sub>2</sub>(ln <i>R</i><sub>T</sub>)"
+                "<sup>2</sup> + <i>a</i><sub>3</sub>(ln <i>R</i><sub>T</sub>)<sup>3</sup> ]"
+                "<sup>−1</sup>", "32.43"))
+    b.append(eq("<i>T</i> = [ <i>b</i><sub>0</sub> + <i>b</i><sub>1</sub> ln "
+                "<i>R</i><sub>T</sub> + <i>b</i><sub>3</sub>(ln <i>R</i><sub>T</sub>)"
+                "<sup>3</sup> ]<sup>−1</sup>", "32.44"))
+    b.append(eq("<i>R</i><sub>T</sub> = exp( <i>C</i><sub>0</sub> + " +
+                _frac("<i>C</i><sub>1</sub>", "<i>T</i>") + " + " +
+                _frac("<i>C</i><sub>3</sub>", "<i>T</i><sup>3</sup>") + " )", "32.45"))
+    b.append(p(
+        "The solutions for Equations 32.38, 32.39, 32.42, and 32.43 require four calibration "
+        "points and the use of simultaneous equations. Similarly, the solutions for Equations 32.40, "
+        "32.41, 32.44, and 32.45 require three calibration points. The use of a polynomial "
+        "regression analysis involving additional calibration points can minimize the effects of "
+        "calibration uncertainties."))
+    b.append(p(
+        "Applications that depend on the resistance–temperature characteristic are temperature "
+        "measurement, control, and compensation. There also are applications for which the "
+        "thermistor temperature depends on some other physical phenomenon. For example, a hypsometer "
+        "is an instrument in which the temperature of a boiling liquid provides an indication of "
+        "the liquid vapor pressure. Another example involves the use of thermistor-type cardiac "
+        "catheters for thermodilution analysis. A saline or dextrose solution of known volume and "
+        "temperature is injected into the bloodstream through one of the catheter lumens. The mixing "
+        "of the solution with the blood dilutes the solution and decreases the temperature of the "
+        "blood as it flows downstream past a thermistor located at the surface of another lumen in "
+        "the catheter. The cardiac output computed from the temperature–time response data measured "
+        "by the thermistor provides an indication of the heart pump efficiency."))
+
+    # ------------------------------------------------------------ linearization
+    b.append(h3("Linearization and Signal Conditioning Techniques",
+                "Kỹ thuật tuyến tính hóa và điều chế tín hiệu"))
+    b.append(p(
+        "The measured resistance and computed constants for Equations 32.43 and 32.44 can be used "
+        "with a computer to determine temperature without the need for a linear network. This is "
+        "useful for obtaining high accuracy over relatively wide temperature ranges. Most "
+        "applications based on the resistance–temperature characteristics of thermistors, however, "
+        "use some form of linearization or signal conditioning. The use of a constant current source "
+        "and a linear resistance network provides a voltage output that is linear with temperature. "
+        "By using the proper combination of current and resistance level, a digital voltmeter "
+        "connected across the network provides a direct display of temperature. The use of a "
+        "constant voltage source results in a linear conductance network with a current that is "
+        "linear with temperature."))
+
+    b.append(h4("Linear Conductance Networks", "Mạng dẫn tuyến tính"))
+    b.append(p(
+        "Voltage dividers, ohmmeter circuits and Wheatstone bridge circuits are linear conductance "
+        "networks. Consider the voltage divider circuit shown in Figure 32.19. Using the fixed "
+        "resistor for the output eliminates the effect of the load resistance. For the purpose of "
+        "analysis, the resistor denoted by <i>R</i> is the parallel combination of the load and "
+        "fixed divider resistors. Another advantage is that the output voltage increases with "
+        "temperature with this arrangement. The ratio of output voltage to input voltage is given "
+        "by:"))
+    b.append(eq(_frac("<i>e</i><sub>0</sub>", "<i>e</i><sub>s</sub>") + " = " +
+                _frac("<i>R</i>", "<i>R</i> + <i>R</i><sub>T</sub>") + " = " +
+                _frac("1", "1 + <i>R</i><sub>T</sub>/<i>R</i>"), "32.46"))
+    b.append(wl([
+        "<i>e</i><sub>0</sub> = output voltage",
+        "<i>e</i><sub>s</sub> = source voltage",
+        "<i>R</i> = parallel combination of the load and fixed resistors",
+        "<i>R</i><sub>T</sub> = thermistor resistance at a specified temperature <i>T</i>",
+    ]))
+    b.append(fig(19, F.fig(19), "en"))
+    b.append(p(
+        "If one normalizes the thermistor resistance with respect to its value at a specified "
+        "reference temperature <i>T</i><sub>0</sub>, then:"))
+    b.append(eq("<i>r</i><sub>T</sub> = " + _frac("<i>R</i><sub>T</sub>",
+                                                 "<i>R</i><sub>T0</sub>"), "32.47"))
+    b.append(wl([
+        "<i>R</i><sub>T0</sub> = thermistor resistance at <i>T</i><sub>0</sub>",
+        "<i>r</i><sub>T</sub> = resistance ratio",
+    ]))
+    b.append(p(
+        "Thermistor manufacturers typically supply resistance ratio–temperature characteristics in "
+        "their catalogs. Substituting Equation 32.47 in Equation 32.46 yields:"))
+    b.append(eq(_frac("<i>e</i><sub>0</sub>", "<i>e</i><sub>s</sub>") + " = " +
+                _frac("1", "1 + <i>r</i><sub>T</sub><i>R</i><sub>T0</sub>/<i>R</i>"), "32.48"))
+    b.append(p(
+        "If the circuit constant σ = <i>R</i><sub>T0</sub>/<i>R</i>, then Equation 32.48 becomes:"))
+    b.append(eq("<i>F</i>(<i>T</i>) = " + _frac("<i>e</i><sub>0</sub>", "<i>e</i><sub>s</sub>") +
+                " = " + _frac("1", "1 + <i>r</i><sub>T</sub>σ"), "32.49"))
+    b.append(p(
+        "The output for the voltage divider of Figure 32.19a is the S-shaped curve shown in Figure "
+        "32.19b. The value of the circuit constant σ determines the temperature range for which "
+        "good linearity exists between <i>e</i><sub>0</sub> and <i>T</i>. References [3, 4] include "
+        "families of S-shaped curves over the range 0.01 ≤ σ ≤ 20.0 for the three basic material "
+        "systems of MIL-T-23648. A good criterion for achieving optimum linearity is to equate the "
+        "slopes of the function <i>F</i>(<i>T</i>) at the end-points of the specified temperature "
+        "range <i>T</i><sub>L</sub> ≤ σ ≤ <i>T</i><sub>H</sub>. Specifying that "
+        "<i>dF</i>(<i>T</i><sub>L</sub>)/<i>dT</i> = <i>dF</i>(<i>T</i><sub>H</sub>)/<i>dT</i> "
+        "results in the following:"))
+    b.append(eq("σ = " + _frac("<i>X</i> − <i>Y</i>",
+                               "<i>Yr</i><sub>TL</sub> − <i>Xr</i><sub>TH</sub>"), "32.50"))
+    b.append(p(
+        "where <i>X</i> and <i>Y</i> are determined by the end-point conditions and the equation "
+        "constants for ln <i>R</i><sub>T</sub> vs. <i>T</i>. When Equation 32.41 is used, <i>X</i> "
+        "and <i>Y</i> are given by:"))
+    b.append(eq("<i>X</i> = <i>T</i><sub>H</sub> " +
+                _sq("<i>r</i><sub>TL</sub>(<i>C</i><sub>1</sub> + 3" +
+                    _frac("<i>C</i><sub>3</sub>", "<i>T</i><sub>H</sub><sup>2</sup>") + ")"), "32.51"))
+    b.append(eq("<i>Y</i> = <i>T</i><sub>L</sub> " +
+                _sq("<i>r</i><sub>TH</sub>(<i>C</i><sub>1</sub> + 3" +
+                    _frac("<i>C</i><sub>3</sub>", "<i>T</i><sub>L</sub><sup>2</sup>") + ")"), "32.52"))
+    b.append(p("When Equation 32.38 is used, <i>X</i> and <i>Y</i> are given by:"))
+    b.append(eq("<i>X</i> = <i>T</i><sub>H</sub> " +
+                _sq("<i>r</i><sub>TL</sub>(<i>A</i><sub>1</sub> + 2" +
+                    _frac("<i>A</i><sub>2</sub>", "<i>T</i><sub>L</sub>") + " + 3" +
+                    _frac("<i>A</i><sub>3</sub>", "<i>T</i><sub>L</sub><sup>2</sup>") + ")"), "32.53"))
+    b.append(eq("<i>Y</i> = <i>T</i><sub>L</sub> " +
+                _sq("<i>r</i><sub>TH</sub>(<i>A</i><sub>1</sub> + 2" +
+                    _frac("<i>A</i><sub>2</sub>", "<i>T</i><sub>H</sub>") + " + 3" +
+                    _frac("<i>A</i><sub>3</sub>", "<i>T</i><sub>H</sub><sup>2</sup>") + ")"), "32.54"))
+    b.append(p(
+        "By allowing <i>e</i><sub>s</sub> and <i>R</i> to be the Thevenin equivalent voltage and "
+        "resistance with respect to the thermistor terminals, respectively, the voltage divider "
+        "analysis applies to any more complex circuit such as a Wheatstone bridge [3, 4]."))
+    b.append(p(
+        "Thermistor self-heating constraints typically result in nonstandard voltage sources for "
+        "thermometer circuit designs. The modified divider circuits of Figure 32.20 provide "
+        "equivalent circuits with standard voltage sources. Only a portion of the available output "
+        "voltage appears across the output detector in Figure 32.20a. Ohmmeter-type thermometers use "
+        "such circuits. The circuit of Figure 32.20a provides the full available output voltage. "
+        "However, the conversion results in a bias voltage in series with the output. Bridge "
+        "circuit-type thermometers use the circuit of Figure 32.20b. The conversion equations "
+        "applicable to Figure 32.20a are:"))
+    b.append(eq("<i>K</i> = " + _frac("<i>R</i><sub>1</sub>",
+                                      "<i>R</i><sub>1</sub> + <i>R</i><sub>2</sub>") +
+                " = " + _frac("<i>E</i><sub>1</sub>", "<i>E</i><sub>2</sub>") +
+                " = " + _frac("<i>R</i><sub>4</sub>", "<i>R</i><sub>2</sub>"), "32.55"))
+    b.append(fig(20, F.fig(20), "en"))
+    b.append(eq("<i>R</i> = <i>R</i><sub>3</sub> + <i>R</i><sub>4</sub> = "
+                "<i>R</i><sub>3</sub> + " +
+                _frac("<i>R</i><sub>1</sub><i>R</i><sub>2</sub>",
+                      "<i>R</i><sub>1</sub> + <i>R</i><sub>2</sub>"), "32.56"))
+    b.append(eq("<i>E</i><sub>2</sub> = Desired source voltage", "32.57"))
+    b.append(eq("<i>R</i><sub>2</sub> = " + _frac("<i>R</i><sub>4</sub>", "<i>K</i>"), "32.58"))
+    b.append(eq("<i>R</i><sub>1</sub> = " +
+                _frac("<i>R</i><sub>2</sub><i>R</i><sub>4</sub>",
+                      "<i>R</i><sub>2</sub> − <i>R</i><sub>4</sub>"), "32.59"))
+    b.append(eq(_big(_frac("<i>R</i><sub>3</sub>",
+                            "<i>R</i><sub>3</sub> + <i>R</i><sub>4</sub>")) +
+                " <i>F</i>(<i>T</i>)", "32.60"))
+    b.append(p("The conversion equations applicable to Figure 32.20b are:"))
+    b.append(eq("<i>K</i> = " + _frac("<i>R</i><sub>2</sub>",
+                                      "<i>R</i><sub>1</sub> + <i>R</i><sub>2</sub>") +
+                " = " + _frac("<i>E</i><sub>1</sub>", "<i>E</i><sub>2</sub>") +
+                " = " + _frac("<i>R</i>", "<i>R</i><sub>1</sub>"), "32.61"))
+    b.append(eq("<i>R</i> = " + _frac("<i>R</i><sub>1</sub><i>R</i><sub>2</sub>",
+                                      "<i>R</i><sub>1</sub> + <i>R</i><sub>2</sub>"), "32.62"))
+    b.append(eq("<i>E</i><sub>2</sub> = Desired source voltage", "32.63"))
+    b.append(eq("<i>R</i><sub>1</sub> = " + _frac("<i>R</i>", "<i>K</i>"), "32.64"))
+    b.append(eq("<i>R</i><sub>2</sub> = " +
+                _frac("<i>RR</i><sub>1</sub>", "<i>R</i><sub>1</sub> − <i>R</i>"), "32.65"))
+    b.append(eq("<i>e</i><sub>02</sub> = (<i>E</i><sub>2</sub> − <i>E</i><sub>1</sub>) + "
+                "<i>e</i><sub>01</sub>", "32.66"))
+    b.append(p("Reference [15] includes design examples that use these conversion equations."))
+
+    b.append(h4("Temperature Controllers", "Bộ điều khiển nhiệt độ"))
+    b.append(p(
+        "Thermistor temperature controllers frequently use voltage divider and bridge circuits. "
+        "The use of a thermistor in such a circuit results in much higher sensitivity than that "
+        "obtainable with a thermocouple or RTD. The most sensitive standard thermocouples exhibit "
+        "output voltage slopes of 50 to 55 µV °C⁻¹ in the range of 0 °C to 300 °C. Thermistor "
+        "voltage dividers typically exhibit output slopes of about 8 to 10 mV °C⁻¹ per volt applied "
+        "to the divider. Since the input to a thermistor voltage divider typically is in the range "
+        "of 1 to 5 V, a thermistor provides about 200 to 1000 times the sensitivity of a "
+        "thermocouple. The temperature coefficient of resistance of a thermistor is about 10 times "
+        "that of an RTD. However, the temperature span about the control point of a thermistor "
+        "controller is small compared with that available with a thermocouple or RTD."))
+    b.append(p(
+        "Reference [1] includes some typical low-cost thermistor temperature controllers. Thermistor "
+        "temperature controllers are available from Hart Scientific, Inc. that provide control "
+        "stabilities of better than 0.001 °C [16]."))
+
+    b.append(h4("Linear Resistance Networks", "Mạng điện trở tuyến tính"))
+    b.append(p(
+        "A common technique for designing a thermometer circuit is to apply a constant-current "
+        "source to a linear resistance network. This results in a voltage across the network that is "
+        "linear with temperature. Temperature compensation for resistance changes that occur in coil "
+        "windings, instruments, relays, motors, and generators also use such networks. For example, "
+        "a copper coil has a positive temperature coefficient of resistance of approximately "
+        "0.39% °C⁻¹. The thermistor network has a negative temperature coefficient. The compensator "
+        "is designed to provide a slope that is equal in magnitude, but opposite in sign to that of "
+        "the copper coil. Hence, the Ω vs. °C slope of the compensator is equal to the Ω/°C change "
+        "of the coil. This results in a current through the coil that is independent of temperature. "
+        "Additional applications include compensation of drift in silicon strain gages, infrared "
+        "detectors, and circuits that contain both passive and active components."))
+    b.append(p("For the basic linear resistance network of Figure 32.21a:"))
+    b.append(eq("<i>R</i><sub>12</sub> = <i>R</i><sub>C</sub> = " +
+                _frac("<i>RR</i><sub>T</sub>", "<i>R</i> + <i>R</i><sub>T</sub>") +
+                " = <i>R</i>(1 − " + _frac("1", "1 + <i>R</i><sub>T</sub>/<i>R</i>") + ")", "32.67"))
+    b.append(p(
+        "Normalizing with respect to <i>R</i> and substituting <i>r</i><sub>T</sub> = "
+        "<i>R</i><sub>T</sub>/<i>R</i><sub>T0</sub> and <i>R</i><sub>T0</sub>/<i>R</i> = σ in "
+        "Equation 32.67 yields:"))
+    b.append(eq("<i>R</i><sub>n</sub> = " +
+                _frac("<i>R</i><sub>C</sub>", "<i>R</i>") + " = 1 − " +
+                _frac("1", "1 + <i>r</i><sub>T</sub>σ") + " = 1 − <i>F</i>(<i>T</i>)", "32.68"))
+    b.append(p(
+        "Consequently, the techniques used for optimizing the linearity of voltage dividers also "
+        "apply to linear resistance networks. The use of the series resistor <i>R</i><sub>1</sub> in "
+        "Figure 32.21b translates the curve to a higher resistance level and does not affect the "
+        "Ω/°C output."))
+    b.append(fig(21, F.fig(21), "en"))
+    b.append(p(
+        "Frequently, the design of a compensator that provides the desired Ω/°C output results in a "
+        "thermistor that has a nonstandard <i>R</i><sub>T0</sub> value. The conversion circuit of "
+        "Figure 32.21c permits the use of a standard <i>R</i><sub>T0</sub> value. The conversion "
+        "equations are as follows:"))
+    b.append(eq("<i>K</i><sub>1</sub> = " +
+                _sq(_frac("<i>R</i>′<sub>T0</sub>", "<i>R</i><sub>T0</sub>")), "32.69"))
+    b.append(eq("<i>R</i><sub>E</sub> = <i>R</i><sub>1</sub> − <i>R</i>(<i>K</i><sub>1</sub> − 1)",
+                "32.70"))
+    b.append(eq("<i>R</i><sub>A</sub> = <i>RK</i><sub>1</sub>(<i>K</i><sub>1</sub> − 1)", "32.71"))
+    b.append(eq("<i>R</i><sub>B</sub> = <i>RK</i><sub>1</sub>", "32.72"))
+    b.append(p(
+        "where <i>R</i><sub>T0</sub> is the nonstandard value and <i>R</i>′<sub>T0</sub> is the "
+        "standard value. A requirement is that both thermistors have the same resistance "
+        "ratio–temperature characteristic. Setting <i>R</i><sub>1</sub> = <i>R</i>(<i>K</i><sub>1"
+        "></sub> − 1) in Figure 32.21b results in <i>R</i><sub>E</sub> = 0 for Figure 32.21c. "
+        "Consequently, the conversion of Figure 32.21a to that of Figure 32.21c requires the use of "
+        "the minimum insertion resistance <i>R</i><sub>1</sub> = <i>R</i>(<i>K</i><sub>1</sub> − 1)."))
+    b.append(p(
+        "The network provides good linearity for small temperature spans of 10 °C to 30 °C. "
+        "However, the error increases rapidly from about 0.15 °C for a 30 °C span to 0.7 °C for a "
+        "50 °C span (0 °C to 50 °C). The use of the two-thermistor network shown in Figure 32.22 "
+        "results in a maximum linearity error of 0.22 °C over the range of 0 °C to 100 °C, while the "
+        "three-thermistor network shown reduces the error to 0.04 °C for the same 0 °C to 100 °C "
+        "range [5]. The networks shown in Figure 32.22 are linear voltage dividers. Placing the "
+        "resistor <i>R</i><sub>1</sub> across the output terminals 3–4 converts these networks to "
+        "linear resistance networks. Many manufacturers sell an interchangeable, three-wire, dual "
+        "thermistor that is suitable for use in the two-thermistor circuit of Figure 32.22."))
+    b.append(fig(22, F.fig(22), "en"))
+    b.append(p(
+        "Interchangeable thermistors and the linearization techniques described above have been "
+        "available for many years. In addition, the stability of NTC thermistors is better than that "
+        "of thermocouples and frequently better than or equal to that of commercial RTDs [17]. "
+        "However, the nonlinear resistance–temperature characteristics of thermistors continue to "
+        "limit their use in industrial temperature measurement and control applications. The "
+        "availability of low-cost microprocessors has eliminated this limitation. Such devices can "
+        "use the equation constants of Equations 32.38 or 32.39 to compute and display temperature "
+        "directly. They also can be used to compute lookup tables to provide interpolation "
+        "uncertainties in the range of 0.001 °C to 0.01 °C. There are instruments described in the "
+        "literature that utilize such microprocessor chips [18, 19]. Thermometrics, Inc. sells a "
+        "commercial instrument that reads the equation constants from a chip in the connector of "
+        "each probe supplied for use with the instrument [1]. The use of thermistors for industrial "
+        "applications will continue to increase as the cost of microprocessor chips continues to "
+        "fall."))
+
+    b.append(_refs323("en"))
+    return "".join(b)
+
+
 def _refs(lang):
     vi = lang == "vi"
     items = [
@@ -2099,6 +3547,57 @@ def _refs322(lang):
     return head_ + wl(items)
 
 
+def _refs323(lang):
+    """§32.3 has nineteen references of its own, numbered 1–19 within the section."""
+    vi = lang == "vi"
+    items = [
+        "1. Thermometrics, Inc., <i>Thermometrics NTC &amp; PTC Thermistors</i>, Edison, NJ, 1993.",
+        "2. J. Fabien, Heating with PTC thermistors, <i>EDN Products Edition</i>, 41(12A), 10, "
+        "1996.",
+        "3. M. Sapoff and R. M. Oppenheim, The design of linear thermistor networks, <i>IEEE "
+        "International Convention Record</i>, Part 8, 12, 1964.",
+        "4. M. Sapoff, Thermistors: Part 4, Optimum linearity techniques, <i>Measurements &amp; "
+        "Control</i>, 14(10), 1980.",
+        "5. C. D. Kimball and R. W. Harruff, Thermistor thermometry design for biological systems, "
+        "<i>Temperature, Its Measurement and Control in Science and Industry</i>, Vol. 4, "
+        "Pittsburgh, PA: Instrument Society of America, 1972, Part 2.",
+        "6. Ketema, Rodan Division, <i>Thermistor Product Guide</i>, Anaheim, CA, 1995.",
+        "7. Cesiwid Inc., <i>Alphalite® Bulk Ceramic NTC Thermistors</i>, Niagara Falls, NY, 1996.",
+        "8. Fenwal Electronics, Inc., <i>Standard Products Catalog</i>, Milford, MA, 1994.",
+        "9. Fenwal Electronics, Inc., <i>Thermistor Manual</i>, Milford, MA, 1974.",
+        "10. Victory Engineering Corporation, <i>Technical Corporation of Thermistors &amp; "
+        "Varistors</i>, Springfield, NJ, 1962.",
+        "11. J. S. Steinhart and S. R. Hart, Calibration curves for thermistors, <i>Deep Sea "
+        "Research</i>, 15, 497, 1968.",
+        "12. B. W. Mangum, The triple point of succinonitrile and its use in the calibration of "
+        "thermistor thermometers, <i>Rev. Sci. Instrum.</i>, 54(12), 1687, 1983.",
+        "13. M. Sapoff, W. R. Siwek, H. C. Johnson, J. Slepian, and S. Weber, The exactness of fit "
+        "of resistance–temperature data of thermistors with third-degree polynomials, in J. F. "
+        "Schooley (ed.), <i>Temperature, Its Measurement and Control in Science and Industry</i>, "
+        "Vol. 5, New York, NY: American Institute of Physics, 1982, 875.",
+        "14. M. Sapoff and R. M. Oppenheim, Theory and application of self-heated thermistors, "
+        "<i>Proc. IEEE</i>, 51, 1292, 1963.",
+        "15. M. Sapoff, Thermistors: Part 5, Applications, <i>Measurements &amp; Control</i>, "
+        "14(12), 1980.",
+        "16. Hart Scientific, Inc., <i>Hart Scientific Calibration Equipment</i>, Pleasant Grove, "
+        "UT, 1995.",
+        "17. W. R. Siwek, M. Sapoff, A. Goldberg, H. C. Johnson, M. Botting, R. Lonsdorf, and S. "
+        "Weber, Stability of NTC thermistors, in J. F. Schooley (ed.), <i>Temperature, Its "
+        "Measurement and Control in Science and Industry</i>, Vol. 6, New York, NY: American "
+        "Institute of Physics, 1992, 497.",
+        "18. R. L. Berger, T. Clem, C. Gibson, W. Siwek, and M. Sapoff, A digitally linearized "
+        "thermistor thermometer referenced to IPTS—26(13), 68, 1980.",
+        "19. W. R. Siwek, M. Sapoff, A. Goldberg, H. C. Johnson, M. Botting, R. Lonsdorf, and S. "
+        "Weber, A precision temperature standard based on the exactness of fit of thermistor "
+        "resistance–temperature data using third degree polynomials, in J. F. Schooley (ed.), "
+        "<i>Temperature, Its Measurement and Control in Science and Industry</i>, Vol. 6, New York, "
+        "NY: American Institute of Physics, 1992, 491.",
+    ]
+    head_ = "<h3 id=\"t32-tltk-3\">Tài liệu tham khảo</h3>" if vi else \
+            "<h3 id=\"t32-tltk-3\">References</h3>"
+    return head_ + wl(items)
+
+
 def back_vi():
     b = [_refs("vi")]
     b.append(h3("Thông tin thêm", "Further Information"))
@@ -2151,6 +3650,18 @@ INDEX = [
         ("The Future of RTD Technology", "Tương lai của công nghệ RTD"),
         ("Defining Terms", "Định nghĩa thuật ngữ"),
     ]),
+    ("32.3", "Thermistor Thermometers", "Nhiệt kế nhiệt điện trở", [
+        ("Thermal Properties of NTC Thermistors", "Tính chất nhiệt của nhiệt điện trở NTC"),
+        ("Electrical Properties of NTC Thermistors", "Tính chất điện của nhiệt điện trở NTC"),
+        ("Voltage–Current Characteristics", "Đặc tính dòng – áp", 1),
+        ("Current–Time Characteristics", "Đặc tính dòng – thời gian", 1),
+        ("Resistance–Temperature Characteristics", "Đặc tính điện trở – nhiệt độ", 1),
+        ("Linearization and Signal Conditioning Techniques",
+         "Kỹ thuật tuyến tính hóa và điều chế tín hiệu"),
+        ("Linear Conductance Networks", "Mạng dẫn tuyến tính", 1),
+        ("Temperature Controllers", "Bộ điều khiển nhiệt độ", 1),
+        ("Linear Resistance Networks", "Mạng điện trở tuyến tính", 1),
+    ]),
 ]
 
 
@@ -2160,10 +3671,18 @@ def sec_index(vi):
         title = vn if vi else en
         out.append('<li><span class="n">%s</span><a class="t" href="#s32-%s">%s</a></li>'
                    % (num, num.split(".")[1], title))
-        for sub_en, sub_vi in subs:
-            out.append('<li style="margin-left:2.4rem;font-size:.9rem;padding:.15rem 0">'
+        for item in subs:
+            sub_en, sub_vi = item[0], item[1]
+            # a third element means the entry is one level down: the three
+            # characteristics nest under "Electrical Properties", the three
+            # circuit techniques under "Linearization"
+            deep = len(item) > 2
+            out.append('<li style="margin-left:%s;font-size:%s;padding:.15rem 0">'
                        '<a class="t" href="#s32-%s-%s">%s</a></li>'
-                       % (num.split(".")[1], _slug(sub_en), sub_vi if vi else sub_en))
+                       % ("4.2rem" if deep else "2.4rem",
+                          ".86rem" if deep else ".9rem",
+                          num.split(".")[1], _slug(sub_en),
+                          sub_vi if vi else sub_en))
     out.append("</ol>")
     return "".join(out)
 
@@ -2174,7 +3693,8 @@ def body_vi():
         "họ nguyên lý chuyển đổi nhất. Chương này đi qua mười một họ dụng cụ — từ dải lưỡng kim, "
         "nhiệt điện trở, cặp nhiệt điện đến hồng ngoại và sợi quang — với phương trình, hình vẽ và "
         "bảng dữ liệu của từng loại.")
-    return (p(lede) + sec_index(True) + sec_32_1_vi() + back_vi() + sec_32_2_vi())
+    return (p(lede) + sec_index(True) + sec_32_1_vi() + back_vi() + sec_32_2_vi()
+            + sec_32_3_vi())
 
 
 def body_en():
@@ -2184,7 +3704,8 @@ def body_en():
         "strips, resistance thermometers, thermistors, thermocouples, semiconductor junctions, "
         "infrared, pyroelectric, liquid-in-glass, manometric, indicators and fiber-optic probes — "
         "with the equations, figures and data tables for each.")
-    return (p(lede) + sec_index(False) + sec_32_1_en() + back_en() + sec_32_2_en())
+    return (p(lede) + sec_index(False) + sec_32_1_en() + back_en() + sec_32_2_en()
+            + sec_32_3_en())
 
 
 def build(lang):
@@ -2200,9 +3721,9 @@ def build(lang):
              '</a> · Chương 32' % BASE_VI if vi else
              '<a href="/books/">Books</a> · <a href="%s">Measurement, Instrumentation and Sensors '
              'Handbook</a> · Chapter 32' % BASE_EN)
-    meta = ("Chương 32 · theo Ch32.pdf (CRC Press, 1999) · §32.1–32.2/11 · 15 hình, 25 phương "
-            "trình, 7 bảng" if vi else
-            "Chapter 32 · §32.1–32.2 of 11 · 15 figures, 25 equations, 7 tables")
+    meta = ("Chương 32 · theo Ch32.pdf (CRC Press, 1999) · §32.1–32.3/11 · 22 hình, 72 phương "
+            "trình, 11 bảng" if vi else
+            "Chapter 32 · §32.1–32.3 of 11 · 22 figures, 72 equations, 11 tables")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
             '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'

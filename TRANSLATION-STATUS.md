@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-02 (session 47 — Chapter 32 §32.2 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-02 (session 48 — Chapter 32 §32.3 added) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook **Chapter 32** and *upward* to 85 — the forward agent works the
 > book from the front. Chapters 1–31, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
@@ -3889,3 +3889,135 @@ either of these.
 **Owed, still:** the `aria-label` sweep across the other 34 `reader_hb_*` modules; and `git push`,
 which still cannot authenticate from this machine. Five commits are now sitting on top of
 `origin/main`.
+
+## Session 48 — 2026-11-02 · Handbook Chapter 32 §32.3 (*Thermistor Thermometers*)
+
+Third of chapter 32's eleven sections; still nothing registered at the book TOC, and the generated
+ch32 pages stay out of git so a half-finished chapter cannot be reached at its URL.
+
+**§32.3 — *Thermistor Thermometers*, Meyer Sapoff.** Source pages 26–41. Seven figures
+(32.16–32.22), forty-seven equations (32.26–32.72, including 32.38a/b), four numbered tables
+(32.8–32.11), nineteen references, three `h3` and six `h4`. Both languages built and verified:
+74 equation blocks in order, 22 figures, 13 table elements, 3 `h2` / 28 `h3` / 6 `h4`, 33 in-page
+links none broken, 0 U+2044, and all 22 `aria-label`s English on the English page / Vietnamese on
+the Vietnamese one. 296 kB EN / 283 kB VI.
+
+### Four wrong subscripts survived the first read — the text dump is how they were caught
+
+The section's equations had been transcribed from 300 dpi crops and looked right on the page. They
+were not. Comparing a plain-text dump of every equation against the source page images turned up
+four errors, all in the 32.56–32.68 run, all of them a `1`/`2`/`3`/`4` misread at small type:
+
+| eq | printed | had been written |
+|----|---------|------------------|
+| 32.58 | `R₂ = R₄/K` | `R₂ = R₁/K` |
+| 32.59 | `R₁ = R₂R₄/(R₂ − R₄)` | `R₁ = R₃R₄/(R₂ − R₄)` |
+| 32.61 | `K = R₂/(R₁+R₂) = E₁/E₂ = R/R₁` | `… = R/R₄` |
+| 32.68 | `Rₙ = R_C/R = 1 − 1/(1+r_Tσ)` | `R₁₂/R = R_C/R = …` |
+
+Each one is checkable by algebra — 32.55 says `K = R₄/R₂`, so 32.58 cannot be `R₂ = R₁/K`; 32.56
+says `R₄ = R₁R₂/(R₁+R₂)`, so 32.59's numerator cannot be `R₃R₄` — and that is the cheapest audit
+there is. **Dump the equations as text, then check the ones that are algebraically determined
+against the equation that defines them.** A rendered page hides a wrong digit; a text list does
+not.
+
+```bash
+cd build && PYTHONPATH=. python - <<'PY'
+import re, reader_hb_ch32 as R
+R._LANG[0] = "en"
+s = R.sec_32_3_en()
+for p in re.findall(r'<div class="eq[^>]*>(.*?)</div>', s, re.S):
+    h = re.sub(r'<sub>(.*?)</sub>', r'_\1', p, flags=re.S)
+    h = re.sub(r'<sup>(.*?)</sup>', r'^\1', h, flags=re.S)
+    print(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', h)))
+PY
+```
+
+### `_sq()` put the radical's bar through the numerator
+
+Equation 32.69 is `K₁ = √(R′_T0/R_T0)`. The radicand is a stacked fraction, i.e. an inline-block,
+and `_sq()` drew its `border-top` on a plain inline span — so the span's top edge was fixed by the
+*strut*, not by the taller child, and the child overflowed upward through the rule. The bar crossed
+`R′` and the equation read as `√(R′_T0) / R_T0`.
+
+Fixed by making the radicand a flex item, which blockifies it so its box grows to the fraction:
+
+```python
+return ('<span style="display:inline-flex;align-items:center;vertical-align:middle">'
+        '<span style="font-size:1.32em;line-height:1">√</span>'
+        '<span style="border-top:1.2px solid currentColor;padding:.14em .12em 0">%s</span>'
+        '</span>' % inner)
+```
+
+`align-items:center` also centres the sign against the fraction, which a baseline-aligned `√` never
+does. **Any rule drawn on an inline element that wraps a tall inline-block will sit at the wrong
+height** — the same trap applies to an overline, an underline, or a bordered box around a figure.
+
+### `_big()` for the book's stretchy brackets
+
+Equation 32.60 is `(R₃/(R₃+R₄))F(T)` with brackets that span the fraction. A plain `(` leaves the
+fraction sticking out of both ends. The helper scales the glyph on the vertical axis and centres
+it on the fraction with a flex line; 1.9 was the factor that matched the print (2.3 looked thin).
+
+### A three-level table of contents, and `h4()`
+
+The source nests three electrical characteristics under *Electrical Properties* and three circuit
+techniques under *Linearization*. Flattening them to `h3` would have lost that, so `h4()` was added
+with the same anchor scheme, and `INDEX` entries may now be 2-tuples or 3-tuples:
+
+```python
+("Electrical Properties of NTC Thermistors", "Tính chất điện của nhiệt điện trở NTC"),
+("Voltage–Current Characteristics", "Đặc tính dòng – áp", 1),
+```
+
+The trailing `1` marks a nested entry; `sec_index()` indents it to 4.2rem at .86rem instead of
+2.4rem at .9rem. **The English title must still be spelled exactly as the `h4` spells it** — the
+slug is the anchor.
+
+### Table 32.9's text layer is unusable; the image is the only source
+
+The extracted text reads `10.28–11`, `12.75–16`, `19.615–20`, `25.424–40`, `1.325–3` — diameter,
+dissipation and time constant run together with no separator. Decoded from the page image as
+10.2 / 8–11 / 28–150, 12.7 / 5–16 / 50–175, 19.6 / 15–20 / 90–300, 25.4 / 24–40 / 110–230 and
+1.3 / 2.5–3 / 16–20. **Never trust the text layer for a numeric table in this book.**
+
+### 32.38a and 32.38b are printed identically
+
+Both are `ln R_T = A₀ + A₁/T + A₂/T² + A₃/T³`. That is the book's error, not a transcription slip —
+the two are meant to be the same polynomial written two ways. They are kept as printed and a
+`note()` explains the duplication rather than silently "fixing" one of them.
+
+### QA screenshots must go through the local server
+
+The reader pages link `/books/assets/library.css` — a root-relative URL. A `file://` screenshot
+therefore loads **no site CSS at all**, silently: the equation numbers jump from the right edge of
+each box to the left, glued to the equation, and the page height changes by a third (14932 px
+instead of 22813 px for this section). Nothing errors; it just looks like a slightly different
+design. Always shoot `http://localhost:8899/work/qa32/secNN_xx.html`, with the repo root as the
+server root.
+
+### Figure notes
+
+- **32.16** — the switching-type PTC curve turns over at the Curie point and then falls; the
+  resistance axis is logarithmic, so the low-temperature branch is drawn as a shallow descent and
+  the rise is nearly vertical.
+- **32.17** — the load line has to actually cut the curve. It is placed so that it clears the peak
+  at (268, 149) and passes exactly through the operating point at (450, 190) on the line
+  `(150,82)→(622,252)`; a dot dropped at a fixed point and a line drawn near it is how this figure
+  went wrong the first time.
+- **32.19** — the S-curve is a logistic sampled from its own first point, so the foot and shoulder
+  are both genuinely flat; a straight line from the axis to the first sample leaves a kink.
+- **32.20** — two panels sharing one skeleton. Terminal labels are `e₀₁` and `e₀₂`, not `e₀` twice:
+  the bias voltage in series with the output is what 32.66 is about.
+- **32.21** — three panels; `R_T1 = R_T0·r(T)` sits above the symbol in (a) and (b), and (c) carries
+  the second thermistor `R_T2 = R′_T0·r(T)` in series with `R_A`.
+- **32.22** — two networks, two and three thermistors. `T1` hangs straight off the output node on
+  the `R1` column — it is the one branch that is not inside a series pair, and it was missing from
+  both panels on the first pass.
+
+New drawing helpers in `hb32fig.py`: `_therm(cx, cy, r, horiz=False)` (circle + zigzag + `T`, with
+the zigzag turned for horizontal leads), `_zz()` (a zigzag along any segment), `_batt()`,
+`_source()`, `_term()`, `_dot()`.
+
+**Owed, still:** the `aria-label` sweep across the other 34 `reader_hb_*` modules; and `git push`,
+which still cannot authenticate from this machine.

@@ -1008,9 +1008,653 @@ def fig_32_15():
                 "wired to a measuring instrument at the left, with an agitator at the right")
 
 
+def _therm(cx, cy, r=16.0, horiz=False):
+    """The thermistor symbol §32.3 uses everywhere: a circle holding a zigzag
+    with a small T beside it. The zigzag follows the lead direction — the book
+    turns it horizontal when the leads run sideways (fig 32.21a). Leads are
+    drawn by the caller, because every figure enters the symbol differently."""
+    o = [_circ(cx, cy, r, "#fff", E, 1.3)]
+    n = 8
+    if horiz:
+        x0, x1 = cx - r * 0.66, cx + r * 0.66
+        o.append(_pl([(x0 + (x1 - x0) * i / n, cy - 4.2 + (7.0 if i % 2 else 0.0))
+                      for i in range(n + 1)], E, 1.05))
+        o.append(_lbl(cx, cy - 5.0, "T", "ts", "middle", _fs(8)))
+    else:
+        y0, y1 = cy - r * 0.66, cy + r * 0.66
+        o.append(_pl([(cx - 4.2 + (7.0 if i % 2 else 0.0), y0 + (y1 - y0) * i / n)
+                      for i in range(n + 1)], E, 1.05))
+        o.append(_lbl(cx + 2.6, cy + 3.2, "T", "ts", "start", _fs(8)))
+    return "".join(o)
+
+
+def _zz(x1, y1, x2, y2, amp=5.0, n=6, col=E, sw=1.3):
+    """A zigzag resistor between two points. Drawn along the segment, so the
+    same helper covers the vertical and the horizontal case — which matters
+    because §32.3 uses both orientations side by side."""
+    dx, dy = x2 - x1, y2 - y1
+    L = _m.hypot(dx, dy) or 1.0
+    nx, ny = -dy / L, dx / L
+    pts = [(x1, y1)]
+    for i in range(1, 2 * n):
+        t = i / float(2 * n)
+        s = amp if i % 2 else -amp
+        pts.append((x1 + dx * t + nx * s, y1 + dy * t + ny * s))
+    pts.append((x2, y2))
+    return _pl(pts, col, sw)
+
+
+def _batt(cx, cy, lbl="", side="right"):
+    """A single cell, + up. The caller draws the leads down to cy-4 and up from
+    cy+4."""
+    o = [_line(cx - 11, cy - 4, cx + 11, cy - 4, E, 1.5),
+         _line(cx - 5.5, cy + 4, cx + 5.5, cy + 4, E, 3.2),
+         _lbl(cx + 10, cy - 7, "+", "ts", "middle", _fs(9))]
+    if lbl:
+        if side == "right":
+            o.append(_mix(cx + 16, cy + 4, [(lbl, ""), ], "start", "ts"))
+        else:
+            o.append(_mix(cx - 16, cy + 4, [(lbl, ""), ], "end", "ts"))
+    return "".join(o)
+
+
+def _res_h(cx, cy, w=34.0, h=9.0):
+    """A resistor in a horizontal lead, drawn as the book draws it in 32.19 — a
+    plain open box, not the ANSI zigzag."""
+    return _rect(cx - w / 2.0, cy - h / 2.0, w, h, "#fff", E, 1.3)
+
+
+def _res_v(cx, cy, w=9.0, h=34.0):
+    return _rect(cx - w / 2.0, cy - h / 2.0, w, h, "#fff", E, 1.3)
+
+
+# ---------------------------------------------------------------- 32.16
+def fig_32_16():
+    """R against T for a switching-type PTC thermistor. The interest is the
+    shape: a shallow negative slope, then a wall, then a peak and a negative
+    tail — so the axes are bare and there is no scale to speak of."""
+    o = [_defs()]
+    AX, AY = 170.0, 330.0
+    o.append(_arr(AX, AY + 12, AX, 44, E, sw=1.5))
+    o.append(_arr(AX - 16, AY, 616, AY, E, sw=1.5))
+    o.append(_lbl(148, 56, "R", "t", "end"))
+    o.append(_lbl(624, 352, "T", "t", "start"))
+    o.append(_path("M 246,286 Q 322,302 402,308 "
+                   "C 434,309 460,268 474,190 "
+                   "C 484,138 492,100 502,84 "
+                   "C 510,72 528,70 540,80 "
+                   "C 550,90 556,104 562,124", E, 1.9))
+    o.append(_line(412, 311, 498, 311, S, 1.1, "7 5"))
+    o.append(_mix(506, 315, [("R", ""), ("min", "sub")], "start"))
+    o.append(_line(432, 88, 534, 88, S, 1.1, "7 5"))
+    o.append(_mix(424, 92, [("R", ""), ("max", "sub")], "end"))
+    return _fig(svg(660, 380, "".join(o),
+                    "Đặc tính điện trở theo nhiệt độ của nhiệt điện trở PTC kiểu chuyển mạch"),
+                "Hình 32.16 · Đặc tính điện trở – nhiệt độ của một nhiệt điện trở PTC kiểu "
+                "chuyển mạch thông dụng. Ở nhiệt độ thấp, từ dưới 0 °C đến R<sub>min</sub>, giá trị "
+                "điện trở nhỏ và R<sub>T</sub> theo T có hệ số nhiệt độ của điện trở âm nhỏ, cỡ "
+                "−1% °C<sup>−1</sup>. Khi nhiệt độ tăng, hệ số nhiệt độ của điện trở trở thành dương "
+                "và điện trở bắt đầu tăng. Tại một nhiệt độ ngưỡng hay nhiệt độ chuyển mạch, tốc độ "
+                "tăng trở nên rất nhanh và đặc tính PTC trở nên rất dốc. Trong dải chuyển mạch của "
+                "nó, linh kiện có giá trị điện trở cao. Ở nhiệt độ trên dải chuyển mạch, điện trở "
+                "đạt giá trị cực đại, vượt qua đó hệ số nhiệt độ lại trở thành âm.",
+                "Hình 32.16 · Resistance–temperature characteristic of a typical switching-type "
+                "PTC thermistor. At low temperatures, from below 0 °C to R<sub>min</sub>, the "
+                "resistance value is low and R<sub>T</sub> vs. T exhibits a small negative "
+                "temperature coefficient of resistance on the order of −1% °C<sup>−1</sup>. As the "
+                "temperature increases, the temperature coefficient of resistance becomes positive "
+                "and the resistance begins to rise. At a threshold or switching temperature, the "
+                "rate of rise becomes very rapid and the PTC characteristic becomes very steep. "
+                "Within its switching range, the device exhibits a high resistance value. At "
+                "temperatures above the switching range, the resistance reaches a maximum value "
+                "beyond which the temperature coefficient becomes negative again.",
+                "Đường cong điện trở theo nhiệt độ: một đoạn thoải hơi dốc xuống, rồi dựng đứng "
+                "thành vách, vượt qua mức R max, đạt đỉnh và hạ xuống ở cuối; hai đường gạch ngang "
+                "đánh dấu mức R min và R max",
+                "A resistance-versus-temperature curve that slopes gently down, rises almost "
+                "vertically, overshoots the R max level to a peak and then falls; dashed level "
+                "lines mark R min and R max")
+
+
+# ---------------------------------------------------------------- 32.19
+def _source(cx, cy, r=21.0):
+    """An alternating source: a circle with one cycle of sine inside."""
+    o = [_circ(cx, cy, r, "#fff", E, 1.3)]
+    o.append(_pl([(cx - r * 0.50 + i * r / 20.0,
+                   cy - 5.0 * _m.sin(2 * _m.pi * i / 20.0)) for i in range(21)], E, 1.1))
+    return "".join(o)
+
+
+def _term(x, y):
+    """An open output terminal — a small white circle."""
+    return _circ(x, y, 3.4, "#fff", E, 1.2)
+
+
+def fig_32_19():
+    """(a) the thermistor divider and (b) the S-shaped output it produces."""
+    o = [_defs()]
+    # ---- (a) the divider
+    o.append(_source(96, 158))
+    o.append(_pl([(96, 137), (96, 78), (222, 78)], E, 1.3))
+    o.append(_therm(222, 110, 17))
+    o.append(_pl([(222, 93), (222, 78)], E, 1.3))
+    o.append(_pl([(222, 127), (222, 186)], E, 1.3))
+    o.append(_res_v(222, 206, 26, 40))
+    o.append(_pl([(222, 226), (222, 246), (96, 246), (96, 179)], E, 1.3))
+    # taps
+    o.append(_pl([(222, 160), (272, 160)], E, 1.3))
+    o.append(_term(272, 160))
+    o.append(_pl([(222, 246), (272, 246)], E, 1.3))
+    o.append(_term(272, 246))
+
+    o.append(_mix(244, 100, [("R", ""), ("T", "sub")], "start", "ts"))
+    o.append(_lbl(250, 210, "R", "ts", "start"))
+    o.append(_mix(64, 196, [("e", "i"), ("s", "sub")], "end", "ts"))
+    o.append(_mix(280, 184, [("e", "i"), ("0", "sub"), ("(T)", "")], "start", "ts"))
+    o.append(_lbl(160, 292, "(a)", "ts", "middle"))
+
+    # ---- (b) the S-curve the divider produces
+    o.append(_arr(380, 292, 380, 56, E, sw=1.4))
+    o.append(_arr(368, 280, 654, 280, E, sw=1.4))
+    o.append(_mix(372, 50, [("e", "i"), ("0", "sub"), ("(T)", "")], "end", "ts"))
+    o.append(_lbl(0, 0, "TEMPERATURE", "ts", "middle",
+                  ' transform="translate(516,306)"'))
+    # the level the curve runs into
+    o.append(_line(404, 102, 646, 102, S, 1.1, "7 5"))
+    o.append(_mix(396, 106, [("e", "i"), ("s", "sub")], "end", "ts"))
+    # a logistic, so the foot and shoulder are both genuinely flat — a straight
+    # line from the axis to the first sample leaves a kink at the left end
+    o.append(_pl([(x, 275 - 172.0 / (1 + _m.exp(-(x - 500) / 38.0)))
+                  for x in range(382, 646, 4)], E, 1.8))
+    o.append(_lbl(508, 330, "(b)", "ts", "middle"))
+
+    return _fig(svg(680, 340, "".join(o),
+                    "Cầu phân áp dùng nhiệt điện trở và đường cong đầu ra hình chữ S"),
+                "Hình 32.19 · (a) Cầu phân áp dùng nhiệt điện trở. Điện trở R biểu diễn tổ hợp song "
+                "song của điện trở tải và điện trở phân áp cố định. (b) Đầu ra, e<sub>0</sub> theo "
+                "T, là một đường cong hình chữ S, tuyến tính trên một phần của dải nhiệt độ.",
+                "Hình 32.19 · (a) Thermistor voltage divider. The resistor R represents the parallel "
+                "combination of the load resistance and the fixed divider resistor. (b) The output, "
+                "e<sub>0</sub> vs. T, is an S-shaped curve that is linear over a portion of the "
+                "temperature range.",
+                "Hình (a) một nguồn xoay chiều e s nối tiếp với nhiệt điện trở R T ở nhánh trên và "
+                "điện trở R ở nhánh dưới, hai cực ra lấy ở giữa và ở đáy; hình (b) đường cong chữ S "
+                "của đầu ra e 0 theo nhiệt độ, tiệm cận mức e s",
+                "Panel (a) an alternating source in series with a thermistor and a fixed resistor, "
+                "with two output terminals; panel (b) an S-shaped output curve rising towards the "
+                "level e s")
+
+
+# ---------------------------------------------------------------- 32.20
+def _dot(x, y):
+    return _circ(x, y, 2.7, E, E, 1.0)
+
+
+def fig_32_20():
+    """Four circuits: the two non-standard-source networks the book converts
+    from (left) and the standard-source equivalents it converts to (right)."""
+    o = [_defs()]
+
+    # ---- (a) left: E1 driving R_T, R4, R3
+    o.append(_batt(105, 160))
+    o.append(_pl([(105, 156), (105, 70), (250, 70)], E, 1.3))
+    o.append(_therm(250, 100, 18))
+    o.append(_pl([(250, 70), (250, 82)], E, 1.3))
+    o.append(_pl([(250, 118), (250, 130)], E, 1.3))
+    o.append(_zz(250, 130, 250, 180))
+    o.append(_pl([(250, 180), (250, 204)], E, 1.3))
+    o.append(_zz(250, 204, 250, 244))
+    o.append(_pl([(250, 244), (250, 250), (105, 250), (105, 164)], E, 1.3))
+    o.append(_pl([(250, 192), (302, 192)], E, 1.3))
+    o.append(_term(302, 192))
+    o.append(_pl([(250, 250), (302, 250)], E, 1.3))
+    o.append(_term(302, 250))
+    o.append(_dot(250, 192))
+    o.append(_dot(250, 250))
+    o.append(_mix(122, 164, [("E", ""), ("1", "sub")], "start", "ts"))
+    o.append(_mix(274, 92, [("R", ""), ("T", "sub")], "start", "ts"))
+    o.append(_mix(274, 156, [("R", ""), ("4", "sub")], "start", "ts"))
+    o.append(_mix(274, 226, [("R", ""), ("3", "sub")], "start", "ts"))
+    o.append(_mix(310, 226, [("e", "i"), ("0", "sub")], "start", "ts"))
+    # the conversion runs left to right
+    o.append(_arr(330, 182, 370, 182, E, sw=1.3))
+
+    # ---- (a) right: the standard-source equivalent
+    o.append(_batt(410, 160))
+    o.append(_pl([(410, 156), (410, 70), (470, 70)], E, 1.3))
+    o.append(_zz(470, 70, 470, 118))
+    o.append(_pl([(470, 118), (470, 162)], E, 1.3))
+    o.append(_zz(470, 162, 470, 240))
+    o.append(_pl([(470, 240), (470, 250), (410, 250), (410, 164)], E, 1.3))
+    o.append(_pl([(470, 150), (520, 150), (520, 70), (590, 70)], E, 1.3))
+    o.append(_therm(590, 100, 18))
+    o.append(_pl([(590, 70), (590, 82)], E, 1.3))
+    o.append(_pl([(590, 118), (590, 162)], E, 1.3))
+    o.append(_zz(590, 162, 590, 240))
+    o.append(_pl([(590, 240), (590, 250), (646, 250)], E, 1.3))
+    o.append(_pl([(590, 150), (646, 150)], E, 1.3))
+    o.append(_term(646, 150))
+    o.append(_term(646, 250))
+    o.append(_dot(470, 150))
+    o.append(_dot(590, 150))
+    o.append(_mix(392, 164, [("E", ""), ("2", "sub")], "end", "ts"))
+    o.append(_mix(492, 96, [("R", ""), ("2", "sub")], "start", "ts"))
+    o.append(_mix(492, 206, [("R", ""), ("1", "sub")], "start", "ts"))
+    o.append(_mix(614, 92, [("R", ""), ("T", "sub")], "start", "ts"))
+    o.append(_mix(614, 206, [("R", ""), ("3", "sub")], "start", "ts"))
+    o.append(_mix(654, 206, [("e", "i"), ("0", "sub")], "start", "ts"))
+    o.append(_lbl(350, 284, "(a)", "ts", "middle"))
+
+    # ---- (b) left: E1 driving R_T and R only
+    o.append(_batt(105, 450))
+    o.append(_pl([(105, 446), (105, 360), (250, 360)], E, 1.3))
+    o.append(_therm(250, 390, 18))
+    o.append(_pl([(250, 360), (250, 372)], E, 1.3))
+    o.append(_pl([(250, 408), (250, 444)], E, 1.3))
+    o.append(_zz(250, 444, 250, 500))
+    o.append(_pl([(250, 500), (250, 506), (105, 506), (105, 454)], E, 1.3))
+    o.append(_pl([(250, 432), (302, 432)], E, 1.3))
+    o.append(_term(302, 432))
+    o.append(_pl([(250, 506), (302, 506)], E, 1.3))
+    o.append(_term(302, 506))
+    o.append(_dot(250, 432))
+    o.append(_dot(250, 506))
+    o.append(_mix(122, 454, [("E", ""), ("1", "sub")], "start", "ts"))
+    o.append(_mix(274, 382, [("R", ""), ("T", "sub")], "start", "ts"))
+    o.append(_lbl(274, 476, "R", "ts", "start"))
+    o.append(_mix(310, 466, [("e", "i"), ("01", "sub")], "start", "ts"))
+
+    # ---- (b) right: R2 in parallel with R_T, feeding R1
+    o.append(_batt(410, 450))
+    o.append(_pl([(410, 446), (410, 360), (470, 360)], E, 1.3))
+    o.append(_zz(470, 360, 470, 408))
+    o.append(_pl([(470, 408), (470, 442)], E, 1.3))
+    o.append(_pl([(470, 360), (560, 360), (560, 372)], E, 1.3))
+    o.append(_therm(560, 390, 18))
+    o.append(_pl([(560, 408), (560, 430), (470, 430)], E, 1.3))
+    o.append(_zz(470, 442, 470, 500))
+    o.append(_pl([(470, 500), (470, 506), (410, 506), (410, 454)], E, 1.3))
+    o.append(_pl([(470, 430), (646, 430)], E, 1.3))
+    o.append(_pl([(470, 506), (646, 506)], E, 1.3))
+    o.append(_term(646, 430))
+    o.append(_term(646, 506))
+    o.append(_dot(470, 360))
+    o.append(_dot(470, 430))
+    o.append(_dot(560, 430))
+    o.append(_mix(392, 454, [("E", ""), ("2", "sub")], "end", "ts"))
+    o.append(_mix(492, 390, [("R", ""), ("2", "sub")], "start", "ts"))
+    o.append(_mix(584, 382, [("R", ""), ("T", "sub")], "start", "ts"))
+    o.append(_mix(492, 478, [("R", ""), ("1", "sub")], "start", "ts"))
+    o.append(_mix(654, 486, [("e", "i"), ("02", "sub")], "start", "ts"))
+    o.append(_lbl(350, 574, "(b)", "ts", "middle"))
+
+    return _fig(svg(700, 620, "".join(o),
+                    "Bốn sơ đồ mạch tương đương của cầu phân áp nhiệt điện trở"),
+                "Hình 32.20 · Các mạch tương đương của cầu phân áp nhiệt điện trở, dùng để chuyển "
+                "một mạng có nguồn điện áp không chuẩn thành mạng dùng nguồn điện áp chuẩn. Ở (a) "
+                "chỉ một phần điện áp ra là khả dụng. Các nhiệt kế kiểu ôm kế dùng những mạch này. "
+                "Mạch chuyển đổi ở (b) cho toàn bộ điện áp ra khả dụng, nhưng mắc nối tiếp với một "
+                "điện áp phân cực. (b) được dùng với các nhiệt kế kiểu mạch cầu.",
+                "Hình 32.20 · Equivalent thermistor voltage divider circuits for converting a "
+                "network with a nonstandard voltage source to a network that uses a standard "
+                "voltage source. Only a portion of the output is available in (a). Ohmmeter-type "
+                "thermometers use such circuits. The conversion circuit of (b) provides the full "
+                "available output voltage in a series with a bias voltage. (b) is used with bridge "
+                "circuit-type thermometers.",
+                "Bốn sơ đồ mạch điện: hàng (a) gồm mạch dùng nguồn E 1 với nhiệt điện trở R T, R 4 "
+                "và R 3, và mạch tương đương dùng nguồn E 2 với R 2, R 1, R T và R 3; hàng (b) gồm "
+                "mạch dùng E 1 với R T và R, và mạch dùng E 2 với R 2 song song R T rồi nối tiếp "
+                "R 1",
+                "Four circuit diagrams: row (a) an E 1 network with a thermistor, R 4 and R 3 and "
+                "its E 2 equivalent with R 2, R 1, the thermistor and R 3; row (b) an E 1 network "
+                "with the thermistor and R, and an E 2 network with R 2 in parallel with the "
+                "thermistor feeding R 1")
+
+
+# ---------------------------------------------------------------- 32.21
+def fig_32_21():
+    """Three ways to reach a standard R_T0: the plain parallel network, the same
+    with an insertion resistor, and the two-thermistor conversion."""
+    o = [_defs()]
+
+    def net(l, r, top, bot, lead_l, lead_r):
+        """The common skeleton: a rectangle between terminals 1 and 2."""
+        g = [_term(lead_l[0], 110), _pl([(lead_l[0], 110), (lead_l[1], 110)], E, 1.3)]
+        g.append(_pl([(l, top), (l, 110), (l, bot)], E, 1.3))
+        g.append(_pl([(r, top), (r, 110), (r, bot)], E, 1.3))
+        g.append(_dot(l, 110))
+        g.append(_dot(r, 110))
+        g.append(_term(lead_r[0], 110))
+        g.append(_pl([(lead_r[1], 110), (r, 110)], E, 1.3))
+        return "".join(g)
+
+    # (a) the basic parallel network
+    o.append(net(60, 180, 55, 165, (35, 60), (205, 180)))
+    o.append(_pl([(60, 55), (96, 55)], E, 1.3))
+    o.append(_therm(120, 55, 16, horiz=True))
+    o.append(_pl([(144, 55), (180, 55)], E, 1.3))
+    o.append(_pl([(60, 165), (96, 165)], E, 1.3))
+    o.append(_zz(96, 165, 144, 165))
+    o.append(_pl([(144, 165), (180, 165)], E, 1.3))
+    o.append(_mix(120, 26, [("R", ""), ("T", "sub"), (" = R", ""), ("T0", "sub"),
+                            (" r(T)", "")], "middle", "ts"))
+    o.append(_lbl(120, 152, "R", "ts", "middle"))
+    o.append(_lbl(120, 206, "(a)", "ts", "middle"))
+
+    # (b) the same, with the insertion resistor R1
+    o.append(net(300, 420, 55, 165, (250, 262), (445, 420)))
+    o.append(_zz(262, 110, 296, 110))
+    o.append(_pl([(296, 110), (300, 110)], E, 1.3))
+    o.append(_pl([(300, 55), (336, 55)], E, 1.3))
+    o.append(_therm(360, 55, 16, horiz=True))
+    o.append(_pl([(384, 55), (420, 55)], E, 1.3))
+    o.append(_pl([(300, 165), (336, 165)], E, 1.3))
+    o.append(_zz(336, 165, 384, 165))
+    o.append(_pl([(384, 165), (420, 165)], E, 1.3))
+    o.append(_mix(279, 96, [("R", ""), ("1", "sub")], "middle", "ts"))
+    o.append(_mix(360, 26, [("R", ""), ("T", "sub"), (" = R", ""), ("T0", "sub"),
+                            (" r(T)", "")], "middle", "ts"))
+    o.append(_lbl(360, 152, "R", "ts", "middle"))
+    o.append(_lbl(360, 206, "(b)", "ts", "middle"))
+
+    # (c) the conversion, with R_E, R_A and R_B
+    o.append(net(530, 680, 55, 165, (470, 482), (705, 680)))
+    o.append(_zz(482, 110, 520, 110))
+    o.append(_pl([(520, 110), (530, 110)], E, 1.3))
+    o.append(_pl([(530, 55), (556, 55)], E, 1.3))
+    o.append(_therm(580, 55, 16, horiz=True))
+    o.append(_pl([(604, 55), (626, 55)], E, 1.3))
+    o.append(_zz(626, 55, 662, 55))
+    o.append(_pl([(662, 55), (680, 55)], E, 1.3))
+    o.append(_pl([(530, 165), (590, 165)], E, 1.3))
+    o.append(_zz(590, 165, 620, 165))
+    o.append(_pl([(620, 165), (680, 165)], E, 1.3))
+    o.append(_mix(501, 96, [("R", ""), ("E", "sub")], "middle", "ts"))
+    o.append(_mix(578, 24, [("R", ""), ("T", "sub"), (" = R\u2032", ""), ("T0", "sub"),
+                            (" r(T)", "")], "middle", "ts"))
+    o.append(_mix(644, 42, [("R", ""), ("A", "sub")], "middle", "ts"))
+    o.append(_mix(605, 152, [("R", ""), ("B", "sub")], "middle", "ts"))
+    o.append(_lbl(605, 206, "(c)", "ts", "middle"))
+
+    return _fig(svg(740, 250, "".join(o),
+                    "Ba mạng nhiệt điện trở tuyến tính tương đương, nối song song giữa hai cực"),
+                "Hình 32.21 · Các mạng nhiệt điện trở tuyến tính tương đương, dùng để chuyển một "
+                "mạng có R<sub>T0</sub> không chuẩn thành mạng có giá trị R′<sub>T0</sub> chuẩn theo "
+                "catalog. Yêu cầu là cả hai nhiệt điện trở phải có cùng đặc tính tỉ số điện trở – "
+                "nhiệt độ.",
+                "Hình 32.21 · Equivalent linear thermistor networks for converting a network with a "
+                "nonstandard R<sub>T0</sub> to a network with a standard catalog value for "
+                "R′<sub>T0</sub>. A requirement is that both thermistors have the same resistance "
+                "ratio–temperature characteristic.",
+                "Ba mạng song song giữa hai cực 1 và 2: (a) nhiệt điện trở song song với R, (b) "
+                "thêm R 1 nối tiếp ở nhánh vào, (c) thêm R E nối tiếp cùng nhiệt điện trở mắc nối "
+                "tiếp R A song song với R B",
+                "Three parallel networks between terminals 1 and 2: (a) a thermistor in parallel "
+                "with R, (b) the same with a series insertion resistor R 1, (c) a series R E with "
+                "the thermistor plus R A in parallel with R B")
+
+
+# ---------------------------------------------------------------- 32.22
+def fig_32_22():
+    """The two- and three-thermistor dividers. Both are the same skeleton — R1
+    from terminal 1 to the output node, then n parallel thermistor branches to
+    the bottom rail — so one routine draws both."""
+    o = [_defs()]
+
+    def net(xr, br, terms):
+        """xr is the R1 column, br the x positions of the thermistor branches,
+        terms the four terminal points. Both networks are the same skeleton, so
+        the branch count is the only thing that differs."""
+        t1, t2, t3, t4 = terms
+        g = []
+        # top rail and R1
+        g.append(_pl([(t1[0], t1[1]), (xr, t1[1])], E, 1.3))
+        g.append(_zz(xr, t1[1], xr, t1[1] + 55))
+        g.append(_pl([(xr, t1[1] + 55), (xr, 130)], E, 1.3))
+        g.append(_dot(xr, 130))
+        g.append(_pl([(xr, 130), (t3[0], t3[1])], E, 1.3))
+        # the branch bus
+        g.append(_pl([(xr, 130), (br[0], 130)], E, 1.3))
+        for bx in br:
+            g.append(_dot(bx, 130))
+            g.append(_zz(bx, 130, bx, 185))
+            g.append(_pl([(bx, 185), (bx, 208)], E, 1.3))
+            g.append(_therm(bx, 225, 17))
+            g.append(_pl([(bx, 242), (bx, 320)], E, 1.3))
+        # T1 hangs straight off the output node, on the R1 column — it is the
+        # one branch that is not inside a series pair
+        g.append(_pl([(xr, 130), (xr, 208)], E, 1.3))
+        g.append(_therm(xr, 225, 17))
+        g.append(_pl([(xr, 242), (xr, 320)], E, 1.3))
+        # the bottom rail and the terminal pair
+        g.append(_pl([(t2[0], t2[1]), (t4[0], t4[1])], E, 1.3))
+        for bx in br:
+            g.append(_dot(bx, 320))
+        # E_in and E_0
+        g.append(_darr(t1[0], t1[1] + 12, t2[0], t2[1] - 12))
+        g.append(_darr(t3[0], t3[1] + 12, t4[0], t4[1] - 12))
+        # the matched set — the box takes in T1 as well as the R/T branch pairs,
+        # which is what the book's dashed outline does
+        g.append(_rect(br[0] - 20, 112, (xr + 40) - (br[0] - 20), 190, "none", S, 1.2, "6 4"))
+        g.append(_mix(xr + 46, 300, [("R", ""), ("T", "sub")], "start", "ts"))
+        return "".join(g)
+
+    # ---- two-thermistor network
+    o.append(net(250, (150,), ((70, 50), (70, 320), (330, 130), (330, 320))))
+    o.append(_mix(272, 80, [("R", ""), ("1", "sub")], "start", "ts"))
+    o.append(_mix(172, 160, [("R", ""), ("2", "sub")], "start", "ts"))
+    o.append(_mix(272, 232, [("T", ""), ("1", "sub")], "start", "ts"))
+    o.append(_mix(172, 274, [("T", ""), ("2", "sub")], "start", "ts"))
+    o.append(_term(70, 50))
+    o.append(_term(70, 320))
+    o.append(_term(330, 130))
+    o.append(_term(330, 320))
+    o.append(_lbl(56, 44, "1", "ts", "end"))
+    o.append(_lbl(56, 334, "2", "ts", "end"))
+    o.append(_lbl(340, 124, "3", "ts", "start"))
+    o.append(_lbl(340, 334, "4", "ts", "start"))
+    o.append(_mix(0, 0, [("E", ""), ("in", "sub")], "middle", "ts",
+                  ' transform="translate(58,185) rotate(-90)"'))
+    o.append(_mix(0, 0, [("E", ""), ("0", "sub")], "middle", "ts",
+                  ' transform="translate(346,225) rotate(-90)"'))
+
+    # ---- three-thermistor network
+    o.append(net(580, (450, 515), ((410, 50), (410, 320), (670, 130), (670, 320))))
+    o.append(_mix(602, 80, [("R", ""), ("1", "sub")], "start", "ts"))
+    o.append(_mix(472, 160, [("R", ""), ("3", "sub")], "start", "ts"))
+    o.append(_mix(537, 160, [("R", ""), ("2", "sub")], "start", "ts"))
+    o.append(_mix(602, 232, [("T", ""), ("1", "sub")], "start", "ts"))
+    o.append(_mix(472, 274, [("T", ""), ("3", "sub")], "start", "ts"))
+    o.append(_mix(537, 274, [("T", ""), ("2", "sub")], "start", "ts"))
+    o.append(_term(410, 50))
+    o.append(_term(410, 320))
+    o.append(_term(670, 130))
+    o.append(_term(670, 320))
+    o.append(_lbl(396, 44, "1", "ts", "end"))
+    o.append(_lbl(396, 334, "2", "ts", "end"))
+    o.append(_lbl(680, 124, "3", "ts", "start"))
+    o.append(_lbl(680, 334, "4", "ts", "start"))
+    o.append(_mix(0, 0, [("E", ""), ("in", "sub")], "middle", "ts",
+                  ' transform="translate(398,185) rotate(-90)"'))
+    o.append(_mix(0, 0, [("E", ""), ("0", "sub")], "middle", "ts",
+                  ' transform="translate(686,225) rotate(-90)"'))
+
+    return _fig(svg(720, 360, "".join(o),
+                    "Cầu phân áp tuyến tính hai và ba nhiệt điện trở"),
+                "Hình 32.22 · Cầu phân áp tuyến tính hai nhiệt điện trở và ba nhiệt điện trở, cho độ "
+                "tuyến tính tốt hơn. Mắc các điện trở R<sub>1</sub> song song qua hai cực ra 3–4 sẽ "
+                "biến các mạng này thành mạng điện trở tuyến tính.",
+                "Hình 32.22 · Two-thermistor and three-thermistor linear voltage dividers that "
+                "provide improved linearity. Placing the resistors R<sub>1</sub> across the output "
+                "terminals 3–4 converts the networks to linear resistance networks.",
+                "Hai mạng cầu phân áp có bốn cực 1, 2, 3, 4; mạng trái có một nhánh nhiệt điện trở "
+                "T 2 mắc nối tiếp R 2 song song với T 1, mạng phải có thêm nhánh R 3 và T 3; đường "
+                "gạch đứt bao quanh bộ nhiệt điện trở",
+                "Two four-terminal divider networks; the left has one branch of R 2 in series with "
+                "T 2 in parallel with T 1, the right adds an R 3 / T 3 branch; a dashed box encloses "
+                "the matched thermistor set")
+
+
+# ---------------------------------------------------------------- 32.18
+def fig_32_18():
+    """Current against time for three chip thermistors driven from a step in
+    voltage. Three exponentials with different asymptotes, drawn on the book's
+    ruled grid — the grid is what makes the millisecond detail readable."""
+    o = [_defs()]
+    L, R, T, B = 150.0, 600.0, 60.0, 340.0
+    TMAX, IMAX = 28.0, 22.5
+
+    def px(t):
+        return L + t / TMAX * (R - L)
+
+    def py(i):
+        return B - i / IMAX * (B - T)
+
+    # ruled grid, drawn first so the curves sit on top of it
+    for i in (5, 10, 15, 20):
+        o.append(_line(L, py(i), R, py(i), "#e3e7ec", 0.9))
+    for t in (5, 10, 15, 20, 25):
+        o.append(_line(px(t), B, px(t), T, "#e3e7ec", 0.9))
+    o.append(_line(L, T, L, B + 8, E, 1.4))
+    o.append(_line(L - 8, B, R + 8, B, E, 1.4))
+
+    for i in (5, 10, 15, 20):
+        o.append(_line(L - 5, py(i), L, py(i), E, 1.2))
+        o.append(_lbl(L - 10, py(i) + 4, "%d" % i, "ts", "end"))
+    for t in (0, 5, 10, 15, 20, 25):
+        o.append(_line(px(t), B, px(t), B + 5, E, 1.2))
+        o.append(_lbl(px(t), B + 19, "%d" % t, "ts", "middle"))
+
+    o.append(_lbl(0, 0, "Current (mA)", "ts", "middle",
+                  ' transform="translate(108,%d) rotate(-90)"' % int((T + B) / 2)))
+    o.append(_lbl(0, 0, "Time (seconds)", "ts", "middle",
+                  ' transform="translate(%d,%d)"' % (int((L + R) / 2), B + 40)))
+
+    # I(t) = I0 + (Iinf - I0)(1 - exp(-t/tau)) for each of the three curves
+    for i0, iinf, tau, name in ((5.0, 15.0, 6.0, "A"), (5.0, 17.5, 3.4, "B"),
+                                (5.0, 20.0, 2.4, "C")):
+        pts = [(px(t / 4.0), py(i0 + (iinf - i0) * (1 - _m.exp(-(t / 4.0) / tau))))
+               for t in range(0, 101)]
+        o.append(_pl(pts, E, 1.5))
+        o.append(_lbl(px(TMAX) + 10, pts[-1][1] + 4, name, "t", "start"))
+
+    # inset: the test circuit, on a white patch so the grid does not run through it
+    o.append(_rect(404, 218, 194, 116, "#fff", E, 1.0))
+    o.append(_pl([(424, 242), (568, 242)], E, 1.2))
+    o.append(_pl([(424, 242), (424, 316)], E, 1.2))
+    o.append(_pl([(424, 316), (568, 316)], E, 1.2))
+    o.append(_pl([(568, 242), (568, 316)], E, 1.2))
+    o.append(_therm(496, 242, 14))
+    o.append(_res_v(568, 280, 9, 30))
+    o.append(_mix(582, 284, [("R", ""), ("L", "sub")], "start", "ts"))
+    o.append(_line(424, 266, 424, 292, "#fff", 3.4))
+    o.append(_line(414, 272, 434, 272, E, 1.4))
+    o.append(_line(419, 280, 429, 280, E, 2.6))
+    o.append(_line(424, 280, 424, 316, E, 1.2))
+    o.append(_mix(418, 268, [("E", "")], "end", "ts"))
+    # the switch, open at rest
+    o.append(_circ(478, 316, 2.4, E, E, 1.0))
+    o.append(_circ(504, 316, 2.4, E, E, 1.0))
+    o.append(_line(480, 315, 502, 304, E, 1.3))
+
+    return _fig(svg(680, 420, "".join(o),
+                    "Đặc tính dòng theo thời gian của ba nhiệt điện trở chip, có lưới chia độ"),
+                "Hình 32.18 · Đặc tính dòng – thời gian của các nhiệt điện trở chip phủ epoxy của "
+                "Thermometrics, Inc. Đường A và C ứng với một chiếc DC95F402 có điện trở ở công "
+                "suất không tại 25 °C là 4 kΩ. Đường B ứng với một chiếc DC9F802 có điện trở ở công "
+                "suất không tại 25 °C là 8 kΩ. Kích thích là một bước nhảy điện áp qua một nguồn "
+                "tương đương Thevenin. Với đường A, điện áp nguồn là 24 V và điện trở nguồn là 1 kΩ. "
+                "Với đường B và C, điện áp nguồn là 48 V và điện trở nguồn là 2 kΩ.",
+                "Hình 32.18 · Current–time characteristics of Thermometrics, Inc. epoxy-coated chip "
+                "thermistors. Curves A and C are for a DC95F402 having a zero-power resistance at "
+                "25 °C of 4 kΩ. Curve B is for a DC9F802 having a zero-power resistance at 25 °C of "
+                "8 kΩ. The excitation is a step function in voltage through a Thevenin equivalent "
+                "source. The source voltage and resistance values for curve A are 24 V and 1 kΩ, "
+                "respectively. For curves B and C, the source voltage is 48 V and source resistance "
+                "is 2 kΩ.",
+                "Ba đường cong dòng theo thời gian cùng xuất phát từ 5 mA và tiến dần tới các giá "
+                "trị 15, 17,5 và 20 mA, trên một lưới chia độ; góc dưới bên phải có sơ đồ mạch thử "
+                "gồm nguồn E, nhiệt điện trở, điện trở tải R L và một công tắc",
+                "Three current-versus-time curves starting together at 5 mA and levelling off at "
+                "15, 17.5 and 20 mA on a ruled grid, with a small test circuit inset at lower right")
+
+
+# ---------------------------------------------------------------- 32.17
+def fig_32_17():
+    """Voltage against current for a self-heated NTC thermistor, with the
+    Thevenin load line and the operating point where it cuts the curve."""
+    o = [_defs()]
+    AX, AY = 118.0, 350.0
+    o.append(_arr(AX, AY + 10, AX, 40, E, sw=1.5))
+    o.append(_arr(AX - 14, AY, 622, AY, E, sw=1.5))
+    o.append(_mix(104, 50, [("E", ""), ("T", "sub")], "end"))
+    o.append(_mix(630, 368, [("I", ""), ("T", "sub")], "start"))
+
+    # the V-I curve: steep rise, a maximum, then a slow negative-resistance fall
+    o.append(_pl([(120, 350), (123, 300), (128, 268), (136, 238), (148, 212),
+                  (165, 190), (186, 173), (210, 160), (238, 152), (268, 149),
+                  (300, 152), (340, 162), (390, 176), (450, 190), (520, 203),
+                  (590, 212), (622, 217)], E, 1.9))
+    # The load line is chosen so that it really does cut the curve: above the
+    # peak at 268, level with it at 450.  Drawing the dot at a fixed point and
+    # hoping the line passes through it is how fig 32.17 went wrong first time.
+    o.append(_line(150, 82, 622, 252, E, 1.5))
+    o.append(_circ(450, 190, 3.6, E, E, 1.0))
+    o.append(_on_line(150, 82, 622, 252, [("LOAD LINE", "")], off=-13, frac=0.34, cls="ts"))
+
+    # inset: the Thevenin equivalent looking into the thermistor terminals
+    o.append(_pl([(415, 68), (605, 68)], E, 1.2))
+    o.append(_pl([(415, 68), (415, 140)], E, 1.2))
+    o.append(_pl([(415, 140), (605, 140)], E, 1.2))
+    o.append(_pl([(605, 68), (605, 140)], E, 1.2))
+    o.append(_res_h(462, 68, 34, 9))
+    o.append(_mix(462, 56, [("R", ""), ("THEV", "sub")], "middle", "ts"))
+    # battery on the left leg
+    o.append(_line(415, 92, 415, 118, "#fff", 3.2))
+    o.append(_line(405, 96, 425, 96, E, 1.4))
+    o.append(_line(410, 104, 420, 104, E, 2.6))
+    o.append(_line(415, 104, 415, 140, E, 1.2))
+    o.append(_mix(430, 100, [("E", ""), ("THEV", "sub")], "start", "ts"))
+    o.append(_therm(605, 104, 15))
+    # the terminals the equivalent is taken with respect to
+    for y in (68, 140):
+        o.append(_circ(540, y, 3.2, "#fff", E, 1.1))
+        o.append(_arr(560, y, 545, y, E, sw=1.0))
+    o.append(_arcarr(508, 104, 31, 72, 224, E, 1.1))
+    o.append(_mix(474, 132, [("I", ""), ("T", "sub")], "middle", "ts"))
+
+    o.append(_mix(470, 170, [("OPERATING POINT", "")], "start", "ts"))
+    o.append(_arr(466, 174, 456, 187, E, sw=0.9))
+    return _fig(svg(680, 400, "".join(o),
+                    "Đặc tính dòng – áp của nhiệt điện trở NTC tự đốt nóng, kèm đường tải và điểm làm việc"),
+                "Hình 32.17 · Đặc tính dòng – áp điển hình của một nhiệt điện trở NTC. Do hiện tượng "
+                "tự đốt nóng, độ dốc của đường E<sub>T</sub> theo I<sub>T</sub> giảm khi dòng tăng. "
+                "Điều này tiếp diễn cho đến khi E<sub>T</sub> đạt cực đại, tại đó độ dốc bằng không. "
+                "Vượt qua giá trị này, độ dốc tiếp tục giảm và nhiệt điện trở thể hiện đặc tính điện "
+                "trở âm. Mạch tương đương Thevenin nhìn từ hai cực của nhiệt điện trở cho một quan "
+                "hệ tuyến tính giữa E<sub>T</sub> và I<sub>T</sub>, vẽ được thành đường tải. Giao "
+                "điểm của đường tải với đường E<sub>T</sub> theo I<sub>T</sub> là điểm làm việc.",
+                "Hình 32.17 · Typical voltage–current characteristic of an NTC thermistor. Due to "
+                "self-heating of the thermistor, the slope of the E<sub>T</sub> vs. I<sub>T</sub> "
+                "curve decreases with increasing current. This continues until a maximum value of "
+                "E<sub>T</sub> is reached for which the slope is equal to zero. Beyond this value, "
+                "the slope continues to decrease and the thermistor exhibits a negative resistance "
+                "characteristic. The Thevenin equivalent circuit with respect to the thermistor "
+                "terminals provides a straight-line relationship between E<sub>T</sub> and "
+                "I<sub>T</sub> that can be plotted as a load line. The intersection of the load "
+                "line with the E<sub>T</sub> vs. I<sub>T</sub> curve is the operating point.",
+                "Đường đặc tính dòng – áp dốc lên từ gốc, đạt đỉnh rồi hạ thoải; một đường thẳng "
+                "gọi là đường tải cắt nó tại điểm làm việc; góc trên bên phải có sơ đồ mạch tương "
+                "đương Thevenin gồm R THEV, nguồn E THEV và nhiệt điện trở",
+                "A current–voltage characteristic rising from the origin to a peak then falling "
+                "slowly, cut by a straight load line at the operating point, with a Thevenin "
+                "equivalent inset at upper right")
+
+
 FIGS = [fig_32_1, fig_32_2, fig_32_3, fig_32_4, fig_32_5, fig_32_6,
         fig_32_7, fig_32_8, fig_32_9, fig_32_10, fig_32_11, fig_32_12,
-        fig_32_13, fig_32_14, fig_32_15]
+        fig_32_13, fig_32_14, fig_32_15, fig_32_16, fig_32_17, fig_32_18,
+        fig_32_19, fig_32_20, fig_32_21, fig_32_22]
 
 
 def fig(n):
