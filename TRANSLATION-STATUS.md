@@ -1,10 +1,10 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-02 (session 44 — Chapter 29 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-02 (session 45 — Chapter 30 added) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook **Chapter 85** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–29, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
-> 98, 99, 100, 101** and **Appendix A** are done, live and registered; 30–85 are still `chờ dịch`.
+> book in reverse from the back. Chapters 1–30, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
+> 98, 99, 100, 101** and **Appendix A** are done, live and registered; 31–85 are still `chờ dịch`.
 > The reverse sequence is 85, 84 … down to and including 80 (*Bộ khuếch đại và điều hoà tín
 > hiệu*). Source text for every chapter is already extracted into `work/hb_chNN.txt`.
 >
@@ -3682,3 +3682,69 @@ read **45/101**, sitemap **571 URLs / 556 EN–VI pairs**, chapter nav **90 page
 
 **Owed, still:** the `aria-label` sweep across the other 34 `reader_hb_*` modules. Chapter 29 is
 clean (0 Vietnamese labels on the English page), but chapters 1–27 and 94–101 predate the fix.
+
+## Session 45 — 2026-11-02 · Handbook Chapter 30 (*Viscosity Measurement*) written and published
+
+Chapter 30 is a single long section — §30.1 *Shear Viscosity* — with seven sub-topics listed under
+the heading and no numbers of their own: Newtonian and non-Newtonian fluids, dimensions and units,
+viscometer types, capillary viscometers, falling body methods, the oscillating method and ultrasonic
+methods. 24 source pages, **12 figures, 46 equations, 4 tables**, 25 references and 3 annotated
+further-reading entries.
+
+**Source.** `work/Ch30.pdf` did not exist; the chapter lives in the user's own folder
+(`D:/Process Control and Automation\The Measurement_ Instrumentation and Sensors Handbook\Ch30.pdf`,
+579,615 bytes, 24 pages). Extracted to `work/hb_ch30.txt` with `===== PAGE N =====` markers and
+rendered at 140 dpi into `work/ch30img/p01–p24.png`. Every one of the 46 equations was mapped to its
+page first (`1:p2 … 46:p22`, no gaps) and then transcribed from the page images, because the text
+extraction mangles every fraction and subscript in this chapter.
+
+**Written as one section pair.** `sec_30_1_vi` and `sec_30_1_en` are 124.3 kB and 114.7 kB of HTML
+(UTF-8 bytes) and are structurally identical block for block: same 12 figures in order, same 46
+equations, same 4 tables, same 8 anchors (`s30-1` plus seven `t30-*`). Titles of cited works are left
+in the original language, as in chapters 28 and 29.
+
+**Registered and published.** `30: "ch30-viscosity-measurement"` added to `DONE`; `books_site.py`
+counter 45 → 46. Re-ran `reader_handbook.py`, `books_site.py`, `make_sitemap.py`, `chapter_nav.py`,
+`check_links.py`. Results: book TOC and both books indexes read **46/101**, sitemap **573 URLs / 558
+EN–VI pairs**, chapter nav **92 pages updated**, link check **575 pages, 15,661 local references,
+0 broken**.
+
+### Four content defects found during review
+
+None of these were visible to `qa_figs.py`, and three of them were wrong in the source-faithful
+sense rather than the typographic sense.
+
+1. **Table 30.2's group headings were off by one row.** The `group` map said
+   `{0: drag, 8: pressure, 12: others}` for a 12-row table whose blocks are actually rows 0–6, 7–10
+   and 11. The effect: "Pressure flow types" was printed *after* the long-capillary row, so that row
+   silently belonged to the drag block, and "Others / miscellaneous" — index 12 in a table with no
+   row 12 — never appeared at all, leaving Ultrasonic stranded under the pressure heading. Fixed to
+   `{0, 7, 11}` with a comment explaining that a group entry inserts its heading *before* that row.
+2. **A paragraph from the falling-cylinder discussion had drifted into the opaque-liquids
+   subsection.** "In the past, this method was primarily used to determine relative viscosities…"
+   explains what the end-correction factor ECF bought the method, so it belongs after equation 30.32,
+   not after figure 30.9. Moved.
+3. **The falling-cylinder range read 10⁻³ to 10⁶ Pa·s.** The source says 10⁷ (p. 17). Corrected in
+   both languages.
+4. **`slope η` was drawn on the strain-rate axis in figure 30.2** — placed at `(500, oy)`, the
+   literal axis y, so its descender ran through the axis line. Moving it above the line first landed
+   it on "dilatant materials" (which `qa_figs.py` caught); the final position, `(380, 277)`, is
+   clear of the axis, of "Newtonian liquids" and of both curves.
+
+### Notes for the next chapter
+
+- **`h2` must be the first block of every section function.** `sec_30_1_vi` was written without one,
+  which left the page with prose but no `s30-1` anchor and no visible section heading. The in-page
+  index then had nothing to link to.
+- **`fig()` calls are easy to forget when the prose only *mentions* the figure.** Figures 30.1 and
+  30.2 were referenced five times in the text before either was embedded; the count check
+  (`id="fig-30-N"`) is what surfaced it, not the reading.
+- **A one-section chapter needs a different index.** Listing sections gives a single entry, so
+  `sec_index()` lists the seven `h3` sub-topics instead, unnumbered — the handbook does not number
+  them and inventing 30.1.1–30.1.7 would be a fiction.
+- **The `.toc-list .n` span is optional.** Omitting it and keeping only `.t` renders fine; `.t` is
+  `flex: 1`.
+
+**Owed, still:** the `aria-label` sweep across the other 34 `reader_hb_*` modules. Chapters 29 and 30
+are clean (0 Vietnamese labels on the English page — 13 labels, all English, on chapter 30), but
+chapters 1–27 and 86–101 predate the fix.
