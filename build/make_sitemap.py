@@ -49,15 +49,25 @@ def collect():
     return urls
 
 
-def pair(url, urls):
-    """Return (en, vi) for a page, or (None, None) when it has no sibling."""
+def siblings(url, urls):
+    """The root EN url of a page plus the /vi/ and /es/ twins that exist.
+
+    'books/' -> [('en','/books/')]; '/vi/glossary.html' with an /es/ twin
+    present -> [('en','/glossary.html'), ('vi','/vi/glossary.html'),
+    ('es','/es/glossary.html')].
+    """
     if url.startswith("/vi/"):
-        en, vi = url[3:], url
+        en = url[3:]
+    elif url.startswith("/es/"):
+        en = url[4:]
     else:
-        en, vi = url, "/vi" + url
-    if en in urls and vi in urls:
-        return en, vi
-    return None, None
+        en = url
+    out = [("en", en)]
+    if "/vi" + en in urls:
+        out.append(("vi", "/vi" + en))
+    if "/es" + en in urls:
+        out.append(("es", "/es" + en))
+    return out
 
 
 def main():
@@ -66,13 +76,15 @@ def main():
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
            '        xmlns:xhtml="http://www.w3.org/1999/xhtml">']
     for url in sorted(urls):
-        en, vi = pair(url, urls)
+        sibs = siblings(url, urls)
         out.append("  <url>")
         out.append("    <loc>%s%s</loc>" % (BASE, url))
-        if en:
-            out.append('    <xhtml:link rel="alternate" hreflang="en" href="%s%s"/>' % (BASE, en))
-            out.append('    <xhtml:link rel="alternate" hreflang="vi" href="%s%s"/>' % (BASE, vi))
-            out.append('    <xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>' % (BASE, en))
+        if len(sibs) > 1:
+            for lang, u in sibs:
+                out.append('    <xhtml:link rel="alternate" hreflang="%s" href="%s%s"/>'
+                           % (lang, BASE, u))
+            out.append('    <xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>'
+                       % (BASE, sibs[0][1]))
         out.append("  </url>")
     out.append("</urlset>")
     out.append("")
@@ -87,8 +99,8 @@ def main():
         fh.write("\n")
         fh.write("Sitemap: %s/sitemap.xml\n" % BASE)
 
-    print("sitemap.xml: %d URLs, %d with EN/VI pairs"
-          % (len(urls), sum(1 for u in urls if pair(u, urls)[0])))
+    print("sitemap.xml: %d URLs, %d with language siblings"
+          % (len(urls), sum(1 for u in urls if len(siblings(u, urls)) > 1)))
 
 
 if __name__ == "__main__":

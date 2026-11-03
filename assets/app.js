@@ -47,6 +47,10 @@
     var links = document.querySelectorAll(
       ".nav a[href], .brand[href], .nextprev a[href]"
     );
+    // A page under /es/ sits one level deep and the twin sections have no
+    // /es/ mirror, so their links must climb back to the site root before
+    // the vi/ prefix (or the plain root target) is applied.
+    var up = /^\/es\//.test(location.pathname) ? "../" : "";
     for (var i = 0; i < links.length; i++) {
       var a = links[i];
       var raw = a.getAttribute("href");
@@ -56,7 +60,7 @@
       var isVi = rest.indexOf("vi/") === 0;
       var base = isVi ? rest.slice(3) : rest;
       if (!TWINS[base]) continue;
-      var want = pre + (l === "vi" ? "vi/" : "") + base;
+      var want = pre + up + (l === "vi" ? "vi/" : "") + base;
       if (raw !== want) a.setAttribute("href", want);
     }
   }
@@ -70,6 +74,9 @@
   function retargetBookLinks(l) {
     var VI = window.VI_BOOKS || {};
     var links = document.querySelectorAll("a[href]");
+    // Same /es/ depth rule as retargetNav: relative book links from an
+    // /es/ page resolve inside /es/, where the library does not exist.
+    var up = /^\/es\//.test(location.pathname) ? "../" : "";
     for (var i = 0; i < links.length; i++) {
       var a = links[i];
       var raw = a.getAttribute("href");
@@ -87,7 +94,10 @@
       var key = cut ? path.slice(0, cut.index) : path;
       var suffix = cut ? path.slice(cut.index) : "";
       if (!VI[key]) continue;
-      var want = pre + (abs ? "/" : "") + (l === "vi" ? "vi/" : "") + key + suffix;
+      /* If the link already climbs (retargetNav ran first on .nav links),
+         adding the /es/ prefix again would double it. */
+      var climb = up && !pre ? up : "";
+      var want = pre + (abs ? "/" : climb) + (l === "vi" ? "vi/" : "") + key + suffix;
       if (raw !== want) a.setAttribute("href", want);
     }
   }

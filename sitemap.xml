@@ -3,6 +3,9 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://pro-instcontrol.github.io/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pro-instcontrol.github.io/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/advanced/</loc>
@@ -12,6 +15,9 @@
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/applications.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/applications.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pro-instcontrol.github.io/es/applications.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/applications.html"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/books/</loc>
@@ -1653,18 +1659,72 @@
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/comparison.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/comparison.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pro-instcontrol.github.io/es/comparison.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/comparison.html"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/control.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/control.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pro-instcontrol.github.io/es/control.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/control.html"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/education.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/education.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pro-instcontrol.github.io/es/education.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/education.html"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/es/</loc>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/es/applications.html</loc>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/es/comparison.html</loc>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/es/control.html</loc>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/es/education.html</loc>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/es/fundamentals.html</loc>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/es/geotechnical.html</loc>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/es/install.html</loc>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/es/instruments.html</loc>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/es/process.html</loc>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/es/safety.html</loc>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/es/standards.html</loc>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/es/tools.html</loc>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/fundamentals.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/fundamentals.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pro-instcontrol.github.io/es/fundamentals.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/fundamentals.html"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/geotechnical.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/geotechnical.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pro-instcontrol.github.io/es/geotechnical.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/geotechnical.html"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/glossary.html</loc>
@@ -1680,27 +1740,39 @@
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/install.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/install.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pro-instcontrol.github.io/es/install.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/install.html"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/instruments.html</loc>
-  </url>
-  <url>
-    <loc>https://pro-instcontrol.github.io/pdf-store-b/</loc>
-  </url>
-  <url>
-    <loc>https://pro-instcontrol.github.io/pdf-store/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/instruments.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pro-instcontrol.github.io/es/instruments.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/instruments.html"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/process.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/process.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pro-instcontrol.github.io/es/process.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/process.html"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/safety.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/safety.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pro-instcontrol.github.io/es/safety.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/safety.html"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/standards.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/standards.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pro-instcontrol.github.io/es/standards.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/standards.html"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/tools.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/tools.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pro-instcontrol.github.io/es/tools.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/tools.html"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/advanced/</loc>

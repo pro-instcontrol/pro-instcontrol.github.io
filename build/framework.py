@@ -21,7 +21,7 @@ DIST = os.path.join(ROOT, "dist")
 
 # Single cache-busting version for every generated page. Bump this whenever
 # style.css or app.js changes; the env var exists only for one-off experiments.
-ASSET_VER = os.environ.get("ASSET_VER", "19")
+ASSET_VER = os.environ.get("ASSET_VER", "20")
 
 _NEST_OPEN = re.compile(r"<(h[1-4]|p|li)([^>]*)><\1([^>]*)>")
 _NEST_CLOSE = re.compile(r"</(h[1-4]|p|li)></\1>")
@@ -529,4 +529,22 @@ def write(path, content):
     with open(full, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(content)
     WRITTEN.append(full)
+    # Real /es/ URLs: every framework-rendered page — the ones carrying the
+    # I18N payload; the static /vi/ twins, the library and glossary don't — is
+    # mirrored at /es/<path> and booted in Spanish by app.js via PIC_LANG.
+    # Where ES_MAP has no entry yet the body stays English under the Spanish
+    # shell, exactly what ?lang=es shows today, so the mirror can never
+    # render a hole; it turns Spanish as ES_MAP grows.
+    if (path.endswith(".html") and not path.startswith(("vi/", "es/"))
+            and "window.I18N=" in content):
+        es = content.replace('<html lang="en">', '<html lang="es">', 1)
+        es = es.replace("window.I18N=", 'window.PIC_LANG="es";window.I18N=', 1)
+        # Asset links are page-relative; one level deeper they must climb.
+        es = es.replace('href="assets/', 'href="../assets/')
+        es = es.replace('src="assets/', 'src="../assets/')
+        full_es = os.path.join(DIST, "es", path)
+        os.makedirs(os.path.dirname(full_es), exist_ok=True) if os.path.dirname(full_es) else None
+        with open(full_es, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(es)
+        WRITTEN.append(full_es)
     return full
