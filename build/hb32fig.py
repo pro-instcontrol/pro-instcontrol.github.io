@@ -1864,17 +1864,227 @@ def fig_32_26():
                 "internal compensation pair A′-B′ referencing T_0 inside")
 
 
+# ---- 32.27  (grounding / shielding, sub-figures a–g)
+def _twpair(x0, x1, y, n=4, col=E, sw=1.3):
+    """A twisted-pair segment: two wires that cross n times."""
+    seg = (x1 - x0) / (2 * n)
+    pts_top, pts_bot = [], []
+    for i in range(2 * n + 1):
+        x = x0 + i * seg
+        if i % 2 == 0:
+            pts_top.append((x, y - 7)); pts_bot.append((x, y + 7))
+        else:
+            pts_top.append((x, y + 7)); pts_bot.append((x, y - 7))
+    return _pl(pts_top, col, sw) + _pl(pts_bot, col, sw)
+
+
+def _tblock(x, yc):
+    """3-terminal input block; returns svg + the three terminal y coords."""
+    w, h = 40, 34
+    out = [_rect(x, yc - h / 2, w, h, "#fff", E, 1.3, rx=3)]
+    ys = [yc - 9, yc, yc + 9]
+    for yy in ys:
+        out.append(_line(x + w, yy, x + w + 6, yy, E, 1.1))
+    out.append(_lbl(x + w / 2, yc - 15, "+", "ts", "middle", _fs(9)))
+    out.append(_lbl(x + w / 2, yc + 3, "−", "ts", "middle", _fs(9)))
+    out.append(_lbl(x + w / 2, yc + 21, "o", "ts", "middle", _fs(9)))
+    return "".join(out), ys
+
+
+def _gnd(x, y, label, col=E):
+    out = [_line(x, y, x, y + 12, col, 1.2),
+           _line(x - 9, y + 12, x + 9, y + 12, col, 1.2),
+           _line(x - 6, y + 16, x + 6, y + 16, col, 1.2),
+           _line(x - 3, y + 20, x + 3, y + 20, col, 1.2),
+           _lbl(x, y + 30, label, "ts", "middle", _fs(8))]
+    return "".join(out)
+
+
+def fig_32_27():
+    """Preferred grounding and shielding for several thermometry situations
+    (sub-figures a–g).  EM and ES noise are controlled by different means."""
+    o = [_defs()]
+    W, H = 780, 762
+    N = 7
+    top = 28
+    rh = (H - top - 44) / N
+    subj_x0, subj_x1 = 40, 60
+    # test-subject bar (hatched), with a rotated label
+    o.append(_rect(subj_x0, top, subj_x1 - subj_x0, N * rh, "url(#w32)", E, 1.2))
+    o.append(_rot(_lbl((subj_x0 + subj_x1) / 2 + 2, top + N * rh / 2,
+                        "Test Subject", "ts", "middle", _fs(9)),
+                   (subj_x0 + subj_x1) / 2 + 2, top + N * rh / 2))
+    # right rails
+    rail_out, rail_in = 672, 652
+    o.append(_line(rail_out, top, rail_out, top + N * rh, E, 1.3))
+    o.append(_line(rail_in, top, rail_in, top + N * rh, E, 1.3))
+    o.append(_lbl(rail_out + 4, top - 6, "+", "ts", "start", _fs(9)))
+    o.append(_lbl(rail_in + 4, top - 6, "−", "ts", "start", _fs(9)))
+    # grounds at the bottom
+    gy = top + N * rh + 16
+    o.append(_line(rail_out, top + N * rh, rail_out, gy, E, 1.2))
+    o.append(_gnd(rail_out, gy, "Guard Power Gnd"))
+    o.append(_line(subj_x1, top + N * rh, subj_x1, gy, E, 1.2))
+    o.append(_gnd(subj_x1, gy, "Subject Gnd"))
+    block_x = 560
+    for i in range(N):
+        yc = top + i * rh + rh / 2
+        iz_x = subj_x1 + 8
+        o.append(_rect(iz_x, yc - 13, 10, 26, "url(#h32)", E, 1.0))  # isolation/coupling
+        tp0 = iz_x + 16
+        tp1 = block_x - 14
+        o.append(_line(tp0, yc - 7, tp1, yc - 7, E, 1.3))
+        o.append(_line(tp0, yc + 7, tp1, yc + 7, E, 1.3))
+        o.append(_twpair(tp0, tp1, yc, n=4))
+        svg_b, ys = _tblock(block_x, yc)
+        o.append(svg_b)
+        o.append(_line(block_x + 40, ys[0], rail_out, ys[0], E, 1.1))
+        o.append(_line(block_x + 40, ys[1], rail_in, ys[1], E, 1.1))
+        # guard return: drop clear of the lower signal wire before running left
+        o.append(_pl([(block_x + 40, ys[2]), (block_x + 40, yc + 24),
+                      (tp0 - 4, yc + 24)], E, 1.1, "3 3"))
+        if i == 0:
+            o.append(_circ(tp0 + 7, yc - 7, 2.4, "none", E, 1.0))
+            o.append(_lbl(block_x + 50, ys[0] - 2, "Tr", "ts", "start", _fs(8)))
+            o.append(_mix(iz_x + 7, yc - 20, [("T", "i"), ("m", "sub")], "middle", "ts", _fs(8)))
+            o.append(_mix(iz_x + 7, yc + 22, [("T", "i"), ("s", "sub")], "middle", "ts", _fs(8)))
+            o.append(_lbl(iz_x + 20, top + 2, "Electrical Isolation", "ts", "start", _fs(8)))
+            o.append(_lbl(iz_x + 20, top + 12, "Thermal Coupling", "ts", "start", _fs(8)))
+        elif i == 1:
+            o.append(_circ(subj_x1 + 13, yc, 2.6, E, E, 1.0))
+            o.append(_circ(tp0 + 5, yc - 7, 2.2, "none", E, 1.0))
+            o.append(_circ(tp0 + 5, yc + 7, 2.2, "none", E, 1.0))
+        else:  # 2..6: oval coupling element with open-circle marks + dashed links
+            oval_x = (tp0 + tp1) / 2
+            o.append(_ell(oval_x, yc, 14, 20, "none", S, 1.1, dash="4 3"))
+            o.append(_circ(oval_x, yc - 8, 2.0, "none", E, 1.0))
+            o.append(_circ(oval_x, yc + 8, 2.0, "none", E, 1.0))
+            o.append(_line(oval_x - 16, yc, oval_x - 2, yc, E, 1.0, dash="4 3"))
+            o.append(_line(oval_x + 2, yc, oval_x + 16, yc, E, 1.0, dash="4 3"))
+            if i == 2:
+                o.append(_path("M %d,%d q -16,0 -16,16 q 0,16 16,16" % (subj_x1 + 8, yc - 7), E, 1.2))
+            elif i == 3:
+                o.append(_path("M %d,%d h -14 v 14 h 14 v -10" % (subj_x1 + 8, yc - 7), E, 1.2))
+            elif i == 4:
+                o.append(_path("M %d,%d q -18,-12 -18,4 q 0,18 18,4" % (subj_x1 + 8, yc - 7), E, 1.2))
+            elif i == 5:
+                o.append(_path("M %d,%d q -22,-4 -22,8 q 0,18 22,6" % (subj_x1 + 8, yc - 7), E, 1.2))
+            else:
+                o.append(_path("M %d,%d l -14,-8 M %d,%d l -14,8"
+                               % (subj_x1 + 8, yc - 7, subj_x1 + 8, yc + 7), E, 1.2))
+        o.append(_lbl(subj_x1 + 3, yc - rh / 2 + 11, "(%s)" % chr(97 + i), "ts", "start", _fs(9)))
+    return _fig(svg(W, H, "".join(o),
+                    "Nối đất và che chắn ưu tiên cho một số tình huống đo nhiệt độ"),
+                "Hình 32.27 · Nối đất và che chắn ưu tiên cho một số tình huống đo nhiệt độ. Nhiễu "
+                "điện từ (EM) và tĩnh điện (ES) phải được khống chế bằng những biện pháp khác nhau. "
+                "Thiết kế của bộ theo dõi cặp nhiệt điện có thể quy định sẵn cách nối đất và che "
+                "chắn được dùng.",
+                "Figure 32.27 · Preferred grounding and shielding for several thermometry "
+                "situations. Electromagnetic (EM) and electrostatic (ES) noise must be controlled "
+                "by different means. The design of the thermocouple monitoring instrument may "
+                "dictate the grounding and shielding scheme that can be used.",
+                "Bảy sơ đồ con (a)–(g): thanh sọc chéo bên trái là vật thể thử, mỗi hàng nối qua "
+                "cặp xoắn và khối đầu vào ba cực (+ − o) tới hai thanh ray + và − bên phải, tiếp "
+                "đất Guard Power Gnd và Subject Gnd ở đáy",
+                "Seven sub-figures (a)–(g): hatched bar at left is the test subject, each row runs "
+                "through a twisted pair and a three-terminal input block (+ − o) to the + and − "
+                "rails at right, grounded at Guard Power Gnd and Subject Gnd at the bottom")
+
+
+# ---- 32.28  (balanced input recorder)
+def _z(zx, zy, w, vert=False, n=6, amp=6, col=E, sw=1.3):
+    """A zigzag resistor between (zx,zy) and (zx+w,zy) (or vertical)."""
+    pts = []
+    for i in range(n + 1):
+        t = i / float(n)
+        if vert:
+            y = zy + t * w
+            x = zx + (amp if (i % 2 == 1) else -amp) * (1 if (i not in (0, n)) else 0)
+        else:
+            x = zx + t * w
+            y = zy + (amp if (i % 2 == 1) else -amp) * (1 if (i not in (0, n)) else 0)
+        pts.append((x, y))
+    return _pl(pts, col, sw)
+
+
+def fig_32_28():
+    """Balanced input recorder circuit for improved common-mode noise rejection."""
+    o = [_defs()]
+    W, H = 680, 300
+    # measuring junction Tm, with a dashed shield arc hugging it on the right
+    o.append(_circ(60, 150, 3, E, E, 1.2))
+    o.append(_circ(60, 150, 22, "none", S, 1.1, dash="4 3"))
+    o.append(_mix(60, 104, [("T", "i"), ("m", "sub")], "middle", "ts", _fs(9)))
+    o.append(_path("M 60,116 A 34,34 0 1 1 60,184", E, 1.2, "none", "2 3"))
+    # emf sources + resistors on the two legs
+    for yi, tag in ((132, "a"), (168, "b")):
+        o.append(_line(84, yi, 110, yi, E, 1.4))
+        o.append(_circ(136, yi, 14, "none", E, 1.2))
+        o.append(_mix(136, yi - 20, [("E", "i"), (tag, "sub")], "middle", "ts", _fs(8)))
+        o.append(_line(150, yi, 214, yi, E, 1.4))
+        o.append(_z(214, yi, 42, False, 6, 6))
+        o.append(_mix(235, yi - 16, [("R", ""), (tag, "sub")], "middle", "ts", _fs(9)))
+        o.append(_line(256, yi, 320, yi, E, 1.4))
+    # T_r reference box, with conductors carried through to the diamond nodes
+    o.append(_rect(320, 110, 110, 80, "#fff", E, 1.4, rx=4))
+    o.append(_mix(375, 102, [("T", "i"), ("r", "sub")], "middle", "ts", _fs(9)))
+    for yd in (132, 168):
+        o.append(_line(320, yd, 367, yd, E, 1.3))
+        o.append(_poly([(372, yd - 5), (377, yd), (372, yd + 5), (367, yd)], "none", E, 1.2))
+    # R_c balancing resistor on the lower reference path, in its own dashed zone
+    o.append(_z(436, 168, 42, False, 6, 6))
+    o.append(_mix(457, 148, [("R", ""), ("c", "sub")], "middle", "ts", _fs(9)))
+    o.append(_rect(432, 152, 54, 28, "none", S, 1.1, dash="4 3", rx=6))
+    # upper signal line steps up to the top of the upper R_s
+    o.append(_pl([(430, 132), (470, 132), (470, 120), (514, 120)], E, 1.3))
+    o.append(_line(478, 168, 514, 168, E, 1.3))
+    # two matched R_s (vertical)
+    o.append(_z(520, 120, 30, True, 6, 6))
+    o.append(_z(520, 168, 30, True, 6, 6))
+    o.append(_mix(496, 162, [("R", ""), ("s", "sub")], "end", "ts", _fs(9)))
+    o.append(_rect(505, 108, 46, 100, "none", S, 1.1, dash="4 3", rx=6))
+    # guard enclosure + instrument block; wires land on the terminals
+    o.append(_rect(560, 70, 92, 162, "none", S, 1.1, dash="4 3", rx=8))
+    o.append(_rect(576, 95, 38, 112, "#fff", E, 1.3, rx=4))
+    for yy in (115, 150, 185):
+        o.append(_circ(595, yy, 3, E, E, 1.1))
+    o.append(_pl([(520, 120), (545, 120), (545, 115), (576, 115)], E, 1.3))
+    o.append(_line(520, 150, 576, 150, E, 1.3))
+    o.append(_pl([(520, 198), (545, 198), (545, 185), (576, 185)], E, 1.3))
+    o.append(_lbl(622, 119, "+", "ts", "start", _fs(9)))
+    o.append(_lbl(622, 189, "−", "ts", "start", _fs(9)))
+    o.append(_mix(595, 84, [("T", "i"), ("i", "sub")], "middle", "ts", _fs(9)))
+    o.append(_lbl(595, 226, "Guard", "ts", "middle", _fs(8)))
+    return _fig(svg(W, H, "".join(o),
+                    "Sơ đồ mạch đầu vào cân bằng để cải thiện khử nhiễu chế độ chung"),
+                "Hình 32.28 · Sơ đồ mạch đầu vào cân bằng cho máy ghi nhằm cải thiện khử nhiễu "
+                "chế độ chung. Điện trở cân bằng nhiệt kế R<sub>c</sub> = R<sub>a</sub> − "
+                "R<sub>b</sub> và cặp điện trở đầu vào trở cao chuẩn khớp R<sub>s</sub> phải "
+                "được giữ đẳng nhiệt.",
+                "Figure 32.28 · A circuit arrangement for balanced input recorders to improve "
+                "common-mode noise rejection. The thermometer balancing resistor, "
+                "R<sub>c</sub> = R<sub>a</sub> − R<sub>b</sub>, and the matched pair of "
+                "high-resistance input resistors R<sub>s</sub> must be held isothermal.",
+                "Mạch đầu vào cân bằng: mối nối đo T_m trái, nguồn E_a/E_b và điện trở R_a/R_b "
+                "trên hai nhánh vào hộp chuẩn T_r, điện trở cân bằng R_c và cặp R_s, khối dụng "
+                "cụ ba cực +/−/Guard trong vùng che chắn bên phải",
+                "Balanced input circuit: measuring junction T_m at left, emf sources E_a/E_b and "
+                "resistors R_a/R_b on the two legs feeding the T_r reference box, balancing "
+                "resistor R_c and the matched R_s pair, three-terminal +/−/Guard instrument "
+                "block inside the guarded region at right")
+
+
 FIGS = [fig_32_1, fig_32_2, fig_32_3, fig_32_4, fig_32_5, fig_32_6,
         fig_32_7, fig_32_8, fig_32_9, fig_32_10, fig_32_11, fig_32_12,
         fig_32_13, fig_32_14, fig_32_15, fig_32_16, fig_32_17, fig_32_18,
-        fig_32_19, fig_32_20, fig_32_21, fig_32_22, fig_32_24,
-        fig_32_25, fig_32_26]
+        fig_32_19, fig_32_20, fig_32_21, fig_32_22,         fig_32_24,
+        fig_32_25, fig_32_26, fig_32_27, fig_32_28]
 
 # The book has no figure 32.23: the numbering runs 32.22 -> 32.24 and nothing in
 # the PDF ever mentions a 32.23.  FIGS is positional, so the printed number of
 # each slot lives here; fig() refuses a number that is not in the list rather
 # than quietly handing back the figure next door.
-FIG_NO = list(range(1, 23)) + [24, 25, 26]
+FIG_NO = list(range(1, 23)) + [24, 25, 26, 27, 28]
 
 
 def fig(n):

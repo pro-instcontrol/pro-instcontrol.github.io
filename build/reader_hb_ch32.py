@@ -4190,12 +4190,593 @@ def sec_32_4b_en():
     return "".join(b)
 
 
+def sec_32_4c_vi():
+    b = [h4("Các bộ phận điều chế tín hiệu dạng mô-đun",
+            "Modular Signal Conditioning Components")]
+    b.append(p(
+        "Số lượng các bộ chỉ thị và máy ghi cặp nhiệt điện đa dạng và năng động hiện có trên thị "
+        "trường — từ loại đơn giản, rất rẻ đến loại tinh vi, đa năng mà giá vẫn hợp lý — làm cho "
+        "phần lớn đo nhiệt độ ứng dụng không cần phải lắp ráp các mạch điều chế tín hiệu đặc "
+        "biệt. Một số người, muốn tiết kiệm phần cứng, đã tự dựng các hệ thống riêng. Quá thường "
+        "xen, những hệ thống đó không đạt được phép đo chính xác và hóa ra rất đắt, bởi những "
+        "điểm khác biệt then chốt giữa mạch nhiệt điện và mạch điện thông thường không được coi "
+        "trọng. Với các tình huống đặc biệt cần đưa cặp nhiệt điện vào các bộ phận hay hệ thống "
+        "đo hoặc vận hành chuyên dụng, vài nhà sản xuất hiện cung cấp các linh kiện dạng mô-đun "
+        "và mạch tích hợp giúp đơn giản hóa ứng dụng đặc biệt và quả thật che chở người thiếu "
+        "hiểu biết khỏi một số cạm bẫy [13]."))
+    b.append(p(
+        "<b>Điều chế tín hiệu cặp nhiệt điện trên một chip.</b> Vì tín hiệu cặp nhiệt điện ở "
+        "mức thấp, đôi khi cần khuếch đại chúng để có độ phân giải, ghi nhận hay điều khiển tốt "
+        "hơn. Có thể mong muốn đưa cảm biến cặp nhiệt điện vào làm một bộ phận chức năng trong "
+        "các hộp dụng cụ khác. Hiện đã có một số mô-đun mạch tích hợp kiểu nhỏ gọn và rẻ tiền "
+        "cho cặp nhiệt điện, cung cấp bù nhiệt độ mối nối chuẩn, tuyến tính hóa, cách ly, báo "
+        "đầu vào hở, khuếch đại và điều khiển điểm đặt. Áp dụng đúng cách, chúng khiến việc tích "
+        "hợp cảm biến cặp nhiệt điện vào các thiết bị khác, chẳng hạn bo thu thập dữ liệu máy "
+        "tính, trở nên rất đơn giản [13]."))
+    b.append(p(
+        "Khi người dùng áp dụng các linh kiện mô-đun như vậy, việc hiểu và áp dụng mô hình mạch "
+        "nhiệt điện đích thực và các nguyên lý đã trình bày trong phần “Mô hình chức năng của "
+        "mạch nhiệt điện” đặc biệt quan trọng. Một số precaution mà các bộ theo dõi cặp nhiệt "
+        "điện thương mại thường có sẵn thì người dùng phải tự cung cấp."))
+    b.append(p(
+        "<b>Cảm biến nhiệt độ chuẩn.</b> Cặp nhiệt điện tự sinh điện. Với phép đo nhiệt độ và "
+        "đo nhiệt độ vi phân gần đúng thông thường, chúng không cần nguồn kích thích cũng như "
+        "không cần nhiệt độ chuẩn. Với đo nhiệt độ chính xác, trừ khi nhiệt độ chuẩn đã biết "
+        "được áp đặt về mặt vật lý, cần phải đo nhiệt độ mối nối chuẩn chính xác bằng một phương "
+        "tiện độc lập. Việc cảm nhận này thường dùng RTD có nguồn cấp, nhiệt điện trở, transistor "
+        "hoặc cảm biến mạch tích hợp [1, 4]."))
+    b.append(p(
+        "<b>Bộ bù nhiệt độ chuẩn.</b> Bù chuẩn đúng đắn đòi hỏi (1) thiết lập một vùng nhiệt độ "
+        "đẳng nhiệt gồm cả các cực của cặp nhiệt điện, (2) cảm nhận nhiệt độ của vùng này, và "
+        "(3) áp dụng một điện áp bù vật lý hoặc số vào điện áp cực của cặp nhiệt điện trước khi "
+        "tỷ lệ hóa tổng điện áp thành nhiệt độ."))
+    b.append(p(
+        "Phương pháp tương tự đưa cảm biến nhiệt độ vùng trở kháng vào một cầu, điều biến phi "
+        "tuyến một điện áp cấp theo một đường cong phi tuyến xấp xỉ của đặc tính "
+        "<i>E</i>(<i>T</i>) của cặp nhiệt điện. Phương pháp này chỉ thích hợp để bù cho một loại "
+        "cặp nhiệt điện duy nhất. Phương pháp thay thế chuyển đổi bằng số nhiệt độ chuẩn cảm "
+        "nhận được thành giá trị điện áp bù thích hợp. Cách tiếp cận số cho phép áp dụng một "
+        "điện áp bù riêng cho từng cặp nhiệt điện và cho các loại chuẩn khác nhau. Về nguyên "
+        "tắc, để chính xác, điện áp bù bằng số có thể được người dùng lập trình tuân theo độ "
+        "hiệu chuẩn cụ thể của từng cặp nhiệt điện, dù thuộc loại chuẩn hóa hay không."))
+    b.append(p(
+        "Bộ bù nhiệt độ chuẩn nằm bên trong các bộ theo dõi cặp nhiệt điện tiên tiến hơn. Trong "
+        "các máy hiện đại, tám đến mười đầu vào cặp nhiệt điện được nhóm trên một cụm cực đẳng "
+        "nhiệt tháo rời riêng, để có thể tháo ra hiệu chuẩn cảm biến chuẩn hoặc thay thế. Giống "
+        "như cặp nhiệt điện, cảm biến chuẩn thỉnh thoảng trôi, gây sai số nhiệt độ đáng kể. Với "
+        "phần lớn loại cặp nhiệt điện, sai số 1° ở nhiệt độ chuẩn tạo ra sai số tương tự ở "
+        "nhiệt độ đo. Nhiều loại bộ bù mối nối chuẩn độc lập, cấp bằng pin hay điện lưới, một "
+        "hay nhiều kênh, cũng có bán trên thị trường [4, 14]."))
+
+    b.append(h4("Nối đất, che chắn và nhiễu", "Grounding, Shielding, and Noise"))
+    b.append(p(
+        "Các nguyên lý có cơ sở kỹ thuật vững chắc về kiểm soát nhiễu cho mạch điện cũng áp dụng "
+        "cho mạch nhiệt điện [15, 16]. Tuy nhiên, có một số điểm cần cân nhắc thêm riêng cho "
+        "mạch cặp nhiệt điện. Một số vấn đề kiểm soát nhiễu bắt nguồn từ bản chất của hiện "
+        "tượng nhiệt điện; số khác bắt nguồn từ thông lệ thiết kế cặp nhiệt điện thương mại."))
+
+    b.append(h5("Những vấn đề nhiễu riêng của cặp nhiệt điện",
+                "Noise Problems Peculiar to Thermocouples"))
+    b.append(p(
+        "Việc kiểm soát nhiệt độ của mọi mối nối và linh kiện chủ đích cũng như vô ý, và bản "
+        "chất phân bố của nguồn suất điện động Seebeck, không thể bỏ qua mà không phải trả giá "
+        "trong ứng dụng cặp nhiệt điện. Những yêu cầu tất yếu của sự kiểm soát đó được trực "
+        "quan hóa tốt nhất bằng các phương pháp sẽ nêu sau trong phần “Mô hình chức năng của "
+        "mạch nhiệt điện”. Các linh kiện mạch thừa như điện trở cân bằng hoặc hạn dòng, cực "
+        "nối xuyên (feedthru), mối ghép và dải cực, vốn không nhằm góp suất điện động Seebeck, "
+        "phải được chủ đích duy trì đẳng nhiệt. Các lớp che chắn, tất yếu không đẳng nhiệt, khi "
+        "được nối chung điện với cặp nhiệt điện phải được thừa nhận rõ ràng là nguồn tiềm ẩn "
+        "của nhiễu một chiều ngẫu nhiên, góp phần tạo suất điện động Seebeck nếu không nối "
+        "đúng."))
+    b.append(p(
+        "<b>Nhiễu điện từ (EM).</b> Trong các đầu dò cặp nhiệt điện kết cấu cách điện khoáng – "
+        "vỏ kim loại (MIMS), các cặp nhiệt điện cách điện bằng cúc gốm, và trong một số loại "
+        "dây cặp nhiệt điện có vỏ cách điện ghép cặp, các thân nhiệt điện ghép cặp không bị xoán "
+        "và cách nhau khá xa. Các đầu dò cặp nhiệt điện dài và đường kính lớn tạo thành một diện "
+        "tích vòng mạch đáng kể để ghép các trường nhiễu từ. Ngay cả khi đầu dò được bọc hoàn "
+        "toàn bằng kim loại, các vỏ chuẩn hóa rất mỏng và có độ từ thẩm thấp. Chúng gần như "
+        "không hiệu quả để che chắn điện từ (EM). Những đặc điểm này ngăn cản việc dùng một số "
+        "kỹ thuật cổ điển để khử nhiễu EM [15, 16]. Để giảm nhiễu EM gây khó chịu, đầu dò cặp "
+        "nhiệt điện chính nên có đường kính nhỏ nhất thực dụng và chiều dài ngắn nhất. Trong "
+        "những trường hợp nguồn EM ở cục bộ và xác định được, có thể sắp xếp hướng của đầu d so "
+        "với nguồn để giảm thiểu ghép EM. Để khử nhiễu EM, dây nối dài luôn luôn nên có kết cấu "
+        "dây đôi xoán, với bước xoán nhỏ đủ để khử nhiễu tần số cao [15]."))
+    b.append(p(
+        "<b>Nhiễu tĩnh điện (ES).</b> Nhiễu tĩnh điện dễ khử hơn. Lớp che chắn trở kháng thấp, "
+        "dù mỏng, có thể hiệu quả nếu nối đúng [15, 16]. Dây bện đồng mạ thường được dùng và "
+        "hiệu quả với nhiễu tần số trung bình. Các lớp che liền mạch, như vỏ MIMS và màng "
+        "mylar nhôm hóa, hiệu quả với nhiễu ES tần số thấp và hiệu quả hơn lớp bện đối với "
+        "nhiễu tần số rất cao. Lớp che tĩnh điện phải liền mạch (không có khe hở và lỗ như dây "
+        "bện) để đạt hiệu quả tối đa. Lợi ích tối ưu từ che chắn đòi hỏi dùng cùng các bộ theo "
+        "dõi cặp nhiệt điện có đầu vào ba dây và bộ ghép kênh chuyển cả cặp tín hiệu lẫn dây "
+        "che riêng của chúng, riêng cho từng cặp nhiệt điện."))
+
+    b.append(h5("Nối đất", "Grounding"))
+    b.append(p(
+        "Che chắn chống nhiễu ES và xoán đôi chống nhiễu EM quan trọng để giảm nhiễu tần số "
+        "cao. Một lớp che tổng thứ cấp, cách ly với các lớp che trong và nối đất riêng, có thể "
+        "cải thiện khả năng khử nhiễu EM. Nối đất mạch thích hợp cũng đặc biệt quan trọng cho "
+        "cả khống chế EM lẫn ES tần số cao, nhưng còn có ý nghĩa hơn nữa đối với nhiễu tần số "
+        "thấp và nhiễu một chiều, vốn thường nặng nề hơn trong phép đo cặp nhiệt điện. Nối đất "
+        "thích hợp trở nên phức tạp khi cần tiếp xúc nhiệt sát sao giữa mối nối đo với vật thể "
+        "thử dẫn điện đã nối đất để đo quá độ nhanh hoặc để chính xác khi có gradient nhiệt độ "
+        "tĩnh."))
+    b.append(p(
+        "Hình 32.27 minh họa cách nối đất thích hợp cho một số trong vô số tình huống có thể "
+        "xảy ra. Mạch cặp nhiệt điện mức thấp chỉ nên nối đất tại một điểm quy chiếu điện duy "
+        "nhất. Vì mối nối đo không phải là một vị trí có nguồn suất điện động tập trung, điểm "
+        "nối đất phải được cân nhắc cẩn thận. Không bao giờ được nối đất tại bất kỳ điểm nào "
+        "của mạch cặp nhiệt điện ngoài mối nối đo hoặc mối nối chuẩn. Tiếp xúc điện, đặc biệt "
+        "là phân lưu hay ngắn mạch, trên một thân nhiệt điện tại bất kỳ điểm nào giữa mối nối "
+        "đo và mối nối chuẩn thường đưa vào suất điện động Seebeck giả từ các thân nhiệt điện "
+        "thừa không được nhận biết."))
+    b.append(fig(27, F.fig(27), "vi"))
+    b.append(p(
+        "Cách nối đất cho phép có thể do thiết kế nội tại của bộ theo dõi và logger dữ liệu quy "
+        "định. Mỗi thiết kế dụng cụ giải quyết kiểm soát nhiễu theo một cách riêng. Các nhiệt "
+        "kế cặp nhiệt điện đơn giản, rẻ tiền, cấp điện lưới có thể chỉ có đầu vào đơn cực với "
+        "dây âm nối nội bộ vào đất nguồn. Điều đó buộc việc nối đất cảm biến cũng phải quy "
+        "chiếu về đất nguồn. Kiểu mối nối nối đất cũng có thể cần cho đo quá độ nhanh. Trong sử "
+        "dụng, cặp nhiệt điện vốn cách ly có thể bị ngắn sang vỏ bảo vệ hay vật thể thử. Dù "
+        "điều đó làm thay đổi cấu hình nối đất, các sai số do hiệu ứng khác thường khi đó "
+        "chiếm ưu thế."))
+
+    b.append(h5("Mạch cặp nhiệt điện cân bằng", "Balanced Thermocouple Circuits"))
+    b.append(p(
+        "Các hệ thu thập dữ liệu đa kênh tinh vi hơn chuyên cho đo nhiệt độ cặp nhiệt điện "
+        "thường có đầu vào cân bằng trở kháng cao để khử tín hiệu chung (common-mode) tốt. Một "
+        "số bộ khuếch đại đầu vào vi phân cần điện trở đầu vào đáng kể để ổn định. Phần lớn có "
+        "khung nội tại tạo một mặt bảo vệ quy chiếu tín hiệu chung, cách ly tốt với đất nguồn. "
+        "Trong vài thiết kế, mặt bảo vệ được kéo điện về một điểm quy chiếu cụ thể. Vì dùng "
+        "nhiều biến thể khác nhau, điều khôn ngoan là nghiên cứu và tuân theo các chỉ dẫn nối "
+        "đất cụ thể khuyến nghị trong sổ tay sử dụng của dụng cụ. Phần lớn chấp nhận các cách "
+        "nối đất thay thế."))
+    b.append(p(
+        "Trong các đầu dò có vỏ với kích thước MIMS chuẩn, các thân nhiệt điện cùng tiết diện, "
+        "song song và cách xa nhau, nằm đối xứng trong vỏ trụ [10]. Nhiễu có xu hướng ghép bằng "
+        "nhau vào cặp thân nhiệt điện theo chế độ chung. Tuy vậy, cặp nhiệt điện dài hoặc cỡ "
+        "mảnh có các chân có điện trở cao so với mạch đồng. Tỷ lệ giữa điện trở của hai chân "
+        "khác nhau có thể tới 25:1. Nhiễu đưa vào theo chế độ chung xấu thay có xu hướng chuyển "
+        "thành chế độ bình thường."))
+    b.append(p(
+        "Ngoài ra, khác với phần lớn nguồn điện áp, suất điện động Seebeck không tập trung tại "
+        "mối nối đo (một mặt tiếp xúc vật liệu). Suất điện động có thể phát sinh ở bất kỳ đâu "
+        "dọc theo thân nhiệt điện. Trong đo quá độ, nó phát sinh kề cận mối nối đo rồi lan xa "
+        "dần. Trong đo tĩnh phổ biến hơn, vị trí nguồn suất điện động thường ở xa mối nối đo."))
+    b.append(p(
+        "Phần lớn máy ghi cặp nhiệt điện chuyên dụng có bù nhiệt độ chuẩn. Chúng không cho "
+        "người dùng truy cập thuận tiện vào mạch phía sau các mối nối chuẩn. Điều đó hạn chế "
+        "các phương pháp kiểm soát nhiễu sẵn có cho người dùng. Với cặp nhiệt điện quy chiếu "
+        "bên ngoài, một số biến đổi mạch đơn giản mà hiệu quả là khả thi. Hình 32.28 cho thấy "
+        "việc thêm ba điện trở, dùng với các bộ theo dõi đầu vào cân bằng, cải thiện khử nhiễu. "
+        "Điện trở cân bằng đẳng nhiệt R<sub>c</sub> = R<sub>a</sub> – R<sub>b</sub> được thêm "
+        "nối tiếp với thân nhiệt điện có điện trở thấp hơn. Việc làm cho điện trở của hai nhánh "
+        "mạch bằng nhau giảm sự chuyển hóa nhiễu không mong muốn từ chế độ chung sang chế độ "
+        "bình thường. Cặp điện trở phân lưu khớp nhau R<sub>s</sub> tạo ra một điện trở nguồn "
+        "cực tiểu xác định đáng kể cho đầu vào bộ khuếch đại nhằm ổn định, và ghép tín hiệu và "
+        "vỏ một cách đối xứng về điểm quy chiếu chung. Các điện trở phải đủ lớn, "
+        "R<sub>s</sub> ≥ 1000 (R<sub>a</sub> + R<sub>b</sub>), để tránh sự suy giảm phân lưu "
+        "điện trở đáng kể suất điện động Seebeck nguồn của cặp nhiệt điện. Với sự cẩn trọng "
+        "giữ các điện trở này nghiêm ngặt đẳng nhiệt, các điện trở cân bằng và phân lưu có thể "
+        "đặt ngay tại các cực đầu vào, bên ngoài phần bù nhiệt độ mối nối chuẩn do dụng cụ "
+        "cung cấp."))
+    b.append(fig(28, F.fig(28), "vi"))
+
+    b.append(h5("Lọc", "Filtering"))
+    b.append(p(
+        "Với đo nhiệt độ tần số thấp, để bổ sung cho việc khử thụ động nhiễu EM và ES do người "
+        "dùng thực hiện bằng nối đất và che chắn đúng, bộ lọc nội tại do nhà sản xuất bộ thu "
+        "thập dữ liệu cung cấp có thể khử hiệu quả nhiễu tần số cao. Lọc trước khi ghi nhận là "
+        "ưu tiên. Việc khống chế này có thể thực hiện bằng bộ lọc thông thường; nhưng với phép "
+        "đo cặp nhiệt điện gần tĩnh, một số thiết kế còn cung cấp các kỹ thuật rất hiệu quả "
+        "khác như “tích hợp dốc kép”. Các kỹ thuật này thực chất lấy trung bình tín hiệu qua "
+        "vài mẫu đo. Khả năng giảm nhiễu và ổn định trong điều kiện thực tế là đáng nể. Độ "
+        "phân giải và độ ổn định thông thường tới 0,1 µV biến thiên trong nhiều ngày đạt được "
+        "bởi nhiều logger dữ liệu cặp nhiệt điện hiện đại. Tuy vậy, phương pháp khử nhiễu này "
+        "hạn chế tốc độ lấy mẫu, sao cho các mẫu có thể bị giới hạn ở khoảng cách không ngắn "
+        "hơn 10 ms đến 20 ms, không thích hợp cho đo quá độ rất nhanh."))
+
+    b.append(h4("Ghép nhiệt", "Thermal Coupling"))
+    b.append(p(
+        "Đo nhiệt độ chính xác tất yếu đòi hỏi nhiệt độ của các mối nối đo cặp nhiệt điện phải "
+        "khớp gần với nhiệt độ cần đo. Trong phép đo tĩnh tại trạng thái cân bằng nhiệt, điều "
+        "này thường dễ đạt được. Trong phép đo quá độ nhanh, điều này có thể rất khó."))
+    b.append(h5("Đo nhiệt độ tĩnh", "Static Thermometry"))
+    b.append(p(
+        "Đo nhiệt độ cặp nhiệt điện cho nhiệt độ ổn định hoặc biến thiên chậm đòi hỏi ghép nhiệt "
+        "sát sao giữa các mối nối đo với điểm đo. Sự khớp nhiệt độ này tự nhiên xảy ra nhờ cân "
+        "bằng nếu điểm đo có thể chọn nằm sâu trong một vùng giữ nhiệt độ đồng nhất trong suốt "
+        "phép đo. Ngay cả trong đo nhiệt độ gần tĩnh như vậy, các thân nhiệt điện cũng nên nhỏ "
+        "nhất có thể để giảm bất kỳ sự dẫn nhiệt nào dọc theo cặp nhiệt điện có thể ảnh hưởng "
+        "đến nhiệt độ đang đo."))
+    b.append(p(
+        "Tuy nhiên, trong các tình huống điển hình, vùng lân cận điểm đo không đẳng nhiệt và, "
+        "ngay cả ở trạng thái ổn định, gradient nhiệt độ tĩnh có thể khiến mối nối đo ở nhiệt "
+        "độ khác đáng kể với vật thể [18]. Nguồn sai số này nặng hơn đối với phép đo bề mặt, "
+        "chất lỏng và khí so với phép đo trong khối rắn, và trầm trọng hơn khi đo các vật thể "
+        "có khối nhiệt thấp. Ghép nhiệt hiệu quả giữa cặp nhiệt điện và vật thể, như trong "
+        "Hình 32.27, là thiết yếu."))
+    b.append(p(
+        "Nhiễu hay an toàn có thể đòi hỏi cách ly điện của cặp nhiệt điện. Các vật liệu cách điện "
+        "thông thường đều dẫn nhiệt kém. Hiện đã có các loại mỡ, lớp phủ và vật liệu tấm mỏng "
+        "đặc biệt được thiết kế để cung cấp cách điện cao mà vẫn tiếp xúc nhiệt tốt [17]. Khi "
+        "cần, chúng có thể cải thiện độ chính xác bằng ghép nhiệt hiệu quả."))
+    b.append(h5("Đo nhiệt độ quá độ", "Transient Thermometry"))
+    b.append(p(
+        "Theo dõi các biến thiên nhiệt độ rất nhanh đạt hiệu quả nhất bằng cặp nhiệt điện nhờ "
+        "khối lượng cảm nhận thấp và kích thước nhỏ của mối nối đo mà chúng cho phép. Phản ứng "
+        "nhanh đòi hỏi dùng các cấu hình thân nhiệt điện đặc biệt gần mối nối đo, mạch đặc "
+        "biệt, dụng cụ theo dõi cặp nhiệt điện đặc biệt, và các phương pháp đặc trưng hóa "
+        "[16, 18]. Một số nhà cung cấp chào bán các cặp nhiệt điện lá rất mỏng (dày 10 µm) và "
+        "dây mảnh đặc biệt thích hợp cho phép đo như vậy [19, 20]."))
+    b.append(p(
+        "Một mình cặp nhiệt điện không có thời gian đáp ứng đặc trưng. Hiệu ứng Seebeck xảy ra "
+        "với tốc độ điện tử. Suất điện động nguồn của cặp nhiệt điện luôn lập tức tương ứng với "
+        "nhiệt độ của mọi mối nối trong mạch. Tuy vậy, đáp ứng nhiệt độ quá độ của một lắp đặt "
+        "cặp nhiệt điện chậm hơn nhiều, và chủ yếu do tương tác nhiệt giữa các bộ phận cặp nhiệt "
+        "điện kề cận mối nối và khối lượng kề cận của vật thể thử chi phối [18, 22, 23]. Sự "
+        "truyền nhiệt dẫn chậm đó bị trì hoãn nhiều lần chỉ bởi một lớp mỏng không khí, chân "
+        "không, hay lớp rắn cách nhiệt. Trong đo quá độ nhanh, các tham số điện của cặp nhiệt "
+        "điện và mạch liên quan cùng đáp ứng động của hệ ghi nhận có thể làm phản ứng thời gian "
+        "xấu thêm."))
+    b.append(p(
+        "Ghép nhiệt sát sao bằng vật liệu đặc biệt, cần cho phép đo tĩnh trong gradient nhiệt, "
+        "còn quan trọng hơn đối với đo quá độ so với đo tĩnh [17]. Ngay cả các vật liệu ghép "
+        "đặc biệt cũng làm chậm phản ứng. Chúng nên mỏng nhất có thể. Với đo nhiệt độ rất "
+        "nhanh, sự ghép như vậy có thể không chấp nhận được. Có thể cần đặt mối nối đo trần "
+        "tiếp xúc điện trực tiếp với vật thể (Hình 32.27)."))
+    b.append(p(
+        "<b>Cặp nhiệt điện nội tại.</b> Khi vật thể đo là vật dẫn điện, có thể hàn điện hai "
+        "thân nhiệt điện riêng biệt lên vật thể thử. Đây là kiểu mối nối cặp nhiệt điện “nội "
+        "tại”. Dây mảnh hay lá mỏng hàn điểm lên vật thể cho phép đáp ứng điện – nhiệt nhanh "
+        "nhất có thể và giảm ảnh hưởng của cặp nhiệt điện lên nhiệt độ đang đo."))
+    b.append(p(
+        "Lưu ý hai precaution đặc biệt khi dùng mối nối nội tại. Thứ nhất, hai thân nhiệt điện "
+        "nên được hàn lên vật thể cạnh nhau, gần nhau (không đè lên nhau). Với mối nối nội "
+        "tại, đoạn cầu nối của vật thể trở thành một phần của mạch nhiệt điện nối tiếp (có hai "
+        "mối nối nội tại ghép nối bởi vật liệu vật thể trung gian). Điều này cho phản ứng nhanh "
+        "nhất; nhưng trong quá độ rất nhanh, nhiệt độ của hai mối nối có thể trong khoảnh khắc "
+        "ngắn hơi khác nhau và vì vậy gây sai số chốc lát, do hệ số Seebeck chưa biết của vật "
+        "liệu cầu nối khác với hệ số của một hoặc cả hai thân nhiệt điện chính [21]."))
+    b.append(p(
+        "Thứ hai, với đo quá độ, các thân nhiệt điện mảnh dẫn tới các mối nối nội tại nên ngắn "
+        "và mảnh nhất có thể để giảm tải nhiệt của chúng; tuy vậy, điều này dẫn đến điện trở "
+        "dây dẫn tương đối cao. Nên tạo một chuyển tiếp chống ứng suất từ các sợi mảnh sang "
+        "các dây dẫn bù vững chắc hơn, điện trở thấp hơn, gần mối nối đo để cải thiện đáp ứng "
+        "điện. Hiệu ứng điện của ghép tụ điện của mạch lên đáp ứng quá độ điện cũng phải được "
+        "giảm thiểu."))
+    b.append(p(
+        "<b>Hiệu chỉnh bằng số.</b> Mọi kỹ thuật vật lý khả thi để đạt phản ứng nhiệt độ quá độ "
+        "nhanh, khi áp dụng, có thể vẫn chưa đủ cho một phép đo rất nhanh. Đáp ứng quá độ chưa "
+        "đạt có thể cải thiện thêm bằng phân tích số [21]. Phải thực hiện thêm hai bước."))
+    b.append(p(
+        "Thứ nhất, phải thực hiện một đặc trưng hóa đáp ứng quá độ xác thực, bằng thực nghiệm "
+        "hoặc mô hình hóa đúng, của toàn hệ thống đo nhiệt độ nhiệt – điện. Các biểu diễn bậc "
+        "một đơn giản hóa thường gặp cho đáp ứng cặp nhiệt điện tại chỗ có thể không đủ "
+        "[21-23]."))
+    b.append(p(
+        "Thứ hai, đặc trưng hóa xác thực này phải được áp dụng bằng phép khử tích chập toán học "
+        "để ước lượng tốt hơn lịch sử nhiệt độ thực của dữ liệu do một hệ có đáp ứng quá độ vật "
+        "lý chưa đạt chỉ ra [16, 19]. Các cải thiện quan trọng và tin cậy của thời gian đáp ứng "
+        "hiệu quả gấp bốn lần trở lên thường khả thi. Nếu không hiệu chỉnh, nhiệt độ đỉnh quá độ "
+        "chỉ ra có thể sai lệch với phần trăm lớn hơn nhiều so với sai số do hiệu chuẩn tĩnh của "
+        "cặp nhiệt điện. Không thể gán một độ không đảm bảo chung cho phép đo quá độ nếu thiếu "
+        "đặc trưng hóa phản ứng như vậy."))
+    return "".join(b)
+
+
+def sec_32_4c_en():
+    b = [h4("Modular Signal Conditioning Components",
+            "Các bộ phận điều chế tín hiệu dạng mô-đun")]
+    b.append(p(
+        "The myriad of diverse and capable thermocouple indicators and recorders now commercially "
+        "available, ranging from simple and very inexpensive to sophisticated and versatile yet "
+        "reasonably priced, makes it unnecessary for most applied thermometry to assemble special "
+        "signal conditioning circuits. Some, seeking economy of hardware, have built custom "
+        "systems. Too often, these have not achieved accurate measurement and have proved to be "
+        "very costly because the critical distinctions between thermoelectric circuits and "
+        "ordinary electric circuits were not appreciated. For special situations where "
+        "thermocouples are incorporated into special measurement or operational components or "
+        "systems, several manufacturers now offer modular and integrated circuit components that "
+        "simplify special application and do protect the unaware from some pitfalls [13]."))
+    b.append(p(
+        "<b>Thermocouple Signal Conditioning on a Chip.</b> As thermocouple signals are low "
+        "level, it is sometimes desired to amplify them for improved resolution, recording, or "
+        "control. It might be desirable to incorporate thermocouple sensing as a functional "
+        "component in other instrumentation packages. There are now several miniature and "
+        "inexpensive integrated circuit modules for thermocouples that provide reference junction "
+        "compensation, linearization, isolation, open input indication, amplification, and set "
+        "point control. Properly applied, these make the integration of thermocouple sensing into "
+        "other devices, such as computer data acquisition boards, very simple [13]."))
+    b.append(p(
+        "When a user applies modular components such as these, it is particularly important to "
+        "understand and to apply the authentic thermoelectric circuit model and principles "
+        "introduced in the section “The Functional Model of Thermoelectric Circuits.” Some "
+        "precautions normally provided in commercial thermocouple monitors must be provided by "
+        "the user."))
+    b.append(p(
+        "<b>Reference Temperature Sensors.</b> Thermocouples are self-generating. For casual "
+        "approximate temperature and differential temperature measurement, they require neither "
+        "excitation nor reference temperature. For accurate thermometry, unless a known "
+        "reference temperature is physically imposed, an accurate measurement of the reference "
+        "junction temperature by independent means is necessary. This sensing is usually by "
+        "powered resistance temperature detectors, thermistors, transistors, or integrated "
+        "circuit sensors [1, 4]."))
+    b.append(p(
+        "<b>Reference Temperature Compensators.</b> Proper reference compensation requires (1) "
+        "the establishment of an isothermal temperature zone that includes the terminals of the "
+        "thermocouples, (2) sensing of the temperature of this zone, and (3) application of a "
+        "complementary physical or numerical voltage to the thermocouple terminal voltage before "
+        "scaling the total voltage to temperature."))
+    b.append(p(
+        "An analog method includes the resistive zone temperature sensor in a bridge that "
+        "nonlinearly modulates a supplied voltage according to an approximated nonlinear curve "
+        "of the <i>E</i>(<i>T</i>) characteristic of the thermocouple. This method is adapted to "
+        "compensation of only a single thermocouple type. An alternate method numerically "
+        "converts the sensed reference temperature to the appropriate compensating voltage "
+        "value. The numerical approach allows applying a separate compensating voltage to each "
+        "individual thermocouple and for different standard types. In principle, for accuracy, a "
+        "numerical compensating voltage could be programmed by the user to conform to the "
+        "specific calibration of the individual thermocouple, whether or not of standardized "
+        "type."))
+    b.append(p(
+        "Reference temperature compensators are internal to the more advanced thermocouple "
+        "monitors. In advanced units, eight to ten thermocouple inputs are grouped on a "
+        "separately removable isothermal terminal assembly so they can be removed for reference "
+        "sensor calibration or for replacement. Like thermocouples, reference sensors "
+        "occasionally drift, causing significant temperature error. For most thermocouple types, "
+        "a 1° error in temperature reference produces a similar error in the measured "
+        "temperature. A variety of external battery- or line-powered, single- or multichannel "
+        "reference junction compensating units are also commercially available [4, 14]."))
+
+    b.append(h4("Grounding, Shielding, and Noise", "Nối đất, che chắn và nhiễu"))
+    b.append(p(
+        "The technically well-founded principles of noise control for electric circuits apply "
+        "also to thermoelectric circuits [15, 16]. There are, however, some additional "
+        "considerations that are necessary for thermocouple circuits. Some noise control "
+        "problems stem from the nature of thermoelectricity; others from commercial thermocouple "
+        "design practices."))
+
+    b.append(h5("Noise Problems Peculiar to Thermocouples",
+                "Những vấn đề nhiễu riêng của cặp nhiệt điện"))
+    b.append(p(
+        "Temperature control of all deliberate and incidental junctions and components, and the "
+        "distributed nature of Seebeck source emf, cannot be ignored with impunity in "
+        "thermocouple application. The unavoidable requirements of such control are best "
+        "visualized using methods such as given later in “The Functional Model of Thermoelectric "
+        "Circuits.” Incidental circuit components such as balancing or swamping resistors, "
+        "feedthrus, splices, and terminal strips, not intended to contribute Seebeck emf, must "
+        "deliberately be maintained isothermal. Shields, unavoidably nonisothermal, made "
+        "electrically common with the thermocouple must be explicitly recognized as latent "
+        "sources of random dc noise which contributes Seebeck emf if not properly connected."))
+    b.append(p(
+        "<b>Electromagnetic (EM) Noise.</b> In thermocouple probes of mineral-insulated "
+        "metal-sheathed (MIMS) construction, ceramic-bead-insulated thermocouples, and in some "
+        "paired insulated thermocouple wires, the paired thermoelements are not twisted and are "
+        "well separated. Lengthy and larger diameter thermocouple probes present a significant "
+        "circuit loop area to couple magnetic noise fields. Even if probes are entirely "
+        "metal-sheathed, the standardized sheaths are very thin and of low magnetic permeability. "
+        "They are scarcely effective for electromagnetic (EM) shielding. These features prevent "
+        "the use of some classic techniques for the rejection of EM noise [15, 16]. To reduce "
+        "troublesome EM noise, the principal thermocouple probe should be of the smallest "
+        "practical diameter, and of minimum length. In instances where the EM source is "
+        "localized and identified, the orientation of the probe relative to the source can be "
+        "arranged to minimize EM coupling. For rejection of EM noise, extension leads should "
+        "always be of twisted-pair construction, with a pitch small enough to reject "
+        "high-frequency noise [15]."))
+    b.append(p(
+        "<b>Electrostatic (ES) Noise.</b> Electrostatic noise is more easily reduced. Shields of "
+        "low resistance, though thin, can be effective if properly connected [15, 16]. Plated "
+        "copper braid is commonly used and is effective for noise of moderate frequency. "
+        "Continuous shields, such as the MIMS sheaths and aluminized mylar film, are effective "
+        "for low-frequency ES noise and are more effective than braid shields for "
+        "very-high-frequency noise. Electrostatic shields must be continuous (without gaps and "
+        "holes as in braid) for maximum effectiveness. Optimum benefits from shielding require "
+        "use with thermocouple monitors that provide three-wire input and multiplexers that, "
+        "individually for each thermocouple, switch both the signal pair and their separate "
+        "shield lead."))
+
+    b.append(h5("Grounding", "Nối đất"))
+    b.append(p(
+        "Shielding for ES noise and pair twisting for EM noise are important for reduction of "
+        "high-frequency noise. A secondary overall shield, isolated from inner shields and "
+        "separately grounded, can improve the rejection of EM noise. Appropriate circuit "
+        "grounding is also particularly important for both high-frequency EM and ES control, but "
+        "it is even more significant for low-frequency and dc noise, which are often more "
+        "consequential in thermocouple measurements. Appropriate grounding is complicated where "
+        "intimate thermal contact of the measuring junction with an earth-grounded conducting "
+        "test subject is needed for rapid transient thermometry or for accuracy in the presence "
+        "of static temperature gradients."))
+    b.append(p(
+        "Figure 32.27 illustrates appropriate grounding for several of many possible "
+        "situations. Low-level thermocouple circuits should be grounded only at a single "
+        "electric reference point. Because the measuring junction is not a localized site of "
+        "source emf, the point of grounding must be carefully considered. Grounding should "
+        "never be at any point of the thermocouple circuit other than measuring or reference "
+        "junctions. Electric contact, and particularly shunting or shorting, on a thermoelement "
+        "at any point between measuring and reference junctions usually introduces spurious "
+        "Seebeck emf from incidental unrecognized thermoelements."))
+    b.append(fig(27, F.fig(27), "en"))
+    b.append(p(
+        "Allowable grounding might be dictated by the internal design of monitors and data "
+        "loggers. Each instrument design addresses noise control in a distinctive way. Simple "
+        "and inexpensive line-powered thermocouple thermometers might have only single-ended "
+        "inputs with the negative lead internally connected to the power ground. This forces the "
+        "sensor grounding to also refer to power ground. A grounded-junction arrangement might "
+        "also be required for fast transient thermometry. In use, initially isolated "
+        "thermocouples can short to the protective sheath or test subject. Although this does "
+        "change the grounding configuration, resulting errors due to other effects usually are "
+        "then predominant."))
+
+    b.append(h5("Balanced Thermocouple Circuits", "Mạch cặp nhiệt điện cân bằng"))
+    b.append(p(
+        "The more sophisticated multichannel data acquisition systems specialized to "
+        "thermocouple thermometry usually have high-resistance balanced inputs for high "
+        "common-mode signal rejection. Some differential input amplifiers require significant "
+        "input resistance for stability. Most have an internal chassis that provides a common "
+        "signal reference guard surface that is well-isolated from power ground. In a few "
+        "designs, the guard is electrically driven to a particular reference point. Because many "
+        "variations are used, it is prudent to study and follow the specific grounding "
+        "instructions recommended in the user’s manual for the instrument. Most accommodate "
+        "alternative grounding arrangements."))
+    b.append(p(
+        "In sheathed thermocouple probes of standard MIMS dimensions, the thermoelements are of "
+        "the same cross-section, parallel and well spaced, and located within the cylindrical "
+        "sheath symmetrically [10]. Noise tends to be coupled equally to the paired "
+        "thermoelements in common mode. However, lengthy or fine gage thermocouples have legs of "
+        "high resistance compared to copper circuits. The ratio between the resistances of the "
+        "dissimilar legs can be up to 25:1. Noise introduced in common mode adversely tends to "
+        "convert to normal mode."))
+    b.append(p(
+        "In addition, unlike most voltage sources, the Seebeck emf is not localized to the "
+        "measuring junction (a material interface). The emf can arise anywhere along the "
+        "thermoelements. In transient thermometry, it first occurs adjacent to, and then spreads "
+        "away from the measuring junction. In the more commonplace static thermometry, the site "
+        "of source emf is usually distant from the measuring junction."))
+    b.append(p(
+        "Most specialized thermocouple recorders provide reference temperature compensation. "
+        "They do not allow convenient user access to the circuit beyond the reference junctions. "
+        "This restricts the noise control methods available to the user. For externally "
+        "referenced thermocouples, some effective simple circuit modifications are possible. "
+        "Figure 32.28 shows the addition of three resistors that, used with monitors of balanced "
+        "input, improve noise rejection. Isothermal balancing resistor, "
+        "R<sub>c</sub> = R<sub>a</sub> – R<sub>b</sub>, is added in series with the "
+        "thermoelement of lower resistance. Making the resistance of the two circuit branches "
+        "equal reduces the undesired conversion of noise from common mode to normal mode. The "
+        "matched pair of shunting resistors, R<sub>s</sub>, presents a significant definite "
+        "minimum source resistance to the amplifier input for stability and symmetrically "
+        "couples the signals and sheath to the common reference point. The resistors must be "
+        "large enough, R<sub>s</sub> ≥ 1000 (R<sub>a</sub> + R<sub>b</sub>), to avoid "
+        "significant shunting resistive attenuation of the thermocouple source Seebeck emf. "
+        "With great care to maintain these resistors strictly isothermal, the balancing and "
+        "shunt resistors could be placed just at the input terminals external to the "
+        "instrument-provided reference junction temperature compensation."))
+    b.append(fig(28, F.fig(28), "en"))
+
+    b.append(h5("Filtering", "Lọc"))
+    b.append(p(
+        "For low-frequency thermometry, to complement the user-provided passive rejection of EM "
+        "and ES noise by proper grounding and shielding, internal filtering provided by data "
+        "acquisition monitor manufacturers can effectively reject high-frequency noise. "
+        "Filtering before recording is preferred. This control can be performed by conventional "
+        "filters; but for quasi-static thermocouple measurements, other very effective "
+        "techniques such as “double-slope integration” are provided in some designs. These "
+        "techniques effectively average the signal over several measured samples. The noise "
+        "reduction and stability under real-life conditions is remarkable. Routine resolution "
+        "and stability to 0.1 µV variation over a period of days is achieved by many modern "
+        "thermocouple data loggers. However, this noise rejection method restricts the sampling "
+        "speed so that samples can be limited to intervals no shorter than 10 ms to 20 ms that "
+        "are unsuited to very fast transient thermometry."))
+
+    b.append(h4("Thermal Coupling", "Ghép nhiệt"))
+    b.append(p(
+        "Accurate thermometry obviously requires that the temperature of thermocouple measuring "
+        "junctions closely agree with the temperatures to be measured. In static measurements at "
+        "thermal equilibrium, this is often easy to accomplish. In fast transient measurements, "
+        "it can be very difficult."))
+    b.append(h5("Static Thermometry", "Đo nhiệt độ tĩnh"))
+    b.append(p(
+        "Thermocouple thermometry of steady-state or slowly varying temperatures requires close "
+        "thermal coupling of the measuring junctions to the point of measurement. This agreement "
+        "of temperatures naturally occurs by equilibration if the point of measurement can be "
+        "chosen to be well within a region that stays at uniform temperature during measurement. "
+        "Even in such nearly static thermometry, the thermoelements should be as small as "
+        "practical to reduce any conduction of heat along the thermocouple that could affect the "
+        "temperature being measured."))
+    b.append(p(
+        "In typical situations, however, the vicinity of the measuring point is not isothermal "
+        "and, even at steady state, static temperature gradients can cause the measuring junction "
+        "to be at a significantly different temperature from the subject [18]. This source of "
+        "error is more severe for surface, liquid, and gas measurements than for internal solid "
+        "measurements, and is aggravated for the measurement of subjects of low thermal mass. "
+        "Efficient thermal coupling of the thermocouple to the subject, as in Figure 32.27, is "
+        "essential."))
+    b.append(p(
+        "Noise or safety might require electrical isolation of the thermocouple. Commonplace "
+        "electrical insulating materials are poor thermal conductors. There are now special "
+        "greases, coatings, and thin sheet materials available designed to provide high "
+        "electrical isolation, yet good thermal contact [17]. Where needed, they can improve "
+        "accuracy by efficient thermal coupling."))
+    b.append(h5("Transient Thermometry", "Đo nhiệt độ quá độ"))
+    b.append(p(
+        "Monitoring very rapid variations of temperature is most effectively accomplished by "
+        "thermocouples because of the low sensing mass and small size of measuring junction that "
+        "they allow. Fast thermal response requires the use of special thermoelement "
+        "configurations in the vicinity of the measuring junction, special circuitry, special "
+        "thermocouple monitoring instruments, and characterizing methods [16, 18]. Some "
+        "suppliers offer very thin (10 µm thick) foil and fine wire thermocouples that are "
+        "especially well adapted to such measurement [19, 20]."))
+    b.append(p(
+        "A thermocouple alone has no characteristic response time. The Seebeck effect occurs at "
+        "electronic speed. The thermocouple source emf always promptly corresponds to the "
+        "temperatures of all junctions in the circuit. However, the transient temperature "
+        "response of a thermocouple installation is very much slower, and is primarily governed "
+        "by the thermal interaction of the thermocouple components adjacent to the junctions and "
+        "the adjacent mass of the test subject [18, 22, 23]. That slow conductive heat transfer "
+        "is retarded many-fold by even a thin film of air, vacuum, or an insulating solid layer. "
+        "In fast transient thermometry, the electrical parameters of the thermocouple and "
+        "associated circuitry and dynamic response of the recording system can further degrade "
+        "response time."))
+    b.append(p(
+        "Intimate thermal coupling by special materials required for static measurement in a "
+        "thermal gradient is even more critical to transient than to static thermometry [17]. "
+        "Even the special coupling materials slow response. They should be as thin as feasible. "
+        "For very fast thermometry, such coupling might not be tolerable. It may be necessary to "
+        "place the bare measuring junction in direct electric contact with the subject "
+        "(Figure 32.27)."))
+    b.append(p(
+        "<b>Intrinsic Thermocouples.</b> Where the subject of thermometry is an electric "
+        "conductor, it is possible to electrically fuse the two thermoelements separately to the "
+        "test subject. This is an “intrinsic” thermocouple junction arrangement. Fine wires or "
+        "thin foils spot-welded to the subject allow the fastest possible electrothermal "
+        "response and reduce the influence of the thermocouple on the temperature being "
+        "measured."))
+    b.append(p(
+        "Observe two special precautions in the use of intrinsic junctions. First, the two "
+        "thermoelements should be fused to the subject side-by-side, close together (not one "
+        "over the other). With intrinsic junctions, the bridging segment of the subject becomes "
+        "a part of the series thermoelectric circuit. (There are two intrinsic junctions coupled "
+        "by the intermediate subject material.) This produces the fastest response; but in very "
+        "fast transients, the temperatures of the two junctions can very briefly be slightly "
+        "different and thus introduce a momentary error, as the unknown Seebeck coefficient of "
+        "the bridging subject material is different from that of one or both of the principal "
+        "thermoelements [21]."))
+    b.append(p(
+        "Second, for transient thermometry, the fine thermoelements leading to the intrinsic "
+        "junctions should be as short and fine as feasible to reduce their thermal loading; "
+        "however, this results in a relatively high electric lead resistance. A strain-relieved "
+        "transition from the fine filaments to more substantial low-resistance compensating lead "
+        "wires should be made near the measuring junction to enhance electric response. The "
+        "electrical effect of capacitive coupling of the circuit on electric transient response "
+        "must also be minimized."))
+    b.append(p(
+        "<b>Numerical Correction.</b> All feasible physical techniques to achieve fast "
+        "transient temperature response when applied might not be sufficient for a very fast "
+        "measurement. An inadequate transient response can be further enhanced by numerical "
+        "analysis [21]. Two additional steps must be taken."))
+    b.append(p(
+        "First, an authentic experimental or correctly modeled transient response "
+        "characterization of the overall thermal-electrical thermometry system must be made. "
+        "The usual simplistic first-order representations of in situ thermocouple response might "
+        "be inadequate [21-23]."))
+    b.append(p(
+        "Second, this authentic characterization must be applied by mathematical deconvolution to "
+        "better estimate the true temperature history of data indicated by a system that had "
+        "inadequate physical transient response [16, 19]. Critical and reliable improvements of "
+        "effective response time by factors of four or more are often possible. If uncorrected, "
+        "indicated transient peak temperatures can be in error by a much greater percentage "
+        "than the error that results from static thermocouple calibration error. No general "
+        "uncertainty can be assigned to a transient measurement without such response "
+        "characterization."))
+    return "".join(b)
+
+
 def sec_32_4_vi():
-    return sec_32_4a_vi() + sec_32_4b_vi()
+    return sec_32_4a_vi() + sec_32_4b_vi() + sec_32_4c_vi()
 
 
 def sec_32_4_en():
-    return sec_32_4a_en() + sec_32_4b_en()
+    return sec_32_4a_en() + sec_32_4b_en() + sec_32_4c_en()
 
 
 def _refs(lang):
