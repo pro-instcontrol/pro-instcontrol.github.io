@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """Figures for Handbook Chapter 32 — Temperature.
 
-Only §32.1 is implemented so far: figures 32.1–32.6 (bimetallic thermometers).
+§32.1–32.3 are complete: figures 32.1–32.22.  §32.4 is in progress — 32.24 is drawn,
+32.25–32.31 remain.  The book has no figure 32.23 (see FIG_NO at the foot of the file).
 Geometry is read off the 140 dpi page images in work/ch32img.
 
 House rules carried over from chapters 29–31:
@@ -1651,11 +1652,87 @@ def fig_32_17():
                 "equivalent inset at upper right")
 
 
+# ---- 32.24
+def fig_32_24():
+    """The modern digital thermocouple thermometer: a hand-held indicator with the
+    probe plugged into its jack.  The book's photograph is redrawn as line art —
+    LCD, type-selector pills, the probe loop and the measuring junction inside its
+    dashed circle."""
+    o = [_defs()]
+    # body of the indicator
+    o.append(_rect(40, 46, 212, 168, "#fff", E, 1.6, rx=14))
+    # LCD
+    o.append(_rect(58, 62, 176, 46, "#fff", E, 1.4, rx=4))
+    o.append(_lbl(146, 94, "19.9 °C", "t", "middle", _fs(17)))
+    # thermocouple-type selector: four pills under a shared frame
+    o.append(_rect(66, 120, 140, 28, "none", E, 1.1, rx=6))
+    for i, k in enumerate("EJKT"):
+        x = 74 + i * 33
+        o.append(_rect(x, 124, 26, 20, "#fff", E, 1.0, rx=3))
+        o.append(_lbl(x + 13, 138, k, "ts", "middle", _fs(9)))
+    o.append(_lbl(136, 162, "TC TYPE", "ts", "middle", _fs(8)))
+    # the ON key
+    o.append(_rect(190, 176, 50, 24, "#fff", E, 1.1, rx=11))
+    o.append(_lbl(215, 192, "ON", "ts", "middle", _fs(8)))
+    # jack on the right edge, with the reference temperature beside it
+    o.append(_rect(252, 112, 26, 30, "#fff", E, 1.3, rx=3))
+    o.append(_lbl(265, 131, "T", "ts", "middle", _fs(9)))
+    o.append(_mix(284, 156, [("T", ""), ("r", "sub")], "start", "ts"))
+    o.append(_line(279, 146, 284, 152, E, 0.9))
+    # the probe: a loop of cable from the jack up to the plug, sampled from a cubic
+    # so it sags the way the lead does in the photograph instead of kinking
+    def _cubic(p0, p1, p2, p3, n=26):
+        out = []
+        for i in range(n + 1):
+            t = i / float(n)
+            u = 1 - t
+            out.append((u*u*u*p0[0] + 3*u*u*t*p1[0] + 3*u*t*t*p2[0] + t*t*t*p3[0],
+                        u*u*u*p0[1] + 3*u*u*t*p1[1] + 3*u*t*t*p2[1] + t*t*t*p3[1]))
+        return out
+
+    o.append(_pl(_cubic((278, 127), (316, 133), (296, 58), (352, 74)), E, 1.4))
+    o.append(_rect(352, 62, 34, 24, "#fff", E, 1.3, rx=3))
+    o.append(_lbl(369, 79, "K", "ts", "middle", _fs(9)))
+    # the measuring junction, in its dashed circle
+    o.append(_pl([(386, 74), (430, 74)], E, 1.4))
+    o.append(_circ(430, 74, 3.2, E, E, 1.0))
+    o.append(_circ(430, 74, 25, "none", S, 1.1, dash="4 3"))
+    # inside the circle, above the junction: outside it the subscript ran through
+    # the ring
+    o.append(_mix(430, 60, [("T", ""), ("m", "sub")], "middle", "ts"))
+    o.append(_lbl(430, 128, "measuring junction", "ts", "middle", _fs(8)))
+    o.append(_lbl(369, 44, "plug", "ts", "middle", _fs(8)))
+    return _fig(svg(680, 240, "".join(o),
+                    "Máy đo nhiệt độ cặp nhiệt điện kỹ thuật số cầm tay với đầu dò"),
+                "Hình 32.24 · Máy đo nhiệt độ cặp nhiệt điện kỹ thuật số hiện đại. Điện tử số "
+                "đã làm cho việc đo nhiệt độ thông thường trở nên rất dễ dàng, nhưng cũng che "
+                "khuất nhu cầu thường trực về một hiểu biết đúng đắn các nguyên lý nhiệt điện, "
+                "nhằm đạt độ chính xác với những mạch phức tạp hơn và những phép đo quan "
+                "trọng hơn.",
+                "Figure 32.24 · The simple modern digital thermocouple thermometer. Modern "
+                "digital electronics has made casual thermometry very easy, but has obscured "
+                "the continuing need to have an authentic understanding of thermoelectric "
+                "principles for accurate thermometry with more complicated circuits and more "
+                "important measurements.",
+                "Máy đo cầm tay có màn hình hiển thị 19,9 °C, hàng nút chọn loại cặp nhiệt "
+                "điện E J K T, phích cắm đầu dò và mối nối đo trong vòng tròn nét đứt",
+                "Hand-held indicator showing 19.9 °C with E J K T type buttons, a probe plug "
+                "and the measuring junction inside a dashed circle")
+
+
 FIGS = [fig_32_1, fig_32_2, fig_32_3, fig_32_4, fig_32_5, fig_32_6,
         fig_32_7, fig_32_8, fig_32_9, fig_32_10, fig_32_11, fig_32_12,
         fig_32_13, fig_32_14, fig_32_15, fig_32_16, fig_32_17, fig_32_18,
-        fig_32_19, fig_32_20, fig_32_21, fig_32_22]
+        fig_32_19, fig_32_20, fig_32_21, fig_32_22, fig_32_24]
+
+# The book has no figure 32.23: the numbering runs 32.22 -> 32.24 and nothing in
+# the PDF ever mentions a 32.23.  FIGS is positional, so the printed number of
+# each slot lives here; fig() refuses a number that is not in the list rather
+# than quietly handing back the figure next door.
+FIG_NO = list(range(1, 23)) + [24]
 
 
 def fig(n):
-    return FIGS[n - 1]()
+    if n not in FIG_NO:
+        raise KeyError("no figure 32.%d in this chapter" % n)
+    return FIGS[FIG_NO.index(n)]()
