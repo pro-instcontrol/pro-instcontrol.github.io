@@ -15,6 +15,13 @@
   function initial() {
     var m = /[?&]lang=(en|es|vi)/.exec(location.search);
     if (m) return m[1];
+    /* A static /vi/ page (built with the Vietnamese labels baked in) sets
+       window.PIC_LANG to flag its own default language, the same way the
+       path test in build.py's 404 script treats /vi/... as a deliberate
+       Vietnamese address. This beats a stored preference and the browser
+       language, so a direct hit on /vi/books/ stays in Vietnamese. */
+    var p = window.PIC_LANG;
+    if (p === "en" || p === "es" || p === "vi") return p;
     var s = stored();
     if (s === "en" || s === "es" || s === "vi") return s;
     var n = (navigator.language || "en").toLowerCase();

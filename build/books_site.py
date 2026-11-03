@@ -535,7 +535,8 @@ def head(lang, title, desc):
         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
         '<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">'
         '<link rel="stylesheet" href="/books/assets/library.css">'
-        '</head><body>' % (lang, esc(title), esc(desc))
+        '<link rel="stylesheet" href="/assets/style.css?v=%s">'
+        '</head><body>' % (lang, esc(title), esc(desc), framework.ASSET_VER)
     )
 
 
@@ -622,7 +623,7 @@ def work_page(lang, w, dom):
               "toolbar.")
 
     body = (
-        '<main><article class="intranet-content reader">'
+        '<main id="main"><article class="intranet-content reader">'
         '<div class="reader-hero">'
         '<div class="breadcrumb"><a href="' + crumb_home + '">' + esc(crumb_lbl) + '</a> · '
         + esc(domain) + '</div>'
@@ -1000,7 +1001,7 @@ def build_reader(lang):
     back_lbl = "← Thư viện" if vi else "← Library"
     body = (
         '<style>' + READER_CSS + '</style>'
-        '<main class="pdfshell">'
+        '<main id="main" class="pdfshell">'
         '<div class="pdftop">'
         '<a class="btn" id="back" href="/vi/books/" title="' + esc(back_lbl) + '">←</a>'
         '<span class="tb-title" id="title">' + esc(title) + '</span>'
@@ -1075,29 +1076,99 @@ NAV_EN = _nav("en")
 NAV_VI = _nav("vi")
 
 
-def header(lang, active_books=True, switch_href=None):
-    nav = NAV_EN if lang == "en" else NAV_VI
-    links = []
-    for href, label in nav:
-        cls = ' class="active"' if (active_books and href.endswith("books/")) else ""
-        links.append('<a href="%s"%s>%s</a>' % (href, cls, esc(label)))
-    if switch_href is None:
-        switch_href = "/vi/books/" if lang == "en" else "/books/"
-    if lang == "en":
-        links.append('<a href="%s" class="lang-switch">VI</a>' % switch_href)
-    else:
-        links.append('<a href="%s" class="lang-switch">EN</a>' % switch_href)
-    brand_home = "/" if lang == "en" else "/?lang=vi"
+def _navkey(href):
+    return href.replace(".html", "").replace("index", "home").replace("/", "")
+
+
+def books_topbar(lang):
+    """The same top navigation bar as every other page: brand, the site nav in
+    NAV order, and the three-button EN/ES/VI language pill driven by assets/app.js.
+
+    framework.topbar() emits relative hrefs and a wrapping <main>, neither of which
+    suits the library's sub-folder URLs (/books/, /vi/books/, /books/reader/), so the
+    markup is replicated here with root-absolute hrefs and no extra <main>. The page
+    body already supplies its own <main>. The label is baked in the page's own
+    language (EN on /books/, VI on /vi/books/) so a static visit shows the right
+    language; app.js then swaps it if the reader picks another.
+    """
+    vi = lang == "vi"
+    items = []
+    for href, en, _v in framework.NAV:
+        target = "/" if href == "index.html" else "/" + href
+        cls = "nav-link active" if href == "books/" else "nav-link"
+        items.append(
+            '<a class="%s" href="%s" data-i18n="shell.nav.%s">%s</a>'
+            % (cls, target, _navkey(href), esc(en if not vi else _v))
+        )
+    nav_html = "\n      ".join(items)
     return (
-        '<header class="site-header">'
-        '<a href="%s" class="brand">%s<span>Pro InstControl</span></a>'
-        '<nav class="site-nav">%s</nav></header>'
-        % (brand_home, MARK, "".join(links)))
+        '<a class="skip" href="#main" data-i18n="shell.skip">%s</a>\n'
+        '<header class="topbar">\n'
+        '  <div class="wrap bar">\n'
+        '    <a class="brand" href="/" aria-label="Home">\n'
+        '      <span class="mark" aria-hidden="true">\n'
+        '        <svg viewBox="0 0 32 32" width="30" height="30" fill="none">\n'
+        '          <rect x="1" y="1" width="30" height="30" rx="8" stroke="currentColor" stroke-width="1.5" opacity=".35"/>\n'
+        '          <path d="M7 22h6l3-12 3 12h6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>\n'
+        '          <circle cx="16" cy="10" r="2.2" fill="currentColor"/>\n'
+        '        </svg>\n'
+        '      </span>\n'
+        '      <span class="brand-txt"><strong>%s</strong><em data-i18n="shell.tag">%s</em></span>\n'
+        '    </a>\n'
+        '    <nav class="nav" id="nav">\n'
+        '      %s\n'
+        '    </nav>\n'
+        '    <div class="bar-right">\n'
+        '      <div class="lang" id="lang" role="group" aria-label="Language / Idioma / Ngôn ngữ">\n'
+        '        <button class="lang-opt on" type="button" data-lang="en">EN</button>\n'
+        '        <button class="lang-opt" type="button" data-lang="es">ES</button>\n'
+        '        <button class="lang-opt" type="button" data-lang="vi">VI</button>\n'
+        '      </div>\n'
+        '      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav">\n'
+        '        <span></span><span></span>\n'
+        '      </button>\n'
+        '    </div>\n'
+        '  </div>\n'
+        '</header>\n'
+        % (framework.SHELL["shell.skip"][0 if not vi else 1],
+           framework.SITE_NAME_EN,
+           framework.SHELL["shell.tag"][0 if not vi else 1],
+           nav_html)
+    )
+
+
+def header(lang, active_books=True, switch_href=None):
+    """Library pages use the same top bar as the rest of the site; the obsolete
+    EN/VI link swap is replaced by the JS-driven three-language pill."""
+    return books_topbar(lang)
+
+
+def _i18n_payload():
+    """The dictionaries app.js needs: the shell strings (nav + tag, with the
+    Spanish overlay), the twin set and the bilingual book manifest. Embedded once
+    per page; the <script src> for app.js follows."""
+    strings = {k: {"en": v[0], "vi": v[1]} for k, v in framework.SHELL.items()}
+    for v in strings.values():
+        es = framework.ES_MAP.get(v["en"])
+        if es is not None:
+            v["es"] = es
+    i18n = json.dumps(strings, ensure_ascii=False, separators=(",", ":"))
+    twins = json.dumps(sorted(framework.TWIN_PATHS), ensure_ascii=False, separators=(",", ":"))
+    vbooks = json.dumps(framework.vi_books(), ensure_ascii=False, separators=(",", ":"))
+    return (
+        "<script>window.I18N=%s;window.TWINS=%s;window.VI_BOOKS=%s;</script>\n"
+        '<script src="/assets/app.js?v=%s"></script>\n'
+        % (i18n, twins, vbooks, framework.ASSET_VER)
+    )
 
 
 def footer(lang):
-    """Library pages carry no footer by design."""
-    return ""
+    """Library pages carry the same footer script block as every other page: the
+    I18N dictionary, the twin/book manifests and the shared app.js that drives the
+    language pill. The VI pages flag their default language so the engine starts in
+    Vietnamese even though the file is a static /vi/ URL."""
+    hint = '<script>window.PIC_LANG="vi";</script>' if lang == "vi" else ""
+    return hint + _i18n_payload()
 
 
 def build_index(lang):
@@ -1156,7 +1227,7 @@ def build_index(lang):
             % (sid, esc(name), esc(sub), cards))
 
     body = (
-        '<main><article class="intranet-content">'
+        '<main id="main"><article class="intranet-content">'
         '<section class="hero">'
         '<span class="taiji-large">%s</span>'
         '<h1>%s</h1>'
@@ -1249,8 +1320,9 @@ def build_index(lang):
         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
         '<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">'
         '<link rel="stylesheet" href="/books/assets/library.css">'
+        '<link rel="stylesheet" href="/assets/style.css?v=%s">'
         '</head><body>%s%s%s<script>%s</script></body></html>'
-        % (lang, esc(title), esc(tagline), header(lang), body, footer(lang), js)
+        % (lang, esc(title), esc(tagline), framework.ASSET_VER, header(lang), body, footer(lang), js)
     )
 
 
