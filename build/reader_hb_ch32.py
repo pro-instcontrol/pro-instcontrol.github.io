@@ -2,10 +2,11 @@
 """Handbook Chapter 32 — Temperature (Robert J. Sandberg, ed.)
 
 The chapter is 163 source pages and eleven sections, each contributed by a
-different author. Sections are being written in order; §32.1 is complete.
+different author. Sections are being written in order; §32.1 and §32.2 are
+complete.
 
   §32.1  Bimaterials Thermometers            p3-14    6 figs  19 eqs  5 tables
-  §32.2  Resistive Thermometers              p14-25
+  §32.2  Resistive Thermometers              p14-26   9 figs   6 eqs  2 tables
   §32.3  Thermistor Thermometers             p26-41
   §32.4  Thermocouple Thermometers           p42-74
   §32.5  Semiconductor Junction Thermometers p75-87
@@ -20,6 +21,7 @@ Run:  python build/reader_hb_ch32.py            (writes the two pages)
       python build/reader_hb_ch32.py <path>     (writes a preview elsewhere)
 """
 import os
+import re
 import sys
 
 import hb32fig as F
@@ -62,16 +64,30 @@ def p(t):
     return "<p>%s</p>" % t
 
 
+_CUR = [""]
+_LANG = [""]
+
+
+def _slug(t):
+    """The anchor for a sub-heading, taken from its English title. Both h3() and
+    sec_index() go through here, so a TOC entry can never point at nothing —
+    which is what happens if the two sides spell the title differently."""
+    s = re.sub(r"<[^>]+>", "", t).lower()
+    return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+
+
 def h2(t, en="", anchor=None):
     if en == t:
         en = ""
     sid = ""
     if anchor:
         sid = ' id="%s"' % anchor
-    elif t.startswith("32."):
+    if t.startswith("32."):
         head_ = t[3:].split(" ", 1)[0]
         if head_.isdigit():
-            sid = ' id="s32-%s"' % head_
+            _CUR[0] = head_
+            if not anchor:
+                sid = ' id="s32-%s"' % head_
     return '<h2%s>%s%s</h2>' % (sid, t, (' <span class="en">%s</span>' % en) if en else "")
 
 
@@ -79,6 +95,11 @@ def h3(t, en="", anchor=None):
     if en == t:
         en = ""
     a = ' id="%s"' % anchor if anchor else ""
+    if not a and _CUR[0]:
+        # on the Vietnamese page the English title is the second argument; on
+        # the English page it is the first
+        base = (en or t) if _LANG[0] == "vi" else t
+        a = ' id="s32-%s-%s"' % (_CUR[0], _slug(base))
     return '<h3%s>%s%s</h3>' % (a, t, (' <span class="en">%s</span>' % en) if en else "")
 
 
@@ -99,6 +120,11 @@ def wl(items):
 
 def ul(items):
     return ('<ul style="margin:-.2rem 0 1.3rem">%s</ul>'
+            % "".join("<li>%s</li>" % i for i in items))
+
+
+def ol(items):
+    return ('<ol style="margin:-.2rem 0 1.3rem">%s</ol>'
             % "".join("<li>%s</li>" % i for i in items))
 
 
@@ -288,6 +314,82 @@ def _t325(lang):
            "Table 32.5 · Composition of the DIN thermostatic elements given in Table 32.4. From "
            "DIN 1715 Standard [4].")
     return table(hd, rows, cap, widths=["34%", "16%", "10%", "10%", "10%", "10%", "10%"], small=True)
+
+
+def _t326(lang):
+    """Table 32.6 — the three classes of platinum resistance thermometer, with
+    what each costs and how much abuse it survives."""
+    vi = lang == "vi"
+    hd = (["Đầu đo", "Ứng dụng cơ bản", "Nhiệt độ", "Giá", "Kiểu đầu đoᵃ", "Xử lý"]
+          if vi else
+          ["Probe", "Basic application", "Temperature", "Cost", "Probe styleᵃ", "Handling"])
+    rows = [
+        ("SPRT", "Hiệu chuẩn SPRT thứ cấp" if vi else "Calibration of Secondary SPRT",
+         "−200 đến 1000 °C<br>(−328 đến 1832 °F)", "$5000", "1",
+         "Rất dễ vỡ" if vi else "Very fragile"),
+        ("SPRT thứ cấp" if vi else "Secondary SPRT", "Dùng trong phòng thí nghiệm" if vi else "Lab use",
+         "−200 đến 500 °C<br>(−328 đến 932 °F)", "$700", "1, A",
+         "Dễ vỡ" if vi else "Fragile"),
+        ("IPRT quấn dây" if vi else "Wirewound IPRT",
+         "Dùng hiện trường công nghiệp" if vi else "Industrial field use",
+         "−200 đến 648 °C<br>(−328 đến 1200 °F)", "$60–$180", "1, S, A",
+         "Bền" if vi else "Rugged"),
+        ("IPRT màng mỏng" if vi else "Thin-film IPRT",
+         "Dùng hiện trường công nghiệp" if vi else "Industrial field use",
+         "−50 đến 260 °C<br>(−200 đến 500 °F)", "$40–$140", "1, S, A",
+         "Bền" if vi else "Rugged"),
+    ]
+    cap = ("Bảng 32.6 · Ba hạng nhiệt kế điện trở bạch kim. ᵃ 1 = ngâm; A = không khí; "
+           "S = bề mặt." if vi else
+           "Table 32.6 · The three classes of platinum resistance thermometer. ᵃ 1 = immersion; "
+           "A = air; S = surface.")
+    return table(hd, rows, cap, widths=["17%", "22%", "20%", "11%", "14%", "16%"], small=True)
+
+
+def _t327(lang):
+    """Table 32.7 — the seventeen defining fixed points of ITS-90, in kelvin and
+    in degrees Celsius. The two approximate vapour-pressure points are given as
+    '≈' in the source and kept that way."""
+    vi = lang == "vi"
+    hd = (["Chấtᵃ", "Trạng thái cân bằngᵇ", "<i>T</i><sub>90</sub> (K)",
+           "<i>t</i><sub>90</sub> (°C)"] if vi else
+          ["Materialᵃ", "Equilibrium stateᵇ", "<i>T</i><sub>90</sub> (K)",
+           "<i>t</i><sub>90</sub> (°C)"])
+    rows = [
+        ("He", "VP", "3–5", "−270.15 đến −268.15" if vi else "−270.15 to −268.15"),
+        ("e-H₂", "TP", "13.8033", "−259.3467"),
+        ("e-H₂ (hoặc He)" if vi else "e-H₂ (or He)", "VP (hoặc GT)" if vi else "VP (or GT)",
+         "≈17", "≈−256.16"),
+        ("e-H₂ (hoặc He)" if vi else "e-H₂ (or He)", "VP (hoặc GT)" if vi else "VP (or GT)",
+         "≈20.3", "≈−252.85"),
+        ("Ne", "TP", "24.5561", "−248.5939"),
+        ("O₂", "TP", "54.3584", "−218.7916"),
+        ("Ar", "TP", "83.8058", "−189.3442"),
+        ("Hg", "TP", "234.3156", "−38.8344"),
+        ("H₂O", "TP", "273.16", "0.01"),
+        ("Ga", "MP", "302.9146", "29.7646"),
+        ("In", "FP", "429.7485", "156.5985"),
+        ("Sn", "FP", "505.078", "231.928"),
+        ("Zn", "FP", "692.677", "419.527"),
+        ("Al", "FP", "933.473", "660.323"),
+        ("Ag", "FP", "1234.93", "961.78"),
+        ("Au", "FP", "1337.33", "1064.18"),
+        ("Cu", "FP", "1357.77", "1084.62"),
+    ]
+    cap = ("Bảng 32.7 · Các điểm cố định định nghĩa của ITS-90. ᵃ e-H₂ chỉ hydro ở trạng thái cân "
+           "bằng, nghĩa là hydro có phân bố cân bằng giữa dạng <i>ortho</i> và <i>para</i> ở nhiệt "
+           "độ tương ứng. Hydro thường ở nhiệt độ phòng chứa 25% <i>para</i> và 75% <i>ortho</i>. "
+           "Thành phần đồng vị của mọi vật liệu là thành phần tự nhiên. ᵇ VP chỉ điểm hay phương "
+           "trình áp suất hơi; GT chỉ điểm nhiệt kế khí; TP chỉ điểm ba; FP chỉ điểm đông đặc; "
+           "MP chỉ điểm nóng chảy." if vi else
+           "Table 32.7 · Defining fixed points of the ITS-90. ᵃ e-H₂ indicates equilibrium hydrogen; "
+           "that is, hydrogen with the equilibrium distribution of its <i>ortho</i> and <i>para</i> "
+           "forms at the corresponding temperatures. Normal hydrogen at room temperature contains "
+           "25% <i>para</i> and 75% <i>ortho</i> hydrogen. The isotopic composition of all materials "
+           "is that naturally occurring. ᵇ VP indicates vapour pressure point or equation; GT "
+           "indicates gas thermometer point; TP indicates triple point; FP indicates freezing "
+           "point; MP indicates melting point.")
+    return table(hd, rows, cap, widths=["22%", "26%", "20%", "32%"], small=True)
 
 
 # ================================================================ §32.1
@@ -981,6 +1083,966 @@ def sec_32_1_en():
     return "".join(b)
 
 
+# ================================================================ §32.2
+def sec_32_2_vi():
+    b = [h2("32.2 Nhiệt kế điện trở", "Resistive Thermometers")]
+    b.append(authors("Jim Burns", ""))
+
+    b.append(h3("Giới thiệu về cảm biến nhiệt điện trở",
+                "Introduction to Resistance Temperature Detectors"))
+    b.append(p(
+        "Một cách phổ biến để đo nhiệt độ là dùng cảm biến nhiệt điện trở (Resistive Temperature "
+        "Detector — RTD). Những dụng cụ đo điện này cho kết quả đọc nhiệt độ chính xác cao: RTD "
+        "công nghiệp đơn giản dùng trong một quy trình chế tạo có độ chính xác ±0,1 °C, còn nhiệt "
+        "kế điện trở bạch kim chuẩn (SPRT) chính xác tới ±0,0001 °C."))
+    b.append(p(
+        "Điện trở của một số kim loại thay đổi theo một quy luật đã biết và dự đoán được, phụ thuộc "
+        "vào việc nhiệt độ tăng hay giảm. Khi nhiệt độ tăng, điện trở của kim loại tăng. Khi nhiệt "
+        "độ giảm, điện trở giảm. RTD dùng đặc tính này làm cơ sở để đo nhiệt độ."))
+    b.append(p(
+        "Phần cảm nhận của một RTD, gọi là phần tử, là một cuộn dây đường kính nhỏ, độ tinh khiết "
+        "cao, thường làm bằng bạch kim, đồng hoặc niken. Kiểu cấu tạo này được gọi là phần tử quấn "
+        "dây. Với phần tử màng mỏng, một màng bạch kim mỏng được lắng lên một đế gốm."))
+    b.append(p(
+        "Bạch kim là lựa chọn phổ biến cho cảm biến RTD vì nó ổn định lâu dài ở nhiệt độ cao. Bạch "
+        "kim tốt hơn đồng và niken vì nó trơ về mặt hóa học, chịu oxy hóa tốt và làm việc được trong "
+        "dải nhiệt độ rộng hơn."))
+    b.append(p(
+        "Khi vận hành, dụng cụ đo cho một dòng điện không đổi chạy qua RTD. Khi nhiệt độ thay đổi, "
+        "điện trở thay đổi và điện áp tương ứng cũng thay đổi. Phép đo này sau đó được chuyển thành "
+        "giá trị nhiệt độ bằng máy tính. Các phương trình làm khớp đường cong được dùng để xác định "
+        "quan hệ điện trở – nhiệt độ này. RTD sau đó có thể dùng để xác định nhiệt độ bất kỳ từ "
+        "điện trở đo được."))
+    b.append(p(
+        "Một kỹ thuật đo điển hình cho nhiệt kế công nghiệp là cho một dòng điện không đổi (0,8 mA "
+        "đến 1,0 mA) chạy qua cảm biến, rồi đo điện áp sinh ra trên cảm biến bằng kỹ thuật vôn kế "
+        "số. Kỹ thuật này đơn giản và có vài phương pháp hiệu chỉnh sai số được áp dụng."))
+    b.append(p(
+        "Trong phòng thí nghiệm, khi cần độ chính xác đo từ 10 ppm trở lên, người ta dùng thiết bị "
+        "đo chuyên dụng. Các cầu đo và vôn kế số độ chính xác cao có chức năng hiệu chỉnh sai số "
+        "đặc biệt được sử dụng. Độ chính xác của thiết bị đo cao cấp có thể đạt 0,1 ppm (phần "
+        "triệu). Những dụng cụ này có chức năng bù các sai số như điện áp nhiệt điện và tự đốt nóng "
+        "của phần tử."))
+    b.append(p(
+        "Ngoài nhiệt độ, ứng suất và tạp chất trong dây cũng ảnh hưởng đến đặc tính điện trở – "
+        "nhiệt độ của cảm biến. Quy tắc Matthiessen phát biểu rằng điện trở suất (<i>ρ</i>) của một "
+        "dây dẫn kim loại phụ thuộc vào nhiệt độ, tạp chất và biến dạng. <i>ρ</i> được đo bằng "
+        "(Ω cm):"))
+    b.append(eq("<i>ρ</i>(total) = <i>ρ</i>(temperature) + <i>ρ</i>(impurities) + "
+                "<i>ρ</i>(deformation)", "32.20"))
+    b.append(p(
+        "Thiết kế hợp lý và chọn vật liệu cẩn thận sẽ giảm thiểu các ảnh hưởng này, để điện trở "
+        "suất chỉ thay đổi khi nhiệt độ thay đổi."))
+
+    b.append(h3("Điện trở của kim loại", "Resistance of Metals"))
+    b.append(p(
+        "Dù phần tử của RTD được làm bằng bạch kim, đồng hay niken, mỗi loại kim loại có độ nhạy, "
+        "độ chính xác và dải nhiệt độ khác nhau. Độ nhạy được định nghĩa là mức thay đổi điện trở "
+        "của cảm biến trên mỗi độ thay đổi nhiệt độ. Hình 32.7 cho thấy độ nhạy của các kim loại "
+        "thông dụng nhất dùng chế tạo RTD."))
+    b.append(fig(7, F.fig(7), "vi"))
+    b.append(p(
+        "Bạch kim, một kim loại quý, có quan hệ điện trở – nhiệt độ ổn định nhất trên dải nhiệt độ "
+        "rộng nhất −184,44 °C (−300 °F) đến 648,88 °C (1200 °F). Phần tử niken có dải nhiệt độ hạn "
+        "chế vì mức thay đổi điện trở trên mỗi độ trở nên rất phi tuyến ở nhiệt độ trên 300 °C "
+        "(572 °F). Đồng có quan hệ điện trở – nhiệt độ rất tuyến tính. Tuy nhiên, đồng bị oxy hóa ở "
+        "nhiệt độ vừa phải và không dùng được trên 150 °C (302 °F)."))
+    b.append(p(
+        "Bạch kim là kim loại tốt nhất cho phần tử RTD vì ba lý do. Nó tuân theo quan hệ điện trở – "
+        "nhiệt độ rất tuyến tính; nó tuân theo quan hệ đó một cách lặp lại được trên toàn dải nhiệt "
+        "độ; và nó có dải nhiệt độ rộng nhất trong các kim loại dùng chế tạo RTD. Bạch kim không "
+        "phải kim loại nhạy nhất; tuy vậy, nó là kim loại mang lại độ ổn định lâu dài tốt nhất."))
+    b.append(p(
+        "Độ chính xác của RTD tốt hơn đáng kể so với cặp nhiệt điện trong dải nhiệt độ thông thường "
+        "của RTD, −184,44 °C (−300 °F) đến 648,88 °C (1200 °F). RTD cũng được biết đến với độ ổn "
+        "định và độ lặp lại cao. Có thể tháo chúng khỏi thiết bị và hiệu chuẩn lại để có độ chính "
+        "xác kiểm chứng được, đồng thời kiểm tra xem có trôi không."))
+
+    b.append(h3("Ai dùng RTD? Các cụm lắp và ứng dụng thông dụng",
+                "Who Uses RTDs? Common Assemblies and Applications"))
+    b.append(p(
+        "Các ứng dụng khác nhau cần các loại RTD khác nhau. Một nhiệt kế điện trở bạch kim (PRT) "
+        "ngâm trực tiếp cùng một đầu nối có thể dùng cho đường ống vận tốc thấp, bồn chứa hoặc đo "
+        "nhiệt độ không khí. Một PRT lò xo nén, đầu nối kiểu nhiệt ngẫu và đầu nối thường được dùng "
+        "trong đường ống hoặc bồn chứa. Một cảm biến nhiệt độ kiểu lấy trung bình cảm nhận và đo "
+        "nhiệt độ dọc theo toàn bộ vỏ bọc của nó, chiều dài có thể từ 1 đến 20 m. Một cảm biến nhiệt "
+        "độ dưới nước hạng nặng được thiết kế để ngâm hoàn toàn dưới sông, ao làm mát hoặc cống. Đây "
+        "chỉ là vài ví dụ về cấu hình và ứng dụng RTD."))
+
+    b.append(h3("Tổng quan về RTD bạch kim", "Overview of Platinum RTDs"))
+    b.append(p(
+        "Có ba hạng chính của nhiệt kế điện trở bạch kim (PRT): nhiệt kế điện trở bạch kim chuẩn "
+        "(SPRT), nhiệt kế điện trở bạch kim chuẩn thứ cấp (SPRT thứ cấp) và nhiệt kế điện trở bạch "
+        "kim công nghiệp (IPRT). Bảng 32.6 trình bày thông tin về từng loại."))
+    b.append(_t326("vi"))
+
+    b.append(h3("Hệ số nhiệt độ của điện trở", "Temperature Coefficient of Resistance"))
+    b.append(p(
+        "Mỗi kim loại khác nhau dùng làm phần tử cảm nhận (bạch kim, niken, đồng) có mức thay đổi "
+        "điện trở tương đối khác nhau trên mỗi đơn vị thay đổi nhiệt độ. Thước đo độ nhạy của nhiệt "
+        "kế điện trở là hệ số nhiệt độ của điện trở. Nó được định nghĩa là mức thay đổi điện trở "
+        "trên mỗi độ C thay đổi nhiệt độ, trên mỗi ohm điện trở cảm biến, trên dải 0 °C đến 100 °C."))
+    b.append(p(
+        "Giá trị alpha là mức thay đổi trung bình của điện trở trên mỗi độ C trên mỗi ohm điện trở. "
+        "Mức thay đổi thực tế của điện trở trên mỗi độ C trên mỗi ohm là lớn nhất ở −200 °C và giảm "
+        "đều khi nhiệt độ sử dụng tăng."))
+    b.append(p(
+        "Đơn vị của hệ số là Ω/Ω °C⁻¹. Đây được gọi là giá trị alpha và thường được ký hiệu bằng "
+        "chữ Hy Lạp <i>α</i>. Hệ số nhiệt độ càng lớn thì mức thay đổi điện trở càng lớn với cùng "
+        "một mức thay đổi nhiệt độ. Trong các kim loại RTD thông dụng, niken có hệ số nhiệt độ cao "
+        "nhất, 0,00672, còn đồng là 0,00427. Giá trị <i>α</i> của cảm biến được tính bằng phương "
+        "trình:"))
+    b.append(eq("<i>α</i> = (<i>R</i><sub>100</sub> − <i>R</i><sub>0</sub>) / "
+                "(100 °C × <i>R</i><sub>0</sub>)", "32.21"))
+    b.append(wl([
+        "trong đó <i>R</i><sub>0</sub> = điện trở của cảm biến ở 0 °C",
+        "<i>R</i><sub>100</sub> = điện trở của cảm biến ở 100 °C",
+    ]))
+    b.append(p("Ba hệ số nhiệt độ chính được quy định cho bạch kim:"))
+    b.append(ol([
+        "ITS-90, thang nhiệt độ chuẩn được quốc tế chấp nhận, yêu cầu hệ số nhiệt độ tối thiểu "
+        "0,003925 đối với SPRT. Hệ số này đạt được bằng dây có độ tinh khiết cao (99,9999% hoặc "
+        "hơn) được quấn trong một cấu hình không ứng suất.",
+        "Với dây bạch kim cấp chuẩn dùng trong phần tử công nghiệp, hệ số nhiệt độ là 0,003902.",
+        "IEC 751 [1] và ASTM 1137 [2] đã chuẩn hóa hệ số nhiệt độ của bạch kim là 0,0038500.",
+    ]))
+
+    b.append(h3("Cấu tạo RTD", "RTD Construction"))
+    b.append(p(
+        "Nhiệt kế điện trở bạch kim chuẩn (SPRT), loại nhiệt kế bạch kim chính xác nhất, dễ vỡ và "
+        "chỉ dùng trong môi trường phòng thí nghiệm (Hình 32.8). Vật liệu dễ vỡ không đủ độ bền và "
+        "khả năng chống rung cho môi trường công nghiệp. SPRT có độ lặp lại cao và độ trôi thấp, "
+        "nhưng chúng đắt hơn vì vật liệu và kỹ thuật chế tạo."))
+    b.append(fig(8, F.fig(8), "vi"))
+    b.append(p(
+        "Các phần tử SPRT được quấn từ dây bạch kim độ tinh khiết cao, đường kính lớn. Dây dẫn bên "
+        "trong thường làm bằng bạch kim, giá đỡ bên trong làm bằng thạch anh hoặc thủy tinh silica "
+        "nóng chảy. SPRT được dùng trên dải nhiệt độ rất rộng, từ −200 °C (−328 °F) đến trên "
+        "1000 °C (1832 °F). Với SPRT dùng để đo nhiệt độ tới 660 °C (1220 °F), điện trở ở điểm băng "
+        "thường là 25,5 Ω. Với nhiệt kế nhiệt độ cao, điện trở ở điểm băng là 2,5 Ω hoặc 0,25 Ω. Đầu "
+        "đo SPRT có thể chính xác tới ±0,001 °C (0,0018 °F) nếu dùng đúng cách."))
+    b.append(p(
+        "Nhiệt kế điện trở bạch kim chuẩn thứ cấp (SPRT thứ cấp) cũng dành cho môi trường phòng thí "
+        "nghiệm (Hình 32.9). Chúng được cấu tạo giống SPRT, nhưng vật liệu rẻ hơn, thường là dây "
+        "bạch kim độ tinh khiết cao cấp chuẩn, vỏ kim loại và cách điện gốm. Dây dẫn bên trong "
+        "thường là hợp kim gốc niken. Cảm biến thứ cấp bị giới hạn về nhiệt độ trên dải −200 °C "
+        "(−328 °F) đến 500 °C (932 °F) — và chính xác tới ±0,03 °C (±0,054 °F) trên dải nhiệt độ "
+        "của chúng."))
+    b.append(fig(9, F.fig(9), "vi"))
+    b.append(p(
+        "Nhiệt kế chuẩn thứ cấp chịu được một mức va chạm nhất định, dù vẫn khá nhạy với ứng suất. "
+        "Xử lý thô bạo, rung và sốc sẽ làm dịch chuyển điểm hiệu chuẩn. Điện trở danh định ở điểm "
+        "băng thường là 100 Ω. Điều này đơn giản hóa quy trình hiệu chuẩn khi hiệu chuẩn các RTD "
+        "100 Ω khác. Hệ số nhiệt độ của chuẩn thứ cấp dùng dây bạch kim cấp chuẩn thường là "
+        "0,00392 Ω Ω⁻¹ °C⁻¹ hoặc cao hơn."))
+    b.append(p(
+        "Nhiệt kế điện trở bạch kim công nghiệp (IPRT) được thiết kế để chịu được môi trường công "
+        "nghiệp và bền gần như cặp nhiệt điện (Hình 32.10). IEC 751 [1] và ASTM 1137 [2] quy định "
+        "các yêu cầu đối với nhiệt kế điện trở bạch kim công nghiệp. Dải nhiệt độ thông dụng nhất là "
+        "−200 °C (−328 °F) đến 500 °C (932 °F). Mẫu tiêu chuẩn có thể hoán đổi với độ chính xác "
+        "±0,25 °C (±0,45 °F) đến ±2,5 °C (±4,5 °F) trên dải nhiệt độ của chúng."))
+    b.append(fig(10, F.fig(10), "vi"))
+    b.append(p(
+        "Có sẵn nhiều kiểu thiết kế phần tử cho các ứng dụng khác nhau. Một cấu hình phổ biến là "
+        "phần tử quấn dây (Hình 32.11). Thiết kế bền này được phát triển để thay thế SPRT dễ vỡ. Dây "
+        "cảm nhận bạch kim nhỏ (thường từ 7 đến 50 μm, tức 0,0003 in. đến 0,002 in. đường kính) được "
+        "quấn không cảm ứng quanh một lõi gốm hình trụ, và thường được phủ một lớp vật liệu mỏng tạo "
+        "cách điện và bảo vệ cơ học. Vì dây cảm nhận được đỡ chắc chắn, nó không thể giãn và co tự "
+        "do như dây bạch kim không được đỡ của SPRT. Kiểu phần tử này có độ bền cao hơn SPRT và "
+        "chuẩn thứ cấp, cùng độ chính xác rất tốt cho hầu hết ứng dụng công nghiệp."))
+    b.append(fig(11, F.fig(11), "vi"))
+    b.append(p(
+        "Trong một thiết kế quấn dây khác, kiểu treo cuộn dây, một cuộn dây bạch kim mảnh được lắp "
+        "vào các lỗ nhỏ trong một lõi gốm hình trụ (Hình 32.12). Các cuộn dây được đỡ bằng bột gốm "
+        "hoặc xi măng, và bịt kín ở cả hai đầu. Khi bột gốm được đóng gói lỏng trong các lỗ của lõi, "
+        "phần tử có thể giãn và co tự do. Điều này giảm ảnh hưởng của ứng suất lên đặc tính điện "
+        "trở, mang lại độ chính xác và độ ổn định rất cao khi dùng cho chuẩn nhiệt độ thứ cấp và "
+        "các ứng dụng công nghiệp nhẹ (ít hoặc không rung, sốc). Những cải tiến gần đây về vật liệu "
+        "gốm giúp cuộn dây cảm nhận ổn định hơn — nó có thể duy trì độ chính xác 0,03 °C sau hàng "
+        "nghìn giờ ở nhiệt độ 500 °C. Các loại bột gốm này đỡ cuộn dây trong lõi và giữ chúng cố "
+        "định tại chỗ với ứng suất tối thiểu."))
+    b.append(fig(12, F.fig(12), "vi"))
+    b.append(p(
+        "Phần tử màng mỏng rất nhỏ, thường dưới 1,6 mm (1/16 in.) vuông (Hình 32.13). Chúng được chế "
+        "tạo bằng các kỹ thuật tương tự dùng để chế tạo mạch tích hợp. Đầu tiên, một màng bạch kim "
+        "mỏng được lắng lên một đế gốm. Một số nhà sản xuất dùng kỹ thuật in quang khắc để khắc "
+        "màng bạch kim đã lắng, để lại hình mẫu phần tử trên đế gốm. Sau đó, bề mặt phần tử được phủ "
+        "vật liệu thủy tinh để bảo vệ phần tử khỏi độ ẩm và chất nhiễm."))
+    b.append(fig(13, F.fig(13), "vi"))
+    b.append(p(
+        "Dải nhiệt độ của phần tử bạch kim màng mỏng là −50 °C (−58 °F) đến 400 °C (752 °F); độ "
+        "chính xác từ 0,5 °C (0,9 °F) đến 2,0 °C (3,6 °F). Phần tử màng mỏng thông dụng nhất có "
+        "điện trở điểm băng 100 Ω và hệ số nhiệt độ 0,00385 °C."))
+    b.append(p(
+        "RTD màng mỏng có thể rất bền khi dây dẫn đường kính nhỏ và màng mỏng được bảo vệ đúng "
+        "cách. Độ chính xác và độ ổn định có thể không tốt bằng một số phần tử quấn dây do hiện "
+        "tượng trễ, sai số ổn định dài hạn và sai số tự đốt nóng."))
+
+    b.append(h3("Sai số tự đốt nóng", "Self-heating Errors"))
+    b.append(p(
+        "Dòng điện dùng để đo điện trở cảm biến cũng làm nóng cảm biến. Hiện tượng này được gọi là "
+        "đốt nóng I²R hay đốt nóng Joule. Do hiệu ứng này, nhiệt độ chỉ thị của cảm biến cao hơn "
+        "nhiệt độ thực một chút. Sự không nhất quán này thường được gọi là sai số tự đốt nóng. Sai "
+        "số tự đốt nóng, phụ thuộc vào ứng dụng, có thể từ không đáng kể đến 1 °C. Sai số đốt nóng "
+        "lớn nhất xảy ra do truyền nhiệt kém giữa phần tử cảm nhận và ứng dụng, hoặc do dùng dòng "
+        "điện quá lớn khi đo điện trở."))
+    b.append(p("Các phương pháp sau đây để giảm sai số tự đốt nóng."))
+    b.append(ol([
+        "Giảm thiểu công suất tiêu tán trong cảm biến. Có sự đánh đổi giữa mức tín hiệu và tự đốt "
+        "nóng của cảm biến. Thông thường, dùng dòng 1 mA làm dòng cảm nhận.",
+        "Dùng cảm biến có trở nhiệt thấp. Trở nhiệt của cảm biến càng thấp thì cảm biến tản công "
+        "suất I²R càng tốt và mức tăng nhiệt trong cảm biến càng thấp. Hằng số thời gian nhỏ cho "
+        "thấy cảm biến có trở nhiệt thấp.",
+        "Tối đa hóa tiếp xúc nhiệt giữa cảm biến và ứng dụng.",
+    ]))
+
+    b.append(h3("Hiệu chuẩn", "Calibration"))
+    b.append(p(
+        "Các chương trình kiểm tra là thiết yếu để xác minh độ chính xác của PRT. Một số IPRT được "
+        "hiệu chuẩn tại nhà máy ở một nhiệt độ như điểm băng, nhưng người dùng PRT có thể muốn hiệu "
+        "chuẩn chúng ở các nhiệt độ khác, tùy ứng dụng."))
+    b.append(p(
+        "Kết quả hiệu chuẩn có thể được so sánh với các lần hiệu chuẩn trước đó của cùng dụng cụ. "
+        "Điều này sẽ xác định liệu có cần sửa chữa hoặc thay thế dụng cụ, hay có cần hiệu chuẩn "
+        "thường xuyên hơn."))
+    b.append(p(
+        "Vì sửa chữa và hiệu chuẩn thường xuyên thường tốn kém, người mua và người chỉ định PRT có "
+        "thể muốn điều tra các RTD khác nhau trước khi lắp đặt bằng cách tham khảo ASTM Standard "
+        "#E1137-95 [2], do American Society for Testing and Materials (ASTM) xuất bản."))
+    b.append(p(
+        "<i>Tần suất.</i> Độ ổn định của RTD phụ thuộc vào môi trường làm việc. Nhiệt độ cao có thể "
+        "gây trôi và nhiễm bẩn dây bạch kim. Nhiệt độ càng cao, trôi xảy ra càng nhanh. Dưới 400 °C, "
+        "trôi do nhiệt độ cao không phải vấn đề đáng kể, nhưng nhiệt độ tới 500 °C đến 600 °C là "
+        "nguyên nhân chính gây trôi — tới vài độ mỗi năm. Sốc mạnh có thể làm hỏng cảm biến ngay lập "
+        "tức và gây hỏng. Va đập, rung và xử lý thô bạo sẽ tạo ứng suất trong dây bạch kim và thay "
+        "đổi đặc tính của nó, đồng thời có thể làm hỏng toàn bộ phần tử. Nếu cảm biến không được bịt "
+        "kín đúng cách, hơi ẩm có thể vào trong cảm biến và gây ra một số vấn đề với điện trở cách "
+        "điện. Vì nước trong hơi ẩm dẫn điện, nó sẽ nằm giữa các dây dẫn và phần tử cảm nhận, và về "
+        "cơ bản làm ngắn mạch điện trở của dây phần tử. Trong điều kiện vận hành khắc nghiệt, nên "
+        "hiệu chuẩn cảm biến hàng tháng hoặc hai tháng một lần. Nếu hoàn thành năm lần hiệu chuẩn "
+        "trở lên mà không có thay đổi đáng kể, thì có thể tăng gấp đôi khoảng thời gian giữa các lần "
+        "hiệu chuẩn; tuy nhiên, nên hiệu chuẩn ít nhất mỗi năm một lần."))
+    b.append(p(
+        "<i>Kỹ thuật.</i> Hai phương pháp hiệu chuẩn thông dụng là phương pháp điểm cố định và "
+        "phương pháp so sánh."))
+    b.append(p(
+        "<i>Hiệu chuẩn bằng điểm cố định</i>, dùng cho độ chính xác cao nhất, dùng điểm ba, điểm "
+        "đông đặc hoặc điểm nóng chảy của các chất tinh khiết như nước, kẽm, thiếc và agon để tạo ra "
+        "một nhiệt độ đã biết và lặp lại được (Hình 32.14). Các tế bào điểm cố định được bịt kín để "
+        "ngăn nhiễm bẩn và ngăn điều kiện khí quyển ảnh hưởng đến nhiệt độ của tế bào. Các tế bào "
+        "này cho phép người dùng tái tạo các điều kiện thực tế của thang nhiệt độ ITS-90."))
+    b.append(fig(14, F.fig(14), "vi"))
+    b.append(p(
+        "Hiệu chuẩn bằng điểm cố định mang lại độ chính xác rất cao (trong khoảng ±0,001 °C), nhưng "
+        "các tế bào tốn thời gian sử dụng và mỗi lần chỉ chứa được một cảm biến. Vì lý do này, chúng "
+        "không được dùng rộng rãi khi hiệu chuẩn cảm biến công nghiệp. Mỗi tế bào điểm cố định có "
+        "một quy trình riêng để đạt được điểm cố định."))
+    b.append(p("Một quy trình tổng quát để hiệu chuẩn bằng điểm cố định như sau:"))
+    b.append(ol([
+        "Chuẩn bị tế bào. Có các quy trình khác nhau cho mỗi điểm cố định.",
+        "Đưa nhiệt kế cần hiệu chuẩn vào.",
+        "Để hệ thống ổn định. Thời gian ổn định phụ thuộc vào nhiệt kế và tế bào điểm cố định. "
+        "Thông thường, 15 đến 30 phút là đủ.",
+        "Đo điện trở của nhiệt kế. Để có độ chính xác đo cao nhất, dùng cầu đo điện trở chuyên "
+        "dụng. Chúng có độ chính xác trong khoảng 10 ppm đến 0,1 ppm.",
+    ]))
+    b.append(p(
+        "Một phương pháp hiệu chuẩn bằng điểm cố định thông dụng cho đầu đo công nghiệp là bể nước "
+        "đá. Thiết bị này rẻ, dễ dùng và có thể chứa nhiều cảm biến cùng lúc. Điểm băng được chỉ "
+        "định làm chuẩn thứ cấp vì độ chính xác của nó là ±0,005 °C (±0,009 °F), so với ±0,001 °C "
+        "(±0,0018 °F) đối với các điểm cố định sơ cấp."))
+    b.append(p(
+        "Trong <i>hiệu chuẩn so sánh</i>, thường dùng với SPRT thứ cấp và RTD công nghiệp, các nhiệt "
+        "kế cần hiệu chuẩn được so sánh với nhiệt kế đã hiệu chuẩn bằng một bể đẳng nhiệt có nhiệt "
+        "độ ổn định đồng đều (Hình 32.15). Khác với hiệu chuẩn bằng điểm cố định, phép so sánh có "
+        "thể thực hiện ở bất kỳ nhiệt độ nào trong khoảng −100 °C (−148 °F) và 500 °C (932 °F). "
+        "Phương pháp này có thể tiết kiệm chi phí hơn vì có thể hiệu chuẩn nhiều cảm biến đồng thời "
+        "bằng thiết bị tự động."))
+    b.append(fig(15, F.fig(15), "vi"))
+    b.append(p(
+        "Các bể đẳng nhiệt này, được đốt nóng bằng điện và khuấy đều, dùng dầu silicone làm môi "
+        "trường cho nhiệt độ từ −100 °C (−148 °F) đến 200 °C (392 °F), và muối nóng chảy cho nhiệt "
+        "độ trên 200 °C (392 °F). Ở nhiệt độ trên 500 °C (932 °F), người ta dùng lò không khí hoặc "
+        "tầng sôi, nhưng chúng kém ổn định đồng đều hơn đáng kể."))
+    b.append(p("Quy trình hiệu chuẩn so sánh như sau:"))
+    b.append(ol([
+        "Đưa nhiệt kế chuẩn và các nhiệt kế cần hiệu chuẩn vào bể.",
+        "Để bể ổn định.",
+        "Đo điện trở của chuẩn để xác định nhiệt độ của bể.",
+        "Đo điện trở của từng nhiệt kế đang hiệu chuẩn.",
+    ]))
+    b.append(p(
+        "<i>Suy ra quan hệ điện trở – nhiệt độ của một PRT.</i> Sau khi xác định điện trở của PRT, "
+        "có thể xác định các hệ số hiệu chuẩn. Bằng cách thay các giá trị này vào một phương trình, "
+        "có thể suy ra nhiệt độ từ bất kỳ điện trở đo được nào. Hai kỹ thuật làm khớp đường cong "
+        "thông dụng nhất là phương trình ITS-90 và Callendar–Van Dusen."))
+    b.append(p(
+        "Ngày 1 tháng 1 năm 1990, Thang Nhiệt độ Quốc tế 1990 (ITS-90) trở thành thang nhiệt độ quốc "
+        "tế chính thức [3]. ITS-90 kéo dài lên trên từ 0,65 K (−272,5 °C hay −458,5 °F) và định "
+        "nghĩa nhiệt độ từ 0,65 K (0,65 °C trên độ không tuyệt đối) trở lên bằng các điểm cố định "
+        "(xem Bảng 32.7)."))
+    b.append(_t327("vi"))
+    b.append(p(
+        "Hai hàm quy chiếu được dùng để định nghĩa hệ số nhiệt độ của một SPRT lý tưởng: một cho "
+        "nhiệt độ dưới 0 °C và một cho nhiệt độ trên 0 °C. Khi một PRT được hiệu chuẩn theo ITS-90, "
+        "các hệ số xác định trong hiệu chuẩn được dùng để mô tả một hàm độ lệch biểu diễn hiệu giữa "
+        "điện trở của PRT chuẩn và hàm quy chiếu ở mọi nhiệt độ trong dải. Dùng các hệ số hiệu chuẩn "
+        "và hàm độ lệch, có thể dùng SPRT để xác định nhiệt độ bất kỳ từ điện trở đo được. Vì các "
+        "phương trình ITS-90 phức tạp, cần phần mềm máy tính để tính chính xác."))
+    b.append(p("ITS-90 ảnh hưởng đến:"))
+    b.append(ul([
+        "Các phòng thí nghiệm chuẩn và hiệu chuẩn nhiệt độ",
+        "Người dùng SPRT chuẩn và chuẩn thứ cấp có liên kết truy xuất tới các phòng thí nghiệm chuẩn",
+        "Người dùng hệ thống đo và điều khiển nhiệt độ trong các công ty quan tâm đến quản lý chất "
+        "lượng có thể kiểm chứng",
+    ]))
+    b.append(p(
+        "Viện Tiêu chuẩn và Công nghệ Quốc gia (NIST) đã xuất bản Technical Note 1265, "
+        "<i>Guidelines for Realizing the International Temperature Scale of 1990 (ITS-90)</i> [4]. "
+        "Không phải mọi người dùng PRT đều cần theo các phương trình phức tạp và chương trình máy "
+        "tính gắn với ITS-90. Theo nguyên tắc chung: nếu yêu cầu độ không đảm bảo đo tối thiểu nhỏ "
+        "hơn 0,1 °C, có lẽ nên dùng ITS-90. Với độ không đảm bảo đo lớn hơn 0,1 °C, ảnh hưởng của "
+        "sự thay đổi thang đo là tương đối nhỏ và không bị ảnh hưởng."))
+    b.append(p(
+        "Các phương trình Callendar–Van Dusen là phương trình nội suy mô tả quan hệ nhiệt độ – điện "
+        "trở của PRT công nghiệp. Những phương trình bậc hai và bậc bốn dễ dùng này có thể được lập "
+        "trình dễ dàng vào nhiều bộ điều khiển điện tử. Phương trình cho dải nhiệt độ 0 °C (32 °F) "
+        "đến 850 °C (1562 °F) là:"))
+    b.append(eq("<i>R</i>(<i>t</i>) = <i>R</i><sub>0</sub>(1 + <i>At</i> + <i>Bt</i>²)", "32.22"))
+    b.append(p("Cho dải nhiệt độ −200 °C (−392 °F) đến 0 °C (32 °F):"))
+    b.append(eq("<i>R</i>(<i>t</i>) = <i>R</i><sub>0</sub>[1 + <i>At</i> + <i>Bt</i>² + "
+                "<i>C</i>(<i>t</i> − 100)<i>t</i>³]", "32.23"))
+    b.append(wl([
+        "trong đó <i>R</i>(<i>t</i>) = điện trở của PRT ở nhiệt độ <i>t</i>",
+        "<i>t</i> = nhiệt độ tính bằng °C",
+        "<i>R</i><sub>0</sub> = điện trở danh định của PRT ở 0 °C",
+        "<i>α</i>, <i>δ</i>, <i>β</i> = các hệ số hiệu chuẩn",
+    ]))
+    b.append(p(
+        "Để xác định nhiệt độ từ một điện trở đo được, cần một bộ phương trình và hệ số hiệu chuẩn "
+        "khác. Với nhiệt độ lớn hơn 0 °C (điện trở đo được lớn hơn điện trở điểm băng đã biết của "
+        "PRT):"))
+    b.append(eq("<i>t</i>(°C) = [(<i>R</i><sub><i>t</i></sub> − <i>R</i><sub>0</sub>) / "
+                "(<i>αR</i><sub>0</sub>)] + <i>δ</i>[(<i>t</i>/100) − 1](<i>t</i>/100)", "32.24"))
+    b.append(p(
+        "Với nhiệt độ nhỏ hơn 0 °C (điện trở đo được nhỏ hơn điện trở điểm băng đã biết của PRT):"))
+    b.append(eq("<i>t</i>(°C) = [(<i>R</i><sub><i>t</i></sub> − <i>R</i><sub>0</sub>) / "
+                "(<i>αR</i><sub>0</sub>)] + <i>δ</i>[(<i>t</i>/100) − 1](<i>t</i>/100) + "
+                "<i>β</i>[(<i>t</i>/100) − 1](<i>t</i>/100)³", "32.25"))
+    b.append(wl([
+        "trong đó <i>t</i> = nhiệt độ cần tính",
+        "<i>R</i>(<i>t</i>) = điện trở đo được ở nhiệt độ chưa biết",
+        "<i>R</i><sub>0</sub> = điện trở của cảm biến ở 0 °C",
+        "<i>α</i>, <i>δ</i>, <i>β</i> = các hệ số",
+    ]))
+    b.append(p(
+        "Để xác định đúng nhiệt độ từ một điện trở cho trước bằng các phương trình này, phải lặp "
+        "các phương trình ít nhất năm lần. Sau mỗi lần tính, giá trị nhiệt độ mới (<i>t</i>) được "
+        "thay trở lại vào phương trình. Giá trị nhiệt độ tính được sẽ hội tụ về giá trị thực của nó. "
+        "Sau năm lần lặp, nhiệt độ tính được phải nằm trong khoảng ±0,001 °C so với giá trị thực."))
+    b.append(p(
+        "Với cảm biến công nghiệp, một phương pháp thay thế là dùng các đường khớp bình phương tối "
+        "thiểu phi tuyến để tạo ra quan hệ nhiệt độ/điện trở. Tuy nhiên, không nên dùng các phương "
+        "pháp này cho nhiệt kế thứ cấp và sơ cấp vì chúng không khớp đủ với thang ITS-90 đã định "
+        "nghĩa. Có thể có sai số khớp đường cong tới 0,05 °C."))
+
+    b.append(h3("Sử dụng RTD ngày nay", "Usage of RTDs Today"))
+    b.append(p(
+        "Trong toàn ngành công nghiệp, việc sử dụng RTD đang tăng lên vì nhiều lý do. Với sự ra đời "
+        "của thời đại máy tính, các ngành công nghiệp nhận ra nhu cầu đo nhiệt độ tốt hơn, và một "
+        "tín hiệu điện đi kèm với những tiến bộ trong thiết bị đo quá trình được vi tính hóa. RTD "
+        "tạo ra tín hiệu điện; và vì điều khiển tự động trong các nhà máy công nghiệp, nó giúp giao "
+        "tiếp với bộ điều khiển quá trình trở nên đơn giản và dễ dàng hơn. Với trọng tâm là tái cấu "
+        "trúc, các công ty đang tìm cách cải thiện quy trình. Đo và điều khiển nhiệt độ tốt hơn là "
+        "một cách tốt để tiết kiệm năng lượng, giảm chất thải vật liệu, giảm chi phí và cải thiện "
+        "hiệu quả vận hành tổng thể."))
+    b.append(p(
+        "Các quy định của chính phủ là một lý do khác khiến RTD ngày càng phổ biến. Trong ngành dược "
+        "phẩm, FDA [5] yêu cầu thẩm định; trong đó có việc thẩm định rằng phép đo nhiệt độ là chính "
+        "xác. Các quy định mới hiện đang được soạn thảo cho ngành thực phẩm [6]."))
+    b.append(p(
+        "Sự chấp nhận ngày càng tăng của các tiêu chuẩn ISO 9000 trên toàn thế giới đã buộc các "
+        "công ty phải hiệu chuẩn hệ thống và thiết bị đo nhiệt độ của họ. Ngoài ra, việc hiệu chuẩn "
+        "phải được ghi thành văn bản và phải truy xuất được tới một chuẩn quốc gia, hợp pháp được "
+        "công nhận."))
+    b.append(p(
+        "RTD an toàn với môi trường. Với nhiệt kế thủy ngân, việc thải bỏ thủy ngân là một vấn đề. "
+        "Trong nhiều ngành công nghiệp, chỉ riêng sự hiện diện của nhiệt kế thủy ngân đã là một "
+        "rủi ro."))
+
+    b.append(h3("Ví dụ về ứng dụng tiên tiến cho đo nhiệt độ tới hạn",
+                "Examples of Advanced Applications for Critical Temperature Measurement"))
+    b.append(p(
+        "Công nghệ RTD cho phép thiết kế tùy chỉnh trong nhiều ứng dụng và ngành công nghiệp. Trong "
+        "nhiều trường hợp, RTD trở thành một phần không thể tách rời của một ứng dụng tiên tiến khi "
+        "nhiệt độ là yếu tố tới hạn."))
+    b.append(p(
+        "Các nhà máy điện dùng cảm biến RTD để theo dõi nhiên liệu và chất làm mát của bộ trao đổi "
+        "nhiệt vào và ra. Đo nhiệt độ chính xác cũng rất quan trọng đối với các nhà máy điện hạt "
+        "nhân để thực hiện các thử nghiệm rò rỉ áp suất trên bình chứa bao quanh lõi lò phản ứng."))
+    b.append(p(
+        "Các nhà sản xuất vi xử lý cần kiểm soát nhiệt độ chính xác trong toàn bộ khu vực phòng sạch "
+        "của họ. Nhiệt độ không khí là yếu tố tới hạn đối với sản xuất; nhiều điểm đo nhiệt độ phải "
+        "chính xác ±0,028 °C (±0,05 °F). Để đạt được điều này, một RTD được hiệu chuẩn với một bộ "
+        "phát nhiệt độ. Cặp đôi khớp này đảm bảo mức chính xác cao nhất của hệ thống và loại bỏ sai "
+        "số không hoán đổi được của RTD."))
+
+    b.append(h3("Tương lai của công nghệ RTD", "The Future of RTD Technology"))
+    b.append(p(
+        "Tương lai của công nghệ RTD được thúc đẩy bởi nhu cầu của người dùng cuối và các vấn đề "
+        "chưa được giải quyết. Ví dụ, nhu cầu về RTD công nghiệp nhiệt độ cao tồn tại cho các ứng "
+        "dụng trên 600 °C (1200 °F). Để hoạt động ở nhiệt độ cao, phần tử bạch kim của RTD phải được "
+        "bảo vệ khỏi nhiễm bẩn. Tuy nhiên, vật liệu vỏ có thể là vấn đề vì ở nhiệt độ cao, nó sẽ "
+        "phản ứng với oxy trong không khí và sinh ra các hạt kim loại có thể bám vào bạch kim."))
+    b.append(p(
+        "RTD phải đủ bền về mặt cơ học để chịu được nhiệt độ cao hơn. Một RTD công nghiệp nhiệt độ "
+        "cao sẽ cần một vỏ chịu nhiệt, có lẽ là Inconel 600. Ngoài ra, các thành phần cảm biến phải "
+        "được thiết kế và chế tạo để chịu được nhiệt độ cực cao. Một số RTD được quy định hoạt động "
+        "trên 600 °C (1200 °F), nhưng khi thử nghiệm, chúng không phải lúc nào cũng đáng tin cậy. "
+        "Trôi và không lặp lại là những vấn đề cần được quan tâm thêm."))
+    b.append(p(
+        "Những tiến bộ trong hiệu chuẩn RTD mang lại cải tiến đáng kể cho việc đo và điều khiển "
+        "nhiệt độ. Các công nghệ đo mới kết hợp với kỹ thuật tính toán mạnh mẽ đã đơn giản hóa quy "
+        "trình hiệu chuẩn và làm cho nó đáng tin cậy hơn."))
+    b.append(p(
+        "Một lĩnh vực tăng trưởng hiện nay là hiệu chuẩn tại chỗ và bể hiệu chuẩn. Các yêu cầu thẩm "
+        "định của chính phủ và tiêu chuẩn ISO 9000 là động lực trong lĩnh vực này. Vì các chương "
+        "trình hiệu chuẩn của bên thứ ba tốn kém, các công ty muốn có năng suất cao hơn và hiệu quả "
+        "chi phí cao hơn. Wong [7] thảo luận lợi ích của việc thiết lập một phòng hiệu chuẩn tại "
+        "chỗ, bên cạnh các khái niệm truy xuất. Truy xuất đề cập đến một chuỗi so sánh không gián "
+        "đoạn, liên kết phép đo nhiệt độ với một chuẩn quốc gia, hợp pháp được công nhận. Ở Hoa Kỳ, "
+        "chuẩn quốc gia này được duy trì bởi Viện Tiêu chuẩn và Công nghệ Quốc gia (NIST). Tất cả "
+        "các nhà sản xuất, phòng thí nghiệm và phòng hiệu chuẩn RTD phải điều chỉnh chuẩn của họ để "
+        "đáp ứng chuẩn NIST."))
+
+    b.append(h3("Định nghĩa thuật ngữ", "Defining Terms"))
+    b.append(defs([
+        ("<b>Accuracy</b> — độ chính xác",
+         "Mức độ phù hợp giữa một phép đo thực tế và chuẩn quy chiếu của nó."),
+        ("<b>Alpha (<i>α</i>)</b>",
+         "Hệ số nhiệt độ của điện trở của một PRT trên dải 0 °C đến 100 °C. Ví dụ, <i>α</i> của một "
+         "nhiệt kế điện trở bạch kim chuẩn (SPRT) là 0,003925."),
+        ("<b>Calibrate</b> — hiệu chuẩn",
+         "Kiểm tra, điều chỉnh hoặc xác định độ chính xác của một RTD bằng cách so sánh với một "
+         "chuẩn."),
+        ("<b>DIN (Deutsche Industrial Norm)</b>",
+         "Một tổ chức của Đức xây dựng các tiêu chuẩn kỹ thuật, khoa học và kích thước được công "
+         "nhận trên toàn thế giới."),
+        ("<b>Error</b> — sai số",
+         "Hiệu giữa giá trị đúng và giá trị đọc thực tế."),
+        ("<b>Primary Standard (hay Standard PRT)</b> — chuẩn sơ cấp",
+         "Nhiệt kế điện trở bạch kim đáp ứng các yêu cầu để thiết lập hiệu chuẩn theo ITS-90. Dụng "
+         "cụ có độ chính xác cao này dành cho môi trường phòng thí nghiệm và chính xác tới 0,001 °C."),
+        ("<b>Reliability</b> — độ tin cậy",
+         "Được dùng để chỉ độ chính xác xác định trước cho các phép đo thực hiện trong một tập điều "
+         "kiện rất hạn chế."),
+        ("<b>Repeatability</b> — độ lặp lại",
+         "Khả năng cho cùng một kết quả đo trong những điều kiện lặp lại, tương ứng nhau."),
+        ("<b>Stability</b> — độ ổn định",
+         "Trạng thái chống lại sự thay đổi hoặc xuống cấp."),
+        ("<b>Sensitivity</b> — độ nhạy",
+         "Mức thay đổi điện trở của cảm biến trên mỗi độ thay đổi nhiệt độ."),
+    ]))
+
+    b.append(_refs322("vi"))
+    return "".join(b)
+
+
+def sec_32_2_en():
+    b = [h2("32.2 Resistive Thermometers", "Nhiệt kế điện trở")]
+    b.append(authors("Jim Burns", ""))
+
+    b.append(h3("Introduction to Resistance Temperature Detectors",
+                "Giới thiệu về cảm biến nhiệt điện trở"))
+    b.append(p(
+        "One common way to measure temperature is by using Resistive Temperature Detectors (RTDs). "
+        "These electrical temperature instruments provide highly accurate temperature readings: "
+        "simple industrial RTDs used within a manufacturing process are accurate to ±0.1 °C, while "
+        "Standard Platinum Resistance Thermometers (SPRTs) are accurate to ±0.0001 °C."))
+    b.append(p(
+        "The electric resistance of certain metals changes in a known and predictable manner, "
+        "depending on the rise or fall in temperature. As temperatures rise, the electric "
+        "resistance of the metal increases. As temperatures drop, electric resistance decreases. "
+        "RTDs use this characteristic as a basis for measuring temperature."))
+    b.append(p(
+        "The sensitive portion of an RTD, called an element, is a coil of small-diameter, "
+        "high-purity wire, usually constructed of platinum, copper, or nickel. This type of "
+        "configuration is called a wire-wound element. With thin-film elements, a thin film of "
+        "platinum is deposited onto a ceramic substrate."))
+    b.append(p(
+        "Platinum is a common choice for RTD sensors because it is known for its long-term "
+        "stability over time at high temperatures. Platinum is a better choice than copper or "
+        "nickel because it is chemically inert, it withstands oxidation well, and works in a "
+        "higher temperature range as well."))
+    b.append(p(
+        "In operation, the measuring instrument applies a constant current through the RTD. As the "
+        "temperature changes, the resistance changes and the corresponding change in voltage is "
+        "measured. This measurement is then converted to thermal values by a computer. "
+        "Curve-fitting equations are used to define this resistance vs. temperature relationship. "
+        "The RTD can then be used to determine any temperature from its measured resistance."))
+    b.append(p(
+        "A typical measurement technique for industrial thermometers involves sending a constant "
+        "current through the sensor (0.8 mA to 1.0 mA), and then measuring the voltage generated "
+        "across the sensor using digital voltmeter techniques. The technique is simple and few "
+        "error-correcting techniques are applied."))
+    b.append(p(
+        "In a laboratory where measurement accuracies of 10 ppm or better are required, "
+        "specialized measurement equipment is used. High-accuracy bridges and digital voltmeters "
+        "with special error-correcting functions are used. Accuracies of high-end measurement "
+        "equipment can reach 0.1 ppm (parts per million). These instruments have functions to "
+        "compensate for errors such as thermoelectric voltages and element self-heating."))
+    b.append(p(
+        "In addition to temperature, strain on and impurities in the wire also affect the sensor’s "
+        "resistance vs. temperature characteristics. The Matthiessen rule states that the "
+        "resistivity (<i>ρ</i>) of a metal conductor depends on temperature, impurities, and "
+        "deformation. <i>ρ</i> is measured in (Ω cm):"))
+    b.append(eq("<i>ρ</i>(total) = <i>ρ</i>(temperature) + <i>ρ</i>(impurities) + "
+                "<i>ρ</i>(deformation)", "32.20"))
+    b.append(p(
+        "Proper design and careful material selection will minimize these effects so that "
+        "resistivity will only vary with a change in temperature."))
+
+    b.append(h3("Resistance of Metals", "Điện trở của kim loại"))
+    b.append(p(
+        "Whether an RTD’s element is constructed of platinum, copper, or nickel, each type of metal "
+        "has a different sensitivity, accuracy, and temperature range. Sensitivity is defined as "
+        "the amount of resistance change of the sensor per degree of temperature change. Figure "
+        "32.7 shows the sensitivity for the most common metals used to build RTDs."))
+    b.append(fig(7, F.fig(7), "en"))
+    b.append(p(
+        "Platinum, a noble metal, has the most stable resistance-to-temperature relationship over "
+        "the largest temperature range — −184.44 °C (−300 °F) to 648.88 °C (1200 °F). Nickel "
+        "elements have a limited temperature range because the amount of change in resistance per "
+        "degree of change in temperature becomes very nonlinear at temperatures above 300 °C "
+        "(572 °F). Copper has a very linear resistance-to-temperature relationship. However, copper "
+        "oxidizes at moderate temperatures and cannot be used above 150 °C (302 °F)."))
+    b.append(p(
+        "Platinum is the best metal for RTD elements for three reasons. It follows a very linear "
+        "resistance-to-temperature relationship; it follows its resistance-to-temperature "
+        "relationship in a highly repeatable manner over its temperature range; and it has the "
+        "widest temperature range among the metals used to make RTDs. Platinum is not the most "
+        "sensitive metal; however, it is the metal that offers the best long-term stability."))
+    b.append(p(
+        "The accuracy of an RTD is significantly better than that of a thermocouple within an "
+        "RTD’s normal temperature range of −184.44 °C (−300 °F) to 648.88 °C (1200 °F). RTDs are "
+        "also known for high stability and repeatability. They can be removed from service and "
+        "recalibrated for verifiable accuracy and checked for any possible drift."))
+
+    b.append(h3("Who Uses RTDs? Common Assemblies and Applications",
+                "Ai dùng RTD? Các cụm lắp và ứng dụng thông dụng"))
+    b.append(p(
+        "Different applications require different types of RTDs. A direct-immersion Platinum "
+        "Resistance Thermometer (PRT) and a connection head can be used for low-velocity pipelines, "
+        "tanks, or air temperature measurement. A spring-loaded PRT, thermowell, and connection head "
+        "are often used in pipelines or storage tanks. An averaging temperature element senses and "
+        "measures temperatures along its entire sheath, which can range from 1 to 20 m in length. A "
+        "heavy-duty underwater temperature sensor is designed for complete submersion under rivers, "
+        "cooling ponds, or sewers. These are just a few examples of RTD configurations and "
+        "applications."))
+
+    b.append(h3("Overview of Platinum RTDs", "Tổng quan về RTD bạch kim"))
+    b.append(p(
+        "There are three main classes of Platinum Resistance Thermometers (PRTs): Standard Platinum "
+        "Resistance Thermometers (SPRTs), Secondary Standard Platinum Resistance Thermometers "
+        "(Secondary SPRTs), and Industrial Platinum Resistance Thermometers (IPRTs). Table 32.6 "
+        "presents information about each."))
+    b.append(_t326("en"))
+
+    b.append(h3("Temperature Coefficient of Resistance", "Hệ số nhiệt độ của điện trở"))
+    b.append(p(
+        "Each of the different metals used for sensing elements (platinum, nickel, copper) has a "
+        "different amount of relative change in resistance per unit change in temperature. A "
+        "measure of a resistance thermometer’s sensitivity is its temperature coefficient of "
+        "resistance. It is defined as the element’s change in resistance per degree C change in "
+        "temperature per ohm of sensor resistance over the range of 0 °C to 100 °C."))
+    b.append(p(
+        "The alpha value is the average change in resistance per degree C per ohm resistance. The "
+        "actual change in resistance per degree C per ohm is largest at −200 °C and decreases "
+        "steadily as the use temperatures increase."))
+    b.append(p(
+        "The units for the coefficient are Ω/Ω °C⁻¹. This is called the alpha value and is "
+        "commonly denoted by the Greek letter <i>α</i>. The larger the temperature coefficient, the "
+        "greater the change in resistance for a given change in temperature. Of the commonly used "
+        "RTD metals, nickel has the highest temperature coefficient, 0.00672, while that of copper "
+        "is 0.00427. The <i>α</i> value of the sensor is calculated using the equation:"))
+    b.append(eq("<i>α</i> = (<i>R</i><sub>100</sub> − <i>R</i><sub>0</sub>) / "
+                "(100 °C × <i>R</i><sub>0</sub>)", "32.21"))
+    b.append(wl([
+        "where <i>R</i><sub>0</sub> = the resistance of the sensor at 0 °C",
+        "<i>R</i><sub>100</sub> = the resistance of the sensor at 100 °C",
+    ]))
+    b.append(p("Three primary temperature coefficients are specified for platinum:"))
+    b.append(ol([
+        "ITS-90, the internationally accepted temperature scale, requires a minimum temperature "
+        "coefficient of 0.003925 for SPRTs. This is achieved using high-purity wire (99.9999% or "
+        "better) wound in a strain-free configuration.",
+        "With reference-grade platinum wire used in industrial elements, the temperature "
+        "coefficient is 0.003902.",
+        "IEC 751 [1] and ASTM 1137 [2] have standardized the temperature coefficient of 0.0038500 "
+        "for platinum.",
+    ]))
+
+    b.append(h3("RTD Construction", "Cấu tạo RTD"))
+    b.append(p(
+        "Standard Platinum Resistance Thermometers (SPRTs), the highest-accuracy platinum "
+        "thermometers, are fragile and used in laboratory environments only (Figure 32.8). Fragile "
+        "materials do not provide enough strength and vibration resistance for industrial "
+        "environments. SPRTs feature high repeatability and low drift, but they cost more because "
+        "of their materials and expensive production techniques."))
+    b.append(fig(8, F.fig(8), "en"))
+    b.append(p(
+        "SPRT elements are wound from large-diameter, high-purity platinum wire. Internal leadwires "
+        "are usually made from platinum and internal supports from quartz or fused silica. SPRTs "
+        "are used over a very wide range, from −200 °C (−328 °F) to above 1000 °C (1832 °F). For "
+        "SPRTs used to measure temperatures up to 660 °C (1220 °F), the ice point resistance is "
+        "typically 25.5 Ω. For high-temperature thermometers, the ice point resistance is 2.5 Ω or "
+        "0.25 Ω. SPRT probes can be accurate to ±0.001 °C (0.0018 °F) if properly used."))
+    b.append(p(
+        "Secondary Standard Platinum Resistance Thermometers (Secondary SPRTs) are also intended "
+        "for laboratory environments (Figure 32.9). They are constructed like the SPRT, but the "
+        "materials are less expensive, typically reference-grade, high-purity platinum wire, metal "
+        "sheaths, and ceramic insulators. Internal leadwires are usually a nickel-based alloy. The "
+        "secondary grade sensors are limited in temperature range — −200 °C (−328 °F) to 500 °C "
+        "(932 °F) — and are accurate to ±0.03 °C (±0.054 °F) over their temperature range."))
+    b.append(fig(9, F.fig(9), "en"))
+    b.append(p(
+        "Secondary standard thermometers can withstand some handling, although they are still quite "
+        "strain-free. Rough handling, vibration, and shock will cause a shift in calibration. The "
+        "nominal resistance of the ice point is most often 100 Ω. This simplifies calibration "
+        "procedures when calibrating other 100-Ω RTDs. The temperature coefficient for secondary "
+        "standards using reference-grade platinum wire is usually 0.00392 Ω Ω⁻¹ °C⁻¹ or higher."))
+    b.append(p(
+        "Industrial Platinum Resistance Thermometers (IPRTs) are designed to withstand industrial "
+        "environments and are almost as durable as thermocouples (Figure 32.10). IEC 751 [1] and "
+        "ASTM 1137 [2] standards cover the requirements for industrial platinum resistance "
+        "thermometers. The most common temperature range is −200 °C (−328 °F) to 500 °C (932 °F). "
+        "Standard models are interchangeable to an accuracy of ±0.25 °C (±0.45 °F) to ±2.5 °C "
+        "(±4.5 °F) over their temperature range."))
+    b.append(fig(10, F.fig(10), "en"))
+    b.append(p(
+        "Several element designs are available for different applications. One common configuration "
+        "is the wirewound element (Figure 32.11). This durable design was developed as a substitute "
+        "for the fragile SPRT. The small platinum sensing wire (usually within 7 to 50 μm, i.e. "
+        "0.0003 in. to 0.002 in. diameter) is noninductively wound around a cylindrical ceramic "
+        "mandrel, and usually covered with a thin layer of material that provides electrical "
+        "insulation and mechanical protection. Because the sensing element wire is firmly "
+        "supported, it cannot expand and contract as freely as the SPRT’s relatively unsupported "
+        "platinum wire. This type of element offers higher durability than SPRTs and secondary "
+        "standards, and very good accuracy for most industrial applications."))
+    b.append(fig(11, F.fig(11), "en"))
+    b.append(p(
+        "In another wirewound design, the coil suspension, a coil of fine platinum wire is "
+        "assembled into small holes in a cylindrical ceramic mandrel (Figure 32.12). The coils are "
+        "supported by ceramic powder or cement, and sealed at both ends. When ceramic powder is "
+        "loosely packed in the bores of the mandrel, the element can expand and contract freely. "
+        "This reduces the effects of strain on the resistance characteristics, resulting in very "
+        "high accuracy and stability for use in secondary temperature standards and docile "
+        "industrial applications (with little or no vibration or shock). Recent improvements in "
+        "ceramic materials give the sensing coil more stability — it will be capable of maintaining "
+        "accuracies of 0.03 °C after thousands of hours at temperatures of 500 °C. These ceramic "
+        "powders support the coils in the mandrel bores and hold them firmly in place with minimum "
+        "strain."))
+    b.append(fig(12, F.fig(12), "en"))
+    b.append(p(
+        "Thin-film elements are extremely small, often less than 1.6 mm (1/16 in.) square (Figure "
+        "32.13). They are manufactured by similar techniques employed to make integrated circuits. "
+        "First, a thin film of platinum is deposited onto a ceramic substrate. Some manufacturers "
+        "use photolithography to etch the deposited platinum, leaving the element pattern on the "
+        "ceramic substrate. Then, the element’s surfaces are covered with glass material to protect "
+        "the elements from humidity and contaminants."))
+    b.append(fig(13, F.fig(13), "en"))
+    b.append(p(
+        "The temperature range of thin film platinum elements is −50 °C (−58 °F) to 400 °C (752 °F); "
+        "accuracy is from 0.5 °C (0.9 °F) to 2.0 °C (3.6 °F). The most common thin-film element has "
+        "a 100-Ω ice point resistance and a temperature coefficient of 0.00385 °C."))
+    b.append(p(
+        "Thin-film RTDs can be extremely durable if the small-diameter leadwires and the thin "
+        "element are properly protected. The accuracy and stability might not be as good as some "
+        "wirewound elements due to hysteresis, long-term stability errors, and self-heating "
+        "errors."))
+
+    b.append(h3("Self-heating Errors", "Sai số tự đốt nóng"))
+    b.append(p(
+        "The current that measures sensor resistance also heats the sensor. This is known as "
+        "I²R heating or Joule heating. Because of this effect, the sensor’s indicated temperature "
+        "is somewhat higher than the actual temperature. This inconsistency is commonly called "
+        "self-heating error. Self-heating errors, which are dependent on the application, can range "
+        "from negligible values to 1 °C. The greatest heating errors occur because of poor heat "
+        "transfer between the sensing element and application, or excessive current used in "
+        "measuring resistance."))
+    b.append(p("The following are methods for reducing the self-heating error."))
+    b.append(ol([
+        "Minimize the power dissipation in the sensor. There is a tradeoff between the signal level "
+        "and the self-heating of the sensor. Typically, 1 mA of current is used as the sensing "
+        "current.",
+        "Use a sensor with a low thermal resistance. The lower the thermal resistance of the "
+        "sensor, the better the sensor can dissipate the I²R power and the lower the temperature "
+        "rise in the sensor. Small time constants indicate a sensor with a low thermal resistance.",
+        "Maximize thermal contact between the sensor and the application.",
+    ]))
+
+    b.append(h3("Calibration", "Hiệu chuẩn"))
+    b.append(p(
+        "Testing programs are essential to verify the accuracy of PRTs. Some IPRTs are "
+        "factory-calibrated to a temperature such as the ice point, but PRT users might want to "
+        "calibrate them at other temperatures, depending on their application."))
+    b.append(p(
+        "The calibration results can be compared to prior calibrations from the same instrument. "
+        "This will determine if it is necessary to repair or replace the instrument, or if "
+        "calibration is required more often."))
+    b.append(p(
+        "Since frequent repairs and recalibration are usually costly, purchasers and specifiers of "
+        "PRTs might want to investigate various RTDs before installation by referring to ASTM "
+        "Standard #E1137-95 [2], published by The American Society for Testing and Materials "
+        "(ASTM)."))
+    b.append(p(
+        "<i>Frequency.</i> An RTD’s stability depends on its working environment. High temperatures "
+        "can cause drift and contamination of the platinum wire. The higher the temperature, the "
+        "faster the drift occurs. Below 400 °C, the high-temperature drift is not a significant "
+        "problem, but temperatures reaching 500 °C to 600 °C are the most significant causes of "
+        "drift — up to several degrees per year. Severe shock can damage a sensor instantly and "
+        "cause failure. Shock, vibration, and rough handling will put strains in the platinum wire "
+        "and change its characteristics, and potentially damage the entire unit. If a sensor is not "
+        "properly sealed, humidity can get into the sensor and cause some problems with the "
+        "insulation resistance. Since the water in humidity is conductive, it will get between the "
+        "lead wires and the sensing element, and basically shunt off the resistance of the element’s "
+        "wires. Under extreme operating conditions, a sensor should be calibrated on a monthly or "
+        "bimonthly basis. If five or more calibrations are completed without a significant change, "
+        "then the time between calibrations can be doubled; at least once a year is recommended, "
+        "however."))
+    b.append(p(
+        "<i>Techniques.</i> Two common calibration methods are the fixed point method and the "
+        "comparison method."))
+    b.append(p(
+        "<i>Fixed point calibration</i>, used for the highest accuracy calibrations, uses the "
+        "triple point, freezing point or melting point of pure substances such as water, zinc, tin, "
+        "and argon to generate a known and repeatable temperature (Figure 32.14). The fixed point "
+        "cells are sealed to prevent contamination and to prevent atmospheric conditions from "
+        "affecting the cell’s temperature. These cells allow the user to reproduce actual conditions "
+        "of the ITS-90 temperature scale."))
+    b.append(fig(14, F.fig(14), "en"))
+    b.append(p(
+        "Fixed point calibrations provide extremely accurate calibrations (within ±0.001 °C), but "
+        "the cells are time-consuming to use and can only accommodate one sensor at a time. For this "
+        "reason, they are not widely used in calibrating industrial sensors. Each fixed point cell "
+        "has a unique procedure for achieving the fixed point."))
+    b.append(p("A generalized procedure for fixed point calibration is as follows:"))
+    b.append(ol([
+        "Prepare the cell. Different procedures exist for each fixed point.",
+        "Insert the thermometer to be calibrated.",
+        "Allow the system to stabilize. Stabilization times depend on thermometer/fixed point "
+        "cells. Usually, 15 to 30 min is sufficient.",
+        "Measure the resistance of the thermometer. For the highest accuracy measurements, special "
+        "resistance bridges are used. They have accuracies in the range of 10 ppm to 0.1 ppm.",
+    ]))
+    b.append(p(
+        "A common fixed point calibration method for industrial-grade probes is the ice bath. The "
+        "equipment is inexpensive, easy to use, and can accommodate several sensors at once. The ice "
+        "point is designated as a secondary standard because its accuracy is ±0.005 °C "
+        "(±0.009 °F), compared to ±0.001 °C (±0.0018 °F) for primary fixed points."))
+    b.append(p(
+        "In <i>comparison calibrations</i>, commonly used with secondary SPRTs and industrial RTDs, "
+        "the thermometers being calibrated are compared to calibrated thermometers by means of an "
+        "isothermal bath whose temperature is uniformly stable (Figure 32.15). Unlike fixed point "
+        "calibrations, comparisons can be made at any temperature between −100 °C (−148 °F) and "
+        "500 °C (932 °F). This method might be more cost-effective since several sensors can be "
+        "calibrated simultaneously with automated equipment."))
+    b.append(fig(15, F.fig(15), "en"))
+    b.append(p(
+        "These isothermal baths, electrically heated and well-stirred, use silicone oils as the "
+        "medium for temperatures ranging from −100 °C (−148 °F) to 200 °C (392 °F), and molten "
+        "salts for temperatures above 200 °C (392 °F). At temperatures above 500 °C (932 °F), air "
+        "furnaces or fluidized beds are used, but are significantly less uniformly stable."))
+    b.append(p("The procedure for comparison calibration is as follows:"))
+    b.append(ol([
+        "Insert the standard thermometer and thermometers being calibrated into the bath.",
+        "Allow the bath to stabilize.",
+        "Measure the resistance of the standard to determine the temperature of the bath.",
+        "Measure the resistance of each thermometer under calibration.",
+    ]))
+    b.append(p(
+        "<i>Deriving the resistance vs. temperature relationship of a PRT.</i> After determining "
+        "the PRT’s resistance, the calibration coefficients can be determined. By plugging these "
+        "values into an equation, temperature from any measured resistance can be derived. The two "
+        "most common curve-fitting techniques are the ITS-90 and Callendar–Van Dusen equations."))
+    b.append(p(
+        "On January 1, 1990, the International Temperature Scale of 1990 (ITS-90) became the "
+        "official international temperature scale [3]. ITS-90 extends upward from 0.65 K "
+        "(−272.5 °C or −458.5 °F) and defines temperatures of 0.65 K (0.65 °C above absolute zero) "
+        "and up by fixed points (see Table 32.7)."))
+    b.append(_t327("en"))
+    b.append(p(
+        "Two reference functions are used to define the temperature coefficient for an ideal SPRT: "
+        "one for temperatures below 0 °C and the other for temperatures above 0 °C. When a PRT is "
+        "calibrated on the ITS-90, the coefficients determined in the calibration are used to "
+        "describe a deviation function that represents the difference between the resistance of the "
+        "standard PRT and the reference function at all temperatures within the range. Using the "
+        "calibration coefficients and the deviation functions, the SPRT can be used to determine any "
+        "temperature from its measured resistance. Because ITS-90 equations are complex, computer "
+        "software is necessary for accurate calculations."))
+    b.append(p("ITS-90 affects:"))
+    b.append(ul([
+        "Standards and temperature calibration laboratories",
+        "Users of standard and secondary SPRTs with traceability to standards laboratories",
+        "Users of temperature measurement and control systems within companies concerned with "
+        "verifiable total quality management",
+    ]))
+    b.append(p(
+        "The National Institute for Standards and Technology (NIST) has published Technical Note "
+        "1265, <i>Guidelines for Realizing the International Temperature Scale of 1990 (ITS-90)</i> "
+        "[4]. Not all PRT users need to follow the complex equations and computer programs "
+        "associated with ITS-90. As a rule of thumb: if the minimum required uncertainty of "
+        "measurement is less than 0.1 °C, one probably will want to use ITS-90. For uncertainty of "
+        "measurements greater than 0.1 °C, the effect of the change in scales is relatively small "
+        "and one will not be affected."))
+    b.append(p(
+        "Callendar–Van Dusen equations are interpolation equations that describe the temperature vs. "
+        "resistance relationship of industrial PRTs. These simple-to-use second- and fourth-order "
+        "equations can be programmed easily into many electronic controllers. The equation for the "
+        "temperature range of 0 °C (32 °F) to 850 °C (1562 °F) is:"))
+    b.append(eq("<i>R</i>(<i>t</i>) = <i>R</i><sub>0</sub>(1 + <i>At</i> + <i>Bt</i>²)", "32.22"))
+    b.append(p("For the temperature range −200 °C (−392 °F) to 0 °C (32 °F):"))
+    b.append(eq("<i>R</i>(<i>t</i>) = <i>R</i><sub>0</sub>[1 + <i>At</i> + <i>Bt</i>² + "
+                "<i>C</i>(<i>t</i> − 100)<i>t</i>³]", "32.23"))
+    b.append(wl([
+        "where <i>R</i>(<i>t</i>) = resistance of the PRT at temperature <i>t</i>",
+        "<i>t</i> = temperature in °C",
+        "<i>R</i><sub>0</sub> = nominal resistance of the PRT at 0 °C",
+        "<i>α</i>, <i>δ</i>, <i>β</i> = calibration coefficients",
+    ]))
+    b.append(p(
+        "To determine the temperature from a measured resistance, a different set of equations and "
+        "calibration coefficients is required. For temperatures greater than 0 °C (measured "
+        "resistances greater than the known ice point resistance of the PRT):"))
+    b.append(eq("<i>t</i>(°C) = [(<i>R</i><sub><i>t</i></sub> − <i>R</i><sub>0</sub>) / "
+                "(<i>αR</i><sub>0</sub>)] + <i>δ</i>[(<i>t</i>/100) − 1](<i>t</i>/100)", "32.24"))
+    b.append(p(
+        "For temperatures less than 0 °C (measured resistances less than the known ice point "
+        "resistance of the PRT):"))
+    b.append(eq("<i>t</i>(°C) = [(<i>R</i><sub><i>t</i></sub> − <i>R</i><sub>0</sub>) / "
+                "(<i>αR</i><sub>0</sub>)] + <i>δ</i>[(<i>t</i>/100) − 1](<i>t</i>/100) + "
+                "<i>β</i>[(<i>t</i>/100) − 1](<i>t</i>/100)³", "32.25"))
+    b.append(wl([
+        "where <i>t</i> = temperature to be calculated",
+        "<i>R</i>(<i>t</i>) = measured resistance at unknown temperature",
+        "<i>R</i><sub>0</sub> = resistance of the sensor at 0 °C",
+        "<i>α</i>, <i>δ</i>, <i>β</i> = coefficients",
+    ]))
+    b.append(p(
+        "To correctly determine the temperature from a given resistance with these equations, one "
+        "must iterate the equations a minimum of five times. After each calculation, the new value "
+        "of temperature (<i>t</i>) is plugged back into the equations. The calculated temperature "
+        "value will converge on its true value. After five iterations, the calculated temperature "
+        "should be within ±0.001 °C of the true value."))
+    b.append(p(
+        "For industrial sensors, an alternative method would be to use nonlinear least squares "
+        "curve fits to produce the temperature/resistance relationship. However, these methods "
+        "should not be used for secondary and primary level thermometers as they cannot sufficiently "
+        "match the defined ITS-90 scale. Curve fitting errors of up to 0.05 °C are possible."))
+
+    b.append(h3("Usage of RTDs Today", "Sử dụng RTD ngày nay"))
+    b.append(p(
+        "Throughout the industry, usage of RTDs is increasing for many reasons. With the advent of "
+        "the computer age, industries recognize the need for better temperature measurement, and an "
+        "electrical signal to accompany advances in computerized process instrumentation. RTDs "
+        "produce an electrical signal; and because of automatic control in industrial plants, it "
+        "makes it simpler and easier to interface with process controllers. With the focus on "
+        "reengineering, companies are searching for ways to improve processes. Improved temperature "
+        "measurement and control is one good way to save energy, reduce material waste, reduce "
+        "expenses and improve overall operating efficiencies."))
+    b.append(p(
+        "Governmental regulations are another reason why RTDs are gaining popularity. In the "
+        "pharmaceutical industry, the FDA [5] requires validation; among them the verification that "
+        "temperature measurement is accurate. New regulations are currently being written for the "
+        "food industry as well [6]."))
+    b.append(p(
+        "The growing worldwide acceptance of ISO 9000 standards has forced companies to calibrate "
+        "their temperature measurement systems and instrumentation. In addition, the calibration "
+        "must be documented, and must be traceable to a recognized national, legal standard."))
+    b.append(p(
+        "RTDs are safer for the environment. With mercury thermometers, disposal of mercury is a "
+        "problem. In many industries, the mere presence of mercury thermometers presents a risk."))
+
+    b.append(h3("Examples of Advanced Applications for Critical Temperature Measurement",
+                "Ví dụ về ứng dụng tiên tiến cho đo nhiệt độ tới hạn"))
+    b.append(p(
+        "RTD technology allows for custom design in a wide range of applications and industries. In "
+        "many of these cases, the RTD becomes an integral part of an advanced application when "
+        "temperature is critical."))
+    b.append(p(
+        "Power plants use RTD sensors to monitor fuel and coolant temperatures entering and exiting "
+        "heat exchangers. Accurate temperature measurement is also critical for nuclear power plants "
+        "to perform pressure leak tests on the containment vessel surrounding the reactor core."))
+    b.append(p(
+        "Microprocessor manufacturers require precise temperature control throughout their clean "
+        "room areas. Air temperature is critical to production; many temperature measurement points "
+        "need to be accurate ±0.028 °C (±0.05 °F). To achieve this, an RTD is calibrated with a "
+        "temperature transmitter. This matched pair ensures the highest level of system accuracy and "
+        "eliminates the interchangeability error of the RTD."))
+
+    b.append(h3("The Future of RTD Technology", "Tương lai của công nghệ RTD"))
+    b.append(p(
+        "The future of RTD technology is driven by end-user needs and unsolved problems. For "
+        "example, the need for high-temperature industrial RTDs exists for applications above "
+        "600 °C (1200 °F). In order to function at high temperatures, the RTD’s platinum element "
+        "must be protected from contamination. However, the sheath material can be a problem "
+        "because, at high temperatures, it will react with the oxygen in the air and give off metal "
+        "particles that can attach themselves to the platinum."))
+    b.append(p(
+        "RTDs must be mechanically strong enough to survive higher temperatures as well. A "
+        "high-temperature industrial RTD would require a thermally resistant sheath, perhaps Inconel "
+        "600. In addition, sensor components must be designed and manufactured to resist "
+        "ultra-high temperatures. Some RTDs are specified to operate above 600 °C (1200 °F), but "
+        "when tested, are not always reliable. Drift and nonrepeatability are problem areas that "
+        "are in need of further attention."))
+    b.append(p(
+        "Advances in RTD calibration provide significant improvements for temperature measurement "
+        "and control. New measurement technologies combined with powerful computational techniques, "
+        "have simplified the calibration process and made it more reliable."))
+    b.append(p(
+        "Another current area of growth is in-house calibration and calibration baths. Governmental "
+        "validation requirements and ISO-9000 standards are the driving forces in this area. Because "
+        "third-party calibration services are expensive, companies want to be more productive and "
+        "more cost-efficient. Wong [7] discusses the benefits of setting up an in-house calibration "
+        "lab in addition to traceability concepts. Traceability refers to an unbroken chain of "
+        "comparisons, linking the temperature measurement to a recognized national, legal standard. "
+        "In the U.S., this national standard is maintained by the National Institute of Standards "
+        "and Technology (NIST). All RTD manufacturers, laboratories, and calibration labs must "
+        "adjust their standards to meet NIST standards."))
+
+    b.append(h3("Defining Terms", "Định nghĩa thuật ngữ"))
+    b.append(defs([
+        ("<b>Accuracy</b>",
+         "The degree of agreement between an actual measurement and its reference standard."),
+        ("<b>Alpha (<i>α</i>)</b>",
+         "The temperature coefficient of resistance of a PRT over the range 0 °C to 100 °C. For "
+         "example, <i>α</i> for a standard platinum resistance thermometer (SPRT) is 0.003925."),
+        ("<b>Calibrate</b>",
+         "To check, adjust or determine an RTD’s accuracy by comparing it to a standard."),
+        ("<b>DIN (Deutsche Industrial Norm)</b>",
+         "A German organization that develops technical, scientific, and dimensional standards that "
+         "are recognized worldwide."),
+        ("<b>Error</b>",
+         "The difference between a correct value and the actual reading taken."),
+        ("<b>Primary Standard (or Standard PRT)</b>",
+         "A platinum resistance thermometer that meets the requirements for establishing "
+         "calibrations according to the ITS-90. This highly accurate instrument is intended for "
+         "laboratory environments and is accurate to 0.001 °C."),
+        ("<b>Reliability</b>",
+         "Used to designate precision for measurements made within a very restricted set of "
+         "conditions."),
+        ("<b>Repeatability</b>",
+         "The ability to give the same measurement under repeated, matching conditions."),
+        ("<b>Stability</b>",
+         "The state of being resistant to change or deterioration."),
+        ("<b>Sensitivity</b>",
+         "The amount of resistance change of the sensor per degree temperature change."),
+    ]))
+
+    b.append(_refs322("en"))
+    return "".join(b)
+
+
 # ================================================================ back matter
 def _refs(lang):
     vi = lang == "vi"
@@ -1012,6 +2074,28 @@ def _refs(lang):
     ]
     head_ = "<h3 id=\"t32-tltk\">Tài liệu tham khảo</h3>" if vi else \
             "<h3 id=\"t32-tltk\">References</h3>"
+    return head_ + wl(items)
+
+
+def _refs322(lang):
+    """§32.2 has its own reference list — each section of this chapter does."""
+    vi = lang == "vi"
+    items = [
+        "1. IEC, <i>Industrial platinum resistance thermometer sensors</i>, IEC International "
+        "Standard 751.1995-07, Genève, Suisse: Bureau Central de la Commission Electrotechnique "
+        "Internationale, 1995.",
+        "2. ASTM Standards, <i>Standard Specification for Industrial Platinum Resistance "
+        "Thermometers</i>, Standard E 1137-95, 1995.",
+        "3. H. Preston-Thomas, The International Temperature Scale of 1990 (ITS-90), "
+        "<i>Metrologia</i>, 27(1), 3–10, 1990. For errata, see <i>ibid</i>, 27(2), 107, 1990.",
+        "4. NIST Technical Note 1265, <i>Guidelines for Realizing the International Temperature "
+        "Scale of 1990 (ITS-90)</i>, National Institute of Standards and Technology, 1990.",
+        "5. FDA validation for the pharmaceutical industry.",
+        "6. FDA validation for the food industry.",
+        "7. W. Wong, Traceability tops in-house calibration, <i>InTech</i>, 41(8), 27–29, 1994.",
+    ]
+    head_ = "<h3 id=\"t32-tltk-2\">Tài liệu tham khảo</h3>" if vi else \
+            "<h3 id=\"t32-tltk-2\">References</h3>"
     return head_ + wl(items)
 
 
@@ -1050,6 +2134,23 @@ INDEX = [
         ("Advanced Applications", "Ứng dụng tiên tiến"),
         ("Defining Terms", "Định nghĩa thuật ngữ"),
     ]),
+    ("32.2", "Resistive Thermometers", "Nhiệt kế điện trở", [
+        ("Introduction to Resistance Temperature Detectors",
+         "Giới thiệu về cảm biến nhiệt điện trở"),
+        ("Resistance of Metals", "Điện trở của kim loại"),
+        ("Who Uses RTDs? Common Assemblies and Applications",
+         "Ai dùng RTD? Các cụm lắp và ứng dụng thông dụng"),
+        ("Overview of Platinum RTDs", "Tổng quan về RTD bạch kim"),
+        ("Temperature Coefficient of Resistance", "Hệ số nhiệt độ của điện trở"),
+        ("RTD Construction", "Cấu tạo RTD"),
+        ("Self-heating Errors", "Sai số tự đốt nóng"),
+        ("Calibration", "Hiệu chuẩn"),
+        ("Usage of RTDs Today", "Sử dụng RTD ngày nay"),
+        ("Examples of Advanced Applications for Critical Temperature Measurement",
+         "Ví dụ về ứng dụng tiên tiến cho đo nhiệt độ tới hạn"),
+        ("The Future of RTD Technology", "Tương lai của công nghệ RTD"),
+        ("Defining Terms", "Định nghĩa thuật ngữ"),
+    ]),
 ]
 
 
@@ -1061,8 +2162,8 @@ def sec_index(vi):
                    % (num, num.split(".")[1], title))
         for sub_en, sub_vi in subs:
             out.append('<li style="margin-left:2.4rem;font-size:.9rem;padding:.15rem 0">'
-                       '<a class="t" href="#s32-%s">%s</a></li>'
-                       % (num.split(".")[1], sub_vi if vi else sub_en))
+                       '<a class="t" href="#s32-%s-%s">%s</a></li>'
+                       % (num.split(".")[1], _slug(sub_en), sub_vi if vi else sub_en))
     out.append("</ol>")
     return "".join(out)
 
@@ -1073,7 +2174,7 @@ def body_vi():
         "họ nguyên lý chuyển đổi nhất. Chương này đi qua mười một họ dụng cụ — từ dải lưỡng kim, "
         "nhiệt điện trở, cặp nhiệt điện đến hồng ngoại và sợi quang — với phương trình, hình vẽ và "
         "bảng dữ liệu của từng loại.")
-    return (p(lede) + sec_index(True) + sec_32_1_vi() + back_vi())
+    return (p(lede) + sec_index(True) + sec_32_1_vi() + back_vi() + sec_32_2_vi())
 
 
 def body_en():
@@ -1083,11 +2184,12 @@ def body_en():
         "strips, resistance thermometers, thermistors, thermocouples, semiconductor junctions, "
         "infrared, pyroelectric, liquid-in-glass, manometric, indicators and fiber-optic probes — "
         "with the equations, figures and data tables for each.")
-    return (p(lede) + sec_index(False) + sec_32_1_en() + back_en())
+    return (p(lede) + sec_index(False) + sec_32_1_en() + back_en() + sec_32_2_en())
 
 
 def build(lang):
     vi = lang == "vi"
+    _LANG[0] = lang
     title = TITLE_VI if vi else TITLE_EN
     desc = ("Bản dịch tiếng Việt chương 32 của The Measurement, Instrumentation and Sensors "
             "Handbook — Đo nhiệt độ." if vi else
@@ -1098,9 +2200,9 @@ def build(lang):
              '</a> · Chương 32' % BASE_VI if vi else
              '<a href="/books/">Books</a> · <a href="%s">Measurement, Instrumentation and Sensors '
              'Handbook</a> · Chapter 32' % BASE_EN)
-    meta = ("Chương 32 · theo Ch32.pdf (CRC Press, 1999) · §32.1/11 · 6 hình, 19 phương trình, 5 bảng"
-            if vi else
-            "Chapter 32 · §32.1 of 11 · 6 figures, 19 equations, 5 tables")
+    meta = ("Chương 32 · theo Ch32.pdf (CRC Press, 1999) · §32.1–32.2/11 · 15 hình, 25 phương "
+            "trình, 7 bảng" if vi else
+            "Chapter 32 · §32.1–32.2 of 11 · 15 figures, 25 equations, 7 tables")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
             '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'

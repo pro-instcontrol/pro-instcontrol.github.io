@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-02 (session 46 — Chapter 31 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-02 (session 47 — Chapter 32 §32.2 added) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook **Chapter 32** and *upward* to 85 — the forward agent works the
 > book from the front. Chapters 1–31, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
@@ -3818,3 +3818,74 @@ predate the fix.
 **Also owed:** `git push` still cannot authenticate from this machine — the credential helper is
 `manager` with nothing stored, and `git fetch` works anonymously while `push` cannot prompt. Three
 commits are sitting on top of `origin/main`.
+
+---
+
+## Session 47 — 2026-11-02 · Handbook Chapter 32 §32.2 (*Resistive Thermometers*)
+
+Chapter 32 is being worked section by section; nothing is registered at the book TOC until all
+eleven sections are in, so a half-finished chapter never appears at its published URL. §32.1
+(bimetallic thermometers) went in last session; this one is §32.2.
+
+**§32.2 — *Resistive Thermometers*, Jim Burns.** Source pages 14–26 (the Defining Terms list
+spills onto p26; §32.3 starts there). Nine figures (32.7–32.15), six equations (32.20–32.25), two
+tables (32.6, 32.7), seven references, twelve sub-headings. Both languages built and verified:
+26 equation blocks (32.1–32.25 with 32.6a/b), 15 figures, 9 `tbl` tables (7 real + 2 defining-terms
+blocks), 23 in-page links none broken, 0 U+2044, and all 15 `aria-label`s English on the English
+page. 164 kB EN / 156 kB VI.
+
+### The in-page index was pointing every sub-entry at the section top
+
+`sec_index()` in `reader_hb_ch32.py` built `href="#s32-2"` for *every* sub-topic, so all nine
+§32.1 entries and all twelve §32.2 entries landed on the section heading rather than the heading
+they named. They were not "broken" links — the link checker was happy — they were just useless.
+
+Fixed by generating the anchor from the **English** title on both sides:
+
+```python
+def _slug(t):
+    s = re.sub(r"<[^>]+>", "", t).lower()
+    return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+```
+
+`h3()` mints `id="s32-<sec>-<slug>"` and `sec_index()` builds the same string from `INDEX`, so the
+two can never drift apart. `h3()` needs to know which argument is the English one, because the
+pair is `(vi, en)` on the Vietnamese page and `(en, vi)` on the English page — a module-level
+`_LANG` set at the top of `build()` decides it. Section number comes from a `_CUR` that `h2()`
+updates, which keeps the two `Defining Terms` headings apart (`s32-1-…` vs `s32-2-…`).
+
+**If you add a section here, add its sub-headings to `INDEX` with the English title spelled
+exactly as the `h3` spells it** — that string is the anchor.
+
+### `_path()`'s fourth positional argument is `fill`, again
+
+Figure 32.14's graphite crucible came out with no white fill, so the insulation hatching ran
+straight through it. `_path(d, col, sw, fill, dash)` — the call had been written
+`_path(d, "#fff", E, 1.6)`, i.e. white stroke, `stroke-width="#2a2a2a"`, no fill. Same class of
+bug as figure 32.6 last session (`_path(d, E, 1.2, "5 4")` putting the dash pattern in the fill
+slot). **Both helpers take their style arguments in an order that is easy to get wrong; pass
+`fill=` and `dash=` by keyword whenever they are not the default.** `qa_figs.py` cannot see
+either of these.
+
+### Figure notes
+
+- **32.7** — the four metals fan out from (0 °C, R/R₀ = 1). Platinum's coefficient is the real
+  0.003945 with the real negative quadratic term; the other three are scaled so the fan closes
+  inside the frame, because the original's curves are drawn well off scale. Below 0 °C all four
+  are indistinguishable at this scale, so the original draws one shared branch and so does this
+  one. Nickel's curve leaves the top of the frame at 250 °C, so its label is carried over the top
+  edge on an elbow — a straight leader would have to cut across the other three curves.
+- **32.8–32.13** — the six construction cross-sections are drawn at one shared scale and style:
+  hatched `url(#w32)` for metal in section, `url(#h32)` for ceramic/insulation, `#f7f8fa` for
+  plain ceramic. The coil in 32.12 is the projection of a helix (`y = c − A·sin(2πx/pitch)`);
+  the winding in 32.11 is one slanted pass per turn, not a zigzag — a zigzag at that density
+  fills solid.
+- **32.14** — thirteen labels on the right, each with its own arrow. Three of them carry a second
+  bracketed line; those are emitted as a separate `_lbl` under the first so the arrow stays
+  anchored to the label's first line.
+- **32.15** — the stabilization-block label had to come out of the block: the probe tubes run
+  straight through it and the text was unreadable.
+
+**Owed, still:** the `aria-label` sweep across the other 34 `reader_hb_*` modules; and `git push`,
+which still cannot authenticate from this machine. Five commits are now sitting on top of
+`origin/main`.
