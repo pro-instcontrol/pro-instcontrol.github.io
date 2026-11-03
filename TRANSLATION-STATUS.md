@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-02 (session 48 — Chapter 32 §32.3 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-03 (session 49 — Chapter 32 §32.4 through *Thermocouple Materials*) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook **Chapter 32** and *upward* to 85 — the forward agent works the
 > book from the front. Chapters 1–31, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
@@ -4021,3 +4021,52 @@ the zigzag turned for horizontal leads), `_zz()` (a zigzag along any segment), `
 
 **Owed, still:** the `aria-label` sweep across the other 34 `reader_hb_*` modules; and `git push`,
 which still cannot authenticate from this machine.
+
+## Session 49 — 2026-11-03 · Chapter 32 §32.4 through *Thermocouple Materials*
+
+### What shipped
+
+- **§32.4 chunk B2 landed** (`sec_32_4c`, previously uncommitted from session 48): Modular
+  Signal Conditioning Components, Grounding/Shielding/Noise (with the three h5s), Thermal
+  Coupling (Static + Transient, intrinsic junctions, numerical deconvolution), VI + EN.
+- **The bug of the session:** the file had **two** `def sec_32_4_en():` — session 48 added
+  the new one *above* the old one, so the old one silently won and the **EN page was missing
+  all of §32.4c**. Deleted the stale definition. Lesson: after adding a section, compare the
+  VI/EN figure counts — the mismatch (25 vs 27) is what exposed it.
+- **Figures 32.27 and 32.28** drawn (`hb32fig.py`) and wired into the Grounding and
+  Balanced-Circuits subsections. 32.27 is the seven-row grounding/shielding stack (a–g):
+  shared scaffold is a parametrised loop — hatched Test-Subject bar, isolation/coupling
+  block, twisted pair (`_twpair`), 3-terminal input block (`_tblock`), ± rails, two ground
+  symbols (`_gnd`). 32.28 is the balanced-input recorder (E_a/E_b, R_a/R_b, T_r box,
+  R_c = R_a − R_b, the matched R_s pair, guarded instrument block); new `_z()` zigzag
+  resistor helper. `FIG_NO` extended to `[1..22] + [24..28]`.
+- **§32.4d Thermocouple Materials translated** (p54–58), VI + EN: Standardization, Low
+  Temperature Thermometry, Sensitivity, Letter Designations, Color Codes, Identifying
+  Thermoelements (visual / magnetic / resistive / thermoelectric).
+- **Tables 32.12 and 32.13** as new helpers `_t3212`/`_t3213` (`cls="tbl matrix"`). 32.12
+  keeps the book's own row placement: special tolerance on the pair row (B, E, J…), normal
+  tolerance on the X row. VI number formatting applied per cell (thousands `.`, decimals `,`).
+- **On-page INDEX extended** with the full §32.4 heading tree through Thermocouple
+  Materials (depth 1 = h4, depth 2 = h5). Verified: all 59 in-page TOC anchors resolve in
+  both languages (`href="#s32-…"` ⊆ heading ids).
+- **Pushed** — including the ten commits that had accumulated since session 48. Rebased
+  over the other agent's Spanish-site commits; the book-TOC conflict (books/index.html,
+  vi/books/index.html) resolved by taking theirs, then regenerating via `books_site.py` +
+  `make_sitemap.py` so both agents' rows survive. `git push` **works again** (session 48
+  noted it could not authenticate) — the token from Pro-instcontrol.txt is valid.
+
+### Verification
+
+- VI/EN parity: 27 figures each, 15 tables each; VI ≈ 33.5k words, EN ≈ 26k.
+- `check_links`: **broken 80 — all pre-existing in the other agent's new `es/` pages**
+  (es/index.html → glossary.html, books/, advanced/, hot-topics/, video-library/ … do not
+  exist yet). Nothing new broke from this session; flagged here, not touched.
+- Figure QA grid: `work/qa32/f2728.html` (mk32range figs 27–28).
+
+### State of §32.4 after this session
+
+Text is done through p58 (*Identifying Thermoelements*). Still owed in §32.4:
+*The Basic Thermoelectric Circuit Element* (p59, fig 32.29), *The Law of Seebeck emf* +
+corollaries (p60–63, fig 32.30, eqs 32.79–32.85), *Inhomogeneity* (p64), *Calibration*
+(p65, fig 32.31), *Failure and Validation* (p68), *Data Acquisition* (p70), *Signal
+Transmission* (p71), Caveat + Summary (p73), and the section reference list. Then §32.5.

@@ -626,6 +626,143 @@ def _t3211(lang):
     return table(hd, rows, cap, widths=["34%", "33%", "33%"], small=True)
 
 
+def _t3212(lang):
+    """Table 32.12 — U.S. letter-designated thermocouple characteristics.
+    The tolerance columns follow the book's own row placement: the special
+    tolerance sits on the pair row (B, E, J...), the normal tolerance on the
+    extension row (BX, EX, JX...)."""
+    vi = lang == "vi"
+    dash = "—"
+    hd = ("Loại", "Tên thường", "Mã màu", "N.đ. nóng chảy (°C)",
+          "Dải khuyến nghị (°C)", "emf ở 400 °C (mV)",
+          "Dung sai đặc biệt", "Dung sai thường", "ρ (µΩ·cm)") if vi else \
+         ("Type", "Common name", "Color code", "M.P. (°C)",
+          "Recommended range (°C)", "emf at 400 °C (mV)",
+          "Special tolerance", "Normal tolerance", "ρ (µΩ·cm)")
+    C = {"Brown": ("Nâu", "Brown"), "Gray": ("Xám", "Gray"), "Red": ("Đỏ", "Red"),
+         "Purple": ("Tím", "Purple"), "White": ("Trắng", "White"),
+         "Yellow": ("Vàng", "Yellow"), "Green": ("Xanh lục", "Green"),
+         "Blue": ("Xanh lam", "Blue"), "Orange": ("Cam", "Orange"),
+         "Iron": ("Sắt", "Iron"), "Copper": ("Đồng", "Copper")}
+    col = lambda k: C[k][0 if vi else 1]
+    # values below are already written per-language
+    # (type, common, colour, mp, range, emf400, special, normal, rho)
+    D = [
+        ("B",  "",        "Brown",  "1810", ("870", "1700"),  "0.787",  ("0.25%", ""),            "34.4"),
+        ("BX", "",        "Gray",   "",     None,       "",  ("", "0.50%"),            ""),
+        ("BP", "Pt30Rh",  "Gray",   "1910", None,       "",  ("", ""),            "18.6"),
+        ("BN", "Pt6Rh",   "Red",    "1810", None,       "",  ("", ""),            "15.8"),
+        ("E",  "",        "Brown",  "1270", ("-200", "870"),  "28.946", ("1.0°C or 0.40%", ""),  "127"),
+        ("EX", "",        "Purple", "",     None,       "",  ("", "1.7°C or 0.50%"),   ""),
+        ("EP", "Chromel", "Purple", "1430", None,       "",  ("", ""),            "80"),
+        ("EN", "Constantan", "Red", "1270", None,       "",  ("", ""),            "46"),
+        ("J",  "",        "Brown",  "1270", ("0", "760"),     "21.848", ("1.1°C or 0.40%", ""),  "56"),
+        ("JX", "",        "White",  "",     None,       "",  ("", "2.2°C or 0.75%"),   ""),
+        ("JP", "Iron",    "White",  "1536", None,       "",  ("", ""),            "10"),
+        ("JN", "Constantan", "Red", "1270", None,       "",  ("", ""),            "46"),
+        ("K",  "",        "Brown",  "1400", ("-200", "1260"), "16.397", ("1.1°C or 0.40%", ""), "112"),
+        ("KX", "",        "Yellow", "",     None,       "",  ("", "2.2°C or 0.75%"),   ""),
+        ("KP", "Chromel", "Yellow", "1430", None,       "",  ("", ""),            "80"),
+        ("KN", "Alumel",  "Red",    "1400", None,       "",  ("", ""),            "31"),
+        ("N",  "",        "Brown",  "",     ("0", "1260"),    "12.974", ("1.1°C or 0.40%", ""),  ""),
+        ("NX", "",        "Orange", "",     None,       "",  ("", "2.2°C or 0.75%"),   ""),
+        ("NP", "Nisil",   "Orange", "",     None,       "",  ("", ""),            ""),
+        ("NN", "Nicrosil", "Red",   "",     None,       "",  ("", ""),            ""),
+        ("R",  "",        "Brown",  "1769", ("0", "1480"),    "3.408",  ("0.6°C or 0.10%", ""),  "29"),
+        ("RX", "",        "Green",  "",     None,       "",  ("", "1.5°C or 0.25%"),   ""),
+        ("RP", "Pt13Rh",  "Green",  "1840", None,       "",  ("", ""),            "19"),
+        ("RN", "Pt",      "Red",    "1769", None,       "",  ("", ""),            "10"),
+        ("S",  "",        "Brown",  "1769", ("0", "1480"),    "3.259",  ("0.6°C or 0.10%", ""),  "30"),
+        ("SX", "",        "Green",  "",     None,       "",  ("", "1.5°C or 0.25%"),   ""),
+        ("SP", "Pt10Rh",  "Green",  "1830", None,       "",  ("", ""),            "20"),
+        ("SN", "Pt",      "Red",    "1769", None,       "",  ("", ""),            "10"),
+        ("T",  "",        "Brown",  "1083", ("-200", "370"),  "20.810", ("0.5°C or 0.40%", ""),  "48"),
+        ("TX", "",        "Blue",   "",     None,       "",  ("", "1.0°C or 0.75%"),   ""),
+        ("TP", "Copper",  "Blue",   "1083", None,       "",  ("", ""),            "2"),
+        ("TN", "Constantan", "Red", "1270", None,       "",  ("", ""),            "46"),
+    ]
+    th = lambda s: s.replace(".", ",") if vi else s          # decimal mark
+    ti = lambda s: ("{:,}".format(int(s)).replace(",", ".") if vi
+                    else s) if s.isdigit() else s            # thousands mark
+    tol = lambda t: (t.replace(".", ",").replace("hoặc", "hoặc") if vi else t)
+    rows = []
+    for ty, name, colour, mp, rng, emf, tolsp, rho in D:
+        lo, hi = (rng if rng else ("", ""))
+        if vi:
+            rtxt = ("%s đến %s" % (ti(lo.lstrip("-")) if lo.isdigit() else lo.replace("-", "−"),
+                                   ti(hi))) if rng else dash
+            rtxt = rtxt if rng else dash
+            if rng and lo.startswith("-"):
+                rtxt = "−%s đến %s" % (ti(lo[1:]), ti(hi))
+            sp = tolsp[0].replace(" or ", " hoặc ").replace(".", ",") if tolsp[0] else dash
+            no = tolsp[1].replace(" or ", " hoặc ").replace(".", ",") if tolsp[1] else dash
+        else:
+            rtxt = ("%s to %s" % (lo, hi)) if rng else dash
+            sp = tolsp[0] if tolsp[0] else dash
+            no = tolsp[1] if tolsp[1] else dash
+        rows.append((ty, name if name else dash, col(colour) if colour else dash,
+                     ti(mp) if mp else dash, rtxt, th(emf) if emf else dash,
+                     sp, no, th(rho) if rho else dash))
+    cap = ("Bảng 32.12 · Đặc tính của các cặp nhiệt điện ký hiệu chữ cái của Hoa Kỳ "
+           "<sup>a–d</sup> (theo Tài liệu tham khảo [1, 4, 9, 10])." if vi else
+           "Table 32.12 · Characteristics of U.S. letter-designated thermocouples "
+           "<sup>a–d</sup>. From References [1, 4, 9, 10].")
+    return table(hd, rows, cap, cls="tbl matrix", small=True)
+
+
+def _t3213(lang):
+    """Table 32.13 — international thermocouple color codes (as of 1998)."""
+    vi = lang == "vi"
+    dash = "—"
+    hd = ("Loại", "Mỹ", "IEC", "Anh", "T.Quốc", "Pháp", "Đức", "Nhật", "Nga") if vi else \
+         ("Type", "U.S.", "IEC", "England", "China", "France", "Germany", "Japan", "Russia")
+    rows = [
+        ("B", ("Nâu", "Brown")[not vi], dash, dash, dash, dash, dash, dash, dash, "B"),
+        ("BX", ("Xám", "Gray")[not vi], dash, dash, dash, dash, ("Xám", "Gray")[not vi], ("Xám", "Gray")[not vi], dash, "BX"),
+        ("BP", ("Xám", "Gray")[not vi], dash, dash, dash, dash, ("Đỏ", "Red")[not vi], ("Đỏ", "Red")[not vi], dash, "BP"),
+        ("BN", ("Đỏ", "Red")[not vi], dash, dash, dash, dash, ("Xám", "Gray")[not vi], ("Xám", "Gray")[not vi], dash, "BN"),
+        ("E", ("Nâu", "Brown")[not vi], dash, dash, dash, dash, dash, dash, dash, "E"),
+        ("EX", ("Tím", "Purple")[not vi], ("Tím", "Purple")[not vi], ("Nâu", "Brown")[not vi], dash, ("Tím", "Purple")[not vi], ("Đen", "Black")[not vi], ("Tím", "Purple")[not vi], dash, "EX"),
+        ("EP", ("Tím", "Purple")[not vi], ("Tím", "Purple")[not vi], ("Nâu", "Brown")[not vi], ("Đỏ", "Red")[not vi], ("Vàng", "Yellow")[not vi], ("Đỏ", "Red")[not vi], ("Đỏ", "Red")[not vi], ("Tím hoặc đen", "Purple or black")[not vi], "EP"),
+        ("EN", ("Đỏ", "Red")[not vi], ("Trắng", "White")[not vi], ("Xanh lam", "Blue")[not vi], ("Nâu", "Brown")[not vi], ("Tím", "Purple")[not vi], ("Đen", "Black")[not vi], ("Trắng", "White")[not vi], ("Vàng hoặc cam", "Yellow or orange")[not vi], "EN"),
+        ("J", ("Nâu", "Brown")[not vi], dash, ("Đỏ", "Red")[not vi], dash, dash, dash, dash, dash, "J"),
+        ("JX", ("Đen", "Black")[not vi], ("Đen", "Black")[not vi], ("Đen", "Black")[not vi], dash, ("Đen", "Black")[not vi], ("Xanh lam", "Blue")[not vi], ("Vàng", "Yellow")[not vi], dash, "JX"),
+        ("JP", ("Trắng", "White")[not vi], ("Đen", "Black")[not vi], ("Vàng", "Yellow")[not vi], ("Đỏ", "Red")[not vi], ("Vàng", "Yellow")[not vi], ("Đỏ", "Red")[not vi], ("Đỏ", "Red")[not vi], ("Trắng", "White")[not vi], "JP"),
+        ("JN", ("Đỏ", "Red")[not vi], ("Trắng", "White")[not vi], ("Xanh lam", "Blue")[not vi], ("Tím", "Purple")[not vi], ("Đen", "Black")[not vi], ("Xanh lam", "Blue")[not vi], ("Trắng", "White")[not vi], ("Vàng hoặc cam", "Yellow or orange")[not vi], "JN"),
+        ("K", ("Nâu", "Brown")[not vi], dash, dash, dash, dash, dash, dash, dash, "K"),
+        ("KX", ("Vàng", "Yellow")[not vi], ("Xanh lục", "Green")[not vi], ("Đỏ", "Red")[not vi], dash, ("Vàng", "Yellow")[not vi], ("Xanh lục", "Green")[not vi], ("Xanh lam", "Blue")[not vi], dash, "KX"),
+        ("KP", ("Vàng", "Yellow")[not vi], ("Xanh lục", "Green")[not vi], ("Nâu", "Brown")[not vi], ("Đỏ", "Red")[not vi], ("Vàng", "Yellow")[not vi], ("Đỏ", "Red")[not vi], ("Đỏ", "Red")[not vi], ("Đỏ", "Red")[not vi], "KP"),
+        ("KN", ("Đỏ", "Red")[not vi], ("Trắng", "White")[not vi], ("Xanh lam", "Blue")[not vi], ("Xanh lam", "Blue")[not vi], ("Tím", "Purple")[not vi], ("Xanh lục", "Green")[not vi], ("Trắng", "White")[not vi], ("Nâu", "Brown")[not vi], "KN"),
+        ("N", ("Nâu", "Brown")[not vi], dash, dash, dash, dash, dash, dash, dash, "N"),
+        ("NX", ("Cam", "Orange")[not vi], dash, dash, dash, dash, dash, dash, dash, "NX"),
+        ("NP", ("Cam", "Orange")[not vi], dash, dash, dash, dash, dash, dash, dash, "NP"),
+        ("NN", ("Đỏ", "Red")[not vi], dash, dash, dash, dash, dash, dash, dash, "NN"),
+        ("R", ("Nâu", "Brown")[not vi], dash, dash, dash, dash, dash, dash, dash, "R"),
+        ("RX", ("Đen", "Black")[not vi], ("Cam", "Orange")[not vi], ("Xanh lục", "Green")[not vi], dash, ("Xanh lục", "Green")[not vi], ("Trắng", "White")[not vi], ("Đen", "Black")[not vi], dash, "RX"),
+        ("RP", ("Đen", "Black")[not vi], ("Cam", "Orange")[not vi], ("Trắng", "White")[not vi], ("Đỏ", "Red")[not vi], ("Vàng", "Yellow")[not vi], ("Đỏ", "Red")[not vi], ("Đỏ", "Red")[not vi], dash, "RP"),
+        ("RN", ("Đỏ", "Red")[not vi], ("Trắng", "White")[not vi], ("Xanh lam", "Blue")[not vi], ("Xanh lục", "Green")[not vi], ("Xanh lục", "Green")[not vi], ("Trắng", "White")[not vi], ("Trắng", "White")[not vi], dash, "RN"),
+        ("S", ("Nâu", "Brown")[not vi], dash, dash, dash, dash, dash, dash, dash, "S"),
+        ("SX", ("Đen", "Black")[not vi], ("Cam", "Orange")[not vi], ("Xanh lục", "Green")[not vi], dash, ("Xanh lục", "Green")[not vi], ("Trắng", "White")[not vi], ("Đen", "Black")[not vi], dash, "SX"),
+        ("SP", ("Đen", "Black")[not vi], ("Cam", "Orange")[not vi], ("Trắng", "White")[not vi], ("Đỏ", "Red")[not vi], ("Vàng", "Yellow")[not vi], ("Đỏ", "Red")[not vi], ("Đỏ", "Red")[not vi], ("Đỏ hoặc hồng", "Red or pink")[not vi], "SP"),
+        ("SN", ("Đỏ", "Red")[not vi], ("Trắng", "White")[not vi], ("Xanh lam", "Blue")[not vi], ("Xanh lục", "Green")[not vi], ("Xanh lục", "Green")[not vi], ("Trắng", "White")[not vi], ("Trắng", "White")[not vi], ("Xanh lục", "Green")[not vi], "SN"),
+        ("T", ("Nâu", "Brown")[not vi], dash, dash, dash, dash, dash, dash, dash, "T"),
+        ("TX", ("Xanh lam", "Blue")[not vi], ("Nâu", "Brown")[not vi], ("Xanh lam", "Blue")[not vi], dash, ("Xanh lam", "Blue")[not vi], ("Nâu", "Brown")[not vi], ("Nâu", "Brown")[not vi], dash, "TX"),
+        ("TP", ("Xanh lam", "Blue")[not vi], ("Nâu", "Brown")[not vi], ("Trắng", "White")[not vi], ("Đỏ", "Red")[not vi], ("Vàng", "Yellow")[not vi], ("Đỏ", "Red")[not vi], ("Đỏ", "Red")[not vi], ("Đỏ hoặc hồng", "Red or pink")[not vi], "TP"),
+        ("TN", ("Đỏ", "Red")[not vi], ("Trắng", "White")[not vi], ("Xanh lam", "Blue")[not vi], ("Trắng", "White")[not vi], ("Xanh lam", "Blue")[not vi], ("Nâu", "Brown")[not vi], ("Trắng", "White")[not vi], ("Nâu", "Brown")[not vi], "TN"),
+        ("*",
+         ("Tiêu chuẩn", "Std.")[not vi], ("Tiêu chuẩn", "Std.")[not vi],
+         ("Tiêu chuẩn", "Std.")[not vi], ("Tiêu chuẩn", "Std.")[not vi],
+         ("Tiêu chuẩn", "Std.")[not vi], ("Tiêu chuẩn", "Std.")[not vi],
+         ("Tiêu chuẩn", "Std.")[not vi], ("Tiêu chuẩn", "Std.")[not vi], ("Tiêu chuẩn", "Std.")[not vi]),
+        ("*", "MC96.1", "584-3", "1843", "NMI 42-323", "NFC42-43714", "DIN 43714", "JIS 1620", dash, dash),
+    ]
+    cap = ("Bảng 32.13 · Mã màu cặp nhiệt điện quốc tế (tình trạng năm 1998). Dòng dưới cùng "
+           "nêu tiêu chuẩn và số hiệu của từng quốc gia." if vi else
+           "Table 32.13 · International thermocouple color codes (as of 1998). The bottom "
+           "rows give each nation's standard and its number. From References [1, 4, 9, 10].")
+    return table(hd, rows, cap, cls="tbl matrix", small=True)
+
+
 # ================================================================ §32.1
 def sec_32_1_vi():
     b = [h2("32.1 Đo nhiệt độ bằng lưỡng kim", "Bimaterials Thermometers", anchor="s32-1")]
@@ -4465,6 +4602,187 @@ def sec_32_4c_vi():
     return "".join(b)
 
 
+def sec_32_4d_vi():
+    b = [h3("Vật liệu cặp nhiệt điện", "Thermocouple Materials")]
+
+    b.append(h4("Chuẩn hóa cặp nhiệt điện", "Thermocouple Standardization"))
+    b.append(p(
+        "Nhiều vật liệu được dùng thường xuyên làm cặp nhiệt điện cho đo nhiệt độ. Một số cặp "
+        "được chuẩn hóa; một số thì không. Sự phân biệt này là vấn đề phê duyệt chính thức của "
+        "nhóm đồng thuận, do các ủy ban tiêu chuẩn cân bằng gồm người dùng giàu kinh nghiệm, nhà "
+        "sản xuất và cán bộ phòng chuẩn biểu quyết [10, 24]. Dữ liệu ứng dụng đầy đủ nhất hiện có "
+        "cho các cặp nhiệt điện đã chuẩn hóa. Ở Hoa Kỳ, tám vật liệu hiện được ký hiệu chữ cái "
+        "(các loại B, E, J, K, N, R, S và T) [9–12, 24]. Một số đặc tính của chúng được tóm tắt "
+        "trong Bảng 32.12. Đặc tính <i>E</i>(<i>T</i>) chuẩn hóa của các loại này nay được xác "
+        "định chính xác bằng các hàm đa thức bậc cao thay vì bằng các bảng tra số liệu [1, 9, 10]. "
+        "Các thân nhiệt điện nên được dùng theo kiểu do nhà sản xuất ghép chọn lọc, vì các thân "
+        "nhiệt điện cùng loại được ghép ngẫu nhiên, dù cùng hay khác nhà sản xuất, không được bảo "
+        "đảm tuân theo giá trị hay dung sai của cặp chuẩn [1, 9–12]. Đặc tính của một số cặp phổ "
+        "biến khác, như hợp kim kim loại quý và hợp kim chống chịu nhiệt vonfram, cũng đã được "
+        "các ủy ban đề xuất, nhưng ký hiệu chữ cái và mã màu chưa được ấn định chính thức [10]. "
+        "Thỉnh thoảng, các vật liệu phổ biến khác cũng được xem xét để chuẩn hóa. Thông tin hạn "
+        "chế về Seebeck và ứng dụng hiện có cho rất nhiều vật liệu phi chuẩn [25, 26]."))
+
+    b.append(h4("Đo nhiệt độ thấp", "Low Temperature Thermometry"))
+    b.append(p(
+        "Phần lớn đo nhiệt độ ở nhiệt độ cao. Phép đo cặp nhiệt điện các nhiệt độ dưới điểm đá "
+        "đòi hỏi cân nhắc đặc biệt. Đo nhiệt độ sâu lạnh từng được định nghĩa rất đại khái là "
+        "phép đo dưới 280 K (7 °C) [1]. Theo nghĩa hẹp hơn, dải sâu lạnh được giới hạn dưới 90 K "
+        "(−183 °C, nhiệt độ sôi của oxy lỏng tại 1 atm) [1]. Định nghĩa trước rộng ra và chồng "
+        "lấn lên dải nhiệt độ khí quyển (xuống tới −50 °C) dưới điểm đá, vốn thường được đo bằng "
+        "một hệ cặp nhiệt điện duy nhất cùng với các nhiệt độ môi trường cao hơn. Định nghĩa sau "
+        "thiên về chỉ gọi là sâu lạnh dải nhiệt độ cực thấp mà phép đo ở đó gặp những vấn đề "
+        "nghiêm trọng đặc thù và cần các kỹ thuật khác biệt."))
+    b.append(p(
+        "Hệ số Seebeck của mọi vật dẫn không đáng kể ở 0 K và các vật liệu thông thường giảm dần "
+        "độ nhạy nhiệt điện dưới điểm đá. Một số ít thân kim loại siêu dẫn tự nhiên trải qua sự "
+        "sụt đột ngột của hệ số Seebeck xuống bằng không tại một ngưỡng siêu dẫn đặc trưng, dưới "
+        "10 K với phần lớn siêu dẫn kim loại không hợp kim [27]. Các hợp kim đặc biệt mới đây đã "
+        "được phát triển để nâng ngưỡng siêu dẫn lên khoảng 120 K — cao hơn hẳn dải sâu lạnh chính "
+        "thức. Các chuyển pha siêu dẫn làm phức tạp thêm phép đo nhiệt điện ở vùng sâu lạnh thấp "
+        "nhất [7, 8]."))
+    b.append(_t3212("vi"))
+    b.append(p(
+        "Đặc tính Seebeck chuẩn được xác định cho các loại E, J, K, N và T xuống tới −270 °C. "
+        "Đặc tính của loại R và S chỉ kéo xuống tới −50 °C, còn loại B không được đặc trưng hóa "
+        "dưới 0 °C. Các đa thức chuẩn xác định đặc tính Seebeck của cặp nhiệt điện ký hiệu chữ "
+        "cái và các dung sai sản xuất của vật liệu thương mại khác nhau cho vùng dưới và trên "
+        "điểm đá. Vật liệu sản xuất cho đo nhiệt độ cao có thể tuân theo đặc tính sâu lạnh chuẩn "
+        "kém hơn các hợp kim cùng loại được cung cấp đặc biệt cho mục đích đó [1]. Vấn đề chất "
+        "lượng này nên trao đổi với nhà cung cấp cặp nhiệt điện. Các hợp kim đặc biệt cho đo "
+        "nhiệt độ sâu lạnh hiện có bán."))
+    b.append(p(
+        "Ở dải sâu lạnh thấp hơn, trong số các vật liệu ký hiệu chữ cái, loại E được ưa dùng cho "
+        "phép đo xuống tới −233 °C (40 K) nhờ hệ số Seebeck tương đối cao hơn [1]. Loại K và T "
+        "kém nhạy hơn cũng được dùng trong dải này. Dưới 40 K, người ta khuyến nghị các tổ hợp "
+        "hợp kim đặc biệt, chẳng hạn loại KP với Au/0,07 Fe. Các quan hệ nhiệt điện đặc biệt áp "
+        "dụng cho các vật liệu này trong dải sâu lạnh [1]."))
+    b.append(p(
+        "Nhiệt Peltier tại các mối nối và nhiệt Thomson dọc theo thân nhiệt điện là các hiệu ứng "
+        "nhiệt điện phụ thuộc dòng điện; không hiệu ứng nào đáng kể nếu phép đo được tiến hành "
+        "đúng đắn ở chế độ hở mạch. Không có hiện tượng tự sinh nhiệt đáng kể của cặp nhiệt điện "
+        "như ở nhiệt điện trở."))
+    b.append(p(
+        "Một số hợp kim thân nhiệt điện trải qua hiện tượng lớn hạt và hình thành sự không đồng "
+        "nhất nghiêm trọng khi tiếp xúc kéo dài với nhiệt độ sâu lạnh sâu. Nhạy hơn ở nhiệt độ sâu lạnh "
+        "so với nhiệt độ cao, hệ số Seebeck của phần lớn hợp kim cặp nhiệt điện phụ thuộc rất "
+        "mạnh vào từ trường. Từ trường mạnh thường hiện diện trong thí nghiệm sâu lạnh, nên các "
+        "hiệu ứng nhiệt – từ – điện trở nên đáng kể trong nghiên cứu siêu dẫn [2, 27]."))
+
+    b.append(h4("Độ nhạy", "Sensitivity"))
+    b.append(p(
+        "Nhu cầu có đầu ra cặp nhiệt điện lớn đã giảm mạnh nhờ độ nhạy, độ ổn định và khả năng "
+        "khử nhiễu được cải thiện của các bộ chỉ thị cặp nhiệt điện số bán dẫn hiện đại. Các "
+        "dụng cụ này có thể thường xuyên chỉ thị nhiệt độ với độ phân giải và độ ổn định 0,1 °C "
+        "cho mọi loại ký hiệu chữ cái. Các cặp chuẩn khác nhau đáng kể về độ nhạy (Bảng 32.12). "
+        "Độ nhạy của cặp nhiệt điện loại E gấp 10 lần loại B tại 1000 °C. Vì cặp nhiệt điện loại "
+        "B có độ nhạy cực nhỏ quanh nhiệt độ phòng, nó chỉ dùng khi mối nối đo ở trên 870 °C. "
+        "Cặp nhiệt điện chuẩn hóa nhạy nhất, loại E, có hệ số Seebeck cực đại 81 µV/°C và, quy "
+        "chiếu về 0 °C, suất điện động Seebeck cực đại 76 mV. Dù dung sai ban đầu cho cả vật liệu "
+        "cấp thường lẫn cấp đặc biệt đã được chuẩn hóa, chênh lệch giữa cấp thương mại và cấp "
+        "cao cấp là nhỏ và, khi sử dụng, vật liệu cấp đặc biệt có thể suy giảm vượt cả dung sai "
+        "ban đầu của vật liệu cấp thường."))
+
+    b.append(h4("Ký hiệu chữ cái", "Letter Designations"))
+    b.append(p(
+        "Ký hiệu chữ cái và mã màu ANSI của Hoa Kỳ cho tám loại cặp nhiệt điện cụ thể (B, E, J, "
+        "K, N, R, S và T) lần đầu được ISA ấn định trong Tiêu chuẩn MC-96.1 [28]. Các hiệp hội "
+        "tiêu chuẩn ASTM và ANSI cũng theo các quy ước tương tự [10, 24]. Hậu tố đầu tiên của ký "
+        "hiệu loại, P hoặc N, như trong KP hay KN, chỉ định thân nhiệt điện dương hoặc âm của "
+        "một cặp. Hậu tố cuối “X” chỉ định vật liệu dây nối dài, như KPX là thân nhiệt điện nối "
+        "dài dương của loại K. Với các cặp vật liệu chưa chuẩn hóa, nhà sản xuất và nhà bán "
+        "thường tự áp dụng ký hiệu chữ cái, mã màu và tên thương mại riêng, không chính thức. "
+        "Những định danh thương mại của từng nhà sản xuất này không có ý nghĩa phổ quát."))
+
+    b.append(h4("Mã màu", "Color Codes"))
+    b.append(p(
+        "Mã màu nhằm tạo thuận lợi cho việc nhận dạng; các tiêu chuẩn của nhiều quốc gia đã ấn "
+        "định mã màu cho các loại ký hiệu chữ cái và cho thân nhiệt điện cùng dây nối dài. Vì "
+        "từng thân nhiệt điện quyết định cả cực tính lẫn độ nhạy, việc nhận dạng đúng từng chân "
+        "rất quan trọng. Mã màu hiện dùng ở Hoa Kỳ nêu trong Bảng 32.12."))
+    b.append(p(
+        "Mã màu chuẩn hóa của Hoa Kỳ giữ đồng nhất trong vài thập kỷ; vì vậy sự nhầm lẫn mã màu "
+        "loại vật liệu ở Hoa Kỳ phần lớn do bất cẩn của người dùng. Các mã màu hiện nay không "
+        "đồng nhất toàn cầu có thể gây diễn giải sai tốn kém khi dùng đa quốc gia, đặc biệt bên "
+        "ngoài Hoa Kỳ, nơi các nước láng giềng và đối tác thương mại có mã màu khác nhau hoặc "
+        "nhiều mã song song. Rõ ràng, một mã màu quốc tế duy nhất được mọi quốc gia chấp nhận "
+        "sẽ có lợi. Mã màu quốc tế như vậy đã có trong tiêu chuẩn IEC 584, đang được một số "
+        "quốc gia xem xét [28]."))
+    b.append(p(
+        "Khác với các đặc tính Seebeck chuẩn hóa khá đồng nhất toàn cầu, các mã màu quốc gia "
+        "thiếu phối hợp lại rất không nhất quán. Cơn hỗn loạn Babel của các mã màu quốc gia tồn "
+        "tại năm 1998 được trình bày trong Bảng 32.13 [1, 4]."))
+    b.append(_t3213("vi"))
+    b.append(p(
+        "Đáng tiếc và độc nhất, trong các tiêu chuẩn cặp nhiệt điện hiện hành của Hoa Kỳ, thân "
+        "nhiệt điện âm luôn luôn là màu đỏ — trái với thông lệ điện và dụng cụ của Hoa Kỳ. Điều "
+        "này cũng trái với mã màu quốc gia lịch sử của Trung Quốc, Đức và Nhật Bản, nơi màu đỏ "
+        "chỉ định thân nhiệt điện dương. Trong tiêu chuẩn Anh, chân âm của mọi loại đều là màu "
+        "xanh lam."))
+    b.append(p(
+        "Ở Pháp, thân nhiệt điện dương luôn được mã màu vàng. Tuy nhiên, chân dương màu vàng "
+        "trong tiêu chuẩn Hoa Kỳ lại chỉ định vật liệu loại KP. Dây dẫn của một số kíp nổ điện "
+        "ở Hoa Kỳ dùng dây bọc cách điện màu vàng có vạch đỏ song song từng bị nhầm với dây "
+        "nối dài cặp nhiệt điện loại KX. Ở Anh, màu vàng chỉ định vật liệu loại JP. Chân dương "
+        "trắng và chân âm đen của mã màu ANSI loại J hiện hành của Hoa Kỳ bị hoán đổi trong "
+        "tiêu chuẩn quốc tế IEC 584."))
+    b.append(p(
+        "Bất chấp sự cần thiết rõ ràng của một mã màu thống nhất, vẫn còn một khối lượng khổng "
+        "lồ vật liệu với các mã màu khác nhau trong kho và đang sử dụng trên toàn thế giới. Với "
+        "bất kỳ quốc gia nào chuyển sang một tiêu chuẩn màu mới, ngay lập tức và trong suốt giai "
+        "đoạn chuyển tiếp dài không tránh được sau khi chấp nhận, vật liệu mã màu mới sẽ lẫn "
+        "trong khối lượng lớn mã màu cũ không nhất quán. Khả năng nhầm lẫn loại vật liệu sẽ tăng "
+        "lên chứ không giảm. Ngoài ra, ngay cả các mã màu hiện hành cũng có thể trở nên nhòe trên "
+        "vật liệu lắp đặt lâu năm, màu có thể phai, hoặc màu có thể bị sơn sai ngay từ khâu sản "
+        "xuất."))
+
+    b.append(h4("Nhận dạng thân nhiệt điện", "Identifying Thermoelements"))
+    b.append(p(
+        "Mã màu áp dụng trực tiếp cho dây nối dài và có hiệu lực với dây cặp nhiệt điện chính. "
+        "Nhiều thân nhiệt điện chính và cặp nhiệt điện không được mã màu. Người dùng có thể "
+        "không nhớ đúng mã màu. Người dùng cẩn trọng sẽ, trước khi dùng, xác nhận nhận dạng loại "
+        "vật liệu độc lập với mã màu. Nhận dạng loại chắc chắn phải bằng sự kết hợp các phương "
+        "pháp. Bất kỳ phương pháp đơn lẻ nào cũng có thể không dứt khoát, và không phương pháp "
+        "nào thích dụng cho mọi vật liệu hay mọi hoàn cảnh."))
+    b.append(p(
+        "<b>Nhận dạng trực quan.</b> Thân nhiệt điện TP làm bằng đồng nên phân biệt được nhờ màu "
+        "đỏ đồng đặc trưng. Thân nhiệt điện JP là sắt, có ánh xám xỉn đặc trưng. Các hợp kim kim "
+        "loại nền khác cùng bạch kim và hợp kim của nó, nếu để trần, đều có bề ngoài bạc sáng rất "
+        "giống nhau, trừ khi sau khi tách khỏi lớp cách điện khoáng ép, quá trình chế tạo tạo bề "
+        "mặt xám xỉn nhám."))
+    b.append(p(
+        "<b>Nhận dạng từ tính.</b> Loại JP (sắt) hút từ mạnh. Loại KN (Alumel) hút từ nhẹ. Mọi "
+        "vật liệu thân nhiệt điện chuẩn khác đều không từ tính. Có thể phân biệt JP và KN với "
+        "các vật liệu khác bằng cách thử độ hút của một nam châm nhỏ."))
+    b.append(p(
+        "<b>Nhận dạng qua điện trở.</b> Điện trở suất của các thân nhiệt điện nêu trong Bảng "
+        "32.12. Dù các cặp nhiệt điện lắp ráp có mối nối đo nhìn chung không thể tháo ra để thử, "
+        "mối nối trần có thể tiếp cận trực tiếp, hoặc tiếp cận điện tại đầu đầu dò để đo điện trở "
+        "từng chân nếu mối nối thuộc loại nối chung với vỏ dẫn điện tại mối nối đo. Các cụm lắp "
+        "hay cáp cặp nhiệt điện thường có các cặp thân nhiệt điện cùng chiều dài và cùng tiết "
+        "diện. Điện trở của từng chân phân biệt được vật liệu nếu biết cỡ dây và chiều dài. Trong "
+        "những trường hợp đó, với hai đầu cáp ở cùng nhiệt độ, điện trở của từng thân nhiệt điện "
+        "có thể đo trực tiếp. Tỷ số giữa điện trở chân dương và chân âm giúp xác nhận loại. Với "
+        "các cặp nhiệt điện lắp ráp có mối nối đo không tiếp cận được, chỉ có thể đo điện trở "
+        "vòng và so sánh với điện trở vòng tính toán."))
+    b.append(p(
+        "<b>Nhận dạng nhiệt điện.</b> Kém thuận tiện hơn, một cặp có thể được nhận dạng qua đầu "
+        "ra ứng với nhiệt độ đã biết của mối nối đo và mối nối chuẩn. Các cáp nối dài bổ sung có "
+        "thể nhận dạng bằng nhiệt bằng cách tạm thời tạo một mối nối giữa cặp dây ở một đầu. Có "
+        "thể nhận dạng dứt khoát bằng quy trình kém chính xác hơn so với yêu cầu của hiệu chuẩn "
+        "chính thức. Để nhận dạng, cả nhiệt độ mối nối chuẩn lẫn mối nối đo đều phải biết hoặc "
+        "đo độc lập. Nhiệt độ xấp xỉ của mối nối chuẩn có thể xác định bằng cách ngắn mạch chốc "
+        "lát đầu vào ngay tại cực vào của một dụng cụ có bù mối nối chuẩn. Vì vật liệu cặp nhiệt "
+        "điện có thể không tương ứng với mức bù được áp dụng, nhiệt độ phải được xác định riêng."))
+    b.append(p(
+        "Nhiệt độ áp lên mối nối đo để nhận dạng phải ít nhất 200 °C, vì độ không đảm bảo của "
+        "hiệu chuẩn cặp nhiệt điện và của nhiệt độ áp vào làm cho sự phân biệt suất điện động "
+        "giữa các cặp, như E với J, hay K với N hoặc T, không tin cậy khi chỉ dùng bình nước đá "
+        "hoặc nước sôi. Các loại R và S rất giống nhau chỉ phân biệt được tin cậy ở nhiệt độ cao "
+        "hơn nhiều hoặc bằng hiệu chuẩn chính thức."))
+    return "".join(b)
+
+
 def sec_32_4c_en():
     b = [h4("Modular Signal Conditioning Components",
             "Các bộ phận điều chế tín hiệu dạng mô-đun")]
@@ -4771,12 +5089,113 @@ def sec_32_4c_en():
     return "".join(b)
 
 
+def sec_32_4d_en():
+    b = [h3("Thermocouple Materials")]
+
+    b.append(h4("Thermocouple Standardization"))
+    b.append(p(
+        "Many materials are in regular use as thermocouples for thermometry; some pairs are "
+        "standardized, some are not. The distinction is a matter of formal consensus approval by "
+        "balanced standards committees of experienced users, producers, and standards-laboratory "
+        "staff [10, 24]. In the U.S., eight materials are letter-designated (Types B, E, J, K, N, "
+        "R, S, and T) [9–12, 24]; some of their properties are summarized in Table 32.12. The "
+        "standardized <i>E</i>(<i>T</i>) characteristics are now defined exactly by high-degree "
+        "polynomial functions rather than tabulated values [1, 9, 10]. Thermoelements should be "
+        "used as selectively paired by the producer: randomly paired elements of the same type, "
+        "from the same or different manufacturers, are not assured to conform to the standard "
+        "pair values or tolerances [1, 9–12]. Properties of a few other popular pairs, such as "
+        "precious-metal and tungsten refractory alloys, have been committee-proposed but carry "
+        "no formal letter designations or color codes [10]."))
+    b.append(_t3212("en"))
+    b.append(h4("Low Temperature Thermometry"))
+    b.append(p(
+        "Thermocouple measurement below the ice point requires special consideration. Cryogenic "
+        "thermometry has been loosely defined as measurement below 280 K (7 °C), or more "
+        "restrictively below 90 K (−183 °C, the boiling point of liquid oxygen at 1 atm) [1]. "
+        "The Seebeck coefficient of all conductors is insignificant at 0 K, and a few "
+        "superconducting metal elements drop abruptly to zero at a threshold below 10 K for most "
+        "unalloyed superconductors [27]; special alloys have raised that threshold to about "
+        "120 K. Superconducting transitions complicate thermoelectric thermometry at the lowest "
+        "cryogenic temperatures [7, 8]."))
+    b.append(p(
+        "Standard Seebeck characteristics are defined for Types E, J, K, N, and T down to "
+        "−270 °C; Types R and S extend only to −50 °C, and Type B is not characterized below "
+        "0 °C. Of the letter-designated materials, Type E is preferred for use down to −233 °C "
+        "(40 K) for its higher relative Seebeck coefficient [1]. Below 40 K, special alloy "
+        "combinations such as Type KP vs. Au/0.07 Fe are recommended [1]. Peltier and Thomson "
+        "heating are current-dependent effects, so neither is significant when thermometry is "
+        "properly conducted by open-circuit measurement — there is no thermocouple self-heating "
+        "as with resistance thermometers. At cryogenic temperatures the Seebeck coefficient of "
+        "most alloys is strongly magnetic-field dependent, so thermo-magneto-electric effects "
+        "matter in superconductivity studies [2, 27]."))
+    b.append(h4("Sensitivity"))
+    b.append(p(
+        "The need for large thermocouple output has been drastically reduced by modern "
+        "solid-state digital indicators, which routinely resolve 0.1 °C for all letter-designated "
+        "types. The standard pairs differ significantly in sensitivity (Table 32.12): Type E is "
+        "ten times as sensitive as Type B at 1000 °C. Type B, with its very small sensitivity "
+        "near room temperature, is intended only for measuring junctions above 870 °C. The most "
+        "sensitive standardized type, E, has a maximum Seebeck coefficient of 81 µV/°C and, "
+        "referenced to 0 °C, a maximum Seebeck emf of 76 mV. Although initial tolerances for "
+        "both normal- and special-grade material are standardized, the gap between commercial "
+        "and premium grades is small, and in service special-grade material can degrade beyond "
+        "the initial normal-grade tolerance."))
+    b.append(h4("Letter Designations"))
+    b.append(p(
+        "The U.S. ANSI letter designations and color codes were first established by the ISA in "
+        "Standard MC-96.1 [28]; ASTM and ANSI follow the same conventions [10, 24]. A first "
+        "suffix P or N (as in KP, KN) designates the positive or negative thermoelement of a "
+        "pair; a final X designates extension-wire material (KPX). For non-standardized pairs, "
+        "producers apply their own unofficial designations and trade names, which have no "
+        "universal meaning."))
+    b.append(h4("Color Codes"))
+    b.append(p(
+        "Because each thermoelement determines both polarity and sensitivity, positive "
+        "identification of each leg matters. U.S. color codes have been uniform for decades, so "
+        "U.S. confusion is mostly carelessness. The globally discordant national codes, "
+        "however, cause costly misinterpretation in multinational use. A single international "
+        "code is embodied in IEC 584, under consideration by several nations [28]; the 1998 "
+        "babel of national codes is shown in Table 32.13 [1, 4]."))
+    b.append(_t3213("en"))
+    b.append(p(
+        "Uniquely among U.S. standards, the negative thermoelement is always red — contrary to "
+        "U.S. electrical practice and to the historic codes of China, Germany, and Japan, where "
+        "red marks the positive leg. In English standards the negative leg of all types is "
+        "blue. In France the positive leg is always yellow, yet a yellow positive leg in the "
+        "U.S. standard means Type KP; the yellow-with-red-tracer lead wires of some U.S. "
+        "electric blasting caps have been mistaken for Type KX extension wire. In England "
+        "yellow denotes Type JP. The white-positive/black-negative U.S. ANSI code for Type J is "
+        "transposed in IEC 584. Despite the clear desirability of a uniform code, a huge "
+        "quantity of legacy-coded material remains in stock and in service, so a switch to any "
+        "new standard would initially increase — not reduce — the possibility of confusion. "
+        "Colors also fade or were misapplied at manufacture."))
+    b.append(h4("Identifying Thermoelements"))
+    b.append(p(
+        "The prudent user confirms material type before use, independent of the color code, by "
+        "a combination of methods — no single method is definite for all materials or "
+        "circumstances. <b>Visual:</b> TP is copper (distinctive reddish color); JP is iron "
+        "(matte gray cast); other bare base-metal and platinum alloys look alike. "
+        "<b>Magnetic:</b> JP (iron) is strongly magnetic and KN (Alumel) slightly so; all other "
+        "standard thermoelements are nonmagnetic. <b>Resistive:</b> with both cable ends at the "
+        "same temperature, the resistance of each leg (Table 32.12) identifies the material if "
+        "size and length are known; the positive/negative resistance ratio aids confirmation. "
+        "For assembled thermocouples with inaccessible junctions, only loop resistance can be "
+        "measured and compared with calculated values. <b>Thermoelectric:</b> a pair can be "
+        "identified by its output for known measuring- and reference-junction temperatures; "
+        "both must be independently known. The imposed measuring-junction temperature must be "
+        "at least 200 °C, because calibration and imposed-temperature uncertainty make the emf "
+        "distinction between pairs such as E vs. J, or K vs. N and T, unreliable with ice or "
+        "boiling-water baths. The very similar Types R and S can be distinguished reliably only "
+        "at much higher temperatures or by formal calibration."))
+    return "".join(b)
+
+
 def sec_32_4_vi():
-    return sec_32_4a_vi() + sec_32_4b_vi() + sec_32_4c_vi()
+    return sec_32_4a_vi() + sec_32_4b_vi() + sec_32_4c_vi() + sec_32_4d_vi()
 
 
 def sec_32_4_en():
-    return sec_32_4a_en() + sec_32_4b_en() + sec_32_4c_en()
+    return sec_32_4a_en() + sec_32_4b_en() + sec_32_4c_en() + sec_32_4d_en()
 
 
 def _refs(lang):
@@ -4952,6 +5371,31 @@ INDEX = [
     ("32.4", "Thermocouple Thermometers", "Nhiệt kế cặp nhiệt điện", [
         ("The Simplest Thermocouple", "Cặp nhiệt điện đơn giản nhất"),
         ("Simple Thermocouple Thermometry", "Đo nhiệt độ bằng cặp nhiệt điện đơn giản"),
+        ("Thermoelectric Effects", "Hiệu ứng nhiệt điện"),
+        ("The Seebeck Effect", "Hiệu ứng Seebeck", 1),
+        ("Absolute Seebeck Properties", "Các đặc tính Seebeck tuyệt đối", 1),
+        ("Relative Seebeck Properties", "Các đặc tính Seebeck tương đối", 1),
+        ("Realistic Thermocouple Circuits", "Mạch cặp nhiệt điện thực tế", 1),
+        ("Reference Temperature", "Nhiệt độ chuẩn", 1),
+        ("Extension Leads", "Dây nối dài", 1),
+        ("Modular Signal Conditioning Components",
+         "Các bộ phận điều chế tín hiệu dạng mô-đun", 1),
+        ("Grounding, Shielding, and Noise", "Nối đất, che chắn và nhiễu", 1),
+        ("Noise Problems Peculiar to Thermocouples",
+         "Những vấn đề nhiễu riêng của cặp nhiệt điện", 2),
+        ("Grounding", "Nối đất", 2),
+        ("Balanced Thermocouple Circuits", "Mạch cặp nhiệt điện cân bằng", 2),
+        ("Filtering", "Lọc", 2),
+        ("Thermal Coupling", "Ghép nhiệt", 1),
+        ("Static Thermometry", "Đo nhiệt độ tĩnh", 2),
+        ("Transient Thermometry", "Đo nhiệt độ quá độ", 2),
+        ("Thermocouple Materials", "Vật liệu cặp nhiệt điện"),
+        ("Thermocouple Standardization", "Chuẩn hóa cặp nhiệt điện", 1),
+        ("Low Temperature Thermometry", "Đo nhiệt độ thấp", 1),
+        ("Sensitivity", "Độ nhạy", 1),
+        ("Letter Designations", "Ký hiệu chữ cái", 1),
+        ("Color Codes", "Mã màu", 1),
+        ("Identifying Thermoelements", "Nhận dạng thân nhiệt điện", 1),
     ]),
 ]
 
