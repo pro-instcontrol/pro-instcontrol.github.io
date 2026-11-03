@@ -1,10 +1,10 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-02 (session 45 — Chapter 30 added) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-02 (session 46 — Chapter 31 added) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 85** and *downward* — the second agent works the
-> book in reverse from the back. Chapters 1–30, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
-> 98, 99, 100, 101** and **Appendix A** are done, live and registered; 31–85 are still `chờ dịch`.
+> **Where to start next:** Handbook **Chapter 32** and *upward* to 85 — the forward agent works the
+> book from the front. Chapters 1–31, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
+> 98, 99, 100, 101** and **Appendix A** are done, live and registered; 32–85 are still `chờ dịch`.
 > The reverse sequence is 85, 84 … down to and including 80 (*Bộ khuếch đại và điều hoà tín
 > hiệu*). Source text for every chapter is already extracted into `work/hb_chNN.txt`.
 >
@@ -3748,3 +3748,73 @@ sense rather than the typographic sense.
 **Owed, still:** the `aria-label` sweep across the other 34 `reader_hb_*` modules. Chapters 29 and 30
 are clean (0 Vietnamese labels on the English page — 13 labels, all English, on chapter 30), but
 chapters 1–27 and 86–101 predate the fix.
+
+## Session 46 — 2026-11-02 · Handbook Chapter 31 (*Surface Tension Measurement*) written and published
+
+Chapter 31 is three sections and 17 source pages: §31.1 *Mechanics of Fluid Surfaces* (seven
+sub-topics: the mechanical model and surface energy, shape and surface-active agents, the contact
+line and the contact angle, equilibrium at the contact line, curved surfaces and the Laplace
+pressure, axisymmetric drops and bubbles, capillary waves), §31.2 *Standard Methods and
+Instrumentation* (six: capillary rise, Wilhelmy plate and du Noüy ring, maximum bubble pressure,
+pendant and sessile drop, drop weight or volume, spinning drop) and §31.3 *Specialized Methods*
+(four: dynamic surface tension, surface viscoelasticity, measurements at temperature and pressure
+extremes, interfacial tension). **5 figures, 13 equations, 2 tables**, 35 references, defining terms
+and acknowledgments.
+
+**Source.** `D:/Process Control and Automation/The Measurement_ Instrumentation and Sensors
+Handbook/Ch31.pdf`. Pages rendered at 140 dpi into `work/ch31img/`; every equation was read off the
+page images, not the text layer, for the same reason as chapters 29 and 30 — the extraction mangles
+every fraction and subscript.
+
+**Registered and published.** `31: "ch31-surface-tension-measurement"` added to `DONE`. Re-ran
+`reader_handbook.py`, `books_site.py`, `make_sitemap.py`, `chapter_nav.py`, `check_links.py`.
+Results: book TOC and both books indexes read **48/101**, sitemap **575 URLs / 560 EN–VI pairs**,
+chapter nav **94 pages updated**, link check **577 pages, 15,713 local references, 0 broken**.
+Both pages: 69 kB (EN) / 65 kB (VI), figures 1–5, equations 31.1–31.13 in order with no gap or
+duplicate, 31 unique element ids, 20 in-page links none broken, 6 aria-labels (0 Vietnamese on the
+English page), prev link to chapter 30 present.
+
+**The counter had drifted and is now corrected 46 → 48.** The rendered TOC carried 47 `done` rows
+before chapter 31 was added — 30 chapters (1–30) + 16 (86–101) + Appendix A — so session 45's
+"46/101" was one short: it never counted the Appendix A row. `books_site.py` now says 48 and agrees
+with `books/read/<slug>/index.html`, which is the source of truth. **Check the rendered TOC, not the
+previous session's number, before bumping this counter again.**
+
+### `⁄` (U+2044) destroys the digit in front of it — use ASCII `/`
+
+Equation 31.2 was written `γ (1⁄<i>R</i><sub>1</sub> + 1⁄<i>R</i><sub>2</sub>)` and rendered as
+`γ (ı⁄R₁ + ı⁄R₂)`: in Georgia the `1` immediately before U+2044 FRACTION SLASH collapses to a bare
+vertical stroke. A four-way test page (`work/qa31/fractest.html`) settled it — `1⁄3` shows a stroke,
+`1/3` is correct, `font-feature-settings:'frac' 0` does not help, and `2γ⁄b` loses *both* the slash
+and the `2`, rendering `2γb`.
+
+**The fix is ASCII `/`**, applied to all 70 occurrences in `reader_hb_ch31.py`. All thirteen
+equations now render correctly (verified together on one sheet — extracting every `.eq` block into a
+throwaway page with the real `library.css` is far cheaper than hunting each one down the full-page
+screenshot).
+
+**Chapters 25–30 are not affected and were deliberately left alone.** They write the same character
+*spaced* (`η ⁄ ρ`, `2 ⁄ (1 + β²)`), so no digit is ever adjacent to it, and all 43 fraction-bearing
+equations in chapter 30 were checked on a sheet and render correctly. Only the tight `digit⁄` form
+breaks. So: `digit/digit` tight is fine with ASCII `/`; if you want the airy look, space it and
+U+2044 is safe. Never write `digit⁄`.
+
+### Two figure defects from this chapter worth remembering
+
+- **`_arr(x1, y1, x2, y2, col, marker, sw)` — the sixth positional argument is `marker`.** Writing
+  `_arr(a, b, c, d, E, 1.5)` puts `1.5` in the marker slot and emits `marker-end="url(#1.5)"`, i.e.
+  **no arrowhead at all**, silently. Every arrow in figure 31.3 lost its head this way. Always pass
+  `sw=` by keyword. `qa_figs.py` reported `problems 0` both before and after — it cannot see a
+  missing arrowhead, so figure arrows need an eyeball or a grep of the emitted SVG.
+- **A parametric surface hooks at the corners.** Figure 31.3's dome and saddle were first built as
+  `X(u,v)/Y(u,v)` grids; at a corner both grid families leave in nearly the same direction and the
+  outline doubles back. Rebuilt from four quadratic Bézier edges (left edge left straight, only the
+  right edge bowed) it cannot cusp.
+
+**Owed, still:** the `aria-label` sweep across the other 34 `reader_hb_*` modules. Chapter 31 is
+clean (6 labels, all English on the English page), as are 29 and 30; chapters 1–27 and 86–101
+predate the fix.
+
+**Also owed:** `git push` still cannot authenticate from this machine — the credential helper is
+`manager` with nothing stored, and `git fetch` works anonymously while `push` cannot prompt. Three
+commits are sitting on top of `origin/main`.
