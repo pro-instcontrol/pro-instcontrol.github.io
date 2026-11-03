@@ -1720,16 +1720,161 @@ def fig_32_24():
                 "and the measuring junction inside a dashed circle")
 
 
+def _rot(t, x, y):
+    """Lay a label out vertically (bottom-up), the way the book marks the
+    narrow isothermal zones.  _mix() output is injected with a transform."""
+    return t.replace('<text ', '<text transform="rotate(-90 %d %d)" ' % (x, y), 1)
+
+
+# ---- 32.25
+def fig_32_25():
+    """The basic thermocouple circuit with a single temperature reference
+    junction e: measuring junction b at T_m, reference junction e at T_r,
+    intermediate material C between junctions c and d, and the ice bath at
+    T_i carrying the open-circuit terminals a and f."""
+    o = []
+    B = ' style="font-weight:700"'
+    # ice bath: drop shadow, box, dashed inner isothermal zone
+    o.append(_rect(224, 138, 190, 98, "#d9dee4", "none", 0, rx=10))
+    o.append(_rect(217, 131, 190, 98, "#fff", E, 1.3, rx=10))
+    o.append(_rect(254, 149, 135, 68, "none", S, 1.1, dash="4 3", rx=6))
+    # upper leg e - d - (material C) - c - b ; lower legs e-A'-f and b-A-a
+    o.append(_pl([(78, 84), (153, 42), (282, 44), (370, 44), (501, 42), (574, 84)], E, 1.4))
+    o.append(_pl([(78, 84), (149, 126), (278, 126), (278, 182)], E, 1.4))
+    o.append(_pl([(574, 84), (495, 126), (357, 126), (357, 182)], E, 1.4))
+    # isothermal-zone outlines: T_r at left, the C link, T_m at right
+    o.append(_ell(81, 85, 62, 28, "none", S, 1.1, dash="4 3"))
+    o.append(_ell(326, 42, 68, 20, "none", S, 1.1, dash="4 3"))
+    o.append(_ell(560, 85, 62, 28, "none", S, 1.1, dash="4 3"))
+    # junction dots
+    for x, y in ((78, 84), (282, 44), (370, 44), (574, 84), (278, 182), (357, 182)):
+        o.append(_circ(x, y, 3, E, E, 1))
+    # labels
+    o.append(_mix(44, 88, [("T", "i"), ("r", "sub")]))
+    o.append(_mix(94, 88, [("e", "i")], "middle"))
+    o.append(_lbl(234, 26, "B′", "t", "middle", B))
+    o.append(_lbl(234, 148, "A′", "t", "middle", B))
+    o.append(_lbl(476, 26, "B", "t", "middle", B))
+    o.append(_lbl(476, 148, "A", "t", "middle", B))
+    o.append(_lbl(326, 34, "C", "t", "middle", B))
+    o.append(_lbl(296, 58, "d", "t", "middle"))
+    o.append(_lbl(356, 58, "c", "t", "middle"))
+    o.append(_lbl(560, 88, "b", "t", "middle"))
+    o.append(_mix(602, 88, [("T", "i"), ("m", "sub")], "middle"))
+    o.append(_lbl(292, 176, "f", "t", "middle"))
+    o.append(_lbl(348, 176, "a", "t", "middle"))
+    o.append(_mix(321, 202, [("T", "i"), ("i", "sub")], "middle"))
+    return _fig(svg(680, 250, "".join(o),
+                    "Mạch cặp nhiệt điện cơ bản với một mối nối chuẩn nhiệt độ duy nhất e"),
+                "Hình 32.25 · Mạch cặp nhiệt điện cơ bản với một mối nối chuẩn nhiệt độ duy nhất, "
+                "e. Điện áp Seebeck đo ở chế độ hở mạch tại hai cực a và f tỉ lệ với chênh lệch "
+                "nhiệt độ giữa mối nối đo b của cặp nhiệt điện và mối nối chuẩn cần thiết e. Để "
+                "thuận tiện, T<sub>r</sub> thường được giữ ở 0 °C. Để đo nhiệt độ, các vùng ở "
+                "nhiệt độ T<sub>r</sub> và T<sub>i</sub> phải đẳng nhiệt.",
+                "Figure 32.25 · The basic thermocouple circuit with a single temperature "
+                "reference junction, e. The Seebeck voltage measured in open-circuit mode at "
+                "terminals a and f is proportional to the temperature difference between "
+                "thermocouple measuring junction b and the necessary temperature reference "
+                "junction e. For convenience, T<sub>r</sub> is usually made to be 0 °C. For "
+                "thermometry, the zones at temperatures T<sub>r</sub> and T<sub>i</sub> must "
+                "be isothermal.",
+                "Sơ đồ mạch cặp nhiệt điện một mối nối chuẩn: mối nối đo b ở T_m bên phải, mối "
+                "nối chuẩn e ở T_r bên trái, vật liệu trung gian C giữa hai mối nối c và d trên "
+                "dây trên, và bình đá T_i ở giữa dưới với hai cực a và f",
+                "Single-reference thermocouple circuit diagram: measuring junction b at T_m at "
+                "right, reference junction e at T_r at left, intermediate material C between "
+                "junctions c and d on the upper leg, and the T_i ice bath at bottom center "
+                "with terminals a and f")
+
+
+# ---- 32.26
+def fig_32_26():
+    """The basic thermocouple circuit with dual temperature reference junctions:
+    principal pair A-B joined at the measuring junction d, extension leads C-D,
+    input terminals b-f on the isothermal block (zone T_i) with the dashed
+    internal compensation pair A'-B' referencing T_0, and the alternative
+    reference zone T_s around junctions c and e."""
+    o = []
+    B = ' style="font-weight:700"'
+    # isothermal block with its dashed boundary
+    o.append(_rect(20, 30, 222, 196, "none", S, 1.1, dash="5 3", rx=12))
+    o.append(_rect(35, 41, 185, 172, FILL, E, 1.3, rx=8))
+    # the two dashed junction zones on the block, and the T_s terminal zone
+    o.append(_ell(93, 129, 15, 56, "none", S, 1.1, dash="4 3"))
+    o.append(_ell(184, 129, 15, 56, "none", S, 1.1, dash="4 3"))
+    o.append(_rect(290, 57, 82, 147, "none", S, 1.1, dash="4 3", rx=10))
+    # internal circuit g-a and the dashed compensation pair A'-B'
+    o.append(_line(93, 85, 93, 174, E, 1.2))
+    o.append(_line(93, 85, 185, 85, E, 1.3, dash="5 3"))
+    o.append(_line(93, 174, 184, 174, E, 1.3, dash="5 3"))
+    # extension leads D (upper) and C (lower), principal legs B and A
+    o.append(_pl([(185, 85), (490, 85), (545, 125)], E, 1.4))
+    o.append(_pl([(184, 174), (490, 174), (545, 131)], E, 1.4))
+    # measuring-junction lozenge, bead, then dots
+    o.append(_ell(570, 128, 66, 32, "none", S, 1.1, dash="4 3"))
+    o.append(_ell(556, 128, 17, 9, DARK, E, 1.2))
+    for x, y in ((93, 85), (93, 174), (185, 85), (184, 174),
+                 (346, 85), (345, 174), (556, 128)):
+        o.append(_circ(x, y, 3, E, E, 1))
+    # zone temperatures, rotated inside the narrow capsules
+    o.append(_rot(_mix(84, 129, [("T", "i"), ("0", "sub")], "middle"), 84, 129))
+    o.append(_rot(_mix(184, 129, [("T", "i"), ("i", "sub")], "middle"), 184, 129))
+    # wire labels
+    o.append(_lbl(138, 64, "B′", "t", "middle", B))
+    o.append(_lbl(139, 191, "A′", "t", "middle", B))
+    o.append(_lbl(254, 63, "+", "t", "middle"))
+    o.append(_lbl(254, 197, "−", "t", "middle"))
+    o.append(_lbl(276, 63, "D", "t", "middle", B))
+    o.append(_lbl(276, 197, "C", "t", "middle", B))
+    o.append(_lbl(476, 64, "B", "t", "middle", B))
+    o.append(_lbl(476, 197, "A", "t", "middle", B))
+    # T_s zone label, then the terminals e and c
+    o.append(_mix(331, 48, [("T", "i"), ("s", "sub")], "middle"))
+    o.append(_lbl(346, 104, "e", "t", "middle"))
+    o.append(_mix(346, 126, [("T", "i"), ("e", "sub")], "middle"))
+    o.append(_lbl(346, 148, "c", "t", "middle"))
+    o.append(_mix(346, 196, [("T", "i"), ("c", "sub")], "middle"))
+    # measuring junction d, terminal m, temperature T_m
+    o.append(_lbl(556, 150, "d", "t", "middle"))
+    o.append(_lbl(588, 122, "m", "t", "middle"))
+    o.append(_mix(616, 131, [("T", "i"), ("m", "sub")], "middle"))
+    return _fig(svg(680, 240, "".join(o),
+                    "Mạch cặp nhiệt điện cơ bản với hai mối nối chuẩn nhiệt độ"),
+                "Hình 32.26 · Mạch cặp nhiệt điện cơ bản với hai mối nối chuẩn nhiệt độ. Cặp "
+                "nhiệt điện chính là cặp AB; cặp CD là dây dẫn nối dài. Điện áp Seebeck đo ở "
+                "chế độ hở mạch giữa hai cực b và f tỉ lệ với chênh lệch nhiệt độ giữa mối nối "
+                "đo d của cặp nhiệt điện và các mối nối chuẩn cần thiết. Tùy theo loại dây nối "
+                "dài, các mối nối chuẩn có thể là c và e, hoặc là b và f. Để đo nhiệt độ, các "
+                "vùng ở nhiệt độ T<sub>s</sub> và T<sub>i</sub> phải đẳng nhiệt.",
+                "Figure 32.26 · The basic thermocouple circuit with dual temperature reference "
+                "junctions. The principal thermocouple is the AB pair. Pair CD is the extension "
+                "lead. The Seebeck voltage measured in open-circuit mode between terminals b "
+                "and f is proportional to the temperature difference between thermocouple "
+                "measuring junction d and the necessary temperature reference junctions. "
+                "Depending on the type of extension leads, the reference junctions might be "
+                "either c and e, or else b and f. For thermometry, the zones at temperatures "
+                "T<sub>s</sub> and T<sub>i</sub> must be isothermal.",
+                "Mạch cặp nhiệt điện hai mối nối chuẩn: mối nối đo d bên phải, hai dây chính B "
+                "và A chạy về hai cực e và c trong vùng T_s, dây nối dài D và C tới hai cực "
+                "đầu vào f và b trên khối đẳng nhiệt T_i, bên trong có cặp bù nét đứt A′-B′ "
+                "nối tới vùng chuẩn T_0",
+                "Dual-reference thermocouple circuit: measuring junction d at right, principal "
+                "legs B and A running to terminals e and c in the T_s zone, extension leads D "
+                "and C to input terminals f and b on the T_i isothermal block, with the dashed "
+                "internal compensation pair A′-B′ referencing T_0 inside")
+
+
 FIGS = [fig_32_1, fig_32_2, fig_32_3, fig_32_4, fig_32_5, fig_32_6,
         fig_32_7, fig_32_8, fig_32_9, fig_32_10, fig_32_11, fig_32_12,
         fig_32_13, fig_32_14, fig_32_15, fig_32_16, fig_32_17, fig_32_18,
-        fig_32_19, fig_32_20, fig_32_21, fig_32_22, fig_32_24]
+        fig_32_19, fig_32_20, fig_32_21, fig_32_22, fig_32_24,
+        fig_32_25, fig_32_26]
 
 # The book has no figure 32.23: the numbering runs 32.22 -> 32.24 and nothing in
 # the PDF ever mentions a 32.23.  FIGS is positional, so the printed number of
 # each slot lives here; fig() refuses a number that is not in the list rather
 # than quietly handing back the figure next door.
-FIG_NO = list(range(1, 23)) + [24]
+FIG_NO = list(range(1, 23)) + [24, 25, 26]
 
 
 def fig(n):
