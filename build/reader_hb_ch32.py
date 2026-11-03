@@ -157,6 +157,21 @@ def h4(t, en=""):
             % (a, t, (' <span class="en">%s</span>' % en) if en else ""))
 
 
+def h5(t, en=""):
+    """A fourth-level heading. §32.4 nests twice under "Thermoelectric Effects"
+    (Grounding, Balanced Thermocouple Circuits and Filtering live under Noise
+    Problems; Static and Transient Thermometry under Thermal Coupling), one
+    level deeper than h4 reaches."""
+    if en == t:
+        en = ""
+    a = ""
+    if _CUR[0]:
+        base = (en or t) if _LANG[0] == "vi" else t
+        a = ' id="s32-%s-%s"' % (_CUR[0], _slug(base))
+    return ('<h5%s style="font-size:.93rem;font-weight:700;margin:1.35rem 0 .4rem">%s%s</h5>'
+            % (a, t, (' <span class="en">%s</span>' % en) if en else ""))
+
+
 def note(t):
     return '<div class="note">%s</div>' % t
 
@@ -3492,6 +3507,697 @@ def sec_32_3_en():
     return "".join(b)
 
 
+# ================================================================ §32.4
+def sec_32_4a_vi():
+    b = [h2("32.4 Nhiệt kế cặp nhiệt điện", "Thermocouple Thermometers")]
+    b.append(authors("R. P. Reed", ""))
+
+    b.append(h3("Cặp nhiệt điện đơn giản nhất", "The Simplest Thermocouple"))
+    b.append(p(
+        "Dù các loại cảm biến nhiệt độ ngày càng đa dạng, cặp nhiệt điện tự sinh điện vẫn là cảm "
+        "biến được dùng phổ biến nhất cho đo nhiệt độ nhờ tính linh hoạt, tính đơn giản và dễ sử "
+        "dụng của nó. Bất kỳ cặp vật liệu nào dẫn điện và khác nhau về tính nhiệt điện, được ghép "
+        "với nhau tại một mặt tiếp xúc, đều là một cặp nhiệt điện [1]. Các dây chân là các "
+        "<i>thân nhiệt điện</i> (thermoelement). Hiệu ứng Seebeck sinh ra điện áp trong mọi thân "
+        "nhiệt điện ở những đoạn không đồng nhất về nhiệt độ. Bất kỳ mặt tiếp xúc điện giữa hai "
+        "vật dẫn điện khác nhau đều là một mối nối nhiệt điện thực. Đầu tự do của một thân nhiệt "
+        "điện là một đầu mút (terminus), không phải mối nối. Các chỗ ghép giữa hai thân nhiệt điện "
+        "giống nhau là mối ghép, không phải mối nối."))
+    b.append(p(
+        "Chính các thân nhiệt điện quyết định độ nhạy và độ hiệu chuẩn của cặp nhiệt điện; nhưng "
+        "chính nhiệt độ của các điểm cuối của thân nhiệt điện (tức nhiệt độ các mối nối) mới quyết "
+        "định suất điện động (emf) thuần quan sát được trong đo nhiệt độ. Hiệu ứng Seebeck, vốn "
+        "biến nhiệt độ thành điện áp, được dùng cho đo nhiệt độ nhiệt điện, nhưng cũng là một "
+        "nguồn nhiễu tần số thấp chính trong mọi mạch điện tử mức thấp [2]."))
+
+    b.append(h3("Đo nhiệt độ bằng cặp nhiệt điện đơn giản", "Simple Thermocouple Thermometry"))
+    b.append(p(
+        "Trong những ứng dụng đơn giản nhất, việc đo nhiệt độ bằng cặp nhiệt điện hiện nay dễ dùng "
+        "ngang với việc dùng đồng hồ vạn năng để đo điện trở. Thực tế, nhiều đồng hồ vạn năng số "
+        "hiện nay (ngoài đo áp, dòng và điện trở) còn cung cấp cả đầu dò nhiệt độ cặp nhiệt điện, "
+        "và đo nhiệt độ chỉ là một chức năng chọn bằng nút bấm. Những nhiệt kế cặp nhiệt điện này "
+        "gồm một bộ chỉ thị hiển thị số nhiệt độ tại đầu làm việc của một đầu dò cặp nhiệt điện "
+        "cắm vào (Hình 32.24). Những đồng hồ vạn năng đa năng đơn giản hơn trong số đó có thể mua "
+        "với giá dưới 60 đô-la Mỹ [3]. Các đầu dò cặp nhiệt điện thay thế được thuộc nhiều loại "
+        "vật liệu cặp nhiệt điện chuẩn khác nhau, với những đầu cảm biến chuyên dụng có thiết kế "
+        "rất đa dạng, được thích ứng để đo từ nhiệt độ bề mặt đến nhiệt độ bên trong thực phẩm [4]."))
+    b.append(fig(24, F.fig(24), "vi"))
+    b.append(p(
+        "Với một số đầu dò, có thể chỉ thị nhiệt độ tới 1370 °C chỉ bằng cách (1) bảo đảm loại cặp "
+        "nhiệt điện chọn trên bộ chỉ thị và trên đầu dò tương ứng nhau, (2) nhấn nút mở nguồn, và "
+        "(3) áp đầu làm việc của đầu dò vào điểm cần đo nhiệt độ. Ngay lập tức, không cần hiệu "
+        "chuẩn, nhiệt độ hiện tại của đầu dò được hiển thị số, chọn được theo °C hay °F, thường "
+        "với độ phân giải 0,1 °C hoặc 1 °C. Một số tài liệu đặc tả nêu “độ chính xác” 0,3% (4 °C "
+        "tại 1370 °C) của số đọc. Một số còn cung cấp khả năng truy nguồn hiệu chuẩn được chứng "
+        "nhận tới NIST hoặc phòng chuẩn quốc gia khác."))
+    b.append(p(
+        "Điện tử số hiện đại đã tạo ra ảo tưởng rằng đo nhiệt độ bằng cặp nhiệt điện thật chính "
+        "xác thì không khác gì các phép đo điện thông thường khác. Điều đó khuyến khích nhận định "
+        "rằng độ chính xác tinh vi tùy ý bao giờ cũng đạt được bằng hiệu chuẩn và được bảo đảm "
+        "bằng chứng nhận. Sự đơn giản hóa đáng kể của dụng cụ — điều nay đã trở nên phổ biến — "
+        "cùng với lượng lớn các bài hướng dẫn gây hiểu lầm đã che khuất nhu cầu thực sự phải nắm "
+        "vững nguyên lý của mạch cặp nhiệt điện cho bất kỳ phép đo nào không thuộc loại tầm "
+        "thường."))
+    b.append(p(
+        "Nhà sản xuất có thể che chở người dùng khỏi nhiều vấn đề cố hữu trong ứng dụng cặp nhiệt "
+        "điện. Đáng tiếc, vẫn còn nhiều cạm bẫy mà nhà sản xuất không thể cách ly người dùng bằng "
+        "thiết kế hay kết cấu. Trong các ứng dụng kém đơn giản hơn, người dùng phải tự tránh các "
+        "vấn đề bằng cách học kỹ và áp dụng đúng những nguyên lý xác thực của mạch nhiệt điện và "
+        "của đo nhiệt độ cặp nhiệt điện. Ngay cả bộ chỉ thị và đầu dò đơn giản nhất cũng có thể "
+        "dễ dàng bị dùng sai và tạo ra sai số đáng kể không được nhận biết."))
+    b.append(p(
+        "Sai số đo nhiệt độ chỉ vài °C, thậm chí nhỏ hơn nhiều, trong các lĩnh vực năng lượng, quá "
+        "trình, sản xuất và nghiên cứu mỗi năm gây thiệt hại hàng triệu đô-la do mất năng suất, "
+        "tốn nhiên liệu, mất thưởng thành tích, v.v. Hậu quả của sai số còn có thể là diễn giải "
+        "dữ liệu sai, không đạt mục tiêu, hư hại thiết bị, thương tích cá nhân, thậm chí tử vong."))
+    b.append(p(
+        "Những mạch cặp nhiệt điện bất thường, những lắp đặt và ứng dụng đặc biệt thường tạo ra "
+        "sai số khó nhận thấy, hoặc những kết quả lạ lùng gây bối rối nếu chưa hiểu một mô hình "
+        "đích thực về mạch nhiệt điện. Phần chương này trình bày các nguyên lý xác thực của mạch "
+        "nhiệt điện, giúp người dùng dễ dàng ứng dụng cặp nhiệt điện cho những phép đo nhiệt độ "
+        "tin cậy và tới hạn, ngay cả trong hoàn cảnh bất thường, với sự tin tưởng có cơ sở. Những "
+        "nguyên lý này rất đơn giản, song vẫn đáng nghiên cứu ngay cả với người dùng cặp nhiệt "
+        "điện giàu kinh nghiệm, vì mạch nhiệt điện rất thường bị diễn đạt sai hoặc hiểu sai một "
+        "cách tinh vi mà tuy không được nhận biết nhưng làm giảm chất lượng đo. Mục đích của phần "
+        "chương này là cho phép đo nhiệt độ với mọi sự đơn giản thực tiễn, đồng thời tránh những "
+        "sai số đo có thể tốn kém."))
+    return "".join(b)
+
+
+def sec_32_4a_en():
+    b = [h2("32.4 Thermocouple Thermometers", "Nhiệt kế cặp nhiệt điện")]
+    b.append(authors("R. P. Reed", ""))
+
+    b.append(h3("The Simplest Thermocouple", "Cặp nhiệt điện đơn giản nhất"))
+    b.append(p(
+        "Despite an increasing variety of temperature sensors, the self-generating thermocouple "
+        "remains the most generally used sensor for thermometry because of its versatility, "
+        "simplicity, and ease of use. Any pair of electrically conducting and thermoelectrically "
+        "dissimilar materials coupled at an interface is a thermocouple [1]. The legs are "
+        "<i>thermoelements</i>. The Seebeck effect produces a voltage in all such thermoelements "
+        "where they are not at a uniform temperature. Any electric interface between dissimilar "
+        "electric conductors is a real thermoelectric junction. A free end of a thermoelement is "
+        "a terminus, not a junction. Couplings between identical thermoelements are splices or "
+        "joins, not junctions."))
+    b.append(p(
+        "It is the thermoelements that determine thermocouple sensitivity and calibration; but, it "
+        "is the temperatures of the end-points of thermoelements (i.e., junction temperatures) "
+        "that determine the net emf observed in thermometry. The Seebeck effect, which converts "
+        "temperature to voltage, is used for thermoelectric thermometry but is also a primary "
+        "low-frequency noise source in all low-level electronic circuits [2]."))
+
+    b.append(h3("Simple Thermocouple Thermometry", "Đo nhiệt độ bằng cặp nhiệt điện đơn giản"))
+    b.append(p(
+        "In the simplest applications, thermocouple thermometry now is as easy to use as is a "
+        "multimeter to measure resistance. In fact, many present-day digital multimeters (in "
+        "addition to voltage, current, and resistance) do provide a thermocouple temperature "
+        "probe, and temperature measurement is just another button-selectable function. These "
+        "thermocouple thermometers consist of an indicator that digitally displays the temperature "
+        "of the tip of a plug-in thermocouple probe (Figure 32.24). The simpler of such versatile "
+        "multimeters can be purchased for less than U.S.$60 [3]. Interchangeable thermocouple "
+        "probes of different standard thermocouple material types and specialized sensing tips of "
+        "widely varying designs are adapted to measurement from surface temperatures to internal "
+        "temperatures in foodstuffs [4]."))
+    b.append(fig(24, F.fig(24), "en"))
+    b.append(p(
+        "With some probes, temperatures up to 1370 °C can be indicated merely by (1) ensuring "
+        "that the selected thermocouple types of the indicator and probe correspond, (2) pressing "
+        "a power-on button, and (3) applying the probe tip at the point where temperature is to "
+        "be measured. Promptly, and without calibration, the present temperature of the probe tip "
+        "is digitally displayed selectably in °C or °F, usually to a resolution of 0.1 °C or "
+        "1 °C. Some specifications claim “accuracy” of 0.3% (4 °C at 1370 °C) of reading. Some "
+        "even offer certified calibration traceability to NIST or other national standards "
+        "laboratory."))
+    b.append(p(
+        "Modern digital electronics has created the illusion that very accurate thermocouple "
+        "thermometry is no different than other routine electrical measurements. It has encouraged "
+        "the perception that arbitrarily fine accuracy can always be accomplished by calibration "
+        "and guaranteed by certification. The remarkable simplification of instruments that is now "
+        "commonplace and an abundance of misleading tutorials obscure the real need for a sound "
+        "understanding of principles of thermocouple circuits for anything other than "
+        "inconsequential thermometry."))
+    b.append(p(
+        "Manufacturers can shelter users from many problems inherent in thermocouple application. "
+        "Unfortunately, there are many pitfalls from which the manufacturer cannot isolate the "
+        "user by design or construction. In less simple applications, it is necessary for the user "
+        "to avoid problems by carefully learning and applying the true principles of "
+        "thermoelectric circuits and thermocouple thermometry. Even the simplest indicators and "
+        "probes can easily be misused and produce unrecognized substantial error."))
+    b.append(p(
+        "Thermometry errors of only a few °C or even much less in energy, process, manufacturing, "
+        "and research fields annually cost many millions of dollars in lost yield, fuel cost, "
+        "performance bonuses, etc. Consequence of error can also be incurred as incorrect "
+        "interpretation of data, failure of objective, equipment damage, personal injury, or even "
+        "loss of life."))
+    b.append(p(
+        "Unusual thermocouple circuits, installations, and special applications often produce "
+        "inconspicuous error or else peculiar results that are very puzzling if an authentic model "
+        "of thermoelectric circuits is not understood. This chapter section presents the factual "
+        "principles of thermoelectric circuits that equip the user to easily apply thermocouples "
+        "for reliable and critical thermometry, even in unusual circumstances with justified "
+        "confidence. These principles are very simple, yet they justify study even by experienced "
+        "thermocouple users as thermoelectric circuits are very often misrepresented or "
+        "misunderstood in subtle ways that, although unrecognized, degrade measurement. The aim of "
+        "the chapter section is to allow thermometry with all practical simplicity while avoiding "
+        "possibly costly measurement errors."))
+    return "".join(b)
+
+
+def sec_32_4b_vi():
+    b = [h3("Hiệu ứng nhiệt điện", "Thermoelectric Effects")]
+    b.append(p(
+        "Ba hiện tượng nhiệt điện là các hiệu ứng Seebeck, Peltier và Thomson [1, 2, 5-7]. Trong "
+        "số đó, chỉ hiệu ứng Seebeck biến đổi năng lượng nhiệt thành năng lượng điện và cho ra "
+        "điện áp cặp nhiệt điện dùng trong đo nhiệt độ. Các hiệu ứng Peltier và Thomson phụ thuộc "
+        "dòng điện, không đáng kể trong đo nhiệt độ thực dụng. Chúng không sinh ra điện áp, trái "
+        "với những quan niệm sai phổ biến. Các hiệu ứng Peltier và Thomson chỉ vận chuyển nhiệt "
+        "bằng dòng điện và phân phối lại nhiệt trong mạch. Đo nhiệt độ bằng cặp nhiệt điện được "
+        "tiến hành đúng đắn bằng phép đo hở mạch. Suất điện động Seebeck xuất hiện ngay cả khi "
+        "không có dòng điện, trong khi các hiệu ứng Peltier và Thomson tất yếu triệt tiêu. Các "
+        "hiệu ứng nhiệt – từ – điện liên quan chỉ có ý nghĩa khi có từ trường lớn và hiếm khi làm "
+        "giảm chất lượng của đo nhiệt độ nhiệt điện ứng dụng [2, 5, 6]."))
+
+    b.append(h4("Hiệu ứng Seebeck", "The Seebeck Effect"))
+    b.append(p(
+        "Hiệu ứng Seebeck là sự xuất hiện của một suất điện động nguồn thuần, tức suất điện động "
+        "Seebeck tuyệt đối, giữa các cặp điểm trong bất kỳ một vật liệu dẫn điện riêng lẻ nào, do "
+        "có chênh lệch nhiệt độ giữa chúng [1, 2, 5, 7, 8]. Suất điện động Seebeck xuất hiện mà "
+        "không cần các vật liệu khác nhau. Nó không phải là hiện tượng tại mối nối, cũng không "
+        "liên quan đến điện thế tiếp xúc của Volta."))
+
+    b.append(h4("Các đặc tính Seebeck tuyệt đối", "Absolute Seebeck Properties"))
+    b.append(p(
+        "Hệ số Seebeck tuyệt đối biểu diễn độ nhạy đo (volt trên một đơn vị nhiệt độ) của hiệu "
+        "ứng Seebeck. Nó được xác định trên bất kỳ vùng đồng nhất về nhiệt điện nào của một vật "
+        "liệu dẫn điện thanh mảnh riêng lẻ bởi:"))
+    b.append(eq("<i>σ</i>(<i>T</i>) = lim<sub>Δ<i>T</i>→0</sub> "
+                "Δ<i>E</i>(<i>T</i>) / Δ<i>T</i>", "32.73"))
+    b.append(eq("d<i>E</i>(<i>T</i>) = <i>σ</i>(<i>T</i>) d<i>T</i>", "32.74"))
+    b.append(p(
+        "Hệ số Seebeck là một tính chất vận chuyển của mọi vật liệu dẫn điện. Sau này, Phương "
+        "trình 32.74 sẽ được thừa nhận là luật hàm chi phối suất điện động nhiệt điện. Từ Phương "
+        "trình 32.74,"))
+    b.append(eq("Δ<i>E</i> = ∫<sub><i>T</i>1</sub><sup><i>T</i>2</sup> "
+                "<i>σ</i>(<i>T</i>) d<i>T</i> = "
+                "<i>E</i>(<i>T</i><sub>2</sub>) − <i>E</i>(<i>T</i><sub>1</sub>)", "32.75"))
+    b.append(p(
+        "trong đó Δ<i>E</i> là lượng tăng suất điện động giữa một cặp điểm, cách nhau một khoảng "
+        "cách bất kỳ, giữa đó có chênh lệch nhiệt độ Δ<i>T</i> = (<i>T</i><sub>2</sub> – "
+        "<i>T</i><sub>1</sub>)."))
+    b.append(p(
+        "Từ Phương trình 32.75, hiệu ứng Seebeck thuần của một vật liệu cụ thể chỉ phụ thuộc nhiệt "
+        "độ tại hai điểm, và không phụ thuộc các giá trị của gradient nhiệt độ giữa hai điểm đó. "
+        "Hệ số Seebeck là hàm phi tuyến của nhiệt độ. Nó không phải là hằng số. Để đo nhiệt độ "
+        "chính xác, hệ số Seebeck phải chỉ phụ thuộc vào nhiệt độ mà thôi. <i>σ</i>(<i>T</i>) "
+        "không được thay đổi dọc theo thân nhiệt điện, cũng không được thay đổi đáng kể trong "
+        "khoảng thời gian sử dụng. Tuy dễ bị tổn hại bởi các tác nhân môi trường như vậy, để đo "
+        "chính xác nó không được phụ thuộc, trong lúc đo, vào các biến môi trường như biến dạng, "
+        "áp suất hay từ trường."))
+    b.append(p(
+        "Hệ số <i>σ</i><sub>M</sub>(<i>T</i>) là hệ số Seebeck tuyệt đối của một vật liệu riêng "
+        "lẻ M [1, 2, 7, 8]. Một điện áp nguồn tương ứng trong một vật liệu đơn là suất điện động "
+        "Seebeck tuyệt đối, <i>E</i><sub>M</sub>(<i>T</i>). Suất điện động Seebeck tuyệt đối tồn "
+        "tại thực nhưng không quan sát được một cách đơn giản. Hệ số Seebeck tuyệt đối có thể xác "
+        "định gián tiếp bằng cách đo hệ số Thomson, <i>τ</i>, của vật liệu riêng lẻ và áp dụng "
+        "một quan hệ Kelvin,"))
+    b.append(eq("<i>σ</i><sub>abs</sub>(<i>T</i>) = (1/<i>T</i>) "
+                "∫<sub>0</sub><sup><i>T</i></sup> <i>τ</i><sub>abs</sub> d<i>T</i>", "32.76"))
+    b.append(p(
+        "để suy ra hệ số Seebeck liên hệ về mặt nhiệt động lực học [1, 2, 5, 7, 8]."))
+
+    b.append(h4("Các đặc tính Seebeck tương đối", "Relative Seebeck Properties"))
+    b.append(p(
+        "Hiệu của các suất điện động Seebeck của hai thân nhiệt điện, thuộc vật liệu A và B của "
+        "một cặp nhiệt điện, với mối nối chung của chúng ở nhiệt độ <i>T</i><sub>m</sub> và cả "
+        "hai điểm cuối ở nhiệt độ chuẩn thực <i>T</i><sub>r</sub>, là suất điện động Seebeck "
+        "tương đối, <i>E</i><sub>AB</sub>(<i>T</i>), biểu diễn như sau:"))
+    b.append(eq("<i>E</i><sub>AB</sub>(<i>T</i><sub>m</sub>,<i>T</i><sub>r</sub>) = "
+                "<i>E</i><sub>A</sub>(<i>T</i><sub>m</sub>,<i>T</i><sub>r</sub>) − "
+                "<i>E</i><sub>B</sub>(<i>T</i><sub>m</sub>,<i>T</i><sub>r</sub>)", "32.77"))
+    b.append(p("Hệ số Seebeck tương đối tương ứng của cặp là:"))
+    b.append(eq("<i>σ</i><sub>AB</sub>(<i>T</i><sub>m</sub>,<i>T</i><sub>r</sub>) = "
+                "<i>σ</i><sub>A</sub>(<i>T</i><sub>m</sub>,<i>T</i><sub>r</sub>) − "
+                "<i>σ</i><sub>B</sub>(<i>T</i><sub>m</sub>,<i>T</i><sub>r</sub>)", "32.78"))
+    b.append(p(
+        "Chính hệ số Seebeck tương đối này đã từng được gọi bằng thuật ngữ lỗi thời và không "
+        "thích hợp “thermopower” [1]. Chính các giá trị tương đối về điện áp hay hệ số này là "
+        "những giá trị quan sát trực tiếp được và thường được dùng trong đo nhiệt độ. Những đại "
+        "lượng tương đối, được định nghĩa để tiện dùng trong các mạch nối tiếp của đo nhiệt độ, "
+        "không có ý nghĩa chung cho các thân nhiệt điện mắc song song về điện [2]. Đây là những "
+        "giá trị tương đối được trình bày trong các bảng quen thuộc về suất điện động cặp nhiệt "
+        "điện theo nhiệt độ mối nối đo <i>T</i><sub>m</sub>, quy chiếu về nhiệt độ chuẩn quy định "
+        "<i>T</i><sub>0</sub> = <i>T</i><sub>r</sub> [1, 4, 9-12]. Để tiện, "
+        "<i>T</i><sub>0</sub> thường lấy bằng 0 °C, nhưng giá trị đó là tùy chọn."))
+
+    b.append(h4("Mạch cặp nhiệt điện thực tế", "Realistic Thermocouple Circuits"))
+    b.append(p(
+        "Cặp nhiệt điện thường được biểu diễn chỉ như một cặp thân nhiệt điện khác nhau nối với "
+        "nhau bằng hai mối nối trong một mạch kín. Một mối nối, ở nhiệt độ "
+        "<i>T</i><sub>m</sub>, là mối nối đo; mối nối kia, ở nhiệt độ <i>T</i><sub>r</sub>, là "
+        "mối nối chuẩn. Suất điện động Seebeck thuần tỉ lệ với chênh lệch nhiệt độ giữa hai mối "
+        "nối và với một hệ số tương đối của cặp vật liệu."))
+    b.append(p(
+        "Hiện tượng Seebeck đã bị mô tả sai là sự xuất hiện dòng điện trong vòng kín. Bản chất "
+        "thực của hiện tượng Seebeck là sự xuất hiện một suất điện động nguồn, mà để đo nhiệt độ "
+        "chính xác phải đo ở chế độ hở mạch để triệt tiêu dòng điện. Trong đo nhiệt độ thực dụng, "
+        "không có mạch cặp nhiệt điện thực tế nào chỉ có hai vật liệu khác nhau. Một số mạch có "
+        "nhiều vật liệu và vài trong số đó có thể góp phần tạo ra suất điện động Seebeck. Các "
+        "mạch đo nhiệt độ phổ biến nhất có hai mối nối chuẩn tách biệt, chứ không phải một. "
+        "Những mạch hợp lệ nhưng hiếm gặp có thể đồng thời có nhiều hơn một nhiệt độ chuẩn [1]."))
+
+    b.append(h4("Nhiệt độ chuẩn", "Reference Temperature"))
+    b.append(p(
+        "Nhiệt độ chuẩn thực <i>T</i><sub>r</sub> có thể khác với nhiệt độ chuẩn quy định "
+        "<i>T</i><sub>0</sub> của quan hệ đặc trưng hóa. Nếu <i>T</i><sub>r</sub> không trùng "
+        "với <i>T</i><sub>0</sub> thì, để dùng các hàm tỷ lệ chuẩn, suất điện động cặp nhiệt điện "
+        "quan sát được phải được hiệu chỉnh theo chênh lệch nhiệt độ bằng cách cộng thêm một "
+        "suất điện động tương đương <i>E</i><sub>AB</sub>(<i>T</i><sub>r</sub>) – "
+        "<i>E</i><sub>AB</sub>(<i>T</i><sub>0</sub>) vào suất điện động cặp nhiệt điện quan sát "
+        "được [1, 7, 9-12]. Việc này thường thực hiện bằng cách theo dõi "
+        "<i>T</i><sub>r</sub> riêng biệt và áp dụng một hiệu chỉnh, theo cách số hoặc theo cách "
+        "điện, dùng một quan hệ <i>E</i><sub>AB</sub>(<i>T</i>) cố định chỉ xấp xỉ quan hệ thực "
+        "của cặp nhiệt điện và đặc trưng chuẩn hóa trong một khoảng giới hạn quanh "
+        "<i>T</i><sub>0</sub> và <i>T</i><sub>r</sub>. Sai số do sự sai khác nhỏ giữa phép xấp "
+        "xỉ và <i>E</i><sub>AB</sub>(<i>T</i>) thực tế là nhỏ nếu hai nhiệt độ gần nhau."))
+    b.append(p(
+        "Trong hầu hết đo nhiệt độ ứng dụng đều dùng các dây nối dài cặp nhiệt điện chuyên dụng. "
+        "Nhiều cặp nhiệt điện chính trong công nghiệp được bọc vỏ kim loại cứng [1, 4, 10-12]. "
+        "Những cặp khác có thân nhiệt điện trần cách nhau bằng các hạt cách điện. Thường thì "
+        "những cụm lắp này được đặt trong ống bảo vệ, có mối nối đo kết cấu phức tạp, hoặc ở xa "
+        "dụng cụ theo dõi. Các “đuôi ngắn” (pigtail) và dây nối dài có thể có tiết diện dây to "
+        "hơn, điện trở thấp hơn, mềm dẻo hơn và kết cấu cáp bền bỉ khác hẳn so với cặp nhiệt điện "
+        "chính (Hình 32.24). Mọi thân nhiệt điện phải được cách điện rất tốt, ngoại trừ tại các "
+        "mối nối đo và mối nối chuẩn. Phần lớn đo nhiệt độ hiện đại được tiến hành với các biến "
+        "thể của hai mạch cơ bản."))
+    b.append(p(
+        "<b>Mạch với một mối nối chuẩn đơn.</b> Hình 32.25 vẽ một mạch đo nhiệt độ hiện nay chủ "
+        "yếu dùng trong các phòng hiệu chuẩn. Dạng này tiện khi dùng một chuẩn nhiệt độ điểm cố "
+        "định như bình đá hay ống điểm ba của nước để áp đặt nhiệt độ chuẩn thực đã biết "
+        "<i>T</i><sub>r</sub> [1, 7, 9-12]. Mạch của bộ chỉ thị cặp nhiệt điện giữa a và f chứa "
+        "ngầm nhiều vật liệu thừa và mạch phức tạp bên trong dụng cụ. Cần có "
+        "<i>T</i><sub>i</sub> = <i>T</i><sub>a</sub> = <i>T</i><sub>f</sub>. Trừ khi nhiệt độ "
+        "các bộ phận của dụng cụ không đổi trong suốt phép đo, bất kỳ đoạn không đẳng nhiệt nào "
+        "của mạch bên trong dụng cụ đều có thể góp phần tạo thành suất điện động Seebeck như "
+        "nhiễu. Suất điện động này chỉ có thể bù đúng nếu nó không đổi."))
+    b.append(p(
+        "Thường, trong các mạch kiểu Hình 32.25, mối nối đo b của cặp nhiệt điện chính và mối nối "
+        "chuẩn e được cung cấp bởi hai cặp nhiệt điện mua riêng a-b-c và d-e-f. Hai cặp này có "
+        "thể có độ hiệu chuẩn khác nhau đáng kể dù trên danh nghĩa cùng thuộc một loại vật liệu "
+        "cặp nhiệt điện. Với <i>T</i><sub>m</sub> ở 40 °C và <i>T</i><sub>0</sub> ở 0 °C, cặp "
+        "nhiệt điện chuẩn d-e-f góp phần khoảng một nửa suất điện động Seebeck."))
+    b.append(fig(25, F.fig(25), "vi"))
+    b.append(p(
+        "Mạch phổ biến này có ít nhất bốn vật liệu thân nhiệt điện phân biệt — A, A′, B và B′ — "
+        "mà mỗi vật liệu đều phải đồng nhất. Chúng còn có thể được nối với nhau, như giữa c và d, "
+        "bằng một vật liệu liên kết trung gian C chưa hiệu chuẩn (trừ khi "
+        "<i>T</i><sub>c</sub> = <i>T</i><sub>d</sub>, vật liệu C sẽ góp một suất điện động "
+        "Seebeck không mong muốn). Nếu B và B′ không giống nhau về đặc tính Seebeck thì c (và/hoặc "
+        "d) là những mối nối thực. Khi đó, cũng cần có <i>T</i><sub>i</sub> = "
+        "<i>T</i><sub>c</sub> = <i>T</i><sub>d</sub>. Các đầu mút a và f, khi nối vào bộ theo "
+        "dõi, cũng trở thành những mối nối thực. Chúng phải được kiểm soát để cả hai luôn cùng "
+        "nhiệt độ."))
+    b.append(p(
+        "Trong Hình 32.25, cho mục đích đo nhiệt độ, nhiệt độ chuẩn thực được mong muốn là "
+        "<i>T</i><sub>r</sub> = <i>T</i><sub>e</sub>. Tuy vậy, các dụng cụ theo dõi tự bù nhiệt "
+        "độ mối nối chuẩn bên trong coi (một cách sai, đối với mạch này) rằng "
+        "<i>T</i><sub>r</sub> = <i>T</i><sub>a</sub> = <i>T</i><sub>f</sub>. Vì vậy, mạch một "
+        "mối nối chuẩn của Hình 32.25 không thể dùng trực tiếp với các dụng cụ cặp nhiệt điện tự "
+        "động áp dụng bù nhiệt độ mối nối chuẩn."))
+    b.append(p(
+        "<b>Mạch với hai mối nối chuẩn.</b> Trong nhiệt kế cặp nhiệt điện kiểu “hộp đen” đơn giản "
+        "(Hình 32.24) cũng như trong phần lớn đo nhiệt độ nhiệt điện ứng dụng, mạch phổ biến nhất "
+        "là mạch của Hình 32.26. Mạch này hiện là mạch thông dụng nhất trong đo nhiệt độ cặp nhiệt "
+        "điện hiện đại. Cặp nhiệt điện c-d-e, với các thân nhiệt điện nối tại mối nối đo d, là "
+        "<i>cặp nhiệt điện chính</i>. Mạch này có thể chỉ có cặp nhiệt điện chính với một phích "
+        "và ổ cắm tại đầu vào của bộ chỉ thị. Thường hơn, như trong Hình 32.24, đầu dò cặp nhiệt "
+        "điện chính tương đối cứng cũng có các dây nối dài mềm dẻo, cặp C-D, có thể ẩn bên trong "
+        "vỏ bộ chỉ thị. Cặp nét đứt A′-B′ biểu diễn sơ đồ việc bù nhiệt độ mối nối chuẩn bên "
+        "trong."))
+    b.append(fig(26, F.fig(26), "vi"))
+    b.append(p(
+        "Các mạch kiểu Hình 32.26 có hai mối nối chuẩn tách biệt phải được giữ ở cùng một nhiệt "
+        "độ đã biết. Điện áp Seebeck thuần đo ở chế độ hở mạch giữa b và f. Khi các dây cặp nhiệt "
+        "điện C và D được nối vào bộ theo dõi, các cực đầu vào b-f có thể được coi là các mối nối "
+        "chuẩn. Nếu vậy, nhiệt độ chuẩn của chúng được theo dõi chính xác và áp dụng hiệu chỉnh "
+        "suất điện động chuẩn tương ứng với chênh lệch giữa <i>T</i><sub>r</sub> và "
+        "<i>T</i><sub>0</sub>. Không thể đo cặp nhiệt điện chính xác bằng các voltmeter thông "
+        "thường, nơi nhiệt độ của b và f không được kiểm soát chủ đích cho bằng nhau và đã biết."))
+
+    b.append(h4("Dây nối dài", "Extension Leads"))
+    b.append(p(
+        "Cặp thân nhiệt điện C và D là các <i>dây nối dài</i> nhiệt điện. Dây nối dài có ba loại: "
+        "(1) trung tính, (2) tương đồng (matching), và (3) bù (compensating). Cả ba loại đều có "
+        "sẵn dễ dàng; một số là sản phẩm độc quyền. Những mối nối nào trong Hình 32.26 phải là "
+        "mối nối chuẩn tùy theo loại dây nối dài. Tùy loại dây nối dài, các vật liệu A, B, C và "
+        "D có thể, một cách chủ đích, rất khác nhau."))
+    b.append(p(
+        "<b>Dây nối dài trung tính.</b> Trong ứng dụng đơn giản nhất của Hình 32.26, các chân C "
+        "và D đồng nhất về nhiệt điện và được ghép cặp cẩn thận có cùng hệ số Seebeck "
+        "(<i>σ</i><sub>C</sub> = <i>σ</i><sub>D</sub>). Những cặp như vậy là dây nối dài trung "
+        "tính. Với điều kiện <i>T</i><sub>c</sub> = <i>T</i><sub>e</sub> và "
+        "<i>T</i><sub>b</sub> = <i>T</i><sub>f</sub>, chúng không góp suất điện động Seebeck "
+        "thuần, nên cặp giống nhau này thực chất chỉ đóng vai trò dây dẫn “thụ động”. Vì vậy, các "
+        "dây nối dài này có thể làm bằng bất kỳ vật liệu dẫn điện nào. Dây nối dài trung tính nên "
+        "làm bằng đồng đặc không mạ, vốn có hệ số Seebeck nhỏ và đồng đều."))
+    b.append(p(
+        "Dây nối dài trung tính đòi hỏi các mối nối c và e phải là mối nối chuẩn ở nhiệt độ "
+        "<i>T</i><sub>r</sub> = <i>T</i><sub>s</sub>. Các bộ theo dõi cặp nhiệt điện có bù nhiệt "
+        "độ mối nối chuẩn tại các cực đầu vào b và f không thể dùng với dây nối dài trung tính."))
+    b.append(p(
+        "Nhiệt độ chuẩn có thể khống chế tại cả hai mối nối bằng một chuẩn nhiệt độ vật lý điểm "
+        "cố định như bình đá đặt bên ngoài bộ đo điện áp [1, 9-12]. Những bình đá được làm và duy "
+        "trì rất cẩn thận có thể đạt đều 0 °C trong khoảng 0,1 °C đến 0,2 °C [9, 11]. Nếu áp dụng "
+        "và duy trì cẩu thả, chúng có thể lệch khỏi “nhiệt độ điểm đá” tới 4 °C [10]. Lạnh điện "
+        "tử Peltier cũng được dùng. Thường hơn, trong đo nhiệt độ, nhiệt độ chuẩn không bị áp đặt "
+        "về mặt vật lý. Thay vào đó, nhiệt độ thực của mối nối chuẩn được đo chính xác và bù "
+        "bằng điện (sơ đồ bằng A′-B′) cho chênh lệch giữa <i>T</i><sub>r</sub> và "
+        "<i>T</i><sub>0</sub>. Giá trị cụ thể của nhiệt độ tại b và f không quan trọng nếu "
+        "<i>T</i><sub>b</sub> = <i>T</i><sub>f</sub> được bù."))
+    b.append(p(
+        "<b>Dây nối dài bổ trợ.</b> Có hai loại dây nối dài bổ trợ được phép góp phần vào suất "
+        "điện động Seebeck của mạch: dây nối dài tương đồng và dây nối dài bù. Các chân C và D "
+        "là dây nối dài nhiệt điện thường chưa hiệu chuẩn, và có thể có dải sai số rộng hơn, "
+        "thậm chí không biết trước. Người ta mong <i>T</i><sub>s</sub> và "
+        "<i>T</i><sub>i</sub> gần giống nhau để phần góp chưa hiệu chuẩn nhỏ và sai số không "
+        "đáng kể. Với đo nhiệt độ rất chính xác, giả định này có thể không được bảo đảm."))
+    b.append(p(
+        "Dây nối dài bổ trợ có thể dùng trực tiếp với các bộ chỉ thị cặp nhiệt điện tự bù bên "
+        "trong nhiệt độ mối nối chuẩn cho chênh lệch giữa nhiệt độ mối nối chuẩn thực "
+        "<i>T</i><sub>r</sub> và nhiệt độ chuẩn quy định <i>T</i><sub>0</sub>. Với cả dây nối "
+        "dài bổ trợ tương đồng lẫn bù, nhiệt độ chuẩn là <i>T</i><sub>r</sub> = "
+        "<i>T</i><sub>i</sub> trên vùng chuẩn đẳng nhiệt bao quanh các cực b và f."))
+    b.append(p(
+        "<b>Dây nối dài tương đồng.</b> Dây nối dài tương đồng có <i>σ</i><sub>C</sub> = "
+        "<i>σ</i><sub>A</sub> và cũng <i>σ</i><sub>D</sub> = <i>σ</i><sub>B</sub>. Điều cần "
+        "thiết là <i>T</i><sub>b</sub> = <i>T</i><sub>e</sub>, nhưng không bắt buộc (dù mong "
+        "muốn) <i>T</i><sub>c</sub> = <i>T</i><sub>e</sub>. Gần nhiệt độ phòng, các thân nhiệt "
+        "điện được thiết kế để <i>σ</i><sub>CD</sub>, tính như một cặp, gần bằng "
+        "<i>σ</i><sub>AB</sub> trong khoảng nhiệt độ gần <i>T</i><sub>r</sub>. Sai số do hiệu "
+        "chuẩn của dây nối dài sai khác nhẹ và chưa được kiểm chứng được giảm thiểu nếu "
+        "<i>T</i><sub>s</sub> &gt; <i>T</i><sub>i</sub>. Dây nối dài tương đồng dùng với cặp "
+        "nhiệt điện kim loại thường, không dùng với cặp nhiệt điện kim loại chịu lửa hay kim "
+        "loại quý."))
+    b.append(p(
+        "<b>Dây nối dài bù.</b> Biến thể thứ ba của mạch trong Hình 32.26 thường được dùng vì "
+        "kinh tế và tiện lợi với các cặp nhiệt điện chính bằng kim loại quý và kim loại chịu lửa "
+        "đắt tiền, vốn dùng ở nhiệt độ rất cao và trong môi trường đặc biệt [1, 7, 9-12]. Thường "
+        "thì chỉ một phần cặp nhiệt điện chính cần tiếp xúc với môi trường khắc nghiệt. Dây nối "
+        "dài C và D chỉ cần tồn tại được trong môi trường lành hơn. Vì vậy, chúng có thể làm "
+        "bằng vật liệu rẻ hơn hoặc thuận tiện xử lý hơn, dùng cách điện chịu nhiệt thấp hơn, mềm "
+        "dẻo hơn và có điện trở thấp hơn, thêm lớp che chắn cồng kềnh và bảo vệ cơ học, và kéo "
+        "dài một quãng xa tới nơi ghi nhận."))
+    b.append(p(
+        "Dây nối dài bù có <i>σ</i><sub>CD</sub> của cặp C–D, chỉ tính như một cặp, khớp với "
+        "<i>σ</i><sub>AB</sub> của cặp A–B. Không cần thiết vật liệu A giống C, cũng không cần C "
+        "và D giống nhau. Một mạch thực dụng có thể có bốn vật liệu rất khác nhau. Tuy vậy, để "
+        "cho phép điều đó, điều thiết yếu là <i>T</i><sub>c</sub> = <i>T</i><sub>e</sub>. Do đó, "
+        "mạch với dây nối dài bù dễ mắc sai số do nhiệt độ các mối nối thừa không khớp hơn so "
+        "với khi dùng dây nối dài tương đồng. Nhiệt độ mối nối chuẩn là "
+        "<i>T</i><sub>r</sub> = <i>T</i><sub>b</sub> = <i>T</i><sub>f</sub>, và chỉ nhiệt độ này "
+        "cần biết độc lập. Bù nhiệt độ mối nối chuẩn tiến hành giống như với dây nối dài tương "
+        "đồng."))
+    return "".join(b)
+
+
+def sec_32_4b_en():
+    b = [h3("Thermoelectric Effects", "Hiệu ứng nhiệt điện")]
+    b.append(p(
+        "The three thermoelectric phenomena are the Seebeck, Peltier, and Thomson effects "
+        "[1, 2, 5-7]. Of these, only the Seebeck effect converts thermal energy to electric "
+        "energy and results in the thermocouple voltage used in thermometry. The "
+        "current-dependent Peltier and Thomson effects are insignificant in practical "
+        "thermometry. Neither produces a voltage, contrary to common misconceptions. The Peltier "
+        "and Thomson effects only transport heat by electric current and redistribute it around a "
+        "circuit. Thermocouple thermometry is properly conducted by open-circuit measurement. The "
+        "Seebeck emf occurs even without current where Peltier and Thomson effects necessarily "
+        "vanish. Related thermo-magneto-electric effects are significant only in the presence of "
+        "large magnetic fields and infrequently degrade applied thermoelectric thermometry "
+        "[2, 5, 6]."))
+
+    b.append(h4("The Seebeck Effect", "Hiệu ứng Seebeck"))
+    b.append(p(
+        "The Seebeck effect is the occurrence of a net source emf, the absolute Seebeck emf, "
+        "between pairs of points in any individual electrically conducting material due to a "
+        "difference of temperature between them [1, 2, 5, 7, 8]. The Seebeck emf occurs without "
+        "dissimilar materials. It is not a junction phenomenon, nor is it related to Volta’s "
+        "contact potential."))
+
+    b.append(h4("Absolute Seebeck Properties", "Các đặc tính Seebeck tuyệt đối"))
+    b.append(p(
+        "The absolute Seebeck coefficient expresses the measurement sensitivity (volts per unit "
+        "of temperature) of the Seebeck effect. It is defined over any thermoelectrically "
+        "homogeneous region of a slender individual conducting material by:"))
+    b.append(eq("<i>σ</i>(<i>T</i>) = lim<sub>Δ<i>T</i>→0</sub> "
+                "Δ<i>E</i>(<i>T</i>) / Δ<i>T</i>", "32.73"))
+    b.append(eq("d<i>E</i>(<i>T</i>) = <i>σ</i>(<i>T</i>) d<i>T</i>", "32.74"))
+    b.append(p(
+        "The Seebeck coefficient is a transport property of all electrically conducting "
+        "materials. Equation 32.74 will be acknowledged later as the functional law that governs "
+        "thermoelectric emf. From Equation 32.74,"))
+    b.append(eq("Δ<i>E</i> = ∫<sub><i>T</i>1</sub><sup><i>T</i>2</sup> "
+                "<i>σ</i>(<i>T</i>) d<i>T</i> = "
+                "<i>E</i>(<i>T</i><sub>2</sub>) − <i>E</i>(<i>T</i><sub>1</sub>)", "32.75"))
+    b.append(p(
+        "where Δ<i>E</i> is the increment of emf between a pair of points, separated by any "
+        "distance, between which the temperature difference is Δ<i>T</i> = "
+        "(<i>T</i><sub>2</sub> – <i>T</i><sub>1</sub>)."))
+    b.append(p(
+        "From Equation 32.75, the net Seebeck effect for a particular material depends only on "
+        "the temperatures at the two points and not on the values of temperature gradients "
+        "between the two points. The Seebeck coefficient is a nonlinear function of temperature. "
+        "It is not a constant. For accurate thermometry, the Seebeck coefficient must remain "
+        "dependent on temperature alone. <i>σ</i>(<i>T</i>) cannot vary along a thermoelement, "
+        "nor can it vary significantly during the time interval of use. Although vulnerable to "
+        "such environmental effects, for accurate thermometry it must not depend during "
+        "measurement on such environmental variables as strain, pressure, or magnetic field."))
+    b.append(p(
+        "The coefficient, <i>σ</i><sub>M</sub>(<i>T</i>), is an absolute Seebeck coefficient for "
+        "an individual material M [1, 2, 7, 8]. A corresponding source voltage within a single "
+        "material is an absolute Seebeck emf, <i>E</i><sub>M</sub>(<i>T</i>). The absolute "
+        "Seebeck emf does physically exist but it is not simply observable. The absolute Seebeck "
+        "coefficient can be determined indirectly by measuring the Thomson coefficient, "
+        "<i>τ</i>, of the individual material and applying a Kelvin relationship,"))
+    b.append(eq("<i>σ</i><sub>abs</sub>(<i>T</i>) = (1/<i>T</i>) "
+                "∫<sub>0</sub><sup><i>T</i></sup> <i>τ</i><sub>abs</sub> d<i>T</i>", "32.76"))
+    b.append(p(
+        "to deduce the thermodynamically related Seebeck coefficient [1, 2, 5, 7, 8]."))
+
+    b.append(h4("Relative Seebeck Properties", "Các đặc tính Seebeck tương đối"))
+    b.append(p(
+        "The difference between the Seebeck emfs of two thermoelements, of materials A and B, of "
+        "a thermocouple with their shared junction at temperature <i>T</i><sub>m</sub> and both "
+        "their termini at a physical reference temperature <i>T</i><sub>r</sub>, is their "
+        "relative Seebeck emf, <i>E</i><sub>AB</sub>(<i>T</i>), expressed as:"))
+    b.append(eq("<i>E</i><sub>AB</sub>(<i>T</i><sub>m</sub>,<i>T</i><sub>r</sub>) = "
+                "<i>E</i><sub>A</sub>(<i>T</i><sub>m</sub>,<i>T</i><sub>r</sub>) − "
+                "<i>E</i><sub>B</sub>(<i>T</i><sub>m</sub>,<i>T</i><sub>r</sub>)", "32.77"))
+    b.append(p("The corresponding relative Seebeck coefficient for the pair is:"))
+    b.append(eq("<i>σ</i><sub>AB</sub>(<i>T</i><sub>m</sub>,<i>T</i><sub>r</sub>) = "
+                "<i>σ</i><sub>A</sub>(<i>T</i><sub>m</sub>,<i>T</i><sub>r</sub>) − "
+                "<i>σ</i><sub>B</sub>(<i>T</i><sub>m</sub>,<i>T</i><sub>r</sub>)", "32.78"))
+    b.append(p(
+        "It is this relative Seebeck coefficient that has been called by the anachronistic and "
+        "inept term “thermopower” [1]. It is these relative voltage or coefficient values that "
+        "are directly observable and usually used in thermometry. These relative properties, "
+        "defined for convenience in the series circuits of thermometry, have no general meaning "
+        "for electrically paralleled thermoelements [2]. These are the relative values that are "
+        "presented in the familiar tables of thermocouple emf vs. measuring junction temperature, "
+        "<i>T</i><sub>m</sub>, referred to as a designated reference temperature "
+        "<i>T</i><sub>0</sub> = <i>T</i><sub>r</sub> [1, 4, 9-12]. For convenience, "
+        "<i>T</i><sub>0</sub> is usually taken as 0 °C, but the value is arbitrary."))
+
+    b.append(h4("Realistic Thermocouple Circuits", "Mạch cặp nhiệt điện thực tế"))
+    b.append(p(
+        "The thermocouple is often represented as only a pair of dissimilar thermoelements "
+        "joined by two junctions in a closed circuit. One junction, at temperature "
+        "<i>T</i><sub>m</sub>, is the measuring junction; the other, at temperature "
+        "<i>T</i><sub>r</sub>, is the reference junction. The net Seebeck emf is proportional to "
+        "the temperature difference between the two junctions and to a relative coefficient for "
+        "the paired materials."))
+    b.append(p(
+        "The Seebeck phenomenon has wrongly been characterized as the occurrence of current in "
+        "the closed loop. The true nature of the Seebeck phenomenon is the occurrence of a source "
+        "emf that, for accurate thermometry, must be measured in open-circuit mode that "
+        "suppresses current. In practical thermometry, no realistic thermocouple circuit has only "
+        "two dissimilar materials. Some have many and several of these can be expected to "
+        "contribute some Seebeck emf. The most common thermometry circuits have two separate "
+        "reference junctions, not one. Valid, but uncommon, circuits can simultaneously have more "
+        "than one reference temperature [1]."))
+
+    b.append(h4("Reference Temperature", "Nhiệt độ chuẩn"))
+    b.append(p(
+        "The physical reference temperature, <i>T</i><sub>r</sub>, can be different from the "
+        "designated reference temperature, <i>T</i><sub>0</sub>, of the characterizing relation. "
+        "If <i>T</i><sub>r</sub> is not identical to <i>T</i><sub>0</sub>, then, to use standard "
+        "scaling functions, the observed thermocouple emf must be corrected for the temperature "
+        "difference by adding an emf equivalent to "
+        "<i>E</i><sub>AB</sub>(<i>T</i><sub>r</sub>) – <i>E</i><sub>AB</sub>(<i>T</i><sub>0</sub>) "
+        "to the observed thermocouple emf [1, 7, 9-12]. This is often accomplished by separately "
+        "monitoring <i>T</i><sub>r</sub> and applying a correction, either numerically or "
+        "electrically, using a fixed <i>E</i><sub>AB</sub>(<i>T</i>) relation that only "
+        "approximates that of the actual thermocouple and the standardized characteristic over a "
+        "limited range in the vicinity of <i>T</i><sub>0</sub> and <i>T</i><sub>r</sub>. The "
+        "error due to the slight discrepancy between the approximation and the actual "
+        "<i>E</i><sub>AB</sub>(<i>T</i>) is small if the two temperatures are similar."))
+    b.append(p(
+        "Special thermocouple extension leads are used in most applied thermometry. Many "
+        "industrial principal thermocouples are inflexibly metal sheathed [1, 4, 10-12]. Others "
+        "have bare thermoelements separated by bead insulators. Often, these kinds of assemblies "
+        "are housed in protective wells, have measuring junctions of complex construction, or are "
+        "distant from the monitoring instrument. Short “pigtails” and extension leads can be of "
+        "larger wire size, lower resistance, greater flexibility, and very different rugged cable "
+        "construction than the principal thermocouple (Figure 32.24). All thermoelements must be "
+        "very well electrically isolated except at measuring and reference junctions. Most modern "
+        "thermometry is conducted with variants of two basic circuits."))
+    b.append(p(
+        "<b>Circuit with Single Reference Junction.</b> Figure 32.25 shows a thermometry circuit "
+        "now used mostly in calibration laboratories. This form is convenient when a fixed point "
+        "temperature reference such as an ice point bath or water triple point cell is used to "
+        "impose the known physical reference temperature, <i>T</i><sub>r</sub> [1, 7, 9-12]. The "
+        "circuit of the thermocouple indicator between a and f inconspicuously includes many "
+        "incidental materials and complex circuitry within the instrument. It is necessary that "
+        "<i>T</i><sub>i</sub> = <i>T</i><sub>a</sub> = <i>T</i><sub>f</sub>. Unless instrument "
+        "temperatures are constant throughout measurement, any nonisothermal portion of the "
+        "circuit within the instrument can contribute Seebeck emf as noise. This emf can be "
+        "correctly offset only if it is constant."))
+    b.append(p(
+        "Often, in circuits like Figure 32.25, the measuring junction, b of the principal "
+        "thermocouple, and reference junction, e, are provided by separately acquired "
+        "thermocouples a-b-c and d-e-f. The two might have significantly different calibrations "
+        "although they are nominally of the same thermocouple material type. With "
+        "<i>T</i><sub>m</sub> at 40 °C and <i>T</i><sub>0</sub> at 0 °C the reference "
+        "thermocouple d-e-f contributes about half the Seebeck emf."))
+    b.append(fig(25, F.fig(25), "en"))
+    b.append(p(
+        "This commonplace circuit has at least four distinct thermoelement materials — A, A′, B, "
+        "and B′ — each of which must be homogeneous. Also, they can be joined, as between c and "
+        "d, by an intermediate uncalibrated linking material, C (unless <i>T</i><sub>c</sub> = "
+        "<i>T</i><sub>d</sub>, material C contributes unwanted Seebeck emf). If B and B′ are not "
+        "identical in Seebeck characteristics, then c (and/or d) are real junctions. If so, it is "
+        "also necessary that <i>T</i><sub>i</sub> = <i>T</i><sub>c</sub> = "
+        "<i>T</i><sub>d</sub>. The termini a and f, when connected to a monitor, also become real "
+        "junctions. They must be controlled so that both stay at the same temperature."))
+    b.append(p(
+        "In Figure 32.25, for thermometry the physical reference temperature is intended to be "
+        "<i>T</i><sub>r</sub> = <i>T</i><sub>e</sub>. However, monitoring instruments that "
+        "internally compensate for reference junction temperature presume (incorrectly for this "
+        "circuit) that <i>T</i><sub>r</sub> = <i>T</i><sub>a</sub> = <i>T</i><sub>f</sub>. "
+        "Therefore, the single-reference circuit of Figure 32.25 cannot be used directly with "
+        "thermocouple instruments that automatically apply reference junction temperature "
+        "compensation."))
+    b.append(p(
+        "<b>Circuits with Dual Reference Junctions.</b> In the simple “black box” thermocouple "
+        "thermometer (Figure 32.24), as well as in most applied thermoelectric thermometry, the "
+        "most common circuit is that of Figure 32.26. This circuit is now the most commonly used "
+        "in modern thermocouple thermometry. The thermocouple c-d-e with thermoelements joined at "
+        "the measuring junction, d, is the <i>principal thermocouple</i>. This circuit might have "
+        "only the principal thermocouple with a plug and jack at the indicator input. More often, "
+        "as in Figure 32.24, the relatively inflexible principal thermocouple probe also has "
+        "flexible extension leads, pair C-D, which can reside unseen within the indicator. Dashed "
+        "pair A′-B′ schematically represents internal reference junction temperature "
+        "compensation."))
+    b.append(fig(26, F.fig(26), "en"))
+    b.append(p(
+        "Circuits like Figure 32.26 have two separate reference junctions that must be held at "
+        "the same known temperature. Net Seebeck terminal voltage is measured in open-circuit "
+        "mode between b and f. When thermocouple leads C and D are connected to the monitor, the "
+        "input terminals, b-f, might be intended to be reference junctions. If so, their "
+        "reference temperature is accurately monitored and emf reference correction corresponding "
+        "to the difference between <i>T</i><sub>r</sub> and <i>T</i><sub>0</sub> is applied. "
+        "Accurate thermocouple measurements cannot be made with ordinary voltmeters in which the "
+        "temperatures of b and f are not deliberately controlled to be equal and known."))
+
+    b.append(h4("Extension Leads", "Dây nối dài"))
+    b.append(p(
+        "Paired thermoelements C and D are thermoelectric <i>extension leads</i>. Extension leads "
+        "are of three kinds: (1) neutral, (2) matching, and (3) compensating. All types are "
+        "readily available; some are proprietary. Which of the junctions in Figure 32.26 must be "
+        "reference junctions varies with the type of extension. Depending on the extension type, "
+        "materials A, B, C, and D might, intentionally, all be of very different materials."))
+    b.append(p(
+        "<b>Neutral Extension Leads.</b> In the simplest application of Figure 32.26, legs C and "
+        "D are thermoelectrically homogeneous and are carefully matched to have the same Seebeck "
+        "coefficient (<i>σ</i><sub>C</sub> = <i>σ</i><sub>D</sub>). Such pairs are neutral "
+        "extension leads. Provided that <i>T</i><sub>c</sub> = <i>T</i><sub>e</sub> and "
+        "<i>T</i><sub>b</sub> = <i>T</i><sub>f</sub>, they contribute no net Seebeck emf, so the "
+        "like pair effectively serve only as “passive” leads. Therefore, the leads could be made "
+        "of any electrically conducting material. Such extension leads should be made of solid "
+        "unplated copper, for which the Seebeck coefficient is small and uniform."))
+    b.append(p(
+        "Neutral extension leads require that junctions c and e be the reference junctions at "
+        "temperature <i>T</i><sub>r</sub> = <i>T</i><sub>s</sub>. Thermocouple monitors that "
+        "provide reference junction temperature compensation at input terminals b and f cannot be "
+        "used with neutral extension leads."))
+    b.append(p(
+        "The reference temperature can be controlled on both junctions by a fixed point physical "
+        "temperature reference such as an ice bath external to the voltage monitor [1, 9-12]. Ice "
+        "baths, very carefully made and maintained, can routinely approximate 0 °C to within "
+        "0.1 °C to 0.2 °C [9, 11]. Carelessly applied and maintained, they can deviate from the "
+        "“icepoint temperature” by up to 4 °C [10]. Peltier thermoelectric refrigeration is also "
+        "used. More often, in thermometry, that reference temperature is not physically imposed. "
+        "Instead, the actual temperature of the reference junctions is accurately measured and "
+        "electrical compensation is applied (schematically by A′-B′) for the difference between "
+        "<i>T</i><sub>r</sub> and <i>T</i><sub>0</sub>. The particular value of the temperature "
+        "at b and f does not matter if <i>T</i><sub>b</sub> = <i>T</i><sub>f</sub> is "
+        "compensated."))
+    b.append(p(
+        "<b>Complementary Extension Leads.</b> Two kinds of complementary extension leads are "
+        "allowed to contribute to the circuit Seebeck emf: matched and compensating extensions. "
+        "The legs C and D are thermoelectric extension leads that are usually uncalibrated, and "
+        "possibly are of broader or even unknown tolerance. It is expected that "
+        "<i>T</i><sub>s</sub> and <i>T</i><sub>i</sub> are similar so that the uncalibrated "
+        "contribution is small and the error is negligible. For very accurate thermometry, this "
+        "assumption might not be justified."))
+    b.append(p(
+        "Complementary extension leads can be used directly with thermocouple indicators that "
+        "internally compensate the reference junction temperature for the difference between the "
+        "physical reference junction temperature, <i>T</i><sub>r</sub>, and the designated "
+        "reference temperature, <i>T</i><sub>0</sub>. For both matched and compensating "
+        "complementary extensions, the reference temperature is <i>T</i><sub>r</sub> = "
+        "<i>T</i><sub>i</sub> over the isothermal reference zone around the terminals b and f."))
+    b.append(p(
+        "<b>Matching Extension Leads.</b> Matching leads have <i>σ</i><sub>C</sub> = "
+        "<i>σ</i><sub>A</sub> and also <i>σ</i><sub>D</sub> = <i>σ</i><sub>B</sub>. It is "
+        "essential that <i>T</i><sub>b</sub> = <i>T</i><sub>e</sub>, but it is not essential "
+        "(although it is desirable) that <i>T</i><sub>c</sub> = <i>T</i><sub>e</sub>. Near room "
+        "temperature, thermoelements are intended to have <i>σ</i><sub>CD</sub>, as a pair, be "
+        "nearly the same as <i>σ</i><sub>AB</sub> for the temperature span near "
+        "<i>T</i><sub>r</sub>. Error due to slightly mismatched and unproven calibration of the "
+        "extension is minimized if <i>T</i><sub>s</sub> &gt; <i>T</i><sub>i</sub>. Matched "
+        "extensions are used with base metal thermocouples, not with refractory or precious metal "
+        "thermocouples."))
+    b.append(p(
+        "<b>Compensating Extension Leads.</b> The third variation of the circuit in Figure 32.26 "
+        "is often used for economy and convenience with expensive precious and refractory metal "
+        "principal thermocouples that are intended for use at very high temperatures and in "
+        "special environments [1, 7, 9-12]. Usually, only a portion of the principal thermocouple "
+        "need be exposed to the adverse environment. Extension leads C and D need only survive a "
+        "more benign environment. Therefore, they can be made of a less expensive or more "
+        "conveniently handled material, use lower temperature insulation, be more flexible and of "
+        "lower resistance, add bulky shielding and mechanical protection, and extend a great "
+        "distance to a recording facility."))
+    b.append(p(
+        "Compensating leads have <i>σ</i><sub>CD</sub> of the extension C–D, only as a pair, "
+        "match <i>σ</i><sub>AB</sub> of the A–B pair. It is not necessary that material A be like "
+        "C, nor that C and D be alike. A practical circuit can have four very dissimilar "
+        "materials. However, to allow this, it is essential that <i>T</i><sub>c</sub> = "
+        "<i>T</i><sub>e</sub>. Therefore, this circuit with compensating leads is more vulnerable "
+        "to error from improperly matched temperatures of incidental junctions than with matching "
+        "extension leads. The reference junction temperature is <i>T</i><sub>r</sub> = "
+        "<i>T</i><sub>b</sub> = <i>T</i><sub>f</sub>, and only this temperature must be "
+        "independently known. Reference junction compensation is the same as for the matching "
+        "leads."))
+    return "".join(b)
+
+
+def sec_32_4_vi():
+    return sec_32_4a_vi() + sec_32_4b_vi()
+
+
+def sec_32_4_en():
+    return sec_32_4a_en() + sec_32_4b_en()
+
+
 def _refs(lang):
     vi = lang == "vi"
     items = [
@@ -3662,6 +4368,10 @@ INDEX = [
         ("Temperature Controllers", "Bộ điều khiển nhiệt độ", 1),
         ("Linear Resistance Networks", "Mạng điện trở tuyến tính", 1),
     ]),
+    ("32.4", "Thermocouple Thermometers", "Nhiệt kế cặp nhiệt điện", [
+        ("The Simplest Thermocouple", "Cặp nhiệt điện đơn giản nhất"),
+        ("Simple Thermocouple Thermometry", "Đo nhiệt độ bằng cặp nhiệt điện đơn giản"),
+    ]),
 ]
 
 
@@ -3673,15 +4383,17 @@ def sec_index(vi):
                    % (num, num.split(".")[1], title))
         for item in subs:
             sub_en, sub_vi = item[0], item[1]
-            # a third element means the entry is one level down: the three
-            # characteristics nest under "Electrical Properties", the three
-            # circuit techniques under "Linearization"
-            deep = len(item) > 2
+            # a third element marks the nesting depth: 1 means one level down
+            # (the characteristics under "Electrical Properties"), 2 two levels
+            # (§32.4's Grounding / Balanced Circuits / Filtering under Noise
+            # Problems, Static / Transient Thermometry under Thermal Coupling)
+            deep = item[2] if len(item) > 2 else 0
+            indent, size = {0: ("2.4rem", ".9rem"),
+                            1: ("4.2rem", ".86rem"),
+                            2: ("6.0rem", ".82rem")}[deep]
             out.append('<li style="margin-left:%s;font-size:%s;padding:.15rem 0">'
                        '<a class="t" href="#s32-%s-%s">%s</a></li>'
-                       % ("4.2rem" if deep else "2.4rem",
-                          ".86rem" if deep else ".9rem",
-                          num.split(".")[1], _slug(sub_en),
+                       % (indent, size, num.split(".")[1], _slug(sub_en),
                           sub_vi if vi else sub_en))
     out.append("</ol>")
     return "".join(out)
@@ -3694,7 +4406,7 @@ def body_vi():
         "nhiệt điện trở, cặp nhiệt điện đến hồng ngoại và sợi quang — với phương trình, hình vẽ và "
         "bảng dữ liệu của từng loại.")
     return (p(lede) + sec_index(True) + sec_32_1_vi() + back_vi() + sec_32_2_vi()
-            + sec_32_3_vi())
+            + sec_32_3_vi() + sec_32_4_vi())
 
 
 def body_en():
@@ -3705,7 +4417,7 @@ def body_en():
         "infrared, pyroelectric, liquid-in-glass, manometric, indicators and fiber-optic probes — "
         "with the equations, figures and data tables for each.")
     return (p(lede) + sec_index(False) + sec_32_1_en() + back_en() + sec_32_2_en()
-            + sec_32_3_en())
+            + sec_32_3_en() + sec_32_4_en())
 
 
 def build(lang):
