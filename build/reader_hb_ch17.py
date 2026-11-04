@@ -490,7 +490,7 @@ def body_vi():
         "Đồ thị phương trình 17.32, (x₁ − x₂)₀/x₀ theo tỉ số tần số ω₁/ωₙ, minh hoạ ở Hình 17.13. Hình này cho "
         "thấy biên độ ra bằng biên độ vào khi c/c_c = 0,7 và ω₁/ωₙ > 2. Đầu ra trở thành hàm tuyến tính thực sự "
         "của đầu vào ở những tỉ số tần số cao. Để đặc tính hệ thoả đáng, hằng số thiết bị c/c_c và ωₙ phải được "
-        "tính toán cẩn thận hoặc lấy từ hiệu chuẩn. Như vậy có thể dự đoán độ chính xác đo期待 cho các tần số "
+        "tính toán cẩn thận hoặc lấy từ hiệu chuẩn. Như vậy có thể dự đoán độ chính xác đo kỳ vọng cho các tần số "
         "quan tâm. Tài liệu [1] (McConnell) trình bày đầy đủ phân tích này."))
     b.append(fig(13, F.fig(13)))
     b.append(p(

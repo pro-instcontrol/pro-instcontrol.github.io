@@ -73,7 +73,7 @@ def body_vi():
     b.append(p(
         "Ampe kế điện tử dùng bộ khuếch đại thuật toán cấu hình <b>transresistance</b> (I–V converter): dòng "
         "đầu vào chảy qua điện trở hồi tiếp R_f, và điện áp đầu ra V_out = −I_in·R_f. Nhờ có hồi tiếp, đầu "
-        "vào几乎 không sụt áp (ảo địa, virtual ground), nên gánh áp cực nhỏ (µV) và dải đo trải từ fA đến "
+        "vào hầu như không sụt áp (ảo địa, virtual ground), nên gánh áp cực nhỏ (µV) và dải đo trải từ fA đến "
         "A. Bộ <b>feedback picoammeter/electrometer</b> đo được 10⁻¹⁶ A với trở đầu vào 10¹⁶ Ω."))
     b.append(p(
         "Đối với dòng xoay chiều, đầu ra I–V được chỉnh lưu hoặc đưa vào mạch true-RMS để chỉ thị giá trị "

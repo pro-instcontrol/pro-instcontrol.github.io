@@ -121,7 +121,7 @@ def body_vi():
         "độ chính xác: nhiệt độ đổi kích thước cơ khí và độ nhớt chất lỏng (điện ly) hay dầu giảm chấn (con "
         "lắc), đồng thời đặc tính điện cũng đổi. Bù nhiệt có thể tích hợp vào chế tạo (tăng giá) hoặc thiết kế "
         "phản ứng tuyến tính rồi hiệu chỉnh ca-lip đơn giản. Mẫu rẻ thì bù không tinh xảo, có thể cho đầu ra "
-        "phi tuyến và trôi khó预测; do đó cần thử nghiệm và ca-lip kỹ [11]."))
+        "phi tuyến và trôi khó dự đoán; do đó cần thử nghiệm và ca-lip kỹ [11]."))
     b.append(p(
         "Bộ bù vòng đứng của kinh vĩ phân tử dùng cùng nguyên lý với một số tiltmeter công trình. Bộ bù lỏng "
         "của kinh vĩ điện tử Kern E2 [12] lặp lại tốt hơn 0,3″ trên dải ±150″, và được đưa vào tiltmeter "

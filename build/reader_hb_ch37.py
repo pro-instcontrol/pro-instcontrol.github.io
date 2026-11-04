@@ -134,7 +134,7 @@ def body_vi():
         "đến vài ppm), trở kháng vào 10 MΩ, băng thông vài trăm kHz."))
     b.append(p(
         "DMM tự động đổi thang (autoranging) chọn thang đo tối ưu, và dùng đầu vào vi sai (differential) "
-        "kết hợp tỉ số triệt mode chung (CMRR) cao để đo điện áp nhỏ giữa hai điểm không cùng电位 (potential) "
+        "kết hợp tỉ số triệt mode chung (CMRR) cao để đo điện áp nhỏ giữa hai điểm không cùng điện thế (potential) "
         "với đất."))
 
     b.append(h2("37.4 Đo điện áp xoay chiều", "AC Voltage Measurement"))
