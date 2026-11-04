@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-03 (session 50 — Chapter 32 §32.4 *Functional Model* p59–63, VI + EN) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-04 (session 51 — Chapter 32 §32.4 COMPLETE, p64–74 + refs 1–47, VI + EN) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook **Chapter 32** and *upward* to 85 — the forward agent works the
 > book from the front. Chapters 1–31, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
@@ -4063,12 +4063,25 @@ which still cannot authenticate from this machine.
   exist yet). Nothing new broke from this session; flagged here, not touched.
 - Figure QA grid: `work/qa32/f2728.html` (mk32range figs 27–28).
 
-### State of §32.4 after this session
+### State of §32.4 after this session (session 51)
 
-Text is done through p63 (end of *The Functional Model of Thermoelectric Circuits*). Still owed
-in §32.4: *Inhomogeneity* (p64), *Calibration* (p65, fig 32.31), *Failure and Validation*
-(p68), *Data Acquisition* (p70), *Signal Transmission* (p71), Caveat + Summary (p73), and the
-section reference list. Then §32.5.
+**§32.4 Thermocouple Thermometers is COMPLETE** — text runs p42–74 (end of the section), VI + EN.
+Everything that was owed is now shipped: *Inhomogeneity*, *Calibration* (with fig 32.31),
+*Failure and Validation*, *Data Acquisition*, *Signal Transmission*, *Sources of Information*,
+*Caveat*, *Summary*, and the full section reference list (1–47). See the Session 51 log below.
+
+Still owed for the rest of Chapter 32: **§32.5–§32.11** (seven sections, ~90 source pages):
+§32.5 Semiconductor Junction Thermometers (p75–87), §32.6 Infrared (p88–109), §32.7
+Pyroelectric (p110–117), §32.8 Liquid-in-Glass (p118–129), §32.9 Manometric (p130–136),
+§32.10 Temperature Indicators (p137–152), §32.11 Fiber-Optic (p153–163). None of these are in
+`build/reader_hb_ch32.py` yet and no source dumps / figure registries exist for them.
+
+**Ch 32 is still intentionally UNREGISTERED in the book TOC** (`reader_handbook.py` DONE list).
+§32.4 being done was the old trigger, but that predates discovering the chapter has 11 sections:
+publishing a 4-of-11 chapter as "translated" would put a half-built chapter at its URL. Defer
+registration until §32.5–§32.11 are translated (or the maintainer decides to publish a partial
+chapter). `CH[32]`, `SECTIONS` (Mục VI, ch32–36) and the page `ch32-temperature/` already exist,
+so registration later is a one-line DONE edit + `books_site.py` + `make_sitemap.py`.
 
 ## Session 50 — 2026-11-03 (eve) · Chapter 32 §32.4 *Functional Model* (p59–63), VI + EN
 
@@ -4099,3 +4112,58 @@ Validation* (p68), *Data Acquisition* (p70), *Signal Transmission* (p71), Caveat
 (p73), and the section reference list; then §32.5. After §32.4 is fully done, register ch32 in
 the book TOC (`reader_handbook.py` / `reader_book.py` DONE lists) and regenerate via
 `books_site.py` + `make_sitemap.py`, then commit + push.
+
+## Session 51 — 2026-11-04 · Chapter 32 §32.4 COMPLETE (p64–74 + refs 1–47), VI + EN
+
+### What shipped
+- **Finished §32.4 *Thermocouple Thermometers*** — the section is now complete end-to-end
+  (p42–74), bilingual. Added `sec_32_4f` (*Inhomogeneity* + *Calibration*) and `sec_32_4g`
+  (*Failure and Validation* → *Summary*), plus `_refs324` (the section's own 47 references),
+  all in VI + EN and wired into `sec_32_4_vi()` / `sec_32_4_en()`.
+- **Content (p64–73):** Inhomogeneity (Nature / Significance / Testing); Calibration — intro,
+  fig 32.31, Principal Thermocouple, Commercial Tolerances, Extension Leads, Reference
+  Temperature Compensation, Monitoring Instruments (incl. the E_S = E_AB(Tc) − E_AB(Tz)
+  simulator-voltage discussion); Thermocouple Failure and Validation — intro, Environmental
+  Compatibility, Temperature Exposure, Chemical Environment, Metallurgical Change; Data
+  Acquisition — Indicators, Transmitters, Recording; Signal Transmission — Extension Cable,
+  Wireless; Sources of Thermocouple Application Information — Technical Papers, Books/Reports/
+  Standards, Workshops, Trade Literature; Caveat; Summary.
+- **fig 32.31** (two-panel system-calibration schematic) added to `build/hb32fig.py` and
+  registered in `FIG_NO` + `FIGS`. The page image could not be OCR'd, so it is a schematic
+  reconstructed from the prose — symbols (Tc, Tz, Tb, Td, A, B, b, d, f, ES, RS, ER) match the
+  text; the caption says so explicitly.
+- **Table 32.15** (temperature upper limits by wire diameter) and **Table 32.16** (environmental
+  tolerance of letter-designated thermocouples) rebuilt via `_t3215` / `_t3216` from the source
+  tables (p69), bilingual captions.
+- **References 1–47** recovered from `work/ch32_s42_74.txt` (1–30) plus PDF pages 74–75 via
+  pypdf (31–47; the dump ended at ref 30). Ref 30 = "Ya can't calibrate a thermocouple
+  junction!". Includes the book's closing "not an endorsement" note.
+- **On-page INDEX** extended with the whole new tree (Inhomogeneity, Calibration, Failure and
+  Validation, Data Acquisition, Signal Transmission, Sources, Caveat, Summary + their h4
+  children). Fixed an initial mistake: INDEX sub-entries must be flat `(en, vi, depth)` tuples,
+  NOT nested lists — `sec_index()` takes `item[2]` as the indent depth.
+- **Page meta + module docstring** updated to §32.1–32.4 / 30 figs, 88 eqs, 18 tables.
+
+### Verification
+- Rebuilt both pages (EN 489 kB, VI 473 kB). **VI/EN parity: 30 figures, 18 tables, 88
+  equations, 42 h3, 46 h4 each.**
+- **Zero dead in-page TOC anchors** (93 `href="#…"`, 92 unique, 0 missing) in both languages.
+- No duplicate function definitions (checked all 7 new defs = 1 each) — avoids the stale
+  duplicate-shadowing bug from session 49.
+- fig 32.31 present once per page; VI captions (Giới hạn nhiệt độ trên / Khả năng chịu môi
+  trường) and EN captions both render; new sections present in both languages.
+- `check_links`: **broken 80 — unchanged, all pre-existing in the other agent's `es/` pages.**
+  Nothing new from this session. (SyntaxWarning about `\.pdf` is in `books_site.py`, unrelated.)
+
+### Decision: ch32 NOT registered in the book TOC
+§32.4 completion was the old trigger for registering ch32, but that was recorded before we
+learned the chapter has 11 sections. §32.5–§32.11 (~90 pages) are still untranslated and absent
+from the build script, so registering now would expose a 4-of-11 "translated" chapter. Left
+`reader_handbook.py` DONE untouched; live site still shows Ch 32 as "chờ dịch" (expected).
+Registration is a one-line DONE edit (`32: "ch32-temperature"`) once the rest is done.
+
+### Next
+Translate §32.5 *Semiconductor Junction Thermometers* (p75–87, Randy Frank) — starts with
+fig 32.32 (diode-connected bipolar transistor), eq 32.86 (V_F = (kT/q)ln(I_F/I_S)), figs
+32.33–32.35. Needs a new source dump for p75–87 and figure work; §32.6–§32.11 after that.
+Only after the chapter is substantially complete should ch32 be registered in the TOC.

@@ -2217,17 +2217,121 @@ def fig_32_30():
                 "thermoelements dropping to the T0 isotherm")
 
 
+def fig_32_31():
+    """Figure 32.31 — Contributions of Seebeck and compensating emf in system
+    calibration. (a) the thermocouple circuit to be calibrated: measuring
+    junction Tc on thermoelements A,B, an isothermal terminal block at Tz with
+    the reference junction and terminals b,d, and a zone temperature sensor f
+    that feeds the indicator the compensating voltage ER. (b) a general
+    calibration simulation: a thermocouple simulator/calibrator supplying ES
+    through source resistance RS (= RA+RB) to an indicator that applies internal
+    reference junction compensation. The page image could not be OCR'd, so this
+    is a schematic reconstructed from the prose; the symbols (Tc, Tz, Tb, Td, A,
+    B, b, d, f, ES, RS, ER) match the text exactly."""
+    o = [_defs()]
+    W, H = 680, 470
+    # ----------------------------------------------------- panel (a)
+    o.append(_lbl(24, 40, "(a)", "t", "start", ' style="font-weight:700"'))
+    o.append(_lbl(24, 56, "Mạch cần hiệu chuẩn hoặc mô phỏng", "ts", "start", _fs(8)))
+    # measuring junction Tc
+    jx, jy = 60, 150
+    o.append(_circ(jx, jy, 4, E, E, 1))
+    o.append(_mix(jx - 8, jy - 12, [("T", "i"), ("c", "sub")], "end", "t", _fs(9)))
+    # thermoelements A (top) and B (bottom) to the isothermal zone block
+    bx0, by0, bw, bh = 205, 116, 78, 70
+    o.append(_pl([(jx, jy), (bx0, by0 + 14)], E, 1.6))        # A
+    o.append(_pl([(jx, jy), (bx0, by0 + bh - 14)], E, 1.6))   # B
+    o.append(_lbl((jx + bx0) // 2, by0 + 2, "A", "t", "middle", ' style="font-weight:700"'))
+    o.append(_lbl((jx + bx0) // 2, by0 + bh + 4, "B", "t", "middle", ' style="font-weight:700"'))
+    # isothermal zone block at Tz (carries the reference junction)
+    o.append(_rect(bx0, by0, bw, bh, FILL, E, 1))
+    o.append(_lbl(bx0 + bw / 2, by0 - 8, "Tz", "t", "middle", _fs(9)))
+    o.append(_lbl(bx0 + bw / 2, by0 + bh + 14, "khối đẳng nhiệt / isothermal zone",
+                  "ts", "middle", _fs(8)))
+    # terminals b (top) and d (bottom) run to the indicator
+    bx1 = bx0 + bw
+    yb, yd = by0 + 14, by0 + bh - 14
+    ix0, iy0, iw, ih = 360, 108, 132, 86
+    o.append(_pl([(bx1, yb), (ix0, yb)], E, 1.6))
+    o.append(_pl([(bx1, yd), (ix0, yd)], E, 1.6))
+    o.append(_lbl((bx1 + ix0) // 2, yb - 8, "b", "t", "middle"))
+    o.append(_lbl((bx1 + ix0) // 2, yd + 14, "d", "t", "middle"))
+    o.append(_mix((bx1 + ix0) // 2 - 28, yb - 8, [("T", "i"), ("b", "sub")], "end", "ts", _fs(8)))
+    o.append(_mix((bx1 + ix0) // 2 - 28, yd + 14, [("T", "i"), ("d", "sub")], "end", "ts", _fs(8)))
+    # zone temperature sensor f feeding the compensating voltage ER to the indicator
+    sx0, sy0, sw, sh = 235, 196, 46, 16
+    o.append(_rect(sx0, sy0, sw, sh, FILL, E, 1))
+    o.append(_lbl(sx0 + sw / 2, sy0 + 12, "f", "t", "middle", _fs(8)))
+    o.append(_line(ix0 + 18, iy0 + ih, sx0 + sw, sy0 + sh / 2, S, 1.0, "4 3"))
+    o.append(_lbl(345, 216, "ER", "t", "middle", _fs(8)))
+    # indicator (monitoring instrument)
+    o.append(_rect(ix0, iy0, iw, ih, FILL, E, 1))
+    o.append(_lbl(ix0 + iw / 2, iy0 + ih / 2, "Bộ chỉ thị / Indicator", "t", "middle", _fs(9)))
+
+    # ----------------------------------------------------- panel (b)
+    o.append(_lbl(24, 280, "(b)", "t", "start", ' style="font-weight:700"'))
+    o.append(_lbl(24, 296, "Mô phỏng hiệu chuẩn chung (có bù mối nối chuẩn bên trong)",
+                  "ts", "start", _fs(8)))
+    # simulator / calibrator supplying ES
+    sxb, syb, swb, shb = 55, 330, 125, 86
+    o.append(_rect(sxb, syb, swb, shb, FILL, E, 1))
+    o.append(_lbl(sxb + swb / 2, syb + 26, "Bộ mô phỏng / Simulator–Calibrator",
+                  "t", "middle", _fs(8)))
+    o.append(_lbl(sxb + swb / 2, syb + 46, "ES", "t", "middle", ' style="font-weight:700"'))
+    # indicator with internal reference junction compensation
+    ixb, iyb, iwb, ihb = 360, 320, 132, 86
+    o.append(_rect(ixb, iyb, iwb, ihb, FILL, E, 1))
+    o.append(_lbl(ixb + iwb / 2, iyb + 30, "Bộ chỉ thị / Indicator", "t", "middle", _fs(8)))
+    o.append(_lbl(ixb + iwb / 2, iyb + 48, "(bù mối nối chuẩn bên trong)", "ts", "middle", _fs(7)))
+    # top line (b) carries source resistance RS (= RA+RB); bottom line (d) runs straight
+    yb2, yd2 = syb + 20, syb + shb - 20
+    o.append(_pl([(sxb + swb, yb2), (210, yb2)], E, 1.6))
+    rsx, rsy, rsw, rsh = 212, yb2 - 11, 44, 22
+    o.append(_rect(rsx, rsy, rsw, rsh, "none", E, 1))
+    o.append(_lbl(rsx + rsw / 2, rsy + 15, "RS", "t", "middle", _fs(8)))
+    o.append(_lbl(rsx + rsw / 2, rsy - 6, "RS = RA+RB", "ts", "middle", _fs(7)))
+    o.append(_pl([(rsx + rsw, yb2), (ixb, yb2)], E, 1.6))
+    o.append(_pl([(sxb + swb, yd2), (ixb, yd2)], E, 1.6))
+    o.append(_lbl((sxb + swb + ixb) // 2, yb2 - 16, "b", "t", "middle"))
+    o.append(_lbl((sxb + swb + ixb) // 2, yd2 + 14, "d", "t", "middle"))
+
+    return _fig(svg(W, H, "".join(o),
+                    "Sơ đồ hiệu chuẩn hệ thống cặp nhiệt điện: (a) mạch cần hiệu chuẩn, "
+                    "(b) mô phỏng hiệu chuẩn tổng quát"),
+                "Hình 32.31 · Đóng góp của suất điện động Seebeck và suất điện động bù trong "
+                "hiệu chuẩn hệ thống: (a) mạch cần hiệu chuẩn hoặc mô phỏng — mối nối đo Tc trên "
+                "các thân nhiệt điện A, B; khối đẳng nhiệt tại Tz mang mối nối chuẩn và các cực b, "
+                "d; cảm biến nhiệt độ vùng f cấp cho bộ chỉ thị suất điện động bù ER; (b) một mô "
+                "phỏng hiệu chuẩn tổng quát gồm bộ mô phỏng/calibrator cung cấp ES qua điện trở "
+                "nguồn RS (= RA+RB) tới bộ chỉ thị có bù mối nối chuẩn bên trong. (Sơ đồ phục "
+                "dựng từ lời văn; các ký hiệu khớp với văn bản.)",
+                "Figure 32.31 · Contributions of Seebeck and compensating emf in system "
+                "calibration: (a) the circuit to be calibrated or simulated — measuring junction "
+                "Tc on thermoelements A, B; the isothermal zone block at Tz carrying the reference "
+                "junction and terminals b, d; the zone temperature sensor f feeds the indicator the "
+                "compensating voltage ER; (b) a general calibration simulation with a "
+                "thermocouple simulator/calibrator supplying ES through source resistance RS "
+                "(= RA+RB) to an indicator that applies internal reference junction compensation. "
+                "(Schematic reconstructed from the text; symbols match the prose.)",
+                "Sơ đồ hiệu chuẩn hệ thống: (a) mạch gồm mối nối đo Tc, khối đẳng nhiệt Tz, cực b "
+                "và d, cảm biến vùng f và bộ chỉ thị; (b) bộ mô phỏng ES nối qua RS tới bộ chỉ "
+                "thị có bù mối nối chuẩn",
+                "System calibration schematic: (a) circuit with measuring junction Tc, isothermal "
+                "block Tz, terminals b and d, zone sensor f and the indicator; (b) simulator ES "
+                "through RS to the indicator with internal reference junction compensation")
+
+
 FIGS = [fig_32_1, fig_32_2, fig_32_3, fig_32_4, fig_32_5, fig_32_6,
         fig_32_7, fig_32_8, fig_32_9, fig_32_10, fig_32_11, fig_32_12,
         fig_32_13, fig_32_14, fig_32_15, fig_32_16, fig_32_17, fig_32_18,
         fig_32_19, fig_32_20, fig_32_21, fig_32_22,         fig_32_24,
-        fig_32_25, fig_32_26, fig_32_27, fig_32_28, fig_32_29, fig_32_30]
+        fig_32_25, fig_32_26, fig_32_27, fig_32_28, fig_32_29, fig_32_30, fig_32_31]
 
 # The book has no figure 32.23: the numbering runs 32.22 -> 32.24 and nothing in
 # the PDF ever mentions a 32.23.  FIGS is positional, so the printed number of
 # each slot lives here; fig() refuses a number that is not in the list rather
 # than quietly handing back the figure next door.
-FIG_NO = list(range(1, 23)) + [24, 25, 26, 27, 28, 29, 30]
+FIG_NO = list(range(1, 23)) + [24, 25, 26, 27, 28, 29, 30, 31]
 
 
 def fig(n):

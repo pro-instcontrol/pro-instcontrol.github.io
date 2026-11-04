@@ -2,8 +2,8 @@
 """Handbook Chapter 32 — Temperature (Robert J. Sandberg, ed.)
 
 The chapter is 163 source pages and eleven sections, each contributed by a
-different author. Sections are being written in order; §32.1 and §32.2 are
-complete.
+different author. Sections are being written in order; §32.1–§32.4 are
+complete (§32.4 finished in session 51), §32.5–§32.11 remain.
 
   §32.1  Bimaterials Thermometers            p3-14    6 figs  19 eqs  5 tables
   §32.2  Resistive Thermometers              p14-26   9 figs   6 eqs  2 tables
@@ -5743,12 +5743,1123 @@ def sec_32_4d_en():
     return "".join(b)
 
 
+def sec_32_4f_vi():
+    b = [h3("Độ không đồng nhất", "Inhomogeneity")]
+    b.append(h4("Bản chất của độ không đồng nhất", "The Nature of Inhomogeneity"))
+    b.append(p(
+        "Một thân nhiệt điện mảnh được gọi là không đồng nhất nếu σ<sub>M</sub>(<i>T</i>) "
+        "thay đổi dọc theo chiều dài của nó. Môi trường trong quá trình ứng dụng có thể đưa "
+        "vào sự không đồng nhất không đều vào một hoặc cả hai thân nhiệt điện của một cặp. "
+        "Hiệu ứng này giống như có một hoặc nhiều vật liệu không đồng nhất bổ sung được thêm "
+        "vào mạch."))
+    b.append(h4("Tầm quan trọng của độ không đồng nhất", "The Significance of Inhomogeneity"))
+    b.append(p(
+        "Tính đồng nhất nhiệt điện thỏa đáng là giả định quan trọng nhất của ứng dụng cặp nhiệt "
+        "điện. Nó thường được mặc định; hiếm khi được xác nhận. Độ không đồng nhất là một vấn "
+        "đề có thật nhưng mang tính “bóng ma”. Nó thường không bị phát hiện ngay cả khi gây ra "
+        "sai số đáng kể. Nó hiếm khi bị phát hiện ngay cả bởi sự hiệu chuẩn quy chuẩn cẩn thận "
+        "nhất [1, 7, 11, 29–31, 33, 34]. Trong đo nhiệt độ vật lý, trôi cặp nhiệt điện luôn là "
+        "triệu chứng của sự tiến triển độ không đồng nhất. Sự thay đổi này mang tính tiến triển, "
+        "thường xảo quyệt, và thường bị diễn giải sai [34]. Thay vì được hình dung đúng đắn là "
+        "sự suy thoái cục bộ của hệ số Seebeck, trôi thường bị nhìn nhận sai thành sự “hộp đen” "
+        "đồng nhất của cặp nhiệt điện thay vì độ không đồng nhất đang tiến triển. Vì lý do này, "
+        "nó là một vấn đề phổ biến hơn nhiều so với những gì hầu hết người dùng có kinh nghiệm "
+        "nhận ra. Nó có thể xảy ra trong sử dụng, trong chế tạo, hoặc trong hiệu chuẩn do ứng "
+        "suất cơ học, biến đổi pha nhiệt, nhiễm bẩn bề mặt, tương tác hóa học giữa các vật liệu, "
+        "bay hơi hoặc di chuyển của các thành phần hợp kim, biến đổi dưới bức xạ, và nhiều "
+        "nguyên nhân thực tế khác. Sai số do độ không đồng nhất trong cặp nhiệt điện, tính theo "
+        "sản xuất, dự kiến được bao phủ bởi các dung sai chuẩn [1, 9, 10, 28]. Độ không đồng "
+        "nhất phiền toái phổ biến nhất ở các cặp nhiệt điện đã dùng và bị lạm dụng, nhưng đôi "
+        "khi cũng xảy ra ở cặp nhiệt điện mới đã được hiệu chuẩn riêng lẻ ở nhiệt độ cao. Nó có "
+        "thể xảy ra bên trong và xuyên qua các vỏ bảo vệ kim loại hoặc giếng nhiệt có vẻ không "
+        "thấm, cũng như giữa các chất cách điện hạt. Ví dụ Hình 32.30 minh họa tác động của việc "
+        "không kiểm soát đúng nhiệt độ mối nối dẫn đến việc đưa một cách tinh vi suất điện động "
+        "Seebeck tương đối từ sự ghép nhiệt không chủ định của các đoạn thân nhiệt điện đồng "
+        "nhất. Vấn đề độ không đồng nhất tương tự, được trực quan hóa tốt nhất bằng bản phác "
+        "T/X, nảy sinh khi một phần của một hoặc cả hai thân nhiệt điện thay đổi hệ số Seebeck "
+        "cục bộ trên một đoạn không đẳng nhiệt của cặp nhiệt điện. Thực chất, điều này đưa vào "
+        "các đoạn không đồng nhất “bóng ma” có đặc tính thoải dần không xác định và vị trí không "
+        "được nhận ra [35]. Điều này thường xảy ra nhất trên một vùng dài gần mối nối đo, nơi "
+        "các thân nhiệt điện tiếp xúc với môi trường gây hại trong lò hoặc quy trình. Sai số tối "
+        "đa có thể có của độ không đồng nhất được xác định bởi vị trí và độ lớn của sự lệch lớn "
+        "nhất khỏi bình thường của hệ số Seebeck. Sai số thực tế phụ thuộc vào sự phân bố nhiệt "
+        "độ tức thời trong quá trình sử dụng. Trong đo nhiệt độ và hiệu chuẩn, sai số có thể do "
+        "độ không đồng nhất gây ra được giảm nhẹ. Khi chỉ hiện diện trong vùng đẳng nhiệt, độ "
+        "không đồng nhất không gây sai số. Dưới sự phân bố nhiệt độ bất lợi, sai số độ không "
+        "đồng nhất có thể cực đoan và dẫn đến các đáp ứng kỳ lạ khó hiểu [34]. Các thay đổi hệ "
+        "số Seebeck tương đối trên 60% trong các đoạn dài 25 cm đã được quan sát ở các cặp nhiệt "
+        "điện hạng sang Type R MIMS được hiệu chuẩn riêng lẻ, có chứng nhận, dây mảnh, hoàn toàn "
+        "nằm trong các vỏ bạch kim còn nguyên vẹn và tiếp xúc với nhiệt độ trong phạm vi nhiệt "
+        "độ đã lập bảng [18]."))
+    b.append(h4("Kiểm tra độ không đồng nhất", "Testing for Inhomogeneity"))
+    b.append(p(
+        "Nhiều phép thử nhạy và chính xác xác thực cho độ không đồng nhất nhiệt điện đã được "
+        "phát triển, và nhu cầu thực tế của chúng đã được chứng minh; tuy nhiên, chúng hiếm khi "
+        "được dùng [33]. Mọi phép thử độ không đồng nhất xác thực đều đòi hỏi di chuyển một bước "
+        "nhiệt độ đột ngột tiến dần dọc theo các thân nhiệt điện. Việc áp dụng phổ biến một hình "
+        "mẫu nhiệt độ đối xứng rất hẹp là trái ngược với một phép thử độ không đồng nhất. Nó "
+        "không phải là phép thử độ không đồng nhất. Việc dùng phổ biến của nó đã đánh lừa nhiều "
+        "người phủ nhận độ không đồng nhất như một vấn đề có thật và quan trọng trong đo nhiệt "
+        "độ nhiệt điện chính xác. Các phép thử hợp lệ dao động từ các phương pháp đơn giản có độ "
+        "phân giải thấp đến các phương pháp tiên tiến có thể phân giải độ không đồng nhất với độ "
+        "phân giải không gian vài milimet [21, 33]. Đáng tiếc là, do sai số độ không đồng nhất "
+        "thường không được nhận ra, độ không đồng nhất không được thử nghiệm xác thực trong thực "
+        "tế thương mại cũng như bởi các phòng thí nghiệm hiệu chuẩn. Dù vậy, chứng nhận NIST "
+        "truy nguyên được nhưng không xác thực với độ chính xác cao là có thể trên một cặp nhiệt "
+        "điện có thể đo chính xác là cực kỳ không đồng nhất và có độ không đắc định vô hạn "
+        "[29–31, 33, 34]."))
+
+    b.append(h3("Hiệu chuẩn", "Calibration"))
+    b.append(p(
+        "Độ không đắc định đo lường của hầu hết các loại cảm biến có thể giảm bằng hiệu chuẩn "
+        "riêng lẻ. Hiệu chuẩn ban đầu, hiệu chuẩn định kỳ lại các cặp nhiệt điện chưa dùng, và "
+        "thậm chí của các cặp nhiệt điện cá thể đã suy thoái, mặc dù phổ biến, thường ít có lợi "
+        "(hoặc thậm chí có hại) và tốn kém hơn. Việc hiệu chuẩn cặp nhiệt điện thiếu suy nghĩ "
+        "như vậy đã bị một số chương trình “bảo đảm chất lượng” ép buộc. Các cuộc khảo sát cho "
+        "thấy xu hướng khách hàng đòi độ chính xác ngày càng cao của đo nhiệt độ [36]. Trong một "
+        "số ứng dụng, sai số 1°F (0,56°C) giờ đây bị coi là quá lớn, và dung sai 0,1°F có thể "
+        "được chỉ định độc lập với mức nhiệt độ. (So sánh với dung sai trong Bảng 32.12.) Có một "
+        "vài ứng dụng công nghiệp thực sự đòi hỏi độ chính xác như vậy. Thường hơn, quy định chỉ "
+        "đơn giản cho rằng độ chính xác như vậy trong đo nhiệt độ cặp nhiệt điện là đạt được "
+        "thường quy chỉ bằng hiệu chuẩn. Hiệu chuẩn là một loại thuốc phiện của bảo đảm chất "
+        "lượng. Ảo tưởng về độ chính xác do hiệu chuẩn có chứng nhận NIST truy nguyên và hiệu "
+        "chuẩn tại chỗ tự xưng mang lại là phản tác dụng nếu nó không xác thực. Xét đến các chi "
+        "tiết của hiệu chuẩn cặp nhiệt điện gợi ý tại sao độ chính xác xác thực ở mức 0,1°C khó "
+        "có khả năng trong đo nhiệt độ nhiệt điện công nghiệp. Cách tiếp cận để đạt được hiệu "
+        "chuẩn xác thực của độ chính xác hệ thống cặp nhiệt điện (bỏ qua sai số ghép nhiệt và "
+        "đáp ứng quá độ) được minh họa trong Hình 32.31. Hình 32.31(a) biểu diễn hệ thống cặp "
+        "nhiệt điện cần hiệu chuẩn. Hiệu chuẩn cho đo nhiệt độ nhiệt điện phải phân biệt ba "
+        "thành phần hệ thống: (1) mạch cặp nhiệt điện, (2) bộ bù nhiệt độ mối nối chuẩn, và (3) "
+        "dụng cụ theo dõi. Mỗi thành phần riêng biệt ảnh hưởng đến độ không đắc định nhiệt độ."))
+    b.append(fig(31, F.fig(31), "vi"))
+    b.append(h4("Cặp nhiệt điện chính", "The Principal Thermocouple"))
+    b.append(p(
+        "Hiệu chuẩn cặp nhiệt điện chính được thực hiện bằng cách nhúng vùng lân cận mối nối đo "
+        "vào vùng đẳng nhiệt của bể hoặc lò [37]. Một vài bộ hiệu chuẩn giếng khô nhỏ gọn hiện "
+        "có rất tiện lợi để hiệu chuẩn tại hiện trường [38]. Các ô điểm cố định, bể chất lỏng, "
+        "và giường rắn lưu hóa bằng chất lưu có thể chính xác hơn và được dùng rộng rãi trong "
+        "phòng thí nghiệm hiệu chuẩn [39]. Độ sâu nhúng đủ vào vùng hiệu chuẩn đẳng nhiệt, thường "
+        "ít nhất 10 đến 20 lần đường kính đầu dò, bảo đảm rằng sự dẫn nhiệt dọc theo cặp nhiệt "
+        "điện từ môi trường không ảnh hưởng đến nhiệt độ mối nối. Sự quan tâm thích đáng đến tác "
+        "động của dẫn nhiệt dọc trục lên nhiệt độ mối nối đo đã dẫn đến sự hiểu lầm rằng chính "
+        "mối nối đang được hiệu chuẩn [30]. Rõ ràng, hiệu chuẩn cặp nhiệt điện không phải của "
+        "mối nối đo; nó là của các đoạn thân nhiệt điện không xác định, ở xa mối nối đo, chỉ tại "
+        "nơi chúng đi vào vùng hiệu chuẩn đẳng nhiệt qua một chuyển tiếp nhiệt độ. Các đoạn độ "
+        "không đồng nhất do sử dụng đưa vào, vốn làm suy giảm nghiêm trọng độ chính xác đo, "
+        "thường được đặt, trong quá trình cố gắng hiệu chuẩn lại không thành công, bên trong "
+        "vùng đẳng nhiệt nơi chúng không đóng góp suất điện động Seebeck nào, nên độ không đồng "
+        "nhất không bị phát hiện. Hành động hiệu chuẩn ở nhiệt độ trên 400°C thực sự có thể gây "
+        "ra độ không đồng nhất và làm suy giảm độ chính xác [9, 10]. Ngay cả việc hiệu chuẩn và "
+        "chứng nhận “NIST-truy nguyên” tốn kém bởi các phòng thí nghiệm hiệu chuẩn có năng lực, "
+        "nếu không có sự bảo đảm riêng biệt về tính đồng nhất, cũng không phải là sự bảo đảm độ "
+        "chính xác ở bất kỳ mức nào."))
+    b.append(h4("Dung sai thương mại", "Commercial Tolerances"))
+    b.append(p(
+        "Các dung sai chuẩn hóa cho vật liệu cặp nhiệt điện mới được thiết lập bởi sự phán quyết "
+        "đồng thuận chính thức của nhiều nhà sản xuất, người dùng, và nhân viên phòng thí nghiệm "
+        "chuẩn hiệu chuẩn có kinh nghiệm [10, 24, 28]. Các dung sai bao gồm không chỉ độ lệch so "
+        "với các đặc tính Seebeck tổng thể, mà còn bao phủ độ không đắc định không thể tránh "
+        "khỏi từ độ không đồng nhất và các độ lệch không đều so với đặc tính chuẩn hóa làm trơn "
+        "trên các khoảng nhỏ của nhiệt độ. Chúng áp dụng cho vật liệu khi được giao và chưa tiếp "
+        "xúc với nhiệt độ quá mức. Các dung sai bảo thủ cho các kiểu cặp nhiệt điện ký hiệu chữ "
+        "cái chuẩn, khi được giao, thường đáng tin cậy cho đến khi các cặp nhiệt điện tiếp xúc "
+        "quá lâu với nhiệt độ quá mức hoặc môi trường bất lợi. Hiệu chuẩn lại các cặp nhiệt điện "
+        "đã dùng mà không có sự bảo đảm riêng biệt về tính đồng nhất có thể gây hiểu lầm [31]. "
+        "Để giải quyết các vấn đề hiệu chuẩn do độ không đồng nhất không được phát hiện, hai cách "
+        "làm phổ biến. Đối với cặp nhiệt điện kim loại cơ bản giá rẻ, người ta mặc định rằng các "
+        "cặp nhiệt điện chưa dùng là đồng nhất và đồng đều trong các dung sai chuẩn hóa. Đặc "
+        "tính Seebeck điển hình của một lô sản xuất được nhà sản xuất hoặc người dùng đặc trưng "
+        "hóa bằng cách hiệu chuẩn một hoặc nhiều mẫu đại diện thay thế đã tiêu hao. Chúng bị loại "
+        "bỏ sau khi hiệu chuẩn. Lần hiệu chuẩn chu trình đầu của chúng được lấy làm đại diện cho "
+        "các cặp nhiệt điện khác cùng lô. Các cặp nhiệt điện chính đã dùng có trôi được loại bỏ. "
+        "Cách tiếp cận phổ biến thứ hai là hiệu chuẩn lại. Điều này thường là để đáp ứng trôi "
+        "quan sát được trong sử dụng. Trôi báo hiệu độ không đồng nhất đang tiến triển. Ngoại trừ "
+        "một sàng lọc độ không đồng nhất xác thực trước, không khuyến nghị hiệu chuẩn lại. Ngay "
+        "cả việc hiệu chuẩn lại tại chỗ được quảng bá rộng rãi của các cặp nhiệt điện đã suy thoái "
+        "cũng không có hiệu quả nếu sự phân bố nhiệt độ sẽ thay đổi trong sử dụng [31]. Dây cặp "
+        "nhiệt điện bạch kim có thể được ủ toàn chiều dài bằng cách đốt nóng bằng điện trong "
+        "không khí [9–12]. Các thân nhiệt điện đã ủ như vậy có thể được coi là không có độ không "
+        "đồng nhất do ứng suất có thể đảo ngược, và do đó, hiệu chuẩn lại chính xác có thể được "
+        "biện minh. Tuy nhiên, ủ không thể đảo ngược sự mất hiệu chuẩn từ sự di chuyển, hấp thụ, "
+        "hoặc bay hơi của các thành phần hợp kim hoặc ô nhiễm hóa học khác; do đó, hiệu chuẩn lại, "
+        "thậm chí của cặp nhiệt điện kim loại quý đã dùng, chỉ nên thực hiện ở nơi khả năng đồng "
+        "nhất được xác lập trên thực tế. Không giống như các thân nhiệt điện kim loại cơ bản, vật "
+        "liệu thân nhiệt điện kim loại quý thường có thể được tái chế. Ngoài ra, kim loại quý có "
+        "giá trị thu hồi vật liệu đáng kể nếu tái chế."))
+    b.append(h4("Dây nối dài", "Extension Leads"))
+    b.append(p(
+        "Các dây nối dài bù, mặc dù là nguồn Seebeck, thường không được hiệu chuẩn. Người ta "
+        "thường giả định rằng chúng sẽ chỉ tiếp xúc với một phần nhỏ của khoảng nhiệt độ đang "
+        "được đo và, nếu vậy, sẽ đóng góp không đáng kể vào sai số. Các chất cách điện nối dài "
+        "được xếp hạng sử dụng liên tục đến nhiệt độ tối đa từ 105°C đến 540°C [43]. Các đặc "
+        "tính Seebeck có thể không được xấp xỉ tốt trên khoảng này [1, 10]. Sự đóng góp có thể "
+        "có từ các dây nối dài có thể rất lớn. Sai số khả dĩ dễ dàng ước lượng bằng mô hình trong "
+        "“Mô hình chức năng của mạch nhiệt điện”. Các sai số hệ quả thường gặp hơn do dây nối dài "
+        "phát sinh từ việc không kiểm soát đúng nhiệt độ các mối nối ghép nối tình cờ, như đã mô "
+        "tả trong “Mạch cặp nhiệt điện thực tế”."))
+    b.append(h4("Bù nhiệt độ mối nối chuẩn", "Reference Temperature Compensation"))
+    b.append(p(
+        "Các bộ chỉ thị cặp nhiệt điện hiện đại thường cung cấp bù nhiệt độ mối nối chuẩn bên "
+        "trong. Một vài bộ cho phép bù như một lựa chọn thay thế có thể chọn. Độ chính xác của "
+        "bù mối nối chuẩn, Hình 32.31(a), phụ thuộc vào độ chính xác của (các) cảm biến, f, dùng "
+        "để theo dõi nhiệt độ mối nối chuẩn của các kết thúc đẳng nhiệt, nhưng cũng phụ thuộc vào "
+        "sự phù hợp của thuật toán tỷ lệ hoặc mạch tương tự với đặc tính của cặp nhiệt điện cá "
+        "thể. Cảm biến vùng xác định điện áp bù, E<sub>R</sub>. Một số bộ theo dõi có các khối "
+        "đầu cuối đẳng nhiệt thay thế được bao gồm cảm biến nhiệt độ vùng. Thật không may, hầu "
+        "hết các thiết kế theo dõi không cho phép hiệu chuẩn nhiệt riêng biệt của cảm biến nhiệt "
+        "độ mối nối chuẩn. Chỉ cần nối tắt các đầu cuối đầu vào bộ chỉ thị, b–d, nên tạo ra một "
+        "chỉ thị nhiệt độ gần, và thường hơi cao hơn, nhiệt độ môi trường. Các quy định claim độ "
+        "không đắc định mối nối khoảng 0,1°C đến 0,5°C và các đóng góp lỗi thường nhỏ nhưng thỉnh "
+        "thoảng chúng rất lớn và tiến triển xảo quyệt lên đến nhiều lần dung sai cặp nhiệt điện "
+        "chuẩn [35]."))
+    b.append(h4("Các dụng cụ theo dõi", "Monitoring Instruments"))
+    b.append(p(
+        "Độ chính xác của việc chuyển đổi suất điện động Seebeck tại các đầu cuối b–d để suy ra "
+        "nhiệt độ T<sub>c</sub> đòi hỏi hiệu chuẩn dụng cụ theo dõi. Cả độ chính xác của đo điện "
+        "áp và của tuyến tính hóa đều là nguồn độ không đắc định. Độ chính xác tỷ lệ dựa trên một "
+        "xấp xỉ của E(<i>T</i>) xác định, chứ không dựa trên đặc tính cặp nhiệt điện cá thể. Các "
+        "thiết kế dụng cụ rất đa dạng. Các nguyên lý chung của hiệu chuẩn xác thực đòi hỏi để "
+        "tiếp cận độ không đắc định 0,1°C cho một bộ chỉ thị cặp nhiệt điện cung cấp bù nhiệt độ "
+        "mối nối chuẩn bên trong được minh họa bằng mạch của Hình 32.31(b). Một bộ mô phỏng/"
+        "hiệu chuẩn cặp nhiệt điện cung cấp một điện áp E<sub>S</sub> đã biết rõ tương ứng, cho "
+        "kiểu cặp nhiệt điện chuẩn, với một điểm hiệu chuẩn nhiệt độ mong muốn. Bộ mô phỏng phải "
+        "duy trì cân bằng nhiệt trong quá trình hiệu chuẩn, với suất điện động Seebeck không liên "
+        "quan được triệt tiêu đúng cách. Nếu điện trở đầu vào của bộ chỉ thị rất lớn, không cần "
+        "ghép điện trở của bộ mô phỏng với cặp nhiệt điện. Nếu bộ chỉ thị có điện trở đầu vào "
+        "thấp hoặc tự sinh dòng <i>i</i> khi các đầu cuối b–d của nó bị nối tắt, thì sẽ xuất hiện "
+        "một sai số nhiệt độ tỉ lệ với dòng bộ chỉ thị và điện trở vòng. Để có độ chính xác với "
+        "các bộ chỉ thị như vậy, bộ mô phỏng R<sub>S</sub> cũng phải bắt chước điện trở nguồn "
+        "của cặp nhiệt điện cá thể (R<sub>A</sub> + R<sub>B</sub>). Tuy nhiên, điện trở vòng cặp "
+        "nhiệt điện đó có thể thay đổi đáng kể trong ứng dụng vì nó phụ thuộc vào sự phân bố nhiệt "
+        "độ quanh cặp nhiệt điện trên một dải nhiệt độ rộng. Các đầu cuối đầu vào của bộ chỉ thị "
+        "là b và d. Để hiệu chuẩn chính xác, điều thiết yếu là T<sub>b</sub> = T<sub>d</sub> = "
+        "T<sub>z</sub>. Một số bộ chỉ thị và bộ bù nhiệt độ mối nối chuẩn nối khối vùng đẳng "
+        "nhiệt với các đầu cuối bằng dây dẫn bù cặp nhiệt điện. Đối với những cái này, nếu "
+        "T<sub>b</sub> ≠ T<sub>d</sub> ≠ T<sub>z</sub>, một sai số vô hạn phát sinh không thể "
+        "khắc phục bằng hiệu chuẩn. Điện áp bộ mô phỏng phải bắt chước hành vi của chỉ cặp nhiệt "
+        "điện, b–c–d. Điện áp nó phải cung cấp phụ thuộc vào việc bộ chỉ thị có hay không cung "
+        "cấp bù nhiệt độ mối nối chuẩn. Nếu T<sub>b</sub> = T<sub>d</sub> = T<sub>z</sub>, tổng "
+        "suất điện động Seebeck đúng là E<sub>S</sub> = E<sub>AB</sub>(T<sub>c</sub>) − "
+        "E<sub>AB</sub>(T<sub>z</sub>). Nếu bộ chỉ thị không áp dụng bù E<sub>R</sub>, thì bộ "
+        "mô phỏng phải cung cấp E<sub>S</sub> = E<sub>AB</sub>(T<sub>c</sub>) − "
+        "E<sub>AB</sub>(T<sub>z</sub>). Nếu bộ chỉ thị có áp dụng E<sub>R</sub>, thì bộ mô phỏng "
+        "chỉ phải cung cấp E<sub>S</sub> = E<sub>AB</sub>(T<sub>c</sub>). Điều này đòi hỏi "
+        "nhiệt độ T<sub>z</sub> bên trong của bộ chỉ thị phải được bộ mô phỏng biết chính xác. "
+        "Một số bộ mô phỏng cho phép đặt một T<sub>z</sub> giả định trong hiệu chuẩn. Những bộ "
+        "không cho phép không thể dùng trực tiếp mà không có sai số để hiệu chuẩn các bộ chỉ thị "
+        "bù mối nối chuẩn phổ biến. Nhiều bộ hiệu chuẩn dụng cụ cặp nhiệt điện tiện lợi cho phép "
+        "đặt hiệu chuẩn mong muốn bằng nhiệt độ thay vì bằng điện áp cho các kiểu cặp nhiệt điện "
+        "chuẩn hóa. Sự tiện lợi này đưa vào một tỷ lệ phi tuyến bổ sung và chỉ có sự phù hợp xấp "
+        "xỉ với đặc tính chuẩn."))
+    return "".join(b)
+
+
+def sec_32_4f_en():
+    b = [h3("Inhomogeneity")]
+    b.append(h4("The Nature of Inhomogeneity"))
+    b.append(p(
+        "A slender thermoelement is inhomogeneous if σ<sub>M</sub>(<i>T</i>) varies along its "
+        "length. The environment during application can introduce irregular inhomogeneity in one "
+        "or both thermoelements of a pair. The effect is as if one or more additional dissimilar "
+        "materials had been added to the circuit."))
+    b.append(h4("The Significance of Inhomogeneity"))
+    b.append(p(
+        "Adequate thermoelectric homogeneity is the most critical assumption of thermocouple "
+        "application. It usually is presumed; rarely is it confirmed. Inhomogeneity is a real but "
+        "phantom problem. Inhomogeneity often remains undetected even while producing substantial "
+        "error. It rarely is discovered by even the most careful conventional calibration [1, 7, "
+        "11, 29–31, 33, 34]. In physical thermometry, thermocouple drift is invariably a symptom "
+        "of progressing inhomogeneity. Such change is progressive, often insidious, and usually is "
+        "misinterpreted [34]. Rather than envisioned correctly as localized degradation of the "
+        "Seebeck coefficient, drift is often viewed improperly as a uniform “black-box” "
+        "decalibration of the thermocouple rather than progressing inhomogeneity. For this reason, "
+        "it is a far more commonplace problem than recognized by most experienced users. It can "
+        "occur in use, in fabrication, or in calibration because of mechanical strain, thermal "
+        "phase change, surface contamination, chemical interaction between materials, evaporation "
+        "or migration of alloy constituents, transmutation under radiation, and a variety of "
+        "other realistic causes. Inhomogeneity error in thermocouples, as manufactured, is "
+        "intended to be covered by standard tolerances [1, 9, 10, 28]. Troublesome "
+        "inhomogeneity is most common in used and abused thermocouples, but can sometimes occur "
+        "in new thermocouples that have been individually calibrated to high temperature. It can "
+        "occur within and through apparently impervious protective metal sheaths or thermal wells "
+        "and between bead insulators. The example, Figure 32.30, illustrated the effect of "
+        "improperly controlled junction temperatures that resulted in the subtle introduction of "
+        "relative Seebeck emf from an unintended thermal pairing of segments of homogeneous "
+        "thermoelements. The analogous inhomogeneity problem, best visualized with the T/X sketch, "
+        "arises when a portion of one or both thermoelements locally changes in Seebeck coefficient "
+        "over some nonisothermal span of the thermocouple. In effect, this introduces phantom "
+        "dissimilar segments of indefinite graduated property and unrecognized location [35]. This "
+        "most often occurs over a lengthy region near the measuring junction where the "
+        "thermoelements are exposed to damaging environments in an oven or process. The maximum "
+        "possible error of inhomogeneity is determined by the location and magnitude of greatest "
+        "deviation from normal of the Seebeck coefficient. The actual error depends on the "
+        "momentary distribution of temperature during use. In thermometry and in calibration, the "
+        "likely error introduced by inhomogeneity is moderated. While present only within an "
+        "isothermal region, inhomogeneities introduce no error. Under unfavorable temperature "
+        "distributions, inhomogeneity error can be extreme and results in peculiar puzzling "
+        "responses [34]. Changes of relative Seebeck coefficient by more than 60% over 25-cm "
+        "spans have been observed in individually calibrated, certified, premium-grade fine wire "
+        "Type R MIMS thermocouples entirely enclosed within intact platinum sheaths and exposed to "
+        "temperature within the tabulated temperature range [18]."))
+    b.append(h4("Testing for Inhomogeneity"))
+    b.append(p(
+        "Many authentic sensitive and accurate tests for thermoelectric inhomogeneity have been "
+        "developed, and their practical need has been demonstrated; however, they are rarely used "
+        "[33]. All true inhomogeneity tests require moving an abrupt step of temperature "
+        "progressively along thermoelements. The commonplace application of a very narrow "
+        "symmetric temperature pattern is the antithesis of an inhomogeneity test. It is not a "
+        "test for inhomogeneity. Its popular use has misled many to discount inhomogeneity as a "
+        "real and significant problem in accurate thermoelectric thermometry. Valid tests range "
+        "from simple methods of low resolution to advanced methods that can accurately resolve "
+        "inhomogeneity with spatial resolution of a few millimeters [21, 33]. Regrettably, as "
+        "inhomogeneity errors usually are not recognized, inhomogeneity is not authentically "
+        "tested in commercial practice nor by calibration laboratories. Nevertheless, invalid "
+        "though certified NIST-traceable certification to great precision is possible on a "
+        "thermocouple that can be accurately measured to be severely inhomogeneous and of "
+        "indefinite uncertainty [29–31, 33, 34]."))
+
+    b.append(h3("Calibration"))
+    b.append(p(
+        "The measurement uncertainty of most kinds of sensors can be reduced by individual "
+        "calibration. Initial calibration, periodic recalibration of unused thermocouples, and "
+        "even of degraded individual thermocouples, although commonplace, is often less beneficial "
+        "(or even harmful) and more costly. Such ill-advised thermocouple calibration has been "
+        "mandated by some “quality assurance” programs. Surveys reveal a trend for customers to "
+        "demand progressively higher accuracy of thermometry [36]. In some applications, a 1°F "
+        "(0.56°C) error now is deemed too large, and 0.1°F tolerance may be specified independent "
+        "of temperature level. (Compare with tolerances in Table 32.12.) There are a few "
+        "industrial applications that truly require such accuracy. More often, the specification "
+        "merely presumes that such accuracy in thermocouple thermometry is routinely attainable "
+        "merely by calibration. Calibration is an opiate of quality assurance. The illusion of "
+        "accuracy provided by NIST-traceable certified calibration and purported in situ calibration "
+        "is counterproductive if it is not authentic. Consideration of the details of thermocouple "
+        "calibration suggests why authentic accuracy at the 0.1°C level is unlikely in industrial "
+        "thermoelectric thermometry. The approach to achieving authentic calibration of "
+        "thermocouple system accuracy (ignoring thermal coupling and transient response errors) is "
+        "illustrated in Figure 32.31. Figure 32.31(a) represents the thermocouple system to be "
+        "calibrated. Calibration for thermoelectric thermometry must distinguish three system "
+        "components: (1) the thermocouple circuit, (2) the reference junction temperature "
+        "compensator, and (3) the monitoring instrument. Each separately affects temperature "
+        "uncertainty."))
+    b.append(fig(31, F.fig(31), "en"))
+    b.append(h4("The Principal Thermocouple"))
+    b.append(p(
+        "Calibration of principal thermocouples is performed by immersing the vicinity of the "
+        "measuring junction in the isothermal region of a bath or oven [37]. Several compact "
+        "dry-well calibrators available are convenient for calibration at the job site [38]. "
+        "Fixed-point cells, liquid baths, and fluidized solid beds can be more accurate and are "
+        "widely used in the calibration laboratory [39]. Sufficient depth of immersion into an "
+        "isothermal calibration zone, usually at least 10 to 20 times the probe diameter, ensures "
+        "that conduction of heat along the thermocouple from the environment does not affect the "
+        "junction temperature. The appropriate concern for the effect of longitudinal heat "
+        "conduction on measuring junction temperature has led to the misperception that it is the "
+        "junction that is being calibrated [30]. Clearly, thermocouple calibration is not of the "
+        "measuring junction; it is of unidentified segments of thermoelements, remote from the "
+        "measuring junction, only where they enter the isothermal calibration zone through a "
+        "temperature transition. Segments of service-induced inhomogeneity that seriously degrade "
+        "measurement accuracy are often placed, during unsuccessful attempted recalibration, within "
+        "the isothermal region where they contribute no Seebeck emf, so inhomogeneity is not "
+        "discovered. The act of calibration at temperatures above 400°C can actually induce "
+        "inhomogeneity and degrade accuracy [9, 10]. Not even costly “NIST-traceable” calibration "
+        "and certification by competent calibration laboratories, without specific assurance of "
+        "homogeneity, are a guarantee of accuracy at any level."))
+    b.append(h4("Commercial Tolerances"))
+    b.append(p(
+        "Standardized tolerances for new thermocouple materials are established by the formal "
+        "consensus judgment of many experienced producers, users, and calibration standards "
+        "laboratories staff [10, 24, 28]. The tolerances include not only deviation from the "
+        "overall Seebeck properties, but also cover inevitable uncertainty from inhomogeneity and "
+        "irregular deviations from the smoothed standardized characteristic over small spans of "
+        "temperature. They apply to material as delivered and not exposed to excessive temperature. "
+        "The conservative tolerances for standard letter-designated thermocouple types as delivered "
+        "are usually reliable until the thermocouples are exposed too long to excessive "
+        "temperatures or adverse environments. Recalibration of used thermocouples without "
+        "separate assurance of homogeneity can be misleading [31]. To address calibration problems "
+        "presented by undiscovered inhomogeneity, two practices are common. For inexpensive base "
+        "metal thermocouples, it is presumed that unused thermocouples are homogeneous and uniform "
+        "within standardized tolerances. The typical Seebeck property of a production batch is "
+        "characterized by the manufacturer or user by calibrating one or more expended surrogate "
+        "samples. These are discarded after calibration. Their first-cycle calibration is taken as "
+        "representative of other thermocouples of the same batch. Used principal thermocouples that "
+        "have experienced drift are discarded. A commonplace second approach is recalibration. "
+        "This is usually in response to drift observed in service. Drift signals progressing "
+        "inhomogeneity. Apart from an authentic inhomogeneity prescreening, recalibration is not "
+        "recommended. Even widely promoted in situ recalibration of degraded thermocouples is "
+        "ineffective if temperature distribution will vary in use [31]. Platinum-based thermocouple "
+        "wire can be annealed full length by electrically heating in air [9–12]. Such annealed "
+        "thermoelements can be presumed to be free of reversible strain-induced inhomogeneity and, "
+        "thus, accurate recalibration might be justified. However, annealing cannot reverse "
+        "decalibration from the migration, absorption, or evaporation of alloy constituents or "
+        "other chemical contamination; therefore, recalibration, even of used precious metal "
+        "thermocouples, should be performed only where the likelihood of homogeneity is factually "
+        "based. Unlike base metal thermoelements, precious metal thermoelement materials often can "
+        "be reconditioned. Also, precious metals have a significant material salvage value if "
+        "recycled."))
+    b.append(h4("Extension Leads"))
+    b.append(p(
+        "Compensating extension leads, although Seebeck sources, usually are not calibrated. It is "
+        "commonly assumed that they will be exposed to only a small fraction of the temperature "
+        "span that is being measured and, if so, will contribute insignificantly to error. "
+        "Extension insulations are rated for continuous use to maximum temperatures between 105°C "
+        "and 540°C [43]. Seebeck characteristics might not be well approximated over this range [1, "
+        "10]. The possible contribution from extensions can be very large. The plausible error is "
+        "easily estimated using the model in “The Functional Model of Thermoelectric Circuits.” "
+        "The more usual consequential errors due to extension leads result from failure to "
+        "correctly control the temperatures of incidental splice junctions, as described in "
+        "“Practical Thermocouple Circuits”."))
+    b.append(h4("Reference Temperature Compensation"))
+    b.append(p(
+        "Modern thermocouple indicators usually provide internal reference junction temperature "
+        "compensation. A few make compensation a selectable alternative. The accuracy of reference "
+        "junction compensation, Figure 32.31(a), depends on the accuracy of the sensor(s), f, used "
+        "to monitor reference junction temperature of isothermal terminations, but also on the "
+        "conformity of the scaling algorithm or analog circuitry to the characteristic of the "
+        "individual thermocouple. The zone sensor determines the compensating voltage, E<sub>R</sub>. "
+        "Some monitors have replaceable isothermal terminal blocks that include the zone temperature "
+        "sensor. Most monitor designs unfortunately do not allow separate thermal calibration of "
+        "the reference temperature sensor. Simply shorting the indicator input terminals, b–d, "
+        "should produce a temperature indication near, and usually slightly above, ambient "
+        "temperature. Specifications claim reference uncertainty on the order of 0.1°C to 0.5°C "
+        "and error contributions usually are small but infrequently they have been very large and "
+        "insidiously progressive up to many times the standard thermocouple tolerances [35]."))
+    b.append(h4("Monitoring Instruments"))
+    b.append(p(
+        "The accuracy of conversion of the Seebeck voltage at terminals b–d to deduce the "
+        "temperature T<sub>c</sub> requires calibration of the monitoring instrument. Both the "
+        "accuracy of voltage measurement and of linearization are sources of uncertainty. The "
+        "scaling accuracy is based on an approximation of the defining E(<i>T</i>), and not on the "
+        "individual thermocouple characteristic. Instrument designs are varied. The general "
+        "principles of authentic calibration required to approach 0.1°C uncertainty for a "
+        "thermocouple indicator that provides internal reference temperature compensation are "
+        "illustrated with the circuit of Figure 32.31(b). A thermocouple simulator/calibrator "
+        "supplies a well-known voltage E<sub>S</sub> that corresponds, for the standard "
+        "thermocouple type, to a desired temperature calibration point. The simulator must remain "
+        "in thermal equilibrium during calibration, with irrelevant Seebeck voltage properly "
+        "nulled. If the input resistance of the indicator is very large, resistance matching of the "
+        "simulator to the thermocouple is not required. If the indicator has a low input resistance "
+        "or it internally produces current <i>i</i> when its terminals b–d are shorted, then a "
+        "temperature error proportional to the indicator current and the loop resistance will be "
+        "experienced. For accuracy with such indicators, the simulator R<sub>S</sub> must also "
+        "mimic the source resistance of the individual thermocouple (R<sub>A</sub> + "
+        "R<sub>B</sub>). However, that thermocouple loop resistance may vary considerably in "
+        "application as it depends on the temperature distribution around the thermocouple over a "
+        "broad range of temperatures. The input terminals of the indicator are b and d. For "
+        "accurate calibration, it is essential that T<sub>b</sub> = T<sub>d</sub> = T<sub>z</sub>. "
+        "Some indicators and reference temperature compensators connect the isothermal zone block "
+        "to the terminals with compensating thermocouple leads. For these, if T<sub>b</sub> ≠ "
+        "T<sub>d</sub> ≠ T<sub>z</sub>, an indefinite error results that cannot be overcome by "
+        "calibration. The simulator voltage must imitate the behavior of only the thermocouple, "
+        "b–c–d. The voltage it must provide depends on whether or not the indicator supplies "
+        "internal reference temperature compensation. If T<sub>b</sub> = T<sub>d</sub> = "
+        "T<sub>z</sub>, the proper total Seebeck voltage is E<sub>S</sub> = E<sub>AB</sub>"
+        "(T<sub>c</sub>) − E<sub>AB</sub>(T<sub>z</sub>). If the indicator does not apply "
+        "compensation E<sub>R</sub>, then the simulator must provide E<sub>S</sub> = "
+        "E<sub>AB</sub>(T<sub>c</sub>) − E<sub>AB</sub>(T<sub>z</sub>). If the indicator does "
+        "apply E<sub>R</sub>, then the simulator must supply only E<sub>S</sub> = "
+        "E<sub>AB</sub>(T<sub>c</sub>). This requires that the internal T<sub>z</sub> of the "
+        "indicator be accurately known by the simulator. Some simulators allow setting a presumed "
+        "T<sub>z</sub> in calibration. Those that do not cannot be used directly without error for "
+        "calibration of the commonplace reference temperature compensating indicators. Many "
+        "convenient thermocouple instrument calibrators allow setting the desired calibration by "
+        "temperature rather than by voltage for standardized thermocouple types. This convenience "
+        "introduces an additional nonlinear scaling and only approximate conformity to the standard "
+        "characteristic."))
+    return "".join(b)
+
+
+def _t3215(lang):
+    vi = lang == "vi"
+    hd = (["Kiểu", "0,025", "0,127", "0,254", "0,406", "0,813", "1,600", "3,175"] if vi else
+          ["Type", "0.025", "0.127", "0.254", "0.406", "0.813", "1.600", "3.175"])
+    rows = [
+        ("E", "290", "325", "370", "400", "510", "775", "855"),
+        ("J", "230", "275", "305", "350", "460", "600", "750"),
+        ("K, N", "690", "730", "790", "840", "950", "1095", "1250"),
+        ("T", "90", "110", "150", "185", "270", "370", "375"),
+    ]
+    cap = ("Bảng 32.15 · Giới hạn nhiệt độ trên cho các đường kính dây khác nhau "
+           "(mm / in. / AWG: 0,025 mm = 0,001 in. = AWG 50 … 3,175 mm = 0,125 in. = AWG 8). "
+           "Từ Tài liệu [1, 9, 13]." if vi else
+           "Table 32.15 · Temperature Upper Limits For Different Wire Diameters "
+           "(mm / in. / AWG: 0.025 mm = 0.001 in. = AWG 50 … 3.175 mm = 0.125 in. = AWG 8). "
+           "From References [1, 9, 13].")
+    return table(hd, rows, cap, small=True)
+
+
+def _t3216(lang):
+    vi = lang == "vi"
+    hd = (["Kiểu", "Giàu O₂", "Nghèo O₂", "Khử", "Chân không", "Ẩm",
+           "Dưới 0°C (vết)", "Lưu huỳnh", "Bức xạ nơtron"] if vi else
+          ["Type", "Oxygen rich", "Oxygen poor", "Reducing", "Vacuum", "Humid",
+           "Below 0°C traces", "Sulfur", "Neutron radiation"])
+    rows = [
+        ("B", "Good", "Good", "Poor", "Fair", "Good", "Poor", "Poor", "Fair"),
+        ("E", "Good", "Poor", "Poor", "Poor", "Good", "Good", "Poor", "Poor"),
+        ("J", "Fair", "Good", "Good", "Good", "Poor", "Poor", "Fair", "Poor"),
+        ("K", "Good", "Poor", "Poor", "Poor", "Good", "Fair", "Poor", "Good"),
+        ("N", "Good", "Fair", "Poor", "Poor", "Good", "Good", "Fair", "Good"),
+        ("R, S", "Good", "Good", "Poor", "Poor", "Good", "Fair", "Poor", "Poor"),
+        ("T", "Fair", "Fair", "Good", "Good", "Good", "Good", "Fair", "Poor"),
+    ]
+    cap = ("Bảng 32.16 · Khả năng chịu môi trường của các cặp nhiệt điện ký hiệu chữ cái. "
+           "Từ Tài liệu [1, 4, 9, 10, 43]." if vi else
+           "Table 32.16 · Environmental Tolerance of Letter Designated Thermocouples. "
+           "From References [1, 4, 9, 10, 43].")
+    return table(hd, rows, cap, small=True)
+
+
+def sec_32_4g_vi():
+    b = [h3("Hỏng và kiểm định cặp nhiệt điện", "Thermocouple Failure and Validation")]
+    b.append(p(
+        "Một phép đo cặp nhiệt điện đã thất bại khi các chỉ thị của nó vượt quá giới hạn độ "
+        "không đắc định yêu cầu cho một phép đo. Cặp nhiệt điện thỉnh thoảng hỏng “hở” khi các "
+        "mối nối tách rời hoặc các thân nhiệt điện bị ăn mòn, chảy dẻo, hoặc nóng chảy. Chỉ thị "
+        "“mạch hở” rõ ràng là một tính năng được quảng bá của nhiều bộ chỉ thị cặp nhiệt điện "
+        "hiện đại. Chỉ thị phổ biến này hữu ích, nhưng không phải là một chỉ thị đầy đủ về tính "
+        "toàn vẹn cặp nhiệt điện. Các hỏng mạch ít rõ ràng hơn nhưng thường gặp hơn là do sự rẽ "
+        "nhánh không rõ ràng, nối tắt, hoặc độ không đồng nhất tiến triển của các thân nhiệt điện. "
+        "Những cái này không được phát hiện bởi chỉ thị “mạch hở”. Việc chỉ thị liên tục một "
+        "nhiệt độ khả dĩ không phải là bằng chứng của phép đo nhiệt độ xác thực. Một sự rẽ nhánh "
+        "hoặc nối tắt điện deliberate hoặc accidental giữa các thân nhiệt điện ở nhiệt độ môi "
+        "trường gần một mối nối chuẩn bù điện tử nên dẫn đến một chỉ thị gần nhiệt độ môi trường, "
+        "không phải 0°C. Một sự hỏng cặp nhiệt điện do nối tắt trực tiếp giữa các thân nhiệt điện "
+        "ở một khoảng cách nào đó từ các mối nối đo hoặc chuẩn dự định có thể không bị phát hiện "
+        "vì nó xảy ra trong một vùng nhiệt độ rất khác với nhiệt độ chuẩn và nơi một phép đo "
+        "nhiệt độ hợp lệ hoặc khả dĩ có thể tiếp tục được thực hiện nhưng tại một vị trí không "
+        "liên quan, không mong đợi và không được nhận ra [35]. Trong một số tình huống, như trong "
+        "các môi trường thù địch có thể dự đoán, sự hỏng như vậy của một số cặp nhiệt điện trong "
+        "sử dụng là được dự báo trước. Nơi sự hỏng là do hư hại mạch cặp nhiệt điện, nó có thể "
+        "không rõ ràng ngay lập tức (hoặc bao giờ) nếu không có chẩn đoán mạch đặc biệt. Đối với "
+        "các tình huống nguy kịch như vậy, các mạch nhiệt điện đặc biệt và các phương pháp theo "
+        "dõi đã được phát triển để đánh giá tính toàn vẹn mạch tiếp tục, mặc dù không phải độ "
+        "chính xác, của đo nhiệt độ [35]."))
+    b.append(h4("Tương thích môi trường", "Environmental Compatibility"))
+    b.append(p(
+        "Một cân nhắc hàng đầu trong chọn lựa cặp nhiệt điện là sự tương thích của các thân nhiệt "
+        "điện với vỏ bảo vệ của chúng và của cả hai thân nhiệt điện với môi trường đo. Các thân "
+        "nhiệt điện phải được bảo vệ khỏi các môi trường ăn mòn và chất lỏng hoặc rắn dẫn điện "
+        "gây rẽ nhánh. Chất cách điện nhựa, gốm, hoặc sợi, các vỏ kim loại, và các giếng nhiệt "
+        "được dùng để phục vụ chức năng này nhưng có thể hỏng trong sử dụng [1, 9–12, 25]. Vật "
+        "liệu cách điện dạng hạt nén của cặp nhiệt điện kim loại bọc cách nhiệt khoáng, nếu bị "
+        "lộ, nhanh chóng hấp thụ độ ẩm có thể làm suy giảm nghiêm trọng sự cách ly điện trở [1, "
+        "10–12]. Khi cắt, các đầu vỏ cặp nhiệt điện MIMS phải được bịt kín lại nhanh chóng để "
+        "tránh hấp thụ độ ẩm. Chất cách điện sợi và hạt dễ bị nhiễm bẩn và có thể làm suy giảm "
+        "độ chính xác [1, 10]."))
+    b.append(h4("Tiếp xúc nhiệt độ", "Temperature Exposure"))
+    b.append(p(
+        "Các biến môi trường không thể tránh khỏi trong đo nhiệt độ là nhiệt độ và thời gian. "
+        "Mặc dù các thân nhiệt điện có thể không bị ảnh hưởng rõ rệt bởi một môi trường, hệ số "
+        "Seebeck có thể bị suy giảm đáng kể. Ngay cả nếu chỉ một lớp bề mặt rất mỏng của một "
+        "thân nhiệt điện bị biến đổi, hệ số Seebeck cũng có thể thay đổi. Các đặc tính có thể bị "
+        "suy giảm bởi sử dụng trong thời gian dài, ở nhiệt độ cực đoan, và trong các môi trường "
+        "bất lợi [1, 9–12]. Vì những lý do này, ứng dụng nên giới hạn trong các giới hạn nhiệt "
+        "độ được đề xuất (Bảng 32.15). Hiệu chuẩn nên được thực hiện nhanh chóng, chỉ cho phép "
+        "thời gian để cân bằng, và chỉ đến nhiệt độ tối đa của sử dụng dự định. Sự suy giảm, "
+        "quan sát trong sử dụng như sự không ổn định hoặc trôi, nhất thiết là triệu chứng của độ "
+        "không đồng nhất đang tiến triển [30, 31]. Sự tiếp xúc quá mức kéo dài một mình có thể "
+        "nhanh chóng làm suy giảm một thân nhiệt điện. Các điểm nóng chảy xác định giới hạn "
+        "nhiệt độ tuyệt đối trên của sử dụng cặp nhiệt điện. Tuy nhiên, dưới giá trị xác định "
+        "này, có các giới hạn ứng dụng vô hạn mà tại đó độ ổn định có thể bị giảm đáng kể [1, "
+        "9–12]. Các bảng cặp nhiệt điện chuẩn chỉ mở rộng đến nhiệt độ lớn nhất của sử dụng đề "
+        "xuất cho các môi trường bảo vệ lành tính, thời gian ngắn, và cho vật liệu dây có đường "
+        "kính 3 mm hoặc lớn hơn [1, 9, 10]. Các giới hạn nhiệt độ giảm đáng kể áp dụng cho vật "
+        "liệu có tiết diện nhỏ hơn, Bảng 32.14 [1]. Các cặp nhiệt điện có tiết diện nhỏ hơn suy "
+        "giảm nhanh hơn. Các dung sai chuẩn chỉ áp dụng cho vật liệu khi được sản xuất."))
+    b.append(h4("Môi trường hóa học", "Chemical Environment"))
+    b.append(p(
+        "Có các hướng dẫn rộng cho sự tương thích môi trường. Các khuyến nghị này có điều kiện và "
+        "phụ thuộc nghiêm ngặt vào nhiều đặc thù của sự tiếp xúc. Một tóm tắt ngắn gọn về các "
+        "đặc tính tương thích môi trường được cho trong Bảng 32.16. Các tài liệu tham khảo nên "
+        "được tham khảo để có thông tin tương thích chi tiết [1, 4, 9, 22, 23]. Nhiều danh mục "
+        "cặp nhiệt điện bao gồm các bảng các môi trường hóa học thường chịu đựng được cho các "
+        "thân nhiệt điện hoặc vật liệu giếng nhiệt [19, 20]. Kinh nghiệm dịch vụ khi làm việc với "
+        "khách hàng trong nhiều môi trường quy trình đa dạng đôi khi cho phép các nhà sản xuất tư "
+        "vấn cho người dùng về các vấn đề tương thích đặc biệt. Thường, sự phù hợp trong một "
+        "dịch vụ cụ thể chỉ có thể được bảo đảm bằng thử nghiệm."))
+    b.append(h4("Biến đổi luyện kim", "Metallurgical Change"))
+    b.append(p(
+        "Các thân nhiệt điện hợp kim có thể thay đổi thành phần cục bộ bằng sự bay hơi các thành "
+        "phần khi tiếp xúc với chân không. Các thành phần hợp kim bay hơi từ một vỏ hoặc từ một "
+        "thân nhiệt điện có thể bám và phủ các thân nhiệt điện kề cận ngay cả qua chất cách điện "
+        "[1, 9–12, 24, 30, 31]. Các thành phần hợp kim có thể di chuyển từ thân nhiệt điện này "
+        "sang thân nhiệt điện kia qua mối nối đo. Các vết nhiễm bẩn có thể xuyên qua các lỗ kim "
+        "và vết nứt tóc và thực sự có thể khuếch tán qua các vỏ bảo vệ còn nguyên vẹn. Các tạp "
+        "chất vi lượng trong vỏ hoặc vật liệu cách điện có thể tương tác với các thân nhiệt điện. "
+        "Việc xây dựng MIMS và chọn vật liệu thích hợp thường kéo dài tuổi thọ và tăng giới hạn "
+        "nhiệt độ, nhưng sự hư hại có thể xảy ra ngay cả trong các cụm có vẻ hoàn toàn được bọc "
+        "[34]. Ứng suất quá mức có thể thay đổi đáng kể cục bộ hệ số Seebeck của một hoặc cả hai "
+        "thân nhiệt điện dẫn đến độ không đồng nhất. Sự ứng suất rất cục bộ, như do các uốn cong "
+        "sắc, thường có ít tác động đến đo nhiệt độ thực tế."))
+    b.append(_t3215("vi"))
+    b.append(_t3216("vi"))
+    b.append(h3("Thu thập dữ liệu", "Data Acquisition"))
+    b.append(h4("Các bộ chỉ thị cặp nhiệt điện", "Thermocouple Indicators"))
+    b.append(p(
+        "Nhà thiết kế dụng cụ có thể che chở người dùng khỏi nhiều chi tiết phiền toái làm phức "
+        "tạp phép đo cho những người tiên phong cặp nhiệt điện. Độ phân giải tín hiệu mức "
+        "microvolt, điện trở đầu vào cao, độ ổn định, giảm nhiễu, tỷ lệ phi tuyến, và bù nhiệt độ "
+        "mối nối chuẩn giờ đây được cung cấp thường quy để cho phép người dùng tập trung vào phép "
+        "đo hơn là vào các chi tiết của chỉ thị hoặc ghi chép nó. Một số bộ chỉ thị cặp nhiệt điện "
+        "cầm tay và chỉ chứa một cặp nhiệt điện duy nhất và chỉ của một kiểu duy nhất. Một vài bộ "
+        "cung cấp đầu vào kép cặp nhiệt điện và cho phép đo nhiệt độ hiệu trực tiếp mà bù mối nối "
+        "chuẩn không được áp dụng trực tiếp. Các đơn vị để bàn khác chứa được nhiều đầu vào cặp "
+        "nhiệt điện cùng kiểu hoặc hỗn hợp cặp nhiệt điện và các kiểu cảm biến khác. Độ chính xác "
+        "dụng cụ được claim có thể đánh lừa người đọc qua loa. Mặc dù nhiều dụng cụ được cung "
+        "cấp đầy đủ với một đầu dò cặp nhiệt điện, một số quy định độ chính xác chỉ mô tả độ "
+        "chính xác của đo điện áp đầu cuối đầu vào. Độ chính xác dụng cụ thực tế nên được xác định "
+        "bằng hiệu chuẩn điện (xem phần “Hiệu chuẩn”). Thỉnh thoảng, sai số của dụng cụ chỉ thị "
+        "trở nên lớn hơn đáng kể so với quy định do trôi bù mối nối chuẩn, offset, hoặc gain. Độ "
+        "không đắc định bổ sung của hiệu chuẩn cặp nhiệt điện, Bảng 32.13, và sự khác biệt thường "
+        "lớn hơn giữa nhiệt độ mối nối đo và nhiệt độ thực của vật được đo, không thể bao gồm vì "
+        "cái sau được chi phối bởi các chi tiết của truyền nhiệt và đáp ứng nhiệt quá độ."))
+    b.append(h4("Các bộ truyền cặp nhiệt điện", "Thermocouple Transmitters"))
+    b.append(p(
+        "Một dạng ít quen thuộc hơn của điều chế tín hiệu cặp nhiệt điện, bộ truyền cặp nhiệt "
+        "điện, rất phổ biến trong các ngành công nghiệp quy trình [4, 39]. Hầu hết các bộ truyền "
+        "cặp nhiệt điện hai dây (không phải bộ truyền vô tuyến RF) là các thiết bị kênh đơn thực "
+        "hiện bù mối nối chuẩn, tuyến tính hóa, và cách ly, và truyền thông tin điều chế đến một "
+        "vị trí theo dõi từ xa [1]. Bộ truyền chuyển đổi suất điện động Seebeck được tỷ lệ theo "
+        "nhiệt độ thành một tín hiệu tương tự để truyền dây qua các đường dài đến một vị trí ghi "
+        "hoặc theo dõi từ xa. Các bộ điều chế tín hiệu đơn cảm biến nhỏ gọn và rẻ tiền như vậy có "
+        "sẵn được chuyên biệt hóa cho hầu hết các biến quy trình. Các bộ truyền cặp nhiệt điện rất "
+        "thích hợp để theo dõi các nhiệt độ thay đổi chậm tại các vị trí theo dõi xa mối nối đo. "
+        "Nhiều bộ được cách ly điện vì an toàn. Một số được thích nghi để sử dụng với hệ thống "
+        "lắp ray DIN. Một bộ truyền có thể được lắp gần mỗi cặp nhiệt điện. Một số đủ nhỏ để lắp "
+        "trong đầu nối của một giếng nhiệt. Tín hiệu truyền có thể có dạng điều chế dòng hoặc điều "
+        "chế áp theo các chuẩn ISA. Bộ truyền kiểu dòng điều chế nhiệt độ, tỉ lệ với nhiệt độ, một "
+        "dòng dc cung cấp từ vị trí theo dõi. Tín hiệu nằm trong khoảng từ 4 mA đến 20 mA. Bộ "
+        "truyền kiểu dòng truyền thông tin qua những khoảng cách lớn mà không có sự mất áp đi "
+        "kèm với truyền áp đường dài. Một số bộ truyền kiểu áp điều chế một điện áp cung cấp trên "
+        "khoảng từ 1 Vdc đến 5 Vdc. Offset và tỷ lệ cho một số được điều chỉnh tại bộ truyền. "
+        "Một số bộ truyền giờ đây có đầu đọc số tại chỗ, và tỷ lệ và offset có thể được điều "
+        "chỉnh từ xa [4, 39]."))
+    b.append(h4("Ghi chép", "Recording"))
+    b.append(p(
+        "Một số bộ ghi dữ liệu cặp nhiệt điện đa kênh giờ đây dùng pin để sử dụng độc lập và nhỏ "
+        "gọn đủ để cầm tay [41]. Một số bộ ghi đơn giản giờ đây có giá dưới 200 USD. Các đơn vị "
+        "tinh vi hơn chứa được nhiều cặp nhiệt điện cùng kiểu hoặc hỗn hợp. Các bộ ghi dữ liệu số "
+        "lớn hơn với bộ ghép kênh tuần tự lấy mẫu đầu ra từ các cặp nhiệt điện cá thể có thể chứa "
+        "đến vài trăm đầu vào và có thể ghi hỗn hợp cả tín hiệu cặp nhiệt điện và tín hiệu khác ở "
+        "các khoảng lấy mẫu có thể lập trình từ vài miligiây đến vài giờ hoặc ngày. Sự chuyển "
+        "mạch ba dây mong muốn giữa các cặp nhiệt điện là phổ biến. Các máy tính cá nhân giờ đây "
+        "chứa được các bo mạch thu thập dữ liệu số nội bộ rẻ tiền có thể chuyển đổi máy tính "
+        "thành một hệ thống ghi nhiệt độ độ phân giải cao. Máy tính xách tay có thể chấp nhận các "
+        "thẻ cắm PCMCIA cỡ lòng bàn tay đặc biệt cho đầu vào cặp nhiệt điện đa kênh. Các hệ thống "
+        "thu thập dữ liệu dựa trên máy tính số với phần mềm chuyên biệt cho thu thập, phân tích, "
+        "và trình bày dữ liệu, cho phép người dùng áp dụng bù nhiệt độ mối nối chuẩn đặc biệt, "
+        "tuyến tính hóa tùy chỉnh các hàm tỷ lệ cặp nhiệt điện cho cả hiệu chuẩn chuẩn hoặc cá "
+        "thể và của các kiểu cặp nhiệt điện đặc biệt. Các hệ thống cặp nhiệt điện dựa trên máy "
+        "tính với phần mềm thương mại thu thập dữ liệu và khác thích hợp, cung cấp cho thiết kế "
+        "thí nghiệm, dự đoán, thu thập dữ liệu, quản lý thông tin, phân tích, báo cáo, lưu trữ, "
+        "và truyền thông trong một máy tính xách tay nhỏ gọn, có thể triển khai hiện trường [42]."))
+    b.append(h3("Truyền tín hiệu", "Signal Transmission"))
+    b.append(p(
+        "Chiều dài của cặp nhiệt điện chính nên càng ngắn càng khả thi. Các thân nhiệt điện nên "
+        "liên tục giữa mối nối đo và mối nối chuẩn để có độ chính xác tốt nhất, nhưng các cáp nối "
+        "dài có thể được dùng nếu cần (xem phần “Mạch cặp nhiệt điện thực tế”). Trong các thí "
+        "nghiệm hiện trường và trong giám sát quy trình, việc ghi chép có thể cách mối nối đo "
+        "hàng trăm mét. Có một số khả năng thỏa đáng cho truyền tín hiệu qua những khoảng cách "
+        "lớn."))
+    b.append(h4("Cáp nối dài", "Extension Cable"))
+    b.append(p(
+        "Các cáp nối dài nhiệt điện khớp và bù (xem phần “Mạch cặp nhiệt điện thực tế”) có sẵn "
+        "trong nhiều cấu tạo và chất cách điện [4, 43]. Một cáp nối dài, như một đường truyền, có "
+        "thể là một cặp nhiệt điện xoắn đôi đơn hoặc một cáp đa cặp được thiết kế để triệt tiêu cả "
+        "nhiễu điện tĩnh và điện từ và để bảo vệ môi trường. Trong khi dây nối dài cách điện "
+        "không bọc kém rẻ tiền có sẵn, trong tình huống phổ biến nơi nhiễu điện có khả năng xảy "
+        "ra, mỗi dây nối dài nên là một cặp xoắn đôi cách điện, được bọc riêng, và xoắn. Nơi một "
+        "số cặp nối dài từ một cụm các cặp nhiệt điện gần nhau kéo dài đến một bộ ghi từ xa, cáp "
+        "nhiệt điện đa cặp có sẵn thêm một lớp che chắn tĩnh điện tổng thể, gia cố tăng cường cơ "
+        "học, và một áo khoác môi trường bền để bảo vệ khỏi hư hại cơ học và xâm nhập hóa học "
+        "trong các môi trường quy trình khắc nghiệt [4, 42]. Việc nối dài nhiệt điện công phu như "
+        "vậy đắt hơn cáp dụng cụ đồng; do đó, các hệ thống truyền thay thế nên được xem xét. Việc "
+        "sử dụng đúng cách cáp dụng cụ đồng xoắn đôi làm dây nối trung tính, kéo dài từ bù nhiệt "
+        "độ mối nối chuẩn bên ngoài, có thể đủ và rẻ hơn các dây nối nhiệt điện. Cáp dụng cụ xoắn "
+        "đôi có chất lượng cao hơn cũng có thể cải thiện độ trung thực tín hiệu trong đo nhiệt độ "
+        "quá độ. Đối với các dây nối trung tính như vậy, chỉ nên dùng cặp đồng rắn không mạ cách "
+        "điện dụng cụ vì độ dày mạ không đều có thể dẫn đến độ không đồng nhất phân bố không đều "
+        "và gây nhiễu suất điện động Seebeck. Cáp dụng cụ đồng trục thông thường không bao giờ "
+        "được dùng làm dây nối nhiệt điện trung tính dài vì lớp bện ngoài và dây dẫn tâm có hệ số "
+        "Seebeck rất khác nhau. Nếu không ở nhiệt độ đồng nhất, cáp có thể là một nguồn đáng kể "
+        "của nhiễu suất điện động Seebeck. Các dây nối nhiệt điện và các cụm “pigtailed” nên "
+        "được kiểm tra toàn chiều dài để tìm các mối nối ẩn giữa các thân nhiệt điện ghép nối hơi "
+        "không khớp và các mối ghép cặp cố ý nhưng ẩn, được làm sai với cực tính bị đảo [10]. Cho "
+        "một nguồn nhiệt hẹp đi dọc toàn bộ chiều dài cáp, trong khi theo dõi các bước nhảy cục "
+        "bộ của đầu ra gần các mối nối không chủ định đó, bằng một bộ chỉ thị cặp nhiệt điện. "
+        "Phép thử này rất hiệu quả để xác định chính xác các mối nối ẩn. Nó không thử nghiệm độ "
+        "không đồng nhất [10, 30]."))
+    b.append(h4("Truyền vô tuyến", "Wireless Transmission"))
+    b.append(p(
+        "Trong một số tình huống, truyền dây đồng kém hiệu quả, đắt hơn, hoặc kém tiện lợi hơn "
+        "các phương pháp vô tuyến. Một số hệ thống thu thập dữ liệu vô tuyến giá rẻ (không phải "
+        "bộ truyền cặp nhiệt điện) giờ đây được thích nghi để kết hợp thu thập dữ liệu cặp nhiệt "
+        "điện và truyền tín hiệu từ xa [44]. Các modem vô tuyến truyền dữ liệu từ một vị trí đo "
+        "đến các vị trí ghi cách xa đến 5 km. Hầu hết cung cấp truyền phổ trải rộng không đòi hỏi "
+        "giấy phép thông tin liên lạc. Truyền dữ liệu vô tuyến có thể đặc biệt kinh tế ở nơi "
+        "khoảng cách giữa mối nối đo và bộ ghi lớn, khi nhiều cặp nhiệt điện phải được ghi, khi ít "
+        "thời gian thiết lập sẵn cho cáp hiện trường, và nơi thiết lập đo phải thỉnh thoảng di "
+        "chuyển. Một số hệ thống kết hợp ghi dữ liệu và thông tin vô tuyến trong một đơn vị duy "
+        "nhất. Các hệ thống khác đòi hỏi sử dụng một bộ truyền cặp nhiệt điện, một bộ ghi dữ "
+        "liệu, và modem vô tuyến để tạo thành một hệ thống. Cáp sợi quang với các bộ phát thu "
+        "điện-quang có thể được dùng cho truyền cáp không nhiễu điện qua khoảng cách dài giữa "
+        "điều chế tín hiệu cục bộ tại cặp nhiệt điện và một bộ ghi hoặc theo dõi từ xa."))
+    b.append(h3("Các nguồn thông tin ứng dụng cặp nhiệt điện",
+                "Sources of Thermocouple Application Information"))
+    b.append(h4("Các bài báo kỹ thuật", "Technical Papers"))
+    b.append(p(
+        "Các nguồn tập trung và rộng nhất của các bài báo kỹ thuật được bình duyệt đề cập đến đo "
+        "nhiệt độ cặp nhiệt điện là các kỷ yếu nối tiếp của một hội nghị quốc tế mười năm một lần "
+        "về nhiệt độ [25]. Sáu tập đến nay là một nguồn phong phú và đáng tin cậy của dữ liệu ứng "
+        "dụng. Các kỷ yếu của các hội nghị thường niên của ISA và NCSL cũng có một vài bài báo mô "
+        "tả các phát triển hiện tại trong đo nhiệt độ. Tài liệu [26] có dữ liệu nhiệt điện về sự "
+        "đa dạng rộng nhất của các vật liệu thông dụng và không chuẩn. Các bài báo hiện tại dành "
+        "riêng, không phải ngẫu nhiên, cho các cặp nhiệt điện thì hiếm và được phân bố rộng rãi "
+        "qua các tạp chí thương mại và các tạp chí của các hội nghề nghiệp. Các chi tiết thiết yếu "
+        "của đo nhiệt độ cặp nhiệt điện thường được mô tả (nghèo nàn) chỉ ngẫu nhiên trong các "
+        "báo cáo của các nghiên cứu thực nghiệm. Một số nhà sản xuất phát hành các tạp chí kỹ "
+        "thuật đăng ký chuyên về đo nhiệt độ [45]. Một tạp chí đo lường thường xuyên công bố các "
+        "bài về đo nhiệt độ ứng dụng và, hàng năm trong số tháng Sáu, công bố một thư mục rộng "
+        "các nhà sản xuất vật liệu cặp nhiệt điện và dụng cụ liên quan [46]. Thư mục bao gồm, cho "
+        "vài chục nhà sản xuất được liệt kê, các mô tả ngắn gọn về các sản phẩm được chọn và giá "
+        "cả hiện tại."))
+    b.append(h4("Sách, báo cáo và chuẩn", "Books, Reports, and Standards"))
+    b.append(p(
+        "Một chuyên khảo NIST rất chi tiết và có thẩm quyền là nguồn chính cho các đặc tính "
+        "Seebeck và đặc tính vật lý của các cặp nhiệt điện ký hiệu chữ cái [9]. Các chuẩn của "
+        "ASTM và ISA chấp nhận các giá trị và bổ sung cho báo cáo NIST [10, 24]. Các chuẩn Mỹ "
+        "được xem xét và cập nhật ở các khoảng 5 năm hoặc ít hơn. ASTM cũng xuất bản các bảng trung "
+        "gian của suất điện động Seebeck cho một vài vật liệu phổ biến chưa được chuẩn hóa [10]. "
+        "Nhiều chuẩn được thu thập trong một tập duy nhất, được sửa đổi hàng năm, chuyên về đo "
+        "nhiệt độ [10]. Các bảng cặp nhiệt điện dạng giấy cứng từ các tập này giờ đây có sẵn "
+        "như các chương trình máy tính chức năng tính E(<i>T</i>) và T(E) của tài liệu NIST 175 "
+        "trên các dải, ở các khoảng, và trong các đơn vị do người dùng chọn [46]. Một sổ tay ứng "
+        "dụng cặp nhiệt điện toàn diện được ASTM xuất bản [1]. Nhiều nhà xuất bản thương mại phát "
+        "hành các sách tham khảo và giáo trình mới đề cập đến đo lường. Hầu hết bao gồm một phần "
+        "hoặc chương ngắn gọn mô tả các yếu tố trần của đo nhiệt độ cặp nhiệt điện. Một vài cuốn "
+        "dành toàn bộ một tập cho đo nhiệt độ. Có nhiều cách xử lý khoa học sâu hơn về nhiệt điện, "
+        "phần lớn trong văn hiến lịch sử [1, 11, 12]. Nhiều tổ chức chuẩn đồng thuận quốc gia và "
+        "quốc tế xuất bản các phương pháp thử nghiệm nhiệt điện và đặc trưng vật liệu [10, 21, "
+        "25]. Các chuẩn vừa mang tính hướng dẫn vừa là sự hình thức hóa các quy trình và vật "
+        "liệu. Các chuẩn ASTM và các chỉ mục của chúng giờ đây có sẵn ở định dạng tệp CD-ROM máy "
+        "tính. Một số chuẩn hiện có trên World Wide Web hoặc qua FAX. Các hội có ủy ban chuyên về "
+        "các chuẩn nhiệt điện giờ đây có các trang Web Internet (như http://www.isa.org và "
+        "astm.org) cung cấp thông tin về các chuẩn có sẵn và giải đáp các câu hỏi kỹ thuật trực "
+        "tuyến từ người dùng."))
+    b.append(h4("Các hội thảo", "Workshops"))
+    b.append(p(
+        "Hàng năm, có một số hội thảo xuất sắc kéo dài vài giờ hoặc vài ngày dành cho đo lường, "
+        "đo nhiệt độ, và thậm chí cặp nhiệt điện. Các hội nghề nghiệp như ISA, phối hợp với các "
+        "hội nghị đặc biệt hoặc các cuộc họp thường niên, trình bày các hội thảo hướng dẫn đặc "
+        "biệt. Một số được các nhà sản xuất cung cấp miễn phí. Các khóa học đo lường khác được "
+        "cung cấp bởi các chuyên gia đo lường độc lập. Các thông báo về các hội thảo này được đăng "
+        "trong các tạp chí kỹ thuật và thương mại."))
+    b.append(h4("Tài liệu thương mại", "Trade Literature"))
+    b.append(p(
+        "Rất nhiều tài liệu thương mại miễn phí, catalog, sổ tay, và quảng cáo Web mô tả phần cứng "
+        "cặp nhiệt điện và các sản phẩm thu thập dữ liệu. Một số nhà sản xuất phát hành các catalog "
+        "công phu về phần cứng liên quan đến cặp nhiệt điện, phần mềm, và sách [4]. Hầu hết bao "
+        "gồm tài liệu hướng dẫn. Một vài bao gồm các bản in lại kỹ thuật, thảo luận về nguyên lý "
+        "và thực hành, và trình bày các bảng mở rộng về đặc tính nhiệt điện và đặc tính vật lý "
+        "của vật liệu cặp nhiệt điện. Các chương trình demo và thông tin sản phẩm có sẵn từ các "
+        "nhà sản xuất trên CD-ROM và trên Internet. Có một số tạp chí thương mại liên quan đến đo "
+        "lường, khám phá các vấn đề và phát triển hiện tại, và được phân phối miễn phí cho những "
+        "người nhận đủ điều kiện."))
+    b.append(h3("Lưu ý", "Caveat"))
+    b.append(p(
+        "Độc giả được cảnh báo rằng toàn bộ văn liệu hiện hành và lịch sử về đo nhiệt độ nhiệt "
+        "điện, các bài báo hướng dẫn (kể cả bài này), các chuẩn, quy định, và lời khuyên từ các "
+        "“chuyên gia”, tất cả phải được nghiên cứu rất phê phán với một mô hình nhiệt điện xác "
+        "thực trong tâm trí. Ở mọi cấp độ tinh vi, từ quảng cáo đến lý thuyết nhiệt điện tinh vi "
+        "và tinh xảo nhất về toán học và vật lý, những hiểu lầm được truyền bá ngây thơ về các "
+        "hiệu ứng nhiệt điện là rất phổ biến."))
+    b.append(h3("Tóm tắt", "Summary"))
+    b.append(p(
+        "Hiệu ứng Seebeck có thể dùng để đo nhiệt độ với độ phân giải không gian và thời gian tốt "
+        "hơn, trên một dải nhiệt độ rộng hơn, trong các hình học đa dạng hơn, và với chi phí thấp "
+        "hơn hầu hết các cảm biến nhiệt điện khác. Sự linh hoạt đặc biệt của cặp nhiệt điện bảo "
+        "đảm rằng nó sẽ tiếp tục là phương tiện đo nhiệt độ được lựa chọn cho nhiều ứng dụng bất "
+        "chấp sự cạnh tranh từ một sự phong phú ngày càng tăng của các nhiệt kế đặc chủng thay "
+        "thế. Tuy nhiên, sự đơn giản có vẻ gạt gẫm của cặp nhiệt điện lý tưởng và sự tiện lợi cũng "
+        "như độ chính xác bề ngoài do các dụng cụ điều chế tín hiệu hiện đại có thể gạt gẫm. Ứng "
+        "dụng đúng đắn thì đơn giản. Được dùng đúng trong các giới hạn của nó, cặp nhiệt điện có "
+        "khả năng đo nhiệt độ chính xác và tin cậy. Được hiểu sai, cặp nhiệt điện dễ bị ứng dụng "
+        "sai và sai số không rõ ràng nhưng rất đáng kể. Bản tổng quan phòng ngừa này đã mô tả các "
+        "cạm bẫy và cách tránh chúng trong thực hành cặp nhiệt điện. Nó có thể cung cấp cho độc "
+        "giả tiếp nhận một cơ sở xác thực để sử dụng có hiểu biết ngay cả các mạch nhiệt điện nối "
+        "tiếp và tổng quát phức tạp nhất trong thiết kế mạch, các ứng dụng đa dạng, đặc biệt "
+        "trong đo nhiệt độ. Mô hình chức năng đơn giản được trình bày ở đây (và có thể đòi hỏi "
+        "một số nghiên cứu) đã được cố ý chế tác để giúp người dùng phân biệt rõ thông tin xác "
+        "thực khỏi thông tin gạt gẫm, và để giúp đánh giá các thiết kế và quy định của các nhà "
+        "sản xuất sản phẩm nhiệt điện."))
+    return "".join(b)
+
+
+def sec_32_4g_en():
+    b = [h3("Thermocouple Failure and Validation")]
+    b.append(p(
+        "A thermocouple measurement has failed when its indications are beyond uncertainty limits "
+        "required for a measurement. Thermocouples sometimes fail “open” as junctions separate or "
+        "thermoelements corrode, yield, or melt. Explicit “open circuit” indication is a promoted "
+        "feature of many modern thermocouple indicators. This popular indication is useful, but is "
+        "not an adequate indicator of thermocouple integrity. The more common but less apparent "
+        "circuit failures are by inobvious shunting, shorting, or progressing inhomogeneity of "
+        "thermoelements. These are not detected by the “open circuit” indication. The continual "
+        "indication of a plausible temperature is not proof of authentic temperature measurement. A "
+        "deliberate or accidental electrical shunting or direct short between thermoelements at "
+        "ambient temperature local to an electronic compensating reference junction should result in "
+        "an indication near ambient temperature, not 0°C. A thermocouple failure resulting from "
+        "direct shorting between thermoelements at some distance from the intended measuring or "
+        "reference junctions can go undetected because it occurs in a temperature region that is "
+        "very different from the reference temperature and where a valid or plausible temperature "
+        "measurement can continue to be made but at an irrelevant and unexpected and unrecognized "
+        "location [35]. In some situations, as in predictably hostile environments, such failure of "
+        "some thermocouples in service is anticipated. Where the failure is because of thermocouple "
+        "circuit damage, it may not be evident immediately (or ever) without special circuit "
+        "diagnostics. For such critical situations, special thermoelectric circuits and monitoring "
+        "methods have been developed to assess the continued circuit integrity, although not the "
+        "accuracy, of thermometry [35]."))
+    b.append(h4("Environmental Compatibility"))
+    b.append(p(
+        "A primary consideration in thermocouple selection is compatibility of the thermoelements "
+        "with their protective enclosures and of both thermoelements with the environment of "
+        "measurement. Thermoelements must be protected from corrosive environments and electrically "
+        "conductive fluid or solid shunts. Plastic, ceramic, or fiber insulators, metallic sheaths, "
+        "and thermowells are intended to serve this function but may fail in service [1, 9–12, 25]. "
+        "The compressed granular insulation of mineral-insulated, metal-sheathed thermocouples, if "
+        "exposed, rapidly absorbs moisture that can seriously degrade resistive isolation [1, "
+        "10–12]. When cut, ends of MIMS thermocouple sheaths must be quickly resealed to avoid "
+        "moisture absorption. Fiber and bead insulators are easily contaminated and can degrade "
+        "accuracy [1, 10]."))
+    b.append(h4("Temperature Exposure"))
+    b.append(p(
+        "The unavoidable environmental variables in thermometry are temperature and duration. "
+        "Although thermoelements may not be visibly affected by an environment, the Seebeck "
+        "coefficient might be substantially degraded. Even if only a very thin surface layer of a "
+        "thermoelement is modified, the Seebeck coefficient could be changed. The properties can be "
+        "degraded by use for a long period of time, at extreme temperatures, and in adverse "
+        "environments [1, 9–12]. For these reasons, application should be limited to within the "
+        "suggested temperature limits (Table 32.15). Calibration should be performed quickly, "
+        "allowing time only for equilibration, and only to the maximum temperature of intended use. "
+        "Degradation, observed in use as instability or drift, is necessarily a symptom of "
+        "progressing inhomogeneity [30, 31]. Sustained excessive temperature alone can quickly "
+        "degrade a thermoelement. Melting points define the absolute upper temperature range of "
+        "thermocouple use. However, below this definite value, there are indefinite application "
+        "limits at which stability might be substantially reduced [1, 9–12]. Standard thermocouple "
+        "tables extend only to the greatest temperature of recommended use for benign protected "
+        "environments, short durations, and for wire materials of 3 mm or greater diameter [1, 9, "
+        "10]. Significantly reduced temperature limits apply for materials of smaller cross-section, "
+        "Table 32.14 [1]. The thermocouples of smaller cross-section degrade more quickly. The "
+        "standard tolerances apply only to material as manufactured."))
+    b.append(h4("Chemical Environment"))
+    b.append(p(
+        "There are broad guidelines for environmental compatibility. These recommendations are "
+        "conditional and critically depend on many specifics of exposure. A concise summary of "
+        "environmental compatibility characteristics is given in Table 32.16. The references should "
+        "be consulted for detailed compatibility information [1, 4, 9, 22, 23]. Many thermocouple "
+        "catalogs include tables of usually tolerable chemical environments for thermoelements or "
+        "thermowell materials [19, 20]. Service experience in working with customers in a wide "
+        "variety of process environments sometimes enables manufacturers to advise users on special "
+        "problems of compatibility. Often, suitability in a particular service can be assured only "
+        "by trial."))
+    b.append(h4("Metallurgical Change"))
+    b.append(p(
+        "Alloyed thermoelements can locally change composition by evaporation of constituents when "
+        "exposed to vacuum. Alloy constituents evaporated from a sheath or from one thermoelement "
+        "can deposit and coat adjacent thermoelements even through insulators [1, 9–12, 24, 30, "
+        "31]. Alloy components can migrate from one thermoelement to the other through the "
+        "measuring junction. Traces of contaminants can penetrate through pinholes and hairline "
+        "cracks and can actually diffuse through intact protective sheaths and affect apparently "
+        "isolated thermoelements. Minute trace impurities in sheaths or insulating materials can "
+        "interact with thermoelements. Appropriate MIMS construction and material selection usually "
+        "extends life and increases temperature limits, but damage can occur even within apparently "
+        "fully sheathed assemblies [34]. Excessive strain can locally substantially modify the "
+        "Seebeck coefficient of one or both thermoelements resulting in inhomogeneity. Very "
+        "localized strain, as introduced by sharp bends, usually has little effect on practical "
+        "thermometry."))
+    b.append(_t3215("en"))
+    b.append(_t3216("en"))
+    b.append(h3("Data Acquisition"))
+    b.append(h4("Thermocouple Indicators"))
+    b.append(p(
+        "The instrument designer can shelter the user from many troublesome details that "
+        "complicated measurement for thermocouple pioneers. Microvolt-level signal resolution, high "
+        "input resistance, stability, noise reduction, nonlinear scaling, and reference temperature "
+        "compensation are now routinely provided to allow the user to focus on the measurement "
+        "rather than on details of its indication or recording. Some thermocouple indicators are "
+        "hand-held and accommodate only a single thermocouple and only of a single type. A few "
+        "provide dual thermocouple inputs and allow direct differential temperature measurement for "
+        "which reference junction compensation must not be directly applied. Other bench-top units "
+        "accommodate several thermocouple inputs of the same or of intermixed thermocouple and other "
+        "sensor types. Claimed instrument accuracy could mislead the casual reader. Although many "
+        "instruments are supplied complete with a thermocouple probe, some accuracy specifications "
+        "describe only the accuracy of input terminal voltage measurement. The actual instrument "
+        "accuracy should be determined by electrical calibration (see “Calibration” section). "
+        "Occasionally, the error of the indicating instrument becomes substantially greater than "
+        "specified due to drift of reference compensation, offset, or gain. The additional "
+        "uncertainty of thermocouple calibration, Table 32.13, and the often larger discrepancy "
+        "between measuring junction temperature and the actual temperature of the object being "
+        "measured, cannot be included because the latter are governed by details of heat transfer "
+        "and transient thermal response."))
+    b.append(h4("Thermocouple Transmitters"))
+    b.append(p(
+        "A less familiar form of thermocouple signal conditioning, the thermocouple transmitter, "
+        "is commonplace in process industries [4, 39]. Most two-wire thermocouple transmitters (not "
+        "an RF wireless transmitter) are single-channel devices that perform reference junction "
+        "compensation, linearizing, and isolation, and transmit the conditioned information to a "
+        "remote monitoring site [1]. The transmitter converts the temperature-scaled Seebeck emf to "
+        "an analogous signal for wire transmission over long lines to a remote recording or "
+        "monitoring location. Such inexpensive and compact single-sensor signal conditioners are "
+        "available specialized to most process variables. Thermocouple transmitters are well suited "
+        "for monitoring slowly changing temperatures at monitoring sites distant from the measuring "
+        "junction. Many are electrically isolated for safety. Some are adapted for use with the DIN "
+        "rail mounting system. A transmitter can be installed near each thermocouple. Some are small "
+        "enough to install in the connection head of a thermowell. The transmitted signal can take "
+        "either current-modulating or voltage-modulating form following ISA standards. The "
+        "current-style transmitter temperature modulates, in proportion to temperature, a dc current "
+        "supplied from the monitoring site. The signal ranges between 4 mA and 20 mA. The "
+        "current-style transmitter conveys information over great distances without the voltage loss "
+        "attendant to long-line voltage transmission. Some of the voltage-style transmitters "
+        "modulate a supplied voltage over the span from 1 Vdc to 5 Vdc. Offset and scaling for some "
+        "are adjusted at the transmitter. Some transmitters now have a local digital readout, and "
+        "the scaling and offset can be remotely adjusted [4, 39]."))
+    b.append(h4("Recording"))
+    b.append(p(
+        "Some multichannel thermocouple data recorders are now battery powered for stand-alone use "
+        "and small enough to be hand held [41]. Some simpler recorders now cost less than U.S. "
+        "$200. More sophisticated units accommodate multiple thermocouples of the same or intermixed "
+        "type. Larger digital data loggers with multiplexers that sequentially sample the output "
+        "from individual thermocouples can accommodate up to several hundred inputs and can record a "
+        "mix of both thermocouple and other signals at sample intervals programmable from a few "
+        "milliseconds to hours or days. Desirable three-wire switching between thermocouples is "
+        "commonplace. Personal computers now accommodate inexpensive internal digital data "
+        "acquisition boards that can convert the computer to a high-resolution temperature recording "
+        "system. Laptop computers can accept special palm-sized PCMCIA plug-in cards for multiple "
+        "thermocouple input. Digital computer based data acquisition systems with software "
+        "specialized for data acquisition, analysis, and presentation, allow the user to apply "
+        "special reference temperature compensation, customized linearization of thermocouple "
+        "scaling functions for either standard or individual calibrations and of special "
+        "thermocouple types. Computer-based thermocouple systems with suitable commercial data "
+        "acquisition and other software, provide for experiment design, prediction, data "
+        "acquisition, information management, analysis, reporting, archiving, and communication "
+        "within a single compact fieldable laptop computer [42]."))
+    b.append(h3("Signal Transmission"))
+    b.append(p(
+        "The length of the principal thermocouple should be as short as feasible. The "
+        "thermoelements should be continuous between measuring junction and reference junctions for "
+        "best accuracy, but lengthy extension cables can be used if necessary (see “Practical "
+        "Thermocouple Circuits” section). In field experiments and in process monitoring, recording "
+        "might be separated from the measuring junction by hundreds of meters. There are several "
+        "satisfactory possibilities for signal transmission over great distances."))
+    b.append(h4("Extension Cable"))
+    b.append(p(
+        "Matching and compensating thermoelectric extension cables (see “Practical Thermocouple "
+        "Circuits” section) are available in a wide variety of constructions and insulations [4, "
+        "43]. An extension cable, as a transmission line, can be a single twisted thermoelectric "
+        "pair or a multipair cable designed for suppression of both electrostatic and electromagnetic "
+        "noise and for environmental protection. While inexpensive unshielded insulated extension "
+        "wire is available, in the common situation where electric noise is likely, each extension "
+        "should be an insulated, individually shielded, and twisted pair. Where several extension "
+        "pairs from a cluster of nearby thermocouples extend to a remote recorder, multipair "
+        "thermoelectric cable is available that adds an overall electrostatic shield, mechanical "
+        "strengthening reinforcement, and a robust environmental overjacket to protect from "
+        "mechanical damage and chemical intrusion in harsh process environments [4, 42]. Such "
+        "elaborate thermoelectric extension is more expensive than copper instrumentation cable; "
+        "thus, alternative transmission systems should be considered. The proper use of twisted pair "
+        "copper instrumentation cable as neutral extension leads, extending from external reference "
+        "junction temperature compensation, can be sufficient and less costly than thermoelectric "
+        "extensions. Higher quality twisted-shielded-pair instrumentation cable can also improve "
+        "signal fidelity in transient thermometry. For such neutral extension leads, insulated "
+        "solid unplated copper instrumentation pair only should be used because nonuniform plating "
+        "thickness can result in irregularly distributed inhomogeneity and cause Seebeck emf noise. "
+        "Conventional coaxial instrumentation cable should never be used as lengthy neutral "
+        "thermoelectric extension leads because the outer braid and center conductors have very "
+        "different Seebeck coefficients. If not at uniform temperature, the cable can be a "
+        "significant source of Seebeck noise emf. Thermoelectric extensions and “pigtailed” "
+        "assemblies should be checked full-length for hidden junctions between slightly mismatched "
+        "spliced thermoelements and for deliberate, but hidden, pair splices incorrectly made in "
+        "crossed polarity [10]. Pass a narrow heat source along the full length of the cable, while "
+        "monitoring for local jumps of output local to such unintended junctions, using a "
+        "thermocouple indicator. This test is very effective to pinpoint hidden junctions. It does "
+        "not test for inhomogeneity [10, 30]."))
+    b.append(h4("Wireless Transmission"))
+    b.append(p(
+        "In several situations, copper wire transmission is less effective, more expensive, or less "
+        "convenient than wireless methods. Several low-cost wireless (not thermocouple transmitter) "
+        "data acquisition systems are now adapted to combine thermocouple data acquisition and "
+        "remote signal transmission [44]. Radio modems communicate data from a measuring location to "
+        "recording sites as much as 5 km away. Most provide spread spectrum transmission that does "
+        "not require a communications license. Wireless data transmission can be particularly "
+        "economical where the distance between the measuring junction and recorder is great, when "
+        "many thermocouples must be recorded, when little setup time is available for field cabling, "
+        "and where the measuring setup must be moved occasionally. Some systems combine data "
+        "logging and radio communication in a single unit. Others require the use of a thermocouple "
+        "transmitter, a data logger, and the radio modem to form a system. Optic fiber cable with "
+        "electro-optic transmitters can be used for electric noise-free cable transmission over a "
+        "long distance between signal conditioning that is local to the thermocouple and to a remote "
+        "recorder or monitor."))
+    b.append(h3("Sources of Thermocouple Application Information"))
+    b.append(h4("Technical Papers"))
+    b.append(p(
+        "The most concentrated and broadest sources of refereed technical papers addressing "
+        "thermocouple thermometry are the serial proceedings of a decennial international symposium "
+        "on temperature [25]. The six volumes to date are a rich and reliable source of application "
+        "data. Proceedings of annual symposia of the ISA and NCSL also have a few papers describing "
+        "current developments in thermometry. Reference [26] has thermoelectric data on the widest "
+        "variety of common and nonstandard materials. Current papers devoted specifically, not "
+        "incidentally, to thermocouples are infrequent and are distributed broadly across trade "
+        "magazines and journals of professional societies. Essential details of thermocouple "
+        "thermometry are more often (poorly) described only incidentally in reports of experimental "
+        "studies. Some manufacturers publish subscription technical journals specializing in "
+        "thermometry [45]. One measurement journal frequently publishes articles on applied "
+        "thermometry and, annually in the June issue, publishes an extensive directory of "
+        "manufacturers of thermocouple materials and related instrumentation [46]. The directory "
+        "includes, for several dozen listed manufacturers, concise descriptions of selected "
+        "products and current prices."))
+    b.append(h4("Books, Reports, and Standards"))
+    b.append(p(
+        "A very detailed and authoritative NIST monograph is the primary source for Seebeck "
+        "properties and physical characteristics of letter-designated thermocouples [9]. Standards "
+        "of the ASTM and ISA adopt the values and complement the NIST report [10, 24]. U.S. "
+        "standards are reviewed and updated at intervals of 5 years or less. The ASTM also "
+        "publishes interim tables of Seebeck emf for a few popular materials that have not been "
+        "standardized [10]. Many standards are collected in a single, annually revised volume "
+        "specializing in thermometry [10]. The hardcopy thermocouple tables from these volumes are "
+        "now available as functional computer programs that calculate E(<i>T</i>) and T(E) of the "
+        "NIST 175 document over ranges, at intervals, and in units selected by the user [46]. A "
+        "comprehensive thermocouple application manual is published by the ASTM [1]. Many commercial "
+        "publishers issue new reference and textbooks addressing measurement. Most of these include "
+        "a brief obligatory section or chapter describing the bare elements of thermocouple "
+        "thermometry. A few devote an entire volume to thermometry. There are many deeper scientific "
+        "treatments of thermoelectricity, mostly in the historic literature [1, 11, 12]. Many "
+        "national and international consensus standards organizations publish thermoelectric test "
+        "methods and material characterizations [10, 21, 25]. Standards are instructive as well as "
+        "being formalizations of procedures and materials. ASTM Standards and indexes to them are "
+        "now available in computer CD-ROM file format. Some standards now are available on the "
+        "World Wide Web or by FAX. Societies with committees that specialize in thermoelectric "
+        "standards now have Internet Web sites (such as http://www.isa.org and astm.org) that "
+        "provide information about available standards and solicit on-line technical questions from "
+        "users."))
+    b.append(h4("Workshops"))
+    b.append(p(
+        "Annually, there are several excellent workshops of a few hours or days duration devoted to "
+        "measurement, thermometry, and even thermocouples. Professional societies such as the ISA, "
+        "in association with special symposia or annual meetings, present special tutorial "
+        "workshops. Some are offered without fee by manufacturers. Other measurement courses are "
+        "offered by independent measurement specialists. Announcements of these workshops are "
+        "published in the technical and trade journals."))
+    b.append(h4("Trade Literature"))
+    b.append(p(
+        "Abundant, free, commercial catalog literature, handbooks, and Web site advertising "
+        "describe thermocouple hardware and data acquisition products. Some manufacturers publish "
+        "elaborate catalogs of thermocouple-related hardware, software, and books [4]. Most include "
+        "tutorial material. A few include technical reprints, discussion of principles and "
+        "practices, and present extensive tables of thermoelectric characteristics and physical "
+        "properties of thermocouple materials. Demonstration programs and product information are "
+        "available from manufacturers on CD-ROM and on the Internet. There are several trade "
+        "journals that relate to measurement, explore current issues and developments, and are "
+        "distributed free to qualified recipients."))
+    b.append(h3("Caveat"))
+    b.append(p(
+        "The reader is cautioned that the extensive current and historic literature of "
+        "thermoelectric thermometry, tutorial articles (even this one), standards, specifications, "
+        "and advice from “experts,” all must be studied very critically with an authentic "
+        "thermoelectric model in mind. At every level of sophistication, from the promotional to the "
+        "most esteemed esoteric and sophisticated mathematical and physical thermoelectric theory, "
+        "innocently propagated misconceptions concerning the thermoelectric effects are very "
+        "commonplace."))
+    b.append(h3("Summary"))
+    b.append(p(
+        "The Seebeck effect can be used to measure temperature with finer spatial and time "
+        "resolution, over a broader temperature range, in more diverse geometries, and at lower "
+        "cost than most other electric temperature sensors. The unique versatility of the "
+        "thermocouple ensures that it will continue as the thermometry means of choice for many "
+        "applications despite competition from an increasing variety and abundance of alternative "
+        "special-purpose thermometers. However, the misleading seeming simplicity of the idealized "
+        "thermocouple and the convenience and apparent accuracy afforded by modern signal "
+        "conditioning instruments can be misleading. Correct application is simple. Properly used "
+        "within its limitations, the thermocouple is capable of accurate reliable thermometry. "
+        "Improperly understood, the thermocouple is subject to misapplication and inconspicuous, but "
+        "very significant, error. This precautionary overview described pitfalls and their "
+        "avoidance in thermocouple practice. This can provide the receptive reader with an "
+        "authentic basis for the knowledgeable use of even the most complex series and generalized "
+        "thermoelectric circuits in circuit design, diverse applications, particularly in "
+        "thermometry. The simple Functional Model presented here (and perhaps requiring some "
+        "study) was deliberately crafted to aid the user in clearly distinguishing the authentic "
+        "information from the misleading, and to aid in evaluating the designs and specifications of "
+        "manufacturers of thermoelectric products."))
+    return "".join(b)
+
+
+def _refs324(lang):
+    """§32.4 has its own reference list — numbered 1–47 within the section."""
+    vi = lang == "vi"
+    items = [
+        "1. R. M. Park (ed.), Manual on the Use of Thermocouples in Temperature Measurement, MNL 12, 4th ed., Philadelphia, PA, American Society for Testing and Materials, 1993.",
+        "2. R. P. Reed, Thermal effects in industrial electronics circuits, in J. D. Irwin (ed.), CRC Industrial Electronics Handbook, Boca Raton, FL, CRC Press, 1996, 57–70.",
+        "3. Catalog, TRANSCAT/EIL, Rochester, NY, 1998.",
+        "4. Catalog, The Temperature Handbook, Issue 29, Omega Engineering, Inc., Stamford, CT, 1995.",
+        "5. D. D. Pollock, Physics of Engineering Materials, Englewood Cliffs, NJ, Prentice-Hall, 1990.",
+        "6. D. M. Rowe (ed.), CRC Handbook of Thermoelectrics, Boca Raton, FL, CRC Press, 1995.",
+        "7. R. P. Reed, Principles of thermoelectric thermometry, in R. M. Park (ed.), Manual on the Use of Thermocouples in Temperature Measurement, MNL 12, 4th ed., Philadelphia, PA, American Society for Testing and Materials, 1993, chap. 2, 4–42.",
+        "8. R. P. Reed, Absolute Seebeck thermoelectric characteristics — principles, significance, and applications, in J. F. Schooley (ed.), Temperature, Its Measurement and Control in Science and Industry, Vol. 6, Part 1, New York, American Institute of Physics, 1992, 503–508.",
+        "9. G. W. Burns, M. G. Scroger, G. F. Strouse, M. C. Croarkin, and W. F. Guthrie, Temperature-Electromotive Force Reference Functions and Tables for the Letter-Designated Thermocouple Types Based on the ITS-90, NIST Monograph 175, Washington, D.C., Department of Commerce, 1993.",
+        "10. Annual Book of ASTM Standards, Temperature Measurement, 14.03, Philadelphia, PA, American Society for Testing and Materials, 1998.",
+        "11. J. V. Nicholas and D. R. White, Traceable Temperatures — An Introduction to Temperature Measurement and Calibration, New York, John Wiley & Sons, 1994.",
+        "12. T. W. Kerlin and R. L. Shepard, Industrial Temperature Measurement, Philadelphia, PA, Instrument Society of America, 1982.",
+        "13. Catalog, Analog Devices, Inc., Norwood, MA.",
+        "14. Catalog, Equipment for Temperature Measurement and Control Systems, Hades Manufacturing Corp., Farmingdale, NY.",
+        "15. R. Morrison, Noise and Other Interfering Signals, New York, John Wiley & Sons, 1992.",
+        "16. H. W. Markenstein, Proper shielding reduces EMI, Electron. Packaging & Production, 37, 72–78, 1997.",
+        "17. Catalog, Thermagon, Inc., Cleveland, OH.",
+        "18. N. R. Keltner and J. V. Beck, Surface temperature measurement errors, J. Heat Transfer, 105, 312–318, 1983.",
+        "19. Catalog, RdF Corporation, Hudson, NH.",
+        "20. Catalog, Temperature Measurement Handbook, Vol. IX, NANMAC Corporation, Framingham, MA.",
+        "21. R. P. Reed, Convolution & deconvolution in measurement and control, professional course, Measurements & Control, (178–188), 1997, 1998.",
+        "22. H. M. Hashemian, K. M. Peterson, D. W. Mitchell, M. Hashemian, and D. D. Beverly, In situ response time testing of thermocouples, ISA Trans., 29, 1986.",
+        "23. R. P. Reed, The transient response of embedded thin film temperature sensors, Temperature, Its Measurement and Control in Science and Industry, Vol. 4, Part 3, New York, Instrument Society of America, 1972.",
+        "24. Standard, Temperature Measurement Thermocouples, ISA/ANSI Standard MC96.1-1982, Research Triangle Park, NC, ISA International Society for Measurement and Control, 1982. (Standard withdrawn 1993.)",
+        "25. Temperature, Its Measurement and Control in Science and Industry, Vols. 2–6 (Serial), New York, American Institute of Physics, 1942–1992.",
+        "26. P. A. Kinzie, Thermocouple Temperature Measurement, New York, Wiley-Interscience, 1973.",
+        "27. H. L. Anderson (ed.), Physics Vade Mecum, New York, American Institute of Physics, 1981.",
+        "28. Standard, Norme Internationale/International Standard, IEC 584, Parts 1–3, Thermocouples, International Electrotechnical Commission, Geneva, Switzerland, 1995.",
+        "29. R. P. Reed, Thermoelectric thermometry: A functional model, in J. F. Schooley (ed.), Temperature, Its Measurement and Control in Science and Industry, vol. 5, Part 2, New York, American Institute of Physics, 1982, 915–922.",
+        "30. R. P. Reed, Ya can't calibrate a thermocouple junction! Measurements & Control, Part 1. Why not?, 178, 137–145; Part 2. So What?, 179, 93–100, 1996.",
+        "31. R. P. Reed, Thermocouples: calibration, traceability, instability, and inhomogeneity, Isotech J. Thermometry, 7(2), 91–114, 1996.",
+        "32. W. F. Roeser, Thermoelectric thermometry, J. Appl. Phys., 11, 213–232, 1940.",
+        "33. R. P. Reed, Thermoelectric inhomogeneity testing. Part I: Principles; Part II: Advanced methods, in J. F. Schooley (ed.), Temperature, Its Measurement and Control in Science and Industry, Vol. 6, Part 1, New York, American Institute of Physics, 1992, 519–530.",
+        "34. W. Rosch, A. Fripp, W. Debnum, S. Sorokach, and R. Simchick, Damage of fine diameter platinum sheathed Type R thermocouples at temperatures between 950 and 1100 °C, in J. F. Schooley (ed.), Temperature, Its Measurement and Control in Science and Industry, Vol. 6, Part 1, New York, American Institute of Physics, 1992, 569–574.",
+        "35. R. P. Reed, Validation diagnostics for defective thermocouple circuits, in J. F. Schooley (ed.), Temperature, Its Measurement and Control in Science and Industry, 5, Part 2, New York, American Institute of Physics, 1982, 915–922.",
+        "36. Survey, Measurement Needs Tracking Study — 1997, Keithley Instruments, Cleveland, OH, 1997.",
+        "37. J. P. Tavener, Temperature calibration, Measurements and Control, Sept., 160–164, 1986.",
+        "38. T. B. Fisher, Selecting a dry well calibrator, Measurements and Control, (185), 105, 1997.",
+        "39. Catalog, Reference Manual for Temperature Products and Services, 1st ed., Isothermal Technology Ltd., Merseyside, England, 1997.",
+        "40. Catalog, Moore Industries, Sepulveda, CA, 1997.",
+        "41. Catalog, DCC Corporation, Pennsauken, NJ, 1997.",
+        "42. Catalog, Instrumentation Reference and Catalogue, National Instruments, Austin, TX, 1997.",
+        "43. Catalog, Temperature Sensors, Wire and Cable, Watlow Gordon, Richmond, IL, 1997.",
+        "44. Catalog, ENCOM Radio Services, Calgary, Alberta, Canada.",
+        "45. Isotech Journal of Thermometry, ISSN 0968-347X, Isothermal Technology, Ltd., Merseyside, England.",
+        "46. Measurements and Control magazine, ISSN 0148-0057, Measurements & Data Corporation, Pittsburgh, PA.",
+        "47. R. P. Reed, A comparison of programs that convert thermocouple properties to the 1990 international temperature and voltage scales, Measurements and Control, 30(177), 105–109, 1996.",
+    ]
+    head_ = "<h3 id=\"t32-tltk-4\">Tài liệu tham khảo</h3>" if vi else \
+            "<h3 id=\"t32-tltk-4\">References</h3>"
+    foot = ("* Ghi chú: Việc nhắc đến các sản phẩm đại diện nhằm giới thiệu độc giả về sự đa dạng "
+            "phần cứng liên quan đến cặp nhiệt điện và không phải là sự bảo trợ." if vi else
+            "* Note: Mention of representative products is to introduce the reader to the variety "
+            "of available thermocouple-related hardware and is not an endorsement.")
+    return head_ + wl(items) + \
+        '<p style="font-size:.82rem;color:#888;font-style:italic;margin-top:-.6rem">%s</p>' % foot
+
+
 def sec_32_4_vi():
-    return sec_32_4a_vi() + sec_32_4b_vi() + sec_32_4c_vi() + sec_32_4d_vi() + sec_32_4e_vi()
+    return (sec_32_4a_vi() + sec_32_4b_vi() + sec_32_4c_vi() + sec_32_4d_vi()
+            + sec_32_4e_vi() + sec_32_4f_vi() + sec_32_4g_vi() + _refs324("vi"))
 
 
 def sec_32_4_en():
-    return sec_32_4a_en() + sec_32_4b_en() + sec_32_4c_en() + sec_32_4d_en() + sec_32_4e_en()
+    return (sec_32_4a_en() + sec_32_4b_en() + sec_32_4c_en() + sec_32_4d_en()
+            + sec_32_4e_en() + sec_32_4f_en() + sec_32_4g_en() + _refs324("en"))
 
 
 def _refs(lang):
@@ -5956,6 +7067,36 @@ INDEX = [
         ("The Law of Seebeck emf", "Luật suất điện động Seebeck", 1),
         ("Corollaries from the Seebeck Law", "Các hệ quả từ Luật Seebeck", 1),
         ("The T/X Visualization Sketch", "Bản phác T/X trực quan hóa", 1),
+        ("Inhomogeneity", "Độ không đồng nhất"),
+        ("The Nature of Inhomogeneity", "Bản chất của độ không đồng nhất", 1),
+        ("The Significance of Inhomogeneity", "Tầm quan trọng của độ không đồng nhất", 1),
+        ("Testing for Inhomogeneity", "Kiểm tra độ không đồng nhất", 1),
+        ("Calibration", "Hiệu chuẩn"),
+        ("The Principal Thermocouple", "Cặp nhiệt điện chính", 1),
+        ("Commercial Tolerances", "Dung sai thương mại", 1),
+        ("Extension Leads", "Dây nối dài", 1),
+        ("Reference Temperature Compensation", "Bù nhiệt độ mối nối chuẩn", 1),
+        ("Monitoring Instruments", "Các dụng cụ theo dõi", 1),
+        ("Thermocouple Failure and Validation", "Hỏng và kiểm định cặp nhiệt điện"),
+        ("Environmental Compatibility", "Tương thích môi trường", 1),
+        ("Temperature Exposure", "Tiếp xúc nhiệt độ", 1),
+        ("Chemical Environment", "Môi trường hóa học", 1),
+        ("Metallurgical Change", "Biến đổi luyện kim", 1),
+        ("Data Acquisition", "Thu thập dữ liệu"),
+        ("Thermocouple Indicators", "Các bộ chỉ thị cặp nhiệt điện", 1),
+        ("Thermocouple Transmitters", "Các bộ truyền cặp nhiệt điện", 1),
+        ("Recording", "Ghi chép", 1),
+        ("Signal Transmission", "Truyền tín hiệu"),
+        ("Extension Cable", "Cáp nối dài", 1),
+        ("Wireless Transmission", "Truyền vô tuyến", 1),
+        ("Sources of Thermocouple Application Information",
+         "Các nguồn thông tin ứng dụng cặp nhiệt điện"),
+        ("Technical Papers", "Các bài báo kỹ thuật", 1),
+        ("Books, Reports, and Standards", "Sách, báo cáo và chuẩn", 1),
+        ("Workshops", "Các hội thảo", 1),
+        ("Trade Literature", "Tài liệu thương mại", 1),
+        ("Caveat", "Lưu ý"),
+        ("Summary", "Tóm tắt"),
     ]),
 ]
 
@@ -6018,9 +7159,9 @@ def build(lang):
              '</a> · Chương 32' % BASE_VI if vi else
              '<a href="/books/">Books</a> · <a href="%s">Measurement, Instrumentation and Sensors '
              'Handbook</a> · Chapter 32' % BASE_EN)
-    meta = ("Chương 32 · theo Ch32.pdf (CRC Press, 1999) · §32.1–32.3/11 · 22 hình, 72 phương "
-            "trình, 11 bảng" if vi else
-            "Chapter 32 · §32.1–32.3 of 11 · 22 figures, 72 equations, 11 tables")
+    meta = ("Chương 32 · theo Ch32.pdf (CRC Press, 1999) · §32.1–32.4/11 · 30 hình, 88 phương "
+            "trình, 18 bảng" if vi else
+            "Chapter 32 · §32.1–32.4 of 11 · 30 figures, 88 equations, 18 tables")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
             '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'
