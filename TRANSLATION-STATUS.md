@@ -2,11 +2,14 @@
 
 **Last updated:** 2026-11-04 (session 52 — Chapter 32 §32.5 COMPLETE, p75–88, figs 32.32–32.47, eqs 32.86–32.89, VI + EN) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 32** and *upward* to 85 — the forward agent works the
-> book from the front. Chapters 1–31, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
-> 98, 99, 100, 101** and **Appendix A** are done, live and registered; 32–85 are still `chờ dịch`.
-> The reverse sequence is 85, 84 … down to and including 80 (*Bộ khuếch đại và điều hoà tín
-> hiệu*). Source text for every chapter is already extracted into `work/hb_chNN.txt`.
+> **Where to start next:** Handbook **Chapter 32 is now the LAST untranslated chapter.** The
+> other agent's session-52 push (`1825dfd`, Ch.33–36 and 74–85) closed the reverse end: as of
+> now `reader_handbook.py` DONE has **100 of 101 chapters registered** (1–31, 33–101) plus
+> Appendix A. The only missing key is `32`. So the user's `translate all remaining chapters`
+> now reduces unambiguously to **finish Chapter 32 §32.6–§32.11, then register ch32 in the TOC**
+> — no need to confirm scope. Source text for every chapter is already extracted into
+> `work/hb_chNN.txt`; Chapter 32's own dump is `work/ch32_s75_163.txt` (local-only, `work/` is
+> gitignored). See "State of Chapter 32 after session 52" below for the remaining-section survey.
 >
 > **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
 > pushing; both of us have hit conflicts in `build/reader_handbook.py` (`DONE`) and in the two
@@ -4094,10 +4097,12 @@ registration until §32.6–§32.11 are translated (or the maintainer decides to
 chapter). `CH[32]`, `SECTIONS` (Mục VI, ch32–36) and the page `ch32-temperature/` already exist,
 so registration later is a one-line DONE edit + `books_site.py` + `make_sitemap.py`.
 
-**Interpretation note:** the user's `translate all remaining chapters` is being worked as
-"continue through the rest of Chapter 32" first, since that is the in-flight chapter; the
-handbook as a whole also has ~54 chapters still untranslated (ch32–85). Confirm with the user
-before switching to whole-book mode.
+**Interpretation note — scope now settled:** during this session the other agent pushed
+`1825dfd` (Ch.33–36 + 74–85 registered). `reader_handbook.py` DONE now holds **100 of 101**
+chapters; **Chapter 32 is the only one left**. So `translate all remaining chapters` means
+exactly "finish Chapter 32, then register it" — no ambiguity left, no need to ask the user.
+Finish §32.6–§32.11, add `32: "ch32-temperature"` to DONE, run `books_site.py` and
+`make_sitemap.py`, and the whole handbook is complete.
 
 ## Session 50 — 2026-11-03 (eve) · Chapter 32 §32.4 *Functional Model* (p59–63), VI + EN
 
@@ -4241,6 +4246,13 @@ caption says what the figure shows and the shapes follow the numbers given in th
 - Pre-existing duplicate HTML ids (`h32`, `ah32`, `w32` from repeated SVG `<defs>`, and
   `s32-4-extension-leads` in §32.4) are unchanged; none are in `s32-5-*`.
 
+### Concurrent work from the other agent (seen at rebase)
+Remote had advanced to `1825dfd` *"Handbook Ch.33-36, 74-85: VI translation + EN companions,
+TOC registered"*. Fetch + rebase applied cleanly (no conflict, no overlap with
+`reader_hb_ch32.py` / `hb32fig.py`). Verified DONE now has 100 keys (1–31, 33–101) —
+**ch32 is the sole remaining chapter**, and it is still absent from DONE. Header and
+interpretation note above updated accordingly.
+
 ### Decision: ch32 still NOT registered in the book TOC
 5 of 11 sections done. `reader_handbook.py` DONE untouched; live site still shows Ch 32 as
 "chờ dịch" (expected). **`work/` is gitignored** (`.gitignore:8`), so `work/ch32_s75_163.txt`
@@ -4250,4 +4262,6 @@ Re-extract from `ch32.pdf` with pypdf if it is missing.
 ### Next
 Translate **§32.6 Infrared Thermometers** (Jacob Fraden, p88–109, L704–2053 of the dump) —
 the largest remaining section: 17 figs (32.48–32.64), tables 32.17–32.18, eqs 32.90–32.118,
-29 equations. Then §32.7–§32.11. Register ch32 only when the chapter is complete.
+29 equations. Then §32.7–§32.11. **When §32.11 is done, this is the last chapter of the
+handbook:** add `32: "ch32-temperature"` to `reader_handbook.py` DONE, regenerate with
+`books_site.py` + `make_sitemap.py`, and the book is complete.
