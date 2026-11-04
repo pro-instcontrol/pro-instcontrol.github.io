@@ -1,15 +1,15 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-04 (session 52 — Chapter 32 §32.5 COMPLETE, p75–88, figs 32.32–32.47, eqs 32.86–32.89, VI + EN) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-04 (finish-chapter-32 phase — **Chapter 32 COMPLETE: all 11 sections §32.1–§32.11, VI + EN; registered `32: "ch32-temperature"`; handbook now 101/101 = 100%**) · **Live site:** https://pro-instcontrol.github.io/
 
-> **Where to start next:** Handbook **Chapter 32 is now the LAST untranslated chapter.** The
-> other agent's session-52 push (`1825dfd`, Ch.33–36 and 74–85) closed the reverse end: as of
-> now `reader_handbook.py` DONE has **100 of 101 chapters registered** (1–31, 33–101) plus
-> Appendix A. The only missing key is `32`. So the user's `translate all remaining chapters`
-> now reduces unambiguously to **finish Chapter 32 §32.6–§32.11, then register ch32 in the TOC**
-> — no need to confirm scope. Source text for every chapter is already extracted into
-> `work/hb_chNN.txt`; Chapter 32's own dump is `work/ch32_s75_163.txt` (local-only, `work/` is
-> gitignored). See "State of Chapter 32 after session 52" below for the remaining-section survey.
+> **Where to start next:** Handbook translation is **FINISHED — 101 of 101 chapters (100%)**,
+> including Chapter 32 "Temperature", whose last eleven sections §32.6–§32.11 (Infrared,
+> Pyroelectric, Liquid-in-Glass, Manometric, Temperature Indicators, Fiber-Optic) were translated
+> in the finish-chapter-32 phase and registered as `32: "ch32-temperature"` in
+> `reader_handbook.py` `DONE`. No further chapters remain. Source text for every chapter is already
+> extracted into `work/hb_chNN.txt`; Chapter 32's own dump is `work/ch32_s75_163.txt`
+> (local-only, `work/` is gitignored). See "State of Chapter 32 after session 52" + the
+> finish-chapter-32 log below for the section survey and integration notes.
 >
 > **Two agents are working the same book from opposite ends.** Always `git fetch` + rebase before
 > pushing; both of us have hit conflicts in `build/reader_handbook.py` (`DONE`) and in the two
@@ -4328,7 +4328,46 @@ pages), `make_glossary.py` (98 entries), `robots.txt`.
 2 and 5; **both are mandatory**, not optional.
 
 ### Next
-The other agent finishes Ch32 §32.6–§32.11 and registers `32` in DONE. On that
-push, re-run `books_site.py` (badge auto-flips to 101/101), `make_sitemap.py`
-and `check_links.py`, then update this file's header — the handbook will be
-101/101 complete.
+Nothing left to translate — the handbook is 101/101 (100%) complete. Future work
+is maintenance only: figure/equation fidelity QA, glossary tweaks, link checks.
+
+---
+
+## Finish-Chapter-32 phase — Chapter 32 COMPLETE (repo: 2026-10-29-10-38-18)
+
+**Status: handbook 101/101 = 100%.** Chapter 32 "Temperature" now has all 11
+sections translated (§32.1–§32.11, VI + EN) and is registered `32:
+"ch32-temperature"` in `reader_handbook.py` `DONE`. `books_site.py` badge flips
+to 101/101; `make_sitemap.py` regenerated (696 URLs).
+
+- **Architecture:** each remaining section is a self-contained module
+  `build/hb32_sN.py` (N=6..11) importing `build/hb32kit.py`. Each exports
+  `TITLE_EN/VI`, `SUBS` (flat `(en, vi, depth)` tuples), `refs(lang)` (id
+  `t32-tltk-N`), and `sec_vi()/sec_en()` (via a local `_section(lang)` with
+  H3/H4/P/FR/EQ helpers). The generator wires them in with `sec_32_N_vi/en()`
+  wrappers, an `INDEX` entry, and `body_vi/en` concatenation.
+- **§32.6 Infrared** (Jacob Fraden): 17 figs 32.48–32.64, 2 tbls 32.17–32.18, 29 eqs.
+- **§32.7 Pyroelectric** (Jacob Fraden): 5 figs 32.65–32.69, 1 tbl 32.19, 12 eqs 32.119–32.130.
+- **§32.8 Liquid-in-Glass** (J.V. Nicholas): 5 figs 32.70–32.74, 3 tbls 32.20–32.22, 2 eqs, Defining Terms.
+- **§32.9 Manometric** (Franco Pavese): 3 figs 32.75–32.77, 3 tbls 32.23–32.25.
+- **§32.10 Temperature Indicators** (J. Stasiek et al.): 7 figs (32.77a `→ num "77a"` for the
+  book's duplicate "32.77", then 32.78–32.83), 9 tbls 32.26a/b–32.33, 1 eq.
+- **§32.11 Fiber-Optic** (Brian Culshaw): 10 figs 32.84–32.93, 0 tbls.
+- **BUG FIXED:** the `fig()` wrapper accepts a string `num` (e.g. `"77a"`) so the
+  book's two "Figure 32.77" prints get unique ids `fig-32-77` and `fig-32-77a`.
+- **BUG FIXED (critical):** when the generator runs as a script, `build()` sets
+  `_LANG` on `__main__` but section modules reach headings through the separately
+  imported `reader_hb_ch32` module whose `_LANG` stayed `""`, so VI-page anchors
+  were slugged from the Vietnamese title → TOC broke. Fixed by syncing `_LANG[0]`
+  across `sys.modules["__main__"]` and `sys.modules["reader_hb_ch32"]` in `build()`.
+- **Verification (final build):** EN/VI exact parity — 93 figures, 38 tables, 100 h3,
+  88 h4, 6 h5, 10 reference blocks — and **0 dead anchors** on both pages
+  (`EN dead []`, `VI dead []`, TOC/broken = 0). `check_links.py` unchanged (80
+  pre-existing `es/` broken links).
+- **Commit:** staged only the 6 real content changes + 7 new module files
+  (`reader_hb_ch32.py`, `reader_handbook.py`, the two `ch32-temperature/index.html`,
+  the two regenerated `books/index.html`, plus `hb32kit.py` + `hb32_s6..s11.py`).
+  The other "M" files in `git status` are CRLF line-ending artifacts with no
+  content diff and were intentionally left unstaged. Pushed via fetch + rebase.
+
+**This was the last chapter. The handbook translation project is complete.**

@@ -2,9 +2,11 @@
 """Handbook Chapter 32 — Temperature (Robert J. Sandberg, ed.)
 
 The chapter is 163 source pages and eleven sections, each contributed by a
-different author. Sections are being written in order; §32.1–§32.5 are
-complete (§32.4 finished in session 51, §32.5 in session 52), §32.6–§32.11
-remain.
+different author. Sections are being written in order; §32.1–§32.7 are
+complete (§32.4 finished in session 51, §32.5 in session 52, §32.6–§32.7 in
+the "finish chapter 32" phase).  §32.8–§32.11 remain, each authored as a
+self-contained module (build/hb32_sN.py) that imports hb32kit and is wired
+into this generator.
 
   §32.1  Bimaterials Thermometers            p3-14    6 figs  19 eqs  5 tables
   §32.2  Resistive Thermometers              p14-26   9 figs   6 eqs  2 tables
@@ -26,6 +28,12 @@ import re
 import sys
 
 import hb32fig as F
+import hb32_s6
+import hb32_s7
+import hb32_s8
+import hb32_s9
+import hb32_s10
+import hb32_s11
 from reader_handbook import SLUG, head, header, footer
 from chapter_nav import nav as chapter_nav
 
@@ -57,7 +65,9 @@ def fig(num, key, lang="vi"):
             a = k + len('aria-label="')
             b = svg.find('"', a)
             svg = svg[:a] + (aria_en or aria_vi) + svg[b:]
-    return ('<figure class="figure" id="fig-32-%d">%s'
+    # %s, not %d: the book prints two different figures as 32.77 (one in §32.9,
+    # one in §32.10).  The second is keyed "77a" so the ids stay unique.
+    return ('<figure class="figure" id="fig-32-%s">%s'
             '<figcaption class="figcap">%s</figcaption></figure>' % (num, svg, cap))
 
 
@@ -7826,6 +7836,54 @@ def back_en():
     return "".join(b)
 
 
+def sec_32_6_vi():
+    return hb32_s6.sec_vi()
+
+
+def sec_32_6_en():
+    return hb32_s6.sec_en()
+
+
+def sec_32_7_vi():
+    return hb32_s7.sec_vi()
+
+
+def sec_32_7_en():
+    return hb32_s7.sec_en()
+
+
+def sec_32_8_vi():
+    return hb32_s8.sec_vi()
+
+
+def sec_32_8_en():
+    return hb32_s8.sec_en()
+
+
+def sec_32_9_vi():
+    return hb32_s9.sec_vi()
+
+
+def sec_32_9_en():
+    return hb32_s9.sec_en()
+
+
+def sec_32_10_vi():
+    return hb32_s10.sec_vi()
+
+
+def sec_32_10_en():
+    return hb32_s10.sec_en()
+
+
+def sec_32_11_vi():
+    return hb32_s11.sec_vi()
+
+
+def sec_32_11_en():
+    return hb32_s11.sec_en()
+
+
 # ================================================================ index
 INDEX = [
     ("32.1", "Bimaterials Thermometers", "Đo nhiệt độ bằng lưỡng kim", [
@@ -7955,6 +8013,18 @@ INDEX = [
         ("Semiconductor Temperature Sensor Packaging", "Đóng vỏ cảm biến nhiệt độ bán dẫn"),
         ("Defining Terms", "Định nghĩa thuật ngữ"),
     ]),
+    ("32.6", "Infrared Thermometers", "Nhiệt kế hồng ngoại",
+     [list(t) for t in hb32_s6.SUBS]),
+    ("32.7", "Pyroelectric Thermometers", "Nhiệt kế áp điện",
+     [list(t) for t in hb32_s7.SUBS]),
+    ("32.8", "Liquid-in-Glass Thermometers", "Nhiệt kế chất lỏng trong thủy tinh",
+     [list(t) for t in hb32_s8.SUBS]),
+    ("32.9", "Manometric Thermometers", "Nhiệt kế áp suất kế",
+     [list(t) for t in hb32_s9.SUBS]),
+    ("32.10", "Temperature Indicators", "Chất chỉ thị nhiệt độ",
+     [list(t) for t in hb32_s10.SUBS]),
+    ("32.11", "Fiber-Optic Thermometers", "Nhiệt kế sợi quang",
+     [list(t) for t in hb32_s11.SUBS]),
 ]
 
 
@@ -7989,7 +8059,7 @@ def body_vi():
         "nhiệt điện trở, cặp nhiệt điện đến hồng ngoại và sợi quang — với phương trình, hình vẽ và "
         "bảng dữ liệu của từng loại.")
     return (p(lede) + sec_index(True) + sec_32_1_vi() + back_vi() + sec_32_2_vi()
-            + sec_32_3_vi() + sec_32_4_vi() + sec_32_5_vi())
+            + sec_32_3_vi() + sec_32_4_vi() + sec_32_5_vi() + sec_32_6_vi() + sec_32_7_vi() + sec_32_8_vi() + sec_32_9_vi() + sec_32_10_vi() + sec_32_11_vi())
 
 
 def body_en():
@@ -8000,12 +8070,18 @@ def body_en():
         "infrared, pyroelectric, liquid-in-glass, manometric, indicators and fiber-optic probes — "
         "with the equations, figures and data tables for each.")
     return (p(lede) + sec_index(False) + sec_32_1_en() + back_en() + sec_32_2_en()
-            + sec_32_3_en() + sec_32_4_en() + sec_32_5_en())
+            + sec_32_3_en() + sec_32_4_en() + sec_32_5_en() + sec_32_6_en() + sec_32_7_en() + sec_32_8_en() + sec_32_9_en() + sec_32_10_en() + sec_32_11_en())
 
 
 def build(lang):
     vi = lang == "vi"
-    _LANG[0] = lang
+    # When this file runs as a script, `build()` lives in __main__ but the section
+    # modules reach the heading helpers through the `reader_hb_ch32` module that
+    # hb32kit imports — a *separate* module object. _LANG set here on __main__
+    # would be invisible to those helpers, so sync it on every module that owns it.
+    for _m in (sys.modules.get("__main__"), sys.modules.get("reader_hb_ch32")):
+        if _m is not None and hasattr(_m, "_LANG"):
+            _m._LANG[0] = lang
     title = TITLE_VI if vi else TITLE_EN
     desc = ("Bản dịch tiếng Việt chương 32 của The Measurement, Instrumentation and Sensors "
             "Handbook — Đo nhiệt độ." if vi else
@@ -8016,9 +8092,9 @@ def build(lang):
              '</a> · Chương 32' % BASE_VI if vi else
              '<a href="/books/">Books</a> · <a href="%s">Measurement, Instrumentation and Sensors '
              'Handbook</a> · Chapter 32' % BASE_EN)
-    meta = ("Chương 32 · theo Ch32.pdf (CRC Press, 1999) · §32.1–32.5/11 · 46 hình, 92 phương "
-            "trình, 18 bảng" if vi else
-            "Chapter 32 · §32.1–32.5 of 11 · 46 figures, 92 equations, 18 tables")
+    meta = ("Chương 32 · theo Ch32.pdf (CRC Press, 1999) · §32.1–32.11/11 · 93 hình, 38 bảng"
+            if vi else
+            "Chapter 32 · §32.1–32.11 of 11 · 93 figures, 38 tables")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
             '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'
