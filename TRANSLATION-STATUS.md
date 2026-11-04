@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-04 (session 51 — Chapter 32 §32.4 COMPLETE, p64–74 + refs 1–47, VI + EN) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-04 (session 52 — Chapter 32 §32.5 COMPLETE, p75–88, figs 32.32–32.47, eqs 32.86–32.89, VI + EN) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook **Chapter 32** and *upward* to 85 — the forward agent works the
 > book from the front. Chapters 1–31, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
@@ -4063,25 +4063,41 @@ which still cannot authenticate from this machine.
   exist yet). Nothing new broke from this session; flagged here, not touched.
 - Figure QA grid: `work/qa32/f2728.html` (mk32range figs 27–28).
 
-### State of §32.4 after this session (session 51)
+### State of Chapter 32 after session 52
 
-**§32.4 Thermocouple Thermometers is COMPLETE** — text runs p42–74 (end of the section), VI + EN.
-Everything that was owed is now shipped: *Inhomogeneity*, *Calibration* (with fig 32.31),
-*Failure and Validation*, *Data Acquisition*, *Signal Transmission*, *Sources of Information*,
-*Caveat*, *Summary*, and the full section reference list (1–47). See the Session 51 log below.
+**§32.1–§32.5 are COMPLETE, bilingual (VI + EN).** §32.4 *Thermocouple Thermometers* ends at
+p74 (session 51); **§32.5 *Semiconductor Junction Thermometers* (p75–88, Randy Frank) landed in
+session 52** — see the Session 52 log at the end of this file.
 
-Still owed for the rest of Chapter 32: **§32.5–§32.11** (seven sections, ~90 source pages):
-§32.5 Semiconductor Junction Thermometers (p75–87), §32.6 Infrared (p88–109), §32.7
-Pyroelectric (p110–117), §32.8 Liquid-in-Glass (p118–129), §32.9 Manometric (p130–136),
-§32.10 Temperature Indicators (p137–152), §32.11 Fiber-Optic (p153–163). None of these are in
-`build/reader_hb_ch32.py` yet and no source dumps / figure registries exist for them.
+Still owed: **§32.6–§32.11** (six sections, ~75 source pages). `work/ch32_s75_163.txt` holds the
+full p75–163 source dump (5,228 lines, created in session 52 with pypdf; **local-only — `work/`
+is gitignored**, re-extract on a fresh clone). Section boundaries in that dump: 32.5 @ L33,
+32.6 @ L704, 32.7 @ L2054, 32.8 @ L2432, 32.9 @ L2850, 32.10 @ L3436, 32.11 @ L4913.
+`work/ch32img/` has page images **only up to p74** — every figure from 32.48 on must be
+reconstructed from prose/captions, as 32.32–32.47 were.
+
+Scope survey for what remains (from the dump):
+
+```
+32.6  p89-110  22pp ~10.3k words  figs 32.48-32.64  tables 32.17-32.18  eqs 32.90-32.118
+32.7  p111-118  8pp  ~4.2k words  figs 32.65-32.69  table  32.19        eqs 32.119-32.130
+32.8  p119-130 12pp  ~5.3k words  figs 32.70-32.74  tables 32.20-32.22  eqs 32.131-32.132
+32.9  p131-137  7pp  ~3.7k words  figs 32.75-32.77  tables 32.23-32.25  —
+32.10 p138-153 16pp  ~7.0k words  figs 32.78-32.83  tables 32.26-32.33  —
+32.11 p154-163 10pp  ~4.4k words  figs 32.84-32.93  —                   —
+```
 
 **Ch 32 is still intentionally UNREGISTERED in the book TOC** (`reader_handbook.py` DONE list).
 §32.4 being done was the old trigger, but that predates discovering the chapter has 11 sections:
-publishing a 4-of-11 chapter as "translated" would put a half-built chapter at its URL. Defer
-registration until §32.5–§32.11 are translated (or the maintainer decides to publish a partial
+publishing a 5-of-11 chapter as "translated" would put a half-built chapter at its URL. Defer
+registration until §32.6–§32.11 are translated (or the maintainer decides to publish a partial
 chapter). `CH[32]`, `SECTIONS` (Mục VI, ch32–36) and the page `ch32-temperature/` already exist,
 so registration later is a one-line DONE edit + `books_site.py` + `make_sitemap.py`.
+
+**Interpretation note:** the user's `translate all remaining chapters` is being worked as
+"continue through the rest of Chapter 32" first, since that is the in-flight chapter; the
+handbook as a whole also has ~54 chapters still untranslated (ch32–85). Confirm with the user
+before switching to whole-book mode.
 
 ## Session 50 — 2026-11-03 (eve) · Chapter 32 §32.4 *Functional Model* (p59–63), VI + EN
 
@@ -4167,3 +4183,71 @@ Translate §32.5 *Semiconductor Junction Thermometers* (p75–87, Randy Frank) �
 fig 32.32 (diode-connected bipolar transistor), eq 32.86 (V_F = (kT/q)ln(I_F/I_S)), figs
 32.33–32.35. Needs a new source dump for p75–87 and figure work; §32.6–§32.11 after that.
 Only after the chapter is substantially complete should ch32 be registered in the TOC.
+
+---
+
+## Session 52 — 2026-11-04 · Chapter 32 §32.5 COMPLETE (p75–88), VI + EN
+
+Resumed from `translate all remaining chapters`. The §32.5 source was extracted from
+`ch32.pdf` pages 75–163 into `work/ch32_s75_163.txt` (pypdf; `pdftotext` unavailable; pypdf
+logging suppressed + `fontTools` warning text regex-stripped). No page images exist past p74,
+so all 16 figures are schematics/charts reconstructed from the prose and captions — every
+caption says what the figure shows and the shapes follow the numbers given in the text.
+
+### What shipped
+- **Full §32.5 *Semiconductor Junction Thermometers* (Randy Frank), p75–88, VI + EN.**
+  `sec_32_5_vi()` / `sec_32_5_en()` added to `build/reader_hb_ch32.py` and wired into
+  `body_vi()` / `body_en()`. 13 headings: intro (no heading), *The Transistor as a Temperature
+  Sensor*, *Thermal Properties of Semiconductors: Defining Equations*, *Integrated Temperature
+  Sensors* (+ 4 h4 children: Integrated Digital / Analog Output / Digital Output / External
+  Circuitry Eliminates Calibration), *Other Applications of Semiconductor Sensing Techniques*,
+  *Temperature Sensing in Power ICs for Fault Protection and Diagnostics*, *Reliability
+  Implications of Temperature to Electronic Components*, *Junction Temperature Measurement*,
+  *Semiconductor Temperature Sensor Packaging*, *Defining Terms*.
+- **Equations 32.86–32.89** (bilingual where-clauses via `wl()`):
+  V_F = V_be = (kT/q) ln(I_F/I_S); ΔV_be = V_be1 − V_be2 = (kT/q) ln[(I₁/A₁)/(I₂/A₂)] —
+  written with the current-density ratio per the prose; λ = A exp(−Ø/KT) (Arrhenius);
+  R_θJC = ΔT/P_D.
+- **16 figures 32.32–32.47** added to `build/hb32fig.py`, registered in `FIGS` + `FIG_NO`.
+  `FIG_NO` is now `list(range(1,23)) + list(range(24,48))` (46 slots; the book has no 32.23).
+  Added two local helpers: `_chart()` (wraps `hbfig.Box` for axes + curves; `Box` newly
+  imported from `hbfig`) and `_blk()` (labelled block for IC block diagrams). Charts drawn
+  from the source numbers: 32.33 (730 mV @ −40 °C → 300 mV @ 150 °C), 32.34 (±1 mV
+  linearity error), 32.35 (V_be vs log I with the 0.1 mA self-heating line), 32.41 (1.17 →
+  0.65), 32.42 (0.90 → 1.18), 32.45 (8 independent shutdown traces).
+- **Defining Terms** glossary — all 13 terms from p87, via `defs()` (bandgap reference, die,
+  embedded sensor, integrated circuit, junction, junction voltage, junction temperature,
+  monolithic, power/smart power IC, self-heating, soft short, thermal resistance, TinyPak).
+- **References 1–10** via `_refs325(lang)` with `id="t32-tltk-5"` (§32.5's own list, as with
+  `_refs322` / `_refs323` / `_refs324`).
+- **INDEX** extended with the §32.5 block (13 flat `(en, vi, depth)` tuples — remember the
+  session-51 lesson: never nested lists).
+- **Meta + docstrings** now say §32.1–32.5/11, 46 figures, 92 equations, 18 tables.
+- **Translator's note** on both pages: the CRC scan drops/spaces ±, µA, µs, °C; values such as
+  ±3.0 mV, 250 µA / 10 µA, ≤ 300 µs are restored from context, while "response time less
+  than 100 ms" is retained as printed.
+
+### Verification
+- Rebuilt both pages (EN 588 kB, VI 569 kB). **VI/EN parity: 46 figures, 19 `<table>`,
+  92 equations, 52 h3, 50 h4, 6 h5 each.** (19 tables = 18 numbered data tables + the
+  §32.5 defining-terms table; both languages identical.)
+- **Zero dead in-page TOC anchors** (107 `href="#…"` each, 0 missing). All 14 `s32-5*`
+  anchors present on both pages; TOC links resolve to them.
+- Equations 32.86/87/88/89 and figures 32.32–32.47 all present on both pages.
+- No duplicate function definitions (`reader_hb_ch32.py` 71 defs, `hb32fig.py` 80 defs).
+- Caption/aria language swap confirmed: EN fig 32.32 caption + English aria, VI caption +
+  Vietnamese aria.
+- `check_links`: **broken 80 — unchanged, all pre-existing in the other agent's `es/` pages.**
+- Pre-existing duplicate HTML ids (`h32`, `ah32`, `w32` from repeated SVG `<defs>`, and
+  `s32-4-extension-leads` in §32.4) are unchanged; none are in `s32-5-*`.
+
+### Decision: ch32 still NOT registered in the book TOC
+5 of 11 sections done. `reader_handbook.py` DONE untouched; live site still shows Ch 32 as
+"chờ dịch" (expected). **`work/` is gitignored** (`.gitignore:8`), so `work/ch32_s75_163.txt`
+is a *local-only* working dump — it is NOT in the commit and will not survive a fresh clone.
+Re-extract from `ch32.pdf` with pypdf if it is missing.
+
+### Next
+Translate **§32.6 Infrared Thermometers** (Jacob Fraden, p88–109, L704–2053 of the dump) —
+the largest remaining section: 17 figs (32.48–32.64), tables 32.17–32.18, eqs 32.90–32.118,
+29 equations. Then §32.7–§32.11. Register ch32 only when the chapter is complete.

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 """Figures for Handbook Chapter 32 — Temperature.
 
-§32.1–32.3 are complete: figures 32.1–32.22.  §32.4 is in progress — 32.24 is drawn,
-32.25–32.31 remain.  The book has no figure 32.23 (see FIG_NO at the foot of the file).
-Geometry is read off the 140 dpi page images in work/ch32img.
+§32.1–32.4 are complete: figures 32.1–32.31 (the book has no 32.23 — see
+FIG_NO at the foot of the file).  §32.5 adds 32.32–32.47, reconstructed from
+the prose and captions in work/ch32_s75_163.txt because no page images exist
+past p74.  Geometry for the earlier figures is read off the 140 dpi page
+images in work/ch32img.
 
 House rules carried over from chapters 29–31:
   * never write <sub>/<sup> inside SVG <text> — use _mix() tspans;
@@ -14,7 +16,7 @@ House rules carried over from chapters 29–31:
 """
 import math as _m
 
-from hbfig import INK, GOLD, MUTED, TXT, STYLE, _f, svg, _fig
+from hbfig import INK, GOLD, MUTED, TXT, STYLE, _f, svg, _fig, Box
 
 E = INK
 G = GOLD
@@ -2321,17 +2323,614 @@ def fig_32_31():
                 "through RS to the indicator with internal reference junction compensation")
 
 
+# ====================================================== §32.5 figures (32.32-32.47)
+def _chart(o, xr, yr, xt, yt, curves, xlab="", ylab="", w=560, h=300,
+           pad=(56, 20, 18, 42)):
+    """Axes plus curves through hbfig.Box. Returns the Box so a caller can put
+    an annotation in data coordinates after the curves are drawn."""
+    b = Box(w, h, xr, yr, pad=pad)
+    o.append(b.axes(xlab, ylab, xt, yt))
+    for pts, cls in curves:
+        o.append(b.curve(pts, cls))
+    return b
+
+
+def _blk(x, y, w, h, lines, fill=FILL, fs=9):
+    """A labelled block for the IC block diagrams in §32.5."""
+    o = [_rect(x, y, w, h, fill, E, 1.2)]
+    n = len(lines)
+    for i, s in enumerate(lines):
+        yy = y + h / 2 - (n - 1) * 6.2 + i * 12.4 + 3.5
+        o.append(_lbl(x + w / 2, yy, s, "t", "middle", _fs(fs)))
+    return "".join(o)
+
+
+def fig_32_32():
+    """Figure 32.32 — bipolar transistor configured as a temperature sensor."""
+    o = [_defs()]
+    W, H = 560, 290
+    # constant current source
+    o.append(_circ(95, 205, 26, "none", E, 1.4))
+    o.append(_arr(95, 222, 95, 188, E, sw=1.6))
+    o.append(_lbl(95, 250, "I hằng số / constant", "ts", "middle", _fs(8)))
+    o.append(_line(95, 179, 95, 70, E, 1.5))
+    o.append(_line(95, 231, 95, 248, E, 1.5))
+    o.append(_line(95, 248, 342, 248, E, 1.5))
+    # top rail; base and collector both hang off it -> the B-C short
+    o.append(_line(95, 70, 342, 70, E, 1.5))
+    o.append(_line(250, 70, 250, 150, E, 1.5))
+    o.append(_circ(250, 150, 4, E, E, 1))
+    o.append(_line(250, 150, 300, 150, E, 1.5))
+    # transistor: base bar, collector leg, emitter leg
+    o.append(_line(300, 112, 300, 192, E, 2.4))
+    o.append(_line(300, 132, 342, 104, E, 1.6))
+    o.append(_line(342, 104, 342, 70, E, 1.5))
+    o.append(_line(300, 172, 342, 200, E, 1.6))
+    o.append(_arr(316, 187, 331, 197, E, sw=1.2))
+    o.append(_line(342, 200, 342, 248, E, 1.5))
+    # forward voltage across the junction
+    o.append(_darr(410, 80, 410, 238, E, 1.0))
+    o.append(_lbl(424, 152, "VF  ∝  T", "t", "start", ' style="font-weight:700"'))
+    o.append(_lbl(424, 170, "≈ −2 mV °C⁻¹", "ts", "start", _fs(8)))
+    # terminal labels
+    o.append(_lbl(266, 142, "B", "tb", "middle"))
+    o.append(_lbl(354, 100, "C", "tb", "middle"))
+    o.append(_lbl(354, 216, "E", "tb", "middle"))
+    o.append(_lbl(24, 30, "B nối tắt C / base shorted to collector", "ts", "start", _fs(9)))
+    o.append(_lbl(24, 46, "chỉ còn tiếp giáp pn (B–E) / only the B–E pn junction remains",
+                  "ts", "start", _fs(8)))
+    return _fig(svg(W, H, "".join(o),
+                    "Transistor lưỡng cực cấu hình làm cảm biến nhiệt độ"),
+                "Hình 32.32 · Transistor lưỡng cực được cấu hình làm cảm biến nhiệt độ. "
+                "Cực gốc (B) được nối tắt với cực góp (C). Dòng không đổi chạy qua tiếp giáp "
+                "pn còn lại (gốc–phát) sinh ra sụt áp thuận V<sub>F</sub> tỉ lệ với nhiệt độ; "
+                "độ sụt áp thuận toàn phần có hệ số nhiệt độ xấp xỉ −2 mV °C⁻¹.",
+                "Figure 32.32 · Bipolar transistor configured as a temperature sensor. The base "
+                "of the transistor is shorted to the collector. A constant current flowing in the "
+                "remaining pn (base-to-emitter) junction produces a forward voltage drop "
+                "V<sub>F</sub> proportional to temperature; the overall forward voltage drop has "
+                "a temperature coefficient of approximately −2 mV °C⁻¹.",
+                "Sơ đồ transistor B nối tắt C, dòng không đổi qua tiếp giáp B–E, áp VF tỉ lệ nhiệt độ",
+                "Transistor with B shorted to C, constant current through the B–E junction, VF "
+                "proportional to temperature")
+
+
+def fig_32_33():
+    """Figure 32.33 — Vbe vs ambient temperature for a silicon sensor."""
+    o = [_defs()]
+    pts = [(-40, 730), (-20, 685), (0, 639), (25, 583), (50, 526),
+           (75, 470), (100, 413), (125, 357), (150, 300)]
+    b = _chart(o, (-50, 160), (250, 800),
+               [(-40, "−40"), (0, "0"), (25, "25"), (75, "75"), (125, "125"), (150, "150")],
+               [(300, "300"), (400, "400"), (500, "500"), (600, "600"),
+                (700, "700"), (800, "800")],
+               [(pts, "c1")],
+               "nhiệt độ môi trường (°C) / ambient temperature", "Vbe (mV)")
+    o.append(_circ(b.x(25), b.y(600), 4, G, G, 1))
+    o.append(_lbl(b.x(25) + 12, b.y(600) - 12, "580–620 mV ở 25 °C / at 25 °C",
+                  "ts", "start", _fs(8)))
+    o.append(_lbl(b.x(-40) + 8, b.y(730) - 12, "730 mV", "ts", "start", _fs(8)))
+    o.append(_lbl(b.x(150) - 8, b.y(300) - 12, "300 mV", "ts", "end", _fs(8)))
+    return _fig(svg(560, 300, "".join(o),
+                    "Điện áp gốc–phát theo nhiệt độ môi trường của cảm biến silic"),
+                "Hình 32.33 · Điện áp gốc–phát (V<sub>be</sub>) theo nhiệt độ môi trường của một "
+                "cảm biến nhiệt độ silic: danh định 730 mV tại −40 °C và 300 mV tại 150 °C, với "
+                "dải V<sub>be</sub> được quy định chặt là 580–620 mV tại 25 °C.",
+                "Figure 32.33 · Base–emitter voltage vs. ambient temperature for a silicon "
+                "temperature sensor: a nominal 730 mV at −40 °C and 300 mV at 150 °C, with the "
+                "narrowly specified V<sub>be</sub> range of 580–620 mV at 25 °C.",
+                "Đồ thị Vbe giảm gần tuyến tính từ 730 mV tại −40 °C xuống 300 mV tại 150 °C",
+                "Nearly linear Vbe falling from 730 mV at −40 °C to 300 mV at 150 °C")
+
+
+def fig_32_34():
+    """Figure 32.34 — linearity error of a silicon temperature sensor."""
+    o = [_defs()]
+    pts = [(-40, 0), (-20, .42), (0, .78), (25, .95), (50, .74),
+           (75, .30), (100, -.28), (125, -.62), (150, 0)]
+    b = _chart(o, (-50, 160), (-1.5, 1.5),
+               [(-40, "−40"), (0, "0"), (25, "25"), (75, "75"), (125, "125"), (150, "150")],
+               [(-1, "−1"), (0, "0"), (1, "1")],
+               [(pts, "c1")],
+               "nhiệt độ (°C) / temperature", "sai số tuyến tính (mV) / linearity error (mV)",
+               h=250)
+    o.append(_line(b.x(-50), b.y(0), b.x(160), b.y(0), E, 1.0, "4 4"))
+    o.append(_lbl(b.x(70), b.y(1.05), "≤ ±1 mV  ↔  ±1 °C", "ts", "middle", _fs(9)))
+    return _fig(svg(560, 250, "".join(o),
+                    "Sai số tuyến tính theo nhiệt độ của cảm biến silic"),
+                "Hình 32.34 · Sai số tuyến tính (độ lệch khỏi đường thẳng, tính bằng mV) theo "
+                "nhiệt độ của cảm biến silic. Độ chính xác toàn phần nằm trong ±3,0 mV kể cả "
+                "phi tuyến, tương đương điển hình ±1 °C trong dải −40 °C đến 150 °C.",
+                "Figure 32.34 · Linearity error (deviation from a straight line, in mV) vs. "
+                "temperature for a silicon temperature sensor. Total accuracy is within ±3.0 mV "
+                "including nonlinearity, which is typically within ±1 °C from −40 °C to 150 °C.",
+                "Đồ thị sai số tuyến tính dao động trong khoảng ±1 mV trên dải −40 đến 150 °C",
+                "Linearity error staying within about ±1 mV over −40 to 150 °C")
+
+
+def fig_32_35():
+    """Figure 32.35 — Vbe vs collector-emitter current, showing self-heating."""
+    o = [_defs()]
+    pts = [(-3, 455), (-2, 512), (-1, 569), (0, 626), (1, 683), (1.6, 718)]
+    b = _chart(o, (-3.2, 2), (400, 800),
+               [(-3, "0,001"), (-2, "0,01"), (-1, "0,1"), (0, "1"), (1, "10"), (2, "100")],
+               [(400, "400"), (500, "500"), (600, "600"), (700, "700"), (800, "800")],
+               [(pts, "c1")],
+               "dòng góp–phát I (mA, thang log) / collector–emitter current",
+               "Vbe (mV)")
+    o.append(_line(b.x(-1), b.y(400), b.x(-1), b.y(800), S, 1.1, "5 4"))
+    o.append(_lbl(b.x(-1) + 8, b.y(430), "0,1 mA: giới hạn tự đốt nóng / self-heating limit",
+                  "ts", "start", _fs(8)))
+    o.append(_lbl(b.x(.6), b.y(490), "trên 0,1 mA phải tính đến tự đốt nóng / above 0.1 mA "
+                  "self-heating must be accounted for", "ts", "middle", _fs(8)))
+    return _fig(svg(560, 300, "".join(o),
+                    "Điện áp gốc–phát theo dòng góp–phát"),
+                "Hình 32.35 · Điện áp gốc–phát theo dòng góp–phát. Các phép đo trong Hình 32.33 "
+                "và 32.34 thực hiện với dòng góp không đổi 0,1 mA để giảm thiểu tự đốt nóng "
+                "tiếp giáp; dùng dòng lớn hơn thì phải tính đến hiệu ứng này.",
+                "Figure 32.35 · Base–emitter voltage vs. collector–emitter current. The readings "
+                "of Figures 32.33 and 32.34 are made with a constant collector current of 0.1 mA "
+                "to minimize junction self-heating; a larger applied current makes self-heating "
+                "significant.",
+                "Đồ thị Vbe tăng theo log dòng, vạch 0,1 mA đánh dấu giới hạn tự đốt nóng",
+                "Vbe rising with log current, with the 0.1 mA self-heating limit marked")
+
+
+def fig_32_36():
+    """Figure 32.36 — differential pair (bandgap) formed by two pn junctions."""
+    o = [_defs()]
+    W, H = 560, 300
+    o.append(_lbl(24, 30, "Cặp vi sai / differential pair — tham chiếu vùng cấm / bandgap reference",
+                  "ts", "start", _fs(9)))
+    for x, name, area, cur, vbe in ((50, "Q1", "A1", "I1", "Vbe1"),
+                                    (215, "Q2", "A2", "I2", "Vbe2")):
+        o.append(_blk(x, 78, 130, 92, [name, "diode-connected", "diện tích / area " + area], fs=8))
+        o.append(_arr(x + 65, 48, x + 65, 76, E, sw=1.4))
+        o.append(_mix(x + 72, 62, [(cur[:1], "i"), (cur[1:], "sub")], "start", "t", _fs(9)))
+        o.append(_mix(x + 65, 190, [("V", "i"), ("be", "sub"), (vbe[-1], "sub")],
+                      "middle", "ts", _fs(8)))
+    # differential amplifier triangle
+    o.append(_poly([(395, 92), (395, 176), (478, 134)], FILL, E, 1.4))
+    o.append(_lbl(420, 138, "Δ", "t", "start", _fs(11)))
+    o.append(_lbl(436, 138, "amp", "ts", "start", _fs(8)))
+    o.append(_pl([(180, 110), (395, 110)], E, 1.4))
+    o.append(_pl([(345, 158), (395, 158)], E, 1.4))
+    o.append(_arr(478, 134, 530, 134, E, sw=1.6))
+    o.append(_lbl(530, 126, "T tuyệt đối", "ts", "end", _fs(8)))
+    o.append(_lbl(24, 232, "ΔVbe = (kT/q) · ln[(I1/A1)/(I2/A2)]", "t", "start", _fs(10)))
+    o.append(_lbl(24, 252, "tỉ số mật độ dòng không đổi theo nhiệt độ; kết quả độc lập I nguồn",
+                  "ts", "start", _fs(8)))
+    return _fig(svg(W, H, "".join(o), "Cặp vi sai gồm hai tiếp giáp pn"),
+                "Hình 32.36 · Cặp vi sai tạo bởi hai tiếp giáp pn. Hai transistor được nối kiểu "
+                "di-ốt, có diện tích vùng phát khác nhau và phân cực ở mật độ dòng khác nhau; "
+                "điện áp vi sai ΔV<sub>be</sub> xuất hiện ở đầu ra được khuếch đại thành chỉ thị "
+                "trực tiếp nhiệt độ tuyệt đối, độc lập với dao động dòng nguồn.",
+                "Figure 32.36 · Differential pair formed by two pn junctions. The transistors are "
+                "diode connected, with different emitter areas and biased at different current "
+                "densities; the differential voltage ΔV<sub>be</sub> at the output can be "
+                "amplified and used as a direct indication of absolute temperature, independent "
+                "of variations in source current.",
+                "Hai transistor diode-connected Q1 Q2 cấp ΔVbe vào bộ khuếch đại ra nhiệt độ tuyệt đối",
+                "Two diode-connected transistors Q1 and Q2 feeding ΔVbe to an amplifier whose "
+                "output is absolute temperature")
+
+
+def fig_32_37():
+    """Figure 32.37 — LM75 monolithic digital-output temperature sensor."""
+    o = [_defs()]
+    W, H = 560, 280
+    o.append(_lbl(24, 30, "LM75 — cảm biến nhiệt độ đơn khối, ngõ ra số / monolithic digital output",
+                  "ts", "start", _fs(9)))
+    o.append(_blk(28, 92, 112, 66, ["Bandgap", "sensor"], fs=8))
+    o.append(_blk(166, 92, 100, 66, ["Σ–Δ", "ADC"], fs=8))
+    o.append(_blk(292, 92, 112, 66, ["Thanh ghi /", "so sánh"], fs=8))
+    o.append(_blk(430, 92, 102, 66, ["I²C /", "2-wire"], fs=8))
+    for x1, x2 in ((140, 166), (266, 292), (404, 430)):
+        o.append(_arr(x1, 125, x2, 125, E, sw=1.5))
+    o.append(_arr(532, 125, 550, 125, E, sw=1.5))
+    # programmable setpoint feeding the comparator
+    o.append(_blk(292, 196, 112, 46, ["setpoint lập trình", "O.S. / bảo vệ"], fs=7))
+    o.append(_arr(348, 196, 348, 160, E, sw=1.3))
+    o.append(_lbl(24, 210, "8 địa chỉ trên bus", "ts", "start", _fs(8)))
+    o.append(_lbl(24, 228, "độ phân giải 0,5 °C · ±2 % (−25…100 °C)", "ts", "start", _fs(8)))
+    o.append(_lbl(24, 246, "250 µA hoạt động · 10 µA ngủ", "ts", "start", _fs(8)))
+    return _fig(svg(W, H, "".join(o), "Sơ đồ khối cảm biến nhiệt độ số đơn khối"),
+                "Hình 32.37 · Sơ đồ khối của cảm biến nhiệt độ tiếp giáp bán dẫn đơn khối có ngõ "
+                "ra số (LM75, National Semiconductor). Tín hiệu tương tự được biến đổi sang số "
+                "bằng bộ chuyển đổi sigma–delta trên chip; giao tiếp nối tiếp hai dây đưa dữ liệu "
+                "thẳng tới vi điều khiển chủ, kèm điểm đặt lập trình bằng phần mềm để ngắt hoạt "
+                "động hoặc thực hiện bảo vệ. (Ảnh: National Semiconductor Corp.)",
+                "Figure 32.37 · Block diagram of a monolithic digital-output temperature sensor "
+                "(LM75, National Semiconductor). The analog sensor signal is converted by an "
+                "on-board sigma–delta converter; a two-wire serial interface communicates directly "
+                "with a host microcontroller, and a software-programmable setpoint can terminate "
+                "controller operation or implement protection. (Courtesy National Semiconductor "
+                "Corp.)",
+                "Sơ đồ khối LM75: bandgap, ADC sigma-delta, thanh ghi so sánh, giao tiếp hai dây",
+                "LM75 block diagram: bandgap sensor, sigma-delta ADC, comparator registers, "
+                "two-wire serial interface")
+
+
+def fig_32_38():
+    """Figure 32.38 — TMP-1 block diagram and pinout."""
+    o = [_defs()]
+    W, H = 560, 300
+    o.append(_lbl(24, 28, "(a) Sơ đồ khối / block diagram — TMP-1", "tb", "start"))
+    o.append(_blk(24, 58, 116, 62, ["Cảm biến", "bandgap"], fs=8))
+    o.append(_blk(168, 58, 116, 62, ["Điện áp chuẩn", "trôi thấp"], fs=8))
+    o.append(_blk(312, 58, 116, 62, ["5 mV °C⁻¹", "ngõ ra"], fs=8))
+    o.append(_arr(140, 89, 168, 89, E, sw=1.4))
+    o.append(_arr(284, 89, 312, 89, E, sw=1.4))
+    o.append(_arr(428, 89, 470, 89, E, sw=1.4))
+    o.append(_blk(168, 150, 116, 60, ["Điểm đặt cao/thấp", "lập trình bằng R"], fs=8))
+    o.append(_blk(312, 150, 116, 60, ["Quá / dưới", "nhiệt độ"], fs=8))
+    o.append(_arr(284, 180, 312, 180, E, sw=1.4))
+    o.append(_pl([(226, 120), (226, 150)], E, 1.3))
+    o.append(_pl([(370, 120), (370, 150)], E, 1.3))
+    o.append(_lbl(24, 240, "−55 … +125 °C · ±1 °C · 2,76 mm × 3,07 mm (70 × 78 mil)",
+                  "ts", "start", _fs(8)))
+    # (b) pinout
+    px = 470
+    o.append(_lbl(px, 28, "(b) Chân / pinout", "tb", "middle"))
+    o.append(_rect(px - 26, 150, 52, 118, FILL, E, 1.3))
+    o.append(_circ(px, 150, 5, "none", E, 1.1))
+    for i, lab in enumerate(["V+", "SET HIGH", "SET LOW", "VOUT"]):
+        y = 172 + i * 26
+        o.append(_line(px - 36, y, px - 26, y, E, 1.2))
+        o.append(_lbl(px - 40, y + 3, lab, "ts", "end", _fs(7)))
+    for i, lab in enumerate(["GND", "OVER", "UNDER", "REF"]):
+        y = 172 + i * 26
+        o.append(_line(px + 26, y, px + 36, y, E, 1.2))
+        o.append(_lbl(px + 40, y + 3, lab, "ts", "start", _fs(7)))
+    return _fig(svg(W, H, "".join(o), "Sơ đồ khối và sơ đồ chân TMP-1"),
+                "Hình 32.38 · Sơ đồ khối và sơ đồ chân của bộ điều khiển nhiệt độ lập trình bằng "
+                "điện trở TMP-1: ngõ ra 5 mV °C⁻¹, các điểm đặt cao và thấp, ngõ ra quá và dưới "
+                "nhiệt độ, cùng điện áp chuẩn trôi thấp tích hợp trong diện tích 70 × 78 mil "
+                "(2,76 × 3,07 mm). (Ảnh: Analog Devices, Inc.)",
+                "Figure 32.38 · Block diagram and pinout of the TMP-1 monolithic, resistor- "
+                "programmable temperature controller: a 5 mV °C⁻¹ output, high and low set "
+                "points, over- and under-temperature outputs, and an on-chip low-drift voltage "
+                "reference in a 70 × 78 mil (2.76 × 3.07 mm) design. (Courtesy of Analog "
+                "Devices, Inc.)",
+                "Sơ đồ khối TMP-1 với ngõ ra 5 mV mỗi độ C và sơ đồ chân 8 chân",
+                "TMP-1 block diagram with 5 mV per degree output and an 8-pin pinout")
+
+
+def fig_32_39():
+    """Figure 32.39 — detail of the TMP-1 silicon die."""
+    o = [_defs()]
+    W, H = 560, 290
+    o.append(_rect(40, 40, 480, 210, FILL, E, 1.6))
+    # bandgap transistor cell
+    o.append(_rect(70, 76, 96, 78, DARK, E, 1.4))
+    o.append(_lbl(118, 120, "cell", "t", "middle", _fs(9)))
+    o.append(_lbl(118, 136, "bandgap", "t", "middle", _fs(8)))
+    # the rest of the circuitry
+    for i in range(6):
+        x = 190 + (i % 3) * 106
+        y = 64 + (i // 3) * 96
+        o.append(_rect(x, y, 88, 72, "none", S, 1.0))
+        for j in range(3):
+            o.append(_line(x + 6, y + 14 + j * 20, x + 82, y + 14 + j * 20, S, 0.8))
+    o.append(_darr(70, 170, 166, 170, E, 1.0))
+    o.append(_lbl(118, 186, "≈ 1/10 chiều rộng die", "ts", "middle", _fs(8)))
+    o.append(_lbl(24, 272, "Kích thước tương đối của cell transistor vùng cấm so với mạch còn lại",
+                  "ts", "start", _fs(9)))
+    return _fig(svg(W, H, "".join(o), "Chi tiết die silic TMP-1"),
+                "Hình 32.39 · Chi tiết die silic TMP-1. Cần lưu ý kích thước tương đối của cell "
+                "transistor tham chiếu vùng cấm so với toàn bộ mạch tích hợp đi kèm trong thiết "
+                "bị đơn khối. (Ảnh: Analog Devices, Inc.)",
+                "Figure 32.39 · Detail of the TMP-1 die. Note the relative size of the bandgap "
+                "transistor cell compared with the other circuitry included in the monolithic "
+                "device. (Courtesy of Analog Devices, Inc.)",
+                "Sơ đồ die TMP-1 cho thấy cell bandgap nhỏ so với phần mạch còn lại",
+                "TMP-1 die layout showing the small bandgap cell beside the surrounding circuitry")
+
+
+def fig_32_40():
+    """Figure 32.40 — external ΔVbe circuitry (LTC1043) needing no calibration."""
+    o = [_defs()]
+    W, H = 560, 280
+    o.append(_lbl(24, 28, "Mạch ngoài / external circuitry — LTC1043", "tb", "start"))
+    o.append(_blk(28, 76, 118, 74, ["Transistor", "tín hiệu nhỏ", "bất kỳ"], fs=8))
+    o.append(_blk(180, 76, 132, 74, ["LTC1043", "chuyển mạch", "tụ điện"], fs=8))
+    o.append(_blk(346, 76, 132, 74, ["Khuếch đại", "& lọc"], fs=8))
+    o.append(_arr(146, 113, 180, 113, E, sw=1.5))
+    o.append(_arr(312, 113, 346, 113, E, sw=1.5))
+    o.append(_arr(478, 113, 530, 113, E, sw=1.5))
+    o.append(_lbl(530, 103, "0–10 V", "t", "end", _fs(9)))
+    o.append(_lbl(24, 186, "0 °C  →   0 V          100 °C  →  10 V          độ chính xác ±1 °C",
+                  "t", "start", _fs(9)))
+    o.append(_lbl(24, 210, "ΔVbe / dòng: hằng số, không phụ thuộc giá trị tuyệt đối của Vbe",
+                  "ts", "start", _fs(8)))
+    o.append(_lbl(24, 228, "thay transistor từ nhiều nguồn: sai lệch < 0,4 °C · không cần hiệu chuẩn",
+                  "ts", "start", _fs(8)))
+    return _fig(svg(W, H, "".join(o), "Mạch ngoài dùng ΔVbe không cần hiệu chuẩn"),
+                "Hình 32.40 · Mạch ngoài tạo nhiệt kế dựa trên ΔV<sub>be</sub> không cần hiệu "
+                "chuẩn. Dùng IC LTC1043 (Linear Technology) với một transistor tín hiệu nhỏ bất "
+                "kỳ làm cảm biến, mạch cho ngõ ra 0–10 V ứng với 0–100 °C với độ chính xác "
+                "±1 °C; thay transistor từ nhiều nguồn khác nhau cho sai lệch dưới 0,4 °C. "
+                "(Ảnh: Linear Technologies Corporation.)",
+                "Figure 32.40 · External circuitry provides a ΔV<sub>be</sub>-based thermometer "
+                "that does not require calibration. Using an LTC1043 (Linear Technology) and any "
+                "common small-signal transistor as the sensor, the circuit gives 0–10 V for "
+                "0–100 °C with ±1 °C accuracy; substituting transistors from multiple sources "
+                "showed a variation of less than 0.4 °C. (Courtesy of Linear Technologies "
+                "Corporation.)",
+                "Sơ đồ khối mạch LTC1043 tạo ngõ ra 0–10 V cho 0–100 độ C không cần hiệu chuẩn",
+                "LTC1043 block diagram producing 0–10 V for 0–100 °C without calibration")
+
+
+def fig_32_41():
+    """Figure 32.41 — power MOSFET gate threshold variation vs temperature."""
+    o = [_defs()]
+    pts = [(-40, 1.17), (-20, 1.12), (0, 1.06), (25, 1.00), (50, .93),
+           (75, .86), (100, .79), (125, .72), (150, .65)]
+    b = _chart(o, (-50, 160), (0.6, 1.2),
+               [(-40, "−40"), (0, "0"), (25, "25"), (75, "75"), (125, "125"), (150, "150")],
+               [(0.6, "0,6"), (0.8, "0,8"), (1.0, "1,0"), (1.2, "1,2")],
+               [(pts, "c1")],
+               "nhiệt độ (°C) / temperature", "VGS(th) / VGS(th) @ 25 °C")
+    o.append(_circ(b.x(25), b.y(1.0), 4, G, G, 1))
+    o.append(_lbl(b.x(-40) + 8, b.y(1.17) - 6, "1,17", "ts", "start", _fs(8)))
+    o.append(_lbl(b.x(150) - 8, b.y(.65) + 18, "0,65", "ts", "end", _fs(8)))
+    o.append(_lbl(b.x(60), b.y(1.14), "giảm tuyến tính / falls linearly", "ts", "middle", _fs(8)))
+    return _fig(svg(560, 300, "".join(o),
+                    "Độ biến thiên điện áp ngưỡng cổng MOSFET công suất theo nhiệt độ"),
+                "Hình 32.41 · Độ biến thiên điện áp ngưỡng cổng của MOSFET công suất theo nhiệt "
+                "độ, chuẩn hóa theo giá trị tại 25 °C: từ 1,17 lần tại −40 °C xuống 0,65 lần tại "
+                "150 °C. Quan hệ này thường được dùng để suy ra nhiệt độ tiếp giáp trong quá "
+                "trình thiết kế.",
+                "Figure 32.41 · Power MOSFET's gate threshold variation vs. temperature, "
+                "normalized to its 25 °C value: from 1.17 times at −40 °C down to 0.65 times at "
+                "150 °C. Such relationships are frequently used to determine junction "
+                "temperature during the design phase.",
+                "Đồ thị điện áp ngưỡng cổng chuẩn hóa giảm từ 1,17 xuống 0,65",
+                "Normalized gate threshold falling from 1.17 at −40 °C to 0.65 at 150 °C")
+
+
+def fig_32_42():
+    """Figure 32.42 — power MOSFET breakdown voltage vs temperature."""
+    o = [_defs()]
+    pts = [(-40, .90), (-20, .94), (0, .97), (25, 1.00), (50, 1.04),
+           (75, 1.08), (100, 1.11), (125, 1.15), (150, 1.18)]
+    b = _chart(o, (-50, 160), (0.85, 1.2),
+               [(-40, "−40"), (0, "0"), (25, "25"), (75, "75"), (125, "125"), (150, "150")],
+               [(0.9, "0,9"), (1.0, "1,0"), (1.1, "1,1"), (1.2, "1,2")],
+               [(pts, "c1")],
+               "nhiệt độ (°C) / temperature", "BVDSS / BVDSS @ 25 °C")
+    o.append(_circ(b.x(25), b.y(1.0), 4, G, G, 1))
+    o.append(_lbl(b.x(-40) + 8, b.y(.90) + 16, "0,90", "ts", "start", _fs(8)))
+    o.append(_lbl(b.x(150) - 8, b.y(1.18) - 8, "1,18", "ts", "end", _fs(8)))
+    return _fig(svg(560, 300, "".join(o),
+                    "Độ biến thiên điện áp đánh thủng MOSFET công suất theo nhiệt độ"),
+                "Hình 32.42 · Độ biến thiên điện áp đánh thủng của MOSFET công suất theo nhiệt "
+                "độ, chuẩn hóa theo giá trị tại 25 °C: từ 0,90 lần tại −40 °C lên 1,18 lần tại "
+                "150 °C.",
+                "Figure 32.42 · Power MOSFET's breakdown voltage variation vs. temperature, "
+                "normalized to its 25 °C value: from 0.90 times at −40 °C up to 1.18 times at "
+                "150 °C.",
+                "Đồ thị điện áp đánh thủng chuẩn hóa tăng từ 0,90 lên 1,18",
+                "Normalized breakdown voltage rising from 0.90 at −40 °C to 1.18 at 150 °C")
+
+
+def fig_32_43():
+    """Figure 32.43 — temperature sensor integrated in a power MOSFET."""
+    o = [_defs()]
+    W, H = 560, 300
+    o.append(_rect(34, 40, 492, 210, FILL, E, 1.6))
+    o.append(_lbl(280, 32, "die MOSFET công suất / power MOSFET die", "ts", "middle", _fs(8)))
+    # source bond pads
+    for i in range(4):
+        x = 80 + i * 116
+        o.append(_rect(x, 62, 84, 34, DARK, E, 1.0))
+        o.append(_lbl(x + 42, 83, "source pad", "ts", "middle", _fs(7)))
+        o.append(_rect(x, 196, 84, 34, DARK, E, 1.0))
+        o.append(_lbl(x + 42, 217, "source pad", "ts", "middle", _fs(7)))
+    # polysilicon diode string near the centre (highest current density)
+    for i in range(5):
+        x = 116 + i * 66
+        o.append(_rect(x, 132, 34, 30, "none", G, 1.5))
+        o.append(_lbl(x + 17, 151, "D", "t", "middle", _fs(8)))
+    o.append(_lbl(280, 184, "chuỗi di-ốt polysilicon / polysilicon diode string",
+                  "ts", "middle", _fs(8)))
+    o.append(_lbl(24, 274, "Cảm biến đặt gần tâm die, nơi mật độ dòng và nhiệt độ lớn nhất",
+                  "ts", "start", _fs(9)))
+    return _fig(svg(W, H, "".join(o), "Cảm biến nhiệt độ tích hợp trong MOSFET công suất"),
+                "Hình 32.43 · Ảnh hiển vi cảm biến nhiệt độ tích hợp trong MOSFET công suất. Cần "
+                "lưu ý kích thước tương đối của cảm biến so với toàn bộ diện tích MOSFET công "
+                "suất và các pad nguồn cho phép gắn dây nhôm 15 mil (0,60 mm). Các di-ốt "
+                "polysilicon được đặt gần tâm die, nơi mật độ dòng lớn nhất và vì thế nhiệt độ "
+                "die cao nhất. (Ảnh: Motorola, Inc.)",
+                "Figure 32.43 · Photomicrograph of a temperature sensor integrated in a power "
+                "MOSFET. Note the relative size of the temperature sensor compared with the total "
+                "area of the power MOSFET and the source pads which allow attachment of 15 mil "
+                "(0.60 mm) aluminum wire. The polysilicon diodes sit near the centre of the die "
+                "where current density, and hence die temperature, is highest. (Courtesy of "
+                "Motorola, Inc.)",
+                "Sơ đồ die MOSFET công suất với chuỗi di-ốt polysilicon giữa các pad nguồn",
+                "Power MOSFET die layout with a polysilicon diode string between the source pads")
+
+
+def fig_32_44():
+    """Figure 32.44 — eight-output power IC die."""
+    o = [_defs()]
+    W, H = 560, 300
+    o.append(_rect(34, 40, 492, 210, FILL, E, 1.6))
+    # eight large output devices, two at each corner
+    for cx, cy in ((34, 40), (418, 40), (34, 160), (418, 160)):
+        for dy in (0, 44):
+            o.append(_rect(cx + 14, cy + 14 + dy, 94, 36, DARK, E, 1.1))
+            o.append(_lbl(cx + 61, cy + 36 + dy, "output", "ts", "middle", _fs(7)))
+    # control / sensing in the centre and along top and bottom
+    o.append(_rect(180, 66, 200, 52, "none", E, 1.2))
+    o.append(_lbl(280, 88, "cảm biến nhiệt độ / temperature sensing", "ts", "middle", _fs(8)))
+    o.append(_lbl(280, 104, "điều hòa tín hiệu / signal conditioning", "ts", "middle", _fs(8)))
+    o.append(_rect(180, 152, 200, 52, "none", E, 1.2))
+    o.append(_lbl(280, 176, "điều khiển & chẩn đoán / control & diagnostics",
+                  "ts", "middle", _fs(8)))
+    o.append(_lbl(24, 274, "Tám khối công suất lớn hơn nhiều so với mạch điều khiển ở giữa",
+                  "ts", "start", _fs(9)))
+    return _fig(svg(W, H, "".join(o), "Ảnh hiển vi IC công suất tám ngõ ra"),
+                "Hình 32.44 · Ảnh hiển vi IC công suất tám ngõ ra. Diện tích của tám thiết bị "
+                "công suất (hai khối ở mỗi góc die) lớn hơn đáng kể so với mạch ở giữa, phía trên "
+                "và phía dưới — nơi đảm nhiệm cảm biến nhiệt độ, điều hòa tín hiệu và các chức "
+                "năng điều khiển khác. (Ảnh: Motorola, Inc.)",
+                "Figure 32.44 · Photomicrograph of an eight-output power IC. The area of the "
+                "eight output devices (two located at each corner of the die) is considerably "
+                "larger than the circuitry in the centre, top and bottom that provides the "
+                "temperature sensing, signal conditioning and other control features. (Courtesy "
+                "of Motorola, Inc.)",
+                "Sơ đồ die tám ngõ ra với tám khối công suất ở bốn góc và mạch điều khiển ở giữa",
+                "Eight-output die with eight large power blocks at the corners and control "
+                "circuitry in the centre")
+
+
+def fig_32_45():
+    """Figure 32.45 — independent thermal shutdown of an eight-output power IC."""
+    o = [_defs()]
+    curves = []
+    for i in range(8):
+        t0 = 0.0 + i * 1.1
+        pts = [(0, 0), (t0 + .4, 1.2 + i * .06), (t0 + 1.4, 2.4 + i * .08),
+               (t0 + 2.2, 3.1 + i * .06), (t0 + 2.3, 3.1 + i * .06),
+               (t0 + 2.45, .12), (10, .1)]
+        curves.append((pts, "c1" if i % 3 == 0 else ("c2" if i % 3 == 1 else "c3")))
+    b = _chart(o, (0, 10), (0, 4),
+               [(0, "0"), (2, "2"), (4, "4"), (6, "6"), (8, "8"), (10, "10")],
+               [(0, "0"), (1, "1"), (2, "2"), (3, "3"), (4, "4")],
+               curves, "thời gian / time (a.u.)",
+               "dòng ngõ ra / output current (a.u.)", w=560, h=300)
+    o.append(_line(b.x(0), b.y(3.4), b.x(10), b.y(3.4), G, 1.1, "5 4"))
+    o.append(_lbl(b.x(9.6), b.y(3.4) - 6, "ngưỡng 170 °C / thermal limit", "ts", "end", _fs(8)))
+    o.append(_lbl(24, 288, "Mỗi ngõ ra ngắt độc lập; ngõ nóng nhất ngắt trước · 16 V · ~30 A ban đầu",
+                  "ts", "start", _fs(8)))
+    return _fig(svg(560, 300, "".join(o),
+                    "Ngắt nhiệt độc lập của IC công suất tám ngõ ra"),
+                "Hình 32.45 · Ngắt nhiệt độc lập của IC công suất tám ngõ ra, mỗi ngõ có cảm biến "
+                "nhiệt độ riêng, khi vượt ngưỡng 170 °C. Tất cả ngõ ra được nối nguồn 16 V ở "
+                "nhiệt độ phòng, tổng dòng ban đầu gần 30 A. Từng thiết bị ngắt độc lập, thiết "
+                "bị nóng nhất ngắt trước; khi từng thiết bị ngắt, công suất tiêu tán trên chip "
+                "giảm và các thiết bị còn lại tản nhiệt tốt hơn. (Ảnh: Motorola, Inc.)",
+                "Figure 32.45 · Independent thermal shutdown of an eight-output power IC, each "
+                "output carrying its own temperature sensor and switching off when the 170 °C "
+                "limit is exceeded. All outputs were connected to a 16 V supply at room ambient "
+                "with almost 30 A initially flowing. Each device turns off independently — the "
+                "hottest first — and as each turns off the chip's total dissipation falls, letting "
+                "the remaining devices dissipate heat more effectively. (Courtesy of Motorola, "
+                "Inc.)",
+                "Tám đường cong dòng ngõ ra ngắt ở những thời điểm khác nhau khi quá 170 °C",
+                "Eight output-current traces shutting down independently at different times "
+                "past 170 °C")
+
+
+def fig_32_46():
+    """Figure 32.46 — steady-state thermal resistance test circuit."""
+    o = [_defs()]
+    W, H = 560, 310
+    o.append(_lbl(24, 28, "(a) Mạch thử / test circuit", "tb", "start"))
+    # power supply and switching transistor
+    o.append(_blk(28, 58, 108, 60, ["Nguồn công suất", "VCE / IE"], fs=8))
+    o.append(_arr(136, 88, 178, 88, E, sw=1.4))
+    o.append(_blk(178, 58, 118, 60, ["Transistor", "công suất (DUT)"], fs=8))
+    o.append(_blk(28, 150, 108, 60, ["Dòng chuẩn", "IM (2–10 mA)"], fs=8))
+    o.append(_arr(136, 180, 178, 180, E, sw=1.4))
+    o.append(_blk(178, 150, 118, 60, ["Đo VBE", "trong khoảng ngắt"], fs=8))
+    o.append(_pl([(237, 118), (237, 150)], S, 1.2, "4 3"))
+    o.append(_blk(330, 92, 130, 76, ["Chuyển mạch", "đóng / ngắt", "theo chu kỳ"], fs=8))
+    o.append(_arr(296, 88, 330, 88, E, sw=1.4))
+    # timing diagram
+    o.append(_lbl(24, 240, "(b) Chu kỳ / timing", "tb", "start"))
+    x0, y0 = 150, 248
+    seg = [(0, 1, "c1"), (1, 1.14, "c2"), (1.14, 2.14, "c1"), (2.14, 2.28, "c2")]
+    for a, bb, cls in seg:
+        top = 232 if cls == "c1" else 262
+        o.append(_line(x0 + a * 120, top, x0 + bb * 120, top, E if cls == "c1" else G, 2.2))
+    o.append(_lbl(x0 + 60, 226, "16,4 ms ON", "ts", "middle", _fs(8)))
+    o.append(_lbl(x0 + 130, 278, "≤ 300 µs OFF: đo VBE", "ts", "middle", _fs(8)))
+    return _fig(svg(W, H, "".join(o),
+                    "Mạch thử điện trở nhiệt trạng thái ổn định cho transistor công suất"),
+                "Hình 32.46 · Ví dụ mạch thử điện trở nhiệt trạng thái ổn định cho transistor "
+                "công suất lưỡng cực. Công suất được cấp trong 16,4 ms rồi ngắt không quá 300 µs "
+                "để đo V<sub>BE</sub> với dòng chuẩn I<sub>M</sub>; pha ngắt ngắn nên nhiệt độ "
+                "vỏ được ổn định và tiếp giáp hầu như không nguội đi.",
+                "Figure 32.46 · Example of a steady-state thermal resistance test circuit for a "
+                "bipolar power transistor. Power is applied for 16.4 ms and interrupted for "
+                "≤ 300 µs to measure V<sub>BE</sub> at the calibration current I<sub>M</sub>; "
+                "the short off interval stabilises case temperature while junction cooling is "
+                "minimal.",
+                "Mạch thử và giản đồ thời gian 16,4 ms cấp điện, 300 micro giây ngắt để đo VBE",
+                "Test circuit and timing: 16.4 ms on, 300 microsecond off interval to read VBE")
+
+
+def fig_32_47():
+    """Figure 32.47 — five silicon temperature sensor packages."""
+    o = [_defs()]
+    W, H = 560, 280
+    o.append(_lbl(24, 26, "Năm vỏ cảm biến nhiệt độ silic / five silicon sensor packages",
+                  "ts", "start", _fs(9)))
+    # TO-92
+    o.append(_rect(24, 70, 66, 62, FILL, E, 1.4, rx=6))
+    for i in range(3):
+        o.append(_line(38 + i * 14, 132, 38 + i * 14, 156, E, 1.2))
+    o.append(_lbl(57, 176, "TO-92", "ts", "middle", _fs(8)))
+    # TO-99 metal can
+    o.append(_circ(160, 100, 34, FILL, E, 1.4))
+    o.append(_line(160, 66, 160, 54, E, 1.2))
+    for i in range(4):
+        o.append(_line(140 + i * 13, 132, 140 + i * 13, 156, E, 1.2))
+    o.append(_lbl(160, 176, "TO-99 (kim loại)", "ts", "middle", _fs(8)))
+    # 8-lead DIP
+    o.append(_rect(226, 72, 108, 56, FILL, E, 1.4))
+    for i in range(4):
+        o.append(_line(240 + i * 24, 128, 240 + i * 24, 146, E, 1.2))
+        o.append(_line(240 + i * 24, 72, 240 + i * 24, 54, E, 1.2))
+    o.append(_circ(238, 84, 4, "none", E, 1.0))
+    o.append(_lbl(280, 176, "DIP 8 chân", "ts", "middle", _fs(8)))
+    # 8-lead SOIC
+    o.append(_rect(356, 82, 92, 38, FILL, E, 1.4))
+    for i in range(4):
+        o.append(_line(368 + i * 20, 120, 368 + i * 20, 134, E, 1.2))
+        o.append(_line(368 + i * 20, 82, 368 + i * 20, 68, E, 1.2))
+    o.append(_lbl(402, 176, "SOIC 8 chân", "ts", "middle", _fs(8)))
+    # SOT-23 TinyPak
+    o.append(_rect(472, 88, 56, 30, FILL, E, 1.4))
+    for i in range(3):
+        o.append(_line(482 + i * 18, 118, 482 + i * 18, 134, E, 1.2))
+        o.append(_line(482 + i * 18, 88, 482 + i * 18, 72, E, 1.2))
+    o.append(_lbl(500, 176, "SOT-23 TinyPak™", "ts", "middle", _fs(8)))
+    o.append(_lbl(24, 220, "Vỏ nhựa, gốm, kim loại — hàn xuyên lỗ hoặc dán mặt (SMT)",
+                  "ts", "start", _fs(9)))
+    o.append(_lbl(24, 240, "hình dạng khác hẳn vỏ cảm biến chế tạo bằng công nghệ khác",
+                  "ts", "start", _fs(8)))
+    return _fig(svg(W, H, "".join(o), "Năm kiểu vỏ cảm biến nhiệt độ silic"),
+                "Hình 32.47 · Các vỏ nhựa TO-92, vỏ kim loại TO-99, DIP 8 chân, SOIC 8 chân và "
+                "TinyPak™ SOT-23 bằng nhựa. Cảm biến chế tạo bằng công nghệ bán dẫn thường dùng "
+                "các vỏ thông dụng của ngành bán dẫn, thiết kế để hàn lên bo mạch theo công nghệ "
+                "xuyên lỗ hoặc dán mặt. (Ảnh: National Semiconductor Corp.)",
+                "Figure 32.47 · Plastic TO-92, TO-99 metal can, 8-lead DIP, 8-lead SOIC and "
+                "TinyPak™ SOT-23 plastic packages. Semiconductor temperature sensors are "
+                "typically housed in packages common to the semiconductor industry, designed for "
+                "through-hole or surface-mount board attachment. (Courtesy National "
+                "Semiconductor Corp.)",
+                "Năm kiểu vỏ TO-92 TO-99 DIP-8 SOIC-8 và SOT-23 TinyPak",
+                "Five package outlines: TO-92, TO-99, 8-lead DIP, 8-lead SOIC and SOT-23 TinyPak")
+
+
 FIGS = [fig_32_1, fig_32_2, fig_32_3, fig_32_4, fig_32_5, fig_32_6,
         fig_32_7, fig_32_8, fig_32_9, fig_32_10, fig_32_11, fig_32_12,
         fig_32_13, fig_32_14, fig_32_15, fig_32_16, fig_32_17, fig_32_18,
         fig_32_19, fig_32_20, fig_32_21, fig_32_22,         fig_32_24,
-        fig_32_25, fig_32_26, fig_32_27, fig_32_28, fig_32_29, fig_32_30, fig_32_31]
+        fig_32_25, fig_32_26, fig_32_27, fig_32_28, fig_32_29, fig_32_30, fig_32_31,
+        fig_32_32, fig_32_33, fig_32_34, fig_32_35, fig_32_36, fig_32_37,
+        fig_32_38, fig_32_39, fig_32_40, fig_32_41, fig_32_42, fig_32_43,
+        fig_32_44, fig_32_45, fig_32_46, fig_32_47]
 
 # The book has no figure 32.23: the numbering runs 32.22 -> 32.24 and nothing in
 # the PDF ever mentions a 32.23.  FIGS is positional, so the printed number of
 # each slot lives here; fig() refuses a number that is not in the list rather
 # than quietly handing back the figure next door.
-FIG_NO = list(range(1, 23)) + [24, 25, 26, 27, 28, 29, 30, 31]
+FIG_NO = list(range(1, 23)) + list(range(24, 48))
 
 
 def fig(n):

@@ -2,8 +2,9 @@
 """Handbook Chapter 32 — Temperature (Robert J. Sandberg, ed.)
 
 The chapter is 163 source pages and eleven sections, each contributed by a
-different author. Sections are being written in order; §32.1–§32.4 are
-complete (§32.4 finished in session 51), §32.5–§32.11 remain.
+different author. Sections are being written in order; §32.1–§32.5 are
+complete (§32.4 finished in session 51, §32.5 in session 52), §32.6–§32.11
+remain.
 
   §32.1  Bimaterials Thermometers            p3-14    6 figs  19 eqs  5 tables
   §32.2  Resistive Thermometers              p14-26   9 figs   6 eqs  2 tables
@@ -6862,6 +6863,841 @@ def sec_32_4_en():
             + sec_32_4e_en() + sec_32_4f_en() + sec_32_4g_en() + _refs324("en"))
 
 
+# ============================================================ §32.5  p75-88
+def sec_32_5_vi():
+    b = [h2("32.5 Nhiệt kế tiếp giáp bán dẫn", "Semiconductor Junction Thermometers")]
+    b.append(authors("Randy Frank", ""))
+    b.append(p(
+        "Có thể chế tạo cảm biến nhiệt độ rất dễ dàng bằng công nghệ gia công bán dẫn, nhờ dùng "
+        "đặc tính nhiệt độ của tiếp giáp <i>pn</i>. Gia công theo mẻ cùng các quy trình chế tạo "
+        "được định nghĩa chặt chẽ của công nghệ bán dẫn mang lại cảm biến nhiệt độ giá rẻ với "
+        "chất lượng đồng nhất. Độ nhạy nhiệt độ của tiếp giáp <i>pn</i> nằm ngay trong các "
+        "phương trình định nghĩa của transistor, và có thể dự đoán khá chính xác trong dải nhiệt "
+        "độ làm việc điển hình của chất bán dẫn, từ −55 °C đến +150 °C."))
+    b.append(p(
+        "Hầu hết cảm biến nhiệt độ tiếp giáp bán dẫn dùng một transistor lưỡng cực nối kiểu "
+        "di-ốt (tiếp giáp góp–gốc bị nối tắt) [1]. Dòng không đổi chạy qua tiếp giáp gốc–phát "
+        "sinh ra điện áp tiếp giáp giữa gốc và phát (V<sub>be</sub>) là hàm tuyến tính của nhiệt "
+        "độ tuyệt đối (Hình 32.32). Độ sụt áp thuận toàn phần có hệ số nhiệt độ xấp xỉ "
+        "2 mV °C⁻¹."))
+    b.append(p(
+        "So với cặp nhiệt điện hay cảm biến nhiệt độ điện trở (RTD), hệ số nhiệt độ của cảm biến "
+        "bán dẫn lớn hơn nhưng vẫn khá nhỏ. Điện áp thuận của cảm biến bán dẫn cũng có một độ "
+        "lệch (offset) thay đổi đáng kể giữa các cá thể. Tuy nhiên, quan hệ giữa điện áp tiếp "
+        "giáp bán dẫn và nhiệt độ tuyến tính hơn nhiều so với cặp nhiệt điện hay RTD. Bên cạnh "
+        "phần tử cảm biến nhiệt độ, mạch điện cũng dễ dàng được tích hợp để tạo ra cảm biến "
+        "nhiệt độ đơn khối có ngõ ra ghép nối trực tiếp với vi điều khiển, đồng thời cung cấp các "
+        "tính năng hữu ích cho những ứng dụng cụ thể. Chẳng hạn, dùng cảm biến nhiệt độ nhúng "
+        "cùng mạch bổ trợ, có thể thêm các tính năng bảo vệ cho mạch tích hợp (IC). Một cảm biến "
+        "nhiệt độ trở thành <i>phần tử nhúng</i> trong một sản phẩm bán dẫn khi nó đảm nhiệm "
+        "mục đích thứ cấp hay bổ trợ thay vì là chức năng chính."))
+    b.append(fig(32, F.fig(32), "vi"))
+
+    # ------------------------------------------------------------- transistor
+    b.append(h3("Transistor dùng làm cảm biến nhiệt độ",
+                "The Transistor as a Temperature Sensor"))
+    b.append(p(
+        "Một sản phẩm bán dẫn thông dụng dùng để cảm biến nhiệt độ là transistor tín hiệu nhỏ "
+        "như 2N2222 hay 2N3904. Bằng cách chọn một dải hẹp trong phân bố chung của V<sub>be</sub> "
+        "ở các linh kiện này, thu được cảm biến nhiệt độ có độ biến thiên đặc tính thấp hơn. Độ "
+        "biến thiên thấp hơn cho phép thay thế linh kiện mà không cần chỉnh lại khi dung sai chỉ "
+        "vài phần trăm là chấp nhận được. Linh kiện này (từng được bán với mã MTS102, nay không "
+        "còn sản xuất) minh họa các đặc tính hoạt động của transistor khi dùng làm cảm biến "
+        "nhiệt độ [2]."))
+    b.append(p(
+        "Như Hình 32.33 [2], một cảm biến nhiệt độ silic có ngõ ra danh định 730 mV tại −40 °C "
+        "và 300 mV tại 150 °C. Dải V<sub>be</sub> được quy định chặt nằm giữa 580 mV và 620 mV "
+        "tại 25 °C. Sai số tuyến tính, tức độ lệch khỏi một đường thẳng, của linh kiện này được "
+        "nêu ở Hình 32.34 [2]. Độ chính xác toàn phần nằm trong ±3,0 mV, đã bao gồm phi tuyến, "
+        "tương đương điển hình ±1 °C trong dải −40 °C đến 150 °C. Các số đọc này thực hiện với "
+        "dòng (góp) không đổi 0,1 mA chạy qua linh kiện nhằm giảm thiểu tự đốt nóng tiếp giáp. "
+        "Khi dòng không đổi đặt vào lớn hơn 0,1 mA, phải tính đến tự đốt nóng trong linh kiện. "
+        "Sự biến thiên của V<sub>be</sub> theo dòng được nêu ở Hình 32.35 [2]."))
+    b.append(fig(33, F.fig(33), "vi"))
+    b.append(fig(34, F.fig(34), "vi"))
+    b.append(fig(35, F.fig(35), "vi"))
+
+    # -------------------------------------------------------- defining equations
+    b.append(h3("Tính chất nhiệt của chất bán dẫn: các phương trình định nghĩa",
+                "Thermal Properties of Semiconductors: Defining Equations"))
+    b.append(p(
+        "Dòng thuận không đổi đưa qua một tiếp giáp <i>pn</i> silic lý tưởng sinh ra độ sụt áp "
+        "thuận V<sub>F</sub> [3, 4]:"))
+    b.append(eq("<i>V</i><sub>F</sub> = <i>V</i><sub>be</sub> = "
+                + _frac("<i>k T</i>", "<i>q</i>")
+                + " ln " + _frac("<i>I</i><sub>F</sub>", "<i>I</i><sub>S</sub>"), "32.86"))
+    b.append(wl([
+        "trong đó &nbsp;<i>k</i> = hằng số Boltzmann (1,38 · 10⁻²³ J K⁻¹)",
+        "&nbsp;<i>T</i> = nhiệt độ (K)",
+        "&nbsp;<i>q</i> = điện tích electron (1,6 · 10⁻¹⁹ C)",
+        "&nbsp;<i>I</i><sub>F</sub> = dòng thuận (A)",
+        "&nbsp;<i>I</i><sub>S</sub> = dòng bão hòa ngược của tiếp giáp (A)",
+    ]))
+    b.append(p(
+        "Nếu <i>I</i><sub>S</sub> không đổi thì điện áp tiếp giáp (V<sub>be</sub>) tỉ lệ thuận "
+        "trực tiếp với nhiệt độ tuyệt đối. Tiếc là <i>I</i><sub>S</sub> lại phụ thuộc nhiệt độ và "
+        "biến thiên theo lập phương của nhiệt độ tuyệt đối. Hệ quả là V<sub>F</sub> có hệ số "
+        "nhiệt độ tổng thể xấp xỉ −2 mV °C⁻¹."))
+    b.append(p(
+        "Để giảm độ biến thiên theo nhiệt độ, người ta tạo một <i>tham chiếu vùng cấm</i> "
+        "(bandgap reference) từ hai transistor kề nhau, có hành vi gần như giống hệt nhau và "
+        "diện tích vùng phát tỉ lệ với nhau, được thiết kế trong một quy trình mạch tích hợp. "
+        "Hai tiếp giáp gốc–phát được phân cực ở những mật độ dòng (<i>I</i>/<i>A</i>) khác nhau, "
+        "nhưng tỉ số giữa các mật độ dòng về cơ bản không đổi trong suốt dải nhiệt độ làm việc "
+        "(−55 °C đến +150 °C). Phương trình sau cho thấy điện áp vi sai (ΔV<sub>be</sub>) liên hệ "
+        "với dòng (<i>I</i>) và diện tích vùng phát (<i>A</i>) của từng transistor:"))
+    b.append(eq("Δ<i>V</i><sub>be</sub> = <i>V</i><sub>be1</sub> − <i>V</i><sub>be2</sub> = "
+                + _frac("<i>k T</i>", "<i>q</i>") + " ln "
+                + _frac("(<i>I</i><sub>1</sub>/<i>A</i><sub>1</sub>)",
+                        "(<i>I</i><sub>2</sub>/<i>A</i><sub>2</sub>)"), "32.87"))
+    b.append(p(
+        "Điện áp vi sai xuất hiện ở đầu ra có thể được khuếch đại như Hình 32.36 và dùng làm chỉ "
+        "thị trực tiếp nhiệt độ tuyệt đối. Mạch bổ trợ có thể triệt tiêu điện áp offset tại "
+        "0 °C và đưa ra ngõ ra theo độ Celsius hay độ Fahrenheit."))
+    b.append(fig(36, F.fig(36), "vi"))
+    b.append(p(
+        "Khả năng cảm biến nhiệt độ bằng kỹ thuật gia công bán dẫn mang lại hai hệ quả quan "
+        "trọng: (1) có thể dùng gia công bán dẫn và thiết kế mạch tích hợp để cải thiện hiệu năng "
+        "của cảm biến nhiệt độ cho những ứng dụng cụ thể; và (2) có thể tích hợp cảm biến nhiệt "
+        "độ vào bên trong các mạch tích hợp khác để bổ sung tính năng. Hai mục tiếp theo trình "
+        "bày các hướng tiếp cận này."))
+
+    # ------------------------------------------------------------- integrated
+    b.append(h3("Cảm biến nhiệt độ tích hợp", "Integrated Temperature Sensors"))
+    b.append(p(
+        "Một khi cảm biến nhiệt độ có thể chế tạo bằng kỹ thuật gia công bán dẫn, nhiều hạn chế "
+        "của cảm biến sẽ được khắc phục nhờ mạch bổ trợ tích hợp ngay trong cảm biến, hoặc bằng "
+        "kỹ thuật mạch đặt bên ngoài. Có thể kể đến cải thiện độ tuyến tính, bổ sung điện áp "
+        "chuẩn chính xác, khuếch đại điện áp chính xác và ngõ ra số để ghép nối trực tiếp với vi "
+        "điều khiển (MCU). Hơn nữa, không cần mạch đo điện trở (như cảm biến RTD) hay mạch bù "
+        "mối nối lạnh (như cảm biến cặp nhiệt điện). Dưới đây khảo sát ba mạch tích hợp và một "
+        "ví dụ mạch ngoài."))
+
+    b.append(h4("Cảm biến nhiệt độ số tích hợp",
+                "Integrated Digital Temperature Sensor"))
+    b.append(p(
+        "Hình 32.37 [3] là cảm biến nhiệt độ tiếp giáp bán dẫn đơn khối (một mảnh silic duy nhất, "
+        "LM75 của National Semiconductor) tích hợp nhiều tính năng, trong đó có ngõ ra số. Tín "
+        "hiệu tương tự của cảm biến được biến đổi sang dạng số bằng bộ chuyển đổi sigma–delta "
+        "ngay trên chip [3]. Giao tiếp nối tiếp hai dây truyền dữ liệu thẳng tới vi điều khiển "
+        "chủ. Cảm biến có điểm đặt lập trình được bằng phần mềm, dùng để ngắt hoạt động của bộ "
+        "điều khiển hoặc thực hiện bảo vệ [5]. Để tránh kích hoạt nhầm, có thể lập trình số phép "
+        "so sánh (tối đa sáu lần quá nhiệt liên tiếp). Có thể vận hành tám cảm biến khác nhau "
+        "trên cùng một bus. Độ phân giải là ±½ °C và độ chính xác là ±2 % trong dải −25 °C đến "
+        "+100 °C. Cảm biến tiêu thụ 250 µA khi hoạt động và chỉ 10 µA ở chế độ ngủ."))
+    b.append(fig(37, F.fig(37), "vi"))
+
+    b.append(h4("Cảm biến nhiệt độ tích hợp ngõ ra tương tự",
+                "Analog Output Integrated Temperature Sensor"))
+    b.append(p(
+        "Một hướng tiếp cận khác của cảm biến nhiệt độ tích hợp được nêu ở Hình 32.38 [4]. Bộ "
+        "điều khiển nhiệt độ lập trình bằng điện trở TMP-1 có ngõ ra 5 mV °C⁻¹, các điểm đặt cao "
+        "và thấp, cùng ngõ ra báo quá nhiệt và dưới nhiệt độ. Điện áp chuẩn trôi thấp cũng được "
+        "tích hợp trong thiết kế có kích thước 70 mil × 78 mil (2,76 mm × 3,07 mm). Hình 32.39 "
+        "là ảnh hiển vi của die silic. TMP-1 được quy định hoạt động trong dải −55 °C đến "
+        "+125 °C với độ chính xác ±1 °C trên toàn dải."))
+    b.append(fig(38, F.fig(38), "vi"))
+    b.append(fig(39, F.fig(39), "vi"))
+
+    b.append(h4("Cảm biến nhiệt độ ngõ ra số", "Digital Output Temperature Sensor"))
+    b.append(p(
+        "Một cảm biến nhiệt độ biến đổi thẳng sang số đã được thiết kế cho các ứng dụng cảm biến "
+        "nhiệt độ đa điểm [6]. Mỗi linh kiện được khắc một số seri riêng biệt. Bộ nhớ chỉ đọc "
+        "(ROM) 64 bit nhận dạng nhiệt độ của một cảm biến cụ thể trong hệ thống đo, với nhiều "
+        "cảm biến cung cấp số đọc từ các vị trí khác nhau. Tín hiệu có thể truyền đi xa tới 300 m."))
+    b.append(p(
+        "Cảm biến hoạt động từ −55 °C đến 125 °C, lấy nguồn ngay từ đường dữ liệu. Phép đo được "
+        "phân giải theo các bước 0,5 °C dưới dạng giá trị số 9 bit, với thời gian biến đổi trong "
+        "vòng 200 ms. Thiết bị còn có các ngưỡng báo động do người dùng định nghĩa."))
+
+    b.append(h4("Mạch ngoài loại bỏ nhu cầu hiệu chuẩn",
+                "External Circuitry Eliminates Calibration"))
+    b.append(p(
+        "Có thể thiết kế mạch ngoài để khai thác khả năng cảm biến vốn có của các transistor giá "
+        "rẻ mà không phải chịu chi phí mạch tích hợp bổ trợ, cũng không cần hiệu chuẩn từng linh "
+        "kiện. Mạch ở Hình 32.40 dùng một mạch tích hợp (LTC1043 của Linear Technology "
+        "Corporation) để tạo ngõ ra 0 V đến 10 V ứng với 0 °C đến 100 °C, đạt độ chính xác "
+        "±1 °C với <i>bất kỳ</i> transistor tín hiệu nhỏ thông thường nào làm cảm biến [7]. Mạch "
+        "thiết lập quan hệ ΔV<sub>be</sub> theo dòng không đổi bất chấp giá trị tuyệt đối của "
+        "di-ốt V<sub>be</sub>. Thay thế bằng các transistor lấy từ nhiều nguồn khác nhau cho sai "
+        "lệch chưa tới 0,4 °C."))
+    b.append(fig(40, F.fig(40), "vi"))
+
+    # ------------------------------------------------------- other applications
+    b.append(h3("Các ứng dụng khác của kỹ thuật cảm biến bán dẫn",
+                "Other Applications of Semiconductor Sensing Techniques"))
+    b.append(p(
+        "Nhiều tham số bán dẫn biến thiên tuyến tính trong dải nhiệt độ làm việc. MOSFET công "
+        "suất dùng để đóng cắt dòng lớn (điển hình vài ampe) ở điện áp có thể vượt 500 V là một "
+        "ví dụ. Như Hình 32.41 [8], điện áp ngưỡng cổng của MOSFET công suất thay đổi từ 1,17 "
+        "xuống 0,65 lần giá trị tại 25 °C khi nhiệt độ tăng từ −40 °C lên 150 °C. Điện áp đánh "
+        "thủng của MOSFET công suất cũng biến thiên từ 0,9 đến 1,18 lần giá trị tại 25 °C trong "
+        "cùng dải nhiệt độ (Hình 32.42) [8]. Các quan hệ này thường được dùng để xác định nhiệt "
+        "độ tiếp giáp của một linh kiện bán dẫn trong khi nó thực sự vận hành trong mạch, ở giai "
+        "đoạn thiết kế (xem mục “Hàm ý về độ tin cậy”). Đo nhiệt độ ở mặt ngoài của vỏ có thể "
+        "thấp hơn nhiệt độ tiếp giáp nhiều độ, nhất là trong các sự kiện đóng cắt nhanh, năng "
+        "lượng cao. Nhiệt độ tiếp giáp thực và hệ quả của nó lên các tham số bán dẫn phải được "
+        "tính đến để áp dụng linh kiện bán dẫn đúng cách."))
+    b.append(fig(41, F.fig(41), "vi"))
+    b.append(fig(42, F.fig(42), "vi"))
+    b.append(p(
+        "Các di-ốt polysilicon (và cả điện trở) cách ly với MOSFET công suất có thể được tạo ra "
+        "ngay trong quy trình chế tạo bán dẫn với những sửa đổi nhỏ. Các di-ốt này dùng được làm "
+        "phần tử cảm biến nhiệt độ trong ứng dụng thực [9]. Cảm biến nhiệt thực hiện bằng các "
+        "phần tử polysilicon là một cải tiến đáng kể so với cảm biến nhiệt độ linh kiện công "
+        "suất bằng một phần tử cảm biến đặt bên ngoài. Nhờ dùng di-ốt polysilicon, cảm biến có "
+        "thể đặt ngay gần tâm của linh kiện công suất, cạnh các pad dây nguồn, nơi mật độ dòng "
+        "lớn nhất và vì thế nhiệt độ die cao nhất."))
+    b.append(p(
+        "Độ dẫn nhiệt của lớp oxit ngăn cách các di-ốt polysilicon với linh kiện công suất nhỏ "
+        "hơn hai bậc so với silic. Tuy nhiên, vì lớp này rất mỏng, phần tử polysilicon vẫn cho "
+        "chỉ thị chính xác nhiệt độ đỉnh thực của tiếp giáp."))
+    b.append(p(
+        "Hình 32.43 [9] là một FET công suất tích hợp di-ốt cảm biến nhiệt độ. Bằng cách theo "
+        "dõi điện áp ngõ ra khi cho dòng không đổi chạy qua (các) di-ốt polysilicon tích hợp, "
+        "thu được chỉ thị chính xác nhiệt độ die cực đại. Thiết kế thực tế bố trí nhiều di-ốt. "
+        "Một di-ốt đơn lẻ trong thiết kế này có hệ số nhiệt độ 1,90 mV °C⁻¹; có thể mắc hai hay "
+        "nhiều di-ốt nối tiếp nếu muốn ngõ ra lớn hơn. Để đạt độ chính xác cao hơn, các di-ốt "
+        "có thể được chỉnh cắt (trim) khi thử ở mức wafer bằng cách đứt các liên kết cầu chì làm "
+        "từ polysilicon. Thời gian đáp ứng của các di-ốt dưới 100 ms — đủ để linh kiện chịu "
+        "được phép nối thẳng qua ắc quy ô tô, với mạch ngoài thực hiện ngắt trước khi linh kiện "
+        "hỏng. Khả năng cảm biến còn cho phép linh kiện công suất đưa ra chỉ báo (kèm mạch "
+        "ngoài) nếu tản nhiệt không đúng khi lắp thiết bị vào mô-đun, hoặc nếu có sự thay đổi "
+        "trong ứng dụng mà cuối cùng sẽ gây hỏng hóc."))
+    b.append(fig(43, F.fig(43), "vi"))
+
+    # --------------------------------------------------------------- power ICs
+    b.append(h3("Cảm biến nhiệt độ trong IC công suất để bảo vệ và chẩn đoán sự cố",
+                "Temperature Sensing in Power ICs for Fault Protection and Diagnostics"))
+    b.append(p(
+        "Cảm biến các điều kiện sự cố, chẳng hạn ngắn mạch, là một phần không thể tách rời của "
+        "nhiều IC công suất thông minh (smart power IC). Khả năng tạo cảm biến nhiệt độ ngay "
+        "trong quy trình bán dẫn đem lại các tính năng bảo vệ và chẩn đoán cho những linh kiện "
+        "này. Chức năng chính của IC công suất là làm giao diện giữa vi điều khiển và tải cho "
+        "nhiều loại tải khác nhau. Ở các thiết bị nhiều ngõ ra, việc cảm biến nhiệt độ tiếp giáp "
+        "của từng thiết bị cho phép đưa trạng thái của từng thiết bị về vi điều khiển (MCU); khi "
+        "cần, MCU có thể ngắt riêng thiết bị đang có sự cố."))
+    b.append(p(
+        "Một <i>IC công suất thông minh</i> có thể tích hợp nhiều bộ lái công suất trên cùng một "
+        "mảnh silic đơn khối [10]. Mỗi bộ lái có thể tích hợp một cảm biến nhiệt độ để xác định "
+        "trạng thái làm việc đúng và chỉ ngắt riêng bộ lái đó khi xảy ra sự cố. Hình 32.44 là bộ "
+        "lái tám ngõ ra, tự động ngắt độc lập ngõ ra của một bộ lái cụ thể nếu nhiệt độ của nó "
+        "quá cao (tức trong khoảng 155 °C đến 185 °C) [10]."))
+    b.append(fig(44, F.fig(44), "vi"))
+    b.append(p(
+        "Chuyển mạch nối tiếp tám ngõ ra (OSS) bổ sung cảm biến nhiệt độc lập thông qua mạch "
+        "phát hiện quá nhiệt vào các tính năng bảo vệ. Sự cố có thể được phát hiện cho từng thiết "
+        "bị ngõ ra, và có thể ngắt riêng lẻ. Trong IC công suất nhiều ngõ ra, rất mong muốn chỉ "
+        "ngắt thiết bị đang gặp sự cố chứ không ngắt tất cả các thiết bị cùng tích hợp trên IC. "
+        "Với các ngõ ra nằm ở những vị trí vật lý khác nhau trên chip, rất khó dự đoán gradient "
+        "nhiệt có thể xuất hiện trong tình huống sự cố. Vì vậy cần cảm biến nhiệt độ cục bộ tại "
+        "mỗi ngõ ra thay vì một cảm biến nhiệt độ toàn cục duy nhất."))
+    b.append(p(
+        "Như Hình 32.45, tám ngõ ra của thiết bị, mỗi ngõ có cảm biến nhiệt độ riêng, có thể "
+        "được ngắt độc lập khi vượt ngưỡng nhiệt 170 °C [10]. Tất cả ngõ ra được nối nguồn 16 V "
+        "ở nhiệt độ môi trường phòng, với tổng dòng ban đầu gần 30 A chạy qua thiết bị. Lưu ý "
+        "rằng từng thiết bị ngắt một cách độc lập: thiết bị nóng nhất ngắt trước. Sai khác có "
+        "thể đến từ chênh lệch mức dòng và điện trở nhiệt. Khi từng thiết bị ngắt, tổng công "
+        "suất tiêu tán trên chip giảm và các thiết bị còn bật tản nhiệt hiệu quả hơn."))
+    b.append(fig(45, F.fig(45), "vi"))
+    b.append(p(
+        "Nối thẳng vào ắc quy là một ngắn mạch cứng, lẽ ra có thể bị phát hiện bởi mạch hạn dòng. "
+        "Tuy nhiên, <i>ngắn mạch mềm</i> nằm dưới ngưỡng hạn dòng nhưng lại vượt khả năng tiêu "
+        "tán công suất của chip, và là tình huống cực kỳ khó phát hiện. Ngắn mạch mềm đòi hỏi "
+        "phải có cảm biến quá nhiệt để bảo vệ IC khỏi những mức nhiệt độ phá hủy."))
+    b.append(p(
+        "Tình trạng quá nhiệt do IC công suất cảm nhận có thể khiến thiết bị tự ngắt để tránh "
+        "hỏng trong trường hợp này; nhưng trong tình huống khác, tùy thiết kế mạch sự cố, tín "
+        "hiệu sự cố chỉ đưa ra cảnh báo cho MCU mà không có hành động nào được thực hiện, để phần "
+        "còn lại của hệ thống tiếp tục hoạt động bình thường. Khi các điều kiện sự cố được đưa "
+        "về MCU, có thể thực hiện một quy trình ngắt hệ thống có trật tự. Cảm biến nhiệt độ tích "
+        "hợp là thiết yếu để mang lại kiểu bảo vệ này trong IC công suất nhiều ngõ ra."))
+
+    # ------------------------------------------------------------- reliability
+    b.append(h3("Hàm ý của nhiệt độ đối với độ tin cậy của linh kiện điện tử",
+                "Reliability Implications of Temperature to Electronic Components"))
+    b.append(p(
+        "Ảnh hưởng của nhiệt độ lên linh kiện điện tử, và lên việc ứng dụng thành công chúng "
+        "trong hệ thống điện tử, là một trong những vấn đề phải giải quyết trong giai đoạn thiết "
+        "kế hệ thống. Nhiệt độ ảnh hưởng đến hiệu năng và tuổi thọ kỳ vọng của linh kiện bán dẫn. "
+        "Ứng suất cơ học sinh ra bởi sự khác biệt giữa các hệ số giãn nở nhiệt có thể gây hỏng "
+        "trong các thử nghiệm chu trình nhiệt (không khí sang không khí) hoặc trong các quá trình "
+        "chuyển tiếp sốc nhiệt (nước sang nước)."))
+    b.append(p(
+        "Tần suất hỏng điển hình của linh kiện bán dẫn có thể biểu diễn bằng phương trình "
+        "Arrhenius [9]:"))
+    b.append(eq("λ = <i>A</i> exp " + _frac("−Ø", "<i>K T</i>"), "32.88"))
+    b.append(wl([
+        "trong đó &nbsp;λ = tần suất hỏng (failure rate)",
+        "&nbsp;<i>A</i> = hằng số",
+        "&nbsp;Ø = năng lượng kích hoạt (eV)",
+        "&nbsp;<i>K</i> = hằng số Boltzmann (8,62 · 10⁻⁵ eV K⁻¹)",
+        "&nbsp;<i>T</i> = nhiệt độ tiếp giáp (K)",
+    ]))
+    b.append(p(
+        "Tần suất hỏng của linh kiện bán dẫn thường được nêu là tăng gấp đôi với mỗi 10 đến "
+        "15 °C tăng lên của nhiệt độ làm việc (tức nhiệt độ tiếp giáp). Tuy nhiên, việc thử "
+        "nghiệm nhiều hơn và các cải tiến thiết kế đã giảm thiểu các hỏng hóc do những cơ chế "
+        "hỏng cụ thể."))
+    b.append(p(
+        "Một trong các tham số liên quan đến nhiệt độ phải tính đến khi thiết kế một khóa công "
+        "suất là đáp ứng nhiệt quá độ, ký hiệu là <i>r</i>(<i>t</i>) · <i>R</i><sub>θJC</sub>, "
+        "trong đó <i>r</i>(<i>t</i>) là điện trở nhiệt quá độ đã chuẩn hóa. Giá trị "
+        "<i>r</i>(<i>t</i>) được xác định từ bảng dữ liệu của nhà sản xuất bán dẫn, dùng chu kỳ "
+        "làm việc (duty cycle) và độ rộng xung của ứng dụng. Mức điện trở nhiệt suy giảm này (xem "
+        "mục “Đo nhiệt độ tiếp giáp”), dựa trên việc transistor làm việc ở chế độ đóng cắt và "
+        "ngắt trong một khoảng thời gian, tiến về mức một chiều trong vòng một giây. Nhiệt độ "
+        "quá mức có thể sinh ra rất nhanh và phải được phát hiện trong vòng vài mili giây để "
+        "ngăn hỏng hóc."))
+
+    # --------------------------------------------------- junction temperature
+    b.append(h3("Đo nhiệt độ tiếp giáp", "Junction Temperature Measurement"))
+    b.append(p(
+        "Trong chất bán dẫn, sự thay đổi nhiệt độ liên hệ trực tiếp với công suất tiêu tán qua "
+        "điện trở nhiệt. Điện trở nhiệt một chiều ở trạng thái ổn định từ tiếp giáp đến vỏ, "
+        "<i>R</i><sub>θJC</sub>, được định nghĩa là độ tăng nhiệt độ trên một đơn vị công suất "
+        "so với một điểm chuẩn bên ngoài (điển hình là vỏ). Quan hệ này được nêu ở Phương trình "
+        "32.89 [8]:"))
+    b.append(eq("<i>R</i><sub>θJC</sub> = "
+                + _frac("Δ<i>T</i>", "<i>P</i><sub>D</sub>"), "32.89"))
+    b.append(wl([
+        "trong đó &nbsp;Δ<i>T</i> = nhiệt độ tiếp giáp trừ nhiệt độ vỏ (°C)",
+        "&nbsp;<i>P</i><sub>D</sub> = công suất tiêu tán trong tiếp giáp (W)",
+    ]))
+    b.append(p(
+        "Linh kiện bán dẫn hay die silic thường được bao bọc trong một vỏ ngăn cản việc đo trực "
+        "tiếp nhiệt độ tiếp giáp. Nhiệt độ tiếp giáp được đo gián tiếp bằng cách đo nhiệt độ vỏ "
+        "<i>T</i><sub>C</sub>; nhiệt độ tản nhiệt <i>T</i><sub>S</sub> đối với các ứng dụng công "
+        "suất lớn hơn cần tản nhiệt; nhiệt độ môi trường <i>T</i><sub>A</sub>; và một tham số "
+        "điện nhạy nhiệt độ của linh kiện."))
+    b.append(p(
+        "Bước đầu tiên của quy trình là hiệu chuẩn tham số nhạy nhiệt độ đó. Lấy ví dụ transistor "
+        "công suất lưỡng cực: điện áp thuận gốc–phát được đo và ghi lại với một dòng hiệu chuẩn "
+        "thấp <i>I</i><sub>M</sub> chạy qua linh kiện — đủ thấp để tránh tự đốt nóng (điển hình "
+        "trong khoảng 2 mA đến 10 mA), nhưng cũng đủ lớn để nằm trong vùng tuyến tính của đường "
+        "cong điện áp thuận. Quy trình được thực hiện ở nhiệt độ phòng và ở nhiệt độ nâng cao, "
+        "điển hình 100 °C."))
+    b.append(p(
+        "Sau khi hiệu chuẩn, dùng một bộ thử đóng cắt công suất (như Hình 32.46) để luân phiên "
+        "cấp và ngắt công suất cho linh kiện [8]. Pha bật kéo dài (điển hình vài mili giây), còn "
+        "pha ngắt rất ngắn (chỉ vài trăm micro giây), nhờ đó nhiệt độ vỏ được ổn định và tiếp "
+        "giáp hầu như không bị nguội đi. Transistor được cho làm việc ở vùng tích cực, và công "
+        "suất tiêu tán được thay đổi bằng cách chỉnh <i>I</i><sub>E</sub> và/hoặc "
+        "<i>V</i><sub>CE</sub> cho đến khi tiếp giáp đạt nhiệt độ hiệu chuẩn. Biết được điểm này "
+        "bằng cách đo <i>V</i><sub>BE</sub> trong khoảng thời gian mà <i>I</i><sub>M</sub> là "
+        "dòng duy nhất đang chảy."))
+    b.append(fig(46, F.fig(46), "vi"))
+    b.append(p(
+        "Khi giá trị <i>V</i><sub>BE</sub> bằng giá trị trên đường cong hiệu chuẩn thì nhiệt độ "
+        "tiếp giáp đang ở nhiệt độ hiệu chuẩn. Các phép đo <i>V</i><sub>BE</sub>, "
+        "<i>T</i><sub>C</sub> và <i>I</i><sub>E</sub> cho phép tính điện trở nhiệt của linh kiện "
+        "theo Phương trình 32.89. Vì <i>R</i><sub>θJC</sub> là hằng số, các phép đo tiếp theo về "
+        "<i>T</i><sub>C</sub>, <i>V</i><sub>CE</sub> và <i>I</i><sub>E</sub> trong những điều "
+        "kiện vận hành khác nhau có thể dùng để tính nhiệt độ tiếp giáp, nhằm giữ linh kiện "
+        "trong vùng hoạt động an toàn trong ứng dụng thực. Với các linh kiện có đặc tính điện "
+        "khác đi, chẳng hạn MOSFET công suất nêu trên, người ta dùng những tham số khác có quan "
+        "hệ tuyến tính với nhiệt độ để hiệu chuẩn và đo."))
+
+    # -------------------------------------------------------------- packaging
+    b.append(h3("Đóng vỏ cảm biến nhiệt độ bán dẫn",
+                "Semiconductor Temperature Sensor Packaging"))
+    b.append(p(
+        "Cảm biến nhiệt độ chế tạo bằng công nghệ bán dẫn thường được đóng trong các loại vỏ "
+        "thông dụng của ngành bán dẫn: vỏ kim loại (TO-99), vỏ gốm, và phổ biến hơn là vỏ nhựa "
+        "(SOT-23, DIP 8 chân, TO-92, SOIC 8 chân, v.v.). Các vỏ này được thiết kế để hàn lên bo "
+        "mạch theo công nghệ xuyên lỗ hoặc công nghệ dán mặt. Vì thế, dạng vỏ có thể khác khá "
+        "nhiều so với vỏ của cảm biến nhiệt độ chế tạo bằng các công nghệ khác. Hình 32.47 nêu "
+        "ví dụ về năm loại vỏ cảm biến nhiệt độ silic hiện có."))
+    b.append(fig(47, F.fig(47), "vi"))
+
+    # ---------------------------------------------------------- defining terms
+    b.append(h3("Định nghĩa thuật ngữ", "Defining Terms"))
+    b.append(defs([
+        ("<b>Tham chiếu vùng cấm</b> (bandgap reference)",
+         "Đặc tính tiếp giáp vùng phát phân cực thuận của các transistor kề nhau, dùng để tạo "
+         "điện áp ngõ ra có hệ số nhiệt độ bằng không."),
+        ("<b>Die</b>",
+         "Chip bán dẫn chưa đóng vỏ, đã được tách ra khỏi wafer."),
+        ("<b>Cảm biến nhúng</b> (embedded sensor)",
+         "Cảm biến được đưa vào bên trong một mạch tích hợp."),
+        ("<b>Mạch tích hợp</b>",
+         "Nhiều transistor cùng với di-ốt, điện trở, tụ điện, v.v. trên cùng một die silic."),
+        ("<b>Tiếp giáp</b> (junction)",
+         "Mặt phân cách tại đó kiểu dẫn điện của vật liệu đổi từ loại <i>p</i> sang loại <i>n</i>."),
+        ("<b>Điện áp tiếp giáp</b>",
+         "Độ sụt áp trên một mặt phân cách <i>pn</i> được phân cực thuận trong transistor "
+         "(V<sub>be</sub>) hay trong di-ốt."),
+        ("<b>Nhiệt độ tiếp giáp</b>",
+         "Nhiệt độ của mặt phân cách <i>pn</i> trong transistor hay di-ốt."),
+        ("<b>Đơn khối</b> (monolithic integrated circuit)",
+         "Được chế tạo từ một mảnh silic duy nhất."),
+        ("<b>IC công suất / IC công suất thông minh</b>",
+         "Thiết bị lai hoặc đơn khối (bán dẫn) có thể làm mát bằng dẫn nhiệt, thực hiện điều hòa "
+         "tín hiệu, và tích hợp chức năng điều khiển công suất như quản lý sự cố và/hoặc chẩn đoán."),
+        ("<b>Tự đốt nóng</b> (self-heating)",
+         "Độ tăng nhiệt độ bên trong một linh kiện (bán dẫn) do dòng điện chảy trong chính linh "
+         "kiện đó."),
+        ("<b>Ngắn mạch mềm</b> (soft short)",
+         "Tình trạng tải quá mức gây nhiệt độ quá cao nhưng vẫn nằm dưới ngưỡng hạn dòng của "
+         "thiết bị."),
+        ("<b>Điện trở nhiệt</b>",
+         "Điện trở nhiệt một chiều ở trạng thái ổn định từ tiếp giáp đến vỏ, "
+         "<i>R</i><sub>θJC</sub>, là độ tăng nhiệt độ trên một đơn vị công suất so với một điểm "
+         "chuẩn bên ngoài (điển hình là vỏ)."),
+        ("<b>TinyPak</b>",
+         "Nhãn hiệu đã đăng ký của National Semiconductor Corp."),
+    ]))
+    b.append(note(
+        "Chú thích của người dịch: bản quét của nguyên bản (CRC Press, 1999) làm hỏng một số ký "
+        "hiệu đơn vị và dấu — cụ thể là ±, µA, µs và °C bị tách rời. Các giá trị trong mục này "
+        "(±3,0 mV, 250 µA / 10 µA, ≤ 300 µs, v.v.) được phục hồi theo ngữ cảnh kỹ thuật và bảng "
+        "dữ liệu của linh kiện tương ứng; riêng “dưới 100 ms” ở thời gian đáp ứng di-ốt được giữ "
+        "nguyên như bản in."))
+    return "".join(b) + _refs325("vi")
+
+
+def sec_32_5_en():
+    b = [h2("32.5 Semiconductor Junction Thermometers", "Nhiệt kế tiếp giáp bán dẫn")]
+    b.append(authors("Randy Frank", ""))
+    b.append(p(
+        "Temperature sensors can be produced easily with semiconductor processing technology by "
+        "using the temperature characteristics of the <i>pn</i> junction. The batch processing "
+        "and well-defined manufacturing processes associated with semiconductor technology can "
+        "provide low-cost and consistent-quality temperature sensors. The temperature "
+        "sensitivity of the <i>pn</i> junction is part of the transistor's defining equations "
+        "and is quite predictable over the typical semiconductor operating range of −55 °C to "
+        "+150 °C."))
+    b.append(p(
+        "Most semiconductor junction temperature sensors use a diode-connected bipolar "
+        "transistor (short-circuited collector–base junction) [1]. A constant current passed "
+        "through the base–emitter junction produces a junction voltage between base and emitter "
+        "(V<sub>be</sub>) that is a linear function of absolute temperature (Figure 32.32). The "
+        "overall forward voltage drop has a temperature coefficient of approximately "
+        "2 mV °C⁻¹."))
+    b.append(p(
+        "Compared with a thermocouple or a resistive temperature device (RTD), the temperature "
+        "coefficient of a semiconductor sensor is larger but still quite small. Also, the "
+        "semiconductor sensor's forward voltage has an offset that varies significantly from "
+        "unit to unit. However, the semiconductor junction voltage vs. temperature is much more "
+        "linear than that of a thermocouple or RTD. In addition to the temperature-sensing "
+        "element, circuitry is easily integrated to produce a monolithic temperature sensor "
+        "with an output that can be interfaced easily to a microcontroller, and to provide "
+        "features that are useful in specific applications. For example, using an embedded "
+        "temperature sensor with additional circuitry, protection features can be added to "
+        "integrated circuits (ICs). A temperature sensor becomes an <i>embedded</i> item in a "
+        "semiconductor product when it has a secondary or supplemental purpose instead of the "
+        "primary function."))
+    b.append(fig(32, F.fig(32), "en"))
+
+    # ------------------------------------------------------------- transistor
+    b.append(h3("The Transistor as a Temperature Sensor"))
+    b.append(p(
+        "A common semiconductor product for temperature sensing is a small-signal transistor "
+        "such as a 2N2222 or a 2N3904. By selecting a narrow portion of the overall distribution "
+        "of V<sub>be</sub> for these devices, a temperature sensor with a lower variation in "
+        "characteristics can be obtained. The lower variation can provide part-for-part "
+        "replacement when a tolerance of only a few percent is acceptable. This device (formerly "
+        "offered as an MTS102 but no longer in production) demonstrates the performance "
+        "characteristics of the transistor used as a temperature sensor [2]."))
+    b.append(p(
+        "As shown in Figure 32.33 [2], a silicon temperature sensor has a nominal output of "
+        "730 mV at −40 °C and an output of 300 mV at 150 °C. The narrowly specified "
+        "V<sub>be</sub> ranges between 580 mV and 620 mV at 25 °C. The linearity error, or "
+        "variation from a straight line, of this device is shown in Figure 32.34 [2]. The total "
+        "accuracy is within ±3.0 mV including nonlinearity, which is typically within ±1 °C in "
+        "the range −40 °C to 150 °C. These readings are made with a constant (collector) current "
+        "of 0.1 mA passing through the device to minimize the effect of self-heating of the "
+        "junction. When the constant current applied is larger than 0.1 mA, the effect of "
+        "self-heating in the device must be taken into account. The variation of V<sub>be</sub> "
+        "with current is shown in Figure 32.35 [2]."))
+    b.append(fig(33, F.fig(33), "en"))
+    b.append(fig(34, F.fig(34), "en"))
+    b.append(fig(35, F.fig(35), "en"))
+
+    # -------------------------------------------------------- defining equations
+    b.append(h3("Thermal Properties of Semiconductors: Defining Equations"))
+    b.append(p(
+        "A constant forward current supplied through an ideal silicon <i>pn</i> junction "
+        "produces a forward voltage drop V<sub>F</sub> [3, 4]:"))
+    b.append(eq("<i>V</i><sub>F</sub> = <i>V</i><sub>be</sub> = "
+                + _frac("<i>k T</i>", "<i>q</i>")
+                + " ln " + _frac("<i>I</i><sub>F</sub>", "<i>I</i><sub>S</sub>"), "32.86"))
+    b.append(wl([
+        "where &nbsp;<i>k</i> = Boltzmann's constant (1.38 · 10⁻²³ J K⁻¹)",
+        "&nbsp;<i>T</i> = temperature (K)",
+        "&nbsp;<i>q</i> = charge of the electron (1.6 · 10⁻¹⁹ C)",
+        "&nbsp;<i>I</i><sub>F</sub> = forward current (A)",
+        "&nbsp;<i>I</i><sub>S</sub> = junction's reverse saturation current (A)",
+    ]))
+    b.append(p(
+        "For constant <i>I</i><sub>S</sub>, the junction voltage (V<sub>be</sub>) would be "
+        "directly proportional to absolute temperature. Unfortunately, <i>I</i><sub>S</sub> is "
+        "temperature dependent and varies with the cube of absolute temperature. As a result, "
+        "V<sub>F</sub> has an overall temperature coefficient of approximately −2 mV °C⁻¹."))
+    b.append(p(
+        "To reduce the temperature variation, a <i>bandgap reference</i> is formed from two "
+        "adjacent and essentially identical-behavior transistors with proportional emitter area "
+        "designed in an integrated circuit process. The two base–emitter junctions are biased "
+        "with different current densities (<i>I</i>/<i>A</i>), but the ratio of current "
+        "densities is essentially constant over the operating temperature range (−55 °C to "
+        "+150 °C). The following equation shows how the differential voltage "
+        "(ΔV<sub>be</sub>) is related to the current (<i>I</i>) and emitter area (<i>A</i>) of "
+        "the respective transistors:"))
+    b.append(eq("Δ<i>V</i><sub>be</sub> = <i>V</i><sub>be1</sub> − <i>V</i><sub>be2</sub> = "
+                + _frac("<i>k T</i>", "<i>q</i>") + " ln "
+                + _frac("(<i>I</i><sub>1</sub>/<i>A</i><sub>1</sub>)",
+                        "(<i>I</i><sub>2</sub>/<i>A</i><sub>2</sub>)"), "32.87"))
+    b.append(p(
+        "The differential voltage appearing at the output can be amplified as shown in "
+        "Figure 32.36 and used as a direct indication of absolute temperature. Additional "
+        "circuitry can eliminate the offset voltage at 0 °C and provide an output in degrees "
+        "Celsius or degrees Fahrenheit."))
+    b.append(fig(36, F.fig(36), "en"))
+    b.append(p(
+        "The ability to obtain temperature sensing using semiconductor processing techniques "
+        "has two significant consequences: (1) semiconductor processing and integrated circuit "
+        "design can be used to improve the temperature sensor's performance for specific "
+        "applications, and (2) temperature sensors can be integrated within other integrated "
+        "circuits to obtain additional features. The next two sections explain these approaches."))
+
+    # ------------------------------------------------------------- integrated
+    b.append(h3("Integrated Temperature Sensors"))
+    b.append(p(
+        "Once a temperature sensor can be manufactured using semiconductor processing "
+        "techniques, a number of shortcomings of the sensor can be corrected by additional "
+        "circuitry integrated into the sensor, or by circuit techniques external to the sensor. "
+        "The linearity improvement, addition of precision voltage references, precision voltage "
+        "amplifiers, and digital output for direct interface to a microcontroller (MCU) are "
+        "among the enhancements possible. Furthermore, resistance-measuring circuitry (i.e., "
+        "RTD sensors) or cold junction compensation (i.e., thermocouple sensors) are not "
+        "required. Three integrated circuits and one external circuit example are discussed."))
+
+    b.append(h4("Integrated Digital Temperature Sensor"))
+    b.append(p(
+        "A monolithic (one piece of silicon) semiconductor junction temperature sensor (LM75 "
+        "from National Semiconductor) that incorporates several features, including a digital "
+        "output, is shown in Figure 32.37 [3]. The analog signal of the temperature sensor is "
+        "converted to digital format by an on-board sigma–delta converter [3]. Digital "
+        "communication is provided directly to a host microcontroller through a serial two-wire "
+        "interface. The sensor has a software-programmable setpoint that can be used to "
+        "terminate the operation of the controller or implement protection [5]. To avoid false "
+        "triggering, a user-programmable number of comparisons (up to six successive "
+        "over-temperature occurrences) can be implemented. Eight different sensors can be "
+        "operated on the bus. Resolution is ±½ °C and the accuracy is ±2 % from −25 °C to "
+        "+100 °C. The sensor consumes 250 µA during operation and only 10 µA in sleep mode."))
+    b.append(fig(37, F.fig(37), "en"))
+
+    b.append(h4("Analog Output Integrated Temperature Sensor"))
+    b.append(p(
+        "Another approach to integrated temperature sensing is shown in Figure 32.38 [4]. The "
+        "TMP-1 resistor-programmable temperature controller features a 5 mV °C⁻¹ output, high "
+        "and low set points, and over- and under-temperature output. A low-drift voltage "
+        "reference is also included in the 70 mil × 78 mil (2.76 mm × 3.07 mm) design. "
+        "Figure 32.39 shows a photomicrograph of the silicon die. The TMP-1 is specified for "
+        "operation between −55 °C and +125 °C, with ±1 °C accuracy over the entire range."))
+    b.append(fig(38, F.fig(38), "en"))
+    b.append(fig(39, F.fig(39), "en"))
+
+    b.append(h4("Digital Output Temperature Sensor"))
+    b.append(p(
+        "A direct-to-digital temperature sensor has been designed for multi-drop temperature "
+        "sensing applications [6]. A unique serial number is etched onto each device. The "
+        "64-bit read-only memory (ROM) identifies the temperature of a particular sensor in a "
+        "measurement system, with several sensors providing readings from different locations. "
+        "The signal can be transmitted for distances up to 300 m."))
+    b.append(p(
+        "The temperature sensor operates from −55 °C to 125 °C with the power supplied from the "
+        "data line. The measurement is resolved in 0.5 °C increments as a 9-bit digital value, "
+        "with the conversion occurring within 200 ms. User-definable alarm settings are included "
+        "in the device."))
+
+    b.append(h4("External Circuitry Eliminates Calibration"))
+    b.append(p(
+        "External circuitry can be designed to utilize the inherent sensing capability of "
+        "low-cost transistors without incurring the additional cost of integrated circuitry or "
+        "the need to calibrate each device. The circuit shown in Figure 32.40 uses an integrated "
+        "circuit (LTC1043 from Linear Technology Corporation) to provide a 0 V to 10 V output "
+        "from 0 °C to 100 °C, with an accuracy of ±1 °C using <i>any</i> common small-signal "
+        "transistor as the temperature sensor [7]. The circuitry establishes a "
+        "ΔV<sub>be</sub> vs. current relationship that is constant regardless of the "
+        "V<sub>be</sub> diode's absolute value. Substituting different transistors from "
+        "multiple sources showed a variation of less than 0.4 °C."))
+    b.append(fig(40, F.fig(40), "en"))
+
+    # ------------------------------------------------------- other applications
+    b.append(h3("Other Applications of Semiconductor Sensing Techniques"))
+    b.append(p(
+        "Several semiconductor parameters vary linearly over the operating temperature range. "
+        "Power MOSFETs used to switch high levels of current (typically several amperes) at "
+        "voltages that can exceed 500 V provide an example of these characteristics. As shown "
+        "in Figure 32.41 [8], the gate threshold voltage of a power MOSFET changes from 1.17 to "
+        "0.65 times its 25 °C value when the temperature increases from −40 °C to 150 °C. "
+        "Also, the breakdown voltage of the power MOSFET varies from 0.9 to 1.18 times its "
+        "value at 25 °C over the same temperature range (Figure 32.42) [8]. These relationships "
+        "are frequently used to determine the junction temperature of a semiconductor component "
+        "in actual circuit operation during the design phase (see “Reliability Implications”). "
+        "External package-level temperature measurements can be many degrees lower than the "
+        "junction temperature, especially during rapid, high-energy switching events. The "
+        "actual junction temperature and the resulting effect on semiconductor parameters must "
+        "be taken into account for the proper application of semiconductor devices."))
+    b.append(fig(41, F.fig(41), "en"))
+    b.append(fig(42, F.fig(42), "en"))
+    b.append(p(
+        "Polysilicon diodes (and resistors) that are isolated from the power MOSFET can be "
+        "produced as part of the semiconductor manufacturing process with minor process "
+        "modifications. The diodes can be used as temperature sensing elements in an actual "
+        "application [9]. The thermal sensing performed by the polysilicon elements is a "
+        "significant improvement over power-device temperature sensing performed by an external "
+        "temperature sensing element. By sensing with polysilicon diodes, the sensor can be "
+        "located close to the centre of the power device near the source bond pads, where the "
+        "current density is highest and, consequently, the highest die temperature occurs."))
+    b.append(p(
+        "The thermal conductivity of the oxide that separates the polysilicon diodes from the "
+        "power device is 2 orders of magnitude less than that of silicon. However, because the "
+        "layer is thin, the polysilicon element offers an accurate indication of the actual "
+        "peak junction temperature."))
+    b.append(p(
+        "A power FET that incorporates temperature sensing diodes is shown in Figure 32.43 [9]. "
+        "By monitoring the output voltage when a constant current is passed through the "
+        "integrated polysilicon diode(s), an accurate indication of the maximum die temperature "
+        "is obtained. A number of diodes are actually provided in the design. A single diode in "
+        "this design has a temperature coefficient of 1.90 mV °C⁻¹. Two or more can be placed in "
+        "series if a larger output is desired. For greater accuracy, the diodes can be trimmed "
+        "during wafer-level testing by blowing fusible links made from polysilicon. The response "
+        "time of the diodes is less than 100 ms, which has allowed the device to withstand a "
+        "direct connection across an automobile battery with external circuitry providing "
+        "shutdown prior to device failure. The sensing capability also allows the output device "
+        "to provide an indication (with additional external circuitry) if the heatsinking is "
+        "not proper when the unit is installed in a module, or if a change occurs in the "
+        "application that would ultimately cause a failure."))
+    b.append(fig(43, F.fig(43), "en"))
+
+    # --------------------------------------------------------------- power ICs
+    b.append(h3("Temperature Sensing in Power ICs for Fault Protection and Diagnostics"))
+    b.append(p(
+        "Sensing for fault conditions, such as a short-circuit, is an integral part of many "
+        "smart power (or power) ICs. The ability to obtain temperature sensors in the "
+        "semiconductor process provides protection and diagnostics as part of the features of "
+        "these devices. The primary function of the power IC is to provide a "
+        "microcontroller-to-load interface for a variety of loads. In multiple-output devices, "
+        "sensing the junction temperature of each device allows the status of each device to be "
+        "provided to the microcontroller (MCU), and, if necessary, the MCU can shut down a "
+        "particular unit that has a fault condition."))
+    b.append(p(
+        "A <i>smart power IC</i> can have multiple power drivers integrated on a single "
+        "monolithic piece of silicon [10]. Each of these drivers can have a temperature sensor "
+        "integrated to determine the proper operating status and shut off only a specific "
+        "driver if a fault occurs. Figure 32.44 shows an eight-output driver that independently "
+        "shuts down the output of a particular driver if its temperature is excessive (i.e., "
+        "between 155 °C and 185 °C) [10]."))
+    b.append(fig(44, F.fig(44), "en"))
+    b.append(p(
+        "The octal serial switch (OSS) adds independent thermal sensing through "
+        "over-temperature detection circuitry to the protection features. Faults can be "
+        "detected for each output device, and individual shutdown can be implemented. In a "
+        "multiple-output power IC, it is highly desirable to shut down only the device that is "
+        "experiencing a fault condition and not all of the devices that are integrated on the "
+        "power IC. With outputs in various physical locations on the chip, it is difficult to "
+        "predict the thermal gradients that could occur in a fault situation. Local temperature "
+        "sensing at each output, instead of a single global temperature sensor, is required."))
+    b.append(p(
+        "As shown in Figure 32.45, the eight outputs of the device with individual temperature "
+        "sensors can be independently shut down when the thermal limit of 170 °C is exceeded "
+        "[10]. All of the outputs were connected to a 16 V supply at a room temperature "
+        "ambient. A total current of almost 30 A initially flowed through the device. Note that "
+        "each device turns off independently — the hottest device turns off first. Variations "
+        "can result from differences in current level and thermal resistance. As each device "
+        "turns off, the total power dissipation in the chip decreases and the devices that are "
+        "still on can dissipate heat more effectively."))
+    b.append(fig(45, F.fig(45), "en"))
+    b.append(p(
+        "Connecting directly to the battery is a hard short that could have been detected by "
+        "current limit circuitry. However, a <i>soft short</i> is below the current limit, but "
+        "exceeds the power-dissipating capability of the chip, and can be an extremely "
+        "difficult condition to detect. Soft shorts require over-temperature sensing to protect "
+        "the IC from destructive temperature levels."))
+    b.append(p(
+        "The over-temperature condition sensed by the power IC could mean that the device turns "
+        "itself off to prevent failure in one case; and in another situation, a fault signal "
+        "provides a warning to the MCU but no action is taken, depending on the fault circuit "
+        "design. The remaining portion of the system is allowed to function normally. With the "
+        "fault conditions supplied to the MCU, an orderly system shutdown can be implemented. "
+        "Integrated temperature sensing is essential to provide this type of protection in a "
+        "multiple-output power IC."))
+
+    # ------------------------------------------------------------- reliability
+    b.append(h3("Reliability Implications of Temperature to Electronic Components"))
+    b.append(p(
+        "The effect of temperature on electronic components and their successful application in "
+        "electronic systems is one of the issues that must be addressed during the design of "
+        "the system. Temperature affects the performance and expected life of semiconductor "
+        "components. Mechanical stress created by different coefficients of thermal expansion "
+        "can cause failures in thermal cycling tests (air-to-air) or during thermal shock "
+        "(water-to-water) transitions."))
+    b.append(p(
+        "The typical failure rate for a semiconductor component can be expressed by the "
+        "Arrhenius equation [9]:"))
+    b.append(eq("λ = <i>A</i> exp " + _frac("−Ø", "<i>K T</i>"), "32.88"))
+    b.append(wl([
+        "where &nbsp;λ = failure rate",
+        "&nbsp;<i>A</i> = constant",
+        "&nbsp;Ø = activation energy (eV)",
+        "&nbsp;<i>K</i> = Boltzmann's constant (8.62 · 10⁻⁵ eV K⁻¹)",
+        "&nbsp;<i>T</i> = junction temperature (K)",
+    ]))
+    b.append(p(
+        "The failure rate of semiconductor components is typically stated to double for every "
+        "10 to 15 °C increase in operating (i.e., junction) temperature. However, increased "
+        "testing and design improvements have minimized the failures due to specific failure "
+        "mechanisms."))
+    b.append(p(
+        "One of the temperature-related parameters that must be taken into account during the "
+        "design phase of a power switch is the transient thermal response, designated "
+        "<i>r</i>(<i>t</i>) · <i>R</i><sub>θJC</sub>, where <i>r</i>(<i>t</i>) represents the "
+        "normalized transient thermal resistance. The value of <i>r</i>(<i>t</i>) is "
+        "determined from the semiconductor manufacturer's data sheet using the duty cycle and "
+        "pulse duration used in the application. This reduced level of thermal resistance (see "
+        "“Junction Temperature Measurement”), based on the transistor operating in a switching "
+        "mode and being off for a period of time, approaches the dc level within a second. "
+        "Excessive temperatures can be generated quickly and must be detected within "
+        "milliseconds to prevent failure."))
+
+    # --------------------------------------------------- junction temperature
+    b.append(h3("Junction Temperature Measurement"))
+    b.append(p(
+        "In a semiconductor, the change in temperature is directly related to the power "
+        "dissipated through the thermal resistance. The steady-state dc thermal resistance "
+        "junction-to-case, <i>R</i><sub>θJC</sub>, is defined as the temperature rise per unit "
+        "power above an external reference point (typically the case). The relationship is "
+        "shown in Equation 32.89 [8]:"))
+    b.append(eq("<i>R</i><sub>θJC</sub> = "
+                + _frac("Δ<i>T</i>", "<i>P</i><sub>D</sub>"), "32.89"))
+    b.append(wl([
+        "where &nbsp;Δ<i>T</i> = junction temperature minus the case temperature (°C)",
+        "&nbsp;<i>P</i><sub>D</sub> = power dissipated in the junction (W)",
+    ]))
+    b.append(p(
+        "The semiconductor device or silicon die is typically enclosed in a package that "
+        "prevents a direct measurement of the junction temperature. The junction temperature is "
+        "measured indirectly by measuring the case temperature <i>T</i><sub>C</sub>; the "
+        "heatsink temperature <i>T</i><sub>S</sub>, for those higher-power applications that "
+        "require a heatsink; the ambient temperature <i>T</i><sub>A</sub>; and a "
+        "temperature-sensitive electrical parameter of the device."))
+    b.append(p(
+        "The first step of the process requires calibrating the temperature-sensitive "
+        "parameter. Using a bipolar power transistor as an example, the base–emitter forward "
+        "voltage is measured and recorded with a low calibration current "
+        "(<i>I</i><sub>M</sub>) flowing through the device that is low enough to avoid "
+        "self-heating (typically between 2 mA and 10 mA) and yet sufficiently high to be in the "
+        "linear range of the forward voltage curve. The procedure is performed at room and "
+        "elevated temperatures, typically 100 °C."))
+    b.append(p(
+        "After calibration, a power switching fixture (such as Figure 32.46) is used to "
+        "alternately apply and interrupt the power to the device [8]. The on portion is long "
+        "(typically several milliseconds) and the off portion is short (only a few hundred µs), "
+        "so that the temperature of the case is stabilized and junction cooling is minimal. "
+        "The transistor is operated in its active region and the power dissipation is varied by "
+        "adjusting <i>I</i><sub>E</sub> and/or <i>V</i><sub>CE</sub> until the junction is at "
+        "the calibration temperature. This point is known by measuring <i>V</i><sub>BE</sub> "
+        "during the time that <i>I</i><sub>M</sub> is the only current flowing."))
+    b.append(fig(46, F.fig(46), "en"))
+    b.append(p(
+        "When the <i>V</i><sub>BE</sub> value equals the value on the calibration curve, the "
+        "junction temperature is at the calibration temperature. Measurements of "
+        "<i>V</i><sub>BE</sub>, <i>T</i><sub>C</sub>, and <i>I</i><sub>E</sub> allow the thermal "
+        "resistance for the device to be calculated using Equation 32.89. Since "
+        "<i>R</i><sub>θJC</sub> is a constant, subsequent measurements of <i>T</i><sub>C</sub>, "
+        "<i>V</i><sub>CE</sub>, and <i>I</i><sub>E</sub> under different operating conditions "
+        "can be used to calculate the junction temperature, to keep the device within its safe "
+        "operating range in the actual application. For devices with different electrical "
+        "characteristics, such as the power MOSFETs discussed earlier, other parameters that "
+        "have a linear relationship to temperature are used for calibration and measurement."))
+
+    # -------------------------------------------------------------- packaging
+    b.append(h3("Semiconductor Temperature Sensor Packaging"))
+    b.append(p(
+        "Temperature sensors manufactured using semiconductor technology are typically "
+        "packaged in packages common to the semiconductor industry. These include metal can "
+        "(TO-99), ceramic, and the more commonly available plastic (SOT-23, 8-lead DIP, TO-92, "
+        "8-lead SOIC, etc.) packages. These packages are designed for circuit board solder "
+        "attachment that can be either through-hole or surface-mount technology. As a result, "
+        "package form factors can be considerably different from packages for temperature "
+        "sensors manufactured using other technologies. Figure 32.47 shows examples of five "
+        "available silicon temperature sensor packages."))
+    b.append(fig(47, F.fig(47), "en"))
+
+    # ---------------------------------------------------------- defining terms
+    b.append(h3("Defining Terms"))
+    b.append(defs([
+        ("<b>Bandgap reference</b>",
+         "Forward-biased emitter junction characteristics of adjacent transistors used to "
+         "provide an output voltage with zero temperature coefficient."),
+        ("<b>Die</b>", "An unpackaged semiconductor chip separated from the wafer."),
+        ("<b>Embedded sensor</b>", "A sensor included within an integrated circuit."),
+        ("<b>Integrated circuit</b>",
+         "A multiplicity of transistors, as well as diodes, resistors, capacitors, etc., on "
+         "the same silicon die."),
+        ("<b>Junction</b>",
+         "The interface at which the conductivity type of a material changes from <i>p</i> "
+         "type to <i>n</i> type."),
+        ("<b>Junction voltage</b>",
+         "The voltage drop across a forward-biased <i>pn</i> interface in a transistor "
+         "(V<sub>be</sub>) or diode."),
+        ("<b>Junction temperature</b>",
+         "The temperature of the <i>pn</i> interface in a transistor or diode."),
+        ("<b>Monolithic (integrated circuit)</b>",
+         "Constructed from a single piece of silicon."),
+        ("<b>Power IC or smart power IC</b>",
+         "Hybrid or monolithic (semiconductor) device that is capable of being "
+         "conduction-cooled, performs signal conditioning, and includes a power control "
+         "function such as fault management and/or diagnostics."),
+        ("<b>Self-heating</b>",
+         "Temperature rise within a (semiconductor) device caused by current flowing in the "
+         "device."),
+        ("<b>Soft short</b>",
+         "An excessive load condition that causes excessive temperature but is below the "
+         "current limit of a device."),
+        ("<b>Thermal resistance</b>",
+         "The steady-state dc thermal resistance junction-to-case, "
+         "<i>R</i><sub>θJC</sub>, is the temperature rise per unit power above an external "
+         "reference point (typically the case)."),
+        ("<b>TinyPak</b>", "A trademark of National Semiconductor Corp."),
+    ]))
+    b.append(note(
+        "Translator's note: the scanned source (CRC Press, 1999) drops or spaces several unit "
+        "symbols — notably ±, µA, µs and °C. Values in this section (±3.0 mV, 250 µA / 10 µA, "
+        "≤ 300 µs, etc.) are restored from the technical context and the corresponding device "
+        "data sheets; the diode response time “less than 100 ms” is retained as printed."))
+    return "".join(b) + _refs325("en")
+
+
+def _refs325(lang):
+    """§32.5 has its own reference list — numbered 1–10 within the section."""
+    vi = lang == "vi"
+    items = [
+        "1. J. Carr, <i>Sensors and Circuits</i>, Englewood Cliffs, NJ, PTR Prentice-Hall, 1993.",
+        "2. <i>Pressure Sensor Device Data</i> DL200/D Rev. 1, Phoenix, AZ, Motorola, 1994.",
+        "3. K. Lacanette, Silicon temperature sensors: theory and applications, "
+        "<i>Measurements and Control</i>, pp. 120–126, April 1996.",
+        "4. R. Wegner and H. Hulsemann, New family of monolithic temperature sensor and "
+        "controller circuits present challenges in maintaining temperature measurement "
+        "accuracy, <i>Proceedings of Sensors Expo West</i>, Anaheim, CA, Feb. 8–10, 1994.",
+        "5. W. Schweber, Temperature sensors fill different needs, <i>EDN</i>, p. 20, 3/14/96.",
+        "6. Digital thermometer IC simplifies distributed sensing, <i>Electronic Products</i>, "
+        "p. 56, 12/95.",
+        "7. J. Williams, High performance signal conditioning for transducers, "
+        "<i>Proceedings of Sensors Expo West</i>, San Jose, CA, March 2–4, 1993.",
+        "8. <i>TMOS Power MOSFET Transistor Data</i> DL135/D Rev. 4, Phoenix, AZ, Motorola "
+        "Semiconductor.",
+        "9. R. K. Jurgen (ed.), <i>Automotive Electronics Handbook</i>, New York, McGraw-Hill, "
+        "1994.",
+        "10. R. Frank, <i>Understanding Smart Sensors</i>, Boston, MA, Artech House, 1995.",
+    ]
+    head_ = ("<h3 id=\"t32-tltk-5\">Tài liệu tham khảo</h3>" if vi else
+             "<h3 id=\"t32-tltk-5\">References</h3>")
+    return head_ + wl(items)
+
+
 def _refs(lang):
     vi = lang == "vi"
     items = [
@@ -7098,6 +7934,27 @@ INDEX = [
         ("Caveat", "Lưu ý"),
         ("Summary", "Tóm tắt"),
     ]),
+    ("32.5", "Semiconductor Junction Thermometers", "Nhiệt kế tiếp giáp bán dẫn", [
+        ("The Transistor as a Temperature Sensor", "Transistor dùng làm cảm biến nhiệt độ"),
+        ("Thermal Properties of Semiconductors: Defining Equations",
+         "Tính chất nhiệt của chất bán dẫn: các phương trình định nghĩa"),
+        ("Integrated Temperature Sensors", "Cảm biến nhiệt độ tích hợp"),
+        ("Integrated Digital Temperature Sensor", "Cảm biến nhiệt độ số tích hợp", 1),
+        ("Analog Output Integrated Temperature Sensor",
+         "Cảm biến nhiệt độ tích hợp ngõ ra tương tự", 1),
+        ("Digital Output Temperature Sensor", "Cảm biến nhiệt độ ngõ ra số", 1),
+        ("External Circuitry Eliminates Calibration",
+         "Mạch ngoài loại bỏ nhu cầu hiệu chuẩn", 1),
+        ("Other Applications of Semiconductor Sensing Techniques",
+         "Các ứng dụng khác của kỹ thuật cảm biến bán dẫn"),
+        ("Temperature Sensing in Power ICs for Fault Protection and Diagnostics",
+         "Cảm biến nhiệt độ trong IC công suất để bảo vệ và chẩn đoán sự cố"),
+        ("Reliability Implications of Temperature to Electronic Components",
+         "Hàm ý của nhiệt độ đối với độ tin cậy của linh kiện điện tử"),
+        ("Junction Temperature Measurement", "Đo nhiệt độ tiếp giáp"),
+        ("Semiconductor Temperature Sensor Packaging", "Đóng vỏ cảm biến nhiệt độ bán dẫn"),
+        ("Defining Terms", "Định nghĩa thuật ngữ"),
+    ]),
 ]
 
 
@@ -7132,7 +7989,7 @@ def body_vi():
         "nhiệt điện trở, cặp nhiệt điện đến hồng ngoại và sợi quang — với phương trình, hình vẽ và "
         "bảng dữ liệu của từng loại.")
     return (p(lede) + sec_index(True) + sec_32_1_vi() + back_vi() + sec_32_2_vi()
-            + sec_32_3_vi() + sec_32_4_vi())
+            + sec_32_3_vi() + sec_32_4_vi() + sec_32_5_vi())
 
 
 def body_en():
@@ -7143,7 +8000,7 @@ def body_en():
         "infrared, pyroelectric, liquid-in-glass, manometric, indicators and fiber-optic probes — "
         "with the equations, figures and data tables for each.")
     return (p(lede) + sec_index(False) + sec_32_1_en() + back_en() + sec_32_2_en()
-            + sec_32_3_en() + sec_32_4_en())
+            + sec_32_3_en() + sec_32_4_en() + sec_32_5_en())
 
 
 def build(lang):
@@ -7159,9 +8016,9 @@ def build(lang):
              '</a> · Chương 32' % BASE_VI if vi else
              '<a href="/books/">Books</a> · <a href="%s">Measurement, Instrumentation and Sensors '
              'Handbook</a> · Chapter 32' % BASE_EN)
-    meta = ("Chương 32 · theo Ch32.pdf (CRC Press, 1999) · §32.1–32.4/11 · 30 hình, 88 phương "
+    meta = ("Chương 32 · theo Ch32.pdf (CRC Press, 1999) · §32.1–32.5/11 · 46 hình, 92 phương "
             "trình, 18 bảng" if vi else
-            "Chapter 32 · §32.1–32.4 of 11 · 30 figures, 88 equations, 18 tables")
+            "Chapter 32 · §32.1–32.5 of 11 · 46 figures, 92 equations, 18 tables")
     body = ('<main><article class="intranet-content reader"><div class="reader-hero">'
             '<div class="breadcrumb">%s</div><h1>%s</h1><p class="byline">%s</p>'
             '<div class="meta-line">%s</div></div><div class="prose">%s</div>%s</article></main>'
