@@ -2074,17 +2074,160 @@ def fig_32_28():
                 "block inside the guarded region at right")
 
 
+# ---- 32.29  (the Seebeck emf cell)
+def fig_32_29():
+    """The Seebeck emf cell: a homogeneous nonisothermal segment of material M
+    with end-points 1 and 2, modelled as a nonideal voltage source E_M(T) with
+    internal resistance R(T), observed open-circuit."""
+    o = [_defs()]
+    W, H = 680, 232
+    # physical segment of material M
+    o.append(_rect(60, 100, 240, 30, FILL, E, 1.4))
+    o.append(_lbl(180, 120, "M", "t", "middle", ' style="font-weight:700;font-size:12px"'))
+    for x, n in ((60, "1"), (300, "2")):
+        o.append(_circ(x, 115, 3, E, E, 1))
+        o.append(_lbl(x, 90, n, "t", "middle"))
+    o.append(_mix(56, 154, [("T", "i"), ("1", "sub")], "middle"))
+    o.append(_mix(304, 154, [("T", "i"), ("2", "sub")], "middle"))
+    o.append(_mix(180, 154, [("σ", "i"), ("M", "sub"), ("(", ""), ("T", "i"), (")", "")], "middle"))
+    o.append(_lbl(180, 186, "đoạn vật liệu / segment", "ts", "middle", _fs(8)))
+    # arrow between the two views
+    o.append(_lbl(352, 121, "→", "t", "middle", _fs(15)))
+    # equivalent circuit: terminal 1 - R(T) - source E_M(T) - terminal 2
+    o.append(_circ(420, 115, 3.4, "#fff", E, 1.3))
+    o.append(_lbl(420, 90, "1", "t", "middle"))
+    o.append(_line(424, 115, 470, 115, E, 1.4))
+    o.append(_z(470, 115, 44, False, 6, 6))
+    o.append(_mix(492, 95, [("R", ""), ("(", ""), ("T", "i"), (")", "")], "middle"))
+    o.append(_line(514, 115, 540, 115, E, 1.4))
+    o.append(_circ(566, 115, 16, "#fff", E, 1.4))
+    o.append(_mix(566, 87, [("E", "i"), ("M", "sub"), ("(", ""), ("T", "i"), (")", "")], "middle"))
+    o.append(_line(582, 115, 636, 115, E, 1.4))
+    o.append(_circ(640, 115, 3.4, "#fff", E, 1.3))
+    o.append(_lbl(640, 90, "2", "t", "middle"))
+    # open-circuit measurement path
+    o.append(_path("M 420,105 A 112,58 0 0 1 640,105", S, 1.1, "none", "4 3"))
+    o.append(_lbl(530, 44, "i = 0", "ts", "middle", _fs(9)))
+    o.append(_lbl(530, 152, "hở mạch / open circuit", "ts", "middle", _fs(8)))
+    o.append(_lbl(530, 186, "nguồn áp không lý tưởng / nonideal source", "ts", "middle", _fs(8)))
+    return _fig(svg(W, H, "".join(o),
+                    "Phần tử suất điện động Seebeck với nguồn áp không lý tưởng"),
+                "Hình 32.29 · Phần tử suất điện động Seebeck. Mọi vật liệu dẫn điện, đẳng hướng "
+                "nhiệt điện và không đẳng nhiệt đều là một nguồn suất điện động Seebeck. Phần tử "
+                "cơ bản, một nguồn áp không lý tưởng có điện trở nội, góp một suất điện động "
+                "Seebeck chỉ phụ thuộc vật liệu M và nhiệt độ tại hai điểm cuối 1 và 2 của đoạn.",
+                "Figure 32.29 · The Seebeck emf cell. Every homogeneous, nonisothermal, "
+                "electrically conducting material is a source of Seebeck emf. The basic cell, a "
+                "nonideal voltage source with internal resistance, contributes a Seebeck emf that "
+                "depends only on the material M and the temperatures at the segment end-points "
+                "1 and 2.",
+                "Bên trái là đoạn vật liệu M với hai điểm cuối 1 và 2 ở nhiệt độ T1 và T2, hệ số "
+                "σ_M(T); bên phải là mạch tương đương: nguồn áp E_M(T) nối tiếp điện trở nội "
+                "R(T), đo ở chế độ hở mạch i = 0",
+                "Left: a segment of material M with end-points 1 and 2 at temperatures T1 and T2 "
+                "and coefficient sigma_M(T); right: the equivalent circuit, source E_M(T) in "
+                "series with internal resistance R(T), measured open-circuit at i = 0")
+
+
+# ---- 32.30  (the T/X sketch)
+def fig_32_30():
+    """The T/X sketch for the Figure 32.26 circuit: real junctions b,c,d,e,f as
+    closed circles joined by thermoelements C,A,B,D; dashed isotherms through c
+    and e meeting the opposite legs at virtual junctions c' and e' (tics); the
+    shaded zone between Tc and Te; dashed virtual thermoelements down to the
+    designated reference temperature T0."""
+    o = [_defs()]
+    W, H = 680, 356
+    ax, ay = 70, 282          # axis origin
+    # axes
+    o.append(_arr(ax, ay, 628, ay, E, sw=1.3))
+    o.append(_arr(ax, ay, ax, 40, E, sw=1.3))
+    o.append(_lbl(634, 286, "X", "t", "start", _fs(10)))
+    o.append(_lbl(64, 42, "T", "t", "end", _fs(10)))
+    yT0, yTi, yTc, yTe, yTm = 250, 215, 150, 120, 60
+    # shaded zone between Tc and Te (behind everything else)
+    o.append(_rect(220, yTe, 272, yTc - yTe, FILL, "none", 0))
+    # thermoelements: b-c (C), c-d (A), d-e (B), e-f (D)
+    o.append(_pl([(120, yTi), (220, yTc)], E, 1.5))
+    o.append(_pl([(220, yTc), (340, yTm)], E, 1.5))
+    o.append(_pl([(340, yTm), (460, yTe)], E, 1.5))
+    o.append(_pl([(460, yTe), (560, yTi)], E, 1.5))
+    # isotherms through c and e, meeting the opposite legs at c' and e'
+    o.append(_line(74, yTc, 491, yTc, S, 1.0, "5 4"))
+    o.append(_line(74, yTe, 260, yTe, S, 1.0, "5 4"))
+    # virtual junction tics
+    o.append(_line(487, yTc - 4, 495, yTc + 4, E, 1.6))
+    o.append(_line(256, yTe - 4, 264, yTe + 4, E, 1.6))
+    o.append(_lbl(500, yTc + 6, "c′", "t", "start", _fs(9)))
+    o.append(_lbl(250, yTe - 8, "e′", "t", "end", _fs(9)))
+    # virtual thermoelements down to the designated reference T0
+    o.append(_line(74, yT0, 620, yT0, S, 1.0, "5 4"))
+    o.append(_pl([(120, yTi), (120, yT0)], E, 1.3, "3 3"))
+    o.append(_pl([(560, yTi), (560, yT0)], E, 1.3, "3 3"))
+    o.append(_lbl(340, 268, "thân nhiệt điện ảo / virtual thermoelements", "ts", "middle", _fs(8)))
+    # junction dots + letters
+    for x, y in ((120, yTi), (220, yTc), (340, yTm), (460, yTe), (560, yTi)):
+        o.append(_circ(x, y, 3.2, E, E, 1))
+    o.append(_lbl(110, 208, "b", "t", "middle"))
+    o.append(_lbl(212, 142, "c", "t", "middle"))
+    o.append(_lbl(340, 48, "d", "t", "middle"))
+    o.append(_lbl(468, 112, "e", "t", "middle"))
+    o.append(_lbl(570, 208, "f", "t", "middle"))
+    # segment labels
+    B = ' style="font-weight:700"'
+    o.append(_lbl(166, 174, "C", "t", "middle", B))
+    o.append(_lbl(280, 98, "A", "t", "middle", B))
+    o.append(_lbl(400, 98, "B", "t", "middle", B))
+    o.append(_lbl(516, 152, "D", "t", "middle", B))
+    # temperature labels on the axis and at the junctions
+    o.append(_mix(60, yTm + 4, [("T", "i"), ("m", "sub")], "end"))
+    o.append(_mix(60, yTc + 4, [("T", "i"), ("c", "sub")], "end"))
+    o.append(_mix(60, yTe + 4, [("T", "i"), ("e", "sub")], "end"))
+    o.append(_mix(60, yTi + 4, [("T", "i"), ("i", "sub")], "end"))
+    o.append(_mix(60, yT0 + 4, [("T", "i"), ("0", "sub")], "end"))
+    o.append(_mix(104, 236, [("T", "i"), ("b", "sub")], "end", "ts", _fs(8)))
+    o.append(_mix(576, 236, [("T", "i"), ("f", "sub")], "start", "ts", _fs(8)))
+    o.append(_lbl(620, 300, "không theo tỉ lệ / not to scale", "ts", "end", _fs(8)))
+    o.append(_lbl(618, 274, "X (vị trí quanh mạch)", "ts", "end", _fs(8)))
+    return _fig(svg(W, H, "".join(o),
+                    "Bản phác T/X để trực quan hóa mạch nhiệt điện"),
+                "Hình 32.30 · Bản phác T/X để trực quan hóa mạch nhiệt điện. Nhiệt độ của mối nối "
+                "chuẩn và quan hệ giữa (không nhất thiết là giá trị cụ thể của) nhiệt độ của mọi "
+                "mối nối thực phụ trong mạch phải được biết để đo chính xác — cũng như khi dùng "
+                "bản phác T/X. Bản phác đơn giản này giúp nhận ra những mối nối phụ phải được "
+                "khống chế cùng một nhiệt độ, và cho thấy rõ những thân nhiệt điện nào được ghép "
+                "nhiệt theo cặp, dù không được nối trực tiếp trong mạch nối tiếp.",
+                "Figure 32.30 · The T/X sketch for thermoelectric circuit visualization. The "
+                "temperature of the reference junction(s) and the relation between (not "
+                "necessarily the specific values of) the temperatures of all incidental real "
+                "junctions in a circuit must be known for accurate thermometry, just as for the "
+                "use of the T/X sketch. The simple sketch is an aid in recognizing temperatures "
+                "of incidental junctions that must be controlled to the same temperature. It "
+                "also makes clear which thermoelements are thermally paired, even if not "
+                "directly joined in the series circuit.",
+                "Bản phác nhiệt độ theo vị trí: trục T thẳng đứng, trục X ngang; năm mối nối "
+                "thực b c d e f đánh dấu bằng chấm đặc, nối bởi các thân nhiệt điện C A B D; "
+                "đường đẳng nhiệt nét đứt qua c và e cắt chân đối diện tại mối nối ảo c′ và e′ "
+                "đánh dấu bằng vạch; vùng gạch bóng giữa Tc và Te; hai thân nhiệt điện ảo nét "
+                "đứt kéo xuống đường đẳng nhiệt T0",
+                "Temperature-versus-position sketch: vertical T axis, horizontal X axis; five "
+                "real junctions b c d e f marked by filled dots joined by thermoelements C A B D; "
+                "dashed isotherms through c and e meeting the opposite legs at virtual junctions "
+                "c′ and e′ marked by tics; shaded zone between Tc and Te; two dashed virtual "
+                "thermoelements dropping to the T0 isotherm")
+
+
 FIGS = [fig_32_1, fig_32_2, fig_32_3, fig_32_4, fig_32_5, fig_32_6,
         fig_32_7, fig_32_8, fig_32_9, fig_32_10, fig_32_11, fig_32_12,
         fig_32_13, fig_32_14, fig_32_15, fig_32_16, fig_32_17, fig_32_18,
         fig_32_19, fig_32_20, fig_32_21, fig_32_22,         fig_32_24,
-        fig_32_25, fig_32_26, fig_32_27, fig_32_28]
+        fig_32_25, fig_32_26, fig_32_27, fig_32_28, fig_32_29, fig_32_30]
 
 # The book has no figure 32.23: the numbering runs 32.22 -> 32.24 and nothing in
 # the PDF ever mentions a 32.23.  FIGS is positional, so the printed number of
 # each slot lives here; fig() refuses a number that is not in the list rather
 # than quietly handing back the figure next door.
-FIG_NO = list(range(1, 23)) + [24, 25, 26, 27, 28]
+FIG_NO = list(range(1, 23)) + [24, 25, 26, 27, 28, 29, 30]
 
 
 def fig(n):

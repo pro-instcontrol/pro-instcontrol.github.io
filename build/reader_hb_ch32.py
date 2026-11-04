@@ -710,6 +710,78 @@ def _t3212(lang):
     return table(hd, rows, cap, cls="tbl matrix", small=True)
 
 
+def _t3214(lang):
+    """Table 32.14 — the five corollaries from the Law of Seebeck emf
+    (abbreviated from [29]). Rendered as a one-column table: the book's frame
+    is a list, not a grid."""
+    vi = lang == "vi"
+    intro = ("Trong mọi mạch gồm các vật liệu dẫn điện có hệ số Seebeck tuyệt đối "
+             "<i>σ</i>(<i>T</i>), mỗi vật liệu đều đẳng hướng nhiệt điện và tuân theo Luật "
+             "Seebeck, d<i>E</i>(<i>T</i>) = <i>σ</i>(<i>T</i>)d<i>T</i>:" if vi else
+             "In any circuit of electrically conducting materials that have an absolute Seebeck "
+             "coefficient <i>σ</i>(<i>T</i>), that are each thermoelectrically homogeneous, and "
+             "which follow the Seebeck Law, d<i>E</i>(<i>T</i>) = <i>σ</i>(<i>T</i>)d<i>T</i>:")
+    cor = [
+        (("1. Hệ quả về vai trò chức năng",
+          "Có ba vai trò chức năng nhiệt điện: mối nối, “dây dẫn”, và nguồn suất điện động "
+          "Seebeck: • Các mối nối nhiệt điện thực là mặt tiếp xúc ghép ohmic hai vật liệu khác "
+          "nhau; • “Dây dẫn” là các đoạn mà, riêng lẻ hay kết hợp, không góp suất điện động "
+          "Seebeck thuần; • Mọi đoạn khác đều là nguồn suất điện động Seebeck."),
+         ("1. The Corollary of Functional Roles",
+          "There are three thermoelectric functional roles: junctions, “conductors,” and Seebeck "
+          "emf sources: • Real thermoelectric junctions are interfaces that ohmically couple "
+          "dissimilar materials; • “Conductors” are segments that, in effect, individually or in "
+          "combination, contribute no net Seebeck emf; • All other segments are sources of "
+          "Seebeck emf.")),
+        (("2. Hệ quả về tính tất định chức năng",
+          "Vai trò nhiệt điện tức thời quanh một mạch không thể ấn định trước bằng kết cấu vật "
+          "lý, lựa chọn vật liệu, hay cách bố trí mạch một mình; chúng chi phối bởi sự phân bố "
+          "nhiệt độ."),
+         ("2. The Corollary of Functional Determinacy",
+          "Instantaneous thermoelectric roles around a circuit cannot be predetermined by "
+          "physical construction, material choice, or circuit arrangement alone; they are "
+          "governed by temperature distribution.")),
+        (("3. Hệ quả về tính tất định nhiệt độ",
+          "Trong mạch có nhiều mối nối, nhiệt độ của một mối nối duy nhất chỉ có thể xác định "
+          "từ suất điện động Seebeck thuần nếu nhiệt độ của mọi mối nối thực khác đã được xác "
+          "định."),
+         ("3. The Corollary of Temperature Determinacy",
+          "In a circuit with multiple junctions, the temperature of a single junction can be "
+          "determined from the net Seebeck emf only if the temperatures of all other real "
+          "junctions are defined.")),
+        (("4. Hệ quả về tính tất định suất điện động",
+          "Suất điện động Seebeck chỉ do các thân nhiệt điện sinh ra, nhưng suất điện động "
+          "Seebeck thuần lại chịu chi phối bởi nhiệt độ của các mối nối thực."),
+         ("4. The Corollary of emf Determinacy",
+          "Seebeck emf is produced only by thermoelements, but the net Seebeck emf is governed "
+          "by the temperatures only of real junctions.")),
+        (("5. Hệ quả về suất điện động Seebeck",
+          "Suất điện động Seebeck của bất kỳ đoạn vật liệu M nào, với nhiệt độ điểm cuối "
+          "<i>T</i><sub>1</sub> tại <i>X</i><sub>1</sub> và <i>T</i><sub>2</sub> tại "
+          "<i>X</i><sub>2</sub>, là độc lập với sự phân bố nhiệt độ, gradient nhiệt độ hay tiết "
+          "diện, vì nó được xác định bởi "
+          "<i>E</i><sub>M</sub> = ∫<sub><i>X</i>1</sub><sup><i>X</i>2</sup> "
+          "<i>σ</i><sub>M</sub>(<i>T</i>)d<i>T</i> = <i>E</i><sub>M</sub>(<i>T</i><sub>2</sub>) "
+          "− <i>E</i><sub>M</sub>(<i>T</i><sub>1</sub>)."),
+         ("5. The Corollary of Seebeck emf",
+          "The Seebeck emf of any segment of material M with end-point temperatures "
+          "<i>T</i><sub>1</sub> at segment endpoint <i>X</i><sub>1</sub> and <i>T</i><sub>2</sub> "
+          "at segment endpoint <i>X</i><sub>2</sub> is independent of temperature distribution, "
+          "temperature gradient, or cross-section as it is determined by "
+          "<i>E</i><sub>M</sub> = ∫<sub><i>X</i>1</sub><sup><i>X</i>2</sup> "
+          "<i>σ</i><sub>M</sub>(<i>T</i>)d<i>T</i> = <i>E</i><sub>M</sub>(<i>T</i><sub>2</sub>) "
+          "− <i>E</i><sub>M</sub>(<i>T</i><sub>1</sub>).")),
+    ]
+    rows = [intro]
+    for title, body in cor:
+        rows.append("<b>%s.</b><br>%s" % (title[0 if vi else 1], body[0 if vi else 1]))
+    cap = ("Bảng 32.14 · Các hệ quả từ Luật suất điện động Seebeck (rút gọn từ Tài liệu "
+           "tham khảo [29])." if vi else
+           "Table 32.14 · Corollaries from the Law of Seebeck emf. From References "
+           "[1, 7, 29, 30], abbreviated from [29].")
+    return table(("<i>σ</i>(<i>T</i>)",), rows, cap, cls="tbl", small=True)
+
+
 def _t3213(lang):
     """Table 32.13 — international thermocouple color codes (as of 1998)."""
     vi = lang == "vi"
@@ -4783,6 +4855,487 @@ def sec_32_4d_vi():
     return "".join(b)
 
 
+def sec_32_4e_vi():
+    b = [h3("Mô hình chức năng của mạch nhiệt điện",
+            "The Functional Model of Thermoelectric Circuits")]
+    b.append(p(
+        "Vì lý do đơn giản hóa, quan hệ giữa các nhiệt độ mối nối cần thiết cho phép đo chính "
+        "xác chỉ được khẳng định trong phần “Mạch cặp nhiệt điện thực tế” mà không giải thích "
+        "vật lý nào. Một số vấn đề tinh tế của các mạch nhiệt điện thực tế rất khó hình dung nếu "
+        "thiếu một mô hình mạch tường minh. Một mô hình mạch nhiệt điện đơn giản, thực dụng và "
+        "đa dụng giờ đây giải thích được vì sao những kết cấu nhiệt độ đó lại thích hợp. Quan "
+        "trọng hơn, nó làm rõ hậu quả của việc lệch khỏi các nhiệt độ này. Nó soi sáng những "
+        "vấn đề thường gặp của hiệu chuẩn và tính không đồng nhất. Nó giải thích vì sao quan "
+        "niệm phổ biến nhưng sai lầm rằng suất điện động Seebeck tập trung tại các mối nối có "
+        "thể dẫn đến sai số nghiêm trọng trong các mạch cặp nhiệt điện nói chung."))
+    b.append(p(
+        "Mạch cặp nhiệt điện thực tế gồm nhiều vật liệu và nhiều mối nối thực phát sinh, thường "
+        "nhiều hơn nhiều so với Hình 32.24 hay 32.25. Các vật liệu phát sinh không kiểm soát như "
+        "cực nối xuyên (feedthru), cực đấu, mối ghép v.v. có thể không được nhận ra là các phần "
+        "tử nguồn, nhưng chúng vẫn có thể, một cách không được nhận thấy, góp vào phép đo những "
+        "suất điện động Seebeck không mong muốn đáng kể. Vì vậy, với đo nhiệt độ cặp nhiệt điện "
+        "thực dụng, điều thiết yếu là hiểu và dùng một mô hình mạch mô tả đơn giản để áp dụng và "
+        "buộc sự chú ý vào những vị trí sai số tiềm ẩn để tránh được các vấn đề."))
+    b.append(p(
+        "Một mô hình xác thực như vậy, Mô hình chức năng của mạch nhiệt điện [1, 2, 5, 7, "
+        "29–31], kết hợp (1) một phần tử mạch nhiệt điện cơ bản, (2) một luật cơ bản duy nhất "
+        "mô tả độ nhạy của phần tử đó, (3) một tập các hệ quả thực dụng suy ra từ luật đó nhằm "
+        "làm sáng tỏ các hàm ý thực tiễn của nó, và (4) một công cụ đồ họa để trực quan hóa mạch "
+        "giúp đơn giản hóa việc phân tích. Mô hình rất đơn giản nhưng phi truyền thống này được "
+        "chế tác cho đo nhiệt độ thực dụng và đáng nghiên cứu."))
+
+    b.append(h4("Phần tử mạch nhiệt điện cơ bản",
+                "The Basic Thermoelectric Circuit Element"))
+    b.append(p(
+        "Bất kỳ đoạn vật liệu M dài tùy ý, đẳng hướng nhiệt điện và không đẳng nhiệt, nằm trong "
+        "một thân nhiệt điện nào đó đều là một phần tử Seebeck. Mỗi đoạn như vậy, hai đầu có "
+        "chênh lệch nhiệt độ thuần (Hình 32.29), là một nguồn áp không lý tưởng có điện trở nội "
+        "<i>R</i>(<i>T</i>). Suất điện động nguồn Seebeck phải được quan sát ở chế độ “hở mạch” "
+        "(dòng không) để có phép đo nhiệt độ chính xác nhất. Bất kỳ sụt áp <i>iR</i> nào do dòng "
+        "điện được phép chạy qua vì điện trở đầu vào thấp của bộ chỉ thị áp đều hạ suất điện động "
+        "nguồn Seebeck xuống một điện áp Seebeck cực thấp hơn. Với đo nhiệt độ, chênh áp đó gây "
+        "sai số nhiệt độ nếu không được hiệu chỉnh."))
+    b.append(fig(29, F.fig(29), "vi"))
+    b.append(p(
+        "Trong đo nhiệt độ tĩnh, như khi hiệu chuẩn và trong phép đo quá trình thông thường, "
+        "mối nối đo và một đoạn đáng kể của các thân nhiệt điện kề cận được nhúng trong một vùng "
+        "bất động, gần đẳng nhiệt, nên phần lớn suất điện động Seebeck phát sinh ở xa mối nối "
+        "đo, trên các đoạn thân nhiệt điện đi qua những vùng chuyển tiếp nhiệt độ ở xa. Trong đo "
+        "nhiệt độ quá độ, vùng chênh lệch nhiệt độ chính lúc đầu kề cận mối nối đo, nên suất "
+        "điện động phát sinh trên một vùng lan rộng dần kề cận — nhưng không nằm trong — mối nối "
+        "đo (một mặt tiếp xúc vật liệu)."))
+
+    b.append(h4("Luật suất điện động Seebeck", "The Law of Seebeck emf"))
+    b.append(p(
+        "Phương trình 32.74, d<i>E</i> = <i>σ</i>(<i>T</i>)d<i>T</i>, là luật hàm chi phối suất "
+        "điện động của phần tử Seebeck, và vì vậy, chi phối điện áp thuần của những mạch nhiệt "
+        "điện phức tạp nhất. Đó là Luật suất điện động Seebeck. Mọi khía cạnh nhiệt điện của hành "
+        "vi mạch đều suy ra từ riêng quan hệ đơn giản này. Chi tiết vật lý của quá trình sinh ra "
+        "hiệu ứng Seebeck rất phức tạp [5, 6]. Dù vậy, luật đơn giản này hoàn toàn nhất quán với "
+        "mọi lý thuyết vật lý và đã được thực nghiệm xác nhận. Nếu quan hệ đơn giản này đúng cho "
+        "phần tử Seebeck cơ bản thì phép đo nhiệt độ chính xác là khả thi. Nếu không, phép đo "
+        "nhiệt độ nhiệt điện chính xác và tin cậy là không thể."))
+    b.append(p(
+        "Suất điện động nguồn của một phần tử đơn lẻ làm bằng vật liệu M, theo Phương trình "
+        "32.75, là:"))
+    b.append(eq("Δ<i>E</i><sub>M</sub>(<i>T</i>) = <i>E</i><sub>M</sub>(<i>T</i><sub>2</sub>) "
+                "− <i>E</i><sub>M</sub>(<i>T</i><sub>1</sub>)", "32.79"))
+    b.append(p(
+        "và, với các đoạn được ghép nhiệt của hai vật liệu A và B mà tại một thời điểm bất kỳ "
+        "chia sẻ một cặp nhiệt độ đầu cuối, bất kể vị trí hay khoảng cách của chúng trong mạch:"))
+    b.append(eq("Δ<i>E</i><sub>AB</sub>(<i>T</i>) = <i>E</i><sub>AB</sub>(<i>T</i><sub>2</sub>) "
+                "− <i>E</i><sub>AB</sub>(<i>T</i><sub>1</sub>)", "32.80"))
+    b.append(p(
+        "Chúng không cần được nối trực tiếp với nhau tại một mối nối (thực ra cũng không cần được "
+        "nối điện). Giá trị của <i>E</i><sub>AB</sub>(<i>T</i>) lấy trực tiếp từ các phương trình "
+        "đa thức chuẩn xác định cặp nhiệt điện, từ các biểu diễn đơn giản hơn của các phương "
+        "trình đó, từ bảng tra hay đồ thị [1, 9–12]. Đặc tính Seebeck tuyệt đối của nhiều vật "
+        "liệu cũng có sẵn, nhưng ít được công bố hơn [1, 5, 7, 8]. Như mô hình này cho thấy, đặc "
+        "tính tuyệt đối luôn có thể dùng trong phân tích nhiệt điện. Chúng phải được dùng trong "
+        "một số tình huống thực tế mà đặc tính tương đối quy ước trở nên vô nghĩa hoặc chưa được "
+        "biết đến."))
+    b.append(p(
+        "Hệ số Seebeck tuyệt đối, lượng tăng nhiệt độ trên đoạn, hoặc cả hai, đều có thể dương "
+        "hoặc âm. Vì vậy, cực tính của một phần tử trong mạch phụ thuộc cả vật liệu lẫn — khác "
+        "với phần tử suất điện động điện hóa — chiều của chênh lệch nhiệt độ tức thời trên đoạn. "
+        "Cực tính, thậm chí cả chức năng, thay đổi theo sự phân bố nhiệt độ."))
+
+    b.append(h4("Các hệ quả từ Luật Seebeck", "Corollaries from the Seebeck Law"))
+    b.append(p(
+        "Từ Luật suất điện động Seebeck duy nhất (Phương trình 32.74), năm hệ quả thực dụng đặc "
+        "biệt giàu tính dạy bảo đã được nhận ra, giúp ích cho phân tích mạch nhiệt điện. Đó là "
+        "các hệ quả về: (1) vai trò chức năng, (2) tính tất định chức năng, (3) tính tất định "
+        "nhiệt độ, (4) tính tất định suất điện động, và (5) suất điện động Seebeck [1, 2, 7, "
+        "29–31]. Chúng được phát biểu trong Bảng 32.14, rút gọn từ [29]. Những hệ quả giàu "
+        "khám phá này gắn trực tiếp với đo nhiệt độ thực dụng hơn ba “luật” cặp nhiệt điện quen "
+        "thuộc [32] — thực chất chỉ là những hệ quả thay thế gián tiếp của luật vật lý duy nhất "
+        "(Phương trình 32.74)."))
+    b.append(_t3214("vi"))
+
+    b.append(h4("Bản phác T/X trực quan hóa", "The T/X Visualization Sketch"))
+    b.append(p(
+        "Ý nghĩa thực dụng của luật cơ bản và các hệ quả của nó đối với các mạch nhiệt điện thực "
+        "tế được bộc lộ bằng một bản phác đồ họa đơn giản (Hình 32.30). Bản phác T/X chỉ dùng để "
+        "trực quan hóa và phân tích bằng số. Nó không vẽ theo tỉ lệ và không dùng để giải bằng "
+        "đồ thị. Nó soi sáng những sự thực thiết yếu mà sơ đồ điện thông thường hay đồ thị "
+        "<i>E</i>(<i>T</i>) không thể hiện rõ. Bản phác T/X cho thấy nhiệt độ của mọi mối nối "
+        "thực theo trình tự chúng xuất hiện quanh mạch. Mối nối thực được đánh dấu bằng chấm "
+        "đặc. Các mối nối được nối với nhau bởi các thân nhiệt điện. Bản phác không vẽ theo tỉ "
+        "lệ, nên độ dốc không biểu diễn gradient nhiệt độ."))
+    b.append(fig(30, F.fig(30), "vi"))
+    b.append(p(
+        "Bản phác T/X bộc lộ rằng các đoạn spanning một khoảng nhiệt độ luôn xuất hiện theo cặp "
+        "— nhưng đáng chú ý là chỉ trong mạch nối tiếp. Chính sự thật này cho phép dùng thuận "
+        "tiện các đặc tính Seebeck tương đối. Sự đơn giản hóa quy ước này không áp dụng cho các "
+        "mạch có nhánh song song [2]. Bản phác T/X, áp vào mạch cặp nhiệt điện của Hình 32.26, "
+        "mô tả các phần tử mạch đáng kể (các mối nối và thân nhiệt điện) theo cách tập trung vào "
+        "các chức năng nhiệt điện tất yếu của chúng (Hệ quả 1). Hình 32.30 cho thấy một sự phân "
+        "bố nhiệt độ mạch với nhiệt độ các mối nối <i>T</i><sub>c</sub> ≠ "
+        "<i>T</i><sub>e</sub>, bị cố ý làm khác nhau một cách không đúng để minh họa một nguyên "
+        "lý và lợi ích của bản phác."))
+    b.append(note(
+        "Bản in ghi <i>T</i><sub>b</sub> ≠ <i>T</i><sub>e</sub> tại câu này; nhưng theo lập luận "
+        "của phần Ví dụ bên dưới — lỗi ghép cặp nhiệt chỉ nảy sinh khi <i>T</i><sub>c</sub> ≠ "
+        "<i>T</i><sub>e</sub> — chữ cái đúng gần như chắc chắn là <i>T</i><sub>c</sub>. Bản dịch "
+        "giữ cách diễn giải theo nghĩa và ghi rõ điều này thay vì sửa im lặng."))
+    b.append(p(
+        "<b>Nhiệt độ của các mối nối phụ.</b> Nhiệt độ các mối nối chuẩn phải được biết chính "
+        "xác một cách độc lập để đo. Nhiệt độ chưa biết của mối nối đo phải được suy ra từ điện "
+        "áp Seebeck. Nhiệt độ cụ thể của mọi mối nối thực phụ trong mạch rất hiếm khi được biết "
+        "chính xác trong thực tế. Để dùng bản phác T/X, giá trị thực của chúng không cần phải "
+        "biết chính xác. Tuy vậy, nếu giá trị tương đối của mọi mối nối phụ không được khống chế "
+        "đúng như mô tả trong phần “Mạch cặp nhiệt điện thực tế”, và nếu một số nhiệt độ mối nối "
+        "thiết yếu không được biết đủ tốt để vẽ bản phác, thì không thể bảo đảm phép đo nhiệt độ "
+        "chính xác! Bản phác T/X giàu khám phá này không đòi hỏi nhiều thông tin hơn những gì "
+        "thiết yếu cho chính phép đo vật lý."))
+    b.append(p(
+        "Khi ước lượng hậu quả đo lường và trực quan hóa cách phải khống chế nhiệt độ các mối "
+        "nối trong mạch gồm nhiều vật liệu, đủ rồi nếu — cho phân tích định tính — giả định các "
+        "mức nhiệt độ tương đối khả dĩ và hậu quả của chúng. Bản phác thường được dùng nhất để "
+        "nhìn thấy hậu quả bằng mắt [1, 2, 29–31]. Dù vậy, nó cũng có thể hỗ trợ phân tích định "
+        "lượng sai số cho các sự phân bố nhiệt độ khả dĩ."))
+    b.append(p(
+        "<b>Mối nối ảo và thân nhiệt điện ảo.</b> Trên bản phác T/X, các đường đẳng nhiệt qua "
+        "mối nối thực cắt qua một số thân nhiệt điện. Coi các giao điểm này (ví dụ c′ và e′), "
+        "mỗi giao điểm đánh dấu bằng một vạch, là các mối nối ảo thì hữu ích cho việc phân tích. "
+        "Chúng tiện dụng để ấn định các điểm cuối nhiệt độ tùy ý của các đoạn. Ngoài ra, trên "
+        "biểu đồ, các thân nhiệt điện ảo, b–c và f–g, được chỉ bằng nét đứt. Các đoạn này biểu "
+        "diễn nguồn nhiệt điện ảo tưởng của suất điện động bù bổ sung, phải được cung cấp để "
+        "kéo dài nhiệt độ chuẩn thực <i>T</i><sub>r</sub> tới giá trị nhiệt độ chuẩn ấn định "
+        "<i>T</i><sub>0</sub>. Các thân nhiệt điện ảo biểu diễn bù mối nối chuẩn."))
+    b.append(p(
+        "Bản phác T/X giúp ấn định nhiệt độ biên của từng đoạn, và từ đó ấn định cực tính và "
+        "suất điện động cho từng thân nhiệt điện trong mạch. Mạch được đi trên bản phác từ một "
+        "cực của dụng cụ, thuận tiện là cực âm, tới cực kia. Sau đó, nếu hệ số Seebeck tuyệt đối "
+        "của thân nhiệt điện dương, phần góp suất điện động của đoạn sẽ cộng thêm suất điện động "
+        "nếu nhiệt độ tăng khi đi qua đoạn đó từ cực âm về phía cực dương của dụng cụ, v.v. Để "
+        "quan sát và phân tích, hiệu quả hơn là coi các đoạn được ghép nhiệt trên một vùng nhiệt "
+        "độ bị chặn bởi các đường đẳng nhiệt."))
+    b.append(p(
+        "<b>Ví dụ.</b> Trên bản phác T/X, hãy xét các suất điện động Seebeck tuyệt đối do bốn "
+        "thân nhiệt điện của Hình 32.26 cung cấp. Với cách nối mạch nối tiếp này, đi từ cực âm "
+        "tới cực dương, suất điện động Seebeck thuần của mạch thực giữa hai cực b và f là:"))
+    b.append(eq("<i>E</i><sub>net</sub> = <i>E</i><sub>C</sub> + <i>E</i><sub>A</sub> + "
+                "<i>E</i><sub>B</sub> + <i>E</i><sub>D</sub>", "32.81"))
+    b.append(p("trong đó"))
+    b.append(eq("<i>E</i><sub>C</sub> = ∫<sub><i>T</i>b</sub><sup><i>T</i>c</sup> "
+                "<i>σ</i><sub>C</sub>d<i>T</i> , &nbsp; "
+                "<i>E</i><sub>A</sub> = ∫<sub><i>T</i>c</sub><sup><i>T</i>d</sup> "
+                "<i>σ</i><sub>A</sub>d<i>T</i> ,<br>"
+                "<i>E</i><sub>B</sub> = ∫<sub><i>T</i>d</sub><sup><i>T</i>e</sup> "
+                "<i>σ</i><sub>B</sub>d<i>T</i> , &nbsp; "
+                "<i>E</i><sub>D</sub> = ∫<sub><i>T</i>e</sub><sup><i>T</i>f</sup> "
+                "<i>σ</i><sub>D</sub>d<i>T</i>", "32.82"))
+    b.append(p(
+        "Hãy nhớ rằng những suất điện động Seebeck riêng lẻ này thực sự tồn tại trong các thân "
+        "nhiệt điện dù chúng có được các mối nối nối thành mạch hay không. Chính sự phụ thuộc "
+        "nhiệt độ của cả độ lớn lẫn cực tính tức thời của suất điện động là điều phân biệt phân "
+        "tích mạch nhiệt điện với phân tích mạch điện thông thường (Hệ quả 5)."))
+    b.append(p("Lưu ý rằng suất điện động của thân nhiệt điện A có thể viết lại thành:"))
+    b.append(eq("<i>E</i><sub>A</sub> = ∫<sub><i>T</i>c</sub><sup><i>T</i>e′</sup> "
+                "<i>σ</i><sub>A</sub>d<i>T</i> + ∫<sub><i>T</i>e′</sub><sup><i>T</i>d</sup> "
+                "<i>σ</i><sub>A</sub>d<i>T</i>", "32.83"))
+    b.append(p(
+        "Cách viết này tùy ý tách thân nhiệt điện A thành hai đoạn nối với nhau tại mối nối ảo "
+        "e′. Thân nhiệt điện D cũng có thể tách đoạn tương tự. Bây giờ, trên vùng nhiệt độ được "
+        "gạch bóng giữa <i>T</i><sub>c</sub> và <i>T</i><sub>e</sub>, có các đoạn được ghép nhiệt "
+        "không đúng là c–e′ và c′–e. Suất điện động thuần từ các đoạn được ghép nhiệt này là:"))
+    b.append(eq("<i>E</i><sub>net</sub> = ∫<sub><i>T</i>c</sub><sup><i>T</i>e′</sup> "
+                "<i>σ</i><sub>A</sub>d<i>T</i> − ∫<sub><i>T</i>c′</sub><sup><i>T</i>e</sup> "
+                "<i>σ</i><sub>D</sub>d<i>T</i>", "32.84"))
+    b.append(p(
+        "Từ Phương trình 32.75, hãy nhận ra rằng đây chính là suất điện động Seebeck tương đối "
+        "của cặp A–D ngoài ý muốn trên vùng nhiệt độ tùy ý đó, dù chúng không được nối trực "
+        "tiếp trong mạch. Sự ghép cặp không đúng của các đoạn rõ ràng chỉ tránh được nếu "
+        "<i>T</i><sub>c</sub> = <i>T</i><sub>e</sub>, bất kể giá trị nhiệt độ. Trong trường hợp "
+        "Hình 32.26 biểu diễn một cặp nhiệt điện chính A–B với các dây nối dài khớp kiểu C–D, "
+        "vật liệu A giống C và B giống D. Nếu từng chân của dây nối dài C–D khớp chính xác chân "
+        "tương ứng của cặp nhiệt điện AB thì"))
+    b.append(eq("∫<sub><i>T</i>c</sub><sup><i>T</i>e</sup> <i>σ</i><sub>CD</sub>d<i>T</i> = "
+                "∫<sub><i>T</i>c</sub><sup><i>T</i>e</sup> <i>σ</i><sub>AB</sub>d<i>T</i>", "32.85"))
+    b.append(p(
+        "và (chỉ với dây nối dài khớp kiểu) sự ghép cặp tình cờ là vô hại."))
+    b.append(p(
+        "Ngược lại, với dây nối dài kiểu bù (<i>σ</i><sub>A</sub> = <i>σ</i><sub>C</sub> và "
+        "<i>σ</i><sub>B</sub> = <i>σ</i><sub>D</sub>), sai số vẫn xảy ra ngay cả khi "
+        "<i>σ</i><sub>CD</sub> khớp cặp <i>σ</i><sub>AB</sub> một cách sát sao nhưng không khớp "
+        "từng chân riêng lẻ. Trong trường hợp dây nối dài trung hòa, khi C và D giống nhau, suất "
+        "điện động thuần của cặp bằng không trên vùng từ <i>T</i><sub>b</sub> tới "
+        "<i>T</i><sub>c</sub>. Khi đó, mối nối chuẩn thực được thừa nhận tất yếu là "
+        "<i>T</i><sub>r</sub> = <i>T</i><sub>c</sub> = <i>T</i><sub>e</sub>, chứ không phải "
+        "<i>T</i><sub>r</sub> = <i>T</i><sub>b</sub> = <i>T</i><sub>f</sub>."))
+    b.append(p(
+        "Nếu <i>T</i><sub>c</sub> và <i>T</i><sub>e</sub> bị hoán đổi cho nhau, sai số sẽ có độ "
+        "lớn khác, chứ không chỉ đơn thuần trái dấu, chỉ vì sự phân bố nhiệt độ (Hệ quả 2). Chỉ "
+        "có thể xác định nhiệt độ chưa biết của một mối nối duy nhất; các mối nối khác, kể cả "
+        "mối nối phụ, phải được xác định bằng giá trị hoặc, gián tiếp, là đẳng nhiệt (Hệ quả 4)."))
+    b.append(p(
+        "Lưu ý rằng những phần góp tương đối như vậy (phần góp thuần bằng không từ hai đoạn giống "
+        "nhau ngược chiều, hay sự ghép nhiệt sai lệch không mong muốn giữa B và D) lập tức nhìn "
+        "thấy ngay bằng mắt trên bản phác T/X phi chính thức, không cần đại số rắc rối. Những "
+        "sự thật then chốt của mạch nhiệt điện này không hiện rõ trên sơ đồ điện thông thường "
+        "hay trên các đồ thị <i>E</i>(<i>T</i>)."))
+    b.append(p(
+        "Phần lớn mạch thực gồm nhiều vật liệu phụ chưa hiệu chuẩn như đầu nối, cực đấu, mối "
+        "ghép, cực nối xuyên, đuôi dây ngắn hay dây nối dài, mỗi vật liệu đều có các đặc tính "
+        "Seebeck riêng (thường là không xác định). Trong một số mạch, một vài thân nhiệt điện có "
+        "thể vô tình bị mắc song song. Điều quan trọng là đưa chúng vào bản phác để nhận ra sai "
+        "số tiềm ẩn chưa được lưu ý mà các phần tử mạch đó có thể góp vào nếu không được giữ đẳng "
+        "nhiệt. Ngoài ra, nhiều phần tử mạch nối dài có thể bị nối sai với cực tính bị đảo. Hậu "
+        "quả điện áp hay nhiệt độ cụ thể của các tình huống này dễ dàng tính được cho bất kỳ sự "
+        "phân bố nhiệt độ khả dĩ nào. Bản phác T/X được thiết kế riêng để hỗ trợ trực quan hóa "
+        "mạch nhằm tránh những vấn đề thực tế rất phổ biến này và để dễ dàng đánh giá tác động "
+        "tiềm tàng của chúng."))
+    return "".join(b)
+
+
+def sec_32_4e_en():
+    b = [h3("The Functional Model of Thermoelectric Circuits")]
+
+    b.append(p(
+        "For simplicity, the relation between junction temperatures required for accurate "
+        "measurement was merely asserted in the section on “Practical Thermocouple Circuits,” "
+        "without any physical explanation. Some subtle problems of realistic thermoelectric "
+        "circuits are difficult to visualize without an explicit circuit model. A simple, "
+        "practical, and general-purpose model of thermoelectric circuits now explains why those "
+        "temperature structures are appropriate. More significantly, it makes clear the "
+        "consequences of deviation from these temperatures. It illuminates the common problems "
+        "of calibration and inhomogeneity. It explains why the commonplace misconception that "
+        "the Seebeck emf is localized to junctions can lead to serious error in general "
+        "thermocouple circuits."))
+    b.append(p(
+        "Real thermocouple circuits involve several materials and incidental real junctions, "
+        "often many more than in Figures 32.24 or 32.25. The incidental uncontrolled materials "
+        "of feedthrus, terminals, splices, etc. might not be recognized as source elements, yet "
+        "they can, unnoticed, contribute significant unwanted Seebeck emf to the measurement. "
+        "Therefore, for practical thermocouple thermometry, it is essential to understand and "
+        "use a descriptive circuit model that is simple to apply and that forces the attention "
+        "to locations of potential error so that problems can be avoided."))
+    b.append(p(
+        "One such authentic model, the Functional Model of Thermoelectric Circuits [1, 2, 5, 7, "
+        "29–31], combines (1) a basic thermoelectric circuit element, (2) a single fundamental "
+        "law that describes the sensitivity of that element, (3) a set of practical corollaries "
+        "from that law that illuminate its practical implications, and (4) a graphic tool for "
+        "circuit visualization to simplify analysis. This very simple but nontraditional model "
+        "is crafted for practical thermometry and is worth studying."))
+
+    b.append(h4("The Basic Thermoelectric Circuit Element"))
+    b.append(p(
+        "Any thermoelectrically homogeneous nonisothermal segment of arbitrary length of "
+        "material M within any thermoelement is a Seebeck cell. Each such segment across which a "
+        "net temperature difference exists (Figure 32.29) is a non-ideal voltage source with "
+        "internal resistance <i>R</i>(<i>T</i>). The Seebeck source emf must be observed in an "
+        "“open-circuit” (null current) mode for the most accurate thermometry. Any <i>iR</i> "
+        "voltage drop due to current allowed by a low input resistance of the voltage monitor "
+        "reduces the Seebeck source emf to a lower terminal Seebeck voltage. For thermometry, "
+        "that voltage difference causes a temperature error unless corrected."))
+    b.append(fig(29, F.fig(29), "en"))
+    b.append(p(
+        "In static thermometry, as in calibration and in typical process measurement, the "
+        "measuring junction and a substantial length of the adjacent thermoelements are immersed "
+        "in a stationary and somewhat isothermal zone so that most of the Seebeck emf occurs "
+        "well apart from the measuring junction in thermoelements where they cross remote "
+        "temperature transition regions. In transient thermometry, the zone of principal "
+        "temperature difference initially is adjacent to the measuring junction so that the emf "
+        "arises across a region of spreading extent adjacent to, but not in, the measuring "
+        "junction (a material interface)."))
+
+    b.append(h4("The Law of Seebeck emf"))
+    b.append(p(
+        "Equation 32.74, d<i>E</i> = <i>σ</i>(<i>T</i>)d<i>T</i>, is the functional law that "
+        "governs the emf of the Seebeck cell and, thus, the net voltage of the most complex "
+        "thermoelectric circuits. It is the Law of Seebeck emf. Every thermoelectric aspect of "
+        "circuit behavior follows from only this simple relation. Physical details of the "
+        "process that leads to the Seebeck effect are very complex [5, 6]. Nevertheless, this "
+        "one simple law is entirely consistent with all physical theory and is experimentally "
+        "confirmed. If this simple relationship does apply to the basic Seebeck cell then "
+        "accurate thermometry is possible. If it does not, then accurate and reliable "
+        "thermoelectric thermometry is not possible."))
+    b.append(p(
+        "The source emf of an individual cell of material M, from Equation 32.75, is:"))
+    b.append(eq("Δ<i>E</i><sub>M</sub>(<i>T</i>) = <i>E</i><sub>M</sub>(<i>T</i><sub>2</sub>) "
+                "− <i>E</i><sub>M</sub>(<i>T</i><sub>1</sub>)", "32.79"))
+    b.append(p(
+        "and, for thermally paired segments of materials A and B that happen at any instant to "
+        "share a pair of end-point temperatures, regardless of their residence or proximity in "
+        "a circuit,"))
+    b.append(eq("Δ<i>E</i><sub>AB</sub>(<i>T</i>) = <i>E</i><sub>AB</sub>(<i>T</i><sub>2</sub>) "
+                "− <i>E</i><sub>AB</sub>(<i>T</i><sub>1</sub>)", "32.80"))
+    b.append(p(
+        "They need not be directly joined at a junction (nor, indeed, be electrically joined). "
+        "The values of <i>E</i><sub>AB</sub>(<i>T</i>) are obtained directly from the standard "
+        "thermocouple polynomial defining equations, simpler representations of those equations, "
+        "tables, or graphs [1, 9–12]. Absolute Seebeck properties for many materials are also "
+        "available, but are less commonly reported [1, 5, 7, 8]. As is evident from this model, "
+        "absolute properties could always be used in thermoelectric analysis. They must be used "
+        "in some realistic circumstances where the conventional relative properties are "
+        "meaningless or where the relative properties are not known."))
+    b.append(p(
+        "Either the absolute Seebeck coefficient, the temperature increment across the segment, "
+        "or both of them, can be either positive or negative. Therefore, the polarity of a cell "
+        "within a circuit depends both on the material and, unlike the electrochemical emf cell, "
+        "on the momentary sense of temperature difference across the segment. Polarity, and even "
+        "function, changes with temperature distribution."))
+
+    b.append(h4("Corollaries from the Seebeck Law"))
+    b.append(p(
+        "From the single Law of Seebeck emf (Equation 32.74), five particularly instructive "
+        "practical corollaries that aid thermoelectric circuit analysis have been recognized. "
+        "These are the corollaries of: (1) functional roles, (2) functional determinacy, (3) "
+        "temperature determinacy, (4) emf determinacy, and (5) Seebeck emf [1, 2, 7, 29–31]. "
+        "These are stated in Table 32.14, abbreviated from [29]. These revealing corollaries "
+        "relate more directly to practical thermometry than do the three familiar thermocouple "
+        "“laws” [32] that actually are only oblique alternative corollaries to the sole "
+        "physical law (Equation 32.74)."))
+    b.append(_t3214("en"))
+
+    b.append(h4("The T/X Visualization Sketch"))
+    b.append(p(
+        "The practical significance of the fundamental law and its corollaries for realistic "
+        "thermoelectric circuits is revealed by a simple graphic sketch (Figure 32.30). The T/X "
+        "sketch is used for visualization and numerical analysis only. It is not drawn to scale. "
+        "It is not used for graphic solution. It illuminates essential facts that are not "
+        "obvious from a conventional electrical schematic or <i>E</i>(<i>T</i>) plot. The T/X "
+        "sketch shows the temperatures of all real junctions in the sequence in which they "
+        "occur around the circuit. Real junctions are indicated by closed circles. Junctions "
+        "are joined by thermoelements. The sketch is not drawn to scale, so slopes do not "
+        "represent temperature gradients."))
+    b.append(fig(30, F.fig(30), "en"))
+    b.append(p(
+        "The T/X sketch reveals that segments that span a temperature interval always occur in "
+        "pairs — but significantly only in series circuits. It is this fact that allows the "
+        "convenient use of relative Seebeck properties. This conventional simplification does "
+        "not apply to circuits with paralleled branches [2]. The T/X sketch, applied to the "
+        "thermocouple circuit of Figure 32.26, depicts the significant circuit elements (the "
+        "junctions and thermoelements) in a way that focuses on their unavoidable "
+        "thermoelectric functions (Corollary 1). Figure 32.30 shows a circuit temperature "
+        "distribution with junction temperatures <i>T</i><sub>b</sub> ≠ <i>T</i><sub>e</sub>, "
+        "that were shown (intentionally improperly different) to illustrate a principle and the "
+        "benefit of the sketch."))
+    b.append(note(
+        "The printed text reads <i>T</i><sub>b</sub> ≠ <i>T</i><sub>e</sub> at this sentence; "
+        "but from the argument in the Example below — improper thermal pairing arises only when "
+        "<i>T</i><sub>c</sub> ≠ <i>T</i><sub>e</sub> — the correct letter is almost certainly "
+        "<i>T</i><sub>c</sub>. This translation preserves the sense of the printed text and "
+        "notes the discrepancy rather than silently correcting it."))
+    b.append(p(
+        "<b>Temperatures of Incidental Junctions.</b> The reference junction temperatures must "
+        "independently be accurately known for measurement. The unknown temperature of the "
+        "measuring junction is to be deduced from the Seebeck voltage. The specific temperatures "
+        "of all incidental real junctions of a circuit are rarely known accurately in practice. "
+        "For use in the T/X sketch, the actual values need not be accurately known. "
+        "Nevertheless, if the relative values of all incidental junctions are not properly "
+        "controlled, as described in the section “Practical Thermocouple Circuits,” and if some "
+        "essential junction temperatures are not known well enough to draw the sketch, then "
+        "accurate thermometry cannot be ensured! The revealing T/X sketch requires no more "
+        "information than is essential for the physical measurement."))
+    b.append(p(
+        "In the estimate of measurement consequences and to visualize how junction temperatures "
+        "must be controlled in circuits of many materials, it is sufficient to assume, for "
+        "qualitative analysis, plausible relative temperature levels and their consequences. "
+        "The sketch is most often used for visualizing consequences by inspection [1, 2, "
+        "29–31]. Nevertheless, it also can aid in quantitative analysis of error for plausible "
+        "temperature distributions."))
+    b.append(p(
+        "<b>Virtual Junctions and Thermoelements.</b> On the T/X sketch, isotherms through real "
+        "junctions intersect some thermoelements. It is useful for analysis to view these "
+        "intercepts (e.g., c′ and e′), each marked by a tic, as virtual junctions. For "
+        "inspection and analysis, they conveniently delineate the arbitrary temperature "
+        "end-points of segments. Also, on the diagram, virtual thermoelements, b–c and f–g, are "
+        "indicated by dashed lines. These segments represent the imaginary thermoelectric source "
+        "of complementary emf that must be supplied to extend the physical reference "
+        "temperature, <i>T</i><sub>r</sub>, to the designated reference temperature value, "
+        "<i>T</i><sub>0</sub>. The virtual thermoelements represent the reference junction "
+        "compensation."))
+    b.append(p(
+        "The T/X sketch aids in assigning segment bounding temperatures and thus a polarity and "
+        "an emf to each thermoelement in the circuit. The circuit is traversed on the sketch "
+        "from one instrument terminal, conveniently the negative, to the other terminal. Then, "
+        "if the absolute Seebeck coefficient of a thermoelement is positive, the emf "
+        "contribution of the segment adds emf if the temperature increases in proceeding across "
+        "the segment from the negative toward the positive instrument terminal, etc. For "
+        "inspection and analysis, it is efficient to consider segments as thermally paired over "
+        "a temperature zone bounded by isotherms."))
+    b.append(p(
+        "<b>Examples.</b> On the T/X sketch, consider the absolute Seebeck emfs supplied by the "
+        "four thermoelements of Figure 32.26. As connected in this series circuit, proceeding "
+        "from negative to positive terminals, the net Seebeck emf of the physical circuit "
+        "between terminals b and f is:"))
+    b.append(eq("<i>E</i><sub>net</sub> = <i>E</i><sub>C</sub> + <i>E</i><sub>A</sub> + "
+                "<i>E</i><sub>B</sub> + <i>E</i><sub>D</sub>", "32.81"))
+    b.append(p("where"))
+    b.append(eq("<i>E</i><sub>C</sub> = ∫<sub><i>T</i>b</sub><sup><i>T</i>c</sup> "
+                "<i>σ</i><sub>C</sub>d<i>T</i> , &nbsp; "
+                "<i>E</i><sub>A</sub> = ∫<sub><i>T</i>c</sub><sup><i>T</i>d</sup> "
+                "<i>σ</i><sub>A</sub>d<i>T</i> ,<br>"
+                "<i>E</i><sub>B</sub> = ∫<sub><i>T</i>d</sub><sup><i>T</i>e</sup> "
+                "<i>σ</i><sub>B</sub>d<i>T</i> , &nbsp; "
+                "<i>E</i><sub>D</sub> = ∫<sub><i>T</i>e</sub><sup><i>T</i>f</sup> "
+                "<i>σ</i><sub>D</sub>d<i>T</i>", "32.82"))
+    b.append(p(
+        "Recall that these individual Seebeck emfs do physically exist in the thermoelements "
+        "whether or not they are connected by junctions as a circuit. It is the temperature "
+        "dependence of both the magnitude and the momentary polarity of emf that distinguishes "
+        "thermoelectric from ordinary electric circuit analysis (Corollary 5)."))
+    b.append(p("Note that emf from thermoelement A can be rewritten as:"))
+    b.append(eq("<i>E</i><sub>A</sub> = ∫<sub><i>T</i>c</sub><sup><i>T</i>e′</sup> "
+                "<i>σ</i><sub>A</sub>d<i>T</i> + ∫<sub><i>T</i>e′</sub><sup><i>T</i>d</sup> "
+                "<i>σ</i><sub>A</sub>d<i>T</i>", "32.83"))
+    b.append(p(
+        "This arbitrarily breaks thermoelement A into two segments joined at virtual junction "
+        "e′. Thermoelement D can be segmented as well. Now, across the shaded temperature zone "
+        "between <i>T</i><sub>c</sub> and <i>T</i><sub>e</sub>, there are improperly thermally "
+        "paired segments c–e′ and c′–e. The net emf from these thermally paired segments is:"))
+    b.append(eq("<i>E</i><sub>net</sub> = ∫<sub><i>T</i>c</sub><sup><i>T</i>e′</sup> "
+                "<i>σ</i><sub>A</sub>d<i>T</i> − ∫<sub><i>T</i>c′</sub><sup><i>T</i>e</sup> "
+                "<i>σ</i><sub>D</sub>d<i>T</i>", "32.84"))
+    b.append(p(
+        "From Equation 32.75, recognize that this is the relative Seebeck emf for the unintended "
+        "A–D pair over that arbitrary temperature zone even though they are not directly joined "
+        "in the circuit. That improper pairing of segments clearly is avoided only if "
+        "<i>T</i><sub>c</sub> = <i>T</i><sub>e</sub>, whatever the temperature. In the instance "
+        "that Figure 32.26 represents a principal thermocouple A–B with matching extension "
+        "leads C–D, materials A and C are alike and B and D are alike. If the legs of extension "
+        "leads C–D each exactly match the corresponding legs of thermocouple AB, then"))
+    b.append(eq("∫<sub><i>T</i>c</sub><sup><i>T</i>e</sup> <i>σ</i><sub>CD</sub>d<i>T</i> = "
+                "∫<sub><i>T</i>c</sub><sup><i>T</i>e</sup> <i>σ</i><sub>AB</sub>d<i>T</i>", "32.85"))
+    b.append(p(
+        "and (for matching extension leads only) the accidental pairing is benign."))
+    b.append(p(
+        "Otherwise, with compensating extension leads (<i>σ</i><sub>A</sub> = "
+        "<i>σ</i><sub>C</sub> and <i>σ</i><sub>B</sub> = <i>σ</i><sub>D</sub>), error occurs "
+        "even if <i>σ</i><sub>CD</sub> closely matches <i>σ</i><sub>AB</sub> as a pair but not "
+        "individually. In the instance of neutral extension leads where C and D are alike, the "
+        "net emf from the pair is null over the zone from <i>T</i><sub>b</sub> to "
+        "<i>T</i><sub>c</sub>. In this instance, the physical reference junction is recognized "
+        "as necessarily <i>T</i><sub>r</sub> = <i>T</i><sub>c</sub> = <i>T</i><sub>e</sub>, "
+        "rather than <i>T</i><sub>r</sub> = <i>T</i><sub>b</sub> = <i>T</i><sub>f</sub>."))
+    b.append(p(
+        "If <i>T</i><sub>c</sub> and <i>T</i><sub>e</sub> were interchanged, the error would be "
+        "of different magnitude, not merely of opposite sign, simply because of the "
+        "temperature distribution (Corollary 2). The unknown temperature of only one junction "
+        "can be determined; the others, including incidental junctions, must be defined by value "
+        "or, indirectly, as being isothermal (Corollary 4)."))
+    b.append(p(
+        "Note that such relative contributions (the null net contribution from two opposed like "
+        "segments or the inappropriate thermal mispairing between B and D) are immediately "
+        "evident simply by inspection of the informal T/X sketch without tedious algebra. These "
+        "critical facts of thermoelectric circuits are not evident from the usual electrical "
+        "schematic or from <i>E</i>(<i>T</i>) plots."))
+    b.append(p(
+        "Most real circuits include several incidental uncalibrated materials such as "
+        "connectors, terminals, splices, feedthrus, short pigtails, or extension leads that "
+        "each have their own (usually indefinite) Seebeck properties. In some circuits, a few "
+        "thermoelements may be inadvertently connected in parallel. It is important to include "
+        "them in the sketch to recognize the potential unnoticed error they can contribute if "
+        "not held isothermal. Furthermore, many long-lead circuit elements may be misconnected "
+        "with reversed polarity. The specific voltage or temperature consequences of such "
+        "situations are readily calculated for any plausible temperature distribution. The T/X "
+        "sketch is designed specifically to aid circuit visualization to avoid these very "
+        "common practical problems and to readily evaluate their potential impact."))
+    return "".join(b)
+
+
 def sec_32_4c_en():
     b = [h4("Modular Signal Conditioning Components",
             "Các bộ phận điều chế tín hiệu dạng mô-đun")]
@@ -5191,11 +5744,11 @@ def sec_32_4d_en():
 
 
 def sec_32_4_vi():
-    return sec_32_4a_vi() + sec_32_4b_vi() + sec_32_4c_vi() + sec_32_4d_vi()
+    return sec_32_4a_vi() + sec_32_4b_vi() + sec_32_4c_vi() + sec_32_4d_vi() + sec_32_4e_vi()
 
 
 def sec_32_4_en():
-    return sec_32_4a_en() + sec_32_4b_en() + sec_32_4c_en() + sec_32_4d_en()
+    return sec_32_4a_en() + sec_32_4b_en() + sec_32_4c_en() + sec_32_4d_en() + sec_32_4e_en()
 
 
 def _refs(lang):
@@ -5396,6 +5949,13 @@ INDEX = [
         ("Letter Designations", "Ký hiệu chữ cái", 1),
         ("Color Codes", "Mã màu", 1),
         ("Identifying Thermoelements", "Nhận dạng thân nhiệt điện", 1),
+        ("The Functional Model of Thermoelectric Circuits",
+         "Mô hình chức năng của mạch nhiệt điện"),
+        ("The Basic Thermoelectric Circuit Element",
+         "Phần tử mạch nhiệt điện cơ bản", 1),
+        ("The Law of Seebeck emf", "Luật suất điện động Seebeck", 1),
+        ("Corollaries from the Seebeck Law", "Các hệ quả từ Luật Seebeck", 1),
+        ("The T/X Visualization Sketch", "Bản phác T/X trực quan hóa", 1),
     ]),
 ]
 

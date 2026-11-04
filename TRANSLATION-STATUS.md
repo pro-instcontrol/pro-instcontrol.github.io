@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-03 (session 49 — Chapter 32 §32.4 through *Thermocouple Materials*) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-03 (session 50 — Chapter 32 §32.4 *Functional Model* p59–63, VI + EN) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook **Chapter 32** and *upward* to 85 — the forward agent works the
 > book from the front. Chapters 1–31, **86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
@@ -4065,8 +4065,37 @@ which still cannot authenticate from this machine.
 
 ### State of §32.4 after this session
 
-Text is done through p58 (*Identifying Thermoelements*). Still owed in §32.4:
-*The Basic Thermoelectric Circuit Element* (p59, fig 32.29), *The Law of Seebeck emf* +
-corollaries (p60–63, fig 32.30, eqs 32.79–32.85), *Inhomogeneity* (p64), *Calibration*
-(p65, fig 32.31), *Failure and Validation* (p68), *Data Acquisition* (p70), *Signal
-Transmission* (p71), Caveat + Summary (p73), and the section reference list. Then §32.5.
+Text is done through p63 (end of *The Functional Model of Thermoelectric Circuits*). Still owed
+in §32.4: *Inhomogeneity* (p64), *Calibration* (p65, fig 32.31), *Failure and Validation*
+(p68), *Data Acquisition* (p70), *Signal Transmission* (p71), Caveat + Summary (p73), and the
+section reference list. Then §32.5.
+
+## Session 50 — 2026-11-03 (eve) · Chapter 32 §32.4 *Functional Model* (p59–63), VI + EN
+
+### What shipped
+- **Completed §32.4e *The Functional Model of Thermoelectric Circuits* (p59–63)** — the chunk
+  left half-finished when the previous session ran out of credits. `sec_32_4e_vi` was already in
+  place (with figs 32.29/32.30 and Table 32.14 wired); this session wrote the missing
+  `sec_32_4e_en`, wired both into `sec_32_4_vi()` / `sec_32_4_en()`, and rebuilt.
+- **Content:** intro (3 paras), *Basic Thermoelectric Circuit Element* (fig 32.29), *Law of Seebeck
+  emf* (eqs 32.79–32.80), polarity discussion, *Corollaries from the Seebeck Law* (Table 32.14,
+  the five corollaries), *T/X Visualization Sketch* (fig 32.30, the T_b/T_e → T_c erratum note,
+  incidental-junction temperatures, virtual junctions/thermoelements, the worked Example with
+  eqs 32.81–32.85). VI and EN are faithful mirror translations.
+- **On-page INDEX extended** with the Functional Model tree (h3 + four h4 children); verified all
+  TOC anchors resolve in both languages.
+
+### Verification
+- VI/EN parity: **29 figures each, 16 tables each**, zero dead in-page TOC anchors.
+- Confirmed exactly one `def sec_32_4e_en` / `sec_32_4e_vi` / `sec_32_4_en` (no stale duplicate
+  shadowing the new code, the bug class that bit session 49).
+- `check_links`: broken 80 — unchanged, all pre-existing in the other agent's `es/` pages.
+- Live site shows Ch 32 still listed as “chờ dịch” on the book map — expected: §32.4 is not yet
+  complete, so ch32 stays intentionally unregistered in the TOC until the section is finished.
+
+### Next
+Remaining in §32.4: *Inhomogeneity* (p64), *Calibration* (p65, fig 32.31), *Failure and
+Validation* (p68), *Data Acquisition* (p70), *Signal Transmission* (p71), Caveat + Summary
+(p73), and the section reference list; then §32.5. After §32.4 is fully done, register ch32 in
+the book TOC (`reader_handbook.py` / `reader_book.py` DONE lists) and regenerate via
+`books_site.py` + `make_sitemap.py`, then commit + push.
