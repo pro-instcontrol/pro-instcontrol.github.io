@@ -304,7 +304,7 @@ def body_vi():
                "<b>phân tích tín hiệu lớn</b>. Khó khăn thiết kế nảy sinh khi tín hiệu bao dải động rộng vì không dễ "
                "tính đến mọi hiệu ứng khác nhau trong một thiết kế duy nhất."))
 
-    b.append(h3("Bias", "Bias"))
+    b.append(h3("Bias"))
     b.append(p("Đôi khi tình huống xử lý tín hiệu điện tử đòi hỏi tín hiệu vào được xử lý ở mức điện áp hay dòng "
                "trung bình cao hơn bình thường. Ở đây một giá trị dc được cộng vào tín hiệu vào để nâng mức lên "
                "trạng thái cao hơn như Hình 3-10. Nhu cầu này gặp khi chỉ một cực tính tín hiệu có thể được khuếch "

@@ -477,7 +477,7 @@ def body_vi():
         "là sóng đất (groundwave) đi theo độ cong Trái Đất, ước lượng trễ đường truyền tốt dễ hơn nhiều. "
         "Hai ví dụ tín hiệu LF dùng để truyền thời gian là WWVB và LORAN-C. WWVB phát mã thời gian nhị phân "
         "trên sóng mang 60 kHz. LORAN-C phát xung đúng giờ ở 100 kHz nhưng không có mã thời gian."))
-    b.append(h3("WWVB", "WWVB"))
+    b.append(h3("WWVB"))
     b.append(p(
         "WWVB là đài vô tuyến LF (60 kHz) do NIST vận hành từ cùng địa điểm với WWV gần Fort Collins, CO. "
         "Tín hiệu hiện phủ phần lớn Bắc Mỹ, và việc tăng công suất (6 dB, dự kiến năm 1998) sẽ mở rộng "
@@ -505,7 +505,7 @@ def body_vi():
         "là bit 1. Các dấu tham chiếu và mã định vị được gửi bằng cách phục hồi công suất đầy đủ 800 ms "
         "sau. Mã thời gian cung cấp thông tin năm, ngày, giờ, phút, giây, hiệu chỉnh DUT1, và thông tin về "
         "Giờ mùa hè, năm nhuận và giây nhuận [15]."))
-    b.append(h3("LORAN-C", "LORAN-C"))
+    b.append(h3("LORAN-C"))
     b.append(p(
         "LORAN-C là hệ dẫn đường vô tuyến đặt trên mặt đất. Phần lớn hệ thống do Bộ Giao thông Hoa Kỳ (DOT) "
         "vận hành, nhưng một số trạm do chính phủ nước ngoài vận hành. Hệ gồm các nhóm trạm (gọi là chuỗi). "

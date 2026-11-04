@@ -4265,3 +4265,70 @@ the largest remaining section: 17 figs (32.48–32.64), tables 32.17–32.18, eq
 29 equations. Then §32.7–§32.11. **When §32.11 is done, this is the last chapter of the
 handbook:** add `32: "ch32-temperature"` to `reader_handbook.py` DONE, regenerate with
 `books_site.py` + `make_sitemap.py`, and the book is complete.
+
+## Session 53 — 2026-11-04 · Full site audit (sitewide, not chapter work)
+
+Scope: "finish and audit site". Chapter 28 was already complete and published
+(`15d6d15`, 11 sections, 92 figures, 164 equations, VI + EN, in-page Contents,
+registered in DONE). The remaining handbook work is Chapter 32 §32.6–§32.11,
+which **another agent is actively working on** — `build/hb32kit.py` appeared and
+`build/reader_hb_ch32.py` changed during this audit. Those files were left out
+of this session's commit; do not treat them as abandoned.
+
+### What the audit checked
+698 published HTML pages, 19,230 local references, 114 EN/VI handbook chapter
+pairs, DONE registration, both book TOCs, sitemap, chapter nav, hreflang,
+`<html lang>`, in-page anchors, duplicated headings, WIP markers, glossary.
+
+### Defects found and fixed
+| # | Finding | Fix |
+|---|---|---|
+| 1 | **80 broken local references (40 unique)** — all in the 13 `/es/` mirror pages. `framework.write()` rewrote `assets/` links for the one-level-deeper mirror but not `books/`, `advanced/`, `hot-topics/`, `video-library/`, `glossary.html`, so they resolved to `/es/books/` etc. | New `framework.ES_ROOT_ONLY` tuple; the mirror now prefixes those five root-only paths with `../`. **`check_links.py`: 80 broken → 0 broken.** |
+| 2 | **sitemap.xml stale** — last regenerated 2026-11-03; 106 chapter URLs (ch33–36, 74–101, VI twins) were missing. | Ran `make_sitemap.py`: **590 → 696 URLs**, 681 with hreflang siblings, 0 chapter dirs missing. |
+| 3 | **Progress badge lied** — `books_site.TRANSLATED` hard-coded 48/101 while DONE held 100 chapters. | Replaced with `handbook_progress()`, which parses `DONE`/`TOTAL` out of `reader_handbook.py` with `ast`. Importing the module back is circular (`reader_handbook` imports `MARK/NAV_EN/NAV_VI` from `books_site`), hence the source parse. Badge now **100/101**, and registering ch32 will flip it to `full` 101/101 automatically. |
+| 4 | **106 duplicated heading glosses** in 12 generators — `h3("RS-232", "RS-232")` printed "RS-232 RS-232" (proper nouns, standards, acronyms). Ch28 already had a runtime guard from session 52; the other chapters did not. | Dropped the redundant second argument at all 106 call sites, regenerated ch03/06/10/12/18/19/28/86/88/96. **Duplicated headings: 20 → 0.** `pages_control.py`'s `pg.h3(en, vi)` is a two-required-arg `Page` method (bilingual payload, not a gloss) and was deliberately left alone. |
+| 5 | **Chapter nav stale on ~200 pages** — earlier pushes registered chapters without re-running `chapter_nav.py`, so prev/next still fell back to the book TOC. | Ran `chapter_nav.py`: 200 pages now carry real prev/next chapter links. |
+| 6 | The only two `<html lang>` violations found were `pdf-store/index.html` and `pdf-store-b/index.html`. Both are **gitignored local placeholders** (`.gitignore:16-17`) — the live `/pdf-store/` paths are separate companion repos — so every actually published page already had a correct `lang`. | Added `lang="en"` locally for a clean scan. **Published `<html lang>` problems: 0.** |
+
+Also regenerated `reader_handbook.py` (TOC), `books_site.py` (library + 362 work
+pages), `make_glossary.py` (98 entries), `robots.txt`.
+
+### Verified clean
+- `check_links.py`: **698 pages, 19,230 references, 0 broken.**
+- DONE 100 keys (1–31, 33–101, Appendix A); every registered chapter has both
+  EN and VI `index.html`; no registered-but-missing, no EN/VI asymmetry.
+- Both book TOCs list all 100 registered chapters; ch32 correctly reads
+  "chờ dịch / pending" (intentional — it is a 5-of-11 WIP).
+- 0 dead in-page anchors, 0 duplicated headings, 0 WIP markers on published
+  chapter pages.
+- Ch28: 92 figures, 164 equations, 23 tables, matching VI/EN, both in sitemap
+  with en/vi/x-default hreflang.
+
+### Known, deliberately NOT changed
+- **Duplicate SVG `<defs>` ids** (`a6`, `h6`, `a7`, `h7`, …) on ~120 reader
+  pages, because every inline SVG emits the same marker/pattern ids. HTML ids
+  must be unique, but each definition is byte-identical within a page, so
+  `url(#a6)` resolves to the first and rendering is unaffected. Verified across
+  all 114 pairs: the only page with two different `a100` bodies is ch100, and
+  both markers are the same `#2a2a2a` arrowhead (one just adds a hatch pattern).
+  Fixing properly means unique-per-figure ids in every `hbNNfig.py` / `vfig.py`;
+  not worth the regression risk for a validity-only issue.
+- **Early chapters 3–6 are abridged English "figure companions"** by design
+  (the EN page says so and points at the full VI translation). Their EN/VI
+  figure/equation/table counts legitimately differ; do not "fix" them by
+  copying content across languages.
+- `ch05` VI declares "2 bảng" in its meta but renders them as prose/`dl`, not
+  `<table>`; cosmetic metadata discrepancy, left as-is.
+
+### Build order used (keep this order)
+`build.py` → `cp -r dist/. ./` → the `reader_hb_chNN.py` generators that changed
+→ `reader_handbook.py` → `books_site.py` → `chapter_nav.py` → `make_glossary.py`
+→ `make_sitemap.py` → `check_links.py`. Skipping `chapter_nav.py` or
+`make_sitemap.py` after a registration push is exactly what caused findings
+2 and 5; **both are mandatory**, not optional.
+
+### Next
+The other agent finishes Ch32 §32.6–§32.11 and registers `32` in DONE. On that
+push, re-run `books_site.py` (badge auto-flips to 101/101), `make_sitemap.py`
+and `check_links.py`, then update this file's header — the handbook will be
+101/101 complete.

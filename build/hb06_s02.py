@@ -150,7 +150,7 @@ def body_vi():
         "Máy phát tốc độ từ trở biến thiên thích hợp nhất cho đo vận tốc góc. Chúng cũng được dùng trong đo lưu "
         "lượng thể tích và xác định tổng thể tích dòng chảy của chất lỏng."))
 
-    b.append(h3("Microsyn", "Microsyn"))
+    b.append(h3("Microsyn"))
     b.append(p(
         "Một ví dụ khác thường gặp của đầu đo từ trở biến thiên là microsyn, như trên Hình 6-12. Trong cách bố "
         "trí này, các cuộn dây được đấu sao cho tại vị trí không của phần tử quay, điện áp cảm ứng ở cuộn 1 và 3 "

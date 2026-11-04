@@ -499,7 +499,7 @@ def body_vi():
          ["Máy thu LF (LORAN-C và WWVB)", "±1 × 10⁻¹²"],
          ["Máy thu GPS", "±5 × 10⁻¹³"]],
         "Bảng 19.4 · Mức truy xuất do các chuẩn chuyển tiếp khác nhau cung cấp."))
-    b.append(h3("WWVB", "WWVB"))
+    b.append(h3("WWVB"))
     b.append(p(
         "Nhiều nước phát tín hiệu thời gian và tần số trong băng LF 30 kHz–300 kHz, cũng như băng VLF 3 "
         "kHz–30 kHz. Vì một phần tín hiệu LF là sóng đất đi theo độ cong Trái Đất, độ ổn định đường của "
@@ -523,7 +523,7 @@ def body_vi():
         "dài ra. Máy thu WWVB có vài ưu điểm khi dùng làm chuẩn chuyển tiếp: giá thấp, dễ dùng, và tín hiệu "
         "nhận được truy xuất trực tiếp NIST. Với máy thu và ăng-ten tốt, có thể đạt độ không đảm bảo tần số "
         "±1 × 10⁻¹² khi lấy trung bình 1 ngày [18]."))
-    b.append(h3("LORAN-C", "LORAN-C"))
+    b.append(h3("LORAN-C"))
     b.append(p(
         "LORAN-C là hệ dẫn đường vô tuyến hoạt động trong băng LF. Phần lớn hệ thống do Bộ Giao thông Hoa Kỳ "
         "(DOT) vận hành, nhưng một số trạm do chính phủ khác vận hành. Hệ gồm các nhóm trạm gọi là chuỗi; mỗi "

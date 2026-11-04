@@ -79,7 +79,7 @@ def body_vi():
 
     # ---- 12.1
     b.append(h2("12.1 Nguyên lý", "Theory"))
-    b.append(h3("Planimeter", "Planimeter"))
+    b.append(h3("Planimeter"))
     b.append(p(
         "Planimeter là một bộ tích phân cơ học, gồm có một thanh (cánh tay theo dõi — tracer arm), một "
         "bánh xe đo có trục song song với thanh, và một cơ cấu buộc đầu kia của thanh chuyển động trên "

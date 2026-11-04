@@ -488,7 +488,7 @@ def body_en():
         "is only as good as that alignment, which is why the machine spends its first seconds doing nothing but "
         "alignment."))
 
-    b.append(h2("GAGE R and R", "GAGE R and R"))
+    b.append(h2("GAGE R and R"))
     b.append(p(
         "Repeatability is one operator, one gage, many trials. Reproducibility is many operators, one gage. The "
         "two together decide whether a measuring system is fit for a particular tolerance — and the answer is "

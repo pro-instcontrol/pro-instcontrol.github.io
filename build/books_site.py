@@ -13,6 +13,32 @@ if HERE not in sys.path:
 import framework  # noqa: E402  (one nav list for the whole site)
 CAT = os.path.join(ROOT, "library", "catalog.json")
 
+
+def handbook_progress():
+    """(registered, total) straight from reader_handbook.py's DONE/TOTAL.
+
+    reader_handbook imports MARK/NAV_EN/NAV_VI from this module, so importing
+    it back here would be circular. Reading the two literals keeps the library
+    badge in sync with the actual TOC -- a hand-typed count had drifted to 48
+    while 100 chapters were already published.
+    """
+    import ast as _ast
+    src = open(os.path.join(HERE, "reader_handbook.py"), encoding="utf-8").read()
+    tree = _ast.parse(src)
+    done, total = 0, 101
+    for node in tree.body:
+        if not isinstance(node, _ast.Assign):
+            continue
+        names = [t.id for t in node.targets if isinstance(t, _ast.Name)]
+        if "DONE" in names and isinstance(node.value, _ast.Dict):
+            done = len(node.value.keys)
+        if "TOTAL" in names:
+            total = _ast.literal_eval(node.value)
+    return done, total
+
+
+HB_DONE, HB_TOTAL = handbook_progress()
+
 # PDFs are hosted as GitHub Release assets (repo is too small for ~2 GB).
 RELEASE_TAG = "library-pdfs"
 RELEASE_BASE = ("https://github.com/pro-instcontrol/pro-instcontrol.github.io"
@@ -398,7 +424,10 @@ DESC = {
 # `level` is both the CSS hook (.translated-flag[data-level=...]) and the key
 # into FLAG_LABEL below — a book that is finished must never read "Translating".
 TRANSLATED = {
-    "measurement, instrumentation and sensors handbook": ("progress", 101, 48),
+    # Derived from reader_handbook.DONE so the badge can never go stale again:
+    # registering Chapter 32 flips this to 101/101 on the next books_site run.
+    "measurement, instrumentation and sensors handbook": (
+        "progress" if HB_DONE < HB_TOTAL else "full", HB_TOTAL, HB_DONE),
     "safety instrumented systems - design, analysis, and justification": ("full", 16, 16),
     "pc_process control": ("full", 14, 14),
 }

@@ -1918,7 +1918,7 @@ def body_vi():
         "thay đổi pha hoặc từ độ của môi trường. Ví dụ đáng chú ý nhất trong nhóm này là kỹ thuật từ "
         "quang (MO) [18]. Chỉ CD-ROM và ghi từ quang được mô tả dưới đây."))
 
-    b.append(h4("CD-ROM", "CD-ROM"))
+    b.append(h4("CD-ROM"))
     b.append(p(
         "Hình 96.28 cho thấy nguyên lý đọc lại của CD-ROM. Dữ liệu được ép thành các hố và các vùng "
         "phẳng vật lý trên một mặt của một đế nhựa, thường là polycacbonat. Một lớp nhôm được lắng "

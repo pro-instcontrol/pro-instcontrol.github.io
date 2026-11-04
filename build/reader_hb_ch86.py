@@ -815,7 +815,7 @@ def body_vi():
                "kết hợp chuẩn VMEbus IEEE 1014 với bus đo lường IEEE-488, dùng những chân chưa "
                "được cam kết trên đầu nối P2, để tạo thành chuẩn IEEE P1155."))
 
-    o.append(h3("Multibus II (IEEE 1296)", "Multibus II (IEEE 1296)"))
+    o.append(h3("Multibus II (IEEE 1296)"))
     o.append(p("Multibus II [3] là một hệ bus đồng bộ, được triển khai trên một bảng mạch nền "
                "96 đường duy nhất. Card tuân theo khuôn dạng Eurocard 220 × 233,65 mm; tuy vậy, "
                "bus chỉ cần một đầu nối kiểu DIN 41612 96 chân duy nhất. Đầu nối thứ hai có thể "
@@ -975,7 +975,7 @@ def body_vi():
                "card EISA. Với card ISA, người dùng có thể được thông báo về các thiết lập "
                "jumper cần thiết."))
 
-    o.append(h3("PCMCIA", "PCMCIA"))
+    o.append(h3("PCMCIA"))
     o.append(p("Kiến trúc PCMCIA được Hiệp hội Quốc tế Thẻ nhớ Máy tính Cá nhân và Hiệp hội "
                "Phát triển Công nghiệp Điện tử Nhật Bản phát triển cho những card cắm thêm tháo "
                "lắp được của máy tính xách tay và sổ tay. Mỗi ổ cắm PCMCIA có bộ điều hợp bus "
@@ -1019,7 +1019,7 @@ def body_vi():
                "liệu vào/ra 8 bit lẫn 16 bit. DMA có thể được hỗ trợ, nhưng không phải bởi các "
                "hệ phiên bản 2.x."))
 
-    o.append(h3("PC/104", "PC/104"))
+    o.append(h3("PC/104"))
     o.append(p("Sự phổ biến to lớn của kiến trúc PC đã dẫn đến việc nó được dùng trong các hệ "
                "nhúng. Từ đó nảy sinh nhu cầu về một cách triển khai bus ISA gọn hơn, có thể "
                "đáp ứng những yêu cầu về không gian và công suất giảm bớt của các ứng dụng "

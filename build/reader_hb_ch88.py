@@ -559,7 +559,7 @@ def body_vi():
         "được chọn từ một số ngành thường dùng mạng để truyền dữ liệu cảm biến. Hình 88.4 đưa ra "
         "một so sánh các tham số chọn lọc của một tập hợp mạng."))
 
-    b.append(h3("RS-232", "RS-232"))
+    b.append(h3("RS-232"))
     b.append(p(
         "RS-232 (ANSI/EIA/TIA-232-E-91) là một phương pháp truyền thông được dùng rộng rãi, đã "
         "được tiêu chuẩn hoá ở nhiều nơi, trong đó có Hiệp hội Công nghiệp Điện tử [3]. RS-232 "
@@ -574,7 +574,7 @@ def body_vi():
         "tốc độ bit khác nhau, nhưng thường được dùng ở các tốc độ từ 300 bit/s tới 115.200 "
         "bit/s."))
 
-    b.append(h3("RS-485", "RS-485"))
+    b.append(h3("RS-485"))
     b.append(p(
         "EIA RS-485 trở thành tiêu chuẩn năm 1983, có nguồn gốc từ tiêu chuẩn RS-422. RS-485 "
         "cung cấp việc truyền dữ liệu vi sai trên một cặp dây giữa 32 trạm trở lên. Giống như "
@@ -588,7 +588,7 @@ def body_vi():
         "RS-485 mẫu, minh hoạ tính chất vi sai của kiểu tín hiệu hoá."))
     b.append(fig(3, "vi"))
 
-    b.append(h3("Seriplex", "Seriplex"))
+    b.append(h3("Seriplex"))
     b.append(p(
         "Seriplex® là một hệ ghép kênh nối tiếp, số, do Automated Process Control, Inc. ở "
         "Jackson, MS phát triển. Tập đoàn Square D đã mua lại Automated Process Control và "
@@ -611,7 +611,7 @@ def body_vi():
         "thức trong một cảm biến hay thiết bị khác thường đòi hỏi dùng một ASIC Seriplex (mạch "
         "tích hợp chuyên dụng) phải được cấp phép từ STO [4]."))
 
-    b.append(h3("AS-i", "AS-i"))
+    b.append(h3("AS-i"))
     b.append(p(
         "Giao diện Cảm biến – Cơ cấu chấp hành, hay AS-i, được một liên doanh chủ yếu gồm các "
         "công ty châu Âu phát triển, với mục tiêu tạo ra một phương pháp chi phí thấp và linh "
@@ -623,7 +623,7 @@ def body_vi():
         "bộ chủ. Mỗi trạm dùng một bit chẵn lẻ để phát hiện lỗi. Tương tự Seriplex, một thiết bị "
         "AS-i thường được hiện thực bằng một ASIC chuyên dụng đảm nhiệm việc truyền thông."))
 
-    b.append(h3("Interbus-S", "Interbus-S"))
+    b.append(h3("Interbus-S"))
     b.append(p(
         "Interbus-S do Phoenix Contact phát triển [6] và được Câu lạc bộ Interbus-S điều hành. "
         "Tô-pô của mạng là một vòng, với dữ liệu được dịch chuyển tuần tự từ điểm này sang điểm "
@@ -640,7 +640,7 @@ def body_vi():
         "một ASIC chuyên dụng."))
     b.append(fig(4, "vi"))
 
-    b.append(h3("CAN", "CAN"))
+    b.append(h3("CAN"))
     b.append(p(
         "Mạng vùng điều khiển (CAN) là một công nghệ mạng ở tầng liên kết dữ liệu (tầng 2) do "
         "Tập đoàn Robert Bosch phát triển [7], với mục tiêu ứng dụng là mạng trên xe ô tô. Công "
@@ -680,7 +680,7 @@ def body_vi():
         "(bên phát) với máy tính điều khiển. Bởi vì một trạm luôn là bên phát và một trạm luôn "
         "là bên thu, đây là một hệ truyền thông một chiều, bán song công."))
 
-    b.append(h3("HART", "HART"))
+    b.append(h3("HART"))
     b.append(p(
         "HART® là một giao thức xây dựng trên các hệ truyền thông 4 đến 20 mA. Ý tưởng cơ bản là "
         "có thể truyền thêm dữ liệu (ngoài tín hiệu cảm biến cơ bản đang được mang trong vòng "
@@ -698,7 +698,7 @@ def body_vi():
         "thuyết nó có thể chạy trên đường điện thoại và do đó có khả năng chạy trên những "
         "khoảng cách dài tuỳ ý."))
 
-    b.append(h3("Profibus", "Profibus"))
+    b.append(h3("Profibus"))
     b.append(p(
         "Profibus (PROcess FIeld BUS) là một trong ba mạng được một tiêu chuẩn châu Âu tiêu "
         "chuẩn hoá [14]. Profibus do một tổ chức toàn cầu, PNO, điều hành [15]. Profibus là một "
@@ -725,7 +725,7 @@ def body_vi():
         "nhiều tốc độ bit khác nhau tới 12 Mbit/s. Các thông điệp Profibus có kèm một CRC để "
         "phát hiện lỗi."))
 
-    b.append(h3("Foundation Fieldbus", "Foundation Fieldbus"))
+    b.append(h3("Foundation Fieldbus"))
     b.append(p(
         "Foundation Fieldbus (FF) là một tiêu chuẩn mạng nảy sinh từ một nỗ lực trong các tổ "
         "chức tiêu chuẩn của ngành, đặc biệt là ISA-SP50 [16] và IEC SC65C/WG6 [17], nhằm cung "
@@ -739,7 +739,7 @@ def body_vi():
         "cũng cung cấp một lựa chọn IS ở tốc độ 1 Mbit/s. Hệ H2 có thể đóng vai trò đường trục "
         "mạng trong một môi trường nhà máy, mang dữ liệu giữa nhiều hệ H1 khác nhau."))
 
-    b.append(h3("WorldFIP", "WorldFIP"))
+    b.append(h3("WorldFIP"))
     b.append(p(
         "WorldFIP [18] là một công nghệ khác trong số ba công nghệ đã được tiêu chuẩn hoá trong "
         "tiêu chuẩn châu Âu EN 50 170, chạy trên tầng vật lý IEC 1158-2. Nhiều người ủng hộ "
@@ -747,7 +747,7 @@ def body_vi():
         "thành viên của FF, và kết quả là FF đã đưa nhiều năng lực của WorldFIP vào. Khi chạy "
         "trên tầng vật lý IEC 1158-2, WorldFIP có năng lực tương tự FF."))
 
-    b.append(h3("LonWorks", "LonWorks"))
+    b.append(h3("LonWorks"))
     b.append(p(
         "LonWorks® là một công nghệ mạng do Tập đoàn Echelon phát triển và kiểm soát [19]. "
         "LonWorks được thiết kế để trở thành một công nghệ mạng đa dụng, thích hợp cho nhiều "

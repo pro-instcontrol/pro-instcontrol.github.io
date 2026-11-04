@@ -2317,7 +2317,7 @@ def body_vi():
         "không được dùng phổ quát. Những người đi biển như thuyền nhỏ và tàu buôn không được trang bị "
         "hệ khác thì dùng radiobeacon."))
 
-    b.append(h4("Loran-C", "Loran-C"))
+    b.append(h4("Loran-C"))
     b.append(p(
         "Loran được phát triển từ thập niên 1940, là một trong những hệ đầu tiên hiện thực hoá một "
         "hệ hypebol tầm xa cho cả tàu thuỷ lẫn máy bay. Hệ dùng trạm chủ và trạm tớ phát sóng vô "
@@ -2363,7 +2363,7 @@ def body_vi():
         "dứt Loran-C trong tương lai rất gần. Tuy nhiên, việc tắt hẳn hệ có thể không xảy ra ngay, vì "
         "số người dùng hiện tại của hệ rất lớn."))
 
-    b.append(h4("Decca", "Decca"))
+    b.append(h4("Decca"))
     b.append(p(
         "Decca giống Loran-C ở chỗ mỗi chuỗi gồm một trạm chủ và ba trạm tớ bố trí theo hình sao, "
         "với góc khoảng 120° giữa các đường đáy. Nó dùng sóng liên tục không điều chế thay cho sóng "
@@ -2378,7 +2378,7 @@ def body_vi():
         "tớ phát, cứ 20 s một lần, kéo dài 0,6 s. Nhờ vài lần ngắt tín hiệu ngắn và việc phát đồng "
         "thời các hoạ ba, các vùng và các làn được nhận dạng một cách chính xác."))
 
-    b.append(h4("Consol", "Consol"))
+    b.append(h4("Consol"))
     b.append(p(
         "Consol chỉ giới hạn ở vùng Đông và Bắc Đại Tây Dương. Đây là một hệ hypebol có đường đáy "
         "cực ngắn, đến mức tạo thành một hình hypebol bị suy biến. Hệ dùng ba tháp đặt cách nhau ba "
@@ -2388,7 +2388,7 @@ def body_vi():
         "được điều chế bằng chấm và gạch, sao cho đầu thu xác định vị trí bằng cách đếm chúng và in "
         "lên lưới Consol."))
 
-    b.append(h4("Omega", "Omega"))
+    b.append(h4("Omega"))
     b.append(p(
         "Omega là một hệ dẫn đường hypebol phủ toàn thế giới chỉ với tám trạm phát, cách nhau 7500 km "
         "đến 9500 km. Hệ phát trên các tần số trong băng VLF, từ 10 kHz đến 14 kHz, với công suất "
@@ -2416,7 +2416,7 @@ def body_vi():
         "khoảng 1000 USD cho ứng dụng hàng hải và hàng không. Tuy vậy, vì độ chính xác của hệ không "
         "bằng các hệ khác, chúng chủ yếu được dùng làm hệ dự phòng."))
 
-    b.append(h4("Radar", "Radar"))
+    b.append(h4("Radar"))
     b.append(p(
         "Từ này bắt nguồn từ “radio detection and ranging” (phát hiện và đo cự ly bằng vô tuyến). Nó "
         "hoạt động theo nguyên lý phản xạ cơ bản: xác định thời gian để một xung RF đi từ nguồn phát "

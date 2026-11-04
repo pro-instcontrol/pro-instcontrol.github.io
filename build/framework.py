@@ -69,6 +69,11 @@ NAV = [
 # nav silently drops it.
 TWIN_PATHS = {"video-library/", "books/", "advanced/", "hot-topics/", "glossary.html"}
 
+# Paths that exist only at the site root, never under /es/. A framework page
+# links to them relative to itself; the /es/ mirror has to climb out one level.
+# Matches the audit's list of broken references (see check_links.py).
+ES_ROOT_ONLY = ("books/", "advanced/", "hot-topics/", "video-library/", "glossary.html")
+
 
 def target(lang, href):
     """Where a nav or chain item points for this language, from the site root.
@@ -542,6 +547,12 @@ def write(path, content):
         # Asset links are page-relative; one level deeper they must climb.
         es = es.replace('href="assets/', 'href="../assets/')
         es = es.replace('src="assets/', 'src="../assets/')
+        # The same applies to links into root-level sections. The mirror only
+        # ships the top-level framework pages, so /es/books/, /es/advanced/,
+        # /es/glossary.html and friends do not exist; sibling .html links
+        # (process.html, tools.html, ...) do exist and must stay put.
+        for href in ES_ROOT_ONLY:
+            es = es.replace('href="%s' % href, 'href="../%s' % href)
         full_es = os.path.join(DIST, "es", path)
         os.makedirs(os.path.dirname(full_es), exist_ok=True) if os.path.dirname(full_es) else None
         with open(full_es, "w", encoding="utf-8", newline="\n") as fh:
