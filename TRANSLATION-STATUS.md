@@ -4371,3 +4371,28 @@ to 101/101; `make_sitemap.py` regenerated (696 URLs).
   content diff and were intentionally left unstaged. Pushed via fetch + rebase.
 
 **This was the last chapter. The handbook translation project is complete.**
+
+---
+
+## Session 54 — 2026-11-10 · SVG `<defs>` ID deduplication (validity polish)
+
+Scope: the long-standing "duplicate inline-SVG `<defs>` IDs" warning. Every figure module
+re-emitted identical `<defs>` IDs (`ah28`, `hatch28`, `a1.3`, …) so a chapter page carried
+dozens of duplicate `id=` attributes — invalid HTML, but harmless to render because the
+definitions are byte-identical.
+
+- New `build/svg_ids.py` → `namespace_svg_ids(html)`: namespaces every `<defs>` (and other
+  paint-server) id per SVG (`x` → `x__sd<k>`, k = SVG index), and rewrites references
+  (`url(#x)`, `href="#x"`, `xlink:href="#x"`) to the owning SVG's id (same SVG when it
+  declares the id, else the first SVG that does) — so cross-SVG references still resolve.
+  Idempotent: already-suffixed ids (`__sdN`) are skipped, so re-running is a no-op.
+- Wired into `framework.write()` so regenerated pages stay clean; `build/apply_svg_ids.py`
+  applied it once to all 405 SVG-bearing published pages.
+- Verified: **0 within-SVG duplicate ids across 1,139 pages**; **0 transform-introduced
+  broken refs**. 11 pre-existing broken refs (e.g. missing marker `a5`/`a1.3`/`ah27s` with
+  no def declared on the page) are preserved unchanged and are out of scope.
+- `check_links.py`: 698 pages, 19,254 references, **0 broken**.
+- One residual, separate pre-existing bug left as-is: `ch32-temperature` has two `<h4
+  id="s32-4-extension-leads">` anchors (duplicate HTML anchor id, not an SVG def) — out of
+  scope for this SVG task; flag for a separate anchor-dedup pass if desired.
+- Committed `4234f52`, pushed. Remote 0/0.
