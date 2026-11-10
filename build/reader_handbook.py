@@ -393,10 +393,16 @@ def build(lang):
             if vi else
             "%s chapters · 14 sections · %s pages · %s PDF files"
             % (num(TOTAL, lang), num(PAGES, lang), FILES))
-    flag = ('<span class="translated-flag" data-level="progress">🟠 Đang dịch · %d/%d chương</span>'
-            % (len(DONE), TOTAL) if vi else
-            '<span class="translated-flag" data-level="progress">🟠 Translating · %d of %d chapters</span>'
-            % (len(DONE), TOTAL))
+    if len(DONE) >= TOTAL:
+        flag = ('<span class="translated-flag" data-level="full">🟢 Đã dịch đầy đủ · %d/%d chương</span>'
+                % (len(DONE), TOTAL) if vi else
+                '<span class="translated-flag" data-level="full">🟢 Fully translated · %d of %d chapters</span>'
+                % (len(DONE), TOTAL))
+    else:
+        flag = ('<span class="translated-flag" data-level="progress">🟠 Đang dịch · %d/%d chương</span>'
+                % (len(DONE), TOTAL) if vi else
+                '<span class="translated-flag" data-level="progress">🟠 Translating · %d of %d chapters</span>'
+                % (len(DONE), TOTAL))
 
     if vi:
         lede = ("Sổ tay tham chiếu của ngành: 101 chương do nhiều tác giả viết, đi từ đặc tính của "
