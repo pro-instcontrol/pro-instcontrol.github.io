@@ -15,6 +15,7 @@ import os
 import re
 
 from es_data import ES_MAP
+from svg_ids import namespace_svg_ids
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, "dist")
@@ -528,6 +529,9 @@ def vi_books():
 
 
 def write(path, content):
+    # De-duplicate inline-SVG <defs> IDs per figure so every generated page is
+    # valid HTML (each figure previously redeclared the same marker/pattern IDs).
+    content = namespace_svg_ids(content)
     os.makedirs(DIST, exist_ok=True)
     full = os.path.join(DIST, path)
     os.makedirs(os.path.dirname(full), exist_ok=True) if os.path.dirname(full) else None

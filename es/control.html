@@ -67,14 +67,14 @@
   
 <svg viewBox="0 0 680 250" role="img" aria-label="Block diagram of a feedback control loop">
   <defs>
-    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <marker id="a2__sd1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="#0b1725"/>
     </marker>
   </defs>
 
   <!-- setpoint in -->
   <text x="18" y="124" font-family="'IBM Plex Mono',monospace" font-size="11" fill="#a85a06">SP</text>
-  <line x1="42" y1="130" x2="97" y2="130" stroke="#0b1725" stroke-width="1.6" marker-end="url(#a2)"/>
+  <line x1="42" y1="130" x2="97" y2="130" stroke="#0b1725" stroke-width="1.6" marker-end="url(#a2__sd1)"/>
 
   <!-- summing junction -->
   <circle cx="120" cy="130" r="21" fill="#fff" stroke="#0b1725" stroke-width="1.8"/>
@@ -82,7 +82,7 @@
   <text x="104" y="154" font-family="'IBM Plex Mono',monospace" font-size="15" fill="#a85a06">&minus;</text>
 
   <!-- error -->
-  <line x1="141" y1="130" x2="172" y2="130" stroke="#0b1725" stroke-width="1.6" marker-end="url(#a2)"/>
+  <line x1="141" y1="130" x2="172" y2="130" stroke="#0b1725" stroke-width="1.6" marker-end="url(#a2__sd1)"/>
   <text x="155" y="120" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#66788d">e</text>
 
   <!-- controller -->
@@ -91,7 +91,7 @@
   <text x="228" y="141" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#66788d">controller</text>
 
   <!-- controller to valve -->
-  <line x1="280" y1="130" x2="316" y2="130" stroke="#0b1725" stroke-width="1.6" marker-end="url(#a2)"/>
+  <line x1="280" y1="130" x2="316" y2="130" stroke="#0b1725" stroke-width="1.6" marker-end="url(#a2__sd1)"/>
   <text x="298" y="120" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#0d7a6f">u(t)</text>
 
   <!-- final element -->
@@ -100,7 +100,7 @@
   <text x="370" y="141" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#66788d">final element</text>
 
   <!-- valve to process -->
-  <line x1="420" y1="130" x2="456" y2="130" stroke="#0b1725" stroke-width="1.6" marker-end="url(#a2)"/>
+  <line x1="420" y1="130" x2="456" y2="130" stroke="#0b1725" stroke-width="1.6" marker-end="url(#a2__sd1)"/>
 
   <!-- process -->
   <rect x="460" y="108" width="110" height="44" rx="6" fill="#f7f9fc" stroke="#0b1725" stroke-width="1.8"/>
@@ -108,15 +108,15 @@
   <text x="515" y="141" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="#66788d">T, L, K</text>
 
   <!-- disturbance -->
-  <line x1="515" y1="74" x2="515" y2="104" stroke="#a85a06" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+  <line x1="515" y1="74" x2="515" y2="104" stroke="#a85a06" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#a2__sd1)"/>
   <text x="524" y="72" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#a85a06">d(t)</text>
 
   <!-- output -->
-  <line x1="570" y1="130" x2="620" y2="130" stroke="#0b1725" stroke-width="1.6" marker-end="url(#a2)"/>
+  <line x1="570" y1="130" x2="620" y2="130" stroke="#0b1725" stroke-width="1.6" marker-end="url(#a2__sd1)"/>
   <text x="630" y="124" font-family="'IBM Plex Mono',monospace" font-size="11" fill="#0d7a6f">PV</text>
 
   <!-- feedback -->
-  <path d="M515 152 V208 H120 V155" fill="none" stroke="#0d7a6f" stroke-width="1.6" marker-end="url(#a2)"/>
+  <path d="M515 152 V208 H120 V155" fill="none" stroke="#0d7a6f" stroke-width="1.6" marker-end="url(#a2__sd1)"/>
   <text x="320" y="200" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="#0d7a6f">measurement (feedback)</text>
 </svg>
 
