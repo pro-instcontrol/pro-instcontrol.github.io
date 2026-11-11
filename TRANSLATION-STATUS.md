@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-04 (finish-chapter-32 phase — **Chapter 32 COMPLETE: all 11 sections §32.1–§32.11, VI + EN; registered `32: "ch32-temperature"`; handbook now 101/101 = 100%**) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-11 (Spanish `es/` section COMPLETE — 13/13 framework pages fully Spanish; `build/es_data.py` holds ~1,446 EN→ES entries) · **Live site:** https://pro-instcontrol.github.io/
 
 > **Where to start next:** Handbook translation is **FINISHED — 101 of 101 chapters (100%)**,
 > including Chapter 32 "Temperature", whose last eleven sections §32.6–§32.11 (Infrared,
@@ -29,6 +29,15 @@
 >
 > **Read §5 before drawing anything.** Session 7 found four figure defects that the
 > Georgia-serif QA grid cannot see, because its font metrics differ from the site font.
+>
+> **Spanish (`es/`) section is COMPLETE (2026-11-11).** All 13 framework pages render in
+> Spanish: the 5 that were already 100% Spanish (index, control, fundamentals, instruments,
+> safety) plus the 8 that were finished this session (process, tools, install, applications,
+> standards, comparison, geotechnical, education) — ~1,009 strings translated, 0 English-on-Spanish
+> holes verified across all `es/` mirrors. Spanish is an overlay via `build/es_data.py` `ES_MAP`
+> (EN source text → ES), attached by `build/framework.py` `render()` and mirrored to `dist/es/` →
+> root `es/`. To add more Spanish later, append `ES_MAP.update({...})` blocks — app.js falls back to
+> English where no entry exists, so the mirror never renders a hole.
 
 This file is the single source of truth for the book-translation work on this site.
 Read it before touching anything. Update the status table and append to the session log
