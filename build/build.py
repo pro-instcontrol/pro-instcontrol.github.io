@@ -181,6 +181,11 @@ def main():
     pages_glossary.build()
     pages_hot.main()
 
+    # Alternate-language links (en/vi/es + x-default) for every built page. Runs
+    # after all pages are written so the dist/ tree (es/ and vi/ mirrors) is
+    # complete and the per-file existence checks are accurate.
+    framework.add_hreflang()
+
     # static assets (assets/pdfjs/ is a tree: pdf.js plus its cmaps and fonts)
     dst = os.path.join(DIST, "assets")
     os.makedirs(dst, exist_ok=True)

@@ -20,6 +20,9 @@ from svg_ids import namespace_svg_ids
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, "dist")
 
+# Canonical site origin, used for hreflang alternate links (see add_hreflang).
+SITE_ORIGIN = "https://pro-instcontrol.github.io/"
+
 # Single cache-busting version for every generated page. Bump this whenever
 # style.css or app.js changes; the env var exists only for one-off experiments.
 ASSET_VER = os.environ.get("ASSET_VER", "20")
@@ -526,6 +529,66 @@ def vi_books():
             if os.path.isfile(os.path.join(d, name, "index.html")):
                 out["books/%s/%s/" % (sub, name)] = 1
     return out
+
+
+def _canonical_rel(relpath):
+    """Strip leading es/ or vi/ from a path relative to DIST."""
+    norm = relpath.replace("\\", "/")
+    parts = norm.split("/")
+    if parts and parts[0] in ("es", "vi"):
+        return "/".join(parts[1:])
+    return norm
+
+
+def _hreflang_tags(relpath):
+    """Alternate-language <link> tags for one built .html file.
+
+    Rules (empirically true of the build): every framework page is mirrored to
+    /es/; the TWIN_PATHS sections also exist as real /vi/ URLs, while the
+    top-level framework pages are switched in place with ?lang=vi. x-default
+    points at English.
+    """
+    canon = _canonical_rel(relpath)
+    en = SITE_ORIGIN + canon
+    tags = [("en", en)]
+    if canon in TWIN_PATHS:
+        tags.append(("vi", SITE_ORIGIN + "vi/" + canon))
+    else:
+        tags.append(("vi", en + "?lang=vi"))
+    if os.path.isfile(os.path.join(DIST, "es", canon)):
+        tags.append(("es", SITE_ORIGIN + "es/" + canon))
+    tags.append(("x-default", en))
+    return "".join(
+        '  <link rel="alternate" hreflang="%s" href="%s">\n' % (h, u) for h, u in tags
+    )
+
+
+def add_hreflang():
+    """Inject alternate-language links into every built .html <head>.
+
+    Runs after all pages are written, so the dist/ tree (including es/ and vi/
+    mirrors) is complete and the per-file existence checks below are accurate.
+    Idempotent within a run: skips any file that already carries hreflang.
+    """
+    for base, _dirs, files in os.walk(DIST):
+        for name in files:
+            if not name.endswith(".html"):
+                continue
+            full = os.path.join(base, name)
+            rel = os.path.relpath(full, DIST).replace("\\", "/")
+            try:
+                with open(full, encoding="utf-8") as fh:
+                    html = fh.read()
+            except OSError:
+                continue
+            if '<link rel="alternate" hreflang=' in html:
+                continue
+            tags = _hreflang_tags(rel)
+            html = html.replace("</head>", tags + "</head>", 1)
+            with open(full, "w", encoding="utf-8", newline="\n") as fh:
+                fh.write(html)
+            if full not in WRITTEN:
+                WRITTEN.append(full)
 
 
 def write(path, content):

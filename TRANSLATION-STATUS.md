@@ -37,7 +37,9 @@
 > holes verified across all `es/` mirrors. Spanish is an overlay via `build/es_data.py` `ES_MAP`
 > (EN source text → ES), attached by `build/framework.py` `render()` and mirrored to `dist/es/` →
 > root `es/`. To add more Spanish later, append `ES_MAP.update({...})` blocks — app.js falls back to
-> English where no entry exists, so the mirror never renders a hole.
+> English where no entry exists, so the mirror never renders a hole. SEO: `build/framework.py`
+> `add_hreflang()` injects `en`/`vi`/`es` + `x-default` alternate links into every built page `<head>`
+> (es only where an `es/` mirror exists; vi as `/vi/` twin or `?lang=vi` variant). Rebuild + sync + push.
 
 This file is the single source of truth for the book-translation work on this site.
 Read it before touching anything. Update the status table and append to the session log
