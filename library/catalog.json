@@ -393,52 +393,6 @@
    "head": "Programmable Controllers/CR Theory and Implementation/CR Second Edition/CR L.A. Bryan/CR E.A. Bryan/CRTHEORY AND IMPLEMENTATION PROGRAMMABLE CONTROLLERS An Industrial Text Company Publication Atlanta • Georgia • USA Second Edition L. A. Bryan E. A. Bryan© 1988, 1997 by Industrial"
   },
   {
-   "id": 1,
-   "title": "05intensita",
-   "dir": "IMPIANTI INDUSTRIALI/x impianti",
-   "domain": "fundamentals",
-   "why": "override:^05intensita|^06flussodisperso",
-   "docs": [
-    {
-     "path": "IMPIANTI INDUSTRIALI/x impianti/05intensita.pdf",
-     "title": "05intensita",
-     "pages": 6,
-     "bytes": 418650,
-     "copies": [],
-     "head": "INTENSITA’ LUMINOSA DI UNA SUPERFICIE STRADALE PER UNITA’ DI FLUSSO LUMINOSO INSTALLATO, AGLI ANGOLI GAMMA PER CUI RISULTA PIU’ INQUINANTE. Pierantonio Cinzano ISTIL- Istituto di Scienza e Tecnologia dell’Inquinamento Luminoso, Via Roma 13, I-36016 Thiene, Italy email:cinzano@inq"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 6,
-   "bytes": 418650,
-   "year": null,
-   "copies": 0,
-   "head": "INTENSITA’ LUMINOSA DI UNA SUPERFICIE STRADALE PER UNITA’ DI FLUSSO LUMINOSO INSTALLATO, AGLI ANGOLI GAMMA PER CUI RISULTA PIU’ INQUINANTE. Pierantonio Cinzano ISTIL- Istituto di Scienza e Tecnologia dell’Inquinamento Luminoso, Via Roma 13, I-36016 Thiene, Italy email:cinzano@inq"
-  },
-  {
-   "id": 2,
-   "title": "06flussodisperso",
-   "dir": "IMPIANTI INDUSTRIALI/x impianti",
-   "domain": "fundamentals",
-   "why": "override:^05intensita|^06flussodisperso",
-   "docs": [
-    {
-     "path": "IMPIANTI INDUSTRIALI/x impianti/06flussodisperso.pdf",
-     "title": "06flussodisperso",
-     "pages": 5,
-     "bytes": 67896,
-     "copies": [],
-     "head": "Inquinamento luminoso e flusso disperso di Marco Vedovato Associazione CieloBuio-Commissione Tecnica e Scientifica Inquinamento Luminoso Queste note rispondono ad un articolo firmato da Giordana Arcesilai e Renzo Tedeschi dal titolo \"Se la luce fa discutere: cos'è l'inquinamento "
-    }
-   ],
-   "ndocs": 1,
-   "pages": 5,
-   "bytes": 67896,
-   "year": null,
-   "copies": 0,
-   "head": "Inquinamento luminoso e flusso disperso di Marco Vedovato Associazione CieloBuio-Commissione Tecnica e Scientifica Inquinamento Luminoso Queste note rispondono ad un articolo firmato da Giordana Arcesilai e Renzo Tedeschi dal titolo \"Se la luce fa discutere: cos'è l'inquinamento "
-  },
-  {
    "id": 3,
    "title": "10 steps to secure control system",
    "dir": "",
@@ -508,31 +462,6 @@
    "year": null,
    "copies": 1,
    "head": "Elements de mesura i vàlvules de control 105 3 Elements de mesura i vàlvules de control Introducció La gran varietat d’elements de mesura existents podria fer que aquest capítol presentés una diversitat excessiva; és per aquesta raó que s’ha optat per incloure-hi només exercicis "
-  },
-  {
-   "id": 6,
-   "title": "5.1Automatització corregit",
-   "dir": "Instrumentation and Control/Control, instrumentaci_ i automatitzaci_ de processos qu_mics. Problemes",
-   "domain": "analyzers",
-   "why": "override:an lisi instrumental|analisi instrumental|qu_mics|quimics",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Control, instrumentaci_ i automatitzaci_ de processos qu_mics. Problemes/QU00504C.pdf",
-     "title": "QU00504C",
-     "pages": 41,
-     "bytes": 258207,
-     "copies": [
-      "Instrumentation and Control/Control_ instrumentaci_ i automatitzaci_ de processos qu_mics. Problemes/QU00504C.pdf"
-     ],
-     "head": "Automatització de processos 145 5 Automatització de processos Introducció La inclusió d’aquest tema en aquest llibre és deguda fonamentalment a la difusió extraordinària dels autòmats programables en la indústria química, amb un espectre molt ampli d’aplicació. La facilitat de po"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 41,
-   "bytes": 258207,
-   "year": null,
-   "copies": 1,
-   "head": "Automatització de processos 145 5 Automatització de processos Introducció La inclusió d’aquest tema en aquest llibre és deguda fonamentalment a la difusió extraordinària dels autòmats programables en la indústria química, amb un espectre molt ampli d’aplicació. La facilitat de po"
   },
   {
    "id": 7,
@@ -1076,144 +1005,6 @@
    "head": "Application Guide SCADA System (Publication AG-6.5.8) Allen-BradleyPublication AG-6.5.8 - October 1998 Important User Information Because of the variety of uses for the products described in this publication, those responsible for the application and use of this control equipment"
   },
   {
-   "id": 16,
-   "title": "Anàlisi instrumental 1 Mètodes òptics d’anàlisi Exercicis Josep M. Casas SabataPresentació Aque",
-   "dir": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis",
-   "domain": "analyzers",
-   "why": "override:an lisi instrumental|analisi instrumental|qu_mics|quimics",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis/QU00400C.pdf",
-     "title": "QU00400C",
-     "pages": 4,
-     "bytes": 52733,
-     "copies": [],
-     "head": "Anàlisi instrumental 1 Mètodes òptics d’anàlisi Exercicis Josep M. Casas SabataPresentació Aquest llibre que ara teniu a les mans és un ampli recull d'exercicis, problemes i preguntes tes t totalment r esolts, fruit dels anys de docència i de l'activitat als laboratoris, que pret"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 4,
-   "bytes": 52733,
-   "year": null,
-   "copies": 0,
-   "head": "Anàlisi instrumental 1 Mètodes òptics d’anàlisi Exercicis Josep M. Casas SabataPresentació Aquest llibre que ara teniu a les mans és un ampli recull d'exercicis, problemes i preguntes tes t totalment r esolts, fruit dels anys de docència i de l'activitat als laboratoris, que pret"
-  },
-  {
-   "id": 17,
-   "title": "Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis — QU00403C",
-   "dir": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis",
-   "domain": "analyzers",
-   "why": "override:an lisi instrumental|analisi instrumental|qu_mics|quimics",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis/QU00403C.pdf",
-     "title": "QU00403C",
-     "pages": 49,
-     "bytes": 433214,
-     "copies": [],
-     "head": "h ’ E h ’ 60 kcal mol @ 103 cal 1 kcal @ 1 J 0,24 cal @ 107 erg 1 J @ 1 mol 6@1023 àtoms 6,6.10&27 erg àtom ’ 6,3.1014 Hz 8 ’ c h ’ 3 . 1010 cm s 6,3 . 1014 Hz ’ 0,476.10&4 cm ’ 4.760 D h2 ’ 198.311 cm &1 per n ’ 2 h1 ’ 35.244 cm &1 per n ’ 1 h2 & h1’ 163.067 cm &1 E2 & E1 ’ h . "
-    }
-   ],
-   "ndocs": 1,
-   "pages": 49,
-   "bytes": 433214,
-   "year": null,
-   "copies": 0,
-   "head": "h ’ E h ’ 60 kcal mol @ 103 cal 1 kcal @ 1 J 0,24 cal @ 107 erg 1 J @ 1 mol 6@1023 àtoms 6,6.10&27 erg àtom ’ 6,3.1014 Hz 8 ’ c h ’ 3 . 1010 cm s 6,3 . 1014 Hz ’ 0,476.10&4 cm ’ 4.760 D h2 ’ 198.311 cm &1 per n ’ 2 h1 ’ 35.244 cm &1 per n ’ 1 h2 & h1’ 163.067 cm &1 E2 & E1 ’ h . "
-  },
-  {
-   "id": 18,
-   "title": "Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis — QU00405C",
-   "dir": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis",
-   "domain": "analyzers",
-   "why": "override:an lisi instrumental|analisi instrumental|qu_mics|quimics",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis/QU00405C.pdf",
-     "title": "QU00405C",
-     "pages": 21,
-     "bytes": 781150,
-     "copies": [],
-     "head": "\u0001 \u0002 \u0003 \u0003 \u0001 \u0002 \u0003 \u0001 \u0001 \u0002 \u0001 \u0001 \u0002 \u0001 \u0001 \u0001 \u0002 \u0001 \u0002 \u0001 \u0001 \u0002 \u0001 \u0002 \u0001 \u0002 \u0001 \u0001 \u0002 \u0001 \u0002 \u0001 2 Espectroscòpia d'absorció. Resolucions 191 Resolució 2.21 a) En un medi fortament àcid l'equilibri està desplaçat cap a la esquerra i tot l' indicador apareix com a (AH). En un medi alcalí apareix com a ( A ).-\u0001 \u0001 "
-    }
-   ],
-   "ndocs": 1,
-   "pages": 21,
-   "bytes": 781150,
-   "year": null,
-   "copies": 0,
-   "head": "\u0001 \u0002 \u0003 \u0003 \u0001 \u0002 \u0003 \u0001 \u0001 \u0002 \u0001 \u0001 \u0002 \u0001 \u0001 \u0001 \u0002 \u0001 \u0002 \u0001 \u0001 \u0002 \u0001 \u0002 \u0001 \u0002 \u0001 \u0001 \u0002 \u0001 \u0002 \u0001 2 Espectroscòpia d'absorció. Resolucions 191 Resolució 2.21 a) En un medi fortament àcid l'equilibri està desplaçat cap a la esquerra i tot l' indicador apareix com a (AH). En un medi alcalí apareix com a ( A ).-\u0001 \u0001 "
-  },
-  {
-   "id": 19,
-   "title": "Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis — QU00407C",
-   "dir": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis",
-   "domain": "analyzers",
-   "why": "override:an lisi instrumental|analisi instrumental|qu_mics|quimics",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis/QU00407C.pdf",
-     "title": "QU00407C",
-     "pages": 34,
-     "bytes": 244014,
-     "copies": [],
-     "head": "* G NCH x * Gx 1 2 1 2H 2 H 1 r rCH CN 1 . x1 % 12 ( x1 & 1,0637 ) ’ 14 . ( 1,0367 % 1,1563 & x1 ) 2 . x2 % 12 ( x2 & 1,0637 ) ’ 14 . ( 1,0367 % 1,1563 & x2 ) x1 % 12 . x1 & 12,7674 ’ 14,5138 % 16,1882 & 14 . x1 2 . x2 % 12 . x2 & 12,7674 ’ 14,5138 % 16,1882 & 14 . x2 27 . x1 ’ 4"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 34,
-   "bytes": 244014,
-   "year": null,
-   "copies": 0,
-   "head": "* G NCH x * Gx 1 2 1 2H 2 H 1 r rCH CN 1 . x1 % 12 ( x1 & 1,0637 ) ’ 14 . ( 1,0367 % 1,1563 & x1 ) 2 . x2 % 12 ( x2 & 1,0637 ) ’ 14 . ( 1,0367 % 1,1563 & x2 ) x1 % 12 . x1 & 12,7674 ’ 14,5138 % 16,1882 & 14 . x1 2 . x2 % 12 . x2 & 12,7674 ’ 14,5138 % 16,1882 & 14 . x2 27 . x1 ’ 4"
-  },
-  {
-   "id": 20,
-   "title": "Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis — QU00408C",
-   "dir": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis",
-   "domain": "analyzers",
-   "why": "override:an lisi instrumental|analisi instrumental|qu_mics|quimics",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis/QU00408C.pdf",
-     "title": "QU00408C",
-     "pages": 22,
-     "bytes": 121312,
-     "copies": [],
-     "head": "25 50 75 ppm. Mn (mg/kg) 25 50 75 100 125 150 130 mg kg . 1 g 0,8 g mostra . 1 1.000 mg ’ 0,1625 mg . g &1 2,5.10&6 µgml % T . 100 ’ 2,5.10&4 µg . ml &1 5 Espectrofotometria d'absorció atòmica i fotometria de flama. Resolucions 281 5 Espectrofotometria d'absorció atòmica i fotome"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 22,
-   "bytes": 121312,
-   "year": null,
-   "copies": 0,
-   "head": "25 50 75 ppm. Mn (mg/kg) 25 50 75 100 125 150 130 mg kg . 1 g 0,8 g mostra . 1 1.000 mg ’ 0,1625 mg . g &1 2,5.10&6 µgml % T . 100 ’ 2,5.10&4 µg . ml &1 5 Espectrofotometria d'absorció atòmica i fotometria de flama. Resolucions 281 5 Espectrofotometria d'absorció atòmica i fotome"
-  },
-  {
-   "id": 21,
-   "title": "AnexosAnexo 2 Fórmulas más usuales 175 1 Simbología Para conseguir una visión general de un sis",
-   "dir": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica/Oleohidr_ulica b_sica y dise_o de circuitos",
-   "domain": "machinery",
-   "why": "override:oleohidr|oleohidr.ulica",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica/Oleohidr_ulica b_sica y dise_o de circuitos/EM00205C.pdf",
-     "title": "EM00205C",
-     "pages": 69,
-     "bytes": 400418,
-     "copies": [],
-     "head": "AnexosAnexo 2 Fórmulas más usuales 175 1 Simbología Para conseguir una visión general de un sistema o circuito se precisa un método para representarlo, es decir, un dibujo o diagrama en el que aparezcan todos y cada uno de sus componentes, así como las conexiones y líneas que los"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 69,
-   "bytes": 400418,
-   "year": null,
-   "copies": 0,
-   "head": "AnexosAnexo 2 Fórmulas más usuales 175 1 Simbología Para conseguir una visión general de un sistema o circuito se precisa un método para representarlo, es decir, un dibujo o diagrama en el que aparezcan todos y cada uno de sus componentes, así como las conexiones y líneas que los"
-  },
-  {
    "id": 22,
    "title": "api rp 556 1997 instrumentacion hornos y calderas",
    "dir": "",
@@ -1235,56 +1026,6 @@
    "year": null,
    "copies": 0,
    "head": "COPYRIGHT 2002; American Petroleum Institute Document provided by IHS Licensee=Sincor Venezuela/5934214100, User=, 08/13/2002 12:24:11 MDT Questions or comments about this message: please call the Document Policy Management Group at 1-800-451-1584. COPYRIGHT 2002; American Petrol"
-  },
-  {
-   "id": 23,
-   "title": "Aplicacions i pràctiques de laboratori 271",
-   "dir": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals",
-   "domain": "instruments",
-   "why": "override:instrumentaci virtual|adqusici",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals/EE00407C.pdf",
-     "title": "EE00407C",
-     "pages": 52,
-     "bytes": 651377,
-     "copies": [
-      "Instrumentation and Control/Instrumentaci_ virtual. Adqusici__ processament i anàlisi de senyals/EE00407C.pdf"
-     ],
-     "head": "9 Aplicacions i pràctiques de laboratori 271 9 Aplicacions i pràctiques de laboratori Una vegada introduïda la normativa que defineix la interconnexió d'instruments, passarem a trobar l'enginyeria d'un sistema d'instrumentació per desenvolupar una sèrie d'aplicacions demostrative"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 52,
-   "bytes": 651377,
-   "year": null,
-   "copies": 1,
-   "head": "9 Aplicacions i pràctiques de laboratori 271 9 Aplicacions i pràctiques de laboratori Una vegada introduïda la normativa que defineix la interconnexió d'instruments, passarem a trobar l'enginyeria d'un sistema d'instrumentació per desenvolupar una sèrie d'aplicacions demostrative"
-  },
-  {
-   "id": 24,
-   "title": "Aplicacions i pràctiques de laboratori 323 Influència de les constants del controlador El siste",
-   "dir": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals",
-   "domain": "instruments",
-   "why": "override:instrumentaci virtual|adqusici",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals/EE00408C.pdf",
-     "title": "EE00408C",
-     "pages": 52,
-     "bytes": 453209,
-     "copies": [
-      "Instrumentation and Control/Instrumentaci_ virtual. Adqusici__ processament i anàlisi de senyals/EE00408C.pdf"
-     ],
-     "head": "9 Aplicacions i pràctiques de laboratori 323 Influència de les constants del controlador El sistema real que es pretén simular es troba descrit a la Fig. 9.39. Es tracta de veure com varia el nivell del tanc, sotmès a diferents pertorbacions, amb un controlador proporcional-integ"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 52,
-   "bytes": 453209,
-   "year": null,
-   "copies": 1,
-   "head": "9 Aplicacions i pràctiques de laboratori 323 Influència de les constants del controlador El sistema real que es pretén simular es troba descrit a la Fig. 9.39. Es tracta de veure com varia el nivell del tanc, sotmès a diferents pertorbacions, amb un controlador proporcional-integ"
   },
   {
    "id": 25,
@@ -1379,75 +1120,6 @@
    "year": null,
    "copies": 0,
    "head": "DONALD McLEAN A - i i \\ PRENTICE HALL INTERNATIONAL SERIES IN SYSTEMS AND CONTROL ENGINEERING SERIF^ 'DITOR: M. J. GRIMBLE - Automatic Flight Control Systems Prentice Hall International Series in Systems and Control Engineering M. J. Grimble, Series Editor BANKS, S. P., Control S"
-  },
-  {
-   "id": 29,
-   "title": "Automatismos eléctricos programables Oriol Boix Aragonès Miquel A. Saigí Grau Ferran Zabaleta A",
-   "dir": "Instrumentation and Control/Automatismos eléctricos programables",
-   "domain": "electrical",
-   "why": "override:automatismos el.ctricos",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Automatismos eléctricos programables/EE01200C.pdf",
-     "title": "EE01200C",
-     "pages": 8,
-     "bytes": 24684,
-     "copies": [],
-     "head": "Automatismos eléctricos programables Oriol Boix Aragonès Miquel A. Saigí Grau Ferran Zabaleta AlañàPresentación 7 Presentación El texto que tenéis en las manos ha sido pensado como una introducción a los automatismos eléctricos que tienen como base al autómata programable industr"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 8,
-   "bytes": 24684,
-   "year": null,
-   "copies": 0,
-   "head": "Automatismos eléctricos programables Oriol Boix Aragonès Miquel A. Saigí Grau Ferran Zabaleta AlañàPresentación 7 Presentación El texto que tenéis en las manos ha sido pensado como una introducción a los automatismos eléctricos que tienen como base al autómata programable industr"
-  },
-  {
-   "id": 30,
-   "title": "Automatitzacio industrial Amb GRAFCET Oriol Boix Aragonès Antoni Sudrià Andreu Joan Bergas Jané",
-   "dir": "Instrumentation and Control/Automatitzaci_ industrial amb GRAFCET",
-   "domain": "plc",
-   "why": "override:grafcet|programaci. d.aut.mats|programacio d automats",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Automatitzaci_ industrial amb GRAFCET/EE01300C.pdf",
-     "title": "EE01300C",
-     "pages": 8,
-     "bytes": 38469,
-     "copies": [],
-     "head": "Automatitzacio industrial Amb GRAFCET Oriol Boix Aragonès Antoni Sudrià Andreu Joan Bergas Jané7Índex Índex Presentació ....................................................... 1 1 1. Introducció al GRAFCET ............................................ 1 3 1.1. Introducció històric"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 8,
-   "bytes": 38469,
-   "year": null,
-   "copies": 0,
-   "head": "Automatitzacio industrial Amb GRAFCET Oriol Boix Aragonès Antoni Sudrià Andreu Joan Bergas Jané7Índex Índex Presentació ....................................................... 1 1 1. Introducció al GRAFCET ............................................ 1 3 1.1. Introducció històric"
-  },
-  {
-   "id": 31,
-   "title": "Bernardo Morcego Josep Cugueró - Ramon Pérez Automàtica Pràctiques",
-   "dir": "Instrumentation and Control/Automàtica. Pràctiques ETSEIT",
-   "domain": "training",
-   "why": 6,
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Automàtica. Pràctiques ETSEIT/EE02101C.pdf",
-     "title": "EE02101C",
-     "pages": 68,
-     "bytes": 1077592,
-     "copies": [],
-     "head": "Bernardo Morcego Josep Cugueró - Ramon Pérez Automàtica Pràctiques. ETSEITIntroducció Introducció Les pràctiques de laboratori permeten l’assimilació de conceptes i permeten als alumnes entrar en contacte directe amb les metodologies i tecnologies que més endavant faran servir en"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 68,
-   "bytes": 1077592,
-   "year": null,
-   "copies": 0,
-   "head": "Bernardo Morcego Josep Cugueró - Ramon Pérez Automàtica Pràctiques. ETSEITIntroducció Introducció Les pràctiques de laboratori permeten l’assimilació de conceptes i permeten als alumnes entrar en contacte directe amb les metodologies i tecnologies que més endavant faran servir en"
   },
   {
    "id": 32,
@@ -2035,29 +1707,6 @@
    "head": "CONTROL VALVE HANDBOOK Fourth Edition ii NORTH AMERICA Emerson Process Management Marshalltown, Iowa 50158 USA T 1 (641) 754−3011 F 1 (641) 754−2830 www.EmersonProcess.com/Fisher LATIN AMERICA Emerson Process Management Sorocaba, Sao Paulo 18087 Brazil T +(55)(15)238−3788 F +(55)"
   },
   {
-   "id": 50,
-   "title": "Descripció dels autòmats Allen-Bradley PLC i SLC",
-   "dir": "Instrumentation and Control/Programaci_ d'aut_mats PCL5 i SLC",
-   "domain": "plc",
-   "why": 8,
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Programaci_ d'aut_mats PCL5 i SLC/EE01001C.pdf",
-     "title": "EE01001C",
-     "pages": 46,
-     "bytes": 286307,
-     "copies": [],
-     "head": "13Descripció dels autòmats Allen-Bradley PLC i SLC 1. Descripció dels autòmats Allen-Bradley PLC i SLC Els models PLC-5, SLC-5/01 i SLC-5/02 són modulars i, per tant, es correspondran amb el que s’explica a continuació. El SLC-500 és compacte (no està format per mòduls) i, encara"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 46,
-   "bytes": 286307,
-   "year": null,
-   "copies": 0,
-   "head": "13Descripció dels autòmats Allen-Bradley PLC i SLC 1. Descripció dels autòmats Allen-Bradley PLC i SLC Els models PLC-5, SLC-5/01 i SLC-5/02 són modulars i, per tant, es correspondran amb el que s’explica a continuació. El SLC-500 és compacte (no està format per mòduls) i, encara"
-  },
-  {
    "id": 51,
    "title": "Design of Automatic Machinery",
    "dir": "Design of Automatic Machinery",
@@ -2201,52 +1850,6 @@
    "head": "Appendix A The following table is the complete packaging machinery equipment tree from facturers Institute (PMMI). Packaging Machinery Adhesive/Glue Applicators Cartoning Machines Carton Blank Erecting Carton Closing Machines End Flap Carton Closing Horizontal End Load Cartoner M"
   },
   {
-   "id": 52,
-   "title": "Diseño de circuitos 117",
-   "dir": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica/Oleohidr_ulica b_sica y dise_o de circuitos",
-   "domain": "machinery",
-   "why": "override:oleohidr|oleohidr.ulica",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica/Oleohidr_ulica b_sica y dise_o de circuitos/EM00204C.pdf",
-     "title": "EM00204C",
-     "pages": 54,
-     "bytes": 294379,
-     "copies": [],
-     "head": "17 Diseño de circuitos 117 17 Diseño de circuitos Una vez conocidas las aplicaciones de los sistemas hidráulicos, sus componentes, y alguna de las principales fórmulas para realizar los cálculos necesarios, se pueden empezar a diseñar los circuitos. El diseño de un circuito conll"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 54,
-   "bytes": 294379,
-   "year": null,
-   "copies": 0,
-   "head": "17 Diseño de circuitos 117 17 Diseño de circuitos Una vez conocidas las aplicaciones de los sistemas hidráulicos, sus componentes, y alguna de las principales fórmulas para realizar los cálculos necesarios, se pueden empezar a diseñar los circuitos. El diseño de un circuito conll"
-  },
-  {
-   "id": 53,
-   "title": "DMAAPP 20030317 impianti termici",
-   "dir": "IMPIANTI INDUSTRIALI/x impianti",
-   "domain": "equipment",
-   "why": "override:impianti industriali|dmaapp",
-   "docs": [
-    {
-     "path": "IMPIANTI INDUSTRIALI/x impianti/DMAAPP 20030317 impianti termici.pdf",
-     "title": "DMAAPP 20030317 impianti termici",
-     "pages": 43,
-     "bytes": 100352,
-     "copies": [],
-     "head": "DOCUMENTAZIONE OBBLIGATORIA IMPIANTI TERMICI NUOVI MODELLI LIBRETTO DI CENTRALE E LIBRETTO DI IMPIANTO AGGIORNAMENTO D.P.R. 412/1993 Il decreto di seguito riportato stabilisce che a far data dal 1° settembre 2003 gli impianti termici con potenza nominale superiore o uguale a 35 k"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 43,
-   "bytes": 100352,
-   "year": null,
-   "copies": 0,
-   "head": "DOCUMENTAZIONE OBBLIGATORIA IMPIANTI TERMICI NUOVI MODELLI LIBRETTO DI CENTRALE E LIBRETTO DI IMPIANTO AGGIORNAMENTO D.P.R. 412/1993 Il decreto di seguito riportato stabilisce che a far data dal 1° settembre 2003 gli impianti termici con potenza nominale superiore o uguale a 35 k"
-  },
-  {
    "id": 54,
    "title": "DOE Fundamentals Handbook - Chemistry Volume 1",
    "dir": "Free Courses - DOE",
@@ -2294,31 +1897,6 @@
    "year": null,
    "copies": 2,
    "head": "DOE-HDBK-1013/2-92 JUNE 1992 DOE FUNDAMENTALS HANDBOOK INSTRUMENTATION AND CONTROL Volume 2 of 2 U.S. Department of Energy FSC-6910 Washington, D.C. 20585 Distribution Statement A. Approved for public release; distribution is unlimited.This document has been reproduced directly f"
-  },
-  {
-   "id": 56,
-   "title": "EDICIONS UPC AULA POLITÈCNICA / ETSEIT Josep Maria Guadayol Cunill Control, instrumentació i au",
-   "dir": "Instrumentation and Control/Control, instrumentaci_ i automatitzaci_ de processos qu_mics. Problemes",
-   "domain": "analyzers",
-   "why": "override:an lisi instrumental|analisi instrumental|qu_mics|quimics",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Control, instrumentaci_ i automatitzaci_ de processos qu_mics. Problemes/QU00500C.pdf",
-     "title": "QU00500C",
-     "pages": 6,
-     "bytes": 73478,
-     "copies": [
-      "Instrumentation and Control/Control_ instrumentaci_ i automatitzaci_ de processos qu_mics. Problemes/QU00500C.pdf"
-     ],
-     "head": "EDICIONS UPC AULA POLITÈCNICA / ETSEIT Josep Maria Guadayol Cunill Control, instrumentació i automatització de processos químics. ProblemesAquesta obra fou guardonada en el sisé concurs \"Ajut a l'elaboració de material docent\" convocat per la UPC. Primera edició: setembre de 1999"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 6,
-   "bytes": 73478,
-   "year": null,
-   "copies": 1,
-   "head": "EDICIONS UPC AULA POLITÈCNICA / ETSEIT Josep Maria Guadayol Cunill Control, instrumentació i automatització de processos químics. ProblemesAquesta obra fou guardonada en el sisé concurs \"Ajut a l'elaboració de material docent\" convocat per la UPC. Primera edició: setembre de 1999"
   },
   {
    "id": 57,
@@ -2390,52 +1968,6 @@
    "year": null,
    "copies": 0,
    "head": "Предназначен для защиты наземных площадных и малоразмерных объек- тов от нанесения прицельного ра- кетного удара или бомбометания и от наблюдения за ними самолетны- ми бортовыми РЛС, в том числе РЛС бокового обзора (РЛС БО), РЛС на- вигации и обеспечения полетов на малых высотах "
-  },
-  {
-   "id": 60,
-   "title": "Elementos de regulación 47",
-   "dir": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica/Oleohidr_ulica b_sica y dise_o de circuitos",
-   "domain": "machinery",
-   "why": "override:oleohidr|oleohidr.ulica",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica/Oleohidr_ulica b_sica y dise_o de circuitos/EM00202C.pdf",
-     "title": "EM00202C",
-     "pages": 35,
-     "bytes": 393304,
-     "copies": [],
-     "head": "6 Elementos de regulación 47 6 Elementos de regulación Una vez, gracias a la bomba, se ha conseguido introducir el fluido en la tubería del sistema o circuito hidráulico, se precisan una serie de componentes para regular y controlar los parámetros de presión y caudal de este fluj"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 35,
-   "bytes": 393304,
-   "year": null,
-   "copies": 0,
-   "head": "6 Elementos de regulación 47 6 Elementos de regulación Una vez, gracias a la bomba, se ha conseguido introducir el fluido en la tubería del sistema o circuito hidráulico, se precisan una serie de componentes para regular y controlar los parámetros de presión y caudal de este fluj"
-  },
-  {
-   "id": 61,
-   "title": "Elementos de un proceso a automatizar 13",
-   "dir": "Instrumentation and Control/Automatismos eléctricos programables",
-   "domain": "electrical",
-   "why": "override:automatismos el.ctricos",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Automatismos eléctricos programables/EE01201C.pdf",
-     "title": "EE01201C",
-     "pages": 35,
-     "bytes": 275051,
-     "copies": [],
-     "head": "Elementos de un proceso a automatizar 13 1 Elementos de un proceso a automatizar Un proceso a automatizar requiere tener en cuenta un conjunto de elementos, cada uno de los cuales realiza su función dentro del proceso. Podríamos representar el proceso con el sistema de control y "
-    }
-   ],
-   "ndocs": 1,
-   "pages": 35,
-   "bytes": 275051,
-   "year": null,
-   "copies": 0,
-   "head": "Elementos de un proceso a automatizar 13 1 Elementos de un proceso a automatizar Un proceso a automatizar requiere tener en cuenta un conjunto de elementos, cada uno de los cuales realiza su función dentro del proceso. Podríamos representar el proceso con el sistema de control y "
   },
   {
    "id": 62,
@@ -2543,29 +2075,6 @@
    "head": "Fluid Flow Measurement A Practical Guide to Accurate Flow Measurement CH00ppi-x 10/24/01 4:45 PM Page iCH00ppi-x 10/24/01 4:45 PM Page iiFluid Flow Measurement A Practical Guide to Accurate Flow Measurement Second Edition E.L. Upp Paul J. LaNasa Boston Oxford Auckland Johannesbur"
   },
   {
-   "id": 66,
-   "title": "Espectres atòmics i moleculars",
-   "dir": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis",
-   "domain": "analyzers",
-   "why": "override:an lisi instrumental|analisi instrumental|qu_mics|quimics",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis/QU00401C.pdf",
-     "title": "QU00401C",
-     "pages": 63,
-     "bytes": 489712,
-     "copies": [],
-     "head": "1 Espectres atòmics i moleculars. Problemes 9 1 Espectres atòmics i moleculars Problema 1.1 Per ionitzar un àtom de potassi es requereixen 60 kcal/mol. Si aquesta energia és de procedènci a lluminosa, quina és la freqüència més baixa d'un feix de llum capaç d'efectuar aquesta ion"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 63,
-   "bytes": 489712,
-   "year": null,
-   "copies": 0,
-   "head": "1 Espectres atòmics i moleculars. Problemes 9 1 Espectres atòmics i moleculars Problema 1.1 Per ionitzar un àtom de potassi es requereixen 60 kcal/mol. Si aquesta energia és de procedènci a lluminosa, quina és la freqüència més baixa d'un feix de llum capaç d'efectuar aquesta ion"
-  },
-  {
    "id": 67,
    "title": "Espectrofotometria d’infraroig",
    "dir": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis",
@@ -2587,52 +2096,6 @@
    "year": null,
    "copies": 0,
    "head": "4 Espectrofotometria d’infraroig. Problemes 73 4 Espectrofotometria d’infraroig Problema 4.1 En la molŁcula lineal H-CN, les distàncies internuclears són: r = 1,0637 ¯ i CH r = 1,1563 ¯.CN Calculeu els moments d’inŁrcia, les constants B i les freqüŁncies a quŁ apareixerà la prime"
-  },
-  {
-   "id": 68,
-   "title": "Espectroscòpia d'absorció. Resolucions 169Anàlisi instrumental I. Mètodes òptics d'anàlisi",
-   "dir": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis",
-   "domain": "analyzers",
-   "why": "override:an lisi instrumental|analisi instrumental|qu_mics|quimics",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Anàlisi instrumental I. Mètodes _ptics d'anàlisi. Exercicis/QU00404C.pdf",
-     "title": "QU00404C",
-     "pages": 22,
-     "bytes": 1646010,
-     "copies": [],
-     "head": "2 Espectroscòpia d'absorció. Resolucions 169Anàlisi instrumental I. Mètodes òptics d'anàlisi. Exercicis1702 Espectroscòpia d'absorció. Resolucions 171"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 22,
-   "bytes": 1646010,
-   "year": null,
-   "copies": 0,
-   "head": "2 Espectroscòpia d'absorció. Resolucions 169Anàlisi instrumental I. Mètodes òptics d'anàlisi. Exercicis1702 Espectroscòpia d'absorció. Resolucions 171"
-  },
-  {
-   "id": 69,
-   "title": "Estudio del autómata programable industrial 53",
-   "dir": "Instrumentation and Control/Automatismos eléctricos programables",
-   "domain": "electrical",
-   "why": "override:automatismos el.ctricos",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Automatismos eléctricos programables/EE01202C.pdf",
-     "title": "EE01202C",
-     "pages": 38,
-     "bytes": 336923,
-     "copies": [],
-     "head": "Estudio del autómata programable industrial 53 7 Estudio del autómata programable industrial 7.1 Clasificación Los fabricantes han desarrollado familias de productos que comprenden equipos desde 10 entradas/salidas hasta grandes controladores capaces de gobernar hasta 10000 entra"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 38,
-   "bytes": 336923,
-   "year": null,
-   "copies": 0,
-   "head": "Estudio del autómata programable industrial 53 7 Estudio del autómata programable industrial 7.1 Clasificación Los fabricantes han desarrollado familias de productos que comprenden equipos desde 10 entradas/salidas hasta grandes controladores capaces de gobernar hasta 10000 entra"
   },
   {
    "id": 70,
@@ -3547,29 +3010,6 @@
    "head": ""
   },
   {
-   "id": 92,
-   "title": "Illuminazione",
-   "dir": "IMPIANTI INDUSTRIALI/x impianti",
-   "domain": "electrical",
-   "why": "override:illuminazione",
-   "docs": [
-    {
-     "path": "IMPIANTI INDUSTRIALI/x impianti/Illuminazione.pdf",
-     "title": "Illuminazione",
-     "pages": 22,
-     "bytes": 444912,
-     "copies": [],
-     "head": "CieloBuio – Coordinamento per la protezione del cielo notturno 1 CIELOBUIO – Coordinamento per la protezione del cielo notturno http://www.cielobuio.org/ \u0003 \u0003 \u0003 MARCO VEDOVATO \u0003 /$\u000335(9(1=,21(\u0003 ’(///G0A,148,1$0(172\u0003/80,1262\u0003 /G25/G35/G28/G39/G28 /G2A/G38/G2C/G27/G24 /G33/G28/G35 /"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 22,
-   "bytes": 444912,
-   "year": null,
-   "copies": 0,
-   "head": "CieloBuio – Coordinamento per la protezione del cielo notturno 1 CIELOBUIO – Coordinamento per la protezione del cielo notturno http://www.cielobuio.org/ \u0003 \u0003 \u0003 MARCO VEDOVATO \u0003 /$\u000335(9(1=,21(\u0003 ’(///G0A,148,1$0(172\u0003/80,1262\u0003 /G25/G35/G28/G39/G28 /G2A/G38/G2C/G27/G24 /G33/G28/G35 /"
-  },
-  {
    "id": 93,
    "title": "industrial control",
    "dir": "PLCTraining/PLC",
@@ -3872,56 +3312,6 @@
    "year": null,
    "copies": 0,
    "head": "Insider Tips on Buying a SCADA System Page 1 Insider Tips on Buying a SCADA System Enhance the process by understanding the vendor’s point of view. by Frank Kling, Control Systems International, Inc. 913-599-5010 • fkling@csiks.com This paper is based on one presented at an ENTEL"
-  },
-  {
-   "id": 98,
-   "title": "Instrumentació GPIB 89",
-   "dir": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals",
-   "domain": "instruments",
-   "why": "override:instrumentaci virtual|adqusici",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals/EE00403C.pdf",
-     "title": "EE00403C",
-     "pages": 50,
-     "bytes": 504785,
-     "copies": [
-      "Instrumentation and Control/Instrumentaci_ virtual. Adqusici__ processament i anàlisi de senyals/EE00403C.pdf"
-     ],
-     "head": "5 Instrumentació GPIB 89 5 Instrumentació GPIB 5.1 Introducció a l'estàndard d'instrumentació IEEE-488 En aquest capítol es presenten els conceptes teòrics que defineix la norma IEEE-488, proposada per primera vegada l'any 1975 per l'Institut d'Enginyers Elèctrics i Electrònics i"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 50,
-   "bytes": 504785,
-   "year": null,
-   "copies": 1,
-   "head": "5 Instrumentació GPIB 89 5 Instrumentació GPIB 5.1 Introducció a l'estàndard d'instrumentació IEEE-488 En aquest capítol es presenten els conceptes teòrics que defineix la norma IEEE-488, proposada per primera vegada l'any 1975 per l'Institut d'Enginyers Elèctrics i Electrònics i"
-  },
-  {
-   "id": 99,
-   "title": "Instrumentació VXI 139 6 Instrumentació VXI 6.1 Introducció al bus d'instrumentació VXI Hi ha m",
-   "dir": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals",
-   "domain": "instruments",
-   "why": "override:instrumentaci virtual|adqusici",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals/EE00404C.pdf",
-     "title": "EE00404C",
-     "pages": 42,
-     "bytes": 681705,
-     "copies": [
-      "Instrumentation and Control/Instrumentaci_ virtual. Adqusici__ processament i anàlisi de senyals/EE00404C.pdf"
-     ],
-     "head": "6 Instrumentació VXI 139 6 Instrumentació VXI 6.1 Introducció al bus d'instrumentació VXI Hi ha moltes aplicacions de sistemes de test automàtic que requereixen la integració en el mateix sistema de mesura de molts instruments, amb una velocitat de processament i transmissió de l"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 42,
-   "bytes": 681705,
-   "year": null,
-   "copies": 1,
-   "head": "6 Instrumentació VXI 139 6 Instrumentació VXI 6.1 Introducció al bus d'instrumentació VXI Hi ha moltes aplicacions de sistemes de test automàtic que requereixen la integració en el mateix sistema de mesura de molts instruments, amb una velocitat de processament i transmissió de l"
   },
   {
    "id": 100,
@@ -4259,52 +3649,6 @@
    "head": ""
   },
   {
-   "id": 103,
-   "title": "Interferències en instrumentaciàelectr_nica — EE00702C",
-   "dir": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica",
-   "domain": "electrical",
-   "why": "override:interfer.ncies|interferencies",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica/EE00702C.pdf",
-     "title": "EE00702C",
-     "pages": 34,
-     "bytes": 596120,
-     "copies": [],
-     "head": "Vi ’ V1 j TC12 Ze j TC12 Ze %1 Vi ’ V1 j TC12 R 5 Interferències capacitives 45 (5.1) (5.2a) 5 Interferències capacitives 5.1 Concepte i model Entre dos conductors qualssevol existeix una capacitat elèctrica que depèn de la seva geometria i de la constant dielèctrica del material"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 34,
-   "bytes": 596120,
-   "year": null,
-   "copies": 0,
-   "head": "Vi ’ V1 j TC12 Ze j TC12 Ze %1 Vi ’ V1 j TC12 R 5 Interferències capacitives 45 (5.1) (5.2a) 5 Interferències capacitives 5.1 Concepte i model Entre dos conductors qualssevol existeix una capacitat elèctrica que depèn de la seva geometria i de la constant dielèctrica del material"
-  },
-  {
-   "id": 104,
-   "title": "Interferències, susceptibilitat i compatibilitat 11",
-   "dir": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica",
-   "domain": "electrical",
-   "why": "override:interfer.ncies|interferencies",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica/EE00701C.pdf",
-     "title": "EE00701C",
-     "pages": 33,
-     "bytes": 535018,
-     "copies": [],
-     "head": "1 Interferències, susceptibilitat i compatibilitat 11 1 Interferències, susceptibilitat i compatibilitat 1.1 Conceptes i definicions En instrumentació electrònica, es considera interferència tot senyal aliè a la magnitud d'interès i que influeixi en el resultat segons el principi"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 33,
-   "bytes": 535018,
-   "year": null,
-   "copies": 0,
-   "head": "1 Interferències, susceptibilitat i compatibilitat 11 1 Interferències, susceptibilitat i compatibilitat 1.1 Conceptes i definicions En instrumentació electrònica, es considera interferència tot senyal aliè a la magnitud d'interès i que influeixi en el resultat segons el principi"
-  },
-  {
    "id": 105,
    "title": "Intro to PLC 20Pro",
    "dir": "",
@@ -4331,77 +3675,6 @@
    "year": null,
    "copies": 4,
    "head": "HereÕs a valuable PLC reference that you can use right now. This particular reference is taken from our award-winning textbookÑProgrammable Controllers: Theory and Implementation, 2nd Edition. In it, youÕll get an overview of how relay logic can be converted into PLC logic. There"
-  },
-  {
-   "id": 106,
-   "title": "Introducció 15 1 Introducció 1.1 Sistemes electrònics d’instrumentació i control basats en ordi",
-   "dir": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals",
-   "domain": "instruments",
-   "why": "override:instrumentaci virtual|adqusici",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals/EE00401C.pdf",
-     "title": "EE00401C",
-     "pages": 29,
-     "bytes": 376386,
-     "copies": [
-      "Instrumentation and Control/Instrumentaci_ virtual. Adqusici__ processament i anàlisi de senyals/EE00401C.pdf"
-     ],
-     "head": "1 Introducció 15 1 Introducció 1.1 Sistemes electrònics d’instrumentació i control basats en ordinador Actualment, la utilització dels ordinadors s’ha fet fonamental, si no imprescindible, dins de la infraestructura de qualsevol disciplina tecnològica. De fet, diferents branques "
-    }
-   ],
-   "ndocs": 1,
-   "pages": 29,
-   "bytes": 376386,
-   "year": null,
-   "copies": 1,
-   "head": "1 Introducció 15 1 Introducció 1.1 Sistemes electrònics d’instrumentació i control basats en ordinador Actualment, la utilització dels ordinadors s’ha fet fonamental, si no imprescindible, dins de la infraestructura de qualsevol disciplina tecnològica. De fet, diferents branques "
-  },
-  {
-   "id": 107,
-   "title": "Introducció al GRAFCET",
-   "dir": "Instrumentation and Control/Automatitzaci_ industrial amb GRAFCET",
-   "domain": "plc",
-   "why": "override:grafcet|programaci. d.aut.mats|programacio d automats",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Automatitzaci_ industrial amb GRAFCET/EE01301C.pdf",
-     "title": "EE01301C",
-     "pages": 40,
-     "bytes": 288005,
-     "copies": [],
-     "head": "13Introducció al GRAFCET 1. Introducció al GRAFCET Un automatisme combinacional és aquell en què les sortides en un instant només depenen de les entrades en aquell instant. En canvi un automatisme seqüencial és aquell en què les sortides en cada instant no depenen només de les en"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 40,
-   "bytes": 288005,
-   "year": null,
-   "copies": 0,
-   "head": "13Introducció al GRAFCET 1. Introducció al GRAFCET Un automatisme combinacional és aquell en què les sortides en un instant només depenen de les entrades en aquell instant. En canvi un automatisme seqüencial és aquell en què les sortides en cada instant no depenen només de les en"
-  },
-  {
-   "id": 108,
-   "title": "Introducción 13 1 Introducción La Fluídica es una rama de la ingeniería que abarca el estudio d",
-   "dir": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica/Oleohidr_ulica b_sica y dise_o de circuitos",
-   "domain": "machinery",
-   "why": "override:oleohidr|oleohidr.ulica",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica/Oleohidr_ulica b_sica y dise_o de circuitos/EM00201C.pdf",
-     "title": "EM00201C",
-     "pages": 33,
-     "bytes": 327673,
-     "copies": [],
-     "head": "1 Introducción 13 1 Introducción La Fluídica es una rama de la ingeniería que abarca el estudio de la presión y el caudal de los fluidos así como sus aplicaciones; se puede dividir en Hidráulica de agua o de aceite (Oleohidráulica) y Neumática cuando este fluido es un gas. 1.1 Hi"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 33,
-   "bytes": 327673,
-   "year": null,
-   "copies": 0,
-   "head": "1 Introducción 13 1 Introducción La Fluídica es una rama de la ingeniería que abarca el estudio de la presión y el caudal de los fluidos así como sus aplicaciones; se puede dividir en Hidráulica de agua o de aceite (Oleohidráulica) y Neumática cuando este fluido es un gas. 1.1 Hi"
   },
   {
    "id": 109,
@@ -4895,29 +4168,6 @@
    "year": null,
    "copies": 2,
    "head": "Industrial Control Wiring GuideIndustrial Control Wiring Guide Second edition Bob Mercer OXFORD AUCKLAND BOSTON JOHANNESBURG MELBOURNE NEW DELHI"
-  },
-  {
-   "id": 125,
-   "title": "Nota de agradecimiento A Josep Borregá y Ricard Torres por su participación en la revisión y co",
-   "dir": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica/Oleohidr_ulica b_sica y dise_o de circuitos",
-   "domain": "machinery",
-   "why": "override:oleohidr|oleohidr.ulica",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica/Oleohidr_ulica b_sica y dise_o de circuitos/EM00200C.pdf",
-     "title": "EM00200C",
-     "pages": 6,
-     "bytes": 64888,
-     "copies": [],
-     "head": "Nota de agradecimiento A Josep Borregá y Ricard Torres por su participación en la revisión y corrección del texto, a mis compañeros de Verkol, S.A. por su contribución en los capítulos dedicados a fluidos hidráulicos, y a todos aquellos que de alguna manera han colaborado para me"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 6,
-   "bytes": 64888,
-   "year": null,
-   "copies": 0,
-   "head": "Nota de agradecimiento A Josep Borregá y Ricard Torres por su participación en la revisión y corrección del texto, a mis compañeros de Verkol, S.A. por su contribución en los capítulos dedicados a fluidos hidráulicos, y a todos aquellos que de alguna manera han colaborado para me"
   },
   {
    "id": 126,
@@ -5724,54 +4974,6 @@
    "head": "PRACTICAL PROCESS CONTROLPRACTICAL PROCESS CONTROL TUNING AND TROUBLESHOOTING Cecil L. Smith A JOHN WILEY & SONS, INC., PUBLICATION"
   },
   {
-   "id": 144,
-   "title": "Presentació 5 Presentació La finalitat d’aquest text és introduir noves metodologies d'aprenent",
-   "dir": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals",
-   "domain": "instruments",
-   "why": "override:instrumentaci virtual|adqusici",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals/EE00400C.pdf",
-     "title": "EE00400C",
-     "pages": 9,
-     "bytes": 28315,
-     "copies": [
-      "Instrumentation and Control/Instrumentaci_ virtual. Adqusici__ processament i anàlisi de senyals/EE00400C.pdf"
-     ],
-     "head": "Presentació 5 Presentació La finalitat d’aquest text és introduir noves metodologies d'aprenentatge de diversos camps de l’enginyeria utilitzant les noves eines de programació gràfica que constitueixen el que es coneix com a instrumentació virtual. De fet, no només es pretén cobr"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 9,
-   "bytes": 28315,
-   "year": null,
-   "copies": 1,
-   "head": "Presentació 5 Presentació La finalitat d’aquest text és introduir noves metodologies d'aprenentatge de diversos camps de l’enginyeria utilitzant les noves eines de programació gràfica que constitueixen el que es coneix com a instrumentació virtual. De fet, no només es pretén cobr"
-  },
-  {
-   "id": 145,
-   "title": "Presentación 7 Presentación El presente libro pretende formar al ingeniero en el campo de la in",
-   "dir": "Instrumentation and Control/Teor_a de control. Dise_o electr_nico",
-   "domain": "theory",
-   "why": "override:teor.a de control|dise.o electr",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Teor_a de control. Dise_o electr_nico/EE00300C.pdf",
-     "title": "EE00300C",
-     "pages": 11,
-     "bytes": 41948,
-     "copies": [],
-     "head": "Presentación 7 Presentación El presente libro pretende formar al ingeniero en el campo de la ingeniería de control; con esta finalidad, se presentan los conceptos básicos de la teoría de control aplicables a sistemas analógicos y discretos, unificando ambos dominios desde un mism"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 11,
-   "bytes": 41948,
-   "year": null,
-   "copies": 0,
-   "head": "Presentación 7 Presentación El presente libro pretende formar al ingeniero en el campo de la ingeniería de control; con esta finalidad, se presentan los conceptos básicos de la teoría de control aplicables a sistemas analógicos y discretos, unificando ambos dominios desde un mism"
-  },
-  {
    "id": 146,
    "title": "Pressure Relief Valve Engineering Handbook",
    "dir": "Instrumentation and Control",
@@ -6331,77 +5533,6 @@
    "head": "7 Processament digital i control de processos 181 7 Processament digital i control de processos El processament i el control digital es fonamenten en la resolució de determinats algorismes que permeten obtenir la informació continguda en el senyal d’entrada. La diferència princip"
   },
   {
-   "id": 153,
-   "title": "Progamació d’autòmats Allen-Bradley PLC5 i SLC Oriol Boix Aragonès Miquel A. Saigí Grau Antoni",
-   "dir": "Instrumentation and Control/Programaci_ d'aut_mats PCL5 i SLC",
-   "domain": "plc",
-   "why": 8,
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Programaci_ d'aut_mats PCL5 i SLC/EE01000C.pdf",
-     "title": "EE01000C",
-     "pages": 5,
-     "bytes": 18186,
-     "copies": [],
-     "head": "Progamació d’autòmats Allen-Bradley PLC5 i SLC Oriol Boix Aragonès Miquel A. Saigí Grau Antoni Sudrià Andreu7Índex Índex Presentació ....................................................... 1 1 1. Descripció dels autòmats Allen-Bradley PLC i SLC ......................... 1 3 1.1. "
-    }
-   ],
-   "ndocs": 1,
-   "pages": 5,
-   "bytes": 18186,
-   "year": null,
-   "copies": 0,
-   "head": "Progamació d’autòmats Allen-Bradley PLC5 i SLC Oriol Boix Aragonès Miquel A. Saigí Grau Antoni Sudrià Andreu7Índex Índex Presentació ....................................................... 1 1 1. Descripció dels autòmats Allen-Bradley PLC i SLC ......................... 1 3 1.1. "
-  },
-  {
-   "id": 154,
-   "title": "Programaris per al control d'instrumentació i el disseny d'instruments virtuals 229",
-   "dir": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals",
-   "domain": "instruments",
-   "why": "override:instrumentaci virtual|adqusici",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals/EE00406C.pdf",
-     "title": "EE00406C",
-     "pages": 43,
-     "bytes": 285919,
-     "copies": [
-      "Instrumentation and Control/Instrumentaci_ virtual. Adqusici__ processament i anàlisi de senyals/EE00406C.pdf"
-     ],
-     "head": "8 Programaris per al control d'instrumentació i el disseny d'instruments virtuals 229 8 Programaris per al control d’instrumentació i el disseny d'instruments virtuals A mesura que s’ha anat realitzant el desenvolupament dels diferents capítols del text s’han estudiat els sisteme"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 43,
-   "bytes": 285919,
-   "year": null,
-   "copies": 1,
-   "head": "8 Programaris per al control d'instrumentació i el disseny d'instruments virtuals 229 8 Programaris per al control d’instrumentació i el disseny d'instruments virtuals A mesura que s’ha anat realitzant el desenvolupament dels diferents capítols del text s’han estudiat els sisteme"
-  },
-  {
-   "id": 155,
-   "title": "Pròleg 7 Pròleg Aquest llibre tracta de les possibles interferències que apareixen en sistemes",
-   "dir": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica",
-   "domain": "electrical",
-   "why": "override:interfer.ncies|interferencies",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Interferències en instrumentaci_ electr_nica/EE00700C.pdf",
-     "title": "EE00700C",
-     "pages": 3,
-     "bytes": 91151,
-     "copies": [],
-     "head": "Pròleg 7 Pròleg Aquest llibre tracta de les possibles interferències que apareixen en sistemes d'instrumentació i el s mètodes per reduir-les. L'estudi de les interferències és necessari perquè, tot i que els instrument s electrònics compleixin les normes de compatibilitat electr"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 3,
-   "bytes": 91151,
-   "year": null,
-   "copies": 0,
-   "head": "Pròleg 7 Pròleg Aquest llibre tracta de les possibles interferències que apareixen en sistemes d'instrumentació i el s mètodes per reduir-les. L'estudi de les interferències és necessari perquè, tot i que els instrument s electrònics compleixin les normes de compatibilitat electr"
-  },
-  {
    "id": 156,
    "title": "Quicker Automation",
    "dir": "",
@@ -6886,29 +6017,6 @@
    "head": "MC Limited began as a gold exploration, mining and management company in Western Australia in 1933. Since the 1950s the company has diver- sified and expanded to become a significant pro- ducer and exporter of processed minerals and metals. WMC began exploring southern Australia "
   },
   {
-   "id": 169,
-   "title": "SCADA룱싷 1. SCADA샇솤 샇맗 뿫떵 2.SCADA샇 쇖뿤 놸벺뿤볒 3. SCADA System샇놸 솶 4. SCADA System Interface 5. SCAD",
-   "dir": "Scada",
-   "domain": "dcs",
-   "why": 7,
-   "docs": [
-    {
-     "path": "Scada/scada.pdf",
-     "title": "scada",
-     "pages": 18,
-     "bytes": 682946,
-     "copies": [],
-     "head": "SCADA룱싷 1. SCADA샇솤 샇맗 뿫떵 2.SCADA샇 쇖뿤 놸벺뿤볒 3. SCADA System샇놸 솶 4. SCADA System Interface 5. SCADA 냼럃 쒧쟘믧럊 6. Misconception about SCADA System Security 7. Security Vulnerabilities Affecting SCADA System 8. SCADA Security Strategy - Network Rings of Defense 9. SCADA System샇삧 쟹뿤볒 10."
-    }
-   ],
-   "ndocs": 1,
-   "pages": 18,
-   "bytes": 682946,
-   "year": null,
-   "copies": 0,
-   "head": "SCADA룱싷 1. SCADA샇솤 샇맗 뿫떵 2.SCADA샇 쇖뿤 놸벺뿤볒 3. SCADA System샇놸 솶 4. SCADA System Interface 5. SCADA 냼럃 쒧쟘믧럊 6. Misconception about SCADA System Security 7. Security Vulnerabilities Affecting SCADA System 8. SCADA Security Strategy - Network Rings of Defense 9. SCADA System샇삧 쟹뿤볒 10."
-  },
-  {
    "id": 170,
    "title": "Select an Integrator Guide",
    "dir": "",
@@ -7047,31 +6155,6 @@
    "year": null,
    "copies": 0,
    "head": "Instrumentation Symbols and Identification Reaffirmed13 July 1992 ANSI/ISA–5.1–1984 (R1992) Formerly ANSI/ISA–S5.1–1984 (R1992) AMERICAN NATIONAL STANDARD ISA The Instrumentation, Systems, and Automation Society – TM NOTICEOFCOPYRIGHT This is a copyrighted document and may not be"
-  },
-  {
-   "id": 176,
-   "title": "Targetes d’adquisició de dades 45 3 Targetes d'adquisició de dades 3.1 Introducció. Un model ge",
-   "dir": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals",
-   "domain": "instruments",
-   "why": "override:instrumentaci virtual|adqusici",
-   "docs": [
-    {
-     "path": "Instrumentation and Control/Instrumentaci_ virtual. Adqusici_, processament i anàlisi de senyals/EE00402C.pdf",
-     "title": "EE00402C",
-     "pages": 43,
-     "bytes": 481393,
-     "copies": [
-      "Instrumentation and Control/Instrumentaci_ virtual. Adqusici__ processament i anàlisi de senyals/EE00402C.pdf"
-     ],
-     "head": "3 Targetes d’adquisició de dades 45 3 Targetes d'adquisició de dades 3.1 Introducció. Un model genèric d'instrument Per discutir amb més propietat com podem construir els nostres propis instruments, primer definirem un model d’instrument en forma de diagrama de blocs. Aquest mode"
-    }
-   ],
-   "ndocs": 1,
-   "pages": 43,
-   "bytes": 481393,
-   "year": null,
-   "copies": 1,
-   "head": "3 Targetes d’adquisició de dades 45 3 Targetes d'adquisició de dades 3.1 Introducció. Un model genèric d'instrument Per discutir amb més propietat com podem construir els nostres propis instruments, primer definirem un model d’instrument en forma de diagrama de blocs. Aquest mode"
   },
   {
    "id": 177,
