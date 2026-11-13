@@ -1,6 +1,21 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-11 (Spanish `es/` section COMPLETE — 13/13 framework pages fully Spanish; `build/es_data.py` holds ~1,446 EN→ES entries) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-13 (Book 1 of the new reader campaign — W. Bolton, *Control Systems*, Newnes 2002 — **PUBLISHED LIVE**: 7/7 bilingual EN/VI chapters, 247 vector figures, library card + sitemap) · **Live site:** https://pro-instcontrol.github.io/
+
+> **New book campaign (from `work/book_tiers.md`, EN → VI only, NO Spanish).** Book 1 =
+> Bolton *Control Systems* is COMPLETE and live at `/books/read/control-systems-bolton/`
+> and `/vi/books/read/control-systems-bolton/`. Registry: `build/reader_bolton.py`
+> `MODULES`, `build/reader_book.py` `BOOKS["bolton"]["done"]`, `build/books_site.py`
+> `TRANSLATED` + `BOOK_SLUG`. Per-chapter figure modules are `build/boltonfig1..7.py`,
+> prose modules `build/bolton_ch01..07.py`. Figure totals by chapter: 77/49/3/15/39/13/51
+> = **247**; the source has no Figure 5.24 (intentional gap).
+> Workflow for the next book: extract the PDF text (source root `D:/Process Control and
+> Automation`, pypdf) → split chapters → count `^Figure N.M` captions → build a vector
+> figure module per chapter (primitives in `build/vfig.py`, `fig()` markup in
+> `build/bolton_common.py`) → write bilingual chapter modules → register → run
+> `python build/reader_bolton.py N` + `python build/reader_book.py bolton` →
+> `python build/books_site.py` → `python build/make_sitemap.py` →
+> `python build/check_links.py` (must print `broken 0`) → commit, fetch/rebase, push.
 
 > **Where to start next:** Handbook translation is **FINISHED — 101 of 101 chapters (100%)**,
 > including Chapter 32 "Temperature", whose last eleven sections §32.6–§32.11 (Infrared,
@@ -4407,3 +4422,32 @@ definitions are byte-identical.
   id="s32-4-extension-leads">` anchors (duplicate HTML anchor id, not an SVG def) — out of
   scope for this SVG task; flag for a separate anchor-dedup pass if desired.
 - Committed `4234f52`, pushed. Remote 0/0.
+
+---
+
+## Session 55 — 2026-11-13 · Publish Book 1 (Bolton *Control Systems*) to the live site
+
+Scope: the newly translated 7-chapter reader existed only as **untracked local files** — it
+was not in the library index, not in `sitemap.xml`, and not committed. This session closed
+that gap. No Spanish output (standing instruction: VI only).
+
+- Registries wired: `build/books_site.py` gained `"control systems - w. bolton": ("full", 7, 7)`
+  in `TRANSLATED` and `"control systems - w. bolton": "control-systems-bolton"` in `BOOK_SLUG`.
+  `build/reader_bolton.py` `MODULES` (1–7) and `build/reader_book.py` `done` (1–7) were
+  already in place from the translation sessions.
+- Rebuilt `python build/books_site.py` → 2 library index pages, 2 PDF-reader pages, 502 work
+  detail pages. All 502 work pages changed by exactly one thing: `window.VI_BOOKS` now
+  contains `"books/read/control-systems-bolton/":1` (the VI twin map). Not a CRLF artifact —
+  these were staged.
+- `python build/make_sitemap.py` → 852 URLs, 837 with language siblings; 16 new Bolton
+  `<loc>` entries (TOC + 7 chapters × EN/VI). `python build/check_links.py` →
+  **854 pages, 26,438 local references, 0 broken**.
+- Commit `c03cfd64`, pushed `5a308147..c03cfd64` to `main`. Remote had not diverged, so no
+  rebase was needed. Working tree clean afterwards.
+- **LIVE verified on pro-instcontrol.github.io:** all 14 chapter pages + 2 TOC pages return
+  200; EN and VI figure counts match exactly (77/49/3/15/39/13/51 = 247 per language);
+  every chapter has its breadcrumb back to the book TOC; both TOC pages show 7 done rows;
+  `/books/` shows the "🟢 Fully translated · 7 of 7 chapters" badge and 2 reader links;
+  live sitemap carries 16 Bolton URLs.
+- Note: `books_site.py` emits a harmless `SyntaxWarning: invalid escape sequence '\.'` at
+  line 916 (a JS regex inside a Python string). Pre-existing, not introduced here.
