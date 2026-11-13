@@ -59,8 +59,16 @@ PDF_ROOT = "D:/Process Control and Automation"
 CAT = os.path.join(ROOT, "library", "catalog.json")
 INDEX = os.path.join(ROOT, "library", "pdfindex.json")
 
-# Two Pages sites, each capped at 1 GB by GitHub.  The library is ~1.5 GB.
-STORES = [("pdf-store", "D:/pdf-store"), ("pdf-store-b", "D:/pdf-store-b")]
+# Pages sites, each kept under GitHub's ~1 GB soft cap.  The full library is
+# ~6.8 GB (legacy ~1.6 GB + new PCA/BCIT ~5.2 GB), so it is spread over nine
+# companion repositories, filled greedily by size.
+STORES = [
+    ("pdf-store", "D:/pdf-store"), ("pdf-store-b", "D:/pdf-store-b"),
+    ("pdf-store-c", "D:/pdf-store-c"), ("pdf-store-d", "D:/pdf-store-d"),
+    ("pdf-store-e", "D:/pdf-store-e"), ("pdf-store-f", "D:/pdf-store-f"),
+    ("pdf-store-g", "D:/pdf-store-g"), ("pdf-store-h", "D:/pdf-store-h"),
+    ("pdf-store-i", "D:/pdf-store-i"),
+]
 STORE_CAP = 760 * 1024 * 1024
 
 # GitHub's hard per-file ceiling is 100 MB; stay clear of it.

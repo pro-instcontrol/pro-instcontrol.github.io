@@ -20,11 +20,23 @@ import lib_release  # noqa: E402  (release-bucket routing for PDF URLs)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CAT = os.path.join(ROOT, "library", "catalog.json")
+INDEX = os.path.join(ROOT, "library", "pdfindex.json")
 OWNER = "pro-instcontrol"
 REPO = "pro-instcontrol.github.io"
 TAG = "library-pdfs"
 RELEASE_BASE = "https://github.com/%s/%s/releases/download/%s/" % (OWNER, REPO, TAG)
 SITE = "https://pro-instcontrol.github.io"
+
+# Catalogue path -> {u: same-origin pdf-store path, ...}, built by
+# build/make_pdfstore.py. The reader page only honours the `f` parameter
+# (a same-origin pdf-store URL it can read with range requests); a release
+# URL cannot be rendered (CORS + Content-Disposition: attachment). So the
+# manifest must carry the pdf-store `f` link, never the release `u`.
+_INDEX = {}
+try:
+    _INDEX.update(json.load(open(INDEX, encoding="utf-8")))
+except (OSError, ValueError):
+    pass
 
 
 def pdf_asset_name(path):
@@ -32,6 +44,19 @@ def pdf_asset_name(path):
     base = os.path.basename(path).rsplit(".", 1)[0]
     slug = re.sub(r"[^A-Za-z0-9]+", "-", base).strip("-")[:40] or "doc"
     return "%s__%s.pdf" % (slug, h)
+
+
+def reader_link(path, title):
+    """Same-origin pdf-store reader URL (renders inline), mirroring
+    books_site.reader_href. Falls back to the release URL only if the path
+    is absent from the index (so the link is never dead)."""
+    info = _INDEX.get(path) or {}
+    if info.get("u"):
+        q = [("f", info["u"]), ("t", title)]
+    else:
+        q = [("f", lib_release.asset_url(path)), ("t", title)]
+    return (SITE + "/books/reader/?" +
+            "&".join("%s=%s" % (k, quote(v, safe="")) for k, v in q))
 
 
 def main():
@@ -50,7 +75,7 @@ def main():
             docs.append({
                 "title": d.get("title") or os.path.basename(p),
                 "download": u,
-                "reader": lib_release.reader_url(p),
+                "reader": reader_link(p, d.get("title") or os.path.basename(p)),
             })
         if not docs:
             continue
