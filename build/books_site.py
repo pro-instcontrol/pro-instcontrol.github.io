@@ -431,6 +431,7 @@ TRANSLATED = {
         "progress" if HB_DONE < HB_TOTAL else "full", HB_TOTAL, HB_DONE),
     "safety instrumented systems - design, analysis, and justification": ("full", 16, 16),
     "pc_process control": ("full", 14, 14),
+    "control systems - w. bolton": ("full", 7, 7),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
@@ -452,6 +453,7 @@ BOOK_SLUG = {
     "safety instrumented systems - design, analysis, and justification":
         "safety-instrumented-systems-design-analysis-justification",
     "pc_process control": "pc-process-control",
+    "control systems - w. bolton": "control-systems-bolton",
 }
 
 

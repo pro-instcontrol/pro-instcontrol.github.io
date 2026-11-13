@@ -198,6 +198,61 @@ BOOKS = {
         "note_en": "Figures follow the original numbering (Ch.1 alone has Figures 1.1–1.12).",
         "note_vi": "Hình ảnh giữ nguyên số hiệu bản gốc (riêng Chương 1 có Hình 1.1–1.12).",
     },
+
+    "bolton": {
+        "slug": "control-systems-bolton",
+        "title_en": "Control Systems",
+        "title_vi": "Hệ thống điều khiển",
+        "byline_en": "W. Bolton · Newnes, 2002",
+        "byline_vi": "W. Bolton · Newnes, 2002",
+        "pages": 184,
+        "files": 1,
+        "first_en": ("ch01-control-systems",
+                     "Control systems"),
+        "first_vi": ("ch01-control-systems",
+                     "Hệ thống điều khiển"),
+        "chapters": {
+            1: ("Control systems", "Hệ thống điều khiển"),
+            2: ("System models", "Mô hình hệ thống"),
+            3: ("System response", "Đáp ứng hệ thống"),
+            4: ("System parameters", "Các thông số hệ thống"),
+            5: ("Frequency response", "Đáp ứng tần số"),
+            6: ("Nyquist diagrams", "Biểu đồ Nyquist"),
+            7: ("Controllers", "Bộ điều khiển"),
+        },
+        "done": {1: "ch01-control-systems", 2: "ch02-system-models", 3: "ch03-system-response", 4: "ch04-system-parameters", 5: "ch05-frequency-response", 6: "ch06-nyquist-diagrams", 7: "ch07-controllers"},
+        "copyright_en": "Original text © 2002 W. Bolton, published by Newnes (Elsevier)",
+        "copyright_vi": "Bản gốc © 2002 W. Bolton, Nhà xuất bản Newnes (Elsevier)",
+        "lede_en": ("An introduction to the basic principles of control engineering and how they are "
+                    "used to model system behaviour — written in everyday language with the minimum of "
+                    "mathematics. The Vietnamese translation proceeds chapter by chapter; every figure "
+                    "is redrawn as a vector so it stays legible on a phone."),
+        "lede_done_en": ("An introduction to the basic principles of control engineering and how they are "
+                         "used to model system behaviour. The Vietnamese translation is complete — all "
+                         "seven chapters — and every figure is redrawn as a vector."),
+        "lede_vi": ("Giới thiệu các nguyên lý cơ bản của kỹ thuật điều khiển và cách chúng được dùng để "
+                    "mô hình hóa hành vi hệ thống — viết bằng ngôn ngữ đời thường, dùng ít toán học "
+                    "nhất có thể. Bản dịch tiếng Việt thực hiện theo từng chương; mọi hình ảnh đều được "
+                    "vẽ lại bằng vector để rõ nét trên điện thoại."),
+        "lede_done_vi": ("Giới thiệu các nguyên lý cơ bản của kỹ thuật điều khiển và cách chúng được dùng "
+                         "để mô hình hóa hành vi hệ thống. Bản dịch tiếng Việt đã hoàn tất — đủ bảy "
+                         "chương — và mọi hình ảnh đều được vẽ lại bằng vector."),
+        "policy_en": ("<b>About this copy.</b> The single source PDF is held in the local library "
+                      "catalogue and is not republished here. This page is the online contents map: what "
+                      "each chapter covers and which chapters already have a Vietnamese translation."),
+        "policy_done_en": ("<b>About this copy.</b> The single source PDF is held in the local library "
+                           "catalogue and is not republished here. This page is the online contents map: "
+                           "what each chapter covers, with a link to the Vietnamese translation of every "
+                           "chapter."),
+        "policy_vi": ("<b>Cách đọc bản dịch.</b> Tệp PDF nguồn duy nhất được lưu trong thư viện cục bộ "
+                      "và không được đăng lại tại đây. Trang này là bản đồ mục lục trực tuyến: nội dung "
+                      "từng chương và những chương nào đã có bản dịch tiếng Việt."),
+        "policy_done_vi": ("<b>Cách đọc bản dịch.</b> Tệp PDF nguồn duy nhất được lưu trong thư viện cục "
+                           "bộ và không được đăng lại tại đây. Trang này là bản đồ mục lục trực tuyến: "
+                           "nội dung từng chương, kèm liên kết tới bản dịch tiếng Việt của mọi chương."),
+        "note_en": "Figures follow the original numbering (e.g. Figure 1.1, Figure 4.3).",
+        "note_vi": "Hình ảnh giữ nguyên số hiệu bản gốc (ví dụ Hình 1.1, Hình 4.3).",
+    },
 }
 
 

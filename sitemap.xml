@@ -26,6 +26,54 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-systems-bolton/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch01-control-systems/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch01-control-systems/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch01-control-systems/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch01-control-systems/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch02-system-models/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch02-system-models/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch02-system-models/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch02-system-models/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch03-system-response/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch03-system-response/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch03-system-response/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch03-system-response/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch04-system-parameters/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch04-system-parameters/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch04-system-parameters/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch04-system-parameters/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch05-frequency-response/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch05-frequency-response/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch05-frequency-response/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch05-frequency-response/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch06-nyquist-diagrams/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch06-nyquist-diagrams/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch06-nyquist-diagrams/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch06-nyquist-diagrams/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch07-controllers/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch07-controllers/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch07-controllers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch07-controllers/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/pc-process-control/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pc-process-control/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pc-process-control/"/>
@@ -2553,6 +2601,54 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch01-control-systems/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch01-control-systems/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch01-control-systems/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch01-control-systems/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch02-system-models/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch02-system-models/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch02-system-models/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch02-system-models/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch03-system-response/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch03-system-response/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch03-system-response/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch03-system-response/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch04-system-parameters/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch04-system-parameters/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch04-system-parameters/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch04-system-parameters/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch05-frequency-response/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch05-frequency-response/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch05-frequency-response/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch05-frequency-response/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch06-nyquist-diagrams/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch06-nyquist-diagrams/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch06-nyquist-diagrams/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch06-nyquist-diagrams/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch07-controllers/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch07-controllers/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch07-controllers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch07-controllers/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/pc-process-control/</loc>
