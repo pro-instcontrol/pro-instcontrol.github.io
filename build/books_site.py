@@ -11,6 +11,7 @@ if HERE not in sys.path:
     sys.path.insert(0, HERE)
 
 import framework  # noqa: E402  (one nav list for the whole site)
+import lib_release  # noqa: E402  (release-bucket routing for PDF downloads)
 CAT = os.path.join(ROOT, "library", "catalog.json")
 
 
@@ -39,10 +40,10 @@ def handbook_progress():
 
 HB_DONE, HB_TOTAL = handbook_progress()
 
-# PDFs are hosted as GitHub Release assets (repo is too small for ~2 GB).
-RELEASE_TAG = "library-pdfs"
-RELEASE_BASE = ("https://github.com/pro-instcontrol/pro-instcontrol.github.io"
-                "/releases/download/" + RELEASE_TAG + "/")
+# Downloads are served as GitHub Release assets, split across `library-pdfs`,
+# `library-pdfs-2`, `library-pdfs-3`, ...  (GitHub caps 1,000 assets/release).
+# Bucket routing lives in build/lib_release.py so the uploader, the page
+# builder and the link manifest all agree on where each file lives.
 # The reader streams from GitHub Pages sites in two companion repositories
 # (/pdf-store/, /pdf-store-b/) — same origin as this site, `application/pdf`,
 # 206 on Range, no attachment disposition. Release assets cannot do that: they
@@ -92,7 +93,7 @@ def pdf_asset_name(path):
 
 
 def pdf_url(path):
-    return RELEASE_BASE + pdf_asset_name(path)
+    return lib_release.pdf_url(path)
 
 
 _INDEX_CACHE = {}
