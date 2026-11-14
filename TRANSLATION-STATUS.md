@@ -4560,5 +4560,48 @@ building Book 2.
   the reader link. The Bolton EN Ch.6 caption fix is live too (`Comparing two ways to
   specify a point…`, no longer Vietnamese). No `/None` URLs and **no Spanish** in any of
   the 16 new pages.
-- Book 3 is still unchosen; the next Tier-A candidate is *Working with an Integrator
-  Guide* (69 pp).
+
+## Session 57 — Book 3 published live (CSIA *Working with an Integrator Guide*)
+
+- **Book 3 = CSIA *Guide for Selecting & Working with a Control Systems Integrator*,
+  Volume 1 (2000, 69 pp), EN → VI only, NO Spanish — COMPLETE and PUBLISHED LIVE.**
+  URLs: `/books/read/working-with-an-integrator-guide/` (+ 9 chapters) and
+  `/vi/books/read/working-with-an-integrator-guide/` (+ 9 chapters) = 20 pages.
+- Source extracted via pypdf to `work/int_raw.txt` (local-only, gitignored, 69 pp,
+  84,001 chars). Source has **no numbered figures**; graphics are 10 Appendix A
+  "Typical Project Mix of Services" donut charts + many tables/worksheets.
+- New reader infra: `build/int_common.py` (reuses `bolton_common.py`, adds
+  `BOOK["int"]`/`SLUGS["int"]` + `T(vi,en,lang)`), `build/intfig.py` (35 figures,
+  entity-aware `esc()` that preserves already-escaped `&lt;5%`), `build/reader_int.py`,
+  and `build/int_ch01..09.py` (full EN/VI prose + `note_terms(lang)` + `PAGES_SRC` +
+  `BYLINE`). Chapter split 9 = exactly 69 source pages (11+4+4+6+7+9+6+11+11).
+- Figure totals by chapter: **4/4/4/2/2/3/2/11/3 = 35** per language.
+- **Cross-cutting fix shipped with this book:** `build/bolton_common.write()` now calls
+  `namespace_svg_ids(html)` (idempotent, from `build/svg_ids.py`) before writing, so the
+  `_defs()` ids (`a6`, `a7`, `h6`, `h7`, …) that every figure redeclares are namespaced
+  per-SVG — eliminating duplicate `id="…"` attributes on all reader pages. Regenerated
+  **Bolton, ISA-5.1 and Book 3** reader pages. QA across all 346 reader pages: **0 pages
+  with duplicate ids, 0 idempotency failures**; Book 3 pages have 0 malformed SVGs,
+  0 unresolved `url(#…)` refs. (26 pre-existing older pages still hold HTML-tolerated
+  literals like `Sample &` / `aria-label="… < 0 dB …"` — left as-is, not a real defect.)
+- Registries: `build/reader_book.py` `BOOKS["int"]` + `done` map; `build/books_site.py`
+  `TRANSLATED ("full",9,9)` + `BOOK_SLUG "working-with-an-integrator-guide"`; bilingual
+  `DESC` blurbs.
+- `python build/reader_int.py` → 18 chapter pages (9 EN + 9 VI).
+  `python build/reader_book.py int` → 2 TOC pages, **9 rows / 9 done**.
+  `python build/books_site.py` → 2 library indexes, 2 PDF-reader pages, 502 work detail
+  pages. `python build/make_sitemap.py` → **888 URLs (+20 Int)**.
+  `python build/check_links.py` → **890 pages, 27,370 local references, 0 broken**.
+- Remote had **not diverged** (fetch `0..0`); committed `569775f7`, pushed
+  `28312ee3..569775f7` to `main` (sandbox network block required `--dangerouslyDisableSandbox`).
+- **LIVE verified on pro-instcontrol.github.io:** all 20 Book 3 URLs return **200**; both
+  TOC pages show **9 rows / 9 done**; figure counts exact (4/4/4/2/2/3/2/11/3 = 35 per
+  language); every chapter links back to the book TOC; EN captions English
+  (`Figure 8.2 · …`), VI captions Vietnamese (`Hình 8.2 · …`); live sitemap has 888 URLs
+  with **20 Int `<loc>` entries** (10 EN + 10 VI); both `/books/` and `/vi/books/` show the
+  `🟢 Fully translated · 9 of 9 chapters` badge and the reader link; **no `/None` URLs and
+  no Spanish** on any new page.
+- **Next Tier-A candidate (unchosen, awaiting `next`):** *Working with an Integrator Guide*
+  is done; the queue in `work/book_tiers.md` shows the next Tier-A titles after it — pick
+  the next from Tier A on the next autonomous prompt. Standard stays: EN→VI only, all
+  figures (vector), split chapters + TOC, links back to TOC, full bilingual prose.
