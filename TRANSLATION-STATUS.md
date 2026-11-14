@@ -4634,3 +4634,17 @@ building Book 2.
 - **Not yet committed/pushed** at session end — Chapter 1 is a clean in-progress milestone
   (no broken links); continue with Chapters 2–8 (valve diagrams + sizing charts redrawn as
   vectors) on the next autonomous prompt, then mark `done` complete and publish.
+
+### Session 58 addendum — Book 4 Chapter 2 built (2/8)
+
+- **Chapter 2 (Design Fundamentals) built** — `build/prvfig.py` (6 schematic vectors: F2-2
+  closed/open force balance, F2-3 huddling chamber + nozzle ring, F2-4 liquid trim, F2-6 soft
+  seat, F2-9 pilot-operated PRV) + `build/prv_ch02.py` (bilingual prose). Pages pp. 6–11.
+  `reader_prv.py 2` → 2 pages, 6 figures each. SLUGS["prv"] extended to {1,2}; `done` = {1,2}.
+- QA: Book 4 pages = 0 duplicate ids, 0 malformed SVGs, 0 unresolved refs; EN captions English,
+  VI captions Vietnamese; check_links **broken 0** (896 pages / 27,518 refs). Library badge now
+  "🟠 Translating · 2 of 8".
+- **Still NOT pushed** — git credential unavailable in this session (`git credential fill` empty,
+  `could not read Username`); Book 3 commits are live but Book 4 work is local-only. Will push
+  when credentials return. Next: Ch3 Terminology (prose), Ch4 Codes/Standards, Ch5/Ch6 sizing
+  equations + coefficient charts (pp. 68–69), Ch7 engineering support, Ch8 ASME appendix.
