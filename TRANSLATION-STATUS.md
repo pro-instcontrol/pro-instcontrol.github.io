@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-13 (Book 1 of the new reader campaign — W. Bolton, *Control Systems*, Newnes 2002 — **PUBLISHED LIVE**: 7/7 bilingual EN/VI chapters, 247 vector figures, library card + sitemap) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-13 (**Books 1 + 2 of the new reader campaign are PUBLISHED LIVE**: W. Bolton *Control Systems* — 7/7 chapters, 247 vector figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* — 7/7 chapters, 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets) · **Live site:** https://pro-instcontrol.github.io/
 
 > **New book campaign (from `work/book_tiers.md`, EN → VI only, NO Spanish).** Book 1 =
 > Bolton *Control Systems* is COMPLETE and live at `/books/read/control-systems-bolton/`
@@ -9,6 +9,22 @@
 > `TRANSLATED` + `BOOK_SLUG`. Per-chapter figure modules are `build/boltonfig1..7.py`,
 > prose modules `build/bolton_ch01..07.py`. Figure totals by chapter: 77/49/3/15/39/13/51
 > = **247**; the source has no Figure 5.24 (intentional gap).
+> **Book 2 = ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification*
+> (72 pp) is COMPLETE and live** at `/books/read/isa-5-1-instrumentation-symbols/` and
+> `/vi/books/read/isa-5-1-instrumentation-symbols/`. Registry: `build/reader_isa51.py`
+> `MODULES`, `build/reader_book.py` `BOOKS["isa51"]["done"]`, `build/books_site.py`
+> `TRANSLATED` + `BOOK_SLUG`. Prose modules `build/isa51_ch01..07.py`; figure supplier
+> `build/isa51fig.py`; page shell `build/isa51_common.py` (reuses `bolton_common.py`).
+> **The source PDF's drawing sheets have no text layer** — every label is an outlined
+> vector path — so `build/pdfvec.py` interprets the PDF content-stream operators and
+> `build/make_isa51_sheets.py` emits 41 standalone SVGs in `build/isa51_sheets/`
+> (pages 23–26 = Table 3 function blocks, rotated upright; pages 28–64 = clause 6
+> sheets). Pages 21/22/27 have real text layers and are rendered as bilingual HTML
+> tables instead, not traced. Two additional figures are clean redraws: Figure 1 tag
+> numbers (`fig_tag_numbers()`) and the six core SAMA blocks (`fig_sama_blocks()`).
+> Figure totals by chapter: 0/0/1/0/5/20/17 = **43**. Sitemap +16 URLs; `check_links.py`
+> 870 pages / 26,846 refs / **0 broken**.
+>
 > Workflow for the next book: extract the PDF text (source root `D:/Process Control and
 > Automation`, pypdf) → split chapters → count `^Figure N.M` captions → build a vector
 > figure module per chapter (primitives in `build/vfig.py`, `fig()` markup in
@@ -4451,3 +4467,70 @@ that gap. No Spanish output (standing instruction: VI only).
   live sitemap carries 16 Bolton URLs.
 - Note: `books_site.py` emits a harmless `SyntaxWarning: invalid escape sequence '\.'` at
   line 916 (a JS regex inside a Python string). Pre-existing, not introduced here.
+
+---
+
+## Session 56 — 2026-11-13 · Translate and publish Book 2 (ANSI/ISA-5.1) + Bolton caption fix
+
+Scope: finish Book 2 of the EN→VI campaign and publish it. **No Spanish output** (standing
+instruction: VI only). Also ships the uncommitted Bolton caption-language fix found while
+building Book 2.
+
+### Book 2 — ANSI/ISA-5.1-1984 (R1992), *Instrumentation Symbols and Identification*, 72 pp
+
+- Source text extracted with `pypdf` to `work/isa51_raw.txt` (72 pages, 75,529 chars).
+  Structure: §§1–2 purpose/scope, §3 definitions, §4 identification system, §5 tables,
+  §6 drawings (pages 27–64). Only one numbered figure caption in the whole standard
+  (`Figure 1 — Tag numbers`); everything else is a table or a drawing sheet.
+- **Key discovery:** the §6 drawing sheets have **no text layer** — labels are outlined
+  glyph paths. `fitz`/PyMuPDF failed with a DLL error; `pdftocairo`, `pdf2svg`, `mutool`,
+  `inkscape`, `gs`, `cairosvg` were all unavailable (Cairo DLL missing). So a custom PDF
+  content-stream interpreter was written: `build/pdfvec.py` handles `m l c h re S f B q Q
+  cm w d` and color operators, flips y, simplifies with Ramer–Douglas–Peucker, emits
+  relative `l` commands, merges same-style paths, and skips white fills/strokes (the
+  latter was a real bug: ignoring white meant tables rendered as solid dark rectangles).
+  `build/make_isa51_sheets.py` emits **41 SVGs, 3.35 MB**: pages 23–26 (Table 3 function
+  blocks, `rotate(90)` to stand them upright) and pages 28–64 (all 37 clause-6 sheets).
+  Pages 21/22/27 were tried, produced grid-only SVGs because they have real text layers,
+  and were dropped; their content is bilingual HTML tables/prose instead.
+- New reader infrastructure: `build/isa51_common.py` registers a second book in the
+  shared `BOOK`/`SLUGS` tables and re-exports `bolton_common.py` helpers;
+  `build/reader_isa51.py` maps chapters 1–7; `build/isa51fig.py` supplies `sheet(page)`
+  5-tuples plus two hand redraws (Figure 1 tag numbers, six SAMA blocks).
+- Seven bilingual chapter modules written (`build/isa51_ch01..07.py`), full EN/VI prose,
+  `note_terms(lang)`, `PAGES_SRC`, `BYLINE`, `body_vi()`, `body_en()`. Chapters:
+  1 purpose/scope, 2 definitions, 3 identification system, 4 Table 1 letters + 22 notes,
+  5 Tables 2/3 + 4 rotated function-block sheets, 6 §§6.1–6.8 + 20 symbol sheets,
+  7 §§6.9–6.12 + 17 worked-example sheets. Chapter 7 also carries a clause-4.4 reading
+  guide, a guided `FRC-1` tag walkthrough, a simplified/conceptual/detailed comparison
+  table and cross-links back to Chapters 2–6.
+- Corrected `BOOKS["isa51"]` `lede_done_en` / `lede_done_vi` from "37" to "**41** vector
+  sheets" once the four Table 3 sheets were added; `note_en` / `note_vi` now cite
+  clauses 5.4 and 6.2–6.12.
+- Registries: `build/books_site.py` gained
+  `"standard isa - instrumentation symbols and identification": ("full", 7, 7)` in
+  `TRANSLATED` and the slug `"isa-5-1-instrumentation-symbols"` in `BOOK_SLUG`.
+  `DESC` already had the ISA-5.1 bilingual blurb.
+
+### Bolton bug fixed in the same pass
+
+- `build/bolton_common.py` `fig(num, key, lang="vi")` defaulted to Vietnamese, so all
+  **English** Bolton pages displayed Vietnamese figure captions. Changed to
+  `lang=None` → `lang or _CUR_LANG[0]`, and `build()` already sets `_CUR_LANG[0] = lang`
+  before each body. Regenerated all 7 Bolton chapters; EN captions are now English, VI
+  unchanged. This fix had been sitting uncommitted since Book 2 began.
+
+### Verification and publication
+
+- `python build/reader_isa51.py` → 14 chapter pages (7 EN + 7 VI), 43 figures each
+  language. `python build/reader_book.py isa51` → 2 TOC pages, **7 rows / 7 done**.
+- All 41 `isa51fig.sheet(page)` calls validated as 5-tuples with `<svg`; EN captions
+  English, VI captions Vietnamese; every chapter links back to the book TOC; all five
+  Chapter-7 relative cross-links resolve.
+- Embedded SVGs on ch05/06/07 parse as well-formed XML, **0 malformed, 0 duplicate ids**.
+- `python build/books_site.py` → 2 library indexes, 2 PDF-reader pages, 502 work detail
+  pages. `python build/make_sitemap.py` → **868 URLs, 853 with language siblings**
+  (+16 ISA `<loc>` entries). `python build/check_links.py` →
+  **870 pages, 26,846 local references, 0 broken**.
+- `git fetch` showed remote had **not diverged**, so no rebase was required.
+- Pre-existing harmless `SyntaxWarning` in `books_site.py:916` left as-is.

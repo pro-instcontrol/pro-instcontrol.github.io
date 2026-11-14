@@ -253,6 +253,72 @@ BOOKS = {
         "note_en": "Figures follow the original numbering (e.g. Figure 1.1, Figure 4.3).",
         "note_vi": "Hình ảnh giữ nguyên số hiệu bản gốc (ví dụ Hình 1.1, Hình 4.3).",
     },
+
+    "isa51": {
+        "slug": "isa-5-1-instrumentation-symbols",
+        "title_en": "Instrumentation Symbols and Identification",
+        "title_vi": "Ký hiệu và nhận dạng thiết bị đo",
+        "byline_en": "ANSI/ISA-5.1-1984 (R1992) · ISA",
+        "byline_vi": "ANSI/ISA-5.1-1984 (R1992) · ISA",
+        "pages": 72,
+        "files": 1,
+        "first_en": ("ch01-purpose-and-scope", "Purpose and scope"),
+        "first_vi": ("ch01-purpose-and-scope", "Mục đích và phạm vi"),
+        "chapters": {
+            1: ("Purpose and scope", "Mục đích và phạm vi"),
+            2: ("Definitions", "Định nghĩa"),
+            3: ("Outline of the identification system", "Khái quát hệ thống nhận dạng"),
+            4: ("Table 1 — Identification letters", "Bảng 1 — Chữ cái nhận dạng"),
+            5: ("Tables 2 and 3 — Letter combinations and function blocks",
+                "Bảng 2 và 3 — Tổ hợp chữ cái và khối chức năng"),
+            6: ("Drawings — instrument and function symbols",
+                "Bản vẽ — ký hiệu thiết bị và chức năng"),
+            7: ("Drawings — worked examples", "Bản vẽ — ví dụ minh họa"),
+        },
+        "done": {1: "ch01-purpose-and-scope", 2: "ch02-definitions",
+                 3: "ch03-identification-system", 4: "ch04-identification-letters",
+                 5: "ch05-letter-combinations-function-blocks",
+                 6: "ch06-instrument-symbols", 7: "ch07-worked-examples"},
+        "copyright_en": ("Original standard © 1984, reaffirmed 1992, "
+                         "Instrument Society of America (ANSI/ISA-5.1-1984 R1992)"),
+        "copyright_vi": ("Tiêu chuẩn gốc © 1984, tái xác nhận 1992, "
+                         "Instrument Society of America (ANSI/ISA-5.1-1984 R1992)"),
+        "lede_en": ("The standard that gives process instrumentation its common language: tag numbers, "
+                    "identification letters, instrument bubbles, line symbols, valve and actuator "
+                    "symbols, and worked P&ID examples. The Vietnamese translation proceeds chapter by "
+                    "chapter; every drawing sheet is reproduced as a true vector so it stays sharp on "
+                    "a phone."),
+        "lede_done_en": ("The standard that gives process instrumentation its common language: tag "
+                         "numbers, identification letters, instrument bubbles, line symbols, valve "
+                         "and actuator symbols, and worked P&ID examples. The Vietnamese translation "
+                         "is complete — all seven chapters and all 41 vector drawing sheets."),
+        "lede_vi": ("Tiêu chuẩn tạo nên ngôn ngữ chung cho thiết bị đo trong công nghiệp quá trình: số "
+                    "thẻ, chữ cái nhận dạng, vòng tròn ký hiệu thiết bị, ký hiệu đường tín hiệu, ký "
+                    "hiệu van và cơ cấu chấp hành, cùng các ví dụ sơ đồ P&ID. Bản dịch tiếng Việt "
+                    "thực hiện theo từng chương; mọi tờ ký hiệu đều được tái tạo bằng vector thật để "
+                    "rõ nét trên điện thoại."),
+        "lede_done_vi": ("Tiêu chuẩn tạo nên ngôn ngữ chung cho thiết bị đo trong công nghiệp quá "
+                         "trình: số thẻ, chữ cái nhận dạng, vòng tròn ký hiệu thiết bị, ký hiệu đường "
+                         "tín hiệu, ký hiệu van và cơ cấu chấp hành, cùng các ví dụ sơ đồ P&ID. Bản "
+                         "dịch tiếng Việt đã hoàn tất — đủ bảy chương và toàn bộ 41 tờ ký hiệu vector."),
+        "policy_en": ("<b>About this copy.</b> The source PDF is held in the local library catalogue "
+                      "and is not republished here. This page is the online contents map: what each "
+                      "chapter covers and which chapters already have a Vietnamese translation."),
+        "policy_done_en": ("<b>About this copy.</b> The source PDF is held in the local library "
+                           "catalogue and is not republished here. This page is the online contents "
+                           "map: what each chapter covers, with a link to the Vietnamese translation "
+                           "of every chapter."),
+        "policy_vi": ("<b>Cách đọc bản dịch.</b> Tệp PDF nguồn được lưu trong thư viện cục bộ và "
+                      "không được đăng lại tại đây. Trang này là bản đồ mục lục trực tuyến: nội dung "
+                      "từng chương và những chương nào đã có bản dịch tiếng Việt."),
+        "policy_done_vi": ("<b>Cách đọc bản dịch.</b> Tệp PDF nguồn được lưu trong thư viện cục bộ và "
+                           "không được đăng lại tại đây. Trang này là bản đồ mục lục trực tuyến: nội "
+                           "dung từng chương, kèm liên kết tới bản dịch tiếng Việt của mọi chương."),
+        "note_en": ("Sheet numbering follows the standard's clauses 5.4 and 6.2–6.12; "
+                    "Figure 1 is the tag-number diagram in clause 4.1."),
+        "note_vi": ("Số hiệu tờ ký hiệu đi theo các điều 5.4 và 6.2–6.12 của tiêu chuẩn; "
+                    "Hình 1 là sơ đồ số thẻ ở điều 4.1."),
+    },
 }
 
 

@@ -102,7 +102,12 @@ def table(header_row, rows, caption="", cls="tbl"):
             '<tbody>%s</tbody></table></div>%s' % (cls, th, body, cap))
 
 
-def fig(num, key, lang="vi"):
+def fig(num, key, lang=None):
+    # `lang=None` follows the language of the page currently being built.
+    # `build()` sets _CUR_LANG before it calls body_vi()/body_en(), so a
+    # chapter module can call fig(n, F.fig_x_y()) in both bodies without
+    # accidentally shipping Vietnamese captions on the English page.
+    lang = lang or _CUR_LANG[0]
     svg, cap_vi, cap_en, _av, _ae = key
     cap = cap_vi if lang == "vi" else cap_en
     return ('<figure class="figure" id="fig-%d">%s<figcaption class="figcap">%s</figcaption></figure>'
@@ -207,6 +212,7 @@ def build(book, num, modname):
     import importlib
     mod = importlib.import_module(modname)
     for lang in ("vi", "en"):
+        _CUR_LANG[0] = lang          # figure captions follow the page language
         body = mod.body_vi() if lang == "vi" else mod.body_en()
         figs = body.count('class="figure"')
         # count words of the prose only: the markup and the SVG would triple it
