@@ -4648,3 +4648,24 @@ building Book 2.
   `could not read Username`); Book 3 commits are live but Book 4 work is local-only. Will push
   when credentials return. Next: Ch3 Terminology (prose), Ch4 Codes/Standards, Ch5/Ch6 sizing
   equations + coefficient charts (pp. 68–69), Ch7 engineering support, Ch8 ASME appendix.
+
+## Session 59 — Book 4 Chapter 3 built (3/8)
+
+- **Chapter 3 (Terminology) built** — `build/prv_ch03.py` (bilingual prose + term/definition
+  lists; **0 figures**, adapted from ANSI/ASME PTC-25.3-1988 Appendix I and CEN definitions).
+  Structure: 6 `h2` sections (A General prose · B Types of Devices prose with 8 `h4` device
+  sub-types · C Parts · D Dimensional characteristics · E Operational characteristics · CEN
+  Definitions) and 4 `<ul>` term lists (16 + 20 + 31 + 16 = 83 `<li>` terms, each rendered with
+  a `lang`-aware `note_terms()` glossary box). `reader_prv.py 3` → 2 pages (EN 21 kB / VI 19 kB),
+  0 figures. SLUGS["prv"] extended to {1,2,3}; `done` = {1,2,3}.
+- Also made `bolton_common.h4()` accept an optional bilingual `en` subtitle arg (it previously
+  took only one positional), matching `h2`/`h3`, so Ch3 device sub-headings render EN/VI.
+- Regenerated `reader_book.py prv` (TOC 8 rows / 3 done) · `books_site.py` (502 work pages,
+  badge now "🟠 Translating · 3 of 8") · `make_sitemap.py` (896 URLs) · `check_links.py`
+  (**898 pages, 27,568 refs, broken 0**).
+- QA Chapter 3: 0 `<figure>` tags (logo SVG only), 0 Spanish markers, 6×h2 / 6×h3 / 8×h4 all
+  carrying `class="en"` bilingual subtitles, `nav()` links prev (Ch2) + TOC correctly.
+- Committed locally (`87d7c6d0` scaffold+Ch1, `0badd2d2` Ch2, new Ch3 commit). **Still NOT
+  pushed** — git credential unavailable (`could not read Username`). Next: Ch4 Codes/Standards
+  (prose), Ch5/Ch6 sizing equations + coefficient charts (pp. 68–69 redrawn as vectors),
+  Ch7 engineering support, Ch8 ASME appendix.

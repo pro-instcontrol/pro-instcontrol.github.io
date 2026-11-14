@@ -57,8 +57,8 @@ def h3(t, en=""):
     return '<h3>%s%s</h3>' % (t, (' <span class="en">%s</span>' % en) if en else "")
 
 
-def h4(t):
-    return "<h4>%s</h4>" % t
+def h4(t, en=""):
+    return '<h4>%s%s</h4>' % (t, (' <span class="en">%s</span>' % en) if en else "")
 
 
 def eq(body, num=""):
