@@ -4534,3 +4534,16 @@ building Book 2.
   **870 pages, 26,846 local references, 0 broken**.
 - `git fetch` showed remote had **not diverged**, so no rebase was required.
 - Pre-existing harmless `SyntaxWarning` in `books_site.py:916` left as-is.
+- Commit `1a63b1f2`, pushed `dc62bc58..1a63b1f2` to `main`. Pages workflow run
+  `43535744819` for that SHA: **build / report-build-status / deploy all `success`**.
+- **LIVE verified on pro-instcontrol.github.io:** all 16 ISA-5.1 URLs (TOC + 7 chapters ×
+  EN/VI) return 200; figure counts match exactly (0/0/1/0/5/20/17 = 43 per language);
+  every chapter has its breadcrumb back to the book TOC; both TOC pages show **7 rows /
+  7 done**; EN captions are English (`Figure 6.9 · …`) and VI captions Vietnamese
+  (`Hình 6.9 · …`); live sitemap has 868 URLs with 16 ISA `<loc>` entries; both
+  `/books/` and `/vi/books/` show the `🟢 Fully translated · 7 of 7 chapters` badge and
+  the reader link. The Bolton EN Ch.6 caption fix is live too (`Comparing two ways to
+  specify a point…`, no longer Vietnamese). No `/None` URLs and **no Spanish** in any of
+  the 16 new pages.
+- Book 3 is still unchosen; the next Tier-A candidate is *Working with an Integrator
+  Guide* (69 pp).
