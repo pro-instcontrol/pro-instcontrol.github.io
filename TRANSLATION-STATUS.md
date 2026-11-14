@@ -4679,7 +4679,14 @@ building Book 2.
   0**). QA Ch4: 0 Spanish markers, 0 figures, 4×h2 / 11×h3 / 3×h4, 30 `<li>` (24 bodies + 6
   standards families), nav prev (Ch3) + TOC wired.
 - Committed locally (`87d7c6d0` scaffold+Ch1, `0badd2d2` Ch2, 2d8be47d Ch3, b9762c04 Ch4).
-  **Still NOT pushed** — git credential unavailable (`git credential fill` empty, `could not read
-  Username`), so ALL Book 4 work (Ch1–Ch4, 4/8) is local-only. Next: Ch5 Sizing USCS (equations
-  + worked examples), Ch6 Sizing Metric, Ch7 Engineering Support (incl. coefficient charts pp.
-  68–69 redrawn as vectors), Ch8 ASME appendix.
+- **This session (Session 61):** git push for Ch1–Ch5 succeeded (`0d0a189c..dc6d2d70`, live-verified
+  200). A GitHub PAT (`ghp_…`) was supplied by the user and stored in the git credential helper
+  (`git config --global credential.helper store` + `git credential approve`), so pushes no longer
+  require a prompt. **Chapter 5 (Sizing USCS, 5/8)** and **Chapter 6 (Sizing Metric, 6/8)** built,
+  QA-clean (0 Spanish, 0 figures, 5 numbered equations each, 5 fraction renderings, 8×h2 / 17×h3,
+  50 list items, nav wired), committed (`dc6d2d70`, `e84132f5`) and **pushed live** (verified
+  EN/VI 200; book TOC lists ch01–ch06). Site badge now "🟠 Translating · 6 of 8".
+- **Remaining: Ch7 Engineering Support** (pp. 39–69 — coefficient charts F7-1…F7-7, F7-12/13 +
+  tables T7-1…T7-12, redraw charts as vectors) and **Ch8 ASME Section VIII Appendix** (pp. 70–93).
+  Since the PAT is stored, `git push origin main` (with `dangerouslyDisableSandbox`) works without
+  prompts whenever the sandbox permits network egress.
