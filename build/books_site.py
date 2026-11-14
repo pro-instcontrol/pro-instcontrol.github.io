@@ -441,7 +441,7 @@ TRANSLATED = {
     "control systems - w. bolton": ("full", 7, 7),
     "standard isa - instrumentation symbols and identification": ("full", 7, 7),
     "working with an integrator guide": ("full", 9, 9),
-    "pressure relief valve engineering handbook": ("progress", 8, 4),
+    "pressure relief valve engineering handbook": ("progress", 8, 5),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
