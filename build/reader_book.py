@@ -430,7 +430,7 @@ BOOKS = {
                 "Phụ lục — Trích dẫn ASME Section VIII, Division 1"),
         },
         "done": {1: "ch01-introduction", 2: "ch02-fundamentals", 3: "ch03-terminology",
-                 4: "ch04-codes-standards", 5: "ch05-sizing-uscs"},
+                 4: "ch04-codes-standards", 5: "ch05-sizing-uscs", 6: "ch06-sizing-metric"},
         "copyright_en": ("Original handbook © 1997 Crosby Valve Inc. (an FMC Corporation "
                          "subsidiary), Technical Document TP-V300"),
         "copyright_vi": ("Bản gốc © 1997 Crosby Valve Inc. (công ty con của FMC Corporation), "
