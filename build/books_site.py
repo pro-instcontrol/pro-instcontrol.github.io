@@ -441,6 +441,7 @@ TRANSLATED = {
     "control systems - w. bolton": ("full", 7, 7),
     "standard isa - instrumentation symbols and identification": ("full", 7, 7),
     "working with an integrator guide": ("full", 9, 9),
+    "pressure relief valve engineering handbook": ("progress", 8, 1),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
@@ -466,6 +467,8 @@ BOOK_SLUG = {
     "standard isa - instrumentation symbols and identification":
         "isa-5-1-instrumentation-symbols",
     "working with an integrator guide": "working-with-an-integrator-guide",
+    "pressure relief valve engineering handbook":
+        "pressure-relief-valve-engineering-handbook",
 }
 
 

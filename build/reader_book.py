@@ -399,7 +399,79 @@ BOOKS = {
         "note_en": ("The guide has no numbered figures; the ten Appendix A service-mix "
                     "donut charts and all scoring tables are redrawn as vectors."),
         "note_vi": ("Tập sách không có hình được đánh số; mười biểu đồ cơ cấu dịch vụ ở "
-                    "Phụ lục A và toàn bộ bảng chấm điểm đều được vẽ lại bằng vector."),
+                    "Phụ lục A và toàn bộ bảng chăm điểm đều được vẽ lại bằng vector."),
+    },
+    "prv": {
+        "slug": "pressure-relief-valve-engineering-handbook",
+        "title_en": "Pressure Relief Valve Engineering Handbook",
+        "title_vi": "Cẩm nang kỹ thuật van xả áp lực",
+        "byline_en": "Crosby Valve Inc. · Technical Document TP-V300, 1997",
+        "byline_vi": "Crosby Valve Inc. · Tài liệu kỹ thuật TP-V300, 1997",
+        "pages": 93,
+        "files": 1,
+        "first_en": ("ch01-introduction", "Introduction to the Crosby Engineering Handbook"),
+        "first_vi": ("ch01-introduction", "Giới thiệu Cẩm nang kỹ thuật Crosby"),
+        "chapters": {
+            1: ("Introduction to the Crosby Engineering Handbook",
+                "Giới thiệu Cẩm nang kỹ thuật Crosby"),
+            2: ("Fundamentals of Pressure Relief Valve Design",
+                "Nguyên lý cơ bản thiết kế van xả áp"),
+            3: ("Terminology",
+                "Thuật ngữ"),
+            4: ("Codes and Standards — Summary",
+                "Tiêu chuẩn và quy code — Tóm tắt"),
+            5: ("Valve Sizing and Selection — U.S.C.S. Units",
+                "Định cỡ và lựa chọn van — Đơn vị USCS"),
+            6: ("Valve Sizing and Selection — Metric Units",
+                "Định cỡ và lựa chọn van — Đơn vị hệ mét"),
+            7: ("Engineering Support Information",
+                "Thông tin hỗ trợ kỹ thuật"),
+            8: ("Appendix — ASME Section VIII, Division 1 Excerpts",
+                "Phụ lục — Trích dẫn ASME Section VIII, Division 1"),
+        },
+        "done": {1: "ch01-introduction"},
+        "copyright_en": ("Original handbook © 1997 Crosby Valve Inc. (an FMC Corporation "
+                         "subsidiary), Technical Document TP-V300"),
+        "copyright_vi": ("Bản gốc © 1997 Crosby Valve Inc. (công ty con của FMC Corporation), "
+                         "Tài liệu kỹ thuật TP-V300"),
+        "lede_en": ("Crosby's 93-page engineering handbook on pressure relief valves: design "
+                    "fundamentals, terminology, the governing codes and standards, USCS and "
+                    "metric sizing equations, and a set of engineering-support charts. The "
+                    "Vietnamese translation proceeds chapter by chapter; every sizing chart and "
+                    "valve diagram is redrawn as a vector."),
+        "lede_done_en": ("Crosby's 93-page engineering handbook on pressure relief valves: design "
+                         "fundamentals, terminology, the governing codes and standards, USCS and "
+                         "metric sizing equations, and a set of engineering-support charts. The "
+                         "Vietnamese translation is in progress — completed chapters link to their "
+                         "translation."),
+        "lede_vi": ("Cẩm nang kỹ thuật 93 trang của Crosby về van xả áp lực: nguyên lý thiết kế, "
+                    "thuật ngữ, các tiêu chuẩn và quy code chi phối, phương trình định cỡ theo "
+                    "đơn vị USCS và hệ mét, cùng các biểu đồ hỗ trợ kỹ thuật. Bản dịch tiếng Việt "
+                    "thực hiện theo từng chương; mọi biểu đồ định cỡ và sơ đồ van đều được vẽ "
+                    "lại bằng vector."),
+        "lede_done_vi": ("Cẩm nang kỹ thuật 93 trang của Crosby về van xả áp lực: nguyên lý thiết "
+                         "kế, thuật ngữ, các tiêu chuẩn chi phối, phương trình định cỡ USCS và hệ "
+                         "mét, cùng các biểu đồ hỗ trợ kỹ thuật. Bản dịch tiếng Việt đang thực "
+                         "hiện — các chương đã hoàn tất có liên kết tới bản dịch."),
+        "policy_en": ("<b>About this copy.</b> The source PDF is held in the local library "
+                      "catalogue and is not republished here. This page is the online contents "
+                      "map: what each chapter covers and which chapters already have a "
+                      "Vietnamese translation."),
+        "policy_done_en": ("<b>About this copy.</b> The source PDF is held in the local library "
+                           "catalogue and is not republished here. This page is the online "
+                           "contents map: what each chapter covers, with a link to the "
+                           "Vietnamese translation of every completed chapter."),
+        "policy_vi": ("<b>Cách đọc bản dịch.</b> Tệp PDF nguồn được lưu trong thư viện cục bộ "
+                      "và không được đăng lại tại đây. Trang này là bản đồ mục lục trực tuyến: "
+                      "nội dung từng chương và những chương nào đã có bản dịch tiếng Việt."),
+        "policy_done_vi": ("<b>Cách đọc bản dịch.</b> Tệp PDF nguồn được lưu trong thư viện cục "
+                           "bộ và không được đăng lại tại đây. Trang này là bản đồ mục lục trực "
+                           "tuyến: nội dung từng chương, kèm liên kết tới bản dịch tiếng Việt của "
+                           "mọi chương đã hoàn tất."),
+        "note_en": ("The source is a scanned-print vendor handbook; valve cutaway diagrams and "
+                    "sizing coefficient charts are redrawn as vectors from the rendered pages."),
+        "note_vi": ("Nguồn là cẩm nang nhà cung cấp dạng in; các sơ đồ cắt van và biểu đồ hệ "
+                    "số định cỡ được vẽ lại bằng vector từ các trang đã render."),
     },
 }
 

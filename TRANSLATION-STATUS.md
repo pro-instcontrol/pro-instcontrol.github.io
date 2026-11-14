@@ -4605,3 +4605,32 @@ building Book 2.
   is done; the queue in `work/book_tiers.md` shows the next Tier-A titles after it — pick
   the next from Tier A on the next autonomous prompt. Standard stays: EN→VI only, all
   figures (vector), split chapters + TOC, links back to TOC, full bilingual prose.
+
+## Session 58 — Book 4 started (Crosby *Pressure Relief Valve Engineering Handbook*, in progress)
+
+- **Book 4 = Crosby *Pressure Relief Valve Engineering Handbook* (Technical Document TP-V300,
+  1997, 93 pp), EN → VI only, NO Spanish — STARTED, Chapter 1 built (1 of 8 units done).**
+  Next Tier-A title after Bolton / ISA-5.1 / Integrator Guide. Chosen because the top Tier-A
+  candidate (*Flow Equations for Sizing Control Valves — ISA 2002*, 76 pp) is a **scanned
+  image-only PDF** (no text layer) and therefore a poor OCR candidate; PRV handbook has a
+  real text layer (257K chars) and is a coherent single-doc handbook — better fit for the
+  established "all figures redrawn as vectors, split chapters + TOC, links to TOC" standard.
+- Source: `D:/Process Control and Automation/Instrumentation and Control/Pressure Relief
+  Valve Engineering Handbook.pdf` (2,926 kB, 93 pp). Extracted to `work/prv_raw.txt`.
+  Structure (chapter → page range): 1 Intro 3–5 · 2 Fundamentals 6–11 · 3 Terminology 12–15 ·
+  4 Codes/Standards 16–18 · 5 Sizing USCS 19–28 · 6 Sizing Metric 29–38 · 7 Engineering
+  Support 39–69 · Appendix ASME VIII 70–93. Split = **8 units** (7 chapters + ASME appendix).
+  Image-heavy sizing charts on pp. 68–69; valve cutaway diagrams on pp. 6–10.
+- Infra scaffolded (same pattern as Books 1–3, reusing `bolton_common.py`):
+  `build/reader_book.py` `BOOKS["prv"]` (8 chapters, `done={1:...}`) · `build/prv_common.py`
+  (adds `BOOK["prv"]`/`SLUGS["prv"]` + `T(vi,en,lang)`, SLUGS populated **incrementally** so an
+  in-progress book never ships a broken "next" link) · `build/reader_prv.py` · `build/prv_ch01.py`.
+  `build/books_site.py` gained `DESC` (pre-existing), `TRANSLATED ("progress",8,1)`,
+  `BOOK_SLUG "pressure-relief-valve-engineering-handbook"`.
+- Chapter 1 (Introduction) = bilingual prose only, **0 figures** (figures begin in Ch. 2 with
+  valve cutaways). `python build/reader_prv.py 1` → 2 pages; `reader_book.py prv` → TOC 8 rows /
+  1 done; `books_site.py` → library "🟠 Translating · 1 of 8" badge; `make_sitemap.py` → 892 URLs;
+  `check_links.py` → **894 pages, 27,468 refs, broken 0**.
+- **Not yet committed/pushed** at session end — Chapter 1 is a clean in-progress milestone
+  (no broken links); continue with Chapters 2–8 (valve diagrams + sizing charts redrawn as
+  vectors) on the next autonomous prompt, then mark `done` complete and publish.
