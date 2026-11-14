@@ -4665,7 +4665,21 @@ building Book 2.
   (**898 pages, 27,568 refs, broken 0**).
 - QA Chapter 3: 0 `<figure>` tags (logo SVG only), 0 Spanish markers, 6×h2 / 6×h3 / 8×h4 all
   carrying `class="en"` bilingual subtitles, `nav()` links prev (Ch2) + TOC correctly.
-- Committed locally (`87d7c6d0` scaffold+Ch1, `0badd2d2` Ch2, new Ch3 commit). **Still NOT
-  pushed** — git credential unavailable (`could not read Username`). Next: Ch4 Codes/Standards
-  (prose), Ch5/Ch6 sizing equations + coefficient charts (pp. 68–69 redrawn as vectors),
-  Ch7 engineering support, Ch8 ASME appendix.
+## Session 60 — Book 4 Chapter 4 built (4/8)
+
+- **Chapter 4 (Codes and Standards — Summary) built** — `build/prv_ch04.py` (bilingual prose,
+  **0 figures**). Structure: API section (RP 520 Pt I/II, 521, 526, 527, API Inspection Ch. XVI),
+  ASME/ANSI section (B31.1, B16.5, B16.34, B31.8), MSS-SP section (SP-25/55/61), and a
+  Regulatory Body directory (24 standards bodies with addresses) plus a grouped list of
+  representative standards families (ASME BPVC, API, ISO/CEN, national, industry).
+  `reader_prv.py 4` → 2 pages (EN 12 kB / VI 11 kB), 0 figures. SLUGS["prv"] extended to
+  {1,2,3,4}; `done` = {1,2,3,4}.
+- Regenerated `reader_book.py prv` (TOC 8 rows / 4 done) · `books_site.py` (badge "🟠 Translating
+  · 4 of 8") · `make_sitemap.py` (898 URLs) · `check_links.py` (**900 pages, 27,618 refs, broken
+  0**). QA Ch4: 0 Spanish markers, 0 figures, 4×h2 / 11×h3 / 3×h4, 30 `<li>` (24 bodies + 6
+  standards families), nav prev (Ch3) + TOC wired.
+- Committed locally (`87d7c6d0` scaffold+Ch1, `0badd2d2` Ch2, 2d8be47d Ch3, b9762c04 Ch4).
+  **Still NOT pushed** — git credential unavailable (`git credential fill` empty, `could not read
+  Username`), so ALL Book 4 work (Ch1–Ch4, 4/8) is local-only. Next: Ch5 Sizing USCS (equations
+  + worked examples), Ch6 Sizing Metric, Ch7 Engineering Support (incl. coefficient charts pp.
+  68–69 redrawn as vectors), Ch8 ASME appendix.
