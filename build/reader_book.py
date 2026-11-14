@@ -319,6 +319,88 @@ BOOKS = {
         "note_vi": ("Số hiệu tờ ký hiệu đi theo các điều 5.4 và 6.2–6.12 của tiêu chuẩn; "
                     "Hình 1 là sơ đồ số thẻ ở điều 4.1."),
     },
+    "int": {
+        "slug": "working-with-an-integrator-guide",
+        "title_en": "Working with a Control Systems Integrator",
+        "title_vi": "Làm việc với nhà tích hợp hệ thống điều khiển",
+        "byline_en": "Control System Integrators Association · Guide Vol. 1, 2000",
+        "byline_vi": "Hiệp hội các nhà tích hợp hệ thống điều khiển · Tập 1, 2000",
+        "pages": 69,
+        "files": 1,
+        "first_en": ("ch01-general", "General — CSIA and the CSI"),
+        "first_vi": ("ch01-general", "Khái quát — CSIA và CSI"),
+        "chapters": {
+            1: ("General — CSIA and the CSI",
+                "Khái quát — CSIA và nhà tích hợp hệ thống điều khiển"),
+            2: ("Decision analysis tool — the eight steps",
+                "Công cụ phân tích quyết định — tám bước"),
+            3: ("Performance scoring, levels and the sample table",
+                "Chấm điểm hiệu năng, phân cấp và bảng mẫu"),
+            4: ("CSIA registration and General Management criteria",
+                "Đăng ký CSIA và tiêu chí Quản lý chung"),
+            5: ("Human Resources and Project Management criteria",
+                "Tiêu chí Nhân sự và Quản lý dự án"),
+            6: ("Quality, Financial and Business Development criteria",
+                "Tiêu chí Chất lượng, Tài chính và Phát triển kinh doanh"),
+            7: ("Technical qualifications, experience, services and risk",
+                "Năng lực kỹ thuật, kinh nghiệm, dịch vụ và rủi ro"),
+            8: ("Appendix A — Types of integrators and providers",
+                "Phụ lục A — Các loại nhà tích hợp và nhà cung cấp"),
+            9: ("Appendix B — Kepner-Tregoe decision analysis worksheet",
+                "Phụ lục B — Phiếu phân tích quyết định Kepner-Tregoe"),
+        },
+        "done": {1: "ch01-general", 2: "ch02-decision-analysis-tool",
+                 3: "ch03-scoring-and-levels",
+                 4: "ch04-registration-and-general-management",
+                 5: "ch05-human-and-project-management",
+                 6: "ch06-quality-financial-business",
+                 7: "ch07-technical", 8: "ch08-integrator-types",
+                 9: "ch09-decision-worksheet"},
+        "copyright_en": ("Original guide © 2000 Control System Integrators "
+                         "Association (CSIA), Volume 1, Rev. 00"),
+        "copyright_vi": ("Bản gốc © 2000 Hiệp hội các nhà tích hợp hệ thống điều khiển "
+                         "(CSIA), Tập 1, Rev. 00"),
+        "lede_en": ("The CSIA's client-side guide to choosing a control systems integrator: "
+                    "what a CSI is, a Kepner-Tregoe decision analysis tool, seven families "
+                    "of qualification criteria, and a taxonomy of provider types with ten "
+                    "service-mix charts. The Vietnamese translation proceeds chapter by "
+                    "chapter; every chart and table is redrawn as a vector."),
+        "lede_done_en": ("The CSIA's client-side guide to choosing a control systems "
+                         "integrator: what a CSI is, a Kepner-Tregoe decision analysis tool, "
+                         "seven families of qualification criteria, and a taxonomy of "
+                         "provider types. The Vietnamese translation is complete — all nine "
+                         "chapters and all 35 vector figures."),
+        "lede_vi": ("Hướng dẫn của CSIA dành cho khách hàng khi lựa chọn nhà tích hợp hệ "
+                    "thống điều khiển: CSI là gì, công cụ phân tích quyết định Kepner-Tregoe, "
+                    "bảy nhóm tiêu chí đánh giá năng lực và hệ thống phân loại nhà cung cấp "
+                    "kèm mười biểu đồ cơ cấu dịch vụ. Bản dịch tiếng Việt thực hiện theo "
+                    "từng chương; mọi biểu đồ và bảng đều được vẽ lại bằng vector."),
+        "lede_done_vi": ("Hướng dẫn của CSIA dành cho khách hàng khi lựa chọn nhà tích hợp "
+                         "hệ thống điều khiển: CSI là gì, công cụ phân tích quyết định "
+                         "Kepner-Tregoe, bảy nhóm tiêu chí đánh giá và hệ thống phân loại "
+                         "nhà cung cấp. Bản dịch tiếng Việt đã hoàn tất — đủ chín chương "
+                         "và toàn bộ 35 hình vector."),
+        "policy_en": ("<b>About this copy.</b> The source PDF is held in the local library "
+                      "catalogue and is not republished here. This page is the online contents "
+                      "map: what each chapter covers and which chapters already have a "
+                      "Vietnamese translation."),
+        "policy_done_en": ("<b>About this copy.</b> The source PDF is held in the local "
+                           "library catalogue and is not republished here. This page is the "
+                           "online contents map: what each chapter covers, with a link to the "
+                           "Vietnamese translation of every chapter."),
+        "policy_vi": ("<b>Cách đọc bản dịch.</b> Tệp PDF nguồn được lưu trong thư viện cục bộ "
+                      "và không được đăng lại tại đây. Trang này là bản đồ mục lục trực "
+                      "tuyến: nội dung từng chương và những chương nào đã có bản dịch "
+                      "tiếng Việt."),
+        "policy_done_vi": ("<b>Cách đọc bản dịch.</b> Tệp PDF nguồn được lưu trong thư viện "
+                           "cục bộ và không được đăng lại tại đây. Trang này là bản đồ mục "
+                           "lục trực tuyến: nội dung từng chương, kèm liên kết tới bản dịch "
+                           "tiếng Việt của mọi chương."),
+        "note_en": ("The guide has no numbered figures; the ten Appendix A service-mix "
+                    "donut charts and all scoring tables are redrawn as vectors."),
+        "note_vi": ("Tập sách không có hình được đánh số; mười biểu đồ cơ cấu dịch vụ ở "
+                    "Phụ lục A và toàn bộ bảng chấm điểm đều được vẽ lại bằng vector."),
+    },
 }
 
 

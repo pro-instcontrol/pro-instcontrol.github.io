@@ -1004,6 +1004,66 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch99-electropneumatic-and-electrohydraulic-instruments/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch01-general/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch01-general/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch01-general/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch01-general/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch02-decision-analysis-tool/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch02-decision-analysis-tool/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch02-decision-analysis-tool/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch02-decision-analysis-tool/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch03-scoring-and-levels/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch03-scoring-and-levels/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch03-scoring-and-levels/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch03-scoring-and-levels/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch04-registration-and-general-management/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch04-registration-and-general-management/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch04-registration-and-general-management/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch04-registration-and-general-management/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch05-human-and-project-management/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch05-human-and-project-management/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch05-human-and-project-management/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch05-human-and-project-management/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch06-quality-financial-business/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch06-quality-financial-business/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch06-quality-financial-business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch06-quality-financial-business/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch07-technical/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch07-technical/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch07-technical/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch07-technical/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch08-integrator-types/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch08-integrator-types/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch08-integrator-types/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch08-integrator-types/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch09-decision-worksheet/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch09-decision-worksheet/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch09-decision-worksheet/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch09-decision-worksheet/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/reader/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/reader/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/reader/"/>
@@ -3627,6 +3687,66 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch99-electropneumatic-and-electrohydraulic-instruments/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch99-electropneumatic-and-electrohydraulic-instruments/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch99-electropneumatic-and-electrohydraulic-instruments/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch01-general/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch01-general/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch01-general/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch01-general/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch02-decision-analysis-tool/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch02-decision-analysis-tool/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch02-decision-analysis-tool/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch02-decision-analysis-tool/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch03-scoring-and-levels/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch03-scoring-and-levels/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch03-scoring-and-levels/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch03-scoring-and-levels/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch04-registration-and-general-management/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch04-registration-and-general-management/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch04-registration-and-general-management/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch04-registration-and-general-management/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch05-human-and-project-management/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch05-human-and-project-management/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch05-human-and-project-management/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch05-human-and-project-management/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch06-quality-financial-business/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch06-quality-financial-business/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch06-quality-financial-business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch06-quality-financial-business/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch07-technical/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch07-technical/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch07-technical/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch07-technical/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch08-integrator-types/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch08-integrator-types/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch08-integrator-types/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch08-integrator-types/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch09-decision-worksheet/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch09-decision-worksheet/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/ch09-decision-worksheet/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/ch09-decision-worksheet/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/reader/</loc>

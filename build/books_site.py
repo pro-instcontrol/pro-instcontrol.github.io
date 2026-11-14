@@ -221,6 +221,13 @@ DESC = {
         "Short, and worth knowing by heart.",
         "ISA-5.1: tiêu chuẩn ký hiệu và đánh số thẻ mà mọi P&ID trong thế giới nói tiếng Anh đều vẽ theo. "
         "Ngắn, và đáng thuộc lòng."),
+    "working with an integrator guide": (
+        "The CSIA buyer's guide: what a control systems integrator is, a Kepner-Tregoe decision analysis "
+        "tool for selecting one, seven families of qualification criteria, and ten service-mix charts "
+        "that separate integrators from equipment suppliers at the 61% line.",
+        "Sổ tay của CSIA dành cho bên mua: CSI là gì, công cụ phân tích quyết định Kepner-Tregoe để chọn "
+        "nhà thầu, bảy nhóm tiêu chí đánh giá năng lực và mười biểu đồ cơ cấu dịch vụ phân biệt nhà "
+        "tích hợp với nhà cung cấp thiết bị tại ngưỡng 61%."),
     "pressure relief valve engineering handbook": (
         "Sizing and selection of relief devices — the one final element that must work without power, "
         "without a signal, and without maintenance.",
@@ -433,6 +440,7 @@ TRANSLATED = {
     "pc_process control": ("full", 14, 14),
     "control systems - w. bolton": ("full", 7, 7),
     "standard isa - instrumentation symbols and identification": ("full", 7, 7),
+    "working with an integrator guide": ("full", 9, 9),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
@@ -457,6 +465,7 @@ BOOK_SLUG = {
     "control systems - w. bolton": "control-systems-bolton",
     "standard isa - instrumentation symbols and identification":
         "isa-5-1-instrumentation-symbols",
+    "working with an integrator guide": "working-with-an-integrator-guide",
 }
 
 

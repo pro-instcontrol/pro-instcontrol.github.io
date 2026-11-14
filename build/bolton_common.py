@@ -14,6 +14,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from reader_book import BOOKS, footer, head, header   # noqa: E402
+from svg_ids import namespace_svg_ids                 # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -198,6 +199,10 @@ def page(book, num, lang, body, figs, words, pages_src, byline, note_terms=""):
 
 
 def write(book, num, lang, html):
+    # Every inline SVG redeclares the same <defs> ids, so a page with N figures
+    # would otherwise ship N copies of id="a6" etc. Namespace them per SVG
+    # (idempotent, and rewrites marker refs) before anything reaches disk.
+    html = namespace_svg_ids(html)
     slug = SLUGS[book][num]
     pair = ("vi/books/read/%s/%s/index.html" if lang == "vi"
             else "books/read/%s/%s/index.html") % (BOOK[book]["spec"]["slug"], slug)

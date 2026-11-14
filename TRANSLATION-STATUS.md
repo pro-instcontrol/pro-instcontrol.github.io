@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-13 (**Books 1 + 2 of the new reader campaign are PUBLISHED LIVE**: W. Bolton *Control Systems* — 7/7 chapters, 247 vector figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* — 7/7 chapters, 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-13 (**Books 1 + 2 + 3 of the new reader campaign are PUBLISHED LIVE**: W. Bolton *Control Systems* — 7/7 chapters, 247 vector figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* — 7/7 chapters, 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets; CSIA *Working with an Integrator Guide* — 9/9 chapters, 35 vector figures of which 10 are the Appendix A "Typical Project Mix of Services" donut charts) · **Live site:** https://pro-instcontrol.github.io/
 
 > **New book campaign (from `work/book_tiers.md`, EN → VI only, NO Spanish).** Book 1 =
 > Bolton *Control Systems* is COMPLETE and live at `/books/read/control-systems-bolton/`
@@ -24,6 +24,21 @@
 > numbers (`fig_tag_numbers()`) and the six core SAMA blocks (`fig_sama_blocks()`).
 > Figure totals by chapter: 0/0/1/0/5/20/17 = **43**. Sitemap +16 URLs; `check_links.py`
 > 870 pages / 26,846 refs / **0 broken**.
+> **Book 3 = CSIA *Guide for Selecting & Working with a Control Systems Integrator*,
+> Volume 1 (2000, 69 pp) is COMPLETE and live** at
+> `/books/read/working-with-an-integrator-guide/` and
+> `/vi/books/read/working-with-an-integrator-guide/`. Registry: `build/reader_int.py`
+> `MODULES`, `build/reader_book.py` `BOOKS["int"]["done"]`, `build/books_site.py`
+> `TRANSLATED` + `BOOK_SLUG`. Prose modules `build/int_ch01..09.py`; figure module
+> `build/intfig.py` (35 figures, entity-aware `esc()`); page shell `build/int_common.py`
+> (reuses `bolton_common.py`). Source has **no numbered figures**, so every graphic is a
+> hand-redrawn vector card/table/donut: mission/objectives/beliefs, CSI services hub, the
+> 8-step Kepner–Tregoe decision analysis, must/wants, scoring scale, classification levels,
+> sample table, three-judge calculation, registration flow, HR/project/quality/financial/
+> technical criteria maps, Appendix A taxonomy, **10 Appendix A "Typical Project Mix of
+> Services" donut charts** (the 61% line separates integrators from equipment suppliers),
+> blank worksheet and closing map. Figure totals by chapter: 4/4/4/2/2/3/2/11/3 = **35**.
+> Sitemap +20 URLs; `check_links.py` 890 pages / 27,370 refs / **0 broken**.
 >
 > Workflow for the next book: extract the PDF text (source root `D:/Process Control and
 > Automation`, pypdf) → split chapters → count `^Figure N.M` captions → build a vector
