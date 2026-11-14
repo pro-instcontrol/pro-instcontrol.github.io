@@ -236,6 +236,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pressure-relief-valve-engineering-handbook/ch03-terminology/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/pressure-relief-valve-engineering-handbook/ch04-codes-standards/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pressure-relief-valve-engineering-handbook/ch04-codes-standards/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pressure-relief-valve-engineering-handbook/ch04-codes-standards/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pressure-relief-valve-engineering-handbook/ch04-codes-standards/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/safety-instrumented-systems-design-analysis-justification/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/"/>
@@ -2943,6 +2949,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pressure-relief-valve-engineering-handbook/ch03-terminology/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pressure-relief-valve-engineering-handbook/ch03-terminology/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pressure-relief-valve-engineering-handbook/ch03-terminology/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/pressure-relief-valve-engineering-handbook/ch04-codes-standards/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/pressure-relief-valve-engineering-handbook/ch04-codes-standards/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/pressure-relief-valve-engineering-handbook/ch04-codes-standards/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/pressure-relief-valve-engineering-handbook/ch04-codes-standards/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/safety-instrumented-systems-design-analysis-justification/</loc>
