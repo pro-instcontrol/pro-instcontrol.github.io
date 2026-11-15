@@ -36,6 +36,7 @@ SLUGS["prv"] = {
     4: "ch04-codes-standards",
     5: "ch05-sizing-uscs",
     6: "ch06-sizing-metric",
+    7: "ch07-engineering-support",
 }
 
 # Re-export the shared helpers so chapter modules can `import prv_common as C`.

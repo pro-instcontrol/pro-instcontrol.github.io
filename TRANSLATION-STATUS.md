@@ -4690,3 +4690,23 @@ building Book 2.
   tables T7-1…T7-12, redraw charts as vectors) and **Ch8 ASME Section VIII Appendix** (pp. 70–93).
   Since the PAT is stored, `git push origin main` (with `dangerouslyDisableSandbox`) works without
   prompts whenever the sandbox permits network egress.
+
+## Session 62 — Book 4 Chapter 7 built (7/8)
+- **Chapter 7 — Engineering Support Information** (pp. 7-2…7-31) built as `prv_ch07.py` (bilingual
+  VI/EN) with all **9 vector figures** (F7-1 Z compressibility, F7-2 Kb gas/vapor back-pressure,
+  F7-3 Kw liquid back-pressure, F7-4 Kn high-pressure steam, F7-5 Kv viscosity vs Reynolds,
+  F7-6 C vs k coefficient, F7-7 noise intensity, F7-12 fire-sizing logic, F7-13 vessel selection)
+  and all **12 tables** (T7-1…T7-12: gas properties, steam superheat Ksh, Kr factors, relative
+  noise levels, environmental factor, Kb/Kw back-pressure, water saturation, ANSI flanges,
+  conversion factors, orifice areas) in `prv_ch07_tbl.py`.
+- Figures: fixed missing `_axes` import in `prvfig.py` (f71–f77), removed k=1.0 singularity in
+  fig_f76 (`range(101,201)`), dropped duplicate placeholder box in fig_f712. All 9 SVGs render
+  valid, unique ids, EN/VI captions localized correctly.
+- Tables: parser `block_for()` rewritten to scan bidirectionally across page breaks; manually
+  recovered full T7-2 (60 rows) and deduplicated T7-8 (107 rows incl. low-pressure block), removed
+  stray page markers from T7-5 and orifice rows from T7-10.
+- Registered slug 7 (`ch07-engineering-support`) in `prv_common.py`; added Ch7 to reader_book `done`
+  map and books_site `TRANSLATED` (7/8). Rebuilt Ch6+Ch7 for consistent nav (Ch6→Ch7, Ch7→Ch6).
+- QA: both pages 9 valid SVGs, 0 duplicate ids, 0 malformed SVGs, 0 unresolved refs, 0 real nan/None;
+  site regen clean (sitemap 904 URLs, check_links broken 0).
+- **Remaining: Ch8 ASME Section VIII Appendix** (pp. 70–93) — final Book 4 chapter.
