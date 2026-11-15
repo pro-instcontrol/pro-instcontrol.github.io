@@ -587,6 +587,43 @@ def fig_c06_principles():
                 "Tiered schematic of Kletz's inherent safety principles")
 
 
+def fig_c07_index():
+    """Redraw of source Figure 5 (p. 40): principle of the formation of the
+    index — principles → parameters → subindices."""
+    w, h = 560, 300
+    o = [_defs()]
+    o.append(_box(120, 24, 320, 56,
+                  "NGUYÊN TẮC AN TOÀN NỘI TẠI\nInherent safety principles\n"
+                  "(Kletz — Chương 6.1)",
+                  fill="#eaf6ee", sw=1.3, size=8.6))
+    o.append(_box(120, 118, 320, 56,
+                  "THAM SỐ AN TOÀN NỘI TẠI\nInherent safety parameters\n"
+                  "(Bảng 5 — 19 tham số)",
+                  fill="#eef3fb", sw=1.3, size=8.6))
+    o.append(_box(120, 212, 320, 56,
+                  "CHỈ SỐ THÀNH PHẦN AN TOÀN NỘI TẠI\nInherent safety subindices\n"
+                  "(11 chỉ số — Chương 8–11)",
+                  fill="#fdf3e6", sw=1.3, size=8.6))
+    o.append(_arrow(280, 80, 280, 116, sw=1.6, color=GREY, head="a6"))
+    o.append(_arrow(280, 174, 280, 210, sw=1.6, color=GREY, head="a6"))
+    o.append(_txt(288, 101, "mô tả thành", 7.2, anchor="start", color=GREY))
+    o.append(_txt(288, 195, "chọn quan trọng nhất", 7.2, anchor="start", color=GREY))
+    o.append(_txt(280, h - 10,
+                  "Vẽ lại theo Hình 5 (tr. 40) — nguyên tắc hình thành chỉ số",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Redrawn Figure 5: principle of the formation of the inherent safety index"))
+    return _fig(s,
+                "Hình 5 · Nguyên tắc hình thành chỉ số: các nguyên tắc an toàn nội tại "
+                "được mô tả thành tham số, rồi các tham số quan trọng nhất được chọn làm "
+                "chỉ số thành phần. Vẽ lại theo Hình 5, tr. 40.",
+                "Figure 5 · Principle of the formation of the index: the inherent safety "
+                "principles are described as parameters, and the most important parameters "
+                "are selected as subindices. Redrawn after Figure 5, p. 40.",
+                "Sơ đồ ba tầng hình thành chỉ số an toàn nội tại",
+                "Three-tier formation of the inherent safety index")
+
+
 FIGS = {
     "isd_intro": fig_isd_intro,
     "f01": fig_f01,
@@ -598,4 +635,5 @@ FIGS = {
     "c05_gap": fig_c05_gap,
     "c06_kletz": fig_c06_kletz,
     "c06_principles": fig_c06_principles,
+    "c07_index": fig_c07_index,
 }

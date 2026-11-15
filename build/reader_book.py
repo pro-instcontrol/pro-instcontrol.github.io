@@ -518,7 +518,8 @@ BOOKS = {
                  3: "ch03-evaluation-of-safety",
                  4: "ch04-safety-analysis-methods",
                  5: "ch05-limitations-of-existing-methods",
-                 6: "ch06-inherent-safety"},
+                 6: "ch06-inherent-safety",
+                 7: "ch07-safety-factors"},
         "copyright_en": ("Original thesis © 1999 Anna-Mari Heikkilä / Technical Research "
                          "Centre of Finland (VTT), VTT Publications 384"),
         "copyright_vi": ("Luận văn gốc © 1999 Anna-Mari Heikkilä / Trung tâm Nghiên cứu Kỹ "
