@@ -248,7 +248,7 @@ def body_en():
                   "hollow dot <b>rarely used or inappropriate</b>. Of the twelve "
                   "techniques, only <i>What-If</i> is marked commonly used in all nine "
                   "phases; conversely, only <i>Expansion or Modification</i> commonly uses "
-                  "all twelve. The two ends of the life cycle — research & development and "
+                  "all twelve. The two ends of the life cycle — research &amp; development and "
                   "decommissioning — have the fewest commonly used techniques (3 and 4 of "
                   "12)."))
 

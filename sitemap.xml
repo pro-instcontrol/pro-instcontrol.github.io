@@ -98,6 +98,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/ch03-evaluation-of-safety/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/ch04-safety-analysis-methods/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/ch04-safety-analysis-methods/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/inherent-safety-in-process-plant-design/ch04-safety-analysis-methods/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/ch04-safety-analysis-methods/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/isa-5-1-instrumentation-symbols/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/isa-5-1-instrumentation-symbols/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/isa-5-1-instrumentation-symbols/"/>
@@ -2859,6 +2865,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/ch03-evaluation-of-safety/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/inherent-safety-in-process-plant-design/ch03-evaluation-of-safety/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/ch03-evaluation-of-safety/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/inherent-safety-in-process-plant-design/ch04-safety-analysis-methods/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/ch04-safety-analysis-methods/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/inherent-safety-in-process-plant-design/ch04-safety-analysis-methods/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/ch04-safety-analysis-methods/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/isa-5-1-instrumentation-symbols/</loc>

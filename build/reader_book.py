@@ -492,8 +492,8 @@ BOOKS = {
             1: ("Introduction", "Giới thiệu"),
             2: ("Safety", "An toàn"),
             3: ("Evaluation of Safety", "Đánh giá an toàn"),
-            4: ("Safety Analysis Methods for Process Plant Design",
-                "Các phương pháp phân tích an toàn trong thiết kế nhà máy"),
+            4: ("Some Safety Analysis Methods for Process Plant Design",
+                "Một số phương pháp phân tích an toàn trong thiết kế nhà máy quá trình"),
             5: ("Limitations of Existing Methods in Conceptual Process Design",
                 "Hạn chế của các phương pháp hiện có trong thiết kế sơ bộ"),
             6: ("Inherent Safety", "An toàn nội tại"),
@@ -515,7 +515,8 @@ BOOKS = {
             16: ("References", "Tài liệu tham khảo"),
         },
         "done": {1: "ch01-introduction", 2: "ch02-safety",
-                 3: "ch03-evaluation-of-safety"},
+                 3: "ch03-evaluation-of-safety",
+                 4: "ch04-safety-analysis-methods"},
         "copyright_en": ("Original thesis © 1999 Anna-Mari Heikkilä / Technical Research "
                          "Centre of Finland (VTT), VTT Publications 384"),
         "copyright_vi": ("Luận văn gốc © 1999 Anna-Mari Heikkilä / Trung tâm Nghiên cứu Kỹ "

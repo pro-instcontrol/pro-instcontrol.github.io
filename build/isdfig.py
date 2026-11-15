@@ -259,9 +259,124 @@ def fig_f03():
                 "Nine-by-twelve matrix of life-cycle phases versus hazard evaluation techniques")
 
 
+def fig_c04_stages():
+    """Editorial schematic (Ch. 4): where the methods fit in the design stages.
+
+    Chapter 4 has no figures of its own; this map is derived from the prose on
+    pp. 19–20 and 22 (Dow/Mond best in later stages, conventional Hazop needs
+    final P&IDs, PIIS and the five preliminary methods usable early).
+    """
+    w, h = 680, 282
+    o = [_defs()]
+    o.append(_rect(24, 38, 306, 196, fill="#eef3fb", sw=1.0))
+    o.append(_rect(350, 38, 306, 196, fill="#fdf3e6", sw=1.0))
+    o.append(_txt(177, 58, "Conceptual / preliminary design", 9.4, weight="600"))
+    o.append(_txt(177, 72, "Thiết kế sơ bộ · thông tin còn ít", 7.8, color=GREY))
+    o.append(_txt(503, 58, "Detailed engineering / later stages", 9.4, weight="600"))
+    o.append(_txt(503, 72, esc("Thiết kế chi tiết · đã có P&ID"), 7.8, color=GREY))
+    o.append(_line(340, 38, 340, 234, sw=1.0, dash="4 4", color=GREY))
+
+    # early-stage chips
+    for i, lab in enumerate(("CSR", "CE", "CHA", "PCA", "PHA")):
+        o.append(_box(40 + i * 55, 88, 50, 26, lab, fill="#f8fbff", sw=0.8, size=7.8))
+    o.append(_box(40, 132, 130, 40, "PIIS\nchọn lộ trình quá trình",
+                  fill="#eaf6ee", sw=1.2, size=8.0))
+    o.append(_rect(182, 132, 132, 40, fill="#ffffff", sw=1.0, dash="3 2"))
+    o.append(_txt(248, 148, "Flowsheet Hazop", 8.2))
+    o.append(_txt(248, 162, "ít được dùng / rarely used", 7.2, color=GREY))
+    o.append(_txt(177, 202, "Năm phương pháp sơ bộ · Wells et al. (1993)",
+                  7.6, color=GREY))
+    o.append(_txt(177, 218, "PIIS dùng được khi thiếu chi tiết quá trình",
+                  7.6, color=GREY))
+
+    # later-stage chips
+    o.append(_box(366, 96, 130, 36, esc("Dow F&E Index\ncháy và nổ"),
+                  fill="#fff8ec", sw=1.0, size=8.2))
+    o.append(_box(510, 96, 130, 36, "Mond Index\ncả độc tính",
+                  fill="#fff8ec", sw=1.0, size=8.2))
+    o.append(_box(366, 150, 274, 36,
+                  esc("Conventional Hazop\ncần sơ đồ P&ID hoàn chỉnh"),
+                  fill="#fff8ec", sw=1.0, size=8.2))
+    o.append(_txt(503, 205, "Phù hợp nhất khi đã biết thiết bị, hóa chất, điều kiện",
+                  7.6, color=GREY))
+    o.append(_txt(503, 221, "best when equipment, substances and conditions are known",
+                  7.2, color=GREY))
+    o.append(_txt(340, 258,
+                  "Sơ đồ biên tập theo văn bản chương 4 · không có hình tương ứng trong nguyên bản",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Editorial map: safety analysis methods versus design stage"))
+    return _fig(s,
+                "Sơ đồ B · Vị trí điển hình của các phương pháp phân tích an toàn theo giai "
+                "đoạn thiết kế: năm phương pháp sơ bộ và PIIS ở thiết kế sơ bộ, còn Dow, Mond "
+                "và Hazop thông thường ở giai đoạn chi tiết. Sơ đồ biên tập theo văn bản "
+                "chương 4 (tr. 19–22), không có trong nguyên bản.",
+                "Figure B · Where the safety analysis methods typically fit: the five "
+                "preliminary methods and PIIS in conceptual design, Dow, Mond and conventional "
+                "Hazop in detailed engineering. Editorial schematic after the prose of "
+                "Chapter 4 (pp. 19–22); not present in the original.",
+                "Sơ đồ so sánh nhóm phương pháp dùng sớm và nhóm phương pháp dùng muộn trong thiết kế",
+                "Comparison diagram of early-stage versus late-stage safety analysis methods")
+
+
+def fig_c04_indices():
+    """Editorial schematic (Ch. 4): structures of the Dow F&EI and the PIIS."""
+    w, h = 680, 300
+    o = [_defs()]
+    o.append(_txt(170, 28, esc("Dow Fire & Explosion Index (§4.1)"), 9.6, weight="600"))
+    o.append(_txt(510, 28, "Prototype Index of Inherent Safety (§4.4)", 9.6, weight="600"))
+    o.append(_line(340, 38, 340, 268, sw=1.0, dash="4 4", color=GREY))
+
+    # Dow panel: MF and UHF converge on the index
+    o.append(_box(30, 66, 130, 40, "Material factor  MF\nflammability · reactivity",
+                  fill="#f4f7fb", sw=1.0, size=7.6))
+    o.append(_box(186, 46, 120, 30, "General process hazards  GPH",
+                  fill="#f4f7fb", sw=1.0, size=7.0))
+    o.append(_box(186, 86, 120, 30, "Special process hazards  SPH",
+                  fill="#f4f7fb", sw=1.0, size=7.0))
+    o.append(_arrow(246, 116, 246, 130, sw=1.0, head="a7"))
+    o.append(_box(186, 130, 120, 34, "UHF = GPH × SPH",
+                  fill="#eaf6ee", sw=1.0, size=7.8))
+    o.append(_arrow(95, 106, 130, 202, sw=1.0, head="a7"))
+    o.append(_arrow(246, 164, 215, 202, sw=1.0, head="a7"))
+    o.append(_box(60, 202, 240, 42, esc("F&EI = MF × UHF  =  MF × GPH × SPH"),
+                  fill="#fdf3e6", sw=1.4, size=9.0))
+    o.append(_txt(170, 264, "Hệ số đơn vị × hệ số vật liệu · Dow (1987)",
+                  7.6, color=GREY))
+
+    # PIIS panel: two scores side by side converge on the total
+    o.append(_box(352, 62, 142, 76,
+                  "Chemical score\ninventory · flammability\nexplosiveness · toxicity",
+                  fill="#f4f7fb", sw=1.0, size=7.4))
+    o.append(_box(506, 62, 142, 76,
+                  "Process score\ntemperature · pressure\nyield",
+                  fill="#f4f7fb", sw=1.0, size=7.4))
+    o.append(_arrow(423, 138, 452, 202, sw=1.0, head="a7"))
+    o.append(_arrow(577, 138, 548, 202, sw=1.0, head="a7"))
+    o.append(_box(376, 202, 248, 42, "Total score = chemical + process",
+                  fill="#fdf3e6", sw=1.4, size=8.6))
+    o.append(_txt(500, 264, esc("Tổng điểm = điểm hóa học + điểm quá trình · "
+                                "Edwards & Lawrence (1993)"), 7.4, color=GREY))
+    o.append(_txt(340, 286,
+                  "Sơ đồ biên tập theo §4.1 và §4.4 · không có hình tương ứng trong nguyên bản",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o), esc("Editorial schematic of the Dow F&EI and PIIS index structures"))
+    return _fig(s,
+                "Sơ đồ C · Cấu trúc của hai chỉ số: Dow F&amp;EI = MF × (GPH × SPH) và PIIS = "
+                "điểm hóa học + điểm quá trình. Sơ đồ biên tập theo §4.1 và §4.4, không có "
+                "trong nguyên bản.",
+                "Figure C · Structure of the two indices: Dow F&amp;EI = MF × (GPH × SPH) and "
+                "PIIS = chemical score + process score. Editorial schematic after §4.1 "
+                "and §4.4; not present in the original.",
+                "Sơ đồ cấu trúc công thức của chỉ số Dow và chỉ số PIIS",
+                "Structure diagram of the Dow fire and explosion index and the PIIS total score")
+
+
 FIGS = {
     "isd_intro": fig_isd_intro,
     "f01": fig_f01,
     "f02": fig_f02,
     "f03": fig_f03,
+    "c04_stages": fig_c04_stages,
+    "c04_indices": fig_c04_indices,
 }

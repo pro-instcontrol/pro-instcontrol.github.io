@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-15 (**Books 1–4 of the new reader campaign are COMPLETE and PUBLISHED LIVE**: W. Bolton *Control Systems* 7/7 — 247 figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* 7/7 — 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets; CSIA *Working with an Integrator Guide* 9/9 — 35 figures; Crosby *Pressure Relief Valve Engineering Handbook* 8/8). **Book 5 has started**: Anna-Mari Heikkilä, *Inherent Safety in Process Plant Design — An Index-Based Approach* (VTT Publications 384, 1999), Chapters 1–3 live at **3/16** — see Sessions 64–66 below. · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-15 (**Books 1–4 of the new reader campaign are COMPLETE and PUBLISHED LIVE**: W. Bolton *Control Systems* 7/7 — 247 figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* 7/7 — 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets; CSIA *Working with an Integrator Guide* 9/9 — 35 figures; Crosby *Pressure Relief Valve Engineering Handbook* 8/8). **Book 5 has started**: Anna-Mari Heikkilä, *Inherent Safety in Process Plant Design — An Index-Based Approach* (VTT Publications 384, 1999), Chapters 1–4 live at **4/16** — see Sessions 64–67 below. · **Live site:** https://pro-instcontrol.github.io/
 
 > **New book campaign (from `work/book_tiers.md`, EN → VI only, NO Spanish).** Book 1 =
 > Bolton *Control Systems* is COMPLETE and live at `/books/read/control-systems-bolton/`
@@ -4881,6 +4881,52 @@ building Book 2.
   localized captions, 0 CJK, 0 Python artifacts, nav Ch2 ↔ Ch3 correct. `make_sitemap.py`
   **914 URLs** (899 with language siblings); `check_links.py` **916 pages / 28,018 refs /
   broken 0**.
-- **Remaining: Book 5 Chapters 4–16.** Chapter 4 "Some Safety Analysis Methods for Process
-  Plant Design" (pp. 19–24) has four subsections: Dow Fire & Explosion Index (p. 20), Mond
-  Index (p. 21), Hazop (p. 22), PIIS (p. 23), followed by Chapter 5 (p. 25).
+- **Remaining at that point: Book 5 Chapters 4–16.** Chapter 4 "Some Safety Analysis
+  Methods for Process Plant Design" (pp. 19–24) has four subsections: Dow Fire & Explosion
+  Index (p. 20), Mond Index (p. 21), Hazop (p. 22), PIIS (p. 23), followed by Chapter 5
+  (p. 25).
+
+## Session 67 — Book 5 Chapter 4 (*Some Safety Analysis Methods*) published (4/16)
+- **Chapter 4** (pp. 19–24) built as `build/isd_ch04.py`, bilingual VI/EN, ~25.7/26.6 kB —
+  seven h2 sections + one h3, two editorial vector figures, two tables. Coverage: methods
+  differ in information requirements and results, so each fits a different stage (Fig. 3);
+  Dow F&E Index (DOW 1987) and Mond Index (ICI 1985) are rapid fire/explosion rating tools
+  best suited to **later** design stages; conventional Hazop needs complete P&IDs while
+  Kletz's flowsheet Hazop is usable early but rarely used; PIIS (Edwards & Lawrence 1993)
+  is the more usable preliminary method for selecting safe process routes. The five other
+  preliminary methods (CSR, CE, CHA, PCA, PHA — Wells et al. 1993) are described with their
+  purpose and timing. Full §4.1 Dow (three purposes, F&EI = UHF × MF, MF worst-case energy
+  release from flammability/reactivity, per-unit MF, general and special process hazard
+  lists, Dow Classification Guide), §4.2 Mond (five Lees 1996 modifications incl. toxicity,
+  separating barriers → plant layout, initial → intermediate → offset indices), §4.3 Hazop
+  (vessel-to-vessel / pipe-to-pipe, guide words, expertise, Kletz 1991 line-diagram vs
+  flowsheet Hazop, IEC 61882 1999 life-cycle recommendation, "comes too late for major
+  changes"), §4.4 PIIS (route choice, reaction-oriented bias, total = chemical + process
+  score, range-based scoring, Hendershot 1997 built-in-judgement criticism, Kepner-Tregoe,
+  advantage in early design).
+- **Table 1 (p. 24) reproduced faithfully** as a two-column HTML table with all four
+  methods and their full element lists; a second bilingual table covers the five
+  preliminary methods. **Editorial note:** §4.3 prose names five guide words while Table 1
+  lists eight groups — both kept in their original places rather than merged.
+- **Chapter 4 has NO figures in the source.** Two new `isdfig.py` schematics are explicitly
+  labelled editorial in both captions and in the page text:
+  - `fig_c04_stages()` — `Sơ đồ B` / `Figure B`: early-stage group (CSR/CE/CHA/PCA/PHA,
+    PIIS, rarely-used flowsheet Hazop) vs later-stage group (Dow, Mond, conventional Hazop).
+  - `fig_c04_indices()` — `Sơ đồ C` / `Figure C`: Dow `F&EI = MF × UHF = MF × GPH × SPH`
+    and PIIS `total = chemical score + process score`.
+  - Fixed XML validity: `_txt`/`_box` do not escape text, so every `&` in SVG labels must
+    be wrapped with `esc()` (P&ID, F&E, Edwards & Lawrence); captions use `&amp;`.
+- TOC label corrected to the source wording: `BOOKS["isd"]["chapters"][4]` now
+  "Some Safety Analysis Methods for Process Plant Design" / "Một số phương pháp phân tích
+  an toàn trong thiết kế nhà máy quá trình".
+- Registration: `SLUGS["isd"][4] = "ch04-safety-analysis-methods"`; `done` 1–4;
+  `books_site.py` `TRANSLATED` → `("progress", 16, 4)`. Ch3 rebuilt for the `Chapter 4 →`
+  link; Ch4 links back to Ch3. Book TOC 16 rows / 4 done /
+  "4 of 16 chapters, 25% complete". Also fixed a bare `&` in the Ch3 editorial note.
+- QA: Ch4 pages 3 XML-valid SVGs each (shell icon + 2 figures), unique `fig-1`/`fig-2`,
+  localized captions, 0 CJK, 0 Python artifacts, 0 content-level bare ampersands, nav
+  Ch3 ↔ Ch4 correct. `make_sitemap.py` **916 URLs** (901 with language siblings);
+  `check_links.py` **918 pages / 28,068 refs / broken 0**.
+- **Remaining: Book 5 Chapters 5–16.** Chapter 5 "Limitations of the Existing Safety
+  Analysis Methods in Conceptual Process Design" starts on p. 25 and runs to p. 30
+  (Chapter 6 "Inherent Safety" starts p. 31).
