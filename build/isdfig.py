@@ -17,8 +17,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
 from vfig import (BLUE, GOLD, GREY, GREEN, INK, PAPER, RED,  # noqa: E402
-                  _arrow, _axes, _box, _circle, _defs, _f as fmt, _fig, _line,
-                  _path, _poly, _rect, _txt, svg)
+                  _arrow, _axes, _box, _circle, _curve, _defs, _f as fmt,
+                  _fig, _line, _path, _poly, _rect, _txt, svg)
 
 
 def esc(s):
@@ -372,6 +372,105 @@ def fig_c04_indices():
                 "Structure diagram of the Dow fire and explosion index and the PIIS total score")
 
 
+def fig_c05_curves():
+    """Editorial schematic (Ch. 5): information grows, cheap safety leverage shrinks.
+
+    Drawn from the prose on pp. 25–26 — in predesign, information is scarce but
+    changes for safety are most profitable because nothing has been built or
+    ordered yet; index methods (ISI / PIIS) have low information requirements.
+    """
+    w, h = 680, 320
+    o = [_defs()]
+    x0, y0, W, H = 72, 44, 556, 196
+    # the predesign window
+    o.append(_rect(x0 + 0.11 * W, y0, 0.20 * W, H, fill="#eaf6ee", sw=0))
+    o.append(_txt(x0 + 0.21 * W, y0 + 16,
+                  esc("Cửa sổ ISI / PIIS · predesign window"), 7.6, color=GREEN))
+
+    info = lambda t: 0.05 + 0.90 / (1.0 + math.exp(-9.0 * (t - 0.52)))
+    lever = lambda t: 0.95 - 0.88 * (t ** 0.85)
+    o.append(_curve(info, x0, y0, W, H, sw=2.2, color=BLUE))
+    o.append(_curve(lever, x0, y0, W, H, sw=2.2, color=RED))
+    o.append(_axes(x0, y0, W, H,
+                   esc("Tiến độ thiết kế / design progress →"),
+                   esc("Mức tương đối / relative level"),
+                   xt=[(0.0, esc("R&D")), (0.21, "Predesign"), (0.46, "Basic eng."),
+                       (0.72, "Detailed eng."), (1.0, "Operation")],
+                   yt=[(0.0, "0"), (1.0, "1")]))
+    o.append(_txt(x0 + 0.64 * W, y0 + 44, "Thông tin có sẵn / information available",
+                  8.0, color=BLUE))
+    o.append(_txt(x0 + 0.07 * W, y0 + 42, "Thay đổi an toàn còn rẻ / cheap safety changes",
+                  8.0, anchor="start", color=RED))
+    o.append(_txt(x0 + 0.21 * W, y0 + 176,
+                  "Ít dữ liệu nhưng ảnh hưởng lớn nhất", 7.6, color=GREEN))
+    o.append(_line(x0 + 0.60 * W, 270, x0 + 0.60 * W + 26, 270, sw=2.2, color=BLUE))
+    o.append(_txt(x0 + 0.60 * W + 32, 273, "information", 7.8, anchor="start"))
+    o.append(_line(x0 + 0.78 * W, 270, x0 + 0.78 * W + 26, 270, sw=2.2, color=RED))
+    o.append(_txt(x0 + 0.78 * W + 32, 273, "leverage", 7.8, anchor="start"))
+    o.append(_txt(340, 302,
+                  "Sơ đồ biên tập theo văn bản tr. 25–26 · không có hình tương ứng trong nguyên bản",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Editorial curves: process information rises while cheap safety leverage falls"))
+    return _fig(s,
+                "Sơ đồ D · Thông tin về quá trình tăng dần theo tiến độ thiết kế, trong khi "
+                "khả năng thay đổi thiết kế vì an toàn với chi phí thấp giảm dần. Vùng thiết "
+                "kế sơ bộ là nơi ít dữ liệu nhưng có ảnh hưởng lớn nhất — chính là cửa sổ của "
+                "các chỉ số ISI / PIIS. Sơ đồ biên tập theo tr. 25–26, không có trong nguyên bản.",
+                "Figure D · Process information grows with design progress while the ability "
+                "to make cheap safety changes shrinks. The predesign window has the least data "
+                "but the greatest leverage — the niche of the ISI / PIIS index methods. "
+                "Editorial schematic after pp. 25–26; not present in the original.",
+                "Hai đường cong biểu diễn thông tin tăng và khả năng thay đổi giảm theo tiến độ thiết kế",
+                "Two curves showing rising process information and falling safety-change leverage")
+
+
+def fig_c05_gap():
+    """Editorial schematic (Ch. 5): the information gap between Tables 2 and 3."""
+    w, h = 680, 296
+    o = [_defs()]
+    o.append(_rect(22, 38, 306, 184, fill="#eaf6ee", sw=1.0))
+    o.append(_rect(352, 38, 306, 184, fill="#fdf3e6", sw=1.0))
+    o.append(_txt(175, 58, esc("Thiết kế sơ bộ: thông tin CÓ"), 9.2, weight="600"))
+    o.append(_txt(175, 72, "Predesign · information AVAILABLE (p. 25, Table 2)",
+                  7.4, color=GREY))
+    o.append(_txt(505, 58, esc("Dow / Mond / Hazop: thông tin CẦN"), 9.2, weight="600"))
+    o.append(_txt(505, 72, "Detailed methods · information REQUIRED (Table 3)",
+                  7.4, color=GREY))
+    left = ["Nguyên liệu / raw materials", "Sản phẩm / products",
+            "Phụ phẩm / by-products", "Công suất sơ bộ / rough capacity",
+            "Các pha chính / main process phases", "Khoảng T, p / rough T and p range"]
+    right = ["Mặt bằng / plot plan", "Sơ đồ dòng / flow sheet",
+             esc("P&ID / sơ đồ đường ống"), "Loại thiết bị / equipment types",
+             "Điều kiện vận hành / operating data", "Đội phân tích / expert team"]
+    for i, lab in enumerate(left):
+        o.append(_box(36, 86 + i * 22, 278, 19, esc(lab),
+                      fill="#ffffff", sw=0.6, size=7.2))
+    for i, lab in enumerate(right):
+        o.append(_box(366, 86 + i * 22, 278, 19, lab,
+                      fill="#ffffff", sw=0.6, size=7.2))
+    o.append(_line(340, 40, 340, 220, sw=1.0, dash="4 4", color=GREY))
+    o.append(_txt(340, 234, esc("Khoảng trống / the gap"), 8.2, color=GREY))
+    o.append(_box(190, 246, 300, 32, esc("ISI / PIIS: 7 thông số, không cần sơ đồ"),
+                  fill="#e6f1fb", sw=1.2, size=8.4))
+    o.append(_txt(340, 290,
+                  "Sơ đồ biên tập so sánh Bảng 2 và Bảng 3 · không có hình tương ứng trong nguyên bản",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Editorial schematic of the information gap between Tables 2 and 3"))
+    return _fig(s,
+                "Sơ đồ E · So sánh thông tin có được ở thiết kế sơ bộ (Bảng 2, tr. 27–28) với "
+                "thông tin mà Dow, Mond và Hazop đòi hỏi (Bảng 3, tr. 29–30): khoảng trống "
+                "được lấp bằng các chỉ số ISI / PIIS chỉ cần bảy thông số. Sơ đồ biên tập, "
+                "không có trong nguyên bản.",
+                "Figure E · Information available in predesign (Table 2, pp. 27–28) versus "
+                "the information demanded by Dow, Mond and Hazop (Table 3, pp. 29–30): the "
+                "gap is filled by the ISI / PIIS indices, which need only seven parameters. "
+                "Editorial schematic; not present in the original.",
+                "Hai cột so sánh thông tin sẵn có và thông tin cần thiết của các phương pháp",
+                "Two-column comparison of available predesign data versus detailed-method requirements")
+
+
 FIGS = {
     "isd_intro": fig_isd_intro,
     "f01": fig_f01,
@@ -379,4 +478,6 @@ FIGS = {
     "f03": fig_f03,
     "c04_stages": fig_c04_stages,
     "c04_indices": fig_c04_indices,
+    "c05_curves": fig_c05_curves,
+    "c05_gap": fig_c05_gap,
 }

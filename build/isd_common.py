@@ -34,6 +34,7 @@ SLUGS["isd"] = {
     2: "ch02-safety",
     3: "ch03-evaluation-of-safety",
     4: "ch04-safety-analysis-methods",
+    5: "ch05-limitations-of-existing-methods",
 }
 
 # Re-export the shared helpers so chapter modules can `import isd_common as C`.

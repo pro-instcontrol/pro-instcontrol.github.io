@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-15 (**Books 1–4 of the new reader campaign are COMPLETE and PUBLISHED LIVE**: W. Bolton *Control Systems* 7/7 — 247 figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* 7/7 — 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets; CSIA *Working with an Integrator Guide* 9/9 — 35 figures; Crosby *Pressure Relief Valve Engineering Handbook* 8/8). **Book 5 has started**: Anna-Mari Heikkilä, *Inherent Safety in Process Plant Design — An Index-Based Approach* (VTT Publications 384, 1999), Chapters 1–4 live at **4/16** — see Sessions 64–67 below. · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-15 (**Books 1–4 of the new reader campaign are COMPLETE and PUBLISHED LIVE**: W. Bolton *Control Systems* 7/7 — 247 figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* 7/7 — 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets; CSIA *Working with an Integrator Guide* 9/9 — 35 figures; Crosby *Pressure Relief Valve Engineering Handbook* 8/8). **Book 5 has started**: Anna-Mari Heikkilä, *Inherent Safety in Process Plant Design — An Index-Based Approach* (VTT Publications 384, 1999), Chapters 1–5 live at **5/16** — see Sessions 64–68 below. · **Live site:** https://pro-instcontrol.github.io/
 
 > **New book campaign (from `work/book_tiers.md`, EN → VI only, NO Spanish).** Book 1 =
 > Bolton *Control Systems* is COMPLETE and live at `/books/read/control-systems-bolton/`
@@ -4930,3 +4930,56 @@ building Book 2.
 - **Remaining: Book 5 Chapters 5–16.** Chapter 5 "Limitations of the Existing Safety
   Analysis Methods in Conceptual Process Design" starts on p. 25 and runs to p. 30
   (Chapter 6 "Inherent Safety" starts p. 31).
+
+## Session 68 — Book 5 Chapter 5 (*Limitations of Existing Methods*) published (5/16)
+- **Chapter 5** (pp. 25–30) built as `build/isd_ch05.py`, bilingual VI/EN, ~25.4/25.1 kB —
+  six h2 sections + one h3, two editorial vector figures, two full source tables, three
+  editorial notes. Coverage: absence of process details complicates safety considerations;
+  knowledge grows with design progress; methods need different amounts of information and
+  therefore fit different stages (Fig. 3); quantitative methods are usable only from the
+  pilot-plant phase (Koivisto 1996); What-if / checklists / Hazop demand knowledge,
+  experience and flexibility and no prescriptive set of questions, key words or lists
+  covers all processes, hazards and impacted populations (Bollinger et al. 1996);
+  refinement of quantitative measurement (safety indices) and convergence on a single
+  accepted set of indices would be beneficial. Dow, Mond and Hazop cover chemical-plant
+  risks well but need too much detail to run in full mode early in design; predesign
+  information is limited to raw materials, products, by-products, rough capacity, main
+  process phases and rough T/p ranges — yet this is where safety changes are most
+  profitable because nothing has been built or ordered. Comparing Tables 2 and 3 shows
+  PIIS (Ch. 4) and ISI (Ch. 8) are the most suitable predesign methods because they were
+  developed for situations where much process data is still missing.
+- **Table 2 (pp. 27–28) reproduced faithfully** as a four-column HTML table (Design stage /
+  Documents produced / Information produced / Some suitable safety analyses) with all seven
+  stage rows and every bullet item. The printed table breaks across the page: the
+  continuation row at the top of p. 28 (`instruments etc.; operating instructions;
+  preliminary layout`) belongs to *Basic engineering* and is folded into that row.
+  The source's duplicated `preliminary layout` in both the documents and information
+  columns of that row is kept and documented in an editorial note.
+- **Table 3 (pp. 29–30) reproduced faithfully** as a three-column table (Chemical
+  requirements / Process and equipment requirements / Other requirements) with four
+  method-name band rows rendered via `colspan=3` group rows: Dow F&EI (Dow 1987),
+  Mond Index (Lees 1996), PIIS (Edwards and Lawrence 1993), Hazop (Kletz 1992).
+  The *Other requirements* column is blank for Dow, Mond and PIIS in the source —
+  marked explicitly rather than filled in. The Mond row is split by the page break
+  (`physical changes; toxicity; layout distances` on p. 30) and merged here.
+- **Chapter 5 has NO figures in the source.** Two new `isdfig.py` schematics are explicitly
+  labelled editorial in both captions and in the page text:
+  - `fig_c05_curves()` — `Sơ đồ D` / `Figure D`: process information rises (sigmoid) while
+    cheap safety-change leverage falls as design progresses, with the predesign ISI/PIIS
+    window shaded.
+  - `fig_c05_gap()` — `Sơ đồ E` / `Figure E`: two columns contrasting information
+    available in predesign (Table 2) with information demanded by Dow/Mond/Hazop
+    (Table 3), bridged by the low-parameter ISI/PIIS indices.
+  - Fixed two defects in the landing Chapter 5 figure code: `_curve` was referenced but
+    not imported from `vfig`, and the `R&D` axis tick label had a bare `&`. All eight
+    `isdfig.FIGS` entries revalidated with `ElementTree.fromstring()`.
+- Registration: `SLUGS["isd"][5] = "ch05-limitations-of-existing-methods"`; `done` 1–5;
+  `books_site.py` `TRANSLATED` → `("progress", 16, 5)` for both the long title key and
+  `"p384"`. Ch4 rebuilt for the `Chapter 5 →` link; Ch5 links back to Ch4. Book TOC
+  16 rows / 5 done / "5 of 16 chapters".
+- QA: Ch5 pages 2 XML-valid figure SVGs each, unique `fig-1`/`fig-2`, localized
+  `Sơ đồ D/E` vs `Figure D/E` captions, 2 tables, 0 CJK, 0 Python artifacts, 0
+  content-level bare ampersands (the 2 remaining are the shared Google-Fonts URL in
+  `<head>`, present on every page), nav Ch4 ↔ Ch5 correct. `make_sitemap.py` **918 URLs**
+  (903 with language siblings); `check_links.py` **920 pages / 28,118 refs / broken 0**.
+- **Remaining: Book 5 Chapters 6–16.** Chapter 6 "Inherent Safety" starts p. 31.

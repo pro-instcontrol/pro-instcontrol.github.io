@@ -456,8 +456,8 @@ TRANSLATED = {
     "standard isa - instrumentation symbols and identification": ("full", 7, 7),
     "working with an integrator guide": ("full", 9, 9),
     "pressure relief valve engineering handbook": ("full", 8, 8),
-    "inherent safety in process plant design": ("progress", 16, 4),
-    "p384": ("progress", 16, 4),
+    "inherent safety in process plant design": ("progress", 16, 5),
+    "p384": ("progress", 16, 5),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
