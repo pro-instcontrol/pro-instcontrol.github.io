@@ -471,6 +471,122 @@ def fig_c05_gap():
                 "Two-column comparison of available predesign data versus detailed-method requirements")
 
 
+def fig_c06_kletz():
+    """Redraw of source Figure 4 (p. 36, Kletz 1991): inherently safer features
+    become harder to install as a project progresses."""
+    w, h = 640, 300
+    o = [_defs()]
+    x0, y0, W, H = 70, 40, 530, 180        # plot box: x 70..600, y 40..220
+    stages = ["Conceptual\nThiết kế khái niệm", "Flowsheet\nSơ đồ dòng",
+              "P&ID", "Detailed design\nThiết kế chi tiết",
+              "Construction\nThi công", "Start up\nKhởi động",
+              "Operation\nVận hành"]
+    n = len(stages)
+    # the original shows a broad wedge: wide (high opportunity) at the left,
+    # narrowing to almost nothing at the right
+    top = [(x0 + W * (i + 0.5) / n, y0 + H * 0.06 + 78 * math.exp(-0.55 * i))
+           for i in range(n)]
+    bot = [(x0 + W * (i + 0.5) / n, y0 + H - 8 - 62 * math.exp(-0.72 * i))
+           for i in range(n)]
+    o.append(_poly(top + bot[::-1], fill="#e8eff8", sw=0, close=True))
+    # opportunity curve down the middle of the wedge
+    mid = [(x0 + W * (i + 0.5) / n, (top[i][1] + bot[i][1]) / 2.0)
+           for i in range(n)]
+    o.append(_poly(mid, fill="none", sw=2.0, color=BLUE))
+    for pnt in mid:
+        o.append(_circle(pnt[0], pnt[1], 3, fill=BLUE, sw=0, color=BLUE))
+    # baseline
+    o.append(_line(x0, y0 + H, x0 + W + 10, y0 + H, sw=1.0, color=INK))
+    # stage labels, alternating rows to avoid collisions
+    for i, s in enumerate(stages):
+        px = x0 + W * (i + 0.5) / n
+        lines = s.split("\n")
+        line1 = lines[0]
+        line2 = lines[1] if len(lines) > 1 else ""
+        yy = y0 + H + 16 if i % 2 == 0 else y0 + H + 40
+        o.append(_txt(px, yy, esc(line1), 8.0, color=INK))
+        if line2:
+            o.append(_txt(px, yy + 12, line2, 7.0, color=GREY))
+    o.append(_txt(x0 + W / 2.0, y0 - 12,
+                  "Cơ hội áp dụng đặc tính an toàn nội tại · Opportunities for installing "
+                  "inherently safer features", 8.2, color=GREY))
+    # right-side annotation: cheaper early / expensive late
+    o.append(_txt(x0 + 58, y0 + 28, "Dễ · rẻ", 8.4, color=GREEN, weight="600"))
+    o.append(_txt(x0 + 58, y0 + 40, "easy, cheap", 7.0, color=GREY))
+    o.append(_txt(x0 + W - 4, y0 + H - 16, "Khó · đắt", 8.4, anchor="end",
+                  color=RED, weight="600"))
+    o.append(_txt(x0 + W - 4, y0 + H - 5, "hard, costly", 7.0, anchor="end", color=GREY))
+    o.append(_txt(x0 + W / 2.0, h - 8,
+                  "Vẽ lại theo Hình 4 (tr. 36) — Kletz (1991)", 7.4, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Inherently safer features become harder to install as a project progresses"))
+    return _fig(s,
+                "Hình 4 · Cơ hội áp dụng các đặc tính an toàn nội tại giảm dần theo tiến độ "
+                "dự án: dễ và rẻ ở thiết kế khái niệm, gần như không còn ở vận hành. "
+                "Vẽ lại theo Hình 4 của Kletz (1991), tr. 36.",
+                "Figure 4 · Opportunities for installing inherently safer features decline as "
+                "the project progresses: easy and cheap at the conceptual stage, almost "
+                "exhausted by the operating stage. Redrawn after Figure 4 in Kletz (1991), p. 36.",
+                "Đồ thị cơ hội áp dụng an toàn nội tại giảm dần qua bảy giai đoạn dự án",
+                "Declining opportunity for installing inherently safer features across seven project stages")
+
+
+def fig_c06_principles():
+    """Editorial schematic: Kletz's principles of inherent safety grouped into
+    three tiers — avoid, moderate, simplify/control. Not present in the source."""
+    w, h = 640, 330
+    o = [_defs()]
+    # tier 1 — eliminate the hazard
+    o.append(_box(60, 30, 250, 64,
+                  "Loại bỏ mối nguy · Eliminate\nIntensification — thứ bạn không có, "
+                  "sẽ không rò rỉ\nSubstitution — thay vật liệu/nguyên liệu",
+                  fill="#eaf6ee", sw=1.3, size=8.2))
+    # tier 2 — moderate
+    o.append(_box(60, 110, 250, 52,
+                  "Làm dịu · Moderate\nAttenuation — điều kiện/reactant dịu hơn\n"
+                  "Limitation of effects — giới hạn hệ quả",
+                  fill="#eef3fb", sw=1.2, size=8.2))
+    # tier 3 — simplify and control
+    o.append(_box(60, 178, 250, 64,
+                  "Đơn giản hóa · Simplify\nSimplification — ít lỗi hơn, thiết bị ít hơn\n"
+                  "Ease of control — điều khiển bằng nguyên lý vật lý\n"
+                  "Tolerance — chịu được vận hành sai",
+                  fill="#fdf3e6", sw=1.2, size=8.2))
+    # right column — practices
+    o.append(_box(360, 30, 230, 118,
+                  "Nguyên tắc hỗ trợ · Supporting\nChange Early — nhận diện mối nguy sớm\n"
+                  "Avoiding knock-on effects — vách chống cháy\n"
+                  "Making status clear — dễ nhận biết trạng thái\n"
+                  "Incorrect assembly impossible\nAdministrative controls",
+                  fill="#f6f2ec", sw=1.2, size=8.2))
+    o.append(_rect(360, 168, 230, 74, fill="#ffffff", sw=1.0, dash="3 2"))
+    o.append(_txt(475, 186, "Chọn thời điểm · Timing", 8.2, weight="600"))
+    o.append(_txt(475, 202, "Áp dụng tốt nhất ở thiết kế khái niệm —", 8.0))
+    o.append(_txt(475, 216, "khi còn chọn lộ trình quá trình", 8.0))
+    o.append(_txt(475, 230, "(xem Figure 4: cơ hội giảm dần)", 7.4, color=GREY))
+    # arrows between tiers
+    o.append(_arrow(185, 94, 185, 108, sw=1.2, color=GREY, head="a6"))
+    o.append(_arrow(185, 162, 185, 176, sw=1.2, color=GREY, head="a6"))
+    o.append(_line(318, 76, 360, 76, sw=1.0, dash="3 2", color=GREY))
+    o.append(_txt(320, 276,
+                  "Sơ đồ biên tập theo 12 nguyên tắc của Kletz (1984, 1991) trình bày trong "
+                  "mục 6.1 — không có trong nguyên bản",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Editorial schematic: Kletz's principles of inherent safety grouped in tiers"))
+    return _fig(s,
+                "Sơ đồ A · Ba tầng nguyên tắc an toàn nội tại theo Kletz: loại bỏ mối nguy "
+                "(cường tập hóa, thay thế), làm dịu (suy yếu, giới hạn hệ quả), đơn giản hóa "
+                "và điều khiển; bên phải là các nguyên tắc hỗ trợ. Sơ đồ biên tập theo mục 6.1 "
+                "— không có trong nguyên bản.",
+                "Figure A · Three tiers of Kletz's inherent-safety principles: eliminate the "
+                "hazard (intensification, substitution), moderate (attenuation, limitation of "
+                "effects), simplify and control; supporting principles at right. Editorial "
+                "schematic after Section 6.1 — not present in the original.",
+                "Sơ đồ phân tầng các nguyên tắc an toàn nội tại của Kletz",
+                "Tiered schematic of Kletz's inherent safety principles")
+
+
 FIGS = {
     "isd_intro": fig_isd_intro,
     "f01": fig_f01,
@@ -480,4 +596,6 @@ FIGS = {
     "c04_indices": fig_c04_indices,
     "c05_curves": fig_c05_curves,
     "c05_gap": fig_c05_gap,
+    "c06_kletz": fig_c06_kletz,
+    "c06_principles": fig_c06_principles,
 }
