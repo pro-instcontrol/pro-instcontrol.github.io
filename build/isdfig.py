@@ -75,6 +75,59 @@ def fig_isd_intro():
                 "Hierarchy diagram splitting the Inherent Safety Index into chemical and process subindices")
 
 
+def fig_f01():
+    """Figure 1 (p. 15) — Kletz's methods of identifying / assessing hazards.
+
+    The source figure's labels have no Unicode text layer (they are PDF glyph
+    names), so the wording below was recovered by decoding those glyph codes
+    and cross-checking against a render of p. 15.  Source labels are kept
+    verbatim in English; the chapter supplies a Vietnamese gloss in a table.
+    """
+    w, h = 680, 300
+    o = [_defs()]
+
+    # column headings
+    o.append(_txt(168, 30, "Methods of identifying hazards", 10.2, weight="600"))
+    o.append(_txt(512, 30, "Methods of assessing hazards", 10.2, weight="600"))
+    o.append(_rect(16, 42, 304, 1.1, fill="#d8dde3", sw=0))
+    o.append(_rect(360, 42, 304, 1.1, fill="#d8dde3", sw=0))
+
+    # eight source labels, top to bottom in each column
+    left = ["Obvious", "See what happens", "Check list", "Hazop"]
+    right = ["Obvious", "Experience", "Codes of practice",
+             "Hazard analysis (Hazan)"]
+    rows = [92, 136, 180, 224]
+
+    # central box
+    bx, by, bw, bh = 285, 140, 110, 38
+    o.append(_rect(bx, by, bw, bh, fill="#fdf3e6", sw=1.6))
+    o.append(_txt(bx + bw / 2, by + bh / 2 + 4.2, "HAZARDS", 11.4, weight="600"))
+
+    # fan of lines: from the box outwards, arrowheads at the outer ends
+    attach = [147, 154, 164, 171]
+    for i, y in enumerate(rows):
+        o.append(_arrow(bx, attach[i], 196, y, sw=1.0, color=INK, head="a7"))
+        o.append(_arrow(bx + bw, attach[i], 484, y, sw=1.0, color=INK, head="a7"))
+        o.append(_txt(16, y + 3.2, left[i], 9.2, anchor="start"))
+        o.append(_txt(496, y + 3.2, right[i], 9.2, anchor="start"))
+
+    o.append(_txt(340, 276,
+                  "Nhãn giữ nguyên theo nguyên bản · Source labels kept verbatim",
+                  7.6, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Methods of identifying and assessing hazards (Kletz, 1992a)"))
+    return _fig(s,
+                "Hình 1 · Các phương pháp nhận diện mối nguy (trái) và đánh giá mối nguy "
+                "(phải) tỏa ra từ mối nguy trung tâm, theo Kletz (1992a). Vẽ lại từ nguyên bản, "
+                "tr. 15.",
+                "Figure 1 · Methods of identifying hazards (left) and assessing hazards "
+                "(right) radiating from the central hazard, after Kletz (1992a). Redrawn "
+                "from the original, p. 15.",
+                "Sơ đồ hình quạt gồm bốn phương pháp nhận diện và bốn phương pháp đánh giá mối nguy",
+                "Fan diagram with four hazard-identification and four hazard-assessment methods")
+
+
 FIGS = {
     "isd_intro": fig_isd_intro,
+    "f01": fig_f01,
 }

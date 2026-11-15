@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-15 (**Books 1–4 of the new reader campaign are COMPLETE and PUBLISHED LIVE**: W. Bolton *Control Systems* 7/7 — 247 figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* 7/7 — 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets; CSIA *Working with an Integrator Guide* 9/9 — 35 figures; Crosby *Pressure Relief Valve Engineering Handbook* 8/8). **Book 5 has started**: Anna-Mari Heikkilä, *Inherent Safety in Process Plant Design — An Index-Based Approach* (VTT Publications 384, 1999), Chapter 1 live at **1/16** — see Session 64 below. · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-15 (**Books 1–4 of the new reader campaign are COMPLETE and PUBLISHED LIVE**: W. Bolton *Control Systems* 7/7 — 247 figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* 7/7 — 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets; CSIA *Working with an Integrator Guide* 9/9 — 35 figures; Crosby *Pressure Relief Valve Engineering Handbook* 8/8). **Book 5 has started**: Anna-Mari Heikkilä, *Inherent Safety in Process Plant Design — An Index-Based Approach* (VTT Publications 384, 1999), Chapters 1–2 live at **2/16** — see Sessions 64–65 below. · **Live site:** https://pro-instcontrol.github.io/
 
 > **New book campaign (from `work/book_tiers.md`, EN → VI only, NO Spanish).** Book 1 =
 > Bolton *Control Systems* is COMPLETE and live at `/books/read/control-systems-bolton/`
@@ -4780,13 +4780,53 @@ building Book 2.
 - **QA:** both Ch1 pages — 2 SVGs per page (shell icon + Figure A), both XML-valid, one unique
   `id="fig-1"`, captions localized (`Sơ đồ A …` / `Figure A …`), bilingual h2 headings, no stray
   CJK, no `nan`/`None` artifacts (the one EN `nan` is inside "maintenance"), no Chapter 2 link
-  (incremental nav). Book TOC: 16 rows, 1 done, "🟠 Translating · 1 of 16 chapters, 6% complete".
+  at the time (incremental nav; Ch2 was wired in Session 65). Book TOC: 16 rows, 1 done,
+  "🟠 Translating · 1 of 16 chapters, 6% complete".
   `make_sitemap.py` **910 URLs** (895 with language siblings); `check_links.py` **912 pages /
   27,918 refs / broken 0**.
 - **Push reminder:** PortableGit's system config injects `credential.helper=manager` (GCM) which
   hangs on an invisible interactive prompt. Always push with
   `GIT_TERMINAL_PROMPT=0 GCM_INTERACTIVE=never git -c credential.helper= -c credential.helper=store push --progress origin main`.
-- **Remaining: Book 5 Chapters 2–16.** For each: add slug to `SLUGS["isd"]`, add to
-  `BOOKS["isd"]["done"]`, bump `books_site.py` `TRANSLATED` progress (16, N), rebuild via
+- **Remaining at that point: Book 5 Chapters 2–16.** For each: add slug to `SLUGS["isd"]`,
+  add to `BOOKS["isd"]["done"]`, bump `books_site.py` `TRANSLATED` progress (16, N), rebuild via
   `python build/reader_isd.py N` + `python build/reader_book.py isd` + `books_site.py` +
   `make_sitemap.py` + `check_links.py`, then commit/push/live-verify.
+
+## Session 65 — Book 5 Chapter 2 (*Safety*) published (2/16)
+- **Chapter 2 — Safety** (pp. 14–15, the shortest unit of the book: one page of prose plus
+  Figure 1 on its own page) built as `build/isd_ch02.py`, bilingual VI/EN. Coverage:
+  Kharbanda & Stallworthy (1988) safety = hazard identification + risk assessment +
+  accident prevention, "safety should always come first" and good design / forethought at
+  less cost; risk = possibility of loss (Taylor 1994), risk awareness as a failure of
+  communication and mismanagement; Chartered Insurance Institute (1974) risk = mathematical
+  probability of a specified undesired event in specified circumstances or period; the five
+  loss categories (equipment damage, loss of production, environmental damage, injury,
+  death); the **two measurable parameters consequence and probability**, and why a unique
+  consequence of a sequence of events cannot be predicted; hazard = condition with the
+  potential of causing injury or damage (Heinrich 1968) with the five typical chemical-process
+  hazards; each hazard impacts overall process risk (Hendershot 1995); pursuit of safety =
+  identify / eliminate / protect; two hazards often needed simultaneously for a major
+  accident; and the closing thesis scope — minimize total process risk for the limitation
+  of effects, risk = probability × consequences, evaluated by inherent safety principles
+  (rendered as an explicitly editorial `R = P × C` equation, not a numbered source formula).
+- **Figure 1 (p. 15) redrawn faithfully** as `isdfig.fig_f01()`: the Kletz (1992a) fan diagram
+  with a central `HAZARDS` box and four outward-arrow methods on each side —
+  left `Obvious / See what happens / Check list / Hazop`, right `Obvious / Experience /
+  Codes of practice / Hazard analysis (Hazan)`. The source PDF stores that lettering only as
+  glyph names (`/G30/G48/G57/…`, ASCII hex shifted +0x1D), so the labels were recovered by
+  decoding the glyph codes and cross-checking against a `pypdfium2` render of p. 15; a
+  technical note in both chapter bodies documents this. Captions localized
+  (`Hình 1 …` / `Figure 1 …`) and marked as a redraw.
+- Two source-derived tables per language: the five loss categories and the eight Figure 1
+  labels (top-to-bottom order, with Vietnamese glosses; expressly **not** asserted as a
+  one-to-one mapping). Key terms for Ch2, source note, chapter summary, bilingual h2/h3
+  headings. VI/EN bodies ≈10.9/10.6 kB, 1 figure, 2 tables, 1 equation, 5 h2 + 1 h3 each,
+  0 CJK fragments, 0 Python artifacts.
+- Registration: `SLUGS["isd"][2] = "ch02-safety"`; `BOOKS["isd"]["done"]` now 1–2;
+  `books_site.py` `TRANSLATED` for both catalog keys → `("progress", 16, 2)`. Ch1 was
+  rebuilt so its nav gained the `Chapter 2 →` link; Ch2 links back to Ch1. Book TOC now
+  16 rows / 2 done / "2 of 16 chapters, 12% complete".
+- QA: all affected pages — SVGs XML-valid (2 per chapter page), unique `id="fig-1"` per page,
+  localized captions, 0 CJK, nav chain Ch1 ↔ Ch2 correct. `make_sitemap.py` **912 URLs**
+  (897 with language siblings); `check_links.py` **914 pages / 27,968 refs / broken 0**.
+- **Remaining: Book 5 Chapters 3–16.** Chapter 3 "Evaluation of Safety" starts on p. 16.

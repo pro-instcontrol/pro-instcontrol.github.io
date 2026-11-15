@@ -31,6 +31,7 @@ BOOK["isd"] = {
 # that exist, so an in-progress book never ships a broken "next" link.
 SLUGS["isd"] = {
     1: "ch01-introduction",
+    2: "ch02-safety",
 }
 
 # Re-export the shared helpers so chapter modules can `import isd_common as C`.
