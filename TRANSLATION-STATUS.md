@@ -4983,3 +4983,32 @@ building Book 2.
   `<head>`, present on every page), nav Ch4 ↔ Ch5 correct. `make_sitemap.py` **918 URLs**
   (903 with language siblings); `check_links.py` **920 pages / 28,118 refs / broken 0**.
 - **Remaining: Book 5 Chapters 6–16.** Chapter 6 "Inherent Safety" starts p. 31.
+
+## Session 69 — Book 5 Chapter 6 (*Inherent Safety*) published (6/16) — 2026-11-15
+
+- **Chapter 6 "An toàn nội tại / Inherent Safety" built and pushed live** (source pp. 31–38,
+  `PAGES_SRC=8`): essay introduction (Lees, Kletz, Flixborough 1974, Preston 1998,
+  Mansfield 1994 → Inherent SHE with SEVESO II / OSHA PSM / EMAS / ISO 14000 /
+  Responsible Care), §6.1 Kletz's **twelve principles** (intensification, substitution,
+  attenuation, limitation of effects, simplification, change early, knock-on effects,
+  status clear, incorrect assembly, tolerance, ease of control, administrative controls),
+  §6.2 preliminary design (declining opportunity for inherently safer features), §6.3
+  evaluation (What-If / critical examination / checklists / decision analysis / Dow–Mond /
+  PIIS / INSIDE-InSPIRE, closing note on the gap that motivates the ISI from Chapter 8).
+- **Figures:** source **Figure 4** (p. 36, Kletz 1991 — opportunities decline across the
+  seven project stages) redrawn as `isdfig.fig_c06_kletz()` vector (wedge + curve, VI/EN
+  stage labels); plus explicitly-labelled editorial `fig_c06_principles()` tier schematic
+  of §6.1 ("Sơ đồ A / Figure A — not in the original"). 2 figures per page.
+- **Fixed two isdfig defects while building:** `_box()` has no `dash=` kwarg (dashed box
+  rebuilt with `_rect(dash=…) + _txt`), and single-line stage labels crashed
+  `s.split("\n")` unpacking (now length-guarded).
+- Registration: `SLUGS["isd"][6] = "ch06-inherent-safety"`; `done` 1–6; `TRANSLATED`
+  → `("progress", 16, 6)`. TOC 16 rows / 6 done; nav Ch5 ↔ Ch6 correct.
+- QA: 2 `class="figure"` + 2 figcaptions per page, **0 Spanish markers** (EN + VI),
+  nav prev → ch05 + TOC links + language sibling verified.
+- Infra: sitemap **920 URLs**, `check_links.py` **922 pages / 28,168 refs / broken 0**.
+- Push: first three attempts SIGTERM'd (intermittent egress), succeeded on retry with
+  verbose trace — `d7780220..082b2de9 main -> main`. Commit `082b2de9`.
+- **HANDOFF.md rewritten** for the Book 5 continuation (Ch7–16 recipe, page→line spans,
+  isdfig gotchas, QA gates). Next: **Chapter 7 — Factors Selected to Represent the
+  Inherent Safety in Preliminary Process Design** (pp. 39–55, raw lines 1077–1679).
