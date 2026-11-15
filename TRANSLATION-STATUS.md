@@ -4710,3 +4710,26 @@ building Book 2.
 - QA: both pages 9 valid SVGs, 0 duplicate ids, 0 malformed SVGs, 0 unresolved refs, 0 real nan/None;
   site regen clean (sitemap 904 URLs, check_links broken 0).
 - **Remaining: Ch8 ASME Section VIII Appendix** (pp. 70–93) — final Book 4 chapter.
+
+## Session 63 — Book 4 COMPLETE: Chapter 8 built (8/8) 🟢
+- **Chapter 8 — Appendix: ASME Section VIII, Division 1 Excerpts** (pp. 70–93, pages A-1…A-19 +
+  Other Information) built as `prv_ch08.py` (bilingual VI/EN): condensed but complete coverage of
+  UG-125…UG-136 (10/16/21% overpressure allowances, set tolerances, rupture-disk/breaking-pin/
+  spring-loaded nonreclosing rules, K=0.62, marking, UG-130 Code Symbol, capacity certification
+  incl. the WT formulas and K = 0.90·K̄D ≤ 0.878, UG-131(h) 103%→110% multiplier, UG-133(g)
+  prorating), ASME Appendix 11 (conversion formulas + Examples 2–4, Fig. 11-1 C table, Table 11-1
+  molecular weights, 11-2 saturated-water rating) and ASME Appendix M (M-1…M-15 incl. 3% inlet
+  loss, 10% conventional-valve back-pressure limit, M-11 differential table, fire-sizing
+  references, gauge span), plus a brief Other Information section (warranty, spec sheet, ISO).
+- **4 new vector figures** in `prvfig.py`: f81 ASME UV Code Symbol Stamp (FIG. UG-129), f82
+  Fig. 11-1 C-vs-k curve (exact formula + tabulated points), f83 Fig. 11-2 reading-method
+  schematic (honest schematic — source graph data not in text layer), f84 UG-135/M-5/M-6
+  installation schematic with stop valves and telltale gauge. Plus 4 in-module tables
+  (breaking-pin tolerances, C table, molecular weights, M-11 differentials).
+- Fixed a stray CJK fragment in the VI UG-135 paragraph; QA: 0 CJK, 0 nan/None, 5 valid SVGs,
+  unique fig ids, captions localized (VI page Hình F8-*, EN page Figure F8-*).
+- Registered slug 8 (`ch08-asme-appendix`); reader_book done map 8/8 with completion ledes
+  rewritten ("translation is complete"); books_site TRANSLATED → ("full", 8, 8) — books listing
+  badge now 🟢 Fully translated. Nav rewired Ch7 ↔ Ch8; book TOC lists all 8 chapters.
+- Site regen: sitemap 906 URLs, check_links 908 pages / 27818 refs / broken 0.
+- **Book 4 (Crosby PRV Handbook) is now fully translated — all 8 chapters live.**

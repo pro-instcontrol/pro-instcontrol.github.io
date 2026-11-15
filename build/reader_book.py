@@ -431,7 +431,7 @@ BOOKS = {
         },
         "done": {1: "ch01-introduction", 2: "ch02-fundamentals", 3: "ch03-terminology",
                  4: "ch04-codes-standards", 5: "ch05-sizing-uscs", 6: "ch06-sizing-metric",
-                 7: "ch07-engineering-support"},
+                 7: "ch07-engineering-support", 8: "ch08-asme-appendix"},
         "copyright_en": ("Original handbook © 1997 Crosby Valve Inc. (an FMC Corporation "
                          "subsidiary), Technical Document TP-V300"),
         "copyright_vi": ("Bản gốc © 1997 Crosby Valve Inc. (công ty con của FMC Corporation), "
@@ -443,9 +443,9 @@ BOOKS = {
                     "valve diagram is redrawn as a vector."),
         "lede_done_en": ("Crosby's 93-page engineering handbook on pressure relief valves: design "
                          "fundamentals, terminology, the governing codes and standards, USCS and "
-                         "metric sizing equations, and a set of engineering-support charts. The "
-                         "Vietnamese translation is in progress — completed chapters link to their "
-                         "translation."),
+                         "metric sizing equations, engineering-support charts, and the ASME "
+                         "Section VIII excerpts. The Vietnamese translation is complete — all "
+                         "eight chapters link to their translation."),
         "lede_vi": ("Cẩm nang kỹ thuật 93 trang của Crosby về van xả áp lực: nguyên lý thiết kế, "
                     "thuật ngữ, các tiêu chuẩn và quy code chi phối, phương trình định cỡ theo "
                     "đơn vị USCS và hệ mét, cùng các biểu đồ hỗ trợ kỹ thuật. Bản dịch tiếng Việt "
@@ -453,8 +453,9 @@ BOOKS = {
                     "lại bằng vector."),
         "lede_done_vi": ("Cẩm nang kỹ thuật 93 trang của Crosby về van xả áp lực: nguyên lý thiết "
                          "kế, thuật ngữ, các tiêu chuẩn chi phối, phương trình định cỡ USCS và hệ "
-                         "mét, cùng các biểu đồ hỗ trợ kỹ thuật. Bản dịch tiếng Việt đang thực "
-                         "hiện — các chương đã hoàn tất có liên kết tới bản dịch."),
+                         "mét, các biểu đồ hỗ trợ kỹ thuật, cùng phần trích dẫn ASME Section VIII. "
+                         "Bản dịch tiếng Việt đã hoàn thành — cả tám chương đều có liên kết tới "
+                         "bản dịch."),
         "policy_en": ("<b>About this copy.</b> The source PDF is held in the local library "
                       "catalogue and is not republished here. This page is the online contents "
                       "map: what each chapter covers and which chapters already have a "

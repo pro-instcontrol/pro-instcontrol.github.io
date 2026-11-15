@@ -510,9 +510,173 @@ def fig_f713():
                 "Vessel selection diagram showing sphere and horizontal/vertical cylinders")
 
 
+# ------------------------------------------------------------------ Ch8 figs
+def fig_f81():
+    """FIG. UG-129 — the official ASME Code Symbol Stamp (UV)."""
+    w, h = 320, 330
+    cx, cy = 160, 150
+    o = [_defs()]
+    # stylised trefoil (cloverleaf) border behind the round stamp
+    for ang in (90, 210, 330):
+        a = math.radians(ang)
+        o.append(_circle(cx + 52 * math.cos(a), cy - 52 * math.sin(a), 34,
+                         fill="none", sw=1.3, color=GOLD))
+    o.append(_circle(cx, cy, 60, fill="#fdf3e6", sw=2.4, color=INK))
+    o.append(_circle(cx, cy, 44, fill="#fdf3e6", sw=1.2, color=INK))
+    o.append(_txt(cx, cy - 12, "ASME", 11, weight="bold"))
+    o.append(_txt(cx, cy + 24, "UV", 30, weight="bold"))
+    o.append(_txt(cx, cy + 106, "NB ______  (số hiệu National Board)", 7.5, color=GREY))
+    o.append(_txt(cx, h - 14,
+                  "Dấu Code áp lên van đã chứng nhận năng lực theo UG-130",
+                  7.2, color=INK))
+    s = svg(w, h, "".join(o), esc("ASME UV Code Symbol Stamp (FIG. UG-129)"))
+    return _fig(s,
+                "Hình F8-1 · Dấu Code ASME chính thức (Hình UG-129): ký hiệu UV trong khung ba lá, "
+                "kèm số hiệu National Board, được đóng lên van đã chứng nhận năng lực.",
+                "Figure F8-1 · The official ASME Code Symbol Stamp (FIG. UG-129): the UV symbol in a "
+                "trefoil border with its National Board number, applied to capacity-certified valves.",
+                "Sơ đồ dấu Code ASME ký hiệu UV theo Hình UG-129",
+                "Diagram of the ASME UV Code Symbol Stamp per FIG. UG-129")
+
+
+def fig_f82():
+    """Fig. 11-1 — constant C versus ratio of specific heats k (exact formula)."""
+    w, h = 520, 340
+    x0, y0, W, H = 62, 42, 408, 244
+
+    def cfac(k):
+        return 520.0 * math.sqrt(k * (2.0 / (k + 1.0)) ** ((k + 1.0) / (k - 1.0)))
+
+    o = [_chart(w, h, x0, y0, W, H, "RATIO OF SPECIFIC HEATS  k = cp/cv", "C")]
+    o.append(_axes(x0, y0, W, H, "", "",
+                   xt=[((1.0 + i * 0.2 - 1.0) / 1.2, "%.1f" % (1.0 + i * 0.2))
+                       for i in range(0, 7)],
+                   yt=[(0.0, "310"), (0.190, "330"), (0.381, "350"), (0.571, "370"),
+                       (0.762, "390"), (0.952, "410")]))
+    pts = [(k / 100.0, cfac(k / 100.0)) for k in range(101, 221)]
+    o.append(_mpl(pts, x0, y0, W, H, (1.0, 2.2), (310, 415), fill="none", sw=1.6, color=INK))
+    # tabulated points from Fig. 11-1 (red markers over the curve)
+    tab = [(1.00, 315), (1.20, 337), (1.40, 356), (1.50, 364), (1.60, 372),
+           (1.70, 380), (2.00, 400), (2.20, 412)]
+    for k, c in tab:
+        px = x0 + (k - 1.0) / 1.2 * W
+        py = y0 + H - (c - 310) / 105.0 * H
+        o.append(_circle(px, py, 3, fill=RED, sw=0.8, color=RED))
+    mx = x0 + (1.4 - 1.0) / 1.2 * W
+    my = y0 + H - (cfac(1.4) - 310) / 105.0 * H
+    o.append(_txt(mx + 6, my - 6, "k=1.4 → C=356", 7, anchor="start", color=RED))
+    o.append(_txt(x0 + W / 2.0, y0 + H + 30,
+                  "C = 520√[ k (2/(k+1))^((k+1)/(k-1)) ]", 7.4, color=INK))
+    s = svg(w, h, "".join(o), esc("Constant C for gas or vapor versus k (ASME Fig. 11-1)"))
+    return _fig(s,
+                "Hình F8-2 · Hằng số C của khí/hơi theo tỷ số nhiệt dung riêng k — đường cong tính "
+                "từ công thức chính xác, chấm đỏ là giá trị bảng trong Hình 11-1 của ASME.",
+                "Figure F8-2 · Gas/vapor constant C versus ratio of specific heats k — curve from the "
+                "exact formula; red dots are the tabulated values of ASME Fig. 11-1.",
+                "Đồ thị hằng số C theo tỷ số nhiệt dung riêng k",
+                "Constant C versus ratio of specific heats k")
+
+
+def fig_f83():
+    """Fig. 11-2 — how to read the saturated-water rating chart (method schematic)."""
+    w, h = 520, 340
+    x0, y0, W, H = 62, 42, 408, 244
+    o = [_chart(w, h, x0, y0, W, H, "SET PRESSURE  (psig)",
+                "RELIEVING CAPACITY")]
+    o.append(_axes(x0, y0, W, H, "", "",
+                   xt=[(i / 5.0, "%d" % (i * 300)) for i in range(0, 6)],
+                   yt=[(0.0, "0"), (0.5, "50"), (1.0, "100")]))
+    # illustrative monotonic saturated-water line (schematic, relative scale)
+    pts = [(p_, 100.0 * math.sqrt(p_ / 1500.0)) for p_ in range(20, 1501, 20)]
+    o.append(_mpl(pts, x0, y0, W, H, (0, 1500), (0, 100), fill="none", sw=1.6, color=BLUE))
+    o.append(_txt(x0 + W - 8, y0 + H - 120, "đường nước bão hòa", 7.4,
+                  anchor="end", color=BLUE))
+    # reading path: (1) enter at set pressure, (2) vertical to the line, (3) horizontal to capacity
+    ex = 700.0
+    ey = 100.0 * math.sqrt(ex / 1500.0)
+    px_ = x0 + ex / 1500.0 * W
+    py_ = y0 + H - ey / 100.0 * H
+    o.append(_line(px_, y0 + H, px_, py_, sw=1.0, dash="3 3", color=RED))
+    o.append(_line(x0, py_, px_, py_, sw=1.0, dash="3 3", color=RED))
+    o.append(_circle(x0 - 14, y0 + H - 8, 6.5, fill=RED, sw=0.8, color=RED))
+    o.append(_txt(x0 - 14, y0 + H - 5.6, "1", 7, color="#fff", weight="bold"))
+    o.append(_circle(px_, py_ - 14, 6.5, fill=RED, sw=0.8, color=RED))
+    o.append(_txt(px_, py_ - 11.6, "2", 7, color="#fff", weight="bold"))
+    o.append(_circle(x0 + 14, py_, 6.5, fill=RED, sw=0.8, color=RED))
+    o.append(_txt(x0 + 14, py_ + 2.4, "3", 7, color="#fff", weight="bold"))
+    o.append(_txt(px_ + 6, y0 + H - 10, "P set", 7, anchor="start", color=RED))
+    o.append(_txt(x0 + W / 2.0, y0 + H + 30,
+                  "Vào tại áp suất thiết lập → lên tới đường nước bão hòa → đọc ngang ra năng lực",
+                  7.2, color=INK))
+    s = svg(w, h, "".join(o), esc("Reading method for the saturated-water capacity chart (Fig. 11-2)"))
+    return _fig(s,
+                "Hình F8-3 · Sơ đồ cách đọc Hình 11-2 của ASME (năng lực xả của van kiểu nozzle trên "
+                "nước bão hòa, quá áp 10%): vào tại áp suất thiết lập (1), đi lên tới đường nước "
+                "bão hòa (2), đọc ngang ra năng lực (3). Trục tung tương đối — sơ đồ minh họa.",
+                "Figure F8-3 · How to read ASME Fig. 11-2 (capacity of nozzle-type safety valves on "
+                "saturated water at 10% overpressure): enter at the set pressure (1), move up to the "
+                "saturated water line (2), read across to the capacity (3). Relative ordinate — schematic.",
+                "Sơ đồ cách đọc biểu đồ năng lực nước bão hòa",
+                "Reading method for the saturated-water capacity chart")
+
+
+def fig_f84():
+    """UG-135 / M-5 / M-6 — installation with stop valves (schematic)."""
+    w, h = 520, 310
+    o = [_defs()]
+    # vessel
+    o.append(_rect(30, 120, 120, 150, fill="#eef3fb", sw=1.4))
+    o.append(_txt(90, 190, "VESSEL", 9, weight="bold"))
+    o.append(_txt(90, 206, "bình chịu áp", 7, color=GREY))
+    # inlet pipe with stop valve M-5 (locked open) + telltale gauge
+    o.append(_line(150, 160, 270, 160, sw=1.6))
+    o.append(_poly([(185, 150), (185, 170), (197, 160)], fill="#fff", sw=1.1))
+    o.append(_poly([(209, 150), (209, 170), (197, 160)], fill="#fff", sw=1.1))
+    o.append(_line(197, 150, 197, 138, sw=1.1))
+    o.append(_circle(197, 133, 4.5, fill="#fdf3e6", sw=1.0))
+    o.append(_txt(197, 122, "M-5", 7, color=GOLD, weight="bold"))
+    o.append(_txt(197, 112, "khóa mở", 6.8, color=GREY))
+    # telltale gauge between stop valve and PRV inlet
+    o.append(_line(225, 160, 225, 186, sw=0.9, color=GREY))
+    o.append(_circle(225, 192, 6, fill="#fff", sw=1.0, color=GREY))
+    o.append(_txt(225, 194.8, "G", 7, color=GREY))
+    o.append(_txt(225, 208, "telltale", 6.6, color=GREY))
+    # PRV (spring loaded; inlet from below, discharge from the top)
+    o.append(_rect(250, 106, 40, 48, fill="#e9eef6", sw=1.3))
+    o.append(_line(270, 160, 270, 154, sw=1.6))                       # inlet stub
+    o.append(_poly([(262, 146), (278, 146), (274, 138), (266, 138)], fill=GOLD, sw=1.1))
+    o.append(_spring(270, 112, 136, coils=4, w=20))
+    o.append(_txt(270, 100, "PRV", 8, weight="bold"))
+    # discharge line to stop valve M-6, then common header
+    o.append(_line(270, 106, 270, 84, sw=1.6))
+    o.append(_line(270, 84, 370, 84, sw=1.6))
+    o.append(_poly([(370, 74), (370, 94), (382, 84)], fill="#fff", sw=1.1))
+    o.append(_poly([(394, 74), (394, 94), (382, 84)], fill="#fff", sw=1.1))
+    o.append(_line(382, 74, 382, 62, sw=1.1))
+    o.append(_circle(382, 57, 4.5, fill="#fdf3e6", sw=1.0))
+    o.append(_txt(382, 46, "M-6", 7, color=GOLD, weight="bold"))
+    o.append(_txt(382, 36, "khai/khóa", 6.8, color=GREY))
+    o.append(_line(394, 84, 470, 84, sw=1.6))
+    o.append(_rect(470, 70, 34, 28, fill="#eaf6ee", sw=1.2))
+    o.append(_txt(487, 82, "HEADER", 6.8, weight="bold"))
+    o.append(_txt(487, 92, "chung", 6.6, color=GREY))
+    o.append(_txt(260, h - 14,
+                  "Lắp đặt theo UG-135 · van chặn hai bên theo M-5/M-6 (UG-135(e))",
+                  7.2, color=INK))
+    s = svg(w, h, "".join(o), esc("Installation schematic: vessel, stop valves, PRV, discharge header"))
+    return _fig(s,
+                "Hình F8-4 · Sơ đồ lắp đặt: bình → van chặn phía vào (M-5, khóa mở, có đồng áp "
+                "tell-tale) → van xả áp → van chặn phía xả (M-6) → đường ống xả chung.",
+                "Figure F8-4 · Installation schematic: vessel → inlet stop valve (M-5, locked open, "
+                "with tell-tale gauge) → PRV → discharge stop valve (M-6) → common discharge header.",
+                "Sơ đồ lắp đặt van xả áp với van chặn hai bên",
+                "Installation schematic with stop valves on both sides")
+
+
 FIGS = {
     "f22_closed": fig_f22_closed, "f22_open": fig_f22_open,
     "f23": fig_f23, "f24": fig_f24, "f26": fig_f26, "f29": fig_f29,
     "f71": fig_f71, "f72": fig_f72, "f73": fig_f73, "f74": fig_f74,
     "f75": fig_f75, "f76": fig_f76, "f77": fig_f77, "f712": fig_f712, "f713": fig_f713,
+    "f81": fig_f81, "f82": fig_f82, "f83": fig_f83, "f84": fig_f84,
 }
