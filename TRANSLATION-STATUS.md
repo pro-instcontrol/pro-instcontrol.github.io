@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-15 (**Books 1–4 of the new reader campaign are COMPLETE and PUBLISHED LIVE**: W. Bolton *Control Systems* 7/7 — 247 figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* 7/7 — 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets; CSIA *Working with an Integrator Guide* 9/9 — 35 figures; Crosby *Pressure Relief Valve Engineering Handbook* 8/8). **Book 5 has started**: Anna-Mari Heikkilä, *Inherent Safety in Process Plant Design — An Index-Based Approach* (VTT Publications 384, 1999), Chapters 1–2 live at **2/16** — see Sessions 64–65 below. · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-15 (**Books 1–4 of the new reader campaign are COMPLETE and PUBLISHED LIVE**: W. Bolton *Control Systems* 7/7 — 247 figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* 7/7 — 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets; CSIA *Working with an Integrator Guide* 9/9 — 35 figures; Crosby *Pressure Relief Valve Engineering Handbook* 8/8). **Book 5 has started**: Anna-Mari Heikkilä, *Inherent Safety in Process Plant Design — An Index-Based Approach* (VTT Publications 384, 1999), Chapters 1–3 live at **3/16** — see Sessions 64–66 below. · **Live site:** https://pro-instcontrol.github.io/
 
 > **New book campaign (from `work/book_tiers.md`, EN → VI only, NO Spanish).** Book 1 =
 > Bolton *Control Systems* is COMPLETE and live at `/books/read/control-systems-bolton/`
@@ -4829,4 +4829,58 @@ building Book 2.
 - QA: all affected pages — SVGs XML-valid (2 per chapter page), unique `id="fig-1"` per page,
   localized captions, 0 CJK, nav chain Ch1 ↔ Ch2 correct. `make_sitemap.py` **912 URLs**
   (897 with language siblings); `check_links.py` **914 pages / 27,968 refs / broken 0**.
-- **Remaining: Book 5 Chapters 3–16.** Chapter 3 "Evaluation of Safety" starts on p. 16.
+- **Remaining at that point: Book 5 Chapters 3–16.** Chapter 3 "Evaluation of Safety"
+  starts on p. 16.
+
+## Session 66 — Book 5 Chapter 3 (*Evaluation of Safety*) published (3/16)
+- **Chapter 3** (pp. 16–18) built as `build/isd_ch03.py`, bilingual VI/EN, ~25.4 kB per
+  language — five h2 sections + one h3, two source figures, two tables. Coverage: the
+  required level of safety (legal requirements, company image, economics — an unsafe plant
+  cannot be profitable because of losses of production and capital) and the need for safety
+  to influence design decisions **from the first moments**; Koivisto's (1996) definition of
+  safety analysis as a systematic examination of structure and functions aimed at
+  identifying accident contributors, evaluating their risk and finding risk-reducing
+  measures; whole-life-cycle evaluability; preventative actions decided **after** analysis
+  results; risk estimation supporting plant localization, alternative processes and plant
+  layout; Suokas & Kakko (1993) Figure 2 and the fact that analysis can stop at several
+  levels depending on complexity and risk potential; CCPS (1992) Figure 3 — techniques
+  together cover the life cycle, but the list is not complete (other methods in Ch. 5);
+  and the p. 17 standards paragraph (standards codify experience, conform to local /
+  national regulations and major engineering societies; limited number, established
+  experience means new inventions cannot immediately comply, undue reliance and
+  unreasonable expectations cause problems).
+- **Two new vector figures** in `isdfig.py`, both redrawn from page renders
+  (`pypdfium2`, `work/isd_p16.png` / `isd_p17.png` / `isd_p18.png`):
+  - `fig_f02()` — Figure 2 (p. 17) Suokas & Kakko flowchart: SYSTEM DEFINITION → HAZARD
+    IDENTIFICATION → ACCIDENT MODELLING → parallel ESTIMATION OF ACCIDENT FREQUENCIES /
+    CONSEQUENCES → RISK ESTIMATION → DOCUMENTATION OF THE RESULTS, with the tall
+    SYSTEM CHANGES side box (rotated lettering), its three feedback arrows, and its two
+    outgoing loops to system definition and documentation.
+  - `fig_f03()` — Figure 3 (p. 18) CCPS **9 phases × 12 techniques** dot matrix. All 108
+    cells transcribed from a high-resolution render: `F` = commonly used (filled dot),
+    `O` = rarely used or inappropriate (hollow dot); data kept in `_MATRIX` /
+    `_PHASES` / `_TECHNIQUES`. Filled counts per phase: 3/5/10/10/5/10/12/7/4.
+    Rotated column headings and the two-symbol legend are included.
+- Two bilingual tables: the eight Figure 2 steps in main-flow order with Vietnamese glosses
+  (SYSTEM CHANGES explicitly marked as the feedback branch), and the twelve Figure 3
+  technique labels expanded from the List of symbols (pp. 9–10) and Chapter 4.
+  Key terms, chapter summary, bilingual h2/h3, source note. Figure ids `fig-2` / `fig-3`
+  match the source numbering; captions localized (`Hình 2/3 …` / `Figure 2/3 …`).
+- **Editorial observation** (explicitly labelled as derived from the figure, not from the
+  author's prose): *What-If* is the only technique marked commonly used in all nine phases;
+  *Expansion or Modification* is the only phase using all twelve; research & development
+  and decommissioning have the fewest (3 and 4 of 12).
+- **Source quirk recorded:** the printed p. 16 repeats the "Some safety analysis
+  techniques and their typical use…" paragraph **twice** (a printing error). The
+  translation keeps it once and documents the duplication in the source note.
+- Registration: `SLUGS["isd"][3] = "ch03-evaluation-of-safety"`; `BOOKS["isd"]["done"]`
+  now 1–3; `books_site.py` `TRANSLATED` → `("progress", 16, 3)`. Ch2 rebuilt so its nav
+  gained `Chapter 3 →`; Ch3 links back to Ch2. Book TOC 16 rows / 3 done /
+  "3 of 16 chapters, 19% complete".
+- QA: Ch3 pages have 3 XML-valid SVGs each (shell icon + 2 figures), unique fig ids,
+  localized captions, 0 CJK, 0 Python artifacts, nav Ch2 ↔ Ch3 correct. `make_sitemap.py`
+  **914 URLs** (899 with language siblings); `check_links.py` **916 pages / 28,018 refs /
+  broken 0**.
+- **Remaining: Book 5 Chapters 4–16.** Chapter 4 "Some Safety Analysis Methods for Process
+  Plant Design" (pp. 19–24) has four subsections: Dow Fire & Explosion Index (p. 20), Mond
+  Index (p. 21), Hazop (p. 22), PIIS (p. 23), followed by Chapter 5 (p. 25).

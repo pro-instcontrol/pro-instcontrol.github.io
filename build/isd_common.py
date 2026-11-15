@@ -32,6 +32,7 @@ BOOK["isd"] = {
 SLUGS["isd"] = {
     1: "ch01-introduction",
     2: "ch02-safety",
+    3: "ch03-evaluation-of-safety",
 }
 
 # Re-export the shared helpers so chapter modules can `import isd_common as C`.

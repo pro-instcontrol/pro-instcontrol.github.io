@@ -514,7 +514,8 @@ BOOKS = {
             15: ("Conclusions", "Kết luận"),
             16: ("References", "Tài liệu tham khảo"),
         },
-        "done": {1: "ch01-introduction", 2: "ch02-safety"},
+        "done": {1: "ch01-introduction", 2: "ch02-safety",
+                 3: "ch03-evaluation-of-safety"},
         "copyright_en": ("Original thesis © 1999 Anna-Mari Heikkilä / Technical Research "
                          "Centre of Finland (VTT), VTT Publications 384"),
         "copyright_vi": ("Luận văn gốc © 1999 Anna-Mari Heikkilä / Trung tâm Nghiên cứu Kỹ "

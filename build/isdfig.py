@@ -127,7 +127,141 @@ def fig_f01():
                 "Fan diagram with four hazard-identification and four hazard-assessment methods")
 
 
+def fig_f02():
+    """Figure 2 (p. 17) — steps of a safety and risk analysis (Suokas & Kakko, 1993)."""
+    w, h = 680, 440
+    o = [_defs()]
+    INK2 = INK
+
+    # central column of stages
+    o.append(_box(250, 30, 220, 32, "SYSTEM DEFINITION", size=8.6))
+    o.append(_box(250, 95, 220, 32, "HAZARD IDENTIFICATION", size=8.6))
+    o.append(_box(250, 160, 220, 32, "ACCIDENT MODELLING", size=8.6))
+    o.append(_box(250, 320, 220, 32, "RISK ESTIMATION", size=8.6))
+    o.append(_box(250, 385, 220, 32, "DOCUMENTATION OF THE RESULTS", size=8.2))
+    # two parallel estimations
+    o.append(_box(80, 235, 215, 40, "ESTIMATION OF\nACCIDENT FREQUENCIES",
+                  size=8.0))
+    o.append(_box(385, 235, 215, 40, "ESTIMATION OF\nACCIDENT CONSEQUENCES",
+                  size=8.0))
+
+    # SYSTEM CHANGES: tall side box with rotated lettering (as in the source)
+    o.append(_rect(20, 95, 50, 265, fill="#f4f7fb", sw=1.0))
+    o.append('<text x="45" y="228" transform="rotate(-90 45 228)" '
+             'text-anchor="middle" style="font:9px Inter,Helvetica,sans-serif;'
+             'fill:%s;letter-spacing:.5px">SYSTEM CHANGES</text>' % INK2)
+
+    # main downward chain
+    o.append(_arrow(360, 62, 360, 95, sw=1.2, head="a7"))
+    o.append(_arrow(360, 127, 360, 160, sw=1.2, head="a7"))
+    o.append(_arrow(360, 350, 360, 385, sw=1.2, head="a7"))
+
+    # thick branch from accident modelling into the two parallel estimations
+    o.append(_line(360, 192, 360, 212, sw=2.0))
+    o.append(_line(187, 212, 492, 212, sw=2.0))
+    o.append(_line(187, 212, 187, 226, sw=2.0))
+    o.append(_line(492, 212, 492, 226, sw=2.0))
+    o.append(_arrow(187, 226, 187, 235, sw=1.6, head="a6"))
+    o.append(_arrow(492, 226, 492, 235, sw=1.6, head="a6"))
+
+    # both estimations converge on risk estimation
+    o.append(_arrow(187, 275, 300, 320, sw=1.2, head="a7"))
+    o.append(_arrow(492, 275, 420, 320, sw=1.2, head="a7"))
+
+    # feedback: three stage results feed SYSTEM CHANGES
+    for y in (142, 205, 300):
+        o.append(_arrow(250, y, 70, y, sw=1.0, head="a7"))
+    # and SYSTEM CHANGES loops back to system definition and to documentation
+    o.append(_line(45, 95, 45, 46))
+    o.append(_arrow(45, 46, 250, 46, sw=1.0, head="a7"))
+    o.append(_line(45, 360, 45, 401))
+    o.append(_arrow(45, 401, 250, 401, sw=1.0, head="a7"))
+
+    s = svg(w, h, "".join(o), esc("Steps of a safety and risk analysis (Suokas and Kakko, 1993)"))
+    return _fig(s,
+                "Hình 2 · Các bước của phân tích an toàn và rủi ro theo Suokas và Kakko (1993): "
+                "định nghĩa hệ thống → nhận diện mối nguy → mô hình hóa tai nạn → ước lượng tần "
+                "suất và hệ quả → ước lượng rủi ro → lập hồ sơ kết quả, với vòng phản hồi "
+                "<i>thay đổi hệ thống</i>. Vẽ lại từ nguyên bản, tr. 17.",
+                "Figure 2 · Steps of a safety and risk analysis (Suokas and Kakko, 1993): "
+                "system definition → hazard identification → accident modelling → parallel "
+                "estimation of frequencies and consequences → risk estimation → documentation, "
+                "with the system-changes feedback loop. Redrawn from the original, p. 17.",
+                "Sơ đồ quy trình tám bước phân tích an toàn và rủi ro cùng vòng phản hồi thay đổi hệ thống",
+                "Eight-step safety and risk analysis flowchart with a system-changes feedback loop")
+
+
+# ---- Figure 3 data (CCPS, 1992, p. 18) -------------------------------------
+_PHASES = [
+    "Research & Development", "Conceptual Design", "Pilot Plant Operation",
+    "Detailed Engineering", "Construction/Start-up", "Routine Operation",
+    "Expansion or Modification", "Incident Investigation", "Decommissioning",
+]
+_TECHNIQUES = [
+    "Safety Review", "Checklist", "Relative Ranking", "PHA", "What-If",
+    "What-if/Checklist", "HAZOP", "FMEA", "Fault Tree", "Event Tree", "CCA", "HRA",
+]
+# F = commonly used (filled dot), O = rarely used or inappropriate (hollow).
+_MATRIX = [
+    "OOFFFOOOOOOO",   # Research & Development
+    "OFFFFFOOOOOO",   # Conceptual Design
+    "OFOFFFFFFFFF",   # Pilot Plant Operation
+    "OFOFFFFFFFFF",   # Detailed Engineering
+    "FFOOFFOOOOOF",   # Construction/Start-up
+    "FFOOFFFFFFFF",   # Routine Operation
+    "FFFFFFFFFFFF",   # Expansion or Modification
+    "OOOOFOFFFFFF",   # Incident Investigation
+    "FFOOFFOOOOOO",   # Decommissioning
+]
+
+
+def fig_f03():
+    """Figure 3 (p. 18) — CCPS matrix of hazard evaluation techniques vs life cycle."""
+    w, h = 680, 430
+    o = [_defs()]
+    x0, dx, y0, dy = 252, 35, 148, 26
+    for c, name in enumerate(_TECHNIQUES):
+        x = x0 + c * dx
+        o.append('<text x="%d" y="126" transform="rotate(-90 %d 126)" '
+                 'text-anchor="start" style="font:8px Inter,Helvetica,sans-serif;'
+                 'fill:%s">%s</text>' % (x, x, INK, esc(name)))
+    for r, phase in enumerate(_PHASES):
+        y = y0 + r * dy
+        o.append(_txt(238, y + 3, esc(phase), 8.6, anchor="end"))
+        for c, mark in enumerate(_MATRIX[r]):
+            x = x0 + c * dx
+            if mark == "F":
+                o.append('<circle cx="%d" cy="%d" r="5.2" fill="%s"/>'
+                         % (x, y, INK))
+            else:
+                o.append('<circle cx="%d" cy="%d" r="5.2" fill="#ffffff" '
+                         'stroke="%s" stroke-width="1.1"/>' % (x, y, INK))
+    # legend
+    ly = 392
+    o.append('<circle cx="252" cy="%d" r="5.2" fill="#ffffff" stroke="%s" '
+             'stroke-width="1.1"/>' % (ly, INK))
+    o.append(_txt(264, ly + 3.2, "Rarely used or inappropriate", 8.6, anchor="start"))
+    o.append('<circle cx="462" cy="%d" r="5.2" fill="%s"/>' % (ly, INK))
+    o.append(_txt(474, ly + 3.2, "Commonly used", 8.6, anchor="start"))
+    o.append(_txt(340, 416,
+                  "Chấm đen = thường dùng · chấm rỗng = ít dùng hoặc không phù hợp",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Typical uses of hazard evaluation techniques (CCPS, 1992)"))
+    return _fig(s,
+                "Hình 3 · Mức độ sử dụng điển hình của 12 kỹ thuật đánh giá mối nguy qua 9 giai "
+                "đoạn vòng đời nhà máy, theo CCPS (1992). Chấm đen = thường dùng; chấm rỗng = "
+                "ít dùng hoặc không phù hợp. Vẽ lại từ nguyên bản, tr. 18.",
+                "Figure 3 · Typical uses of twelve hazard evaluation techniques across nine "
+                "plant life-cycle phases (CCPS, 1992). Filled dot = commonly used; hollow dot = "
+                "rarely used or inappropriate. Redrawn from the original, p. 18.",
+                "Ma trận 9 giai đoạn vòng đời nhân 12 kỹ thuật đánh giá mối nguy",
+                "Nine-by-twelve matrix of life-cycle phases versus hazard evaluation techniques")
+
+
 FIGS = {
     "isd_intro": fig_isd_intro,
     "f01": fig_f01,
+    "f02": fig_f02,
+    "f03": fig_f03,
 }
