@@ -5012,3 +5012,31 @@ building Book 2.
 - **HANDOFF.md rewritten** for the Book 5 continuation (Ch7–16 recipe, page→line spans,
   isdfig gotchas, QA gates). Next: **Chapter 7 — Factors Selected to Represent the
   Inherent Safety in Preliminary Process Design** (pp. 39–55, raw lines 1077–1679).
+
+## Session 70 — Book 5 Chapter 7 (*Factors Representing Inherent Safety*) published (7/16) — 2026-11-15
+
+- **Chapter 7 "Các yếu tố đại diện an toàn nội tại trong thiết kế sơ bộ / Factors Selected
+  to Represent the Inherent Safety in Preliminary Process Design" built** (source pp. 39–55,
+  `PAGES_SRC=17` — largest isd chapter so far): index-method rationale, Table 4 (project-stage
+  matrix after Kletz 1991), Figure 5 formation of the index, Table 5 (parameter selection
+  E&L 1993 vs Heikkilä et al. 1996 — 19 parameters, 11 chosen), Table 6 (principles ↔ PIIS ↔
+  ISI mapping), and §7.1 heat of reaction (equations 1–2) / §7.2 hazardous substances
+  (flammability, explosiveness, toxicity: flash point, LEL/UEL, TLV, LD₅₀/LC₅₀) / §7.3
+  corrosiveness (corrosion rate mm/a + allowance) / §7.4 chemical interaction (6 reactivity
+  contexts, EPA matrix, Chempat) / §7.5 inventory (Wells quote, Bhopal) / §7.6 temperature
+  (Arrhenius 10 °C → 2–4×, embrittlement) / §7.7 pressure (total containment, relief systems)
+  / §7.8 equipment safety (Mahoney 170 losses, Instone 2000 claims, layout spacing) /
+  §7.9 safe process structure (case-based reasoning).
+- **Figure:** source **Figure 5** (p. 40) redrawn as `isdfig.fig_c07_index()` — three-tier
+  principles → parameters → subindices flow with VI/EN labels.
+- **Fixed 2 authoring defects before build:** CJK leak "低温" in two VI strings (replaced
+  with "sự giòn hóa ở nhiệt độ thấp"); orphaned `_T6` list body removed in favour of
+  `_t6_rows()`/`_t6_rows_en()` group-header assembly.
+- Registration: `SLUGS["isd"][7] = "ch07-safety-factors"`; `done` 1–7; `TRANSLATED` →
+  `("progress", 16, 7)`. TOC 16 rows / 7 done.
+- QA: 1 figure, **3 tables**, **2 eq blocks** per page; **0 Spanish markers, 0 CJK**
+  (EN + VI); nav Ch6 ↔ Ch7 correct; language siblings wired.
+- Infra: sitemap **922 URLs**; `check_links.py` **924 pages / 28,218 refs / broken 0**.
+- Commit `111db504`; push SIGTERM'd repeatedly (intermittent egress) — eventually pushed
+  via background task. Next: **Chapter 8 — Inherent Safety Index** (pp. 56–59,
+  raw lines 1680–1780).

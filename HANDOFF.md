@@ -1,8 +1,8 @@
 # HANDOFF — Finish Book 5 (Heikkilä, *Inherent Safety in Process Plant Design*)
 
-**Goal:** build Chapters 7–16 so Book 5 is 16/16, then regenerate infra, QA, commit, push.
+**Goal:** build Chapters 8–16 so Book 5 is 16/16, then regenerate infra, QA, commit, push.
 
-Book 5 Ch1–6 are **already live** (progress badge "6 of 16"). Book 4 (Crosby PRV) is 8/8
+Book 5 Ch1–7 are **already live** (progress badge "7 of 16"). Book 4 (Crosby PRV) is 8/8
 complete; Books 1–3 complete. All source text already extracted to `work/isd_raw.txt`
 (3,995 lines; `=== PAGE N ===` markers throughout).
 
@@ -47,8 +47,7 @@ complete; Books 1–3 complete. All source text already extracted to `work/isd_r
 ## C. Remaining chapters — spans and notes
 | Ch | Title (EN) | Pages (pp.) | Raw lines | Figures/notes |
 |----|------------|-------------|-----------|----------------|
-| 7 | Factors Selected to Represent the Inherent Safety in Preliminary Process Design | 39–55 | 1077–1679 | §7.1 heat of reaction … §7.9 safe process structure; subindex scoring tables per factor — render as HTML tables |
-| 8 | Inherent Safety Index | 56–59 | 1680–1780 | index calculation method; formulae as `eq()` blocks |
+| 8 | Inherent Safety Index | 56–59 | 1680–1780 | index calculation method; formulae as `eq()` blocks; subindex score tables (0–5 / 0–4 scales) |
 | 9 | The Weighting between Subindices | 60–61 | ~1781–1830 | weighting discussion, short |
 | 10 | Subindices of Chemical Inherent Safety Index | 62–67 | ~1830–2000 | reaction heat / side reactions / interaction / flammability / explosiveness / toxicity / corrosiveness subindex tables |
 | 11 | Subindices for Process Inherent Safety Index | 68–94 | ~2000–2700 | equipment safety, process structure, etc. |
