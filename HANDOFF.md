@@ -11,10 +11,15 @@ complete; Books 1–3 complete. All source text already extracted to `work/isd_r
 ## A. Git / credentials (already configured — do not redo)
 - PAT stored: `git config --global credential.helper store` + `git credential approve`
   (token `ghp_…` for `pro-instcontrol`). Pushes need **no prompt**.
-- **Always run `git push` with `dangerouslyDisableSandbox: true`** (sandbox SIGTERMs
-  network egress otherwise). If a push returns `SIGTERM` with empty output, just retry —
-  egress is granted intermittently; the commit is safe locally. Verified working
-  2026-11-15: `git push origin main` → `d7780220..082b2de9 main -> main`.
+- **Push-hang root cause (fixed 2026-11-15):** the system gitconfig chains `credential.helper
+  = manager` (Git Credential Manager) *before* `store`; GCM tries an interactive prompt in
+  this non-interactive shell and stalls every push for minutes or forever. Fixed in the repo
+  local config: `git config --local credential.helper ""` (clears the chain) + `git config
+  --local --add credential.helper store`. After this, `git push origin main` completes in
+  seconds. **Do not remove these two local config entries.**
+- **Run `git push` with `dangerouslyDisableSandbox: true`** (sandbox SIGTERMs network egress
+  otherwise). If a push still returns `SIGTERM` with empty output, just retry — the commit
+  is safe locally.
 - Verify live after push:
   `curl -s -o /dev/null -w "%{http_code}" https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/chNN-…/`
 
