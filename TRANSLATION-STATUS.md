@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-13 (**Books 1 + 2 + 3 of the new reader campaign are PUBLISHED LIVE**: W. Bolton *Control Systems* — 7/7 chapters, 247 vector figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* — 7/7 chapters, 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets; CSIA *Working with an Integrator Guide* — 9/9 chapters, 35 vector figures of which 10 are the Appendix A "Typical Project Mix of Services" donut charts) · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-15 (**Books 1–4 of the new reader campaign are COMPLETE and PUBLISHED LIVE**: W. Bolton *Control Systems* 7/7 — 247 figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* 7/7 — 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets; CSIA *Working with an Integrator Guide* 9/9 — 35 figures; Crosby *Pressure Relief Valve Engineering Handbook* 8/8). **Book 5 has started**: Anna-Mari Heikkilä, *Inherent Safety in Process Plant Design — An Index-Based Approach* (VTT Publications 384, 1999), Chapter 1 live at **1/16** — see Session 64 below. · **Live site:** https://pro-instcontrol.github.io/
 
 > **New book campaign (from `work/book_tiers.md`, EN → VI only, NO Spanish).** Book 1 =
 > Bolton *Control Systems* is COMPLETE and live at `/books/read/control-systems-bolton/`
@@ -4733,3 +4733,60 @@ building Book 2.
   badge now 🟢 Fully translated. Nav rewired Ch7 ↔ Ch8; book TOC lists all 8 chapters.
 - Site regen: sitemap 906 URLs, check_links 908 pages / 27818 refs / broken 0.
 - **Book 4 (Crosby PRV Handbook) is now fully translated — all 8 chapters live.**
+
+## Session 64 — Book 5 started (VTT 384 *Inherent Safety in Process Plant Design*), Chapter 1 published (1/16)
+- **Campaign choice:** all six registered books are now 100% translated, so the next Tier-A title was
+  picked from `work/book_tiers.md`. Rejected: *Flow Equations for Sizing Control Valves* (image-only,
+  Session 58), the Omega *Transactions* volumes (vendor catalogues), the DOE handbooks (already
+  registered). Selected **Anna-Mari Heikkilä, *Inherent Safety in Process Plant Design — An
+  Index-Based Approach*, VTT Publications 384 (1999)** — 129 pp, one PDF, real text layer, coherent
+  academic monograph, high-value inherent-safety / SIL domain. Catalogue ids **96** ("Inherent
+  Safety in Process Plant Design (VTT 384)") and duplicate **239** ("P384"); both now map to this
+  reader. Source: `D:/Ebooks/Process Control and Automation/P384.pdf`; text-layer dump
+  `work/isd_raw.txt` (129 pages, 206,405 chars, `pypdf` — use Windows drive paths, not `/d/...`).
+- **Structure mapped:** 15 numbered chapters + References = **16 units**; front matter pp. 3–10
+  (abstract, preface, symbols), Ch1 pp. 11–13, References pp. 121–129; **13 figures, 30 tables**
+  in the whole book. Units: 1 Introduction, 2 Safety, 3 Evaluation of Safety, 4 Safety Analysis
+  Methods, 5 Limitations of Existing Methods, 6 Inherent Safety, 7 Factors in Preliminary Design,
+ 8 Inherent Safety Index, 9 Weighting between Subindices, 10 Chemical subindices, 11 Process
+  subindices, 12 Case Study — Acetic Acid, 13 Case-Based Reasoning, 14 Computerized Process
+  Synthesis, 15 Conclusions, 16 References.
+- **Infrastructure created** (same shared shell as Books 1–4, no new page implementation):
+  `BOOKS["isd"]` in `build/reader_book.py` (16-unit spec, bilingual metadata, ledes, policy,
+  copyright, `done = {1: "ch01-introduction"}`); `build/isd_common.py` (BOOK/SLUGS registration +
+  `T(vi,en,lang)` selector, `SLUGS["isd"] = {1: ...}` kept incremental so no broken "next" link);
+  `build/reader_isd.py` (runner, `MODULES` 1–16, skips chapters with no module yet);
+  `build/isdfig.py` (figure supplier); `build/isd_ch01.py` (Chapter 1 prose).
+  `build/books_site.py`: `TRANSLATED` + `BOOK_SLUG` + `DESC` for both catalogue keys — both cards
+  now show 🟠 Translating · 1 of 16 and link to
+  `/books/read/inherent-safety-in-process-plant-design/`.
+- **Chapter 1 — Introduction** (pp. 11–13 + abstract/preface/symbols context) built bilingual:
+  aims of process design; inherent (Kletz 1984) vs external/add-on safety; Lutz 1997 early-and-often
+  payoffs; Kletz 1996 change of approach; the two Gowland 1996 industry questions; late add-on
+  systems and lifetime cost; Hendershot 1995 linked hazards + CFC example; **accident statistics
+  table** (USA 1993–1995 ≈23,000 toxic-chemical accidents = 7,700/yr, ≈60 deaths, 41,000
+  evacuated; 1988–1992 6,900/yr; rising trend, Anon. 1997); Dow/Mond indices and the need for an
+  index in conceptual design; abstract's ICI/IPI split, ISBL/OSBL equipment subindex, case-based
+  reasoning and genetic-optimisation fitness function; **full symbols table** from pp. 9–10
+  (ISI, ICI, IPI, IRM, IRS, IINT, IFL, IEX, ITOX, ICOR, II, IT, Ip, IEQ, IST, ITI, PIIS,
+  LC50/LD50, TLV, LEL/UEL, ΔHf/ΔHr, ΔUf/ΔUr, PHA, FMEA, HRA, HE …); key terms; source note;
+  unofficial-translation notice. One **editorial vector figure** (`Sơ đồ A` / `Figure A`,
+  ISI hierarchy) — explicitly labelled editorial because the source has no figure on pp. 11–13.
+  Two tables per language (accident statistics + symbols). VI/EN bodies ≈17.0/17.7 kB, 6 h2
+  sections each, no CJK fragments, no Python artifacts.
+- **Catalogue polish:** work 239 ("P384") carried its own generic `desc` in `library/catalog.json`,
+  which overrode `DESC["p384"]`; replaced it with the bilingual Book 5 description so the duplicate
+  card is as informative as work 96's.
+- **QA:** both Ch1 pages — 2 SVGs per page (shell icon + Figure A), both XML-valid, one unique
+  `id="fig-1"`, captions localized (`Sơ đồ A …` / `Figure A …`), bilingual h2 headings, no stray
+  CJK, no `nan`/`None` artifacts (the one EN `nan` is inside "maintenance"), no Chapter 2 link
+  (incremental nav). Book TOC: 16 rows, 1 done, "🟠 Translating · 1 of 16 chapters, 6% complete".
+  `make_sitemap.py` **910 URLs** (895 with language siblings); `check_links.py` **912 pages /
+  27,918 refs / broken 0**.
+- **Push reminder:** PortableGit's system config injects `credential.helper=manager` (GCM) which
+  hangs on an invisible interactive prompt. Always push with
+  `GIT_TERMINAL_PROMPT=0 GCM_INTERACTIVE=never git -c credential.helper= -c credential.helper=store push --progress origin main`.
+- **Remaining: Book 5 Chapters 2–16.** For each: add slug to `SLUGS["isd"]`, add to
+  `BOOKS["isd"]["done"]`, bump `books_site.py` `TRANSLATED` progress (16, N), rebuild via
+  `python build/reader_isd.py N` + `python build/reader_book.py isd` + `books_site.py` +
+  `make_sitemap.py` + `check_links.py`, then commit/push/live-verify.

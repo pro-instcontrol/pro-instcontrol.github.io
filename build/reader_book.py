@@ -476,6 +476,97 @@ BOOKS = {
         "note_vi": ("Nguồn là cẩm nang nhà cung cấp dạng in; các sơ đồ cắt van và biểu đồ hệ "
                     "số định cỡ được vẽ lại bằng vector từ các trang đã render."),
     },
+    # Book 5 — VTT Publications 384 (1999). EN -> VI only. The 129-page thesis
+    # splits into 15 numbered chapters plus a references unit (pp. 121-129).
+    "isd": {
+        "slug": "inherent-safety-in-process-plant-design",
+        "title_en": "Inherent Safety in Process Plant Design — An Index-Based Approach",
+        "title_vi": "An toàn nội tại trong thiết kế nhà máy quá trình — Phương pháp chỉ số",
+        "byline_en": "Anna-Mari Heikkilä · VTT Publications 384, Technical Research Centre of Finland, 1999",
+        "byline_vi": "Anna-Mari Heikkilä · VTT Publications 384, Trung tâm Nghiên cứu Kỹ thuật Phần Lan, 1999",
+        "pages": 129,
+        "files": 1,
+        "first_en": ("ch01-introduction", "Introduction"),
+        "first_vi": ("ch01-introduction", "Giới thiệu"),
+        "chapters": {
+            1: ("Introduction", "Giới thiệu"),
+            2: ("Safety", "An toàn"),
+            3: ("Evaluation of Safety", "Đánh giá an toàn"),
+            4: ("Safety Analysis Methods for Process Plant Design",
+                "Các phương pháp phân tích an toàn trong thiết kế nhà máy"),
+            5: ("Limitations of Existing Methods in Conceptual Process Design",
+                "Hạn chế của các phương pháp hiện có trong thiết kế sơ bộ"),
+            6: ("Inherent Safety", "An toàn nội tại"),
+            7: ("Factors Representing Inherent Safety in Preliminary Design",
+                "Các yếu tố đại diện an toàn nội tại trong thiết kế sơ bộ"),
+            8: ("Inherent Safety Index", "Chỉ số an toàn nội tại"),
+            9: ("Weighting between Subindices", "Trọng số giữa các chỉ số thành phần"),
+            10: ("Subindices of Chemical Inherent Safety Index",
+                 "Chỉ số thành phần của an toàn nội tại hóa học"),
+            11: ("Subindices for Process Inherent Safety Index",
+                 "Chỉ số thành phần của an toàn nội tại quá trình"),
+            12: ("Case Study — Acetic Acid Process",
+                 "Nghiên cứu tình huống — Quá trình axit axetic"),
+            13: ("Case-Based Reasoning for Safety Evaluation",
+                 "Suy luận dựa trên tình huống trong đánh giá an toàn"),
+            14: ("Index Application in Computerized Process Synthesis",
+                 "Ứng dụng chỉ số trong tổng hợp quá trình trên máy tính"),
+            15: ("Conclusions", "Kết luận"),
+            16: ("References", "Tài liệu tham khảo"),
+        },
+        "done": {1: "ch01-introduction"},
+        "copyright_en": ("Original thesis © 1999 Anna-Mari Heikkilä / Technical Research "
+                         "Centre of Finland (VTT), VTT Publications 384"),
+        "copyright_vi": ("Luận văn gốc © 1999 Anna-Mari Heikkilä / Trung tâm Nghiên cứu Kỹ "
+                         "thuật Phần Lan (VTT), VTT Publications 384"),
+        "lede_en": ("Anna-Mari Heikkilä's VTT thesis on inherent safety: rather than "
+                    "controlling hazards with add-on protective systems, an inherently "
+                    "safer plant avoids them by using less hazardous materials and "
+                    "operations. The work builds the Inherent Safety Index for conceptual "
+                    "chemical process design, splits it into chemical and process "
+                    "subindices, evaluates process structure by case-based reasoning, and "
+                    "uses the index as a fitness function in genetic optimisation. The "
+                    "Vietnamese translation proceeds chapter by chapter; every figure, "
+                    "flowsheet and scoring table is redrawn as a vector."),
+        "lede_done_en": ("Anna-Mari Heikkilä's VTT thesis on inherent safety and the "
+                         "Inherent Safety Index for conceptual chemical process design. "
+                         "The Vietnamese translation is complete — all sixteen units "
+                         "link to their translation."),
+        "lede_vi": ("Luận văn VTT của Anna-Mari Heikkilä về an toàn nội tại: thay vì khống "
+                    "chế mối nguy bằng các hệ thống bảo vệ bổ sung, một nhà máy an toàn nội "
+                    "tại <i>tránh</i> mối nguy ngay từ khâu dùng hóa chất và thao tác ít nguy "
+                    "hiểm hơn. Công trình xây dựng Chỉ số An toàn Nội tại cho thiết kế hóa "
+                    "chất sơ bộ, tách thành các chỉ số thành phần hóa học và quá trình, đánh "
+                    "giá cấu trúc quá trình bằng suy luận dựa trên tình huống, rồi dùng chỉ "
+                    "số làm hàm thích nghi trong tối ưu di truyền. Bản dịch tiếng Việt thực "
+                    "hiện theo từng chương; mọi hình vẽ, sơ đồ dòng và bảng chấm điểm đều "
+                    "được vẽ lại bằng vector."),
+        "lede_done_vi": ("Luận văn VTT của Anna-Mari Heikkilä về an toàn nội tại và Chỉ số "
+                         "An toàn Nội tại cho thiết kế quá trình hóa chất sơ bộ. Bản dịch "
+                         "tiếng Việt đã hoàn thành — cả mười sáu đơn vị đều có liên kết "
+                         "tới bản dịch."),
+        "policy_en": ("<b>About this copy.</b> The source PDF is held in the local library "
+                      "catalogue and is not republished here. This page is the online contents "
+                      "map: what each chapter covers and which chapters already have a "
+                      "Vietnamese translation."),
+        "policy_done_en": ("<b>About this copy.</b> The source PDF is held in the local library "
+                           "catalogue and is not republished here. This page is the online "
+                           "contents map: what each chapter covers, with a link to the "
+                           "Vietnamese translation of every chapter."),
+        "policy_vi": ("<b>Cách đọc bản dịch.</b> Tệp PDF nguồn được lưu trong thư viện cục bộ "
+                      "và không được đăng lại tại đây. Trang này là bản đồ mục lục trực tuyến: "
+                      "nội dung từng chương và những chương nào đã có bản dịch tiếng Việt."),
+        "policy_done_vi": ("<b>Cách đọc bản dịch.</b> Tệp PDF nguồn được lưu trong thư viện "
+                           "cục bộ và không được đăng lại tại đây. Trang này là bản đồ mục "
+                           "lục trực tuyến: nội dung từng chương, kèm liên kết tới bản dịch "
+                           "tiếng Việt của mọi chương."),
+        "note_en": ("The thesis has 13 numbered figures and 30 scoring tables; both are "
+                    "redrawn as vectors from the source text layer, with the original "
+                    "index formulas set as equations."),
+        "note_vi": ("Luận văn có 13 hình được đánh số và 30 bảng chấm điểm; tất cả được vẽ "
+                    "lại bằng vector từ lớp văn bản nguồn, các công thức chỉ số gốc được "
+                    "sắp xếp thành phương trình."),
+    },
 }
 
 

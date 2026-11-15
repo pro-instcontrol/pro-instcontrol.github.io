@@ -172,6 +172,20 @@ SHELVES = [
 # ------------------------------------------------------- descriptions
 # keyed by a lowercase substring of the work title -> (en, vi)
 DESC = {
+    "inherent safety in process plant design": (
+        "Heikkilä's VTT thesis: avoid hazards rather than control them. Builds the Inherent "
+        "Safety Index for conceptual process design, evaluates process structure by case-based "
+        "reasoning, and uses the index as a fitness function in genetic optimisation. "
+        "Being translated into Vietnamese, chapter by chapter.",
+        "Luận văn VTT của Heikkilä: tránh mối nguy thay vì khống chế chúng. Xây dựng Chỉ số "
+        "An toàn Nội tại cho thiết kế quá trình sơ bộ, đánh giá cấu trúc bằng suy luận dựa trên "
+        "tình huống và dùng chỉ số làm hàm thích nghi trong tối ưu di truyền. Đang được dịch "
+        "sang tiếng Việt theo từng chương."),
+    "p384": (
+        "Heikkilä's VTT thesis on the Inherent Safety Index for conceptual process design — "
+        "an index-based approach to inherently safer plants.",
+        "Luận văn VTT của Heikkilä về Chỉ số An toàn Nội tại trong thiết kế quá trình sơ bộ — "
+        "phương pháp chỉ số cho nhà máy an toàn hơn ngay từ bản chất."),
     "measurement, instrumentation and sensors handbook": (
         "The reference work of the field: 101 chapters by different authors, from the characteristics "
         "of instrumentation through every measured variable to signal processing and displays. "
@@ -442,6 +456,8 @@ TRANSLATED = {
     "standard isa - instrumentation symbols and identification": ("full", 7, 7),
     "working with an integrator guide": ("full", 9, 9),
     "pressure relief valve engineering handbook": ("full", 8, 8),
+    "inherent safety in process plant design": ("progress", 16, 1),
+    "p384": ("progress", 16, 1),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
@@ -469,6 +485,9 @@ BOOK_SLUG = {
     "working with an integrator guide": "working-with-an-integrator-guide",
     "pressure relief valve engineering handbook":
         "pressure-relief-valve-engineering-handbook",
+    "inherent safety in process plant design":
+        "inherent-safety-in-process-plant-design",
+    "p384": "inherent-safety-in-process-plant-design",
 }
 
 
