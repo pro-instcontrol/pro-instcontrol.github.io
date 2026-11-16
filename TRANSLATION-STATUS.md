@@ -5530,5 +5530,7 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   `check_links.py` **962 pages / 29,164 refs / broken 0**; sitemap
   regenerated with Unit 10 URLs.
 - Registration: `done` 1–10; `TRANSLATED` → `("progress", 21, 10)`.
-  **BOOK 6 progress: 10/21 units live in EN + VI.** Next: Unit 11 —
-  Diaphragm and Stainless Steel Valves (book p. 144 onward, Figures 3-93…).
+  **BOOK 6 progress: 10/21 units live in EN + VI.** Commit `fa87129c`;
+  live EN + VI pages, TOC and 10/21 catalog badge verified after Pages
+  propagation. Next: Unit 11 — Diaphragm and Stainless Steel Valves
+  (book p. 144 onward, Figures 3-93…).
