@@ -786,6 +786,74 @@ def fig_c11_levels():
                 "The six process levels used in the CBR database")
 
 
+def fig_c12_flowsheet():
+    """Redraw of source Figure 7 (p. 92): flowsheet of the acetic acid process
+    (methanol carbonylation) — seven numbered units."""
+    w, h = 560, 300
+    o = [_defs()]
+
+    def unit(x, y, num, vi, en, wd=86, fill="#eef3fb"):
+        o.append(_rect(x, y, wd, 46, fill, 1.2))
+        o.append(_circle(x + 13, y + 13, 9, "#fdf3e6", 1.0))
+        o.append(_txt(x + 13, y + 16, str(num), 8.2, color=INK, weight="600"))
+        o.append(_txt(x + wd / 2 + 6, y + 16, vi, 7.6, color=INK, weight="600"))
+        o.append(_txt(x + wd / 2 + 6, y + 29, en, 6.6, color=GREY))
+
+    # top row: reaction section
+    unit(20, 60, 1, "Lò phản ứng", "Reactor", 92)
+    unit(160, 60, 2, "Bộ tách", "Separator", 86)
+    unit(300, 60, 3, "Tháp rửa", "Scrubber", 86)
+    # bottom row: distillation train
+    unit(60, 180, 4, "Cột đầu nhẹ", "Light ends", 86)
+    unit(190, 180, 5, "Cột sấy", "Drying", 76)
+    unit(310, 180, 6, "Cột sản phẩm", "Product", 82)
+    unit(436, 180, 7, "Cột tinh chế", "Finishing", 84)
+
+    # streams
+    o.append(_arrow(112, 83, 158, 83, 1.4, GREY, head="a6"))
+    o.append(_txt(135, 74, "", 7))
+    o.append(_arrow(246, 83, 298, 83, 1.4, GREY, head="a6"))
+    o.append(_arrow(343, 74, 343, 40, 1.2, GREY, head="a6"))
+    o.append(_txt(349, 46, "CO", 7.6, anchor="start", color=BLUE))
+    o.append(_arrow(203, 106, 203, 178, 1.4, GREY, head="a6"))
+    o.append(_txt(209, 140, "lỏng · liquid", 7.0, anchor="start", color=GREY))
+    # methanol recycle scrubber -> reactor
+    o.append(_line(300, 96, 250, 96, 1.2, GREY))
+    o.append(_line(250, 96, 250, 130, 1.2, GREY))
+    o.append(_line(250, 130, 66, 130, 1.2, GREY))
+    o.append(_arrow(66, 130, 66, 108, 1.2, GREY, head="a6"))
+    o.append(_txt(256, 124, "MeOH hồi lưu · recycle", 7.0, anchor="start", color=GREY))
+    # feed arrows
+    o.append(_arrow(20, 20, 52, 58, 1.2, GREY, head="a6"))
+    o.append(_txt(24, 16, "CO + MeOH", 7.6, anchor="start", color=BLUE))
+    o.append(_arrow(146, 226, 188, 226, 1.4, GREY, head="a6"))
+    o.append(_txt(167, 219, "axit axetic · acetic acid", 6.8, anchor="middle", color=GREY))
+    o.append(_arrow(266, 226, 308, 226, 1.4, GREY, head="a6"))
+    o.append(_arrow(392, 226, 434, 226, 1.4, GREY, head="a6"))
+    o.append(_txt(411, 219, "", 7))
+    o.append(_arrow(222, 180, 222, 150, 1.2, GREY, head="a6"))
+    o.append(_txt(228, 156, "nước · water", 7.0, anchor="start", color=GREY))
+    o.append(_arrow(351, 180, 351, 150, 1.2, GREY, head="a6"))
+    o.append(_txt(357, 156, "đầu nặng · heavy ends", 7.0, anchor="start", color=GREY))
+    o.append(_arrow(520, 226, 546, 226, 1.4, GREY, head="a6"))
+    o.append(_txt(546, 216, "axit axetic · acetic acid", 7.2, anchor="end", color=BLUE))
+    o.append(_txt(280, h - 8,
+                  "Vẽ lại theo Hình 7 (tr. 92) — sơ đồ quá trình axit axetic (cacbonyl hóa methanol)",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Redrawn Figure 7: flowsheet of the acetic acid process with seven numbered units"))
+    return _fig(s,
+                "Hình 7 · Sơ đồ quá trình axit axetic: 1) lò phản ứng, 2) bộ tách, "
+                "3) tháp rửa, 4) cột tách đầu nhẹ, 5) cột sấy, 6) thu hồi sản phẩm, "
+                "7) tinh chế sản phẩm. Vẽ lại theo tài liệu gốc, tr. 92.",
+                "Figure 7 · Flowsheet of the acetic acid process: 1) reactor, "
+                "2) separator, 3) scrubber, 4) light-ends separator, 5) drying "
+                "column, 6) product recovery, 7) product finishing. Redrawn after "
+                "the original, p. 92.",
+                "Sơ đồ quá trình sản xuất axit axetic",
+                "Flowsheet of the acetic acid process")
+
+
 FIGS = {
     "isd_intro": fig_isd_intro,
     "f01": fig_f01,
@@ -801,4 +869,5 @@ FIGS = {
     "c08_index": fig_c08_index,
     "c09_weights": fig_c09_weights,
     "c11_levels": fig_c11_levels,
+    "c12_flowsheet": fig_c12_flowsheet,
 }

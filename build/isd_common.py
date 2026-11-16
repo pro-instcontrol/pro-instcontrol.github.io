@@ -41,6 +41,7 @@ SLUGS["isd"] = {
     9: "ch09-weighting",
     10: "ch10-chemical-subindices",
     11: "ch11-process-subindices",
+    12: "ch12-case-study",
 }
 
 # Re-export the shared helpers so chapter modules can `import isd_common as C`.
