@@ -996,3 +996,256 @@ FIGS = {
     "c13_cooling": fig_c13_cooling,
     "c13_preheat": fig_c13_preheat,
 }
+
+
+def fig_c14_synthesis():
+    """Redraw of source Figure 10 (p. 104): approach of Hurme and
+    Järveläinen (1995) — synthesis with simulation, costing, profitability."""
+    w, h = 560, 250
+    o = [_defs()]
+    o.append(_box(30, 30, 110, 46, "CƠ SỞ LUẬT\nRule base", fill="#eef3fb", sw=1.2, size=8.2))
+    o.append(_box(30, 100, 110, 40, "Người dùng\nUser", fill="#fdf3e6", sw=1.2, size=8.2))
+    o.append(_box(190, 46, 110, 44, "TỔNG HỢP\nSynthesis", fill="#eaf6ee", sw=1.3, size=8.4))
+    o.append(_box(340, 20, 90, 34, "PT 1 · Alt 1", fill="#f7fafd", sw=1.0, size=8))
+    o.append(_box(340, 62, 90, 34, "PT 2 · Alt 2", fill="#f7fafd", sw=1.0, size=8))
+    o.append(_box(340, 104, 90, 34, "PT 3 · Alt 3", fill="#f7fafd", sw=1.0, size=8))
+    o.append(_box(340, 152, 90, 60, "MÔ PHỎNG\nSimulation\n→ chi phí · costing\n→ lợi nhuận · profitability",
+                  fill="#eef3fb", sw=1.1, size=7.6))
+    o.append(_box(452, 152, 88, 60, "PHƯƠNG ÁN\nĐƯỢC CHỌN\nChosen\nalternative",
+                  fill="#eaf6ee", sw=1.3, size=7.8))
+    o.append(_arrow(140, 60, 188, 66, 1.3, GREY, head="a6"))
+    o.append(_arrow(140, 118, 188, 74, 1.3, GREY, head="a6"))
+    o.append(_arrow(300, 68, 338, 40, 1.3, GREY, head="a6"))
+    o.append(_arrow(300, 68, 338, 78, 1.3, GREY, head="a6"))
+    o.append(_arrow(300, 68, 338, 120, 1.3, GREY, head="a6"))
+    for yy in (37, 79, 121):
+        o.append(_arrow(430, yy, 430, 150, 1.0, GREY, head="a6"))
+    o.append(_arrow(430, 182, 450, 182, 1.4, GREY, head="a6"))
+    o.append(_txt(280, h - 8,
+                  "Vẽ lại theo Hình 10 (tr. 104) — nguyên lý tiếp cận Hurme và Järveläinen (1995)",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o), esc("Redrawn Figure 10: combined process synthesis, simulation and costing"))
+    return _fig(s,
+                "Hình 10 · Nguyên lý của cách tiếp cận Hurme và Järveläinen (1995): "
+                "tổng hợp dựa trên luật, mô phỏng, đánh giá chi phí và phân tích "
+                "lợi nhuận. Vẽ lại theo tài liệu gốc, tr. 104.",
+                "Figure 10 · The principle of the approach by Hurme and Järveläinen "
+                "(1995): rule-based synthesis, simulation, costing and "
+                "profitability analysis. Redrawn after the original, p. 104.",
+                "Sơ đồ tổng hợp quá trình kết hợp mô phỏng",
+                "Combined process synthesis and simulation system")
+
+
+def fig_c14_combined():
+    """Redraw of source Figure 11 (p. 105): combined synthesis with
+    environmental and safety aspects (Heikkilä et al., 1996)."""
+    w, h = 560, 300
+    o = [_defs()]
+    o.append(_box(20, 30, 92, 42, "Cơ sở luật\nRule base", fill="#eef3fb", sw=1.1, size=7.8))
+    o.append(_box(20, 86, 92, 36, "Người dùng\nUser", fill="#fdf3e6", sw=1.1, size=7.8))
+    o.append(_box(150, 42, 100, 40, "Tổng hợp\nSynthesis", fill="#eaf6ee", sw=1.2, size=8.2))
+    o.append(_box(288, 42, 92, 40, "Mô phỏng\nSimulation", fill="#eef3fb", sw=1.1, size=8))
+    o.append(_box(288, 96, 92, 40, "Chi phí &amp;\nlợi nhuận\nCosting &amp; profit.", fill="#eef3fb", sw=1.1, size=7.6))
+    o.append(_box(288, 150, 92, 40, "Phân tích\nmôi trường\nEnvironmental", fill="#eef3fb", sw=1.1, size=7.6))
+    o.append(_box(410, 96, 118, 46, "SO SÁNH AN TOÀN\nSafety comparison\n(chỉ số ISI)",
+                  fill="#fdeaea", sw=1.3, size=7.8))
+    o.append(_box(430, 170, 100, 42, "Phương án\nđược chọn\nChosen alternative",
+                  fill="#eaf6ee", sw=1.3, size=7.8))
+    # databanks row
+    for i, (vi, en) in enumerate([
+            ("Ngân hàng\năn mòn", "corrosion"),
+            ("Tính chất\nan toàn", "safety props."),
+            ("An toàn\nthiết bị", "equipment"),
+            ("Tương tác\nhóa học", "chem. interact."),
+            ("Cấu trúc\nquá trình", "proc. structure")]):
+        x = 118 + i * 88
+        o.append(_rect(x, 226, 82, 42, "#f7fafd", 1.0))
+        o.append(_txt(x + 41, 240, vi, 7.0, color=INK))
+        o.append(_txt(x + 41, 256, en, 6.4, color=GREY))
+        o.append(_line(x + 41, 226, x + 41, 216, 1.0, GREY))
+    o.append(_line(334, 216, 469, 130, 1.0, dash="3 2", color=GREY))
+    o.append(_txt(334, 222, "dữ liệu hỗ trợ so sánh an toàn · data supporting the safety comparison",
+                  7.0, color=GREY))
+    o.append(_arrow(112, 52, 148, 60, 1.3, GREY, head="a6"))
+    o.append(_arrow(112, 104, 148, 72, 1.3, GREY, head="a6"))
+    o.append(_arrow(250, 62, 286, 62, 1.3, GREY, head="a6"))
+    o.append(_arrow(334, 82, 380, 106, 1.3, GREY, head="a6"))
+    o.append(_arrow(334, 116, 380, 116, 1.3, GREY, head="a6"))
+    o.append(_arrow(334, 170, 380, 132, 1.3, GREY, head="a6"))
+    o.append(_arrow(469, 142, 476, 168, 1.3, GREY, head="a6"))
+    o.append(_txt(280, h - 8,
+                  "Vẽ lại theo Hình 11 (tr. 105) — tổng hợp quá trình kết hợp môi trường và an toàn",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o), esc("Redrawn Figure 11: combined synthesis with environmental and safety analysis"))
+    return _fig(s,
+                "Hình 11 · Nguyên lý tổng hợp quá trình kết hợp của Heikkilä và cộng "
+                "sự (1996): mô phỏng, chi phí–lợi nhuận, phân tích môi trường và so "
+                "sánh an toàn theo ISI. Vẽ lại theo tài liệu gốc, tr. 105.",
+                "Figure 11 · The principles of the combined process synthesis by "
+                "Heikkilä et al. (1996): simulation, costing and profitability, "
+                "environmental analysis and ISI-based safety comparison. Redrawn "
+                "after the original, p. 105.",
+                "Sơ đồ tổng hợp kết hợp phân tích môi trường và an toàn",
+                "Combined synthesis with environmental and safety analysis")
+
+
+def fig_c14_ga():
+    """Redraw of source Figure 12 (p. 108): the structure of a classical GA
+    (Moraga and Bexten, 1997)."""
+    w, h = 560, 250
+    o = [_defs()]
+    steps = [
+        ("Quần thể\nhiện tại", "Actual\npopulation"),
+        ("Tính độ thích\nnghi (fitness)", "Computation of\nthe fitness"),
+        ("Lựa chọn", "Selection"),
+        ("Sinh sản", "Reproduction"),
+        ("Ghép cặp", "Mating"),
+        ("Lai ghép", "Crossover"),
+        ("Đột biến", "Mutation"),
+    ]
+    n = len(steps)
+    for i, (vi, en) in enumerate(steps):
+        x = 24 + i * 76
+        o.append(_rect(x, 60, 68, 50, "#eef3fb" if i else "#fdf3e6", 1.1))
+        o.append(_txt(x + 34, 78, vi, 7.2, color=INK, weight="600"))
+        o.append(_txt(x + 34, 94, en, 6.4, color=GREY))
+        if i < n - 1:
+            o.append(_arrow(x + 68, 85, x + 76, 85, 1.3, GREY, head="a6"))
+    # loop back
+    o.append(_line(526, 110, 526, 160, 1.3, GREY))
+    o.append(_line(526, 160, 58, 160, 1.3, GREY))
+    o.append(_arrow(58, 160, 58, 112, 1.3, GREY, head="a6"))
+    o.append(_txt(292, 174, "lặp cho tới điều kiện dừng · repeat until termination condition",
+                  7.2, color=GREY))
+    o.append(_txt(280, h - 8,
+                  "Vẽ lại theo Hình 12 (tr. 108) — cấu trúc giải thuật di truyền cổ điển (Moraga và Bexten, 1997)",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o), esc("Redrawn Figure 12: structure of a classical genetic algorithm"))
+    return _fig(s,
+                "Hình 12 · Cấu trúc của giải thuật di truyền cổ điển (Moraga và Bexten, "
+                "1997): đánh giá độ thích nghi, lựa chọn, sinh sản, ghép cặp, lai ghép "
+                "và đột biến, lặp tới điều kiện dừng. Vẽ lại theo tài liệu gốc, tr. 108.",
+                "Figure 12 · The structure of a classical GA (Moraga and Bexten, "
+                "1997): fitness computation, selection, reproduction, mating, "
+                "crossover and mutation, repeated until a termination condition. "
+                "Redrawn after the original, p. 108.",
+                "Chu trình giải thuật di truyền",
+                "The genetic-algorithm cycle")
+
+
+def fig_c14_separations():
+    """Redraw of source Figure 13 (p. 111): two process configurations for
+    separating five components 1–5 by three methods 1–3."""
+    w, h = 560, 250
+    o = [_defs()]
+
+    def node(cx, cy, label, r=15, fill="#eef3fb"):
+        o.append(_circle(cx, cy, r, fill, 1.1))
+        o.append(_txt(cx, cy + 3, label, 7.8, color=INK, weight="600"))
+
+    def split(x1, y1, x2, y2, x3, y3):
+        o.append(_line(x1, y1, x2, y2, 1.2, GREY))
+        o.append(_line(x1, y1, x3, y3, 1.2, GREY))
+
+    # left tree: gene 23 12 14 11
+    o.append(_txt(140, 20, "CÂY 1 · mã gen 23 12 14 11", 8.0, color="#1f5f8b", weight="700"))
+    node(140, 60, "1,2,3,4,5")
+    split(140, 75, 70, 120, 210, 120)
+    o.append(_txt(100, 92, "PP2", 7.2, color=GREY))
+    node(70, 135, "1,2,3")
+    node(210, 135, "4,5")
+    split(70, 150, 40, 190, 105, 190)
+    o.append(_txt(50, 168, "PP1", 7.2, color=GREY))
+    node(40, 205, "1")
+    node(105, 205, "2,3")
+    o.append(_txt(140, 210, "PP1", 7.2, color=GREY))
+    o.append(_line(210, 150, 210, 175, 1.2, GREY))
+    node(210, 190, "4")
+    node(262, 190, "5")
+
+    # right tree: gene 12 23 14 11 (variant)
+    o.append(_txt(430, 20, "CÂY 2 · phương án thay thế", 8.0, color="#1f5f8b", weight="700"))
+    node(430, 60, "1,2,3,4,5")
+    split(430, 75, 360, 120, 500, 120)
+    o.append(_txt(390, 92, "PP1", 7.2, color=GREY))
+    node(360, 135, "1")
+    node(500, 135, "2,3,4,5")
+    split(500, 150, 445, 190, 530, 190)
+    o.append(_txt(468, 168, "PP3", 7.2, color=GREY))
+    node(445, 205, "2")
+    node(530, 205, "3,4,5")
+    o.append(_txt(500, 235, "PP1 · PP2 tiếp tục · continued", 7.0, color=GREY))
+    o.append(_txt(280, h - 8,
+                  "Vẽ lại theo Hình 13 (tr. 111) — hai cấu hình tách 5 cấu tử bằng 3 phương pháp (PP)",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o), esc("Redrawn Figure 13: two separation configurations for five components"))
+    return _fig(s,
+                "Hình 13 · Hai cấu hình quá trình để tách năm cấu tử 1–5 bằng ba "
+                "phương pháp 1–3 (cây tách nhị phân; PP = phương pháp tách). "
+                "Vẽ lại theo tài liệu gốc, tr. 111.",
+                "Figure 13 · Two process configurations for separating five "
+                "components 1–5 by three methods 1–3 (binary separation trees; "
+                "PP = separation method). Redrawn after the original, p. 111.",
+                "Hai cây tách quá trình",
+                "Two separation process configurations")
+
+
+def fig_c14_polymer():
+    """Redraw of source Figure 14 (p. 116): the synthesized emulsion
+    polymerization system."""
+    w, h = 560, 250
+    o = [_defs()]
+    o.append(_rect(120, 60, 110, 90, "#eef3fb", 1.3))
+    o.append(_txt(175, 84, "LÒ PHẢN ỨNG", 8.0, color=INK, weight="600"))
+    o.append(_txt(175, 98, "REACTOR · semibatch", 7.0, color=GREY))
+    o.append(_txt(175, 112, "áo khoác làm mát · jacket", 6.6, color=GREY))
+    o.append(_txt(175, 124, "2 khuấy cùng trục · 2 mixers", 6.6, color=GREY))
+    o.append(_txt(175, 136, "thép tráng bóng · polished steel", 6.6, color=GREY))
+    # reflux condenser above
+    o.append(_rect(140, 18, 70, 28, "#eaf6ee", 1.1))
+    o.append(_txt(175, 30, "BỘ NGƯNG · RD", 7.0, color=INK, weight="600"))
+    o.append(_txt(175, 40, "reflux condenser", 6.2, color=GREY))
+    o.append(_line(175, 46, 175, 58, 1.2, GREY))
+    o.append(_arrow(140, 84, 118, 84, 1.3, GREY, head="a6"))
+    o.append(_txt(116, 78, "N₂", 7.4, anchor="end", color=BLUE))
+    o.append(_arrow(20, 110, 118, 110, 1.3, GREY, head="a6"))
+    o.append(_txt(24, 102, "monome + xúc tác · monomers &amp; catalyst", 7.2, anchor="start", color=BLUE))
+    o.append(_arrow(20, 136, 118, 136, 1.3, GREY, head="a6"))
+    o.append(_txt(24, 128, "chất ức chế · inhibitor", 7.2, anchor="start", color=BLUE))
+    # to quench tank
+    o.append(_arrow(230, 120, 280, 120, 1.4, GREY, head="a6"))
+    o.append(_rect(282, 96, 104, 48, "#fdeaea", 1.2))
+    o.append(_txt(334, 114, "BỨT DẬP", 7.8, color=INK, weight="600"))
+    o.append(_txt(334, 128, "quench tank · RD + quench", 6.6, color=GREY))
+    # to flare
+    o.append(_arrow(386, 110, 436, 110, 1.4, GREY, head="a6"))
+    o.append(_txt(442, 106, "xả tới ống đốt", 7.2, anchor="start", color=GREY))
+    o.append(_txt(442, 118, "vent to flare", 6.6, anchor="start", color=GREY))
+    # to product tank
+    o.append(_arrow(334, 144, 334, 176, 1.4, GREY, head="a6"))
+    o.append(_rect(282, 178, 104, 44, "#eaf6ee", 1.2))
+    o.append(_txt(334, 196, "BỒN SẢN PHẨM", 7.8, color=INK, weight="600"))
+    o.append(_txt(334, 210, "product tank · latex", 6.6, color=GREY))
+    o.append(_txt(280, h - 8,
+                  "Vẽ lại theo Hình 14 (tr. 116) — hệ trùng hợp nhũ từ được tổng hợp (an toàn nội tại tối ưu)",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o), esc("Redrawn Figure 14: the synthesized emulsion polymerization system"))
+    return _fig(s,
+                "Hình 14 · Hệ trùng hợp nhũ từ được tổng hợp: lò phản ứng bán liên "
+                "tục với áo khoác làm mát và bộ ngưng hồi lưu, đĩa nổ + bể dập, "
+                "xả tới ống đốt, bồn sản phẩm. Vẽ lại theo tài liệu gốc, tr. 116.",
+                "Figure 14 · The synthesized emulsion polymerization system: "
+                "semibatch reactor with cooling jacket and reflux condenser, "
+                "rupture disk + quench tank, vent to flare, product tank. Redrawn "
+                "after the original, p. 116.",
+                "Hệ trùng hợp nhũ tổng hợp",
+                "The synthesized emulsion polymerization system")
+
+
+FIGS.update({
+    "c14_synthesis": fig_c14_synthesis,
+    "c14_combined": fig_c14_combined,
+    "c14_ga": fig_c14_ga,
+    "c14_separations": fig_c14_separations,
+    "c14_polymer": fig_c14_polymer,
+})

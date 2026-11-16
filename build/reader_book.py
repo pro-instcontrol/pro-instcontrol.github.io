@@ -525,7 +525,10 @@ BOOKS = {
                  10: "ch10-chemical-subindices",
                  11: "ch11-process-subindices",
                  12: "ch12-case-study",
-                 13: "ch13-cbr"},
+                 13: "ch13-cbr",
+                 14: "ch14-synthesis",
+                 15: "ch15-conclusions",
+                 16: "ch16-references"},
         "copyright_en": ("Original thesis © 1999 Anna-Mari Heikkilä / Technical Research "
                          "Centre of Finland (VTT), VTT Publications 384"),
         "copyright_vi": ("Luận văn gốc © 1999 Anna-Mari Heikkilä / Trung tâm Nghiên cứu Kỹ "
