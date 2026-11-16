@@ -1160,6 +1160,48 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch99-electropneumatic-and-electrohydraulic-instruments/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/valve-selection-handbook/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch01-introduction/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch01-introduction/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch01-introduction/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch01-introduction/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch02-fluid-tightness-and-sealing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch02-fluid-tightness-and-sealing/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch02-fluid-tightness-and-sealing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch02-fluid-tightness-and-sealing/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch03-seatings-gaskets-stem-seals/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch03-seatings-gaskets-stem-seals/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch03-seatings-gaskets-stem-seals/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch03-seatings-gaskets-stem-seals/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch04-flow-through-valves/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch04-flow-through-valves/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch04-flow-through-valves/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch04-flow-through-valves/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch05-manual-valves-selection-globe/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch05-manual-valves-selection-globe/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch05-manual-valves-selection-globe/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch05-manual-valves-selection-globe/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch06-piston-parallel-gate-valves/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch06-piston-parallel-gate-valves/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch06-piston-parallel-gate-valves/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch06-piston-parallel-gate-valves/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/"/>
@@ -3999,6 +4041,48 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch99-electropneumatic-and-electrohydraulic-instruments/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/the-measurement-instrumentation-and-sensors-handbook/ch99-electropneumatic-and-electrohydraulic-instruments/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/the-measurement-instrumentation-and-sensors-handbook/ch99-electropneumatic-and-electrohydraulic-instruments/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch01-introduction/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch01-introduction/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch01-introduction/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch01-introduction/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch02-fluid-tightness-and-sealing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch02-fluid-tightness-and-sealing/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch02-fluid-tightness-and-sealing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch02-fluid-tightness-and-sealing/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch03-seatings-gaskets-stem-seals/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch03-seatings-gaskets-stem-seals/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch03-seatings-gaskets-stem-seals/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch03-seatings-gaskets-stem-seals/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch04-flow-through-valves/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch04-flow-through-valves/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch04-flow-through-valves/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch04-flow-through-valves/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch05-manual-valves-selection-globe/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch05-manual-valves-selection-globe/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch05-manual-valves-selection-globe/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch05-manual-valves-selection-globe/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch06-piston-parallel-gate-valves/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch06-piston-parallel-gate-valves/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch06-piston-parallel-gate-valves/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch06-piston-parallel-gate-valves/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/</loc>

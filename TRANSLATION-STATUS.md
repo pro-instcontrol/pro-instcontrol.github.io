@@ -5379,3 +5379,34 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   broken 0**. **BOOK 6 progress: 5/21 units live in EN + VI.**
   Next: Unit 6 (Manual Valves II — Piston & Parallel Gate Valves,
   book pp. 74–88, Figures 3-25…3-32), then wedge/plug/ball/butterfly.
+
+## Book 6 (Valve Selection Handbook) — Unit 6, 2026-11-16
+- **Unit 6 live** (`ch06-piston-parallel-gate-valves`, book pp. **74–84** /
+  PDF pp. 88–98 — the earlier 74–88 estimate was too wide: book p. 84
+  begins WEDGE GATE VALVES). 11 source pages, **9 source figures redrawn**
+  as vectors in `build/vshfig3.py`: Figures 3-25 (parallel slide gate with
+  venturi passage + follower eyepiece), 3-26 (double disc with self-releasing
+  wedge, scrap view), 3-27 (spring-loaded floating seat inserts, scrap view),
+  3-28 (knife gate), 3-29 (conduit gate floating seats, PTFE + O-rings,
+  porthole), 3-30 (expandable two-half disc), 3-31 (automatic downstream
+  sealant injection), 3-32 (metal seats, oil-filled cavity, disc springs),
+  3-33 (locked-chamber pressure vs water temperature and percent filling,
+  chart). Shared `_gate_frame` / `_gate_fig` builder renders the cutaways;
+  numbered bilingual legends carry the feature names.
+- Prose covers the parallel-gate sealing force, low-pressure and wear
+  limitations, on-off-only duty (satisfactory control only beyond 50 %
+  closed), conventional vs conduit types, all nine figures' construction
+  details, double block and bleed, valve bypass sizing (condensing vapours
+  need an oversized bypass), pressure-equalizing connections for trapped
+  liquid / re-evaporated condensate, Figure 3-33 interpretation, Appendix C
+  standards, applications (duty and service including vacuum and cryogenic),
+  plus an 8-row bilingual summary table of the unit's valve types.
+- QA: headless-Chrome screenshot review of all nine figures; fixed an
+  off-feature marker in 3-30, a raw `&` that broke SVG XML in 3-14, and
+  double periods in four English `Courtesy of …` captions. Both pages:
+  9 figures, 0 Spanish, 0 CJK, 0 Python artifacts, 10/10 inline SVGs
+  XML-valid. `check_links.py` **956 pages / 29,018 refs / broken 0**;
+  sitemap 954 URLs.
+- Registration: `done` 1–6; `TRANSLATED` → `("progress", 21, 6)`.
+  **BOOK 6 progress: 6/21 units live in EN + VI.**
+  Next: Unit 7 — Wedge Gate Valves (book pp. 85–…, Figures 3-34…).

@@ -749,7 +749,7 @@ def fig_vsh_3_14():
                   color=RED))
     o.append(_txt(cx + 40, cy - 52, "ph\u1ee5c v\u1ee5 / in service", 6.8,
                   color=GREEN))
-    o.append(_txt(476, 330, "Bopp & Reuther GmbH.", 6.6, color=GREY))
+    o.append(_txt(476, 330, "Bopp &amp; Reuther GmbH.", 6.6, color=GREY))
     for i, (vi, en) in enumerate([
             ("van ba l\u1ed9 chuy\u1ec3n m\u1ea1ch",
              "three-way change-over valve"),
@@ -1256,3 +1256,606 @@ def fig_vsh_3_24():
            "piston"), (200, 265)),
          (("v\u00f2ng ma s\u00e1t l\u00e0m l\u00f2 xo",
            "friction ring acting as a spring"), (208, 278))])
+
+
+# =================================================== ch.3 part 2: gate valves
+# Local frame (unit 6): horizontal bore band y 88..114, body cavity above,
+# vertical gate slot through the top; twin-disc gate slab between two seat
+# rings that protrude into the bore at the valve centre.
+
+def _gate_frame(ops, kind="conventional", bonnet="bolted"):
+    """Gate-valve body + bore + seat rings + neck + bonnet/yoke/handwheel."""
+    top = 46 if kind == "conventional" else 60
+    body = [(-84, 82), (-60, 64), (-30, 52), (0, top - 6), (30, 52),
+            (60, 64), (84, 82), (84, 120), (60, 138), (30, 146),
+            (-30, 146), (-60, 138), (-84, 120)]
+    ops.append(("poly", body, BULB_F, 1.3, INK, "", True))
+    for sx in (-1, 1):
+        ops.append(("poly", [(sx * 92, 78), (sx * 84, 78), (sx * 84, 124),
+                             (sx * 92, 124)], RING_F, 1.2, INK, "", True))
+    # bore walls + seat rings (protrude slightly into the bore)
+    if kind == "venturi":
+        ops.append(("poly", [(-84, 88), (-40, 90), (-18, 95), (-14, 95)],
+                    "none", 1.2, INK, "", False))
+        ops.append(("poly", [(-84, 114), (-40, 112), (-18, 107), (-14, 107)],
+                    "none", 1.2, INK, "", False))
+        ops.append(("poly", [(84, 88), (40, 90), (18, 95), (14, 95)],
+                    "none", 1.2, INK, "", False))
+        ops.append(("poly", [(84, 114), (40, 112), (18, 107), (14, 107)],
+                    "none", 1.2, INK, "", False))
+    else:
+        ops.append(("line", -84, 88, -14, 88, 1.2, INK, ""))
+        ops.append(("line", -84, 114, -14, 114, 1.2, INK, ""))
+        ops.append(("line", 14, 88, 84, 88, 1.2, INK, ""))
+        ops.append(("line", 14, 114, 84, 114, 1.2, INK, ""))
+    for sx in (-1, 1):
+        ops.append(("poly", [(sx * 18, 85), (sx * 14, 85), (sx * 14, 117),
+                             (sx * 18, 117)], RING_F, 1.1, INK, "", True))
+    # gate slot neck
+    ops.append(("line", -16, top, -16, -44, 1.3, INK, ""))
+    ops.append(("line", 16, top, 16, -44, 1.3, INK, ""))
+    # bonnet + bolts + yoke + handwheel
+    ops.append(("poly", [(-30, -96), (30, -96), (30, -44), (-30, -44)],
+                "#efefe9", 1.2, INK, "", True))
+    ops.append(("poly", [(-38, -50), (38, -50), (38, -42), (-38, -42)],
+                RING_F, 1.1, INK, "", True))
+    for bx in (-30, -10, 10, 30):
+        ops.append(("line", bx, -52, bx, -40, 1.0, INK, ""))
+    ops.append(("line", -30, -44, -30, -128, 1.6, INK, ""))
+    ops.append(("line", 30, -44, 30, -128, 1.6, INK, ""))
+    ops.append(("poly", [(-22, -136), (22, -136), (22, -127), (-22, -127)],
+                RING_F, 1.1, INK, "", True))
+    ops.append(("poly", _ell(0, -152, 32, 8), "#e8e8e2", 1.2, INK, "", True))
+    ops.append(("circ", 0, -152, 5, 1.2, INK, RING_F))
+    return ops
+
+
+def _gate_disc(ops, twin=True, springs=True, top_y=-90, bot_y=60, w=9):
+    """Twin-disc parallel gate slab drawn OPEN (raised above the bore)."""
+    if twin:
+        ops.append(("poly", [(-2 - w, top_y), (-2, top_y), (-2, bot_y),
+                             (-2 - w, bot_y)], DISC_F, 1.2, INK, "", True))
+        ops.append(("poly", [(2, top_y), (2 + w, top_y), (2 + w, bot_y),
+                             (2, bot_y)], DISC_F, 1.2, INK, "", True))
+        if springs:
+            zz = []
+            for i in range(9):
+                yy = top_y + 10 + i * 5
+                zz.append(((3 if i % 2 else -3), yy))
+            ops.append(("poly", zz, "none", 1.1, INK, "", False))
+    else:
+        ops.append(("poly", [(-w, top_y), (w, top_y), (w, bot_y),
+                             (-w, bot_y)], DISC_F, 1.2, INK, "", True))
+    ops.append(("line", 0, top_y if twin else top_y, 0, -146, 2.4, INK, ""))
+
+
+def _gate_flow(ops):
+    a_y = 101
+    ops.append(("poly", [(-118, a_y), (-96, a_y)], "none", 0, "none", "", False))
+    return ops
+
+
+def _gate_fig(num, kind, ten, tvi, marks, extra_ops_fn=None, courtesy=""):
+    w, h = 560, 380
+    o = [_defs()]
+    DX, DY = 200, 180
+    ops = _gate_frame([], kind=kind)
+    if extra_ops_fn:
+        extra_ops_fn(ops)
+    o2 = []
+    _emit(o2, ops, rot=0.0, cx=0, cy=0, dx=DX, dy=DY)
+    a_y = DY + 101                              # bore centre in canvas coords
+    o2.append(_line(DX - 118, a_y, DX - 96, a_y, 1.6, color=BLUE))
+    o2.append(_poly([(DX - 96, a_y), (DX - 104, a_y - 3.5),
+                     (DX - 104, a_y + 3.5)], fill=BLUE, sw=0, close=True))
+    o2.append(_line(DX + 96, a_y, DX + 118, a_y, 1.6, color=BLUE))
+    o2.append(_poly([(DX + 118, a_y), (DX + 110, a_y - 3.5),
+                     (DX + 110, a_y + 3.5)], fill=BLUE, sw=0, close=True))
+    _emit_legend(o2, 402, marks)
+    if courtesy:
+        o2.append(_txt(476, 360, courtesy, 6.6, color=GREY))
+    return _fig(svg(w, h, "".join(o2), ten),
+                "H\u00ecnh 3-%d \u00b7 %s (v\u1ebd l\u1ea1i).%s"
+                % (num, tvi, (" Ngu\u1ed3n: " + courtesy) if courtesy else ""),
+                "Figure 3-%d \u00b7 %s — redrawn.%s"
+                % (num, ten, (" (Courtesy of " + courtesy.rstrip(".") + ".)")
+                   if courtesy else ""),
+                tvi, ten)
+
+
+@_reg3
+def fig_vsh_3_25():
+    def extra(ops):
+        _gate_disc(ops, twin=True, springs=True, top_y=-90, bot_y=70)
+        # belt eye: crossbar preventing unrestrained spreading near the top
+        ops.append(("poly", [(-16, -84), (16, -84), (16, -78), (-16, -78)],
+                    RING_F, 1.0, INK, "", True))
+        # eyelet bridging the seat gap in the fully open valve
+        zz = []
+        for i in range(7):
+            t = i / 6.0
+            zz.append((-14 + 28 * t, 95 + 8 * math.sin(math.pi * t)))
+        ops.append(("poly", zz, "none", 1.0, INK, "", False))
+    return _gate_fig(
+        25, "venturi",
+        "Parallel slide gate valve with converging-diverging flow passage "
+        "and follower eyepiece",
+        "Van c\u1eeda song song ki\u1ec3u tr\u01b0\u1ee3t, \u0111\u01b0\u1eddng "
+        "d\u00f2ng co h\u1eb9p \u2013 ph\u00ecnh r\u1ed9ng, c\u00f3 \u1ed1ng "
+        "\u00e1p (follower eyepiece)",
+        [(("hai \u0111\u0129a song song + l\u00f2 xo",
+           "twin discs with springs between"), (186, 120)),
+         (("v\u00e0nh m\u1eaft (belt eye) ch\u1ed1ng ph\u00e2n t\u00e1n",
+           "belt eye prevents unrestrained spreading"), (176, 99)),
+         (("ch\u1ed7 k\u00edn venturi, \u1ed1ng \u00e1p c\u1ea7u qua khe",
+           "venturi seats; eyelet bridges the gap"), (226, 281)),
+         (("c\u1ed5ng \u0111\u01b0\u1eddng d\u00f2ng ven-t\u01b0-ri",
+           "venturi flow passage"), (146, 281))],
+        extra_ops_fn=extra, courtesy="Hopkinsons Limited.")
+
+
+@_reg3
+def fig_vsh_3_26():
+    """Scrap view — double disc with wedging mechanism."""
+    w, h = 560, 340
+    o = [_defs()]
+    cx = 200
+    # two disc sections
+    o.append(_poly([(cx - 44, 40), (cx - 12, 40), (cx - 12, 210),
+                    (cx - 44, 210)], fill=DISC_F, sw=1.2, close=True))
+    o.append(_poly([(cx + 12, 40), (cx + 44, 40), (cx + 44, 210),
+                    (cx + 12, 210)], fill=DISC_F, sw=1.2, close=True))
+    # wedging mechanism between the discs (apex down, hangs from the top)
+    o.append(_poly([(cx - 12, 210), (cx + 12, 210), (cx + 12, 150),
+                    (cx - 12, 150)], fill="#e9e9e4", sw=1.2, close=True))
+    o.append(_poly([(cx - 12, 150), (cx + 12, 150), (cx, 40)],
+                   fill="#e0e0da", sw=1.2, close=True))
+    # body bottom shoulder contacted by the wedge
+    o.append(_poly([(cx - 52, 34), (cx + 52, 34), (cx + 52, 26),
+                    (cx - 52, 26)], fill=RING_F, sw=1.1, close=True))
+    o.append(_txt(cx + 58, 32, "vai th\u00e2n / body shoulder",
+                  6.8, anchor="start", color=GREY))
+    # spread arrows
+    o.append(_arrow(cx - 50, 120, cx - 70, 120, 1.2, color=BLUE))
+    o.append(_arrow(cx + 50, 120, cx + 70, 120, 1.2, color=BLUE))
+    o.append(_txt(cx, 236, "n\u00eam t\u1ef1 nh\u1ea3 khi m\u1edf / wedge is "
+                  "self-releasing", 7.0, color=GREY))
+    for i, (vi, en) in enumerate([
+            ("hai \u0111\u0129a k\u00e9p", "double-disc closure member"),
+            ("c\u01a1 ch\u1ebf n\u00eam gi\u1eefa hai \u0111\u0129a",
+             "wedging mechanism between the discs"),
+            ("ch\u1ea1m vai th\u00e2n \u2192 n\u00eam d\u00e0n \u0111\u0129a",
+             "on body contact the wedge spreads the discs")]):
+        yy = 66 + i * 34
+        o.append(_circle(404, yy - 3, 7, sw=1.0, color=INK))
+        o.append(_txt(404, yy - 1, str(i + 1), 7.6, weight="bold"))
+        o.append(_txt(418, yy - 4, vi, 7.6, anchor="start"))
+        o.append(_txt(418, yy + 6, en, 6.6, anchor="start", color=GREY))
+    o.append(_circle(cx - 28, 120, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx - 28, 120.5, "1", 8.0, weight="bold"))
+    o.append(_circle(cx, 176, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx, 176.5, "2", 8.0, weight="bold"))
+    o.append(_circle(cx, 62, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx, 62.5, "3", 8.0, weight="bold"))
+    o.append(_txt(476, 316, "Pacific Valves, Inc.", 6.6, color=GREY))
+    return _fig(svg(w, h, "".join(o), "Scrap view: double disc with wedge"),
+                "H\u00ecnh 3-26 \u00b7 M\u1ea3nh c\u1eaft (scrap view) van "
+                "c\u1eeda song song cho th\u1ea5y b\u1ed9 \u0111\u0129a k\u00e9p "
+                "v\u1edbi c\u01a1 ch\u1ebf n\u00eam (v\u1ebd l\u1ea1i). "
+                "Ngu\u1ed3n: Pacific Valves, Inc.",
+                "Figure 3-26 \u00b7 Scrap view of a parallel gate valve "
+                "showing double-disc closure member with wedging mechanism "
+                "— redrawn. (Courtesy of Pacific Valves, Inc.)",
+                "B\u1ed9 \u0111\u0129a k\u00e9p v\u1edbi c\u01a1 ch\u1ebf "
+                "n\u00eam.", "Double disc with wedging mechanism.")
+
+
+@_reg3
+def fig_vsh_3_27():
+    """Scrap view — spring-loaded floating seat inserts in the disc."""
+    w, h = 560, 340
+    o = [_defs()]
+    cx = 200
+    # disc slab (centre)
+    o.append(_poly([(cx - 12, 30), (cx + 12, 30), (cx + 12, 220),
+                    (cx - 12, 220)], fill=DISC_F, sw=1.2, close=True))
+    # floating seat rings either side, springs behind against body walls
+    for s in (-1, 1):
+        o.append(_poly([(cx + s * 16, 60), (cx + s * 40, 60),
+                        (cx + s * 40, 190), (cx + s * 16, 190)],
+                       fill=RING_F, sw=1.2, close=True))
+        # bonded O-ring on the seat face (disc side)
+        o.append(_circle(cx + s * 16, 125, 4.5, sw=1.2, color=INK))
+        # O-ring on the periphery (top of the ring)
+        o.append(_circle(cx + s * 28, 190, 4.5, sw=1.2, color=INK))
+        # spring behind the ring
+        zz = []
+        for i in range(9):
+            yy = 68 + i * 12
+            zz.append((cx + s * (44 if i % 2 else 34), yy))
+        o.append(_poly(zz, "none", 1.1, INK, "", False))
+        # body wall
+        o.append(_line(cx + s * 46, 40, cx + s * 46, 210, 1.3, color=INK))
+        # fluid pressure arrow acting on the back of the ring
+        o.append(_arrow(cx + s * 62, 125, cx + s * 48, 125, 1.3, color=BLUE))
+    o.append(_txt(cx, 252, "O-ring m\u1eb7t k\u00edn t\u1ea1o k\u00edn "
+                  "\u0111\u1ea7u ti\u00ean, \u00e1p sau \u00e9p k\u00edn "
+                  "th\u00eam", 7.0, color=GREY))
+    o.append(_txt(cx, 264, "face O-ring makes the initial seal, back "
+                  "pressure tightens it", 6.8, color=GREY))
+    for i, (vi, en) in enumerate([
+            ("\u0111\u0129a mang hai v\u00f2ng k\u00edn phao",
+             "disc carries two floating seat rings"),
+            ("O-ring m\u1eb7t + O-ring chu vi",
+             "bonded face O-ring + periphery O-ring"),
+            ("l\u00f2 xo \u0111\u1ea9y v\u00f2ng k\u00edn ch\u1ea1m \u0111\u0129a",
+             "springs keep the rings in sliding contact"),
+            ("\u00e1p ch\u1ea5t l\u1ecfng sau v\u00f2ng k\u00edn",
+             "fluid pressure behind the rings")]):
+        yy = 56 + i * 32
+        o.append(_circle(404, yy - 3, 7, sw=1.0, color=INK))
+        o.append(_txt(404, yy - 1, str(i + 1), 7.6, weight="bold"))
+        o.append(_txt(418, yy - 4, vi, 7.6, anchor="start"))
+        o.append(_txt(418, yy + 6, en, 6.6, anchor="start", color=GREY))
+    o.append(_circle(cx, 125, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx, 125.5, "1", 8.0, weight="bold"))
+    o.append(_circle(cx + 28, 190, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx + 28, 190.5, "2", 8.0, weight="bold"))
+    o.append(_circle(cx + 39, 80, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx + 39, 80.5, "3", 8.0, weight="bold"))
+    o.append(_circle(cx + 62, 150, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx + 62, 150.5, "4", 8.0, weight="bold"))
+    o.append(_txt(476, 316, "Grove Valve and Regulator Company.", 6.6,
+                  color=GREY))
+    return _fig(svg(w, h, "".join(o),
+                    "Scrap view: spring-loaded floating seat inserts"),
+                "H\u00ecnh 3-27 \u00b7 M\u1ea3nh c\u1eaft van c\u1eeda song "
+                "song cho th\u1ea5y c\u00e1c l\u00f5ng k\u00edn phao t\u1ea3i "
+                "b\u1edfi l\u00f2 xo g\u1eafn trong \u0111\u0129a (v\u1ebd "
+                "l\u1ea1i). Ngu\u1ed3n: Grove Valve and Regulator Company.",
+                "Figure 3-27 \u00b7 Scrap view of the seating arrangement "
+                "showing spring-loaded floating inserts in disc — redrawn. "
+                "(Courtesy of Grove Valve and Regulator Company.)",
+                "L\u00f5ng k\u00edn phao t\u1ea3i l\u00f2 xo trong \u0111\u0129a.",
+                "Spring-loaded floating seat inserts.")
+
+
+@_reg3
+def fig_vsh_3_28():
+    """Knife gate valve."""
+    w, h = 560, 360
+    o = [_defs()]
+    cx, cy = 200, 250
+    # shallow body: flanges + low block, bore near the bottom
+    o.append(_poly([(cx - 84, cy - 22), (cx - 60, cy - 34), (cx + 60, cy - 34),
+                    (cx + 84, cy - 22), (cx + 84, cy + 14), (cx - 84, cy + 14)],
+                   fill=BULB_F, sw=1.3, close=True))
+    for sx in (-1, 1):
+        o.append(_poly([(cx + sx * 92, cy - 26), (cx + sx * 84, cy - 26),
+                        (cx + sx * 84, cy + 18), (cx + sx * 92, cy + 18)],
+                       fill=RING_F, sw=1.2, close=True))
+    # bore
+    o.append(_line(cx - 84, cy - 12, cx - 14, cy - 12, 1.2, color=INK))
+    o.append(_line(cx - 84, cy + 14, cx - 14, cy + 14, 1.2, color=INK))
+    o.append(_line(cx + 14, cy - 12, cx + 84, cy - 12, 1.2, color=INK))
+    o.append(_line(cx + 14, cy + 14, cx + 84, cy + 14, 1.2, color=INK))
+    # knife disc with beveled edge, descending through the bore (closed-ish)
+    o.append(_poly([(cx - 4, cy - 90), (cx + 4, cy - 90), (cx + 4, cy + 8),
+                    (cx, cy + 20), (cx - 4, cy + 8)],
+                   fill=DISC_F, sw=1.2, close=True))
+    # lateral guides
+    for sx in (-1, 1):
+        o.append(_rect(cx + sx * 10, cy - 70, 6, 60, fill=RING_F, sw=1.0))
+    # lugs at the bottom forcing the disc against the seat
+    for sx in (-1, 1):
+        o.append(_rect(cx + sx * 24, cy + 8, 12, 10, fill=RING_F, sw=1.1))
+    # packing gland on top
+    o.append(_poly([(cx - 16, cy - 96), (cx + 16, cy - 96), (cx + 16, cy - 90),
+                    (cx - 16, cy - 90)], fill=RING_F, sw=1.0, close=True))
+    o.append(_poly([(cx - 12, cy - 90), (cx + 12, cy - 90), (cx + 12, cy - 78),
+                    (cx - 12, cy - 78)], fill=PACK_F, sw=1.0, close=True))
+    a_y = cy - 12 + 1
+    o.append(_line(cx - 118, a_y, cx - 96, a_y, 1.6, color=BLUE))
+    o.append(_poly([(cx - 96, a_y), (cx - 104, a_y - 3.5), (cx - 104, a_y + 3.5)],
+                   fill=BLUE, sw=0, close=True))
+    o.append(_line(cx + 96, a_y, cx + 118, a_y, 1.6, color=BLUE))
+    o.append(_poly([(cx + 118, a_y), (cx + 110, a_y - 3.5), (cx + 110, a_y + 3.5)],
+                   fill=BLUE, sw=0, close=True))
+    for i, (vi, en) in enumerate([
+            ("\u0111\u0129a m\u1ecfng m\u00e9p dao",
+             "thin knife-edged disc cuts through fibres"),
+            ("d\u1eabn h\u01b0\u1edbng ngang cho \u0111\u0129a",
+             "disc travels in lateral guides"),
+            ("ch\u1ed7 k\u00edn g\u1ea7n kh\u00f4ng c\u00f3 khoang th\u00e2n",
+             "virtually no valve body cavity"),
+            ("m\u00f3c (lug) \u00e9p \u0111\u0129a v\u00e0o ch\u1ed7 k\u00edn",
+             "lugs at the bottom force the disc onto the seat")]):
+        yy = 56 + i * 32
+        o.append(_circle(404, yy - 3, 7, sw=1.0, color=INK))
+        o.append(_txt(404, yy - 1, str(i + 1), 7.6, weight="bold"))
+        o.append(_txt(418, yy - 4, vi, 7.6, anchor="start"))
+        o.append(_txt(418, yy + 6, en, 6.6, anchor="start", color=GREY))
+    o.append(_circle(cx, cy - 40, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx, cy - 39.5, "1", 8.0, weight="bold"))
+    o.append(_circle(cx + 13, cy - 45, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx + 13, cy - 44.5, "2", 8.0, weight="bold"))
+    o.append(_circle(cx - 40, cy - 30, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx - 40, cy - 29.5, "3", 8.0, weight="bold"))
+    o.append(_circle(cx + 30, cy + 13, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx + 30, cy + 13.5, "4", 8.0, weight="bold"))
+    o.append(_txt(476, 336, "DeZurik.", 6.6, color=GREY))
+    return _fig(svg(w, h, "".join(o), "Knife gate valve"),
+                "H\u00ecnh 3-28 \u00b7 Van c\u1eeda dao (knife gate) cho "
+                "slurry g\u1ed3m c\u1ea3 ch\u1ea5t s\u1ee3i (v\u1ebd l\u1ea1i). "
+                "Ngu\u1ed3n: DeZurik.",
+                "Figure 3-28 \u00b7 Knife gate valve designed to handle "
+                "slurries, including fibrous material — redrawn. "
+                "(Courtesy of DeZurik.)",
+                "Van c\u1eeda dao cho slurry v\u00e0 ch\u1ea5t s\u1ee3i.",
+                "Knife gate valve for slurries.")
+
+
+@_reg3
+def fig_vsh_3_29():
+    """Scrap view — conduit gate floating seats."""
+    w, h = 560, 340
+    o = [_defs()]
+    cx = 200
+    # disc with porthole (extended at the bottom)
+    o.append(_poly([(cx - 14, 20), (cx + 14, 20), (cx + 14, 250),
+                    (cx - 14, 250)], fill=DISC_F, sw=1.2, close=True))
+    o.append(_rect(cx - 10, 190, 20, 40, fill="#ffffff", sw=1.0))
+    o.append(_txt(cx, 285, "c\u1ed5ng m\u1eaft (porthole) \u1edf \u0111\u00e1y "
+                  "\u0111\u0129a", 6.8, color=GREY))
+    # floating seats either side: PTFE face + O-rings + pressure arrow
+    for s in (-1, 1):
+        o.append(_poly([(cx + s * 18, 50), (cx + s * 36, 50),
+                        (cx + s * 36, 160), (cx + s * 18, 160)],
+                       fill=RING_F, sw=1.2, close=True))
+        # PTFE seat face
+        o.append(_poly([(cx + s * 18, 60), (cx + s * 21, 60),
+                        (cx + s * 21, 150), (cx + s * 18, 150)],
+                       "#dfe8dd", sw=0.9, close=True))
+        # peripheral O-rings
+        o.append(_circle(cx + s * 27, 50, 4.5, sw=1.2, color=INK))
+        o.append(_circle(cx + s * 27, 160, 4.5, sw=1.2, color=INK))
+        # fluid pressure behind the seat
+        o.append(_arrow(cx + s * 58, 105, cx + s * 40, 105, 1.3, color=BLUE))
+    for i, (vi, en) in enumerate([
+            ("ch\u1ed7 k\u00edn phao m\u1eb7t PTFE",
+             "floating seats faced with PTFE"),
+            ("O-ring k\u00edn chu vi", "peripheral O-ring seat seal"),
+            ("\u00e1p ch\u1ea5t l\u1ecfng \u00e9p ch\u1ed7 k\u00edn v\u00e0o "
+             "\u0111\u0129a", "fluid pressure forces seats onto the disc"),
+            ("\u0111\u0129a d\u00e0i \u0111\u00e1y c\u00f3 c\u1ed5ng m\u1eaft",
+             "disc extended at the bottom to receive a porthole")]):
+        yy = 56 + i * 32
+        o.append(_circle(404, yy - 3, 7, sw=1.0, color=INK))
+        o.append(_txt(404, yy - 1, str(i + 1), 7.6, weight="bold"))
+        o.append(_txt(418, yy - 4, vi, 7.6, anchor="start"))
+        o.append(_txt(418, yy + 6, en, 6.6, anchor="start", color=GREY))
+    o.append(_circle(cx + 26, 75, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx + 26, 75.5, "1", 8.0, weight="bold"))
+    o.append(_circle(cx + 27, 160, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx + 27, 160.5, "2", 8.0, weight="bold"))
+    o.append(_circle(cx + 56, 120, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx + 56, 120.5, "3", 8.0, weight="bold"))
+    o.append(_circle(cx, 210, 7.5, sw=1.2, color=INK))
+    o.append(_txt(cx, 210.5, "4", 8.0, weight="bold"))
+    o.append(_txt(476, 316, "W.K.M. Valve Division, ACF Industries, Inc.",
+                  6.6, color=GREY))
+    return _fig(svg(w, h, "".join(o), "Scrap view: conduit gate floating seats"),
+                "H\u00ecnh 3-29 \u00b7 M\u1ea3nh c\u1eaft van c\u1eeda \u1ed1ng "
+                "d\u1eabn (conduit gate) cho th\u1ea5y ch\u1ed7 k\u00edn phao "
+                "(v\u1ebd l\u1ea1i). Ngu\u1ed3n: W.K.M. Valve Division, "
+                "ACF Industries, Inc.",
+                "Figure 3-29 \u00b7 Conduit gate valve with scrap view of "
+                "seating arrangement showing floating seats — redrawn. "
+                "(Courtesy of W.K.M. Valve Division, ACF Industries, Inc.)",
+                "Ch\u1ed7 k\u00edn phao c\u1ee7a van conduit gate.",
+                "Floating seats of a conduit gate valve.")
+
+
+@_reg3
+def fig_vsh_3_30():
+    def extra(ops):
+        # expandable disc: two halves with wedge-shaped interface, closed
+        # with the portholes aligned to the bore (flow position)
+        ops.append(("poly", [(-16, 30), (-2, 38), (-2, 48), (-2, 140),
+                             (-16, 132)], DISC_F, 1.2, INK, "", True))
+        ops.append(("poly", [(16, 30), (2, 38), (2, 48), (2, 140),
+                             (16, 132)], DISC_F, 1.2, INK, "", True))
+        # portholes aligned with the bore in the closed (flow) position
+        for sx in (-1, 1):
+            ops.append(("poly", [(sx * 4, 92), (sx * 12, 92),
+                                 (sx * 12, 110), (sx * 4, 110)],
+                        "#ffffff", 1.0, INK, "", True))
+        # seat skirts around the full disc travel
+        for sx in (-1, 1):
+            ops.append(("poly", [(sx * 24, 20), (sx * 20, 20),
+                                 (sx * 20, 155), (sx * 24, 155)],
+                        RING_F, 1.0, INK, "", True))
+        ops.append(("line", 0, 38, 0, -146, 2.4, INK, ""))
+    return _gate_fig(
+        30, "conventional",
+        "Conduit gate valve with floating seats and expandable disc",
+        "Van c\u1eeda \u1ed1ng d\u1eabn (conduit gate) ch\u1ed7 k\u00edn "
+        "phao, \u0111\u0129a c\u00f3 th\u1ec3 gi\u00e3n ra",
+        [(("\u0111\u0129a hai n\u1eeda gh\u00e9p n\u00eam",
+           "two disc halves with wedge interface"), (210, 245)),
+         (("ch\u1ed7 k\u00edn phao c\u00f3 v\u00e1y (skirt)",
+           "floating seats with skirts"), (220, 305)),
+         (("c\u1ed5ng m\u1eaft th\u1eb3ng h\u00e0ng khi m\u1edf",
+           "porthole aligns with the bore when open"), (208, 281)),
+         (("n\u00eam d\u00e0n khi \u0111\u00f3ng/m\u1ebft h\u1ebft",
+           "halves wedge apart at the end positions"), (200, 224))],
+        extra_ops_fn=extra, courtesy="W.K.M. Valve Division, ACF Industries, Inc.")
+
+
+@_reg3
+def fig_vsh_3_31():
+    def extra(ops):
+        _gate_disc(ops, twin=True, springs=True, top_y=-80, bot_y=70)
+        # sealant reservoirs topped by floating pistons, behind each seat
+        for sx in (-1, 1):
+            ops.append(("poly", [(sx * 20, 146), (sx * 30, 144),
+                                 (sx * 30, 118), (sx * 20, 118)],
+                        "#f2ecd9", 1.1, INK, "", True))
+            ops.append(("line", sx * 20, 140, sx * 30, 139, 1.1, INK, ""))
+            ops.append(("poly", [(sx * 20, 118), (sx * 30, 118),
+                                 (sx * 30, 128), (sx * 20, 128)],
+                        PACK_F, 0.9, INK, "", True))
+        # grease-filled chamber
+        ops.append(("poly", [(-16, 70), (16, 70), (16, -44), (-16, -44)],
+                    "#e8eef5", 0.9, INK, "3 3", True))
+    return _gate_fig(
+        31, "conventional",
+        "Conduit gate valve with automatic injection of a sealant to the "
+        "downstream seatings each time the valve closes",
+        "Van c\u1eeda \u1ed1ng d\u1eabn t\u1ef1 \u0111\u1ed9ng b\u01a1m "
+        "ch\u1ea5t l\u00e0m k\u00edn v\u00e0o ch\u1ed7 k\u00edn h\u1ea1 l\u01b0u "
+        "m\u1ed7i l\u1ea7n \u0111\u00f3ng",
+        [(("b\u1ec3 ch\u1ea5t l\u00e0m k\u00edn + piston phao",
+           "sealant reservoirs with floating pistons"), (238, 310)),
+         (("hai \u0111\u0129a d\u00e0n b\u1edfi l\u00f2 xo",
+           "twin discs spread by springs"), (191, 215)),
+         (("khoang van \u0111\u1ed5 \u0111\u1ea7y m\u1ee1",
+           "valve chamber filled with grease"), (190, 165)),
+         (("\u0111\u1ee7 d\u00f9ng > 100 l\u1ea7n thao t\u00e1c",
+           "one filling lasts over 100 operations"), (162, 302))],
+        extra_ops_fn=extra, courtesy="McEvoy Oilfield Equipment Company.")
+
+
+@_reg3
+def fig_vsh_3_32():
+    def extra(ops):
+        # heavy wear-resistant gate with porthole at the bottom
+        ops.append(("poly", [(-10, 24), (10, 24), (10, 140), (-10, 140)],
+                    DISC_F, 1.3, INK, "", True))
+        ops.append(("poly", [(-8, 88), (8, 88), (8, 114), (-8, 114)],
+                    "#ffffff", 1.0, INK, "", True))
+        # disc-spring pre-stressed floating seats
+        for sx in (-1, 1):
+            ops.append(("poly", [(sx * 20, 84), (sx * 27, 84),
+                                 (sx * 27, 118), (sx * 20, 118)],
+                        RING_F, 1.1, INK, "", True))
+            for k in range(3):
+                yy = 88 + k * 12
+                zz = []
+                for i in range(5):
+                    zz.append((sx * (28 + k * 5 + (2 if i % 2 else -2)),
+                               yy + i * 2.4))
+                ops.append(("poly", zz, "none", 1.0, INK, "", False))
+        ops.append(("line", 0, 24, 0, -146, 2.4, INK, ""))
+    return _gate_fig(
+        32, "conventional",
+        "Conduit gate valve with metal seatings and oil-filled body cavity "
+        "for heavily dust-laden gases and the hydraulic transport of coal "
+        "and ores",
+        "Van c\u1eeda \u1ed1ng d\u1eabn ch\u1ed7 k\u00edn kim lo\u1ea1i, "
+        "khoang th\u00e2n \u0111\u1ea7y d\u1ea7u cho kh\u00ed nhi\u1ec1u "
+        "b\u1ee5i v\u00e0 v\u1eadn chuy\u1ec3n than, qu\u1eb7ng "
+        "s\u1eaft b\u1eb1ng "
+        "th\u1ee7y l\u1ef1c",
+        [(("t\u1ea5m c\u1eeda ch\u1ecbu m\u00f2i d\u00e0y, c\u1ed5ng "
+           "\u1edf \u0111\u00e1y", "heavy wear-resistant gate, porthole at "
+           "the bottom"), (204, 315)),
+         (("ch\u1ed7 k\u00edn phao d\u00e2y ch\u0103n l\u00f2 xo \u0111\u0129a",
+           "floating seats pre-stressed by disc springs"), (233, 288)),
+         (("m\u1eb7t kim lo\u1ea1i \u00e1nh l\u00f3ng, khoang \u0111\u1ea7y "
+           "d\u1ea7u", "polished metal faces, oil-filled chamber"),
+          (168, 246))],
+        extra_ops_fn=extra, courtesy="VAG-Armaturen GmbH.")
+
+
+@_reg3
+def fig_vsh_3_33():
+    """Figure 3-33 — pressure in a locked valve chamber vs water
+    temperature and percent filling (chart, redrawn from the original)."""
+    W, H = 520, 430
+    X0, Y0, PW, PH = 62.0, 42.0, 372.0, 322.0   # plot box (y-down canvas)
+    TMAX, PMAX = 600.0, 520.0
+
+    def px(t):
+        return X0 + t / TMAX * PW
+
+    def py(p):
+        return Y0 + PH - p / PMAX * PH
+
+    o = []
+    # grid: horizontal every 50 bar, vertical every 100 degC
+    for p in range(0, 501, 50):
+        o.append(_line(X0, py(p), X0 + PW, py(p), 0.5, color="#d8d5cc"))
+    for t in range(100, 601, 100):
+        o.append(_line(px(t), Y0, px(t), Y0 + PH, 0.5, color="#d8d5cc"))
+    # frame + ticks
+    o.append(_rect(X0, Y0, PW, PH, "none", 1.2, stroke=INK))
+    for p in range(0, 501, 50):
+        o.append(_line(X0 - 4, py(p), X0, py(p), 0.9))
+        o.append(_txt(X0 - 7, py(p) + 2.6, str(p), 7.0, anchor="end",
+                      color=INK))
+    for t in range(100, 601, 100):
+        o.append(_line(px(t), Y0 + PH, px(t), Y0 + PH + 4, 0.9))
+        o.append(_txt(px(t), Y0 + PH + 13, str(t), 7.0, color=INK))
+
+    # right auxiliary scale: percent filling 1..10 at the pressures where
+    # the low-filling curves reach the right edge of the plot
+    for fv, p in ((1, 38), (2, 72), (3, 121), (5, 179), (7, 234), (10, 353)):
+        o.append(_line(X0 + PW, py(p), X0 + PW + 4, py(p), 0.9))
+        o.append(_txt(X0 + PW + 7, py(p) + 2.6, str(fv), 7.0, color=INK))
+    # rotated axis titles
+    o.append('<text x="14" y="%s" text-anchor="middle" style="font:8px Inter,'
+             'Helvetica,sans-serif;fill:%s;font-weight:bold" '
+             'transform="rotate(-90 14 %s)">Pressure in locked valve chamber '
+             '(bar)</text>' % (fmt(Y0 + PH / 2.0), INK, fmt(Y0 + PH / 2.0)))
+    o.append(_txt(X0 + PW / 2.0, Y0 + PH + 28, "Water temperature (\u00b0C)",
+                  8.4, color=INK, weight="bold"))
+    o.append('<text x="512" y="%s" text-anchor="middle" style="font:7.6px '
+             'Inter,Helvetica,sans-serif;fill:%s;font-weight:bold" '
+             'transform="rotate(-90 512 %s)">Percent filling of valve '
+             'chamber with water</text>'
+             % (fmt(Y0 + PH / 2.0), INK, fmt(Y0 + PH / 2.0)))
+
+    # saturation trunk shared by all curves
+    trunk = [(20, 0.1), (60, 0.3), (100, 1.0), (150, 4.8), (200, 15.5),
+             (250, 40.0), (300, 87.0), (340, 163.0), (374, 221.0)]
+    curves = [
+        ("100", [(100, 1.0), (103, 150), (105, 350), (106.5, 505)]),
+        ("95", [(150, 4.8), (153, 160), (156, 360), (157.5, 505)]),
+        ("90", [(200, 15.5), (203, 180), (206, 400), (208, 505)]),
+        ("80", [(270, 55), (274, 210), (278, 430), (280.5, 505)]),
+        ("70", [(300, 87), (340, 120), (400, 160), (480, 230), (550, 300),
+                (605, 358)]),
+        ("50", [(270, 58), (340, 80), (420, 105), (520, 148), (605, 192)]),
+        ("30", [(245, 36), (320, 50), (420, 72), (520, 98), (605, 122)]),
+        ("20", [(230, 22), (320, 27), (420, 32), (520, 37), (605, 40)]),
+    ]
+    o.append(_poly([(px(t), py(p)) for t, p in trunk], "none", 1.5, INK))
+    for lab, pts in curves:
+        o.append(_poly([(px(t), py(p)) for t, p in pts], "none", 1.3, INK))
+    # percent-filling labels above the top edge (rotated, as in the source)
+    top_lab = [("100", 106.5), ("95", 157.5), ("90", 208), ("80", 280.5),
+               ("70", 420), ("50", 470), ("30", 515), ("20", 550)]
+    for lab, t in top_lab:
+        x = px(t)
+        o.append('<text x="%s" y="30" text-anchor="start" style="font:7.6px '
+                 'Inter,Helvetica,sans-serif;fill:%s;font-weight:bold" '
+                 'transform="rotate(-90 %s 30)">%s</text>'
+                 % (fmt(x), INK, fmt(x), lab))
+    # arrow from the right scale toward the top label row
+    o.append(_arrow(505, 24, 468, 24, 1.0, GREY))
+
+    return _fig(svg(W, H, _defs() + "".join(o),
+                    "Pressure in a locked valve chamber versus water "
+                    "temperature and percent filling"),
+                "H\u00ecnh 3-33 \u00b7 \u00c1p su\u1ea5t trong khoang van "
+                "b\u1ecb kh\u00f3a theo nhi\u1ec7t \u0111\u1ed9 n\u01b0\u1edbc "
+                "v\u00e0 t\u1ef7 l\u1ec7 l\u1ea5p \u0111\u1ea7y n\u01b0\u1edbc "
+                "(v\u1ebd l\u1ea1i). Ngu\u1ed3n: Sempell A.G.",
+                "Figure 3-33 \u00b7 Pressure in a locked valve chamber as a "
+                "function of water temperature and percent filling with "
+                "water — redrawn. (Courtesy of Sempell A.G.)",
+                "Bi\u1ec3u \u0111\u1ed3 \u00e1p su\u1ea5t khoang van kh\u00f3a "
+                "theo nhi\u1ec7t \u0111\u1ed9 v\u00e0 t\u1ef7 l\u1ec7 "
+                "l\u1ea5p \u0111\u1ea7y.",
+                "Locked chamber pressure versus temperature and filling.")
