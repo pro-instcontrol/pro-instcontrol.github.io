@@ -5499,3 +5499,36 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
 - Registration: `done` 1–9; `TRANSLATED` → `("progress", 21, 9)`.
   **BOOK 6 progress: 9/21 units live in EN + VI.** Next: Unit 10 —
   Butterfly and Pinch Valves (book p. 120 onward, Figures 3-69…).
+
+## Book 6 (Valve Selection Handbook) — Unit 10, 2026-11-16
+- **Unit 10 live** (`ch10-butterfly-pinch-valves`, book pp. **120–143** /
+  PDF 134–157; DIAPHRAGM VALVES begin book p. 144 = PDF 158). 24 source
+  pages, **24 source figures redrawn** in new `build/vshfig7.py`: butterfly
+  metal-seated (3-69), replaceable/bonded/band liners and double disc
+  (3-70…3-72), installation precautions (3-73), disc-rim O-ring and
+  inflatable hose (3-74, 3-75), body-slot T-diaphragm (3-76), seven
+  high-performance seat variants (3-77…3-83), offset-disc torque schematic
+  (3-84), three torque/pressure-drop charts (3-85…3-87), and five pinch
+  valves from open/enclosed/PTFE tear-drop constructions to fluid-pressure
+  and iris-like closing (3-88…3-92).
+- Prose covers leakage classes and the three seating methods, liner
+  constructions and flange installation, pressure-energized seals, the
+  high-performance envelope (35 bar, −200…650 °C), fire-tested designs,
+  wafer vs flanged/lugged bodies, torque components and the shift of peak
+  torque to partly open, pinch-valve flow control and 50% prepinch,
+  equal-percentage iris closure, body materials and limitations (suction
+  collapse, pump-start blow, pulsation fatigue, locked liquid), standards
+  and applications, plus a 22-row bilingual summary table.
+- QA: headless-Chrome screenshots of all 24 figures on a second pass caught
+  five SVG parse failures from raw ampersands, five invisible pinch drawings
+  (shape strings were being passed through the op-tuple emitter), off-feature
+  callouts across the butterfly/pinch sets, and clipped chart y-axis labels
+  and legends. All were fixed and re-shot; the fluid-pressure figures also
+  lost their pressure chambers when a flag was popped too early, then had
+  it restored. Final QA: all 24 SVGs XML-valid, 25/25 inline SVGs per page
+  valid, 24 figures per language, 0 Spanish, 0 CJK, 0 Python artifacts.
+  `check_links.py` **962 pages / 29,164 refs / broken 0**; sitemap
+  regenerated with Unit 10 URLs.
+- Registration: `done` 1–10; `TRANSLATED` → `("progress", 21, 10)`.
+  **BOOK 6 progress: 10/21 units live in EN + VI.** Next: Unit 11 —
+  Diaphragm and Stainless Steel Valves (book p. 144 onward, Figures 3-93…).

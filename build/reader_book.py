@@ -640,7 +640,8 @@ BOOKS = {
                  6: "ch06-piston-parallel-gate-valves",
                  7: "ch07-wedge-gate-valves",
                  8: "ch08-plug-valves",
-                 9: "ch09-ball-valves"},
+                 9: "ch09-ball-valves",
+                 10: "ch10-butterfly-pinch-valves"},
         "copyright_en": ("Original book © 2004 Elsevier Inc. (Gulf Professional Publishing), "
                          "ISBN 0-7506-7717-1"),
         "copyright_vi": ("Sách gốc © 2004 Elsevier Inc. (Gulf Professional Publishing), "
