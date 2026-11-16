@@ -624,6 +624,67 @@ def fig_c07_index():
                 "Three-tier formation of the inherent safety index")
 
 
+def fig_c08_index():
+    """Editorial schematic (not in the source) of Table 7 (p. 57): the total
+    inherent safety index I_TI = I_CI + I_PI and its two subindex families."""
+    w, h = 560, 340
+    o = [_defs()]
+    o.append(_box(160, 18, 240, 52,
+                  "I<sub>TI</sub> — TỔNG CHỈ SỐ AN TOÀN NỘI TẠI\n"
+                  "Total Inherent Safety Index  (Eq. 3)",
+                  fill="#fdf3e6", sw=1.4, size=8.6))
+    o.append(_box(30, 108, 235, 52,
+                  "I<sub>CI</sub> — CHỈ SỐ AN TOÀN NỘI TẠI HÓA HỌC\n"
+                  "Chemical Inherent Safety Index  (Eq. 4)",
+                  fill="#eef3fb", sw=1.3, size=8.2))
+    o.append(_box(295, 108, 235, 52,
+                  "I<sub>PI</sub> — CHỈ SỐ AN TOÀN NỘI TẠI QUÁ TRÌNH\n"
+                  "Process Inherent Safety Index  (Eq. 5)",
+                  fill="#eef3fb", sw=1.3, size=8.2))
+    o.append(_arrow(250, 70, 150, 106, sw=1.5, color=GREY, head="a6"))
+    o.append(_arrow(310, 70, 410, 106, sw=1.5, color=GREY, head="a6"))
+    o.append(_txt(158, 88, "+", 12, color=GREY, weight="700"))
+
+    o.append(_rect(30, 178, 235, 122, "#f7fafd", 1.0))
+    o.append(_txt(147, 192, "Phản ứng · Reaction hazards", 8.0,
+                  color=BLUE, weight="600"))
+    o.append(_txt(40, 208, "• nhiệt phản ứng chính  I<sub>RM</sub>", 7.6, color=INK))
+    o.append(_txt(40, 224, "• nhiệt phản ứng phụ  I<sub>RS</sub>", 7.6, color=INK))
+    o.append(_txt(40, 240, "• tương tác hóa học  I<sub>INT</sub>", 7.6, color=INK))
+    o.append(_txt(147, 258, "Chất nguy hiểm · Substances", 8.0,
+                  color=BLUE, weight="600"))
+    o.append(_txt(40, 274, "• cháy  I<sub>FL</sub> · nổ  I<sub>EX</sub>", 7.6, color=INK))
+    o.append(_txt(40, 290, "• độc tính  I<sub>TOX</sub> · ăn mòn  I<sub>COR</sub>",
+                 7.6, color=INK))
+
+    o.append(_rect(295, 178, 235, 122, "#f7fafd", 1.0))
+    o.append(_txt(412, 192, "Điều kiện quá trình · Conditions", 8.0,
+                  color=GREEN, weight="600"))
+    o.append(_txt(305, 208, "• tồn kho  I<sub>I</sub>", 7.6, color=INK))
+    o.append(_txt(305, 224, "• nhiệt độ  I<sub>T</sub> · áp suất  I<sub>P</sub>",
+                  7.6, color=INK))
+    o.append(_txt(412, 258, "Hệ thống quá trình · System", 8.0,
+                  color=GREEN, weight="600"))
+    o.append(_txt(305, 274, "• an toàn thiết bị  I<sub>EQ</sub>", 7.6, color=INK))
+    o.append(_txt(305, 290, "• cấu trúc quá trình an toàn  I<sub>ST</sub>",
+                  7.6, color=INK))
+
+    o.append(_txt(280, h - 8,
+                  "Sơ đồ A — cấu trúc chỉ số theo Bảng 7 (tr. 57); không có trong tài liệu gốc",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Schematic: total inherent safety index decomposition into chemical and process subindices (Table 7)"))
+    return _fig(s,
+                "Sơ đồ A · Tổng chỉ số an toàn nội tại I<sub>TI</sub> = I<sub>CI</sub> + "
+                "I<sub>PI</sub> và các chỉ số thành phần theo Bảng 7. Sơ đồ biên soạn — "
+                "không có trong tài liệu gốc.",
+                "Figure A · Total inherent safety index I<sub>TI</sub> = I<sub>CI</sub> + "
+                "I<sub>PI</sub> and its subindex families after Table 7. Editorial schematic "
+                "— not in the original.",
+                "Phân rã tổng chỉ số an toàn nội tại thành các nhóm chỉ số hóa học và quá trình",
+                "Decomposition of the total inherent safety index into chemical and process subindex groups")
+
+
 FIGS = {
     "isd_intro": fig_isd_intro,
     "f01": fig_f01,
@@ -636,4 +697,5 @@ FIGS = {
     "c06_kletz": fig_c06_kletz,
     "c06_principles": fig_c06_principles,
     "c07_index": fig_c07_index,
+    "c08_index": fig_c08_index,
 }
