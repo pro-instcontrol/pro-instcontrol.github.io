@@ -1248,11 +1248,32 @@ def build_index(lang):
         for w in ws:
             w["_shelf"] = sid
 
+    # ── one distinct shelf for every work with a Vietnamese translation ──
+    # Matching uses the same TRANSLATED keys as the badge logic in card().
+    # These works are REMOVED from their thematic shelves (no duplicates) and
+    # shown first in their own highlighted section; the "translated" pill and
+    # the quick-jump dropdown expose the group.
+    trans_ws = []
+    for sid in list(by_shelf):
+        kept = []
+        for w in by_shelf[sid]:
+            if any(k in w["title"].lower() for k in TRANSLATED):
+                w["_shelf"] = "translated"
+                trans_ws.append(w)
+            else:
+                kept.append(w)
+        by_shelf[sid] = kept
+    trans_ws.sort(key=lambda w: (
+        1 if "valve selection handbook" in w["title"].lower() else 0,
+        -w["pages"], w["title"].lower()))
+    n_tr = len(trans_ws)
+
     if lang == "vi":
         title = "Thư Viện Sách Kỹ Thuật Đo Lường & Điều Khiển"
         tagline = "Sách, tiêu chuẩn và giáo trình về thiết bị đo, điều khiển quá trình và tự động hóa"
         lede = ("Danh mục %d tác phẩm trong thư viện làm việc — %s trang tài liệu kỹ thuật, "
-                "xếp thành tám kệ, tìm kiếm trực tiếp, kèm bản dịch tiếng Việt đang thực hiện."
+                "một kệ riêng tập hợp toàn bộ bản dịch tiếng Việt, sau đó là tám kệ "
+                "chủ đề với tìm kiếm trực tiếp."
                 % (total, num(pages, "vi")))
         ph = "Tìm theo tên sách, tác giả, lĩnh vực (vd: Shinskey, van điều khiển, PLC, SIL…)"
         all_lbl, jump_lbl, showing = "Tất cả", "Tới kệ:", "tác phẩm"
@@ -1260,9 +1281,9 @@ def build_index(lang):
     else:
         title = "Measurement & Control Library"
         tagline = "Books, standards and course material on instrumentation and automatic control"
-        lede = ("%d works held in the working library — %s pages of technical material, "
-                "arranged on eight shelves with live search, plus the Vietnamese translation "
-                "now under way." % (total, num(pages, "en")))
+        lede = ("%d works held in the working library — %s pages of technical material. "
+                "One shelf gathers every Vietnamese translation up front; the rest sit "
+                "on eight thematic shelves with live search." % (total, num(pages, "en")))
         ph = "🔍 Search titles, authors, subjects (e.g. Shinskey, control valve, PLC, SIL…)"
         all_lbl, jump_lbl, showing = "All", "Jump to:", "works"
         empty_t, empty_p, reset = "No books found", "Try another keyword or clear the filters.", "Clear filters"
@@ -1270,6 +1291,12 @@ def build_index(lang):
     pills = ['<button class="cat-pill active" data-filter="all">%s<span class="n">%d</span></button>'
              % (esc(all_lbl), total)]
     opts = ['<option value="all">%s</option>' % esc(all_lbl)]
+    tr_name = "Bản dịch tiếng Việt" if lang == "vi" else "Vietnamese translations"
+    if n_tr:
+        pills.insert(1, '<button class="cat-pill" data-filter="translated">%s<span class="n">%d</span></button>'
+                     % (esc(tr_name), n_tr))
+        opts.insert(1, '<option value="shelf-translated">%s (%d)</option>'
+                    % (esc(tr_name), n_tr))
     for sid, en, vi, _, _, _, _ in SHELVES:
         n = len(by_shelf[sid])
         if not n:
@@ -1280,6 +1307,18 @@ def build_index(lang):
         opts.append('<option value="shelf-%s">%s (%d)</option>' % (sid, esc(name), n))
 
     sections = []
+    if trans_ws:
+        tr_sub = ("Sách đã có bản dịch tiếng Việt (đầy đủ hoặc đang dịch) — "
+                  "mở đọc ngay"
+                  if lang == "vi" else
+                  "Works with a Vietnamese translation (complete or in "
+                  "progress) — open and read")
+        cards = "".join(card(w, lang, dom) for w in trans_ws)
+        sections.append(
+            '<section class="section translated-shelf" id="shelf-translated">'
+            '<div class="section-title"><h2>%s</h2><span class="sub">%s</span></div>'
+            '<div class="card-grid">%s</div></section>'
+            % (esc(tr_name), esc(tr_sub), cards))
     for sid, en, vi, sub_en, sub_vi, _, colour in SHELVES:
         ws = by_shelf[sid]
         if not ws:
