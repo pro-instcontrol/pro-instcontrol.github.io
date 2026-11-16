@@ -5320,3 +5320,23 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   `c834257d` instant. **BOOK 6 progress: 3/21 units live in EN + VI.**
   Next: Unit 4 (Fundamentals III — Flow Through Valves, book pp. 28–46,
   Figures 2-4…2-12), then Manual Valves I–VII.
+
+## Session 73 — Valve Selection Handbook, Unit 4 (Fundamentals III — Flow Through Valves)
+- **Unit 4 live** (`ch04-flow-through-valves`, book pp. 28–46): flow/resistance
+  fundamentals — Table 2-3 (17 ζ rows), Equations 2-7/2-8 (ζ from Δp), Borda-Carnot
+  2-10/2-11, 2-12/2-13, 2-15, 2-16, Cv/Kv/Av family **2-19…2-22 reconstructed from
+  OCR-dropped negative exponents** (ζ = 889·d⁴in/Cv², Kv/Cv = 865×10⁻³,
+  Av/Cv = 23.8×10⁻⁶, Av/Kv = 27.8×10⁻⁶), cavitation index 2-25, Joukowsky + wave
+  speed 2-26/2-26a, 2-27. **9 vector figures redrawn (Figures 2-4…2-12)** via the
+  shared `_k1_chart` helper: globe oblique/angle/straight, gate weir vs
+  straight-through crossing at 0.17, diaphragm, butterfly lenticular vs flat plate,
+  K vs D/d (log-y fix: `(log10(k)+1.0)/(YMAX+1.0)` normalization), inherent flow
+  characteristics, pump/valve 2-panel system, 4-panel cavitation scatter bands,
+  wave-velocity vs air content (theory + 25 exp points + 318 m/s line). Built at
+  19 source pages / 9 figs / 16 eqs per language; playwright screenshot QA passed on
+  all nine (2-8 log decade bug and `_k1_chart` clipped x-note fixed before sign-off).
+- Registration: `done` 1–4; `TRANSLATED` → `("progress", 21, 4)`. QA: **0 Spanish,
+  0 CJK**; `check_links.py` **952 pages / 28,918 refs / broken 0**.
+  **BOOK 6 progress: 4/21 units live in EN + VI.** Next: Unit 5 (Manual Valves I —
+  Functions, Selection & Globe Valves, book pp. 47–73, Figures 3-1…3-23), then
+  Manual Valves II–VII (102 figures across Ch. 3).
