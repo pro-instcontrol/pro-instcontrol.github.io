@@ -47,6 +47,7 @@ BOOK["vsh"] = {
 SLUGS["vsh"] = {
     1: "ch01-introduction",
     2: "ch02-fluid-tightness-and-sealing",
+    3: "ch03-seatings-gaskets-stem-seals",
 }
 
 # Re-export the shared helpers so chapter modules can `import vsh_common as C`.

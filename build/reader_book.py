@@ -633,7 +633,8 @@ BOOKS = {
                  "Phụ lục — Viết tắt, tiêu chuẩn, hệ đơn vị SI và thuật ngữ"),
         },
         "done": {1: "ch01-introduction",
-                 2: "ch02-fluid-tightness-and-sealing"},
+                 2: "ch02-fluid-tightness-and-sealing",
+                 3: "ch03-seatings-gaskets-stem-seals"},
         "copyright_en": ("Original book © 2004 Elsevier Inc. (Gulf Professional Publishing), "
                          "ISBN 0-7506-7717-1"),
         "copyright_vi": ("Sách gốc © 2004 Elsevier Inc. (Gulf Professional Publishing), "

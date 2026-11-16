@@ -282,3 +282,97 @@ FIGS.update({
     "fig_vsh_2_1": fig_vsh_2_1,
     "fig_vsh_2_2": fig_vsh_2_2,
 })
+
+
+# ============================================================ ch03 (Figure 2-3)
+def fig_vsh_2_3():
+    """Figure 2-3 — Fluid pressure distribution along a stuffing box packed
+    with four rings (Denny & Turnbull)."""
+    w, h = 560, 296
+    o = [_defs()]
+    x0, y0, W, H = 70, 24, 430, 200
+
+    # axes: x = position along the stuffing box (4 packing rings, gland right)
+    o.append(_rect(x0, y0, W, H, fill="none", sw=1.2))
+    for v in range(5):
+        o.append(_line(x0 + v * W / 4.0, y0, x0 + v * W / 4.0, y0 + H, 0.6,
+                       color="#d8d4c8"))
+        o.append(_txt(x0 + v * W / 4.0, y0 + H + 12,
+                      ["1", "2", "3", "4", "gland"][v], 7.0, color=GREY))
+    for v in range(6):
+        ly = y0 + H - v * H / 5.0
+        o.append(_line(x0, ly, x0 + W, ly, 0.6, color="#d8d4c8"))
+        o.append(_txt(x0 - 6, ly + 2.4, "%.1f" % (v * 0.2), 6.8,
+                      anchor="end", color=GREY))
+    o.append(_txt(x0 + W, y0 - 10, "vị trí dọc hộp gioăng (số vòng packing) / "
+                                   "position along the stuffing box", 7.0,
+                  anchor="end", color=GREY))
+    o.append(_txt(x0 - 8, y0 - 10, "Pf = P\u0302f/P\u0302f", 7.4,
+                  anchor="start", color=GREY))
+
+    # low fluid pressure: near-uniform gradient (26.2 .. 250 lb/in2)
+    def uniform(pdrop):
+        pts = []
+        for i in range(41):
+            fx = i / 40.0
+            pts.append((x0 + fx * W, y0 + H - (1.0 - fx * pdrop) * H))
+        return _poly(pts, sw=1.2, color=BLUE)
+
+    o.append(uniform(0.30))    # 26.2 lb/in2
+    o.append(uniform(0.45))    # 75
+    o.append(uniform(0.60))    # 250
+
+    # high fluid pressure: flat, then steep drop across ring below the gland
+    def autoseal(fstart, drop):
+        pts = []
+        for i in range(41):
+            fx = i / 40.0
+            if fx < fstart:
+                val = 1.0 - fx * 0.10
+            else:
+                k = (fx - fstart) / (1.0 - fstart)
+                val = (1.0 - fstart * 0.10) - k * drop
+            pts.append((x0 + fx * W, y0 + H - val * H))
+        return _poly(pts, sw=1.4, color=RED)
+
+    o.append(autoseal(0.72, 0.30))   # 400 lb/in2
+    o.append(autoseal(0.62, 0.45))   # 700
+    o.append(autoseal(0.55, 0.55))   # 1000
+
+    # legend (below the plot, clear of the curves)
+    o.append(_line(x0 + 4, y0 + H + 27, x0 + 30, y0 + H + 27, 1.6, color=BLUE))
+    o.append(_txt(x0 + 36, y0 + H + 30,
+                  "áp suất thấp (26–250 lb/in²): gradient gần đều / low "
+                  "pressure: near-uniform gradient", 6.8, anchor="start",
+                  color=GREY))
+    o.append(_line(x0 + 4, y0 + H + 41, x0 + 30, y0 + H + 41, 1.6, color=RED))
+    o.append(_txt(x0 + 36, y0 + H + 44,
+                  "áp suất cao (400–1000 lb/in²): 90% sụt áp qua vòng dưới "
+                  "gland / 90% of the drop across the ring below the gland",
+                  6.8, anchor="start", color=GREY))
+
+    return _fig(svg(w, h, "".join(o),
+                    "Fluid pressure gradient along a packed stuffing box"),
+                "Hình 2-3 · Phân bố áp suất chất lỏng cho bốn vòng packing "
+                "bông cotton thấm PTFE (Denny & Turnbull, Proc. Instn Mech "
+                "Engrs 174 No. 6, 1960) — vẽ lại dạng sơ đồ: ở áp suất thấp "
+                "gradient gần đều; ở áp suất cao ~90% sụt áp tập trung qua "
+                "vòng packing ngay dưới gland. Áp suất gland 250 lb/in²; tốc "
+                "độ trục 850 rev/min; áp suất nước 26,2–1000 lb/in².",
+                "Figure 2-3 · Distribution of fluid pressure for four rings "
+                "of PTFE-impregnated plaited cotton packing (Denny & "
+                "Turnbull, Proc. Instn Mech Engrs 174 No. 6, 1960) — redrawn "
+                "as a schematic: at low fluid pressure the gradient is "
+                "near-uniform; at high pressure ~90% of the drop occurs "
+                "across the packing ring just below the gland. Gland "
+                "pressure 250 lb/in2; shaft speed 850 rev/min; water "
+                "pressure 26.2–1000 lb/in2.",
+                "Đường phân bố áp suất dọc hộp gioăng với bốn vòng packing, "
+                "tách bạch áp suất thấp và áp suất cao.",
+                "Pressure gradient curves along a four-ring stuffing box, "
+                "separating low- and high-pressure behaviour.")
+
+
+FIGS.update({
+    "fig_vsh_2_3": fig_vsh_2_3,
+})
