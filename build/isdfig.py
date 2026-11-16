@@ -854,6 +854,129 @@ def fig_c12_flowsheet():
                 "Flowsheet of the acetic acid process")
 
 
+def fig_c13_cooling():
+    """Redraw of source Figure 8 (p. 101): recommendation to avoid the feedback
+    loop between reactor heat rise and coolant-temperature rise."""
+    w, h = 560, 240
+    o = [_defs()]
+
+    def reactor(x, y, fill="#eef3fb"):
+        o.append(_rect(x, y, 90, 56, fill, 1.3))
+        o.append(_txt(x + 45, y + 24, "LÒ PHẢN ỨNG", 7.4, color=INK, weight="600"))
+        o.append(_txt(x + 45, y + 37, "REACTOR", 6.6, color=GREY))
+
+    def hx(x, y, label_vi, label_en, fill="#eaf6ee"):
+        o.append(_rect(x, y, 96, 40, fill, 1.2))
+        o.append(_txt(x + 48, y + 16, label_vi, 7.2, color=INK, weight="600"))
+        o.append(_txt(x + 48, y + 28, label_en, 6.4, color=GREY))
+
+    # left — recommended: coolant temperature independent of reactor
+    o.append(_txt(140, 18, "KHUYẾN NGHỊ · RECOMMENDED", 8.2,
+                  color="#1f5f8b", weight="700"))
+    reactor(20, 40)
+    hx(20, 150, "Sinh hơi MP · Steam gen", "BFW → MP STM")
+    o.append(_arrow(65, 96, 65, 148, 1.4, GREY, head="a6"))
+    o.append(_arrow(65, 190, 65, 210, 1.4, GREY, head="a6"))
+    o.append(_txt(58, 206, "MP STM", 7.2, anchor="end", color=BLUE))
+    o.append(_arrow(16, 170, 2, 170, 1.2, GREY, head="a6"))
+    o.append(_txt(30, 164, "BFW", 7.2, anchor="start", color=BLUE))
+    o.append(_arrow(112, 62, 148, 62, 1.4, GREY, head="a6"))
+    o.append(_txt(130, 55, "O₂", 7.4, anchor="middle", color=BLUE))
+    o.append(_arrow(112, 90, 148, 90, 1.4, GREY, head="a6"))
+    o.append(_txt(130, 102, "PRODUCT", 7.0, anchor="middle", color=GREY))
+    o.append(_txt(16, 232, "Nhiệt độ coolant độc lập với nhiệt độ lò phản ứng",
+                  7.2, anchor="start", color=GREY))
+
+    # right — not recommended: feedback loop LP STM/BFW heated by reactor
+    o.append(_txt(430, 18, "KHÔNG KHUYẾN NGHỊ · NOT RECOMMENDED", 8.2,
+                  color=RED, weight="700"))
+    reactor(310, 40, "#fdeaea")
+    hx(310, 150, "Làm mát tuần hoàn", "LP STM / BFW", "#fdeaea")
+    o.append(_arrow(355, 96, 355, 148, 1.4, GREY, head="a6"))
+    o.append(_arrow(355, 190, 355, 210, 1.4, GREY, head="a6"))
+    o.append(_txt(348, 206, "LP STM", 7.2, anchor="end", color=RED))
+    o.append(_arrow(306, 170, 292, 170, 1.2, GREY, head="a6"))
+    o.append(_txt(320, 164, "BFW", 7.2, anchor="start", color=BLUE))
+    # feedback loop arrow: coolant temp rises with reactor temp
+    o.append(_line(408, 170, 440, 170, 1.4, RED))
+    o.append(_line(440, 170, 440, 68, 1.4, dash="4 3", color=RED))
+    o.append(_arrow(440, 68, 402, 68, 1.4, RED, head="a6"))
+    o.append(_txt(446, 120, "vòng phản hồi\n(feedback)", 7.0, anchor="start", color=RED))
+    o.append(_txt(306, 232, "Nhiệt độ coolant tăng theo nhiệt độ lò phản ứng",
+                  7.2, anchor="start", color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Redrawn Figure 8: recommended vs not-recommended reactor cooling systems"))
+    return _fig(s,
+                "Hình 8 · Khuyến nghị tránh vòng phản hồi giữa mức tăng nhiệt của lò "
+                "phản ứng và mức tăng nhiệt độ chất làm mát. Vẽ lại theo tài liệu "
+                "gốc, tr. 101.",
+                "Figure 8 · A recommendation to avoid the feedback loop between a "
+                "reactor heat rise and a rise in coolant temperature. Redrawn after "
+                "the original, p. 101.",
+                "So sánh hệ làm mát lò phản ứng khuyến nghị và không khuyến nghị",
+                "Recommended vs not-recommended reactor cooling systems")
+
+
+def fig_c13_preheat():
+    """Redraw of source Figure 9 (p. 102): recommendation for preheating the
+    feed of an exothermic reactor."""
+    w, h = 560, 240
+    o = [_defs()]
+
+    def reactor(x, y, fill="#eef3fb"):
+        o.append(_rect(x, y, 90, 56, fill, 1.3))
+        o.append(_txt(x + 45, y + 24, "LÒ PHẢN ỨNG", 7.4, color=INK, weight="600"))
+        o.append(_txt(x + 45, y + 37, "REACTOR", 6.6, color=GREY))
+
+    def hx(x, y, vi, en, fill="#eaf6ee"):
+        o.append(_rect(x, y, 100, 40, fill, 1.2))
+        o.append(_txt(x + 50, y + 16, vi, 7.2, color=INK, weight="600"))
+        o.append(_txt(x + 50, y + 28, en, 6.4, color=GREY))
+
+    # left — NOT recommended: feed heated by product (feedback)
+    o.append(_txt(140, 18, "KHÔNG KHUYẾN NGHỊ · NOT RECOMMENDED", 8.2,
+                  color=RED, weight="700"))
+    reactor(20, 40, "#fdeaea")
+    hx(20, 150, "Sấy nóng bằng sản phẩm", "Feed ↔ product", "#fdeaea")
+    o.append(_arrow(20, 210, 20, 160, 1.4, GREY, head="a6"))
+    o.append(_txt(24, 216, "FEED", 7.2, anchor="start", color=BLUE))
+    o.append(_arrow(70, 96, 70, 148, 1.4, GREY, head="a6"))
+    o.append(_arrow(112, 68, 150, 68, 1.4, GREY, head="a6"))
+    o.append(_txt(131, 61, "PRODUCT", 7.0, anchor="middle", color=GREY))
+    o.append(_line(150, 68, 150, 124, 1.4, dash="4 3", color=RED))
+    o.append(_arrow(150, 124, 74, 160, 1.4, RED, head="a6"))
+    o.append(_txt(158, 120, "sản phẩm sấy nóng feed", 7.0, anchor="start", color=RED))
+    o.append(_txt(16, 232, "Nhiệt độ lò tăng → nhiệt độ feed tăng (vòng phản hồi)",
+                  7.2, anchor="start", color=GREY))
+
+    # right — recommended: heat transfer via MP steam generation
+    o.append(_txt(424, 18, "KHUYẾN NGHỊ · RECOMMENDED", 8.2,
+                  color="#1f5f8b", weight="700"))
+    reactor(300, 40)
+    hx(300, 150, "Sinh hơi MP trung gian", "MPS generation")
+    o.append(_arrow(300, 210, 300, 160, 1.4, GREY, head="a6"))
+    o.append(_txt(304, 216, "FEED", 7.2, anchor="start", color=BLUE))
+    o.append(_arrow(350, 96, 350, 148, 1.4, GREY, head="a6"))
+    o.append(_arrow(392, 68, 430, 68, 1.4, GREY, head="a6"))
+    o.append(_txt(411, 61, "PRODUCT", 7.0, anchor="middle", color=GREY))
+    o.append(_arrow(350, 190, 350, 214, 1.4, GREY, head="a6"))
+    o.append(_txt(356, 208, "MPS · hơi áp trung", 7.0, anchor="start", color=BLUE))
+    o.append(_txt(296, 232, "Liên kết nhiệt đứt qua hơi trung áp — an toàn hơn",
+                  7.2, anchor="start", color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Redrawn Figure 9: recommended vs not-recommended feed preheating of an exothermic reactor"))
+    return _fig(s,
+                "Hình 9 · Khuyến nghị sấy nóng cấp feed của lò phản ứng tỏa nhiệt — "
+                "truyền nhiệt qua sinh hơi trung áp thay vì bằng sản phẩm. Vẽ lại "
+                "theo tài liệu gốc, tr. 102.",
+                "Figure 9 · A recommendation for preheating the feed of an "
+                "exothermic reactor — heat transfer via medium-pressure steam "
+                "generation instead of the product. Redrawn after the original, "
+                "p. 102.",
+                "So sánh phương án sấy nóng feed khuyến nghị và không khuyến nghị",
+                "Recommended vs not-recommended feed preheating")
+
+
 FIGS = {
     "isd_intro": fig_isd_intro,
     "f01": fig_f01,
@@ -870,4 +993,6 @@ FIGS = {
     "c09_weights": fig_c09_weights,
     "c11_levels": fig_c11_levels,
     "c12_flowsheet": fig_c12_flowsheet,
+    "c13_cooling": fig_c13_cooling,
+    "c13_preheat": fig_c13_preheat,
 }
