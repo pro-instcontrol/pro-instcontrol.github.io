@@ -5166,3 +5166,30 @@ building Book 2.
   `check_links.py` **934 pages / 28,468 refs / broken 0**.
 - Next: **Chapter 13 — Case-Based Reasoning for Safety Evaluation** (pp. 95–107,
   raw lines 2967–3376).
+
+## Session 71 (cont.) — Book 5 Chapter 13 (*CBR for Safety Evaluation*) published (13/16) — 2026-11-15
+
+- **Chapter 13 "Suy luận dựa trên tình huống trong đánh giá an toàn / Case-Based
+  Reasoning for Safety Evaluation" built and pushed live** (source pp. 95–102,
+  `PAGES_SRC=8`): CBR definition + five functional steps (Gonzalez & Dankel 1993)
+  as an ordered list; suitability **Equations 7–10** (string matching Yij, weighted
+  Rij = Wi·Yij, overall SR = ΣRij/N); prior work (Koiranen & Hurme 1997 fluid
+  mixers/heat exchangers; Chung & Jefferson 1997 IChemE Accident Database — and how
+  our system differs: process-structure reasoning + design recommendations);
+  §13.1 MS-Excel prototype (13.1.1 input/output parameters incl. incident-cause-
+  recommendation output structure, validation via I_ST; 13.1.2 retrieval — string
+  params, top-5 nearest cases, multi-step retrieval); §13.2 acetic-acid case study —
+  13.2.1 process level (**Table 28** input, **Table 29** three cases:
+  carbonylation-static-electricity vs oxidation fires/explosions with Appendix 1
+  oxygen-boiler blast; carbonylation safer), 13.2.2 reactor system (**Figures 8–9
+  redrawn**: cooling without coolant feedback loop; feed preheating via MPS
+  generation instead of product), 13.2.3 I_ST scoring (carbonylation 2, oxidation
+  5, recommended reactor 0–1, worst-case final 2).
+- Registration: `SLUGS["isd"][13] = "ch13-cbr"`; `done` 1–13; `TRANSLATED` →
+  `("progress", 16, 13)`. Nav Ch12 ↔ Ch13 correct.
+- QA: 2 figures + 2 tables + 4 eq per page; **0 Spanish, 0 CJK**; sitemap
+  **934 URLs**; `check_links.py` **936 pages / 28,518 refs / broken 0**.
+- Build fix: `_line()` takes `dash` positionally before `color` — two figure calls
+  corrected.
+- Next: **Chapter 14 — Application of the Inherent Safety Index for Computerized
+  Process Synthesis** (pp. 103–108, raw lines 3215–3378, Figures 10–12).
