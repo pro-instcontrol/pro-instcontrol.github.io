@@ -5441,3 +5441,35 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
 - Registration: `done` 1–7; `TRANSLATED` → `("progress", 21, 7)`.
   **BOOK 6 progress: 7/21 units live in EN + VI.** Next: Unit 8 — Plug
   Valves (book p. 97 onward, Figures 3-49…3-59).
+
+## Book 6 (Valve Selection Handbook) — Unit 8, 2026-11-16
+- **User request — duplicate catalog card removed.** The catalogue held two
+  records for the same 5th edition: id 63 (413 pp., the scan used as the
+  translation source) and id 186 (412 pp., garbled OCR head). `books_site.py`
+  now drops `DROP_WORK_IDS = {186}` in `load()`, so only one card and one
+  work-detail page are generated; the stale `/books/work/186/` and VI page
+  were removed. Commit `3f0698b5`; live verified 1 card per index and
+  `/books/work/186/` → 404. All work-page prev/next links regenerated.
+- **Unit 8 live** (`ch08-plug-valves`, book pp. **97–108** / PDF 111–122;
+  BALL VALVES starts p. 108). 12 source pages, **11 figures redrawn** in
+  new `build/vshfig5.py`: lubricated cylindrical (3-49), packing-sleeve
+  (3-50), expandable split plug (3-51), O-ring seats shown closed (3-52),
+  eccentric semi-plug (3-53), unlubricated metal taper (3-54), lubricated
+  taper (3-55), inverted pressure-balanced plug (3-56), PTFE body sleeve
+  (3-57), multiport lift plug (3-58) and a labelled editorial schematic of
+  transflow / non-transflow multiport sequences (3-59).
+- Prose covers the four cylindrical sealing methods, in-service sealant
+  injection, gauge isolation, DB&B, taper-plug gap adjustment and freeing a
+  stuck plug, balance holes for very high pressure, PTFE sleeve repair,
+  antistatic earthing for flammable service, fire-exposure design with
+  auxiliary metal seats and fire-resistant packing, multiport sequencing
+  and flow direction, the four face-to-face patterns (short / regular /
+  venturi / full-area), Appendix C and applications, plus an 11-row
+  bilingual summary table.
+- QA: headless-Chrome screenshots of all 11 figures; shortened the two
+  bottom captions of 3-59 after they overlapped. All 11 SVGs XML-valid,
+  12/12 inline SVGs per page valid, 0 Spanish, 0 CJK, 0 Python artifacts.
+  `check_links.py` **958 pages / 29,064 refs / broken 0**.
+- Registration: `done` 1–8; `TRANSLATED` → `("progress", 21, 8)`.
+  **BOOK 6 progress: 8/21 units live in EN + VI.** Next: Unit 9 — Ball
+  Valves (book p. 108 onward, Figures 3-60…).
