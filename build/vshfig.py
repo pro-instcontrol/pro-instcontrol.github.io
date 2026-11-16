@@ -21,7 +21,7 @@ sys.path.insert(0, HERE)
 
 from vfig import (BLUE, GOLD, GREY, GREEN, INK, PAPER, RED,  # noqa: E402
                   _arrow, _axes, _box, _circle, _curve, _defs, _f as fmt,
-                  _fig, _line, _path, _poly, _rect, _txt, svg)
+                  _fig, _hatch, _line, _path, _poly, _rect, _txt, svg)
 
 
 def esc(s):
@@ -129,4 +129,156 @@ def fig_vsh_intro():
 
 FIGS.update({
     "fig_vsh_intro": fig_vsh_intro,
+})
+
+
+# ============================================================ ch02 (Figure 2-1)
+def fig_vsh_2_1():
+    """Figure 2-1 — Proposed Zero Gas Leakage Criterion (JPL TR 32-926)."""
+    w, h = 560, 280
+    o = [_defs()]
+    x0, y0, W, H = 74, 20, 440, 212   # plot box: top y0, bottom y0+H
+    LX0, LX1 = -1.0, 4.0              # log10 lb/in^2: 0.1 .. 10000
+    LY0, LY1 = -10.0, -5.0            # log10 std cm3/s
+
+    def px(lx):
+        return x0 + (lx - LX0) / (LX1 - LX0) * W
+
+    def py(ly):
+        return y0 + H - (ly - LY0) / (LY1 - LY0) * H
+
+    # grid + ticks
+    for i in range(6):
+        lx = LX0 + i
+        o.append(_line(px(lx), y0, px(lx), y0 + H, 0.6, color="#d8d4c8"))
+        o.append(_txt(px(lx), y0 + H + 11,
+                      ["0.1", "1.0", "10", "100", "1000", "10000"][i], 6.8,
+                      color=GREY))
+        o.append(_txt(px(lx), y0 + H + 21,
+                      ["6.9×10²", "6.9×10³", "6.9×10⁴", "6.9×10⁵",
+                       "6.9×10⁶", "6.9×10⁷"][i], 6.0, color=GREY))
+    for i in range(6):
+        ly = LY0 + i
+        o.append(_line(x0, py(ly), x0 + W, py(ly), 0.6, color="#d8d4c8"))
+        o.append(_txt(x0 - 6, py(ly) + 2.4,
+                      "10<sup>%d</sup>" % (i - 10), 6.8, anchor="end",
+                      color=GREY))
+    # frame
+    o.append(_rect(x0, y0, W, H, fill="none", sw=1.3))
+
+    # criterion curve: rise (-0.26,-10) -> (1.48,-7), flat -> (2.9,-7),
+    # rise -> (4.0,-5.35)  [log-log, mapped via px()/py()]
+    def seg(lxa, lya, lxb, lyb):
+        pts = []
+        for i in range(61):
+            lx = lxa + (lxb - lxa) * i / 60.0
+            ly = lya + (lyb - lya) * i / 60.0
+            pts.append((px(lx), py(ly)))
+        return _poly(pts, sw=1.8, color=INK)
+
+    o.append(seg(-0.26, -10.0, 1.48, -7.0))
+    o.append(_line(px(1.48), py(-7.0), px(2.9), py(-7.0), 1.8))
+    o.append(seg(2.9, -7.0, 4.0, -5.35))
+
+    o.append(_txt(x0 + W + 8, y0 + H + 11, "lb/in²", 7.0, anchor="start",
+                  color=GREY))
+    o.append(_txt(x0 + W + 8, y0 + H + 21, "Pa", 6.4, anchor="start",
+                  color=GREY))
+    o.append(_txt(x0 + W / 2, y0 + H + 34,
+                  "áp suất chênh lệch qua chỗ kín / differential pressure "
+                  "across the seal", 7.2))
+    o.append(_txt(x0 - 34, y0 + 8,
+                  "rò rỉ khí / gaseous leakage", 7.2, anchor="start"))
+    o.append(_txt(x0 - 44, y0 + 18, "std cm³/s", 7.2, anchor="start"))
+    o.append(_txt(px(2.2), py(-7.0) - 6,
+                  "ngưỡng tiêu chuẩn / specification limit 10<sup>-7</sup>",
+                  6.6, color=RED))
+
+    return _fig(svg(w, h, "".join(o),
+                    "Zero gas leakage criterion: leakage rises with pressure"),
+                "Hình 2-1 · Tiêu chuẩn rò rỉ khí bằng không đề xuất (JPL "
+                "Technical Report No. 32-926) — đường tiêu chuẩn cho phép vẽ "
+                "lại dạng sơ đồ theo trục log–log: rò rỉ tăng theo áp suất, "
+                "chặn tại ngưỡng 10<sup>-7</sup> std cm³/s trên dải trung "
+                "gian, rồi tăng lại ở áp suất cao.",
+                "Figure 2-1 · Proposed Zero Gas Leakage Criterion (JPL "
+                "Technical Report No. 32-926) — redrawn as a log–log "
+                "schematic: leakage rises with pressure, is capped at the "
+                "10<sup>-7</sup> std cm³/s specification limit across the "
+                "mid-range, then rises again at high pressure.",
+                "Đường tiêu chuẩn rò rỉ khí bằng không trên biểu đồ log–log "
+                "áp suất – tốc độ rò rỉ.",
+                "Zero gas leakage criterion curve on a log–log "
+                "pressure–leakage chart.")
+
+
+# ============================================================ ch02 (Figure 2-2)
+def fig_vsh_2_2():
+    """Figure 2-2 — Effect of Surface Tension on Leakage Flow through
+    Capillary."""
+    w, h = 560, 260
+    o = [_defs()]
+    # capillary walls (hatched) with gap = 2r
+    o.append(_rect(200, 40, 26, 180, fill="#e9e3d6"))
+    o.append(_rect(334, 40, 26, 180, fill="#e9e3d6"))
+    o.append(_rect(200, 40, 26, 180, fill="url(#h6)"))
+    o.append(_rect(334, 40, 26, 180, fill="url(#h6)"))
+    o.append(_line(200, 40, 200, 220, 1.2))
+    o.append(_line(226, 40, 226, 220, 1.2))
+    o.append(_line(334, 40, 334, 220, 1.2))
+    o.append(_line(360, 40, 360, 220, 1.2))
+    o.append(_txt(293, 30, "gas · khí", 7.4, color=GREY))
+
+    # liquid below wetting meniscus (θ < 90°): edge higher than centre
+    o.append(_path("M226 132 Q293 168 334 132 L334 220 L226 220 Z",
+                   fill="#cfe0ef", sw=0))
+    o.append(_path("M226 132 Q293 168 334 132", sw=1.5, color=BLUE))
+    o.append(_txt(293, 205, "liquid · chất lỏng", 7.4, color=BLUE))
+
+    # radius marker
+    o.append(_line(226, 96, 334, 96, 0.8, dash="3 2", color=GREY))
+    o.append(_arrow(280, 96, 226, 96, 0.9, color=GREY))
+    o.append(_arrow(306, 96, 334, 96, 0.9, color=GREY))
+    o.append(_txt(293, 92, "r", 8.0, color=INK))
+
+    # contact angle at the left wall
+    o.append(_path("M226 132 L262 128", sw=0.8, color=GREY, dash="2 2"))
+    o.append(_txt(238, 126, "θ", 8.0, color=RED))
+
+    # force pair: pressure drive down vs surface tension hold-up
+    o.append(_arrow(293, 116, 293, 88, 1.6, color=RED))
+    o.append(_txt(300, 76, "πr²·ΔP", 8.2, anchor="start", color=RED,
+                  weight="bold"))
+    o.append(_arrow(293, 184, 293, 156, 1.6, color=GREEN))
+    o.append(_txt(300, 196, "2πrT·cosθ", 8.2, anchor="start", color=GREEN,
+                  weight="bold"))
+    o.append(_txt(140, 116, "lực đẩy", 7.2, anchor="end", color=RED))
+    o.append(_txt(140, 126, "pressure drive", 6.6, anchor="end", color=GREY))
+    o.append(_txt(140, 176, "lực căng bề mặt", 7.2, anchor="end", color=GREEN))
+    o.append(_txt(140, 186, "surface tension hold-up", 6.6, anchor="end",
+                  color=GREY))
+    o.append(_txt(140, 156, "cân bằng:", 7.2, anchor="end", weight="bold"))
+    o.append(_txt(140, 166, "πr²ΔP = 2πrT·cosθ", 7.4, anchor="end"))
+
+    return _fig(svg(w, h, "".join(o),
+                    "Surface tension acting on liquid in a leakage capillary"),
+                "Hình 2-2 · Ảnh hưởng của sức căng bề mặt tới dòng rò rỉ qua "
+                "mao dẫn (vẽ lại): lực đẩy do chênh áp πr²·ΔP cân bằng với "
+                "lực căng bề mặt 2πrT·cosθ dọc đường tiếp xúc; góc tiếp xúc "
+                "θ quyết định chất lỏng bị đẩy vào hay bị giữ lại trong mao "
+                "dẫn.",
+                "Figure 2-2 · Effect of surface tension on leakage flow "
+                "through a capillary (redrawn): the pressure drive πr²·ΔP "
+                "balances the surface-tension hold-up 2πrT·cosθ along the "
+                "contact line; the contact angle θ decides whether the liquid "
+                "is drawn into or repelled from the capillary.",
+                "Mao dẫn với sức căng bề mặt giữ chất lỏng, góc tiếp xúc θ "
+                "và hai lực đối trọng.",
+                "Capillary with surface tension holding liquid, contact "
+                "angle θ, and the two balancing forces.")
+
+
+FIGS.update({
+    "fig_vsh_2_1": fig_vsh_2_1,
+    "fig_vsh_2_2": fig_vsh_2_2,
 })
