@@ -463,7 +463,7 @@ TRANSLATED = {
     "working with an integrator guide": ("full", 9, 9),
     "pressure relief valve engineering handbook": ("full", 8, 8),
     "inherent safety in process plant design": ("full", 16, 16),
-    "valve selection handbook": ("progress", 21, 8),
+    "valve selection handbook": ("progress", 21, 9),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total

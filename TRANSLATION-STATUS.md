@@ -5473,3 +5473,29 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
 - Registration: `done` 1–8; `TRANSLATED` → `("progress", 21, 8)`.
   **BOOK 6 progress: 8/21 units live in EN + VI.** Next: Unit 9 — Ball
   Valves (book p. 108 onward, Figures 3-60…).
+
+## Book 6 (Valve Selection Handbook) — Unit 9, 2026-11-16
+- **Unit 9 live** (`ch09-ball-valves`, book pp. **108–119** / PDF 122–133;
+  BUTTERFLY VALVES begins book p. 120 = PDF 134). 12 source pages,
+  **9 source figures redrawn** in new `build/vshfig6.py`: schematic floating
+  ball with torsion seats and pressure-equalizing slots (3-60), axial-entry
+  body (3-61), diaphragm-supported seats / sandwich-split body (3-62),
+  top-sprung wedge seats / one-piece top entry (3-63), trunnion ball with
+  floating seats and seat-rotation device (3-64), trunnion ball with wedge
+  seats forced in by the bonnet (3-65), cam mechanism to seat/unseat the
+  ball (3-66), antistatic plunger detail (3-67), and an editorial schematic
+  of BS 5159 body constructions and tapping locations (3-68).
+- Prose covers the four seating methods, seat materials (PTFE, filled PTFE,
+  elastomers, metal/ceramic), reduced vs full bore, pressure equalizing,
+  antistatic and fire exposure (BS 5146 / API 607 / API RP 6F), cryogenic
+  design, body construction, ISO 5752 face-to-face series, Appendix C and
+  applications, plus a 9-row bilingual summary table.
+- QA: headless-Chrome screenshots of all 9 figures; fixed the ball being
+  drawn above the body (recentred on the seat axis at local y=100) and
+  shortened three legend labels on 3-68 that clipped at the right edge.
+  All 9 SVGs XML-valid, 10/10 inline SVGs per page valid, 0 Spanish, 0 CJK,
+  0 Python artifacts. `check_links.py` **960 pages / 29,114 refs /
+  broken 0**.
+- Registration: `done` 1–9; `TRANSLATED` → `("progress", 21, 9)`.
+  **BOOK 6 progress: 9/21 units live in EN + VI.** Next: Unit 10 —
+  Butterfly and Pinch Valves (book p. 120 onward, Figures 3-69…).
