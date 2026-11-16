@@ -5040,3 +5040,29 @@ building Book 2.
 - Commit `111db504`; push SIGTERM'd repeatedly (intermittent egress) — eventually pushed
   via background task. Next: **Chapter 8 — Inherent Safety Index** (pp. 56–59,
   raw lines 1680–1780).
+
+## Session 71 — Book 5 Chapter 8 (*Inherent Safety Index*) published (8/16) — 2026-11-15
+
+- **Chapter 8 "Chỉ số an toàn nội tại / Inherent Safety Index" built and pushed live**
+  (source pp. 56–59, `PAGES_SRC=4`): §8.1 total-index approaches (separate evaluation with
+  decision tools — Kepner–Tregoe, CCPS 1995b — vs overall index à la Edwards & Lawrence
+  1993, incl. the built-in-judgement criticism by Hendershot 1997 and the Dow F&EI
+  comparison); §8.2 calculation method — **Table 7** (index structure, Hurme & Heikkilä
+  1998) rendered as a two-column table with group headers, **Equations 3–5**
+  (I_TI = I_CI + I_PI; I_CI and I_PI expansions), worst-case basis, low value = safer,
+  flexibility (process/subprocess/subsystem/partial-criteria, integration into simulation
+  and optimization), closing warning to study all subindices before deciding. Table 8
+  (scores) forward-referenced to Chapter 9 per source pagination.
+- **Figure:** editorial `isdfig.fig_c08_index()` — index-structure decomposition schematic
+  (labelled "Sơ đồ A — not in the original"), using `<tspan>` subscripts via vfig `_txt`.
+- **Fixed:** body functions must return `"".join(b)` (build() strips tags on a string —
+  first run crashed with TypeError on list). **Removed duplicate stale TRANSLATED entry**
+  `"p384": ("progress", 16, 5)` that had been generating a **second card** (badge 5/16)
+  next to the correct 8-of-16 card on books index pages — now one card per language.
+- Registration: `SLUGS["isd"][8] = "ch08-safety-index"`; `done` 1–8; `TRANSLATED` →
+  `("progress", 16, 8)`. TOC 16 rows / 8 done; nav Ch7 ↔ Ch8 correct.
+- QA: 1 figure, 1 table, 3 eq blocks per page; **0 Spanish, 0 CJK** (EN + VI).
+- Infra: sitemap **924 URLs**; `check_links.py` **926 pages / 28,268 refs / broken 0**.
+- Push `32c0d3f1..7f1824b9` instant (credential-helper fix holding). Next:
+  **Chapter 9 — The Weighting between Subindices** (pp. 60–61, raw lines 1781–1846,
+  contains Table 8).
