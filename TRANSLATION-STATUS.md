@@ -5193,3 +5193,41 @@ building Book 2.
   corrected.
 - Next: **Chapter 14 — Application of the Inherent Safety Index for Computerized
   Process Synthesis** (pp. 103–108, raw lines 3215–3378, Figures 10–12).
+
+## Session 71 (final) — Book 5 COMPLETE: Chapters 14–16 published (16/16) — 2026-11-15
+
+- **Chapter 14 "Ứng dụng chỉ số an toàn nội tại trong tổng hợp quá trình /
+  Application of the ISI for Computerized Process Synthesis" built and pushed
+  live** (source pp. 103–117, `PAGES_SRC=15`): classical synthesis (Figure 10
+  Hurme & Järveläinen 1995; Figure 11 Heikkilä et al. 1996 with corrosion/safety/
+  equipment/interaction/structure databanks), safety in two phases (rules +
+  ISI comparison, Kepner–Tregoe / Saaty pairwise), MINLP vs GA (Figure 12 GA
+  cycle), §14.4 method (process as integer gene string, ISI as fitness, 6 GA
+  steps); **case 14.4.1 butene separation** (Table 30, Equation 11 V = D(RF(α−1)+1),
+  Figure 13 two separation trees, gene 23 12 14 11, 1134 solutions, GA converges
+  in 10 generations, simple distillations favoured vs economic function);
+  **case 14.4.2 emulsion polymerization** (Table 31, 14 coded variables, CBR on
+  process structure, converges <20 generations, ISI 28–30 → 16, Figure 14
+  synthesized semibatch system: no premixing tank, one large reactor, two
+  mixers/shaft, jacket + reflux condenser, polished steel, gravity transfer,
+  rupture disk → quench tank → flare, inhibitor addition).
+- **Chapter 15 "Kết luận / Conclusions"** (pp. 118–120, prose): thesis aim,
+  conceptual-phase leverage, two-part index summary, estimation difficulties
+  (equipment safety via statistics/layout, structure via CBR), flexible use and
+  weighting, relative-not-absolute indices and the inherent safety profile, CBR
+  for reuse of experience, GA synthesis, and the call for concurrent engineering.
+- **Chapter 16 "Tài liệu tham khảo / References"** (pp. 121–129): full
+  dissertation reference list (~90 entries) kept in original entry language,
+  ending with Wells et al. (1993) per the source extraction.
+- **All five source figures (10–14) redrawn as vectors** (`fig_c14_synthesis`,
+  `fig_c14_combined`, `fig_c14_ga`, `fig_c14_separations`, `fig_c14_polymer`).
+- Registration: `SLUGS["isd"][14..16]`; `done` 1–16; `TRANSLATED` →
+  `("full", 16, 16)` — **badge flipped to "🟢 Fully translated · 16 of 16
+  chapters" / "🟢 Đã dịch đầy đủ · 16/16 chương"**. TOC 16 rows / 16 done;
+  nav 13 ↔ 14 ↔ 15 ↔ 16 wired.
+- QA: Ch14 = 5 figures + 2 tables per page; Ch15/16 prose/reference; **0 Spanish,
+  0 CJK** everywhere. Infra: sitemap **940 URLs**; `check_links.py` **942 pages /
+  28,668 refs / broken 0**.
+- Push `3203e76a..feefca8b` instant. **BOOK 5 (Heikkilä, Inherent Safety in
+  Process Plant Design, VTT 384) IS COMPLETE: 16/16 chapters live in EN + VI.**
+  Next: select the next Tier-A title for the campaign.
