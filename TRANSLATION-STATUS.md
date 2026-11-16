@@ -5143,3 +5143,26 @@ building Book 2.
 - Next: **Chapter 12 — Case Study: Acetic Acid Process** (starts p. 91, raw line
   2847; TOC label says p. 91, actual body at line 2847 ≈ p. 84 print pagination
   discrepancy — use line boundaries).
+
+## Session 71 (cont.) — Book 5 Chapter 12 (*Case Study: Acetic Acid*) published (12/16) — 2026-11-15
+
+- **Chapter 12 "Nghiên cứu tình huống — Quá trình axit axetic / Case Study —
+  Acetic Acid Process" built and pushed live** (source pp. 91–94, `PAGES_SRC=4`):
+  100 000 t/a liquid-phase methanol carbonylation (rhodium iodocarbonyl catalyst,
+  175 °C / 30 bar); process walk-through (reactor → separator → scrubber → light
+  ends → drying → product → finishing columns); ISBL split into reaction section
+  vs distillation train; heats by Equation 6 (300 J/g main, 1000 J/g side —
+  propionic acid); CO most dangerous; Hastelloy → I_COR 2; worst interaction
+  methanol–HI (4) vs methyl iodide–HI (4); inventory 100 t; equipment by CO
+  feed-gas compressor (3).
+- **Figure 7 (flowsheet) redrawn** as `isdfig.fig_c12_flowsheet()` — seven
+  numbered units, feed/recycle/stream labels. **Tables 26–27** as 3-col analysis
+  tables with group headers: reaction section I_TI = **29** vs distillation train
+  I_TI = **19** — distillation train inherently safer (no reactions, no CO, lower
+  pressure, better equipment safety), closing comparison note.
+- Registration: `SLUGS["isd"][12] = "ch12-case-study"`; `done` 1–12; `TRANSLATED`
+  → `("progress", 16, 12)`. Nav Ch11 ↔ Ch12 correct.
+- QA: 1 figure + 2 tables per page; **0 Spanish, 0 CJK**; sitemap **932 URLs**;
+  `check_links.py` **934 pages / 28,468 refs / broken 0**.
+- Next: **Chapter 13 — Case-Based Reasoning for Safety Evaluation** (pp. 95–107,
+  raw lines 2967–3376).
