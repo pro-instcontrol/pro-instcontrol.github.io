@@ -577,9 +577,99 @@ BOOKS = {
         "note_en": ("The thesis has 13 numbered figures and 30 scoring tables; both are "
                     "redrawn as vectors from the source text layer, with the original "
                     "index formulas set as equations."),
-        "note_vi": ("Luận văn có 13 hình được đánh số và 30 bảng chấm điểm; tất cả được vẽ "
-                    "lại bằng vector từ lớp văn bản nguồn, các công thức chỉ số gốc được "
-                    "sắp xếp thành phương trình."),
+    },
+    # Book 6 — Smith & Zappe, Valve Selection Handbook, 5th ed. (Elsevier 2004).
+    # EN -> VI only. 387 book pages split into 21 site units; long chapters
+    # (Fundamentals, Manual Valves, PRVs, Rupture Discs) run as parts.
+    "vsh": {
+        "slug": "valve-selection-handbook",
+        "title_en": "Valve Selection Handbook — Engineering Fundamentals for Selecting Manual Valves, Check Valves, Pressure Relief Valves and Rupture Discs",
+        "title_vi": "Cẩm nang Lựa chọn Van — Cơ sở kỹ thuật chọn van chặn tay, van một chiều, van an toàn áp suất và đĩa nứt vỡ",
+        "byline_en": "Peter Smith & R. W. Zappe · 5th edition, Gulf Professional Publishing / Elsevier, 2004",
+        "byline_vi": "Peter Smith & R. W. Zappe · Ấn bản thứ 5, Gulf Professional Publishing / Elsevier, 2004",
+        "pages": 387,
+        "files": 1,
+        "first_en": ("ch01-introduction", "Introduction"),
+        "first_vi": ("ch01-introduction", "Giới thiệu"),
+        "chapters": {
+            1: ("Introduction", "Giới thiệu"),
+            2: ("Fundamentals I — Fluid Tightness and Sealing Mechanism",
+                "Cơ sở I — Độ kín chất lỏng và cơ chế làm kín"),
+            3: ("Fundamentals II — Seatings, Gaskets and Stem Seals",
+                "Cơ sở II — Chỗ kín, gioăng đệm và gioăng trục van"),
+            4: ("Fundamentals III — Flow Through Valves",
+                "Cơ sở III — Dòng chảy qua van"),
+            5: ("Manual Valves I — Functions, Selection and Globe Valves",
+                "Van tay I — Chức năng, lựa chọn và van toàn cầu"),
+            6: ("Manual Valves II — Piston and Parallel Gate Valves",
+                "Van tay II — Van pít-tông và van cửa song song"),
+            7: ("Manual Valves III — Wedge Gate Valves",
+                "Van tay III — Van cửa nêm"),
+            8: ("Manual Valves IV — Plug Valves",
+                "Van tay IV — Van phích (plug)"),
+            9: ("Manual Valves V — Ball Valves",
+                "Van tay V — Van bi"),
+            10: ("Manual Valves VI — Butterfly and Pinch Valves",
+                 "Van tay VI — Van bướm và van kẹp (pinch)"),
+            11: ("Manual Valves VII — Diaphragm and Stainless Steel Valves",
+                 "Van tay VII — Van màng và van thép không gỉ"),
+            12: ("Check Valves", "Van một chiều"),
+            13: ("Pressure Relief Valves I — Direct-Loaded",
+                 "Van an toàn áp suất I — Tải trực tiếp"),
+            14: ("Pressure Relief Valves II — Pilot-Operated and Operational Behavior",
+                 "Van an toàn áp suất II — Điều khiển bằng pilot và hành vi vận hành"),
+            15: ("Rupture Discs I — Types and Construction",
+                 "Đĩa nứt vỡ I — Kiểu loại và kết cấu"),
+            16: ("Rupture Discs II — Selection and Applications",
+                 "Đĩa nứt vỡ II — Lựa chọn và ứng dụng"),
+            17: ("Sizing Pressure Relief Devices",
+                 "Định cỡ thiết bị giải áp"),
+            18: ("Actuators", "Cơ cấu chấp hành (actuator)"),
+            19: ("Double Block and Bleed Ball Valves",
+                 "Van bi chặn kép và xả (double block & bleed)"),
+            20: ("Mechanical Locking Devices for Valves",
+                 "Thiết bị khóa cơ khí cho van"),
+            21: ("Appendices — Abbreviations, Standards, SI Units and Glossary",
+                 "Phụ lục — Viết tắt, tiêu chuẩn, hệ đơn vị SI và thuật ngữ"),
+        },
+        "done": {1: "ch01-introduction"},
+        "copyright_en": ("Original book © 2004 Elsevier Inc. (Gulf Professional Publishing), "
+                         "ISBN 0-7506-7717-1"),
+        "copyright_vi": ("Sách gốc © 2004 Elsevier Inc. (Gulf Professional Publishing), "
+                         "ISBN 0-7506-7717-1"),
+        "lede_en": ("The standard industry reference on valve selection: how the sealing "
+                    "mechanism, flow behaviour (pressure loss, cavitation, waterhammer, "
+                    "noise) and closure-member kinematics of each valve family drive the "
+                    "choice for a given process service. Covers manual valves (globe, "
+                    "gate, plug, ball, butterfly, pinch, diaphragm), check valves, "
+                    "pressure relief valves, rupture discs, sizing, actuators, double "
+                    "block & bleed, and mechanical locking. The Vietnamese translation "
+                    "proceeds unit by unit; every cutaway and chart is redrawn as a "
+                    "vector."),
+        "lede_vi": ("Tài liệu tham chiếu công nghiệp kinh điển về lựa chọn van: cơ chế "
+                    "làm kín, hành vi dòng chảy (tổn thất áp suất, xâm thực, waterhammer, "
+                    "tiếng ồn) và động học phần đóng của từng họ van quyết định lựa chọn "
+                    "cho một dịch vụ quá trình cụ thể. Bao gồm van tay (cầu, cửa, phích, "
+                    "bi, bướm, pinch, màng), van một chiều, van an toàn áp suất, đĩa nứt "
+                    "vỡ, định cỡ, cơ cấu chấp hành, chặn kép & xả, và khóa cơ khí. Bản "
+                    "dịch tiếng Việt thực hiện theo từng đơn vị; mọi hình cắt và biểu đồ "
+                    "đều được vẽ lại bằng vector."),
+        "policy_en": ("<b>About this copy.</b> The source PDF is held in the local library "
+                      "catalogue and is not republished here. This page is the online contents "
+                      "map: what each unit covers and which units already have a "
+                      "Vietnamese translation."),
+        "policy_vi": ("<b>Cách đọc bản dịch.</b> Tệp PDF nguồn được lưu trong thư viện cục bộ "
+                      "và không được đăng lại tại đây. Trang này là bản đồ mục lục trực tuyến: "
+                      "nội dung từng đơn vị và những đơn vị nào đã có bản dịch tiếng Việt."),
+        "note_en": ("The source book carries 243 numbered figures — manufacturer cutaways, "
+                    "seat-detail drawings and sizing charts. Each redrawn figure is a "
+                    "simplified vector schematic that keeps the topology and labels of "
+                    "the original; sizing coefficient charts are re-plotted from their "
+                    "tabulated data."),
+        "note_vi": ("Sách gốc có 243 hình đánh số — hình cắt của nhà sản xuất, chi tiết "
+                    "chỗ kín và biểu đồ định cỡ. Mỗi hình vẽ lại là một sơ đồ vector rút "
+                    "gọn giữ nguyên cấu trúc và nhãn của bản gốc; các biểu đồ hệ số định "
+                    "cỡ được vẽ lại từ dữ liệu bảng tương ứng."),
     },
 }
 

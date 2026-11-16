@@ -5231,3 +5231,48 @@ building Book 2.
 - Push `3203e76a..feefca8b` instant. **BOOK 5 (Heikkilä, Inherent Safety in
   Process Plant Design, VTT 384) IS COMPLETE: 16/16 chapters live in EN + VI.**
   Next: select the next Tier-A title for the campaign.
+
+## Session 72 — Book 6 campaign opens: Smith & Zappe, Valve Selection Handbook
+
+**Book 6 selected:** Peter Smith & R. W. Zappe, *Valve Selection Handbook —
+Engineering Fundamentals for Selecting Manual Valves, Check Valves, Pressure
+Relief Valves and Rupture Discs*, 5th ed., Gulf Professional Publishing /
+Elsevier, 2004 (ISBN 0-7506-7717-1), 387 book pages. Candidates probed: ISA
+*Flow Equations for Sizing Control Valves* (2002) is a scanned IHS PDF with no
+text layer — unusable; Zappe has a clean text layer and pairs naturally with
+the completed Crosby PRV handbook.
+
+**Source inventory:** 243 numbered figures (Ch3 alone 102), figure-densest
+book of the campaign. PDF page = book page + 14. Extraction
+`work/vsh_raw.txt` (413 PDF pages, 570 kB) via pypdf.
+
+**Page plan — 21 site units** (long chapters split into consecutive parts):
+1 Introduction · 2–4 Fundamentals I–III (fluid tightness/sealing · seatings/
+gaskets/stem seals · flow through valves) · 5–11 Manual Valves I–VII
+(selection+globe · piston+parallel gate · wedge gate · plug · ball ·
+butterfly+pinch · diaphragm+stainless steel) · 12 Check Valves · 13–14 PRV I–II
+· 15–16 Rupture Discs I–II · 17 Sizing PRDs · 18 Actuators · 19 DB&B ·
+20 Mechanical Locking · 21 Appendices A–E.
+
+**Scaffold built:** `build/vsh_common.py` (BOOK/SLUGS["vsh"], slug
+`valve-selection-handbook`), `build/reader_vsh.py` (MODULES 1–21),
+`build/vshfig.py` (Book 6 vector figures; source `svg`/`_fig` re-exported from
+vfig via hbfig), registered in `reader_book.py` BOOKS["vsh"] (21 chapters,
+lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
+`("progress", 21, 1)`, `BOOK_SLUG` entry). SLUGS["vsh"] holds built units only
+— currently {1} — so `nav()` never ships a broken next link.
+
+- **Unit 1 "Giới thiệu / Introduction"** (book pp. 1–5, PDF 15–19): purpose of
+  the book and the selection criteria list with cost deliberately last;
+  valve duties (stop/start, throttle, divert, backflow, control, relieve);
+  manual/check/PRV/rupture-disc taxonomy incl. direct-loaded vs pilot-operated
+  and the auxiliary-actuator/simmer/chatter distinctions; forward-domed vs
+  reverse-buckling discs, vent panels; SI/imperial conventions; MSS SP-86
+  size/class identification (NPS/DN/Class/PN); standards appendix pointer;
+  5th-edition new chapters 8–10; the ISA control-valve footnote (Baumann,
+  Borden). Two tables (duties; manual valve groups).
+- **Figure E1** editorial schematic (valve families grouped by duty) drawn and
+  visually verified via playwright screenshot after two overlap fixes (check
+  valve flow glyph, rupture-disc arc labels).
+- QA: **0 Spanish, 0 CJK**, TOC 21 rows / 1 done, broken links 0. Infra:
+  `check_links.py` **946 pages / 28,768 refs / broken 0**.
