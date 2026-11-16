@@ -685,6 +685,61 @@ def fig_c08_index():
                 "Decomposition of the total inherent safety index into chemical and process subindex groups")
 
 
+def fig_c09_weights():
+    """Editorial bar chart (not in the source) of Table 8 (p. 61): the score
+    range of each subindex, chemical group in blue, process group in green."""
+    w, h = 560, 360
+    o = [_defs()]
+    rows = [
+        # (label_vi, label_en, max, group)  scale: 6 -> 300 px
+        ("Độc tính  I<sub>TOX</sub>", "Toxic exposure", 6, "c"),
+        ("Tồn kho  I<sub>I</sub>", "Inventory", 5, "p"),
+        ("Cấu trúc quá trình an toàn  I<sub>ST</sub>", "Safe process structure", 5, "p"),
+        ("Nhiệt phản ứng chính  I<sub>RM</sub>", "Heat of main reaction", 4, "c"),
+        ("Nhiệt phản ứng phụ  I<sub>RS</sub>", "Heat of side reaction", 4, "c"),
+        ("Tương tác hóa học  I<sub>INT</sub>", "Chemical interaction", 4, "c"),
+        ("Khả cháy  I<sub>FL</sub>", "Flammability", 4, "c"),
+        ("Khả nổ  I<sub>EX</sub>", "Explosiveness", 4, "c"),
+        ("Nhiệt độ quá trình  I<sub>T</sub>", "Process temperature", 4, "p"),
+        ("Áp suất quá trình  I<sub>P</sub>", "Process pressure", 4, "p"),
+        ("An toàn thiết bị (Isbl/Osbl)  I<sub>EQ</sub>", "Equipment safety", 4, "p"),
+        ("Khả ăn mòn  I<sub>COR</sub>", "Corrosiveness", 2, "c"),
+    ]
+    x0, bw = 268, 4.0          # bar origin, px per score point
+    y = 34
+    for lv, le, mx, g in rows:
+        col = "#4a7fb5" if g == "c" else "#3d8b62"
+        o.append(_txt(x0 - 6, y + 4, lv, 7.4, anchor="end", color=INK))
+        o.append(_rect(x0, y, bw * mx, 11, "#f0f4f8", 0))
+        o.append(_rect(x0, y, bw * mx, 11, col, 0))
+        o.append(_txt(x0 + bw * mx + 5, y + 4, "0–%d" % mx, 7.2,
+                      anchor="start", color=GREY))
+        y += 22
+    o.append(_txt(268 + 24 + 6, y + 6, "điểm tối đa · max score", 7.4,
+                  anchor="middle", color=GREY))
+    # legend
+    o.append(_rect(30, 30, 10, 10, "#4a7fb5", 0))
+    o.append(_txt(45, 39, "hóa học I<sub>CI</sub> · chemical", 7.6,
+                  anchor="start", color=INK))
+    o.append(_rect(30, 46, 10, 10, "#3d8b62", 0))
+    o.append(_txt(45, 55, "quá trình I<sub>PI</sub> · process", 7.6,
+                  anchor="start", color=INK))
+    o.append(_txt(280, h - 8,
+                  "Sơ đồ A — trực quan hóa Bảng 8 (tr. 61); không có trong tài liệu gốc",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Bar chart of the maximum score of each inherent safety subindex after Table 8"))
+    return _fig(s,
+                "Sơ đồ A · Phạm vi điểm tối đa của từng chỉ số thành phần theo Bảng 8 — "
+                "độc tính (6) và tồn kho (5) chiếm trọng số cao nhất. Sơ đồ biên soạn — "
+                "không có trong tài liệu gốc.",
+                "Figure A · Maximum score of each subindex after Table 8 — toxicity (6) "
+                "and inventory (5) carry the highest weights. Editorial schematic — not "
+                "in the original.",
+                "Biểu đồ phạm vi điểm các chỉ số thành phần an toàn nội tại",
+                "Score-range chart of the inherent safety subindices")
+
+
 FIGS = {
     "isd_intro": fig_isd_intro,
     "f01": fig_f01,
@@ -698,4 +753,5 @@ FIGS = {
     "c06_principles": fig_c06_principles,
     "c07_index": fig_c07_index,
     "c08_index": fig_c08_index,
+    "c09_weights": fig_c09_weights,
 }

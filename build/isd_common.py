@@ -38,6 +38,7 @@ SLUGS["isd"] = {
     6: "ch06-inherent-safety",
     7: "ch07-safety-factors",
     8: "ch08-safety-index",
+    9: "ch09-weighting",
 }
 
 # Re-export the shared helpers so chapter modules can `import isd_common as C`.
