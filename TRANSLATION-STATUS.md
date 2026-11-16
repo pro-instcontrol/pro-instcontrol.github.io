@@ -5276,3 +5276,47 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   valve flow glyph, rupture-disc arc labels).
 - QA: **0 Spanish, 0 CJK**, TOC 21 rows / 1 done, broken links 0. Infra:
   `check_links.py` **946 pages / 28,768 refs / broken 0**.
+
+- **Unit 2 "Cơ sở I — Độ kín chất lỏng và cơ chế làm kín / Fundamentals I —
+  Fluid Tightness and the Sealing Mechanism"** (book pp. 7–12, PDF 21–26):
+  valve seals; leakage criterion and the four tightness classes (Lok steam
+  class 10–100 µg/s gas per m, atom class 10⁻³–10⁻⁵ µg/s) as a table; JPL
+  zero-leakage definition; proving tightness (bubble counting to 1×10⁻²–10⁻⁴
+  sccs, search gas, BS 3636); sealability against liquids (Equation 2-1
+  ΔP = 2T·cosθ/r, contact angle >90° blocks leakage, kerosene-stripping
+  warning, Poiseuille laminar flow); against gases (molecular diffusion);
+  closing leakage passages (waviness/roughness, rubber yield strain 1000×,
+  plastic summit deformation, continuous contact ribbon). **Figure 2-1
+  redrawn from the extracted JPL scan** (log–log, 0.1–10⁴ lb/in² with Pa
+  row, plateau at 10⁻⁷ std cm³/s) and **Figure 2-2 redrawn** (capillary,
+  meniscus, contact angle θ, πr²·ΔP vs 2πrT·cosθ force pair). Nav 1↔2 wired.
+- **Unit 3 "Cơ sở II — Chỗ kín seat, gioăng đệm và gioăng trục van /
+  Fundamentals II — Seatings, Gaskets and Stem Seals"** (book pp. 13–27,
+  PDF 27–41): metal seatings (galling/erosion/abrasion, **Table 2-1** steam-
+  jet erosion classes 1–7 with Crane Co. material lists, 410+CuNi pairing,
+  Stellite); sealant sealing (lubricated plug valve, emergency seal); soft
+  seatings (**Table 2-2** oxygen heat-of-compression rise 375–790 °C, heat
+  sink, inlet pocket); gaskets — flat metallic (Equation 2-2 Pm = 2k(1+w/4t),
+  friction factor 0.2/0.05, don't polish faces, Lok groove criteria
+  wt>5 & Pm/2k>2.25 steam, wt>16 & >5 atom), exfoliated graphite properties,
+  spiral wound (density, 6 mm/1.5 mm clearances, ANSI B16.5 3.2–6.3 µm Ra
+  finish), blowout (Equations 2-3/2-4/2-5, Krägeloh m=1.0 µ=0.1 → width ≥ 5×
+  thickness); stem seals — compression packings (Equation 2-6 σ1 =
+  σa·µ/(1−µ) [transcribed from garbled OCR], PTFE 85%/56%, trapezoid note),
+  **Figure 2-3 redrawn** (Denny & Turnbull gradient: low-pressure uniform,
+  high-pressure 90% drop below the gland — legend-below-plot layout),
+  410-stem packing corrosion (Reynolds, galvanic + graphite cathode, sodium
+  nitrite + zinc), lip-type V-packings, squeeze-type O-rings, thrust
+  packings, diaphragm/bellows stem seals. Nav 2↔3 wired.
+- **Figure QA loop this session:** extracted the real Figure 2-1 image from
+  the PDF (pypdf → TIFF → PNG) and redrawn against it; playwright
+  screenshot checks caught and fixed: `_path()` positional-arg misuse,
+  `_hatch()` spill outside narrow rects (→ url(#h6) pattern fill), a
+  duplicated Figure 2-1 placement, inverted y-tick labels in Figure 2-3, and
+  annotation-curve overlaps.
+- Registration: `SLUGS["vsh"]` = {1,2,3}; `done` 1–3; `TRANSLATED` →
+  `("progress", 21, 3)`. QA: **0 Spanish, 0 CJK**; `check_links.py`
+  **950 pages / 28,868 refs / broken 0**. Pushes `760600dd`, `4f0bf168`,
+  `c834257d` instant. **BOOK 6 progress: 3/21 units live in EN + VI.**
+  Next: Unit 4 (Fundamentals III — Flow Through Valves, book pp. 28–46,
+  Figures 2-4…2-12), then Manual Valves I–VII.
