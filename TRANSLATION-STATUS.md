@@ -5113,3 +5113,33 @@ building Book 2.
 - Infra: sitemap **928 URLs**; `check_links.py` **930 pages / 28,368 refs / broken 0**.
 - Next: **Chapter 11 — Subindices for the Process Inherent Safety Index**
   (pp. 68–73, raw lines ~2050–2290).
+
+## Session 71 (cont.) — Book 5 Chapter 11 (*Process Subindices*) published (11/16) — 2026-11-15
+
+- **Chapter 11 "Chỉ số thành phần của an toàn nội tại quá trình / Subindices for
+  the Process Inherent Safety Index" built and pushed live** — the largest isd
+  chapter (source pp. 68–90, `PAGES_SRC=23`): §11.1 inventory (mass flow + 1 h
+  residence; Mond OSBL values scaled by expert recommendations) with **Table 15**
+  (ISBL/OSBL scales); §11.2 temperature (max temp, <0 °C included, material
+  strength limits 70/150/300/600 °C) with **Table 16**; §11.3 pressure (max normal
+  pressure, Dow F&EI limits) with **Table 17**; §11.4 equipment safety —
+  11.4.1 evaluation (ISBL vs OSBL areas), 11.4.2 layout (spacing-matrix comparison,
+  average-spacing method, Wells 1980) with **Tables 18–19**, 11.4.3 large losses
+  (Mahoney 170 losses vs Instone 2000 claims, primary-cause vs involvement
+  perspectives) with **Tables 20–22**, 11.4.4 Dow F&EI penalties comparison,
+  11.4.5 failure statistics (Arulanantham & Lees, Canvey, Crawley & Grant),
+  11.4.6 ISBL ranking with **Table 23** (furnaces 4 > compressors/high-hazard
+  reactors 3 > air coolers/reactors 2 > drums/towers/exchangers/pumps 1 >
+  nonflammables 0), 11.4.7 OSBL ranking (0–3 scale) with **Table 24**; §11.5 safe
+  process structure — experience-based sources, accident reports/databases, CBR
+  database levels with **Figure 6 redrawn** (`isdfig.fig_c11_levels`, six levels
+  0–5 with hydrogenation example) and six-group **Table 25** (I_ST).
+- 11 HTML tables, 1 figure per page; garbled OCR cells in Tables 18/19 rendered
+  with dash placeholders + transcription footnote.
+- Registration: `SLUGS["isd"][11] = "ch11-process-subindices"`; `done` 1–11;
+  `TRANSLATED` → `("progress", 16, 11)`. Nav Ch10 ↔ Ch11 correct.
+- QA: **0 Spanish, 0 CJK**; sitemap **930 URLs**; `check_links.py` **932 pages /
+  28,418 refs / broken 0**. Push `0cb215c3..bedd67ca` instant.
+- Next: **Chapter 12 — Case Study: Acetic Acid Process** (starts p. 91, raw line
+  2847; TOC label says p. 91, actual body at line 2847 ≈ p. 84 print pagination
+  discrepancy — use line boundaries).
