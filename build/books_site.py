@@ -14,6 +14,12 @@ import framework  # noqa: E402  (one nav list for the whole site)
 import lib_release  # noqa: E402  (release-bucket routing for PDF downloads)
 CAT = os.path.join(ROOT, "library", "catalog.json")
 
+# Two catalogue records describe the same 5th-edition Valve Selection
+# Handbook: id 63 is the complete 413-page scan used as the translation
+# source, id 186 is a 412-page duplicate with a garbled OCR head.  Keep one
+# card and one detail page so the translated shelf is not duplicated.
+DROP_WORK_IDS = {186}
+
 
 def handbook_progress():
     """(registered, total) straight from reader_handbook.py's DONE/TOTAL.
@@ -504,7 +510,8 @@ def load():
     cat = json.load(open(CAT, encoding="utf-8"))
     dom = {d["id"]: d for d in cat["domains"]}
     # keep only English / Vietnamese works
-    cat["works"] = [w for w in cat["works"] if not is_foreign(w)]
+    cat["works"] = [w for w in cat["works"]
+                    if not is_foreign(w) and w.get("id") not in DROP_WORK_IDS]
     works = cat["works"]
     by_shelf = {s[0]: [] for s in SHELVES}
     shelf_of = {}
