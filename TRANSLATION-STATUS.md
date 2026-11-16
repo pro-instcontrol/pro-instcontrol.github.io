@@ -5089,3 +5089,27 @@ building Book 2.
 - Push `7be85579..ced6477d` instant. Next: **Chapter 10 — Subindices of the Chemical
   Inherent Safety Index** (pp. 62–67, raw lines 1846–~2060; reaction-heat, side-reaction,
   interaction, flammability, explosiveness, toxicity, corrosiveness subindex tables).
+
+## Session 71 (cont.) — Book 5 Chapter 10 (*Chemical Subindices*) published (10/16) — 2026-11-15
+
+- **Chapter 10 "Chỉ số thành phần của an toàn nội tại hóa học / Subindices of the
+  Chemical Inherent Safety Index" built and pushed live** (source pp. 62–67,
+  `PAGES_SRC=6`): §10.1 reaction hazards — 10.1.1 main-reaction heat (Equation 6,
+  King 1990 classification, total reaction mass incl. diluents, series reactions,
+  worst reactor) with **Table 9**; 10.1.2 side-reaction heat (max over side
+  reactions, Table 9); 10.1.3 chemical interaction (EPA matrix, Hatayama et al.
+  1980, worst interaction) with **Table 10**; §10.2 hazardous substances —
+  10.2.1 flammability (flash/boiling points, EU directive after Pyötsiä 1994) with
+  **Table 11**; 10.2.2 explosiveness (UEL−LEL vol %, coarse but useful model) with
+  **Table 12**; 10.2.3 toxic exposure (8-h TLV, lower TLV = higher score, Mond
+  Index ICI 1985) with **Table 13** (0–6); 10.2.4 corrosiveness (required
+  construction material: carbon steel 0 / stainless 1 / special 2, worst stream)
+  with **Table 14**; closing note assembling I_CI (max 28) per Equation 4.
+- Source contains no figures — chapter is table-driven (6 HTML tables, 1 equation).
+- Registration: `SLUGS["isd"][10] = "ch10-chemical-subindices"`; `done` 1–10;
+  `TRANSLATED` → `("progress", 16, 10)`. Nav Ch9 ↔ Ch10 correct.
+- QA: 6 tables + 1 eq per page; **0 Spanish, 0 CJK** (a "mất khí密" CJK leak and a
+  "bby" typo caught and fixed pre-build).
+- Infra: sitemap **928 URLs**; `check_links.py` **930 pages / 28,368 refs / broken 0**.
+- Next: **Chapter 11 — Subindices for the Process Inherent Safety Index**
+  (pp. 68–73, raw lines ~2050–2290).
