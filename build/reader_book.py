@@ -522,7 +522,8 @@ BOOKS = {
                  7: "ch07-safety-factors",
                  8: "ch08-safety-index",
                  9: "ch09-weighting",
-                 10: "ch10-chemical-subindices"},
+                 10: "ch10-chemical-subindices",
+                 11: "ch11-process-subindices"},
         "copyright_en": ("Original thesis © 1999 Anna-Mari Heikkilä / Technical Research "
                          "Centre of Finland (VTT), VTT Publications 384"),
         "copyright_vi": ("Luận văn gốc © 1999 Anna-Mari Heikkilä / Trung tâm Nghiên cứu Kỹ "

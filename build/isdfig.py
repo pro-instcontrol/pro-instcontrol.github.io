@@ -740,6 +740,52 @@ def fig_c09_weights():
                 "Score-range chart of the inherent safety subindices")
 
 
+def fig_c11_levels():
+    """Redraw of source Figure 6 (p. 88): the levels of the process as used in
+    the CBR database (0=process ... 5=detail), with a hydrogenation example."""
+    w, h = 560, 372
+    o = [_defs()]
+    rows = [
+        ("0 · QUÁ TRÌNH", "Process", "Phân xưởng hiđro hóa", "Hydrogenation unit",
+         "#fdf3e6"),
+        ("1 · QUÁ TRÌNH CON", "Subprocess", "Phần phản ứng", "Reactor section",
+         "#eef3fb"),
+        ("2 · HỆ THỐNG", "System", "Cột chưng cất + trợ giúp", "Distillation column with auxiliaries",
+         "#eef3fb"),
+        ("3 · HỆ CON", "Subsystem", "Hệ đỉnh cột", "Column overhead system",
+         "#eaf6ee"),
+        ("4 · THIẾT BỊ", "Equipment", "Bộ trao đổi nhiệt / cột", "Heat exchanger / column",
+         "#eaf6ee"),
+        ("5 · CHI TIẾT", "Detail", "Khay chưng cất / van điều khiển", "Tray / control valve",
+         "#eaf6ee"),
+    ]
+    y = 26
+    for i, (lv, len_, ex_vi, ex_en, col) in enumerate(rows):
+        o.append(_rect(60, y, 150, 38, col, 1.2))
+        o.append(_txt(135, y + 15, lv, 7.8, color=INK, weight="600"))
+        o.append(_txt(135, y + 28, len_, 7.0, color=GREY))
+        o.append(_txt(226, y + 19, "→", 11, color=GREY))
+        o.append(_txt(246, y + 15, ex_vi, 7.8, color=INK))
+        o.append(_txt(246, y + 28, ex_en, 7.0, color=GREY))
+        if i < len(rows) - 1:
+            o.append(_line(135, y + 38, 135, y + 50, 1.2, GREY))
+        y += 52
+    o.append(_txt(280, h - 8,
+                  "Vẽ lại theo Hình 6 (tr. 88) — các mức quá trình trong cơ sở dữ liệu CBR",
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Redrawn Figure 6: the six levels of the process used in the case-based reasoning database"))
+    return _fig(s,
+                "Hình 6 · Ví dụ về các mức của quá trình trong cơ sở dữ liệu CBR "
+                "(0 = quá trình, 1 = quá trình con, 2 = hệ thống, 3 = hệ con, "
+                "4 = thiết bị, 5 = chi tiết). Vẽ lại theo tài liệu gốc, tr. 88.",
+                "Figure 6 · Example of the levels of the process as used in the CBR "
+                "database (0 = process, 1 = subprocess, 2 = system, 3 = subsystem, "
+                "4 = equipment, 5 = detail). Redrawn after the original, p. 88.",
+                "Sơ đồ các mức quá trình trong cơ sở dữ liệu CBR",
+                "The six process levels used in the CBR database")
+
+
 FIGS = {
     "isd_intro": fig_isd_intro,
     "f01": fig_f01,
@@ -754,4 +800,5 @@ FIGS = {
     "c07_index": fig_c07_index,
     "c08_index": fig_c08_index,
     "c09_weights": fig_c09_weights,
+    "c11_levels": fig_c11_levels,
 }
