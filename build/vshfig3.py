@@ -32,33 +32,38 @@ def _rot_pts(pts, deg, cx=0.0, cy=0.0):
     return out
 
 
-def _emit(o, ops, rot=0.0, cx=0.0, cy=0.0):
-    """Render local-frame ops into primitive list o, optionally rotated."""
+def _emit(o, ops, rot=0.0, cx=0.0, cy=0.0, dx=0.0, dy=0.0):
+    """Render local-frame ops into primitive list o, optionally rotated and
+    translated onto the canvas."""
     for op in ops:
         k = op[0]
         if k == "poly":
             _, pts, fill, sw, color, dash, close = op
             pts = _rot_pts(pts, rot, cx, cy) if rot else pts
+            if dx or dy:
+                pts = [(x + dx, y + dy) for x, y in pts]
             o.append(_poly(pts, fill=fill, sw=sw, color=color, dash=dash,
                            close=close))
         elif k == "line":
             _, x1, y1, x2, y2, sw, color, dash = op
             if rot:
                 (x1, y1), (x2, y2) = _rot_pts([(x1, y1), (x2, y2)], rot, cx, cy)
-            o.append(_line(x1, y1, x2, y2, sw, dash=dash, color=color))
+            o.append(_line(x1 + dx, y1 + dy, x2 + dx, y2 + dy, sw,
+                           dash=dash, color=color))
         elif k == "circ":
             _, cxx, cyy, r, sw, color, fill = op
             if rot:
                 (cxx, cyy), = _rot_pts([(cxx, cyy)], rot, cx, cy)
-            o.append(_circle(cxx, cyy, r, sw=sw, color=color))
+            o.append(_circle(cxx + dx, cyy + dy, r, sw=sw, color=color))
             if fill:
-                o.append(_circle(cxx, cyy, r, sw=0, color=fill))
+                o.append(_circle(cxx + dx, cyy + dy, r, sw=0, color=fill))
         elif k == "dot":                     # numbered feature marker
             _, cxx, cyy, n = op
             if rot:
                 (cxx, cyy), = _rot_pts([(cxx, cyy)], rot, cx, cy)
-            o.append(_circle(cxx, cyy, 7.5, sw=1.2, color=INK))
-            o.append(_txt(cxx, cyy - 0.5, str(n), 8.0, weight="bold"))
+            o.append(_circle(cxx + dx, cyy + dy, 7.5, sw=1.2, color=INK))
+            o.append(_txt(cxx + dx, cyy + dy - 0.5, str(n), 8.0,
+                          weight="bold"))
 
 
 def _ell(cx, cy, rx, ry, n=18, rot=0.0):
@@ -193,7 +198,7 @@ def _globe_ops(pattern="standard", bonnet="bolted", screw="external",
         top = top - plen
 
     # ---- stem ---------------------------------------------------------------
-    if disc != "piston":
+    if disc not in ("piston", "none"):
         o.append(("line", 0, top, 0, -96, 2.4, INK, ""))
 
     # ---- stem seal ----------------------------------------------------------
@@ -204,9 +209,9 @@ def _globe_ops(pattern="standard", bonnet="bolted", screw="external",
                   RING_F, 1.0, INK, "", True))
     elif seal == "bellows":
         zz = []
-        for i in range(9):
-            yy = -44 - i * 5
-            zz.append(((-9 if i % 2 else 9), yy))
+        for i in range(14):
+            yy = -44 - i * 3
+            zz.append(((-7 if i % 2 else 7), yy))
         o.append(("poly", zz, "none", 1.2, INK, "", False))
         o.append(("poly", [(-12, -86), (12, -86), (12, -78), (-12, -78)],
                   PACK_F, 1.0, INK, "", True))
@@ -346,7 +351,7 @@ def fig_vsh_3_1():
         o.append(_txt(x + 69, 32, ti, 9.2, weight="bold", color=col))
         o.append(_txt(x + 69, 44, tvi, 7.4, color=GREY))
         # glyph: seat gap + closure member movement arrow
-        gy = 66
+        gy = 78
         o.append(_poly([(x + 24, gy + 10), (x + 50, gy + 10), (x + 50, gy + 16),
                         (x + 24, gy + 16)], fill=RING_F, sw=1.0))
         if i == 0:      # closing-down: vertical stopper
@@ -367,9 +372,10 @@ def fig_vsh_3_1():
                            % (x + 27, gy - 3, x + 37, gy - 13),
                            sw=1.0, color=col))
         else:           # flex-body: tube squeezed
-            o.append(_path("M%d %d C%d %d %d %d %d %d"
-                           % (x + 24, gy - 2, x + 34, gy - 2, x + 37, gy + 3,
-                              x + 40, gy - 2, x + 50, gy - 2), sw=1.6))
+            o.append(_path("M%d %d C%d %d %d %d %d %d C%d %d %d %d %d %d"
+                           % (x + 24, gy - 2, x + 34, gy - 2, x + 35, gy + 3,
+                              x + 37, gy + 3, x + 39, gy + 3, x + 40, gy - 2,
+                              x + 50, gy - 2), sw=1.6))
             o.append(_arrow(x + 37, gy - 22, x + 37, gy - 10, 1.1, color=col))
         for j, nm in enumerate(names):
             o.append(_txt(x + 69, 106 + j * 17, nm, 7.4, color=INK))
@@ -406,9 +412,12 @@ def _globe_variant_fig(num, pattern, bonnet, screw, seal, disc, special,
     """One redrawn globe-valve cutaway with numbered feature legend."""
     w, h = 560, 360
     o = [_defs()]
-    ox, oy = 200, 234                       # seat centre on canvas
+    ox, oy = 205, 190                       # seat centre on canvas
+    if pattern == "oblique":
+        ox, oy = 160, 185
     ops = _globe_ops(pattern, bonnet, screw, seal, disc, special)
-    _emit(o, ops, rot=-45 if pattern == "oblique" else 0.0, cx=0, cy=0)
+    _emit(o, ops, rot=-45 if pattern == "oblique" else 0.0, cx=0, cy=0,
+          dx=ox, dy=oy)
     # feature markers
     marks = []
     k = 0
@@ -417,7 +426,7 @@ def _globe_variant_fig(num, pattern, bonnet, screw, seal, disc, special,
         marks.append((key, pos, k))
     for key, pos, n in marks:
         _emit(o, [("dot", pos[0], pos[1], n)], rot=-45 if pattern == "oblique"
-              else 0.0, cx=0, cy=0)
+              else 0.0, cx=0, cy=0, dx=ox, dy=oy)
     # legend column
     o.append(_line(392, 40, 392, 320, 0.8, dash="2 3", color=GREY))
     yy = 66
@@ -479,7 +488,7 @@ def fig_vsh_3_4():
     return _gv(4, "angle", "screwed", "internal", "packing", "needle", None,
                [(("\u0111\u0129a kim", "needle disc"), (0, -22)),
                 (("n\u1eafp v\u00e1n \u1eb9p", "screwed-in bonnet"), (32, -42)),
-                (("ki\u1ec3u g\u00f3c 90\u00b0", "angle pattern"), (60, 60)),
+                (("ki\u1ec3u g\u00f3c 90\u00b0", "angle pattern"), (105, 60)),
                 (("tr\u1ee5c v\u00edt trong", "internal screw"), (26, -104))],
                "Globe valve, angle pattern, screwed-in bonnet, internal "
                "screw, needle disc",
@@ -530,7 +539,7 @@ def fig_vsh_3_7():
                 (("n\u1eafp v\u00e1n \u1eb9p + h\u00e0n k\u00edn",
                   "screwed-in and seal-welded bonnet"), (30, -44)),
                 (("d\u1ee5ng cho h\u1ea1t nh\u00e2n", "nuclear application"),
-                 (60, 60))],
+                 (85, -20))],
                "Globe valve, oblique pattern, screwed-in and seal-welded "
                "bonnet, external screw, plug disc, domed diaphragm stem seal "
                "with auxiliary compression packing, nuclear application",
@@ -548,7 +557,7 @@ def fig_vsh_3_8():
                 (("n\u1eafp b\u00e1n l\u1eb7p", "bolted bonnet"), (40, -46)),
                 (("tr\u1ee5c v\u00edt ngo\u00e0i", "external screw"),
                  (34, -152)),
-                (("khống chế mịn", "sensitive throttling"), (60, 60))],
+                (("khống chế mịn", "sensitive throttling"), (105, 60))],
                "Globe valve, angle pattern, bolted bonnet, external screw, "
                "plug disc with V-port skirt for sensitive throttling control",
                "Van c\u1ea7u ki\u1ec3u g\u00f3c, n\u1eafp b\u00e1n l\u1eb7p, "
@@ -611,14 +620,14 @@ def fig_vsh_3_12():
                [(("th\u00e2n t\u00e1ch l\u00f9a", "split body"), (30, 75)),
                 (("c\u01a1 ch\u1ebf qu\u00e9t ch\u1ed7 k\u00edn",
                   "seat-wiping mechanism"), (0, -6)),
-                (("d\u1ee5ng cho h\u1ed1t n\u01b0\u1edbc (slurry)",
-                  "slurry service"), (60, 60))],
+                (("d\u00f9ng cho slurry (h\u1ed7n h\u1ee3p qu\u00e1nh)",
+                  "slurry service"), (85, 80))],
                "Globe valve, oblique pattern, split body, external screw, "
                "with seat-wiping mechanism for slurry service",
                "Van c\u1ea7u ki\u1ec3u nghi\u00eang, th\u00e2n t\u00e1ch "
                "l\u00f9a, tr\u1ee5c v\u00edt ngo\u00e0i, c\u00f3 c\u01a1 "
                "ch\u1ebf qu\u00e9t ch\u1ed7 k\u00edn cho d\u1ecbch v\u1ee5 "
-               "h\u1ed1t n\u01b0\u1edbc", "Langley Alloys Limited")
+               "slurry", "Langley Alloys Limited")
 
 
 # ------------------------------------------------------ Figure 3-13 (drain)
@@ -630,7 +639,7 @@ def fig_vsh_3_13():
     cx = 200
     # vessel bottom plate (hatched, spans width)
     o.append(_rect(60, 96, 280, 12, fill="url(#h6)", sw=1.1))
-    o.append(_txt(340, 104, "\u0111\u00e1y b\u00ecnh / vessel bottom", 7.4,
+    o.append(_txt(66, 88, "\u0111\u00e1y b\u00ecnh / vessel bottom", 7.4,
                   anchor="start"))
     # body block below plate with bore
     o.append(_poly([(cx - 34, 108), (cx + 34, 108), (cx + 34, 168),
@@ -657,7 +666,6 @@ def fig_vsh_3_13():
     o.append(_line(cx, 84, cx, 60, 1.6, color=BLUE, dash=""))
     o.append(_poly([(cx, 60), (cx - 3.5, 68), (cx + 3.5, 68)], fill=BLUE,
                    sw=0, close=True))
-    o.append(_line(cx - 60, 84, cx - 60, 104, 1.0, color=GREY, dash="4 3"))
     o.append(_txt(476, 330, "Langley Alloys Limited.", 6.6, color=GREY))
     # legend
     for i, (vi, en) in enumerate([
@@ -743,7 +751,7 @@ def fig_vsh_3_14():
                   color=GREEN))
     o.append(_txt(476, 330, "Bopp & Reuther GmbH.", 6.6, color=GREY))
     for i, (vi, en) in enumerate([
-            ("van ba l\u1ed9 \u0111\u1ed5i tr\u1ecdng tr\u1ee1",
+            ("van ba l\u1ed9 chuy\u1ec3n m\u1ea1ch",
              "three-way change-over valve"),
             ("m\u1ed9t PRV b\u1ecb c\u00f4 l\u1eadp", "one PRV isolated"),
             ("PRV kia \u0111ang ph\u1ee5c v\u1ee5",
@@ -761,7 +769,7 @@ def fig_vsh_3_14():
     o.append(_txt(cx + 36, cy - 25.5, "3", 8.0, weight="bold"))
     return _fig(svg(w, h, "".join(o), "Three-way change-over globe valve"),
                 "H\u00ecnh 3-14 \u00b7 Van c\u1ea7u ba l\u1ed9 d\u00f9ng "
-                "nh\u01b0 van \u0111\u1ed5i tr\u1ecdng tr\u1ee1 trong c\u00e0i "
+                "nh\u01b0 van chuy\u1ec3n m\u1ea1ch trong thi\u1ebft b\u1ecb "
                 "\u0111\u1eb7t van an t\u00e0n \u00e1p su\u1ea5t: m\u1ed9t van "
                 "an t\u00e0n b\u1ecb c\u00f4 l\u1eadp trong khi van kia "
                 "\u0111ang ph\u1ee5c v\u1ee5 (v\u1ebd l\u1ea1i). Ngu\u1ed3n: "
@@ -770,7 +778,7 @@ def fig_vsh_3_14():
                 "valve in pressure relief valve installations: one pressure "
                 "relief valve is isolated while the second one is in service "
                 "— redrawn. (Courtesy of Bopp & Reuther GmbH.)",
-                "Van ba l\u1ed9 \u0111\u1ed5i tr\u1ecdng tr\u1ee1 hai PRV.",
+                "Van ba l\u1ed9 chuy\u1ec3n m\u1ea1ch hai PRV.",
                 "Three-way change-over between two PRVs.")
 
 
@@ -920,7 +928,7 @@ def _stuffing_panel(o, x0, y0, variant):
     """Basic stuffing-box section drawn into box at (x0, y0), 300x220."""
     cx = x0 + 150
     top = y0 + 26
-    o.append(_txt(cx, top - 8, variant[0], 8.2, weight="bold"))
+    o.append(_txt(cx, y0 - 6, variant[0], 8.2, weight="bold"))
     # body walls (annular chamber between them)
     o.append(_rect(cx - 70, top, 30, 150, fill=BULB_F, sw=1.2))
     o.append(_rect(cx + 40, top, 30, 150, fill=BULB_F, sw=1.2))
@@ -944,10 +952,11 @@ def _stuffing_panel(o, x0, y0, variant):
                       color=GREY))
     else:  # lantern ring
         o.append(_rect(cx - 40, pt, 80, 34, fill=PACK_F, sw=1.1))
-        o.append(_rect(cx - 40, pt + 44, 80, 26, fill="#e9e9e4", sw=1.1))
-        o.append(_rect(cx - 40, pt + 60, 80, pb - pt - 60, fill=PACK_F, sw=1.1))
+        o.append(_rect(cx - 40, pt + 34, 80, 22, fill="#e9e9e4", sw=1.1))
+        o.append(_rect(cx - 40, pt + 56, 80, pb - pt - 56, fill=PACK_F,
+                       sw=1.1))
         o.append(_rect(cx - 46, pt - 10, 92, 10, fill=RING_F, sw=1.1))
-        o.append(_txt(cx + 46, pt + 57, "lantern ring", 6.6, anchor="start",
+        o.append(_txt(cx + 46, pt + 45, "lantern ring", 6.6, anchor="start",
                       color=GREY))
     # back seat at chamber bottom
     o.append(_poly([(cx - 40, top + 150), (cx - 16, top + 150),
@@ -973,7 +982,7 @@ def _stuffing_fig(num, variant, ten, tvi, aria):
     _stuffing_panel(o, 20, 30, variant)
     # legend
     labels = [("gio\u0103ng n\u00e9n", "compression packing"),
-              ("g\u00e2n \u00e9p", "gland"),
+              ("b\u1ed9 \u00e9p gio\u0103ng", "gland"),
               ("ch\u1ed7 k\u00edn ng\u01b0\u1ee3c (back seat)",
                "back seat \u2014 isolates the packing when fully open"),
               ("tr\u1ee5c n\u00e2ng", "rising stem")]
@@ -996,16 +1005,16 @@ def _stuffing_fig(num, variant, ten, tvi, aria):
     marks = [(cx, pt + (70 if variant[1] != "lantern" else 40), 1),
              (cx, pt - 5, 2),
              (cx, top + 146, 3),
-             (cx, top - 14, 4)]
+             (cx, top + 8, 4)]
     for mx, my, n in marks:
         o.append(_circle(mx, my, 7.5, sw=1.2, color=INK))
         o.append(_txt(mx, my - 0.5, str(n), 8.0, weight="bold"))
     if variant[1] == "condense":
-        o.append(_circle(cx, top + 128, 7.5, sw=1.2, color=INK))
-        o.append(_txt(cx, top + 128.5, "5", 8.0, weight="bold"))
+        o.append(_circle(cx, top + 112, 7.5, sw=1.2, color=INK))
+        o.append(_txt(cx, top + 112.5, "5", 8.0, weight="bold"))
     if variant[1] == "lantern":
-        o.append(_circle(cx, pt + 57, 7.5, sw=1.2, color=INK))
-        o.append(_txt(cx, pt + 57.5, "5", 8.0, weight="bold"))
+        o.append(_circle(cx - 52, pt + 45, 7.5, sw=1.2, color=INK))
+        o.append(_txt(cx - 52, pt + 45.5, "5", 8.0, weight="bold"))
     return _fig(svg(w, h, "".join(o), ten),
                 "H\u00ecnh 3-%d \u00b7 %s (v\u1ebd l\u1ea1i). Ngu\u1ed3n: "
                 "Babcock-Persta Armaturen-Vertriebsgesellschaft mbH."
@@ -1044,9 +1053,12 @@ def _piston_fig(num, kind, ten, tvi, extra_marks):
     w, h = 560, 380
     o = [_defs()]
     ox, oy = 200, 250                     # seat plane on canvas
-    ops = _globe_ops("standard", "bolted", "external", "packing", "piston",
+    ops = _globe_ops("standard", "bolted", "external", "packing", "none",
                      None, flow=False)
     if kind in ("inbody", "inbody_bal"):
+        # bore walls from bonnet to bulb
+        for sx in (-1, 1):
+            ops.append(("line", sx * 16, -44, sx * 16, 24, 1.3, INK, ""))
         # seat packing blocks in the bore mouth; piston slides between
         for sx in (-1, 1):
             ops.append(("poly", [(sx * 16, 22), (sx * 9, 22), (sx * 9, -18),
@@ -1105,7 +1117,7 @@ def _piston_fig(num, kind, ten, tvi, extra_marks):
     elif kind == "drain":
         # vessel plate at top; body below; packing in body near plate
         o.append(_rect(60, 96, 280, 12, fill="url(#h6)", sw=1.1))
-        o.append(_txt(340, 104, "\u0111\u00e1y b\u00ecnh / vessel bottom",
+        o.append(_txt(66, 88, "\u0111\u00e1y b\u00ecnh / vessel bottom",
                       7.4, anchor="start"))
         o.append(_poly([(ox - 34, 108), (ox + 34, 108), (ox + 34, 180),
                         (ox - 34, 180)], fill=BULB_F, sw=1.2, close=True))
@@ -1113,8 +1125,8 @@ def _piston_fig(num, kind, ten, tvi, extra_marks):
             o.append(_poly([(ox + sx * 16, 110), (ox + sx * 9, 110),
                             (ox + sx * 9, 148), (ox + sx * 16, 148)],
                            fill=PACK_F, sw=1.0, close=True))
-        o.append(_line(ox - 12, 96, ox - 12, 180, 1.2, color=INK))
-        o.append(_line(ox + 12, 96, ox + 12, 180, 1.2, color=INK))
+        o.append(_line(ox - 16, 96, ox - 16, 180, 1.2, color=INK))
+        o.append(_line(ox + 16, 96, ox + 16, 180, 1.2, color=INK))
         o.append(_poly([(ox - 9, 152), (ox + 9, 152), (ox + 9, 220),
                         (ox - 9, 220)], fill=DISC_F, sw=1.2, close=True))
         o.append(_line(ox, 220, ox, 250, 2.4, color=INK))
@@ -1132,26 +1144,20 @@ def _piston_fig(num, kind, ten, tvi, extra_marks):
                     "H\u00ecnh 3-%d \u00b7 %s (v\u1ebd l\u1ea1i)." % (num, tvi),
                     "Figure 3-%d \u00b7 %s — redrawn." % (num, ten),
                     tvi, ten)
-    # common render for non-drain kinds
-    _emit(o, ops, rot=0.0, cx=0, cy=0)
-    ox2, oy2 = 200, 250
-    # shift: ops use local seat frame; emit with offset by translating pts
+    # common render for non-drain kinds (ops local frame -> canvas offset)
+    DX, DY = 200, 250
     o2 = []
-    _emit(o2, ops, rot=0.0, cx=0, cy=0)
-    # flow arrows
-    o2.append(_line(ox2 - 118, oy2 + 101 - 250 + 250 - 250, 0, 0, 0))
-    # (arrows drawn below manually at canvas coords)
-    o2.pop()
-    a_y = oy2 + 76
-    o2.append(_line(ox2 - 118, a_y, ox2 - 96, a_y, 1.6, color=BLUE))
-    o2.append(_poly([(ox2 - 96, a_y), (ox2 - 104, a_y - 3.5),
-                     (ox2 - 104, a_y + 3.5)], fill=BLUE, sw=0, close=True))
-    o2.append(_line(ox2, a_y - 60, ox2, a_y - 84, 1.6, color=BLUE))
-    o2.append(_poly([(ox2, a_y - 84), (ox2 - 3.5, a_y - 76),
-                     (ox2 + 3.5, a_y - 76)], fill=BLUE, sw=0, close=True))
-    o2.append(_line(ox2 + 96, a_y, ox2 + 118, a_y, 1.6, color=BLUE))
-    o2.append(_poly([(ox2 + 118, a_y), (ox2 + 110, a_y - 3.5),
-                     (ox2 + 110, a_y + 3.5)], fill=BLUE, sw=0, close=True))
+    _emit(o2, ops, rot=0.0, cx=0, cy=0, dx=DX, dy=DY)
+    a_y = DY + 76
+    o2.append(_line(DX - 118, a_y, DX - 96, a_y, 1.6, color=BLUE))
+    o2.append(_poly([(DX - 96, a_y), (DX - 104, a_y - 3.5),
+                     (DX - 104, a_y + 3.5)], fill=BLUE, sw=0, close=True))
+    o2.append(_line(DX, a_y - 60, DX, a_y - 84, 1.6, color=BLUE))
+    o2.append(_poly([(DX, a_y - 84), (DX - 3.5, a_y - 76),
+                     (DX + 3.5, a_y - 76)], fill=BLUE, sw=0, close=True))
+    o2.append(_line(DX + 96, a_y, DX + 118, a_y, 1.6, color=BLUE))
+    o2.append(_poly([(DX + 118, a_y), (DX + 110, a_y - 3.5),
+                     (DX + 110, a_y + 3.5)], fill=BLUE, sw=0, close=True))
     _emit_legend(o2, 402, extra_marks)
     courtesy = {20: "Rich. Klinger AG.", 21: "Rich. Klinger AG.",
                 23: "Fetterolf Corporation.", 24: "Rich. Klinger AG."}[num]
@@ -1173,3 +1179,80 @@ def _emit_legend(o, x0, marks):
         o.append(_txt(x0 + 14, yy + 6, en, 6.6, anchor="start", color=GREY))
         o.append(_circle(mx, my, 7.5, sw=1.2, color=INK))
         o.append(_txt(mx, my - 0.5, str(i + 1), 8.0, weight="bold"))
+
+
+@_reg3
+def fig_vsh_3_20():
+    return _piston_fig(
+        20, "inbody",
+        "Piston valve, standard pattern, seat packing mounted in valve body, "
+        "piston pressure unbalanced",
+        "Van piston, ki\u1ec3u chu\u1ea9n, gio\u0103ng ch\u1ed7 k\u00edn g\u1eafn "
+        "tr\u00ean th\u00e2n van, piston kh\u00f4ng c\u00e2n b\u1eb1ng \u00e1p",
+        [(("gio\u0103ng ch\u1ed7 k\u00edn trong th\u00e2n",
+           "seat packing in the valve body"), (212, 252)),
+         (("v\u00f2ng l\u1ed3ng \u0111\u00e0n", "lantern ring between the two "
+           "packing sections"), (212, 227)),
+         (("piston \u0111\u01b0\u1ee3c \u00e9p k\u00edn qua n\u1eafp",
+           "piston; bonnet acts as the gland"), (200, 190))])
+
+
+@_reg3
+def fig_vsh_3_21():
+    return _piston_fig(
+        21, "inbody_bal",
+        "Piston valve, standard pattern, seat packing mounted in valve body, "
+        "piston pressure balanced",
+        "Van piston, ki\u1ec3u chu\u1ea9n, gio\u0103ng ch\u1ed7 k\u00edn g\u1eafn "
+        "tr\u00ean th\u00e2n van, piston c\u00e2n b\u1eb1ng \u00e1p",
+        [(("gio\u0103ng ch\u1ed7 k\u00edn trong th\u00e2n",
+           "seat packing in the valve body"), (212, 252)),
+         (("piston c\u00e2n b\u1eb1ng \u00e1p (k\u00eanh n\u1ed1i)",
+           "pressure-balanced piston (equalising channel)"), (196, 210)),
+         (("v\u00f2ng l\u1ed3ng \u0111\u00e0n", "lantern ring"), (212, 227))])
+
+
+@_reg3
+def fig_vsh_3_22():
+    return _piston_fig(
+        22, "drain",
+        "Piston valve adapted for draining vessels, seat packing mounted in "
+        "valve body",
+        "Van piston d\u00f9ng x\u1ea3 b\u00ecnh ch\u1ee9a, gio\u0103ng "
+        "ch\u1ed7 k\u00edn g\u1eafn tr\u00ean th\u00e2n van",
+        [(("ch\u1ed7 k\u00edn s\u00e1t \u0111\u00e1y b\u00ecnh",
+           "seat packing flush with vessel bottom"), (140, 102)),
+         (("gio\u0103ng ch\u1ed7 k\u00edn trong th\u00e2n",
+           "seat packing in the valve body"), (212, 130)),
+         (("piston \u0111\u1ea9y l\u00ean \u0111\u00f3ng",
+           "piston closes upward"), (200, 180))])
+
+
+@_reg3
+def fig_vsh_3_23():
+    return _piston_fig(
+        23, "ramseal",
+        "Piston valve adapted for draining vessels, seat packing mounted on "
+        "piston; the ram-seal principle",
+        "Van piston d\u00f9ng x\u1ea3 b\u00ecnh ch\u1ee9a, gio\u0103ng "
+        "ch\u1ed7 k\u00edn g\u1eafn tr\u00ean piston \u2014 nguy\u00ean t\u1eafc "
+        "Ram-Seal",
+        [(("gio\u0103ng g\u1eafn tr\u00ean \u0111\u1ea7u piston",
+           "seat packing carried on the piston"), (222, 258)),
+         (("v\u00f2ng n\u00e9n r\u1eddi", "loose compression ring"),
+          (222, 276)),
+         (("v\u00e1i d\u1eebng trong l\u1ed3ng ch\u1ed7 k\u00edn",
+           "shoulder in the seat bore stops the ring"), (180, 283))])
+
+
+@_reg3
+def fig_vsh_3_24():
+    return _piston_fig(
+        24, "onpiston",
+        "Piston valve, standard pattern, seat packing mounted on piston",
+        "Van piston, ki\u1ec3u chu\u1ea9n, gio\u0103ng ch\u1ed7 k\u00edn "
+        "g\u1eafn tr\u00ean piston",
+        [(("gio\u0103ng g\u1eafn tr\u00ean piston", "seat packing on the "
+           "piston"), (200, 265)),
+         (("v\u00f2ng ma s\u00e1t l\u00e0m l\u00f2 xo",
+           "friction ring acting as a spring"), (208, 278))])

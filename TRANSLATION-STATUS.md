@@ -5340,3 +5340,42 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   **BOOK 6 progress: 4/21 units live in EN + VI.** Next: Unit 5 (Manual Valves I —
   Functions, Selection & Globe Valves, book pp. 47–73, Figures 3-1…3-23), then
   Manual Valves II–VII (102 figures across Ch. 3).
+
+## Session 73b — Books index: translated shelf + VSH Unit 5 (Manual Valves I)
+- **Books index change (user request):** all works with a Vietnamese
+  translation (10 catalog works) are gathered into one highlighted
+  "Vietnamese translations / Bản dịch tiếng Việt" shelf shown FIRST on the
+  books index (removed from their thematic shelves to avoid duplicates),
+  with its own filter pill, quick-jump option and gold-accent CSS
+  (`.section.translated-shelf`). Commit `ab8acd3a`.
+- **Unit 5 live** (`ch05-manual-valves-selection-globe`, book pp. 47–73):
+  functions of manual valves; the four flow-regulation groups (Figure 3-1
+  redrawn as an editorial map); selection by duty; end connections
+  (threaded/flanged/welding); WOG/WSP ratings; **Table 3-1 valve selection
+  chart** (19 rows, dash = blank in source); globe valves — body patterns,
+  **13 cutaways redrawn (Figures 3-2…3-14)** via a parametric section
+  factory (standard/angle/oblique bodies × union/screwed/welded/bolted/
+  pressure-seal/integral bonnets × packing/bellows/diaphragm seals ×
+  soft/plug/needle/V-port/ball discs), seatings (Figure 3-15 a–d, 3-16
+  needle + V-port), disc-to-stem connection, inside/outside screw, bonnet
+  joints, stuffing boxes (Figures 3-17…3-19 with back seat, condensing
+  chamber + test plug, lantern ring 4 purposes), flow direction
+  (40–60 kN / 70–100 kN closing limits), applications; piston valves
+  (Figures 3-20…3-24: packing in body, pressure-balanced, vessel drain,
+  ram-seal, packing on piston + friction ring). Built at 27 source pages /
+  **24 figures** per language (~180 kB pages).
+- **Figure QA loop:** playwright screenshots caught — globe sections drawn
+  without canvas offset (standard clipped, oblique off-canvas; fixed with
+  per-pattern dx/dy), Figure 3-1 glyph/subtitle overlap, 3-13/3-22 vessel
+  label colliding with legend, 3-19 lantern-ring drawing bug + title/stem
+  overlap, cramped ram-seal markers, boxy bellows zigzag. VI typos fixed:
+  "chảy vistrực/viực"→"chảy dẻo (creep)", "lưdi"→"rời", "quay lươn"→
+  "quay tự do (swivel)", "gân ép"→"bộ ép gioăng", "hổt lửng/hổt nước"→
+  "slurry (hỗn hợp quánh)", "đổi trọng trữ"→"chuyển mạch", "amiant"→
+  "amiang", "tạo áp âu"→"lượng ép dương (interference)". ("chạm" in the
+  piston text is legitimate Vietnamese — guard false positive.)
+- Registration: `done` 1–5; `TRANSLATED` → `("progress", 21, 5)`. QA:
+  **0 Spanish, 0 CJK**; `check_links.py` **954 pages / 28,968 refs /
+  broken 0**. **BOOK 6 progress: 5/21 units live in EN + VI.**
+  Next: Unit 6 (Manual Valves II — Piston & Parallel Gate Valves,
+  book pp. 74–88, Figures 3-25…3-32), then wedge/plug/ball/butterfly.
