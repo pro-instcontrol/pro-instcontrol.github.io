@@ -637,7 +637,8 @@ BOOKS = {
                  3: "ch03-seatings-gaskets-stem-seals",
                  4: "ch04-flow-through-valves",
                  5: "ch05-manual-valves-selection-globe",
-                 6: "ch06-piston-parallel-gate-valves"},
+                 6: "ch06-piston-parallel-gate-valves",
+                 7: "ch07-wedge-gate-valves"},
         "copyright_en": ("Original book © 2004 Elsevier Inc. (Gulf Professional Publishing), "
                          "ISBN 0-7506-7717-1"),
         "copyright_vi": ("Sách gốc © 2004 Elsevier Inc. (Gulf Professional Publishing), "

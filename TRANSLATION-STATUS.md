@@ -5410,3 +5410,34 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
 - Registration: `done` 1–6; `TRANSLATED` → `("progress", 21, 6)`.
   **BOOK 6 progress: 6/21 units live in EN + VI.**
   Next: Unit 7 — Wedge Gate Valves (book pp. 85–…, Figures 3-34…).
+
+## Book 6 (Valve Selection Handbook) — Unit 7, 2026-11-16
+- **Unit 7 live** (`ch07-wedge-gate-valves`, book pp. **85–96** / PDF 99–110;
+  PLUG VALVES starts p. 97 = PDF 111). 12 source pages, **15 source figures
+  redrawn** in new `build/vshfig4.py`: plain hollow/solid wedge valves with
+  screwed-in, bolted, union, clamped, welded and pressure-sealed bonnets
+  (Figures 3-34…3-39, internal/external screws, bellows + auxiliary stuffing
+  box on 3-39), PTFE seat insert (3-40), flexible wedge (3-41), forged
+  flexible wedge with hard-faced grooves on machined ribs (3-42), two-piece
+  wedge with adjustable spacer ring (3-43), rubber-seated stirrup-ring
+  wedge (3-44), fully rubber-lined diaphragm wedge (3-45), and three damage
+  schematics from the DN 300 API 600 failure case (3-46 guide slots, 3-47
+  body ribs, 3-48 bent stem) — the latter explicitly labelled "sơ đồ mô tả
+  hư hỏng / damage schematic — not a photographic reproduction".
+- Parametric `_wedge_ops` builder handles wedge type, bonnet joint, screw
+  type, stem seal and guide design; `_emit`/`_emit_legend` reused from
+  `vshfig3.py`. Prose covers sealing load and block-and-bleed limitation,
+  guide purposes, negative features vs parallel gates (follower conduit,
+  trapped solids, torque-limited drive), self-aligning designs, wedge-to-
+  stem T-slot orientation and API 600 strength rule, guide play/support and
+  the 5% seat-carried travel of Figure 3-42, bypass and pressure equalizing,
+  the full failure case study, Appendix C and applications, plus a 13-row
+  bilingual wedge-design summary table.
+- QA: headless-Chrome screenshots of all 15 figures; added visible internal
+  screw threads (3-34…3-37) after review; XML-validated all 15 SVG figures
+  and all 16 inline SVGs per page. Both pages: 15 figures, 0 Spanish, 0 CJK,
+  0 Python artifacts. `check_links.py` **958 pages / 29,068 refs /
+  broken 0**; sitemap regenerated.
+- Registration: `done` 1–7; `TRANSLATED` → `("progress", 21, 7)`.
+  **BOOK 6 progress: 7/21 units live in EN + VI.** Next: Unit 8 — Plug
+  Valves (book p. 97 onward, Figures 3-49…3-59).
