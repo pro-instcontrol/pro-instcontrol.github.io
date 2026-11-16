@@ -5066,3 +5066,26 @@ building Book 2.
 - Push `32c0d3f1..7f1824b9` instant (credential-helper fix holding). Next:
   **Chapter 9 — The Weighting between Subindices** (pp. 60–61, raw lines 1781–1846,
   contains Table 8).
+
+## Session 71 (cont.) — Book 5 Chapter 9 (*Weighting between Subindices*) published (9/16) — 2026-11-15
+
+- **Chapter 9 "Trọng số giữa các chỉ số thành phần / The Weighting between
+  Subindices" built and pushed live** (source pp. 60–61, `PAGES_SRC=2`): weighting
+  rationale (unique projects, company policy, same basis for all alternatives),
+  weighting factors into Equations 3–5, standardized in-house weighting; the score-range
+  rationale from the **Edwards et al. (1996) eight-expert inquiry** summarised by
+  Lawrence (1996) — inventory & toxicity most important, then chemical stability,
+  temperature, pressure, flammability/explosiveness; toxicity (6) & inventory (5) top
+  scores, most others 4, corrosion lowest (2); note on missing equipment-safety /
+  process-structure keywords in the expert list.
+- **Table 8** rendered as a 3-column table (subindex · symbol · score) with chemical /
+  process group headers, incl. the Isbl 0–4 / Osbl 0–3 equipment split.
+- **Figure:** editorial `isdfig.fig_c09_weights()` — horizontal score-range bar chart
+  (chemical blue / process green, "Sơ đồ A — not in the original").
+- Registration: `SLUGS["isd"][9] = "ch09-weighting"`; `done` 1–9; `TRANSLATED` →
+  `("progress", 16, 9)`. Nav Ch8 ↔ Ch9 correct.
+- QA: 1 figure, 1 table per page; **0 Spanish, 0 CJK** (EN + VI).
+- Infra: sitemap **926 URLs**; `check_links.py` **928 pages / 28,318 refs / broken 0**.
+- Push `7be85579..ced6477d` instant. Next: **Chapter 10 — Subindices of the Chemical
+  Inherent Safety Index** (pp. 62–67, raw lines 1846–~2060; reaction-heat, side-reaction,
+  interaction, flammability, explosiveness, toxicity, corrosiveness subindex tables).
