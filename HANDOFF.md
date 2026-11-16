@@ -1,10 +1,26 @@
-# HANDOFF — Finish Book 5 (Heikkilä, *Inherent Safety in Process Plant Design*)
+# HANDOFF — Campaign state: FIVE BOOKS COMPLETE
 
-**Goal:** build Chapters 8–16 so Book 5 is 16/16, then regenerate infra, QA, commit, push.
+**Status (2026-11-15):** ALL FIVE BOOKS ARE 100% LIVE in EN + VI:
 
-Book 5 Ch1–7 are **already live** (progress badge "7 of 16"). Book 4 (Crosby PRV) is 8/8
-complete; Books 1–3 complete. All source text already extracted to `work/isd_raw.txt`
-(3,995 lines; `=== PAGE N ===` markers throughout).
+| # | Book | Chapters | Badge |
+|---|------|----------|-------|
+| 1 | Bolton, *Process Control* | 7/7 | 🟢 Fully translated |
+| 2 | *Safety Instrumented Systems* | 16/16 | 🟢 Fully translated |
+| 3 | ISA *Instrumentation Symbols and Identification* | 7/7 | 🟢 Fully translated |
+| 4 | Crosby *Pressure Relief Valve Engineering Handbook* | 8/8 | 🟢 Fully translated |
+| 5 | Heikkilä, *Inherent Safety in Process Plant Design* (VTT 384) | 16/16 | 🟢 Fully translated |
+
+Final session commits: `111db504` (Ch7), `7f1824b9` (Ch8), `ced6477d` (Ch9),
+`497280a2` (Ch10), `bedd67ca` (Ch11), `5d5ec52a` (Ch12), `8465cdca` (Ch13),
+`feefca8b` (Ch14–16 complete). Infra: sitemap 940 URLs, `check_links.py`
+942 pages / 28,668 refs / **broken 0**.
+
+**Next campaign step:** select the next Tier-A instrumentation/control title
+(EN/VI only, NO Spanish), extract to `work/<slug>_raw.txt`, create
+`<slug>_common.py` + reader + figure module following the same pattern
+(see `build/isd_common.py`, `build/reader_isd.py`, `build/isdfig.py`,
+`build/isd_ch01.py` as the reference implementation), then build chapters
+one at a time with the QA gates below.
 
 ---
 
