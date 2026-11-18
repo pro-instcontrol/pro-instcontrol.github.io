@@ -5734,3 +5734,38 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   verified after Pages propagation. The removed duplicate `/books/work/186/`
   still returns 404. Next: Unit 17 — Sizing Pressure Relief Devices
   (book p. 269 onward).
+
+## Book 6 (Valve Selection Handbook) — Unit 17, 2026-11-18
+- **Unit 17** (`ch17-sizing-pressure-relief-devices`, book pp. **269–292** /
+  PDF 283–306; Chapter 8 begins on book p. 293). 24 source pages,
+  **9 source figures redrawn** in new `build/vshfig14.py`: the relief-valve
+  installation and flow subscripts; flow factor F; back-pressure factor Kb;
+  Napier high-pressure steam factor KN; liquid overpressure factor Kp;
+  bellows liquid back-pressure factor Kw; viscosity factor Kv versus
+  Reynolds number; inlet-line resistance for 3% loss; and discharge-line
+  resistance for gas or vapor.
+- New `build/vsh_ch17.py` with full EN/VI prose: flow categories and
+  mixed-phase caveat, critical pressure ratio and sonic/subsonic gas
+  equations, compressibility Z, bellows back-pressure correction, Napier
+  steam sizing and superheat, liquid capacity corrections and iterative
+  viscosity sizing, the 3% inlet-loss rule, inlet and discharge piping
+  resistance procedures, rupture-disc coefficient and flow-resistance
+  methods, and explosion-vent sizing factors; plus a 13-row language-
+  specific summary table.
+- QA: source figure pages were rendered from the local book PDF, and a
+  contact sheet of all 9 figures was reviewed before publication. Marker
+  circles on 7-3, 7-5, 7-6, 7-7, 7-8 and 7-9 were moved onto their actual
+  curves or reference levels. Two typing artifacts were fixed in the
+  bilingual module before build: a stray CJK run became "không nhỏ hơn",
+  and "vì vậyThompson" became "vì vậy Thompson". Styled EN and VI pages
+  were captured and reviewed in six cropped sections each; equations,
+  charts, table rows and navigation rendered cleanly. Final QA: 9 figures
+  per language, 10/10 inline SVGs XML-valid per page (9 figures + site
+  icon), 0 Spanish, 0 CJK, 0 Python artifacts, no truncated aria labels,
+  and no Vietnamese in the English table. `check_links.py` **976 pages /
+  29,514 refs / broken 0**; sitemap regenerated with 974 URLs / Unit 17
+  pages.
+- Registration: `done` 1–17; `TRANSLATED` → `("progress", 21, 17)`.
+  **BOOK 6 progress: 17/21 units live in EN + VI.** Content commit
+  `55ee8e0a`. Live EN + VI pages, TOC and catalog badge pending final
+  Pages verification. Next: Unit 18 — Actuators (book p. 293 onward).
