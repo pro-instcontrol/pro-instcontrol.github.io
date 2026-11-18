@@ -5693,6 +5693,10 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   `check_links.py` **972 pages / 29,414 refs / broken 0**; sitemap
   regenerated with 970 URLs / Unit 15 pages.
 - Registration: `done` 1–15; `TRANSLATED` → `("progress", 21, 15)`.
-  **BOOK 6 progress: 15/21 units live in EN + VI.** Commit `deb39b10`;
-  live verification pending push. Next: Unit 16 — Rupture Discs:
-  Selection (book p. 261 onward, Figures 6-34…6-38).
+  **BOOK 6 progress: 15/21 units live in EN + VI.** Commits `deb39b10`
+  (content) and `e5d7e70c` (QA notes); live EN + VI pages, TOC and 15/21
+  catalog badge verified after Pages propagation. The corrected
+  Vietnamese "vết lưng rùa" term is live, the English summary table has
+  zero Vietnamese leakage, and the removed duplicate `/books/work/186/`
+  still returns 404. Next: Unit 16 — Rupture Discs: Selection (book
+  p. 261 onward, Figures 6-34…6-38).
