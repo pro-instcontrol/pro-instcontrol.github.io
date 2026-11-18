@@ -5633,3 +5633,31 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   duplicate `/books/work/186/` still returns 404. Next: Unit 14 —
   Pilot-Operated Pressure Relief Valves (book p. 213 onward, Figures
   5-35…).
+
+## Book 6 (Valve Selection Handbook) — Unit 14, 2026-11-18
+- **Unit 14** (`ch14-prv-pilot-operated`, book pp. **213–226** / PDF
+  227–240; RUPTURE DISCS begin book p. 227 = PDF 241). 14 source pages,
+  **10 source figures redrawn** in new `build/vshfig11.py`: basic
+  direct-acting pilot layout, full-bore main valve with stroke bolt and
+  drag ring, diaphragm and piston pilot combinations, severe-service
+  snap pilots, reversed-flow damped valve, deenergize-to-open main valve
+  with check valve and diffuser silencer, three-line interlocked pilot
+  installation, and the energize-to-open bellows-piloted main valve.
+- New `build/vsh_ch14.py` with full EN/VI prose: U.S. direct-acting and
+  European indirect-acting families, dome pressure and vent operation,
+  flowing/non-flowing and snap/modulating pilots, back-pressure balance,
+  diaphragm, bellows and piston main valves, flow reversal, API 526 and
+  full-bore valves, accessories, inlet-loss and blowdown stability, remote
+  sense lines, modulating-pilot selection limits, and both indirect-acting
+  installation forms; plus a 10-row language-specific summary table.
+- QA: contact-sheet review of all 10 figures found marker 2 and marker 3
+  covering the P1 and SOL tags in the 5-43 installation diagram; both
+  were moved to open corners. Final QA: 10 figures per language, 11/11
+  inline SVGs XML-valid per page (10 figures + site icon), 0 Spanish,
+  0 CJK, 0 Python artifacts, no truncated aria labels, and no Vietnamese
+  in the English table. `check_links.py` **970 pages / 29,364 refs /
+  broken 0**; sitemap regenerated with 968 URLs / Unit 14 pages.
+- Registration: `done` 1–14; `TRANSLATED` → `("progress", 21, 14)`.
+  **BOOK 6 progress: 14/21 units live in EN + VI.** Commit `bc13d2ea`;
+  live verification pending push. Next: Unit 15 — Rupture Discs:
+  Construction (book p. 227 onward, Figures 6-1…).
