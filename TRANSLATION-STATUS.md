@@ -5728,7 +5728,9 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   `check_links.py` **974 pages / 29,464 refs / broken 0**; sitemap
   regenerated with 972 URLs / Unit 16 pages.
 - Registration: `done` 1–16; `TRANSLATED` → `("progress", 21, 16)`.
-  **BOOK 6 progress: 16/21 units live in EN + VI.** Content commit
-  `edc2869b`. Live EN + VI pages, TOC and catalog badge pending final
-  Pages verification. Next: Unit 17 — Sizing Pressure Relief Devices
+  **BOOK 6 progress: 16/21 units live in EN + VI.** Commits `edc2869b`
+  (content) and `2c2f38c8` (QA notes); live EN + VI Unit 16 pages, both
+  TOCs and both catalog badges (16 of 21 / 16/21) returned 200 and were
+  verified after Pages propagation. The removed duplicate `/books/work/186/`
+  still returns 404. Next: Unit 17 — Sizing Pressure Relief Devices
   (book p. 269 onward).
