@@ -5626,6 +5626,10 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   **968 pages / 29,314 refs / broken 0**; sitemap regenerated with
   966 URLs / Unit 13 pages.
 - Registration: `done` 1–13; `TRANSLATED` → `("progress", 21, 13)`.
-  **BOOK 6 progress: 13/21 units live in EN + VI.** Commit `000f7bf5`;
-  live verification pending push. Next: Unit 14 — Pilot-Operated Pressure
-  Relief Valves (book p. 213 onward, Figures 5-35…).
+  **BOOK 6 progress: 13/21 units live in EN + VI.** Commits `000f7bf5`
+  (content) and `e40f8df3` (QA notes); live EN + VI pages, TOC and 13/21
+  catalog badge verified after Pages propagation. The corrected English
+  summary table is live with zero Vietnamese leakage; the removed
+  duplicate `/books/work/186/` still returns 404. Next: Unit 14 —
+  Pilot-Operated Pressure Relief Valves (book p. 213 onward, Figures
+  5-35…).
