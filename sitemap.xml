@@ -1250,6 +1250,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch14-prv-pilot-operated/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch15-rupture-discs-construction/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch15-rupture-discs-construction/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch15-rupture-discs-construction/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch15-rupture-discs-construction/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/"/>
@@ -4173,6 +4179,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch14-prv-pilot-operated/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch14-prv-pilot-operated/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch14-prv-pilot-operated/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch15-rupture-discs-construction/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch15-rupture-discs-construction/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch15-rupture-discs-construction/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch15-rupture-discs-construction/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/</loc>
