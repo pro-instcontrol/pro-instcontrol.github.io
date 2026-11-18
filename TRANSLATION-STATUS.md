@@ -5664,3 +5664,35 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   table is live with zero Vietnamese leakage; the removed duplicate
   `/books/work/186/` still returns 404. Next: Unit 15 — Rupture Discs:
   Construction (book p. 227 onward, Figures 6-1…).
+
+## Book 6 (Valve Selection Handbook) — Unit 15, 2026-11-18
+- **Unit 15** (`ch15-rupture-discs-construction`, book pp. **227–260** /
+  PDF 241–274; SELECTING RUPTURE DISCS begins book p. 261). 34 source
+  pages, **33 source figures redrawn** in new `build/vshfig12.py`: the
+  temperature/burst-pressure chart and silica-wool heat shield; tension-
+  loaded solid, slotted/lined and cross-scored forward discs with vacuum
+  and back-pressure supports; compression-loaded reverse-buckling discs
+  with knives, teeth rings, cross and partial scores, slip-away and
+  buckling bars; two-way metal discs; resin-impregnated and pure graphite
+  designs; conical-seat holders, clean-sweep Tee, quick-change housings
+  and a double-disc leakage-warning assembly.
+- New `build/vsh_ch15.py` with full EN/VI prose: terminology, application
+  arrangements, liquid-system limits, ductile and brittle materials,
+  temperature effects, heat shields, rated burst pressure, tolerances,
+  manufacturing range, operating/damage/reversal ratios, all metal and
+  graphite constructions, holder evolution, accessories, and double-disc
+  protection; plus a 21-row language-specific summary table.
+- QA: contact-sheet review of all 33 figures moved two quick-change
+  markers onto their actual O-rings and actuator, and increased the
+  exploded-holder offset so 6-14, 6-20 and 6-29 read as separated views.
+  A styled-page review caught one Vietnamese table mistranslation
+  ("camel" for turtle backing), corrected to "vết lưng rùa", then rebuilt.
+  Final QA: 33 figures per language, 34/34 inline SVGs XML-valid per page
+  (33 figures + site icon), 0 Spanish, 0 CJK, 0 Python artifacts,
+  no truncated aria labels, and no Vietnamese in the English table.
+  `check_links.py` **972 pages / 29,414 refs / broken 0**; sitemap
+  regenerated with 970 URLs / Unit 15 pages.
+- Registration: `done` 1–15; `TRANSLATED` → `("progress", 21, 15)`.
+  **BOOK 6 progress: 15/21 units live in EN + VI.** Commit `deb39b10`;
+  live verification pending push. Next: Unit 16 — Rupture Discs:
+  Selection (book p. 261 onward, Figures 6-34…6-38).
