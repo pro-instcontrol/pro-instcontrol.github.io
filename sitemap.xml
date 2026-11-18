@@ -1244,6 +1244,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch13-prv-direct-loaded/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch14-prv-pilot-operated/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch14-prv-pilot-operated/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch14-prv-pilot-operated/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch14-prv-pilot-operated/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/"/>
@@ -4161,6 +4167,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch13-prv-direct-loaded/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch13-prv-direct-loaded/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch13-prv-direct-loaded/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch14-prv-pilot-operated/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch14-prv-pilot-operated/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch14-prv-pilot-operated/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch14-prv-pilot-operated/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/</loc>

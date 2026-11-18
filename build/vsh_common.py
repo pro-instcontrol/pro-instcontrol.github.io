@@ -58,6 +58,7 @@ SLUGS["vsh"] = {
     11: "ch11-diaphragm-stainless-steel-valves",
     12: "ch12-check-valves",
     13: "ch13-prv-direct-loaded",
+    14: "ch14-prv-pilot-operated",
 }
 
 # Re-export the shared helpers so chapter modules can `import vsh_common as C`.

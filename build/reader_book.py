@@ -644,7 +644,8 @@ BOOKS = {
                  10: "ch10-butterfly-pinch-valves",
                  11: "ch11-diaphragm-stainless-steel-valves",
                  12: "ch12-check-valves",
-                 13: "ch13-prv-direct-loaded"},
+                 13: "ch13-prv-direct-loaded",
+                 14: "ch14-prv-pilot-operated"},
         "copyright_en": ("Original book © 2004 Elsevier Inc. (Gulf Professional Publishing), "
                          "ISBN 0-7506-7717-1"),
         "copyright_vi": ("Sách gốc © 2004 Elsevier Inc. (Gulf Professional Publishing), "
