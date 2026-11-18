@@ -5534,3 +5534,34 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   live EN + VI pages, TOC and 10/21 catalog badge verified after Pages
   propagation. Next: Unit 11 — Diaphragm and Stainless Steel Valves
   (book p. 144 onward, Figures 3-93…).
+
+## Book 6 (Valve Selection Handbook) — Unit 11, 2026-11-18
+- **Unit 11** (`ch11-diaphragm-stainless-steel-valves`, book pp. **144–151** /
+  PDF 158–165; CHECK VALVES begin book p. 152 = PDF 166). 8 source pages,
+  **7 source figures redrawn** in new `build/vshfig8.py`: weir-type diaphragm
+  valve (3-93), straight-through type with dashed closed position (3-94),
+  double-bonnet assembly for large sizes (3-95), T-branch for true sampling
+  (3-96), and three editorial schematic charts (3-97…3-99) for weir and
+  straight-through pressure/temperature envelopes and inherent vs installed
+  flow characteristics.
+- New `build/vsh_ch11.py` with full EN/VI prose: weir flexure and diaphragm
+  life, PTFE diaphragms with elastomer backing, vacuum limits, DN 350 /
+  DN 500 size range, rising stem shroud, lift indicator, lubrication
+  chamber, diaphragm rupture containment, self-draining mounting,
+  straight-through ballooning and reduced-bore bonnets, body/bonnet and
+  diaphragm materials, consult-the-maker P/T limits, variable cam
+  positioner, positive-displacement limitation, standards and applications;
+  then stainless steel AISI 304/316, low-carbon grades and solution
+  anneal, crevice corrosion, galling and stellite/Ni-Resist D2/type 303
+  countermeasures, 150 lb light-weight flanges and self-aligning wedges,
+  plus a 13-row bilingual summary table.
+- QA: headless-Chrome screenshots of all 7 figures; shortened one clipped
+  legend in 3-93 and separated chart footnotes from the courtesy line in
+  3-97…3-99. The Vietnamese title uses a non-breaking space so "không gỉ"
+  stays on one line. Final QA: 7 figures per language, 8/8 inline SVGs
+  XML-valid per page, 0 Spanish, 0 CJK, 0 Python artifacts.
+  `check_links.py` **964 pages / 29,214 refs / broken 0**; sitemap
+  regenerated with Unit 11 URLs.
+- Registration: `done` 1–11; `TRANSLATED` → `("progress", 21, 11)`.
+  **BOOK 6 progress: 11/21 units live in EN + VI.** Commit `b38d43af`.
+  Next: Unit 12 — Check Valves (book p. 152 onward, Figures 4-1…).
