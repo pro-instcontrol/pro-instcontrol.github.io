@@ -648,7 +648,8 @@ BOOKS = {
                  14: "ch14-prv-pilot-operated",
                  15: "ch15-rupture-discs-construction",
                  16: "ch16-rupture-discs-selection",
-                 17: "ch17-sizing-pressure-relief-devices"},
+                 17: "ch17-sizing-pressure-relief-devices",
+                 18: "ch18-actuators"},
         "copyright_en": ("Original book © 2004 Elsevier Inc. (Gulf Professional Publishing), "
                          "ISBN 0-7506-7717-1"),
         "copyright_vi": ("Sách gốc © 2004 Elsevier Inc. (Gulf Professional Publishing), "
