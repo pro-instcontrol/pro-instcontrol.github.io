@@ -1226,6 +1226,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch10-butterfly-pinch-valves/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch11-diaphragm-stainless-steel-valves/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch11-diaphragm-stainless-steel-valves/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch11-diaphragm-stainless-steel-valves/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch11-diaphragm-stainless-steel-valves/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/"/>
@@ -4125,6 +4131,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch10-butterfly-pinch-valves/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch10-butterfly-pinch-valves/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch10-butterfly-pinch-valves/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch11-diaphragm-stainless-steel-valves/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch11-diaphragm-stainless-steel-valves/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch11-diaphragm-stainless-steel-valves/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch11-diaphragm-stainless-steel-valves/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/</loc>
