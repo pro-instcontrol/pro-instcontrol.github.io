@@ -5700,3 +5700,35 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   zero Vietnamese leakage, and the removed duplicate `/books/work/186/`
   still returns 404. Next: Unit 16 — Rupture Discs: Selection (book
   p. 261 onward, Figures 6-34…6-38).
+
+## Book 6 (Valve Selection Handbook) — Unit 16, 2026-11-18
+- **Unit 16** (`ch16-rupture-discs-selection`, book pp. **261–267** /
+  PDF 275–281; Chapter 7 starts on book p. 269). 7 source pages,
+  **5 source figures redrawn** in new `build/vshfig13.py`: the pressure-
+  level relationships for a disc used as the sole relief device; the
+  composite explosion vent panel before and after bursting; the vented
+  versus unvented explosion pressure–time chart; the dust-explosion
+  flame-propagation test; and the tubular flame-quenching vent system.
+- New `build/vsh_ch16.py` with full EN/VI prose: operating differential
+  and MAWP, manufacturing range and burst tolerance, 10% differential and
+  90–95% operating ratios, discs combined with relief valves at inlet,
+  outlet and both ends, telltale indication, 80% combination capacity,
+  lot-number reordering and user responsibility, `Pstat`/`Pred`/`Pult`/
+  `Pmax` for vent panels, fireball standoff, and flame-quenching vents;
+  plus a 10-row language-specific summary table.
+- QA: a contact sheet of all 5 figures was reviewed before the prose was
+  written. Two source-artifact defects were fixed during construction:
+  a raw `<` in the Figure 6-38 marker became "dưới 100 °C", and a stray
+  CJK run in the Vietnamese reordering note became "hệ thống". Styled
+  EN and VI pages were captured and reviewed in four sections each;
+  all figures, legends, captions, table rows and navigation rendered
+  cleanly. Final QA: 5 figures per language, 6/6 inline SVGs XML-valid
+  per page (5 figures + site icon), 0 Spanish, 0 CJK, 0 Python artifacts,
+  no truncated aria labels, and no Vietnamese in the English table.
+  `check_links.py` **974 pages / 29,464 refs / broken 0**; sitemap
+  regenerated with 972 URLs / Unit 16 pages.
+- Registration: `done` 1–16; `TRANSLATED` → `("progress", 21, 16)`.
+  **BOOK 6 progress: 16/21 units live in EN + VI.** Content commit
+  `edc2869b`. Live EN + VI pages, TOC and catalog badge pending final
+  Pages verification. Next: Unit 17 — Sizing Pressure Relief Devices
+  (book p. 269 onward).
