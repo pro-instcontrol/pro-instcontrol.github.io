@@ -5766,6 +5766,8 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   29,514 refs / broken 0**; sitemap regenerated with 974 URLs / Unit 17
   pages.
 - Registration: `done` 1–17; `TRANSLATED` → `("progress", 21, 17)`.
-  **BOOK 6 progress: 17/21 units live in EN + VI.** Content commit
-  `55ee8e0a`. Live EN + VI pages, TOC and catalog badge pending final
-  Pages verification. Next: Unit 18 — Actuators (book p. 293 onward).
+  **BOOK 6 progress: 17/21 units live in EN + VI.** Commits `55ee8e0a`
+  (content) and `7a47f657` (QA notes); live EN + VI Unit 17 pages, both
+  TOCs and both catalog badges (17 of 21 / 17/21) returned 200 and were
+  verified after Pages propagation. The removed duplicate `/books/work/186/`
+  still returns 404. Next: Unit 18 — Actuators (book p. 293 onward).
