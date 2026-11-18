@@ -5771,3 +5771,34 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   TOCs and both catalog badges (17 of 21 / 17/21) returned 200 and were
   verified after Pages propagation. The removed duplicate `/books/work/186/`
   still returns 404. Next: Unit 18 — Actuators (book p. 293 onward).
+
+## Book 6 (Valve Selection Handbook) — Unit 18, 2026-11-18
+- **Unit 18** (`ch18-actuators`, book pp. **293–308** / PDF 307–322;
+  Chapter 9 begins on book p. 309). 16 source pages,
+  **5 source figures redrawn** in new `build/vshfig15.py`: three-phase
+  electric actuator with handwheel and output drive; Scotch yoke section
+  and exterior; single, tandem and dual-opposed rack-and-pinion designs;
+  double-acting cam actuator; and the quarter-turn vane actuator.
+- New `build/vsh_ch18.py` with full EN/VI prose: reasons for actuation,
+  linear and 90-degree valve operating forces, pneumatic diaphragm and
+  piston designs with Scotch yoke, rack-and-pinion, trunnion/lever and cam
+  conversions, vane actuators, electric supply and gearing, hydraulic
+  designs and pressure flexibility, control-valve sizing, specification
+  sheets, spares and maintenance; plus a 13-row language-specific summary
+  table.
+- QA: source figure pages were rendered from the book PDF and a contact
+  sheet of all 5 figures was reviewed; markers on 8-2 and 8-4 were moved
+  to avoid overlapping callout circles. Two module-level defects were
+  fixed before build: a missing `fig` import and the Vietnamese typo
+  "tiêu th" to "tiêu thụ". Styled EN and VI pages were captured in tall
+  screenshots and reviewed in six cropped sections each, including the
+  summary table and navigation. Final QA: 5 figures per language, 6/6
+  inline SVGs XML-valid per page (5 figures + site icon), 0 Spanish,
+  0 CJK, 0 Python artifacts, no truncated aria labels, and no Vietnamese
+  in the English table. `check_links.py` **978 pages / 29,564 refs /
+  broken 0**; sitemap regenerated with 976 URLs / Unit 18 pages.
+- Registration: `done` 1–18; `TRANSLATED` → `("progress", 21, 18)`.
+  **BOOK 6 progress: 18/21 units live in EN + VI.** Content commit
+  `f2431feb`. Live EN + VI pages, TOC and catalog badge pending final
+  Pages verification. Next: Unit 19 — Double Block and Bleed Ball Valves
+  (book p. 309 onward).
