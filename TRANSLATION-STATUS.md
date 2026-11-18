@@ -5563,5 +5563,7 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   `check_links.py` **964 pages / 29,214 refs / broken 0**; sitemap
   regenerated with Unit 11 URLs.
 - Registration: `done` 1–11; `TRANSLATED` → `("progress", 21, 11)`.
-  **BOOK 6 progress: 11/21 units live in EN + VI.** Commit `b38d43af`.
+  **BOOK 6 progress: 11/21 units live in EN + VI.** Commit `b38d43af`;
+  live EN + VI pages, TOC and 11/21 catalog badge verified after Pages
+  propagation; the removed duplicate `/books/work/186/` still returns 404.
   Next: Unit 12 — Check Valves (book p. 152 onward, Figures 4-1…).
