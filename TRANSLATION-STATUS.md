@@ -5567,3 +5567,32 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   live EN + VI pages, TOC and 11/21 catalog badge verified after Pages
   propagation; the removed duplicate `/books/work/186/` still returns 404.
   Next: Unit 12 — Check Valves (book p. 152 onward, Figures 4-1…).
+
+## Book 6 (Valve Selection Handbook) — Unit 12, 2026-11-18
+- **Unit 12** (`ch12-check-valves`, book pp. **153–168** / PDF 167–182;
+  PRESSURE RELIEF VALVES begin book p. 169 = PDF 183). 16 source pages,
+  **15 source figures redrawn** in new `build/vshfig9.py`: lift checks
+  (piston standard/oblique, angle with dashpot, spring ring, ball, gas
+  pulsating, combined lift/stop — 4-1…4-7), swing checks (conventional,
+  reinforced integral gasket disc, double D-disc — 4-8…4-10), tilting disc
+  (4-11), and diaphragm checks (cone basket, pleated annulus, flattened
+  sleeve, tide gate — 4-12…4-15).
+- New `build/vsh_ch12.py` with full EN/VI prose: function and four-group
+  classification, surge and flutter avoidance, qualitative fast-closing
+  criteria and the Pool/Porwit/Carlton hinged-disc calculation, lift-check
+  guidance limits and mounting positions, ring orifices and gas service,
+  swing-check multi-disc designs and stalling position, tilting-disc pivot
+  geometry, diaphragm limits (10 bar, ~74 °C) and DN 3…DN 3000 range,
+  dashpots, and selection for incompressible/compressible fluids, plus a
+  15-row bilingual summary table.
+- QA: contact-sheet screenshot review of all 15 figures repositioned
+  callouts floating above their features in 4-2, 4-6 and 4-13…4-15, and
+  added an outfall leader/label to tie the 4-15 tide-gate inset to the
+  valve. Final QA: 15 figures per language, 16/16 inline SVGs XML-valid
+  per page, 0 Spanish, 0 CJK, 0 Python artifacts. `check_links.py`
+  **966 pages / 29,264 refs / broken 0**; sitemap regenerated with
+  Unit 12 URLs.
+- Registration: `done` 1–12; `TRANSLATED` → `("progress", 21, 12)`.
+  **BOOK 6 progress: 12/21 units live in EN + VI.** Commit `9f6cf4ba`.
+  Next: Unit 13 — Direct-Loaded Pressure Relief Valves (book p. 169
+  onward, Figures 5-1…).
