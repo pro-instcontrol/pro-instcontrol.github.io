@@ -5598,3 +5598,34 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   propagation; the removed duplicate `/books/work/186/` still returns 404.
   Next: Unit 13 — Direct-Loaded Pressure Relief Valves (book p. 169
   onward, Figures 5-1…).
+
+## Book 6 (Valve Selection Handbook) — Unit 13, 2026-11-18
+- **Unit 13** (`ch13-prv-direct-loaded`, book pp. **176–212** / PDF 190–226;
+  PILOT-OPERATED VALVES begin book p. 213). 37 source pages,
+  **34 source figures redrawn** in new `build/vshfig10.py`: Ritchie and
+  Naylor discs, open/vented/cooling-spool and balanced safety valves,
+  eductor-assisted and liquid relief valves, proportional and vacuum
+  relief designs, auxiliary-actuator piping schematics, dry-friction and
+  viscous dampers, force/lift diagrams, inlet-loss and secondary-back-
+  pressure effects, and an in-situ verification device.
+- New `build/vsh_ch13.py` with full EN/VI prose: direct-loaded history,
+  huddling chamber and secondary orifice, blowdown, conventional versus
+  bellows-balanced construction, liquid and vacuum service, auxiliary
+  loading/lift assist, certification, force/lift interpretation, in-situ
+  verification, plus a 17-row language-specific summary table.
+- QA: contact-sheet review of all 34 figures repositioned off-feature
+  callouts in 5-1, 5-2, 5-3, 5-9, 5-20, 5-25 and 5-28, and reworked the
+  5-24 unrestricted-loading piping schematic so M1/M2/M3 boxes no longer
+  overlap the auxiliary-device box. A markup audit caught three English
+  titles truncated by indented implicit string continuation in 5-24…5-26;
+  a full-page styled review then caught the summary table mixing Vietnamese
+  into the English "Design" column, so all rows were rebuilt as separate
+  EN/VI values. Final QA: 34 figures per language, 35/35 inline SVGs
+  XML-valid per page (34 figures + site icon), 0 Spanish, 0 CJK,
+  0 Python artifacts, no truncated aria labels. `check_links.py`
+  **968 pages / 29,314 refs / broken 0**; sitemap regenerated with
+  966 URLs / Unit 13 pages.
+- Registration: `done` 1–13; `TRANSLATED` → `("progress", 21, 13)`.
+  **BOOK 6 progress: 13/21 units live in EN + VI.** Commit `000f7bf5`;
+  live verification pending push. Next: Unit 14 — Pilot-Operated Pressure
+  Relief Valves (book p. 213 onward, Figures 5-35…).
