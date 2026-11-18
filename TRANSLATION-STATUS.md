@@ -5593,6 +5593,8 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   **966 pages / 29,264 refs / broken 0**; sitemap regenerated with
   Unit 12 URLs.
 - Registration: `done` 1–12; `TRANSLATED` → `("progress", 21, 12)`.
-  **BOOK 6 progress: 12/21 units live in EN + VI.** Commit `9f6cf4ba`.
+  **BOOK 6 progress: 12/21 units live in EN + VI.** Commit `9f6cf4ba`;
+  live EN + VI pages, TOC and 12/21 catalog badge verified after Pages
+  propagation; the removed duplicate `/books/work/186/` still returns 404.
   Next: Unit 13 — Direct-Loaded Pressure Relief Valves (book p. 169
   onward, Figures 5-1…).
