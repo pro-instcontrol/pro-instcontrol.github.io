@@ -5798,7 +5798,9 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   in the English table. `check_links.py` **978 pages / 29,564 refs /
   broken 0**; sitemap regenerated with 976 URLs / Unit 18 pages.
 - Registration: `done` 1–18; `TRANSLATED` → `("progress", 21, 18)`.
-  **BOOK 6 progress: 18/21 units live in EN + VI.** Content commit
-  `f2431feb`. Live EN + VI pages, TOC and catalog badge pending final
-  Pages verification. Next: Unit 19 — Double Block and Bleed Ball Valves
+  **BOOK 6 progress: 18/21 units live in EN + VI.** Commits `f2431feb`
+  (content) and `42841712` (QA notes); live EN + VI Unit 18 pages, both
+  TOCs and both catalog badges (18 of 21 / 18/21) returned 200 and were
+  verified after Pages propagation. The removed duplicate `/books/work/186/`
+  still returns 404. Next: Unit 19 — Double Block and Bleed Ball Valves
   (book p. 309 onward).
