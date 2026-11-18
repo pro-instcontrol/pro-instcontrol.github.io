@@ -5658,6 +5658,9 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   in the English table. `check_links.py` **970 pages / 29,364 refs /
   broken 0**; sitemap regenerated with 968 URLs / Unit 14 pages.
 - Registration: `done` 1–14; `TRANSLATED` → `("progress", 21, 14)`.
-  **BOOK 6 progress: 14/21 units live in EN + VI.** Commit `bc13d2ea`;
-  live verification pending push. Next: Unit 15 — Rupture Discs:
+  **BOOK 6 progress: 14/21 units live in EN + VI.** Commits `bc13d2ea`
+  (content) and `07b3c79c` (QA notes); live EN + VI pages, TOC and 14/21
+  catalog badge verified after Pages propagation. The English summary
+  table is live with zero Vietnamese leakage; the removed duplicate
+  `/books/work/186/` still returns 404. Next: Unit 15 — Rupture Discs:
   Construction (book p. 227 onward, Figures 6-1…).
