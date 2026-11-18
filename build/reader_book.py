@@ -646,7 +646,8 @@ BOOKS = {
                  12: "ch12-check-valves",
                  13: "ch13-prv-direct-loaded",
                  14: "ch14-prv-pilot-operated",
-                 15: "ch15-rupture-discs-construction"},
+                 15: "ch15-rupture-discs-construction",
+                 16: "ch16-rupture-discs-selection"},
         "copyright_en": ("Original book © 2004 Elsevier Inc. (Gulf Professional Publishing), "
                          "ISBN 0-7506-7717-1"),
         "copyright_vi": ("Sách gốc © 2004 Elsevier Inc. (Gulf Professional Publishing), "
