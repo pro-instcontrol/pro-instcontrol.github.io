@@ -5804,3 +5804,79 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
   verified after Pages propagation. The removed duplicate `/books/work/186/`
   still returns 404. Next: Unit 19 — Double Block and Bleed Ball Valves
   (book p. 309 onward).
+
+## Session 2026-11-18 — BOOK 6 FINISHED (units 19–21)
+
+### Unit 19 — Double Block and Bleed Ball Valves
+- Source: book pp. 309–313 (PDF 323–328), Chapter 9. 5 source pages,
+  **3 source figures redrawn** in new `build/vshfig16.py`: instrument
+  DBB top-entry exterior + section; in-line 4 in 900-class trunnion
+  side-entry section; chemical injection / sampling quill service
+  figure. (Courtesy of Orsenigo, Italy.)
+- New `build/vsh_ch19.py` with full EN/VI prose: DBB isolation
+  philosophy, instrument vs in-line DBB, injection/sampling quills with
+  poppet check, ASME 2500 lb rating, lifting studies; plus an 8-row
+  language-specific comparison table (instrument DBB vs in-line DBB).
+- QA: contact sheet reviewed; Figure 9-2 drawing compressed left of the
+  legend column, Figures 9-1/9-3 marker nudges. Final QA: 3 figures per
+  language, 4/4 inline SVGs valid per page (3 figures + site icon),
+  0 Spanish / CJK / Python artifacts, EN table clean.
+  `check_links.py` **980 pages / 29,614 refs / broken 0**.
+- Registration: `done` 1–19; `TRANSLATED` → `("progress", 21, 19)`.
+  Content commit `46e7af43`. Live EN + VI pages verified 200.
+
+### Unit 20 — Mechanical Locking Devices for Valves
+- Source: book pp. 314–326 (PDF 329–340), Chapter 10. 13 source pages,
+  **8 source figures redrawn** in new `build/vshfig17.py`: wire seal on
+  gearbox; wire seal on globe handwheel; key cabinet; gate/ball/
+  butterfly valves with mechanical locking device housings (parametric
+  `_locked_valve`); double-PRV interlock schematic with key boxes and
+  key paths; pig-launcher interlock schematic. (Courtesy of Netherlocks,
+  Holland.)
+- Key fixes during figure QA: `_handwheel()` drew rectangles → proper
+  ellipse path; `_emit()` silently drops `_txt` strings passed inside
+  `ops` → all text moved to `extra`; control-room boxes moved out of
+  the legend column; barrel taper direction corrected; marker positions
+  nudged off labels and symbols.
+- New `build/vsh_ch20.py` with full EN/VI prose: CSO/CSC railroad
+  history, LO/LC chain + padlock, mechanical interlocking (housing, two
+  dedicated keys, key cabinet), dual-PRV change-out key sequence
+  (starting/intermediate/final scenarios), pig launcher/receiver
+  interlock sequences, conclusion; plus an 8-row summary table.
+- QA: 8 figures per language, 9/9 inline SVGs valid per page,
+  0 artifacts, EN table clean. `check_links.py` **982 pages / 29,664
+  refs / broken 0**. Registration `done` 1–20; `TRANSLATED` →
+  `("progress", 21, 20)`. Content commit `a198f2ad`. Live EN + VI pages
+  verified 200.
+
+### Unit 21 — Appendices (final unit)
+- Source: book pp. 327–361 (PDF 341–375), Appendices A–E. 35 source
+  pages; Appendix B compressibility charts redrawn as one simplified
+  editorial vector chart in new `build/vshfig18.py` (Z vs Pr with a
+  family of Tr curves, ideal-gas Z = 1 line); Appendices A, C, D, E
+  rendered as selection tables rather than verbatim copies.
+- New `build/vsh_ch21.py`: Appendix A abbreviation table (14 orgs);
+  Appendix B with the Z-chart and a selected Table B-1 gas-constants
+  table; Appendix C standards table by valve group (16 rows: ASME
+  B16.5/B16.34, MSS SP-*, API 6D/594/598/600/609, BS 1873/1414/5353,
+  fire tests, ISO 6718, NFPA 68); Appendix D SI units table and sample
+  conversion factors; Appendix E glossary table (14 selected terms);
+  plus a 5-row appendix summary table.
+- Fixes: Vietnamese leakage "(Đức)" in the EN Appendix A table →
+  "(Germany)"; catalog status key corrected to `("full", 21, 21)`
+  (FLAG_LABEL has no "done" key — "full" renders the green badge).
+- QA: 1 figure per language, 2/2 inline SVGs valid per page, 0
+  artifacts, EN tables clean (76 rows across 5 tables).
+  `check_links.py` **984 pages / 29,714 refs / broken 0**. Registration
+  `done` 1–21; `TRANSLATED` → `("full", 21, 21)`.
+  Content commit `e8e832b4`.
+
+### Book 6 COMPLETE — live verification (all three units)
+- Pushed `27f72c01..e8e832b4 main -> main`; remote head `e8e832b4`.
+- Live checks (after Pages propagation): EN + VI Unit 19, 20 and 21
+  pages all **200** with correct titles; both book TOCs list ch21; both
+  catalog cards show **🟢 Fully translated · 21 of 21 chapters /
+  🟢 Đã dịch đầy đủ · 21/21 chương**; `/books/work/186/` still **404**.
+- Sitemap 982 URLs (967 with language siblings).
+- **BOOK 6 (Valve Selection Handbook): 21/21 units live in EN + VI.**
+- `report.md` and `HANDOFF.md` rewritten for the six-book campaign.

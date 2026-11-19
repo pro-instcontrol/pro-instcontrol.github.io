@@ -1,89 +1,82 @@
-# HANDOFF — Campaign state: FIVE BOOKS COMPLETE
+# HANDOFF — Campaign state: BOOK 6 COMPLETE (all 21 units live)
 
-**Status (2026-11-15):** ALL FIVE BOOKS ARE 100% LIVE in EN + VI:
+**Status (2026-11-18):** Smith & Zappe, *Valve Selection Handbook* (5th ed., 2004) — Book 6 — is
+**100% LIVE in EN + VI, 21/21 units**, catalog badge 🟢 (EN: "Fully translated · 21 of 21
+chapters" / VI: "Đã dịch đầy đủ · 21/21 chương"). Together with the earlier books, the site now
+hosts nine reader books (see `report.md` §1 for the full table).
 
-| # | Book | Chapters | Badge |
-|---|------|----------|-------|
-| 1 | Bolton, *Process Control* | 7/7 | 🟢 Fully translated |
-| 2 | *Safety Instrumented Systems* | 16/16 | 🟢 Fully translated |
-| 3 | ISA *Instrumentation Symbols and Identification* | 7/7 | 🟢 Fully translated |
-| 4 | Crosby *Pressure Relief Valve Engineering Handbook* | 8/8 | 🟢 Fully translated |
-| 5 | Heikkilä, *Inherent Safety in Process Plant Design* (VTT 384) | 16/16 | 🟢 Fully translated |
+Final Book 6 session commits: `46e7af43` (U19), `a198f2ad` (U20), `e8e832b4` (U21 + book
+complete). Infra: sitemap 982 URLs; `check_links.py` **984 pages / 29,714 refs / broken 0**;
+duplicate `/books/work/186/` still 404.
 
-Final session commits: `111db504` (Ch7), `7f1824b9` (Ch8), `ced6477d` (Ch9),
-`497280a2` (Ch10), `bedd67ca` (Ch11), `5d5ec52a` (Ch12), `8465cdca` (Ch13),
-`feefca8b` (Ch14–16 complete). Infra: sitemap 940 URLs, `check_links.py`
-942 pages / 28,668 refs / **broken 0**.
-
-**Next campaign step:** select the next Tier-A instrumentation/control title
-(EN/VI only, NO Spanish), extract to `work/<slug>_raw.txt`, create
-`<slug>_common.py` + reader + figure module following the same pattern
-(see `build/isd_common.py`, `build/reader_isd.py`, `build/isdfig.py`,
-`build/isd_ch01.py` as the reference implementation), then build chapters
-one at a time with the QA gates below.
+**Next campaign step:** select the next Tier-A instrumentation/control title (EN/VI only, NO
+Spanish), extract to `work/<slug>_raw.txt`, create `<slug>_common.py` + reader + figure module
+following the Book 6 pattern, then build units one at a time with the QA gates in §D.
 
 ---
 
 ## A. Git / credentials (already configured — do not redo)
-- PAT stored: `git config --global credential.helper store` + `git credential approve`
+- PAT stored: `git config credential.helper store` + `git credential approve`
   (token `ghp_…` for `pro-instcontrol`). Pushes need **no prompt**.
-- **Push-hang root cause (fixed 2026-11-15):** the system gitconfig chains `credential.helper
-  = manager` (Git Credential Manager) *before* `store`; GCM tries an interactive prompt in
-  this non-interactive shell and stalls every push for minutes or forever. Fixed in the repo
-  local config: `git config --local credential.helper ""` (clears the chain) + `git config
-  --local --add credential.helper store`. After this, `git push origin main` completes in
-  seconds. **Do not remove these two local config entries.**
-- **Run `git push` with `dangerouslyDisableSandbox: true`** (sandbox SIGTERMs network egress
-  otherwise). If a push still returns `SIGTERM` with empty output, just retry — the commit
-  is safe locally.
-- Verify live after push:
-  `curl -s -o /dev/null -w "%{http_code}" https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/chNN-…/`
+- **Push-hang root cause (fixed):** the system gitconfig chains `credential.helper = manager`
+  before `store`; the repo-local config clears the chain
+  (`git config --local credential.helper ""` + `git config --local --add credential.helper
+  store`). **Do not remove these two local config entries.**
+- `git push origin main` completes in seconds. If a push ever returns `SIGTERM` with empty
+  output, just retry — the commit is safe locally.
+- **Pages propagation:** after a push, deep paths can 404 for several minutes (negative
+  caching) while shallow indexes already serve fresh content. Verify with retries:
+  `curl -sS -o tmp.html -w "%{http_code}" --retry 40 --retry-delay 9 --retry-all-errors
+  "https://pro-instcontrol.github.io/books/read/<slug>/<unit>/?bust=$(date +%s%N)"`.
 
-## B. Chapter recipe (identical for every chapter)
-1. Source span → read `work/isd_raw.txt` from the `=== PAGE N ===` marker of the first
-   page to the marker of the next chapter's first page.
-2. Add vector figure(s) to `build/isdfig.py` (5-tuple return, register in `isdfig.FIGS`);
-   source figures = redraws, extra schematics must be labelled editorial
-   ("Sơ đồ A/B/…" / "Figure A/B/… — not present in the original").
-3. Create `build/isd_chNN.py` mirroring `isd_ch06.py`: `PAGES_SRC`, `BYLINE`,
-   `TITLE_EN`, `TITLE_VI`, `note_terms(lang)`, `body_vi()`, `body_en()`;
-   import `from isd_common import fig, h2, h3, note, p, table` (+ `keyterms` if needed)
-   and `import isdfig as F`. VI prose is the primary text; EN mirrors it.
-   - Gotcha: `isdfig._box()` has **no `dash=` kwarg** — use `_rect(..., dash="3 2")`
-     plus separate `_txt` lines for dashed boxes.
-   - Gotcha: stage labels may have only one line — don't `line1, line2 = s.split("\n")`.
+## B. Unit recipe (identical for every unit of a book)
+1. Map the source span: read `work/<slug>_raw.txt` from the `=== PAGE N ===` marker of the
+   first page to the next unit's first page; `grep "Figure X-"` for the figure list.
+   Render figure pages with `pypdfium2` (in `work/qalib`) to view the originals:
+   `PYTHONPATH=work/qalib python -c "import pypdfium2 as pdfium; …"`.
+2. Build a vector figure module `build/vshfigNN.py` (Book 6 numbering): each figure function
+   returns the 5-tuple `(svg, caption_vi, caption_en, aria_vi, aria_en)`, registers itself in
+   `FIGSNN` via `@_regNN`; use `vfig` primitives + `vshfig3._emit/_emit_legend`.
+   - Gotcha: `_emit()` handles only op tuples — **strings returned by `_txt()` must go into
+     `extra=`, never inside `ops`** (they are silently dropped otherwise).
+   - Gotcha: escape raw `&` as `&amp;` and never emit raw `<` inside SVG text.
+   - Gotcha: keep the drawing left of x≈390 — the numbered legend column starts at x=402
+     (canvas 560×380).
+   - Validate: `ET.fromstring(svg)` per figure; render a contact sheet and review it.
+3. Create `build/vsh_chNN.py` mirroring `vsh_ch13.py`: `PAGES_SRC`, `BYLINE`, `TITLE_EN`,
+   `TITLE_VI`, `note_terms(lang)`, `body_vi()`, `body_en()`; import
+   `from vsh_common import fig, h2, h3, p, table, ul, ol`; `import vshfigNN as F`.
+   VI prose is the primary text; EN mirrors it. Summary tables must be built per language
+   (`… if vi else …`) — never bilingual mixed cells.
 4. Wire-up (three edits):
-   - `build/isd_common.py` → `SLUGS["isd"][N] = "chNN-…"`.
-   - `build/reader_book.py` → extend the `"done"` map of the `"isd"` entry.
-   - `build/books_site.py` → bump `"inherent safety in process plant design":
-     ("progress", 16, N)` (line ~459; also check the `"p384"` alias entry if present).
-5. Build & QA: `python build/reader_isd.py N` → `reader_book.py isd` → `books_site.py`
-   → `make_sitemap.py` → `check_links.py` (**broken 0**). Page QA: `grep -o
-   'class="figure"' … | wc -l` matches expected figures; Spanish guard
-   `grep -oP '(?i)\b(figura|capitulo|tabla|…)\b|lang="es"|/es/books/|href="/es/'`
-   = **0 hits**; nav prev/next correct; VI + EN pages both written.
-6. `git add -A && git commit -q -m "Book 5 Chapter N … (N/16)"`, push (see §A),
-   update `TRANSLATION-STATUS.md` session log + workspace memory daily log.
+   - `build/vsh_common.py` → `SLUGS["vsh"][N] = "chNN-…"`.
+   - `build/reader_book.py` → extend the vsh `done` map (TOC titles already exist for 1–21).
+   - `build/books_site.py` → `TRANSLATED["valve selection handbook"] = ("progress", 21, N)`;
+     when the book finishes use `("full", 21, 21)` — FLAG_LABEL keys are
+     `full` / `progress` / `summary` / `none` (there is no `done` key).
+5. Build & QA: `python build/reader_vsh.py N` → `reader_book.py vsh` → `books_site.py` →
+   `make_sitemap.py` → `check_links.py` (**broken 0**). Page QA: XML-validate every inline SVG;
+   scan for CJK / Python artifacts / Spanish / Vietnamese leakage into EN tables; check aria
+   labels are not truncated; then screenshot EN + VI pages (headless Chrome, tall capture,
+   crop locally with Pillow from `work/qalib`) and review.
+6. `git add -A && git commit`, push (see §A), update `TRANSLATION-STATUS.md` session log +
+   workspace memory daily log, verify live.
 
-## C. Remaining chapters — spans and notes
-| Ch | Title (EN) | Pages (pp.) | Raw lines | Figures/notes |
-|----|------------|-------------|-----------|----------------|
-| 8 | Inherent Safety Index | 56–59 | 1680–1780 | index calculation method; formulae as `eq()` blocks; subindex score tables (0–5 / 0–4 scales) |
-| 9 | The Weighting between Subindices | 60–61 | ~1781–1830 | weighting discussion, short |
-| 10 | Subindices of Chemical Inherent Safety Index | 62–67 | ~1830–2000 | reaction heat / side reactions / interaction / flammability / explosiveness / toxicity / corrosiveness subindex tables |
-| 11 | Subindices for Process Inherent Safety Index | 68–94 | ~2000–2700 | equipment safety, process structure, etc. |
-| 12 | Case Study — Acetic Acid Process | 95–102 | ~2700–3170 | process comparison; **Figure 9** (heat-recovery recommendation for an exothermic reactor feed) at raw lines ~3172–3193 — this is the figure referenced from Ch6 |
-| 13 | Case-Based Reasoning for Safety Evaluation | 103–… | … | see TOC, raw lines ~139–195 |
-| 14 | Application of Inherent Safety Index for Computerized Process Synthesis | 103–120 | ~3300–3747 | … |
-| 15/16 | Conclusions / References | 121–129 | 3748–3995 | follow the `reader_book.py` chapter list (16: "References") |
+## C. Book 6 reference map (for style parity)
+- Units/figures/tables per unit: see `report.md` §1 (235 vector figure instances total).
+- Reference implementations: `build/vsh_ch13.py` (34-figure unit), `build/vshfig10.py`
+  (parametric `_prv_fig` + charts), `build/vshfig17.py` (schematics with legend discipline),
+  `build/vsh_ch21.py` (appendices as selection tables).
+- Unit spans are documented per unit in `TRANSLATION-STATUS.md`; raw text in
+  `work/vsh_raw.txt` (`grep -n "=== PAGE"` for the page map).
 
-Exact page→line mapping: `grep -n "=== PAGE" work/isd_raw.txt`.
-The `MODULES` dict in `build/reader_isd.py` already registers chapters 6–16.
-
-## D. QA gates (must pass every chapter)
+## D. QA gates (must pass every unit)
 - `check_links.py` → **broken 0**
 - Spanish guard → **0 hits** on every new page (EN + VI)
 - 0 CJK characters, 0 Python artifacts in HTML
-- Figures: source figures redrawn as vectors; editorial ones labelled; each page
-  XML-valid SVG (`ElementTree.fromstring` if adding new figure code)
-- Sitemap regenerated; TRANSLATED badge "N of 16"
+- Every inline SVG XML-valid (`ElementTree.fromstring`); aria labels complete
+- English tables contain no Vietnamese characters; VI/EN captions match the page language
+- Sitemap regenerated; `TRANSLATED` badge updated (`progress`/`full`)
+- Styled-page screenshot review in cropped sections (figures, legends, table, nav, footer)
+- Live verification after push: unit pages EN + VI = 200, TOC lists the unit, catalog badge
+  correct, duplicate `/books/work/186/` still 404
