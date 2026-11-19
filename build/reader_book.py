@@ -651,7 +651,8 @@ BOOKS = {
                  17: "ch17-sizing-pressure-relief-devices",
                  18: "ch18-actuators",
                  19: "ch19-double-block-and-bleed",
-                 20: "ch20-mechanical-locking-devices"},
+                 20: "ch20-mechanical-locking-devices",
+                 21: "ch21-appendices"},
         "copyright_en": ("Original book © 2004 Elsevier Inc. (Gulf Professional Publishing), "
                          "ISBN 0-7506-7717-1"),
         "copyright_vi": ("Sách gốc © 2004 Elsevier Inc. (Gulf Professional Publishing), "

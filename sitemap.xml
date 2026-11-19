@@ -1286,6 +1286,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch20-mechanical-locking-devices/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch21-appendices/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch21-appendices/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch21-appendices/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch21-appendices/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/working-with-an-integrator-guide/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/"/>
@@ -4245,6 +4251,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch20-mechanical-locking-devices/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch20-mechanical-locking-devices/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch20-mechanical-locking-devices/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch21-appendices/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch21-appendices/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/valve-selection-handbook/ch21-appendices/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/valve-selection-handbook/ch21-appendices/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/working-with-an-integrator-guide/</loc>
