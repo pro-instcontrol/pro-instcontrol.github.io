@@ -26,7 +26,7 @@ BOOK["ipc"] = {
 
 # Populated incrementally as chapters are built — nav() only links to units
 # that exist, so an in-progress book never ships a broken "next" link.
-SLUGS["ipc"] = {}
+SLUGS["ipc"] = {1: "ch01-transducers-i"}
 
 # Re-export the shared helpers so chapter modules can `import ipc_common as C`.
 (p, lead, h2, h3, h4, eq, quote, ul, ol, note, refs, table, fig, keyterms,

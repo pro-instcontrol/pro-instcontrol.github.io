@@ -956,7 +956,7 @@ BOOKS = {
             8: ("Microprocessor Based Instrumentation System",
                 "Hệ thống thiết bị đo dựa trên vi xử lý"),
         },
-        "done": {},
+        "done": {1: "ch01-transducers-i"},
         "copyright_en": "Original work © 2019 I.K. International Pvt. Ltd., New Delhi.",
         "copyright_vi": "Bản gốc © 2019 I.K. International Pvt. Ltd., New Delhi.",
         "lede_en": ("A graduate-level textbook on industrial instrumentation: transducers for pressure, displacement, temperature, flow and level; telemetry; signal conditioning and data acquisition; PID control; recorders; and microprocessor-based instrumentation, PLCs and DCS."),
