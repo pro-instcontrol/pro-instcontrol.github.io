@@ -6006,3 +6006,47 @@ OCR typos kept in EN (`mo1 H2O/mo1H2`, `no more possible`), VI uses intended mea
 Registered `SLUGS["ppic"][1]` and `BOOKS["ppic"]["done"][1]`, progress 1/11. Site rebuilt: 510 work
 pages, sitemap 1014 URLs, **`check_links.py`: 0 broken links** (Book 9 fallback links resolved).
 Live EN/VI chapter pages 63/64 kB. Remaining: Book 9 ch2-11; Book 8 ch2-8; Baumann ch3-32; Emerson ch2-15.
+
+## Session 80 — Book 10 registered: Instrumentation and Process Control
+User supplied `Instrumentation-and-process-control`. Source:
+`D:/Ebooks/Process Control and Automation/Instrumentation-and-process-control.pdf` (403 pp, 27 MB,
+Janardan Prasad / M. N. Jayaswal / Vishnu Priye, I.K. International, 2019). **Font-encoding quirk:**
+body text stored as glyph codes (`/G84...`); decoded with `/Gnn -> chr(nn)` into `work/ipc_decoded.txt`
+(756k readable chars from 3.17M raw) — this is the working source for translation. `work/ipc_raw.txt`
+also kept. Eight chapters (printed page = PDF page − 12):
+1 Transducers–I (1-62, 51 figs), 2 Transducers–II (63-123, 58 figs),
+3 Transducers–III (124-203, 72 figs), 4 Telemetry (204-228, 21 figs),
+5 Signal Conditioning & Data Acquisition (229-271, 43 figs), 6 Process Control (272-316, 26 figs),
+7 Display Devices & Recorders (317-340, 32 figs), 8 Microprocessor Based Instrumentation System
+(341-384, 33 figs). Bibliography 385-386; Index 387-390. Chapter PDF starts: 13, 75, 136, 216,
+241, 284, 329, 353.
+- Catalog work **296** added (domain "training", 403 pp, 2019); totals 258 works.
+- `BOOKS["ipc"]` spec added to `reader_book.py`; `ipc_common.py` + `reader_ipc.py` created.
+- `books_site.py`: DESC / TRANSLATED ("progress", 8, 0) / BOOK_SLUG entries added.
+- Site rebuilt: 512 work pages, sitemap 1018 URLs. EN/VI cards show 🟠 0/8.
+- Live EN/VI TOC + work 296 + `/books/` all HTTP 200 after push `7b60e440..671ae45b`.
+- `check_links.py` reports 4 transient broken links (TOC fallback to unbuilt Ch.1), same as prior books.
+- Chapter 1 "Transducers – I" (PDF 13-74, 51 figures) delegated to background agent.
+- Remaining: Book 10 ch1-8; Book 9 ch2-11; Book 8 ch2-8; Baumann ch3-32; Emerson ch2-15.
+
+## Session 81 — CAMPAIGN PAUSED by user ("stop and update report")
+User queued three further directives then stopped the pipeline:
+1. "Add this book Fundamentals-of-industrial-instrumentation" — **located but NOT registered**:
+   `D:/Ebooks/Process Control and Automation/Fundamentals-of-industrial-instrumentation.pdf`
+   (348 pp, 2.5 MB). Candidate Book 11.
+2. "Add this book A Guide to the Automation Body of Knowledge" — **located but NOT registered**:
+   `D:/Ebooks/Process Control and Automation/A Guide to the Automation Body of Knowledge.pdf`
+   (2nd ed., 511 pp, 34 MB). Candidate Book 12.
+3. "Book 8 Chapters 2–8, Baumann Chapters 3–32, and Emerson Chapters 2–15 do one by one" —
+   accepted as the continuation queue; **not started** before the stop.
+**Stop state secured:**
+- Book 10 `ipc` Chapter 1 integration was mid-flight (registration edits uncommitted, pages not
+  built). The two partial edits (`SLUGS["ipc"][1]`, `done[1]`) were **reverted** to keep the repo
+  consistent; the validated agent files `build/ipc_ch01.py` + `build/ipcfig.py` (51 figures, all
+  XML-valid, 0 CJK / bare ampersands, VI 284k / EN 306k chars, 7 tables) are kept **untracked and
+  ready to integrate** in the next session: redo the 3 registration edits → build → QA → push.
+- No new background agents running. Live site serves HEAD `671ae45b` (Book 10 at 0/8 with the
+  4 transient TOC fallback links, as expected for an in-progress book).
+**Queue at stop (in user's stated order):** Book 8 `iih` ch2-8 → Baumann `cvp` ch3-32 →
+Emerson `cvh6` ch2-15, one by one; plus Book 10 `ipc` ch1 integration then ch2-8; Books 11-12
+registration when resumed.

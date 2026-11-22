@@ -1,82 +1,80 @@
-# HANDOFF — Campaign state: BOOK 6 COMPLETE (all 21 units live)
+# HANDOFF — Campaign paused 2026-11-22 (Books 7–10 in progress)
 
-**Status (2026-11-18):** Smith & Zappe, *Valve Selection Handbook* (5th ed., 2004) — Book 6 — is
-**100% LIVE in EN + VI, 21/21 units**, catalog badge 🟢 (EN: "Fully translated · 21 of 21
-chapters" / VI: "Đã dịch đầy đủ · 21/21 chương"). Together with the earlier books, the site now
-hosts nine reader books (see `report.md` §1 for the full table).
+**State at the stop:** 9 reader books fully live 🟢 (flagship Book 6 *Valve Selection Handbook*
+21/21). Control/instrumentation campaign in progress: Baumann `cvp` 2/32, Borden `bcv` 1/1 🟢,
+Emerson `cvh6` 1/15, IIH `iih` 1/8, PPIC `ppic` 1/11, IPC `ipc` 0/8 with **Chapter 1 agent output
+validated but integration paused mid-flight** (registration edits reverted; files kept).
+HEAD `671ae45b`; sitemap 1,018 URLs; live checks green. Full tables in `report.md`.
 
-Final Book 6 session commits: `46e7af43` (U19), `a198f2ad` (U20), `e8e832b4` (U21 + book
-complete). Infra: sitemap 982 URLs; `check_links.py` **984 pages / 29,714 refs / broken 0**;
-duplicate `/books/work/186/` still 404.
-
-**Next campaign step:** select the next Tier-A instrumentation/control title (EN/VI only, NO
-Spanish), extract to `work/<slug>_raw.txt`, create `<slug>_common.py` + reader + figure module
-following the Book 6 pattern, then build units one at a time with the QA gates in §D.
+**User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
+and Emerson Chapters 2–15 do one by one" — plus two books located but not registered
+(*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
+Knowledge*, 2nd ed., 511 pp).
 
 ---
 
-## A. Git / credentials (already configured — do not redo)
-- PAT stored: `git config credential.helper store` + `git credential approve`
-  (token `ghp_…` for `pro-instcontrol`). Pushes need **no prompt**.
-- **Push-hang root cause (fixed):** the system gitconfig chains `credential.helper = manager`
-  before `store`; the repo-local config clears the chain
-  (`git config --local credential.helper ""` + `git config --local --add credential.helper
-  store`). **Do not remove these two local config entries.**
-- `git push origin main` completes in seconds. If a push ever returns `SIGTERM` with empty
-  output, just retry — the commit is safe locally.
-- **Pages propagation:** after a push, deep paths can 404 for several minutes (negative
-  caching) while shallow indexes already serve fresh content. Verify with retries:
-  `curl -sS -o tmp.html -w "%{http_code}" --retry 40 --retry-delay 9 --retry-all-errors
-  "https://pro-instcontrol.github.io/books/read/<slug>/<unit>/?bust=$(date +%s%N)"`.
+## 0. Resume first action: integrate Book 10 `ipc` Chapter 1
+Agent output `build/ipc_ch01.py` + `build/ipcfig.py` already exists and validates
+(51 figures XML-valid, 7 tables, VI 284,182 / EN 306,070 chars, 0 CJK / 0 bare ampersands,
+`PAGES_SRC=62`). The registration edits made at the stop were **reverted**, so redo:
+1. `build/ipc_common.py` → `SLUGS["ipc"] = {1: "ch01-transducers-i"}`
+2. `build/reader_book.py` → ipc `"done": {1: "ch01-transducers-i"}`
+3. `build/books_site.py` → `"instrumentation and process control": ("progress", 8, 1)`
+4. `python build/reader_ipc.py 1` → `reader_book.py ipc` → `books_site.py` → `make_sitemap.py`
+   → `check_links.py` (broken 0) → commit → push → live verify.
+Then continue the queue below, one chapter per run.
 
-## B. Unit recipe (identical for every unit of a book)
-1. Map the source span: read `work/<slug>_raw.txt` from the `=== PAGE N ===` marker of the
-   first page to the next unit's first page; `grep "Figure X-"` for the figure list.
-   Render figure pages with `pypdfium2` (in `work/qalib`) to view the originals:
-   `PYTHONPATH=work/qalib python -c "import pypdfium2 as pdfium; …"`.
-2. Build a vector figure module `build/vshfigNN.py` (Book 6 numbering): each figure function
-   returns the 5-tuple `(svg, caption_vi, caption_en, aria_vi, aria_en)`, registers itself in
-   `FIGSNN` via `@_regNN`; use `vfig` primitives + `vshfig3._emit/_emit_legend`.
-   - Gotcha: `_emit()` handles only op tuples — **strings returned by `_txt()` must go into
-     `extra=`, never inside `ops`** (they are silently dropped otherwise).
-   - Gotcha: escape raw `&` as `&amp;` and never emit raw `<` inside SVG text.
-   - Gotcha: keep the drawing left of x≈390 — the numbered legend column starts at x=402
-     (canvas 560×380).
-   - Validate: `ET.fromstring(svg)` per figure; render a contact sheet and review it.
-3. Create `build/vsh_chNN.py` mirroring `vsh_ch13.py`: `PAGES_SRC`, `BYLINE`, `TITLE_EN`,
-   `TITLE_VI`, `note_terms(lang)`, `body_vi()`, `body_en()`; import
-   `from vsh_common import fig, h2, h3, p, table, ul, ol`; `import vshfigNN as F`.
-   VI prose is the primary text; EN mirrors it. Summary tables must be built per language
-   (`… if vi else …`) — never bilingual mixed cells.
-4. Wire-up (three edits):
-   - `build/vsh_common.py` → `SLUGS["vsh"][N] = "chNN-…"`.
-   - `build/reader_book.py` → extend the vsh `done` map (TOC titles already exist for 1–21).
-   - `build/books_site.py` → `TRANSLATED["valve selection handbook"] = ("progress", 21, N)`;
-     when the book finishes use `("full", 21, 21)` — FLAG_LABEL keys are
-     `full` / `progress` / `summary` / `none` (there is no `done` key).
-5. Build & QA: `python build/reader_vsh.py N` → `reader_book.py vsh` → `books_site.py` →
-   `make_sitemap.py` → `check_links.py` (**broken 0**). Page QA: XML-validate every inline SVG;
-   scan for CJK / Python artifacts / Spanish / Vietnamese leakage into EN tables; check aria
-   labels are not truncated; then screenshot EN + VI pages (headless Chrome, tall capture,
-   crop locally with Pillow from `work/qalib`) and review.
-6. `git add -A && git commit`, push (see §A), update `TRANSLATION-STATUS.md` session log +
-   workspace memory daily log, verify live.
+## A. Continuation queue (user's order)
+1. Book 8 `iih` ch2–8 — source `work/ihii_raw.txt` (readable); printed = PDF − 14.
+2. Baumann `cvp` ch3–32 — source `work/cvp_raw.txt`; 56 figures across the book.
+3. Emerson `cvh6` ch2–15 — source `work/cvh6_raw.txt`; printed = PDF page (dump pages match).
+4. Book 9 `ppic` ch2–11 — source `work/ppic_raw.txt`; printed = PDF − 16.
+5. Book 10 `ipc` ch2–8 — source **`work/ipc_decoded.txt`** (NOT the raw dump — glyph codes).
+6. Register Book 11 / Book 12 from the two located PDFs when the user confirms.
 
-## C. Book 6 reference map (for style parity)
-- Units/figures/tables per unit: see `report.md` §1 (235 vector figure instances total).
-- Reference implementations: `build/vsh_ch13.py` (34-figure unit), `build/vshfig10.py`
-  (parametric `_prv_fig` + charts), `build/vshfig17.py` (schematics with legend discipline),
-  `build/vsh_ch21.py` (appendices as selection tables).
-- Unit spans are documented per unit in `TRANSLATION-STATUS.md`; raw text in
-  `work/vsh_raw.txt` (`grep -n "=== PAGE"` for the page map).
+Per-chapter flow: survey source span + figures → delegate writing to a background agent with a
+brief modeled on the IIH/PPIC/IPC briefs (architecture pointers, constants, QA commands) →
+validate output (SVG XML, CJK, bare `&`, unique fig ids) → 3 registration edits → build chain →
+QA → commit/push → live verify → update `TRANSLATION-STATUS.md` + memory log.
 
-## D. QA gates (must pass every unit)
+## B. Git / credentials (already configured — do not redo)
+- PAT stored via credential helper `store`; repo-local config clears the GCM chain
+  (`credential.helper ""` + `store`). **Do not remove these two local config entries.**
+- Push: `GIT_TERMINAL_PROMPT=0 GCM_INTERACTIVE=never git -c credential.helper= -c
+  credential.helper=store push --progress origin main` — completes in seconds.
+- **Pages propagation:** deep paths can 404 for minutes after a push (negative caching).
+  Retry with cache-busting query strings until 200.
+
+## C. Unit recipe (per chapter)
+1. Map the source span from the text dump (`===PDFPAGE N===` markers; check the printed-page
+   offset per book, see `report.md` §4) and list figure captions.
+2. Vector figure module `<key>fig.py`: each figure function returns
+   `(svg, caption_vi, caption_en, aria_vi, aria_en)` via `_fig(...)`; captions `Hình …` / `Figure …`;
+   register in `FIGS` (mirror `ppicfig.py`/`iihfig.py`). Escape raw `&` as `&amp;`.
+3. Chapter module `<key>_chNN.py` mirroring `ppic_ch01.py`: `PAGES_SRC`, `BYLINE`, `TITLE_EN`,
+   `TITLE_VI`, optional `note_terms()`, `body_vi()`, `body_en()`; use `import <key>_common as C`
+   helpers; `C.fig(num, key)` embeds figures; `refs([...])` for references; per-language tables.
+4. Wire-up (3 edits) — see §0 step 1–3, substituting the book key and chapter number.
+5. Build & QA: `python build/reader_<key>.py N` → `reader_book.py <key>` → `books_site.py` →
+   `make_sitemap.py` → `check_links.py` (**broken 0**). Page QA: every inline SVG XML-valid;
+   unique `fig-N` ids; 0 CJK; 0 bare ampersands; no cross-language leakage; aria labels complete.
+6. `git add -A && git commit`, push (§B), update `TRANSLATION-STATUS.md` session log + workspace
+   memory daily log, verify live (unit pages EN + VI = 200, TOC lists the unit, badge correct).
+
+## D. QA gates (must pass every chapter)
 - `check_links.py` → **broken 0**
-- Spanish guard → **0 hits** on every new page (EN + VI)
-- 0 CJK characters, 0 Python artifacts in HTML
-- Every inline SVG XML-valid (`ElementTree.fromstring`); aria labels complete
-- English tables contain no Vietnamese characters; VI/EN captions match the page language
-- Sitemap regenerated; `TRANSLATED` badge updated (`progress`/`full`)
-- Styled-page screenshot review in cropped sections (figures, legends, table, nav, footer)
-- Live verification after push: unit pages EN + VI = 200, TOC lists the unit, catalog badge
-  correct, duplicate `/books/work/186/` still 404
+- Every inline SVG XML-valid (`ET.fromstring`); unique `fig-N` ids per page
+- 0 CJK characters, 0 bare ampersands (`&(?!amp;|lt;|gt;|quot;|apos;|#)`)
+- Spanish guard → 0 hits; EN tables contain no Vietnamese; captions match page language
+- Sitemap regenerated; `TRANSLATED` badge updated (`progress` → `full` when book completes)
+- Live verification after push: chapter pages EN + VI = 200, TOC row present, catalog badge correct
+
+## E. Known gotchas
+- `done` maps must contain ONLY built chapters; empty-`done` books get 4 transient TOC links
+  (fallback `spec["done"].get(1, spec["first_en"][0])`) that clear when Ch.1 lands.
+- IPC PDF: body text is glyph codes; always use `work/ipc_decoded.txt`.
+- Image-only sources (Borden) need `pypdfium2` rendering to `work/*.png` (QA libs in `work/qalib`).
+- `p()` takes exactly one argument — no second positional argument.
+- When inserting a new `BOOKS` spec before `def num(n, lang):`, don't duplicate the closing
+  brace of the dict (bit us twice).
+- `books_site.py` `SyntaxWarning` (invalid escape sequence, line ~980) is pre-existing noise.

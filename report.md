@@ -5,16 +5,17 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-18): the campaign's flagship book, Book 6 — Smith & Zappe, *Valve Selection
-Handbook* — is COMPLETE: all 21 units live in EN + VI, catalog badge 🟢.**
+**Status (2026-11-22, campaign paused by user):** 9 reader books fully live (flagship Book 6
+*Valve Selection Handbook* 🟢 21/21), plus a 4-book control/instrumentation campaign in progress
+across Books 7–10. HEAD `671ae45b`; all live checks green.
 
 ---
 
 ## 1. What is live right now
 
-### Published reader books (all EN + VI)
-| # | Book | Chapters | Figures | Status |
-|---|------|----------|---------|--------|
+### Fully published reader books (all EN + VI, 🟢 complete)
+| # | Book | Units | Figures | Status |
+|---|------|-------|---------|--------|
 | 1 | *The Measurement, Instrumentation and Sensors Handbook* (summary tier) | 113 | redrawn | ✅ live |
 | 2 | PC *Process Control* (summary tier) | 14 | 50 redrawn | ✅ live |
 | 3 | *Safety Instrumented Systems — Design, Analysis, and Justification* (2nd ed.) | 16 | redrawn | ✅ live |
@@ -23,98 +24,92 @@ Handbook* — is COMPLETE: all 21 units live in EN + VI, catalog badge 🟢.**
 | 6 | Crosby *Pressure Relief Valve Engineering Handbook* (TP-V300) | 8 | redrawn | ✅ live |
 | 7 | ISA-5.1 *Instrumentation Symbols and Identification* | 7 | redrawn | ✅ live |
 | 8 | CSIA *Working with an Integrator Guide* | 9 | 35 redrawn | ✅ live |
-| 9 | **Smith & Zappe, *Valve Selection Handbook*, 5th ed. (2004) — Book 6, flagship** | **21** | **235 redrawn** | ✅ **live, 🟢 21/21** |
+| 9 | **Smith & Zappe, *Valve Selection Handbook*, 5th ed. (2004) — flagship** | **21** | **235 redrawn** | ✅ **live, 🟢 21/21** |
 
-### Book 6 — all 21 units (EN/VI, vector figures per unit)
-| Unit | Title | Source (book pp.) | Figures |
-|------|-------|-------------------|---------|
-| 1 | Introduction | 1–… | 1 |
-| 2 | Fluid Tightness and Sealing | … | 2 |
-| 3 | Seatings, Gaskets, Stem Seals | … | 1 |
-| 4 | Fundamentals: Flow Through Valves | … | 9 |
-| 5 | Manual Valves I — Selection, Globe | … | 24 |
-| 6 | Manual Valves II — Piston & Parallel Gate | … | 9 |
-| 7 | Wedge Gate Valves | … | 15 |
-| 8 | Plug Valves | … | 11 |
-| 9 | Ball Valves | … | 9 |
-| 10 | Butterfly and Pinch Valves | … | 24 |
-| 11 | Diaphragm and Stainless Steel Valves | … | 7 |
-| 12 | Check Valves | 153–168 | 15 |
-| 13 | Direct-Loaded Pressure Relief Valves | 169–… | 34 |
-| 14 | Pilot-Operated Pressure Relief Valves | … | 10 |
-| 15 | Rupture Discs I — Construction | … | 33 |
-| 16 | Rupture Discs II — Selection | 261–267 | 5 |
-| 17 | Sizing Pressure Relief Devices | 269–292 | 9 |
-| 18 | Actuators | 293–308 | 5 |
-| 19 | Double Block and Bleed Ball Valves | 309–313 | 3 |
-| 20 | Mechanical Locking Devices for Valves | 314–326 | 8 |
-| 21 | Appendices — Abbreviations, Standards, SI Units, Glossary | 327–361 | 1 |
+### In-progress campaign books (registered, translated chapter by chapter)
+| Key | Book | Source | Chapters | Done | Figures so far |
+|-----|------|--------|----------|------|----------------|
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **2/32** 🟠 | 3 (ch1) |
+| `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
+| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **1/15** 🟠 | 19 (ch1) |
+| `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **1/8** 🟠 | 6 (ch1) |
+| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
+| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **0/8** 🟠 — Ch.1 files validated, integration paused | 51 (ch1, unpublished) |
 
-**Total: 235 vector figure instances × 2 languages; 21 language-specific summary tables.**
+**Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
+(Emerson), 294 (IIH), 295 (PPIC), 296 (IPC).
 
-### Live verification (2026-11-18, Book 6 completion)
-- Units 19/20/21 EN + VI → all **HTTP 200** with correct titles.
-- Both book TOCs list all 21 chapters; both catalog cards show
-  **🟢 Fully translated · 21 of 21 chapters / 🟢 Đã dịch đầy đủ · 21/21 chương**.
-- Removed duplicate `/books/work/186/` still **404**.
-- `sitemap.xml` 982 URLs (967 with language siblings); `check_links.py`
-  **984 pages / 29,714 refs / broken 0**.
+### Published chapters this campaign (EN + VI each)
+- Baumann Ch.1 (3 figs) + Ch.2 "Why Not Use a Speed-Controlled Pump?" (no figs, 3 refs)
+- Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
+- Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
+- IIH Ch.1 "Measurement of Temperature" (6 figs, printed pp. 1–45, 77 refs)
+- PPIC Ch.1 "Catalytic Reduction of Dissolved Oxygen" (5 figs, 4 tables)
+
+### Live verification (2026-11-22, at stop)
+- All chapter pages, TOCs and work pages checked this session → **HTTP 200**.
+- Sitemap **1,018 URLs** (1,003 with language siblings); 512 work-detail pages.
+- `check_links.py` at last build: 4 transient broken links — all are Book 10's TOC "Open the
+  book" fallback pointing at its unbuilt Ch.1 (normal for a book at 0/8; clears on integration).
 
 ---
 
 ## 2. Build standard (applied uniformly to all books)
 - **Every source figure redrawn as a vector** (no raster scans). Figures return the standard
-  5-tuple `(svg, caption_vi, caption_en, aria_vi, aria_en)`; each carries a numbered bilingual
-  legend (VI main line + EN subtext) and source credits.
-- **Each unit = its own standalone page**; **book TOC links to every unit** (EN + VI variants).
-- **Full bilingual EN/VI prose** with `class="en"` subtitles on headings; language-specific
-  summary tables (no cross-language leakage — verified per page).
-- **Autonomous progression** — no pause for confirmation; full QA after every unit.
-- **No Spanish ever**; 0 CJK characters; 0 Python artifacts; no truncated aria labels.
+  5-tuple `(svg, caption_vi, caption_en, aria_vi, aria_en)`; bilingual captions
+  (`Hình …` / `Figure …`), numbered callouts where the source has them.
+- **Each chapter = its own standalone page**; book TOC links every built unit (EN + VI).
+- **Full bilingual EN/VI prose**; per-language tables (no cross-language leakage).
+- QA gates: SVGs XML-valid, unique `fig-N` ids, **0 CJK, 0 bare ampersands**, `check_links.py`
+  broken 0, sitemap regenerated, live 200 checks after push.
+- Source OCR typos are preserved in EN with VI following intended meaning; end-of-chapter
+  `note()` documents source quirks.
 
 ## 3. Shared architecture (don't reinvent)
-- `build/bolton_common.py` — page shell, markup helpers (`p, h2, h3, h4, eq, note, ul, ol, table,
-  fig, keyterms, nav, page, write, build`), central `BOOK`/`SLUGS` tables.
-- Per-book shells: `build/isa51_common.py`, `build/int_common.py`, `build/prv_common.py`,
-  `build/isd_common.py`, **`build/vsh_common.py`** (Book 6) — re-import `bolton_common`, add one
-  `BOOK`/`SLUGS` entry + `T(vi,en,lang)`.
-- `build/reader_book.py` — `BOOKS` registry + TOC generator (`chapters` titles + `done` slug map).
-- Per-book reader generators: `build/reader_vsh.py` (Book 6 `MODULES = {1..21}`), `reader_prv.py`,
-  `reader_isd.py`, etc.
-- `build/vfig.py` + `build/vshfig3.py` — vector primitives + shared op-emitters
-  (`_emit`, `_emit_legend`). Book 6 figure libraries: `vshfig.py`, `vshfig2…vshfig18.py`
-  (one per unit where needed).
-- `build/books_site.py` (`TRANSLATED`/`BOOK_SLUG`/`DESC`, `FLAG_LABEL`), `build/make_sitemap.py`,
-  `build/check_links.py` — site index, sitemap, QA.
-- `build/vsh_ch01…ch21.py` — Book 6 unit content modules (`PAGES_SRC, BYLINE, TITLE_EN/VI,
-  note_terms(lang), body_vi(), body_en()`).
-- Book 6 unit registration (three edits): `vsh_common.SLUGS["vsh"][N]`,
-  `reader_book.py` vsh `done` map, `books_site.py` `TRANSLATED["valve selection handbook"]`.
+- `build/bolton_common.py` — page shell, markup helpers, central `BOOK`/`SLUGS` tables.
+- Per-book shells: `<key>_common.py` (re-import bolton_common, one `BOOK`/`SLUGS` entry +
+  `T(vi,en,lang)`) and runners `reader_<key>.py` (`MODULES = {chapter: module}`).
+- `build/reader_book.py` — `BOOKS` registry + TOC generator (`chapters` + `done` slug map;
+  `done` must contain ONLY built chapters; empty-`done` fallback
+  `spec["done"].get(1, spec["first_en"][0])` creates the 4 transient links).
+- `build/vfig.py` — vector primitives; per-book figure modules `<key>fig.py`.
+- `build/books_site.py` (`DESC`/`TRANSLATED`/`BOOK_SLUG`/`DROP_WORK_IDS={186}`),
+  `make_sitemap.py`, `check_links.py`.
+- **Chapter registration = 3 edits:** `<key>_common.SLUGS[key][n]`, `reader_book.py` `done[n]`,
+  `books_site.py` `TRANSLATED[...]` progress; then rebuild chapter → TOC → site → sitemap →
+  check_links → commit → push → live verify.
 
-## 4. Book 6 source material
-- PDF: `D:/Ebooks/Process Control and Automation/Elsevier - Valve Selection Handbook 5th Ed -
-  2004 - (By Laxxuss).pdf` (text layer extracted to `work/vsh_raw.txt`; unit spans documented in
-  `TRANSLATION-STATUS.md` per unit).
-- Book pp. 1–399 total; 21 units cover the whole book including Appendices A–E.
-- Figure pages rendered locally with `pypdfium2` (installed into git-ignored `work/qalib`) to
-  guide the vector redraws.
+## 4. Source material map (all under `D:/Ebooks/Process Control and Automation/`)
+| Key | PDF | Text dump | Notes |
+|-----|-----|-----------|-------|
+| cvp | Control-valve-primer-a-users-guide-fifth-edition.pdf | `work/cvp_raw.txt` | 204 pp, 32 ch |
+| bcv | Control Valves Selection Handbook - Borden Friedmann.pdf | image-only | rendered `work/borden_p01..12.png` |
+| cvh6 | Emerson-control-valve-handbook-en-3661206.pdf | `work/cvh6_raw.txt` | 355 pp, 15 ch |
+| iih | Illustrated-handbook-of-industrial-instrumentation-and-process-control.pdf | `work/ihii_raw.txt` | 348 pp, 8 ch |
+| ppic | Handbook-on-power-plant-instrumentation-and-control.pdf | `work/ppic_raw.txt` | 308 pp, 11 ch; printed = PDF−16 |
+| ipc | Instrumentation-and-process-control.pdf | `work/ipc_raw.txt` → **decoded `work/ipc_decoded.txt`** | 403 pp, 8 ch; body text stored as glyph codes `/Gnn` → `chr(nn)`; printed = PDF−12 |
 
 ## 5. Git / credentials (configured — do not redo)
-- PAT stored via `git credential approve` + credential helper store; repo-local config clears the
-  GCM chain (`git config --local credential.helper ""` + `--add credential.helper store`).
-  **Do not remove these local config entries.**
-- Pushes: `git push origin main` completes in seconds (latest: `27f72c01..e8e832b4`).
-- After each push, GitHub Pages propagation can briefly 404 deep paths (negative caching);
-  retry `curl --retry N --retry-delay M` with cache-busting query strings until 200.
+- PAT via credential-helper store; repo-local config clears the GCM chain — **do not remove**.
+- Push pattern: `GIT_TERMINAL_PROMPT=0 GCM_INTERACTIVE=never git -c credential.helper= -c
+  credential.helper=store push --progress origin main`.
+- Session pushes: `0ed011b7` (registration) → `bad2d686` (Baumann ch2 + Emerson ch1) →
+  `b370e6f3` (Book 8 registration) → `98bb7d26` (IIH ch1) → `066862d2` (Book 9 registration) →
+  `7b60e440` (PPIC ch1) → `671ae45b` (Book 10 registration, HEAD).
+- GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
-## 6. Remaining work / next steps
-1. **Book 6 is fully done — no pending units.** Optionally deepen Appendix tables (verbatim
-   reproduction was intentionally avoided in Unit 21).
-2. **Next campaign step:** pick the next Tier-A instrumentation/control title (EN/VI only, no
-   Spanish), extract to `work/<slug>_raw.txt`, create `<slug>_common.py` + reader + figure
-   module following the Book 6 pattern (`build/vsh_common.py`, `build/reader_vsh.py`,
-   `build/vshfig3.py`, `build/vsh_ch13.py` as the reference implementation), then build units
-   one at a time with the QA gates below.
-3. Keep the standing duplicate-card filter (`DROP_WORK_IDS = {186}` in `books_site.py`).
+## 6. Queue at the stop (user's stated order) — not started
+1. **Integrate Book 10 `ipc` Chapter 1** — agent output already validated:
+   `build/ipc_ch01.py` + `build/ipcfig.py` (51 figures, 7 tables, VI 284k / EN 306k chars,
+   0 CJK / bare amps). Registration edits were reverted at the stop; redo the 3 edits
+   (`SLUGS["ipc"][1]="ch01-transducers-i"`, `done[1]`, `TRANSLATED` 1/8) → build → QA → push.
+2. **Book 8 `iih` Chapters 2–8** (per user: "do one by one").
+3. **Baumann `cvp` Chapters 3–32**.
+4. **Emerson `cvh6` Chapters 2–15**.
+5. **Register candidate Book 11** — *Fundamentals of Industrial Instrumentation* (348 pp,
+   2.5 MB) — located and surveyed, not registered.
+6. **Register candidate Book 12** — *A Guide to the Automation Body of Knowledge*, 2nd ed.
+   (511 pp, 34 MB) — located and surveyed, not registered.
+7. Book 9 `ppic` Chapters 2–11 after the user's named queues.
 
-See `HANDOFF.md` for the exact step-by-step continuation recipe and QA gates.
+See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.
