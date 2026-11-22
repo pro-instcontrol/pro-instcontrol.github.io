@@ -6064,3 +6064,16 @@ registration when resumed.
   525 files changed. Live EN + VI chapter pages 200, TOC + `/books/` 200 (deep paths needed
   one cache-busting retry, as expected).
 - IPC now **1/8 🟠**. Next in queue: Book 8 `iih` Chapters 2–8 (user: "do one by one").
+
+## Session 83 — Book 8 IIH Chapter 2 published; Baumann Ch3 + Emerson Ch2 written
+- IIH Ch.2 "Measurement of Pressure" (PDF pp. 61–96 = printed 47–82, PAGES_SRC=36): 21 vector
+  figures in new `iihfig2.py`, 4 equations, 46 refs, full EN/VI prose (VI 43k / EN 49k chars).
+- Visual QA found and fixed 3 figure defects: fig 4 squiggle vs legend, fig 6 x-axis label vs
+  caption, fig 8 "vena contracta" vs flow arrow and callout leader vs Q label. Re-rendered clean.
+- Registered (`iih_common` slug 2, `reader_book` done 2, `books_site` 2/8); built chain:
+  sitemap 1020 → **1022 URLs**, `check_links.py` 1024 pages / 30714 refs / **broken 0**.
+- Pushed `de891681` ("Publish IIH chapter 2: Measurement of Pressure (EN/VI, 21 vector figures)").
+  Live EN + VI chapter pages 200 after 2 cache-busting retries.
+- Parallel writers finished: Baumann Ch.3 (`cvp_ch03.py` + 3 figs, independently validated: 6
+  XML-valid FIGs, 3 figures/page, 0 CJK/ES/bare&, figures visually clean) and Emerson Ch.2
+  (`cvh6_ch02.py` + 10 figs — validation pending). Both landed in `de891681` as unbuilt modules.

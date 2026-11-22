@@ -772,6 +772,7 @@ BOOKS = {
         "done": {
             1: "ch01-what-is-a-control-valve-and-how-does",
             2: "ch02-why-not-use-a-speed-controlled-pump",
+            3: "ch03-what-valve-type-shall-i-choose",
         },
         "copyright_en": "Original work © 2011 Hans D. Baumann, published by ISA / John Wiley & Sons.",
         "copyright_vi": "Bản gốc © 2011 Hans D. Baumann, do ISA / John Wiley & Sons xuất bản.",
