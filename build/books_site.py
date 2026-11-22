@@ -347,6 +347,11 @@ DESC = {
         "detection, solar converters, grid protection, predictive maintenance and reactor control.",
         "Sổ tay nghiên cứu về thiết bị đo và điều khiển nhà máy điện — thiết bị đo hạt nhân và "
         "phát hiện lỗi, bộ chuyển đổi mặt trời, bảo vệ lưới điện, bảo trì dự đoán và điều khiển lò phản ứng."),
+    "instrumentation and process control": (
+        "A graduate textbook on instrumentation — transducers for pressure, temperature, flow and "
+        "level, telemetry, signal conditioning, PID control, recorders, PLCs and DCS.",
+        "Giáo trình thiết bị đo — bộ chuyển đổi áp suất, nhiệt độ, lưu lượng và mức, đo từ xa, "
+        "xử lý tín hiệu, điều khiển PID, máy ghi, PLC và DCS."),
     "valve selection handbook": (
         "Zappe's engineering guide to choosing a valve for a duty, with the fluid behaviour and "
         "failure modes behind each choice.",
@@ -495,6 +500,7 @@ TRANSLATED = {
     "control valve handbook - 6th edition": ("progress", 15, 1),
     "illustrated handbook of industrial instrumentation": ("progress", 8, 1),
     "handbook on power plant instrumentation and control": ("progress", 11, 1),
+    "instrumentation and process control": ("progress", 8, 0),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
@@ -531,6 +537,7 @@ BOOK_SLUG = {
     "control valve handbook - 6th edition": "control-valve-handbook-emerson-6th",
     "illustrated handbook of industrial instrumentation": "illustrated-handbook-industrial-instrumentation-control",
     "handbook on power plant instrumentation and control": "handbook-power-plant-instrumentation-control",
+    "instrumentation and process control": "instrumentation-and-process-control",
 }
 
 

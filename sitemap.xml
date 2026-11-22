@@ -242,6 +242,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/ch16-references/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-and-process-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/isa-5-1-instrumentation-symbols/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/isa-5-1-instrumentation-symbols/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/isa-5-1-instrumentation-symbols/"/>
@@ -2582,6 +2588,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/295/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/work/296/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/296/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/296/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/296/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/work/3/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/3/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/3/"/>
@@ -3303,6 +3315,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/ch16-references/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/inherent-safety-in-process-plant-design/ch16-references/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/ch16-references/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/instrumentation-and-process-control/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-and-process-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/isa-5-1-instrumentation-symbols/</loc>
@@ -5643,6 +5661,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/295/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/295/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/295/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/work/296/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/296/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/296/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/296/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/work/3/</loc>

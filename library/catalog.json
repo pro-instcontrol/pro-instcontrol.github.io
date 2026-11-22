@@ -108,13 +108,13 @@
   }
  ],
  "totals": {
-  "files": 2685,
+  "files": 2686,
   "bytes": 2261380993,
   "pdfs": 808,
-  "unique_pdfs": 585,
+  "unique_pdfs": 586,
   "duplicate_sets": 214,
   "wasted_bytes": 571049915,
-  "works": 257
+  "works": 258
  },
  "extensions": [
   {
@@ -24359,6 +24359,33 @@
    "desc": {
     "en": "An edited handbook on power plant instrumentation and control — dissolved-oxygen reduction, nuclear instrumentation and fault detection, solar converters, power-system protection, environmental impact, predictive maintenance and reactor power-level control.",
     "vi": "Sổ tay biên tập về thiết bị đo và điều khiển nhà máy điện — khử oxy hòa tan, thiết bị đo và phát hiện lỗi hạt nhân, bộ chuyển đổi mặt trời, bảo vệ hệ thống điện, tác động môi trường, bảo trì dự đoán và điều khiển công suất lò phản ứng."
+   }
+  },
+  {
+   "id": 296,
+   "title": "Instrumentation and Process Control",
+   "dir": "D:/Ebooks/Process Control and Automation",
+   "domain": "training",
+   "why": 9,
+   "docs": [
+    {
+     "path": "D:/Ebooks/Process Control and Automation/Instrumentation-and-process-control.pdf",
+     "title": "Instrumentation and Process Control",
+     "pages": 403,
+     "bytes": 26987178,
+     "copies": [],
+     "head": "Instrumentation and Process Control Janardan Prasad M.N. Jayaswal Vishnu Priye"
+    }
+   ],
+   "ndocs": 1,
+   "pages": 403,
+   "bytes": 26987178,
+   "year": 2019,
+   "copies": 0,
+   "head": "Instrumentation and Process Control Janardan Prasad M.N. Jayaswal Vishnu Priye",
+   "desc": {
+    "en": "A graduate-level textbook on industrial instrumentation and process control — transducers, telemetry, signal conditioning, PID control, recorders and microprocessor-based instrumentation systems.",
+    "vi": "Giáo trình thiết bị đo và điều khiển quá trình — bộ chuyển đổi, đo từ xa, xử lý tín hiệu, điều khiển PID, máy ghi và hệ thống thiết bị đo vi xử lý."
    }
   }
  ]
