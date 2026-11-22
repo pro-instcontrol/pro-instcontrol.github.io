@@ -842,7 +842,7 @@ BOOKS = {
             14: ("Pipe Data", "Dữ liệu đường ống"),
             15: ("Conversions and Equivalents", "Chuyển đổi và tương đương"),
         },
-        "done": {1: "ch01-introduction-to-control-valves"},
+        "done": {1: "ch01-introduction-to-control-valves", 2: "ch02-control-valve-performance"},
         "copyright_en": "Original work © 2020 Emerson Flow Controls.",
         "copyright_vi": "Bản gốc © 2020 Emerson Flow Controls.",
         "lede_en": ("The current sixth edition of Emerson’s Control Valve Handbook — the vendor reference covering valve performance and variability, sizing, accessories and digital controllers, severe service, steam conditioning, installation, standards, isolation valves, sustainability and safety instrumented systems."),

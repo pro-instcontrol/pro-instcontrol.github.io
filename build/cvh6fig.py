@@ -1193,9 +1193,9 @@ def fig_f29():
         curr.append((x0 + W * p, y0 + H - H * max(0, min(100, sc)) / 100.0))
     o.append(_poly(base, sw=2.0, color=BLUE))
     o.append(_poly(curr, sw=1.8, color=RED, dash="5 3"))
-    o.append(T(x0 + 8, y0 + H - 14, "Baseline: as shipped", 7.4,
+    o.append(T(x0 + 8, y0 + 32, "Baseline: as shipped", 7.4,
                color=BLUE, anchor="start"))
-    o.append(T(x0 + 8, y0 + H - 26, "Current: in service", 7.4,
+    o.append(T(x0 + 8, y0 + 46, "Current: in service", 7.4,
                color=RED, anchor="start"))
     o.append(T(x0 + W / 2, y0 + H + 16, "Input Signal (%)", 7.8))
     tx, ty, tw = 356, 42, 240

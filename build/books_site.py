@@ -497,7 +497,7 @@ TRANSLATED = {
     "valve selection handbook": ("full", 21, 21),
     "control valve primer": ("progress", 32, 3),
     "control valves - practical guides": ("full", 1, 1),
-    "control valve handbook - 6th edition": ("progress", 15, 1),
+    "control valve handbook - 6th edition": ("progress", 15, 2),
     "illustrated handbook of industrial instrumentation": ("progress", 8, 2),
     "handbook on power plant instrumentation and control": ("progress", 11, 1),
     "instrumentation and process control": ("progress", 8, 1),

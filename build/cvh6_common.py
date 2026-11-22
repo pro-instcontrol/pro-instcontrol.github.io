@@ -29,6 +29,7 @@ BOOK["cvh6"] = {
 # that exist, so an in-progress book never ships a broken "next" link.
 SLUGS["cvh6"] = {
     1: "ch01-introduction-to-control-valves",
+    2: "ch02-control-valve-performance",
 }
 
 # Re-export the shared helpers so chapter modules can `import cvh6_common as C`.
