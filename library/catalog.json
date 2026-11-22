@@ -108,13 +108,13 @@
   }
  ],
  "totals": {
-  "files": 2684,
+  "files": 2685,
   "bytes": 2261380993,
   "pdfs": 808,
-  "unique_pdfs": 584,
+  "unique_pdfs": 585,
   "duplicate_sets": 214,
   "wasted_bytes": 571049915,
-  "works": 256
+  "works": 257
  },
  "extensions": [
   {
@@ -24332,6 +24332,33 @@
    "desc": {
     "en": "A 3G E-learning illustrated introduction to industrial instrumentation — temperature, pressure, level, pH, flow, mechanical flowmeters, gas and liquid sampling, and control valves.",
     "vi": "Sách minh họa của 3G E-learning về thiết bị đo công nghiệp — nhiệt độ, áp suất, mức, pH, lưu lượng, lưu lượng kế cơ khí, lấy mẫu khí và chất lỏng, và van điều khiển."
+   }
+  },
+  {
+   "id": 295,
+   "title": "Handbook on Power Plant Instrumentation and Control",
+   "dir": "D:/Ebooks/Process Control and Automation",
+   "domain": "power",
+   "why": 9,
+   "docs": [
+    {
+     "path": "D:/Ebooks/Process Control and Automation/Handbook-on-power-plant-instrumentation-and-control.pdf",
+     "title": "Handbook on Power Plant Instrumentation and Control",
+     "pages": 308,
+     "bytes": 61343157,
+     "copies": [],
+     "head": "Handbook on Power Plant Instrumentation and Control Editor L N Jalali"
+    }
+   ],
+   "ndocs": 1,
+   "pages": 308,
+   "bytes": 61343157,
+   "year": 2019,
+   "copies": 0,
+   "head": "Handbook on Power Plant Instrumentation and Control Editor L N Jalali",
+   "desc": {
+    "en": "An edited handbook on power plant instrumentation and control — dissolved-oxygen reduction, nuclear instrumentation and fault detection, solar converters, power-system protection, environmental impact, predictive maintenance and reactor power-level control.",
+    "vi": "Sổ tay biên tập về thiết bị đo và điều khiển nhà máy điện — khử oxy hòa tan, thiết bị đo và phát hiện lỗi hạt nhân, bộ chuyển đổi mặt trời, bảo vệ hệ thống điện, tác động môi trường, bảo trì dự đoán và điều khiển công suất lò phản ứng."
    }
   }
  ]

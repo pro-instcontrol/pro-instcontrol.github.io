@@ -342,6 +342,11 @@ DESC = {
         "level, pH, flow, sampling and control valves, with a strong visual bent.",
         "Sổ tay minh họa của 3G E-learning về thiết bị đo công nghiệp — nhiệt độ, áp suất, mức, "
         "pH, lưu lượng, lấy mẫu và van điều khiển, với nhiều hình ảnh minh họa."),
+    "handbook on power plant instrumentation and control": (
+        "An edited research handbook on power plant I&C — nuclear instrumentation and fault "
+        "detection, solar converters, grid protection, predictive maintenance and reactor control.",
+        "Sổ tay nghiên cứu về thiết bị đo và điều khiển nhà máy điện — thiết bị đo hạt nhân và "
+        "phát hiện lỗi, bộ chuyển đổi mặt trời, bảo vệ lưới điện, bảo trì dự đoán và điều khiển lò phản ứng."),
     "valve selection handbook": (
         "Zappe's engineering guide to choosing a valve for a duty, with the fluid behaviour and "
         "failure modes behind each choice.",
@@ -489,6 +494,7 @@ TRANSLATED = {
     "control valves - practical guides": ("full", 1, 1),
     "control valve handbook - 6th edition": ("progress", 15, 1),
     "illustrated handbook of industrial instrumentation": ("progress", 8, 1),
+    "handbook on power plant instrumentation and control": ("progress", 11, 0),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
@@ -524,6 +530,7 @@ BOOK_SLUG = {
     "control valves - practical guides": "control-valves-borden-practical-guide",
     "control valve handbook - 6th edition": "control-valve-handbook-emerson-6th",
     "illustrated handbook of industrial instrumentation": "illustrated-handbook-industrial-instrumentation-control",
+    "handbook on power plant instrumentation and control": "handbook-power-plant-instrumentation-control",
 }
 
 

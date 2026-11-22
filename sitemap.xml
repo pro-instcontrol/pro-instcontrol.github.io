@@ -116,6 +116,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/"/>
@@ -2564,6 +2570,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/294/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/work/295/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/295/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/295/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/295/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/work/3/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/3/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/3/"/>
@@ -3159,6 +3171,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/</loc>
@@ -5607,6 +5625,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/294/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/294/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/294/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/work/295/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/295/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/295/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/295/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/work/3/</loc>
