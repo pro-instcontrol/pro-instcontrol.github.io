@@ -744,3 +744,545 @@ def fig_f19():
                 "change of Cv per travel increment).",
                 "Ba đường đặc tính van vốn có: mở nhanh, tuyến tính và phần trăm bằng nhau",
                 "Three inherent valve characteristic curves: quick-opening, linear and equal-percentage")
+
+
+# ===========================================================================
+# Chapter 2 - Control Valve Performance (source printed pp. 34-53)
+# Figures 2.1-2.10. All are redrawn as clean simplified vector schematics.
+# ===========================================================================
+
+@_reg
+def fig_f21():
+    """Figure 2.1 (p. 35) - Process Variability."""
+    w, h = 640, 300
+    o = [_defs()]
+    x0, y0, W, H = 70, 34, 520, 170
+    for g in range(1, 5):
+        o.append(_line(x0, y0 + H * g / 5.0, x0 + W, y0 + H * g / 5.0,
+                       sw=0.6, color="#d8dde3"))
+    o.append(_arrow(x0, y0 + H, x0 + W + 18, y0 + H, sw=1.2))
+    o.append(_arrow(x0, y0 + H, x0, y0 - 12, sw=1.2))
+    cy = y0 + H / 2.0
+    band = 30
+    o.append(_rect(x0, cy - band, W, 2 * band, fill="#e8f1f7", sw=0))
+    o.append(_line(x0, cy, x0 + W, cy, sw=1.1, dash="5 4", color=BLUE))
+    o.append(_line(x0, y0 + H - 12, x0 + W, y0 + H - 12,
+                   sw=1.1, dash="4 3", color=RED))
+    pts = []
+    for i in range(121):
+        x = x0 + W * i / 120.0
+        y = cy + 9 * math.sin(i * 0.55) + 5 * math.sin(i * 1.7) + 3 * math.sin(i * 3.1)
+        pts.append((x, y))
+    o.append(_poly(pts, sw=1.8, color=INK))
+    o.append(T(x0 + W + 5, cy + 3, "Set Point", 7.5, color=BLUE, anchor="start"))
+    o.append(T(x0 + W + 5, cy - band + 3, "+2 sigma", 7.3, color=BLUE, anchor="start"))
+    o.append(T(x0 + W + 5, cy + band + 3, "-2 sigma", 7.3, color=BLUE, anchor="start"))
+    o.append(T(x0 + 6, y0 + H - 18, "Lower specification limit", 7.3,
+               color=RED, anchor="start"))
+    o.append(T(x0 + W / 2, y0 + H + 18, "Time", 8.2))
+    o.append(T(x0 - 12, y0 - 17, "Process Variable (PV)", 8.0,
+               color=INK, anchor="start"))
+    o.append(T(320, 280,
+               "Hình 2.1 (tr. 35) · Biến thiên quá trình quanh điểm đặt trong dải +/-2 sigma",
+               7.6, color=GREY))
+    s = svg(w, h, "".join(o), esc("Figure 2.1 - Process variability"))
+    return _fig(s,
+                "Hình 2.1 (tr. 35) · Biến thiên quá trình: đường biến quá trình (PV) dao động "
+                "quanh điểm đặt; dải +/-2 sigma mô tả độ phân tán của sai lệch so với điểm đặt "
+                "và là thước đo mức độ chặt chẽ của điều khiển. Giới hạn đặc tính dưới nằm "
+                "thấp hơn dải này; dùng van có sigma nhỏ hơn sẽ thu hẹp dải phân tán.",
+                "Figure 2.1 (p. 35) · Process variability: the process variable (PV) fluctuates "
+                "about the set point; the +/-2 sigma band describes the spread of deviations "
+                "from the set point and measures how tightly the process is controlled. The "
+                "lower specification limit lies below the band; a valve with a smaller sigma "
+                "narrows the spread.",
+                "Đường biến quá trình nhiễu quanh điểm đặt, có dải +/-2 sigma và giới hạn đặc tính dưới",
+                "Noisy process variable trace about a set point with a +/-2 sigma band and lower specification limit")
+
+
+@_reg
+def fig_f22():
+    """Figure 2.2 (p. 36) - Performance Test Loop."""
+    w, h = 640, 290
+    o = [_defs()]
+    boxes = [(36, 54, 124, 46, "Controller"), (228, 54, 132, 46, "Control Valve"),
+             (432, 54, 132, 46, "Process"), (432, 190, 132, 46, "Sensor / Transmitter")]
+    for x, y, bw, bh, lab in boxes:
+        o.append(_rect(x, y, bw, bh, fill="#e9edf2", sw=1.2))
+        o.append(T(x + bw / 2, y + bh / 2 + 3, lab, 8.6, weight="600"))
+    o.append(_arrow(160, 77, 228, 77, sw=1.5, color=BLUE))
+    o.append(T(194, 69, "CO", 7.6, color=BLUE))
+    o.append(_arrow(360, 77, 432, 77, sw=1.5, color=BLUE))
+    o.append(T(396, 69, "Flow", 7.6, color=BLUE))
+    o.append(_arrow(498, 28, 498, 54, sw=1.4, color=RED))
+    o.append(T(508, 40, "Load disturbance", 7.4, color=RED, anchor="start"))
+    o.append(_line(498, 100, 498, 190, sw=1.4, color=GREY))
+    o.append(_arrow(498, 166, 498, 190, sw=1.4, color=GREY))
+    o.append(T(508, 148, "PV", 7.4, color=GREY, anchor="start"))
+    o.append(_line(432, 213, 98, 213, sw=1.4, color=GREY))
+    o.append(_arrow(98, 213, 98, 104, sw=1.4, color=GREY))
+    o.append(T(254, 205, "Feedback signal", 7.4, color=GREY))
+    o.append(T(320, 262, "Hình 2.2 (tr. 36) · Vòng thử nghiệm hiệu năng trong điều khiển vòng kín",
+               7.6, color=GREY))
+    s = svg(w, h, "".join(o), esc("Figure 2.2 - Performance test loop"))
+    return _fig(s,
+                "Hình 2.2 (tr. 36) · Vòng thử nghiệm hiệu năng: bộ điều khiển gửi tín hiệu đầu "
+                "ra (CO) tới van điều khiển, van điều chỉnh lưu lượng qua quá trình, cảm biến "
+                "và bộ phát đo biến quá trình (PV) rồi phản hồi về bộ điều khiển. Nhiễu tải "
+                "tác động vào quá trình; thử nghiệm vòng kín là cách duy nhất đo đúng hiệu "
+                "năng biến thiên của cụm van.",
+                "Figure 2.2 (p. 36) · Performance test loop: a controller sends its output (CO) "
+                "to the control valve, the valve manipulates flow through the process, and a "
+                "sensor and transmitter measure the process variable (PV) and feed it back to "
+                "the controller. A load disturbance enters the process; closed-loop testing is "
+                "the only true measure of valve variability performance.",
+                "Sơ đồ vòng thử nghiệm vòng kín gồm bộ điều khiển, van, quá trình, cảm biến và phản hồi",
+                "Closed-loop test block diagram with controller, valve, process, sensor and feedback")
+
+
+@_reg
+def fig_f23():
+    """Figure 2.3 (p. 37) - Effect of Deadband on Valve Performance."""
+    w, h = 660, 430
+    o = [_defs()]
+    o.append(T(330, 18, "Step inputs: 0.5%, 1%, 2%, 5%, 10% (increasing step size)",
+               8.4))
+    o.append(T(126, 34, "Dashed = controller output (CO)", 7.4,
+               color=BLUE, anchor="start"))
+    o.append(T(386, 34, "Solid = flow response (PV)", 7.4, color=RED, anchor="start"))
+    x0, W = 96, 520
+    amps = [0.5, 1.0, 2.0, 5.0, 10.0]
+    cum = [0.0]
+    for a in amps:
+        cum.append(cum[-1] + a)
+    tt = [0, 20, 36, 52, 68, 84, 100]
+    lev = cum + [cum[-1]]
+
+    def step_poly(levels, ymap):
+        pts = []
+        for i, t in enumerate(tt):
+            px = x0 + W * t / 100.0
+            if i > 0:
+                pts.append((px, ymap(levels[i - 1])))
+            pts.append((px, ymap(levels[i])))
+        return pts
+
+    rows = [(52, "Valve A - responds to steps as small as 0.5%", 0.5),
+            (182, "Valve B - responds only to 5% and 10% steps", 5.0),
+            (312, "Valve C - responds only to the 10% step", 10.0)]
+    for yt, lab, th in rows:
+        yb = yt + 62
+        o.append(_line(x0, yb, x0 + W, yb, sw=0.9, color="#c8ced6"))
+        ymap = lambda v, yb=yb: yb - 56 * v / 20.0
+        o.append(T(x0, yt - 8, lab, 8.4, color=INK, anchor="start"))
+        o.append(_poly(step_poly(lev, ymap), sw=1.4, color=BLUE, dash="4 3"))
+        rl = [0.0]
+        for a in amps:
+            rl.append(rl[-1] + (a if a >= th else 0.0))
+        rl.append(rl[-1])
+        o.append(_poly(step_poly(rl, ymap), sw=1.9, color=RED))
+    o.append(T(330, 418,
+               "Hình 2.3 (tr. 37) · Ảnh hưởng của vùng chết: đáp ứng lưu lượng của ba van với cùng chuỗi bước đầu vào",
+               7.6, color=GREY))
+    s = svg(w, h, "".join(o), esc("Figure 2.3 - Effect of deadband on valve performance"))
+    return _fig(s,
+                "Hình 2.3 (tr. 37) · Ảnh hưởng của vùng chết tới hiệu năng van: thí nghiệm vòng "
+                "hở với chuỗi bước đầu vào 0,5% đến 10%. Chuyển động thân cơ cấu chấp hành của "
+                "cả ba van đều bám tín hiệu, nhưng lưu lượng chỉ đáp ứng đúng với van A (0,5%); "
+                "van B cần 5% và van C cần 10% mới bắt đầu đáp ứng.",
+                "Figure 2.3 (p. 37) · Effect of deadband on valve performance: an open-loop test "
+                "with input steps from 0.5% to 10%. Actuator stem motion tracks the input in all "
+                "three valves, but flow responds faithfully only for Valve A (0.5%); Valve B "
+                "needs 5% and Valve C needs 10% before responding.",
+                "Ba bộ đồ thị so sánh tín hiệu đầu vào và đáp ứng lưu lượng của van A, B, C",
+                "Three trace panels comparing input signal and flow response for valves A, B and C")
+
+
+@_reg
+def fig_f24():
+    """Figure 2.4 (p. 41) - Valve Response Time Summary."""
+    w, h = 660, 430
+    o = [_defs()]
+    x0, y0, W, H = 80, 32, 250, 140
+    o.append(_rect(x0, y0, W, H, fill="#fbfcfd", sw=0.9))
+    o.append(_line(x0, y0 + H, x0 + W, y0 + H, sw=1.0))
+    o.append(_line(x0, y0, x0, y0 + H, sw=1.0))
+    o.append(_poly([(x0 + 20, y0 + H - 6), (x0 + 30, y0 + H - 6),
+                    (x0 + 30, y0 + 12), (x0 + W - 8, y0 + 12)],
+                   sw=1.3, color=BLUE, dash="4 3"))
+    td_x, t63_x = x0 + 58, x0 + 120
+    pts = [(x0 + 20, y0 + H - 6), (td_x, y0 + H - 6)]
+    for i in range(41):
+        xx = td_x + 132 * i / 40.0
+        frac = 1 - math.exp(-(xx - td_x) / 52.0)
+        pts.append((xx, y0 + H - 6 - (H - 30) * frac))
+    o.append(_poly(pts, sw=2.0, color=INK))
+    y63 = y0 + H - 6 - (H - 30) * 0.63
+    o.append(_line(x0, y63, x0 + W, y63, sw=0.8, dash="3 3", color=GREY))
+    o.append(_line(td_x, y0 + H, td_x, y0 + 8, sw=0.8, dash="3 3", color=GREY))
+    o.append(_line(t63_x, y0 + H, t63_x, y0 + 8, sw=0.8, dash="3 3", color=GREY))
+    o.append(T(td_x + 3, y0 + 20, "T(d)", 7.4, color=GREY, anchor="start"))
+    o.append(T(t63_x + 3, y0 + 20, "T63", 7.4, color=GREY, anchor="start"))
+    o.append(T(x0 + 3, y63 - 4, "63%", 7.2, color=GREY, anchor="start"))
+    o.append(T(x0 + W / 2, y0 - 10, "Step response: dead time plus dynamic time", 8.4))
+    bx, by, bW, bH = 110, 214, 500, 120
+    o.append(_line(bx, by + bH, bx + bW, by + bH, sw=1.0))
+    o.append(_line(bx, by, bx, by + bH, sw=1.0))
+    for v in (0, 2, 4, 6, 8):
+        yy = by + bH - bH * v / 8.0
+        o.append(_line(bx - 4, yy, bx, yy, sw=0.8))
+        o.append(T(bx - 8, yy + 3, str(v), 7.2, color=GREY, anchor="end"))
+    o.append(T(bx - 34, by - 8, "T63 (s)", 7.6, color=GREY, anchor="start"))
+    vals = [(0.34, "A open", "#cddce8"), (0.74, "A close", "#cddce8"),
+            (7.74, "B open", "#e6d4c2"), (1.67, "B close", "#e6d4c2"),
+            (5.49, "C open", "#d8e6d2"), (3.90, "C close", "#d8e6d2")]
+    for i, (v, lab, fill) in enumerate(vals):
+        x = bx + 25 + i * 82
+        bh = bH * v / 8.0
+        o.append(_rect(x, by + bH - bh, 44, bh, fill=fill, sw=1.0))
+        o.append(T(x + 22, by + bH - bh - 4, "%.2f" % v, 7.2))
+        o.append(T(x + 22, by + bH + 16, lab, 7.4))
+    o.append(T(330, 414,
+               "Hình 2.4 (tr. 41) · Tóm tắt thời gian đáp ứng: T(d), T63 và so sánh ba van theo số liệu thử nghiệm",
+               7.6, color=GREY))
+    s = svg(w, h, "".join(o), esc("Figure 2.4 - Valve response time summary"))
+    return _fig(s,
+                "Hình 2.4 (tr. 41) · Tóm tắt thời gian đáp ứng của van: T63 đo từ lúc đầu vào "
+                "thay đổi đến lúc đầu ra đạt 63% giá trị thay đổi, gồm thời gian chết T(d) và "
+                "thời gian động. Biểu đồ cột so sánh T63 theo số liệu bảng nguồn cho van A, B, "
+                "C ở chiều mở và đóng.",
+                "Figure 2.4 (p. 41) · Valve response time summary: T63 is measured from the "
+                "input change until the output reaches 63% of the change, including dead time "
+                "T(d) and dynamic time. The bars compare source-table T63 values for Valves A, "
+                "B and C in the opening and closing directions.",
+                "Đồ thị thời gian đáp ứng T63 gồm đoạn chết và đoạn động, kèm biểu đồ cột so sánh ba van",
+                "Step response showing dead time and dynamic time plus a bar chart comparing three valves")
+
+
+@_reg
+def fig_f25():
+    """Figure 2.5 (p. 44) - Installed Flow Characteristic and Gain."""
+    w, h = 660, 430
+    o = [_defs()]
+    x0, y0, W, H = 76, 30, 520, 150
+    for g in range(1, 5):
+        o.append(_line(x0 + W * g / 5.0, y0, x0 + W * g / 5.0, y0 + H,
+                       sw=0.6, color="#d8dde3"))
+        o.append(_line(x0, y0 + H * g / 5.0, x0 + W, y0 + H * g / 5.0,
+                       sw=0.6, color="#d8dde3"))
+    o.append(_rect(x0 + W * 0.25, y0, W * 0.40, H, fill="#eef5ee", sw=0))
+    o.append(_arrow(x0, y0 + H, x0 + W + 16, y0 + H, sw=1.1))
+    o.append(_arrow(x0, y0 + H, x0, y0 - 10, sw=1.1))
+    flow = [1000.0 / (1 + math.exp(-(t - 45) / 11.0)) for t in range(101)]
+    fp = [(x0 + W * t / 100.0, y0 + H - H * flow[t] / 1000.0) for t in range(101)]
+    o.append(_poly(fp, sw=2.1, color=BLUE))
+    o.append(T(x0 + 8, y0 + 14, "Flow (gpm)", 7.6, color=BLUE, anchor="start"))
+    o.append(T(x0 + W * 0.45, y0 + 44, "Installed Characteristic", 8.0, color=BLUE))
+    y0b, Hb = 214, 118
+    o.append(_rect(x0 + W * 0.25, y0b, W * 0.40, Hb, fill="#eef5ee", sw=0))
+    for g in range(1, 4):
+        o.append(_line(x0, y0b + Hb * g / 4.0, x0 + W, y0b + Hb * g / 4.0,
+                       sw=0.6, color="#d8dde3"))
+    o.append(_arrow(x0, y0b + Hb, x0 + W + 16, y0b + Hb, sw=1.1))
+    o.append(_arrow(x0, y0b + Hb, x0, y0b - 10, sw=1.1))
+    for v in (0.5, 2.0):
+        yy = y0b + Hb - Hb * v / 3.2
+        o.append(_line(x0, yy, x0 + W, yy, sw=0.9, dash="4 3", color=RED))
+        o.append(T(x0 + W + 4, yy + 3, "%.1f" % v, 7.2, color=RED, anchor="start"))
+    gp = []
+    for t in range(101):
+        g = 3.0 * math.exp(-((t - 45) / 22.0) ** 2)
+        gp.append((x0 + W * t / 100.0, y0b + Hb - Hb * g / 3.2))
+    o.append(_poly(gp, sw=2.1, color=INK))
+    o.append(T(x0 + 8, y0b + 14, "Gain (% Flow / % Input)", 7.6,
+               color=INK, anchor="start"))
+    o.append(T(x0 + W * 0.40, y0b + 34, "Installed Gain", 8.0, color=INK))
+    o.append(T(x0 + W * 0.26, y0b + Hb - 12, "Control Range", 7.6,
+               color=GREEN, anchor="start"))
+    for t in (0, 20, 40, 60, 80, 100):
+        o.append(T(x0 + W * t / 100.0, y0b + Hb + 16, str(t), 7.4, color=GREY))
+    o.append(T(x0 + W / 2, y0b + Hb + 32, "Valve Travel (%)", 8.2))
+    o.append(T(330, 414,
+               "Hình 2.5 (tr. 44) · Đặc tính dòng lắp đặt và hệ số khuếch đại: đường trên là lưu lượng, đường dưới là độ dốc (installed gain)",
+               7.6, color=GREY))
+    s = svg(w, h, "".join(o), esc("Figure 2.5 - Installed flow characteristic and gain"))
+    return _fig(s,
+                "Hình 2.5 (tr. 44) · Đặc tính dòng lắp đặt và hệ số khuếch đại: đường trên cho "
+                "lưu lượng theo hành trình van khi độ chụt áp thay đổi tự nhiên; đường dưới là "
+                "độ dốc của đường trên, tức installed gain. Vùng giữa hai giới hạn 0,5 và 2,0 "
+                "là dải điều khiển.",
+                "Figure 2.5 (p. 44) · Installed flow characteristic and gain: the upper curve is "
+                "flow versus valve travel with the pressure drop free to change; the lower curve "
+                "is its slope, the installed gain. The region between the 0.5 and 2.0 limits is "
+                "the control range.",
+                "Hai đồ thị xếp chồng: đặc tính dòng lắp đặt ở trên và độ dốc installed gain ở dưới",
+                "Two stacked plots: installed flow characteristic above and its installed gain below")
+
+
+@_reg
+def fig_f26():
+    """Figure 2.6 (p. 46) - Effect of Valve Style on Control Range."""
+    w, h = 660, 400
+    o = [_defs()]
+    x0, y0, W, H = 80, 34, 520, 240
+
+    def Y(v):
+        return y0 + H - H * v / 3.2
+
+    for g in range(1, 5):
+        o.append(_line(x0 + W * g / 5.0, y0, x0 + W * g / 5.0, y0 + H,
+                       sw=0.6, color="#d8dde3"))
+        o.append(_line(x0, y0 + H * g / 5.0, x0 + W, y0 + H * g / 5.0,
+                       sw=0.6, color="#d8dde3"))
+    o.append(_rect(x0, Y(2.0), W, Y(0.5) - Y(2.0), fill="#eef5ee", sw=0))
+    o.append(_arrow(x0, y0 + H, x0 + W + 16, y0 + H, sw=1.1))
+    o.append(_arrow(x0, y0 + H, x0, y0 - 10, sw=1.1))
+    for v in (0.5, 1.0, 2.0):
+        o.append(_line(x0, Y(v), x0 + W, Y(v), sw=0.8, dash="4 3", color=RED))
+        o.append(T(x0 + W + 4, Y(v) + 3, "%.1f" % v, 7.2, color=RED, anchor="start"))
+    globe = [(x0 + W * t / 100.0, Y(1.0 + 0.12 * math.sin(t / 16.0)))
+             for t in range(5, 96)]
+    butte = [(x0 + W * t / 100.0, Y(2.5 * math.exp(-((t - 48) / 6.0) ** 2)))
+             for t in range(101)]
+    o.append(_poly(globe, sw=2.2, color=BLUE))
+    o.append(_poly(butte, sw=2.2, color=RED))
+    o.append(T(x0 + W * 0.72, Y(1.3) - 8, "Globe - wide control range", 8.0,
+               color=BLUE, anchor="start"))
+    o.append(T(x0 + W * 0.53, Y(2.6) - 6, "Butterfly", 8.0, color=RED))
+    o.append(T(x0 + 8, y0 + 14, "Installed Gain (% Flow / % Input)", 7.8,
+               color=INK, anchor="start"))
+    for t in (0, 20, 40, 60, 80, 100):
+        o.append(T(x0 + W * t / 100.0, y0 + H + 16, str(t), 7.4, color=GREY))
+    o.append(T(x0 + W / 2, y0 + H + 32, "Valve Travel (%)", 8.2))
+    o.append(T(330, 380,
+               "Hình 2.6 (tr. 46) · Ảnh hưởng của kiểu van tới dải điều khiển: van cầu có dải rộng hơn bướm",
+               7.6, color=GREY))
+    s = svg(w, h, "".join(o), esc("Figure 2.6 - Effect of valve style on control range"))
+    return _fig(s,
+                "Hình 2.6 (tr. 46) · Ảnh hưởng của kiểu van tới dải điều khiển. So sánh van bướm "
+                "và van cầu cùng cỡ đường ống: với van cầu, hệ số khuếch đại lắp đặt nằm trong "
+                "giới hạn EnTech 0,5 đến 2,0 trên dải hành trình rộng; van bướm chỉ đạt được "
+                "điều đó trong một dải hẹp.",
+                "Figure 2.6 (p. 46) · Effect of valve style on control range. A line-size butterfly "
+                "valve is compared with a line-size globe valve: the globe valve keeps its "
+                "installed gain within the EnTech 0.5 to 2.0 limits over a much wider travel "
+                "range, while the butterfly valve meets them only in a narrow band.",
+                "Đồ thị hệ số khuếch đại lắp đặt so sánh dải điều khiển của van cầu và van bướm",
+                "Installed gain chart comparing the control ranges of globe and butterfly valves")
+
+
+@_reg
+def fig_f27():
+    """Figure 2.7 (p. 49) - Closed Loop Random Load Disturbance Summary."""
+    w, h = 640, 380
+    o = [_defs()]
+    x0, y0, W, H = 80, 34, 500, 250
+    for v in range(0, 7):
+        yy = y0 + H - H * v / 6.0
+        o.append(_line(x0, yy, x0 + W, yy, sw=0.6, color="#d8dde3"))
+        o.append(T(x0 - 8, yy + 3, str(v), 7.2, color=GREY, anchor="end"))
+    for t in (1, 2, 5, 10):
+        xx = x0 + W * math.log(t) / math.log(10.0)
+        o.append(_line(xx, y0, xx, y0 + H, sw=0.6, color="#d8dde3"))
+        o.append(T(xx, y0 + H + 16, str(t), 7.4, color=GREY))
+    o.append(_arrow(x0, y0 + H, x0 + W + 16, y0 + H, sw=1.1))
+    o.append(_arrow(x0, y0 + H, x0, y0 - 10, sw=1.1))
+    o.append(T(x0 + W / 2, y0 + H + 34, "Closed-Loop Time Constant (seconds)", 8.2))
+    o.append(T(x0 - 14, y0 - 18, "Variability, sigma (% of set point)", 7.8,
+               color=INK, anchor="start"))
+    o.append(_line(x0, y0 + H - H * 5.5 / 6.0, x0 + W, y0 + H - H * 5.5 / 6.0,
+                   sw=1.3, dash="5 4", color=GREY))
+    o.append(T(x0 + 6, y0 + H - H * 5.5 / 6.0 - 6, "Manual (open loop)", 7.4,
+               color=GREY, anchor="start"))
+
+    def X(t):
+        return x0 + W * math.log(t) / math.log(10.0)
+
+    def Y(v):
+        return y0 + H - H * v / 6.0
+
+    minp = [(X(1 + 9 * i / 60.0), Y(3.0 - 2.5 * i / 60.0)) for i in range(61)]
+    ap = [(X(1 + 9 * i / 60.0), Y(3.3 - 2.5 * i / 60.0)) for i in range(61)]
+    bp = [(X(1 + 9 * i / 60.0), Y(5.3 - 3.9 * i / 60.0)) for i in range(61)]
+    cp = [(X(1 + 9 * i / 60.0), Y(5.7 - 3.9 * i / 60.0)) for i in range(61)]
+    o.append(_poly(minp, sw=1.6, color="#999", dash="4 3"))
+    o.append(_poly(bp, sw=2.0, color="#b06b3a"))
+    o.append(_poly(cp, sw=2.0, color=RED))
+    o.append(_poly(ap, sw=2.2, color=BLUE))
+    o.append(T(X(3.2), Y(2.25) - 8, "Minimum Variability", 7.6, color="#777"))
+    o.append(T(X(6.0), Y(1.7) - 10, "Valve A", 7.8, color=BLUE))
+    o.append(T(X(6.6), Y(2.3) - 10, "Valve B", 7.8, color="#b06b3a"))
+    o.append(T(X(7.2), Y(2.9) - 10, "Valve C", 7.8, color=RED))
+    o.append(T(x0 + 10, y0 + H - 16, "Faster Tuning", 7.6, color=GREY, anchor="start"))
+    o.append(T(x0 + W - 8, y0 + H - 16, "Slower Tuning", 7.6, color=GREY, anchor="end"))
+    o.append(T(320, 362,
+               "Hình 2.7 (tr. 49) · Tóm tắt nhiễu tải ngẫu nhiên vòng kín: biến thiên theo hằng số thời gian vòng kín",
+               7.6, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Figure 2.7 - Closed-loop random load disturbance summary"))
+    return _fig(s,
+                "Hình 2.7 (tr. 49) · Tóm tắt nhiễu tải ngẫu nhiên vòng kín: biến thiên (phần trăm "
+                "của điểm đặt) được vẽ theo hằng số thời gian vòng kín. Đường Manual là mức "
+                "biến thiên khi không điều khiển; đường Minimum Variability là hiệu năng của "
+                "van lý tưởng. Van A bám sát đường lý tưởng, trong khi van B và C làm biến "
+                "thiên tăng khi chỉnh nhanh hơn.",
+                "Figure 2.7 (p. 49) · Closed-loop random load disturbance summary: variability "
+                "(percent of set point) is plotted against closed-loop time constant. The Manual "
+                "line is the variability with no control, and the Minimum Variability line is "
+                "the performance of an ideal valve. Valve A tracks the ideal line while Valves "
+                "B and C show rising variability with faster tuning.",
+                "Đồ thị biến thiên theo hằng số thời gian vòng kín có đường Manual và ba đường van",
+                "Variability versus closed-loop time constant chart with a Manual line and three valve curves")
+
+
+@_reg
+def fig_f28():
+    """Figure 2.8 (p. 50) - Effect of Valve Style on Control Range."""
+    w, h = 620, 340
+    o = [_defs()]
+    o.append(T(310, 20, "Installed gain within the 0.5 - 2.0 specification limits",
+               8.4))
+    x0, W = 152, 380
+    rows = [("Globe", 82, "#cddce8"), ("V-notch ball", 62, "#d8e6d2"),
+            ("Eccentric plug", 50, "#e6d4c2"), ("Butterfly", 25, "#eadbd5")]
+    for i, (lab, v, fill) in enumerate(rows):
+        y = 52 + i * 56
+        o.append(T(x0 - 10, y + 19, lab, 8.6, color=INK, anchor="end"))
+        o.append(_rect(x0, y, W * v / 100.0, 30, fill=fill, sw=1.0))
+        o.append(T(x0 + W * v / 100.0 + 8, y + 19, "%d%% of travel" % v,
+                   8.0, color=INK, anchor="start"))
+    o.append(_line(x0, 268, x0 + W, 268, sw=0.9, color="#c8ced6"))
+    o.append(T(x0 + W / 2, 286, "Relative control range (wider is better)", 8.2))
+    o.append(T(310, 318,
+               "Hình 2.8 (tr. 50) · Ảnh hưởng của kiểu van tới dải điều khiển: van cầu rộng nhất, van bướm hẹp nhất",
+               7.6, color=GREY))
+    s = svg(w, h, "".join(o), esc("Figure 2.8 - Effect of valve style on control range"))
+    return _fig(s,
+                "Hình 2.8 (tr. 50) · Ảnh hưởng của kiểu van tới dải điều khiển, biểu diễn bằng "
+                "thanh so sánh: van cầu có dải điều khiển rộng nhất; van bi rãnh V và van nút "
+                "lệch tâm nằm trung gian; van bướm hẹp nhất và thường chỉ phù hợp cho ứng "
+                "dụng tải cố định.",
+                "Figure 2.8 (p. 50) · Effect of valve style on control range, shown as comparison "
+                "bars: the globe valve has the widest control range; V-notch ball and eccentric "
+                "plug valves fall in between; the butterfly valve has the narrowest range and "
+                "is generally best suited to fixed-load applications.",
+                "Biểu đồ thanh so sánh dải điều khiển của van cầu, van bi, van nút lệch tâm và van bướm",
+                "Bar chart comparing control ranges of globe, V-notch ball, eccentric plug and butterfly valves")
+
+
+@_reg
+def fig_f29():
+    """Figure 2.9 (p. 51) - Data Comparision [sic]."""
+    w, h = 620, 380
+    o = [_defs()]
+    x0, y0, W, H = 56, 40, 262, 196
+    for g in range(1, 4):
+        o.append(_line(x0, y0 + H * g / 4.0, x0 + W, y0 + H * g / 4.0,
+                       sw=0.6, color="#d8dde3"))
+    o.append(_arrow(x0, y0 + H, x0 + W + 14, y0 + H, sw=1.1))
+    o.append(_arrow(x0, y0 + H, x0, y0 - 10, sw=1.1))
+    o.append(T(x0 + 6, y0 + 12, "Valve Signature (%)", 7.4,
+               color=INK, anchor="start"))
+    base = []
+    curr = []
+    for t in range(101):
+        p = t / 100.0
+        s = 100.0 / (1 + math.exp(-(t - 48) / 10.0))
+        base.append((x0 + W * p, y0 + H - H * s / 100.0))
+        sc = s + 7 * math.sin(t / 9.0) * math.exp(-((t - 50) / 34.0) ** 2)
+        curr.append((x0 + W * p, y0 + H - H * max(0, min(100, sc)) / 100.0))
+    o.append(_poly(base, sw=2.0, color=BLUE))
+    o.append(_poly(curr, sw=1.8, color=RED, dash="5 3"))
+    o.append(T(x0 + 8, y0 + H - 14, "Baseline: as shipped", 7.4,
+               color=BLUE, anchor="start"))
+    o.append(T(x0 + 8, y0 + H - 26, "Current: in service", 7.4,
+               color=RED, anchor="start"))
+    o.append(T(x0 + W / 2, y0 + H + 16, "Input Signal (%)", 7.8))
+    tx, ty, tw = 356, 42, 240
+    o.append(_rect(tx, ty, tw, 198, fill="#fbfcfd", sw=1.0))
+    cw = [104, 68, 68]
+    heads = ["Parameter", "Shipped", "Current"]
+    xx = tx
+    for cwv, hd in zip(cw, heads):
+        o.append(_rect(xx, ty, cwv, 26, fill="#e9edf2", sw=0.8))
+        o.append(T(xx + cwv / 2, ty + 17, hd, 7.6, weight="600"))
+        xx += cwv
+    tab = [("Deadband", "0.25%", "1.80%"), ("T63 (s)", "0.34", "0.91"),
+           ("Travel range", "0-100%", "0-100%"), ("Signature", "Pass", "Deviation")]
+    for r, row in enumerate(tab):
+        xx = tx
+        yy = ty + 26 + r * 43
+        for ci, (cwv, cell) in enumerate(zip(cw, row)):
+            o.append(_rect(xx, yy, cwv, 43, fill="#ffffff" if r % 2 == 0 else "#f5f7fa",
+                           sw=0.8))
+            o.append(T(xx + cwv / 2, yy + 26, cell, 7.6,
+                       color=RED if (ci == 2 and r in (0, 1, 3)) else INK))
+            xx += cwv
+    o.append(T(310, 360,
+               "Hình 2.9 (tr. 51) · So sánh dữ liệu: đường chuẩn lúc xuất xưởng và dữ liệu hiện tại",
+               7.6, color=GREY))
+    s = svg(w, h, "".join(o), esc("Figure 2.9 - Data Comparision"))
+    return _fig(s,
+                "Hình 2.9 (tr. 51) · So sánh dữ liệu (nguyên bản viết là Data Comparision): sau "
+                "khi đưa van vào vận hành, ValveLink chạy lại các phép thử như lúc xuất xưởng "
+                "và đối chiếu dữ liệu hiện tại với dữ liệu chuẩn để nhanh chóng xác định vấn đề.",
+                "Figure 2.9 (p. 51) · Data comparison (the source caption reads Data Comparision): "
+                "after the valve is in service, ValveLink reruns the factory tests and compares "
+                "current data with the as-shipped baseline to pinpoint issues quickly.",
+                "Đồ thị đường chữ ký van so sánh đường chuẩn và dữ liệu hiện tại kèm bảng thông số",
+                "Valve signature plot comparing the as-shipped baseline with current data and a parameter table")
+
+
+@_reg
+def fig_f2_10():
+    """Figure 2.10 (p. 51) - ValveLink Software."""
+    w, h = 660, 420
+    o = [_defs()]
+    o.append(_rect(30, 20, 600, 360, fill="#f7f8fa", sw=1.2))
+    o.append(_rect(30, 20, 600, 28, fill="#dce6f0", sw=1.0))
+    o.append(T(42, 38, "ValveLink Software - Performance Diagnostics", 8.6,
+               color=INK, anchor="start"))
+    o.append(T(604, 38, "_   []   X", 8.0, color=INK, anchor="end"))
+    o.append(T(42, 66, "File   Edit   View   Diagnostics   Help", 7.6,
+               color=GREY, anchor="start"))
+    cx, cy, cW, cH = 48, 80, 330, 190
+    o.append(_rect(cx, cy, cW, cH, fill="#ffffff", sw=0.9))
+    for i in range(1, 4):
+        o.append(_line(cx, cy + cH * i / 4.0, cx + cW, cy + cH * i / 4.0,
+                       sw=0.6, color="#e2e6ea"))
+    o.append(T(cx + 8, cy + 16, "Trend: travel and drive signal", 7.6,
+               color=GREY, anchor="start"))
+    tr1 = [(cx + 12 + 300 * i / 80.0,
+            cy + 30 + 120 * (1 - (i / 80.0 + 0.06 * math.sin(i / 5.0))))
+           for i in range(81)]
+    tr2 = [(cx + 12 + 300 * i / 80.0,
+            cy + 30 + 120 * (1 - (0.85 * i / 80.0 + 0.04 * math.cos(i / 6.0))))
+           for i in range(81)]
+    o.append(_poly(tr1, sw=1.7, color=BLUE))
+    o.append(_poly(tr2, sw=1.7, color=RED, dash="4 3"))
+    px, py, pw, ph = 396, 80, 216, 190
+    o.append(_rect(px, py, pw, ph, fill="#ffffff", sw=0.9))
+    o.append(T(px + 8, py + 18, "Diagnostic Summary", 8.2,
+               color=INK, anchor="start", weight="600"))
+    lines = ["Status        OK", "Deadband      0.25%", "T63           0.34 s",
+             "Travel        50%", "Seat load     Nominal", "Signature     Pass"]
+    for i, ln in enumerate(lines):
+        o.append(T(px + 10, py + 42 + i * 24, ln, 7.8,
+                   color=INK if i != 5 else GREEN, anchor="start"))
+    for bx, lab in ((50, "Run Signature Test"), (250, "Compare Data"),
+                    (440, "Export Report")):
+        o.append(_rect(bx, 296, 170, 30, fill="#e9edf2", sw=1.0))
+        o.append(T(bx + 85, 315, lab, 7.8))
+    o.append(T(330, 402,
+               "Hình 2.10 (tr. 51) · Phần mềm ValveLink: xu hướng và chẩn đoán hiệu năng van",
+               7.6, color=GREY))
+    s = svg(w, h, "".join(o), esc("Figure 2.10 - ValveLink software"))
+    return _fig(s,
+                "Hình 2.10 (tr. 51) · Phần mềm ValveLink: bảng điều khiển đơn giản với biểu đồ "
+                "xu hướng hành trình và tín hiệu lái cùng khu vực chẩn đoán liệt kê trạng thái, "
+                "vùng chết, T63, hành trình, tải chỗ ngồi và kết quả đường chữ ký.",
+                "Figure 2.10 (p. 51) · ValveLink software: a simplified panel with trend charts "
+                "for travel and drive signal, plus a diagnostics area listing status, deadband, "
+                "T63, travel, seat load and signature results.",
+                "Giao diện phần mềm ValveLink gồm biểu đồ xu hướng và bảng chẩn đoán",
+                "Simplified ValveLink software interface with trend charts and a diagnostics panel")

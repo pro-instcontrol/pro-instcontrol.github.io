@@ -12,7 +12,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
 from vfig import (BLUE, GREEN, GREY, INK, RED, _arrow, _box, _circle,
-                  _defs, _fig, _line, _poly, _rect, _txt, svg)
+                  _defs, _fig, _line, _path, _poly, _rect, _txt, svg)
 
 FIGS = {}
 
@@ -169,3 +169,235 @@ def fig_f13():
                 "the lower plug down, achieving near cancellation of fluid forces.",
                 "Mặt cắt van điều khiển lò xo–màng hai chỗ ngồi năm 1932",
                 "Cross-section of an early double-seated spring-diaphragm control valve")
+
+
+@_reg
+def fig_f31():
+    """Figure 3-1 — idealized modern cage-type control valve, section view."""
+    w, h = 680, 440
+    o = [_defs()]
+    o.append(_txt(340, 19, esc("Cage-type control valve - section view"), 10.5,
+                  color=INK, weight="600"))
+
+    # Flow passages and the central chamber
+    o.append(_rect(40, 196, 200, 54, fill="#dceaf5", sw=1.2))
+    o.append(_rect(440, 196, 200, 54, fill="#dceaf5", sw=1.2))
+    o.append(_rect(240, 150, 200, 150, fill="#fbfaf7", sw=1.2))
+    # Body metal in section hatch
+    for x, y, bw, bh in ((40, 250, 200, 26), (40, 178, 200, 18),
+                         (440, 250, 200, 26), (440, 178, 200, 18),
+                         (240, 300, 200, 24)):
+        o.append(_rect(x, y, bw, bh, fill="url(#h6)", sw=1.0))
+    # Seat ring with a central bore
+    o.append(_rect(258, 284, 72, 18, fill="url(#h6)", sw=1.2))
+    o.append(_rect(350, 284, 72, 18, fill="url(#h6)", sw=1.2))
+    # Bonnet, studs, stem packing
+    o.append(_rect(286, 60, 108, 58, fill="url(#h6)", sw=1.2))
+    o.append(_line(280, 64, 280, 116, sw=2.2, color=GREY))
+    o.append(_line(400, 64, 400, 116, sw=2.2, color=GREY))
+    o.append(_rect(330, 92, 20, 26, fill="#f6e6c8", sw=1.1))
+    # Cage: two walls with a window gap, split top ring
+    o.append(_rect(272, 118, 18, 58, fill="url(#h6)", sw=1.1))
+    o.append(_rect(272, 208, 18, 76, fill="url(#h6)", sw=1.1))
+    o.append(_rect(390, 118, 18, 58, fill="url(#h6)", sw=1.1))
+    o.append(_rect(390, 208, 18, 76, fill="url(#h6)", sw=1.1))
+    o.append(_rect(272, 118, 58, 12, fill="url(#h6)", sw=1.1))
+    o.append(_rect(350, 118, 58, 12, fill="url(#h6)", sw=1.1))
+    # Plug / piston with contoured tip and upper protrusion
+    o.append(_rect(300, 166, 80, 72, fill="#f6e6c8", sw=1.4))
+    o.append(_poly([(300, 238), (340, 258), (380, 238)],
+                   fill="#f6e6c8", sw=1.4, close=True))
+    o.append(_rect(380, 178, 18, 16, fill="#f6e6c8", sw=1.2))
+    o.append(_line(340, 52, 340, 166, sw=3, color=INK))
+    # Seals B and C, staked connection E
+    o.append(_rect(300, 158, 80, 8, fill=RED, sw=1.0))
+    o.append(_rect(272, 112, 136, 6, fill=RED, sw=1.0))
+    o.append(_circle(340, 160, 4, fill=RED, sw=0))
+    # Flow path: inlet, first stage, window, outlet
+    o.append(_arrow(120, 223, 250, 223, sw=2, color=BLUE))
+    o.append(_arrow(300, 316, 336, 298, sw=2, color=BLUE))
+    o.append(_arrow(340, 280, 340, 254, sw=2, color=BLUE))
+    o.append(_arrow(360, 244, 424, 200, sw=2, color=BLUE))
+    o.append(_arrow(462, 223, 610, 223, sw=2, color=BLUE))
+
+    def mk(x, y, lab, tx, ty):
+        return (_circle(x, y, 9, fill="#ffffff", sw=1.3, color=RED)
+                + _txt(x, y + 3.2, lab, 8, color=RED, weight="700")
+                + _line(x, y, tx, ty, sw=0.9, color=GREY))
+
+    o.append(mk(448, 176, "A", 406, 194))
+    o.append(mk(300, 146, "B", 320, 158))
+    o.append(mk(262, 110, "C", 284, 114))
+    o.append(mk(252, 276, "D", 274, 270))
+    o.append(mk(420, 80, "E", 348, 96))
+
+    o.append(_line(40, 336, 640, 336, sw=0.8, color=GREY))
+    legend = [
+        "A · dual-stage throttling / tiết lưu hai cấp",
+        "B · flexible top seal / phớt trên mềm",
+        "C · compressible bonnet seal / phớt nắp nén",
+        "D · cage screwed into body / lồng vặn ren vào thân",
+        "E · staked stem joint / mối nối thân ép chốt",
+    ]
+    for i, t in enumerate(legend[:3]):
+        o.append(_txt(40, 356 + i * 22, esc(t), 8, anchor="start", color=INK))
+    for i, t in enumerate(legend[3:]):
+        o.append(_txt(360, 356 + i * 22, esc(t), 8, anchor="start", color=INK))
+    o.append(_txt(340, 426,
+                  esc("After Baumann, Control Valve Primer - US Patents 6,701,958; "
+                      "6,766,826; 7,083,160 (Fisher Controls International)."),
+                  7.2, color=GREY))
+    s = svg(w, h, "".join(o), esc("Cage-type control valve section with callouts A to E"))
+    return _fig(s,
+                "Hình 3-1 · Mặt cắt thân van điều khiển kiểu lồng hiện đại: A tiết lưu hai cấp "
+                "(chống xâm thực, dải điều tiết rộng), B phớt trên mềm, C phớt nắp van nén dẻo, "
+                "D lồng được vặn ren vào thân, E mối nối thân nút được ép chốt thay vì dùng chốt "
+                "hầm. Nguồn: US Patents 6,701,958; 6,766,826; 7,083,160 (Fisher Controls "
+                "International).",
+                "Figure 3-1 · Section of a modern cage-type control valve body: A dual-stage "
+                "throttling (greater cavitation resistance and high rangeability), B flexible "
+                "top seal, C compressible bonnet-to-cage seal, D cage screwed into the body, "
+                "E staked stem-to-plug connection instead of a loose pin. Reference: US Patents "
+                "6,701,958; 6,766,826; 7,083,160 (Fisher Controls International).",
+                "Mặt cắt van điều khiển kiểu lồng với chú thích A đến E",
+                "Cross-section of a cage-type control valve with callouts A to E")
+
+
+@_reg
+def fig_f32():
+    """Figure 3-2 — single-seated globe valve, screwed-in seat, V-port plug."""
+    w, h = 620, 410
+    o = [_defs()]
+    o.append(_txt(310, 18, esc("Single-seated globe valve - section view"), 10.5,
+                  color=INK, weight="600"))
+    # Flow passages and chamber
+    o.append(_rect(40, 232, 180, 52, fill="#dceaf5", sw=1.2))
+    o.append(_rect(400, 232, 180, 52, fill="#dceaf5", sw=1.2))
+    o.append(_rect(220, 148, 180, 152, fill="#fbfaf7", sw=1.2))
+    # Body metal in section hatch
+    for x, y, bw, bh in ((40, 284, 180, 26), (40, 210, 180, 22),
+                         (400, 284, 180, 26), (400, 210, 180, 22),
+                         (198, 148, 22, 162), (400, 148, 22, 162),
+                         (220, 300, 180, 24), (220, 148, 68, 14),
+                         (322, 148, 78, 14)):
+        o.append(_rect(x, y, bw, bh, fill="url(#h6)", sw=1.0))
+    # Screwed-in seat ring, split by the bore; thread marks on the outer edges
+    o.append(_rect(258, 254, 40, 18, fill="url(#h6)", sw=1.2))
+    o.append(_rect(322, 254, 40, 18, fill="url(#h6)", sw=1.2))
+    for dx in (252, 256, 260):
+        o.append(_line(dx, 258, dx + 6, 252, sw=0.9, color=INK))
+    for dx in (356, 360, 364):
+        o.append(_line(dx, 258, dx + 6, 252, sw=0.9, color=INK))
+    # V-port plug and stem
+    o.append(_poly([(272, 180), (348, 180), (348, 236), (332, 236),
+                    (310, 252), (288, 236), (272, 236)],
+                   fill="#f6e6c8", sw=1.5, close=True))
+    o.append(_line(310, 70, 310, 180, sw=3, color=INK))
+    # Bonnet, packing, actuator stub
+    o.append(_rect(268, 76, 84, 72, fill="url(#h6)", sw=1.2))
+    o.append(_rect(298, 104, 24, 36, fill="#f6e6c8", sw=1.1))
+    o.append(_rect(240, 36, 140, 40, fill="#eef3fb", sw=1.2))
+    o.append(_txt(310, 60, esc("Actuator stem"), 8, color=INK))
+    # Flow path
+    o.append(_arrow(86, 258, 268, 258, sw=2, color=BLUE))
+    o.append(_arrow(310, 266, 310, 244, sw=2, color=BLUE))
+    o.append(_arrow(338, 240, 424, 258, sw=2, color=BLUE))
+    o.append(_arrow(466, 258, 566, 258, sw=2, color=BLUE))
+
+    def mk(x, y, lab, tx, ty):
+        return (_circle(x, y, 9, fill="#ffffff", sw=1.3, color=RED)
+                + _txt(x, y + 3.2, lab, 8, color=RED, weight="700")
+                + _line(x, y, tx, ty, sw=0.9, color=GREY))
+
+    o.append(mk(430, 186, "1", 350, 208))
+    o.append(mk(430, 292, "2", 364, 262))
+    o.append(mk(214, 120, "3", 300, 116))
+
+    o.append(_line(40, 330, 580, 330, sw=0.8, color=GREY))
+    for i, t in enumerate(["1 · V-port plug / nút cổng chữ V",
+                           "2 · screwed-in seat ring / vòng đế vặn ren",
+                           "3 · stem packing / bao bình thân van"]):
+        o.append(_txt(40, 348 + i * 20, esc(t), 8, anchor="start", color=INK))
+    o.append(_txt(310, 402,
+                  esc("Plug and seat ring: type 316 stainless steel - source: SAMSON AG"),
+                  7.4, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Single-seated globe valve with screwed-in seat and V-port plug"))
+    return _fig(s,
+                "Hình 3-2 · Mặt cắt van cầu một chỗ ngồi cỡ nhỏ với vòng đế vặn ren vào thân "
+                "và nút có cổng chữ V: 1 nút cổng chữ V, 2 vòng đế vặn ren, 3 bao bình thân "
+                "giúp ma sát và vùng chết thấp. Nút và vòng đế thường làm bằng thép không gỉ "
+                "type 316. Nguồn: SAMSON AG.",
+                "Figure 3-2 · Section of a smaller single-seated globe valve with a screwed-in "
+                "seat ring and a V-port plug: 1 V-port plug, 2 screwed-in seat ring, 3 stem "
+                "packing for low friction and deadband. Plug and seat ring are typically made "
+                "from type 316 stainless steel. Source: Courtesy of SAMSON AG.",
+                "Mặt cắt van cầu một chỗ ngồi với vòng đế vặn ren và nút cổng chữ V",
+                "Section of a single-seated globe valve with screwed-in seat and V-port plug")
+
+
+@_reg
+def fig_f33():
+    """Figure 3-3 — rotary control valve with field-replaceable seat and insert."""
+    w, h = 680, 420
+    o = [_defs()]
+    o.append(_txt(340, 18,
+                  esc("Rotary control valve - high-performance butterfly, section"),
+                  10.5, color=INK, weight="600"))
+    # Body ring, bore, and field-replaceable seat/seal
+    o.append(_circle(250, 190, 116, fill="url(#h6)", sw=1.5))
+    o.append(_circle(250, 190, 96, fill="#fbfaf7", sw=1.3))
+    o.append(_circle(250, 190, 90, fill="none", sw=3, color=RED))
+    # Rotating disc (closure member)
+    o.append(_poly([(327, 147), (317, 132), (173, 233), (183, 248)],
+                   fill="#f6e6c8", sw=1.6, close=True))
+    # Shaft and actuator
+    o.append(_line(250, 62, 250, 318, sw=4, color=INK))
+    o.append(_circle(250, 190, 5, fill=INK, sw=0))
+    o.append(_rect(186, 26, 128, 36, fill="#eef3fb", sw=1.2))
+    o.append(_txt(250, 48, esc("Actuator + positioner"), 8, color=INK))
+    # Flow path
+    o.append(_arrow(70, 190, 176, 190, sw=2, color=BLUE))
+    o.append(_arrow(324, 190, 392, 190, sw=2, color=BLUE))
+    # Perforated low-noise insert segments
+    for x, y in ((292, 236), (308, 242), (324, 248), (340, 254)):
+        o.append(_rect(x, y, 14, 9, fill="#dceaf5", sw=1.0, stroke=BLUE))
+
+    def mk(x, y, lab, tx, ty):
+        return (_circle(x, y, 9, fill="#ffffff", sw=1.3, color=RED)
+                + _txt(x, y + 3.2, lab, 8, color=RED, weight="700")
+                + _line(x, y, tx, ty, sw=0.9, color=GREY))
+
+    o.append(mk(348, 138, "1", 322, 143))
+    o.append(mk(300, 96, "2", 254, 92))
+    o.append(mk(150, 282, "3", 178, 254))
+    o.append(mk(362, 262, "4", 348, 256))
+
+    o.append(_txt(410, 100, esc("Legend / Chú thích"), 9, anchor="start",
+                  color=INK, weight="600"))
+    legend = [
+        (120, "1 - rotating disc (closure member)", "   đĩa quay (cơ cấu đóng)"),
+        (156, "2 - shaft, backlash-free link", "   trục, liên kết không hở"),
+        (192, "3 - field-replaceable seat and seal", "   chỗ ngồi và phớt thay tại hiện trường"),
+        (228, "4 - field-attachable low-noise insert", "   chi tiết giảm ồn lắp tại hiện trường"),
+    ]
+    for y, en, vi in legend:
+        o.append(_txt(410, y, esc(en), 8, anchor="start", color=INK))
+        o.append(_txt(410, y + 13, esc(vi), 7.6, anchor="start", color=GREY))
+    o.append(_txt(340, 398,
+                  esc("After Baumann, Control Valve Primer - source: H. D. Baumann Inc."),
+                  7.2, color=GREY))
+    s = svg(w, h, "".join(o),
+            esc("Rotary control valve section with replaceable seat and low-noise insert"))
+    return _fig(s,
+                "Hình 3-3 · Van quay thiết kế riêng cho điều khiển (butterfly hiệu năng cao), "
+                "mặt cắt: 1 đĩa quay là cơ cấu đóng, 2 trục với liên kết không hở tới cơ cấu "
+                "chấp hành, 3 chỗ ngồi và phớt thay được tại hiện trường, 4 chi tiết giảm ồn, "
+                "chống xâm thực lắp tại hiện trường. Nguồn: H. D. Baumann Inc.",
+                "Figure 3-3 · Rotary valve designed especially for control (high-performance "
+                "butterfly), section view: 1 rotating disc as the closure member, 2 shaft with "
+                "a backlash-free link to the actuator, 3 field-replaceable seat and seal, "
+                "4 field-attachable low-noise, anticavitation insert. Source: Courtesy of "
+                "H. D. Baumann Inc.",
+                "Mặt cắt van quay điều khiển với chỗ ngồi thay được và chi tiết giảm ồn",
+                "Rotary control valve section with replaceable seat and low-noise insert")

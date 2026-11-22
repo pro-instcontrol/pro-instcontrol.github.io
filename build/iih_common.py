@@ -28,6 +28,7 @@ BOOK["iih"] = {
 # that exist, so an in-progress book never ships a broken "next" link.
 SLUGS["iih"] = {
     1: "ch01-measurement-of-temperature",
+    2: "ch02-measurement-of-pressure",
 }
 
 # Re-export the shared helpers so chapter modules can `import iih_common as C`.

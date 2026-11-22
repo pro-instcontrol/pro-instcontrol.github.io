@@ -874,7 +874,7 @@ BOOKS = {
                 "Kỹ thuật lấy mẫu khí và chất lỏng trong công nghiệp"),
             8: ("Control Valves", "Van điều khiển"),
         },
-        "done": {1: "ch01-measurement-of-temperature"},
+        "done": {1: "ch01-measurement-of-temperature", 2: "ch02-measurement-of-pressure"},
         "copyright_en": "Original work © 2018 3G E-learning LLC.",
         "copyright_vi": "Bản gốc © 2018 3G E-learning LLC.",
         "lede_en": ("A 3G E-learning illustrated handbook covering the measurement of temperature, pressure, level, pH and flow, mechanical flow meters, gas and liquid sampling in the process industry, and control valves — an accessible visual companion for instrument technicians."),

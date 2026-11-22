@@ -5,9 +5,9 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-22, campaign paused by user):** 9 reader books fully live (flagship Book 6
+**Status (2026-11-22, campaign resumed):** 9 reader books fully live (flagship Book 6
 *Valve Selection Handbook* 🟢 21/21), plus a 4-book control/instrumentation campaign in progress
-across Books 7–10. HEAD `671ae45b`; all live checks green.
+across Books 7–10. HEAD `2ca04367` (Book 10 Ch.1 published); all live checks green.
 
 ---
 
@@ -34,7 +34,7 @@ across Books 7–10. HEAD `671ae45b`; all live checks green.
 | `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **1/15** 🟠 | 19 (ch1) |
 | `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **1/8** 🟠 | 6 (ch1) |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
-| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **0/8** 🟠 — Ch.1 files validated, integration paused | 51 (ch1, unpublished) |
+| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
 (Emerson), 294 (IIH), 295 (PPIC), 296 (IPC).
@@ -45,12 +45,13 @@ across Books 7–10. HEAD `671ae45b`; all live checks green.
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
 - IIH Ch.1 "Measurement of Temperature" (6 figs, printed pp. 1–45, 77 refs)
 - PPIC Ch.1 "Catalytic Reduction of Dissolved Oxygen" (5 figs, 4 tables)
+- IPC Ch.1 "Transducers – I" (51 figs, 7 tables, printed pp. 1–62)
 
 ### Live verification (2026-11-22, at stop)
 - All chapter pages, TOCs and work pages checked this session → **HTTP 200**.
-- Sitemap **1,018 URLs** (1,003 with language siblings); 512 work-detail pages.
-- `check_links.py` at last build: 4 transient broken links — all are Book 10's TOC "Open the
-  book" fallback pointing at its unbuilt Ch.1 (normal for a book at 0/8; clears on integration).
+- Sitemap **1,020 URLs** (1,005 with language siblings); 512 work-detail pages.
+- `check_links.py` at last build: **broken 0** (Book 10's 4 transient TOC fallback links
+  cleared when Ch.1 was integrated).
 
 ---
 
@@ -95,15 +96,13 @@ across Books 7–10. HEAD `671ae45b`; all live checks green.
   credential.helper=store push --progress origin main`.
 - Session pushes: `0ed011b7` (registration) → `bad2d686` (Baumann ch2 + Emerson ch1) →
   `b370e6f3` (Book 8 registration) → `98bb7d26` (IIH ch1) → `066862d2` (Book 9 registration) →
-  `7b60e440` (PPIC ch1) → `671ae45b` (Book 10 registration, HEAD).
+  `7b60e440` (PPIC ch1) → `671ae45b` (Book 10 registration) → `a15f1de8` (pause/report) →
+  `2ca04367` (IPC ch1, HEAD).
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
-## 6. Queue at the stop (user's stated order) — not started
-1. **Integrate Book 10 `ipc` Chapter 1** — agent output already validated:
-   `build/ipc_ch01.py` + `build/ipcfig.py` (51 figures, 7 tables, VI 284k / EN 306k chars,
-   0 CJK / bare amps). Registration edits were reverted at the stop; redo the 3 edits
-   (`SLUGS["ipc"][1]="ch01-transducers-i"`, `done[1]`, `TRANSLATED` 1/8) → build → QA → push.
-2. **Book 8 `iih` Chapters 2–8** (per user: "do one by one").
+## 6. Queue (user's stated order)
+1. ~~Integrate Book 10 `ipc` Chapter 1~~ — **done** in `2ca04367` (51 figs, 7 tables, broken 0).
+2. **Book 8 `iih` Chapters 2–8** (per user: "do one by one") — Ch.2 in progress.
 3. **Baumann `cvp` Chapters 3–32**.
 4. **Emerson `cvh6` Chapters 2–15**.
 5. **Register candidate Book 11** — *Fundamentals of Industrial Instrumentation* (348 pp,

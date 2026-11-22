@@ -6050,3 +6050,17 @@ User queued three further directives then stopped the pipeline:
 **Queue at stop (in user's stated order):** Book 8 `iih` ch2-8 → Baumann `cvp` ch3-32 →
 Emerson `cvh6` ch2-15, one by one; plus Book 10 `ipc` ch1 integration then ch2-8; Books 11-12
 registration when resumed.
+
+## Session 82 — Resume: Book 10 IPC Chapter 1 published
+- Redid the 3 registration edits from HANDOFF §0: `ipc_common.SLUGS["ipc"][1]`,
+  `reader_book.py` `ipc done[1]`, `books_site.py` TRANSLATED `("progress", 8, 1)`.
+- Built `build/ipc_ch01.py` + `build/ipcfig.py` (51 vector figures, 7 tables, 62 source pages,
+  printed pp. 1–62 "Transducers – I"). EN 303 kB / VI 282 kB pages.
+- QA: 51 inline SVGs XML-valid, 51 unique `fig-N` ids per page, 0 CJK, 0 ES, 0 chapter bare
+  ampersands (the 2/page are the shared Google Fonts URL, same as all published pages).
+  `check_links.py`: **1022 pages / 30664 refs / broken 0** (the 4 transient IPC TOC fallback
+  links cleared). Sitemap 1018 → **1020 URLs** (1005 with language siblings).
+- Pushed `2ca04367` ("Publish IPC chapter 1: Transducers I (EN/VI, 51 vector figures)"),
+  525 files changed. Live EN + VI chapter pages 200, TOC + `/books/` 200 (deep paths needed
+  one cache-busting retry, as expected).
+- IPC now **1/8 🟠**. Next in queue: Book 8 `iih` Chapters 2–8 (user: "do one by one").

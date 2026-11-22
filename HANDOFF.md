@@ -1,10 +1,10 @@
-# HANDOFF — Campaign paused 2026-11-22 (Books 7–10 in progress)
+# HANDOFF — Campaign resumed 2026-11-22 (Books 7–10 in progress)
 
-**State at the stop:** 9 reader books fully live 🟢 (flagship Book 6 *Valve Selection Handbook*
-21/21). Control/instrumentation campaign in progress: Baumann `cvp` 2/32, Borden `bcv` 1/1 🟢,
-Emerson `cvh6` 1/15, IIH `iih` 1/8, PPIC `ppic` 1/11, IPC `ipc` 0/8 with **Chapter 1 agent output
-validated but integration paused mid-flight** (registration edits reverted; files kept).
-HEAD `671ae45b`; sitemap 1,018 URLs; live checks green. Full tables in `report.md`.
+**State now:** 9 reader books fully live 🟢 (flagship Book 6 *Valve Selection Handbook* 21/21).
+Control/instrumentation campaign in progress: Baumann `cvp` 2/32, Borden `bcv` 1/1 🟢,
+Emerson `cvh6` 1/15, IIH `iih` 1/8, PPIC `ppic` 1/11, IPC `ipc` **1/8** (Ch.1 published in
+`2ca04367`). HEAD `2ca04367`; sitemap 1,020 URLs; `check_links.py` broken 0; live checks green.
+Full tables in `report.md`.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — plus two books located but not registered
@@ -13,16 +13,12 @@ Knowledge*, 2nd ed., 511 pp).
 
 ---
 
-## 0. Resume first action: integrate Book 10 `ipc` Chapter 1
-Agent output `build/ipc_ch01.py` + `build/ipcfig.py` already exists and validates
-(51 figures XML-valid, 7 tables, VI 284,182 / EN 306,070 chars, 0 CJK / 0 bare ampersands,
-`PAGES_SRC=62`). The registration edits made at the stop were **reverted**, so redo:
-1. `build/ipc_common.py` → `SLUGS["ipc"] = {1: "ch01-transducers-i"}`
-2. `build/reader_book.py` → ipc `"done": {1: "ch01-transducers-i"}`
-3. `build/books_site.py` → `"instrumentation and process control": ("progress", 8, 1)`
-4. `python build/reader_ipc.py 1` → `reader_book.py ipc` → `books_site.py` → `make_sitemap.py`
-   → `check_links.py` (broken 0) → commit → push → live verify.
-Then continue the queue below, one chapter per run.
+## 0. Done: Book 10 `ipc` Chapter 1 integrated (push `2ca04367`)
+Redid the 3 registration edits, built chapter/TOC/site/sitemap, QA'd (51 figs XML-valid,
+51 unique fig ids, 0 CJK, 0 ES, broken 0), committed and live-verified both language pages.
+Continue with the queue below, one chapter per run. Note: the "bare &" count of 2–3 per page
+is the shared Google Fonts URL in the page shell — pre-existing on every published page, not
+chapter content.
 
 ## A. Continuation queue (user's order)
 1. Book 8 `iih` ch2–8 — source `work/ihii_raw.txt` (readable); printed = PDF − 14.
