@@ -29,6 +29,7 @@ BOOK["iih"] = {
 SLUGS["iih"] = {
     1: "ch01-measurement-of-temperature",
     2: "ch02-measurement-of-pressure",
+    3: "ch03-measurement-of-level",
 }
 
 # Re-export the shared helpers so chapter modules can `import iih_common as C`.
