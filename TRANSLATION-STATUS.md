@@ -5971,3 +5971,38 @@ Source OCR typos preserved in EN (`man monitoring`, `Jaspeh L. Gay-Lussac`, `thi
 Registered `SLUGS["iih"][1]` and `BOOKS["iih"]["done"][1]`, progress 1/8. Site rebuilt: 508 work
 pages, sitemap 1008 URLs, **`check_links.py`: 0 broken links** (Book 8 fallback links resolved).
 Live EN/VI chapter pages 100/111 kB. Remaining: Book 8 ch2-8; Baumann ch3-32; Emerson ch2-15.
+
+## Session 78 — Book 9 registered: Handbook on Power Plant Instrumentation and Control
+User supplied `Handbook-on-power-plant-instrumentation-and-control`. Source:
+`D:/Ebooks/Process Control and Automation/Handbook-on-power-plant-instrumentation-and-control.pdf`
+(308 pp, 61.3 MB, L. N. Jalali ed., Bibliotex 2019 e-book, individual chapters Creative Commons),
+extracted to `work/ppic_raw.txt` (468,335 chars). An 11-chapter edited research volume:
+1 Catalytic Reduction of Dissolved Oxygen; 2 Advanced Measuring (Instrumentation) Methods for
+Nuclear Installations; 3 Control Strategy of Solar PV Converter; 4 Nuclear Instrumentation Fault
+Detection Using Fuzzy Logic; 5 Thorium/Uranium Fuels in Block-Type HTRs; 6 Power System Protection
+and Control; 7 Spatial Aspects of Environmental Impact; 8 Coal-Fired Power Plant Damping; 9
+Predictive Maintenance via Control Charts; 10 Reliability of Digital I&C; 11 Saturated Adaptive
+Power-Level Control for HTRs. Printed page = PDF page − 16. Chapter PDF spans: 17-28, 29-54,
+55-64, 65-94, 95-122, 123-140, 141-168, 169-214, 215-244, 245-270, 271-300.
+- Catalog work **295** added (domain "power", 308 pp, 2019); totals 257 works.
+- `BOOKS["ppic"]` spec added to `reader_book.py`; `ppic_common.py` + `reader_ppic.py` created.
+- `books_site.py`: DESC / TRANSLATED ("progress", 11, 0) / BOOK_SLUG entries added.
+- Site rebuilt: 510 work pages, sitemap 1012 URLs. EN/VI cards show 🟠 0/11.
+- Live EN/VI TOC + work 295 + `/books/` all HTTP 200 after push `98bb7d26..066862d2`.
+- `check_links.py` reports 4 transient broken links (TOC fallback to unbuilt Ch.1), same as prior books.
+- Chapter 1 (PDF 17-28, 5 figures, 4 tables) delegated to background agent.
+- Remaining: Book 9 ch1-11; Book 8 ch2-8; Baumann ch3-32; Emerson ch2-15.
+
+## Session 79 — Book 9 Chapter 1 published: Catalytic Reduction of Dissolved Oxygen
+`ppic_ch01.py` + `ppicfig.py` (background agent output) validated and integrated. Chapter 1 covers
+PDF pp.17-28 / printed pp.1-12 (12 source pages). Full EN/VI translation of all sections, 4 source
+tables reproduced as HTML, full reference list. Five source figures redrawn as vector in `ppicfig.py`:
+(1) catalytic process overview, (2) outlet O2 vs temperature at 3/2 atm, (3) O2 vs pressure (20/10/5 °C),
+(4) remaining O2 vs contact time (120/60/45 s), (5) remaining O2 vs inlet DO (0.5/2/4 ppm).
+VI 58,826 / EN 60,510 chars; 5 figures with unique `fig-1`..`fig-5` ids, 4 tables each, all SVGs
+XML-valid, 0 CJK, 0 bare ampersands. Source equations and table data are images — equations rendered
+symbolically (ΔH = −68.3 kcal/mol); stray typesetting marks after 28/24 read as `>28`/`>24` ppb.
+OCR typos kept in EN (`mo1 H2O/mo1H2`, `no more possible`), VI uses intended meaning; end notes document.
+Registered `SLUGS["ppic"][1]` and `BOOKS["ppic"]["done"][1]`, progress 1/11. Site rebuilt: 510 work
+pages, sitemap 1014 URLs, **`check_links.py`: 0 broken links** (Book 9 fallback links resolved).
+Live EN/VI chapter pages 63/64 kB. Remaining: Book 9 ch2-11; Book 8 ch2-8; Baumann ch3-32; Emerson ch2-15.
