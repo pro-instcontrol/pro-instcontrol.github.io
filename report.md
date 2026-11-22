@@ -7,7 +7,7 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-22, campaign resumed):** 9 reader books fully live (flagship Book 6
 *Valve Selection Handbook* 🟢 21/21), plus a 4-book control/instrumentation campaign in progress
-across Books 7–10. HEAD `2ca04367` (Book 10 Ch.1 published); all live checks green.
+across Books 7–10. HEAD `fd86e439`; all live checks green.
 
 ---
 
@@ -29,10 +29,10 @@ across Books 7–10. HEAD `2ca04367` (Book 10 Ch.1 published); all live checks g
 ### In-progress campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **2/32** 🟠 | 3 (ch1) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **3/32** 🟠 | 6 (ch1–3) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **1/15** 🟠 | 19 (ch1) |
-| `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **1/8** 🟠 | 6 (ch1) |
+| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **2/15** 🟠 | 29 (ch1–2) |
+| `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **2/8** 🟠 | 27 (ch1–2) |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
 
@@ -49,7 +49,7 @@ across Books 7–10. HEAD `2ca04367` (Book 10 Ch.1 published); all live checks g
 
 ### Live verification (2026-11-22, at stop)
 - All chapter pages, TOCs and work pages checked this session → **HTTP 200**.
-- Sitemap **1,020 URLs** (1,005 with language siblings); 512 work-detail pages.
+- Sitemap **1,026 URLs** (1,011 with language siblings); 512 work-detail pages.
 - `check_links.py` at last build: **broken 0** (Book 10's 4 transient TOC fallback links
   cleared when Ch.1 was integrated).
 
@@ -97,12 +97,12 @@ across Books 7–10. HEAD `2ca04367` (Book 10 Ch.1 published); all live checks g
 - Session pushes: `0ed011b7` (registration) → `bad2d686` (Baumann ch2 + Emerson ch1) →
   `b370e6f3` (Book 8 registration) → `98bb7d26` (IIH ch1) → `066862d2` (Book 9 registration) →
   `7b60e440` (PPIC ch1) → `671ae45b` (Book 10 registration) → `a15f1de8` (pause/report) →
-  `2ca04367` (IPC ch1, HEAD).
+  `2ca04367` (IPC ch1) → `de891681` (IIH ch2) → `e71e3415` (Baumann ch3) → `fd86e439` (Emerson ch2, HEAD).
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
 ## 6. Queue (user's stated order)
 1. ~~Integrate Book 10 `ipc` Chapter 1~~ — **done** in `2ca04367` (51 figs, 7 tables, broken 0).
-2. **Book 8 `iih` Chapters 2–8** (per user: "do one by one") — Ch.2 in progress.
+2. **Book 8 `iih` Chapters 3–8** (per user: "do one by one") — next: Ch.3 "Measurement of Level".
 3. **Baumann `cvp` Chapters 3–32**.
 4. **Emerson `cvh6` Chapters 2–15**.
 5. **Register candidate Book 11** — *Fundamentals of Industrial Instrumentation* (348 pp,

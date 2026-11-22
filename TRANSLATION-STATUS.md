@@ -6077,3 +6077,16 @@ registration when resumed.
 - Parallel writers finished: Baumann Ch.3 (`cvp_ch03.py` + 3 figs, independently validated: 6
   XML-valid FIGs, 3 figures/page, 0 CJK/ES/bare&, figures visually clean) and Emerson Ch.2
   (`cvh6_ch02.py` + 10 figs — validation pending). Both landed in `de891681` as unbuilt modules.
+
+## Session 84 — Baumann Ch3 + Emerson Ch2 published (queue batch complete)
+- Baumann `cvp` Ch.3 "What Valve Type Shall I Choose?" (PDF pp. 21–27, PAGES_SRC=7): 3 vector
+  figs in `cvpfig.py` (cage valve, single-seat V-port, rotary butterfly), ~11.8k VI / 12.3k EN
+  chars. Visually clean. Registered 3/32; built/built QA broken 0; pushed `e71e3415`; live 200.
+- Emerson `cvh6` Ch.2 "Control Valve Performance" (printed pp. 34–53, PAGES_SRC=20): 10 vector
+  figs (charts, test loop, deadband, response time, installed characteristic/gain, control range,
+  load disturbance, data comparison, ValveLink UI), ~107k VI / 113k EN chars. Visual QA fixed one
+  overlap (fig 2.9 legend labels). Registered 2/15; broken 0; pushed `fd86e439`; live 200.
+- Sitemap 1022 → **1024 → 1026 URLs** (1011 with language siblings); final `check_links.py`
+  1028 pages / 30814 refs / **broken 0**.
+- All three agent-written chapters were independently revalidated (XML, CJK, ES, figure counts)
+  before publication; figure renders inspected with Chrome headless + PIL crop/upscale.

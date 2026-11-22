@@ -2,8 +2,8 @@
 
 **State now:** 9 reader books fully live 🟢 (flagship Book 6 *Valve Selection Handbook* 21/21).
 Control/instrumentation campaign in progress: Baumann `cvp` 2/32, Borden `bcv` 1/1 🟢,
-Emerson `cvh6` 1/15, IIH `iih` 1/8, PPIC `ppic` 1/11, IPC `ipc` **1/8** (Ch.1 published in
-`2ca04367`). HEAD `2ca04367`; sitemap 1,020 URLs; `check_links.py` broken 0; live checks green.
+Emerson `cvh6` **2/15**, IIH `iih` **2/8**, PPIC `ppic` 1/11, IPC `ipc` **1/8**.
+HEAD `fd86e439`; sitemap 1,026 URLs; `check_links.py` broken 0; live checks green.
 Full tables in `report.md`.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
