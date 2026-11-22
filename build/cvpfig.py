@@ -401,3 +401,113 @@ def fig_f33():
                 "H. D. Baumann Inc.",
                 "Mặt cắt van quay điều khiển với chỗ ngồi thay được và chi tiết giảm ồn",
                 "Rotary control valve section with replaceable seat and low-noise insert")
+
+
+@_reg
+def fig_f41():
+    """Figure 4-1 — spring-diaphragm-operated pressure-reducing regulator."""
+    w, h = 680, 560
+    o = [_defs()]
+    o.append(_txt(340, 18,
+                  esc("Spring-diaphragm pressure-reducing regulator - section (simplified)"),
+                  10.5, color=INK, weight="600"))
+
+    # Upper spring case, setting screw and spring (spring pushes the
+    # diaphragm down, which opens the plug; downstream pressure pushes back).
+    o.append(_rect(250, 44, 180, 96, fill="#eef3fb", sw=1.4))
+    o.append(_rect(329, 20, 22, 6, fill="#f6e6c8", sw=1.1))
+    o.append(_rect(333, 24, 14, 22, fill="#f6e6c8", sw=1.1))
+    o.append(_line(340, 44, 340, 58, sw=1.6, color=INK))
+    pts = [(340, 56)]
+    for i in range(11):
+        pts.append((330 if i % 2 == 0 else 350, 62 + i * 7))
+    pts.append((340, 138))
+    o.append(_poly(pts, sw=1.6, color=GREY))
+
+    # Diaphragm chamber and the diaphragm clamped at its rim.
+    o.append(_rect(252, 140, 176, 50, fill="#fdf6e9", sw=1.3))
+    o.append(_line(244, 140, 436, 140, sw=2.6, color=BLUE))
+    o.append(_rect(240, 134, 10, 12, fill="url(#h6)", sw=1.0))
+    o.append(_rect(432, 134, 10, 12, fill="url(#h6)", sw=1.0))
+
+    # Stem runs down from the diaphragm to the plug below the seat.
+    o.append(_line(340, 140, 340, 364, sw=2.6, color=INK))
+
+    # Valve body in section, with fluid cavities above and below the seat.
+    o.append(_rect(150, 290, 380, 110, fill="url(#h6)", sw=1.5))
+    o.append(_rect(155, 300, 370, 36, fill="#eef5fa", sw=0.8))
+    o.append(_rect(155, 352, 370, 38, fill="#eef5fa", sw=0.8))
+    o.append(_rect(295, 336, 90, 16, fill="url(#h6)", sw=1.2))
+    o.append(_rect(332, 336, 16, 16, fill="#eef5fa", sw=1.0))
+    o.append(_poly([(320, 384), (360, 384), (350, 364), (330, 364)],
+                   fill="#f6e6c8", sw=1.4, close=True))
+    o.append(_rect(55, 352, 100, 38, fill="#dceaf5", sw=1.2))
+    o.append(_rect(525, 300, 100, 36, fill="#dceaf5", sw=1.2))
+
+    # Flow path: inlet, lower chamber, up through the seat, outlet.
+    o.append(_arrow(62, 371, 152, 371, sw=2, color=BLUE))
+    o.append(_arrow(170, 371, 312, 371, sw=2, color=BLUE))
+    o.append(_arrow(340, 360, 340, 338, sw=2, color=BLUE))
+    o.append(_arrow(360, 318, 520, 318, sw=2, color=BLUE))
+    o.append(_arrow(532, 318, 615, 318, sw=2, color=BLUE))
+    o.append(_txt(105, 342, esc("Flow"), 7.6, color=GREEN, weight="600"))
+
+    # Downstream sensing line feeding the underside of the diaphragm.
+    o.append(_poly([(560, 300), (560, 170), (428, 170)],
+                   sw=1.3, color=BLUE, dash="5 3"))
+    o.append(_circle(560, 300, 3, fill=BLUE, sw=0))
+    o.append(_txt(494, 162, esc("Sensing line (downstream pressure)"),
+                  7.2, color=BLUE))
+
+    def mk(x, y, lab, tx, ty):
+        return (_circle(x, y, 9, fill="#ffffff", sw=1.3, color=RED)
+                + _txt(x, y + 3.2, lab, 8, color=RED, weight="700")
+                + _line(x, y, tx, ty, sw=0.9, color=GREY))
+
+    o.append(mk(200, 272, "1", 205, 292))
+    o.append(mk(95, 415, "2", 95, 390))
+    o.append(mk(610, 365, "3", 590, 336))
+    o.append(mk(460, 118, "4", 434, 140))
+    o.append(mk(450, 82, "5", 352, 84))
+    o.append(mk(450, 33, "6", 348, 30))
+    o.append(mk(240, 412, "7", 325, 380))
+    o.append(mk(605, 200, "8", 562, 200))
+
+    o.append(_line(40, 430, 640, 430, sw=0.8, color=GREY))
+    legend_left = [
+        "1 · Valve body / Thân van",
+        "2 · Inlet, upstream / Đầu vào, thượng lưu",
+        "3 · Outlet, downstream / Đầu ra, hạ lưu",
+        "4 · Diaphragm / Màng",
+    ]
+    legend_right = [
+        "5 · Adjustable spring / Lò xo điều chỉnh",
+        "6 · Setting screw / Vít chỉnh áp",
+        "7 · Plug and seat / Nút và đế van",
+        "8 · Downstream sensing line / Ống dẫn áp hạ lưu",
+    ]
+    for i, t in enumerate(legend_left):
+        o.append(_txt(40, 452 + i * 22, esc(t), 8.2, anchor="start", color=INK))
+    for i, t in enumerate(legend_right):
+        o.append(_txt(350, 452 + i * 22, esc(t), 8.2, anchor="start", color=INK))
+    o.append(_txt(340, 545,
+                  esc("After Baumann, Control Valve Primer - Fig. 4-1 - vector redraw; "
+                      "sensing line drawn schematically."),
+                  7.2, color=GREY))
+
+    s = svg(w, h, "".join(o),
+            esc("Spring-diaphragm pressure-reducing regulator cross-section with callouts 1 to 8"))
+    return _fig(s,
+                "Hình 4-1 · Bộ điều chỉnh giảm áp vận hành bằng lò xo–màng (mặt cắt đơn giản "
+                "hóa). Tải trọng lò xo điều chỉnh được tác dụng lên màng xác định áp suất đầu "
+                "ra mong muốn; ống dẫn áp hạ lưu (vẽ dạng sơ đồ) giúp tăng độ chính xác của "
+                "việc điều khiển áp suất. Khi áp suất hạ lưu tăng, màng đẩy nút lên cho đến "
+                "khi lực trên màng cân bằng với tải trọng lò xo.",
+                "Figure 4-1 · A spring-diaphragm-operated pressure-reducing regulator "
+                "(simplified section). An adjustable spring load acting on the diaphragm "
+                "determines the desired valve outlet pressure; a downstream sensing line "
+                "(shown schematically) improves the accuracy of pressure control. As "
+                "downstream pressure increases, the diaphragm moves the plug up until the "
+                "force on the diaphragm equals the applied spring load.",
+                "Mặt cắt bộ điều chỉnh giảm áp lò xo–màng với chú thích 1 đến 8",
+                "Cross-section of a spring-diaphragm pressure-reducing regulator with callouts 1 to 8")
