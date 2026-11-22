@@ -74,6 +74,36 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch07-controllers/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch01-what-is-a-control-valve-and-how-does/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch01-what-is-a-control-valve-and-how-does/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch01-what-is-a-control-valve-and-how-does/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch01-what-is-a-control-valve-and-how-does/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/inherent-safety-in-process-plant-design/"/>
@@ -2486,6 +2516,24 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/290/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/work/291/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/291/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/291/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/291/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/work/292/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/292/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/292/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/292/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/work/293/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/293/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/293/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/293/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/work/3/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/3/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/3/"/>
@@ -3039,6 +3087,36 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch07-controllers/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-systems-bolton/ch07-controllers/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-systems-bolton/ch07-controllers/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch01-what-is-a-control-valve-and-how-does/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch01-what-is-a-control-valve-and-how-does/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch01-what-is-a-control-valve-and-how-does/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch01-what-is-a-control-valve-and-how-does/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/inherent-safety-in-process-plant-design/</loc>
@@ -5451,6 +5529,24 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/290/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/290/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/290/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/work/291/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/291/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/291/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/291/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/work/292/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/292/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/292/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/292/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/work/293/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/work/293/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/work/293/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/work/293/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/work/3/</loc>

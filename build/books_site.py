@@ -321,6 +321,22 @@ DESC = {
         "that decide whether the loop can actually be controlled.",
         "Sổ tay van điều khiển Fisher — tính chọn, xâm thực, tiếng ồn, và cơ cấu chấp hành "
         "quyết định vòng điều khiển có điều khiển được hay không."),
+    "control valve handbook - 6th edition": (
+        "Emerson's current Control Valve Handbook — the vendor reference on valve performance, "
+        "sizing, digital controllers, severe service, steam conditioning and SIS.",
+        "Sổ tay Van điều khiển hiện hành của Emerson — tài liệu tham khảo của nhà sản xuất về "
+        "hiệu năng van, định cỡ, bộ điều khiển số, dịch vụ khắc nghiệt, điều hòa hơi và SIS."),
+    "control valve primer": (
+        "Baumann's ISA classic on control valves — the practical guide to valve types, sizing, "
+        "cavitation, noise, actuators and smart positioners, now with digital fieldbus control.",
+        "Tác phẩm kinh điển của ISA về van điều khiển của Baumann — hướng dẫn thực hành về loại "
+        "van, định cỡ, xâm thực, tiếng ồn, cơ cấu chấp hành và bộ định vị thông minh, nay có "
+        "điều khiển fieldbus số."),
+    "control valves - practical guides": (
+        "The ISA Practical Guides volume on control valves, edited by Guy Borden — this copy "
+        "covers control valve actuators and their accessories.",
+        "Tập Sổ tay Thực hành ISA về van điều khiển do Guy Borden biên tập — bản này trình bày "
+        "cơ cấu chấp hành van điều khiển và các phụ tùng của chúng."),
     "valve selection handbook": (
         "Zappe's engineering guide to choosing a valve for a duty, with the fluid behaviour and "
         "failure modes behind each choice.",
@@ -464,6 +480,9 @@ TRANSLATED = {
     "pressure relief valve engineering handbook": ("full", 8, 8),
     "inherent safety in process plant design": ("full", 16, 16),
     "valve selection handbook": ("full", 21, 21),
+    "control valve primer": ("progress", 32, 1),
+    "control valves - practical guides": ("full", 1, 1),
+    "control valve handbook - 6th edition": ("progress", 15, 0),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
@@ -495,6 +514,9 @@ BOOK_SLUG = {
         "inherent-safety-in-process-plant-design",
     "p384": "inherent-safety-in-process-plant-design",
     "valve selection handbook": "valve-selection-handbook",
+    "control valve primer": "control-valve-primer-baumann",
+    "control valves - practical guides": "control-valves-borden-practical-guide",
+    "control valve handbook - 6th edition": "control-valve-handbook-emerson-6th",
 }
 
 

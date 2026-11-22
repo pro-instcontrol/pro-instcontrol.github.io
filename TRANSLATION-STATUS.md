@@ -5880,3 +5880,38 @@ lede/policy/copyright EN+VI) and `books_site.py` (`TRANSLATED` →
 - Sitemap 982 URLs (967 with language siblings).
 - **BOOK 6 (Valve Selection Handbook): 21/21 units live in EN + VI.**
 - `report.md` and `HANDOFF.md` rewritten for the six-book campaign.
+
+## Session 74 — Control-valve campaign started: three books registered (EN/VI)
+The Valve Selection Handbook (Book 6) explicitly declines control valves and refers readers to
+two ISA publications (Baumann's *Control Valve Primer*; Borden/Friedmann's *Control Valves*).
+The user supplied three local control-valve sources; all three are now in the library catalog
+and the reader registry, with EN + VI library cards and work-detail pages:
+- **Book 7 — Hans D. Baumann, *Control Valve Primer: A User's Guide*, 5th ed.** (ISA/Wiley;
+  204 pp, 32 chapters, 56 figures). Source `D:/Ebooks/Process Control and Automation/
+  Control-valve-primer-a-users-guide-fifth-edition.pdf`, extracted to `work/cvp_raw.txt`.
+  Catalog work 291; `BOOKS["cvp"]`, `cvp_common.py`, `reader_cvp.py`, `cvpfig.py`.
+  **Chapter 1 published** (printed pp. 1-8): `cvp_ch01.py`, 3 redrawn vector figures
+  (Fig 1-1 ANSI/ISA terminology tree, 1-2 control-loop block diagram, 1-3 1932 Neilan
+  double-seated spring-diaphragm valve). VI/EN ~26.4/27.0 kB. Progress 1/32.
+- **Book 7b — Guy Borden Jr. (ed.), Paul G. Friedmann (style ed.), *Control Valves*, ISA
+  Practical Guides for Measurement and Control (1998).** The local PDF is a 12-page
+  **image-only scan** of Chapter 5 "Control Valve Actuators" (printed pp. 93-103), not the
+  full book. Catalog work 292; `BOOKS["bcv"]`, `bcv_common.py`, `reader_bcv.py`.
+  **Chapter 5 published**: `bcv_ch05.py` + `bcvfig.py` (4 vector figures, Figs 5-1..5-4).
+  VI/EN ~47.3/49.3 kB. Source typos kept in EN ("The advantages of a positioner is",
+  "telling where to stem is") with VI following intended meaning; the descending dead-band
+  range "10.5 to 7.5 psi" kept verbatim. Complete at 1/1.
+- **Book 7c — Emerson, *Control Valve Handbook*, 6th ed. (2020).** Source
+  `D:/Ebooks/Process Control and Automation/Emerson-control-valve-handbook-en-3661206.pdf`
+  (355 pp, 15 chapters), extracted to `work/cvh6_raw.txt`. Catalog work 293;
+  `BOOKS["cvh6"]`, `cvh6_common.py`, `reader_cvh6.py`. Registration complete; progress 0/15.
+- `books_site.py`: DESC / TRANSLATED / BOOK_SLUG entries for all three (keys
+  "control valve primer", "control valves - practical guides",
+  "control valve handbook - 6th edition"). `reader_book.py` gained a robust fallback for
+  books whose `done` map is empty (`spec["done"].get(1, spec["first_en"][0])`), so a
+  not-yet-started book no longer crashes the TOC generator.
+- QA: published CVB and BCV pages — 3/4 inline figure SVGs, all XML-valid, unique `fig-N`
+  ids, localized `Hình`/`Figure` captions, 0 CJK, 0 Python artifacts. Library cards verified
+  in EN + VI: Baumann 🟠 1/32, Borden 🟢 1/1, Emerson 🟠 0/15.
+- **Remaining: Baumann Chapters 2-32; Emerson Chapters 1-15.** Continue chapter by chapter
+  in the established pattern.

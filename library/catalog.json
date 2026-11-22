@@ -114,7 +114,7 @@
   "unique_pdfs": 583,
   "duplicate_sets": 214,
   "wasted_bytes": 571049915,
-  "works": 291
+  "works": 255
  },
  "extensions": [
   {
@@ -24224,6 +24224,87 @@
    "desc": {
     "en": "Trouble Shooting A Technician's Guide — part of the instrument & control library's reference and teaching collection.",
     "vi": "Trouble Shooting A Technician's Guide — một phần bộ sưu tập tài liệu tham khảo và giảng dạy về điều khiển thiết bị."
+   }
+  },
+  {
+   "id": 291,
+   "title": "Control Valve Primer - A User's Guide, 5th Edition",
+   "dir": "D:/Ebooks/Process Control and Automation",
+   "domain": "valves",
+   "why": 9,
+   "docs": [
+    {
+     "path": "D:/Ebooks/Process Control and Automation/Control-valve-primer-a-users-guide-fifth-edition.pdf",
+     "title": "Control Valve Primer, 5th Edition",
+     "pages": 204,
+     "bytes": 4303255,
+     "copies": [],
+     "head": "Control Valve Primer A User's Guide Fifth Edition Hans D. Baumann"
+    }
+   ],
+   "ndocs": 1,
+   "pages": 204,
+   "bytes": 4303255,
+   "year": 2011,
+   "copies": 0,
+   "head": "Control Valve Primer A User's Guide Fifth Edition Hans D. Baumann",
+   "desc": {
+    "en": "Baumann's user-oriented guide to control valves — the ISA classic, updated for smart positioners, cavitation modelling, noise prediction and digital fieldbus control.",
+    "vi": "Sổ tay van điều khiển hướng dẫn người dùng của Baumann — tác phẩm kinh điển của ISA, cập nhật cho bộ định vị thông minh, mô hình hóa xâm thực, dự báo tiếng ồn và điều khiển fieldbus số."
+   }
+  },
+  {
+   "id": 292,
+   "title": "Control Valves - Practical Guides for Measurement and Control (Borden/Friedmann)",
+   "dir": "D:/Ebooks/Process Control and Automation",
+   "domain": "valves",
+   "why": 7,
+   "docs": [
+    {
+     "path": "D:/Ebooks/Process Control and Automation/Control Valves Selection Handbook - Borden Friedmann.pdf",
+     "title": "Control Valve Actuators (ISA Practical Guides excerpt)",
+     "pages": 12,
+     "bytes": 892142,
+     "copies": [],
+     "head": "Control Valves Guy Borden, Jr., Editor Paul G. Friedmann, Style Editor Practical Guides for Measurement and Control"
+    }
+   ],
+   "ndocs": 1,
+   "pages": 12,
+   "bytes": 892142,
+   "year": 1998,
+   "copies": 0,
+   "head": "Control Valves Guy Borden, Jr., Editor Paul G. Friedmann, Style Editor Practical Guides for Measurement and Control",
+   "desc": {
+    "en": "ISA Practical Guides volume on control valves, edited by Guy Borden; this source contains the complete Chapter 5 on control valve actuators and accessories.",
+    "vi": "Tập Sổ tay Thực hành của ISA về van điều khiển do Guy Borden biên tập; nguồn này chứa toàn bộ Chương 5 về cơ cấu chấp hành và phụ tùng van điều khiển."
+   }
+  },
+  {
+   "id": 293,
+   "title": "Control Valve Handbook - 6th Edition (Emerson)",
+   "dir": "D:/Ebooks/Process Control and Automation",
+   "domain": "valves",
+   "why": 9,
+   "docs": [
+    {
+     "path": "D:/Ebooks/Process Control and Automation/Emerson-control-valve-handbook-en-3661206.pdf",
+     "title": "Control Valve Handbook, 6th Edition",
+     "pages": 355,
+     "bytes": 17126683,
+     "copies": [],
+     "head": "CONTROL VALVE HANDBOOK Sixth Edition Emerson Flow Controls"
+    }
+   ],
+   "ndocs": 1,
+   "pages": 355,
+   "bytes": 17126683,
+   "year": 2020,
+   "copies": 0,
+   "head": "CONTROL VALVE HANDBOOK Sixth Edition Emerson Flow Controls",
+   "desc": {
+    "en": "Emerson's current Control Valve Handbook, 6th edition — the reference on valve performance, sizing, accessories, severe service, steam conditioning, sustainability and SIS.",
+    "vi": "Sổ tay Van điều khiển của Emerson, ấn bản 6 — tài liệu tham khảo về hiệu năng van, định cỡ, phụ tùng, dịch vụ khắc nghiệt, điều hòa hơi, bền vững và hệ thống an toàn."
    }
   }
  ]
