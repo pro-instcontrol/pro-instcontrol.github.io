@@ -337,6 +337,11 @@ DESC = {
         "covers control valve actuators and their accessories.",
         "Tập Sổ tay Thực hành ISA về van điều khiển do Guy Borden biên tập — bản này trình bày "
         "cơ cấu chấp hành van điều khiển và các phụ tùng của chúng."),
+    "illustrated handbook of industrial instrumentation": (
+        "A 3G E-learning illustrated tour of industrial instrumentation — temperature, pressure, "
+        "level, pH, flow, sampling and control valves, with a strong visual bent.",
+        "Sổ tay minh họa của 3G E-learning về thiết bị đo công nghiệp — nhiệt độ, áp suất, mức, "
+        "pH, lưu lượng, lấy mẫu và van điều khiển, với nhiều hình ảnh minh họa."),
     "valve selection handbook": (
         "Zappe's engineering guide to choosing a valve for a duty, with the fluid behaviour and "
         "failure modes behind each choice.",
@@ -483,6 +488,7 @@ TRANSLATED = {
     "control valve primer": ("progress", 32, 2),
     "control valves - practical guides": ("full", 1, 1),
     "control valve handbook - 6th edition": ("progress", 15, 1),
+    "illustrated handbook of industrial instrumentation": ("progress", 8, 0),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
@@ -517,6 +523,7 @@ BOOK_SLUG = {
     "control valve primer": "control-valve-primer-baumann",
     "control valves - practical guides": "control-valves-borden-practical-guide",
     "control valve handbook - 6th edition": "control-valve-handbook-emerson-6th",
+    "illustrated handbook of industrial instrumentation": "illustrated-handbook-industrial-instrumentation-control",
 }
 
 

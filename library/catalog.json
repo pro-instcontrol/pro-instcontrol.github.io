@@ -108,13 +108,13 @@
   }
  ],
  "totals": {
-  "files": 2683,
+  "files": 2684,
   "bytes": 2261380993,
   "pdfs": 808,
-  "unique_pdfs": 583,
+  "unique_pdfs": 584,
   "duplicate_sets": 214,
   "wasted_bytes": 571049915,
-  "works": 255
+  "works": 256
  },
  "extensions": [
   {
@@ -24305,6 +24305,33 @@
    "desc": {
     "en": "Emerson's current Control Valve Handbook, 6th edition — the reference on valve performance, sizing, accessories, severe service, steam conditioning, sustainability and SIS.",
     "vi": "Sổ tay Van điều khiển của Emerson, ấn bản 6 — tài liệu tham khảo về hiệu năng van, định cỡ, phụ tùng, dịch vụ khắc nghiệt, điều hòa hơi, bền vững và hệ thống an toàn."
+   }
+  },
+  {
+   "id": 294,
+   "title": "Illustrated Handbook of Industrial Instrumentation & Control",
+   "dir": "D:/Ebooks/Process Control and Automation",
+   "domain": "instruments",
+   "why": 9,
+   "docs": [
+    {
+     "path": "D:/Ebooks/Process Control and Automation/Illustrated-handbook-of-industrial-instrumentation-and-process-control.pdf",
+     "title": "Illustrated Handbook of Industrial Instrumentation & Control",
+     "pages": 348,
+     "bytes": 24668783,
+     "copies": [],
+     "head": "Illustrated Handbook of Industrial Instrumentation & Control 3G E-Learning"
+    }
+   ],
+   "ndocs": 1,
+   "pages": 348,
+   "bytes": 24668783,
+   "year": 2018,
+   "copies": 0,
+   "head": "Illustrated Handbook of Industrial Instrumentation & Control 3G E-Learning",
+   "desc": {
+    "en": "A 3G E-learning illustrated introduction to industrial instrumentation — temperature, pressure, level, pH, flow, mechanical flowmeters, gas and liquid sampling, and control valves.",
+    "vi": "Sách minh họa của 3G E-learning về thiết bị đo công nghiệp — nhiệt độ, áp suất, mức, pH, lưu lượng, lưu lượng kế cơ khí, lấy mẫu khí và chất lỏng, và van điều khiển."
    }
   }
  ]
