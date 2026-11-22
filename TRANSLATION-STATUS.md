@@ -5938,3 +5938,36 @@ and the reader registry, with EN + VI library cards and work-detail pages:
   `TRANSLATED` progress 2/32 and 1/15. Full site rebuild: TOCs, 506 work pages, sitemap
   1002 URLs, **`check_links.py`: 0 broken links** (Emerson chapter links no longer dangling).
 - Remaining: Baumann ch3-32; Emerson ch2-15. Borden complete at 1/1.
+
+## Session 76 — Book 8 registered: Illustrated Handbook of Industrial Instrumentation & Control
+User supplied `Illustrated-handbook-of-industrial-instrumentation-and-process-control`. Source found at
+`D:/Ebooks/Process Control and Automation/Illustrated-handbook-of-industrial-instrumentation-and-process-control.pdf`
+(348 pp, 24.7 MB, 3G E-learning LLC, 2018, text layer present), extracted to `work/ihii_raw.txt`
+(585,913 chars). Eight chapters: 1 Measurement of Temperature, 2 Measurement of Pressure,
+3 Measurement of Level, 4 pH Measurement, 5 Measurement of Flow Rate, 6 Mechanical Flow Meters,
+7 Gas and Liquid Sampling Techniques in Process Industry, 8 Control Valves. Front matter has a
+glossary (PDF pp.9-11) and preface (PDF p.13); index at end. Chapter PDF page spans: 15-60, 61-96,
+97-142, 143-180, 181-216, 217-256, 257-302, 303-348. Printed page = PDF page - 14.
+- Catalog work **294** added (domain "instruments", 348 pp, year 2018), totals 256 works.
+- `BOOKS["iih"]` spec added to `reader_book.py`; `iih_common.py` + `reader_iih.py` created.
+- `books_site.py`: DESC / TRANSLATED ("progress", 8, 0) / BOOK_SLUG entries added.
+- Site rebuilt: 508 work pages, sitemap 1006 URLs. EN/VI library cards show 🟠 0/8.
+- Live EN/VI TOC + work 294 pages + `/books/` all return HTTP 200 after push `bad2d686..b370e6f3`.
+- `check_links.py` reports 4 transient broken links — all are the TOC "Open the book" fallback
+  pointing at the unbuilt Ch.1 (same state as Emerson before its first chapter); resolved when Ch.1 lands.
+- Chapter 1 "Measurement of Temperature" (PDF pp.15-60, printed pp.1-46, **6 source figures**:
+  Fig 1 Thermowell, 2 Bimetal strip, 3 three-wire RTD, 4/5 thermopiles, 6 thermocouple assembly)
+  delegated to background agent. Remaining: Book 8 chapters 1-8; plus Baumann ch3-32; Emerson ch2-15.
+
+## Session 77 — Book 8 Chapter 1 published: Measurement of Temperature
+`iih_ch01.py` + `iihfig.py` (background agent output) validated and integrated. Chapter 1 covers
+PDF pp.15-60 / printed pp.1-45 (46 source pages). Full EN/VI translation of all nine TOC sections,
+all 77 references, Table 3 reproduced, image-only Tables 1/2/4 captioned. Six source figures
+redrawn as vector in `iihfig.py`: 1.1 thermowell, 1.2 bimetal strip, 1.3 three-wire RTD, 1.4
+thermopile hair drier, 1.5 ear thermometer, 1.6 thermocouple assembly. VI 98,983 / EN 107,554
+chars; 6 figures each with unique `fig-1`..`fig-6` ids, all SVGs XML-valid, 0 CJK, 0 bare ampersands.
+Source OCR typos preserved in EN (`man monitoring`, `Jaspeh L. Gay-Lussac`, `this lead to`,
+`in the rage of`, `Metropologia`, `Phisics`); VI follows intended meaning with a terms note.
+Registered `SLUGS["iih"][1]` and `BOOKS["iih"]["done"][1]`, progress 1/8. Site rebuilt: 508 work
+pages, sitemap 1008 URLs, **`check_links.py`: 0 broken links** (Book 8 fallback links resolved).
+Live EN/VI chapter pages 100/111 kB. Remaining: Book 8 ch2-8; Baumann ch3-32; Emerson ch2-15.

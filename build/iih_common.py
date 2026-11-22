@@ -26,7 +26,9 @@ BOOK["iih"] = {
 
 # Populated incrementally as chapters are built — nav() only links to units
 # that exist, so an in-progress book never ships a broken "next" link.
-SLUGS["iih"] = {}
+SLUGS["iih"] = {
+    1: "ch01-measurement-of-temperature",
+}
 
 # Re-export the shared helpers so chapter modules can `import iih_common as C`.
 (p, lead, h2, h3, h4, eq, quote, ul, ol, note, refs, table, fig, keyterms,
