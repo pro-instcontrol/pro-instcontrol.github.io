@@ -5915,3 +5915,26 @@ and the reader registry, with EN + VI library cards and work-detail pages:
   in EN + VI: Baumann 🟠 1/32, Borden 🟢 1/1, Emerson 🟠 0/15.
 - **Remaining: Baumann Chapters 2-32; Emerson Chapters 1-15.** Continue chapter by chapter
   in the established pattern.
+
+## Session 75 — Baumann Ch.2 + Emerson Ch.1 published (EN/VI)
+- **Book 7 `cvp` Chapter 2 — "Why Not Use a Speed-Controlled Pump?"** (printed pp. 9-11,
+  PDF pp. 17-19) published at `ch02-why-not-use-a-speed-controlled-pump` in EN + VI.
+  No source figures; 4 h2 / 2 h3 sections, 3 references. Content: VFD efficiency 70-75%
+  at 40% pump speed, variable-voltage drive ~20% at 40% speed, economic arguments, four
+  counts against electric speed control, valid applications (corrosive/hot molten fluids,
+  no valve deadband, combined speed+valve control, non-electric drives). QA: VI 5217 /
+  EN 5389 chars, 0 CJK, 0 bare ampersands. Fixed a stray CJK `或` in "dòng hoặc điện áp"
+  and escaped `&` in "Taylor & Francis". Progress **2/32**.
+- **Book 7c `cvh6` Chapter 1 — "Introduction to Control Valves"** (printed pp. 16-33,
+  18 source pages) published at `ch01-introduction-to-control-valves` in EN + VI.
+  All 19 source figures (Fig 1.1-1.19) redrawn as vector in `cvh6fig.py`: feedback loop,
+  sliding-stem & angle valves, bellows seal, bonnet, cages, 3-way globe valve, direct-
+  and reverse-acting actuators, piston actuator, packing, rotary/segmented/V-notch ball,
+  eccentric disk, rotary cross-section, deadband, inherent characteristics. Chapter is a
+  5-section terminology glossary; definitions grouped into lists, order preserved. Source
+  cross-references ("T63", "Dead Time") and duplicated terms kept. VI 124,481 / EN 132,516
+  chars; all figures XML-valid, unique `fig-N` ids, 0 CJK, 0 bare ampersands. Progress **1/15**.
+- Registered `SLUGS["cvp"][2]`, `SLUGS["cvh6"][1]`, both `BOOKS[...]["done"]` maps, and
+  `TRANSLATED` progress 2/32 and 1/15. Full site rebuild: TOCs, 506 work pages, sitemap
+  1002 URLs, **`check_links.py`: 0 broken links** (Emerson chapter links no longer dangling).
+- Remaining: Baumann ch3-32; Emerson ch2-15. Borden complete at 1/1.

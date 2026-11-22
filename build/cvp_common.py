@@ -29,6 +29,7 @@ BOOK["cvp"] = {
 # that exist, so an in-progress book never ships a broken "next" link.
 SLUGS["cvp"] = {
     1: "ch01-what-is-a-control-valve-and-how-does",
+    2: "ch02-why-not-use-a-speed-controlled-pump",
 }
 
 # Re-export the shared helpers so chapter modules can `import cvp_common as C`.

@@ -480,9 +480,9 @@ TRANSLATED = {
     "pressure relief valve engineering handbook": ("full", 8, 8),
     "inherent safety in process plant design": ("full", 16, 16),
     "valve selection handbook": ("full", 21, 21),
-    "control valve primer": ("progress", 32, 1),
+    "control valve primer": ("progress", 32, 2),
     "control valves - practical guides": ("full", 1, 1),
-    "control valve handbook - 6th edition": ("progress", 15, 0),
+    "control valve handbook - 6th edition": ("progress", 15, 1),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
