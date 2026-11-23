@@ -146,6 +146,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch11-sustainability/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch12-safety-instrumented-systems/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch12-safety-instrumented-systems/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/ch12-safety-instrumented-systems/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch12-safety-instrumented-systems/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/"/>
@@ -3309,6 +3315,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch11-sustainability/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/ch11-sustainability/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch11-sustainability/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/ch12-safety-instrumented-systems/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch12-safety-instrumented-systems/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/ch12-safety-instrumented-systems/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch12-safety-instrumented-systems/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/</loc>
