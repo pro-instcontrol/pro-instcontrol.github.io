@@ -6273,3 +6273,26 @@ registration when resumed.
   / 3,863 insertions. Live EN/VI Ch.10 URLs 200, TOC lists Ch.10, catalog reads "Translating ·
   10 of 15 chapters", live sitemap has all 8 Ch.10 URL entries. Emerson **10/15**; next Ch.11
   "Sustainability" from raw line 15219 (printed p. 240).
+
+## Session 94 — Emerson Ch.11 published
+- "Sustainability", printed pp. 240–249 (`PAGES_SRC = 10`), 3 vector figures, written by one agent
+  for both modules (`build/cvh6fig11.py` 293 lines, `build/cvh6_ch11.py` 773 lines) using Ch.9 as
+  the template. Figures: 11.1 the three GHG-protocol emission scopes (p. 243), 11.2 the 15 printed
+  sustainability/decarbonization technology items in three streams (p. 245), 11.3 the ESG approach
+  by industry with Environmental / Social / Governance columns (p. 246).
+- Full bilingual prose for all sections 11.1–11.12 including the "Scope 1, 2, and 3 Emissions"
+  subsection and the closing "Commonly Used Terms in Sustainability" definitions.
+- Independent QA: 3 registered XML-valid SVGs, all text inside viewBoxes, unique `fig-1..3` ids,
+  0 CJK / 0 bare `&` / 0 Spanish; captions and the glossary + source-note boxes are in the correct
+  page language with no cross-language leakage; figure bullet fidelity spot-checked (renewables,
+  battery recycling, ESG bullets). `check_links.py` 1,050 pages / 31,364 refs / broken 0; sitemap
+  1,048 URLs (1,033 siblings).
+- Source quirks documented: heading "11. 8 ESG" with stray space, "1.5C"/"2C" missing degree sign,
+  stray «» bullet glyph, the three "Greening OF/By/With" headings, OCR typos (`acomodate`,
+  `indepth`, `initiatives's`, `UNs`), duplicated chilled-water bullet, the flattened "New and
+  Emerging Technologies" header, §11.9 printed heading vs. the Figure 11.3 caption mismatch and
+  its mid-sentence placement, and the Scope subsection printed inside §11.6 rather than §11.3.
+- Pushed `e70bd6a7` ("Publish Emerson Ch.11: Sustainability (EN/VI, 3 vector figures)"), 12 files /
+  1,088 insertions. Live EN/VI Ch.11 URLs 200 (~45 s propagation), TOC lists Ch.11, catalog reads
+  "Translating · 11 of 15 chapters", live sitemap has all 8 Ch.11 URL entries. Emerson **11/15**;
+  next Ch.12 "Safety Instrumented Systems" from raw line 15860 (printed p. 250).
