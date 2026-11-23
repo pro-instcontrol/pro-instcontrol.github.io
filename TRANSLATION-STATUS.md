@@ -6296,3 +6296,25 @@ registration when resumed.
   1,088 insertions. Live EN/VI Ch.11 URLs 200 (~45 s propagation), TOC lists Ch.11, catalog reads
   "Translating · 11 of 15 chapters", live sitemap has all 8 Ch.11 URL entries. Emerson **11/15**;
   next Ch.12 "Safety Instrumented Systems" from raw line 15860 (printed p. 250).
+
+## Session 95 — Emerson Ch.12 published
+- "Safety Instrumented Systems", printed pp. 250–259 (`PAGES_SRC = 10`), 5 vector figures, written by
+  one agent for both modules (`build/cvh6fig12.py` 452 lines, `build/cvh6_ch12.py` 685 lines) using
+  Ch.11 as the template. Figures: 12.1 layers of protection, 12.2 SIS components (sensors → logic
+  solver → final element), 12.3 the four SIL / PFDavg / RRF rows, 12.4 OREDA data, 12.5 typical HIPPS
+  configuration. Full bilingual prose for all sections 12.1–12.12.
+- Faithfulness: the SIL table values (RRF 100000–10000 → SIL 4 … 100–10 → SIL 1, with PFDavg
+  10^-5 to 10^-1) were checked against the source; the OREDA figure's bar heights are explicitly
+  flagged as illustrative because the print gives only axes and category labels, not numeric values.
+- Independent QA: 5 registered XML-valid SVGs, all text inside viewBoxes, unique `fig-1..5` ids,
+  0 CJK / 0 bare `&` / 0 Spanish; captions and glossary + source-note boxes in the correct page
+  language with no cross-language leakage. `check_links.py` 1,052 pages / 31,414 refs / broken 0;
+  sitemap 1,050 URLs (1,035 siblings).
+- Source quirks documented: stray «» glyph, wrapped headings, captions 12.2/12.4 interrupting
+  sentences, PFDavg spacing, duplicated RRF definition, OCR typos («manufacturing plans», «capable
+  being used», «Logic solvers re often working») preserved in EN and corrected in VI.
+- Pushed `8d523ae8` ("Publish Emerson Ch.12: Safety Instrumented Systems (EN/VI, 5 vector
+  figures)"), 12 files / 1,159 insertions. Live EN/VI Ch.12 URLs 200 (~45 s propagation), TOC lists
+  Ch.12, catalog reads "Translating · 12 of 15 chapters", live sitemap has all 8 Ch.12 URL entries.
+  Emerson **12/15**. Next Ch.13 "Engineering Data" (raw line 16448, printed p. 260) — 42 pages with
+  ZERO figures, dense property tables; will need a table-first strategy rather than vector figures.
