@@ -6501,3 +6501,33 @@ registration when resumed.
   EN/VI deep URLs 200, TOC row present, catalog badge 7/8 in both languages, sitemap 8 entries.
 - Book 8 `iih` is now **7/8** 🟠. Next: Book 8 Ch.8 (final chapter — completes the book), then
   Baumann `cvp` Ch.5, PPIC Ch.2, IPC Ch.2; Book 11/12 registration only on confirmation.
+
+## Session 103 — IIH Chapter 8 published; Book 8 complete 8/8
+
+- Final chapter: 45 source pages (PDF pp. 303–347 = 42 prose pages + 3 index pages, printed
+  289–333). Two parallel agents with the established figure/prose contract:
+  - figure supplier: `build/iihfig8.py` (566 lines, 8 vector figures — analog/digital distributed
+    control, monitoring/control loop, globe valve three positions, needle valve three positions,
+    ball valve opening stages, six inherent flow characteristics, Fisher E-plug disk);
+  - prose: `build/iih_ch08.py` (1,965 lines, EN 143,388 chars / VI 131,258 chars, 111 references,
+    8 figure embeds, four tables: control-valve comparison, ANSI leakage classes I–VI, Valtek
+    piping-geometry factors, and the printed book INDEX with 108 entries in 20 letter bands
+    A–W including roman page numerals viii/ix).
+- Independent verification: modules compile; 8 figures with correct bilingual captions and 0
+  layout problems/cjk/bare ampersands; one stray CJK full stop (`。`) in a VI label was replaced
+  with a colon. Built EN/VI pages each have 8 unique fig ids, 0 malformed SVGs, 4 tables,
+  8/8 localized captions, 0 CJK, 0 content bare ampersands, 0 Vietnamese prose on EN page;
+  index section present (§8.10) with all letter bands and entries.
+- Registration: `iih_common.SLUGS[8]`, `reader_book.py done[8]`, and `books_site.TRANSLATED[
+  "illustrated handbook of industrial instrumentation"]` flipped from `("progress", 8, 7)` to
+  `("full", 8, 8)`. Build: TOC 8 rows / done 8; sitemap **1,066 URLs** (1,051 with language
+  siblings); 1,068 pages / 31,814 local references; `check_links.py` **broken 0**; 8 sitemap
+  entries for Ch.8; local catalog badge "🟢 Fully translated · 8 of 8 chapters"
+  (VI "🟢 Đã dịch đầy đủ · 8/8 chương").
+- Pushed `905dd942` ("Publish IIH Ch.8: Control Valves (EN/VI, 8 vector figures, book complete
+  8/8)"), 12 files / 2,553 insertions / 6 deletions. Live after Pages propagation: EN/VI deep
+  URLs 200, TOC row present, catalog badge full 8/8 in both languages, sitemap 8 Ch.8 entries.
+  **Book 8 `iih` is COMPLETE: 8/8 chapters, 108 vector figures, 17 data tables plus the 108-entry
+  book index.**
+- Next: no more IIH chapters. Standing order now Baumann `cvp` Ch.5 → PPIC Ch.2 → IPC Ch.2;
+  Book 11/12 registration only on confirmation.

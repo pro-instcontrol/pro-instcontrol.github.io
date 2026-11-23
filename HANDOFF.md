@@ -1,18 +1,19 @@
-# HANDOFF — Campaign state 2026-11-23 (Emerson complete; Books 7/8/9/10 in progress)
+# HANDOFF — Campaign state 2026-11-23 (Emerson + IIH complete; Books 7/9/10 in progress)
 
-**State now (2026-11-23):** 10 reader books complete 🟢 (see `report.md`; flagship Book 6
-*Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15). Remaining campaign: Baumann `cvp`
-**4/32**, Borden `bcv` 1/1 🟢, IIH `iih` **7/8**, PPIC `ppic` 1/11, IPC `ipc` 1/8.
-**Live chapter HEAD `675a28a7`** (IIH Ch.7); live sitemap 1,064 URLs, catalog badges IIH 7/8 and
-Emerson 15/15, Ch.7 EN/VI deep URLs 200, `check_links.py` broken 0. Full tables in `report.md`.
+**State now (2026-11-23):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
+*Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
+Baumann `cvp` **4/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` 1/11, IPC `ipc` 1/8.
+**Live chapter HEAD `905dd942`** (IIH Ch.8); live sitemap 1,066 URLs, catalog badges IIH 8/8 and
+Emerson 15/15 both `full`, Ch.8 EN/VI deep URLs 200, `check_links.py` broken 0. Full tables in
+`report.md`.
 
-**Next unit:** none queued for Emerson. Awaiting the user's next instruction; the standing
-remaining order is Book 8 `iih` Ch.8 (final chapter, completes the book) → Baumann `cvp` Ch.5 →
-PPIC `ppic` Ch.2 → IPC `ipc` Ch.2, with Book 11/12 registration only on confirmation.
+**Next unit:** none queued for Emerson or IIH. Awaiting the user's next instruction; the standing
+remaining order is Baumann `cvp` Ch.5 → PPIC `ppic` Ch.2 → IPC `ipc` Ch.2, with Book 11/12
+registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-at 7/8 (Ch.2–7 done) and Baumann at 4/32. Also two books located but not registered
+complete at 8/8 (Ch.2–8 done) and Baumann at 4/32. Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
@@ -36,6 +37,11 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
 3.24, 3.29, 3.31–3.34, 3.38, 3.44, 3.50, 3.52) are therefore live.
 
 ## A. Continuation queue (user's order)
+0. ~~IIH Ch.8 "Control Valves" — final chapter~~ — **published** in `905dd942` (8 figs, 111 refs,
+   4 tables incl. the 108-entry book index, 45 source pages). Two parallel agents (figure supplier
+   + prose); independent QA 0 layout problems, 0 CJK/bare ampersands, 8/8 captions, broken 0,
+   sitemap 1,066. One stray CJK full stop fixed. `TRANSLATED` flipped to `("full", 8, 8)`;
+   live badge "🟢 Fully translated · 8 of 8 chapters" both languages. **Book 8 complete.**
 0. ~~IIH Ch.7 "Gas and Liquid Sampling Techniques"~~ — **published** in `675a28a7` (19 figs, 13
    tables, 44 refs, 46 source pages). Largest IIH chapter: two parallel agents (figure supplier
    + prose) with fixed `F.fig_fNN()` contract; independent QA 0 layout problems, 0 CJK, 0 bare
@@ -52,8 +58,8 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
    (22 figs, 38 source pages, printed pp. 130–166). Fixed 10 label off-canvas/overlap defects in
    `iihfig4.py` before rebuild; QA 0 CJK, 0 malformed SVGs, unique fig ids, broken 0, sitemap 1,058;
    live EN/VI 200, TOC row present, badge 4/8.
-1. ~~Book 8 `iih` ch2–7~~ — **done**; remaining ch8 (final chapter, completes book), source
-   `work/ihii_raw.txt`; printed = PDF − 14.
+1. ~~Book 8 `iih` ch2–8~~ — **done, book complete 8/8**; source `work/ihii_raw.txt`;
+   printed = PDF − 14.
 2. ~~Baumann `cvp` ch3–4~~ — **done**; remaining ch5–32, source `work/cvp_raw.txt`.
 3. ~~Emerson `cvh6` ch3–ch15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
