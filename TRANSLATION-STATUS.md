@@ -6186,3 +6186,20 @@ registration when resumed.
   vector figures)"), 12 files / 1,277 insertions. Live EN/VI Ch.6 URLs 200, TOC lists Ch.6,
   catalog reads "Translating · 6 of 15 chapters", live sitemap has all 8 Ch.6 URL entries.
   Emerson **6/15**; next Ch.7 "Steam Conditioning" from raw line 10036.
+
+## Session 90 — Emerson Ch.7 published
+- One writer produced `build/cvh6_ch07.py` + `build/cvh6fig7.py` (14 figures) for "Steam
+  Conditioning": printed pp. 162–175 (`PAGES_SRC = 14`), all 6 sections incl. 7.1.1, 7.2.1–7.2.5,
+  7.4.1–7.4.2, 7.6.1–7.6.3, 4 symbolic equations, no data tables in the source.
+- Independent QA: 14 registered XML-valid SVGs, caption sequence 7.1–7.14 with correct printed
+  pages, 0 CJK / 0 bare `&` / 0 Spanish, one bilingual glossary + one source-note box per language;
+  `check_links.py` 1,042 pages / 31,164 refs / broken 0; sitemap 1,040 URLs (1,025 siblings).
+- Visual QA contact sheets (7 figs each) + zoom review of figs 7.3, 7.8, 7.10. Fixed Fig. 7.8,
+  where the desuperheater label crossed the red atomizing-steam line — moved the label left with
+  an end anchor and re-rendered clean.
+- Source quirks noted: figures 7.7/7.8/7.9 interleaved in the dump (reordered numerically), OCR
+  quirks retained in EN, flattened equations restored with notation notes.
+- Pushed `9e136a59` ("Publish Emerson Ch.7: Steam Conditioning (EN/VI, 14 vector figures)"), 12
+  files / 1,758 insertions. Live EN/VI Ch.7 URLs 200, TOC lists Ch.7, catalog reads "Translating ·
+  7 of 15 chapters", live sitemap has all 8 Ch.7 URL entries. Emerson **7/15**; next Ch.8
+  "Installation and Maintenance" from raw line 10882.
