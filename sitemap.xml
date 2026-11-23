@@ -266,6 +266,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch06-mechanical-flow-meters/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch07-gas-and-liquid-sampling-techniques/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch07-gas-and-liquid-sampling-techniques/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/ch07-gas-and-liquid-sampling-techniques/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch07-gas-and-liquid-sampling-techniques/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/inherent-safety-in-process-plant-design/"/>
@@ -3471,6 +3477,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch06-mechanical-flow-meters/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/ch06-mechanical-flow-meters/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch06-mechanical-flow-meters/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/ch07-gas-and-liquid-sampling-techniques/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch07-gas-and-liquid-sampling-techniques/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/ch07-gas-and-liquid-sampling-techniques/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch07-gas-and-liquid-sampling-techniques/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/inherent-safety-in-process-plant-design/</loc>
