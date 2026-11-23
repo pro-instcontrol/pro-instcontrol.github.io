@@ -2,17 +2,17 @@
 
 **State now (2026-11-23):** 10 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15). Remaining campaign: Baumann `cvp`
-**4/32**, Borden `bcv` 1/1 🟢, IIH `iih` **4/8**, PPIC `ppic` 1/11, IPC `ipc` 1/8.
-**Live chapter HEAD `399e0cbb`** (IIH Ch.4); live sitemap 1,058 URLs, catalog badges IIH 4/8 and
-Emerson 15/15, Ch.4 EN/VI deep URLs 200, `check_links.py` broken 0. Full tables in `report.md`.
+**4/32**, Borden `bcv` 1/1 🟢, IIH `iih` **5/8**, PPIC `ppic` 1/11, IPC `ipc` 1/8.
+**Live chapter HEAD `db6c38fb`** (IIH Ch.5); live sitemap 1,060 URLs, catalog badges IIH 5/8 and
+Emerson 15/15, Ch.5 EN/VI deep URLs 200, `check_links.py` broken 0. Full tables in `report.md`.
 
 **Next unit:** none queued for Emerson. Awaiting the user's next instruction; the standing
-remaining order is Book 8 `iih` Ch.5 → Baumann `cvp` Ch.5 → PPIC `ppic` Ch.2 → IPC `ipc` Ch.2,
+remaining order is Book 8 `iih` Ch.6 → Baumann `cvp` Ch.5 → PPIC `ppic` Ch.2 → IPC `ipc` Ch.2,
 with Book 11/12 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-at 4/8 (Ch.2–4 done) and Baumann at 4/32. Also two books located but not registered
+at 5/8 (Ch.2–5 done) and Baumann at 4/32. Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
@@ -36,11 +36,15 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
 3.24, 3.29, 3.31–3.34, 3.38, 3.44, 3.50, 3.52) are therefore live.
 
 ## A. Continuation queue (user's order)
+0. ~~IIH Ch.5 "Measurement of Flow Rate"~~ — **published** in `db6c38fb` (10 figs, 57 refs, 36
+   source pages). One background agent wrote both modules; independent QA found 0 layout
+   problems, 0 CJK, 0 bare ampersands, broken 0; sitemap 1,060. Two accented SVG labels
+   normalized to the module's romanized convention; live EN/VI 200, badge 5/8.
 0. ~~IIH Ch.4 "pH Measurement" draft found in the working tree~~ — **published** in `399e0cbb`
    (22 figs, 38 source pages, printed pp. 130–166). Fixed 10 label off-canvas/overlap defects in
    `iihfig4.py` before rebuild; QA 0 CJK, 0 malformed SVGs, unique fig ids, broken 0, sitemap 1,058;
    live EN/VI 200, TOC row present, badge 4/8.
-1. ~~Book 8 `iih` ch2–4~~ — **done**; remaining ch5–8, source `work/ihii_raw.txt`; printed = PDF − 14.
+1. ~~Book 8 `iih` ch2–5~~ — **done**; remaining ch6–8, source `work/ihii_raw.txt`; printed = PDF − 14.
 2. ~~Baumann `cvp` ch3–4~~ — **done**; remaining ch5–32, source `work/cvp_raw.txt`.
 3. ~~Emerson `cvh6` ch3–ch15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,

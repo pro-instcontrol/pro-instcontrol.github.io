@@ -6424,3 +6424,27 @@ registration when resumed.
   (VI "Đang dịch · 4/8 chương"), sitemap has all 8 Ch.4 URL entries.
 - Book 8 `iih` is now **4/8** 🟠. Next: Book 8 Ch.5, then Baumann `cvp` Ch.5, PPIC Ch.2,
   IPC Ch.2; Book 11/12 registration only on confirmation.
+
+## Session 100 — IIH Chapter 5 published: Measurement of Flow Rate
+
+- One background agent wrote both modules against the Ch.4 contract: `build/iihfig5.py` (542 lines,
+  10 figures f01–f10: orifice/DP measurement, flow pattern, orifice types, machining methods,
+  pressure taps, long/short-form Venturi, flow nozzle, ASME/Simplex nozzles, Dall tube) and
+  `build/iih_ch05.py` (1,377 lines, full EN/VI prose over 36 source pages, 57 references, 10
+  reconstructed equations, translator notes for OCR quirks; Pitot tube section included).
+- Independent verification (not just the agent's report): modules compile; 10 figure tuples with
+  bilingual captions/aria; 10 figures embedded in both language bodies; 57 reference entries;
+  EN body 102,446 chars / VI 95,960 chars; 0 CJK, 0 bare ampersands, 0 layout problems with
+  ACTUAL per-text font sizes parsed from each SVG style (my first checker used a broken regex
+  that fell back to 8.5px for every label — discarded that result). Two SVG-internal accented
+  labels were normalized to the module's romanized convention ("Gia cong lo", "ma crom");
+  no Vietnamese prose leaked into the EN page.
+- Registration: `iih_common.SLUGS[5]`, `reader_book.py done[5]`, `books_site.TRANSLATED` 5/8.
+  Build chain clean: TOC 8 rows / done 5; sitemap **1,060 URLs** (1,045 with language siblings);
+  1,062 pages / 31,664 local references; `check_links.py` **broken 0**; 8 sitemap entries for
+  Ch.5; Spanish guard 0.
+- Pushed `db6c38fb` ("Publish IIH Ch.5: Measurement of Flow Rate (EN/VI, 10 vector figures)"),
+  12 files / 1,941 insertions / 6 deletions. Live after Pages propagation: EN/VI deep URLs 200,
+  TOC row present, catalog badge 5/8 in both languages, sitemap 8 Ch.5 entries.
+- Book 8 `iih` is now **5/8** 🟠. Next: Book 8 Ch.6, then Baumann `cvp` Ch.5, PPIC Ch.2,
+  IPC Ch.2; Book 11/12 registration only on confirmation.

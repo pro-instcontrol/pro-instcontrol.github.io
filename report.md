@@ -7,13 +7,14 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-23):** 10 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15); the remaining campaign books are
-still in progress across Books 7–10. **Live chapter HEAD `399e0cbb`** (IIH Ch.4) — the paused Emerson Ch.3 was published,
+still in progress across Books 7–10. **Live chapter HEAD `db6c38fb`** (IIH Ch.5) — the paused Emerson Ch.3 was published,
 Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
 the 42-page Ch.13 with 10 data tables / 897 rows, Ch.14 "Pipe Data" with 16 data tables / 521 rows,
 and the final 31-page Ch.15 "Conversions and Equivalents" with 19 data tables / 1,108 rows, Index
 and Additional Resources), and a glossary-rendering bug fixed in Ch.3/Ch.4. **Emerson `cvh6` is
-complete at 15/15**; no further Emerson chapters are queued. IIH Ch.4 "pH Measurement" was then
-published with 22 vector figures (PDF pp. 143–180 / printed 130–166), taking Book 8 to 4/8.
+complete at 15/15**; no further Emerson chapters are queued. IIH Ch.4 "pH Measurement" (22 vector
+figures, PDF pp. 143–180) and Ch.5 "Measurement of Flow Rate" (10 vector figures, PDF pp. 181–216)
+were then published, taking Book 8 to 5/8.
 
 ---
 
@@ -38,7 +39,7 @@ published with 22 vector figures (PDF pp. 143–180 / printed 130–166), taking
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **4/32** 🟠 | 7 (ch1–4) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **4/8** 🟠 | 70 (ch1–4) |
+| `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **5/8** 🟠 | 80 (ch1–5) |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
 
@@ -76,6 +77,8 @@ published with 22 vector figures (PDF pp. 143–180 / printed 130–166), taking
   + Ch.2 "Measurement of Pressure" (21 figs) + Ch.3 "Measurement of Level" (21 figs,
   PDF pp. 97–142 / printed 83–128, 55 refs)
   + Ch.4 "pH Measurement" (22 figs, PDF pp. 143–180 / printed 130–166, published in `399e0cbb`)
+  + Ch.5 "Measurement of Flow Rate" (10 figs, 57 refs, PDF pp. 181–216 / printed 167–202,
+  published in `db6c38fb`)
 - PPIC Ch.1 "Catalytic Reduction of Dissolved Oxygen" (5 figs, 4 tables)
 - IPC Ch.1 "Transducers – I" (51 figs, 7 tables, printed pp. 1–62)
 
@@ -114,11 +117,14 @@ published with 22 vector figures (PDF pp. 143–180 / printed 130–166), taking
 - Ch.15 EN/VI deep URLs → **HTTP 200** after Pages propagation (~45 s); live TOC lists Ch.15, catalog
   badge now shows "🟢 Fully translated · 15 of 15 chapters" (VI: "🟢 Đã dịch đầy đủ · 15/15 chương"),
   live sitemap includes all 8 Ch.15 URL entries (2 `<loc>` + 6 hreflang alternates).
-- Local build at `399e0cbb`: sitemap **1,058 URLs** (1,043 with language siblings);
-  `check_links.py` **broken 0**; 1,060 pages / 31,614 local references.
+- Local build at `db6c38fb`: sitemap **1,060 URLs** (1,045 with language siblings);
+  `check_links.py` **broken 0**; 1,062 pages / 31,664 local references.
 - IIH Ch.4 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.4
   ("pH Measurement", translated), catalog badge shows "Translating · 4 of 8 chapters"
   (VI: "Đang dịch · 4/8 chương"), live sitemap includes all 8 Ch.4 URL entries.
+- IIH Ch.5 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.5
+  ("Measurement of Flow Rate", translated), catalog badge shows "Translating · 5 of 8 chapters"
+  (VI: "Đang dịch · 5/8 chương"), live sitemap includes all 8 Ch.5 URL entries.
 
 ---
 
@@ -169,16 +175,17 @@ published with 22 vector figures (PDF pp. 143–180 / printed 130–166), taking
   → `cbc667cc` (Emerson ch4 + Ch.3 note fix) → `56b8a0f9` (Emerson ch5)
   → `d2a1da0a` (Emerson ch6)   → `9e136a59` (Emerson ch7) → `dfac0c08` (Emerson ch8) → `155b8c5c` (Emerson ch9) → `558a8e49`
   (Emerson ch10) → `e70bd6a7` (Emerson ch11) → `8d523ae8` (Emerson ch12) → `092d513d`
-  (Emerson ch13)   → `67f84ff5` (Emerson ch14) → `89e84b27` (Emerson ch15) → `399e0cbb` (IIH ch4,
-  **live chapter HEAD**).
+  (Emerson ch13)   → `67f84ff5` (Emerson ch14) → `89e84b27` (Emerson ch15) → `399e0cbb` (IIH ch4)
+  → `db6c38fb` (IIH ch5, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
 ## 6. Queue (user's stated order)
 1. ~~Integrate Book 10 `ipc` Chapter 1~~ — **done** in `2ca04367` (51 figs, 7 tables, broken 0).
 2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs)
-   ~~Ch.4 "pH Measurement"~~ — **done** in `399e0cbb` (22 figs); remaining Ch.5–8 continue
-   one by one.
+   ~~Ch.4 "pH Measurement"~~ — **done** in `399e0cbb` (22 figs)
+   ~~Ch.5 "Measurement of Flow Rate"~~ — **done** in `db6c38fb` (10 figs); remaining Ch.6–8
+   continue one by one.
 3. ~~Baumann `cvp` Ch.3 + Ch.4~~ — **done** (`e71e3415`, `d487a9cb`); remaining Ch.5–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
@@ -192,6 +199,10 @@ published with 22 vector figures (PDF pp. 143–180 / printed 130–166), taking
 7. Book 9 `ppic` Chapters 2–11 after the user's named queues.
 
 ### Resume notes
+- IIH Ch.5 modules (`iihfig5.py` 10 figures, `iih_ch05.py` 1,377 lines, 57 refs, 36 source pages)
+  were written by one background agent against the Ch.4 contract, verified independently
+  (0 layout problems with actual per-element font sizes, 0 CJK/bare ampersands), registered,
+  built, QA'd and published in `db6c38fb`; two inconsistent accented SVG labels were normalized.
 - The in-progress IIH Ch.4 draft found in the working tree (22 figure functions, EN/VI prose,
   3 registration edits) was validated, corrected (10 figure-label position/overlap fixes in
   `iihfig4.py`), rebuilt, QA'd and published in `399e0cbb`; it is live.
