@@ -7,10 +7,9 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-22, resumed):** 9 reader books fully live (flagship Book 6
 *Valve Selection Handbook* 🟢 21/21), plus a 4-book control/instrumentation campaign in progress
-across Books 7–10. **Live HEAD `56b8a0f9`** — the paused Emerson Ch.3 was published, Ch.4 added,
-a glossary-rendering bug fixed in Ch.3/Ch.4, and Ch.5 "Control Valve Sizing" (18 vector figures,
-39 data tables) published. Next unit in the queue is Emerson Ch.6 "Special and Severe Service
-Control Valves".
+across Books 7–10. **Live HEAD `d2a1da0a`** — the paused Emerson Ch.3 was published, Ch.4–Ch.6
+added (including the 52-page Ch.5 with 39 tables), and a glossary-rendering bug fixed in Ch.3/Ch.4.
+Next unit in the queue is Emerson Ch.7 "Steam Conditioning".
 
 ---
 
@@ -34,7 +33,7 @@ Control Valves".
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **4/32** 🟠 | 7 (ch1–4) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **5/15** 🟠 | 126 (ch1–5) |
+| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **6/15** 🟠 | 135 (ch1–6) |
 | `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **3/8** 🟠 | 48 (ch1–3) |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
@@ -53,6 +52,8 @@ Control Valves".
   + Ch.4 "Control Valve Accessories" (27 figs, printed pp. 82–97, published in `cbc667cc`)
   + Ch.5 "Control Valve Sizing" (18 figs, 39 tables, 13 symbolic equations, printed pp. 98–149,
   published in `56b8a0f9`)
+  + Ch.6 "Special and Severe Service Control Valves" (9 figs, 2 tables, printed pp. 150–161,
+  published in `d2a1da0a`)
 - IIH Ch.1 "Measurement of Temperature" (6 figs, printed pp. 1–45, 77 refs)
   + Ch.2 "Measurement of Pressure" (21 figs) + Ch.3 "Measurement of Level" (21 figs,
   PDF pp. 97–142 / printed 83–128, 55 refs)
@@ -67,11 +68,11 @@ Control Valves".
   catalog badge shows "Translating · 4 of 15 chapters", live sitemap includes all 8 Ch.4 URL
   entries. The Ch.3 fix is live: EN shows the English glossary and one source-note box, VI shows
   the Vietnamese glossary and no English source-note box.
-- Ch.5 EN/VI deep URLs → **HTTP 200** after Pages negative caching cleared; live TOC lists Ch.5,
-  catalog badge shows "Translating · 5 of 15 chapters" (VI: "Đang dịch · 5/15 chương"), live sitemap
-  includes all 8 Ch.5 URL entries.
-- Local build at `56b8a0f9`: sitemap **1,036 URLs** (1,021 with language siblings);
-  `check_links.py` **broken 0**; 1,038 pages / 31,064 local references.
+- Ch.5 and Ch.6 EN/VI deep URLs → **HTTP 200** after Pages negative caching cleared; live TOC lists
+  both units, catalog badge shows "Translating · 6 of 15 chapters" (VI: "Đang dịch · 6/15 chương"),
+  live sitemap includes all 8 URL entries per unit.
+- Local build at `d2a1da0a`: sitemap **1,038 URLs** (1,023 with language siblings);
+  `check_links.py` **broken 0**; 1,040 pages / 31,114 local references.
 
 ---
 
@@ -119,8 +120,9 @@ Control Valves".
   `7b60e440` (PPIC ch1) → `671ae45b` (Book 10 registration) → `a15f1de8` (pause/report) →
   `2ca04367` (IPC ch1) → `de891681` (IIH ch2) → `e71e3415` (Baumann ch3) → `fd86e439` (Emerson ch2)
   → `2d19c7d2` (IIH ch3) → `d487a9cb` (Baumann ch4) → `8909e5fc` (Emerson ch3)
-  → `cbc667cc` (Emerson ch4 + Ch.3 note fix) → `56b8a0f9` (Emerson ch5, **live HEAD**).
-- Working tree contains only documentation updates after `56b8a0f9`; no chapter work is withheld.
+  → `cbc667cc` (Emerson ch4 + Ch.3 note fix) → `56b8a0f9` (Emerson ch5)
+  → `d2a1da0a` (Emerson ch6, **live HEAD**).
+- Working tree contains only documentation updates after `d2a1da0a`; no chapter work is withheld.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
 ## 6. Queue (user's stated order)
@@ -128,8 +130,8 @@ Control Valves".
 2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs); remaining
    Ch.4–8 continue one by one.
 3. ~~Baumann `cvp` Ch.3 + Ch.4~~ — **done** (`e71e3415`, `d487a9cb`); remaining Ch.5–32.
-4. ~~Emerson `cvh6` Ch.3 + Ch.4 + Ch.5~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`
-   (52 + 27 + 18 figs, broken 0); remaining Ch.6–15 continue one by one.
+4. ~~Emerson `cvh6` Ch.3–Ch.6~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`
+   (52 + 27 + 18 + 9 figs, broken 0); remaining Ch.7–15 continue one by one.
 5. **Register candidate Book 11** — *Fundamentals of Industrial Instrumentation* (348 pp,
    2.5 MB) — located and surveyed, not registered.
 6. **Register candidate Book 12** — *A Guide to the Automation Body of Knowledge*, 2nd ed.

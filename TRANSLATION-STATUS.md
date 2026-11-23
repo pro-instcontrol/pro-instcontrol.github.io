@@ -6169,3 +6169,20 @@ registration when resumed.
   tables)"), 12 files / 2,900 insertions. Live deep paths initially 404/stale TOC (normal Pages
   negative caching), then EN/VI Ch.5 URLs 200, live TOC lists Ch.5, catalog reads "Translating ·
   5 of 15 chapters" / "Đang dịch · 5/15 chương", live sitemap has all 8 Ch.5 URL entries.
+
+## Session 89 — Emerson Ch.6 published
+- One writer produced `build/cvh6_ch06.py` + `build/cvh6fig6.py` (9 figures) for "Special and Severe
+  Service Control Valves": printed pp. 150–161 (`PAGES_SRC = 12`), all 8 sections 6.1–6.8 incl.
+  6.8.1–6.8.3 (high-capacity, low-flow Cv, high-temperature, cryogenic, cavitation/particulate,
+  customized characteristics, North American nuclear service, sulfide stress cracking), 2 tables.
+- Independent QA: 9 registered XML-valid SVGs, caption sequence 6.1–6.9, 0 CJK / 0 bare `&`, one
+  bilingual glossary + one source-note box per language, no cross-language prose; generated pages
+  clean; `check_links.py` 1,040 pages / 31,114 refs / broken 0; sitemap 1,038 URLs (1,023 siblings).
+- Visual QA contact sheet plus zoom review of figs 6.2, 6.5, 6.9 — clean, no rework needed.
+- Source quirks noted: Fig. 6.4 caption precedes 6.3 in the dump (reordered), OCR typos and a
+  missing minus sign on -150 °F preserved in EN; nuclear-qualification details kept as printed
+  (NQA-1 not named in the text layer).
+- Pushed `d2a1da0a` ("Publish Emerson Ch.6: Special and Severe Service Control Valves (EN/VI, 9
+  vector figures)"), 12 files / 1,277 insertions. Live EN/VI Ch.6 URLs 200, TOC lists Ch.6,
+  catalog reads "Translating · 6 of 15 chapters", live sitemap has all 8 Ch.6 URL entries.
+  Emerson **6/15**; next Ch.7 "Steam Conditioning" from raw line 10036.
