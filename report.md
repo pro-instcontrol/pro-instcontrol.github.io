@@ -5,8 +5,8 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-22):** 10 reader books complete — the 9 listed below plus Emerson `cvh6` 🟢
-15/15 (flagship Book 6 *Valve Selection Handbook* 🟢 21/21); the remaining campaign books are
+**Status (2026-11-23):** 10 reader books complete and live 🟢 (rows below; flagship Book 6
+*Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15); the remaining campaign books are
 still in progress across Books 7–10. **Live chapter HEAD `89e84b27`** — the paused Emerson Ch.3 was published,
 Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
 the 42-page Ch.13 with 10 data tables / 897 rows, Ch.14 "Pipe Data" with 16 data tables / 521 rows,
@@ -30,13 +30,13 @@ complete at 15/15**; no further Emerson chapters are queued.
 | 7 | ISA-5.1 *Instrumentation Symbols and Identification* | 7 | redrawn | ✅ live |
 | 8 | CSIA *Working with an Integrator Guide* | 9 | 35 redrawn | ✅ live |
 | 9 | **Smith & Zappe, *Valve Selection Handbook*, 5th ed. (2004) — flagship** | **21** | **235 redrawn** | ✅ **live, 🟢 21/21** |
+| 10 | **Emerson, *Control Valve Handbook*, 6th ed. (2020)** | **15** | **228 redrawn** (ch1–12) + 45 data tables (ch13–15) | ✅ **live, 🟢 15/15** |
 
-### In-progress campaign books (registered, translated chapter by chapter)
+### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **4/32** 🟠 | 7 (ch1–4) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **15/15** 🟢 | 228 (ch1–12; ch13–15 = 0 figs, 45 data tables / 2,526 rows) |
 | `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **3/8** 🟠 | 48 (ch1–3) |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |

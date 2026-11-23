@@ -1,15 +1,20 @@
-# HANDOFF — Campaign resumed 2026-11-22 (Books 7–10 in progress)
+# HANDOFF — Campaign state 2026-11-23 (Emerson complete; Books 7/8/9/10 in progress)
 
-**State now (2026-11-22):** 10 reader books complete 🟢 (the 9 in `report.md` plus Emerson
-`cvh6` 15/15; flagship Book 6 *Valve Selection Handbook* 21/21). Remaining campaign: Baumann
-`cvp` **4/32**, Borden `bcv` 1/1 🟢, IIH `iih` **3/8**, PPIC `ppic` 1/11, IPC `ipc` 1/8.
+**State now (2026-11-23):** 10 reader books complete 🟢 (see `report.md`; flagship Book 6
+*Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15). Remaining campaign: Baumann `cvp`
+**4/32**, Borden `bcv` 1/1 🟢, IIH `iih` **3/8**, PPIC `ppic` 1/11, IPC `ipc` 1/8.
 **Live chapter HEAD `89e84b27`** (Ch.15); live sitemap 1,056 URLs, catalog badge full 15/15, Ch.15
 EN/VI deep URLs 200, `check_links.py` broken 0. Full tables in `report.md`.
 
+**Next unit:** none queued for Emerson. Awaiting the user's next instruction; the standing
+remaining order is Book 8 `iih` Ch.4 → Baumann `cvp` Ch.5 → PPIC `ppic` Ch.2 → IPC `ipc` Ch.2,
+with Book 11/12 registration only on confirmation.
+
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
-and Emerson Chapters 2–15 do one by one" — plus two books located but not registered
-(*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
-Knowledge*, 2nd ed., 511 pp).
+and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; the Book 8
+and Baumann legs remain open. Also two books located but not registered (*Fundamentals of
+Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of Knowledge*, 2nd ed.,
+511 pp).
 
 ---
 
