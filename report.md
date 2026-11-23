@@ -7,9 +7,9 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-22, resumed):** 9 reader books fully live (flagship Book 6
 *Valve Selection Handbook* 🟢 21/21), plus a 4-book control/instrumentation campaign in progress
-across Books 7–10. **Live HEAD `9e136a59`** — the paused Emerson Ch.3 was published, Ch.4–Ch.7
+across Books 7–10. **Live HEAD `dfac0c08`** — the paused Emerson Ch.3 was published, Ch.4–Ch.8
 added (including the 52-page Ch.5 with 39 tables), and a glossary-rendering bug fixed in Ch.3/Ch.4.
-Next unit in the queue is Emerson Ch.8 "Installation and Maintenance".
+Next unit in the queue is Emerson Ch.9 "Standards and Approvals".
 
 ---
 
@@ -33,7 +33,7 @@ Next unit in the queue is Emerson Ch.8 "Installation and Maintenance".
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **4/32** 🟠 | 7 (ch1–4) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **7/15** 🟠 | 149 (ch1–7) |
+| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **8/15** 🟠 | 160 (ch1–8) |
 | `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **3/8** 🟠 | 48 (ch1–3) |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
@@ -56,6 +56,7 @@ Next unit in the queue is Emerson Ch.8 "Installation and Maintenance".
   published in `d2a1da0a`)
   + Ch.7 "Steam Conditioning" (14 figs, 4 symbolic equations, printed pp. 162–175, published in
   `9e136a59`)
+  + Ch.8 "Installation and Maintenance" (11 figs, printed pp. 176–191, published in `dfac0c08`)
 - IIH Ch.1 "Measurement of Temperature" (6 figs, printed pp. 1–45, 77 refs)
   + Ch.2 "Measurement of Pressure" (21 figs) + Ch.3 "Measurement of Level" (21 figs,
   PDF pp. 97–142 / printed 83–128, 55 refs)
@@ -73,11 +74,11 @@ Next unit in the queue is Emerson Ch.8 "Installation and Maintenance".
 - Ch.5 and Ch.6 EN/VI deep URLs → **HTTP 200** after Pages negative caching cleared; live TOC lists
   both units, catalog badge shows "Translating · 6 of 15 chapters" (VI: "Đang dịch · 6/15 chương"),
   live sitemap includes all 8 URL entries per unit.
-- Ch.7 EN/VI deep URLs → **HTTP 200** after Pages negative caching cleared; live TOC lists Ch.7,
-  catalog badge shows "Translating · 7 of 15 chapters" (VI: "Đang dịch · 7/15 chương"), live sitemap
-  includes all 8 Ch.7 URL entries.
-- Local build at `9e136a59`: sitemap **1,040 URLs** (1,025 with language siblings);
-  `check_links.py` **broken 0**; 1,042 pages / 31,164 local references.
+- Ch.7 and Ch.8 EN/VI deep URLs → **HTTP 200** after Pages negative caching cleared; live TOC lists
+  both units, catalog badge shows "Translating · 8 of 15 chapters" (VI: "Đang dịch · 8/15 chương"),
+  live sitemap includes all 8 URL entries per unit.
+- Local build at `dfac0c08`: sitemap **1,042 URLs** (1,027 with language siblings);
+  `check_links.py` **broken 0**; 1,044 pages / 31,214 local references.
 
 ---
 
@@ -126,8 +127,8 @@ Next unit in the queue is Emerson Ch.8 "Installation and Maintenance".
   `2ca04367` (IPC ch1) → `de891681` (IIH ch2) → `e71e3415` (Baumann ch3) → `fd86e439` (Emerson ch2)
   → `2d19c7d2` (IIH ch3) → `d487a9cb` (Baumann ch4) → `8909e5fc` (Emerson ch3)
   → `cbc667cc` (Emerson ch4 + Ch.3 note fix) → `56b8a0f9` (Emerson ch5)
-  → `d2a1da0a` (Emerson ch6) → `9e136a59` (Emerson ch7, **live HEAD**).
-- Working tree contains only documentation updates after `9e136a59`; no chapter work is withheld.
+  → `d2a1da0a` (Emerson ch6) → `9e136a59` (Emerson ch7) → `dfac0c08` (Emerson ch8, **live HEAD**).
+- Working tree contains only documentation updates after `dfac0c08`; no chapter work is withheld.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
 ## 6. Queue (user's stated order)
@@ -135,8 +136,9 @@ Next unit in the queue is Emerson Ch.8 "Installation and Maintenance".
 2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs); remaining
    Ch.4–8 continue one by one.
 3. ~~Baumann `cvp` Ch.3 + Ch.4~~ — **done** (`e71e3415`, `d487a9cb`); remaining Ch.5–32.
-4. ~~Emerson `cvh6` Ch.3–Ch.7~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
-   `9e136a59` (52 + 27 + 18 + 9 + 14 figs, broken 0); remaining Ch.8–15 continue one by one.
+4. ~~Emerson `cvh6` Ch.3–Ch.8~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
+   `9e136a59`, `dfac0c08` (52 + 27 + 18 + 9 + 14 + 11 figs, broken 0); remaining Ch.9–15 continue
+   one by one.
 5. **Register candidate Book 11** — *Fundamentals of Industrial Instrumentation* (348 pp,
    2.5 MB) — located and surveyed, not registered.
 6. **Register candidate Book 12** — *A Guide to the Automation Body of Knowledge*, 2nd ed.

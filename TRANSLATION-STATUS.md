@@ -6203,3 +6203,20 @@ registration when resumed.
   files / 1,758 insertions. Live EN/VI Ch.7 URLs 200, TOC lists Ch.7, catalog reads "Translating ·
   7 of 15 chapters", live sitemap has all 8 Ch.7 URL entries. Emerson **7/15**; next Ch.8
   "Installation and Maintenance" from raw line 10882.
+
+## Session 91 — Emerson Ch.8 published
+- One writer produced `build/cvh6_ch08.py` + `build/cvh6fig8.py` (11 figures) for "Installation and
+  Maintenance": printed pp. 176–191 (`PAGES_SRC = 16`), six sections with every subsection
+  (storage, installation, predictive maintenance, OEM spare parts, actuator maintenance, STO
+  planning); no source tables or equations, none invented.
+- Independent QA: 11 registered XML-valid SVGs, captions 8.1–8.11 with correct printed pages,
+  0 CJK / 0 bare `&` / 0 Spanish, one bilingual glossary + one source-note box per language;
+  `check_links.py` 1,044 pages / 31,214 refs / broken 0; sitemap 1,042 URLs (1,027 siblings).
+- Visual QA: two contact sheets + zoom review of the two densest figures (8.10 bench-set graph,
+  8.11 seven-step STO timeline) — clean, no rework needed.
+- Source quirks noted: swapped captions 8.6/8.7 and 8.8/8.9, OCR typos retained in EN, Figure 8.1
+  caption mentions a metal-seated ball valve, jumbled Figure 8.11 step labels.
+- Pushed `dfac0c08` ("Publish Emerson Ch.8: Installation and Maintenance (EN/VI, 11 vector
+  figures)"), 12 files / 1,904 insertions. Live EN/VI Ch.8 URLs 200, TOC lists Ch.8, catalog reads
+  "Translating · 8 of 15 chapters", live sitemap has all 8 Ch.8 URL entries. Emerson **8/15**;
+  next Ch.9 "Standards and Approvals" from raw line 12145.
