@@ -6448,3 +6448,29 @@ registration when resumed.
   TOC row present, catalog badge 5/8 in both languages, sitemap 8 Ch.5 entries.
 - Book 8 `iih` is now **5/8** 🟠. Next: Book 8 Ch.6, then Baumann `cvp` Ch.5, PPIC Ch.2,
   IPC Ch.2; Book 11/12 registration only on confirmation.
+
+## Session 101 — IIH Chapter 6 published: Mechanical Flow Meters
+
+- One background agent wrote both modules from the 40-page source span (PDF pp. 217–256,
+  printed 203–242): `build/iihfig6.py` (531 lines, 9 vector figures f01–f09: restriction/flow
+  system, orifice/DP measurement, reciprocating piston, piston operating principle, nutating
+  disk, oscillating piston, oval-gear bypass installation, two turbine meter views) and
+  `build/iih_ch06.py` (1,541 lines, full EN/VI prose, 46 references, 26 reconstructed equations,
+  sections 6.1–6.4 with 12 h3 / 23 h4, source and formula notes).
+- Independent verification: modules compile; 9 figures with correct bilingual captions and
+  0 layout problems (actual per-element `font:NNpx` parsing); 46 references; EN/VI bodies
+  109,943 / 96,715 chars. Page QA found one real cross-language leak: the Vietnamese word
+  "với" inside a shared equation (21) shown on the EN page — fixed by making that fragment
+  language-aware (`với` in VI, `with` in EN). A reported "410 Vietnamese diacritics in EN body"
+  was a false alarm from calling `body_en()` directly while the shared figure helper's
+  `_CUR_LANG` still defaulted to `vi`; the built pages are correct.
+- Registration: `iih_common.SLUGS[6]`, `reader_book.py done[6]`, `books_site.TRANSLATED` 6/8.
+  Build: TOC 8 rows / done 6; sitemap **1,062 URLs** (1,047 with language siblings); 1,064 pages
+  / 31,714 local references; `check_links.py` **broken 0**; 8 sitemap entries for Ch.6;
+  EN/VI pages each 9 unique fig ids, 0 malformed SVGs, 0 CJK, 0 content bare ampersands,
+  9/9 correctly localized captions, 0 Vietnamese prose on EN page.
+- Pushed `dfb266f0` ("Publish IIH Ch.6: Mechanical Flow Meters (EN/VI, 9 vector figures)"),
+  12 files / 2,095 insertions / 6 deletions. Live after Pages propagation: EN/VI deep URLs 200,
+  TOC row present, catalog badge 6/8 in both languages, sitemap 8 Ch.6 entries.
+- Book 8 `iih` is now **6/8** 🟠. Next: Book 8 Ch.7, then Baumann `cvp` Ch.5, PPIC Ch.2,
+  IPC Ch.2; Book 11/12 registration only on confirmation.
