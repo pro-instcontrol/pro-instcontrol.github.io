@@ -5,13 +5,14 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-22, resumed):** 9 reader books fully live (flagship Book 6
-*Valve Selection Handbook* 🟢 21/21), plus a 4-book control/instrumentation campaign in progress
-across Books 7–10. **Live chapter HEAD `67f84ff5`** — the paused Emerson Ch.3 was published,
-Ch.4–Ch.14 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures, the
-42-page Ch.13 with 10 data tables / 897 rows, and Ch.14 "Pipe Data" with 16 data tables / 521 rows),
-and a glossary-rendering bug fixed in Ch.3/Ch.4. Next unit is the final chapter, Emerson Ch.15
-"Conversions and Equivalents" (31 pp., 0 figures — includes Index and Additional Resources).
+**Status (2026-11-22):** 10 reader books complete — the 9 listed below plus Emerson `cvh6` 🟢
+15/15 (flagship Book 6 *Valve Selection Handbook* 🟢 21/21); the remaining campaign books are
+still in progress across Books 7–10. **Live chapter HEAD `89e84b27`** — the paused Emerson Ch.3 was published,
+Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
+the 42-page Ch.13 with 10 data tables / 897 rows, Ch.14 "Pipe Data" with 16 data tables / 521 rows,
+and the final 31-page Ch.15 "Conversions and Equivalents" with 19 data tables / 1,108 rows, Index
+and Additional Resources), and a glossary-rendering bug fixed in Ch.3/Ch.4. **Emerson `cvh6` is
+complete at 15/15**; no further Emerson chapters are queued.
 
 ---
 
@@ -35,7 +36,7 @@ and a glossary-rendering bug fixed in Ch.3/Ch.4. Next unit is the final chapter,
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **4/32** 🟠 | 7 (ch1–4) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **14/15** 🟠 | 228 (ch1–14; 13–14 = 0 figs, 26 data tables) |
+| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **15/15** 🟢 | 228 (ch1–12; ch13–15 = 0 figs, 45 data tables / 2,526 rows) |
 | `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **3/8** 🟠 | 48 (ch1–3) |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
@@ -67,6 +68,9 @@ and a glossary-rendering bug fixed in Ch.3/Ch.4. Next unit is the final chapter,
   `092d513d`)
   + Ch.14 "Pipe Data" (0 figs, 16 data tables / 521 rows, printed pp. 302–324, published in
   `67f84ff5`)
+  + Ch.15 "Conversions and Equivalents" (0 figs, 19 data tables / 1,108 rows, printed pp. 324–355,
+  including the 712-row printed index and Additional Resources, published in `89e84b27`) —
+  **book complete 15/15**
 - IIH Ch.1 "Measurement of Temperature" (6 figs, printed pp. 1–45, 77 refs)
   + Ch.2 "Measurement of Pressure" (21 figs) + Ch.3 "Measurement of Level" (21 figs,
   PDF pp. 97–142 / printed 83–128, 55 refs)
@@ -105,8 +109,11 @@ and a glossary-rendering bug fixed in Ch.3/Ch.4. Next unit is the final chapter,
 - Ch.14 EN/VI deep URLs → **HTTP 200** after Pages propagation (~45 s); live TOC lists Ch.14, catalog
   badge shows "Translating · 14 of 15 chapters" (VI: "Đang dịch · 14/15 chương"), live sitemap includes
   all 8 Ch.14 URL entries.
-- Local build at `67f84ff5`: sitemap **1,054 URLs** (1,039 with language siblings);
-  `check_links.py` **broken 0**; 1,056 pages / 31,514 local references.
+- Ch.15 EN/VI deep URLs → **HTTP 200** after Pages propagation (~45 s); live TOC lists Ch.15, catalog
+  badge now shows "🟢 Fully translated · 15 of 15 chapters" (VI: "🟢 Đã dịch đầy đủ · 15/15 chương"),
+  live sitemap includes all 8 Ch.15 URL entries (2 `<loc>` + 6 hreflang alternates).
+- Local build at `89e84b27`: sitemap **1,056 URLs** (1,041 with language siblings);
+  `check_links.py` **broken 0**; 1,058 pages / 31,564 local references.
 
 ---
 
@@ -157,8 +164,8 @@ and a glossary-rendering bug fixed in Ch.3/Ch.4. Next unit is the final chapter,
   → `cbc667cc` (Emerson ch4 + Ch.3 note fix) → `56b8a0f9` (Emerson ch5)
   → `d2a1da0a` (Emerson ch6)   → `9e136a59` (Emerson ch7) → `dfac0c08` (Emerson ch8) → `155b8c5c` (Emerson ch9) → `558a8e49`
   (Emerson ch10) → `e70bd6a7` (Emerson ch11) → `8d523ae8` (Emerson ch12) → `092d513d`
-  (Emerson ch13) → `67f84ff5` (Emerson ch14, **live chapter HEAD**).
-- Working tree contains only documentation updates after `67f84ff5`; no chapter work is withheld.
+  (Emerson ch13) → `67f84ff5` (Emerson ch14) → `89e84b27` (Emerson ch15, **live chapter HEAD**).
+- Chapter work is complete after `89e84b27`; the status-document updates are committed separately.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
 ## 6. Queue (user's stated order)
@@ -166,10 +173,11 @@ and a glossary-rendering bug fixed in Ch.3/Ch.4. Next unit is the final chapter,
 2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs); remaining
    Ch.4–8 continue one by one.
 3. ~~Baumann `cvp` Ch.3 + Ch.4~~ — **done** (`e71e3415`, `d487a9cb`); remaining Ch.5–32.
-4. ~~Emerson `cvh6` Ch.3–Ch.12~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
-   `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`
-   (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 + 3 + 5 figs, broken 0); Ch.13 added 10 data tables / 897
-   rows and Ch.14 added 16 data tables / 521 rows (both 0 figs). Remaining Ch.15 is the final unit.
+4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
+   `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
+   `89e84b27` (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 + 3 + 5 figs, broken 0); Ch.13 added 10 data
+   tables / 897 rows, Ch.14 added 16 / 521, and Ch.15 added 19 / 1,108 (all three 0 figs).
+   **Book complete 15/15.**
 5. **Register candidate Book 11** — *Fundamentals of Industrial Instrumentation* (348 pp,
    2.5 MB) — located and surveyed, not registered.
 6. **Register candidate Book 12** — *A Guide to the Automation Body of Knowledge*, 2nd ed.
@@ -189,7 +197,12 @@ and a glossary-rendering bug fixed in Ch.3/Ch.4. Next unit is the final chapter,
 - Ch.14 (22 pp. data chapter, 0 figs) was written by four parallel section agents using the same
   recipe (via `cvh14_common`), integrated, QA'd (100% of 1,665 source decimal values present),
   committed in `67f84ff5` and is live.
-- Only the status documents are edited after that commit; no chapter/site changes are pending.
+- Ch.15 (31 pp. final data chapter, 0 figs) was written by six parallel section agents (five
+  conversion sections plus Index/back matter) via `cvh15_common`, integrated, QA'd (100% of 1,737
+  source decimal values present; 712 index rows / 23 letter bands), fixed for a Vietnamese-string
+  syntax error and an EN index-header leak, committed in `89e84b27` and is live.
+- Emerson `cvh6` is now **complete at 15/15**: 228 vector figures through Ch.12 plus 45 data tables /
+  2,526 rows in Ch.13–15. No chapter/site changes are pending for this book.
 - Before editing status docs again, check `git status --short` to see what is already committed.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

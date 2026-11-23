@@ -1,6 +1,6 @@
 # Translation status — handoff for the next agent
 
-**Last updated:** 2026-11-15 (**Books 1–4 of the new reader campaign are COMPLETE and PUBLISHED LIVE**: W. Bolton *Control Systems* 7/7 — 247 figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* 7/7 — 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets; CSIA *Working with an Integrator Guide* 9/9 — 35 figures; Crosby *Pressure Relief Valve Engineering Handbook* 8/8). **Book 5 has started**: Anna-Mari Heikkilä, *Inherent Safety in Process Plant Design — An Index-Based Approach* (VTT Publications 384, 1999), Chapters 1–5 live at **5/16** — see Sessions 64–68 below. · **Live site:** https://pro-instcontrol.github.io/
+**Last updated:** 2026-11-22 (**Emerson *Control Valve Handbook*, 6th ed. is COMPLETE and LIVE at 15/15**; **Books 1–4 of the new reader campaign are COMPLETE and PUBLISHED LIVE**: W. Bolton *Control Systems* 7/7 — 247 figures; ANSI/ISA-5.1-1984 (R1992) *Instrumentation Symbols and Identification* 7/7 — 43 figures of which 41 are true-vector reproductions of the standard's drawing sheets; CSIA *Working with an Integrator Guide* 9/9 — 35 figures; Crosby *Pressure Relief Valve Engineering Handbook* 8/8). **Book 5 has started**: Anna-Mari Heikkilä, *Inherent Safety in Process Plant Design — An Index-Based Approach* (VTT Publications 384, 1999), Chapters 1–5 live at **5/16** — see Sessions 64–68 below. · **Live site:** https://pro-instcontrol.github.io/
 
 > **New book campaign (from `work/book_tiers.md`, EN → VI only, NO Spanish).** Book 1 =
 > Bolton *Control Systems* is COMPLETE and live at `/books/read/control-systems-bolton/`
@@ -6368,3 +6368,37 @@ registration when resumed.
   catalog reads "Translating · 14 of 15 chapters", live sitemap has all 8 Ch.14 URL entries.
   Emerson **14/15**. Next Ch.15 "Conversions and Equivalents" (raw line 19708, printed p. 324) —
   31 pages, ZERO figures, 15 sections plus Index (p. 340) and Additional Resources (p. 354).
+
+## Session 98 — Emerson Ch.15 published; book complete 15/15
+- "Conversions and Equivalents", printed pp. 324-355 (`PAGES_SRC = 31`), 31 pages, ZERO figures —
+  final chapter. Reused the data-chapter recipe via `cvh15_common.py` (thin re-export of
+  `cvh13_common`); six section modules `cvh15_s1..s6` each expose `section(lang)`; `cvh6_ch15.py`
+  iterates them. Split: s1 = 15.1-15.4 (6 tables, 105 rows), s2 = 15.5-15.7 (3 tables, 18 rows),
+  s3 = 15.8-15.10 (4 tables, 40 rows), s4 = 15.11-15.12 (2 tables, 91 temperature rows + 4
+  formula rows), s5 = 15.13-15.15 (3 tables, 101 gravity groups / 21 conversions / 16 prefixes),
+  s6 = Index + Additional Resources (712 index rows, 23 letter bands). Total **19 tables /
+  1,108 data rows**. Table DATA identical in EN and VI; only headings, prose, headers and captions
+  localized.
+- Two integration fixes: (1) `build/cvh6_ch15.py` had a literal newline inside a Vietnamese string
+  (SyntaxError at line 56) — split into two adjacent correctly quoted strings; (2) `build/cvh15_s6.py`
+  used one bilingual Index header for both languages — added `_INDEX_HDR_VI` / `_INDEX_HDR_EN` and
+  passed them through `TB()`. After the fix the EN page has 0 Vietnamese-diacritic characters
+  (only 12 legitimate `Baumé` occurrences) and the VI page has 527 in visible text; 0 CJK on both.
+- Independent QA: bare `&` only at the shared Google-Fonts shell baseline, 0 Spanish; data-fidelity
+  cross-check: 1,737 distinct decimal values in the conversion sections — ALL 1,737 (100%) present
+  on the built page. Index verified: 712 rows, 23 letter bands
+  (`A B C D E F G H I L M N O P Q R S T U V W Y Z`), samples "28, 77, 93, 96, 97", "335, 336",
+  "See instrument", "actuator", "globe valve". `check_links.py` 1,058 pages / 31,564 refs /
+  broken 0; sitemap 1,056 URLs (1,041 with language siblings).
+- Registration: `SLUGS["cvh6"][15]`, `BOOKS["cvh6"]["done"][15]`, and `TRANSLATED["control valve
+  handbook - 6th edition"]` changed from `("progress", 15, 15)` to `("full", 15, 15)`. Local build:
+  TOC 15 rows / done 15 / chapters 15; badge reads "🟢 Fully translated · 15 of 15 chapters"
+  (VI: "🟢 Đã dịch đầy đủ · 15/15 chương").
+- Pushed `89e84b27` ("Publish Emerson Ch.15: Conversions and Equivalents (EN/VI, 19 tables, 1108
+  rows) - book complete 15/15"), 18 files / 1,944 insertions / 6 deletions. Live EN/VI Ch.15 URLs
+  200 after ~45 s Pages propagation, live TOC lists Ch.15, live catalog badge is full 15/15 in both
+  languages, live sitemap has all 8 Ch.15 URL entries (2 `<loc>` + 6 hreflang alternates).
+  **Emerson `cvh6` is COMPLETE: 15/15 chapters, 228 vector figures through Ch.12 plus 45 data
+  tables / 2,526 rows in Ch.13-15.**
+- Next: no more Emerson chapters. Continue only when the user names the next unit (Book 8 `iih`
+  Ch.4, Baumann `cvp` Ch.5, PPIC `ppic` Ch.2, IPC `ipc` Ch.2, or register Book 11/12).
