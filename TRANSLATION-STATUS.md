@@ -6318,3 +6318,29 @@ registration when resumed.
   Ch.12, catalog reads "Translating · 12 of 15 chapters", live sitemap has all 8 Ch.12 URL entries.
   Emerson **12/15**. Next Ch.13 "Engineering Data" (raw line 16448, printed p. 260) — 42 pages with
   ZERO figures, dense property tables; will need a table-first strategy rather than vector figures.
+
+## Session 96 — Emerson Ch.13 published (first pure-data chapter)
+- "Engineering Data", printed pp. 260-301 (`PAGES_SRC = 42`), 42 pages, ZERO figures — 9 sections
+  (13.1-13.9) of dense engineering property tables. New build pattern: `build/cvh13_common.py`
+  (`T/H/P/LEAD/B/N/TB`) where `TB` takes language-neutral numeric rows plus localized headers and
+  captions; six section modules `cvh13_s1..s6.py` each expose `section(lang)`; `build/cvh6_ch13.py`
+  iterates them. Split: s1 = 13.1 (43 material specs); s2 = 13.2-13.3 (3 tables, 141 rows);
+  s3 = 13.4-13.5 (2 tables, 70 rows); s4 = 13.6-13.7 (2 tables, 263 rows); s5 = 13.8 saturated
+  steam (1 table, 285 rows); s6 = 13.9 superheated steam (2 tables, 138 rows).
+- Total: 10 tables / 897 data rows, ~152 KB of rendered HTML per language. Table DATA (numbers,
+  formulas, units, footnote markers, `- - -` gaps) is identical in EN and VI; only headings, prose,
+  table headers and captions are localized. This satisfies the "no cross-language table leakage"
+  gate by construction.
+- Independent QA: 0 CJK / 0 bare `&` / 0 Spanish; EN table headers 0 VI diacritics, VI headers 201;
+  table cells 0 VI diacritics in BOTH languages (data shared); 0 VI diacritics anywhere in EN prose.
+  Data-fidelity cross-check: 5,650 distinct decimal values extracted from the source span — ALL
+  5,650 (100%) present in the built EN page. `check_links.py` 1,054 pages / 31,464 refs / broken 0;
+  sitemap 1,052 URLs (1,037 siblings).
+- Source quirks documented: mis-OCR'd bullet glyph, page furniture / `continued...` headers merged,
+  OCR typos and formulas (Isolpentane, Phsyical, Mangesium Chloride, NH4CI, CCI4, C12H22011), odd
+  figures (332., -119.(6), 07967, 1233., 1266.90), footnote markers and Unicode minus signs kept.
+- Pushed `092d513d` ("Publish Emerson Ch.13: Engineering Data (EN/VI, 10 data tables, 897 rows)"),
+  18 files / 2,002 insertions. Live EN/VI Ch.13 URLs 200 (~45 s propagation), TOC lists Ch.13,
+  catalog reads "Translating · 13 of 15 chapters", live sitemap has all 8 Ch.13 URL entries.
+  Emerson **13/15**. Next Ch.14 "Pipe Data" (raw line 18592, printed p. 302) — 22 pages, ZERO
+  figures; reuse the Ch.13 data-chapter recipe.

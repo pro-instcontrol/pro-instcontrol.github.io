@@ -2,8 +2,8 @@
 
 **State now (resumed 2026-11-22):** 9 reader books fully live 🟢 (flagship Book 6
 *Valve Selection Handbook* 21/21). Campaign: Baumann `cvp` **4/32**, Borden `bcv` 1/1 🟢,
-Emerson `cvh6` **12/15 live**, IIH `iih` **3/8**, PPIC `ppic` 1/11, IPC `ipc` 1/8.
-**Live chapter HEAD `8d523ae8`** (Ch.12); live sitemap 1,050 URLs, catalog badge 12/15, Ch.12 EN/VI
+Emerson `cvh6` **13/15 live**, IIH `iih` **3/8**, PPIC `ppic` 1/11, IPC `ipc` 1/8.
+**Live chapter HEAD `092d513d`** (Ch.13); live sitemap 1,052 URLs, catalog badge 13/15, Ch.13 EN/VI
 deep URLs 200, `check_links.py` broken 0. Full tables in `report.md`.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
@@ -33,18 +33,20 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
 ## A. Continuation queue (user's order)
 1. ~~Book 8 `iih` ch2–3~~ — **done**; remaining ch4–8, source `work/ihii_raw.txt`; printed = PDF − 14.
 2. ~~Baumann `cvp` ch3–4~~ — **done**; remaining ch5–32, source `work/cvp_raw.txt`.
-3. ~~Emerson `cvh6` ch3–ch12~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
-   `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`; continue ch13–15. Source
-   `work/cvh6_raw.txt`; printed = PDF page (dump pages match). Ch.13 "Engineering Data" starts at
-   raw line 16448 / printed p. 260 — **42 pages, ZERO figures**, almost entirely dense material /
-   hydrocarbon / steam property tables (13.1–13.9). Needs a different strategy: transcribe tables
-   as bilingual HTML tables via `table()` / direct markup, NOT vector figures; likely split across
-   several agents by section. Ch.14 "Pipe Data" starts at raw line 18592 / printed p. 302.
-   Separate per-chapter figure modules (`cvh6fig5.py`…`cvh6fig12.py`) are standard for figure chapters. For large chapters
-   (30+ pages, 40+ figures) split writing across two parallel agents — figure supplier and prose —
-   with a fixed function-name contract (`fig_f10_01`…`fig_f10_53`, `F10` module alias), then
-   integrate, fix bare `&` in captions centrally, and QA. Small/mid-size chapters (≤10 figures) go
-   to one agent for both modules.
+3. ~~Emerson `cvh6` ch3–ch13~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
+   `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`; continue
+   ch14–15. Source `work/cvh6_raw.txt`; printed = PDF page (dump pages match).
+   **Data-chapter recipe (worked for Ch.13, reuse for Ch.14/15):** ZERO-figure data chapters are
+   split across parallel section agents with a shared helper (`cvh13_common.py`: `T/H/P/B/N/TB`
+   where `TB` takes language-neutral numeric rows + localized headers/captions). Each section
+   module exposes `section(lang)`; the main `cvh6_ch13.py` just iterates them. Ch.13 used 6 agents
+   for 9 sections and hit 100% of 5,650 source decimal values. Ch.14 "Pipe Data" starts at raw line
+   18592 / printed p. 302 — 22 pages, ZERO figures (flange/pipe dimension tables). Ch.15
+   "Conversions and Equivalents" starts at raw line 19708 / printed p. 324.
+   For figure chapters: separate per-chapter figure modules (`cvh6fig5.py`…`cvh6fig12.py`). Large
+   chapters (30+ pages, 40+ figures) split across two parallel agents — figure supplier and prose —
+   with a fixed function-name contract (`fig_f10_01`…`fig_f10_53`, `F10` alias), then integrate, fix
+   bare `&` in captions centrally, and QA. Small/mid-size chapters (≤10 figures) go to one agent.
    **Watch for the glossary-shadowing bug:** a module-level `def note(lang)` shadows the shared
    note markup helper and makes both glossary boxes render as the English source-note text.
    Name that function `source_notes(lang)` instead; fixed in Ch.3 and Ch.4.
