@@ -49,7 +49,7 @@ def note_terms(lang):
         "rack-and-pinion · electric actuator · fail-open / fail-closed")
 
 
-def note(lang):
+def source_notes(lang):
     """Source quirks and translation notes for this chapter."""
     if lang == "vi":
         return (
@@ -1340,7 +1340,7 @@ def _body(lang):
 
     # ------------------------------------------------------------ source notes
     H("Ghi chú về nguồn", "Source notes", h3)
-    N(note("vi"), note("en"))
+    N(source_notes("vi"), source_notes("en"))
     P("Chương 3 chiếm tr. 54–81 của bản in (28 trang) trong Emerson, Control Valve Handbook, ấn bản "
       "6 (2020). Nội dung gồm tám mục: kiểu van điều khiển, đầu nối, nắp van, bộ đệm, định hình dòng, "
       "dẫn hướng nút, trim năng lực hạn chế và cơ cấu chấp hành. Năm mươi hai hình đánh số 3.1–3.52 "

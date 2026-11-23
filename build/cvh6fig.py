@@ -3115,3 +3115,1041 @@ def fig_f3_52():
                    "where instrument air is unavailable or too few valves justify a compressor.",
                    "Van quay có động cơ điện và đầu ra quay 90 độ",
                    "Rotary valve with an electric motor and 90-degree output")
+
+# ---------------------------------------------------------------------------
+# Chapter 4 figures (4.1-4.27).  The source mis-numbers the solenoid-valve
+# figures of section 4.10 as 14.14-14.23; here they are 4.14-4.23.
+# Each redraws a source figure as a simplified vector schematic and returns
+# the standard 5-tuple via _finish().
+# ---------------------------------------------------------------------------
+
+def _c4_box(x, y, w, h, label, size=8.2, fill="#eef3fb"):
+    """Labelled block used by the Chapter 4 schematics."""
+    return (_rect(x, y, w, h, fill, 1.3)
+            + T(x + w / 2.0, y + h / 2.0 + size * 0.35, label, size, weight="600"))
+
+
+def _c4_dia(cx, top, w=88, h=34):
+    """Simplified diaphragm actuator: spring, diaphragm casing and stem."""
+    o = [_rect(cx - w / 2, top, w, h, fill="#f4f7fb", sw=1.4),
+         _ellipse(cx, top, w / 2, 8, fill="#e9eef4", sw=1.3),
+         _line(cx, top + h, cx, top + h + 24, sw=2.6, color=INK),
+         _spring(cx, top - 32, top - 2, width=20, turns=5),
+         _rect(cx - 18, top - 40, 36, 8, fill="#dfe7ef", sw=1.2)]
+    return "".join(o)
+
+
+def _c4_sov(x, y, ports=3, size=36):
+    """Two-square solenoid valve symbol with coil, return spring and ports."""
+    o = [_rect(x, y, size, size, fill="#f4f7fb", sw=1.4),
+         _rect(x + size, y, size, size, fill="#eef3fb", sw=1.4),
+         _rect(x - 28, y + 7, 22, size - 14, fill="#fdf3e6", sw=1.2),
+         T(x - 17, y + size / 2 + 3, "S", 9, weight="600"),
+         _line(x - 6, y + size / 2, x, y + size / 2, sw=1)]
+    zx = x + 2 * size + 3
+    o.append(_poly([(zx, y + 5), (zx + 6, y + 11), (zx, y + 17),
+                    (zx + 6, y + 23), (zx, y + 29), (zx + 6, y + 35)], sw=1.1))
+    labs = ("1", "2", "3") if ports == 3 else ("1", "2", "3", "4")
+    for bx in (x, x + size):
+        for i, lab in enumerate(labs):
+            px = bx + 5 + i * (size - 10) / (len(labs) - 1.0)
+            o.append(_line(px, y + size, px, y + size + 8, sw=1))
+            o.append(T(px, y + size + 17, lab, 7.4))
+    return "".join(o)
+
+
+def _c4_handwheel(cx, cy, r):
+    """A handwheel rim with six spokes and a hub."""
+    o = [_circle(cx, cy, r, fill="#fdf3e6", sw=2.2)]
+    for a in range(0, 360, 60):
+        rad = math.radians(a)
+        o.append(_line(cx, cy, cx + r * math.cos(rad),
+                       cy + r * math.sin(rad), sw=1.4))
+    o.append(_circle(cx, cy, 6, fill=BLUE, sw=0))
+    return "".join(o)
+
+
+def _c4_labels(items, x, y, lh=14, size=7.4):
+    """Legend column for pre-joined 'VI / EN' label strings."""
+    return "".join(_circle(x, y + i * lh - 2.5, 1.8, fill=BLUE, sw=0)
+                   + T(x + 9, y + i * lh, s, size, anchor="start")
+                   for i, s in enumerate(items))
+
+
+def _c4_mounted(cx, top, label, sub=""):
+    """A positioner/controller housing mounted on a sliding-stem valve."""
+    o = [_rect(cx - 48, top, 96, 56, fill="#eef3fb", sw=1.5),
+         T(cx, top + 25, label, 8.4, weight="600")]
+    if sub:
+        o.append(T(cx, top + 41, sub, 7.4, color=GREY))
+    o.append(_line(cx, top + 56, cx, top + 88, sw=3, color=INK))
+    o.append(_c4_dia(cx, top + 88, w=78, h=28))
+    o.append(_bbody(cx, top + 150, bw=126, bh=72))
+    return "".join(o)
+
+
+@_reg
+def fig_f4_01():
+    """Figure 4.1 (p. 84) - Typical Pneumatic, Single-Acting Positioner."""
+    w, h = 660, 440
+    o = [_defs()]
+    o.append(_c4_box(40, 40, 100, 34, "Supply / Cấp khí", size=8.4))
+    o.append(_rect(56, 124, 64, 36, fill="#f7f9fb", sw=1.3))
+    o.append(T(88, 146, "In / Đầu vào", 7.8))
+    o.append(_poly([(110, 170), (430, 132)], sw=3.0, color=INK))
+    o.append(_circle(184, 159, 6, fill="#fdf3e6", sw=1.4))
+    o.append(T(184, 180, "Input axis", 7.2, color=GREY))
+    o.append(_circle(330, 146, 6, fill="#fdf3e6", sw=1.4))
+    o.append(T(330, 167, "Feedback axis", 7.2, color=GREY))
+    o.append(_ellipse(330, 180, 30, 10, fill="#dfe7ef", sw=1.2))
+    o.append(_line(430, 114, 430, 156, sw=2.2, color=RED))
+    o.append(_rect(438, 130, 14, 18, fill="#eef3fb", sw=1.3))
+    o.append(_c4_box(486, 84, 126, 42, "Relay / Rơ-le", size=8.4))
+    o.append(_arrow(140, 57, 490, 100, sw=1.3, color=GREEN))
+    o.append(_arrow(452, 139, 490, 120, sw=1.3, color=BLUE))
+    o.append(_arrow(549, 126, 549, 188, sw=1.6, color=BLUE))
+    o.append(_c4_dia(549, 192, w=82, h=30))
+    o.append(_c4_box(476, 286, 146, 46, "Output to diaphragm / Đầu ra tới màng", size=7.6))
+    o.append(_arrow(549, 246, 549, 286, sw=1.6, color=INK))
+    o.append(_path("M 476 312 C 404 312 364 252 330 190", sw=1.0, dash="4 3", color=GREY))
+    o.append(_path("M 150 132 A 40 40 0 0 1 190 172", sw=1.0, dash="3 3", color=GREY))
+    o.append(_path("M 300 112 A 44 44 0 0 1 344 156", sw=1.0, dash="3 3", color=GREY))
+    o.append(_c4_labels(["Ống mềm tín hiệu / Instrument bellows",
+                         "Trục đầu vào / Input axis",
+                         "Thanh đòn / Beam",
+                         "Cam / Feedback cam",
+                         "Trục phản hồi / Feedback axis"], 44, 350, lh=15))
+    o.append(_c4_labels(["Cánh chắn / Flapper",
+                         "Vòi phun / Nozzle",
+                         "Rơ-le khuếch đại / Amplifier relay",
+                         "Đầu ra tới màng / Output to diaphragm",
+                         "Cấp khí / Supply"], 356, 350, lh=15))
+    return _finish(w, h, o, "Figure 4.1 - Typical pneumatic single-acting positioner",
+                   "Hình 4.1 (tr. 84) · Bộ định vị khí nén, tác động đơn điển hình",
+                   "Hình 4.1 (tr. 84) · Bộ định vị khí nén, tác động đơn điển hình: tín hiệu vào "
+                   "làm ống mềm đẩy thanh đòn quanh trục đầu vào, cánh chắn tiến gần vòi phun; "
+                   "rơ-le tăng áp suất đầu ra tới màng và chuyển động thân van được cam phản hồi "
+                   "về thanh đòn cho tới khi cân bằng.",
+                   "Figure 4.1 (p. 84) · Typical pneumatic, single-acting positioner: the input "
+                   "signal expands a bellows that pivots a beam about the input axis, moving a "
+                   "flapper toward the nozzle; a relay raises actuator output pressure while a "
+                   "cam feeds stem motion back until equilibrium is reached.",
+                   "Sơ đồ bộ định vị khí nén với ống mềm, thanh đòn, cam và cánh chắn",
+                   "Pneumatic positioner diagram with bellows, beam, cam and flapper")
+
+
+@_reg
+def fig_f4_02():
+    """Figure 4.2 (p. 85) - Typical Single-Acting Analog I/P Positioner."""
+    w, h = 660, 440
+    o = [_defs()]
+    o.append(_c4_box(34, 56, 116, 40, "4-20 mA DC / Input", size=8.2))
+    o.append(_c4_box(180, 56, 124, 40, "I/P Converter / Bộ chuyển đổi", size=8.0))
+    o.append(_arrow(150, 76, 180, 76, sw=1.6, color=GREEN))
+    o.append(_arrow(304, 76, 360, 76, sw=1.6, color=GREEN))
+    o.append(T(334, 68, "Pneumatic", 7.0, color=GREY))
+    o.append(_rect(360, 60, 58, 32, fill="#f7f9fb", sw=1.3))
+    o.append(T(389, 80, "Bellows", 7.6))
+    o.append(_poly([(412, 132), (520, 112)], sw=3.0, color=INK))
+    o.append(_circle(452, 124, 6, fill="#fdf3e6", sw=1.4))
+    o.append(_ellipse(452, 152, 26, 9, fill="#dfe7ef", sw=1.2))
+    o.append(_line(520, 96, 520, 136, sw=2.2, color=RED))
+    o.append(_rect(528, 110, 12, 18, fill="#eef3fb", sw=1.3))
+    o.append(_c4_box(424, 178, 120, 38, "Relay / Rơ-le", size=8.2))
+    o.append(_arrow(534, 119, 486, 178, sw=1.3, color=BLUE))
+    o.append(_arrow(484, 216, 484, 254, sw=1.6, color=BLUE))
+    o.append(_c4_dia(484, 258, w=80, h=28))
+    o.append(_c4_box(410, 320, 150, 44, "Actuator stem / Thân cơ cấu", size=7.8))
+    o.append(_arrow(484, 310, 484, 320, sw=1.6))
+    o.append(_path("M 410 342 C 356 342 330 240 452 160", sw=1.0, dash="4 3", color=GREY))
+    o.append(_c4_box(40, 180, 136, 38, "Supply / Cấp khí", size=8.2))
+    o.append(_arrow(176, 199, 424, 199, sw=1.2, color=GREEN))
+    o.append(_c4_labels(["Đầu vào 4-20 mA / DC input",
+                         "Bộ chuyển đổi I/P / I/P converter",
+                         "Tín hiệu khí nén / Pneumatic signal",
+                         "Cánh chắn / Flapper",
+                         "Vòi phun / Nozzle"], 40, 376, lh=13))
+    o.append(_c4_labels(["Ống mềm / Bellows",
+                         "Thanh đòn / Beam",
+                         "Cam / Cam",
+                         "Rơ-le / Relay",
+                         "Đầu ra tới cơ cấu / Output to actuator"], 350, 376, lh=13))
+    return _finish(w, h, o, "Figure 4.2 - Typical single-acting analog I/P positioner",
+                   "Hình 4.2 (tr. 85) · Bộ định vị I/P tương tự, tác động đơn",
+                   "Hình 4.2 (tr. 85) · Bộ định vị I/P tương tự, tác động đơn: tín hiệu 4-20 mA được "
+                   "đổi thành áp suất khí nén tỷ lệ, rồi điều khiển cụm cánh chắn-vòi phun và rơ-le "
+                   "như bộ định vị khí nén; ống mềm nhận tín hiệu khí nén từ bộ chuyển đổi.",
+                   "Figure 4.2 (p. 85) · Typical single-acting analog I/P positioner: a 4-20 mA "
+                   "signal is converted to a proportional pneumatic pressure that drives the "
+                   "nozzle/flapper and relay much as in a pneumatic positioner; the bellows "
+                   "receives the converter's pneumatic output.",
+                   "Sơ đồ bộ định vị I/P tương tự với bộ chuyển đổi và cánh chắn",
+                   "Analog I/P positioner diagram with converter and flapper")
+
+
+@_reg
+def fig_f4_03():
+    """Figure 4.3 (p. 85) - I/P Positioner."""
+    w, h = 620, 350
+    o = [_defs()]
+    o.append(_rect(196, 64, 228, 150, fill="#eef3fb", sw=1.8))
+    o.append(_rect(214, 84, 96, 74, fill="#f7f9fb", sw=1.3))
+    o.append(T(262, 126, "I/P", 16, weight="600", color=BLUE))
+    o.append(_circle(382, 118, 28, fill="#fdf3e6", sw=1.5))
+    o.append(_circle(382, 118, 20, fill="#ffffff", sw=1.0))
+    o.append(_line(382, 118, 396, 106, sw=2, color=RED))
+    o.append(T(382, 160, "Gauge / Đồng hồ", 7.6, color=GREY))
+    o.append(_rect(240, 214, 140, 26, fill="#dfe7ef", sw=1.3))
+    o.append(T(310, 231, "Mounting bracket / Giá lắp", 7.6))
+    o.append(_line(310, 240, 310, 278, sw=3, color=INK))
+    o.append(_leader(214, 150, 112, 196))
+    o.append(T(108, 200, "4-20 mA input / Đầu vào", 7.6, anchor="end"))
+    o.append(_leader(424, 150, 500, 196))
+    o.append(T(504, 200, "Pneumatic output / Đầu ra khí", 7.6, anchor="start"))
+    o.append(T(310, 312, "Thiết bị điện-khí nén tích hợp trên thân van / Integral electro-pneumatic device",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 4.3 - I/P positioner",
+                   "Hình 4.3 (tr. 85) · Bộ định vị I/P",
+                   "Hình 4.3 (tr. 85) · Bộ định vị I/P: vỏ thiết bị có đầu vào dòng 4-20 mA, đồng hồ "
+                   "áp suất và đầu ra khí nén, lắp trực tiếp lên cụm van điều khiển.",
+                   "Figure 4.3 (p. 85) · I/P positioner: a housing with 4-20 mA input, pressure "
+                   "gauge and pneumatic output, mounted directly on the control valve assembly.",
+                   "Bộ định vị I/P có đồng hồ áp suất và giá lắp",
+                   "I/P positioner with pressure gauge and mounting bracket")
+
+
+@_reg
+def fig_f4_04():
+    """Figure 4.4 (p. 86) - Digital Valve Controller Mounted on a Control Valve."""
+    w, h = 620, 400
+    o = [_defs()]
+    o.append(_rect(188, 46, 244, 112, fill="#eef3fb", sw=1.8))
+    o.append(T(310, 74, "Digital Valve Controller", 9.2, weight="600"))
+    o.append(T(310, 94, "Bộ điều khiển van số / DVC", 8.0, color=GREY))
+    o.append(_circle(228, 132, 14, fill="#fdf3e6", sw=1.2))
+    o.append(_circle(264, 132, 14, fill="#fdf3e6", sw=1.2))
+    o.append(_rect(330, 116, 78, 32, fill="#f7f9fb", sw=1.2))
+    o.append(T(369, 136, "µP / Vi xử lý", 7.6))
+    o.append(_line(310, 158, 310, 186, sw=3, color=INK))
+    o.append(_c4_dia(310, 190, w=84, h=30))
+    o.append(_arrow(346, 220, 420, 220, sw=1.4, color=BLUE))
+    o.append(_arrow(274, 220, 200, 220, sw=1.4, color=BLUE))
+    o.append(T(430, 224, "Out 1", 7.4, anchor="start", color=BLUE))
+    o.append(T(190, 224, "Out 2", 7.4, anchor="end", color=BLUE))
+    o.append(_bbody(310, 254, bw=130, bh=74))
+    o.append(_leader(432, 90, 520, 84))
+    o.append(T(524, 88, "HART / Fieldbus / Wireless", 7.4, anchor="start"))
+    o.append(T(310, 366, "Phản hồi không liên kết, chẩn đoán và truyền thông hai chiều / Linkage-less feedback, diagnostics and two-way communication",
+               7.0, color=GREY))
+    return _finish(w, h, o, "Figure 4.4 - Digital valve controller on a control valve",
+                   "Hình 4.4 (tr. 86) · Bộ điều khiển van số lắp trên van điều khiển",
+                   "Hình 4.4 (tr. 86) · Bộ điều khiển van số lắp trên van điều khiển: vi xử lý đọc tín "
+                   "hiểu, điều khiển I/P và cấp hai áp suất đầu ra cho cơ cấu chấp hành; phản hồi "
+                   "không liên kết, chẩn đoán và truyền thông HART, fieldbus hoặc không dây.",
+                   "Figure 4.4 (p. 86) · Digital valve controller mounted on a control valve: the "
+                   "microprocessor reads the signal, drives the I/P converter and supplies two "
+                   "output pressures to the actuator, with linkage-less feedback, diagnostics and "
+                   "HART, fieldbus or wireless communication.",
+                   "Bộ điều khiển van số trên cơ cấu màng và thân van",
+                   "Digital valve controller on a diaphragm actuator and valve body")
+
+
+@_reg
+def fig_f4_05():
+    """Figure 4.5 (p. 87) - Detail of Deflector / Nozzle Pilot Stage."""
+    w, h = 640, 330
+    o = [_defs()]
+    o.append(_rect(120, 92, 150, 46, fill="#eef3fb", sw=1.5))
+    o.append(T(195, 120, "Supply nozzle / Vòi cấp", 8.0))
+    o.append(_rect(370, 92, 150, 46, fill="#eef3fb", sw=1.5))
+    o.append(T(445, 120, "Receiver / Vòi nhận", 8.0))
+    o.append(_poly([(270, 108), (370, 108)], sw=1.2, color=GREEN))
+    o.append(_poly([(270, 122), (370, 122)], sw=1.2, color=GREEN))
+    o.append(_arrow(272, 115, 364, 115, sw=1.6, color=GREEN))
+    o.append(_line(320, 80, 320, 152, sw=4, color=RED))
+    o.append(_circle(320, 78, 5, fill=RED, sw=0))
+    o.append(_leader(320, 78, 320, 48))
+    o.append(T(320, 44, "Deflector bar / Thanh chắn", 7.8))
+    o.append(_arrow(520, 115, 592, 115, sw=1.8, color=BLUE))
+    o.append(T(592, 108, "Pilot pressure", 7.4, anchor="end", color=BLUE))
+    o.append(_leader(232, 138, 196, 196))
+    o.append(T(196, 212, "Constant air flow / Dòng khí không đổi", 7.6, anchor="end"))
+    o.append(_leader(445, 138, 470, 196))
+    o.append(T(474, 212, "To booster stage / Tới cấp khuếch đại", 7.6, anchor="start"))
+    o.append(T(320, 282, "Tín hiệu dòng định vị thanh chắn, làm đổi dòng tới vòi nhận / Input current positions the deflector in the flow stream",
+               7.2, color=GREY))
+    return _finish(w, h, o, "Figure 4.5 - Deflector / nozzle pilot stage detail",
+                   "Hình 4.5 (tr. 87) · Chi tiết cấp thử thanh chắn / vòi phun",
+                   "Hình 4.5 (tr. 87) · Chi tiết cấp thử thanh chắn/vòi phun: dòng khí không đổi từ "
+                   "vòi cấp hướng vào vòi nhận; thanh chắn do tín hiệu dòng điều khiển làm đổi dòng, "
+                   "thiết lập áp suất thử điều khiển cấp khuếch đại.",
+                   "Figure 4.5 (p. 87) · Detail of the deflector/nozzle pilot stage: constant flow "
+                   "from the supply nozzle is aimed at the receiver nozzle; a current-positioned "
+                   "deflector alters the stream and sets the pilot pressure for the booster stage.",
+                   "Cặp vòi phun với thanh chắn ở giữa dòng khí",
+                   "Paired nozzles with a deflector bar in the air stream")
+
+
+@_reg
+def fig_f4_06():
+    """Figure 4.6 (p. 88) - Transducer Mounted on a Control Valve."""
+    w, h = 620, 400
+    o = [_defs()]
+    o.append(_rect(206, 56, 208, 96, fill="#eef3fb", sw=1.8))
+    o.append(T(310, 84, "I/P Transducer", 9.0, weight="600"))
+    o.append(T(310, 104, "Bộ chuyển đổi I/P", 7.8, color=GREY))
+    o.append(_rect(232, 122, 156, 20, fill="#f7f9fb", sw=1.2))
+    o.append(T(310, 136, "Converter + booster relay", 7.2))
+    o.append(_line(310, 152, 310, 182, sw=3, color=INK))
+    o.append(_c4_dia(310, 186, w=82, h=28))
+    o.append(_bbody(310, 250, bw=128, bh=72))
+    o.append(_leader(206, 96, 116, 92))
+    o.append(T(112, 96, "4-20 mA in", 7.6, anchor="end"))
+    o.append(_leader(414, 96, 506, 92))
+    o.append(T(510, 96, "No feedback", 7.6, anchor="start"))
+    o.append(T(310, 356, "Đáp ứng rất nhanh, không có phản hồi vị trí van / Very fast response with no valve position feedback",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 4.6 - Transducer mounted on a control valve",
+                   "Hình 4.6 (tr. 88) · Bộ chuyển đổi lắp trên van điều khiển",
+                   "Hình 4.6 (tr. 88) · Bộ chuyển đổi I/P lắp trên van điều khiển: mô-đun đổi dòng "
+                   "4-20 mA thành áp suất tỷ lệ, rơ-le khuếch đại bên trong cấp khí cho cơ cấu chấp "
+                   "hành; không có phản hồi vị trí nên đáp ứng rất nhanh.",
+                   "Figure 4.6 (p. 88) · Transducer mounted on a control valve: a module converts "
+                   "4-20 mA into proportional pressure and an internal amplifier relay supplies "
+                   "the actuator; with no position feedback, response is very quick.",
+                   "Bộ chuyển đổi I/P lắp trên cơ cấu chấp hành",
+                   "I/P transducer mounted on an actuator")
+
+
+@_reg
+def fig_f4_07():
+    """Figure 4.7 (p. 88) - Volume Booster Sectional View."""
+    w, h = 660, 420
+    o = [_defs()]
+    o.append(_rect(150, 96, 360, 190, fill="#f4f7fb", sw=1.8))
+    o.append(_rect(150, 104, 168, 78, fill="#ffffff", sw=1.3))
+    o.append(_rect(318, 104, 192, 78, fill="#ffffff", sw=1.3))
+    o.append(_ellipse(234, 143, 60, 22, fill="#e9eef4", sw=1.3))
+    o.append(_ellipse(414, 143, 62, 22, fill="#e9eef4", sw=1.3))
+    o.append(_line(234, 165, 234, 210, sw=2, color=INK))
+    o.append(_line(414, 165, 414, 210, sw=2, color=INK))
+    o.append(_rect(206, 210, 56, 22, fill="#fdf3e6", sw=1.3))
+    o.append(_rect(388, 210, 56, 22, fill="#fdf3e6", sw=1.3))
+    o.append(_line(150, 221, 66, 221, sw=4, color=GREEN))
+    o.append(T(66, 214, "Supply / Cấp", 7.6, anchor="start", color=GREEN))
+    o.append(_line(510, 221, 596, 221, sw=4, color=BLUE))
+    o.append(T(596, 214, "Output / Đầu ra", 7.6, anchor="end", color=BLUE))
+    o.append(_line(150, 268, 66, 268, sw=3, color=RED))
+    o.append(T(66, 284, "Exhaust / Xả", 7.6, anchor="start", color=RED))
+    o.append(_line(330, 286, 330, 326, sw=1.6, color=GREY))
+    o.append(_rect(306, 326, 48, 20, fill="#eef3fb", sw=1.2))
+    o.append(T(330, 340, "Signal in", 7.0))
+    o.append(_rect(196, 70, 76, 24, fill="#eef3fb", sw=1.2))
+    o.append(T(234, 86, "Bypass + screw", 7.0))
+    o.append(_line(234, 94, 234, 104, sw=1.0, dash="3 3"))
+    o.append(_leader(234, 143, 96, 152))
+    o.append(T(92, 156, "Diaphragms / Màng", 7.4, anchor="end"))
+    o.append(_c4_labels(["Cổng cấp / Supply port",
+                         "Cổng xả / Exhaust port",
+                         "Màng / Diaphragms",
+                         "Tiết lưu bypass / Bypass restriction"], 60, 362, lh=13))
+    o.append(_c4_labels(["Vít chỉnh / Adjusting screw",
+                         "Đầu ra tới cơ cấu / Output to actuator",
+                         "Tín hiệu vào / Signal input",
+                         "Vùng chết cố định / Fixed deadband"], 350, 362, lh=13))
+    return _finish(w, h, o, "Figure 4.7 - Volume booster sectional view",
+                   "Hình 4.7 (tr. 88) · Mặt cắt bộ tăng thể tích",
+                   "Hình 4.7 (tr. 88) · Mặt cắt bộ tăng thể tích: chênh áp giữa tín hiệu vào và đầu "
+                   "ra làm màng dịch chuyển, mở cổng cấp hoặc cổng xả cho tới khi chênh áp nằm trong "
+                   "vùng chết; tiết lưu bypass và vít chỉnh cho tín hiệu nhỏ đi thẳng qua.",
+                   "Figure 4.7 (p. 88) · Volume booster sectional view: a differential between "
+                   "signal and output moves the diaphragms to open the supply or exhaust port "
+                   "until the difference is within the deadband; a bypass restriction and "
+                   "adjusting screw let small signals pass through.",
+                   "Mặt cắt bộ tăng thể tích với hai màng và cổng cấp, xả",
+                   "Sectioned volume booster with two diaphragms and supply and exhaust ports")
+
+
+@_reg
+def fig_f4_08():
+    """Figure 4.8 (p. 89) - Typical Boosters Installation, Double-Acting Actuator."""
+    w, h = 660, 390
+    o = [_defs()]
+    o.append(_c4_box(36, 48, 128, 42, "Positioner / Bộ định vị", size=8.2))
+    o.append(_c4_box(224, 48, 100, 42, "Booster 1", size=8.4))
+    o.append(_c4_box(352, 48, 100, 42, "Booster 2", size=8.4))
+    o.append(_arrow(164, 69, 224, 69, sw=1.4, color=GREEN))
+    o.append(_arrow(324, 69, 352, 69, sw=1.4, color=GREEN))
+    o.append(_line(274, 90, 274, 132, sw=2, color=BLUE))
+    o.append(_line(402, 90, 402, 150, sw=2, color=BLUE))
+    o.append(_rect(250, 132, 360, 176, fill="#f4f7fb", sw=1.8))
+    o.append(_rect(272, 148, 316, 52, fill="#e9eef4", sw=1.4))
+    o.append(T(430, 178, "Upper cylinder / Xi lanh trên", 8.0))
+    o.append(_rect(272, 216, 316, 52, fill="#e9eef4", sw=1.4))
+    o.append(T(430, 246, "Lower cylinder / Xi lanh dưới", 8.0))
+    o.append(_line(430, 200, 430, 216, sw=4, color=INK))
+    o.append(_line(430, 308, 430, 336, sw=3, color=INK))
+    o.append(_bbody(430, 336, bw=120, bh=44))
+    o.append(T(274, 282, "Piston / Piston", 7.6, color=GREY))
+    o.append(T(330, 364, "Ít nhất hai bộ tăng, một cho mỗi phía piston / At least two boosters, one per piston side",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 4.8 - Typical boosters installation with double-acting actuator",
+                   "Hình 4.8 (tr. 89) · Bố trí bộ tăng điển hình với cơ cấu tác động kép",
+                   "Hình 4.8 (tr. 89) · Bố trí bộ tăng điển hình với cơ cấu tác động kép: hai bộ tăng "
+                   "nhận đầu ra từ bộ định vị và cấp khí riêng cho xi lanh trên và xi lanh dưới, "
+                   "đẩy piston và thân van nhanh hơn.",
+                   "Figure 4.8 (p. 89) · Typical boosters installation with a double-acting "
+                   "actuator: two boosters take the positioner output and feed the upper and lower "
+                   "cylinders separately for faster piston and stem movement.",
+                   "Hai bộ tăng cấp khí cho xi lanh trên và dưới",
+                   "Two boosters feeding the upper and lower actuator cylinders")
+
+
+@_reg
+def fig_f4_09():
+    """Figure 4.9 (p. 89) - SIS Digital Valve Controller on a Safety Valve."""
+    w, h = 620, 400
+    o = [_defs()]
+    o.append(_c4_box(30, 52, 132, 44, "Logic solver / Bộ giải logic", size=7.8))
+    o.append(_arrow(162, 74, 218, 74, sw=1.5, color=GREEN))
+    o.append(_c4_box(218, 52, 146, 44, "DVC + SOV", size=8.6))
+    o.append(_line(291, 96, 291, 130, sw=3, color=INK))
+    o.append(_c4_dia(291, 134, w=90, h=34))
+    o.append(_line(291, 192, 291, 222, sw=3, color=INK))
+    o.append(_bbody(291, 222, bw=132, bh=76))
+    o.append(_leader(364, 74, 458, 68))
+    o.append(T(462, 72, "Emergency vent / block", 7.4, anchor="start"))
+    o.append(_leader(364, 152, 458, 140))
+    o.append(T(462, 144, "Spring-return fail mode", 7.4, anchor="start"))
+    o.append(_c4_box(180, 330, 260, 40, "Safe state on demand / Trạng thái an toàn khi có yêu cầu", size=7.8))
+    o.append(_arrow(291, 298, 291, 330, sw=1.2, dash="4 3", color=GREY))
+    return _finish(w, h, o, "Figure 4.9 - SIS digital valve controller on a safety valve",
+                   "Hình 4.9 (tr. 89) · Bộ điều khiển van số SIS trên van an toàn",
+                   "Hình 4.9 (tr. 89) · Bộ điều khiển van số SIS trên van an toàn: bộ giải logic điều "
+                   "khiển DVC và van điện từ; cơ cấu hồi vị lò xo đưa van về trạng thái an toàn khi "
+                   "có yêu cầu ngắt khẩn cấp.",
+                   "Figure 4.9 (p. 89) · SIS digital valve controller on a safety valve: a logic "
+                   "solver commands the DVC and solenoid valve, while a spring-return actuator "
+                   "drives the valve to its safe state on an emergency demand.",
+                   "Van an toàn do DVC và van điện từ điều khiển",
+                   "Safety valve controlled by a DVC and solenoid valve")
+
+
+@_reg
+def fig_f4_10():
+    """Figure 4.10 (p. 90) - Pneumatic Controller on a Control Valve."""
+    w, h = 620, 400
+    o = [_defs()]
+    o.append(_rect(170, 50, 280, 130, fill="#eef3fb", sw=1.8))
+    o.append(T(310, 76, "Pneumatic Controller / Bộ điều khiển khí nén", 8.6, weight="600"))
+    o.append(_circle(222, 134, 26, fill="#fdf3e6", sw=1.4))
+    o.append(_path("M 208 134 A 14 14 0 1 1 236 134 A 14 14 0 1 1 208 134", sw=1.2))
+    o.append(T(222, 174, "Bourdon tube", 7.2, color=GREY))
+    o.append(_circle(310, 130, 16, fill="#f7f9fb", sw=1.3))
+    o.append(T(310, 166, "Set point / Điểm đặt", 7.2, color=GREY))
+    o.append(_rect(376, 112, 56, 36, fill="#f7f9fb", sw=1.2))
+    o.append(T(404, 134, "Relay", 7.6))
+    o.append(_line(310, 180, 310, 210, sw=3, color=INK))
+    o.append(_c4_dia(310, 214, w=82, h=28))
+    o.append(_bbody(310, 278, bw=130, bh=72))
+    o.append(_leader(170, 104, 96, 96))
+    o.append(T(92, 100, "Process input / Đầu vào quá trình", 7.4, anchor="end"))
+    o.append(_leader(432, 130, 498, 124))
+    o.append(T(502, 128, "Pneumatic output", 7.4, anchor="start"))
+    o.append(T(310, 372, "Đo tại chỗ và trực tiếp dẫn áp suất tới van / Measures locally and drives valve pressure directly",
+               7.2, color=GREY))
+    return _finish(w, h, o, "Figure 4.10 - Pneumatic controller on a control valve",
+                   "Hình 4.10 (tr. 90) · Bộ điều khiển khí nén lắp trên van điều khiển",
+                   "Hình 4.10 (tr. 90) · Bộ điều khiển khí nén lắp trên van điều khiển: phần tử đầu "
+                   "vào (ví dụ ống Bourdon) đo áp suất, nhiệt độ hoặc mức tại chỗ và trực tiếp dẫn "
+                   "áp suất khí nén đầu ra tới cơ cấu chấp hành.",
+                   "Figure 4.10 (p. 90) · Pneumatic controller on a control valve: an input element "
+                   "such as a Bourdon tube measures pressure, temperature or level locally and "
+                   "directly drives pneumatic output pressure to the actuator.",
+                   "Bộ điều khiển khí nén có ống Bourdon lắp trên van",
+                   "Pneumatic controller with Bourdon tube mounted on a valve")
+
+
+def _c4_ctrl(o, cx, reset=False, rate=False):
+    """Shared beam-flapper pneumatic controller schematic."""
+    o.append(_rect(64, 92, 132, 74, fill="#f7f9fb", sw=1.4))
+    o.append(T(130, 122, "Input element", 8.2, weight="600"))
+    o.append(T(130, 143, "Bourdon / bellows", 7.2, color=GREY))
+    o.append(_path("M 92 152 A 22 22 0 0 1 136 152", sw=1.2))
+    o.append(_circle(130, 78, 13, fill="#fdf3e6", sw=1.3))
+    o.append(T(130, 82, "SP", 7.4))
+    o.append(T(130, 60, "Set point", 7.2, color=GREY))
+    o.append(_line(196, 128, 258, 170, sw=1.2, color=GREY))
+    o.append(_poly([(250, 206), (478, 182)], sw=3.0, color=INK))
+    o.append(_circle(330, 197, 6, fill="#fdf3e6", sw=1.4))
+    o.append(T(330, 218, "Flapper pivot", 7.0, color=GREY))
+    o.append(_line(478, 166, 478, 206, sw=2.4, color=RED))
+    o.append(_rect(486, 178, 14, 20, fill="#eef3fb", sw=1.3))
+    o.append(_c4_box(518, 120, 126, 40, "Relay / Rơ-le", size=8.2))
+    o.append(_arrow(500, 188, 522, 152, sw=1.3, color=BLUE))
+    o.append(_rect(300, 240, 66, 22, fill="#fdf3e6", sw=1.2))
+    o.append(T(333, 254, "Proportional bellows", 6.8))
+    if reset:
+        o.append(_rect(212, 240, 66, 22, fill="#eef3fb", sw=1.2))
+        o.append(T(245, 254, "Reset bellows", 7.0))
+        o.append(T(245, 274, "vented / thông hơi", 6.6, color=GREY))
+    if rate:
+        o.append(_rect(390, 240, 56, 22, fill="#eef3fb", sw=1.2))
+        o.append(T(418, 254, "Rate valve", 7.2))
+        o.append(_rect(458, 240, 56, 22, fill="#eef3fb", sw=1.2))
+        o.append(T(486, 254, "Relief", 7.2))
+    o.append(_path("M 518 160 C 560 160 580 300 366 300 C 340 300 336 270 333 262",
+                   sw=1.0, dash="4 3", color=GREY))
+    o.append(_arrow(581, 140, 581, 190, sw=1.5, color=BLUE))
+    o.append(T(585, 196, "To final control", 7.0, anchor="end", color=BLUE))
+    o.append(_line(64, 178, 64, 214, sw=1.3, color=GREEN))
+    o.append(T(64, 226, "Supply", 7.0, color=GREEN))
+    o.append(_path("M 150 206 A 34 34 0 0 1 184 240", sw=1.0, dash="3 3", color=GREY))
+    o.append(_path("M 300 178 A 34 34 0 0 1 334 212", sw=1.0, dash="3 3", color=GREY))
+    o.append(_leader(130, 92, 130, 46))
+    o.append(T(130, 42, "Process pointer / Kim quá trình", 7.2))
+    o.append(T(300, 318, "Đường nét đứt: phản hồi đầu ra / Dashed line: output feedback", 7.0, color=GREY))
+    return o
+
+
+@_reg
+def fig_f4_11():
+    """Figure 4.11 (p. 91) - Pneumatic Controller Schematic, proportional-only."""
+    w, h = 680, 450
+    o = [_defs()]
+    o = _c4_ctrl(o, 330, reset=False, rate=False)
+    o.append(_c4_labels(["Kim quá trình / Process pointer",
+                         "Phần tử đầu vào / Input element",
+                         "Liên kết / Connecting link",
+                         "Áp suất cấp / Supply pressure",
+                         "Cánh chắn / Flapper",
+                         "Vòi phun / Nozzle",
+                        "Beam / Thanh đòn"], 44, 344, lh=14))
+    o.append(_c4_labels(["Rơ-le / Relay",
+                         "Áp suất vòi phun / Nozzle pressure",
+                         "Ống mềm tỷ lệ / Proportional bellows",
+                         "Dải tỷ lệ / Proportional band",
+                         "Đầu ra tới phần tử cuối / Output to final element",
+                         "Tác động trực tiếp / Direct action",
+                         "Tác động ngược / Reverse action"], 356, 344, lh=14))
+    return _finish(w, h, o, "Figure 4.11 - Pneumatic controller schematic, proportional-only",
+                   "Hình 4.11 (tr. 91) · Sơ đồ bộ điều khiển khí nén (chỉ tỷ lệ)",
+                   "Hình 4.11 (tr. 91) · Sơ đồ bộ điều khiển khí nén — <i>Pneumatic Controller "
+                   "Schematic</i> trong nguyên bản — dạng chỉ tỷ lệ (proportional-only): đầu vào "
+                   "dời cánh chắn, áp suất vòi phun tác động lên rơ-le và ống mềm tỷ lệ phản hồi "
+                   "để đạt cân bằng; núm dải tỷ lệ định vị vòi phun trên cánh chắn.",
+                   "Figure 4.11 (p. 91) · Pneumatic controller schematic (also captioned "
+                   "<i>Pneumatic Controller Schematic</i> in the source), proportional-only: input "
+                   "moves the flapper, nozzle pressure acts on the relay and a proportional "
+                   "bellows feeds output back to equilibrium; the band knob positions the nozzle.",
+                   "Sơ đồ bộ điều khiển khí nén chỉ tỷ lệ",
+                   "Pneumatic controller schematic, proportional-only control")
+
+
+@_reg
+def fig_f4_12():
+    """Figure 4.12 (p. 92) - Pneumatic Controller Schematic, PID."""
+    w, h = 680, 450
+    o = [_defs()]
+    o = _c4_ctrl(o, 330, reset=True, rate=True)
+    o.append(_c4_labels(["Ống mềm tích phân / Reset bellows",
+                         "Ống mềm tỷ lệ / Proportional bellows",
+                         "Van tốc độ / Rate valve",
+                         "Van xả chênh áp / Differential relief",
+                         "Áp suất tích phân / Reset pressure",
+                        "Phản hồi / Feedback link"], 44, 344, lh=14))
+    o.append(_c4_labels(["Cánh chắn / Flapper",
+                         "Vòi phun / Nozzle",
+                         "Rơ-le / Relay",
+                         "Áp suất đầu ra / Output pressure",
+                         "Tác động tỷ lệ + tích phân + vi phân",
+                        "Proportional + reset + rate"], 356, 344, lh=14))
+    return _finish(w, h, o, "Figure 4.12 - Pneumatic controller schematic, PID",
+                   "Hình 4.12 (tr. 92) · Sơ đồ bộ điều khiển khí nén (tỷ lệ + tích phân + vi phân)",
+                   "Hình 4.12 (tr. 92) · Sơ đồ bộ điều khiển khí nén — cùng mang chú thích "
+                   "<i>Pneumatic Controller Schematic</i> như Hình 4.11 trong nguyên bản — dạng tỷ "
+                   "lệ cộng tích phân cộng vi phân: thêm ống mềm tích phân, van tốc độ và van xả "
+                   "chênh áp để giảm độ lệch và tăng tốc hiệu chỉnh cho hệ thống chậm.",
+                   "Figure 4.12 (p. 92) · Pneumatic controller schematic - identically captioned "
+                   "<i>Pneumatic Controller Schematic</i> in the source - with proportional, reset "
+                   "and rate action: reset and proportional bellows, a rate valve and a "
+                   "differential relief valve reduce offset and speed correction on slow systems.",
+                   "Sơ đồ bộ điều khiển khí nén có tích phân và vi phân",
+                   "Pneumatic controller schematic with reset and rate action")
+
+
+@_reg
+def fig_f4_13():
+    """Figure 4.13 (p. 93) - Wireless Position Monitor Mounted on an Actuator."""
+    w, h = 620, 390
+    o = [_defs()]
+    o.append(_rect(210, 60, 200, 96, fill="#eef3fb", sw=1.7))
+    o.append(T(310, 88, "Wireless Position Monitor", 8.4, weight="600"))
+    o.append(T(310, 106, "Bộ giám sát vị trí không dây", 7.6, color=GREY))
+    o.append(_line(310, 60, 310, 34, sw=2, color=INK))
+    o.append(_circle(310, 30, 4, fill=INK, sw=0))
+    o.append(_path("M 296 24 A 20 20 0 0 1 324 24", sw=1.0, color=GREEN))
+    o.append(_path("M 288 16 A 32 32 0 0 1 332 16", sw=1.0, color=GREEN))
+    o.append(_line(310, 156, 310, 186, sw=3, color=INK))
+    o.append(_c4_dia(310, 190, w=84, h=30))
+    o.append(_bbody(310, 254, bw=128, bh=72))
+    o.append(_leader(410, 108, 494, 100))
+    o.append(T(498, 104, "0-100% digital", 7.4, anchor="start"))
+    o.append(T(310, 354, "Phản hồi vị trí độc lập, không cần dây tín hiệu / Independent position feedback without signal wiring",
+               7.2, color=GREY))
+    return _finish(w, h, o, "Figure 4.13 - Wireless position monitor on an actuator",
+                   "Hình 4.13 (tr. 93) · Bộ giám sát vị trí không dây lắp trên cơ cấu chấp hành",
+                   "Hình 4.13 (tr. 93) · Bộ giám sát vị trí không dây lắp trên cơ cấu chấp hành: "
+                   "thiết bị đo thân van và gửi tín hiệu số 0-100% độc lập với dây dẫn hệ thống "
+                   "điều khiển; bản lắp có dây cho tín hiệu 4-20 mA.",
+                   "Figure 4.13 (p. 93) · Wireless position monitor mounted on an actuator: the "
+                   "device measures stem position and sends a 0-100% digital signal independent of "
+                   "control-system wiring; a wired version supplies 4-20 mA.",
+                   "Bộ giám sát vị trí không dây có ăn-ten trên thân van",
+                   "Wireless position monitor with antenna on the valve actuator")
+
+
+@_reg
+def fig_f4_14():
+    """Figure 4.14 (p. 93) - Spring-Return Actuator Diagram (source Fig 14.14)."""
+    w, h = 640, 350
+    o = [_defs()]
+    o.append(_c4_box(30, 48, 104, 34, "IA Supply", size=8.4))
+    o.append(_c4_sov(164, 40, ports=3))
+    o.append(_arrow(134, 65, 164, 65, sw=1.5, color=GREEN))
+    o.append(_line(200, 112, 200, 142, sw=2, color=BLUE))
+    o.append(_c4_dia(200, 146, w=86, h=32))
+    o.append(_line(200, 202, 200, 228, sw=3, color=INK))
+    o.append(_bbody(200, 228, bw=118, bh=62))
+    o.append(_leader(236, 146, 330, 132))
+    o.append(T(334, 136, "Spring-return actuator / Cơ cấu hồi lò xo", 7.4, anchor="start"))
+    o.append(T(200, 316, "Van ba chiều dùng cho cơ cấu hồi vị lò xo / Three-way SOV for spring-return actuators",
+               7.2, color=GREY))
+    return _finish(w, h, o, "Figure 4.14 - Spring-return actuator diagram",
+                   "Hình 4.14 (tr. 93) · Sơ đồ cơ cấu chấp hành hồi vị bằng lò xo",
+                   "Hình 4.14 (tr. 93) — đánh số 14.14 trong nguyên bản — sơ đồ cơ cấu chấp hành "
+                   "hồi vị bằng lò xo: van điện từ ba chiều cấp hoặc xả khí cho buồng màng; khi mất "
+                   "khí, lò xo đưa van về trạng thái an toàn.",
+                   "Figure 4.14 (p. 93) - numbered 14.14 in the source - spring-return actuator "
+                   "diagram: a three-way solenoid valve supplies or vents the diaphragm casing, "
+                   "and on loss of air the spring drives the valve to its safe state.",
+                   "Van điện từ ba chiều cấp khí cho cơ cấu màng có lò xo",
+                   "Three-way solenoid valve feeding a spring-return diaphragm actuator")
+
+
+@_reg
+def fig_f4_15():
+    """Figure 4.15 (p. 93) - Double-Acting Actuator Diagram (source Fig 14.15)."""
+    w, h = 640, 370
+    o = [_defs()]
+    o.append(_c4_box(26, 44, 100, 34, "IA Supply", size=8.4))
+    o.append(_c4_sov(156, 36, ports=4, size=38))
+    o.append(_arrow(126, 61, 156, 61, sw=1.5, color=GREEN))
+    o.append(_line(196, 108, 196, 130, sw=2, color=BLUE))
+    o.append(_line(270, 108, 270, 130, sw=2, color=BLUE))
+    o.append(_rect(160, 130, 320, 140, fill="#f4f7fb", sw=1.8))
+    o.append(_rect(182, 146, 276, 46, fill="#e9eef4", sw=1.4))
+    o.append(T(320, 174, "Upper side / Phía trên", 8.0))
+    o.append(_rect(182, 208, 276, 46, fill="#e9eef4", sw=1.4))
+    o.append(T(320, 236, "Lower side / Phía dưới", 8.0))
+    o.append(_line(320, 192, 320, 208, sw=4, color=INK))
+    o.append(_line(320, 270, 320, 296, sw=3, color=INK))
+    o.append(_bbody(320, 296, bw=110, bh=42))
+    o.append(T(320, 340, "Van bốn chiều cho cơ cấu tác động kép / Four-way SOV for double-acting actuators",
+               7.2, color=GREY))
+    return _finish(w, h, o, "Figure 4.15 - Double-acting actuator diagram",
+                   "Hình 4.15 (tr. 93) · Sơ đồ cơ cấu chấp hành tác động kép",
+                   "Hình 4.15 (tr. 93) — đánh số 14.15 trong nguyên bản — sơ đồ cơ cấu chấp hành "
+                   "tác động kép: van điện từ bốn chiều cấp khí cho một phía piston và xả phía kia, "
+                   "tạo chuyển động hai hướng không có lò xo hồi vị.",
+                   "Figure 4.15 (p. 93) - numbered 14.15 in the source - double-acting actuator "
+                   "diagram: a four-way solenoid valve pressurizes one side of the piston and vents "
+                   "the other for two-direction travel without a return spring.",
+                   "Van điện từ bốn chiều điều khiển piston hai chiều",
+                   "Four-way solenoid valve controlling a two-direction piston")
+
+
+@_reg
+def fig_f4_16():
+    """Figure 4.16 (p. 94) - SOV and DVC in a 1oo2 Configuration (source 14.16)."""
+    w, h = 660, 370
+    o = [_defs()]
+    o.append(_c4_box(28, 54, 132, 42, "Logic solver", size=8.2))
+    o.append(_c4_box(190, 54, 138, 42, "DVC / Bộ điều khiển số", size=7.8))
+    o.append(_c4_sov(374, 46, ports=3, size=36))
+    o.append(_arrow(160, 75, 190, 75, sw=1.4, color=GREEN))
+    o.append(_arrow(328, 75, 374, 75, sw=1.4, color=GREEN))
+    o.append(_line(410, 108, 410, 138, sw=2, color=BLUE))
+    o.append(_c4_dia(410, 142, w=84, h=30))
+    o.append(_line(410, 196, 410, 222, sw=3, color=INK))
+    o.append(_bbody(410, 222, bw=118, bh=62))
+    o.append(_c4_box(52, 190, 156, 40, "1oo2: either device trips", size=7.6))
+    o.append(_arrow(208, 210, 374, 190, sw=1.0, dash="4 3", color=GREY))
+    o.append(T(330, 316, "SOV và DVC: bất kỳ một trong hai thiết bị đều đưa van về trạng thái an toàn",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 4.16 - Solenoid valve and DVC in a 1oo2 configuration",
+                   "Hình 4.16 (tr. 94) · Van điện từ và DVC trong cấu hình 1oo2",
+                   "Hình 4.16 (tr. 94) — đánh số 14.16 trong nguyên bản — van điện từ đặt giữa bộ "
+                   "điều khiển van số và van điều khiển; SOV luôn được cấp điện khi DVC đang điều "
+                   "khiển, và hoặc SOV hoặc DVC đều có thể đưa van về trạng thái đóng/an toàn "
+                   "(cấu hình 1-out-of-2).",
+                   "Figure 4.16 (p. 94) - numbered 14.16 in the source - solenoid valve and DVC in "
+                   "a 1oo2 configuration: the SOV sits between the controller and the valve and "
+                   "stays energized during normal control; either the SOV or the DVC can drive the "
+                   "valve to the closed or safe state.",
+                   "Cấu hình 1oo2 gồm DVC và van điện từ trước cơ cấu chấp hành",
+                   "1oo2 arrangement of a DVC and solenoid valve ahead of the actuator")
+
+
+@_reg
+def fig_f4_17():
+    """Figure 4.17 (p. 94) - Direct-Acting Solenoid Valve Assembly (source 14.17)."""
+    w, h = 620, 330
+    o = [_defs()]
+    o.append(_c4_box(30, 54, 100, 34, "IA Supply", size=8.4))
+    o.append(_c4_sov(166, 46, ports=3, size=40))
+    o.append(_arrow(130, 71, 166, 71, sw=1.5, color=GREEN))
+    o.append(_leader(166, 60, 100, 118))
+    o.append(T(96, 122, "Coil / Cuộn dây", 7.4, anchor="end"))
+    o.append(_leader(206, 60, 300, 118))
+    o.append(T(304, 122, "Direct electromagnetic force", 7.4, anchor="start"))
+    o.append(_line(206, 126, 206, 158, sw=2, color=BLUE))
+    o.append(_c4_dia(206, 162, w=80, h=28))
+    o.append(T(206, 244, "Tác động trực tiếp chỉ bằng lực điện từ / Operated solely by solenoid force",
+               7.2, color=GREY))
+    return _finish(w, h, o, "Figure 4.17 - Direct-acting solenoid valve assembly",
+                   "Hình 4.17 (tr. 94) · Cụm van điện từ tác động trực tiếp",
+                   "Hình 4.17 (tr. 94) — đánh số 14.17 trong nguyên bản — cụm van điện từ tác động "
+                   "trực tiếp: lực điện từ của cuộn dây trực tiếp đổi trạng thái van, phù hợp toàn "
+                   "dải áp suất 0-150 psi của cơ cấu chấp hành.",
+                   "Figure 4.17 (p. 94) - numbered 14.17 in the source - direct-acting solenoid "
+                   "valve assembly: solenoid electromagnetic force alone changes valve state, "
+                   "suited to the full 0-150 psi actuator pressure range.",
+                   "Van điện từ tác động trực tiếp có cuộn dây và lò xo",
+                   "Direct-acting solenoid valve with coil and return spring")
+
+
+@_reg
+def fig_f4_18():
+    """Figure 4.18 (p. 94) - Pilot-Operated Solenoid Valve (source 14.18)."""
+    w, h = 640, 350
+    o = [_defs()]
+    o.append(_c4_box(24, 46, 96, 32, "External air", size=8.0))
+    o.append(_c4_sov(148, 42, ports=3, size=34))
+    o.append(_c4_sov(148, 190, ports=3, size=34))
+    o.append(_arrow(120, 62, 148, 62, sw=1.4, color=GREEN))
+    o.append(T(230, 56, "Pilot SOV / Van thử", 7.6, anchor="start"))
+    o.append(T(230, 204, "Main SOV / Van chính", 7.6, anchor="start"))
+    o.append(_line(216, 76, 216, 118, sw=1.4, color=GREEN))
+    o.append(_arrow(216, 118, 216, 190, sw=1.4, color=GREEN))
+    o.append(_line(216, 260, 216, 292, sw=2, color=BLUE))
+    o.append(T(216, 310, "Đổi trạng thái bằng áp suất khí ngoài / State changed by external air pressure",
+               7.2, color=GREY))
+    return _finish(w, h, o, "Figure 4.18 - Pilot-operated solenoid valve",
+                   "Hình 4.18 (tr. 94) · Van điện từ dẫn khí ngoài",
+                   "Hình 4.18 (tr. 94) — đánh số 14.18 trong nguyên bản — van điện từ dẫn khí ngoài: "
+                   "một mẫu điện từ tác động trực tiếp bật/tắt áp suất khí ngoài để đổi trạng thái "
+                   "van chính, ngay cả khi thân van chính không có áp suất.",
+                   "Figure 4.18 (p. 94) - numbered 14.18 in the source - externally-piloted solenoid "
+                   "valve: a direct-acting solenoid pilot switches external air to change the main "
+                   "valve state even with no pressure in the main valve body.",
+                   "Van chính và van thử dẫn khí ngoài",
+                   "Main solenoid valve with an external-air pilot valve")
+
+
+@_reg
+def fig_f4_19():
+    """Figure 4.19 (p. 95) - 1oo2 SOV Architecture (source Fig 14.19)."""
+    w, h = 660, 370
+    o = [_defs()]
+    o.append(_c4_box(24, 50, 104, 34, "IA Supply", size=8.4))
+    o.append(_c4_sov(158, 42, ports=3, size=34))
+    o.append(_c4_sov(158, 152, ports=3, size=34))
+    o.append(_arrow(128, 67, 158, 67, sw=1.4, color=GREEN))
+    o.append(_line(128, 67, 128, 169, sw=1.4, color=GREEN))
+    o.append(_arrow(128, 169, 158, 169, sw=1.4, color=GREEN))
+    o.append(_line(226, 76, 286, 76, sw=1.6, color=BLUE))
+    o.append(_line(226, 186, 286, 186, sw=1.6, color=BLUE))
+    o.append(_line(286, 76, 286, 186, sw=1.6, color=BLUE))
+    o.append(_arrow(286, 186, 286, 226, sw=1.8, color=BLUE))
+    o.append(_c4_dia(286, 230, w=82, h=28))
+    o.append(_bbody(286, 292, bw=112, bh=46))
+    o.append(_c4_box(396, 78, 232, 52, "1oo2: any 1 of 2 SOVs trips / bất kỳ 1 trong 2", size=7.8))
+    o.append(T(286, 356, "Kiến trúc song song: một van đủ đưa phần tử điều khiển cuối về an toàn / Parallel: one SOV suffices",
+               7.0, color=GREY))
+    return _finish(w, h, o, "Figure 4.19 - 1oo2 solenoid-operated valve architecture",
+                   "Hình 4.19 (tr. 95) · Kiến trúc van điện từ 1oo2",
+                   "Hình 4.19 (tr. 95) — đánh số 14.19 trong nguyên bản — kiến trúc van điện từ 1oo2: "
+                   "hai SOV mắc song song trước phần tử điều khiển cuối; chỉ cần một trong hai đổi "
+                   "trạng thái khi có yêu cầu là van về trạng thái an toàn.",
+                   "Figure 4.19 (p. 95) - numbered 14.19 in the source - 1oo2 solenoid-operated "
+                   "valve architecture: two SOVs in parallel ahead of the final control element, "
+                   "where any one changing state puts the valve in its safe state.",
+                   "Hai van điện từ song song trong kiến trúc 1oo2",
+                   "Two parallel solenoid valves in a 1oo2 architecture")
+
+
+@_reg
+def fig_f4_20():
+    """Figure 4.20 (p. 95) - 2oo2 SOV Architecture (source Fig 14.20)."""
+    w, h = 660, 370
+    o = [_defs()]
+    o.append(_c4_box(24, 50, 104, 34, "IA Supply", size=8.4))
+    o.append(_c4_sov(158, 42, ports=3, size=34))
+    o.append(_c4_sov(296, 152, ports=3, size=34))
+    o.append(_arrow(128, 67, 158, 67, sw=1.4, color=GREEN))
+    o.append(_line(226, 76, 296, 76, sw=1.6, color=BLUE))
+    o.append(_line(296, 76, 296, 152, sw=1.6, color=BLUE))
+    o.append(_line(364, 186, 418, 186, sw=1.6, color=BLUE))
+    o.append(_arrow(418, 186, 418, 226, sw=1.8, color=BLUE))
+    o.append(_c4_dia(418, 230, w=82, h=28))
+    o.append(_bbody(418, 292, bw=112, bh=46))
+    o.append(_c4_box(56, 178, 214, 48, "2oo2: both SOVs must trip / cả hai phải đổi", size=7.6))
+    o.append(T(330, 356, "Kiến trúc nối tiếp: phải cả hai van đổi trạng thái mới ngắt / Series: both SOVs must change state",
+               7.0, color=GREY))
+    return _finish(w, h, o, "Figure 4.20 - 2oo2 solenoid-operated valve architecture",
+                   "Hình 4.20 (tr. 95) · Kiến trúc van điện từ 2oo2",
+                   "Hình 4.20 (tr. 95) — đánh số 14.20 trong nguyên bản — kiến trúc van điện từ 2oo2: "
+                   "hai SOV mắc nối tiếp; phải cả hai cùng đổi trạng thái khi có yêu cầu mới đưa "
+                   "phần tử điều khiển cuối về trạng thái an toàn.",
+                   "Figure 4.20 (p. 95) - numbered 14.20 in the source - 2oo2 solenoid-operated "
+                   "valve architecture: two SOVs in series, where both must change state on demand "
+                   "to put the final control element in its safe state.",
+                   "Hai van điện từ nối tiếp trong kiến trúc 2oo2",
+                   "Two series solenoid valves in a 2oo2 architecture")
+
+
+@_reg
+def fig_f4_21():
+    """Figure 4.21 (p. 95) - Redundant SOV (source Fig 14.21)."""
+    w, h = 640, 340
+    o = [_defs()]
+    o.append(_c4_box(24, 48, 96, 32, "IA Supply", size=8.0))
+    o.append(_c4_sov(152, 42, ports=3, size=34))
+    o.append(_c4_sov(152, 150, ports=3, size=34))
+    o.append(_line(120, 64, 152, 64, sw=1.4, color=GREEN))
+    o.append(_line(120, 64, 120, 172, sw=1.4, color=GREEN))
+    o.append(_arrow(120, 172, 152, 172, sw=1.4, color=GREEN))
+    o.append(_line(220, 76, 300, 76, sw=1.6, color=BLUE))
+    o.append(_line(220, 184, 300, 184, sw=1.6, color=BLUE))
+    o.append(_line(300, 76, 300, 184, sw=1.6, color=BLUE))
+    o.append(_arrow(300, 184, 380, 184, sw=1.6, color=BLUE))
+    o.append(_c4_box(388, 128, 210, 70, "Final control element / Phần tử điều khiển cuối", size=7.8))
+    o.append(_c4_box(78, 228, 300, 40, "Avoid spurious trips / Tránh ngắt giả", size=7.8))
+    o.append(T(320, 308, "Giảm ngắt giả và bảo đảm ngắt khi có yêu cầu / Reduce spurious trips and ensure shutdown on demand",
+               7.0, color=GREY))
+    return _finish(w, h, o, "Figure 4.21 - Redundant solenoid valve",
+                   "Hình 4.21 (tr. 95) · Hệ thống van điện từ dự phòng",
+                   "Hình 4.21 (tr. 95) — đánh số 14.21 trong nguyên bản — hệ thống van điện từ dự "
+                   "phòng dùng cho ứng dụng trọng yếu: hai SOV song song giúp tránh ngắt giả và "
+                   "đồng thời bảo đảm cụm van vẫn đóng khi có yêu cầu.",
+                   "Figure 4.21 (p. 95) - numbered 14.21 in the source - redundant solenoid valve "
+                   "system for critical service: parallel SOVs help avoid spurious trips while "
+                   "helping ensure shutdown still occurs when demanded.",
+                   "Hai van điện từ dự phòng song song",
+                   "Two parallel redundant solenoid valves")
+
+
+@_reg
+def fig_f4_22():
+    """Figure 4.22 (p. 95) - Three-Way Manual Reset SOV (source Fig 14.22)."""
+    w, h = 620, 340
+    o = [_defs()]
+    o.append(_c4_box(28, 50, 96, 32, "IA Supply", size=8.0))
+    o.append(_c4_sov(154, 44, ports=3, size=40))
+    o.append(_arrow(124, 66, 154, 66, sw=1.4, color=GREEN))
+    o.append(_line(194, 124, 194, 158, sw=2, color=BLUE))
+    o.append(_c4_dia(194, 162, w=80, h=28))
+    o.append(_line(234, 88, 286, 88, sw=2, color=RED))
+    o.append(_rect(286, 74, 20, 28, fill="#fdf3e6", sw=1.4))
+    o.append(_line(296, 74, 296, 48, sw=2.2, color=RED))
+    o.append(_circle(296, 44, 9, fill="#fdf3e6", sw=1.4))
+    o.append(_leader(296, 44, 366, 40))
+    o.append(T(370, 44, "Manual reset lever / Cần đặt lại bằng tay", 7.6, anchor="start"))
+    o.append(T(310, 300, "Cấp điện nhưng chưa tác động cho tới khi người vận hành nâng cần / Energized but inert until an operator lifts the lever",
+               7.0, color=GREY))
+    return _finish(w, h, o, "Figure 4.22 - Three-way manual reset solenoid valve",
+                   "Hình 4.22 (tr. 95) · Van điện từ ba chiều đặt lại bằng tay",
+                   "Hình 4.22 (tr. 95) — đánh số 14.22 trong nguyên bản — van điện từ ba chiều đặt "
+                   "lại bằng tay: SOV được cấp điện nhưng không tác động cho tới khi người vận hành "
+                   "nâng cần cơ khí vào vị trí, dùng khi cần xác nhận trước khi đưa vào vận hành.",
+                   "Figure 4.22 (p. 95) - numbered 14.22 in the source - three-way manual reset SOV: "
+                   "the valve is energized but will not operate until an operator lifts a lever, "
+                   "used when verification is needed before putting the SOV in service.",
+                   "Van điện từ ba chiều có cần đặt lại bằng tay",
+                   "Three-way solenoid valve with a manual reset lever")
+
+
+@_reg
+def fig_f4_23():
+    """Figure 4.23 (p. 95) - SOV Manifold Assembly (source Fig 14.23)."""
+    w, h = 640, 340
+    o = [_defs()]
+    o.append(_rect(120, 120, 400, 110, fill="#eef3fb", sw=1.8))
+    o.append(T(320, 142, "Manifold block / Khối phân phối", 8.6, weight="600"))
+    for i, cx in enumerate((190, 320, 450)):
+        o.append(_c4_sov(cx - 22, 170, ports=3, size=34))
+        o.append(T(cx, 234, "SOV %d" % (i + 1), 7.4))
+    o.append(_line(120, 175, 74, 175, sw=4, color=GREEN))
+    o.append(T(70, 168, "IA", 7.6, anchor="end", color=GREEN))
+    o.append(_line(520, 175, 566, 175, sw=4, color=BLUE))
+    o.append(T(570, 168, "To actuator", 7.6, anchor="start", color=BLUE))
+    o.append(T(320, 278, "Nhiều phụ kiện nối trực tiếp vào manifold, gọn sơ đồ đấu dây / Accessories connect directly, simplifying hookup",
+               7.2, color=GREY))
+    return _finish(w, h, o, "Figure 4.23 - SOV manifold assembly",
+                   "Hình 4.23 (tr. 95) · Cụm manifold van điện từ",
+                   "Hình 4.23 (tr. 95) — đánh số 14.23 trong nguyên bản — cụm manifold van điện từ: "
+                   "nhiều SOV được lắp trên một khối phân phối chung, nối trực tiếp để loại bỏ đoạn "
+                   "ống dài và đơn giản hóa sơ đồ đấu dây tại hiện trường.",
+                   "Figure 4.23 (p. 95) - numbered 14.23 in the source - SOV manifold assembly: "
+                   "several SOVs mounted on one common block, connected directly to eliminate long "
+                   "tubing runs and simplify the field hookup schematic.",
+                   "Khối manifold mang ba van điện từ",
+                   "Manifold block carrying three solenoid valves")
+
+
+@_reg
+def fig_f4_24():
+    """Figure 4.24 (p. 96) - Trip Valve Shown in Tripped Condition."""
+    w, h = 680, 440
+    o = [_defs()]
+    o.append(_c4_box(30, 46, 118, 34, "Supply pressure", size=8.0))
+    o.append(_line(148, 63, 214, 63, sw=2, color=GREEN))
+    o.append(_poly([(214, 55), (230, 63), (214, 71)], fill="#fdf3e6", sw=1.2, close=True))
+    o.append(T(222, 46, "Check valve", 7.0))
+    o.append(_line(230, 63, 276, 63, sw=2, color=GREEN))
+    o.append(_rect(276, 34, 46, 116, fill="#e9eef4", sw=1.5))
+    o.append(T(299, 98, "Volume", 7.4))
+    o.append(T(299, 112, "tank", 7.4))
+    o.append(_rect(360, 120, 180, 100, fill="#f4f7fb", sw=1.8))
+    o.append(T(450, 140, "Trip valve / Van ngắt", 8.4, weight="600"))
+    o.append(T(450, 160, "TRIPPED / ĐÃ NGẮT", 7.4, color=RED, weight="600"))
+    for i, lab in enumerate(("A", "B", "C", "D", "E", "F")):
+        px = 382 + i * 28
+        o.append(_circle(px, 200, 8, fill="#fdf3e6", sw=1.0))
+        o.append(T(px, 203, lab, 7.0))
+    o.append(_line(322, 170, 360, 170, sw=2, color=GREEN))
+    o.append(_c4_box(30, 200, 118, 36, "Positioner / Bộ định vị", size=7.4))
+    o.append(_arrow(148, 218, 360, 214, sw=1.4, color=BLUE))
+    o.append(_line(450, 220, 450, 262, sw=2, color=BLUE))
+    o.append(_rect(392, 262, 216, 84, fill="#f4f7fb", sw=1.6))
+    o.append(_rect(410, 272, 180, 28, fill="#e9eef4", sw=1.3))
+    o.append(T(500, 290, "Upper cylinder / Xi lanh trên", 7.4))
+    o.append(_rect(410, 308, 180, 28, fill="#e9eef4", sw=1.3))
+    o.append(T(500, 326, "Lower cylinder / Xi lanh dưới", 7.4))
+    o.append(_line(500, 300, 500, 308, sw=3, color=INK))
+    o.append(_c4_labels(["Cấp vào bình / Supply to charge tank",
+                         "Van một chiều / Check valve",
+                         "Bình chứa / Volume tank",
+                         "Cổng A-F / Ports A-F",
+                        "Áp suất xi lanh trên / Upper cylinder pressure"], 40, 370, lh=13))
+    o.append(_c4_labels(["Áp suất xi lanh dưới / Lower cylinder pressure",
+                         "Bộ định vị / Positioner",
+                         "Trạng thái đã ngắt / Tripped condition",
+                        "Khóa ở vị trí cuối / Lock in last position"], 356, 370, lh=13))
+    return _finish(w, h, o, "Figure 4.24 - Trip valve shown in tripped condition",
+                   "Hình 4.24 (tr. 96) · Van ngắt trong trạng thái đã ngắt",
+                   "Hình 4.24 (tr. 96) · Van ngắt trong trạng thái đã ngắt: khi áp suất cấp xuống "
+                   "dưới điểm ngắt, van ngắt dùng khí dự phòng từ bình chứa qua van một chiều để "
+                   "đưa cơ cấu chấp hành về trạng thái an toàn; các cổng A–F nối bộ định vị và hai "
+                   "phía xi lanh.",
+                   "Figure 4.24 (p. 96) · Trip valve shown in tripped condition: when supply falls "
+                   "below the trip point, the valve uses reserve air from a volume tank through a "
+                   "check valve to drive the actuator to its safe state; ports A-F link the "
+                   "positioner and both cylinder sides.",
+                   "Sơ đồ van ngắt có bình chứa và cổng A đến F",
+                   "Trip valve diagram with volume tank and ports A through F")
+
+
+@_reg
+def fig_f4_25():
+    """Figure 4.25 (p. 96) - Typical 3-Way Switching Valve."""
+    w, h = 620, 350
+    o = [_defs()]
+    o.append(_line(310, 40, 310, 62, sw=2, color=INK))
+    o.append(_rect(292, 24, 36, 16, fill="#eef3fb", sw=1.3))
+    o.append(T(310, 18, "Adjusting screw", 7.2))
+    o.append(_spring(310, 40, 92, width=24, turns=5))
+    o.append(_rect(248, 92, 124, 62, fill="#eef3fb", sw=1.5))
+    o.append(T(310, 116, "Spring case", 8.0))
+    o.append(T(310, 136, "Vỏ lò xo", 7.4, color=GREY))
+    o.append(_ellipse(310, 168, 56, 14, fill="#f7f9fb", sw=1.3))
+    o.append(_rect(248, 182, 124, 66, fill="#f4f7fb", sw=1.5))
+    o.append(T(310, 216, "3-way switching", 8.0, weight="600"))
+    o.append(T(310, 234, "valve / van chuyển mạch", 7.2, color=GREY))
+    for i, lab in enumerate(("A", "B", "C")):
+        px = 270 + i * 40
+        o.append(_line(px, 248, px, 274, sw=1.6, color=GREY))
+        o.append(T(px, 286, "Port " + lab, 7.2))
+    o.append(T(310, 320, "Áp suất giảm không đổi; Lock in Last / Constant reduced pressure; lock in last position",
+               7.0, color=GREY))
+    return _finish(w, h, o, "Figure 4.25 - Typical 3-way switching valve",
+                   "Hình 4.25 (tr. 96) · Van chuyển mạch ba chiều điển hình",
+                   "Hình 4.25 (tr. 96) · Van chuyển mạch ba chiều điển hình: vít chỉnh trên vỏ lò xo "
+                   "đặt điểm chuyển mạch theo yêu cầu, cung cấp áp suất khí giảm không đổi cho bộ "
+                   "điều khiển dẫn khí; dùng để đạt tác động an toàn «Khóa ở vị trí cuối cùng».",
+                   "Figure 4.25 (p. 96) · Typical three-way switching valve: an adjusting screw on "
+                   "the spring case sets the switching point, delivering constant reduced pressure "
+                   "to pilot-operated controllers and providing a lock-in-last fail action.",
+                   "Van chuyển mạch ba chiều có vít chỉnh và vỏ lò xo",
+                   "Three-way switching valve with adjusting screw and spring case")
+
+
+@_reg
+def fig_f4_26():
+    """Figure 4.26 (p. 97) - Actuator with Side-Mounted Handwheel."""
+    w, h = 620, 410
+    o = [_defs()]
+    o.append(_c4_dia(310, 90, w=110, h=46))
+    o.append(_line(310, 160, 310, 194, sw=3, color=INK))
+    o.append(_bbody(310, 194, bw=124, bh=72))
+    o.append(_line(365, 112, 424, 112, sw=2, color=INK))
+    o.append(_rect(418, 102, 18, 20, fill="#fdf3e6", sw=1.3))
+    o.append(_line(436, 112, 470, 112, sw=2, color=INK))
+    o.append(_c4_handwheel(498, 112, 38))
+    o.append(_leader(498, 74, 498, 48))
+    o.append(T(498, 44, "Side handwheel / Tay quay bên hông", 7.6))
+    o.append(_leader(365, 112, 300, 60))
+    o.append(T(296, 56, "Bevel gear / Bánh răng côn", 7.4, anchor="end"))
+    o.append(T(310, 298, "Giới hạn hành trình một hướng; vị trí trung tính cho phép vận hành tự động toàn hành trình",
+               7.2, color=GREY))
+    o.append(T(310, 320, "Limits travel in one direction; neutral allows full automatic travel",
+               7.0, color=GREY))
+    return _finish(w, h, o, "Figure 4.26 - Actuator with side-mounted handwheel",
+                   "Hình 4.26 (tr. 97) · Cơ cấu chấp hành có tay quay lắp bên hông",
+                   "Hình 4.26 (tr. 97) · Cơ cấu chấp hành có tay quay lắp bên hông: qua bánh răng côn, "
+                   "tay quay đi van được theo một hướng tại bất kỳ điểm nào của hành trình thân; có "
+                   "thể giới hạn một hướng, còn vị trí trung tính cho vận hành tự động toàn hành trình.",
+                   "Figure 4.26 (p. 97) · Actuator with a side-mounted handwheel: through a bevel "
+                   "gear the wheel strokes the valve in either direction at any point in stem "
+                   "travel; it can limit one direction, while neutral permits full automatic travel.",
+                   "Tay quay lắp bên hông qua bánh răng côn trên cơ cấu màng",
+                   "Side handwheel through a bevel gear on a diaphragm actuator")
+
+
+@_reg
+def fig_f4_27():
+    """Figure 4.27 (p. 97) - Actuator with Top-Mounted Handwheel."""
+    w, h = 620, 410
+    o = [_defs()]
+    o.append(_c4_handwheel(310, 74, 40))
+    o.append(_line(310, 114, 310, 138, sw=3, color=INK))
+    o.append(_c4_dia(310, 142, w=112, h=46))
+    o.append(_line(310, 212, 310, 244, sw=3, color=INK))
+    o.append(_bbody(310, 244, bw=124, bh=72))
+    o.append(_leader(350, 74, 440, 66))
+    o.append(T(444, 70, "Top handwheel / Tay quay trên đỉnh", 7.6, anchor="start"))
+    o.append(_leader(310, 142, 200, 132))
+    o.append(T(196, 136, "Diaphragm actuator / Cơ cấu màng", 7.4, anchor="end"))
+    o.append(T(310, 344, "Dùng cho dịch vụ không thường xuyên để đi van bằng tay / For infrequent manual stroking service",
+               7.2, color=GREY))
+    return _finish(w, h, o, "Figure 4.27 - Actuator with top-mounted handwheel",
+                   "Hình 4.27 (tr. 97) · Cơ cấu chấp hành có tay quay lắp trên đỉnh",
+                   "Hình 4.27 (tr. 97) · Cơ cấu chấp hành có tay quay lắp trên đỉnh: tay quay nằm "
+                   "trục trên cơ cấu màng, dùng cho dịch vụ không thường xuyên để đi van bằng tay "
+                   "khi cần định vị van trong trường hợp khẩn cấp.",
+                   "Figure 4.27 (p. 97) · Actuator with a top-mounted handwheel: the wheel sits on "
+                   "the axis of the diaphragm actuator and is used for infrequent service to "
+                   "manually stroke or position the valve in an emergency.",
+                   "Tay quay lắp trên đỉnh cơ cấu màng",
+                   "Handwheel mounted on top of the diaphragm actuator")
