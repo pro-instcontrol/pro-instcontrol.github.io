@@ -6146,3 +6146,26 @@ registration when resumed.
   reads "Translating · 4 of 15 chapters", live sitemap has all 8 Ch.4 URL entries. Live Ch.3 EN
   has the English glossary + one source-note box; VI has the Vietnamese glossary + no English
   source-note box — the shadowing fix is confirmed live.
+
+## Session 88 — Emerson Ch.5 published (largest campaign unit so far)
+- Split the work into two parallel agents sharing a clean interface: prose/table module
+  `build/cvh6_ch05.py` and figure module `build/cvh6fig5.py` (separate file avoids editing the
+  now-4,000-line `cvh6fig.py` and lets both agents work at once). Both landed cleanly.
+- Ch.5 "Control Valve Sizing": printed pp. 98–149 (`PAGES_SRC = 52`), all 22 sections 5.1–5.22,
+  18 vector figures (5.1–5.18), **39 bilingual data tables**, 13 symbolic equations. Draft QA:
+  18 XML-valid registered SVGs, caption sequence 5.1–5.18 in order, 0 CJK / 0 bare `&`, no Spanish,
+  one correct glossary + one source-note box per language, no cross-language prose.
+- Source limitations documented: printed sizing equations are images → symbolic equivalents only;
+  dimension/leakage/temperature tables retain column-break gaps and obvious printed outliers
+  (475 at DN 350, 321.8 bar at 250 °C, WCC 800 °F row) verbatim; Figure 5.1's printed caption
+  "Feedback Control Loop" is wrong for the flow-characteristic chart and is kept with a note.
+  The propane sample problem prints ~75% open (my agent brief's 66% belonged to the steam example)
+  — the source value was kept.
+- Visual QA: 2 headless-Chrome contact sheets (9 figs each) + zoom review of figs 5.7, 5.17 and
+  5.18 — clean; no rework needed.
+- Registered Ch.5 (`cvh6_common`, `reader_book`, `books_site` 5/15), rebuilt, sitemap 1,036 URLs
+  (1,021 siblings), `check_links.py` 1,038 pages / 31,064 refs / **broken 0**.
+- Pushed `56b8a0f9` ("Publish Emerson Ch.5: Control Valve Sizing (EN/VI, 18 vector figures, 39
+  tables)"), 12 files / 2,900 insertions. Live deep paths initially 404/stale TOC (normal Pages
+  negative caching), then EN/VI Ch.5 URLs 200, live TOC lists Ch.5, catalog reads "Translating ·
+  5 of 15 chapters" / "Đang dịch · 5/15 chương", live sitemap has all 8 Ch.5 URL entries.

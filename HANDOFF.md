@@ -2,10 +2,9 @@
 
 **State now (resumed 2026-11-22):** 9 reader books fully live 🟢 (flagship Book 6
 *Valve Selection Handbook* 21/21). Campaign: Baumann `cvp` **4/32**, Borden `bcv` 1/1 🟢,
-Emerson `cvh6` **4/15 live**, IIH `iih` **3/8**, PPIC `ppic` 1/11, IPC `ipc` 1/8.
-**Live HEAD `cbc667cc`** (Ch.4 + Ch.3 note fix); live sitemap 1,034 URLs, catalog badge 4/15,
-Ch.4 EN/VI deep URLs 200, Ch.3 glossary fix live, `check_links.py` broken 0. Full tables in
-`report.md`.
+Emerson `cvh6` **5/15 live**, IIH `iih` **3/8**, PPIC `ppic` 1/11, IPC `ipc` 1/8.
+**Live HEAD `56b8a0f9`** (Ch.5); live sitemap 1,036 URLs, catalog badge 5/15, Ch.5 EN/VI deep
+URLs 200, `check_links.py` broken 0. Full tables in `report.md`.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — plus two books located but not registered
@@ -34,9 +33,12 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
 ## A. Continuation queue (user's order)
 1. ~~Book 8 `iih` ch2–3~~ — **done**; remaining ch4–8, source `work/ihii_raw.txt`; printed = PDF − 14.
 2. ~~Baumann `cvp` ch3–4~~ — **done**; remaining ch5–32, source `work/cvp_raw.txt`.
-3. ~~Emerson `cvh6` ch3 + ch4~~ — **done** in `8909e5fc` and `cbc667cc`; continue ch5–15.
-   Source `work/cvh6_raw.txt`; printed = PDF page (dump pages match). Ch.5 starts at raw line
-   6196 and runs to 9268; printed pp. 98–? (check the text dump before building).
+3. ~~Emerson `cvh6` ch3 + ch4 + ch5~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`;
+   continue ch6–15. Source `work/cvh6_raw.txt`; printed = PDF page (dump pages match). Ch.6
+   starts at raw line 9269 and runs to 10035; check its printed-page span and figure count before
+   delegating. Ch.5 used a separate figure module `build/cvh6fig5.py` (18 figs) and a prose module
+   `build/cvh6_ch05.py` (39 tables, 13 symbolic equations) — the same split works well for big
+   reference chapters.
    **Watch for the glossary-shadowing bug:** a module-level `def note(lang)` shadows the shared
    note markup helper and makes both glossary boxes render as the English source-note text.
    Name that function `source_notes(lang)` instead; fixed in Ch.3 and Ch.4.
