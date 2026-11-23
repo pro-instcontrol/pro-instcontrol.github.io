@@ -248,6 +248,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch03-measurement-of-level/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch04-ph-measurement/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch04-ph-measurement/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/ch04-ph-measurement/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch04-ph-measurement/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/inherent-safety-in-process-plant-design/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/inherent-safety-in-process-plant-design/"/>
@@ -3435,6 +3441,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch03-measurement-of-level/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/ch03-measurement-of-level/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch03-measurement-of-level/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/ch04-ph-measurement/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch04-ph-measurement/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/ch04-ph-measurement/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/ch04-ph-measurement/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/inherent-safety-in-process-plant-design/</loc>
