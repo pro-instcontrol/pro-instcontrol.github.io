@@ -158,6 +158,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch13-engineering-data/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch14-pipe-data/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch14-pipe-data/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/ch14-pipe-data/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch14-pipe-data/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/"/>
@@ -3333,6 +3339,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch13-engineering-data/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/ch13-engineering-data/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch13-engineering-data/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/ch14-pipe-data/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch14-pipe-data/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/ch14-pipe-data/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch14-pipe-data/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/</loc>
