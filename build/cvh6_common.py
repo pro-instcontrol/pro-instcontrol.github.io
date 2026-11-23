@@ -37,6 +37,7 @@ SLUGS["cvh6"] = {
     7: "ch07-steam-conditioning",
     8: "ch08-installation-and-maintenance",
     9: "ch09-standards-and-approvals",
+    10: "ch10-isolation-valves",
 }
 
 # Re-export the shared helpers so chapter modules can `import cvh6_common as C`.
