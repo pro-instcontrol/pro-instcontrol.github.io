@@ -6246,3 +6246,30 @@ registration when resumed.
   (printed p. 210).
 - Note: SVG rasterization tooling (cairosvg) is not installed in this environment, so figure QA
   here was structural (XML validity, bounds, ids, captions) rather than a rendered contact sheet.
+
+## Session 93 — Emerson Ch.10 published (largest chapter to date)
+- "Isolation Valves", printed pp. 210–239 (`PAGES_SRC = 30`), 53 vector figures — by far the
+  largest unit in the book. Figures 10.1–10.39 are simplified valve cross-sections and piping
+  schematics (gate, globe, check, preheater/reheater, turbine extraction, bypass, diaphragm, pinch,
+  ball, butterfly, plug); figures 10.40–10.53 are dimension tables (cast iron gate/globe, steel
+  gate ANSI Classes 150/300/400&600/900&1500/2500, steel globe/check Classes 150–2500) with
+  inches and millimetres transcribed from the source.
+- Writing was split across two parallel agents (figure supplier `build/cvh6fig10.py`, 2,035 lines;
+  prose `build/cvh6_ch10.py`, 1,806 lines) against a fixed `fig_f10_01`…`fig_f10_53` contract, then
+  integrated by the lead agent. One integration fix: the figure 10.49 caption's raw `&` ("Class
+  400 & 600") was changed to "and" because the shared `fig()` helper inserts captions into HTML
+  without escaping — matching the Ch.5 convention; all other captions already XML-safe.
+- Independent QA: 53 registered XML-valid SVGs, all figure text inside viewBoxes, unique `fig-1..53`
+  ids, 0 CJK / 0 bare `&` / 0 Spanish, one bilingual glossary + one source-note box per language,
+  no cross-language prose (the only "Figure 10." strings on the VI page are quoted OCR captions
+  inside the source-note box); the three English figure-caption strings there are explicitly
+  discussed source quirks, not leakage. Distinctive dimension values spot-checked against source.
+  `check_links.py` 1,048 pages / 31,314 refs / broken 0; sitemap 1,046 URLs (1,031 siblings).
+- Source quirks documented: swapped captions 10.1/10.2 and 10.29/10.30, leading period in 10.46,
+  Table 10.44 header repeating an "in mm" pair, OCR-lost `---` tokens in 10.50, printed 557.9 in
+  10.46, repeated "sealing by torque" prose, and OCR typos (`opearation`, `effeciency`,
+  `confirguration`, `Venture-port`, etc.) preserved in EN and corrected in VI.
+- Pushed `558a8e49` ("Publish Emerson Ch.10: Isolation Valves (EN/VI, 53 vector figures)"), 12 files
+  / 3,863 insertions. Live EN/VI Ch.10 URLs 200, TOC lists Ch.10, catalog reads "Translating ·
+  10 of 15 chapters", live sitemap has all 8 Ch.10 URL entries. Emerson **10/15**; next Ch.11
+  "Sustainability" from raw line 15219 (printed p. 240).

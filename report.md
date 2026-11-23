@@ -7,9 +7,10 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-22, resumed):** 9 reader books fully live (flagship Book 6
 *Valve Selection Handbook* 🟢 21/21), plus a 4-book control/instrumentation campaign in progress
-across Books 7–10. **Live chapter HEAD `155b8c5c`** — the paused Emerson Ch.3 was published,
-Ch.4–Ch.9 added (including the 52-page Ch.5 with 39 tables), and a glossary-rendering bug fixed in
-Ch.3/Ch.4. Next unit in the queue is Emerson Ch.10 "Isolation Valves" (printed p. 210).
+across Books 7–10. **Live chapter HEAD `558a8e49`** — the paused Emerson Ch.3 was published,
+Ch.4–Ch.10 added (including the 52-page Ch.5 with 39 tables and the 30-page Ch.10 with 53 figures),
+and a glossary-rendering bug fixed in Ch.3/Ch.4. Next unit in the queue is Emerson Ch.11
+"Sustainability" (printed p. 240).
 
 ---
 
@@ -33,7 +34,7 @@ Ch.3/Ch.4. Next unit in the queue is Emerson Ch.10 "Isolation Valves" (printed p
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **4/32** 🟠 | 7 (ch1–4) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **9/15** 🟠 | 167 (ch1–9) |
+| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **10/15** 🟠 | 220 (ch1–10) |
 | `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **3/8** 🟠 | 48 (ch1–3) |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
@@ -58,6 +59,7 @@ Ch.3/Ch.4. Next unit in the queue is Emerson Ch.10 "Isolation Valves" (printed p
   `9e136a59`)
   + Ch.8 "Installation and Maintenance" (11 figs, printed pp. 176–191, published in `dfac0c08`)
   + Ch.9 "Standards and Approvals" (7 figs, printed pp. 192–209, published in `155b8c5c`)
+  + Ch.10 "Isolation Valves" (53 figs, printed pp. 210–239, published in `558a8e49`)
 - IIH Ch.1 "Measurement of Temperature" (6 figs, printed pp. 1–45, 77 refs)
   + Ch.2 "Measurement of Pressure" (21 figs) + Ch.3 "Measurement of Level" (21 figs,
   PDF pp. 97–142 / printed 83–128, 55 refs)
@@ -81,8 +83,11 @@ Ch.3/Ch.4. Next unit in the queue is Emerson Ch.10 "Isolation Valves" (printed p
 - Ch.9 EN/VI deep URLs → **HTTP 200** after Pages propagation (~45 s); live TOC lists Ch.9, catalog
   badge shows "Translating · 9 of 15 chapters" (VI: "Đang dịch · 9/15 chương"), live sitemap includes
   all 8 Ch.9 URL entries.
-- Local build at `155b8c5c`: sitemap **1,044 URLs** (1,029 with language siblings);
-  `check_links.py` **broken 0**; 1,046 pages / 31,264 local references.
+- Ch.10 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.10, catalog badge
+  shows "Translating · 10 of 15 chapters" (VI: "Đang dịch · 10/15 chương"), live sitemap includes all
+  8 Ch.10 URL entries.
+- Local build at `558a8e49`: sitemap **1,046 URLs** (1,031 with language siblings);
+  `check_links.py` **broken 0**; 1,048 pages / 31,314 local references.
 
 ---
 
@@ -131,9 +136,9 @@ Ch.3/Ch.4. Next unit in the queue is Emerson Ch.10 "Isolation Valves" (printed p
   `2ca04367` (IPC ch1) → `de891681` (IIH ch2) → `e71e3415` (Baumann ch3) → `fd86e439` (Emerson ch2)
   → `2d19c7d2` (IIH ch3) → `d487a9cb` (Baumann ch4) → `8909e5fc` (Emerson ch3)
   → `cbc667cc` (Emerson ch4 + Ch.3 note fix) → `56b8a0f9` (Emerson ch5)
-  → `d2a1da0a` (Emerson ch6)   → `9e136a59` (Emerson ch7) → `dfac0c08` (Emerson ch8) → `155b8c5c` (Emerson ch9, **live chapter
-  HEAD**).
-- Working tree contains only documentation updates after `155b8c5c`; no chapter work is withheld.
+  → `d2a1da0a` (Emerson ch6)   → `9e136a59` (Emerson ch7) → `dfac0c08` (Emerson ch8) → `155b8c5c` (Emerson ch9) → `558a8e49`
+  (Emerson ch10, **live chapter HEAD**).
+- Working tree contains only documentation updates after `558a8e49`; no chapter work is withheld.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
 ## 6. Queue (user's stated order)
@@ -141,9 +146,9 @@ Ch.3/Ch.4. Next unit in the queue is Emerson Ch.10 "Isolation Valves" (printed p
 2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs); remaining
    Ch.4–8 continue one by one.
 3. ~~Baumann `cvp` Ch.3 + Ch.4~~ — **done** (`e71e3415`, `d487a9cb`); remaining Ch.5–32.
-4. ~~Emerson `cvh6` Ch.3–Ch.9~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
-   `9e136a59`, `dfac0c08`, `155b8c5c` (52 + 27 + 18 + 9 + 14 + 11 + 7 figs, broken 0); remaining
-   Ch.10–15 continue one by one.
+4. ~~Emerson `cvh6` Ch.3–Ch.10~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
+   `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49` (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 figs,
+   broken 0); remaining Ch.11–15 continue one by one.
 5. **Register candidate Book 11** — *Fundamentals of Industrial Instrumentation* (348 pp,
    2.5 MB) — located and surveyed, not registered.
 6. **Register candidate Book 12** — *A Guide to the Automation Body of Knowledge*, 2nd ed.
@@ -153,6 +158,8 @@ Ch.3/Ch.4. Next unit in the queue is Emerson Ch.10 "Isolation Valves" (printed p
 ### Resume notes
 - The previously paused Emerson Ch.3 working tree was committed in full (`8909e5fc`) and is live.
 - The in-progress Ch.9 draft found at resume was validated, built, committed (`155b8c5c`) and is live.
+- Ch.10 was written by two parallel agents (figure supplier + prose), integrated and QA'd in one run,
+  committed in `558a8e49` and is live.
 - Only the status documents are edited after that commit; no chapter/site changes are pending.
 - Before editing status docs again, check `git status --short` to see what is already committed.
 
