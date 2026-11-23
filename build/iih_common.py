@@ -34,6 +34,7 @@ SLUGS["iih"] = {
     5: "ch05-measurement-of-flow-rate",
     6: "ch06-mechanical-flow-meters",
     7: "ch07-gas-and-liquid-sampling-techniques",
+    8: "ch08-control-valves",
 }
 
 # Re-export the shared helpers so chapter modules can `import iih_common as C`.
