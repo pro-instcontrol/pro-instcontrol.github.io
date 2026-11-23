@@ -104,6 +104,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch04-control-valve-accessories/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch05-control-valve-sizing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch05-control-valve-sizing/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/ch05-control-valve-sizing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch05-control-valve-sizing/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/"/>
@@ -3225,6 +3231,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch04-control-valve-accessories/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/ch04-control-valve-accessories/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch04-control-valve-accessories/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/ch05-control-valve-sizing/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch05-control-valve-sizing/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-handbook-emerson-6th/ch05-control-valve-sizing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-handbook-emerson-6th/ch05-control-valve-sizing/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/</loc>
