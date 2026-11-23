@@ -6474,3 +6474,30 @@ registration when resumed.
   TOC row present, catalog badge 6/8 in both languages, sitemap 8 Ch.6 entries.
 - Book 8 `iih` is now **6/8** 🟠. Next: Book 8 Ch.7, then Baumann `cvp` Ch.5, PPIC Ch.2,
   IPC Ch.2; Book 11/12 registration only on confirmation.
+
+## Session 102 — IIH Chapter 7 published: Gas and Liquid Sampling Techniques
+
+- Largest IIH chapter: 46 source pages (PDF pp. 257–302, printed 243–288), ~77 KB of source text,
+  19 figures and 13 data tables. Per the large-chapter recipe the work was split across two
+  parallel agents with a fixed `F.fig_f01()`…`F.fig_f19()` contract:
+  - figure supplier: `build/iihfig7.py` (996 lines, 19 vector figures: chromatograph, dispersive
+    and non-dispersive IR, Wheatstone bridge, thermal-conductivity sensor cut-away and circuit,
+    paramagnetic analyzer, ORSAT, gravimetric, methane detector, combustion diagrams and seven
+    furnace/plant flow charts);
+  - prose: `build/iih_ch07.py` (1,828 lines, EN body 181,259 chars / VI 161,606 chars, 44 refs,
+    13 tables: sorbents, stabilization, GC detectors, gas thermal conductivities, combustion
+    values, ignition limits, and Tables 5–11 typical/limit values for seven plant types).
+- Independent verification: both modules compile; 19 figure tuples with correct bilingual
+  captions, 0 off-canvas/overlap findings, 0 CJK, 0 bare ampersands; 19/19 figure embeds; data
+  markers from the OCR text dump (Ambersorb XE-340, Chromosorb 106, Tenax GC, XAD-2, Glyphosate,
+  Thiosulfate) and image-only-table quirks (Vinylchloride, liquified, IYONI, Koratochvil)
+  present. Built pages: EN/VI each 19 unique fig ids, 0 malformed SVGs, 13 tables,
+  19/19 localized captions, 0 CJK, 0 content bare ampersands, 0 Vietnamese prose on EN page.
+- Registration: `iih_common.SLUGS[7]`, `reader_book.py done[7]`, `books_site.TRANSLATED` 7/8.
+  Build: TOC 8 rows / done 7; sitemap **1,064 URLs** (1,049 with language siblings); 1,066 pages
+  / 31,764 local references; `check_links.py` **broken 0**; 8 sitemap entries for Ch.7.
+- Pushed `675a28a7` ("Publish IIH Ch.7: Gas and Liquid Sampling Techniques (EN/VI, 19 vector
+  figures, 13 tables)"), 12 files / 2,860 insertions / 6 deletions. Live after Pages propagation:
+  EN/VI deep URLs 200, TOC row present, catalog badge 7/8 in both languages, sitemap 8 entries.
+- Book 8 `iih` is now **7/8** 🟠. Next: Book 8 Ch.8 (final chapter — completes the book), then
+  Baumann `cvp` Ch.5, PPIC Ch.2, IPC Ch.2; Book 11/12 registration only on confirmation.

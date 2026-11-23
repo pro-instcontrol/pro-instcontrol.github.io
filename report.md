@@ -7,15 +7,16 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-23):** 10 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15); the remaining campaign books are
-still in progress across Books 7–10. **Live chapter HEAD `dfb266f0`** (IIH Ch.6) — the paused Emerson Ch.3 was published,
+still in progress across Books 7–10. **Live chapter HEAD `675a28a7`** (IIH Ch.7) — the paused Emerson Ch.3 was published,
 Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
 the 42-page Ch.13 with 10 data tables / 897 rows, Ch.14 "Pipe Data" with 16 data tables / 521 rows,
 and the final 31-page Ch.15 "Conversions and Equivalents" with 19 data tables / 1,108 rows, Index
 and Additional Resources), and a glossary-rendering bug fixed in Ch.3/Ch.4. **Emerson `cvh6` is
 complete at 15/15**; no further Emerson chapters are queued. IIH Ch.4 "pH Measurement" (22 vector
 figures, PDF pp. 143–180) and Ch.5 "Measurement of Flow Rate" (10 vector figures, PDF pp. 181–216)
-and Ch.6 "Mechanical Flow Meters" (9 vector figures, PDF pp. 217–256) were then published, taking
-Book 8 to 6/8.
+and Ch.6 "Mechanical Flow Meters" (9 vector figures, PDF pp. 217–256) and Ch.7 "Gas and Liquid
+Sampling Techniques" (19 vector figures, 13 data tables, PDF pp. 257–302) were then published,
+taking Book 8 to 7/8.
 
 ---
 
@@ -40,7 +41,7 @@ Book 8 to 6/8.
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **4/32** 🟠 | 7 (ch1–4) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **6/8** 🟠 | 89 (ch1–6) |
+| `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **7/8** 🟠 | 108 (ch1–7) |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
 
@@ -82,6 +83,8 @@ Book 8 to 6/8.
   published in `db6c38fb`)
   + Ch.6 "Mechanical Flow Meters" (9 figs, 46 refs, PDF pp. 217–256 / printed 203–242,
   published in `dfb266f0`)
+  + Ch.7 "Gas and Liquid Sampling Techniques in Process Industry" (19 figs, 13 tables,
+  44 refs, PDF pp. 257–302 / printed 243–288, published in `675a28a7`)
 - PPIC Ch.1 "Catalytic Reduction of Dissolved Oxygen" (5 figs, 4 tables)
 - IPC Ch.1 "Transducers – I" (51 figs, 7 tables, printed pp. 1–62)
 
@@ -120,8 +123,8 @@ Book 8 to 6/8.
 - Ch.15 EN/VI deep URLs → **HTTP 200** after Pages propagation (~45 s); live TOC lists Ch.15, catalog
   badge now shows "🟢 Fully translated · 15 of 15 chapters" (VI: "🟢 Đã dịch đầy đủ · 15/15 chương"),
   live sitemap includes all 8 Ch.15 URL entries (2 `<loc>` + 6 hreflang alternates).
-- Local build at `dfb266f0`: sitemap **1,062 URLs** (1,047 with language siblings);
-  `check_links.py` **broken 0**; 1,064 pages / 31,714 local references.
+- Local build at `675a28a7`: sitemap **1,064 URLs** (1,049 with language siblings);
+  `check_links.py` **broken 0**; 1,066 pages / 31,764 local references.
 - IIH Ch.4 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.4
   ("pH Measurement", translated), catalog badge shows "Translating · 4 of 8 chapters"
   (VI: "Đang dịch · 4/8 chương"), live sitemap includes all 8 Ch.4 URL entries.
@@ -131,6 +134,9 @@ Book 8 to 6/8.
 - IIH Ch.6 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.6
   ("Mechanical Flow Meters", translated), catalog badge shows "Translating · 6 of 8 chapters"
   (VI: "Đang dịch · 6/8 chương"), live sitemap includes all 8 Ch.6 URL entries.
+- IIH Ch.7 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.7
+  ("Gas and Liquid Sampling Techniques", translated), catalog badge shows "Translating · 7 of 8
+  chapters" (VI: "Đang dịch · 7/8 chương"), live sitemap includes all 8 Ch.7 URL entries.
 
 ---
 
@@ -182,7 +188,8 @@ Book 8 to 6/8.
   → `d2a1da0a` (Emerson ch6)   → `9e136a59` (Emerson ch7) → `dfac0c08` (Emerson ch8) → `155b8c5c` (Emerson ch9) → `558a8e49`
   (Emerson ch10) → `e70bd6a7` (Emerson ch11) → `8d523ae8` (Emerson ch12) → `092d513d`
   (Emerson ch13)   → `67f84ff5` (Emerson ch14) → `89e84b27` (Emerson ch15) → `399e0cbb` (IIH ch4)
-  → `db6c38fb` (IIH ch5) → `dfb266f0` (IIH ch6, **live chapter HEAD**).
+  → `db6c38fb` (IIH ch5) → `dfb266f0` (IIH ch6) → `675a28a7` (IIH ch7,
+  **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -191,8 +198,9 @@ Book 8 to 6/8.
 2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs)
    ~~Ch.4 "pH Measurement"~~ — **done** in `399e0cbb` (22 figs)
    ~~Ch.5 "Measurement of Flow Rate"~~ — **done** in `db6c38fb` (10 figs)
-   ~~Ch.6 "Mechanical Flow Meters"~~ — **done** in `dfb266f0` (9 figs); remaining Ch.7–8
-   continue one by one.
+   ~~Ch.6 "Mechanical Flow Meters"~~ — **done** in `dfb266f0` (9 figs)
+   ~~Ch.7 "Gas and Liquid Sampling Techniques"~~ — **done** in `675a28a7` (19 figs, 13 tables);
+   remaining Ch.8 continues the book to completion.
 3. ~~Baumann `cvp` Ch.3 + Ch.4~~ — **done** (`e71e3415`, `d487a9cb`); remaining Ch.5–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
@@ -206,6 +214,11 @@ Book 8 to 6/8.
 7. Book 9 `ppic` Chapters 2–11 after the user's named queues.
 
 ### Resume notes
+- IIH Ch.7 (largest IIH chapter: 46 source pages, 19 vector figures, 13 data tables, 44 refs) was
+  split across two parallel agents — figure supplier (`iihfig7.py`, 19 functions) and prose
+  (`iih_ch07.py`, 1,828 lines) — with a fixed `F.fig_fNN()` contract. Independent QA: 0 layout
+  problems, 0 CJK/bare ampersands, 13 tables on each page, 19/19 localized captions, broken 0;
+  published in `675a28a7`.
 - IIH Ch.6 modules (`iihfig6.py` 9 figures, `iih_ch06.py` 1,541 lines, 46 refs, 40 source pages)
   were written by one background agent, verified independently (0 layout problems, 0 CJK/bare
   ampersands), registered, built, QA'd and published in `dfb266f0`. Fixed one Vietnamese word
