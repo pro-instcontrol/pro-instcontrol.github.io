@@ -5,11 +5,11 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-22, stopped by user):** 9 reader books fully live (flagship Book 6
+**Status (2026-11-22, resumed):** 9 reader books fully live (flagship Book 6
 *Valve Selection Handbook* 🟢 21/21), plus a 4-book control/instrumentation campaign in progress
-across Books 7–10. **Live HEAD `d487a9cb`** (IIH Ch.3 + Baumann Ch.4 published); all live checks
-green. Emerson Ch.3 is built and QA’d locally but **intentionally not committed/pushed** at the
-user’s stop request.
+across Books 7–10. **Live HEAD `cbc667cc`** — the paused Emerson Ch.3 was published, then Ch.4
+"Control Valve Accessories" (27 vector figures) was added and a glossary-rendering bug in Ch.3
+was fixed; both are pushed. Next unit in the queue is Emerson Ch.5 "Control Valve Sizing".
 
 ---
 
@@ -33,7 +33,7 @@ user’s stop request.
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **4/32** 🟠 | 7 (ch1–4) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **2/15 live**; 3/15 built locally 🟠 | 29 live; +52 local (ch3) |
+| `cvh6` | **Book 7c** — Emerson, *Control Valve Handbook*, 6th ed. (2020) | 355 pp | 15 | **4/15** 🟠 | 108 (ch1–4) |
 | `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **3/8** 🟠 | 48 (ch1–3) |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
@@ -48,22 +48,24 @@ user’s stop request.
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
+  + Ch.3 "Valve and Actuator Types" (52 figs, printed pp. 54–81, published in `8909e5fc`)
+  + Ch.4 "Control Valve Accessories" (27 figs, printed pp. 82–97, published in `cbc667cc`)
 - IIH Ch.1 "Measurement of Temperature" (6 figs, printed pp. 1–45, 77 refs)
   + Ch.2 "Measurement of Pressure" (21 figs) + Ch.3 "Measurement of Level" (21 figs,
   PDF pp. 97–142 / printed 83–128, 55 refs)
 - PPIC Ch.1 "Catalytic Reduction of Dissolved Oxygen" (5 figs, 4 tables)
 - IPC Ch.1 "Transducers – I" (51 figs, 7 tables, printed pp. 1–62)
-- **Locally built, not published:** Emerson Ch.3 "Valve and Actuator Types" — 28 source pages,
-  52 vector figures, full EN/VI prose; QA passed, but the working tree was left uncommitted at
-  the user’s stop request.
 
-### Live verification (2026-11-22, at stop)
-- Newly published IIH Ch.3 EN/VI and Baumann Ch.4 EN/VI → **HTTP 200** after cache-busting
-  retries (Pages briefly 404s deep paths immediately after push, then resolves).
-- Live HEAD `d487a9cb` sitemap: **1,030 URLs** (1,015 with language siblings); 512 work-detail
-  pages. Local working tree (includes unpublished Emerson Ch.3): 1,032 URLs / 1,017 siblings.
-- `check_links.py` at last local build: **broken 0**; 1,034 pages / 30,964 local references.
-- Emerson Ch.3 was **not** pushed, so its local TOC/progress changes are not live.
+### Live verification (2026-11-22, after resuming)
+- Emerson Ch.3 EN/VI deep URLs → **HTTP 200** (after Pages negative caching cleared); live TOC
+  listed Ch.3, catalog badge showed "Translating · 3 of 15 chapters", live sitemap included all
+  8 Ch.3 URL entries.
+- Ch.4 EN/VI deep URLs → **HTTP 200** after Pages negative caching cleared; live TOC lists Ch.4,
+  catalog badge shows "Translating · 4 of 15 chapters", live sitemap includes all 8 Ch.4 URL
+  entries. The Ch.3 fix is live: EN shows the English glossary and one source-note box, VI shows
+  the Vietnamese glossary and no English source-note box.
+- Local build at `cbc667cc`: sitemap **1,034 URLs** (1,019 with language siblings);
+  `check_links.py` **broken 0**; 1,036 pages / 31,014 local references.
 
 ---
 
@@ -110,9 +112,9 @@ user’s stop request.
   `b370e6f3` (Book 8 registration) → `98bb7d26` (IIH ch1) → `066862d2` (Book 9 registration) →
   `7b60e440` (PPIC ch1) → `671ae45b` (Book 10 registration) → `a15f1de8` (pause/report) →
   `2ca04367` (IPC ch1) → `de891681` (IIH ch2) → `e71e3415` (Baumann ch3) → `fd86e439` (Emerson ch2)
-  → `2d19c7d2` (IIH ch3) → `d487a9cb` (Baumann ch4, **live HEAD at stop**).
-- Uncommitted at stop: Emerson Ch.3 registration, figure fixes, chapter module and generated
-  EN/VI pages. Do **not** assume these are live; commit/push them when resuming.
+  → `2d19c7d2` (IIH ch3) → `d487a9cb` (Baumann ch4) → `8909e5fc` (Emerson ch3)
+  → `cbc667cc` (Emerson ch4 + Ch.3 note fix, **live HEAD**).
+- Working tree contains only documentation updates after `cbc667cc`; no chapter work is withheld.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
 ## 6. Queue (user's stated order)
@@ -120,24 +122,17 @@ user’s stop request.
 2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs); remaining
    Ch.4–8 continue one by one.
 3. ~~Baumann `cvp` Ch.3 + Ch.4~~ — **done** (`e71e3415`, `d487a9cb`); remaining Ch.5–32.
-4. **Emerson `cvh6` Ch.3 "Valve and Actuator Types" — built/QA’d locally, paused before commit.**
-   On resume: commit the existing working tree (or rebuild with `python build/reader_cvh6.py 3`,
-   `reader_book.py cvh6`, `books_site.py`, `make_sitemap.py`, `check_links.py`), push, and verify
-   EN/VI deep URLs. Then continue Ch.4–15.
+4. ~~Emerson `cvh6` Ch.3 + Ch.4~~ — **done** in `8909e5fc` and `cbc667cc` (52 + 27 figs,
+   broken 0); remaining Ch.5–15 continue one by one.
 5. **Register candidate Book 11** — *Fundamentals of Industrial Instrumentation* (348 pp,
    2.5 MB) — located and surveyed, not registered.
 6. **Register candidate Book 12** — *A Guide to the Automation Body of Knowledge*, 2nd ed.
    (511 pp, 34 MB) — located and surveyed, not registered.
 7. Book 9 `ppic` Chapters 2–11 after the user's named queues.
 
-### Paused working tree (exact scope)
-- Modified: `books/index.html`, `vi/books/index.html`, both Emerson TOCs, `sitemap.xml`,
-  `build/books_site.py`, `build/cvh6_common.py`, `build/cvh6fig.py`, `build/reader_book.py`.
-- Added: `build/cvh6_ch03.py`, both generated
-  `books/read/control-valve-handbook-emerson-6th/ch03-valve-and-actuator-types/index.html`
-  files (EN + VI).
-- The status documents themselves (`report.md`, `HANDOFF.md`, `TRANSLATION-STATUS.md`, workspace
-  memory) were also updated locally but not committed.
-- Nothing else is pending; IIH Ch.3 and Baumann Ch.4 are fully committed and live.
+### Resume notes
+- The previously paused Emerson Ch.3 working tree was committed in full (`8909e5fc`) and is live.
+- Only the status documents were edited after that commit; no chapter/site changes are pending.
+- Before editing status docs again, check `git status --short` to see what is already committed.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

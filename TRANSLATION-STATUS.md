@@ -6108,3 +6108,41 @@ registration when resumed.
   still 2/15. Resume by committing/pushing that working tree, then live-verify both deep URLs.
 - Live HEAD `d487a9cb`; live sitemap 1,030 URLs. Local unpublished build: sitemap 1,032 URLs,
   1,034 pages / 30,964 refs, broken 0.
+
+## Session 86 — paused Emerson Ch.3 published; Ch.4 queued
+- Re-validated the paused Emerson `cvh6` Ch.3 build before touching git: 53 inline SVGs (52
+  chapter figures + 1 shell icon), all XML-valid; `fig-1..52` unique; 0 CJK; 0 Spanish; 2 bare
+  `&`s (shared Google Fonts URL, pre-existing); `check_links.py` 1,034 pages / 30,964 refs /
+  broken 0; TOC, catalog badge 3/15 and sitemap all consistent locally.
+- Committed the full paused tree as `8909e5fc` ("Publish Emerson Ch.3: Valve and Actuator Types
+  (EN/VI, 52 vector figures)") — 15 files, 3,298 insertions, including the status docs that had
+  been updated at the prior stop. Push completed without retry.
+- Live verification: EN/VI deep paths 404'd on first attempts (Pages negative caching), then both
+  returned 200 with cache-busting; live TOC lists Ch.3, catalog reads "Translating · 3 of 15
+  chapters", live sitemap contains all 8 Ch.3 URL entries. Emerson `cvh6` is **3/15 🟠**, live
+  HEAD `8909e5fc`, live sitemap 1,032 URLs.
+- `report.md` + `HANDOFF.md` updated to remove the "paused/uncommitted" state. Next unit: Ch.4
+  "Control Valve Accessories" (printed pp. 82–97, 27 figures; source misnumbers 14.14–14.23 for
+  the solenoid figures and duplicates the Fig. 4.11 caption).
+
+## Session 87 — Emerson Ch.4 published; Ch.3 glossary bug fixed
+- Ch.4 module `cvh6_ch04.py` + 27 vector figures (`fig_f4_01`…`fig_f4_27`, total `cvh6fig.py`
+  figures 108) drafted by a background agent and independently re-validated: 27 XML-valid SVGs,
+  unique `fig-1..27`, caption sequence 4.1–4.27 in both languages, 0 CJK / 0 bare `&` on content,
+  no Spanish, correct printed-page captions.
+- Found a defect the agent's QA missed: module-level `def note(lang)` shadows the imported shared
+  `note()` markup helper, so the top glossary box rendered the English source-note text on BOTH
+  pages. Renamed it `source_notes(lang)` in Ch.4 and in the already-live Ch.3; both EN and VI now
+  show the correct bilingual glossary and a single correct end note.
+- Visual QA: contact sheets of all 27 figures via headless Chrome; zoom review of dense figures
+  4.1, 4.7, 4.11, 4.12, 4.24. Fixed Fig. 4.7, where a "Supply port" callout pointed at the blue
+  output line — the misleading callout was removed (supply/exhaust remain labeled on the left).
+- Registered Ch.4 in the three standard places (`cvh6_common.SLUGS`, `reader_book.done`,
+  `books_site.TRANSLATED` 4/15); rebuilt Ch.3 + Ch.4 → TOC/site/sitemap;
+  `check_links.py` 1,036 pages / 31,014 refs / **broken 0**; sitemap 1,034 URLs (1,019 siblings).
+- Pushed `cbc667cc` ("Publish Emerson Ch.4: Control Valve Accessories (EN/VI, 27 vector figures);
+  fix Ch.3 glossary note"), 15 files, 1,983 insertions. Live deep paths initially 404/stale TOC
+  (normal Pages negative caching), then both EN/VI Ch.4 URLs 200, live TOC lists Ch.4, catalog
+  reads "Translating · 4 of 15 chapters", live sitemap has all 8 Ch.4 URL entries. Live Ch.3 EN
+  has the English glossary + one source-note box; VI has the Vietnamese glossary + no English
+  source-note box — the shadowing fix is confirmed live.
