@@ -6402,3 +6402,25 @@ registration when resumed.
   tables / 2,526 rows in Ch.13-15.**
 - Next: no more Emerson chapters. Continue only when the user names the next unit (Book 8 `iih`
   Ch.4, Baumann `cvp` Ch.5, PPIC `ppic` Ch.2, IPC `ipc` Ch.2, or register Book 11/12).
+
+## Session 99 — IIH Chapter 4 published: pH Measurement
+
+- The in-progress working tree contained a complete draft (`build/iih_ch04.py`, 1,771 lines,
+  EN/VI prose, 38 source pages, PAGES_SRC=38, `build/iihfig4.py` with 22 figure functions
+  f01–f20/f22–f23 preserving the source's skipped Figure 21) plus all three registration edits.
+- Figure QA found 10 real layout defects (7 off-canvas bilingual labels in f06/f07/f14/f16/f22
+  and 3 overlaps in f01/f11/f18). Fixed by re-anchoring long notes, wrapping two-line labels,
+  and shifting the pH axis label and reservoir label. Re-check with actual per-element font
+  sizes: **0 layout problems**.
+- Build chain: `reader_iih.py 4` → `reader_book.py iih` → `books_site.py` → `make_sitemap.py` →
+  `check_links.py`. Local build: TOC 8 rows / done 4 / chapters 8; sitemap **1,058 URLs**
+  (1,043 with language siblings); 1,060 pages / 31,614 local references; **broken 0**.
+  Page QA: EN/VI each 22 unique fig ids, 0 malformed inline SVGs, 0 CJK; bare `&` 4 (EN) / 2
+  (VI), matching the Ch.3 shell baseline (2 Google-Fonts + 2 book-title in breadcrumb/footer);
+  Spanish-guard hits were false positives ("EL" initials, Vietnamese "con người").
+- Pushed `399e0cbb` ("Publish IIH Ch.4: pH Measurement (EN/VI, 22 vector figures)"), 12 files /
+  3,012 insertions / 6 deletions. Live after Pages propagation: EN/VI deep URLs 200, TOC row
+  "4 · pH Measurement · translated" present, catalog badge "Translating · 4 of 8 chapters"
+  (VI "Đang dịch · 4/8 chương"), sitemap has all 8 Ch.4 URL entries.
+- Book 8 `iih` is now **4/8** 🟠. Next: Book 8 Ch.5, then Baumann `cvp` Ch.5, PPIC Ch.2,
+  IPC Ch.2; Book 11/12 registration only on confirmation.

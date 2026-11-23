@@ -7,12 +7,13 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-23):** 10 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15); the remaining campaign books are
-still in progress across Books 7–10. **Live chapter HEAD `89e84b27`** — the paused Emerson Ch.3 was published,
+still in progress across Books 7–10. **Live chapter HEAD `399e0cbb`** (IIH Ch.4) — the paused Emerson Ch.3 was published,
 Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
 the 42-page Ch.13 with 10 data tables / 897 rows, Ch.14 "Pipe Data" with 16 data tables / 521 rows,
 and the final 31-page Ch.15 "Conversions and Equivalents" with 19 data tables / 1,108 rows, Index
 and Additional Resources), and a glossary-rendering bug fixed in Ch.3/Ch.4. **Emerson `cvh6` is
-complete at 15/15**; no further Emerson chapters are queued.
+complete at 15/15**; no further Emerson chapters are queued. IIH Ch.4 "pH Measurement" was then
+published with 22 vector figures (PDF pp. 143–180 / printed 130–166), taking Book 8 to 4/8.
 
 ---
 
@@ -37,7 +38,7 @@ complete at 15/15**; no further Emerson chapters are queued.
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **4/32** 🟠 | 7 (ch1–4) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **3/8** 🟠 | 48 (ch1–3) |
+| `iih` | **Book 8** — 3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018) | 348 pp | 8 | **4/8** 🟠 | 70 (ch1–4) |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
 
@@ -74,6 +75,7 @@ complete at 15/15**; no further Emerson chapters are queued.
 - IIH Ch.1 "Measurement of Temperature" (6 figs, printed pp. 1–45, 77 refs)
   + Ch.2 "Measurement of Pressure" (21 figs) + Ch.3 "Measurement of Level" (21 figs,
   PDF pp. 97–142 / printed 83–128, 55 refs)
+  + Ch.4 "pH Measurement" (22 figs, PDF pp. 143–180 / printed 130–166, published in `399e0cbb`)
 - PPIC Ch.1 "Catalytic Reduction of Dissolved Oxygen" (5 figs, 4 tables)
 - IPC Ch.1 "Transducers – I" (51 figs, 7 tables, printed pp. 1–62)
 
@@ -112,8 +114,11 @@ complete at 15/15**; no further Emerson chapters are queued.
 - Ch.15 EN/VI deep URLs → **HTTP 200** after Pages propagation (~45 s); live TOC lists Ch.15, catalog
   badge now shows "🟢 Fully translated · 15 of 15 chapters" (VI: "🟢 Đã dịch đầy đủ · 15/15 chương"),
   live sitemap includes all 8 Ch.15 URL entries (2 `<loc>` + 6 hreflang alternates).
-- Local build at `89e84b27`: sitemap **1,056 URLs** (1,041 with language siblings);
-  `check_links.py` **broken 0**; 1,058 pages / 31,564 local references.
+- Local build at `399e0cbb`: sitemap **1,058 URLs** (1,043 with language siblings);
+  `check_links.py` **broken 0**; 1,060 pages / 31,614 local references.
+- IIH Ch.4 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.4
+  ("pH Measurement", translated), catalog badge shows "Translating · 4 of 8 chapters"
+  (VI: "Đang dịch · 4/8 chương"), live sitemap includes all 8 Ch.4 URL entries.
 
 ---
 
@@ -164,14 +169,16 @@ complete at 15/15**; no further Emerson chapters are queued.
   → `cbc667cc` (Emerson ch4 + Ch.3 note fix) → `56b8a0f9` (Emerson ch5)
   → `d2a1da0a` (Emerson ch6)   → `9e136a59` (Emerson ch7) → `dfac0c08` (Emerson ch8) → `155b8c5c` (Emerson ch9) → `558a8e49`
   (Emerson ch10) → `e70bd6a7` (Emerson ch11) → `8d523ae8` (Emerson ch12) → `092d513d`
-  (Emerson ch13) → `67f84ff5` (Emerson ch14) → `89e84b27` (Emerson ch15, **live chapter HEAD**).
-- Chapter work is complete after `89e84b27`; the status-document updates are committed separately.
+  (Emerson ch13)   → `67f84ff5` (Emerson ch14) → `89e84b27` (Emerson ch15) → `399e0cbb` (IIH ch4,
+  **live chapter HEAD**).
+- Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
 ## 6. Queue (user's stated order)
 1. ~~Integrate Book 10 `ipc` Chapter 1~~ — **done** in `2ca04367` (51 figs, 7 tables, broken 0).
-2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs); remaining
-   Ch.4–8 continue one by one.
+2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs)
+   ~~Ch.4 "pH Measurement"~~ — **done** in `399e0cbb` (22 figs); remaining Ch.5–8 continue
+   one by one.
 3. ~~Baumann `cvp` Ch.3 + Ch.4~~ — **done** (`e71e3415`, `d487a9cb`); remaining Ch.5–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
@@ -185,6 +192,9 @@ complete at 15/15**; no further Emerson chapters are queued.
 7. Book 9 `ppic` Chapters 2–11 after the user's named queues.
 
 ### Resume notes
+- The in-progress IIH Ch.4 draft found in the working tree (22 figure functions, EN/VI prose,
+  3 registration edits) was validated, corrected (10 figure-label position/overlap fixes in
+  `iihfig4.py`), rebuilt, QA'd and published in `399e0cbb`; it is live.
 - The previously paused Emerson Ch.3 working tree was committed in full (`8909e5fc`) and is live.
 - The in-progress Ch.9 draft found at resume was validated, built, committed (`155b8c5c`) and is live.
 - Ch.10 was written by two parallel agents (figure supplier + prose), integrated and QA'd in one run,
