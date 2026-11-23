@@ -6344,3 +6344,27 @@ registration when resumed.
   catalog reads "Translating · 13 of 15 chapters", live sitemap has all 8 Ch.13 URL entries.
   Emerson **13/15**. Next Ch.14 "Pipe Data" (raw line 18592, printed p. 302) — 22 pages, ZERO
   figures; reuse the Ch.13 data-chapter recipe.
+
+## Session 97 — Emerson Ch.14 published
+- "Pipe Data", printed pp. 302-324 (`PAGES_SRC = 22`), 22 pages, ZERO figures — 4 sections
+  (14.1-14.4) of pipe and flange dimension tables. Reused the Ch.13 data-chapter recipe:
+  `build/cvh14_common.py` re-exports `cvh13_common`'s helpers; four section modules
+  `cvh14_s1..s4.py` each expose `section(lang)`; `build/cvh6_ch14.py` iterates them. Split:
+  s1 = 14.1-14.2 (2 tables, 239 rows — includes the intricate 592-line ASME pipe schedule table,
+  structured as NPS group bands with schedule sub-rows); s2 = 14.3 (4 tables, 97 rows — bolt
+  circles, stud bolts, flange diameter, flange thickness); s3 = 14.4.1-14.4.5 (5 PN tables, 121
+  rows); s4 = 14.4.6-14.4.10 (5 PN tables, 64 rows).
+- Total: 16 tables / 521 data rows. Table DATA (numbers, NPS/DN, class labels, M12...M56 thread
+  designations, units) identical in EN and VI; only headings, prose, headers and captions localized.
+- Independent QA: 0 CJK / 0 bare `&` / 0 Spanish; EN table cells/headers/prose 0 VI diacritics, VI
+  headers 364 and VI prose 1,703; data-fidelity cross-check: 1,665 distinct decimal values in the
+  source span — ALL 1,665 (100%) present on the built page. `check_links.py` 1,056 pages / 31,514
+  refs / broken 0; sitemap 1,054 URLs (1,039 siblings).
+- Source quirks documented: NPS 16 outside diameter prints as «1600» (kept); PN 63 omits DN 20;
+  mixed ASCII/U+2212 hyphens; typo «1 thorough 8» in a footnote retained; `- - -` gaps, STD/XS/XXS
+  and SCH numbers kept; page furniture and `See Additional Resources »` boilerplate skipped.
+- Pushed `67f84ff5` ("Publish Emerson Ch.14: Pipe Data (EN/VI, 16 data tables, 521 rows)"), 16
+  files / 1,255 insertions. Live EN/VI Ch.14 URLs 200 (~45 s propagation), TOC lists Ch.14,
+  catalog reads "Translating · 14 of 15 chapters", live sitemap has all 8 Ch.14 URL entries.
+  Emerson **14/15**. Next Ch.15 "Conversions and Equivalents" (raw line 19708, printed p. 324) —
+  31 pages, ZERO figures, 15 sections plus Index (p. 340) and Additional Resources (p. 354).
