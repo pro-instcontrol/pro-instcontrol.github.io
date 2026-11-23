@@ -1,10 +1,10 @@
 # HANDOFF — Campaign resumed 2026-11-22 (Books 7–10 in progress)
 
-**State now:** 9 reader books fully live 🟢 (flagship Book 6 *Valve Selection Handbook* 21/21).
-Control/instrumentation campaign in progress: Baumann `cvp` 2/32, Borden `bcv` 1/1 🟢,
-Emerson `cvh6` **2/15**, IIH `iih` **2/8**, PPIC `ppic` 1/11, IPC `ipc` **1/8**.
-HEAD `fd86e439`; sitemap 1,026 URLs; `check_links.py` broken 0; live checks green.
-Full tables in `report.md`.
+**State now (stopped 2026-11-22):** 9 reader books fully live 🟢 (flagship Book 6
+*Valve Selection Handbook* 21/21). Campaign: Baumann `cvp` **4/32**, Borden `bcv` 1/1 🟢,
+Emerson `cvh6` **2/15 live** (3/15 built locally, unpublished), IIH `iih` **3/8**, PPIC `ppic`
+1/11, IPC `ipc` 1/8. **Live HEAD `d487a9cb`**; live sitemap 1,030 URLs. Local working tree has
+unpublished Emerson Ch.3 (sitemap 1,032, check_links broken 0). Full tables in `report.md`.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — plus two books located but not registered
@@ -20,10 +20,21 @@ Continue with the queue below, one chapter per run. Note: the "bare &" count of 
 is the shared Google Fonts URL in the page shell — pre-existing on every published page, not
 chapter content.
 
+## 0.5 Paused before Emerson Ch.3 publication (user said "stop and update report")
+Live commits: `2d19c7d2` (IIH Ch.3, 21 figs) and `d487a9cb` (Baumann Ch.4, 1 fig), both with
+EN/VI deep URLs verified 200. Emerson Ch.3 (`cvh6_ch03.py`, 28 source pages, 52 vector figures)
+was registered, built, structurally QA’d (52 SVG XML-valid, unique `fig-1..52`, 0 CJK/ES/bare-amp,
+`check_links.py` broken 0) and manually visually reviewed. Visual fixes were applied to figures
+3.2, 3.6, 3.21, 3.24, 3.29, 3.31–3.34, 3.38, 3.44, 3.50 and 3.52 (label clipping, overlaps and
+footnote/caption collisions). **Do not treat these changes as live:** they are still uncommitted
+in the working tree.
+
 ## A. Continuation queue (user's order)
-1. Book 8 `iih` ch2–8 — source `work/ihii_raw.txt` (readable); printed = PDF − 14.
-2. Baumann `cvp` ch3–32 — source `work/cvp_raw.txt`; 56 figures across the book.
-3. Emerson `cvh6` ch2–15 — source `work/cvh6_raw.txt`; printed = PDF page (dump pages match).
+1. ~~Book 8 `iih` ch2–3~~ — **done**; remaining ch4–8, source `work/ihii_raw.txt`; printed = PDF − 14.
+2. ~~Baumann `cvp` ch3–4~~ — **done**; remaining ch5–32, source `work/cvp_raw.txt`.
+3. **Emerson `cvh6` ch3 — local build is complete and QA’d but was NOT committed/pushed.**
+   Resume by committing the existing working tree (or rebuilding) then push/live-verify; after
+   that continue ch4–15. Source `work/cvh6_raw.txt`; printed = PDF page (dump pages match).
 4. Book 9 `ppic` ch2–11 — source `work/ppic_raw.txt`; printed = PDF − 16.
 5. Book 10 `ipc` ch2–8 — source **`work/ipc_decoded.txt`** (NOT the raw dump — glyph codes).
 6. Register Book 11 / Book 12 from the two located PDFs when the user confirms.

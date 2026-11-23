@@ -6090,3 +6090,21 @@ registration when resumed.
   1028 pages / 30814 refs / **broken 0**.
 - All three agent-written chapters were independently revalidated (XML, CJK, ES, figure counts)
   before publication; figure renders inspected with Chrome headless + PIL crop/upscale.
+
+## Session 85 — IIH Ch3 + Baumann Ch4 published; Emerson Ch3 paused unpublished
+- IIH `iih` Ch.3 "Measurement of Level" (PDF pp. 97–142, printed 83–128, PAGES_SRC=46): 21 vector
+  figures in new `iihfig3.py`, 3 tables, 6 equations, 55 refs, full EN/VI prose. Fixed caption
+  numbering (`3.N`), `_foot()` width/auto-shrink, fig 7 label under equations, and fig 19 clipped
+  averaged-level label. Registered 3/8; pushed `2d19c7d2`; EN/VI deep URLs live 200.
+- Baumann `cvp` Ch.4 "The Self-Acting Regulator: Why Not?" (printed pp. 21–23, PAGES_SRC=3):
+  1 vector figure in `cvpfig.py`, full EN/VI prose, no fabricated references. Registered 4/32;
+  pushed `d487a9cb`; EN/VI deep URLs live 200.
+- Emerson `cvh6` Ch.3 "Valve and Actuator Types" (printed pp. 54–81, PAGES_SRC=28): 52 vector
+  figures in `cvh6fig.py` (81 total after ch1–2), full EN/VI prose. Structural QA passed
+  (52 XML-valid SVGs, unique `fig-1..52`, 0 CJK/ES/bare-amp, `check_links.py` broken 0). Visual QA
+  found/fixed label clipping, overlaps and footnote/caption collisions in figs 3.2, 3.6, 3.21,
+  3.24, 3.29, 3.31–3.34, 3.38, 3.44, 3.50 and 3.52. **User said stop before commit:** the
+  registration edits, chapter module and generated EN/VI pages remain uncommitted; live book is
+  still 2/15. Resume by committing/pushing that working tree, then live-verify both deep URLs.
+- Live HEAD `d487a9cb`; live sitemap 1,030 URLs. Local unpublished build: sitemap 1,032 URLs,
+  1,034 pages / 30,964 refs, broken 0.

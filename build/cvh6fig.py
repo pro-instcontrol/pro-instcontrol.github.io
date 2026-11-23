@@ -17,8 +17,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
 from vfig import (BLUE, GREEN, GREY, INK, RED,  # noqa: E402
-                  _arrow, _circle, _defs, _ellipse, _fig, _line, _path, _poly,
-                  _rect, _txt, svg)
+                  _arrow, _axes, _circle, _curve, _defs, _ellipse, _fig, _hatch,
+                  _line, _path, _poly, _rect, _txt, svg)
 
 FIGS = {}
 
@@ -1286,3 +1286,1832 @@ def fig_f2_10():
                 "T63, travel, seat load and signature results.",
                 "Giao diện phần mềm ValveLink gồm biểu đồ xu hướng và bảng chẩn đoán",
                 "Simplified ValveLink software interface with trend charts and a diagnostics panel")
+
+# ---------------------------------------------------------------------------
+# Chapter 3 figures (3.1-3.52).  Each redraws a source figure as a simplified
+# vector schematic and returns the standard 5-tuple via _fig().
+# ---------------------------------------------------------------------------
+
+def _finish(w, h, o, title, cap_short, cap_vi, cap_en, aria_vi, aria_en):
+    """Append the in-SVG caption line and wrap the figure as a 5-tuple."""
+    o.append(T(w / 2.0, h - 10, cap_short, 7.4, color=GREY))
+    return _fig(svg(w, h, "".join(o), esc(title)), cap_vi, cap_en, aria_vi, aria_en)
+
+
+def _leader(x1, y1, x2, y2):
+    return _line(x1, y1, x2, y2, sw=0.7, color=GREY)
+
+
+def _labels(items, x, y, lh=24):
+    """Bilingual label column with a small dot marker."""
+    o = []
+    for i, (vi, en) in enumerate(items):
+        yy = y + i * lh
+        o.append(_circle(x, yy - 2.5, 1.8, fill=BLUE, sw=0))
+        o.append(T(x + 9, yy, vi + " / " + en, 7.5, anchor="start"))
+    return "".join(o)
+
+
+@_reg
+def fig_f31():
+    """Figure 3.1 (p. 55) - Flanged Angle-Style Control Valve Body."""
+    w, h = 620, 360
+    o = [_defs()]
+    o.append(_rect(150, 120, 170, 84, fill="#f4f7fb", sw=1.6))
+    o.append(_rect(76, 138, 76, 48, fill="#e9eef4", sw=1.4))
+    o.append(_rect(62, 128, 18, 68, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(286, 204, 56, 76, fill="#e9eef4", sw=1.4))
+    o.append(_rect(276, 274, 76, 18, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(198, 76, 52, 44, fill="#e9eef4", sw=1.3))
+    o.append(_line(224, 44, 224, 172, sw=2.4, color=INK))
+    o.append(_rect(206, 148, 36, 28, fill="#fdf3e6", sw=1.3))
+    o.append(_rect(204, 176, 40, 9, fill="#dfe7ef", sw=1.2))
+    o.append(_arrow(96, 162, 154, 162, sw=1.8, color=GREEN))
+    o.append(_arrow(314, 214, 314, 268, sw=1.8, color=GREEN))
+    for yy, tx, ty in ((92, 250, 92), (120, 258, 120), (152, 248, 160),
+                       (180, 246, 180), (208, 322, 214)):
+        o.append(_leader(tx, ty, 384, yy))
+    o.append(_labels([("Thân van", "Body"), ("Nắp van", "Bonnet"),
+                      ("Thân", "Stem"), ("Lồng", "Cage"),
+                      ("Vòng chỗ ngồi", "Seat ring")], 396, 92))
+    return _finish(w, h, o, "Figure 3.1 - Flanged angle-style control valve body",
+                   "Hình 3.1 (tr. 55) · Thân van điều khiển kiểu góc có bích",
+                   "Hình 3.1 (tr. 55) · Thân van điều khiển kiểu góc có bích: cổng vào nằm ngang, "
+                   "cổng ra thẳng đứng, thân van kiểu lồng; thường dùng cho nước cấp lò hơi và "
+                   "thoát nước gia nhiệt, nơi van cũng đóng vai trò như một khúc khuỷu.",
+                   "Figure 3.1 (p. 55) · Flanged angle-style control valve body: horizontal inlet "
+                   "and vertical outlet with cage-style construction; common in boiler feedwater "
+                   "and heater drain service where space is limited and the valve also serves as "
+                   "an elbow.",
+                   "Thân van góc có bích: cổng vào ngang, cổng ra xuống dưới, nút van dẫn hướng bằng lồng",
+                   "Flanged angle valve body with horizontal inlet, downward outlet and cage-guided plug")
+
+
+@_reg
+def fig_f32():
+    """Figure 3.2 (p. 56) - Bar Stock Valve Body."""
+    w, h = 600, 320
+    o = [_defs()]
+    o.append(_rect(140, 110, 250, 100, fill="#f4f7fb", sw=1.7))
+    o.append(_hatch(144, 114, 242, 92))
+    o.append(_rect(96, 138, 46, 44, fill="#e9eef4", sw=1.3))
+    o.append(_rect(84, 130, 14, 60, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(388, 138, 46, 44, fill="#e9eef4", sw=1.3))
+    o.append(_rect(432, 130, 14, 60, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(236, 64, 58, 46, fill="#e9eef4", sw=1.3))
+    o.append(_line(265, 34, 265, 168, sw=2.4, color=INK))
+    o.append(_rect(246, 150, 38, 26, fill="#fdf3e6", sw=1.3))
+    o.append(_rect(244, 176, 42, 8, fill="#dfe7ef", sw=1.2))
+    o.append(_arrow(120, 160, 198, 160, sw=1.8, color=GREEN))
+    o.append(_arrow(400, 160, 428, 160, sw=1.8, color=GREEN))
+    o.append(T(30, 92, "Thanh phôi gia công / Machined bar stock", 7.2,
+               color=INK, anchor="start"))
+    o.append(T(300, 284, "Thân bằng hợp kim chống ăn mòn / Alloy body for corrosive service",
+               7.6, color=GREY))
+    return _finish(w, h, o, "Figure 3.2 - Bar stock valve body",
+                   "Hình 3.2 (tr. 56) · Thân van chế tạo từ thanh phôi",
+                   "Hình 3.2 (tr. 56) · Thân van chế tạo từ thanh phôi: thân đặc được gia công "
+                   "lỗ dẫn và bề mặt làm kín, thường chọn cho ứng dụng ăn mòn khi cần hợp kim "
+                   "đặc biệt; đôi khi rẻ hơn thân đúc và có thể dùng lót polyme.",
+                   "Figure 3.2 (p. 56) · Bar stock valve body: a solid billet machined with a flow "
+                   "passage and sealing surfaces, often specified for corrosive service when "
+                   "exotic alloys are needed; it can be less expensive than a casting, and a "
+                   "polymer liner may also be used.",
+                   "Mặt cắt thân van gia công từ thanh phôi đặc với lỗ dẫn và gioăng chỗ ngồi",
+                   "Cross-section of a bar stock valve body machined from solid stock")
+
+
+@_reg
+def fig_f33():
+    """Figure 3.3 (p. 56) - Single-Ported Globe-Style Valve Body."""
+    w, h = 620, 360
+    o = [_defs()]
+    o.append(_rect(200, 96, 190, 170, fill="#f4f7fb", sw=1.7))
+    o.append(_rect(132, 150, 70, 52, fill="#e9eef4", sw=1.4))
+    o.append(_rect(118, 140, 18, 72, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(388, 150, 70, 52, fill="#e9eef4", sw=1.4))
+    o.append(_rect(456, 140, 18, 72, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(262, 48, 66, 48, fill="#e9eef4", sw=1.3))
+    o.append(_line(295, 20, 295, 196, sw=2.4, color=INK))
+    o.append(_rect(276, 180, 38, 30, fill="#fdf3e6", sw=1.3))
+    o.append(_rect(272, 210, 46, 10, fill="#dfe7ef", sw=1.2))
+    o.append(_arrow(154, 176, 232, 176, sw=1.8, color=GREEN))
+    o.append(_arrow(295, 246, 295, 272, sw=1.8, color=GREEN))
+    o.append(_arrow(350, 176, 430, 176, sw=1.8, color=GREEN))
+    o.append(T(152, 132, "Đầu vào / Inlet", 7.6, color=GREEN))
+    o.append(T(430, 132, "Đầu ra / Outlet", 7.6, color=GREEN))
+    o.append(T(330, 40, "Dẫn hướng bằng thân / Stem guiding", 7.6,
+               color=INK, anchor="start"))
+    o.append(T(310, 310, "Dòng chảy thường đi lên qua vòng chỗ ngồi / Flow normally up through the seat ring",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.3 - Single-ported globe-style valve body",
+                   "Hình 3.3 (tr. 56) · Thân van cầu một cổng",
+                   "Hình 3.3 (tr. 56) · Thân van cầu một cổng: kiểu thân phổ biến nhất, kết cấu "
+                   "đơn giản, dẫn hướng nút van bằng thân; dòng chảy thường đi lên qua vòng chỗ "
+                   "ngồi, dùng rộng rãi trong điều khiển quá trình cỡ NPS 1-4.",
+                   "Figure 3.3 (p. 56) · Single-ported globe-style valve body: the most common and "
+                   "simplest body style, with stem-guided plug; flow normally passes upward through "
+                   "the seat ring, widely used in process control at NPS 1-4.",
+                   "Thân van cầu một cổng với nút van dẫn hướng bằng thân, dòng đi lên qua chỗ ngồi",
+                   "Single-ported globe body with stem-guided plug and upward flow through the seat")
+
+
+@_reg
+def fig_f34():
+    """Figure 3.4 (p. 57) - Valve Body with Cage-Style Trim, Balanced."""
+    w, h = 620, 380
+    o = [_defs()]
+    o.append(_rect(196, 90, 198, 178, fill="#f4f7fb", sw=1.7))
+    o.append(_rect(128, 146, 70, 54, fill="#e9eef4", sw=1.4))
+    o.append(_rect(114, 136, 18, 74, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(392, 146, 70, 54, fill="#e9eef4", sw=1.4))
+    o.append(_rect(460, 136, 18, 74, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(258, 40, 74, 50, fill="#e9eef4", sw=1.3))
+    o.append(_line(295, 12, 295, 200, sw=2.4, color=INK))
+    # cage: two walls with window openings
+    o.append(_rect(252, 118, 18, 120, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(320, 118, 18, 120, fill="#dfe7ef", sw=1.2))
+    for k in range(4):
+        o.append(_rect(252, 136 + k * 24, 18, 10, fill="#ffffff", sw=0.7))
+        o.append(_rect(320, 136 + k * 24, 18, 10, fill="#ffffff", sw=0.7))
+    o.append(_rect(272, 176, 46, 46, fill="#fdf3e6", sw=1.4))
+    o.append(_rect(268, 222, 54, 10, fill="#dfe7ef", sw=1.2))
+    o.append(_arrow(160, 172, 246, 172, sw=1.7, color=GREEN))
+    o.append(_arrow(344, 200, 344, 250, sw=1.7, color=GREEN))
+    o.append(_leader(262, 150, 406, 96))
+    o.append(T(414, 100, "Lồng / Cage", 7.5, anchor="start", color=BLUE))
+    o.append(_leader(318, 196, 406, 128))
+    o.append(T(414, 132, "Nút cân bằng / Balanced plug", 7.5, anchor="start"))
+    o.append(T(300, 330, "Áp suất hạ lưu tác động lên cả hai mặt nút / Downstream pressure on both plug faces",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.4 - Valve body with cage-style trim, balanced plug and soft seat",
+                   "Hình 3.4 (tr. 57) · Thân van có lồng dẫn, nút cân bằng",
+                   "Hình 3.4 (tr. 57) · Thân van có Trim dạng lồng: lồng vừa dẫn hướng nút van, giữ "
+                   "vòng chỗ ngồi vừa tạo đặc tính dòng. Ở kiểu cân bằng, áp suất hạ lưu tác động "
+                   "lên cả mặt trên và mặt dưới của nút, triệt tiêu phần lớn lực mất cân bằng tĩnh.",
+                   "Figure 3.4 (p. 57) · Valve body with cage-style trim and balanced plug: the cage "
+                   "guides the plug, retains the seat ring and characterizes flow. In balanced "
+                   "designs downstream pressure acts on both plug faces, nullifying most static "
+                   "unbalanced force and allowing a smaller actuator.",
+                   "Mặt cắt thân van có lồng dẫn với các cửa sổ và nút van cân bằng",
+                   "Cutaway of a cage-guided body with windows and a balanced valve plug")
+
+
+@_reg
+def fig_f35():
+    """Figure 3.5 (p. 57) - Reverse-Acting Double-Ported Globe-Style Valve Body."""
+    w, h = 620, 380
+    o = [_defs()]
+    o.append(_rect(196, 86, 198, 196, fill="#f4f7fb", sw=1.7))
+    o.append(_rect(128, 140, 70, 52, fill="#e9eef4", sw=1.4))
+    o.append(_rect(114, 130, 18, 72, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(392, 140, 70, 52, fill="#e9eef4", sw=1.4))
+    o.append(_rect(460, 130, 18, 72, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(258, 36, 74, 50, fill="#e9eef4", sw=1.3))
+    o.append(_line(295, 8, 295, 250, sw=2.4, color=INK))
+    # two seat rings and a two-faced plug
+    o.append(_rect(240, 148, 110, 9, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(240, 218, 110, 9, fill="#dfe7ef", sw=1.2))
+    o.append(_poly([(272, 154), (318, 154), (326, 216), (264, 216)],
+                   fill="#fdf3e6", sw=1.4, close=True))
+    o.append(_arrow(160, 166, 236, 166, sw=1.6, color=GREEN))
+    o.append(_arrow(354, 166, 430, 166, sw=1.6, color=GREEN))
+    o.append(_arrow(160, 234, 236, 234, sw=1.6, color=GREEN))
+    o.append(_arrow(354, 234, 430, 234, sw=1.6, color=GREEN))
+    o.append(T(300, 300, "Lực động trên hai cổng tự cân bằng / Forces on the two ports tend to balance",
+               7.4, color=GREY))
+    o.append(T(300, 322, "Lắp được cả hai chiều: đẩy xuống mở hoặc đẩy xuống đóng / Reversible: push-down-to-open or push-down-to-close",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.5 - Reverse-acting double-ported globe-style valve body",
+                   "Hình 3.5 (tr. 57) · Thân van cầu hai cổng kiểu đảo chiều",
+                   "Hình 3.5 (tr. 57) · Thân van cầu hai cổng kiểu đảo chiều: dòng có xu hướng mở "
+                   "một cổng và đóng cổng kia nên lực động trên nút tự cân bằng; thân van thường "
+                   "lắp được cả hai chiều, đẩy xuống để mở hoặc để đóng.",
+                   "Figure 3.5 (p. 57) · Reverse-acting double-ported globe-style valve body: flow "
+                   "tends to open one port and close the other, so the dynamic force on the plug "
+                   "tends to balance; the body is often reversible, allowing push-down-to-open or "
+                   "push-down-to-close plug action.",
+                   "Thân van hai cổng có hai vòng chỗ ngồi và nút van hai mặt tự cân bằng",
+                   "Double-ported body with two seat rings and a self-balancing two-faced plug")
+
+
+@_reg
+def fig_f36():
+    """Figure 3.6 (p. 58) - Three-Way Globe Valve."""
+    w, h = 620, 360
+    o = [_defs()]
+    o.append(_rect(210, 112, 180, 136, fill="#f4f7fb", sw=1.7))
+    o.append(_rect(130, 148, 82, 46, fill="#e9eef4", sw=1.4))
+    o.append(_rect(116, 138, 18, 66, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(388, 148, 82, 46, fill="#e9eef4", sw=1.4))
+    o.append(_rect(468, 138, 18, 66, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(262, 246, 74, 56, fill="#e9eef4", sw=1.4))
+    o.append(_rect(252, 298, 94, 16, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(272, 62, 56, 50, fill="#e9eef4", sw=1.3))
+    o.append(_line(300, 32, 300, 196, sw=2.4, color=INK))
+    o.append(_rect(280, 176, 40, 58, fill="#fdf3e6", sw=1.4))
+    o.append(_arrow(152, 171, 214, 171, sw=1.7, color=GREEN))
+    o.append(_arrow(386, 171, 448, 171, sw=1.7, color=GREEN))
+    o.append(_arrow(300, 236, 300, 288, sw=1.7, color=GREEN))
+    o.append(T(150, 132, "Cổng trái / Left port", 7.4, color=GREEN))
+    o.append(T(448, 132, "Cổng phải / Right port", 7.4, color=GREEN))
+    o.append(T(300, 330, "Cổng chung dưới / Bottom common port", 7.4, color=GREEN))
+    o.append(T(170, 44, "Nút trụ ở vị trí giữa hành trình", 7.0,
+               color=INK, anchor="start"))
+    o.append(T(170, 56, "Cylindrical plug at mid-travel", 7.0,
+               color=INK, anchor="start"))
+    return _finish(w, h, o, "Figure 3.6 - Three-way globe valve",
+                   "Hình 3.6 (tr. 58) · Van cầu ba chiều",
+                   "Hình 3.6 (tr. 58) · Van cầu ba chiều có nút cân bằng, nút trụ ở vị trí giữa "
+                   "hành trình: cổng chung dưới thông sang cả cổng trái và cổng phải. Dùng cho "
+                   "điều khiển tại vị trí giữa theo kiểu gộp dòng hoặc tách dòng.",
+                   "Figure 3.6 (p. 58) · Three-way globe valve with a balanced plug shown at "
+                   "mid-travel: the bottom common port is open to both the right-hand and "
+                   "left-hand ports. Used for mid-travel throttling of converging or diverging "
+                   "fluids.",
+                   "Van cầu ba cổng với nút trụ ở vị trí giữa, thông cổng chung sang hai cổng bên",
+                   "Three-port globe valve with cylindrical plug at mid-travel")
+
+
+@_reg
+def fig_f37():
+    """Figure 3.7 (p. 59) - Shaft Center Line Offset with Disc Center."""
+    w, h = 600, 320
+    o = [_defs()]
+    # disc seen edge-on, shaft passing behind with an offset
+    o.append(_ellipse(300, 160, 96, 30, fill="#fdf3e6", sw=1.6))
+    o.append(_line(300, 130, 300, 190, sw=1.8, color=BLUE))
+    o.append(_circle(300, 160, 6, fill=BLUE, sw=0))
+    o.append(_line(150, 160, 452, 160, sw=2.2, color=INK))
+    o.append(_circle(300, 160, 5, fill=RED, sw=0))
+    o.append(_line(300, 160, 300, 250, sw=0.9, color=GREY, dash="3 3"))
+    o.append(_line(336, 160, 336, 250, sw=0.9, color=GREY, dash="3 3"))
+    o.append(_arrow(300, 240, 336, 240, sw=1.1, color=RED))
+    o.append(T(318, 232, "e", 8.5, color=RED))
+    o.append(T(300, 108, "Tâm đĩa / Disc center", 7.6, color=BLUE))
+    o.append(T(300, 276, "Trục lệch / Offset shaft center line", 7.6, color=INK))
+    o.append(T(300, 300, "Đĩa rời khỏi gioăng sau 15 độ quay / Disc lifts off the seal after 15 degrees",
+               7.2, color=GREY))
+    return _finish(w, h, o, "Figure 3.7 - Shaft center line offset with disc center",
+                   "Hình 3.7 (tr. 59) · Đường tâm trục lệch với tâm đĩa",
+                   "Hình 3.7 (tr. 59) · Đường tâm trục lệch với tâm đĩa: thiết kế lệch một hay hai "
+                   "lần giúp đĩa rời khỏi gioăng ngay sau khi bắt đầu quay, giảm mòn gioăng và "
+                   "cho phép mô-men nhỏ hơn với độ kín chặt hơn.",
+                   "Figure 3.7 (p. 59) · Shaft center line offset with disc center: single or double "
+                   "offset lifts the disc away from the seal just after rotation begins, reducing "
+                   "seal wear and allowing lower torque with tighter shutoff.",
+                   "Đĩa bướm với trục lệch tâm và khoảng lệch e giữa tâm trục và tâm đĩa",
+                   "Butterfly disc with an offset shaft and the eccentricity e between centers")
+
+
+@_reg
+def fig_f38():
+    """Figure 3.8 (p. 59) - Segmented V-Notch Ball."""
+    w, h = 600, 320
+    o = [_defs()]
+    o.append(_circle(268, 160, 92, fill="#f4f7fb", sw=1.7))
+    o.append(_path("M268,160 L268,68 A92,92 0 0,1 340,90 Z",
+                   fill="#e9eef4", sw=1.3))
+    o.append(_path("M268,160 L196,128 L268,68 Z", fill="#fdf3e6", sw=1.3))
+    o.append(_line(268, 160, 360, 160, sw=2.4, color=INK))
+    o.append(_line(268, 160, 268, 68, sw=1.1, color=GREY, dash="3 3"))
+    o.append(_arrow(214, 182, 250, 160, sw=1.4, color=GREEN))
+    o.append(_circle(268, 160, 5, fill=BLUE, sw=0))
+    o.append(_leader(232, 122, 392, 96))
+    o.append(T(400, 100, "Rãnh V / V-notch", 7.6, anchor="start", color=BLUE))
+    o.append(_leader(330, 96, 392, 132))
+    o.append(T(400, 136, "Đoạn cầu / Ball segment", 7.6, anchor="start"))
+    o.append(T(300, 288, "Rãnh V tạo đặc tính dòng phần trăm bằng / V-notch gives equal-percentage flow",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.8 - Segmented V-notch ball",
+                   "Hình 3.8 (tr. 59) · Quả cầu có rãnh V dạng đoạn",
+                   "Hình 3.8 (tr. 59) · Quả cầu đoạn có rãnh V định hình: rãnh V tạo đặc tính "
+                   "dòng phần trăm bằng, còn quả cầu luôn tiếp xúc gioăng khi quay nên có tác "
+                   "dụng cắt, hạn chế tắc nghẽn với bùn, giấy và chất lỏng có sợi.",
+                   "Figure 3.8 (p. 59) · Segmented ball with a contoured V-notch: the notch produces "
+                   "an equal-percentage flow characteristic, while the ball stays in contact with "
+                   "the seal for a shearing action that minimizes clogging on slurries and fibrous "
+                   "fluids.",
+                   "Quả cầu đoạn có rãnh V và gioăng tiếp xúc liên tục",
+                   "Segmented ball with a contoured V-notch and continuous seal contact")
+
+
+@_reg
+def fig_f39():
+    """Figure 3.9 (p. 60) - Butterfly Control Valve."""
+    w, h = 620, 340
+    o = [_defs()]
+    o.append(_rect(120, 110, 360, 120, fill="#f4f7fb", sw=1.7))
+    o.append(_rect(96, 96, 26, 148, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(478, 96, 26, 148, fill="#dfe7ef", sw=1.3))
+    o.append(_ellipse(300, 170, 54, 104, fill="#fdf3e6", sw=1.6))
+    o.append(_line(300, 66, 300, 274, sw=2.6, color=INK))
+    o.append(_circle(300, 170, 6, fill=BLUE, sw=0))
+    o.append(_arrow(150, 130, 240, 130, sw=1.6, color=GREEN))
+    o.append(_arrow(360, 210, 450, 210, sw=1.6, color=GREEN))
+    o.append(T(150, 96, "Thân van / Body", 7.6, color=INK))
+    o.append(T(440, 96, "Gioăng / Seal", 7.6, color=INK))
+    o.append(T(300, 300, "Đĩa quay 90 độ để điều tiết / Disc rotates 90 degrees to throttle",
+               7.4, color=GREY))
+    o.append(T(300, 322, "Đặc tính gần phần trăm bằng / Approximately equal-percentage characteristic",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.9 - Butterfly control valve",
+                   "Hình 3.9 (tr. 60) · Van điều khiển bướm",
+                   "Hình 3.9 (tr. 60) · Van điều khiển bướm: chiếm ít không gian lắp đặt, tổn thất "
+                   "áp suất thấp, đặc tính gần phần trăm bằng; dùng được cho điều tiết hoặc đóng "
+                   "mở, với kích cỡ tới NPS 72.",
+                   "Figure 3.9 (p. 60) · Butterfly control valve: minimal installation space, low "
+                   "pressure loss and an approximately equal-percentage characteristic; suitable "
+                   "for throttling or on/off control in sizes through NPS 72.",
+                   "Van bướm với đĩa quay giữa hai bích và trục thẳng đứng",
+                   "Butterfly valve with a rotating disc between two flanges")
+
+
+@_reg
+def fig_f3_10():
+    """Figure 3.10 (p. 60) - Ball Valve Options."""
+    w, h = 660, 320
+    o = [_defs()]
+    specs = [(140, "Cổng đầy / Full port", "fit"),
+             (330, "Rãnh V / V-notch", "vnotch"),
+             (520, "Giảm chấn / Anti-cavitation", "cav")]
+    for cx, lab, kind in specs:
+        o.append(_rect(cx - 78, 108, 156, 104, fill="#f4f7fb", sw=1.5))
+        o.append(_rect(cx - 96, 134, 20, 52, fill="#dfe7ef", sw=1.2))
+        o.append(_rect(cx + 76, 134, 20, 52, fill="#dfe7ef", sw=1.2))
+        o.append(_circle(cx, 160, 42, fill="#e9eef4", sw=1.4))
+        if kind == "fit":
+            o.append(_circle(cx, 160, 24, fill="#ffffff", sw=1.1))
+        elif kind == "vnotch":
+            o.append(_path("M%x,%d L%x,%d L%x,%d Z" % (cx - 22, 160, cx - 22, 138, cx + 6, 138),
+                           fill="#ffffff", sw=1.0))
+            o.append(_circle(cx, 160, 24, fill="#ffffff", sw=1.1))
+        else:
+            for k in range(3):
+                o.append(_circle(cx - 20 + k * 20, 160, 6, fill="#ffffff", sw=0.9))
+        o.append(_arrow(cx - 92, 160, cx - 52, 160, sw=1.5, color=GREEN))
+        o.append(T(cx, 248, lab, 7.8, color=INK))
+    o.append(T(330, 292, "Tùy chọn van bi để giảm tiếng ồn và chống xói mòn / Ball valve options for noise and cavitation",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.10 - Ball valve options",
+                   "Hình 3.10 (tr. 60) · Các tùy chọn van bi",
+                   "Hình 3.10 (tr. 60) · Các tùy chọn van bi: cổng đầy, rãnh V và cấu hình chống "
+                   "xói mòn, giảm tiếng ồn; Emerson cung cấp các tùy chọn này cho mức tiếng ồn và "
+                   "xói mòn trung bình.",
+                   "Figure 3.10 (p. 60) · Ball valve options: full port, V-notch and anti-cavitation "
+                   "configurations; Emerson offers such options for moderate noise and cavitation "
+                   "protection.",
+                   "Ba cấu hình van bi: cổng đầy, rãnh V và giảm xói mòn",
+                   "Three ball valve configurations: full port, V-notch and anti-cavitation")
+
+
+@_reg
+def fig_f3_11():
+    """Figure 3.11 (p. 61) - High-Performance Butterfly Control Valve."""
+    w, h = 620, 360
+    o = [_defs()]
+    o.append(_rect(130, 108, 340, 124, fill="#f4f7fb", sw=1.7))
+    o.append(_rect(106, 92, 26, 156, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(468, 92, 26, 156, fill="#dfe7ef", sw=1.3))
+    o.append(_ellipse(300, 170, 60, 100, fill="#fdf3e6", sw=1.6))
+    o.append(_line(300, 66, 300, 274, sw=2.6, color=INK))
+    o.append(_circle(300, 170, 6, fill=BLUE, sw=0))
+    o.append(_path("M300,66 A104,104 0 0,1 392,140", fill="none", sw=1.1,
+                   color=RED, dash="4 3"))
+    o.append(_arrow(392, 140, 300, 170, sw=1.1, color=RED, dash="4 3"))
+    o.append(T(404, 96, "90 độ / 90 degrees", 7.4, color=RED, anchor="start"))
+    o.append(_arrow(150, 132, 236, 132, sw=1.6, color=GREEN))
+    o.append(_arrow(364, 208, 450, 208, sw=1.6, color=GREEN))
+    o.append(T(300, 306, "Lắp lệch đôi giúp đĩa rời gioăng sau khi bắt đầu mở / Double offset lifts the disc off the seal",
+               7.4, color=GREY))
+    o.append(T(300, 328, "Đặc tính dòng tuyến tính / Linear flow characteristic through 90 degrees",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.11 - High-performance butterfly control valve",
+                   "Hình 3.11 (tr. 61) · Van bướm điều khiển hiệu năng cao",
+                   "Hình 3.11 (tr. 61) · Van bướm điều khiển hiệu năng cao: cho đặc tính dòng "
+                   "tuyến tính qua 90 độ quay đĩa; lắp lệch đôi kéo đĩa ra khỏi gioăng sau khi bắt "
+                   "đầu mở, giảm mòn và cho phép điều tiết hiệu quả.",
+                   "Figure 3.11 (p. 61) · High-performance butterfly control valve: linear flow "
+                   "characteristic through 90 degrees of disc rotation; double-offset mounting "
+                   "pulls the disc away from the seal after it begins to open, minimizing wear.",
+                   "Van bướm hiệu năng cao với đĩa lệch đôi và cung quay 90 độ",
+                   "High-performance butterfly valve with double-offset disc and a 90-degree arc")
+
+
+@_reg
+def fig_f3_12():
+    """Figure 3.12 (p. 61) - Pressure Assisted Seal Configuration."""
+    w, h = 600, 320
+    o = [_defs()]
+    o.append(_rect(150, 96, 300, 136, fill="#f4f7fb", sw=1.6))
+    o.append(_rect(196, 96, 26, 136, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(378, 96, 26, 136, fill="#dfe7ef", sw=1.2))
+    o.append(_ellipse(300, 164, 72, 44, fill="#fdf3e6", sw=1.5))
+    o.append(_circle(300, 164, 7, fill=BLUE, sw=0))
+    o.append(_arrow(300, 60, 300, 118, sw=2.0, color=RED))
+    o.append(_arrow(172, 164, 200, 164, sw=1.7, color=GREEN))
+    o.append(_arrow(400, 164, 428, 164, sw=1.7, color=GREEN))
+    o.append(_leader(344, 140, 440, 88))
+    o.append(T(448, 92, "Vòng làm kín / Seal ring", 7.5, anchor="start", color=BLUE))
+    o.append(T(300, 280, "Áp suất quá trình ép vòng làm kín vào chỗ ngồi / Process pressure assists the seal",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.12 - Pressure assisted seal configuration",
+                   "Hình 3.12 (tr. 61) · Cấu hình làm kín hỗ trợ bằng áp suất",
+                   "Hình 3.12 (tr. 61) · Cấu hình làm kín hỗ trợ bằng áp suất: áp suất quá trình "
+                   "được dùng để ép vòng làm kín vào chỗ ngồi, cho độ kín chặt đặc biệt ở cả hai "
+                   "chiều dòng, đặc biệt với nút lệch tâm và chất lỏng khó xử lý.",
+                   "Figure 3.12 (p. 61) · Pressure assisted seal configuration: process pressure is "
+                   "used to push the seal ring into its seat, giving exceptional tight shutoff in "
+                   "both flow directions, especially with eccentric-plug designs on difficult fluids.",
+                   "Vòng làm kín được áp suất ép vào chỗ ngồi, dòng qua hai phía",
+                   "Seal ring pressed into its seat by process pressure")
+
+
+@_reg
+def fig_f3_13():
+    """Figure 3.13 (p. 62) - Eccentric Plug Control Valve Body."""
+    w, h = 620, 360
+    o = [_defs()]
+    o.append(_rect(180, 110, 240, 130, fill="#f4f7fb", sw=1.7))
+    o.append(_rect(120, 148, 62, 48, fill="#e9eef4", sw=1.3))
+    o.append(_rect(106, 138, 18, 68, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(418, 148, 62, 48, fill="#e9eef4", sw=1.3))
+    o.append(_rect(478, 138, 18, 68, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(258, 58, 74, 52, fill="#e9eef4", sw=1.3))
+    o.append(_line(295, 28, 295, 200, sw=2.4, color=INK))
+    o.append(_ellipse(292, 196, 58, 40, fill="#fdf3e6", sw=1.5))
+    o.append(_circle(268, 196, 6, fill=BLUE, sw=0))
+    o.append(_rect(322, 178, 12, 42, fill="#dfe7ef", sw=1.2))
+    o.append(_arrow(152, 172, 226, 172, sw=1.7, color=GREEN))
+    o.append(_arrow(366, 172, 442, 172, sw=1.7, color=GREEN))
+    o.append(_leader(280, 196, 412, 96))
+    o.append(T(420, 100, "Nút lệch tâm / Eccentric plug", 7.5, anchor="start"))
+    o.append(T(300, 300, "Đường đi của nút giảm tiếp xúc với vòng chỗ ngồi khi mở / Plug path minimizes seat contact",
+               7.4, color=GREY))
+    o.append(T(300, 322, "Chịu mòn, chịu nhiệt tới 427 độ C / Erosion resistant, to 427 deg C",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.13 - Eccentric plug control valve body",
+                   "Hình 3.13 (tr. 62) · Thân van điều khiển nút lệch tâm",
+                   "Hình 3.13 (tr. 62) · Thân van điều khiển nút lệch tâm: đường đi của đĩa lệch "
+                   "giảm tiếp xúc với vòng chỗ ngồi khi mở, giảm mòn và ma sát; thân và Trim chịu "
+                   "nhiệt tới 427 độ C và chênh áp đóng tới 1500 psi, hợp cho bùn và chất coking.",
+                   "Figure 3.13 (p. 62) · Eccentric plug control valve body: the plug path minimizes "
+                   "contact with the seat ring when opening, reducing wear and friction; the rugged "
+                   "body and trim handle 427 deg C and 1500 psi shutoff on slurries and coking fluids.",
+                   "Thân van nút lệch tâm với vòng chỗ ngồi tự định tâm",
+                   "Eccentric plug valve body with a self-centering seat ring")
+
+
+@_reg
+def fig_f3_14():
+    """Figure 3.14 (p. 62) - Full-Port Ball Control Valve."""
+    w, h = 620, 340
+    o = [_defs()]
+    o.append(_rect(120, 110, 360, 110, fill="#f4f7fb", sw=1.7))
+    o.append(_rect(96, 96, 26, 138, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(478, 96, 26, 138, fill="#dfe7ef", sw=1.3))
+    o.append(_circle(300, 165, 58, fill="#e9eef4", sw=1.5))
+    o.append(_circle(300, 165, 40, fill="#ffffff", sw=1.2))
+    o.append(_line(300, 107, 300, 60, sw=2.4, color=INK))
+    o.append(_arrow(150, 165, 236, 165, sw=1.8, color=GREEN))
+    o.append(_arrow(364, 165, 450, 165, sw=1.8, color=GREEN))
+    o.append(T(300, 272, "Đường kính lỗ bằng đường kính ống / Bore equals pipe diameter", 7.6, color=BLUE))
+    o.append(T(300, 296, "Ít hoặc không hạn chế dòng, cho phép thông tẩy / Little restriction; allows pigging",
+               7.4, color=GREY))
+    o.append(T(300, 318, "Thử lửa theo API 6 và 6FA / Fire tested to API 6 and 6FA", 7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.14 - Full-Port Ball Control Valve",
+                   "Hình 3.14 (tr. 62) · Van bi điều khiển cổng đầy",
+                   "Hình 3.14 (tr. 62) · Van bi điều khiển cổng đầy: lỗ trong bằng đường kính "
+                   "ống nên gần như không hạn chế dòng và cho phép thông tẩy; thiết kế ba mảnh, "
+                   "gắn trục chốt, đã thử lửa theo API 6 và 6FA.",
+                   "Figure 3.14 (p. 62) · Full-port ball control valve: the bore matches the pipe "
+                   "diameter, presenting little or no flow restriction and allowing pigging; a "
+                   "three-piece trunnion-mounted design, fire tested to API 6 and 6FA.",
+                   "Van bi cổng đầy với lỗ dẫn bằng đường kính ống",
+                   "Full-port ball valve with a bore equal to the pipe diameter")
+
+
+@_reg
+def fig_f3_15():
+    """Figure 3.15 (p. 62) - Full-Port Ball Valve."""
+    w, h = 620, 340
+    o = [_defs()]
+    o.append(_rect(120, 108, 360, 114, fill="#f4f7fb", sw=1.7))
+    o.append(_rect(96, 94, 26, 142, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(478, 94, 26, 142, fill="#dfe7ef", sw=1.3))
+    o.append(_circle(300, 166, 58, fill="#e9eef4", sw=1.5))
+    o.append(_circle(300, 166, 40, fill="#ffffff", sw=1.2))
+    o.append(_line(300, 108, 300, 58, sw=2.4, color=INK))
+    o.append(_line(198, 108, 198, 222, sw=1.1, color=GREY, dash="3 3"))
+    o.append(_line(402, 108, 402, 222, sw=1.1, color=GREY, dash="3 3"))
+    o.append(T(198, 246, "Mảnh 1", 7.4, color=GREY))
+    o.append(T(300, 246, "Mảnh 2 / thân giữa", 7.4, color=GREY))
+    o.append(T(402, 246, "Mảnh 3", 7.4, color=GREY))
+    o.append(_arrow(150, 166, 236, 166, sw=1.7, color=GREEN))
+    o.append(_arrow(364, 166, 450, 166, sw=1.7, color=GREEN))
+    o.append(T(300, 288, "Ba mảnh, gắn trục chốt / Three-piece trunnion-mounted construction", 7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.15 - Full-Port Ball Valve",
+                   "Hình 3.15 (tr. 62) · Van bi cổng đầy ba mảnh",
+                   "Hình 3.15 (tr. 62) · Van bi cổng đầy dạng ba mảnh, gắn trục chốt: thân giữa "
+                   "chứa quả cầu và gioăng, hai đầu nối vào đường ống; thiết kế tối ưu cho điều "
+                   "khiển tự động trong bypass, mẻ, giám sát và đóng khẩn cấp.",
+                   "Figure 3.15 (p. 62) · Full-port ball valve: a three-piece, trunnion-mounted "
+                   "construction with a centre section carrying the ball and seals between the two "
+                   "pipe-end pieces, optimized for bypass, batch, monitor and emergency shutoff service.",
+                   "Van bi cổng đầy ba mảnh có quả cầu gắn trục chốt",
+                   "Three-piece full-port ball valve with a trunnion-mounted ball")
+
+
+@_reg
+def fig_f3_16():
+    """Figure 3.16 (p. 63) - Multi-Port Flow Selector Valve."""
+    w, h = 560, 400
+    o = [_defs()]
+    o.append(_circle(280, 186, 84, fill="#f4f7fb", sw=1.7))
+    o.append(_circle(280, 186, 26, fill="#fdf3e6", sw=1.4))
+    o.append(_circle(280, 186, 6, fill=BLUE, sw=0))
+    for i in range(8):
+        import math as _m
+        a = 2 * _m.pi * i / 8.0
+        x1 = 280 + 84 * _m.cos(a)
+        y1 = 186 + 84 * _m.sin(a)
+        x2 = 280 + 132 * _m.cos(a)
+        y2 = 186 + 132 * _m.sin(a)
+        o.append(_line(x1, y1, x2, y2, sw=5, color="#dfe7ef"))
+        o.append(_line(x1, y1, x2, y2, sw=1.1, color=INK))
+        o.append(_arrow(x2 - 16 * _m.cos(a), y2 - 16 * _m.sin(a), x1, y1,
+                        sw=1.2, color=GREEN))
+    o.append(_line(280, 102, 280, 54, sw=6, color="#dfe7ef"))
+    o.append(_arrow(280, 78, 280, 108, sw=1.4, color=RED))
+    o.append(T(280, 44, "Đầu ra thử / Test outlet", 7.6, color=RED))
+    o.append(_line(280, 270, 280, 322, sw=6, color="#dfe7ef"))
+    o.append(_arrow(280, 290, 280, 318, sw=1.4, color=GREEN))
+    o.append(T(280, 344, "Đầu ra chung / Common group outlet", 7.6, color=GREEN))
+    o.append(T(280, 378, "Tám đầu vào được chọn luân phiên qua rô-to / Eight inlets selected by a rotor",
+               7.2, color=GREY))
+    return _finish(w, h, o, "Figure 3.16 - Multi-port flow selector valve",
+                   "Hình 3.16 (tr. 63) · Van chọn dòng đa cổng",
+                   "Hình 3.16 (tr. 63) · Van chọn dòng đa cổng nối với tám đường vào: rô-to cô "
+                   "lập, chuyển hướng hoặc thử một đường riêng trong khi bảy đường còn lại vẫn "
+                   "chảy tới cổng ra chung. Gồm thân, nắp, nút rô-to và cơ cấu chấp hành.",
+                   "Figure 3.16 (p. 63) · Multi-port flow selector valve connected to eight inlet "
+                   "lines: a rotor isolates, diverts or tests an individual line while the remaining "
+                   "seven continue to a common outlet. It consists of body, bonnet, rotor plug and "
+                   "actuator.",
+                   "Van đa cổng với tám đường vào, một đầu ra thử và một đầu ra chung",
+                   "Multi-port valve with eight inlets, one test outlet and a common outlet")
+
+
+@_reg
+def fig_f3_17():
+    """Figure 3.17 (p. 64) - Popular Varieties of Bolted Flange Connections."""
+    w, h = 660, 320
+    o = [_defs()]
+    kinds = [(140, "Bích mặt phẳng / Flat-face"),
+             (330, "Bích mặt nổi / Raised-face"),
+             (520, "Mối nối kiểu vòng / Ring-type joint")]
+    for cx, lab in kinds:
+        o.append(_rect(cx - 90, 122, 72, 76, fill="#e9eef4", sw=1.4))
+        o.append(_rect(cx + 18, 122, 72, 76, fill="#e9eef4", sw=1.4))
+        o.append(_rect(cx - 18, 140, 36, 40, fill="#f4f7fb", sw=1.2))
+        o.append(_line(cx - 96, 160, cx + 96, 160, sw=1.0, color=GREY, dash="3 3"))
+    # flat face: gasket over whole face
+    o.append(_rect(50, 160, 180, 8, fill="#fdf3e6", sw=0.8))
+    # raised face
+    o.append(_rect(240, 152, 180, 8, fill="#fdf3e6", sw=0.8))
+    o.append(_rect(276, 144, 108, 8, fill="#dfe7ef", sw=0.9))
+    # RTJ: groove with ring
+    o.append(_rect(430, 152, 180, 8, fill="#fdf3e6", sw=0.8))
+    o.append(_ellipse(520, 160, 24, 12, fill="#fdf3e6", sw=1.2))
+    for cx in (140, 330, 520):
+        o.append(_circle(cx - 60, 112, 5, fill=BLUE, sw=0))
+        o.append(_circle(cx + 60, 112, 5, fill=BLUE, sw=0))
+    for cx, lab in kinds:
+        o.append(T(cx, 250, lab, 7.8, color=INK))
+    o.append(T(330, 292, "Ba loại bích bắt bulông thông dụng / Three popular bolted-flange varieties",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.17 - Popular varieties of bolted flange connections",
+                   "Hình 3.17 (tr. 64) · Các loại nối bích bắt bulông thông dụng",
+                   "Hình 3.17 (tr. 64) · Các loại nối bích bắt bulông thông dụng: mặt phẳng, mặt "
+                   "nổi và mối nối kiểu vòng. Mặt phẳng ép toàn bộ bề mặt qua gioăng; mặt nổi có "
+                   "vòng nổi và rãnh đồng tâm; kiểu vòng dùng gioăng kim loại dạng vòng trong rãnh "
+                   "chữ U, dùng được đến 15.000 psig.",
+                   "Figure 3.17 (p. 64) · Popular bolted-flange connections: flat-face, raised-face "
+                   "and ring-type joint. Flat-face clamps the gasket over the full face; raised-face "
+                   "has concentric grooves; the ring-type joint wedges a metal ring into a U-groove "
+                   "and is used up to 15,000 psig.",
+                   "So sánh ba dạng mặt bích: phẳng, nổi và rãnh vòng",
+                   "Comparison of flat-face, raised-face and ring-type-joint flanges")
+
+
+@_reg
+def fig_f3_18():
+    """Figure 3.18 (p. 64) - Common Welded End Connections."""
+    w, h = 640, 320
+    o = [_defs()]
+    # socket weld
+    o.append(_rect(110, 104, 180, 96, fill="#f4f7fb", sw=1.6))
+    o.append(_rect(110, 128, 44, 48, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(154, 140, 56, 24, fill="#ffffff", sw=1.2))
+    o.append(_rect(60, 140, 94, 24, fill="#e9eef4", sw=1.2))
+    o.append(_poly([(150, 140), (162, 152), (150, 164)], fill="#fdf3e6", sw=1.1, close=True))
+    o.append(T(200, 226, "Hàn lổ / Socket weld", 7.8, color=INK))
+    # butt weld
+    o.append(_rect(370, 104, 180, 96, fill="#f4f7fb", sw=1.6))
+    o.append(_rect(300, 140, 70, 24, fill="#e9eef4", sw=1.2))
+    o.append(_poly([(366, 134), (378, 152), (366, 170)], fill="#ffffff", sw=1.1, close=True))
+    o.append(_poly([(382, 134), (370, 152), (382, 170)], fill="#ffffff", sw=1.1, close=True))
+    o.append(_rect(374, 140, 176, 24, fill="#e9eef4", sw=1.2))
+    o.append(T(460, 226, "Hàn đối đầu / Butt weld", 7.8, color=INK))
+    o.append(T(320, 280, "Đầu hàn kín ở mọi áp suất và nhiệt độ / Welded ends are leak-tight at all pressures",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.18 - Common welded end connections",
+                   "Hình 3.18 (tr. 64) · Các kiểu đầu nối hàn thông dụng",
+                   "Hình 3.18 (tr. 64) · Các kiểu đầu nối hàn thông dụng: hàn lổ và hàn đối đầu. "
+                   "Đầu hàn kín ở mọi áp suất, nhiệt độ và có chi phí ban đầu thấp, nhưng khó tháo "
+                   "khỏi đường ống và chỉ dùng cho vật liệu hàn được.",
+                   "Figure 3.18 (p. 64) · Common welded end connections: socket weld and butt weld. "
+                   "Welded ends are leak-tight at all pressures and temperatures and economical in "
+                   "first cost, but are harder to remove and limited to weldable materials.",
+                   "Mặt cắt đầu hàn lổ và đầu hàn đối đầu",
+                   "Cross-sections of socket-weld and butt-weld end connections")
+
+
+@_reg
+def fig_f3_19():
+    """Figure 3.19 (p. 65) - Typical Bonnet, Flange, and Stud Bolts."""
+    w, h = 620, 400
+    o = [_defs()]
+    o.append(_rect(244, 150, 132, 150, fill="#e9eef4", sw=1.6))   # bonnet
+    o.append(_rect(228, 138, 164, 16, fill="#dfe7ef", sw=1.3))    # bonnet flange
+    o.append(_rect(228, 296, 164, 16, fill="#dfe7ef", sw=1.3))    # body flange
+    o.append(_rect(214, 312, 192, 46, fill="#f4f7fb", sw=1.4))    # body top
+    o.append(_rect(288, 96, 44, 54, fill="#f7f9fb", sw=1.2))      # packing box
+    for i in range(4):
+        o.append(_rect(292, 102 + i * 12, 36, 8, fill="#fdf3e6", sw=0.8))
+    o.append(_line(310, 44, 310, 250, sw=2.4, color=INK))
+    for x in (236, 384):
+        o.append(_line(x, 138, x, 316, sw=2.2, color=INK))
+        o.append(_rect(x - 9, 128, 18, 10, fill="#dfe7ef", sw=1.1))
+        o.append(_rect(x - 9, 312, 18, 10, fill="#dfe7ef", sw=1.1))
+    o.append(_leader(392, 108, 452, 88))
+    o.append(T(460, 92, "Hộp đệm / Packing box", 7.5, anchor="start"))
+    o.append(_leader(390, 146, 452, 132))
+    o.append(T(460, 136, "Bích nắp / Bonnet flange", 7.5, anchor="start"))
+    o.append(_leader(392, 160, 452, 176))
+    o.append(T(460, 180, "Bulông chốt / Stud bolt", 7.5, anchor="start"))
+    o.append(_leader(390, 304, 452, 224))
+    o.append(T(460, 228, "Gioăng nắp / Bonnet gasket", 7.5, anchor="start"))
+    o.append(T(310, 380, "Bulông nắp nén gioăng và giữ nắp vào thân / Stud bolts load the gasket and hold the bonnet",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.19 - Typical bonnet, flange, and stud bolts",
+                   "Hình 3.19 (tr. 65) · Nắp, bích và bulông chốt điển hình",
+                   "Hình 3.19 (tr. 65) · Nắp, bích và bulông chốt điển hình: nắp có bích liền, "
+                   "đặt gioăng giữa bích nắp và bích thân, gioăng nén qua bulông chốt; hộp đệm "
+                   "ở trên chứa bộ đệm được giữ bằng bích đệm.",
+                   "Figure 3.19 (p. 65) · Typical bonnet, flange and stud bolts: an integral-flange "
+                   "bonnet with a gasket between the bonnet and body flanges compressed by studs; "
+                   "the packing box above holds the packing set with a packing follower.",
+                   "Mặt cắt nắp van có bích liền, bulông chốt và hộp đệm",
+                   "Cutaway of an integral-flange bonnet with studs and packing box")
+
+
+@_reg
+def fig_f3_20():
+    """Figure 3.20 (p. 66) - Bonnet Variations."""
+    w, h = 640, 320
+    o = [_defs()]
+    kinds = [(140, "Nắp thường / Standard"),
+             (320, "Nắp kéo dài / Extension"),
+             (500, "Nắp ống mềm / Bellows seal")]
+    for cx, lab in kinds:
+        o.append(_rect(cx - 60, 116, 120, 132, fill="#f4f7fb", sw=1.5))
+        o.append(_rect(cx - 72, 104, 144, 14, fill="#dfe7ef", sw=1.2))
+        o.append(_line(cx, 52, cx, 200, sw=2.2, color=INK))
+    # standard: short packing
+    o.append(_rect(118, 132, 44, 40, fill="#fdf3e6", sw=1.0))
+    # extension: tall narrow neck
+    o.append(_rect(296, 60, 48, 88, fill="#e9eef4", sw=1.2))
+    # bellows: accordion folds
+    for i in range(5):
+        y = 130 + i * 12
+        o.append(_line(476, y, 524, y + 8, sw=1.2, color=BLUE))
+        o.append(_line(524, y + 8, 476, y + 16, sw=1.2, color=BLUE))
+    for cx, lab in kinds:
+        o.append(T(cx, 276, lab, 7.8, color=INK))
+    o.append(T(320, 302, "Nắp van có thể thay đổi để phù hợp nhiệt độ, áp suất và yêu cầu kín / Bonnets vary with temperature and sealing duty",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.20 - Bonnet variations",
+                   "Hình 3.20 (tr. 66) · Các biến thể nắp van",
+                   "Hình 3.20 (tr. 66) · Các biến thể nắp van: nắp thường, nắp kéo dài cho nhiệt độ "
+                   "cao hoặc thấp và nắp kín bằng ống mềm khi không được phép rò rỉ. Nắp cùng vật "
+                   "liệu thân van vì là chi tiết chịu áp cùng điều kiện nhiệt và ăn mòn.",
+                   "Figure 3.20 (p. 66) · Bonnet variations: standard, extension for high or low "
+                   "temperature, and bellows seal where no leakage can be tolerated. The bonnet is "
+                   "made of the same material as the body because it is a pressure-containing member.",
+                   "Ba dạng nắp van: thường, kéo dài và kín bằng ống mềm",
+                   "Three bonnet styles: standard, extension and bellows seal")
+
+
+def _tbl(x, y, widths, headers, rows, rh=22, fs=7.2):
+    """A compact bilingual table; returns (markup, bottom_y)."""
+    total = sum(widths)
+    o = [_rect(x, y, total, rh, fill="#dfe7ef", sw=1.0)]
+    xx = x
+    for wd, hd in zip(widths, headers):
+        o.append(T(xx + wd / 2.0, y + rh / 2.0 + 2.6, hd, fs,
+                   color=INK, weight="600"))
+        xx += wd
+    yy = y + rh
+    for i, row in enumerate(rows):
+        o.append(_rect(x, yy, total, rh,
+                       fill="#ffffff" if i % 2 else "#f7f9fb", sw=0.9))
+        xx = x
+        for wd, cell in zip(widths, row):
+            o.append(T(xx + wd / 2.0, yy + rh / 2.0 + 2.6, str(cell), fs))
+            xx += wd
+        yy += rh
+    return "".join(o), yy
+
+
+@_reg
+def fig_f3_21():
+    """Figure 3.21 (p. 66) - Valve Body with Fabricated Extension Bonnet."""
+    w, h = 620, 400
+    o = [_defs()]
+    o.append(_rect(206, 250, 208, 96, fill="#f4f7fb", sw=1.7))    # body
+    o.append(_rect(140, 278, 68, 42, fill="#e9eef4", sw=1.3))
+    o.append(_rect(126, 268, 18, 62, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(410, 278, 68, 42, fill="#e9eef4", sw=1.3))
+    o.append(_rect(476, 268, 18, 62, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(268, 100, 84, 150, fill="#eef3fb", sw=1.5))    # extension neck
+    for i in range(5):
+        o.append(_line(268, 120 + i * 26, 352, 120 + i * 26, sw=0.6, color="#9a9a9a"))
+    o.append(_rect(288, 54, 44, 46, fill="#f7f9fb", sw=1.2))      # packing box
+    o.append(_line(310, 24, 310, 300, sw=2.4, color=INK))
+    o.append(_arrow(164, 298, 232, 298, sw=1.6, color=GREEN))
+    o.append(_arrow(388, 298, 454, 298, sw=1.6, color=GREEN))
+    o.append(_leader(354, 170, 452, 140))
+    o.append(T(444, 138, "Nắp kéo dài chế tạo", 7.2, anchor="start"))
+    o.append(T(444, 150, "Fabricated extension bonnet", 7.2, anchor="start"))
+    o.append(T(310, 374, "Dời hộp đệm xa nhiệt độ quá trình / Moves packing away from process temperature",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.21 - Valve body with fabricated extension bonnet",
+                   "Hình 3.21 (tr. 66) · Thân van có nắp kéo dài chế tạo",
+                   "Hình 3.21 (tr. 66) · Thân van có nắp kéo dài chế tạo từ ống: nắp kéo dài đưa "
+                   "hộp đệm ra xa nhiệt độ cực đoan của quá trình. Bề mặt nhẵn của ống inox được "
+                   "ưu tiên cho dịch vụ lạnh; thành mỏng giúp giảm truyền nhiệt.",
+                   "Figure 3.21 (p. 66) · Valve body with a fabricated extension bonnet: the "
+                   "extension moves the packing box far enough from extreme process temperature. "
+                   "Smooth stainless tubing is preferred for cold service; thin walls reduce heat "
+                   "transfer.",
+                   "Thân van với nắp kéo dài bằng ống inox và hộp đệm ở xa",
+                   "Valve body with a fabricated tubular extension bonnet")
+
+
+@_reg
+def fig_f3_22():
+    """Figure 3.22 (p. 67) - ENVIRO-SEAL Bellows Seal Bonnet."""
+    w, h = 620, 410
+    o = [_defs()]
+    o.append(_rect(220, 246, 180, 104, fill="#f4f7fb", sw=1.7))
+    o.append(_rect(156, 272, 66, 44, fill="#e9eef4", sw=1.3))
+    o.append(_rect(142, 262, 18, 64, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(392, 272, 66, 44, fill="#e9eef4", sw=1.3))
+    o.append(_rect(456, 262, 18, 64, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(268, 66, 84, 180, fill="#eef3fb", sw=1.5))     # bonnet
+    o.append(_line(310, 30, 310, 300, sw=2.4, color=INK))
+    for i in range(7):
+        y = 120 + i * 14
+        o.append(_line(272, y, 348, y + 7, sw=1.3, color=BLUE))
+        o.append(_line(348, y + 7, 272, y + 14, sw=1.3, color=BLUE))
+    o.append(_rect(288, 74, 44, 40, fill="#f7f9fb", sw=1.2))
+    o.append(T(366, 170, "Ống mềm / Bellows", 7.6, anchor="start", color=BLUE))
+    o.append(T(366, 196, "Đệm dự phòng / Back-up packing", 7.6, anchor="start"))
+    o.append(T(310, 386, "Không rò rỉ dọc thân, dùng cho chất độc, dễ bay hơi hoặc phóng xạ",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.22 - ENVIRO-SEAL bellows seal bonnet",
+                   "Hình 3.22 (tr. 67) · Nắp kín ống mềm ENVIRO-SEAL",
+                   "Hình 3.22 (tr. 67) · Nắp kín bằng ống mềm ENVIRO-SEAL: dùng khi không cho "
+                   "phép rò rỉ dọc thân (dưới 1x10-6 cc/giây helium), thường với chất lỏng độc, "
+                   "dễ bay hơi, phóng xạ hoặc đắt giá. Bộ đệm dự phòng ngăn hỏng sự cố nếu ống vỡ.",
+                   "Figure 3.22 (p. 67) · ENVIRO-SEAL bellows seal bonnet: used when no leakage "
+                   "(less than 1x10-6 cc/sec helium) along the stem can be tolerated, often with "
+                   "toxic, volatile, radioactive or expensive fluids. Back-up packing prevents "
+                   "catastrophic failure if the bellows ruptures.",
+                   "Nắp van có ống mềm kín và bộ đệm dự phòng phía trên",
+                   "Bellows-sealed bonnet with back-up packing above the bellows")
+
+
+@_reg
+def fig_f3_23():
+    """Figure 3.23 (p. 67) - Welded-Leaf and Mechanically-Formed Bellows."""
+    w, h = 620, 320
+    o = [_defs()]
+    # welded leaf: stacked short leaves
+    o.append(_rect(110, 104, 180, 130, fill="#f7f9fb", sw=1.3))
+    for i in range(6):
+        y = 116 + i * 18
+        o.append(_rect(132, y, 136, 6, fill="#e9eef4", sw=0.9))
+        if i < 5:
+            o.append(_line(132, y + 6, 158, y + 18, sw=1.0, color=BLUE))
+            o.append(_line(268, y + 6, 242, y + 18, sw=1.0, color=BLUE))
+    o.append(T(200, 264, "Ống mềm lá hàn / Welded-leaf", 7.8, color=INK))
+    o.append(T(200, 284, "Chiều cao thấp hơn / Shorter package height", 7.2, color=GREY))
+    # mechanically formed: deep convolutions
+    o.append(_rect(360, 104, 180, 130, fill="#f7f9fb", sw=1.3))
+    for i in range(5):
+        y = 112 + i * 24
+        o.append(_path("M378,%d C396,%d 402,%d 420,%d C438,%d 444,%d 462,%d"
+                       % (y, y - 8, y + 8, y, y - 8, y + 8, y),
+                       fill="none", sw=1.2, color=BLUE))
+    o.append(T(450, 264, "Ống mềm tạo hình cơ khí / Mechanically-formed", 7.8, color=INK))
+    o.append(T(450, 284, "Độ tin cậy cao hơn / Higher reliability", 7.2, color=GREY))
+    return _finish(w, h, o, "Figure 3.23 - Welded-leaf and mechanically-formed bellows",
+                   "Hình 3.23 (tr. 67) · Ống mềm lá hàn và ống mềm tạo hình cơ khí",
+                   "Hình 3.23 (tr. 67) · Hai loại ống mềm: lá hàn có chiều cao tổng ngắn hơn nhưng "
+                   "tuổi thọ có thể hạn chế do cách chế tạo; loại tạo hình cơ khí cao hơn nhưng "
+                   "quy trình chế tạo lặp lại tốt nên độ tin cậy cao hơn.",
+                   "Figure 3.23 (p. 67) · Two bellows designs: welded-leaf has a shorter total "
+                   "height but service life may be limited by its manufacture; mechanically-formed "
+                   "bellows is taller but produced by a more repeatable process and therefore more "
+                   "reliable.",
+                   "So sánh ống mềm lá hàn và ống mềm tạo hình cơ khí",
+                   "Comparison of welded-leaf and mechanically-formed bellows")
+
+
+@_reg
+def fig_f3_24():
+    """Figure 3.24 (p. 68) - Packing Material Arrangements for Globe-Style Bodies."""
+    w, h = 660, 420
+    o = [_defs()]
+    o.append(_rect(230, 84, 60, 240, fill="#e9eef4", sw=1.5))     # packing box wall
+    o.append(_rect(350, 84, 60, 240, fill="#e9eef4", sw=1.5))
+    o.append(_line(320, 56, 320, 356, sw=2.6, color=INK))         # stem
+    items = [("Upper wiper", "Gạt trên"), ("Packing follower", "Bích ép"),
+             ("Female adapter", "Đầu cái"), ("V-Ring", "Vòng V"),
+             ("Male adapter", "Đầu đực"), ("Washer", "Vòng đệm"),
+             ("Spring", "Lò xo"), ("Packing box", "Hộp đệm"),
+             ("Lower wiper", "Gạt dưới")]
+    for i, (en, vi) in enumerate(items):
+        yy = 100 + i * 25
+        o.append(_rect(294, yy, 52, 12, fill="#fdf3e6", sw=0.9))
+        o.append(_num(206, yy + 6, i + 1))
+        o.append(T(196, yy + 9, vi + " / " + en, 6.4, anchor="end"))
+    o.append(_leader(206, 124, 160, 124))
+    o.append(_leader(410, 124, 540, 110))
+    o.append(T(548, 110, "Gioăng TFE V-Ring", 7.0, anchor="start"))
+    o.append(T(548, 121, "TFE V-Ring packing", 7.0, anchor="start"))
+    o.append(_leader(410, 150, 540, 141))
+    o.append(T(548, 141, "Lá than chì / Laminated", 7.0, anchor="start"))
+    o.append(T(548, 152, "graphite", 7.0, anchor="start"))
+    o.append(_leader(410, 176, 540, 172))
+    o.append(T(548, 172, "Sợi than chì / Filament", 7.0, anchor="start"))
+    o.append(T(548, 183, "graphite", 7.0, anchor="start"))
+    o.append(T(330, 392, "Bố trí vật liệu đệm điển hình cho thân van kiểu cầu / Typical packing arrangements",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.24 - Packing material arrangements for globe-style valve bodies",
+                   "Hình 3.24 (tr. 68) · Bố trí vật liệu đệm cho thân van kiểu cầu",
+                   "Hình 3.24 (tr. 68) · Bố trí vật liệu đệm cho thân van kiểu cầu: gạt trên, bích "
+                   "ép đệm, đầu nối cái, vòng V, đầu nối đực, vòng đệm, lò xo, hộp đệm và gạt dưới "
+                   "(1-9). Các cấu hình TFE V-Ring đơn, đôi và có cổng xả được mô tả.",
+                   "Figure 3.24 (p. 68) · Packing material arrangements for globe-style valve "
+                   "bodies: upper wiper, packing follower, female adapter, V-ring, male adapter, "
+                   "washer, spring, packing box and lower wiper (1-9), with single, double and "
+                   "leak-off TFE V-ring arrangements.",
+                   "Mặt cắt hộp đệm với chín chi tiết được đánh số",
+                   "Packing box cutaway with nine numbered components")
+
+
+@_reg
+def fig_f3_25():
+    """Figure 3.25 (p. 69) - Measurement Frequency for VOC Valves."""
+    w, h = 660, 360
+    o = [_defs()]
+    o.append(T(330, 40, "Tỷ lệ van rò ở 500 ppm / Leaking valves at 500 ppm",
+               9.0, weight="600"))
+    steps = [("< 0.5%", "Hàng năm / Annual", GREEN),
+             ("0.5% - 1%", "Nửa năm / Semi-annual", "#6a9e3f"),
+             ("1% - 2%", "Hàng quý / Quarterly", "#b8860b"),
+             ("> 2%", "Hàng tháng / Monthly", RED)]
+    for i, (thr, freq, col) in enumerate(steps):
+        y = 74 + i * 58
+        o.append(_rect(120, y, 150, 40, fill="#eef3fb", sw=1.3))
+        o.append(T(195, y + 25, thr, 8.6, color=col, weight="600"))
+        o.append(_arrow(272, y + 20, 356, y + 20, sw=1.6, color=col))
+        o.append(_rect(360, y, 220, 40, fill="#f7f9fb", sw=1.3))
+        o.append(T(470, y + 25, freq, 8.4))
+    o.append(T(330, 330, "Giám sát LDAR thưa hơn khi tỷ lệ rò thấp / LDAR interval lengthens as leak rate falls",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.25 - Measurement frequency for valves controlling VOC",
+                   "Hình 3.25 (tr. 69) · Tần suất đo cho van điều khiển VOC",
+                   "Hình 3.25 (tr. 69) · Tần suất đo cho van điều khiển hợp chất hữu cơ dễ bay hơi: "
+                   "tỷ lệ van rò dưới 0,5% cho phép giám sát hàng năm, cao hơn 2% phải giám sát "
+                   "hàng tháng kèm kế hoạch cải thiện chất lượng.",
+                   "Figure 3.25 (p. 69) · Measurement frequency for valves controlling volatile "
+                   "organic chemicals: below 0.5% leaking valves permits annual monitoring, while "
+                   "above 2% requires monthly LDAR with a quality improvement plan.",
+                   "Thang tần suất LDAR từ hàng năm đến hàng tháng theo tỷ lệ rò",
+                   "LDAR frequency ladder from annual to monthly by leak percentage")
+
+
+@_reg
+def fig_f3_26():
+    """Figure 3.26 (p. 70) - ISO 15848-1 Qualification Requirements."""
+    w, h = 620, 340
+    o = [_defs()]
+    o.append(T(310, 40, "Yêu cầu thử nghiệm ISO 15848-1 / ISO 15848-1 qualification",
+               9.0, weight="600"))
+    t, bot = _tbl(70, 62, [110, 130, 150, 90],
+                  ["Kiểu van / Valve", "Cấp chu trình cơ khí / Class",
+                   "Số chu trình / Cycles", "Chu trình nhiệt / Temp"],
+                  [("Điều khiển / Control", "CC1", "20,000", "2"),
+                   ("Điều khiển / Control", "CC2", "60,000", "3"),
+                   ("Điều khiển / Control", "CC3", "100,000", "4"),
+                   ("Cô lập / Isolation", "CO1", "205", "2"),
+                   ("Cô lập / Isolation", "CO2", "1,500", "3"),
+                   ("Cô lập / Isolation", "CO3", "2,500", "4")], rh=30, fs=7.6)
+    o.append(t)
+    o.append(T(310, bot + 24, "Van điều khiển thử ở 10% hành trình hai phía vị trí 50%; van cô lập thử full stroke",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.26 - ISO 15848-1 qualification requirements",
+                   "Hình 3.26 (tr. 70) · Yêu cầu thử nghiệm ISO 15848-1",
+                   "Hình 3.26 (tr. 70) · Yêu cầu thử nghiệm ISO 15848-1: bảng cấp chu trình cơ khí "
+                   "CC1-CC3 cho van điều khiển (20.000-100.000 chu trình) và CO1-CO3 cho van cô "
+                   "lập (205-2.500 chu trình), kèm số chu trình nhiệt tương ứng.",
+                   "Figure 3.26 (p. 70) · ISO 15848-1 qualification requirements: mechanical cycle "
+                   "classes CC1-CC3 for control valves (20,000-100,000 cycles) and CO1-CO3 for "
+                   "isolation valves (205-2,500 cycles), with matching thermal cycles.",
+                   "Bảng cấp chu trình cơ khí và nhiệt theo ISO 15848-1",
+                   "ISO 15848-1 table of mechanical and thermal cycle classes")
+
+
+@_reg
+def fig_f3_27():
+    """Figure 3.27 (p. 70) - ISO 15848-1 Measured Leak Rate."""
+    w, h = 620, 330
+    o = [_defs()]
+    o.append(T(310, 40, "Tỷ lệ rò đo được ISO 15848-1 / Measured leak rate",
+               9.0, weight="600"))
+    t, bot = _tbl(48, 62, [110, 160, 160],
+                  ["Cấp kín / Class", "mg/s/m chu vi thân", "atm cm3/s/mm thân"],
+                  [("AH", "< 10^-5", "< 1.76x10^-7"),
+                   ("BH", "< 10^-4", "< 1.76x10^-6"),
+                   ("CH", "< 10^-2", "< 1.76x10^-4")], rh=34, fs=8.0)
+    o.append(t)
+    o.append(T(310, bot + 22, "H = helium theo phương pháp tỷ lệ rò; M = methane theo EPA Method 21",
+               7.4, color=GREY))
+    o.append(T(310, bot + 42, "Cấp A thường chỉ đạt được với thiết kế ống mềm / Class A typically only with bellows",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.27 - ISO 15848-1 measured leak rate",
+                   "Hình 3.27 (tr. 70) · Tỷ lệ rò đo được theo ISO 15848-1",
+                   "Hình 3.27 (tr. 70) · Tỷ lệ rò đo được theo ISO 15848-1 (Phụ lục A): các cấp "
+                   "AH, BH, CH với giới hạn tính theo chu vi và đường kính thân; H là thử bằng "
+                   "helium, M là thử bằng methane theo EPA Method 21.",
+                   "Figure 3.27 (p. 70) · ISO 15848-1 measured leak rate (Annex A): tightness classes "
+                   "AH, BH and CH with limits per stem perimeter and diameter; H denotes helium "
+                   "testing and M methane testing per EPA Method 21.",
+                   "Bảng tỷ lệ rò AH, BH, CH theo ISO 15848-1",
+                   "ISO 15848-1 leak rate table for classes AH, BH and CH")
+
+
+@_reg
+def fig_f3_28():
+    """Figure 3.28 (p. 70) - ISO 15848-1 Measured Leak Concentration."""
+    w, h = 620, 320
+    o = [_defs()]
+    o.append(T(310, 40, "Nồng độ rò đo được ISO 15848-1 / Measured leak concentration",
+               9.0, weight="600"))
+    t, bot = _tbl(80, 62, [140, 240],
+                  ["Cấp kín / Class", "Nồng độ đo (Phụ lục B) / Measured concentration"],
+                  [("AM", "< 50 ppm"),
+                   ("BM", "< 100 ppm"),
+                   ("CM", "< 500 ppm")], rh=34, fs=8.0)
+    o.append(t)
+    o.append(T(310, bot + 22, "Phương pháp ngửi theo EPA Method 21 / Sniffing method per EPA Method 21",
+               7.4, color=GREY))
+    o.append(T(310, bot + 42, "Cấp A thường chỉ đạt được với thiết kế ống mềm / Class A typically only with bellows",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.28 - ISO 15848-1 measured leak concentration",
+                   "Hình 3.28 (tr. 70) · Nồng độ rò đo được theo ISO 15848-1",
+                   "Hình 3.28 (tr. 70) · Nồng độ rò đo được theo ISO 15848-1 (Phụ lục B, phương "
+                   "pháp ngửi EPA Method 21): các cấp AM dưới 50 ppm, BM dưới 100 ppm và CM dưới "
+                   "500 ppm.",
+                   "Figure 3.28 (p. 70) · ISO 15848-1 measured leak concentration (Annex B, sniffing "
+                   "method per EPA Method 21): classes AM below 50 ppm, BM below 100 ppm and CM "
+                   "below 500 ppm.",
+                   "Bảng nồng độ rò AM, BM, CM theo ISO 15848-1",
+                   "ISO 15848-1 leak concentration table for classes AM, BM and CM")
+
+
+@_reg
+def fig_f3_29():
+    """Figure 3.29 (p. 71) - FCI 91-1 Leakage Class Summary."""
+    w, h = 620, 320
+    o = [_defs()]
+    o.append(T(310, 40, "Tóm tắt cấp rò FCI 91-1 / FCI 91-1 leakage classes",
+               9.0, weight="600"))
+    t, bot = _tbl(44, 62, [90, 130, 110, 150],
+                  ["Cấp / Class", "Chu trình cơ khí / Mech. cycles",
+                   "Chu trình nhiệt / Thermal", "Rò tối đa EPA 21",
+                   ],
+                  [("A1", "100,000", "3", "100 ppm"),
+                   ("A2", "100,000", "3", "500 ppm"),
+                   ("B1", "25,000", "3", "100 ppm"),
+                   ("B2", "25,000", "3", "500 ppm")], rh=32, fs=7.0)
+    o.append(t)
+    o.append(T(310, bot + 22, "ANSI/FCI 91-1 dùng phương pháp ngửi EPA Method 21 / Uses EPA Method 21 sniffing",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.29 - FCI 91-1 leakage class summary",
+                   "Hình 3.29 (tr. 71) · Tóm tắt cấp rò FCI 91-1",
+                   "Hình 3.29 (tr. 71) · Tóm tắt cấp rò FCI 91-1: các cấp A1, A2, B1, B2 với "
+                   "100.000 hoặc 25.000 chu trình cơ khí, ba chu trình nhiệt và rò tối đa 100 hoặc "
+                   "500 ppm theo EPA Method 21.",
+                   "Figure 3.29 (p. 71) · FCI 91-1 leakage class summary: classes A1, A2, B1 and B2 "
+                   "with 100,000 or 25,000 mechanical cycles, three thermal cycles and maximum "
+                   "leakage of 100 or 500 ppm per EPA Method 21.",
+                   "Bảng cấp rò A1, A2, B1, B2 của FCI 91-1",
+                   "FCI 91-1 leakage class table A1, A2, B1 and B2")
+
+
+@_reg
+def fig_f3_30():
+    """Figure 3.30 (p. 71) - Single PTFE V-Ring Packing."""
+    w, h = 600, 340
+    o = [_defs()]
+    o.append(_rect(214, 76, 56, 210, fill="#e9eef4", sw=1.4))
+    o.append(_rect(330, 76, 56, 210, fill="#e9eef4", sw=1.4))
+    o.append(_line(300, 52, 300, 306, sw=2.6, color=INK))
+    for i in range(3):
+        y = 108 + i * 24
+        o.append(_poly([(270, y), (330, y), (318, y + 14), (282, y + 14)],
+                       fill="#fdf3e6", sw=1.1, close=True))
+    o.append(_spring(300, 186, 228, width=40))
+    o.append(_leader(336, 120, 428, 96))
+    o.append(T(436, 100, "Vòng V PTFE / PTFE V-ring", 7.6, anchor="start"))
+    o.append(_leader(336, 204, 428, 148))
+    o.append(T(436, 152, "Lò xo / Coil spring", 7.6, anchor="start"))
+    o.append(T(300, 320, "Đạt 100 ppmv ở van thân trượt, dưới 300 psi và -18 đến 93 độ C",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.30 - Single PTFE V-ring packing",
+                   "Hình 3.30 (tr. 71) · Bộ đệm V-Ring PTFE đơn",
+                   "Hình 3.30 (tr. 71) · Bộ đệm V-Ring PTFE đơn dùng lò xo giữa bộ đệm và vòng hộp "
+                   "đệm, đạt tiêu chí 100 ppmv cho van thân trượt khi áp suất không quá 300 psi và "
+                   "nhiệt độ -18 đến 93 độ C; ma sát vận hành rất thấp.",
+                   "Figure 3.30 (p. 71) · Single PTFE V-ring packing uses a coil spring between the "
+                   "packing and packing box ring; it meets the 100 ppmv criterion for sliding-stem "
+                   "valves below 300 psi and -18 to 93 deg C, with very low operating friction.",
+                   "Mặt cắt bộ đệm V-ring PTFE đơn có lò xo",
+                   "Cutaway of single PTFE V-ring packing with a coil spring")
+
+
+@_reg
+def fig_f3_31():
+    """Figure 3.31 (p. 72) - ENVIRO-SEAL PTFE Packing System."""
+    w, h = 620, 356
+    o = [_defs()]
+    o.append(_rect(210, 72, 58, 214, fill="#e9eef4", sw=1.4))
+    o.append(_rect(348, 72, 58, 214, fill="#e9eef4", sw=1.4))
+    o.append(_line(308, 48, 308, 308, sw=2.6, color=INK))
+    # Belleville spring stack
+    for i in range(3):
+        y = 84 + i * 12
+        o.append(_line(276, y, 340, y + 6, sw=1.3, color=RED))
+        o.append(_line(340, y + 6, 276, y + 12, sw=1.3, color=RED))
+    # PTFE/carbon packing rings
+    for i in range(3):
+        y = 134 + i * 26
+        o.append(_rect(272, y, 72, 16, fill="#fdf3e6", sw=1.1))
+    o.append(_rect(272, 216, 72, 14, fill="#dfe7ef", sw=1.1))
+    o.append(_leader(344, 100, 438, 88))
+    o.append(T(438, 88, "Bộ lò xo Belleville", 7.2, anchor="start"))
+    o.append(T(438, 99, "Belleville springs", 7.2, anchor="start"))
+    o.append(_leader(346, 160, 438, 140))
+    o.append(T(438, 140, "Vòng đệm PTFE-carbon", 7.2, anchor="start"))
+    o.append(T(438, 151, "PTFE-carbon rings", 7.2, anchor="start"))
+    o.append(T(308, 324, "Tải không đổi, chống ép ra, căn chỉnh thân / Constant load, anti-extrusion, alignment",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.31 - ENVIRO-SEAL PTFE packing system",
+                   "Hình 3.31 (tr. 72) · Hệ thống đệm PTFE ENVIRO-SEAL",
+                   "Hình 3.31 (tr. 72) · Hệ thống đệm PTFE ENVIRO-SEAL dùng lò xo Belleville tạo "
+                   "tải không đổi, chống ép vật liệu mềm, căn chỉnh thân trong lỗ nắp và giảm số "
+                   "vòng đệm; dùng tới 750 psi và 232 độ C cho cả van trượt lẫn van quay.",
+                   "Figure 3.31 (p. 72) · ENVIRO-SEAL PTFE packing system with Belleville springs "
+                   "for constant load, anti-extrusion containment, stem alignment and fewer seal "
+                   "rings; suited to 750 psi and 232 deg C in both sliding-stem and rotary valves.",
+                   "Mặt cắt hệ thống đệm PTFE có lò xo Belleville và vòng chống ép",
+                   "Cutaway of ENVIRO-SEAL PTFE packing with Belleville springs")
+
+
+@_reg
+def fig_f3_32():
+    """Figure 3.32 (p. 72) - ENVIRO-SEAL Duplex Packing System."""
+    w, h = 620, 356
+    o = [_defs()]
+    o.append(_rect(208, 72, 58, 214, fill="#e9eef4", sw=1.4))
+    o.append(_rect(348, 72, 58, 214, fill="#e9eef4", sw=1.4))
+    o.append(_line(306, 48, 306, 308, sw=2.6, color=INK))
+    for i in range(3):
+        y = 84 + i * 12
+        o.append(_line(274, y, 338, y + 6, sw=1.3, color=RED))
+        o.append(_line(338, y + 6, 274, y + 12, sw=1.3, color=RED))
+    for i in range(3):
+        y = 134 + i * 26
+        o.append(_rect(270, y, 72, 16, fill="#fdf3e6", sw=1.1))       # PTFE
+        o.append(_rect(270, y + 16, 72, 10, fill="#b9b0a0", sw=1.1))  # graphite
+    o.append(_leader(344, 150, 436, 100))
+    o.append(T(444, 104, "PTFE / PTFE", 7.4, anchor="start"))
+    o.append(_leader(344, 168, 436, 136))
+    o.append(T(444, 140, "Than chì / Graphite", 7.4, anchor="start"))
+    o.append(T(306, 324, "Giải pháp ma sát thấp, rò thấp, thử lửa API 589 / Low friction, low emission, fire-tested",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.32 - ENVIRO-SEAL Duplex packing system",
+                   "Hình 3.32 (tr. 72) · Hệ thống đệm kép ENVIRO-SEAL",
+                   "Hình 3.32 (tr. 72) · Hệ thống đệm kép ENVIRO-SEAL kết hợp PTFE và than chì, "
+                   "cho giải pháp ma sát thấp, rò thấp, đã thử lửa theo API 589 cho van thân trượt "
+                   "với nhiệt độ quá trình tới 232 độ C; không dùng cho van quay.",
+                   "Figure 3.32 (p. 72) · ENVIRO-SEAL Duplex packing combines PTFE and graphite for "
+                   "a low-friction, low-emission, fire-tested solution (API 589) on sliding-stem "
+                   "valves to 232 deg C; not offered on rotary valves.",
+                   "Mặt cắt hệ thống đệm kép PTFE và than chì",
+                   "Cutaway of duplex PTFE and graphite packing")
+
+
+@_reg
+def fig_f3_33():
+    """Figure 3.33 (p. 72) - ENVIRO-SEAL Graphite ULF Packing System."""
+    w, h = 620, 376
+    o = [_defs()]
+    o.append(_rect(206, 72, 60, 226, fill="#e9eef4", sw=1.4))
+    o.append(_rect(352, 72, 60, 226, fill="#e9eef4", sw=1.4))
+    o.append(_line(306, 46, 306, 314, sw=2.6, color=INK))
+    for i in range(3):
+        y = 84 + i * 12
+        o.append(_line(272, y, 340, y + 6, sw=1.3, color=RED))
+        o.append(_line(340, y + 6, 272, y + 12, sw=1.3, color=RED))
+    for i in range(4):
+        y = 132 + i * 30
+        o.append(_rect(268, y, 76, 20, fill="#b9b0a0", sw=1.1))
+        o.append(_rect(268, y + 7, 76, 4, fill="#fdf3e6", sw=0.6))
+        o.append(_rect(262, y + 4, 6, 12, fill="#fdf3e6", sw=0.6))
+        o.append(_rect(344, y + 4, 6, 12, fill="#fdf3e6", sw=0.6))
+    o.append(_leader(350, 160, 442, 104))
+    o.append(T(450, 108, "Lớp PTFE mỏng / Thin PTFE layers", 7.4, anchor="start"))
+    o.append(_leader(350, 210, 442, 152))
+    o.append(T(450, 156, "Vòng than chì / Graphite rings", 7.4, anchor="start"))
+    o.append(T(306, 344, "ULF giảm ma sát, tăng làm kín và kéo dài tuổi thọ / ULF reduces friction and extends life",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.33 - ENVIRO-SEAL Graphite ULF packing system",
+                   "Hình 3.33 (tr. 72) · Hệ thống đệm than chì ULF ENVIRO-SEAL",
+                   "Hình 3.33 (tr. 72) · Hệ thống đệm than chì ULF ENVIRO-SEAL dùng cho nhiệt độ "
+                   "trên 232 độ C, gồm các lớp PTFE rất mỏng bên trong vòng đệm và vòng đệm PTFE "
+                   "mỏng hai bên; cách bố trí này giảm ma sát, hỗ trợ làm kín và kéo dài tuổi thọ.",
+                   "Figure 3.33 (p. 72) · ENVIRO-SEAL Graphite ULF packing for temperatures above "
+                   "232 deg C, with very thin PTFE layers inside the rings and thin PTFE washers on "
+                   "each side; the placement reduces friction, promotes sealing and extends cycle life.",
+                   "Mặt cắt bộ đệm than chì ULF có các lớp PTFE mỏng",
+                   "Cutaway of graphite ULF packing with thin PTFE layers")
+
+
+@_reg
+def fig_f3_34():
+    """Figure 3.34 (p. 73) - ENVIRO-SEAL Graphite Packing for Rotary Valves."""
+    w, h = 620, 376
+    o = [_defs()]
+    o.append(_rect(206, 74, 60, 224, fill="#e9eef4", sw=1.4))
+    o.append(_rect(352, 74, 60, 224, fill="#e9eef4", sw=1.4))
+    o.append(_circle(306, 168, 16, fill="#f4f7fb", sw=1.4))        # rotary shaft
+    o.append(_line(306, 46, 306, 312, sw=2.6, color=INK))
+    for i in range(4):
+        y = 120 + i * 32
+        o.append(_rect(268, y, 76, 18, fill="#b9b0a0", sw=1.1))
+    o.append(_rect(266, 84, 80, 12, fill="#fdf3e6", sw=1.1))
+    o.append(_rect(266, 290, 80, 12, fill="#fdf3e6", sw=1.1))
+    o.append(_leader(352, 140, 442, 100))
+    o.append(T(450, 104, "Bích đệm / Packing flange", 7.4, anchor="start"))
+    o.append(_leader(352, 188, 442, 148))
+    o.append(T(450, 152, "Vòng than chì / Graphite rings", 7.4, anchor="start"))
+    o.append(T(306, 344, "Độ kín 100 ppmv tới 1500 psi, -6 đến 316 độ C / 100 ppmv to 1500 psi",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.34 - ENVIRO-SEAL graphite packing system for rotary valves",
+                   "Hình 3.34 (tr. 73) · Hệ thống đệm than chì ENVIRO-SEAL cho van quay",
+                   "Hình 3.34 (tr. 73) · Hệ thống đệm than chì ENVIRO-SEAL cho van quay: dùng cho "
+                   "ứng dụng môi trường từ -6 đến 316 độ C hoặc nơi cần an toàn cháy; chịu áp tới "
+                   "1500 psi mà vẫn đạt 100 ppmv theo EPA, có thể dùng tới 371 độ C ngoài môi trường.",
+                   "Figure 3.34 (p. 73) · ENVIRO-SEAL graphite packing for rotary valves: for "
+                   "environmental service from -6 to 316 deg C or where fire safety matters; it "
+                   "withstands 1500 psi while meeting 100 ppmv EPA criteria and can reach 371 deg C "
+                   "in non-environmental service.",
+                   "Mặt cắt bộ đệm than chì cho van quay có trục và bích đệm",
+                   "Cutaway of graphite packing for a rotary valve with shaft and flange")
+
+
+@_reg
+def fig_f3_35():
+    """Figure 3.35 (p. 74) - Sliding-Stem Environmental Packing Selection."""
+    w, h = 660, 420
+    o = [_defs()]
+    o.append(T(330, 34, "Lựa chọn đệm môi trường cho van thân trượt / Sliding-stem packing selection",
+               9.0, weight="600"))
+    t, bot = _tbl(24, 52, [150, 196, 92, 92, 76],
+                  ["Hệ đệm / Packing", "Giới hạn P và T", "Làm kín / Seal",
+                   "Tuổi thọ / Life", "Ma sát / Friction"],
+                  [("PTFE V-Ring đơn", "300 psi, -18-93 C", "Better", "Long", "Very low"),
+                   ("ENVIRO-SEAL PTFE", "750 psi, -46-232 C", "Superior", "Very long", "Low"),
+                   ("ISO-Seal PTFE", "6000 psi, -46-232 C", "Superior", "Very long", "Low"),
+                   ("ENVIRO-SEAL Duplex", "750 psi, -46-232 C", "Superior", "Very long", "Low"),
+                   ("ENVIRO-SEAL Graphite ULF", "1500 psi, -7-315 C", "Superior", "Very long", "Moderate"),
+                   ("ISO-Seal Graphite", "3365 psi, -46-400 C", "Superior", "Very long", "Moderate")],
+                  rh=33, fs=7.0)
+    o.append(t)
+    o.append(T(330, bot + 22, "Sợi than chì bện và PTFE kép không đạt yêu cầu làm kín môi trường",
+               7.4, color=RED))
+    return _finish(w, h, o, "Figure 3.35 - Sliding-stem environmental packing selection",
+                   "Hình 3.35 (tr. 74) · Lựa chọn đệm môi trường cho van thân trượt",
+                   "Hình 3.35 (tr. 74) · Bảng so sánh các lựa chọn đệm thân trượt theo áp suất, "
+                   "nhiệt độ, hiệu năng làm kín, tuổi thọ và ma sát. Sợi than chì bện và PTFE kép "
+                   "không được chấp nhận làm giải pháp làm kín môi trường.",
+                   "Figure 3.35 (p. 74) · Table comparing sliding-stem packing choices by pressure, "
+                   "temperature, seal performance, service life and friction. Braided graphite "
+                   "filament and double PTFE are not acceptable environmental sealing solutions.",
+                   "Bảng lựa chọn đệm van thân trượt theo hiệu năng và tuổi thọ",
+                   "Sliding-stem packing selection table by seal performance and life")
+
+
+@_reg
+def fig_f3_36():
+    """Figure 3.36 (p. 74) - Rotary Environmental Packing Selection."""
+    w, h = 660, 340
+    o = [_defs()]
+    o.append(T(330, 34, "Lựa chọn đệm môi trường cho van quay / Rotary packing selection",
+               9.0, weight="600"))
+    t, bot = _tbl(34, 52, [170, 206, 96, 96],
+                  ["Hệ đệm / Packing", "Giới hạn P và T", "Làm kín / Seal",
+                   "Ma sát / Friction"],
+                  [("ENVIRO-SEAL PTFE", "750 psi, -46-232 C", "Superior", "Low"),
+                   ("ENVIRO-SEAL Graphite", "1500 psi, -18-315 C", "Superior", "Moderate"),
+                   ("ISO-Seal Graphite", "1500 psi, -46-400 C", "Superior", "Moderate")],
+                  rh=36, fs=7.6)
+    o.append(t)
+    o.append(T(330, bot + 24, "PTFE đơn và đệm băng than chì không đạt cho van quay",
+               7.4, color=RED))
+    o.append(T(330, bot + 46, "Single PTFE and graphite ribbon are poor fugitive seals on rotary valves",
+               7.2, color=GREY))
+    return _finish(w, h, o, "Figure 3.36 - Rotary environmental packing selection",
+                   "Hình 3.36 (tr. 74) · Lựa chọn đệm môi trường cho van quay",
+                   "Hình 3.36 (tr. 74) · Bảng so sánh các lựa chọn đệm cho van quay. PTFE đơn và "
+                   "bố trí đệm băng than chì không đạt yêu cầu làm kín khí thải bay hơi; ENVIRO-SEAL "
+                   "PTFE và than chì cho hiệu năng vượt trội.",
+                   "Figure 3.36 (p. 74) · Table comparing packing choices for rotary valves. Single "
+                   "PTFE and graphite ribbon arrangements perform poorly as fugitive-emission seals; "
+                   "ENVIRO-SEAL PTFE and graphite give superior performance.",
+                   "Bảng lựa chọn đệm van quay theo áp suất và nhiệt độ",
+                   "Rotary packing selection table by pressure and temperature")
+
+
+@_reg
+def fig_f3_37():
+    """Figure 3.37 (p. 74) - Characterized Cages for Globe-Style Bodies."""
+    w, h = 620, 340
+    o = [_defs()]
+    shapes = [(140, "Mở nhanh / Quick-opening"),
+              (310, "Tuyến tính / Linear"),
+              (480, "Phần trăm bằng / Equal-percentage")]
+    for cx, lab in shapes:
+        o.append(_rect(cx - 46, 88, 92, 168, fill="#eef3fb", sw=1.5))
+        o.append(_rect(cx - 46, 88, 14, 168, fill="#dfe7ef", sw=1.1))
+        o.append(_rect(cx + 32, 88, 14, 168, fill="#dfe7ef", sw=1.1))
+    # window shapes on front wall
+    o.append(_rect(116, 176, 48, 72, fill="#ffffff", sw=1.0))         # quick
+    o.append(_poly([(286, 232), (334, 232), (334, 152)],
+                   fill="#ffffff", sw=1.0, close=True))              # linear
+    pts = [(456, 232)]
+    for k in range(9):
+        t = k / 8.0
+        pts.append((456 + 48 * (1 - (1 - t) ** 2), 232 - 80 * t))
+    pts.append((456, 152))
+    o.append(_poly(pts, fill="#ffffff", sw=1.0, close=True))         # equal %
+    for cx, lab in shapes:
+        o.append(T(cx, 286, lab, 7.8, color=INK))
+    o.append(T(310, 320, "Hình dạng cửa sổ lồng quyết định đặc tính dòng vốn có / Cage window shape sets inherent characteristic",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.37 - Characterized cages for globe-style valve bodies",
+                   "Hình 3.37 (tr. 74) · Lồng định hình cho thân van kiểu cầu",
+                   "Hình 3.37 (tr. 74) · Lồng định hình: hình dạng cửa sổ trên thành lồng quyết định "
+                   "đặc tính dòng — mở nhanh, tuyến tính hoặc phần trăm bằng. Thay lồng để đổi đặc "
+                   "tính không cần thay nút van hay vòng chỗ ngồi.",
+                   "Figure 3.37 (p. 74) · Characterized cages: the shape of the cage windows sets "
+                   "the inherent flow characteristic - quick-opening, linear or equal-percentage. "
+                   "Changing cages does not require changing the plug or seat ring.",
+                   "Ba dạng cửa sổ lồng: mở nhanh, tuyến tính, phần trăm bằng",
+                   "Three cage window shapes: quick-opening, linear and equal-percentage")
+
+
+@_reg
+def fig_f3_38():
+    """Figure 3.38 (p. 75) - Inherent Flow Characteristics Curves."""
+    w, h = 620, 360
+    o = [_defs()]
+    x0, y0, W, H = 110, 60, 360, 220
+    o.append(_axes(x0, y0, W, H, "Hành trình định mức (%) / Rated travel (%)",
+                   "Lưu lượng định mức (%)",
+                   xt=[(0, "0"), (0.5, "50"), (1, "100")],
+                   yt=[(0, "0"), (0.5, "50"), (1, "100")]))
+    o.append(_curve(lambda t: t, x0, y0, W, H, sw=1.8, color=BLUE))
+    o.append(_curve(lambda t: (math.exp(t) - 1) / (math.e - 1),
+                    x0, y0, W, H, sw=1.8, color=GREEN))
+    o.append(_curve(lambda t: math.sqrt(t), x0, y0, W, H, sw=1.8, color=RED))
+    o.append(_line(500, 96, 512, 96, sw=2.0, color=BLUE))
+    o.append(T(518, 100, "Tuyến tính / Linear", 7.0, anchor="start"))
+    o.append(_line(500, 128, 512, 128, sw=2.0, color=GREEN))
+    o.append(T(518, 132, "Phần trăm bằng", 7.0, anchor="start"))
+    o.append(T(518, 142, "Equal-percentage", 7.0, anchor="start"))
+    o.append(_line(500, 168, 512, 168, sw=2.0, color=RED))
+    o.append(T(518, 168, "Mở nhanh", 7.0, anchor="start"))
+    o.append(T(518, 178, "Quick-opening", 7.0, anchor="start"))
+    o.append(T(310, 326, "Đặc tính vốn có tại áp suất chênh không đổi / Inherent curves at constant differential",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.38 - Inherent flow characteristics curves",
+                   "Hình 3.38 (tr. 75) · Đường đặc tính dòng vốn có",
+                   "Hình 3.38 (tr. 75) · Đường đặc tính dòng vốn có: tuyến tính, phần trăm bằng và "
+                   "mở nhanh, biểu diễn quan hệ giữa phần trăm lưu lượng lớn nhất và phần trăm "
+                   "hành trình khi giữ chênh áp không đổi qua van.",
+                   "Figure 3.38 (p. 75) · Inherent flow characteristic curves: linear, "
+                   "equal-percentage and quick-opening, relating percentage of maximum flow to "
+                   "percentage of travel at a constant differential pressure across the valve.",
+                   "Ba đường cong đặc tính dòng vốn có trên cùng một trục",
+                   "Three inherent flow characteristic curves on one axes")
+
+
+@_reg
+def fig_f3_39():
+    """Figure 3.39 (p. 75) - Various Plug Contours for Flow Characterization."""
+    w, h = 620, 340
+    o = [_defs()]
+    kinds = [(140, "Mở nhanh / Quick-opening"),
+             (310, "Tuyến tính / Linear"),
+             (480, "Phần trăm bằng / Equal-percentage")]
+    for cx, lab in kinds:
+        o.append(_line(cx - 60, 236, cx + 60, 236, sw=2.0, color=INK))  # seat
+        o.append(_line(cx, 78, cx, 210, sw=2.2, color=INK))              # stem
+    o.append(_poly([(96, 210), (184, 210), (160, 150), (120, 150)],
+                   fill="#fdf3e6", sw=1.3, close=True))
+    o.append(_poly([(266, 210), (354, 210), (330, 128), (290, 128)],
+                   fill="#fdf3e6", sw=1.3, close=True))
+    pts = [(436, 210), (524, 210), (500, 120), (486, 146), (476, 172), (460, 192)]
+    o.append(_poly(pts, fill="#fdf3e6", sw=1.3, close=True))
+    for cx, lab in kinds:
+        o.append(T(cx, 268, lab, 7.8, color=INK))
+    o.append(T(310, 312, "Đường bao nút cạnh vòng chỗ ngồi quyết định đặc tính / Plug contour at the seat sets the characteristic",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.39 - Various plug contours for different flow characterization",
+                   "Hình 3.39 (tr. 75) · Các dạng đường bao nút van cho đặc tính dòng",
+                   "Hình 3.39 (tr. 75) · Các dạng đường bao nút van: hình dạng bề mặt nút cạnh "
+                   "vòng chỗ ngồi quyết định đặc tính dòng vốn có; khi nút dịch chuyển, diện tích "
+                   "dòng không bị cản thay đổi theo đường bao của nút.",
+                   "Figure 3.39 (p. 75) · Various plug contours for flow characterization: the plug "
+                   "surface next to the seat ring determines the inherent characteristic; as the "
+                   "plug moves, the unobstructed flow area changes with the plug contour.",
+                   "Ba dạng đường bao nút van cạnh chỗ ngồi",
+                   "Three plug contours at the seat ring")
+
+
+@_reg
+def fig_f3_40():
+    """Figure 3.40 (p. 76) - Quick-Opening Flow Characteristic Construction."""
+    w, h = 600, 360
+    o = [_defs()]
+    o.append(_rect(180, 100, 200, 148, fill="#f4f7fb", sw=1.7))
+    o.append(_rect(120, 138, 62, 46, fill="#e9eef4", sw=1.3))
+    o.append(_rect(106, 128, 18, 66, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(378, 138, 62, 46, fill="#e9eef4", sw=1.3))
+    o.append(_rect(438, 128, 18, 66, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(248, 52, 64, 48, fill="#e9eef4", sw=1.3))
+    o.append(_line(280, 24, 280, 190, sw=2.4, color=INK))
+    o.append(_poly([(252, 156), (308, 156), (296, 118), (264, 118)],
+                   fill="#fdf3e6", sw=1.3, close=True))
+    o.append(_rect(248, 202, 64, 10, fill="#dfe7ef", sw=1.2))
+    o.append(_arrow(150, 160, 214, 160, sw=1.6, color=GREEN))
+    o.append(_arrow(346, 160, 412, 160, sw=1.6, color=GREEN))
+    o.append(_leader(286, 138, 424, 92))
+    o.append(T(432, 96, "Tiết diện dòng / Flow area", 7.5, anchor="start"))
+    o.append(T(300, 300, "Đường kính cổng, nút van, thân, vòng chỗ ngồi / Port diameter, plug, stem, seat ring",
+               7.4, color=GREY))
+    o.append(T(300, 322, "Cấu hình điển hình cho đặc tính mở nhanh / Typical quick-opening construction",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.40 - Typical construction for quick-opening flow",
+                   "Hình 3.40 (tr. 76) · Cấu hình điển hình cho dòng mở nhanh",
+                   "Hình 3.40 (tr. 76) · Cấu hình điển hình cho đặc tính mở nhanh: đường kính cổng, "
+                   "nút van, diện tích dòng, thân và vòng chỗ ngồi được bố trí để diện tích dòng "
+                   "tăng nhanh ngay ở đoạn đầu hành trình.",
+                   "Figure 3.40 (p. 76) · Typical construction for quick-opening flow: port "
+                   "diameter, plug, flow area, stem and seat ring arranged so that flow area "
+                   "increases rapidly in the first part of travel.",
+                   "Mặt cắt van với nhãn đường kính cổng và diện tích dòng",
+                   "Valve cutaway labelled with port diameter and flow area")
+
+
+@_reg
+def fig_f3_41():
+    """Figure 3.41 (p. 76) - Cross Section of Cage Guiding and Plug Guiding."""
+    w, h = 620, 380
+    o = [_defs()]
+    o.append(_rect(198, 90, 200, 178, fill="#f4f7fb", sw=1.7))
+    o.append(_rect(130, 146, 70, 52, fill="#e9eef4", sw=1.4))
+    o.append(_rect(116, 136, 18, 72, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(396, 146, 70, 52, fill="#e9eef4", sw=1.4))
+    o.append(_rect(464, 136, 18, 72, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(258, 42, 74, 48, fill="#e9eef4", sw=1.3))
+    o.append(_line(295, 14, 295, 200, sw=2.4, color=INK))
+    o.append(_rect(252, 118, 18, 122, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(320, 118, 18, 122, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(272, 176, 46, 48, fill="#fdf3e6", sw=1.4))
+    o.append(_rect(268, 224, 54, 10, fill="#dfe7ef", sw=1.2))
+    o.append(_leader(256, 140, 410, 96))
+    o.append(T(418, 100, "Dẫn hướng bằng lồng / Cage guiding", 7.4, anchor="start"))
+    o.append(_leader(316, 196, 410, 140))
+    o.append(T(418, 144, "Dẫn hướng bằng nút / Plug guiding", 7.4, anchor="start"))
+    o.append(T(298, 320, "Đường kính ngoài nút sát thành trong lồng suốt hành trình / Plug OD close to cage ID over full travel",
+               7.4, color=GREY))
+    o.append(T(298, 342, "Nắp, lồng và chỗ ngồi tự căn chỉnh / Bonnet, cage and seat are self-aligning",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.41 - Cross-sectional view of cage guiding",
+                   "Hình 3.41 (tr. 76) · Mặt cắt dẫn hướng bằng lồng",
+                   "Hình 3.41 (tr. 76) · Mặt cắt dẫn hướng bằng lồng: đường kính ngoài của nút van "
+                   "sát thành trong lồng suốt hành trình; nắp, lồng và vòng chỗ ngồi tự căn chỉnh "
+                   "nên đảm bảo nút van khớp chỗ ngồi và bộ đệm khi đóng.",
+                   "Figure 3.41 (p. 76) · Cross-section of cage guiding: the plug outside diameter "
+                   "stays close to the cage inside wall throughout travel; bonnet, cage and seat "
+                   "ring are self-aligning, ensuring correct plug, packing and seating alignment.",
+                   "Mặt cắt van cầu có lồng dẫn và nút van được dẫn hướng",
+                   "Globe valve cutaway showing cage and plug guiding")
+
+
+@_reg
+def fig_f3_42():
+    """Figure 3.42 (p. 77) - Adapter Method for Reduced Flow Capacity."""
+    w, h = 620, 380
+    o = [_defs()]
+    o.append(_rect(198, 90, 200, 178, fill="#f4f7fb", sw=1.7))
+    o.append(_rect(130, 146, 70, 52, fill="#e9eef4", sw=1.4))
+    o.append(_rect(116, 136, 18, 72, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(396, 146, 70, 52, fill="#e9eef4", sw=1.4))
+    o.append(_rect(464, 136, 18, 72, fill="#dfe7ef", sw=1.3))
+    o.append(_rect(258, 42, 74, 48, fill="#e9eef4", sw=1.3))
+    o.append(_line(295, 14, 295, 190, sw=2.4, color=INK))
+    o.append(_rect(262, 112, 16, 104, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(312, 112, 16, 104, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(276, 164, 36, 40, fill="#fdf3e6", sw=1.3))
+    o.append(_rect(272, 204, 44, 9, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(258, 92, 74, 14, fill="#fdf3e6", sw=1.2))       # upper adapter
+    o.append(_rect(258, 250, 74, 14, fill="#fdf3e6", sw=1.2))      # lower adapter
+    o.append(_leader(334, 100, 412, 92))
+    o.append(T(420, 96, "Đoạn chuyển tiếp trên / Upper adapter", 7.4, anchor="start"))
+    o.append(_leader(334, 258, 412, 140))
+    o.append(T(420, 144, "Đoạn chuyển tiếp dưới / Lower adapter", 7.4, anchor="start"))
+    o.append(T(298, 322, "Trim cỡ nhỏ hơn ghép vào thân lớn / Smaller trim fitted into a larger body",
+               7.4, color=GREY))
+    o.append(T(298, 344, "Giảm lưu lượng, giảm vận tốc đầu ra, sửa lỗi chọn quá cỡ",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.42 - Adapter method for reduced flow capacity",
+                   "Hình 3.42 (tr. 77) · Phương pháp đoạn chuyển tiếp giảm lưu lượng",
+                   "Hình 3.42 (tr. 77) · Phương pháp đoạn chuyển tiếp: dùng nút, lồng và vòng chỗ "
+                   "ngồi từ cỡ van nhỏ hơn cùng kiểu, cùng đoạn nối phía trên lồng và dưới chỗ ngồi "
+                   "để ghép vào thân lớn; giúp giảm lưu lượng, giảm vận tốc và sửa lỗi chọn van quá cỡ.",
+                   "Figure 3.42 (p. 77) · Adapter method: plug, cage and seat ring from a smaller "
+                   "valve of similar construction are fitted with adapters above the cage and below "
+                   "the seat into a larger body, reducing capacity and velocity and correcting "
+                   "over-sizing errors.",
+                   "Thân van lớn chứa trim cỡ nhỏ qua hai đoạn chuyển tiếp",
+                   "Large body holding smaller trim via upper and lower adapters")
+
+
+@_reg
+def fig_f3_43():
+    """Figure 3.43 (p. 77) - Diaphragm Actuators, direct and reverse acting."""
+    w, h = 640, 360
+    o = [_defs()]
+    for cx, lab, up in ((180, "Tác động trực tiếp / Direct-acting", False),
+                        (460, "Tác động ngược / Reverse-acting", True)):
+        o.append(_ellipse(cx, 176, 110, 30, fill="#eef3fb", sw=1.6))    # diaphragm
+        o.append(_rect(cx - 108, 96, 216, 80, fill="#f7f9fb", sw=1.4))  # upper case
+        o.append(_rect(cx - 108, 176, 216, 80, fill="#f7f9fb", sw=1.4)) # lower case
+        o.append(_line(cx, 176, cx, 316, sw=2.4, color=INK))
+        o.append(_spring(cx, 112, 168, width=40))
+        o.append(_arrow(cx, 74, cx, 108, sw=1.7, color=RED))
+        direction = "lên / up" if up else "xuống / down"
+        o.append(_arrow(cx - 20, 300, cx - 20, 332 if not up else 276,
+                        sw=1.6, color=GREEN))
+        o.append(T(cx, 356, lab, 7.8, color=INK))
+    o.append(T(320, 40, "Áp suất cấp tăng đẩy màng và dịch chuyển thân / Increasing air pressure moves the diaphragm and stem",
+               8.4, weight="600"))
+    o.append(T(320, 60, "Lực đầu ra ròng = lực màng trừ lực lò xo / Net thrust = diaphragm force minus spring force",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.43 - Diaphragm actuators",
+                   "Hình 3.43 (tr. 77) · Cơ cấu chấp hành màng",
+                   "Hình 3.43 (tr. 77) · Cơ cấu chấp hành màng khí nén: tác động trực tiếp (áp suất "
+                   "tăng đẩy màng xuống, thân dãn ra) và tác động ngược (đẩy màng lên, thân co lại). "
+                   "Lực đầu ra ròng là hiệu giữa lực màng và lực lò xo.",
+                   "Figure 3.43 (p. 77) · Pneumatic diaphragm actuators: direct-acting (increasing "
+                   "pressure pushes the diaphragm down and extends the stem) and reverse-acting "
+                   "(pushes it up and retracts the stem). Net output thrust is diaphragm force minus "
+                   "spring force.",
+                   "Cơ cấu màng tác động trực tiếp và tác động ngược",
+                   "Direct-acting and reverse-acting diaphragm actuators")
+
+
+@_reg
+def fig_f3_44():
+    """Figure 3.44 (p. 78) - Field-Reversible Multi-Spring Actuator."""
+    w, h = 600, 376
+    o = [_defs()]
+    o.append(_rect(180, 80, 240, 76, fill="#f7f9fb", sw=1.5))
+    o.append(_ellipse(300, 156, 114, 26, fill="#eef3fb", sw=1.5))
+    o.append(_rect(180, 156, 240, 96, fill="#f7f9fb", sw=1.5))
+    o.append(_line(300, 156, 300, 320, sw=2.6, color=INK))
+    for dx in (-56, 56):
+        o.append(_spring(300 + dx, 96, 150, width=34))
+    o.append(_arrow(300, 42, 300, 80, sw=1.8, color=RED))
+    o.append(_leader(360, 118, 452, 92))
+    o.append(T(460, 96, "Nhiều lò xo / Multi-spring", 7.5, anchor="start"))
+    o.append(_leader(358, 196, 452, 152))
+    o.append(T(444, 152, "Đảo chiều tại hiện trường", 7.2, anchor="start"))
+    o.append(T(444, 163, "Field-reversible", 7.2, anchor="start"))
+    o.append(T(300, 344, "Có thể lắp tác động trực tiếp hoặc ngược / Assembled for either action",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.44 - Field-reversible multi-spring actuator",
+                   "Hình 3.44 (tr. 78) · Cơ cấu nhiều lò xo đảo chiều tại hiện trường",
+                   "Hình 3.44 (tr. 78) · Cơ cấu nhiều lò xo có thể đảo chiều tại hiện trường: dùng "
+                   "nhiều lò xo nhỏ trong vỏ, cho phép lắp thành tác động trực tiếp hoặc ngược mà "
+                   "không cần thay đổi chi tiết, linh hoạt khi cấu hình tại công trường.",
+                   "Figure 3.44 (p. 78) · Field-reversible multi-spring actuator: several small "
+                   "springs in the case allow assembly for direct or reverse action without changing "
+                   "parts, giving flexibility during field configuration.",
+                   "Cơ cấu màng nhiều lò xo có thể đổi chiều tác động",
+                   "Multi-spring diaphragm actuator with reversible action")
+
+
+@_reg
+def fig_f3_45():
+    """Figure 3.45 (p. 78) - Diaphragm Actuator for Rotary Valve."""
+    w, h = 620, 360
+    o = [_defs()]
+    o.append(_rect(180, 74, 210, 72, fill="#f7f9fb", sw=1.5))
+    o.append(_ellipse(285, 146, 100, 24, fill="#eef3fb", sw=1.5))
+    o.append(_rect(180, 146, 210, 84, fill="#f7f9fb", sw=1.5))
+    o.append(_line(285, 146, 285, 250, sw=2.4, color=INK))
+    o.append(_spring(285, 92, 140, width=36))
+    o.append(_arrow(285, 42, 285, 76, sw=1.7, color=RED))
+    o.append(_circle(285, 264, 16, fill="#fdf3e6", sw=1.4))
+    o.append(_line(285, 264, 380, 264, sw=3.0, color=INK))          # lever
+    o.append(_line(380, 264, 380, 300, sw=2.4, color=INK))          # shaft
+    o.append(_path("M380,232 A32,32 0 0,1 408,264", fill="none",
+                   sw=1.0, color=RED, dash="4 3"))
+    o.append(T(420, 250, "Cần đẩy / Actuator lever", 7.5, anchor="start"))
+    o.append(T(310, 334, "Tùy hướng cần mà áp suất tăng mở hoặc đóng van / Lever orientation decides open or close",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.45 - Diaphragm actuator for rotary valve",
+                   "Hình 3.45 (tr. 78) · Cơ cấu màng cho van quay",
+                   "Hình 3.45 (tr. 78) · Cơ cấu màng tác động trực tiếp cho van quay: áp suất tăng "
+                   "đẩy màng xuống, truyền qua cần gắn trên trục van; tùy hướng cần mà van mở hoặc "
+                   "đóng.",
+                   "Figure 3.45 (p. 78) · Direct-acting diaphragm actuator for rotary valves: "
+                   "increasing air pressure pushes the diaphragm down, driving a lever on the valve "
+                   "shaft; depending on lever orientation the valve opens or closes.",
+                   "Cơ cấu màng nối cần đẩy lên trục van quay",
+                   "Diaphragm actuator driving a lever on a rotary valve shaft")
+
+
+@_reg
+def fig_f3_46():
+    """Figure 3.46 (p. 78) - Control Valve with Double-Acting Piston Actuator."""
+    w, h = 620, 400
+    o = [_defs()]
+    o.append(_rect(210, 62, 180, 130, fill="#f7f9fb", sw=1.6))     # cylinder
+    o.append(_rect(214, 116, 172, 20, fill="#dfe7ef", sw=1.2))     # piston
+    o.append(_line(300, 126, 300, 316, sw=2.6, color=INK))
+    o.append(_arrow(260, 90, 260, 112, sw=1.5, color=RED))
+    o.append(_arrow(340, 180, 340, 158, sw=1.5, color=RED))
+    o.append(_rect(262, 192, 76, 66, fill="#e9eef4", sw=1.4))      # bonnet
+    o.append(_rect(226, 258, 148, 92, fill="#f4f7fb", sw=1.6))     # body
+    o.append(_rect(162, 284, 66, 40, fill="#e9eef4", sw=1.3))
+    o.append(_rect(148, 274, 18, 60, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(372, 284, 66, 40, fill="#e9eef4", sw=1.3))
+    o.append(_rect(436, 274, 18, 60, fill="#dfe7ef", sw=1.2))
+    o.append(_leader(392, 100, 446, 84))
+    o.append(T(454, 88, "Xi lanh piston / Piston cylinder", 7.4, anchor="start"))
+    o.append(T(300, 380, "Tác động kép cho lực lớn cả hai chiều / Double acting gives maximum force in both directions",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.46 - Control valve with double-acting piston actuator",
+                   "Hình 3.46 (tr. 78) · Van điều khiển có cơ cấu piston tác động kép",
+                   "Hình 3.46 (tr. 78) · Van điều khiển có cơ cấu piston tác động kép: dùng khí "
+                   "áp suất cao tới 150 psig, cho lực đẩy cực đại và tốc độ hành trình nhanh ở cả "
+                   "hai chiều; có thể lắp van trip khí nén và hệ thống khóa khi mất áp cấp.",
+                   "Figure 3.46 (p. 78) · Control valve with double-acting piston actuator: uses "
+                   "high-pressure plant air up to 150 psig, giving maximum thrust and fast stroking "
+                   "in both directions, with pneumatic trip valves and lock-up systems available.",
+                   "Van điều khiển với xi lanh piston tác động kép",
+                   "Control valve with a double-acting piston cylinder")
+
+
+@_reg
+def fig_f3_47():
+    """Figure 3.47 (p. 79) - Control Valve with Scotch-Yoke Piston Actuator."""
+    w, h = 620, 400
+    o = [_defs()]
+    o.append(_rect(190, 58, 220, 150, fill="#f7f9fb", sw=1.6))
+    o.append(_rect(196, 122, 208, 20, fill="#dfe7ef", sw=1.2))
+    o.append(_line(300, 132, 300, 244, sw=2.6, color=INK))
+    o.append(_rect(258, 244, 84, 44, fill="#eef3fb", sw=1.4))       # yoke
+    o.append(_circle(300, 266, 12, fill="#fdf3e6", sw=1.3))
+    o.append(_line(300, 266, 300, 292, sw=2.2, color=INK))
+    o.append(_rect(226, 292, 148, 60, fill="#f4f7fb", sw=1.6))      # body
+    o.append(_rect(164, 306, 64, 34, fill="#e9eef4", sw=1.3))
+    o.append(_rect(150, 296, 18, 54, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(372, 306, 64, 34, fill="#e9eef4", sw=1.3))
+    o.append(_rect(434, 296, 18, 54, fill="#dfe7ef", sw=1.2))
+    o.append(_arrow(254, 88, 254, 118, sw=1.5, color=RED))
+    o.append(_leader(410, 80, 462, 84))
+    o.append(T(468, 88, "Cơ cấu kiểu Scotch-yoke", 7.4, anchor="start"))
+    o.append(T(300, 380, "Chuyển chuyển động thẳng của piston sang chuyển động quay / Converts piston linear motion to rotary output",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.47 - Control valve with Scotch-Yoke piston actuator",
+                   "Hình 3.47 (tr. 79) · Van điều khiển có cơ cấu piston Scotch-yoke",
+                   "Hình 3.47 (tr. 79) · Van điều khiển có cơ cấu piston Scotch-yoke: chuyển chuyển "
+                   "động thẳng của piston sang mô-men quay qua ách và chốt trượt, cho mô-men lớn ở "
+                   "vị trí đầu và cuối hành trình của van quay.",
+                   "Figure 3.47 (p. 79) · Control valve with Scotch-yoke piston actuator: converts "
+                   "the piston's linear motion into rotary torque through a yoke and pin, delivering "
+                   "high torque at the beginning and end of a rotary valve's travel.",
+                   "Van điều khiển với cơ cấu piston và ách Scotch-yoke",
+                   "Control valve with a piston and Scotch-yoke mechanism")
+
+
+@_reg
+def fig_f3_48():
+    """Figure 3.48 (p. 79) - Manual Actuator for Sliding-Stem Valves."""
+    w, h = 600, 400
+    o = [_defs()]
+    o.append(_circle(300, 92, 58, fill="#f7f9fb", sw=2.0))
+    o.append(_circle(300, 92, 8, fill="#dfe7ef", sw=1.0))
+    for i in range(8):
+        import math as _m
+        a = 2 * _m.pi * i / 8.0
+        o.append(_line(300 + 50 * _m.cos(a), 92 + 50 * _m.sin(a),
+                       300 + 64 * _m.cos(a), 92 + 64 * _m.sin(a),
+                       sw=3.0, color=INK))
+    o.append(_line(300, 150, 300, 268, sw=3.0, color=INK))
+    o.append(_rect(272, 200, 56, 58, fill="#e9eef4", sw=1.4))       # yoke/nut
+    o.append(_rect(240, 258, 120, 92, fill="#f4f7fb", sw=1.6))
+    o.append(_rect(180, 280, 62, 42, fill="#e9eef4", sw=1.3))
+    o.append(_rect(166, 270, 18, 62, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(358, 280, 62, 42, fill="#e9eef4", sw=1.3))
+    o.append(_rect(418, 270, 18, 62, fill="#dfe7ef", sw=1.2))
+    o.append(T(300, 376, "Vặn tay quay để định vị nút van / Handwheel positions the valve plug",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.48 - Manual actuator for sliding-stem valves",
+                   "Hình 3.48 (tr. 79) · Cơ cấu chấp hành tay cho van thân trượt",
+                   "Hình 3.48 (tr. 79) · Cơ cấu chấp hành tay cho van thân trượt: vặn tay quay qua "
+                   "vít/đai ốc để định vị nút van; dùng khi không cần điều khiển tự động, có sẵn "
+                   "cỡ cho van cầu và van quay, rẻ hơn nhiều cơ cấu tự động.",
+                   "Figure 3.48 (p. 79) · Manual actuator for sliding-stem valves: a handwheel "
+                   "positions the plug through a screw and nut; used where automatic control is not "
+                   "required, available in sizes for globe and rotary valves and far less expensive "
+                   "than automatic actuators.",
+                   "Van thân trượt có tay quay và cơ cấu vít điều chỉnh",
+                   "Sliding-stem valve with a handwheel and screw mechanism")
+
+
+@_reg
+def fig_f3_49():
+    """Figure 3.49 (p. 79) - Manual Actuator for Rotary Valves."""
+    w, h = 600, 380
+    o = [_defs()]
+    o.append(_circle(300, 96, 56, fill="#f7f9fb", sw=2.0))
+    o.append(_circle(300, 96, 8, fill="#dfe7ef", sw=1.0))
+    for i in range(8):
+        import math as _m
+        a = 2 * _m.pi * i / 8.0
+        o.append(_line(300 + 48 * _m.cos(a), 96 + 48 * _m.sin(a),
+                       300 + 62 * _m.cos(a), 96 + 62 * _m.sin(a),
+                       sw=3.0, color=INK))
+    o.append(_rect(268, 152, 64, 44, fill="#e9eef4", sw=1.4))
+    o.append(_circle(300, 174, 12, fill="#fdf3e6", sw=1.3))         # gear
+    o.append(_line(300, 196, 300, 240, sw=3.0, color=INK))
+    o.append(_circle(300, 250, 20, fill="#fdf3e6", sw=1.4))
+    o.append(_rect(240, 270, 120, 58, fill="#f4f7fb", sw=1.6))
+    o.append(_rect(180, 284, 62, 32, fill="#e9eef4", sw=1.3))
+    o.append(_rect(166, 274, 18, 52, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(358, 284, 62, 32, fill="#e9eef4", sw=1.3))
+    o.append(_rect(418, 274, 18, 52, fill="#dfe7ef", sw=1.2))
+    o.append(T(300, 354, "Tay quay qua bộ bánh răng quay trục van / Handwheel turns the shaft through gears",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.49 - Manual actuator for rotary valves",
+                   "Hình 3.49 (tr. 79) · Cơ cấu chấp hành tay cho van quay",
+                   "Hình 3.49 (tr. 79) · Cơ cấu chấp hành tay cho van quay: tay quay truyền qua bộ "
+                   "bánh răng để quay trục van; một số kiểu có chỉ thị số để định vị lại chính xác "
+                   "nút hoặc đĩa van.",
+                   "Figure 3.49 (p. 79) · Manual actuator for rotary valves: a handwheel drives a "
+                   "gear train that turns the valve shaft; some models offer dial indicators for "
+                   "accurate repositioning of the plug or disc.",
+                   "Van quay có tay quay và bộ bánh răng",
+                   "Rotary valve with a handwheel and gear train")
+
+
+@_reg
+def fig_f3_50():
+    """Figure 3.50 (p. 79) - Rack-and-Pinion Actuator."""
+    w, h = 620, 356
+    o = [_defs()]
+    o.append(_rect(130, 96, 360, 148, fill="#f7f9fb", sw=1.6))
+    o.append(_rect(150, 124, 320, 22, fill="#e9eef4", sw=1.2))
+    o.append(_rect(150, 194, 320, 22, fill="#e9eef4", sw=1.2))
+    for i in range(11):
+        x = 168 + i * 28
+        o.append(_line(x, 124, x + 10, 146, sw=1.2, color=INK))
+        o.append(_line(x, 194, x + 10, 216, sw=1.2, color=INK))
+    o.append(_circle(310, 170, 44, fill="#fdf3e6", sw=1.7))
+    o.append(_circle(310, 170, 8, fill=BLUE, sw=0))
+    o.append(_line(310, 170, 310, 274, sw=2.6, color=INK))
+    o.append(_arrow(196, 170, 250, 170, sw=1.6, color=GREEN))
+    o.append(T(310, 306, "Răng cưa đẩy bánh răng quay / Rack drives the pinion", 7.6, color=INK))
+    o.append(T(310, 326, "Gọn, rẻ; thường dùng cho đóng mở / Compact and economical for on-off service",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.50 - Rack-and-pinion actuator",
+                   "Hình 3.50 (tr. 79) · Cơ cấu chấp hành răng cưa - bánh răng",
+                   "Hình 3.50 (tr. 79) · Cơ cấu răng cưa - bánh răng: giải pháp gọn và kinh tế cho "
+                   "van quay. Do có độ hở răng, thường dùng cho ứng dụng đóng mở hoặc nơi biến thiên "
+                   "quá trình không đáng lo ngại.",
+                   "Figure 3.50 (p. 79) · Rack-and-pinion actuator: a compact, economical solution "
+                   "for rotary valves; because of backlash it is typically used for on-off "
+                   "applications or where process variability is not a concern.",
+                   "Cơ cấu răng cưa truyền động cho bánh răng và trục van",
+                   "Rack-and-pinion actuator driving a rotary shaft")
+
+
+@_reg
+def fig_f3_51():
+    """Figure 3.51 (p. 80) - Electric Actuator for Sliding-Stem Valve."""
+    w, h = 620, 400
+    o = [_defs()]
+    o.append(_rect(196, 62, 208, 122, fill="#eef3fb", sw=1.6))      # motor housing
+    o.append(_circle(300, 122, 38, fill="#f7f9fb", sw=1.5))
+    o.append(_circle(300, 122, 8, fill=BLUE, sw=0))
+    o.append(_rect(250, 184, 100, 54, fill="#f4f7fb", sw=1.4))      # gear reduction
+    o.append(_line(300, 238, 300, 300, sw=3.0, color=INK))
+    o.append(_rect(268, 262, 64, 42, fill="#e9eef4", sw=1.3))
+    o.append(_rect(228, 300, 144, 58, fill="#f4f7fb", sw=1.6))
+    o.append(_rect(166, 314, 64, 32, fill="#e9eef4", sw=1.3))
+    o.append(_rect(152, 304, 18, 52, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(370, 314, 64, 32, fill="#e9eef4", sw=1.3))
+    o.append(_rect(432, 304, 18, 52, fill="#dfe7ef", sw=1.2))
+    o.append(_leader(406, 92, 452, 84))
+    o.append(T(460, 88, "Động cơ điện / Electric motor", 7.4, anchor="start"))
+    o.append(_leader(352, 206, 452, 136))
+    o.append(T(460, 140, "Giảm tốc / Gear reduction", 7.4, anchor="start"))
+    o.append(T(300, 380, "Động cơ không chổi than giảm cháy khi đóng cắt nhanh / Brushless motors reduce burnout",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.51 - Electric actuator for sliding-stem valve",
+                   "Hình 3.51 (tr. 80) · Cơ cấu chấp hành điện cho van thân trượt",
+                   "Hình 3.51 (tr. 80) · Cơ cấu chấp hành điện cho van thân trượt: dùng động cơ điện "
+                   "và bộ giảm tốc để dịch chuyển nút van; truyền thống chỉ đóng mở, nay có kiểu "
+                   "điều khiển liên tục, đặc biệt nơi không có khí dụng cụ.",
+                   "Figure 3.51 (p. 80) · Electric actuator for sliding-stem valves: an electric "
+                   "motor and gear reduction move the plug; traditionally limited to on-off duty, "
+                   "some now provide continuous control, especially where instrument air is scarce.",
+                   "Van thân trượt có động cơ điện và bộ giảm tốc",
+                   "Sliding-stem valve with electric motor and gearbox")
+
+
+@_reg
+def fig_f3_52():
+    """Figure 3.52 (p. 80) - Electric Actuator for Rotary Valve."""
+    w, h = 620, 396
+    o = [_defs()]
+    o.append(_rect(196, 62, 208, 118, fill="#eef3fb", sw=1.6))
+    o.append(_circle(300, 120, 36, fill="#f7f9fb", sw=1.5))
+    o.append(_circle(300, 120, 8, fill=BLUE, sw=0))
+    o.append(_rect(250, 180, 100, 52, fill="#f4f7fb", sw=1.4))
+    o.append(_line(300, 232, 300, 272, sw=3.0, color=INK))
+    o.append(_circle(300, 282, 18, fill="#fdf3e6", sw=1.4))
+    o.append(_rect(240, 300, 120, 44, fill="#f4f7fb", sw=1.6))
+    o.append(_rect(180, 312, 62, 26, fill="#e9eef4", sw=1.3))
+    o.append(_rect(166, 302, 18, 46, fill="#dfe7ef", sw=1.2))
+    o.append(_rect(358, 312, 62, 26, fill="#e9eef4", sw=1.3))
+    o.append(_rect(418, 302, 18, 46, fill="#dfe7ef", sw=1.2))
+    o.append(_leader(406, 88, 452, 80))
+    o.append(T(460, 84, "Động cơ / Motor", 7.4, anchor="start"))
+    o.append(_leader(352, 204, 452, 130))
+    o.append(T(460, 134, "Bộ giảm tốc / Gearbox", 7.4, anchor="start"))
+    o.append(T(300, 364, "Đầu ra quay 90 độ cho van bi và van bướm / 90-degree rotary output for ball and butterfly valves",
+               7.4, color=GREY))
+    return _finish(w, h, o, "Figure 3.52 - Electric actuator for rotary valve",
+                   "Hình 3.52 (tr. 80) · Cơ cấu chấp hành điện cho van quay",
+                   "Hình 3.52 (tr. 80) · Cơ cấu chấp hành điện cho van quay: động cơ qua bộ giảm "
+                   "tốc tạo đầu ra quay 90 độ cho van bi, van bướm; dùng ở nơi không sẵn khí dụng "
+                   "cụ hoặc số lượng van quá ít để biện minh cho hệ thống máy nén.",
+                   "Figure 3.52 (p. 80) · Electric actuator for rotary valves: a motor through a "
+                   "gearbox provides 90-degree rotary output for ball and butterfly valves; used "
+                   "where instrument air is unavailable or too few valves justify a compressor.",
+                   "Van quay có động cơ điện và đầu ra quay 90 độ",
+                   "Rotary valve with an electric motor and 90-degree output")
