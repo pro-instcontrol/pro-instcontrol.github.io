@@ -2,9 +2,9 @@
 
 **State now (resumed 2026-11-22):** 9 reader books fully live 🟢 (flagship Book 6
 *Valve Selection Handbook* 21/21). Campaign: Baumann `cvp` **4/32**, Borden `bcv` 1/1 🟢,
-Emerson `cvh6` **8/15 live**, IIH `iih` **3/8**, PPIC `ppic` 1/11, IPC `ipc` 1/8.
-**Live HEAD `dfac0c08`** (Ch.8); live sitemap 1,042 URLs, catalog badge 8/15, Ch.8 EN/VI deep
-URLs 200, `check_links.py` broken 0. Full tables in `report.md`.
+Emerson `cvh6` **9/15 live**, IIH `iih` **3/8**, PPIC `ppic` 1/11, IPC `ipc` 1/8.
+**Live chapter HEAD `155b8c5c`** (Ch.9); live sitemap 1,044 URLs, catalog badge 9/15, Ch.9 EN/VI
+deep URLs 200, `check_links.py` broken 0. Full tables in `report.md`.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — plus two books located but not registered
@@ -33,11 +33,12 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
 ## A. Continuation queue (user's order)
 1. ~~Book 8 `iih` ch2–3~~ — **done**; remaining ch4–8, source `work/ihii_raw.txt`; printed = PDF − 14.
 2. ~~Baumann `cvp` ch3–4~~ — **done**; remaining ch5–32, source `work/cvp_raw.txt`.
-3. ~~Emerson `cvh6` ch3–ch8~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
-   `9e136a59`, `dfac0c08`; continue ch9–15. Source `work/cvh6_raw.txt`; printed = PDF page (dump
-   pages match). Ch.9 "Standards and Approvals" starts at raw line 12145; check its printed-page
-   span and figure count before delegating. Separate per-chapter figure modules (`cvh6fig5.py`…
-   `cvh6fig8.py`) are standard; one agent writes prose + figures for mid-size chapters.
+3. ~~Emerson `cvh6` ch3–ch9~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
+   `9e136a59`, `dfac0c08`, `155b8c5c`; continue ch10–15. Source `work/cvh6_raw.txt`; printed = PDF
+   page (dump pages match). Ch.10 "Isolation Valves" starts at raw line 13689 / printed p. 210;
+   check its printed-page span and figure count before delegating. Separate per-chapter figure
+   modules (`cvh6fig5.py`…`cvh6fig9.py`) are standard; one agent writes prose + figures for
+   mid-size chapters.
    **Watch for the glossary-shadowing bug:** a module-level `def note(lang)` shadows the shared
    note markup helper and makes both glossary boxes render as the English source-note text.
    Name that function `source_notes(lang)` instead; fixed in Ch.3 and Ch.4.

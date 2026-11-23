@@ -6220,3 +6220,29 @@ registration when resumed.
   figures)"), 12 files / 1,904 insertions. Live EN/VI Ch.8 URLs 200, TOC lists Ch.8, catalog reads
   "Translating · 8 of 15 chapters", live sitemap has all 8 Ch.8 URL entries. Emerson **8/15**;
   next Ch.9 "Standards and Approvals" from raw line 12145.
+
+## Session 92 — Emerson Ch.9 published (resume)
+- At resume the working tree already held a complete, uncommitted Ch.9 draft
+  (`build/cvh6_ch09.py`, 1,614 lines; `build/cvh6fig9.py`, 431 lines) plus the three registration
+  edits. It was validated rather than rewritten: 7 vector figures (9.1–9.7) for "Standards and
+  Approvals", printed pp. 192–209 (`PAGES_SRC = 18`), seven sections 9.1–9.7 covering control
+  valve standards, hazardous-location approvals, Class/Division and Zone systems, EPL, temperature
+  codes, marking/nomenclature, protection techniques and NEMA/IP enclosure ratings.
+- Independent QA: 7 registered XML-valid SVGs (plus the shell logo), unique `fig-1..7` ids,
+  all figure text nodes inside their viewBoxes, 0 CJK / 0 bare `&` (2 shell Google-Fonts only,
+  matching Ch.8 baseline) / 0 Spanish; outside SVG every caption is in the page language, and the
+  glossary + source-note boxes render EN on the EN page and VI on the VI page — no recurrence of
+  the `def note(lang)` shadowing bug (`source_notes(lang)` used, as in Ch.3/Ch.4).
+  `check_links.py` 1,046 pages / 31,264 refs / broken 0; sitemap 1,044 URLs (1,029 siblings).
+- Source quirks documented in the chapter note: Figures 9.2/9.3 share the identical printed
+  caption; dust rows in Fig. 9.1 print as IIC/IIB/IIA although §9.3.4.2 says IIIA/IIIB/IIIC;
+  Fig. 9.3 EPL labels are OCR-jumbled; a lost bullet in §9.1.6; misread bullet glyph «»;
+  collapsed cells in Fig. 9.5 and unaligned X marks in Fig. 9.6; OCR typos preserved in EN and
+  corrected in VI («subjected too», «glisonite», «500um», «103 Ωm», «Division1»).
+- Pushed `155b8c5c` ("Publish Emerson Ch.9: Standards and Approvals (EN/VI, 7 vector figures)"),
+  12 files / 2,067 insertions. Live EN/VI Ch.9 URLs 200 (~45 s propagation after push), TOC lists
+  Ch.9, catalog reads "Translating · 9 of 15 chapters" (VI "Đang dịch · 9/15 chương"), live sitemap
+  has all 8 Ch.9 URL entries. Emerson **9/15**; next Ch.10 "Isolation Valves" from raw line 13689
+  (printed p. 210).
+- Note: SVG rasterization tooling (cairosvg) is not installed in this environment, so figure QA
+  here was structural (XML validity, bounds, ids, captions) rather than a rendered contact sheet.
