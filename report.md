@@ -7,8 +7,8 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-23):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `905dd942`**
-(IIH Ch.8, completing Book 8) — the paused Emerson Ch.3 was published,
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `68cf7511`**
+(Baumann Ch.5, published after the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
 Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
 the 42-page Ch.13 with 10 data tables / 897 rows, Ch.14 "Pipe Data" with 16 data tables / 521 rows,
 and the final 31-page Ch.15 "Conversions and Equivalents" with 19 data tables / 1,108 rows, Index
@@ -18,7 +18,10 @@ figures, PDF pp. 143–180) and Ch.5 "Measurement of Flow Rate" (10 vector figur
 and Ch.6 "Mechanical Flow Meters" (9 vector figures, PDF pp. 217–256) and Ch.7 "Gas and Liquid
 Sampling Techniques" (19 vector figures, 13 data tables, PDF pp. 257–302) and Ch.8 "Control Valves"
 (8 vector figures, 111 refs, the book's 108-entry index, PDF pp. 303–347) were then published,
-**completing Book 8 at 8/8**.
+**completing Book 8 at 8/8**. Baumann Ch.5 "Valve Sizing Made Easy" (printed pp. 24–46: 2 vector
+figures, 7 data tables, equations 5-1–5-18, 8 references) was then published, together with a
+site-wide terminology pass: valve *seat* = đế van / bệ van / mặt tựa của van, *cavitation* = xâm
+thực, *flashing* = hóa hơi.
 
 ---
 
@@ -42,7 +45,7 @@ Sampling Techniques" (19 vector figures, 13 data tables, PDF pp. 257–302) and 
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **4/32** 🟠 | 7 (ch1–4) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **5/32** 🟠 | 9 (ch1–5) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
@@ -54,6 +57,8 @@ Sampling Techniques" (19 vector figures, 13 data tables, PDF pp. 257–302) and 
 - Baumann Ch.1 (3 figs) + Ch.2 "Why Not Use a Speed-Controlled Pump?" (no figs, 3 refs)
   + Ch.3 "What Valve Type Shall I Choose?" (3 figs) + Ch.4 "The Self-Acting Regulator: Why Not?"
   (1 fig, printed pp. 21–23)
+  + Ch.5 "Valve Sizing Made Easy" (2 figs, 7 tables, equations 5-1–5-18, printed pp. 24–46,
+  published in `68cf7511`)
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
@@ -144,6 +149,10 @@ Sampling Techniques" (19 vector figures, 13 data tables, PDF pp. 257–302) and 
 - IIH Ch.8 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.8
   ("Control Valves", translated), catalog badge now shows "🟢 Fully translated · 8 of 8 chapters"
   (VI: "🟢 Đã dịch đầy đủ · 8/8 chương"), live sitemap includes all 8 Ch.8 URL entries.
+- Baumann Ch.5 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.5, catalog
+  badge shows "Translating · 5 of 32 chapters" (VI: "Đang dịch · 5/32 chương"), live sitemap
+  includes all 8 Ch.5 URL entries. Live terminology spot-check: 0 "chỗ ngồi" and 44 "đế van" on
+  the Emerson VI Ch.3 page.
 
 ---
 
@@ -196,7 +205,8 @@ Sampling Techniques" (19 vector figures, 13 data tables, PDF pp. 257–302) and 
   (Emerson ch10) → `e70bd6a7` (Emerson ch11) → `8d523ae8` (Emerson ch12) → `092d513d`
   (Emerson ch13)   → `67f84ff5` (Emerson ch14) → `89e84b27` (Emerson ch15) → `399e0cbb` (IIH ch4)
   → `db6c38fb` (IIH ch5) → `dfb266f0` (IIH ch6) → `675a28a7` (IIH ch7)
-  → `905dd942` (IIH ch8, **live chapter HEAD**, Book 8 complete).
+  → `905dd942` (IIH ch8, Book 8 complete) → `68cf7511` (Baumann ch5 + site-wide seat/cavitation/
+  flashing terminology pass, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -209,7 +219,9 @@ Sampling Techniques" (19 vector figures, 13 data tables, PDF pp. 257–302) and 
    ~~Ch.7 "Gas and Liquid Sampling Techniques"~~ — **done** in `675a28a7` (19 figs, 13 tables)
    ~~Ch.8 "Control Valves"~~ — **done** in `905dd942` (8 figs, 111 refs, book index);
    **Book 8 complete 8/8**.
-3. ~~Baumann `cvp` Ch.3 + Ch.4~~ — **done** (`e71e3415`, `d487a9cb`); remaining Ch.5–32.
+3. ~~Baumann `cvp` Ch.3 + Ch.4~~ — **done** (`e71e3415`, `d487a9cb`);
+   ~~Ch.5 "Valve Sizing Made Easy"~~ — **done** (`68cf7511`, 2 figs, 7 tables, 18 equations);
+   remaining Ch.6–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
    `89e84b27` (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 + 3 + 5 figs, broken 0); Ch.13 added 10 data
@@ -222,6 +234,16 @@ Sampling Techniques" (19 vector figures, 13 data tables, PDF pp. 257–302) and 
 7. Book 9 `ppic` Chapters 2–11 after the user's named queues.
 
 ### Resume notes
+- Baumann Ch.5 (23 PDF pages, 2 vector figures, 7 tables / 119 + 11 rows, 18 numbered equations,
+  8 references) was split across three parallel section agents (`cvp_ch05a/b/c.py`) against a
+  fixed block-parity contract, integrated in `cvp_ch05.py` with a bilingual glossary and a
+  source-note box, and published in `68cf7511`. Named HTML entities in the agents' equation
+  markup were converted to literal Unicode to meet the 0-bare-ampersand gate. The same push
+  applied the user's terminology corrections site-wide: seat → đế van / bệ van / mặt tựa của van
+  (including "vật liệu chỗ ngồi" → "vật liệu đế van"), cavitation → xâm thực, flashing → hóa hơi;
+  six source strings split across Python line continuations needed a second regex pass. 22 build
+  modules and all affected generated pages were rebuilt; `check_links.py` broken 0, sitemap
+  1,068 URLs / 1,053 with language siblings, 8 sitemap entries for Ch.5.
 - IIH Ch.8 (final chapter, 42 prose pages + 3 index pages, 8 vector figures, 111 refs, 108-entry
   book index in 20 letter bands) was split across two parallel agents with the same figure/prose
   contract as Ch.7; independent QA 0 layout problems, 0 CJK/bare ampersands, 8/8 captions, 4

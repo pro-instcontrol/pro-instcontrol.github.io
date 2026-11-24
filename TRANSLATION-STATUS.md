@@ -6531,3 +6531,32 @@ registration when resumed.
   book index.**
 - Next: no more IIH chapters. Standing order now Baumann `cvp` Ch.5 → PPIC Ch.2 → IPC Ch.2;
   Book 11/12 registration only on confirmation.
+
+## Session 104 — Baumann Chapter 5 published; terminology standardized
+
+- Book 7 `cvp` Ch.5 "Valve Sizing Made Easy": 23 source pages (PDF pp. 31–53, printed 24–46),
+  2 vector figures (`build/cvpfig5.py`, already present in the working tree at resume), 7 data
+  tables (Tables 5-1 through 5-5, split into continuation tables), equations (5-1)–(5-18), 8
+  references plus Additional Reading. Split across three parallel section agents with a fixed
+  block-parity contract; prose assembled in `build/cvp_ch05.py` with a bilingual key-terms box
+  and a bilingual source-note box documenting the OCR-damaged equations and retained quirks.
+- QA: all inline SVGs XML-valid, unique `fig-1`/`fig-2`, 2/2 localized captions on each page,
+  7 tables per language, 0 Vietnamese in EN tables, 0 CJK, 0 content bare ampersands (2 in the
+  shared font link). Named HTML entities emitted by the agents (`&Delta;`, `&radic;`, `&minus;`,
+  `&times;`, `&deg;`, `&nu;`, `&nbsp;`, `&middot;`, `&le;`, `&asymp;`, `&cong;`, `&plusmn;`) were
+  replaced with literal Unicode before the final build. `check_links.py` broken 0; sitemap
+  **1,068 URLs** (1,053 with language siblings), 8 entries for Ch.5; catalog badge
+  "Translating · 5 of 32 chapters" / "Đang dịch · 5/32 chương".
+- **User's terminology rules, applied site-wide in the same push:** seat → đế van / bệ van / mặt tựa
+  của van (explicitly "vật liệu chỗ ngồi" → "vật liệu đế van"), cavitation → xâm thực,
+  flashing → hóa hơi; ordinary "bay hơi" for volatile/vaporization is unchanged. 22 build modules
+  were edited (including line-wrapped `chỗ … ngồi` strings found by regex, not plain replace),
+  and every affected chapter/TOC/catalog/generated page was rebuilt. Verified 0 occurrences of
+  "chỗ ngồi", "bay hơi nháy", "chớp hơi", "dòng sôi" in tracked sources/pages; the only remaining
+  "sủi bọt" is the correct rendering of *bubbling* in pages_core.
+- Registration: `cvp_common.SLUGS[5]`, `reader_book.py done[5]`, `books_site.TRANSLATED[
+  "control valve primer"]` → `("progress", 32, 5)`. Pushed `68cf7511` ("Publish Baumann Ch.5
+  (EN/VI, 2 figures, 7 tables); standardize seat/flashing terms"), 105 files / 2,333 insertions /
+  271 deletions.
+- Baumann `cvp` is now **5/32** 🟠. Next: Baumann Ch.6 → PPIC Ch.2 → IPC Ch.2; Book 11/12
+  registration only on confirmation.

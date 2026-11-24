@@ -2,18 +2,19 @@
 
 **State now (2026-11-23):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **4/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` 1/11, IPC `ipc` 1/8.
-**Live chapter HEAD `905dd942`** (IIH Ch.8); live sitemap 1,066 URLs, catalog badges IIH 8/8 and
-Emerson 15/15 both `full`, Ch.8 EN/VI deep URLs 200, `check_links.py` broken 0. Full tables in
+Baumann `cvp` **5/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` 1/11, IPC `ipc` 1/8.
+**Live chapter HEAD `68cf7511`** (Baumann Ch.5); live sitemap 1,068 URLs, catalog badges IIH 8/8 and
+Emerson 15/15 both `full`, Baumann badge 5/32, `check_links.py` broken 0; Baumann Ch.5 EN/VI deep
+URLs 200, live sitemap 8 Ch.5 entries, live terminology spot-check clean. Full tables in
 `report.md`.
 
 **Next unit:** none queued for Emerson or IIH. Awaiting the user's next instruction; the standing
-remaining order is Baumann `cvp` Ch.5 → PPIC `ppic` Ch.2 → IPC `ipc` Ch.2, with Book 11/12
+remaining order is Baumann `cvp` Ch.6 → PPIC `ppic` Ch.2 → IPC `ipc` Ch.2, with Book 11/12
 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done) and Baumann at 4/32. Also two books located but not registered
+complete at 8/8 (Ch.2–8 done) and Baumann at 5/32 (Ch.2–5 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
@@ -35,6 +36,16 @@ TOC/catalog/sitemap updated. After push, EN/VI deep URLs initially 404'd (Pages 
 caching) and were verified 200 once deployment propagated; the live TOC lists Ch.3 and the live
 sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.2, 3.6, 3.21,
 3.24, 3.29, 3.31–3.34, 3.38, 3.44, 3.50, 3.52) are therefore live.
+
+## 0.6 Terminology corrections now applied site-wide (push `68cf7511`)
+- User's standing rules: **seat → đế van / bệ van / mặt tựa của van** (so "vật liệu chỗ ngồi" →
+  "vật liệu đế van"), **cavitation → xâm thực**, **flashing → hóa hơi** (not "bay hơi", which stays
+  for volatile/vaporization). 22 build modules and every affected generated page were rebuilt.
+- Watch for strings split across adjacent Python literals (`"… chỗ "\n "ngồi …"`): a plain
+  `.replace("chỗ ngồi", …)` misses them; use a regex over `chỗ\s*"\s*"ngồi`. `grep` the built HTML,
+  not just `build/*.py`, to confirm zero remaining occurrences.
+- Named HTML entities (`&Delta;`, `&radic;`, `&minus;`, …) fail the 0-bare-ampersand gate; chapter
+  agents should emit literal Unicode (Δ, √, −, ×, °, …) in equation markup.
 
 ## A. Continuation queue (user's order)
 0. ~~IIH Ch.8 "Control Valves" — final chapter~~ — **published** in `905dd942` (8 figs, 111 refs,
@@ -60,7 +71,10 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
    live EN/VI 200, TOC row present, badge 4/8.
 1. ~~Book 8 `iih` ch2–8~~ — **done, book complete 8/8**; source `work/ihii_raw.txt`;
    printed = PDF − 14.
-2. ~~Baumann `cvp` ch3–4~~ — **done**; remaining ch5–32, source `work/cvp_raw.txt`.
+2. ~~Baumann `cvp` ch3–5~~ — **done** (`e71e3415`, `d487a9cb`, `68cf7511`); remaining ch6–32,
+   source `work/cvp_raw.txt`. Ch.5 used three parallel section agents (`cvp_ch05a/b/c.py`) with a
+   fixed block-parity contract; integrate, convert named HTML entities to Unicode (QA gate), then
+   build as usual.
 3. ~~Emerson `cvh6` ch3–ch15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
    `89e84b27`. **Book complete 15/15**; no further Emerson chapters are queued. Source
