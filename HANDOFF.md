@@ -2,16 +2,16 @@
 
 **State now (2026-11-23):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **16/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **2/11**, IPC `ipc` 1/8.
-**Live chapter HEAD `fed6e480`** (PPIC Ch.2 "Advanced Measuring (Instrumentation) Methods for
-Nuclear Installations: A Review", 7 vector figures, 76 references); live sitemap 1,092 URLs,
+Baumann `cvp` **16/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **2/11**, IPC `ipc` **2/8**.
+**Live chapter HEAD `e74d218a`** (IPC Ch.2 "Transducers – II", 58 vector figures, Table 2.1,
+20 numbered equations, 12 worked examples, 11 exercise questions); live sitemap 1,094 URLs,
 catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 16/32, PPIC badge 2/11,
-Ch.2 EN/VI deep URLs 200, sitemap 8 Ch.2 entries, `check_links.py` broken 0. Full tables in
-`report.md`.
+IPC badge 2/8, IPC Ch.2 EN/VI deep URLs 200, sitemap 8 Ch.2 entries, `check_links.py` broken 0.
+Full tables in `report.md`.
 
-**Next unit:** none queued for Emerson or IIH. Awaiting the user's next instruction; the standing
-remaining order is IPC `ipc` Ch.2 → Baumann `cvp` Ch.17 → PPIC `ppic` Ch.3, with Book 11/12
-registration only on confirmation.
+**Next unit:** none queued for Emerson, IIH or IPC Ch.2. The standing remaining order is
+Baumann `cvp` Ch.17 → PPIC `ppic` Ch.3 → IPC `ipc` Ch.3, with Book 11/12 registration only on
+confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
@@ -101,7 +101,12 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
    Name that function `source_notes(lang)` instead; fixed in Ch.3 and Ch.4.
 4. ~~Book 9 `ppic` ch2~~ — **published** in `fed6e480` (7 vector figs, 76 refs, printed pp. 13–38,
    26 source pages, broken 0). Remaining ch3–11; source `work/ppic_raw.txt`; printed = PDF − 16.
-5. Book 10 `ipc` ch2–8 — source **`work/ipc_decoded.txt`** (NOT the raw dump — glyph codes).
+5. ~~Book 10 `ipc` ch2 "Transducers – II"~~ — **published** in `e74d218a` (58 vector figs,
+   Table 2.1, 20 numbered equations, 12 worked examples, 11 exercises, 61 source pages, broken 0).
+   Nine parallel writers: `ipcfig2_a/b/c.py` (20/20/18 figs) + `ipc_ch02_a…f.py` through a shared
+   `ipc_ch02_lib.py` contract, merged by `ipcfig2.py` and `ipc_ch02.py`; pre-rendered pages in
+   `work/ipc2_pages/p075…p135.png`. Remaining ch3–8 — source **`work/ipc_decoded.txt`** (NOT the
+   raw dump — glyph codes). The Spanish guard must exclude "con" (Vietnamese "nhóm con").
 6. Register Book 11 / Book 12 from the two located PDFs when the user confirms.
 
 Per-chapter flow: survey source span + figures → delegate writing to a background agent with a

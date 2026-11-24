@@ -6893,3 +6893,30 @@ registration when resumed.
   (VI: "Đang dịch · 2/11 chương"), and live sitemap has 2 `<loc>` plus 6 hreflang alternates.
 - PPIC `ppic` is now **2/11** 🟠. Next: IPC Ch.2 → Baumann Ch.17 → PPIC Ch.3; Book 11/12
   registration only on confirmation.
+
+## Session 117 — IPC Chapter 2 published
+
+- Chapter: *Transducers – II*, printed pp. 63–123 (PDF pp. 75–135), `work/ipc_decoded.txt` plus
+  pre-rendered `work/ipc2_pages/p075.png` … `p135.png`. Bilingual EN/VI slug
+  `ch02-transducers-ii`.
+- The 61-page chapter has 58 numbered figures, Table 2.1, 20 numbered equations (2.1–2.20),
+  12 worked examples and an 11-question exercise. Nine parallel writers produced
+  `build/ipcfig2_a.py` (figs 1–20), `ipcfig2_b.py` (21–40), `ipcfig2_c.py` (41–58) against the
+  existing `ipcfig2_common.py` registry helpers, and `build/ipc_ch02_a.py` … `ipc_ch02_f.py`
+  against a new shared `ipc_ch02_lib.py` contract. `build/ipcfig2.py` merges the three figure
+  registries and `build/ipc_ch02.py` assembles the six prose sections with a bilingual glossary,
+  source-note box, about-the-source block and the standard disclaimer.
+- QA: 58 XML-valid inline SVGs per page, 58 unique `fig-N` ids, 58/58 localized captions per
+  page, 21 equations and one table per page, 0 CJK, 0 content bare ampersands (2 shell font-URL
+  ones), 0 figure-label off-canvas events and 0 overlaps, `check_links.py` broken 0; sitemap
+  **1,094 URLs** (1,079 with language siblings), 8 Ch.2 entries; catalog badge 2/8 in both
+  languages. The Spanish guard was refined to drop "con", which is a legitimate Vietnamese word
+  in "nhóm con" (subgroup) and produced four false positives on the VI page.
+- Registration: `ipc_common.SLUGS[2]`, `reader_book.py done[2]`, `books_site.TRANSLATED[
+  "instrumentation and process control"]` → `("progress", 8, 2)`. Pushed `e74d218a` ("Add IPC
+  chapter 2: transducers II (EN/VI, 58 vector figures)"). Live EN/VI deep URLs initially 404,
+  then returned 200 after Pages propagation; live TOC lists Ch.2 ("Transducers – II" / "Bộ chuyển
+  đổi – II"), catalog badge shows "Translating · 2 of 8 chapters" (VI: "Đang dịch · 2/8 chương"),
+  and live sitemap has 2 `<loc>` plus 6 hreflang alternates.
+- IPC `ipc` is now **2/8** 🟠. Next: Baumann Ch.17 → PPIC Ch.3 → IPC Ch.3; Book 11/12
+  registration only on confirmation.

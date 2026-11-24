@@ -7,9 +7,11 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-23):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `fed6e480`**
-(PPIC Ch.2 "Advanced Measuring (Instrumentation) Methods for Nuclear Installations: A Review",
-published after Baumann Ch.16 and the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `e74d218a`**
+(IPC Ch.2 "Transducers – II": 58 vector figures, 20 numbered equations, Table 2.1, 12 worked
+examples and 11 exercise questions, printed pp. 63–123) — the prior HEAD `fed6e480` was PPIC Ch.2
+"Advanced Measuring (Instrumentation) Methods for Nuclear Installations: A Review", published after
+Baumann Ch.16 and the IIH/Emerson work below. The paused Emerson Ch.3 was published,
 Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
 the 42-page Ch.13 with 10 data tables / 897 rows, Ch.14 "Pipe Data" with 16 data tables / 521 rows,
 and the final 31-page Ch.15 "Conversions and Equivalents" with 19 data tables / 1,108 rows, Index
@@ -73,7 +75,7 @@ instrumentation) then followed.
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **16/32** 🟠 | 29 (ch1–6, ch9–11, ch13, ch15) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **2/11** 🟠 | 12 (ch1–2) |
-| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
+| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **2/8** 🟠 | 109 (ch1–2: 51 + 58) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
 (Emerson), 294 (IIH), 295 (PPIC), 296 (IPC).
@@ -146,6 +148,8 @@ instrumentation) then followed.
   + Ch.2 "Advanced Measuring (Instrumentation) Methods for Nuclear Installations: A Review"
   (7 figs, 76 refs, no tables, printed pp. 13–38, published in `fed6e480`)
 - IPC Ch.1 "Transducers – I" (51 figs, 7 tables, printed pp. 1–62)
+  + Ch.2 "Transducers – II" (58 vector figs, Table 2.1, 20 numbered equations, 12 worked
+  examples, 11 exercise questions, PDF pp. 75–135 / printed pp. 63–123, published in `e74d218a`)
 
 ### Live verification (2026-11-22, after resuming)
 - Emerson Ch.3 EN/VI deep URLs → **HTTP 200** (after Pages negative caching cleared); live TOC
@@ -256,6 +260,12 @@ instrumentation) then followed.
   "Phương pháp đo tiên tiến cho các cơ sở hạt nhân: Tổng quan"), the catalog badge shows
   "Translating · 2 of 11 chapters" (VI: "Đang dịch · 2/11 chương"), and the live sitemap includes
   all 8 Ch.2 URL entries (2 `<loc>` + 6 hreflang alternates).
+- IPC Ch.2 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation; both live
+  pages contain 58 XML-valid inline SVGs with 58 unique `fig-N` ids and localized captions
+  (`Figure 2.x` / `Hình 2.x`), 21 equations, 0 CJK / 0 bare ampersands in page content, both live
+  TOCs list Ch.2 ("Transducers – II" / "Bộ chuyển đổi – II"), the catalog badge shows
+  "Translating · 2 of 8 chapters" (VI: "Đang dịch · 2/8 chương"), and the live sitemap includes all
+  8 Ch.2 URL entries.
 
 ---
 
@@ -314,12 +324,14 @@ instrumentation) then followed.
   → `a009ad42` (Baumann ch10) → `630b7742` (Baumann ch11) → `e356728c` (Baumann ch12)
   → `6721deb7` (Baumann ch13) → `251d3805` (Baumann ch14)
   → `a387b13a` (Baumann ch15) → `21f05412` (Baumann ch16)
-  → `fed6e480` (PPIC ch2, **live chapter HEAD**).
+  → `fed6e480` (PPIC ch2) → `e74d218a` (IPC ch2, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
 ## 6. Queue (user's stated order)
-1. ~~Integrate Book 10 `ipc` Chapter 1~~ — **done** in `2ca04367` (51 figs, 7 tables, broken 0).
+1. ~~Integrate Book 10 `ipc` Chapter 1~~ — **done** in `2ca04367` (51 figs, 7 tables, broken 0);
+   ~~Ch.2 "Transducers – II"~~ — **done** in `e74d218a` (58 figs, Table 2.1, 20 equations, 12
+   examples, 11 exercises, broken 0); remaining Ch.3–8.
 2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs)
    ~~Ch.4 "pH Measurement"~~ — **done** in `399e0cbb` (22 figs)
    ~~Ch.5 "Measurement of Flow Rate"~~ — **done** in `db6c38fb` (10 figs)
@@ -361,6 +373,17 @@ instrumentation) then followed.
    — **done** in `fed6e480` (7 vector figs, 76 refs, printed pp. 13–38, broken 0); remaining Ch.3–11.
 
 ### Resume notes
+- IPC Ch.2 (61 PDF pages / printed pp. 63–123, 58 vector figures, Table 2.1, 20 numbered
+  equations, 12 worked examples, 11 exercise questions) was split across nine parallel writers:
+  three figure suppliers (`ipcfig2_a/b/c.py`, 20/20/18 figures) working from `work/ipc2_pages/p075…
+  p135.png` and the decoded glyph text, and six prose writers (`ipc_ch02_a…f.py`) using a shared
+  `ipc_ch02_lib.py` contract. `ipcfig2.py` merges the three registries and `ipc_ch02.py` assembles
+  the six sections with a bilingual glossary, source-note box and about-the-source block. QA:
+  58 XML-valid SVGs per page, 58 unique `fig-N` ids, 58/58 localized captions per page, 21
+  equations, 1 table, 0 CJK, 0 content bare ampersands, 0 Spanish hits ("con" excluded from the
+  guard because Vietnamese "nhóm con" is legitimate), 0 off-canvas / 0 overlapping figure labels,
+  `check_links.py` broken 0, sitemap 1,094 URLs / 1,079 with siblings, 8 entries for Ch.2.
+  Published in `e74d218a`; live EN/VI 200 after Pages propagation, TOC row and 2/8 badge verified.
 - PPIC Ch.2 (26 PDF pages / printed pp. 13–38, 7 vector figures, 76 references) was split across
   four agents: `ppicfig2.py` redrew the MMGAS detector, ATR core cross-section, SWI optical
   network, MPBR fuel loop, Cherenkov detector, probabilistic neural network and ESMADP structure
