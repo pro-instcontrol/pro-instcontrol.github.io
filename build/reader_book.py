@@ -776,6 +776,7 @@ BOOKS = {
             4: "ch04-the-self-acting-regulator-why-not",
             5: "ch05-valve-sizing-made-easy",
             6: "ch06-high-recovery-valves",
+            7: "ch07-sizing-and-selection-let-the-computer-do-it-all",
         },
         "copyright_en": "Original work © 2011 Hans D. Baumann, published by ISA / John Wiley & Sons.",
         "copyright_vi": "Bản gốc © 2011 Hans D. Baumann, do ISA / John Wiley & Sons xuất bản.",
