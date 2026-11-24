@@ -6794,3 +6794,33 @@ registration when resumed.
   propagation; live TOC lists Ch.14 and the live sitemap has all 8 Ch.14 URL entries.
 - Baumann `cvp` is now **14/32** 🟠. Next: Baumann Ch.15 → PPIC Ch.2 → IPC Ch.2; Book 11/12
   registration only on confirmation.
+
+## Session 114 — Baumann Chapter 15 published
+
+- Chapter: *Cavitation*, printed pp. 103–108 (PDF pp. 106–111), `work/cvp_raw.txt`. Bilingual
+  EN/VI slug `ch15-cavitation`.
+- Written from scratch as a matched pair: `build/cvpfig15.py` redraws five figures from
+  pypdfium2 page renders — theoretical turbulent/cavitation sound profiles, air injection through
+  a hollow butterfly-valve stem, the author-designed sharktooth anticavitation butterfly valve,
+  laboratory sound-test data, and the pitted plug/orifice photo — and `build/cvp_ch15.py` carries
+  the bilingual prose. All printed numeric values retained: 1.5 × 10³ N/mm² (218,000 psi),
+  125 dB, the material-lifetime table (1 / 2.4 / 6.5 / 13), `X = (P1 − P2)/(P1 − Pv)`,
+  `60 log(X/X_Fz)`, `Xy = (1 + X_Fz)/2`, `(Uvc/ci) × 10⁻⁴`, the 1000-psi example, `X_Fz = 0.64`,
+  6.4 dB, 80/85/90/95 dBA thresholds and the two references plus two reading items.
+- Pre-build defects caught: a missing opening quote in the VI glossary, the stray CJK fragment
+  «有水» in a source note, and two caption typos («tăngdo», «vòng đếvan»); all fixed. Figure-label
+  QA found 0 off-canvas labels and 0 overlaps at actual per-element font sizes.
+- QA: 5 XML-valid SVGs, unique `fig-1`…`fig-5` per page, 5/5 localized captions (`Figure 15.x`
+  / `Hình 15.x`), 0 CJK, 0 content bare ampersands (only the two shell font-URL ones), 0 Spanish,
+  no Vietnamese outside intentional bilingual headings on the EN page. `check_links.py` broken 0;
+  sitemap **1,088 URLs** (1,073 with language siblings), 8 Ch.15 entries; catalog badge 15/32 in
+  both languages. Source notes preserve the OCR hyphenations and the «Kennicott/Kennecott»
+  reference spelling discrepancy.
+- Registration: `cvp_common.SLUGS[15]`, `reader_book.py done[15]`, `books_site.TRANSLATED[
+  "control valve primer"]` → `("progress", 32, 15)`. Pushed `a387b13a` ("Add Baumann chapter 15:
+  Cavitation (EN/VI, 5 vector figures)"). Live EN/VI deep URLs returned 200 immediately after
+  push, each with five unique figures; live TOC lists Ch.15 ("Cavitation" / "Xâm thực"), catalog
+  badge shows "Translating · 15 of 32 chapters" (VI: "Đang dịch · 15/32 chương"), and live sitemap
+  has 2 `<loc>` plus 6 hreflang alternates for Ch.15.
+- Baumann `cvp` is now **15/32** 🟠. Next: Baumann Ch.16 → PPIC Ch.2 → IPC Ch.2; Book 11/12
+  registration only on confirmation.
