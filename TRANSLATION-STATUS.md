@@ -6766,3 +6766,31 @@ registration when resumed.
   each with both figures; live TOC lists Ch.13 and the live sitemap has all 8 Ch.13 URL entries.
 - Baumann `cvp` is now **13/32** 🟠. Next: Baumann Ch.14 → PPIC Ch.2 → IPC Ch.2; Book 11/12
   registration only on confirmation.
+
+## Session 113 — Baumann Chapter 14 published
+
+- Chapter: *When Do I Need to “Hard Face” the Valve Trim and Other Questions Concerning Valve
+  Material*, printed pp. 99–102 (PDF pp. 102–105), `work/cvp_raw.txt`. Bilingual EN/VI slug
+  `ch14-when-do-i-need-to-hard-face-the-valve-trim`.
+- Written from scratch as the single module `build/cvp_ch14.py` (no figures, no tables): an
+  erosion overview, solid-particle/granular erosion (elastomer liners, suspension velocity, angle
+  valves, hard-facing, 40–46 RC plug vs 56–62 RC seat ring, ALO2/carbides, vena contracta, two
+  service-life examples, bauxite-slurry replacement practice), wet-steam erosion (condensate,
+  440C at 58 RC, 17-4 pH at 1075°F / 38 RC, >7 pH stress corrosion, sour gas, sonic steam at
+  1350 ft/s), guide and bearing materials (316 general-purpose trim, roller burnishing, TFE
+  glass-fiber/bronze, Nitronic 60, graphite, 1250°F limit), a Rockwell-C footnote and three
+  references. All printed grades and numeric values retained.
+- Pre-build defects caught: a missing opening quote in the VI glossary and a stray CJK fragment
+  («工作») in the VI prose, plus the typo «đo àn»; all fixed before build. Source notes record the
+  OCR hyphenations, the printed «chrome-molly» and «ALO2» forms, and the twice-printed sand
+  question.
+- QA: 0 CJK, 0 content bare ampersands (only the two shell font-URL ones), 0 Spanish, no
+  Vietnamese outside the intentional bilingual headings on the EN page, 1 XML-valid shell SVG,
+  1 reference list per page. `check_links.py` broken 0; sitemap **1,086 URLs** (1,071 with
+  language siblings), 8 Ch.14 entries; catalog badge 14/32 in both languages.
+- Registration: `cvp_common.SLUGS[14]`, `reader_book.py done[14]`, `books_site.TRANSLATED[
+  "control valve primer"]` → `("progress", 32, 14)`. Pushed `251d3805` ("Add Baumann chapter 14:
+  hard-facing valve trim and material questions"). Live EN/VI deep URLs returned 200 after Pages
+  propagation; live TOC lists Ch.14 and the live sitemap has all 8 Ch.14 URL entries.
+- Baumann `cvp` is now **14/32** 🟠. Next: Baumann Ch.15 → PPIC Ch.2 → IPC Ch.2; Book 11/12
+  registration only on confirmation.
