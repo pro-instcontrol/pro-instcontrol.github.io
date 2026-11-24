@@ -2,19 +2,20 @@
 
 **State now (2026-11-23):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **16/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` 1/11, IPC `ipc` 1/8.
-**Live chapter HEAD `21f05412`** (Baumann Ch.16 "Concern for the Environment", no figures);
-live sitemap 1,090 URLs, catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge
-16/32, Ch.16 EN/VI deep URLs 200, sitemap 8 Ch.16 entries, `check_links.py` broken 0. Full tables
-in `report.md`.
+Baumann `cvp` **16/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **2/11**, IPC `ipc` 1/8.
+**Live chapter HEAD `fed6e480`** (PPIC Ch.2 "Advanced Measuring (Instrumentation) Methods for
+Nuclear Installations: A Review", 7 vector figures, 76 references); live sitemap 1,092 URLs,
+catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 16/32, PPIC badge 2/11,
+Ch.2 EN/VI deep URLs 200, sitemap 8 Ch.2 entries, `check_links.py` broken 0. Full tables in
+`report.md`.
 
 **Next unit:** none queued for Emerson or IIH. Awaiting the user's next instruction; the standing
-remaining order is PPIC `ppic` Ch.2 → IPC `ipc` Ch.2 → Baumann `cvp` Ch.17, with Book 11/12
+remaining order is IPC `ipc` Ch.2 → Baumann `cvp` Ch.17 → PPIC `ppic` Ch.3, with Book 11/12
 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done) and Baumann at 16/32 (Ch.2–16 done). Also two books located but not registered
+complete at 8/8 (Ch.2–8 done), Baumann at 16/32 (Ch.2–16 done) and PPIC at 2/11 (Ch.1–2 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
@@ -98,7 +99,8 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
    **Watch for the glossary-shadowing bug:** a module-level `def note(lang)` shadows the shared
    note markup helper and makes both glossary boxes render as the English source-note text.
    Name that function `source_notes(lang)` instead; fixed in Ch.3 and Ch.4.
-4. Book 9 `ppic` ch2–11 — source `work/ppic_raw.txt`; printed = PDF − 16.
+4. ~~Book 9 `ppic` ch2~~ — **published** in `fed6e480` (7 vector figs, 76 refs, printed pp. 13–38,
+   26 source pages, broken 0). Remaining ch3–11; source `work/ppic_raw.txt`; printed = PDF − 16.
 5. Book 10 `ipc` ch2–8 — source **`work/ipc_decoded.txt`** (NOT the raw dump — glyph codes).
 6. Register Book 11 / Book 12 from the two located PDFs when the user confirms.
 

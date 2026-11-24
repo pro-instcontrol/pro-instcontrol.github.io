@@ -6855,3 +6855,41 @@ registration when resumed.
   (VI: "Đang dịch · 16/32 chương"), and live sitemap has 2 `<loc>` plus 6 hreflang alternates.
 - Baumann `cvp` is now **16/32** 🟠. Next: PPIC Ch.2 → IPC Ch.2 → Baumann Ch.17; Book 11/12
   registration only on confirmation.
+
+## Session 116 — PPIC Chapter 2 published
+
+- Chapter: *Advanced Measuring (Instrumentation) Methods for Nuclear Installations: A Review*,
+  printed pp. 13–38 (PDF pp. 29–54), `work/ppic_raw.txt`. Bilingual EN/VI slug
+  `ch02-advanced-measuring-methods-for-nuclear-installations`.
+- The 26-page review was split across four parallel agents. `build/ppicfig2.py` redrew seven
+  vector figures from pypdfium2 page renders: the MMGAS detector, ATR core cross-section, SWI
+  optical network, multipass MPBR fuel loop, pressurized-water Cherenkov detector, probabilistic
+  neural network and ESMADP functional structure. `build/ppic_ch02a.py` translated Abstract,
+  Introduction and Nuclear Power Reactors (Figures 1–3, citations [1]–[20]); `ppic_ch02b.py`
+  translated Nuclear Fuel Cycle and Safeguards and Homeland Security (Figures 4–5, [21]–[58]);
+  `ppic_ch02c.py` translated Nuclear Accident, After Action and Analysis, Conclusions,
+  Acknowledgments and the full reference list (Figures 6–7, [59]–[76]). `build/ppic_ch02.py`
+  integrated the three streams with a bilingual glossary, source-note box, about-the-source block
+  and the standard disclaimer.
+- Source count corrected during QA: the chapter has **76** numbered references, not 81; an
+  earlier regex count had included numbered prose items. The first agent draft prefixed source
+  numbers inside strings that `refs()` already numbers, so all 76 leading numbers were stripped
+  before build. Source quirks recorded include OCR line-break hyphenations, all-capital headings,
+  non-native English phrasing retained in EN, the stray "[55]" inside reference [3], plain-text
+  isotope/unit notation and the printed arrow directions in Figure 2.4. The case-insensitive
+  Spanish guard flags only the proper noun "Los Alamos" (LANL/LASL).
+- QA: 8 XML-valid inline SVGs per page (7 figures + shell), 7 unique `fig-N` ids, 7/7 localized
+  captions (`Figure 2.x` / `Hình 2.x`), 76 reference items per page, 0 CJK, 0 content bare
+  ampersands (2 shell font-URL ones), no Vietnamese in EN prose, no table expectations (source
+  has no tables), `check_links.py` broken 0; sitemap **1,092 URLs** (1,077 with language
+  siblings), 8 Ch.2 entries; catalog badge 2/11 in both languages. Figure labels were checked
+  for off-canvas/overlap and the full EN/VI pages were visually inspected via a local HTTP
+  server.
+- Registration: `ppic_common.SLUGS[2]`, `reader_book.py done[2]`, `books_site.TRANSLATED[
+  "handbook on power plant instrumentation and control"]` → `("progress", 11, 2)`. Pushed
+  `fed6e480` ("Add PPIC chapter 2: advanced nuclear measuring methods (EN/VI, 7 vector
+  figures)"). Live EN/VI deep URLs initially 404, then returned 200 after two Pages propagation
+  checks; live TOC lists Ch.2, catalog badge shows "Translating · 2 of 11 chapters"
+  (VI: "Đang dịch · 2/11 chương"), and live sitemap has 2 `<loc>` plus 6 hreflang alternates.
+- PPIC `ppic` is now **2/11** 🟠. Next: IPC Ch.2 → Baumann Ch.17 → PPIC Ch.3; Book 11/12
+  registration only on confirmation.

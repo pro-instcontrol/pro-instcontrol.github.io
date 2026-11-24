@@ -7,8 +7,9 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-23):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `21f05412`**
-(Baumann Ch.16 "Concern for the Environment", published after Ch.15 and the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `fed6e480`**
+(PPIC Ch.2 "Advanced Measuring (Instrumentation) Methods for Nuclear Installations: A Review",
+published after Baumann Ch.16 and the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
 Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
 the 42-page Ch.13 with 10 data tables / 897 rows, Ch.14 "Pipe Data" with 16 data tables / 521 rows,
 and the final 31-page Ch.15 "Conversions and Equivalents" with 19 data tables / 1,108 rows, Index
@@ -42,7 +43,10 @@ solid-particle and wet-steam erosion, guide and bearing materials, 1 hardness fo
 followed. Baumann Ch.15 "Cavitation" (printed pp. 103–108: 5 vector figures, a material-lifetime
 table, the cavitation-noise relations, 2 refs and 2 additional-reading items) followed. Baumann
 Ch.16 "Concern for the Environment" (printed pp. 109–110: no figures, fugitive emissions, gasket
-and bonnet sealing, extended bonnets and packing friction) followed.
+and bonnet sealing, extended bonnets and packing friction) followed. PPIC Ch.2 "Advanced Measuring
+(Instrumentation) Methods for Nuclear Installations: A Review" (printed pp. 13–38: 7 vector
+figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards and accident
+instrumentation) then followed.
 
 ---
 
@@ -68,7 +72,7 @@ and bonnet sealing, extended bonnets and packing friction) followed.
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **16/32** 🟠 | 29 (ch1–6, ch9–11, ch13, ch15) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
+| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **2/11** 🟠 | 12 (ch1–2) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
@@ -139,6 +143,8 @@ and bonnet sealing, extended bonnets and packing friction) followed.
   + Ch.8 "Control Valves" (8 figs, 4 tables incl. the 108-entry / 20-band book index, 111 refs,
   PDF pp. 303–347 / printed 289–333, published in `905dd942`) — **book complete 8/8**
 - PPIC Ch.1 "Catalytic Reduction of Dissolved Oxygen" (5 figs, 4 tables)
+  + Ch.2 "Advanced Measuring (Instrumentation) Methods for Nuclear Installations: A Review"
+  (7 figs, 76 refs, no tables, printed pp. 13–38, published in `fed6e480`)
 - IPC Ch.1 "Transducers – I" (51 figs, 7 tables, printed pp. 1–62)
 
 ### Live verification (2026-11-22, after resuming)
@@ -243,6 +249,13 @@ and bonnet sealing, extended bonnets and packing friction) followed.
   "Quan tâm đến môi trường"), the catalog badge shows "Translating · 16 of 32 chapters"
   (VI: "Đang dịch · 16/32 chương"), and the live sitemap includes all 8 Ch.16 URL entries
   (2 `<loc>` + 6 hreflang alternates).
+- PPIC Ch.2 EN/VI deep URLs → initially 404, then **HTTP 200** after two Pages propagation checks;
+  both live pages contain seven unique `fig-N` figures with localized captions (`Figure 2.1…` /
+  `Hình 2.1…`) and all 76 references, 0 CJK / 2 shell-only bare ampersands, both live TOCs list
+  Ch.2 ("Advanced Measuring (Instrumentation) Methods for Nuclear Installations: A Review" /
+  "Phương pháp đo tiên tiến cho các cơ sở hạt nhân: Tổng quan"), the catalog badge shows
+  "Translating · 2 of 11 chapters" (VI: "Đang dịch · 2/11 chương"), and the live sitemap includes
+  all 8 Ch.2 URL entries (2 `<loc>` + 6 hreflang alternates).
 
 ---
 
@@ -300,7 +313,8 @@ and bonnet sealing, extended bonnets and packing friction) followed.
   → `7fec110f` (Baumann ch8) → `3ec4148a` (Baumann ch9)
   → `a009ad42` (Baumann ch10) → `630b7742` (Baumann ch11) → `e356728c` (Baumann ch12)
   → `6721deb7` (Baumann ch13) → `251d3805` (Baumann ch14)
-  → `a387b13a` (Baumann ch15) → `21f05412` (Baumann ch16, **live chapter HEAD**).
+  → `a387b13a` (Baumann ch15) → `21f05412` (Baumann ch16)
+  → `fed6e480` (PPIC ch2, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -343,9 +357,23 @@ and bonnet sealing, extended bonnets and packing friction) followed.
    2.5 MB) — located and surveyed, not registered.
 6. **Register candidate Book 12** — *A Guide to the Automation Body of Knowledge*, 2nd ed.
    (511 pp, 34 MB) — located and surveyed, not registered.
-7. Book 9 `ppic` Chapters 2–11 after the user's named queues.
+7. ~~Book 9 `ppic` Ch.2 "Advanced Measuring (Instrumentation) Methods for Nuclear Installations"~~
+   — **done** in `fed6e480` (7 vector figs, 76 refs, printed pp. 13–38, broken 0); remaining Ch.3–11.
 
 ### Resume notes
+- PPIC Ch.2 (26 PDF pages / printed pp. 13–38, 7 vector figures, 76 references) was split across
+  four agents: `ppicfig2.py` redrew the MMGAS detector, ATR core cross-section, SWI optical
+  network, MPBR fuel loop, Cherenkov detector, probabilistic neural network and ESMADP structure
+  from pypdfium2 renders of the printed figures; `ppic_ch02a/b/c.py` translated Abstract through
+  Nuclear Power Reactors, Nuclear Fuel Cycle through Safeguards, and Nuclear Accident through the
+  76-item reference list respectively. `ppic_ch02.py` integrated the three section streams with a
+  bilingual glossary, source-note box and about-the-source block. The first reference-list draft
+  included source numbering inside strings that `refs()` already numbers; the 76 leading numbers
+  were stripped before build. QA: 8 XML-valid inline SVGs per page (7 content + shell), 7 unique
+  `fig-N` ids, 7/7 localized captions, 76 list items, 0 CJK, 2 shell-only bare ampersands, no
+  Vietnamese in EN prose, `check_links.py` broken 0, sitemap 1,092 URLs / 1,077 with siblings, 8
+  entries for Ch.2. Published in `fed6e480`; live EN/VI 200 after two propagation checks, TOC row
+  and 2/11 badge verified.
 - Baumann Ch.16 (2 PDF pages / printed pp. 109–110, no figures) was written from scratch as one
   module `cvp_ch16.py`: fugitive emissions, the two leakage paths, flexible ring gaskets and the
   2.5× minimum bolting load, cage-trim thermal-expansion caution, extended bonnets, the
