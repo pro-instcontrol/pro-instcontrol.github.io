@@ -6626,3 +6626,29 @@ registration when resumed.
   What About Fail-Safe? (EN/VI, footnote and severity list)").
 - Baumann `cvp` is now **8/32** 🟠. Next: Baumann Ch.9 → PPIC Ch.2 → IPC Ch.2; Book 11/12
   registration only on confirmation.
+
+## Session 108 — Baumann Chapter 9 published
+
+- Book 7 `cvp` Ch.9 "Why Most People Choose “Equal Percentage” as a Flow Characteristic": 9 source
+  pages (PDF pp. 63–71, printed 57–65), 4 vector figures, 4 numeric tables, 5 equations, 3
+  references. Four printed figure pages were rendered with pypdfium2 to `work/cvp9_p*.png` and the
+  work was split across two parallel agents with the standard fixed function contract:
+  - figure supplier: `build/cvpfig9.py` (`fig_f91`…`fig_f94` — inherent characteristics, installed
+    characteristic with ±50% gain slopes, piping pressure-distribution schematic with the printed
+    mini data table, and the curve-A/curve-B installed characteristic with signal modification);
+  - prose: `build/cvp_ch09.py` (9 h2 + 1 h3, 32 paragraphs, 5 unnumbered equations, 4 tables,
+    4 figure embeds, 3 references, 4 note boxes) including the full worked example: 1250/250 gpm,
+    pump heads 110…150 psi, friction 28…1.1 psi, ΔP_valve 7 psi, Cv 496 and 215, inherent Cv table
+    32…825, installed table 75/43/31/22/15/9% signal, and S_o = 0.9 S_i² with the Si/So table.
+- QA: all four SVGs XML-valid with every text label inside its viewBox, unique `fig-1`…`fig-4`,
+  4/4 localized captions per page, 4 tables per page, 0 CJK, 0 bare ampersands (only the two shell
+  font links and the `A&amp;M` bibliography entity), 0 terminology violations. `check_links.py`
+  broken 0; sitemap **1,076 URLs** (1,061 with language siblings), 8 Ch.9 entries; catalog badge
+  9/32 in both languages. Source note records OCR equation damage, the schematic redraws, the
+  printed `Pp` gauge, the `300 GPM/10%` gain label, the self-referential "see Chapter 9" cam
+  citation and the lower-limit sign typo.
+- Registration: `cvp_common.SLUGS[9]`, `reader_book.py done[9]`, `books_site.TRANSLATED[
+  "control valve primer"]` → `("progress", 32, 9)`. Pushed `3ec4148a` ("Publish Baumann Ch.9:
+  Equal Percentage flow characteristic (EN/VI, 4 vector figures, 4 tables)").
+- Baumann `cvp` is now **9/32** 🟠. Next: Baumann Ch.10 → PPIC Ch.2 → IPC Ch.2; Book 11/12
+  registration only on confirmation.
