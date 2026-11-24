@@ -308,6 +308,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch02-advanced-measuring-methods-for-nuclear-installations/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch03-study-of-control-strategy-of-the-converter/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch03-study-of-control-strategy-of-the-converter/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/ch03-study-of-control-strategy-of-the-converter/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch03-study-of-control-strategy-of-the-converter/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/"/>
@@ -3615,6 +3621,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch02-advanced-measuring-methods-for-nuclear-installations/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/ch02-advanced-measuring-methods-for-nuclear-installations/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch02-advanced-measuring-methods-for-nuclear-installations/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/ch03-study-of-control-strategy-of-the-converter/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch03-study-of-control-strategy-of-the-converter/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/ch03-study-of-control-strategy-of-the-converter/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch03-study-of-control-strategy-of-the-converter/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/</loc>
