@@ -6715,3 +6715,26 @@ registration when resumed.
   all 8 Ch.11 URL entries.
 - Baumann `cvp` is now **11/32** 🟠. Next: Baumann Ch.12 → PPIC Ch.2 → IPC Ch.2; Book 11/12
   registration only on confirmation.
+
+## Session 111 — Baumann Chapter 12 published
+
+- Chapter: *How to Install a Control Valve*, printed pp. 91–93 (PDF pp. 95–97),
+  `work/cvp_raw.txt`. Bilingual EN/VI slug `ch12-how-to-install-a-control-valve`.
+- Written from scratch as the single module `build/cvp_ch12.py` (no figures, so no figure module):
+  two opening paragraphs, a five-item installation-considerations list (the long "Location" item
+  carries two nested paragraphs), a twelve-item installation-failures list, a safety/service-life
+  paragraph, three additional-reading items, source notes and an about-the-source block. Editorial
+  subheadings were added because the source uses only bullet items. Source quirks recorded: the
+  `con-trol` line-break hyphenation, `maybe` → `may be`, and `when the control was shut down` →
+  `when the control valve was shut down`; printed compound hyphens retained.
+- QA: 0 CJK, 0 content bare ampersands (only the two shell font-URL ones), 0 Spanish, no
+  Vietnamese outside the intentional bilingual headings on the EN page, 3 lists / 20 `<li>` per
+  page, 1 XML-valid shell SVG. `check_links.py` broken 0; sitemap **1,082 URLs** (1,067 with
+  language siblings), 8 Ch.12 entries; catalog badge 12/32 in both languages. Rendered-page visual
+  check confirmed the nested-paragraph list formatting.
+- Registration: `cvp_common.SLUGS[12]`, `reader_book.py done[12]`, `books_site.TRANSLATED[
+  "control valve primer"]` → `("progress", 32, 12)`. Pushed `e356728c` ("Add Baumann chapter 12:
+  How to Install a Control Valve"). Live EN/VI deep URLs returned 200 after a slower Pages
+  propagation (~3 min); live TOC lists Ch.12 and the live sitemap has all 8 Ch.12 URL entries.
+- Baumann `cvp` is now **12/32** 🟠. Next: Baumann Ch.13 → PPIC Ch.2 → IPC Ch.2; Book 11/12
+  registration only on confirmation.

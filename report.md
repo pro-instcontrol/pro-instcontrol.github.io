@@ -7,8 +7,8 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-23):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `630b7742`**
-(Baumann Ch.11, published after Ch.10 and the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `e356728c`**
+(Baumann Ch.12, published after Ch.11 and the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
 Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
 the 42-page Ch.13 with 10 data tables / 897 rows, Ch.14 "Pipe Data" with 16 data tables / 521 rows,
 and the final 31-page Ch.15 "Conversions and Equivalents" with 19 data tables / 1,108 rows, Index
@@ -32,7 +32,9 @@ and the figures redrawn from the printed SAMSON, Flowserve and Emerson diagrams.
 "The Mystery of Line Pressure-Produced Valve Stem Forces" (printed pp. 81–90: 3 vector figures,
 Equation 11-1, three source footnotes, 8 references, one additional reading item) followed, with
 the ISA data-sheet form, the butterfly-valve dynamic-torque chart and the stall analogy sketch
-redrawn from the printed source.
+redrawn from the printed source. Baumann Ch.12 "How to Install a Control Valve" (printed pp. 91–93:
+no figures, five installation considerations, twelve common installation failures, three
+additional-reading items) followed.
 
 ---
 
@@ -56,7 +58,7 @@ redrawn from the printed source.
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **11/32** 🟠 | 22 (ch1–6, ch9–11) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **12/32** 🟠 | 22 (ch1–6, ch9–11) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
@@ -81,6 +83,8 @@ redrawn from the printed source.
   + Ch.11 "The Mystery of Line Pressure-Produced Valve Stem Forces, or Selecting the Correct
   Actuator Size" (3 figs, Eq. 11-1, 3 footnotes, 8 refs, printed pp. 81–90, published in
   `630b7742`)
+  + Ch.12 "How to Install a Control Valve" (0 figs, 5 considerations, 12 failure cases,
+  3 additional-reading items, printed pp. 91–93, published in `e356728c`)
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
@@ -196,6 +200,11 @@ redrawn from the printed source.
   unique ids, the live TOC lists Ch.11 ("The Mystery of Line Pressure-Produced Valve Stem Forces"
   / "Ẩn số lực thân van do áp suất đường ống…"), the catalog badge shows "Translating · 11 of 32
   chapters" (VI: "Đang dịch · 11/32 chương"), and the live sitemap includes all 8 Ch.11 URL entries.
+- Baumann Ch.12 EN/VI deep URLs → **HTTP 200** after Pages propagation (~3 min; the live catalog
+  stayed at 11/32 briefly after push); both live pages contain all 20 list items, the live TOC lists
+  Ch.12 ("How to Install a Control Valve" / "Lắp đặt van điều khiển thế nào"), the catalog badge
+  shows "Translating · 12 of 32 chapters" (VI: "Đang dịch · 12/32 chương"), and the live sitemap
+  includes all 8 Ch.12 URL entries.
 
 ---
 
@@ -251,7 +260,8 @@ redrawn from the printed source.
   → `905dd942` (IIH ch8, Book 8 complete) → `68cf7511` (Baumann ch5 + site-wide seat/cavitation/
   flashing terminology pass) → `f5ceb53d` (Baumann ch6) → `d3e54069` (Baumann ch7)
   → `7fec110f` (Baumann ch8) → `3ec4148a` (Baumann ch9)
-  → `a009ad42` (Baumann ch10) → `630b7742` (Baumann ch11, **live chapter HEAD**).
+  → `a009ad42` (Baumann ch10) → `630b7742` (Baumann ch11) → `e356728c` (Baumann ch12,
+  **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -274,7 +284,9 @@ redrawn from the printed source.
    4 tables, 3 refs);
    ~~Ch.10 "Valve Positioners"~~ — **done** (`a009ad42`, 4 figs, Table 10-1, 4 refs);
    ~~Ch.11 "The Mystery of Line Pressure-Produced Valve Stem Forces"~~ — **done** (`630b7742`,
-   3 figs, Eq. 11-1, 8 refs); remaining Ch.12–32.
+   3 figs, Eq. 11-1, 8 refs);
+   ~~Ch.12 "How to Install a Control Valve"~~ — **done** (`e356728c`, 0 figs, 5 considerations,
+   12 failures, 3 reading items); remaining Ch.13–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
    `89e84b27` (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 + 3 + 5 figs, broken 0); Ch.13 added 10 data
@@ -287,6 +299,16 @@ redrawn from the printed source.
 7. Book 9 `ppic` Chapters 2–11 after the user's named queues.
 
 ### Resume notes
+- Baumann Ch.12 (3 PDF pages / printed pp. 91–93, no figures) was written from scratch as a single
+  module `cvp_ch12.py`: two opening paragraphs, a five-item installation-considerations list (the
+  long "Location" item carries two nested paragraphs), a twelve-item installation-failures list,
+  a safety/service-life paragraph, three additional-reading items, source notes and an
+  about-the-source block. Subheadings are editorial because the source uses only bullets. QA:
+  0 CJK, 0 content bare ampersands, 0 Spanish, no Vietnamese outside the intentional bilingual
+  headings on the EN page, 3 lists / 20 `<li>` per page, `check_links.py` broken 0, sitemap 1,082
+  URLs / 1,067 with siblings, 8 entries for Ch.12; rendered-page visual check clean. Registered
+  via the standard 3 edits and published in `e356728c`; live EN/VI 200 after a longer-than-usual
+  Pages propagation.
 - Baumann Ch.11 (10 PDF pages / printed pp. 81–90, 3 vector figures, Equation 11-1, three source
   footnotes, eight references, one additional reading item) was found at resume as three untracked
   drafts (`cvpfig11.py`, `cvp_ch11a.py`, `cvp_ch11b.py`); a missing integration module
