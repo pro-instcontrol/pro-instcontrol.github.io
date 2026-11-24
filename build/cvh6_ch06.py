@@ -28,7 +28,7 @@ def note_terms(lang):
             "tải áp suất tĩnh · unbalance force — lực mất cân bằng · splined shaft — trục then · "
             "very-low Cv — hệ số Cv rất nhỏ · deadband — vùng chết · hysteresis — độ trễ · "
             "extension bonnet — nắp kéo dài · packing box — hộp đệm · cryogenic — đông lạnh · "
-            "flashing — bay hơi · cavitation — xâm thực · particulate — hạt rắn · "
+            "flashing — hóa hơi · cavitation — xâm thực · particulate — hạt rắn · "
             "anti-cavitation trim — trim chống xâm thực · DST (disk stack trim) — trim đĩa xếp "
             "chồng · inherent characteristic — đặc tính vốn có · noise abatement — giảm ồn · "
             "ASME Section III — Mục III của Bộ luật ASME · 10CFR50 Appendix B — Phụ lục B của "
@@ -235,7 +235,7 @@ def _body(lang):
       "processing industries where control of extremely low flow rates is required. These "
       "applications are commonly handled in one of two ways.")
     P("Thứ nhất, thường có sẵn trim đặc biệt lắp trong thân van điều khiển tiêu chuẩn. Trim đặc biệt "
-      "thường gồm vòng chỗ ngồi và nút van được thiết kế và gia công với dung sai rất chặt để điều "
+      "thường gồm vòng đế van và nút van được thiết kế và gia công với dung sai rất chặt để điều "
       "khiển chính xác dòng rất nhỏ. Những cấu trúc này thường xử lý được hệ số lưu lượng thấp tới "
       "0,03. Dùng các trim đặc biệt này trong van tiêu chuẩn mang lại tính kinh tế bằng cách giảm "
       "nhu cầu tồn kho phụ tùng cho van và cơ cấu chấp hành đặc biệt. Cách tiếp cận này cũng giúp "
@@ -335,7 +335,7 @@ def _body(lang):
       "requirements. The colder the application, the longer the extension bonnet required.")
     FIG(5, F6.fig_f6_05())
     P("Vật liệu chế tạo cho ứng dụng đông lạnh nói chung là thân và nắp CF8M với trim thép không gỉ "
-      "dãy 300. Trong ứng dụng có bay hơi, có thể cần phủ cứng để chống xói mòn.",
+      "dãy 300. Trong ứng dụng có hóa hơi, có thể cần phủ cứng để chống xói mòn.",
       "Materials of construction for cryogenic applications are generally CF8M body and bonnet "
       "material with 300 series stainless steel trim material. In flashing applications, hard "
       "facing might be required to combat erosion.")
@@ -365,7 +365,7 @@ def _body(lang):
     FIG(6, F6.fig_f6_06())
     P("Van điều khiển quay nút lệch tâm điều khiển chất lưu xói mòn, đóng cặn và khó xử lý khác, vận "
       "hành điều tiết hoặc đóng/mở. Van có bích này có đường dòng suôi, bộ phận trim kim loại chắc "
-      "chắn và vòng chỗ ngồi tự căn giữa.",
+      "chắn và vòng đế van tự căn giữa.",
       "Eccentric plug rotary control valve controls erosive, coking, and other hard-to-handle "
       "fluids, providing either throttling or on/off operation. The flanged valve features "
       "streamline flow passages, rugged metal trim components, and a self-centering seat ring.")
@@ -393,11 +393,11 @@ def _body(lang):
       "conditions.")
     FIG(8, F6.fig_f6_08())
     P("Các nhà máy được vận hành tuần hoàn nhiều lần mỗi ngày với hạt rắn trong dòng đang gây xói "
-      "mòn chỗ ngồi. Hư hỏng có thể xảy ra khi có hạt rắn cuốn theo từ sự ăn mòn trong hệ thống nước "
+      "mòn đế van. Hư hỏng có thể xảy ra khi có hạt rắn cuốn theo từ sự ăn mòn trong hệ thống nước "
       "cấp lò hơi. Các hạt này, được các tia phun ra từ lỗ cage đẩy đi, có thể gây hư hỏng nghiêm "
       "trọng khi đầu nút nằm trước các lỗ trong thời gian dài. Hư hỏng cũng xảy ra khi điều khiển "
       "dưới Cv tối thiểu khuyến nghị và dòng khe hở xói mòn đầu nút. Thiết kế đế được bảo vệ bên "
-      "trong có thể kéo dài tuổi thọ của chỗ ngồi và đầu nút.",
+      "trong có thể kéo dài tuổi thọ của đế van và đầu nút.",
       "The plants that are being cycled multiple times daily with particles in the flow are causing "
       "seat erosion. The damage can occur when there is entrained particulate that comes from "
       "corrosion occurring in the boiler feedwater system. This particulate, driven by the jets "

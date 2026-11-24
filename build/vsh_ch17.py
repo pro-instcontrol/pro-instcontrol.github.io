@@ -76,7 +76,7 @@ def _body(lang):
         "Gas or vapor: subsonic / non-choked and sonic / choked flow."),
        ("Chất lỏng.", "Liquid flow."),
        ("Dòng hai pha: khí chứa giọt lỏng, lỏng chứa bọt khí, và lỏng "
-        "bay hơi qua van.",
+        "hóa hơi qua van.",
         "Mixed-phase flow: gas with liquid droplets, liquid with gas bubbles, "
         "and liquid flashing to vapor through the valve.")])
     P("Ở thời điểm xuất bản, các cơ quan luật định và tổ chức tiêu chuẩn chưa "

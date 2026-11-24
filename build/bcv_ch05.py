@@ -275,7 +275,7 @@ def _body(lang):
     N("Xét một cơ cấu chấp hành có màng hiệu dụng 100 inch vuông trên một van chịu "
       "lực đẩy lên 200 pound do áp suất. Trong chế độ này, dải băng bị lệch 2 psi: "
       "cơ cấu chấp hành bắt đầu chuyển động ở 5 psi (3 psi cộng 2 psi lệch) và tới "
-      "chỗ ngồi ở 17 psi. Theo quy tắc thường dùng, van ở giữa hành trình tại 9 "
+      "đế van ở 17 psi. Theo quy tắc thường dùng, van ở giữa hành trình tại 9 "
       "psig, nhưng trong trường hợp này là 11 psig. Có bốn cách xử lý: dùng van có "
       "cân bằng áp suất tốt hơn, dùng cơ cấu chấp hành lớn hơn, dịch chuyển tín "
       "hiệu bộ điều khiển thành 5 đến 17 psi, hoặc dùng bộ định vị.",

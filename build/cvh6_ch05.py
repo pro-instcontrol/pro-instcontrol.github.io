@@ -26,14 +26,14 @@ def note_terms(lang):
         return (
             "<b>Thuật ngữ chính của chương.</b> control valve sizing — định cỡ van điều khiển · "
             "service conditions — điều kiện làm việc · face-to-face dimension — kích thước mặt đến "
-            "mặt · seat leakage class — cấp độ rò rỉ chỗ ngồi · flow characteristic — đặc tính "
+            "mặt · seat leakage class — cấp độ rò rỉ đế van · flow characteristic — đặc tính "
             "dòng chảy · inherent / installed characteristic — đặc tính vốn có / khi lắp đặt · "
             "quick-opening — mở nhanh · linear — tuyến tính · equal-percentage — phần trăm bằng · "
             "Cv (flow coefficient) — hệ số lưu lượng · FL (liquid pressure recovery factor) — hệ số "
             "phục hồi áp suất chất lỏng · Fp (piping geometry factor) — hệ số hình học đường ống · "
             "xT (pressure drop ratio factor at choked flow) — hệ số tỷ lệ sụt áp ở chảy nghẽn · "
             "Y (expansion factor) — hệ số giãn nở · choked flow — dòng chảy nghẽn · "
-            "cavitation — xâm thực · flashing — bay hơi · vena contracta — tiết diện co hẹp nhất · "
+            "cavitation — xâm thực · flashing — hóa hơi · vena contracta — tiết diện co hẹp nhất · "
             "ΔPsizing — sụt áp dùng để định cỡ · ΔPchoked — sụt áp gây nghẽn dòng · "
             "acoustic efficiency — hiệu suất âm thanh · insertion loss — suy hao chèn · "
             "packing — đệm kín thân van · non-destructive examination — kiểm tra không phá hủy")
@@ -116,8 +116,8 @@ def _body(lang):
     # ------------------------------------------------------------ lead
     b.append(lead(
         "Chương này là tài liệu tham khảo về định cỡ van điều khiển: kích thước thân van, phân loại rò "
-        "rỉ chỗ ngồi, đặc tính dòng chảy, phương trình định cỡ ISA/IEC và các bài toán mẫu, định cỡ "
-        "cơ cấu chấp hành, xâm thực và bay hơi, dự báo và kiểm soát tiếng ồn, lựa chọn đệm kín, vật "
+        "rỉ đế van, đặc tính dòng chảy, phương trình định cỡ ISA/IEC và các bài toán mẫu, định cỡ "
+        "cơ cấu chấp hành, xâm thực và hóa hơi, dự báo và kiểm soát tiếng ồn, lựa chọn đệm kín, vật "
         "liệu thân van, xếp hạng áp suất-nhiệt độ và kiểm tra không phá hủy."
         if vi else
         "This chapter is a reference on control valve sizing: valve body dimensions, seat leakage "
@@ -155,7 +155,7 @@ def _body(lang):
        "Áp suất đầu ra hoặc sụt áp;",
        "Sụt áp khi đóng;",
        "Mức tiếng ồn tối đa cho phép, nếu có liên quan, và điểm đo tham chiếu;",
-       "Mức quá nhiệt hoặc sự hiện diện của bay hơi, nếu biết;",
+       "Mức quá nhiệt hoặc sự hiện diện của hóa hơi, nếu biết;",
        "Kích thước và cấp ống đầu vào/đầu ra;",
        "Thông tin gắn nhãn đặc biệt yêu cầu;",
        "Vật liệu thân đúc (ASTM A216 WCC, ASTM A217 WC9, ASTM A351 CF8M…);",
@@ -469,7 +469,7 @@ def _body(lang):
         "Van bướm lệch áp suất cao / High-pressure offset butterfly valves.")
 
     # ------------------------------------------------------------ 5.2
-    H("5.2 Phân loại rò rỉ chỗ ngồi của van điều khiển",
+    H("5.2 Phân loại rò rỉ đế van của van điều khiển",
       "5.2 Control Valve Seat Leakage Classifications")
     P("Phân loại theo ANSI/FCI 70-2 và IEC 60534-4. Mức rò rỉ tối đa, môi trường và áp suất thử, "
       "cùng thủ tục cần thiết để xác lập cấp được nêu trong bảng dưới đây.",
@@ -496,7 +496,7 @@ def _body(lang):
           "chờ ổn định và dùng thiết bị đo phù hợp")],
         "Cấp I–VI / Classes I-VI.")
 
-    H("5.3 Rò rỉ chỗ ngồi tối đa cho phép cấp VI",
+    H("5.3 Rò rỉ đế van tối đa cho phép cấp VI",
       "5.3 Class VI Maximum Seat Leakage Allowable")
     P("Theo ANSI/FCI 70-2. Số bọt mỗi phút là phương án thay thế được đề xuất dựa trên ống có đường "
       "kính ngoài 1/4 inch (6.3 mm), thành 0.032 inch (0.8 mm), nhúng sâu 1/8 đến 1/4 inch (3 đến 6 "
@@ -758,8 +758,8 @@ def _body(lang):
       "ΔPchoked, must be used in place of the actual pressure drop.")
     EQ(r"F_F = \Phi(P_v,\;P_c),\qquad \Delta P_{\rm choked} = F_L^{2}\,(P_1 - F_F\,P_v),\qquad "
        r"\Delta P_{\rm sizing} = \min(\Delta P,\;\Delta P_{\rm choked})", "3",
-       "Nếu ΔPchoked < ΔP thì dòng đang xâm thực hoặc bay hơi. Nếu áp suất đầu ra lớn hơn áp suất hơi "
-       "thì xâm thực gây nghẽn dòng; nếu áp suất đầu ra nhỏ hơn áp suất hơi thì dòng bay hơi.",
+       "Nếu ΔPchoked < ΔP thì dòng đang xâm thực hoặc hóa hơi. Nếu áp suất đầu ra lớn hơn áp suất hơi "
+       "thì xâm thực gây nghẽn dòng; nếu áp suất đầu ra nhỏ hơn áp suất hơi thì dòng hóa hơi.",
        "If ΔPchoked < ΔP, the flow is either cavitating or flashing. If the outlet pressure is greater "
        "than the vapor pressure of the fluid, cavitation is causing the choked flow; if the outlet "
        "pressure is less than the vapor pressure, the flow is flashing.")
@@ -1062,8 +1062,7 @@ def _body(lang):
       "is used for pneumatic, electric, and electro-hydraulic actuators.")
 
     H("5.11.1 Van cầu", "5.11.1 Globe Valves", h3)
-    P("Lực cần để vận hành van cầu gồm: lực khắc phục mất cân bằng tĩnh của nút van; lực tạo tải chỗ "
-      "ngồi; lực khắc phục ma sát đệm kín; và các lực bổ sung cho một số ứng dụng hoặc cấu trúc đặc "
+    P("Lực cần để vận hành van cầu gồm: lực khắc phục mất cân bằng tĩnh của nút van; lực tạo tải đế van; lực khắc phục ma sát đệm kín; và các lực bổ sung cho một số ứng dụng hoặc cấu trúc đặc "
       "biệt. Tổng lực = A + B + C + D.",
       "The force required to operate a globe valve includes: force to overcome static unbalance of the "
       "valve plug; force to provide a seat load; force to overcome packing friction; and additional "
@@ -1073,7 +1072,7 @@ def _body(lang):
     P("Lực mất cân bằng là lực do áp suất chất lỏng khi đóng; nói chung: lực mất cân bằng = chênh áp "
       "ròng × diện tích mất cân bằng ròng. Thường lấy áp suất đo lớn nhất thượng lưu làm chênh áp ròng "
       "trừ khi thiết kế quá trình luôn bảo đảm áp suất ngược ở áp suất đầu vào lớn nhất. Diện tích mất "
-      "cân bằng ròng là diện tích cổng của van một chỗ ngồi dòng đi lên; tùy cấu trúc có thể phải tính "
+      "cân bằng ròng là diện tích cổng của van một đế dòng đi lên; tùy cấu trúc có thể phải tính "
       "cả diện tích thân. Van cân bằng vẫn có một diện tích nhỏ mất cân bằng; số liệu này do nhà sản "
       "xuất cung cấp.",
       "The unbalance force is that resulting from fluid pressure at shutoff and in the most general "
@@ -1093,10 +1092,10 @@ def _body(lang):
          ("7", "38.48", "0.81"), ("8", "50.24", "0.86")],
         "Diện tích cổng điển hình / Typical port areas (in²).")
 
-    H("5.11.1.2 Lực tạo tải chỗ ngồi (B)",
+    H("5.11.1.2 Lực tạo tải đế van (B)",
       "5.11.1.2 Force to Provide Seat Load (B)", h4)
     FIG(3, F5.fig_f5_03())
-    TBL(["Cấp rò / Leak class", "Tải chỗ ngồi khuyến nghị / Recommended seat load"],
+    TBL(["Cấp rò / Leak class", "Tải đế van khuyến nghị / Recommended seat load"],
         [("Class I", "Theo yêu cầu của người sử dụng, không cần thử rò tại nhà máy / As required by user specification, no factory leak test required"),
          ("Class II", "20 pound trên mỗi inch đường tròn cổng / 20 pounds per lineal inch of port circumference"),
          ("Class III", "40 pound trên mỗi inch đường tròn cổng / 40 pounds per lineal inch"),
@@ -1105,14 +1104,14 @@ def _body(lang):
           "4-3/8 in port; 80 lb/in for larger ports"),
          ("Class V", "Kim loại: xác định pound/inch từ Hình 5.2 / Metal seat: determine pounds per lineal inch from Figure 5.2"),
          ("Class VI", "Kim loại: 300 pound trên mỗi inch đường tròn cổng / Metal seat: 300 pounds per lineal inch")],
-        "Tải chỗ ngồi / Recommended seat load (bản in ghi «Figure 5.2» cho Class V, giữ nguyên / the "
+        "Tải đế van / Recommended seat load (bản in ghi «Figure 5.2» cho Class V, giữ nguyên / the "
         "source cites Figure 5.2 for Class V, kept as printed).")
     FIG(4, F5.fig_f5_04())
-    P("Tải chỗ ngồi, thường tính bằng pound trên mỗi inch đường tròn cổng, được xác định bởi yêu cầu "
+    P("Tải đế van, thường tính bằng pound trên mỗi inch đường tròn cổng, được xác định bởi yêu cầu "
       "đóng. Dùng hướng dẫn trên để đạt phép thử chấp nhận tại nhà máy theo ANSI/FCI 70-2 và IEC "
       "60534-4 cho các cấp II đến VI. Do khác biệt về mức độ khắc nghiệt của điều kiện làm việc, "
       "không nên coi các cấp rò và tỷ lệ rò tương ứng là chỉ số hiệu năng hiện trường. Để kéo dài "
-      "tuổi thọ chỗ ngồi và khả năng đóng, dùng tải cao hơn khuyến nghị; nếu đóng kín không phải ưu "
+      "tuổi thọ đế van và khả năng đóng, dùng tải cao hơn khuyến nghị; nếu đóng kín không phải ưu "
       "tiên chính thì dùng cấp rò thấp hơn.",
       "Seat load, usually expressed in pounds per lineal inch of port circumference, is determined by "
       "shutoff requirements. Use the following guidelines to determine the seat load required to meet "
@@ -1267,20 +1266,20 @@ def _body(lang):
       "changing lever length.")
 
     # ------------------------------------------------------------ 5.14
-    H("5.14 Xâm thực và bay hơi", "5.14 Cavitation and Flashing")
-    H("5.14.1 Dòng nghẽn gây bay hơi và xâm thực",
+    H("5.14 Xâm thực và hóa hơi", "5.14 Cavitation and Flashing")
+    H("5.14.1 Dòng nghẽn gây hóa hơi và xâm thực",
       "5.14.1 Choked Flow Causes Flashing and Cavitation", h3)
     P("Tiêu chuẩn định cỡ chất lỏng IEC tính sụt áp nghẽn ΔPchoked. Nếu sụt áp thực tế qua van lớn hơn "
-      "ΔPchoked thì có thể xảy ra bay hơi hoặc xâm thực, và có thể gây hư hỏng cấu trúc cho van và "
+      "ΔPchoked thì có thể xảy ra hóa hơi hoặc xâm thực, và có thể gây hư hỏng cấu trúc cho van và "
       "đường ống lân cận. Hiểu rõ điều gì đang xảy ra bên trong van cho phép chọn van loại bỏ hoặc "
-      "giảm ảnh hưởng của xâm thực và bay hơi.",
+      "giảm ảnh hưởng của xâm thực và hóa hơi.",
       "The IEC liquid sizing standard calculates a choked pressure drop, ΔPchoked. If the actual "
       "pressure drop across the valve is greater than ΔPchoked then either flashing or cavitation may "
       "occur. Structural damage to the valve and adjacent piping may also result. Knowledge of what "
       "is actually happening within the valve will permit selection of a valve that can eliminate or "
       "reduce the effects of cavitation and flashing.")
     FIG(6, F5.fig_f5_06())
-    P("Thuật ngữ «hiện tượng vật lý» được dùng để mô tả bay hơi và xâm thực vì các điều kiện này là "
+    P("Thuật ngữ «hiện tượng vật lý» được dùng để mô tả hóa hơi và xâm thực vì các điều kiện này là "
       "những thay đổi thực sự của pha chất lưu, từ lỏng sang hơi, do vận tốc tăng tại hoặc ngay sau "
       "chỗ tiết lưu lớn nhất, thường là cổng van. Khi dòng lỏng đi qua chỗ tiết lưu, dòng bị thắt lại; "
       "tiết diện nhỏ nhất nằm ngay sau chỗ tiết lưu vật lý, gọi là vena contracta.",
@@ -1303,12 +1302,12 @@ def _body(lang):
       "equal the pressure that existed upstream of the valve. The pressure differential (ΔP) across "
       "the valve is a measure of the amount of energy that was dissipated in the valve.")
     FIG(7, F5.fig_f5_07())
-    P("Không kể đặc tính phục hồi của van, chênh áp đáng chú ý đối với bay hơi và xâm thực là chênh "
+    P("Không kể đặc tính phục hồi của van, chênh áp đáng chú ý đối với hóa hơi và xâm thực là chênh "
       "giữa đầu vào van và vena contracta. Nếu áp suất tại vena contracta giảm dưới áp suất hơi của "
       "chất lỏng thì bọt khí hình thành trong dòng. Nếu áp suất đầu ra vẫn dưới áp suất hơi, bọt tồn "
-      "tại trong hệ thống hạ lưu và quá trình gọi là bay hơi. Bay hơi gây xói mòn nghiêm trọng cho trim, "
+      "tại trong hệ thống hạ lưu và quá trình gọi là hóa hơi. Bay hơi gây xói mòn nghiêm trọng cho trim, "
       "đặc trưng bởi bề mặt nhẵn bóng, thường mạnh nhất tại hoặc gần đường tiếp xúc giữa nút và vòng "
-      "chỗ ngồi.",
+      "đế van.",
       "Regardless of the recovery characteristics of the valve, the pressure differential of interest "
       "pertaining to flashing and cavitation is the differential between the valve inlet and the vena "
       "contracta. If pressure at the vena contracta should drop below the vapor pressure of the fluid, "
@@ -1334,10 +1333,10 @@ def _body(lang):
       "since the vena contracta pressure is lower and more likely to reach down to the liquid's vapor "
       "pressure.")
 
-    H("5.14.2 Lựa chọn van cho dịch vụ bay hơi", "5.14.2 Valve Selection for Flashing Service", h3)
+    H("5.14.2 Lựa chọn van cho dịch vụ hóa hơi", "5.14.2 Valve Selection for Flashing Service", h3)
     P("Bay hơi xảy ra vì P2 nhỏ hơn Pv; P2 là áp suất hạ lưu, phụ thuộc vào quá trình và đường ống "
-      "hạ lưu, còn Pv phụ thuộc vào chất lưu và nhiệt độ vận hành. Vì các biến xác định bay hơi không "
-      "do van kiểm soát trực tiếp, không van nào ngăn được bay hơi. Giải pháp tốt nhất là chọn van có "
+      "hạ lưu, còn Pv phụ thuộc vào chất lưu và nhiệt độ vận hành. Vì các biến xác định hóa hơi không "
+      "do van kiểm soát trực tiếp, không van nào ngăn được hóa hơi. Giải pháp tốt nhất là chọn van có "
       "hình học và vật liệu phù hợp để tránh hoặc giảm thiểu hư hỏng.",
       "Flashing occurs because P2 is less than Pv. P2 is the pressure downstream of the valve and is "
       "a function of the downstream process and piping. Pv is a function of the fluid and operating "
@@ -1354,8 +1353,8 @@ def _body(lang):
     P("Chọn van có ít thay đổi hướng dòng nhất để giảm số lần va chạm. Van góc thân trượt là giải pháp "
       "truyền thống; một số van quay như van nút lệch tâm và van bi đoạn cũng cho đường chảy thẳng. "
       "Van có vùng dòng giãn rộng sau chỗ tiết lưu làm giảm vận tốc xói mòn. Ở nơi chất lưu bắt buộc "
-      "phải va vào bề mặt van, chẳng hạn bề mặt chỗ ngồi, chọn vật liệu cứng nhất có thể. Chất lưu vừa "
-      "bay hơi vừa ăn mòn đặc biệt khó xử lý: nước bay hơi trong van thép gây ăn mòn thép rồi xói mòn "
+      "phải va vào bề mặt van, chẳng hạn mặt tựa của van, chọn vật liệu cứng nhất có thể. Chất lưu vừa "
+      "hóa hơi vừa ăn mòn đặc biệt khó xử lý: nước hóa hơi trong van thép gây ăn mòn thép rồi xói mòn "
       "lớp oxit mềm tạo thành, tổng hợp gây hư hỏng nặng hơn từng cơ chế riêng. Giải pháp là ngăn ăn "
       "mòn bằng cách chọn ít nhất thép hợp kim thấp.",
       "Selecting a valve with as few fluid directional changes as possible provides the least number "
@@ -1370,7 +1369,7 @@ def _body(lang):
       "The solution is to prevent the corrosion by selecting, as a minimum, a low-alloy steel.")
 
     H("5.14.3 Lựa chọn van cho dịch vụ xâm thực", "5.14.3 Valve Selection for Cavitation Service", h3)
-    P("Xâm thực để lại bề mặt thô như xỉ, khác hẳn bề mặt nhẵn bóng do bay hơi. Xâm thực xảy ra khi áp "
+    P("Xâm thực để lại bề mặt thô như xỉ, khác hẳn bề mặt nhẵn bóng do hóa hơi. Xâm thực xảy ra khi áp "
       "suất vena contracta nhỏ hơn Pv và P2 lớn hơn Pv. Có thể xử lý bằng nhiều cách.",
       "Cavitation damage is characterized by a rough, cinder-like appearance of the eroded surface. It "
       "is distinctly different from the smooth, polished appearance caused by the erosion of flashing. "
@@ -1470,7 +1469,7 @@ def _body(lang):
     P("Tiếng ồn thủy động đáng chú ý thường đi kèm xâm thực; cách mô tả truyền thống là «đá chảy trong "
       "ống». Các phương pháp dự báo hiện nay phân biệt một đặc tính ồn cho chất lỏng không nghẽn và "
       "một đặc tính cho dòng nghẽn có xâm thực. Có nhiều trường hợp chất lưu là hỗn hợp hai pha: hỗn "
-      "hợp lỏng-khí tại đầu vào van, chất bay hơi hoặc chất có hiện tượng thoát khí khi tiết lưu. "
+      "hợp lỏng-khí tại đầu vào van, chất hóa hơi hoặc chất có hiện tượng thoát khí khi tiết lưu. "
       "Phương pháp dự báo cho các trường hợp này chưa được thiết lập tốt; kết quả thử và khảo sát "
       "hiện trường cho thấy các mức ồn này không đóng góp đáng kể vào tiếng ồn chung của nhà máy cũng "
       "như không vượt mức phơi nhiễm của người lao động.",
@@ -2016,9 +2015,9 @@ def _body(lang):
     H("Ghi chú về nguồn", "Source notes", h3)
     N(source_notes("vi"), source_notes("en"))
     P("Chương 5 chiếm tr. 98–149 của bản in (52 trang) trong Emerson, Control Valve Handbook, ấn bản "
-      "6 (2020). Nội dung gồm hai mươi hai mục 5.1–5.22: kích thước van, phân loại rò rỉ chỗ ngồi, "
+      "6 (2020). Nội dung gồm hai mươi hai mục 5.1–5.22: kích thước van, phân loại rò rỉ đế van, "
       "đặc tính dòng chảy, định cỡ chất lỏng và chất nén, hệ số định cỡ đại diện, định cỡ cơ cấu chấp "
-      "hành, mô-men van quay, xâm thực và bay hơi, dự báo và kiểm soát tiếng ồn, đệm kín, vật liệu thân "
+      "hành, mô-men van quay, xâm thực và hóa hơi, dự báo và kiểm soát tiếng ồn, đệm kín, vật liệu thân "
       "van, xếp hạng áp suất-nhiệt độ, viết tắt vật liệu phi kim và kiểm tra không phá hủy. Mười tám "
       "hình illustration được vẽ lại dạng vector trong cvh6fig5.py và đặt đúng vị trí xuất hiện của chú "
       "thích gốc.",

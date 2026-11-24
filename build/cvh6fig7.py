@@ -663,7 +663,7 @@ def fig_f7_11():
     o.append(_poly([(428, 205), (566, 178), (566, 272), (428, 245)],
                    fill="#eef3fb", sw=1.4, close=True))
     _droplets(o, 470, 214, nx=5, spread=44, length=22, color=BLUE)
-    o.append(T(470, 300, "Bay hơi qua lối ra vòi / Flashing across nozzle exit",
+    o.append(T(470, 300, "Hóa hơi qua lối ra vòi / Flashing across nozzle exit",
                7.0, color=GREY))
     # leaders and callouts
     o.append(_leader(270, 200, 270, 176))

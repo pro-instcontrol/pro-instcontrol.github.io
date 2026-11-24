@@ -550,7 +550,7 @@ def _body(lang):
     P("Thông thường, phép kiểm tra hành trình một phần dịch chuyển van 10% so với vị trí ban đầu nhưng "
       "có thể tới 30% nếu được phép theo quy định an toàn của nhà máy. Dù kiểm tra hành trình một phần "
       "không loại bỏ nhu cầu kiểm tra hành trình đầy đủ (cần kiểm tra hành trình đầy đủ để kiểm tra "
-      "chỗ ngồi của van, v.v.), nó làm giảm tần suất kiểm tra hành trình đầy đủ cần thiết đến mức "
+      "đế van, v.v.), nó làm giảm tần suất kiểm tra hành trình đầy đủ cần thiết đến mức "
       "nhiều khả năng có thể thực hiện trong kỳ đại tu nhà máy.",
       "Typically, the partial stroke test moves the valve 10% from its original position but can be "
       "up to 30% if allowed by plant safety guidelines. Although partial stroke testing does not "

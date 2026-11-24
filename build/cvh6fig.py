@@ -160,9 +160,9 @@ def fig_f02():
     return _fig(s,
                 "Hình 1.2 (tr. 18) · Van điều khiển kiểu thân trục trượt, mặt cắt lắp ráp: "
                 "cơ cấu chấp hành màng/piston ở trên, thân van, nắp và thân van có đường dòng "
-                "và chỗ ngồi ở dưới. Các số 1-11 chỉ: 1. Thân van; 2. Bích đệm; 3. Đai ốc khóa "
+                "và đế van ở dưới. Các số 1-11 chỉ: 1. Thân van; 2. Bích đệm; 3. Đai ốc khóa "
                 "cơ cấu chấp hành; 4. Nắp van; 5. Gioăng nắp; 6. Vòng piston; 7. Nút van; "
-                "8. Lồng; 9. Vòng chỗ ngồi; 10. Bulông nắp/thân; 11. Thân van (body).",
+                "8. Lồng; 9. Vòng đế van; 10. Bulông nắp/thân; 11. Thân van (body).",
                 "Figure 1.2 (p. 18) · Sliding-stem control valve, assembled cutaway: diaphragm/"
                 "piston actuator above, stem, bonnet and valve body with flow passage and seat "
                 "below. Key: 1. Stem; 2. Packing Flange; 3. Actuator Locknut; 4. Bonnet; "
@@ -186,7 +186,7 @@ def fig_f03():
              (380, "6. Piston Ring", "Vòng piston"),
              (416, "7. Plug", "Nút van"),
              (450, "8. Cage", "Lồng"),
-             (480, "9. Seat Ring", "Vòng chỗ ngồi"),
+             (480, "9. Seat Ring", "Vòng đế van"),
              (504, "10. Body/Bonnet Bolting", "Bulông nắp/thân"),
              (524, "11. Body", "Thân van")]
     for i, (yy, en, vi) in enumerate(parts):
@@ -200,7 +200,7 @@ def fig_f03():
     return _fig(s,
                 "Hình 1.3 (tr. 18) · Van điều khiển kiểu thân trục trượt ở dạng tách chi tiết, "
                 "cho thấy thứ tự xếp từ trên xuống: thân van, bích đệm, đai ốc khóa cơ cấu "
-                "chấp hành, nắp van, gioăng nắp, vòng piston, nút van, lồng, vòng chỗ ngồi, "
+                "chấp hành, nắp van, gioăng nắp, vòng piston, nút van, lồng, vòng đế van, "
                 "bulông nắp/thân và thân van.",
                 "Figure 1.3 (p. 18) · Sliding-stem control valve in exploded view, showing the "
                 "top-to-bottom stack: stem, packing flange, actuator locknut, bonnet, bonnet "
@@ -1280,7 +1280,7 @@ def fig_f2_10():
     return _fig(s,
                 "Hình 2.10 (tr. 51) · Phần mềm ValveLink: bảng điều khiển đơn giản với biểu đồ "
                 "xu hướng hành trình và tín hiệu lái cùng khu vực chẩn đoán liệt kê trạng thái, "
-                "vùng chết, T63, hành trình, tải chỗ ngồi và kết quả đường chữ ký.",
+                "vùng chết, T63, hành trình, tải đế van và kết quả đường chữ ký.",
                 "Figure 2.10 (p. 51) · ValveLink software: a simplified panel with trend charts "
                 "for travel and drive signal, plus a diagnostics area listing status, deadband, "
                 "T63, travel, seat load and signature results.",
@@ -1333,7 +1333,7 @@ def fig_f31():
         o.append(_leader(tx, ty, 384, yy))
     o.append(_labels([("Thân van", "Body"), ("Nắp van", "Bonnet"),
                       ("Thân", "Stem"), ("Lồng", "Cage"),
-                      ("Vòng chỗ ngồi", "Seat ring")], 396, 92))
+                      ("Vòng đế van", "Seat ring")], 396, 92))
     return _finish(w, h, o, "Figure 3.1 - Flanged angle-style control valve body",
                    "Hình 3.1 (tr. 55) · Thân van điều khiển kiểu góc có bích",
                    "Hình 3.1 (tr. 55) · Thân van điều khiển kiểu góc có bích: cổng vào nằm ngang, "
@@ -1377,7 +1377,7 @@ def fig_f32():
                    "passage and sealing surfaces, often specified for corrosive service when "
                    "exotic alloys are needed; it can be less expensive than a casting, and a "
                    "polymer liner may also be used.",
-                   "Mặt cắt thân van gia công từ thanh phôi đặc với lỗ dẫn và gioăng chỗ ngồi",
+                   "Mặt cắt thân van gia công từ thanh phôi đặc với lỗ dẫn và gioăng đế van",
                    "Cross-section of a bar stock valve body machined from solid stock")
 
 
@@ -1402,17 +1402,16 @@ def fig_f33():
     o.append(T(430, 132, "Đầu ra / Outlet", 7.6, color=GREEN))
     o.append(T(330, 40, "Dẫn hướng bằng thân / Stem guiding", 7.6,
                color=INK, anchor="start"))
-    o.append(T(310, 310, "Dòng chảy thường đi lên qua vòng chỗ ngồi / Flow normally up through the seat ring",
+    o.append(T(310, 310, "Dòng chảy thường đi lên qua vòng đế van / Flow normally up through the seat ring",
                7.4, color=GREY))
     return _finish(w, h, o, "Figure 3.3 - Single-ported globe-style valve body",
                    "Hình 3.3 (tr. 56) · Thân van cầu một cổng",
                    "Hình 3.3 (tr. 56) · Thân van cầu một cổng: kiểu thân phổ biến nhất, kết cấu "
-                   "đơn giản, dẫn hướng nút van bằng thân; dòng chảy thường đi lên qua vòng chỗ "
-                   "ngồi, dùng rộng rãi trong điều khiển quá trình cỡ NPS 1-4.",
+                   "đơn giản, dẫn hướng nút van bằng thân; dòng chảy thường đi lên qua vòng đế van, dùng rộng rãi trong điều khiển quá trình cỡ NPS 1-4.",
                    "Figure 3.3 (p. 56) · Single-ported globe-style valve body: the most common and "
                    "simplest body style, with stem-guided plug; flow normally passes upward through "
                    "the seat ring, widely used in process control at NPS 1-4.",
-                   "Thân van cầu một cổng với nút van dẫn hướng bằng thân, dòng đi lên qua chỗ ngồi",
+                   "Thân van cầu một cổng với nút van dẫn hướng bằng thân, dòng đi lên qua đế van",
                    "Single-ported globe body with stem-guided plug and upward flow through the seat")
 
 
@@ -1447,7 +1446,7 @@ def fig_f34():
     return _finish(w, h, o, "Figure 3.4 - Valve body with cage-style trim, balanced plug and soft seat",
                    "Hình 3.4 (tr. 57) · Thân van có lồng dẫn, nút cân bằng",
                    "Hình 3.4 (tr. 57) · Thân van có Trim dạng lồng: lồng vừa dẫn hướng nút van, giữ "
-                   "vòng chỗ ngồi vừa tạo đặc tính dòng. Ở kiểu cân bằng, áp suất hạ lưu tác động "
+                   "vòng đế van vừa tạo đặc tính dòng. Ở kiểu cân bằng, áp suất hạ lưu tác động "
                    "lên cả mặt trên và mặt dưới của nút, triệt tiêu phần lớn lực mất cân bằng tĩnh.",
                    "Figure 3.4 (p. 57) · Valve body with cage-style trim and balanced plug: the cage "
                    "guides the plug, retains the seat ring and characterizes flow. In balanced "
@@ -1491,7 +1490,7 @@ def fig_f35():
                    "tends to open one port and close the other, so the dynamic force on the plug "
                    "tends to balance; the body is often reversible, allowing push-down-to-open or "
                    "push-down-to-close plug action.",
-                   "Thân van hai cổng có hai vòng chỗ ngồi và nút van hai mặt tự cân bằng",
+                   "Thân van hai cổng có hai vòng đế van và nút van hai mặt tự cân bằng",
                    "Double-ported body with two seat rings and a self-balancing two-faced plug")
 
 
@@ -1713,17 +1712,17 @@ def fig_f3_12():
     o.append(_arrow(400, 164, 428, 164, sw=1.7, color=GREEN))
     o.append(_leader(344, 140, 440, 88))
     o.append(T(448, 92, "Vòng làm kín / Seal ring", 7.5, anchor="start", color=BLUE))
-    o.append(T(300, 280, "Áp suất quá trình ép vòng làm kín vào chỗ ngồi / Process pressure assists the seal",
+    o.append(T(300, 280, "Áp suất quá trình ép vòng làm kín vào bệ van / Process pressure assists the seal",
                7.4, color=GREY))
     return _finish(w, h, o, "Figure 3.12 - Pressure assisted seal configuration",
                    "Hình 3.12 (tr. 61) · Cấu hình làm kín hỗ trợ bằng áp suất",
                    "Hình 3.12 (tr. 61) · Cấu hình làm kín hỗ trợ bằng áp suất: áp suất quá trình "
-                   "được dùng để ép vòng làm kín vào chỗ ngồi, cho độ kín chặt đặc biệt ở cả hai "
+                   "được dùng để ép vòng làm kín vào bệ van, cho độ kín chặt đặc biệt ở cả hai "
                    "chiều dòng, đặc biệt với nút lệch tâm và chất lỏng khó xử lý.",
                    "Figure 3.12 (p. 61) · Pressure assisted seal configuration: process pressure is "
                    "used to push the seal ring into its seat, giving exceptional tight shutoff in "
                    "both flow directions, especially with eccentric-plug designs on difficult fluids.",
-                   "Vòng làm kín được áp suất ép vào chỗ ngồi, dòng qua hai phía",
+                   "Vòng làm kín được áp suất ép vào bệ van, dòng qua hai phía",
                    "Seal ring pressed into its seat by process pressure")
 
 
@@ -1746,19 +1745,19 @@ def fig_f3_13():
     o.append(_arrow(366, 172, 442, 172, sw=1.7, color=GREEN))
     o.append(_leader(280, 196, 412, 96))
     o.append(T(420, 100, "Nút lệch tâm / Eccentric plug", 7.5, anchor="start"))
-    o.append(T(300, 300, "Đường đi của nút giảm tiếp xúc với vòng chỗ ngồi khi mở / Plug path minimizes seat contact",
+    o.append(T(300, 300, "Đường đi của nút giảm tiếp xúc với vòng đế van khi mở / Plug path minimizes seat contact",
                7.4, color=GREY))
     o.append(T(300, 322, "Chịu mòn, chịu nhiệt tới 427 độ C / Erosion resistant, to 427 deg C",
                7.4, color=GREY))
     return _finish(w, h, o, "Figure 3.13 - Eccentric plug control valve body",
                    "Hình 3.13 (tr. 62) · Thân van điều khiển nút lệch tâm",
                    "Hình 3.13 (tr. 62) · Thân van điều khiển nút lệch tâm: đường đi của đĩa lệch "
-                   "giảm tiếp xúc với vòng chỗ ngồi khi mở, giảm mòn và ma sát; thân và Trim chịu "
+                   "giảm tiếp xúc với vòng đế van khi mở, giảm mòn và ma sát; thân và Trim chịu "
                    "nhiệt tới 427 độ C và chênh áp đóng tới 1500 psi, hợp cho bùn và chất coking.",
                    "Figure 3.13 (p. 62) · Eccentric plug control valve body: the plug path minimizes "
                    "contact with the seat ring when opening, reducing wear and friction; the rugged "
                    "body and trim handle 427 deg C and 1500 psi shutoff on slurries and coking fluids.",
-                   "Thân van nút lệch tâm với vòng chỗ ngồi tự định tâm",
+                   "Thân van nút lệch tâm với vòng đế van tự định tâm",
                    "Eccentric plug valve body with a self-centering seat ring")
 
 
@@ -2599,7 +2598,7 @@ def fig_f3_37():
                    "Hình 3.37 (tr. 74) · Lồng định hình cho thân van kiểu cầu",
                    "Hình 3.37 (tr. 74) · Lồng định hình: hình dạng cửa sổ trên thành lồng quyết định "
                    "đặc tính dòng — mở nhanh, tuyến tính hoặc phần trăm bằng. Thay lồng để đổi đặc "
-                   "tính không cần thay nút van hay vòng chỗ ngồi.",
+                   "tính không cần thay nút van hay vòng đế van.",
                    "Figure 3.37 (p. 74) · Characterized cages: the shape of the cage windows sets "
                    "the inherent flow characteristic - quick-opening, linear or equal-percentage. "
                    "Changing cages does not require changing the plug or seat ring.",
@@ -2662,17 +2661,17 @@ def fig_f3_39():
     o.append(_poly(pts, fill="#fdf3e6", sw=1.3, close=True))
     for cx, lab in kinds:
         o.append(T(cx, 268, lab, 7.8, color=INK))
-    o.append(T(310, 312, "Đường bao nút cạnh vòng chỗ ngồi quyết định đặc tính / Plug contour at the seat sets the characteristic",
+    o.append(T(310, 312, "Đường bao nút cạnh vòng đế van quyết định đặc tính / Plug contour at the seat sets the characteristic",
                7.4, color=GREY))
     return _finish(w, h, o, "Figure 3.39 - Various plug contours for different flow characterization",
                    "Hình 3.39 (tr. 75) · Các dạng đường bao nút van cho đặc tính dòng",
                    "Hình 3.39 (tr. 75) · Các dạng đường bao nút van: hình dạng bề mặt nút cạnh "
-                   "vòng chỗ ngồi quyết định đặc tính dòng vốn có; khi nút dịch chuyển, diện tích "
+                   "vòng đế van quyết định đặc tính dòng vốn có; khi nút dịch chuyển, diện tích "
                    "dòng không bị cản thay đổi theo đường bao của nút.",
                    "Figure 3.39 (p. 75) · Various plug contours for flow characterization: the plug "
                    "surface next to the seat ring determines the inherent characteristic; as the "
                    "plug moves, the unobstructed flow area changes with the plug contour.",
-                   "Ba dạng đường bao nút van cạnh chỗ ngồi",
+                   "Ba dạng đường bao nút van cạnh đế van",
                    "Three plug contours at the seat ring")
 
 
@@ -2695,14 +2694,14 @@ def fig_f3_40():
     o.append(_arrow(346, 160, 412, 160, sw=1.6, color=GREEN))
     o.append(_leader(286, 138, 424, 92))
     o.append(T(432, 96, "Tiết diện dòng / Flow area", 7.5, anchor="start"))
-    o.append(T(300, 300, "Đường kính cổng, nút van, thân, vòng chỗ ngồi / Port diameter, plug, stem, seat ring",
+    o.append(T(300, 300, "Đường kính cổng, nút van, thân, vòng đế van / Port diameter, plug, stem, seat ring",
                7.4, color=GREY))
     o.append(T(300, 322, "Cấu hình điển hình cho đặc tính mở nhanh / Typical quick-opening construction",
                7.4, color=GREY))
     return _finish(w, h, o, "Figure 3.40 - Typical construction for quick-opening flow",
                    "Hình 3.40 (tr. 76) · Cấu hình điển hình cho dòng mở nhanh",
                    "Hình 3.40 (tr. 76) · Cấu hình điển hình cho đặc tính mở nhanh: đường kính cổng, "
-                   "nút van, diện tích dòng, thân và vòng chỗ ngồi được bố trí để diện tích dòng "
+                   "nút van, diện tích dòng, thân và vòng đế van được bố trí để diện tích dòng "
                    "tăng nhanh ngay ở đoạn đầu hành trình.",
                    "Figure 3.40 (p. 76) · Typical construction for quick-opening flow: port "
                    "diameter, plug, flow area, stem and seat ring arranged so that flow area "
@@ -2733,13 +2732,13 @@ def fig_f3_41():
     o.append(T(418, 144, "Dẫn hướng bằng nút / Plug guiding", 7.4, anchor="start"))
     o.append(T(298, 320, "Đường kính ngoài nút sát thành trong lồng suốt hành trình / Plug OD close to cage ID over full travel",
                7.4, color=GREY))
-    o.append(T(298, 342, "Nắp, lồng và chỗ ngồi tự căn chỉnh / Bonnet, cage and seat are self-aligning",
+    o.append(T(298, 342, "Nắp, lồng và đế van tự căn chỉnh / Bonnet, cage and seat are self-aligning",
                7.4, color=GREY))
     return _finish(w, h, o, "Figure 3.41 - Cross-sectional view of cage guiding",
                    "Hình 3.41 (tr. 76) · Mặt cắt dẫn hướng bằng lồng",
                    "Hình 3.41 (tr. 76) · Mặt cắt dẫn hướng bằng lồng: đường kính ngoài của nút van "
-                   "sát thành trong lồng suốt hành trình; nắp, lồng và vòng chỗ ngồi tự căn chỉnh "
-                   "nên đảm bảo nút van khớp chỗ ngồi và bộ đệm khi đóng.",
+                   "sát thành trong lồng suốt hành trình; nắp, lồng và vòng đế van tự căn chỉnh "
+                   "nên đảm bảo nút van khớp đế van và bộ đệm khi đóng.",
                    "Figure 3.41 (p. 76) · Cross-section of cage guiding: the plug outside diameter "
                    "stays close to the cage inside wall throughout travel; bonnet, cage and seat "
                    "ring are self-aligning, ensuring correct plug, packing and seating alignment.",
@@ -2775,8 +2774,7 @@ def fig_f3_42():
                7.4, color=GREY))
     return _finish(w, h, o, "Figure 3.42 - Adapter method for reduced flow capacity",
                    "Hình 3.42 (tr. 77) · Phương pháp đoạn chuyển tiếp giảm lưu lượng",
-                   "Hình 3.42 (tr. 77) · Phương pháp đoạn chuyển tiếp: dùng nút, lồng và vòng chỗ "
-                   "ngồi từ cỡ van nhỏ hơn cùng kiểu, cùng đoạn nối phía trên lồng và dưới chỗ ngồi "
+                   "Hình 3.42 (tr. 77) · Phương pháp đoạn chuyển tiếp: dùng nút, lồng và vòng đế van từ cỡ van nhỏ hơn cùng kiểu, cùng đoạn nối phía trên lồng và dưới đế van "
                    "để ghép vào thân lớn; giúp giảm lưu lượng, giảm vận tốc và sửa lỗi chọn van quá cỡ.",
                    "Figure 3.42 (p. 77) · Adapter method: plug, cage and seat ring from a smaller "
                    "valve of similar construction are fitted with adapters above the cage and below "

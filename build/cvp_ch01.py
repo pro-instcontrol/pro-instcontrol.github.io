@@ -117,7 +117,7 @@ def body_vi():
                "và mức phát thải tiếng ồn, cần chú ý đặc biệt đến hai vấn đề:"))
     b.append(ul([
         "<b>Vùng chết thấp</b> của tổ hợp cơ cấu chấp hành/van (với bao bình siết chặt);",
-        "<b>Đóng kín chặt</b> trong trường hợp van cầu một chỗ ngồi và một số van quay (nếu yêu cầu).",
+        "<b>Đóng kín chặt</b> trong trường hợp van cầu một đế và một số van quay (nếu yêu cầu).",
     ]))
     b.append(p("Mối quan tâm hàng đầu của người vận hành một vòng điều khiển quá trình là "
                "<b>vòng phải ổn định</b>. (Không gì làm người ta căng thẳng bằng một mực đỏ "
@@ -156,9 +156,9 @@ def body_vi():
                "Hình 1-3 chẳng hạn có <b>ổ bi quanh thân cơ cấu chấp hành</b> để tránh xoắn lò "
                "xo và nhờ đó giảm ma sát (khoảng năm 1932)."))
 
-    b.append(h2("Rò rỉ chỗ ngồi thấp và khả năng điều tiết",
+    b.append(h2("Rò rỉ đế van thấp và khả năng điều tiết",
                 "Low seat leakage and rangeability"))
-    b.append(p("<b>Rò rỉ chỗ ngồi thấp</b> có thể mang lại lợi ích. Thứ nhất, nó tiết kiệm chi "
+    b.append(p("<b>Rò rỉ đế van thấp</b> có thể mang lại lợi ích. Thứ nhất, nó tiết kiệm chi "
                "phí bổ sung của một van đóng cắt khi hệ thống phải dừng. (Lưu ý: vì lý do an "
                "toàn, <b>không bao giờ được tin vào van điều khiển để đóng kín tuyệt đối</b>.) "
                "Thứ hai, nó tiết kiệm năng lượng. Thứ ba, đó là yêu cầu không thể thương lượng "
@@ -169,7 +169,7 @@ def body_vi():
                "bình thường chúng chỉ làm việc ở khoảng 30% C<sub>v</sub> định mức. Hơn nữa, "
                "không nên vận hành bộ lót van thông thường dưới <b>5% hành trình</b>. Lý do là "
                "bộ điều khiển có thể hơi mất ổn định ở lưu lượng thấp, và cơ cấu chấp hành, đi "
-               "theo dao động hình sin của tín hiệu điều khiển, sẽ đẩy nút van vào chỗ ngồi. "
+               "theo dao động hình sin của tín hiệu điều khiển, sẽ đẩy nút van vào bệ van. "
                "Khi đó cơ cấu chấp hành và bộ định vị sẽ xì hết không khí, tạo ra một thời gian "
                "chết rất lớn (trước khi van lại chuyển động) khi tín hiệu đảo chiều. Nói ngắn "
                "gọn: bạn có một mớ hỗn độn và không còn sự điều khiển."))
@@ -189,7 +189,7 @@ def body_vi():
     b.append(h3("Về nguồn tài liệu", "About the source"))
     b.append(p("Chương 1 chiếm tr. 1–8 của ấn bản in (PDF tr. 9–16). Nguyên bản có ba hình: "
                "Hình 1-1 cây thuật ngữ theo ANSI/ISA-75.05.01, Hình 1-2 sơ đồ khối vòng điều "
-               "khiển và Hình 1-3 mặt cắt van lò xo–màng hai chỗ ngồi năm 1932. Cả ba được vẽ "
+               "khiển và Hình 1-3 mặt cắt van lò xo–màng hai đế năm 1932. Cả ba được vẽ "
                "lại dạng vector trong bản dịch này."))
     return "".join(b)
 
@@ -332,7 +332,7 @@ def body_en():
                "to avoid twisting the spring and thereby reducing friction (circa 1932)."))
 
     b.append(h2("Low seat leakage and rangeability",
-                "Rò rỉ chỗ ngồi thấp và khả năng điều tiết"))
+                "Rò rỉ đế van thấp và khả năng điều tiết"))
     b.append(p("<b>Low seat leakage</b> can be beneficial. First, it saves the extra expense of "
                "a shutoff valve in case the system closes down. (Note: For safety reasons, "
                "<b>never rely on the control valve for absolute tight shutoff</b>.) Second, it "

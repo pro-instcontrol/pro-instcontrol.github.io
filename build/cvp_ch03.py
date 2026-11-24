@@ -18,7 +18,7 @@ def note_terms(lang):
     if lang == "vi":
         return ("<b>Thuật ngữ chương 3.</b> van kiểu lồng (cage valve) · nút cân bằng áp "
                 "(pressure-balanced plug) · dẫn hướng bằng lồng (cage-guided) · vòng đế "
-                "(seat ring) · xâm thực (cavitation) · bay hơi nháy (flashing) · xói mòn "
+                "(seat ring) · xâm thực (cavitation) · hóa hơi (flashing) · xói mòn "
                 "dạng sợi dây (wire drawing) · bộ lót tôi cứng (hardened trim) · van góc "
                 "(angle valve) · phục hồi áp suất thấp (low-pressure recovery, "
                 "F<sub>L</sub> cao) · tiết lưu hai cấp (dual-stage throttling) · dải điều "
@@ -63,7 +63,7 @@ def body_vi():
     b.append(p("Xa hơn cả, các nguyên nhân thường gặp nhất gây hỏng van sớm là:"))
     b.append(ul([
         "Hư hỏng do xâm thực (cavitation) (thường là chênh áp lớn với nước);",
-        "Xói mòn dạng sợi dây của bộ lót (wire drawing) (xâm thực hoặc bay hơi nháy của "
+        "Xói mòn dạng sợi dây của bộ lót (wire drawing) (xâm thực hoặc hóa hơi của "
         "nước và nước ngưng);",
         "Mài mòn bộ lót (có chất rắn lẫn trong chất lưu);",
         "Rung nút van (dòng chảy không ổn định với chất lỏng);",
@@ -82,7 +82,7 @@ def body_vi():
                "cuối tuần)."))
     b.append(p("Với vấn đề thứ ba là mài mòn bộ lót, hãy chỉ định bộ lót tôi cứng hoặc dùng "
                "van góc. Theo tôi, chỉ có hai trường hợp nên dùng van góc: (1) nước ngưng "
-               "bay hơi nháy ở đầu vào của bình ngưng và (2) chất lưu gây mài mòn. Trong cả "
+               "hóa hơi ở đầu vào của bình ngưng và (2) chất lưu gây mài mòn. Trong cả "
                "hai trường hợp, dòng chảy nên hướng theo chiều đóng nút van (hãy kiểm tra "
                "độ ổn định của cơ cấu chấp hành). Với dịch vụ mài mòn, dùng bộ lót thu nhỏ "
                "và một đoạn ống phía sau dài, thẳng (tốt nhất là lớn hơn cỡ yêu cầu) để "
@@ -99,14 +99,14 @@ def body_vi():
     b.append(p("Van cầu cỡ lớn có thể có nút cân bằng áp và dẫn hướng bằng lồng. Hình 3-1 là "
                "một ví dụ điển hình về thiết kế van lồng được cải tiến. Van lồng có một số "
                "ưu điểm. Chúng dễ bảo trì hơn vì tháo vòng đế tương đối dễ so với tháo vòng "
-               "đế vặn ren trong van cầu một chỗ ngồi, đặc biệt sau nhiều năm sử dụng. Nút "
+               "đế vặn ren trong van cầu một đế, đặc biệt sau nhiều năm sử dụng. Nút "
                "cân bằng áp suất làm giảm đáng kể lực tác dụng lên thân nút và có thể tiết "
                "kiệm khoản tiền đáng kể vì dùng được cơ cấu chấp hành nhỏ hơn."))
     b.append(p("Tuy nhiên, có thể phát sinh một số vấn đề. Thứ nhất, nút dẫn hướng bằng lồng "
                "dễ bị các hạt lẫn trong dòng gây ma sát và kẹt dính. Thứ hai, có thể gặp vấn "
                "đề giãn nở nhiệt của lồng trong dịch vụ nhiệt độ cao, dẫn đến ép vỡ (rò rỉ) "
                "các lớp đệm của lồng. Thứ ba, chi phí của thân van lồng (và trọng lượng của "
-               "nó) cao hơn van cầu một chỗ ngồi do các bulông bắt nắp van rất nặng. Cuối "
+               "nó) cao hơn van cầu một đế do các bulông bắt nắp van rất nặng. Cuối "
                "cùng, hầu hết các nút lồng (piston) được làm kín với thành lồng bằng các ghen "
                "piston (bằng kim loại hoặc nhựa), có thể gây ma sát đáng kể trong khi vận "
                "hành và dẫn đến vùng chết. Có thể phải chỉnh lại (de-tune) bộ định vị để "
@@ -121,13 +121,13 @@ def body_vi():
                "điểm cố hữu của van lồng như thế nào. Điểm hấp dẫn nhất là ý tưởng tiết lưu "
                "hai cấp. Ở đây, thay vì nút van có bề mặt định hình thông thường (quyết định "
                "đặc tính lưu lượng của nó), bề mặt định hình này giờ là một phần của thành "
-               "lồng trong giãn ra theo phương hướng tâm, nằm ngay phía trên chỗ ngồi của "
+               "lồng trong giãn ra theo phương hướng tâm, nằm ngay phía trên đế van của "
                "van."))
     b.append(p("Khe hở giữa đầu nút van (mũi tên dưới của ký tự A) và thành lồng trong định "
                "hình giờ trở thành cấp tiết lưu thứ nhất. Đồng thời, ta thấy một phần nhô ra "
                "thứ hai của nút (mũi tên trên của ký tự A) bắt đầu để lộ một phần cửa sổ đúc "
                "trên lồng. Khe hở tạo thành vì thế trở thành cấp thứ hai của phần tử tiết lưu "
-               "kép này. Chất lưu đi qua chỗ ngồi van và đầu dưới của nút vào một vùng lõm, "
+               "kép này. Chất lưu đi qua đế van van và đầu dưới của nút vào một vùng lõm, "
                "rồi từ đó, bị tiết lưu bởi điểm A phía trên, đi vào các vùng cửa sổ mở và "
                "cuối cùng ra khỏi thân van."))
     b.append(p("Nút van cho phép tiết lưu hai cấp (A trong Hình 3-1) nhằm tăng khả năng "
@@ -141,7 +141,7 @@ def body_vi():
 
     b.append(h2("Van cầu cỡ nhỏ",
                 "Smaller globe valves"))
-    b.append(p("Van cầu cỡ nhỏ thường có thiết kế một chỗ ngồi như Hình 3-2. Chúng đơn giản "
+    b.append(p("Van cầu cỡ nhỏ thường có thiết kế một đế như Hình 3-2. Chúng đơn giản "
                "hơn nhiều và có thể dùng cơ cấu chấp hành nhỏ hơn vì lực trên thân nút thấp "
                "do lỗ tiết lưu nhỏ hơn và áp suất nói chung thấp hơn. Điều này cũng cho phép "
                "đường kính thân nút nhỏ hơn và ma sát bao bình thấp hơn (vùng chết nhỏ hơn). "
@@ -181,7 +181,7 @@ def body_vi():
                "hoặc van bướm. Đây là lực cần để thắng ma sát tĩnh của quả bóng hoặc đĩa van "
                "nhằm mở van — một vấn đề đặc biệt khó chịu ở cái gọi là van bướm hiệu năng "
                "cao. Khi khởi động, cơ cấu chấp hành có thể được nạp áp suất khí đến mức van "
-               "gần như bật mở hoàn toàn (sau khi thoát khỏi chỗ ngồi) trước khi bộ định vị "
+               "gần như bật mở hoàn toàn (sau khi thoát khỏi bệ van) trước khi bộ định vị "
                "kịp đưa van về vị trí mong muốn."))
     b.append(p("Một quy tắc nên nhớ là giới hạn hành trình làm việc bình thường của van bi "
                "và van bướm hiệu năng cao ở mức 15% độ mở tối đa, tức là đảm bảo lưu lượng "
@@ -235,7 +235,7 @@ def body_vi():
                   "Bản dịch tiếng Việt hiệu theo nghĩa đúng."))
     b.append(h3("Về nguồn tài liệu", "About the source"))
     b.append(p("Chương 3 chiếm tr. in 13–19 của ấn bản in (PDF tr. 21–27). Nguyên bản có ba "
-               "hình: Hình 3-1 van kiểu lồng, Hình 3-2 van cầu một chỗ ngồi với nút cổng chữ "
+               "hình: Hình 3-1 van kiểu lồng, Hình 3-2 van cầu một đế với nút cổng chữ "
                "V và Hình 3-3 van quay với chi tiết giảm ồn thay được tại hiện trường. Cả ba "
                "được vẽ lại dạng vector trong bản dịch này."))
     return "".join(b)

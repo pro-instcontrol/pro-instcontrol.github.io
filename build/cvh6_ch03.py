@@ -132,15 +132,15 @@ def _body(lang):
     H("3.1.1.1 Thân van một cổng", "3.1.1.1 Single-Port Valve Bodies", h4)
     B(["Một cổng là kiểu thân van phổ biến nhất và có kết cấu đơn giản.",
        "Van một cổng có nhiều dạng, như kiểu cầu, kiểu góc, thân phôi than, thân rèn và kết cấu tách.",
-       "Nhiều thân van một chỗ ngồi dùng kết cấu lồng hoặc vòng giữ để giữ vòng chỗ ngồi, dẫn hướng "
+       "Nhiều thân van một đế dùng kết cấu lồng hoặc vòng giữ để giữ vòng đế van, dẫn hướng "
        "nút van và tạo phương tiện thiết lập các đặc tính dòng đặc thù của van.",
-       "Thân van một chỗ ngồi kiểu lồng hoặc vòng giữ cũng có thể dễ dàng thay đổi bằng cách đổi "
+       "Thân van một đế kiểu lồng hoặc vòng giữ cũng có thể dễ dàng thay đổi bằng cách đổi "
        "chi tiết trim để thay đổi đặc tính dòng hoặc tạo lưu lượng giảm, giảm tiếng ồn, hoặc giảm hay "
-       "loại bỏ xói mòn do sủi bọt (cavitation).",
+       "loại bỏ xói mòn do xâm thực (cavitation).",
        "Van góc (Hình 3.1) thường dùng cho nước cấp lò hơi và thoát nước gia nhiệt, và trong các sơ "
        "đồ đường ống mà không gian bị hạn chế và van cũng có thể đóng vai trò như một khúc khuỷu. "
        "Van được minh họa có kết cấu kiểu lồng. Các kiểu khác có thể có đầu ra mở rộng, trim bị tiết "
-       "lưu hoặc lót đầu ra để giảm xói mòn, bay hơi (flashing) hoặc hư hỏng do sủi bọt."],
+       "lưu hoặc lót đầu ra để giảm xói mòn, hóa hơi (flashing) hoặc hư hỏng do xâm thực."],
       ["Single port is the most common valve body style and is simple in construction.",
        "Single-port valves are available in various forms, such as globe, angle, bar stock, forged, "
        "and split constructions.",
@@ -193,8 +193,7 @@ def _body(lang):
           "Nút mất cân bằng / Unbalanced plug",
           "Nút mất cân bằng và cân bằng / Unbalanced and balanced plug")],
         caption="Phương pháp dẫn hướng theo kích cỡ / Guiding method by size"))
-    B(["Thường được chỉ định cho ứng dụng có yêu cầu đóng chặt nghiêm ngặt. Chúng dùng bề mặt chỗ "
-       "ngồi kim loại-kim loại hoặc đệm mềm bằng PTFE hay vật liệu composition khác tạo lớp làm kín. "
+    B(["Thường được chỉ định cho ứng dụng có yêu cầu đóng chặt nghiêm ngặt. Chúng dùng bề mặt đế van kim loại-kim loại hoặc đệm mềm bằng PTFE hay vật liệu composition khác tạo lớp làm kín. "
        "Chúng đáp ứng được hầu hết yêu cầu dịch vụ.",
        "Vì chất lỏng áp suất cao thường nạp vào toàn bộ diện tích của cổng, lực mất cân bằng tạo ra "
        "phải được tính đến khi chọn cơ cấu chấp hành cho thân van điều khiển dẫn hướng bằng chốt và "
@@ -215,14 +214,14 @@ def _body(lang):
        "to avoid this."])
     P("Hình 3.3 cho thấy một trong những kiểu thân van điều khiển dạng cầu dẫn hướng bằng chốt phổ "
       "biến nhất. Chúng được dùng rộng rãi trong điều khiển quá trình, đặc biệt ở cỡ NPS 1-4 "
-      "(DN 20-100). Chiều dòng chảy thông thường nhất là đi lên qua vòng chỗ ngồi.",
+      "(DN 20-100). Chiều dòng chảy thông thường nhất là đi lên qua vòng đế van.",
       "Figure 3.3 shows one of the more popular styles of post-guided globe-type control valve "
       "bodies. They are widely used in process control applications, particularly in NPS 1-4 "
       "(DN 20-100). Normal flow direction is most often up through the seat ring.")
     FIG(3, F.fig_f33())
 
     H("3.1.1.3 Thân van kiểu lồng", "3.1.1.3 Cage-Style Valve Bodies", h4)
-    P("Trim kiểu lồng (Hình 3.4) cung cấp dẫn hướng cho nút van, giữ vòng chỗ ngồi và định hình dòng "
+    P("Trim kiểu lồng (Hình 3.4) cung cấp dẫn hướng cho nút van, giữ vòng đế van và định hình dòng "
       "chảy. Ngoài ra, có nhiều vật liệu và kiểu làm kín khác nhau để làm kín giữa phần trên của đường "
       "kính ngoài nút van và lỗ lồng, nhằm hạn chế chất lỏng áp suất cao phía thượng lưu rò sang hệ "
       "thống hạ lưu áp suất thấp hơn. Ở thiết kế cân bằng, áp suất hạ lưu tác động lên cả mặt trên và "
@@ -236,8 +235,8 @@ def _body(lang):
       "which nullifies most of the static unbalanced force. Reduced unbalanced force permits "
       "operation of the valve with smaller actuators than those necessary for unbalanced valve trim.")
     P("Khả năng thay thế lẫn nhau của trim cho phép lựa chọn một số đặc tính dòng, giảm tiếng ồn, "
-      "chống sủi bọt hoặc các khả năng dịch vụ khắc nghiệt khác. Với hầu hết thiết kế trim sẵn có, "
-      "chiều dòng chuẩn là đi vào qua các lỗ lồng và đi xuống qua vòng chỗ ngồi. Tuy nhiên, trim giảm "
+      "chống xâm thực hoặc các khả năng dịch vụ khắc nghiệt khác. Với hầu hết thiết kế trim sẵn có, "
+      "chiều dòng chuẩn là đi vào qua các lỗ lồng và đi xuống qua vòng đế van. Tuy nhiên, trim giảm "
       "tiếng ồn thường cho dòng đi lên. Các trim này có sẵn trong nhiều tổ hợp vật liệu, kích cỡ tới "
       "NPS 36 (DN 900) và cấp áp suất tới Class 4500 hoặc API 10.000.",
       "Interchangeability of trim permits choice of several flow characteristics, noise attenuation, "
@@ -394,8 +393,8 @@ def _body(lang):
       "characteristic.")
     P("Các van điều khiển này có khả năng điều chỉnh dải (rangeability), điều khiển và đóng chặt tốt. "
       "Ngành giấy, nhà máy hóa chất, nhà máy xử lý nước thải, ngành điện và nhà máy lọc dầu dùng kiểu "
-      "thiết kế van này. Emerson cung cấp thêm tùy chọn cho van bi để bảo vệ ở mức tiếng ồn và sủi bọt "
-      "trung bình. Xem Hình 3.10 cho các tùy chọn van bi chống sủi bọt và giảm tiếng ồn.",
+      "thiết kế van này. Emerson cung cấp thêm tùy chọn cho van bi để bảo vệ ở mức tiếng ồn và xâm thực "
+      "trung bình. Xem Hình 3.10 cho các tùy chọn van bi chống xâm thực và giảm tiếng ồn.",
       "These control valves have good rangeability, control, and shutoff capability. The paper "
       "industry, chemical plants, sewage treatment plants, the power industry, and petroleum "
       "refineries use these type of valve designs. Emerson offers additional options in ball valves "
@@ -462,12 +461,12 @@ def _body(lang):
     H("3.1.3.4 Thân van nút lệch tâm", "3.1.3.4 Eccentric Plug Valve Bodies", h4)
     B(["Cụm van chống xói mòn. Thiết kế thân và trim chắc chắn chịu nhiệt tới 427 độ C (800 độ F) và "
        "chênh áp đóng tới 1500 psi (103 bar).",
-       "Đường đi của đĩa lệch tâm giảm tiếp xúc với vòng chỗ ngồi khi mở, giảm mòn và ma sát, kéo dài "
-       "tuổi thọ chỗ ngồi và cải thiện hiệu năng điều tiết (Hình 3.13).",
-       "Vòng chỗ ngồi tự định tâm và đĩa chắc chắn cho phép dòng xuôi hoặc ngược với độ kín chặt ở "
-       "cả hai hướng. Đĩa, vòng chỗ ngồi và vòng giữ có sẵn vật liệu cứng, kể cả gốm, để lựa chọn "
+       "Đường đi của đĩa lệch tâm giảm tiếp xúc với vòng đế van khi mở, giảm mòn và ma sát, kéo dài "
+       "tuổi thọ đế van và cải thiện hiệu năng điều tiết (Hình 3.13).",
+       "Vòng đế van tự định tâm và đĩa chắc chắn cho phép dòng xuôi hoặc ngược với độ kín chặt ở "
+       "cả hai hướng. Đĩa, vòng đế van và vòng giữ có sẵn vật liệu cứng, kể cả gốm, để lựa chọn "
        "khả năng chống xói mòn.",
-       "Nút, vòng chỗ ngồi và vòng giữ có sẵn vật liệu cứng, kể cả gốm và cacbua, để cải thiện lựa "
+       "Nút, vòng đế van và vòng giữ có sẵn vật liệu cứng, kể cả gốm và cacbua, để cải thiện lựa "
        "chọn chống xói mòn.",
        "Có sẵn tùy chọn vòng làm kín hỗ trợ bằng áp suất hai chiều cho độ đóng kín đặc biệt.",
        "Có sẵn thiết kế dùng quả cầu rãnh V thay cho nút van cho yêu cầu năng lực cao hơn."],
@@ -688,10 +687,10 @@ def _body(lang):
       "choice depends on the temperature, pressure and sealing duty of the application.")
     FIG(20, F.fig_f3_20())
     P("Trên thân van điều khiển có trim kiểu lồng hoặc vòng giữ, nắp truyền lực nén để ngăn rò giữa "
-      "bích nắp và thân van và giữa vòng chỗ ngồi với thân van. Việc siết bulông thân-nắp nén một tấm "
+      "bích nắp và thân van và giữa vòng đế van với thân van. Việc siết bulông thân-nắp nén một tấm "
       "gioăng phẳng để làm kín mối nối thân-nắp, nén gioăng xoắn ốc trên đỉnh lồng và nén một tấm "
-      "gioăng phẳng khác dưới vòng chỗ ngồi để làm kín vòng chỗ ngồi với thân. Nắp cũng căn chỉnh cho "
-      "lồng, nhờ đó dẫn hướng nút van, đảm bảo căn chỉnh đúng van, nút và thân với bộ đệm và chỗ ngồi.",
+      "gioăng phẳng khác dưới vòng đế van để làm kín vòng đế van với thân. Nắp cũng căn chỉnh cho "
+      "lồng, nhờ đó dẫn hướng nút van, đảm bảo căn chỉnh đúng van, nút và thân với bộ đệm và đế van.",
       "On control valve bodies with cage- or retainer-style trim, the bonnet furnishes loading force "
       "to prevent leakage between the bonnet flange and the valve body and also between the seat ring "
       "and the valve body. The tightening of the body-bonnet bolting compresses a flat sheet gasket to "
@@ -1089,7 +1088,7 @@ def _body(lang):
     H("3.5 Định hình dòng cho thân van dẫn hướng bằng lồng",
       "3.5 Characterization of Cage-Guided Valve Bodies")
     P("Trong thân van có trim dẫn hướng bằng lồng, hình dạng của các lỗ dòng hay cửa sổ trên thành của "
-      "lồng hình trụ quyết định định hình dòng. Khi nút van dịch chuyển ra khỏi vòng chỗ ngồi, cửa sổ "
+      "lồng hình trụ quyết định định hình dòng. Khi nút van dịch chuyển ra khỏi vòng đế van, cửa sổ "
       "lồng được mở ra cho phép dòng chảy qua van. Các lồng tiêu chuẩn được thiết kế để tạo các đặc "
       "tính dòng vốn có tuyến tính, phần trăm bằng và mở nhanh. Định hình tùy biến cũng có thể có sẵn. "
       "Lưu ý sự khác biệt về hình dạng cửa sổ lồng trong Hình 3.37. Quan hệ lưu lượng/hành trình do van "
@@ -1105,8 +1104,8 @@ def _body(lang):
       "shown for contoured valve plugs (Figure 3.38).")
     P("Trim dẫn hướng bằng lồng cho phép dễ dàng thay đổi đặc tính dòng vốn có của van bằng cách lắp "
       "một lồng khác. Việc đổi lồng để tạo đặc tính dòng vốn có khác không yêu cầu thay nút van hay "
-      "vòng chỗ ngồi. Các lồng tiêu chuẩn thể hiện có thể dùng cho cả trim cân bằng và mất cân bằng. "
-      "Đệm mềm, khi cần, có sẵn dạng chi tiết chèn giữ trong vòng chỗ ngồi và độc lập với lựa chọn "
+      "vòng đế van. Các lồng tiêu chuẩn thể hiện có thể dùng cho cả trim cân bằng và mất cân bằng. "
+      "Đệm mềm, khi cần, có sẵn dạng chi tiết chèn giữ trong vòng đế van và độc lập với lựa chọn "
       "lồng hay nút van.",
       "Cage-guided trim allows for the inherent flow characteristic of the valve to be easily changed "
       "by installing a different cage. Interchange of cages to provide a different inherent flow "
@@ -1115,7 +1114,7 @@ def _body(lang):
       "required, is available as a retained insert in the seat ring and is independent of cage or "
       "valve plug selection.")
     P("Khả năng thay thế lồng có thể mở rộng sang thiết kế lồng chuyên dụng giảm tiếng ồn hoặc chống "
-      "sủi bọt. Các lồng này thường cho đặc tính dòng vốn có tuyến tính nhưng yêu cầu dòng chảy theo "
+      "xâm thực. Các lồng này thường cho đặc tính dòng vốn có tuyến tính nhưng yêu cầu dòng chảy theo "
       "một hướng cụ thể qua các lỗ lồng. Do đó có thể cần đảo thân van trong đường ống để có hướng "
       "dòng đúng.",
       "Cage interchangeability can be extended to specialized cage designs that provide noise "
@@ -1129,13 +1128,13 @@ def _body(lang):
     H("3.5.1 Nút van định hình", "3.5.1 Characterized Valve Plugs", h3)
     P("Nút van, phần chuyển động của cụm van điều khiển kiểu cầu, tạo ra sự hạn chế thay đổi đối với "
       "dòng chảy của chất lỏng. Mỗi kiểu nút van được thiết kế để tạo một đặc tính dòng cụ thể, cho "
-      "phép một cách dẫn hướng hoặc căn chỉnh xác định với vòng chỗ ngồi, hoặc có khả năng đóng chặt "
+      "phép một cách dẫn hướng hoặc căn chỉnh xác định với vòng đế van, hoặc có khả năng đóng chặt "
       "hoặc chống hư hỏng đặc thù.",
       "The valve plug, the movable part of a globe-style control valve assembly, provides a variable "
       "restriction to fluid flow. Valve plug styles are each designed to provide a specific flow "
       "characteristic, permit a specified manner of guiding or alignment with the seat ring, or have "
       "a particular shutoff or damage-resistance capability.")
-    P("Đường bao của bề mặt nút van cạnh vòng chỗ ngồi đóng vai trò quyết định đặc tính dòng vốn có của "
+    P("Đường bao của bề mặt nút van cạnh vòng đế van đóng vai trò quyết định đặc tính dòng vốn có của "
       "van điều khiển định hình bằng nút. Khi cơ cấu chấp hành di chuyển nút van trong suốt hành trình "
       "của nó, diện tích dòng không bị cản thay đổi về kích thước và hình dạng tùy theo đường bao của "
       "nút van.",
@@ -1157,15 +1156,15 @@ def _body(lang):
 
     # ------------------------------------------------------------ 3.6
     H("3.6 Dẫn hướng nút van", "3.6 Valve Plug Guiding")
-    P("Dẫn hướng chính xác nút van là cần thiết để căn chỉnh đúng với vòng chỗ ngồi và điều khiển hiệu "
+    P("Dẫn hướng chính xác nút van là cần thiết để căn chỉnh đúng với vòng đế van và điều khiển hiệu "
       "quả chất lỏng quá trình. Các phương pháp thường dùng và tên gọi của chúng nhìn chung tự giải "
       "thích.",
       "Accurate guiding of the valve plug is necessary for proper alignment with the seat ring and "
       "efficient control of the process fluid. The common methods used and their names are generally "
       "self-descriptive.")
     B(["Dẫn hướng bằng lồng: Đường kính ngoài của nút van sát với bề mặt thành trong của lồng hình trụ "
-       "suốt phạm vi hành trình. Vì nắp, lồng và vòng chỗ ngồi tự căn chỉnh trong cụm, nên đảm bảo "
-       "nút van và vòng chỗ ngồi căn chỉnh đúng khi van đóng.",
+       "suốt phạm vi hành trình. Vì nắp, lồng và vòng đế van tự căn chỉnh trong cụm, nên đảm bảo "
+       "nút van và vòng đế van căn chỉnh đúng khi van đóng.",
        "Dẫn hướng trên và dưới: Nút van được căn chỉnh bằng bạc dẫn trong nắp và bích dưới (xem Hình "
        "3.5). Kiểu này thường thấy trong kết cấu hai cổng.",
        "Dẫn hướng bằng cổng: Nút van được căn chỉnh bằng cổng của thân van."],
@@ -1186,11 +1185,11 @@ def _body(lang):
       "Most control valve manufacturers can provide valves with reduced- or restricted-capacity trim "
       "parts. The reduced flow rate might be desirable for any of the following reasons:")
     B(["Trim năng lực hạn chế có thể cho phép chọn thân van đủ lớn cho nhu cầu lưu lượng tăng trong "
-       "tương lai, nhưng với năng lực trim phù hợp; nắp, lồng và vòng chỗ ngồi tự căn chỉnh trong cụm, "
-       "nút van và vòng chỗ ngồi căn chỉnh đúng khi van đóng.",
+       "tương lai, nhưng với năng lực trim phù hợp; nắp, lồng và vòng đế van tự căn chỉnh trong cụm, "
+       "nút van và vòng đế van căn chỉnh đúng khi van đóng.",
        "Dẫn hướng trên: nút van được căn chỉnh bằng một bạc dẫn duy nhất trong nắp hoặc thân van, hoặc "
        "bằng cách bố trí bộ đệm.",
-       "Dẫn hướng bằng thân: nút van được căn chỉnh với vòng chỗ ngồi bằng bạc dẫn trong nắp tác dụng "
+       "Dẫn hướng bằng thân: nút van được căn chỉnh với vòng đế van bằng bạc dẫn trong nắp tác dụng "
        "lên thân nút van.",
        "Thân van lớn với trim năng lực hạn chế có thể dùng để giảm vận tốc chất lỏng đầu vào và đầu ra.",
        "Có thể tránh mua các đoạn thu nhỏ đường ống đắt tiền.",
@@ -1206,10 +1205,10 @@ def _body(lang):
        "Large bodies with restricted-capacity trim can be used to reduce inlet and outlet fluid velocities",
        "Purchase of expensive pipeline reducers can be avoided.",
        "Over-sizing errors can be corrected by use of restricted-capacity trim parts."])
-    P("Thân van kiểu cầu thông thường có thể lắp vòng chỗ ngồi với cỡ cổng nhỏ hơn bình thường và nút "
+    P("Thân van kiểu cầu thông thường có thể lắp vòng đế van với cỡ cổng nhỏ hơn bình thường và nút "
       "van được định cỡ để khớp với các cổng nhỏ hơn đó. Van có trim dẫn hướng bằng lồng thường đạt "
-      "hiệu ứng năng lực giảm bằng cách dùng nút, lồng và vòng chỗ ngồi từ cỡ van nhỏ hơn có kết cấu "
-      "tương tự, cùng các đoạn chuyển tiếp phía trên lồng và dưới vòng chỗ ngồi để ghép các chi tiết "
+      "hiệu ứng năng lực giảm bằng cách dùng nút, lồng và vòng đế van từ cỡ van nhỏ hơn có kết cấu "
+      "tương tự, cùng các đoạn chuyển tiếp phía trên lồng và dưới vòng đế van để ghép các chi tiết "
       "nhỏ hơn với thân van (Hình 3.42). Vì dịch vụ năng lực giảm không phải là hiếm, hầu hết nhà sản "
       "xuất cung cấp sẵn các tổ hợp chi tiết trim để thực hiện chức năng yêu cầu.",
       "Conventional globe-style valve bodies can be fitted with seat rings with smaller port sizes "

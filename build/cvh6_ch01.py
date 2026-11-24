@@ -64,7 +64,7 @@ _D12_B = [
       "và nút van."),
      ("Bushing", "A device that supports and/or guides moving parts such as valve stems and plugs.")),
     (("Lồng (Cage)", "Một phần của bộ trim bao quanh phần đóng, có thể tạo đặc tính dòng và/hoặc "
-      "bề mặt chỗ ngồi. Nó cũng tạo độ ổn định, dẫn hướng, cân bằng và căn chỉnh, đồng thời "
+      "mặt tựa của van. Nó cũng tạo độ ổn định, dẫn hướng, cân bằng và căn chỉnh, đồng thời "
       "giúp lắp ráp các chi tiết khác của trim. Thành lồng có các lỗ thường quyết định đặc tính "
       "dòng của van."),
      ("Cage", "A part of the valve trim that surrounds the closure member and can provide flow "
@@ -77,7 +77,7 @@ _D12_B = [
      ("Closure Member", "The movable part of the valve that is positioned in the flow path to "
       "modulate the rate of flow through the valve.")),
     (("Dẫn hướng phần đóng", "Phần của phần đóng căn chỉnh chuyển động của nó trong lồng, vòng "
-      "chỗ ngồi (dẫn theo cổng), nắp van, đáy van, thân van hoặc bất kỳ hai trong số đó."),
+      "đế van (dẫn theo cổng), nắp van, đáy van, thân van hoặc bất kỳ hai trong số đó."),
      ("Closure Member Guide", "That portion of a closure member that aligns its movement in "
       "either a cage, seat ring (port guiding), bonnet, bottom flange, stem or any two of these.")),
     (("Xi lanh (Cylinder)", "Buồng của cơ cấu chấp hành piston, nơi piston chuyển động."),
@@ -171,14 +171,14 @@ _D12_C = [
     (("Chỗ ngồi (Seat)", "Vùng tiếp xúc giữa phần đóng và bề mặt ăn khớp, tạo nên độ đóng kín của van."),
      ("Seat", "The area of contact between the closure member and its mating surface that "
       "establishes valve shutoff.")),
-    (("Tải chỗ ngồi (Seat Load)", "Lực tiếp xúc ròng giữa phần đóng và chỗ ngồi trong các điều "
+    (("Tải đế van (Seat Load)", "Lực tiếp xúc ròng giữa phần đóng và đế van trong các điều "
       "kiện tĩnh đã nêu. Thực tế, việc chọn cơ cấu chấp hành cho một van dựa trên lực cần để "
-      "thắng mất cân bằng tĩnh, ma sát thân và mất cân bằng động, có tính đến tải chỗ ngồi đầy đủ."),
+      "thắng mất cân bằng tĩnh, ma sát thân và mất cân bằng động, có tính đến tải đế van đầy đủ."),
      ("Seat Load", "The net contact force between the closure member and seat with stated static "
       "conditions. In practice, the selection of an actuator for a given control valve will be "
       "based on how much force is required to overcome static, stem, and dynamic unbalance with "
       "an allowance made for adequate seat load.")),
-    (("Vòng chỗ ngồi (Seat Ring)", "Bộ phận của cụm thân van tạo bề mặt chỗ ngồi cho phần đóng "
+    (("Vòng đế van (Seat Ring)", "Bộ phận của cụm thân van tạo mặt tựa của van cho phần đóng "
       "và có thể tạo một phần lỗ tiết lưu."),
      ("Seat Ring", "A part of the valve body assembly that provides a seating surface for the "
       "closure member and can provide part of the flow control orifice.")),
@@ -201,17 +201,17 @@ _D12_C = [
     (("Đầu nối thân (Stem Connector)", "Thiết bị nối thân cơ cấu chấp hành với thân van."),
      ("Stem Connector", "The device that connects the actuator stem to the valve stem.")),
     (("Bộ trim", "Các chi tiết bên trong của van điều chỉnh dòng chất lỏng được điều khiển. Trong "
-      "thân van cầu, trim thường gồm phần đóng, vòng chỗ ngồi, lồng, thân và chốt thân."),
+      "thân van cầu, trim thường gồm phần đóng, vòng đế van, lồng, thân và chốt thân."),
      ("Trim", "The internal components of a valve that modulate the flow of the controlled "
       "fluid. In a globe valve body, trim would typically include closure member, seat ring, "
       "cage, stem, and stem pin.")),
     (("Trim chỗ kín mềm", "Trim van dùng vật liệu đàn hồi, nhựa hoặc vật liệu dễ biến dạng khác "
-      "ở phần đóng hoặc vòng chỗ ngồi để đóng kín với lực cơ cấu chấp hành nhỏ."),
+      "ở phần đóng hoặc vòng đế van để đóng kín với lực cơ cấu chấp hành nhỏ."),
      ("Trim, Soft-Seated", "Valve trim with an elastomeric, plastic, or other readily deformable "
       "material used either in the closure component or seat ring to provide tight shutoff with "
       "minimal actuator forces.")),
     (("Thân van (Valve Body)", "Ranh giới áp suất chính của van, đồng thời tạo các đầu nối ống, "
-      "đường dòng chảy và đỡ bề mặt chỗ ngồi cùng phần đóng. Các cấu trúc thường gặp gồm: thân "
+      "đường dòng chảy và đỡ mặt tựa của van cùng phần đóng. Các cấu trúc thường gặp gồm: thân "
       "một cổng với một nút; thân hai cổng với một nút; thân hai chiều với một vào một ra; thân "
       "ba chiều với ba kết nối (hai vào một ra để gộp dòng, hoặc một vào hai ra để tách dòng)."),
      ("Valve Body", "The main pressure boundary of the valve that also provides the pipe "
@@ -290,7 +290,7 @@ _D13_A = [
       "held between ANSI/ASME-class flanges by long through-bolts (sometimes also called "
       "wafer-style valve bodies).")),
     (("Nút lệch tâm (Plug, Eccentric)", "Kiểu van điều khiển quay có nút quay lệch tâm, vào và ra "
-      "khỏi chỗ ngồi theo đường cam, giúp giảm ma sát và mòn. Rất phù hợp cho ứng dụng xói mòn."),
+      "khỏi bệ van theo đường cam, giúp giảm ma sát và mòn. Rất phù hợp cho ứng dụng xói mòn."),
      ("Plug, Eccentric", "Style of rotary control valve with an eccentrically-rotating plug which "
       "cams into and out of the seat, which reduces friction and wear. This style of valve is "
       "well suited for erosive applications.")),
@@ -316,7 +316,7 @@ _D13_A = [
       "quay trong dòng để điều chỉnh năng lực của van."),
      ("Rotary Control Valve", "A valve style in which the flow closure member (full ball, partial "
       "ball, disk or plug) is rotated in the flow stream to control the capacity of the valve.")),
-    (("Vòng chỗ kín (Seal Ring)", "Bộ phận của cụm van quay tương ứng với vòng chỗ ngồi của van "
+    (("Vòng chỗ kín (Seal Ring)", "Bộ phận của cụm van quay tương ứng với vòng đế van của van "
       "cầu. Vị trí của đĩa hoặc bi so với vòng chỗ kín quyết định diện tích dòng và năng lực "
       "của van tại mỗi bước hành trình quay."),
      ("Seal Ring", "The portion of a rotary control valve assembly corresponding to the seat "
@@ -463,8 +463,8 @@ _D14 = [
     (("Van thường đóng / thường mở", "Xem Đóng an toàn / Mở an toàn."),
      ("Normally-Closed Valve / Normally-Open Valve", "See Fail-Closed / Fail-Open.")),
     (("Kết cấu ấn để đóng (PDTC)", "Kết cấu van kiểu cầu trong đó phần đóng nằm giữa cơ cấu chấp "
-      "hành và vòng chỗ ngồi, sao cho thân cơ cấu chấp hành dịch ra đẩy phần đóng về phía vòng "
-      "chỗ ngồi và cuối cùng đóng van. Cũng áp dụng cho van quay khi dịch ra đẩy bi hoặc đĩa về "
+      "hành và vòng đế van, sao cho thân cơ cấu chấp hành dịch ra đẩy phần đóng về phía vòng "
+      "đế van và cuối cùng đóng van. Cũng áp dụng cho van quay khi dịch ra đẩy bi hoặc đĩa về "
       "phía đóng. Còn gọi là tác động trực tiếp."),
      ("Push-Down-to-Close (PDTC) Construction", "A globe-style valve construction in which the "
       "closure member is located between the actuator and the seat ring, such that extension of "
@@ -472,9 +472,8 @@ _D14 = [
       "valve. The term can also be applied to rotary valve constructions where linear extension "
       "of the actuator stem moves the ball or disk toward the closed position. Also called "
       "direct-acting.")),
-    (("Kết cấu ấn để mở (PDTO)", "Kết cấu van kiểu cầu trong đó vòng chỗ ngồi nằm giữa cơ cấu "
-      "chấp hành và phần đóng, sao cho thân cơ cấu chấp hành dịch ra đẩy phần đóng rời vòng chỗ "
-      "ngồi, mở van. Cũng áp dụng cho van quay. Còn gọi là tác động ngược."),
+    (("Kết cấu ấn để mở (PDTO)", "Kết cấu van kiểu cầu trong đó vòng đế van nằm giữa cơ cấu "
+      "chấp hành và phần đóng, sao cho thân cơ cấu chấp hành dịch ra đẩy phần đóng rời vòng đế van, mở van. Cũng áp dụng cho van quay. Còn gọi là tác động ngược."),
      ("Push-Down-to-Open (PDTO) Construction", "A globe-style valve construction in which the "
       "seat ring is located between the actuator and the closure member, so that extension of "
       "the actuator stem moves the closure member from the seat ring, opening the valve. The "
@@ -501,8 +500,8 @@ _D14 = [
       "dòng (Cv) tại hành trình định mức."),
      ("Relative Flow Coefficient (Cv)", "The ratio of the flow coefficient (Cv) at a stated "
       "travel to the flow coefficient (Cv) at rated travel.")),
-    (("Rò rỉ chỗ ngồi (Seat Leakage)", "Lượng chất lỏng đi qua van khi van ở vị trí đóng hoàn "
-      "toàn và chịu tải chỗ ngồi lớn nhất sẵn có, với chênh áp và nhiệt độ đã quy định."),
+    (("Rò rỉ đế van (Seat Leakage)", "Lượng chất lỏng đi qua van khi van ở vị trí đóng hoàn "
+      "toàn và chịu tải đế van lớn nhất sẵn có, với chênh áp và nhiệt độ đã quy định."),
      ("Seat Leakage", "The quantity of fluid passing through a valve when the valve is in the "
       "fully closed position and maximum available seat load is applied with pressure "
       "differential and temperature as specified.")),
@@ -965,8 +964,8 @@ _D15_C = [
 def note_terms(lang):
     if lang == "vi":
         return ("<b>Thuật ngữ chương 1.</b> sliding-stem — thân trục trượt · rotary — quay · "
-                "closure member — phần đóng · trim — bộ phận bên trong (nút, vòng chỗ ngồi, "
-                "lồng, thân) · cage — lồng · seat ring — vòng chỗ ngồi · bonnet — nắp van · "
+                "closure member — phần đóng · trim — bộ phận bên trong (nút, vòng đế van, "
+                "lồng, thân) · cage — lồng · seat ring — vòng đế van · bonnet — nắp van · "
                 "packing — gioăng đệm · actuator — cơ cấu chấp hành · diaphragm — màng · "
                 "loading pressure — áp suất nạp · bench set — cài đặt băng · inherent / installed "
                 "characteristic — đặc tính vốn có / lắp đặt · Cv — hệ số dòng · rangeability — "
@@ -1051,8 +1050,8 @@ def _body(lang):
       "operators, snubbers, or limit switches.")
     P("Có hai kiểu thiết kế van điều khiển chính, tùy theo chuyển động của phần đóng: thân trục "
       "trượt (sliding-stem) và quay (rotary). Van thân trục trượt (Hình 1.2 và 1.3) dùng chuyển "
-      "động tuyến tính để đưa phần đóng vào và ra khỏi bề mặt chỗ ngồi. Van quay (Hình 1.13 và "
-      "1.17) dùng chuyển động quay để xoay phần đóng vào và ra khỏi bề mặt chỗ ngồi.",
+      "động tuyến tính để đưa phần đóng vào và ra khỏi mặt tựa của van. Van quay (Hình 1.13 và "
+      "1.17) dùng chuyển động quay để xoay phần đóng vào và ra khỏi mặt tựa của van.",
       "There are two main types of control valve designs, depending on the action of the "
       "closure member: sliding-stem or rotary. Sliding-stem valves, as seen in Figure 1.2 and "
       "1.3, use linear motion to move a closure member into and out of a seating surface. "

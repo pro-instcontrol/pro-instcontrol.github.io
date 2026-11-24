@@ -334,7 +334,7 @@ def body_vi():
                "cơ cấu chấp hành nhận được) và lưu lượng qua van, với giả thiết:"))
     b.append(ul(["Cơ cấu chấp hành tuyến tính (hành trình van tỉ lệ với đầu ra bộ điều khiển).",
                  "Độ chênh áp ΔP trên van không đổi.",
-                 "Dòng quá trình không chớp hơi (flashing), không bị xâm thực và không ở vận tốc âm."]))
+                 "Dòng quá trình không hóa hơi (flashing), không bị xâm thực và không ở vận tốc âm."]))
     b.append(fig(20, F.fig_3_20()))
     b.append(p("Chọn đặc tuyến van có thể là một thủ tục dài dòng và phức tạp. Driskell đã rút ra một quy "
                "tắc ngón tay cái để chọn đặc tuyến cho những vòng thông dụng nhất:"))

@@ -465,11 +465,11 @@ def _body(lang):
       "is required to reduce the differential. The port remains open until the difference between "
       "the booster input and output pressure is within the deadband limit of the booster.")
     FIG(7, F.fig_f4_07())
-    P("Các bộ tăng có vùng chết cố định, kết cấu chỗ ngồi mềm và phụ tùng bypass tích hợp. Với "
+    P("Các bộ tăng có vùng chết cố định, kết cấu đế van mềm và phụ tùng bypass tích hợp. Với "
       "tiết lưu bypass được chỉnh để vận hành ổn định, các tín hiệu có biên độ và tốc độ thay đổi "
       "nhỏ đi qua tiết lưu bypass vào cơ cấu chấp hành mà không kích hoạt bộ tăng. Cả cổng cấp và "
       "cổng xả đều giữ đóng, ngăn tiêu thụ khí không cần thiết và khả năng bão hòa rơ-le bộ định "
-      "vị. Van xả và van cấp có chỗ ngồi mềm tạo độ kín bọt khí, giảm tiêu thụ khí không cần thiết "
+      "vị. Van xả và van cấp có đế van mềm tạo độ kín bọt khí, giảm tiêu thụ khí không cần thiết "
       "và bảo đảm chế độ an toàn khi mất khí nhà máy. Bộ trim xả giảm tiếng ồn tiêu chuẩn cho phép "
       "xả khí nhanh và êm từ cơ cấu chấp hành.",
       "The boosters incorporate fixed deadband, soft seat construction, and integral bypass "

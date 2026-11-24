@@ -335,7 +335,7 @@ def _body(lang):
     # ------------------------------------------------------------ 2.1.1.4
     H("2.1.1.4 Ma sát", "2.1.1.4 Friction", h3)
     P("Ma sát là nguyên nhân chính gây vùng chết trong van điều khiển. Van quay thường rất dễ "
-      "chịu ma sát do tải chỗ ngồi cao cần thiết để đóng kín với một số thiết kế gioăng. Vì ma "
+      "chịu ma sát do tải đế van cao cần thiết để đóng kín với một số thiết kế gioăng. Vì ma "
       "sát gioăng lớn và độ cứng của bộ truyền động kém, trục van bị xoắn và không truyền "
       "chuyển động tới phần tử điều khiển. Kết quả là một van quay được thiết kế không đúng cách "
       "có thể có vùng chết đáng kể, rõ ràng gây hại cho biến thiên quá trình.",

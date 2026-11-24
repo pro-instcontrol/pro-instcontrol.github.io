@@ -190,7 +190,7 @@ def body_vi():
         "Lực phản ứng (trang 7-12 đến 7-16)",
         "Điều kiện hỏa hoạn — định cỡ chất lỏng bay hơi (trang 7-17 đến 7-23)",
         "Điều kiện hỏa hoạn — định cỡ bồn chứa khí/hơi (trang 7-24)",
-        "Dòng hai pha và dòng sôi (trang 7-25)",
+        "Dòng hai pha và dòng hóa hơi (trang 7-25)",
         "Tính chất điển hình của khí (trang 7-26)",
         "Áp suất/temperature bão hòa của nước (trang 7-27)",
         "Kích thước mặt bích ANSI (trang 7-28)",
@@ -211,13 +211,13 @@ def body_vi():
     # ---- Back pressure --------------------------------------------------------
     b.append(h2("Hệ số hiệu chỉnh áp suất ngược", "Capacity Correction Factors for Back Pressure"))
     b.append(p("Áp suất ngược là áp suất tại cửa xả của van xả áp do áp suất trong hệ thống xả "
-               "hoặc do sự sôi (flashing) trong thân van. Nếu không xem xét đúng ảnh hưởng của áp "
+               "hoặc do sự hóa hơi (flashing) trong thân van. Nếu không xem xét đúng ảnh hưởng của áp "
                "suất ngược, van có thể bị: (1) thay đổi áp suất mở, (2) thay đổi áp suất đóng, "
                "(3) giảm năng lực xả, và (4) mất ổn định động."))
     b.append(h3("Áp suất ngược trong công nghệ", "Back pressure in process service"))
     b.append(ul([
         "<b>Áp suất ngược tạo ra (built-up):</b> áp suất cộng thêm tại cửa xả do trở lực của hệ "
-        "thống xả và đường ống, hoặc do sự sôi trong thân van.",
+        "thống xả và đường ống, hoặc do sự hóa hơi trong thân van.",
         "<b>Áp suất ngược chép lên (superimposed):</b> áp suất tĩnh có sẵn tại cửa xả khi van cần "
         "hoạt động, do áp suất từ các nguồn khác trong hệ thống xả.",
     ]))
@@ -420,19 +420,19 @@ def body_vi():
                "(0,503 in²)."))
 
     # ---- Two-phase ------------------------------------------------------------
-    b.append(h2("Dòng hai pha và dòng sôi", "Two-Phase and Flashing Flow"))
-    b.append(p("Dòng hai pha xảy ra khi dòng chứa cả pha lỏng và pha khí/hơi. Dòng sôi xảy ra khi "
+    b.append(h2("Dòng hai pha và dòng hóa hơi", "Two-Phase and Flashing Flow"))
+    b.append(p("Dòng hai pha xảy ra khi dòng chứa cả pha lỏng và pha khí/hơi. Dòng hóa hơi xảy ra khi "
                "áp suất giảm làm một phần hoặc toàn bộ chất lỏng hóa hơi. Cả hai có thể xảy ra đồng "
                "thời. Các công thức định cỡ khí, hơi, chất lỏng và hơi nước trong sách này có thể "
-               "không phù hợp cho dòng hai pha và sôi."))
+               "không phù hợp cho dòng hai pha và hóa hơi."))
     b.append(p("Công trình của DIERS và các nghiên cứu khác cho thấy chủ đề này rất phức tạp và "
                "không có phương pháp duy nhất áp dụng cho mọi trường hợp. Khi định cỡ dòng hai pha "
-               "và sôi, hãy lưu ý:"))
+               "và hóa hơi, hãy lưu ý:"))
     b.append(ul([
-        "Ước tính và xem xét áp suất tăng trong thân van do sôi, cùng với áp suất ngược tạo ra dự "
+        "Ước tính và xem xét áp suất tăng trong thân van do hóa hơi, cùng với áp suất ngược tạo ra dự "
         "kiến.",
         "Có thể cần van cân bằng (Style JBS) hoặc van pilot (Style JPVM) khi áp suất thân van do "
-        "sôi quá lớn hoặc không thể dự đoán chắc chắn.",
+        "hóa hơi quá lớn hoặc không thể dự đoán chắc chắn.",
         "Nếu hỗn hợp hai pha tại đầu vào van có ≥ 50% khối lượng là lỏng, dùng van kết cấu dịch vụ "
         "lỏng; nếu pha hơi &gt; 50% khối lượng, dùng van cho chất lưu nén được.",
     ]))
@@ -725,7 +725,7 @@ def body_en():
                "\"G\" orifice valve (0.503 in²) is required."))
 
     # ---- Two-phase ------------------------------------------------------------
-    b.append(h2("Two-Phase and Flashing Flow", "Dòng hai pha và dòng sôi"))
+    b.append(h2("Two-Phase and Flashing Flow", "Dòng hai pha và dòng hóa hơi"))
     b.append(p("Two-phase flow describes a stream containing both liquid and gas/vapor phases. "
                "Flashing flow occurs when, due to a pressure decrease, all or part of a liquid flow "
                "changes to vapor. Both conditions can occur simultaneously. The formulas provided for "

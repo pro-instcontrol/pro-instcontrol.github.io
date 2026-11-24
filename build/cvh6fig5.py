@@ -153,7 +153,7 @@ def fig_f5_03():
     x, y, W, H = 88, 62, 386, 246
     px, py = _chart_axes(
         o, x, y, W, H, (1000, 6000), (0, 1000),
-        "Tải chỗ ngồi yêu cầu (lb/in chu vi) / Required seat load (lb per lineal inch)",
+        "Tải đế van yêu cầu (lb/in chu vi) / Required seat load (lb per lineal inch)",
         "Chênh áp đóng (psi) / Shutoff pressure drop (psi)",
         [(1000, "1000"), (2000, "2000"), (3000, "3000"), (4000, "4000"),
          (5000, "5000"), (6000, "6000")],
@@ -179,14 +179,13 @@ def fig_f5_03():
                "Consult manufacturer data for design values", 7.0, color=GREY))
     return _finish(w, h, o,
                    "Figure 5.3 - Minimum required seat load for improved seat life",
-                   "Hình 5.3 (tr. 124) · Tải chỗ ngồi tối thiểu để tăng tuổi thọ",
-                   "Hình 5.3 (tr. 124) · Các đường quan hệ minh họa giữa chênh áp đóng và tải chỗ "
-                   "ngồi yêu cầu cho van đế kim loại các cấp II đến V; tải tăng dần theo cấp rò "
+                   "Hình 5.3 (tr. 124) · Tải đế van tối thiểu để tăng tuổi thọ",
+                   "Hình 5.3 (tr. 124) · Các đường quan hệ minh họa giữa chênh áp đóng và tải đế van yêu cầu cho van đế kim loại các cấp II đến V; tải tăng dần theo cấp rò "
                    "rỉ nghiêm ngặt hơn.",
                    "Figure 5.3 (p. 124) · Illustrative curves relating shutoff pressure drop to "
                    "required seat load for metal-seated valves in leak classes II through V; the "
                    "required load rises with stricter leak class.",
-                   "Biểu đồ tải chỗ ngồi tối thiểu theo chênh áp đóng cho các cấp rò rỉ",
+                   "Biểu đồ tải đế van tối thiểu theo chênh áp đóng cho các cấp rò rỉ",
                    "Chart of minimum required seat load versus shutoff pressure drop by leak class")
 
 
@@ -197,7 +196,7 @@ def fig_f5_04():
     o = [_defs()]
     widths = [104, 466]
     headers = ["Cấp rò rỉ / Leak class",
-               "Tải chỗ ngồi khuyến nghị / Recommended seat load"]
+               "Tải đế van khuyến nghị / Recommended seat load"]
     rows = [
         [(u"Class I", "middle"),
          ("Theo yêu cầu người dùng, không thử rò tại nhà máy\n"
@@ -216,18 +215,18 @@ def fig_f5_04():
     ]
     _table(o, 35, 52, widths, headers, rows, rh=36, hh=30, fs=7.1)
     o.append(T(320, 338,
-               "Tải chỗ ngồi: pound trên mỗi inch chu vi cổng / "
+               "Tải đế van: pound trên mỗi inch chu vi cổng / "
                "Seat load: pounds per lineal inch of port circumference",
                7.0, color=GREY))
     return _finish(w, h, o,
                    "Figure 5.4 - Recommended seat load",
-                   "Hình 5.4 (tr. 124) · Tải chỗ ngồi khuyến nghị theo cấp rò rỉ",
-                   "Hình 5.4 (tr. 124) · Bảng tải chỗ ngồi khuyến nghị cho các cấp rò rỉ I đến VI, "
+                   "Hình 5.4 (tr. 124) · Tải đế van khuyến nghị theo cấp rò rỉ",
+                   "Hình 5.4 (tr. 124) · Bảng tải đế van khuyến nghị cho các cấp rò rỉ I đến VI, "
                    "tính bằng pound trên mỗi inch chu vi cổng, từ không yêu cầu thử đến 300 lb/in.",
                    "Figure 5.4 (p. 124) · Table of recommended seat load for leak classes I "
                    "through VI, expressed in pounds per lineal inch of port circumference, from "
                    "no factory test required to 300 lb per inch.",
-                   "Bảng tải chỗ ngồi khuyến nghị cho các cấp rò rỉ I đến VI",
+                   "Bảng tải đế van khuyến nghị cho các cấp rò rỉ I đến VI",
                    "Table of recommended seat load for leak classes I through VI")
 
 
@@ -379,18 +378,18 @@ def fig_f5_08():
     o.append(T(600, 318, "Bọt hơi cuốn theo dòng / Vapor bubbles downstream",
                7.0, anchor="end"))
     o.append(T(310, 334,
-               "Hư hỏng do flashing: vùng xói mòn nhẵn gần đường đế của nút và vòng chỗ ngồi / "
+               "Hư hỏng do hóa hơi: vùng xói mòn nhẵn gần đường đế của nút và vòng đế van / "
                "Flashing damage: smooth erosion near the plug seat line",
                7.0, color=GREY))
     return _finish(w, h, o,
                    "Figure 5.8 - Typical appearance of flashing damage",
-                   "Hình 5.8 (tr. 129) · Dạng hư hỏng do flashing: bề mặt mòn nhẵn",
-                   "Hình 5.8 (tr. 129) · Sơ đồ bề mặt bị flashing xói mòn: vùng mòn nhẵn, bóng do "
-                   "các giọt lỏng va đập ở tốc độ cao gần đường đế của nút và vòng chỗ ngồi.",
+                   "Hình 5.8 (tr. 129) · Dạng hư hỏng do hóa hơi: bề mặt mòn nhẵn",
+                   "Hình 5.8 (tr. 129) · Sơ đồ bề mặt bị hóa hơi xói mòn: vùng mòn nhẵn, bóng do "
+                   "các giọt lỏng va đập ở tốc độ cao gần đường đế của nút và vòng đế van.",
                    "Figure 5.8 (p. 129) · Vector schematic of flashing damage: a smooth, polished "
                    "eroded surface caused by high-velocity liquid droplet impingement near the "
                    "plug seat line.",
-                   "Sơ đồ bề mặt mòn nhẵn bóng do flashing",
+                   "Sơ đồ bề mặt mòn nhẵn bóng do hóa hơi",
                    "Schematic of smooth polished surface from flashing erosion")
 
 
@@ -420,7 +419,7 @@ def fig_f5_09():
     o.append(T(600, 318, "Bọt hơi vỡ / Collapsing vapor bubbles",
                7.0, anchor="end"))
     o.append(T(310, 334,
-               "Cavitation để lại bề mặt sần, khác với flashing nhẵn bóng / "
+               "Xâm thực để lại bề mặt sần, khác với hóa hơi nhẵn bóng / "
                "Cavitation is rough, unlike smooth flashing",
                7.0, color=GREY))
     return _finish(w, h, o,
@@ -428,7 +427,7 @@ def fig_f5_09():
                    "Hình 5.9 (tr. 130) · Dạng hư hỏng do cavitation: bề mặt sần xốp",
                    "Hình 5.9 (tr. 130) · Sơ đồ bề mặt bị cavitation: các hố xói sần xốp như tro do "
                    "bọt hơi vỡ giải phóng năng lượng ngay sát bề mặt kim loại, khác với vùng mòn "
-                   "nhẵn của flashing.",
+                   "nhẵn của hóa hơi.",
                    "Figure 5.9 (p. 130) · Vector schematic of cavitation damage: a rough, "
                    "cinder-like pitted surface produced when vapor bubbles collapse against the "
                    "metal surface, unlike the smooth flashing erosion.",

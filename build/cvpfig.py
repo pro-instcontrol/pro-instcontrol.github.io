@@ -160,14 +160,14 @@ def fig_f13():
     s = svg(w, h, "".join(o), esc("Early 1932 double-seated spring-diaphragm control valve"))
     return _fig(s,
                 "Hình 1-3 · Mặt cắt van điều khiển lò xo–màng sơ kỳ (khoảng 1932) của hãng "
-                "Neilan: van hai chỗ ngồi được phát triển để giảm lực chấp hành — áp suất "
+                "Neilan: van hai đế được phát triển để giảm lực chấp hành — áp suất "
                 "chất lỏng đẩy nút trên lên và nút dưới xuống, làm triệt tiêu gần như hoàn toàn "
                 "lưu chất.",
                 "Figure 1-3 · Cross-section of an early spring-diaphragm control valve "
                 "(circa 1932) by the Neilan Company: the double-seated design was developed "
                 "to reduce actuator forces — fluid pressure pushes the upper plug up and "
                 "the lower plug down, achieving near cancellation of fluid forces.",
-                "Mặt cắt van điều khiển lò xo–màng hai chỗ ngồi năm 1932",
+                "Mặt cắt van điều khiển lò xo–màng hai đế năm 1932",
                 "Cross-section of an early double-seated spring-diaphragm control valve")
 
 
@@ -324,7 +324,7 @@ def fig_f32():
     s = svg(w, h, "".join(o),
             esc("Single-seated globe valve with screwed-in seat and V-port plug"))
     return _fig(s,
-                "Hình 3-2 · Mặt cắt van cầu một chỗ ngồi cỡ nhỏ với vòng đế vặn ren vào thân "
+                "Hình 3-2 · Mặt cắt van cầu một đế cỡ nhỏ với vòng đế vặn ren vào thân "
                 "và nút có cổng chữ V: 1 nút cổng chữ V, 2 vòng đế vặn ren, 3 bao bình thân "
                 "giúp ma sát và vùng chết thấp. Nút và vòng đế thường làm bằng thép không gỉ "
                 "type 316. Nguồn: SAMSON AG.",
@@ -332,7 +332,7 @@ def fig_f32():
                 "seat ring and a V-port plug: 1 V-port plug, 2 screwed-in seat ring, 3 stem "
                 "packing for low friction and deadband. Plug and seat ring are typically made "
                 "from type 316 stainless steel. Source: Courtesy of SAMSON AG.",
-                "Mặt cắt van cầu một chỗ ngồi với vòng đế vặn ren và nút cổng chữ V",
+                "Mặt cắt van cầu một đế với vòng đế vặn ren và nút cổng chữ V",
                 "Section of a single-seated globe valve with screwed-in seat and V-port plug")
 
 
@@ -378,7 +378,7 @@ def fig_f33():
     legend = [
         (120, "1 - rotating disc (closure member)", "   đĩa quay (cơ cấu đóng)"),
         (156, "2 - shaft, backlash-free link", "   trục, liên kết không hở"),
-        (192, "3 - field-replaceable seat and seal", "   chỗ ngồi và phớt thay tại hiện trường"),
+        (192, "3 - field-replaceable seat and seal", "   đế van và phớt thay tại hiện trường"),
         (228, "4 - field-attachable low-noise insert", "   chi tiết giảm ồn lắp tại hiện trường"),
     ]
     for y, en, vi in legend:
@@ -392,14 +392,14 @@ def fig_f33():
     return _fig(s,
                 "Hình 3-3 · Van quay thiết kế riêng cho điều khiển (butterfly hiệu năng cao), "
                 "mặt cắt: 1 đĩa quay là cơ cấu đóng, 2 trục với liên kết không hở tới cơ cấu "
-                "chấp hành, 3 chỗ ngồi và phớt thay được tại hiện trường, 4 chi tiết giảm ồn, "
+                "chấp hành, 3 đế van và phớt thay được tại hiện trường, 4 chi tiết giảm ồn, "
                 "chống xâm thực lắp tại hiện trường. Nguồn: H. D. Baumann Inc.",
                 "Figure 3-3 · Rotary valve designed especially for control (high-performance "
                 "butterfly), section view: 1 rotating disc as the closure member, 2 shaft with "
                 "a backlash-free link to the actuator, 3 field-replaceable seat and seal, "
                 "4 field-attachable low-noise, anticavitation insert. Source: Courtesy of "
                 "H. D. Baumann Inc.",
-                "Mặt cắt van quay điều khiển với chỗ ngồi thay được và chi tiết giảm ồn",
+                "Mặt cắt van quay điều khiển với đế van thay được và chi tiết giảm ồn",
                 "Rotary control valve section with replaceable seat and low-noise insert")
 
 

@@ -237,7 +237,7 @@ def fig_f6_04():
     return _finish(w, h, o,
                    "Figure 6.4 (p. 152) - Special control valve designed for very low flow rates",
                    "Hình 6.4 (tr. 152) · Van cho lưu lượng rất nhỏ",
-                   "Hình 6.4 (tr. 152) · Van điều khiển đặc biệt, nhỏ gọn và nhẹ, dùng vòng chỗ ngồi "
+                   "Hình 6.4 (tr. 152) · Van điều khiển đặc biệt, nhỏ gọn và nhẹ, dùng vòng đế van "
                    "và nút gia công với dung sai rất chặt để điều khiển chính xác lưu lượng chất lỏng "
                    "hoặc khí cực nhỏ, có thể tới Cv = 0,000001.",
                    "Figure 6.4 (p. 152) · A compact, lightweight special control valve using a "
@@ -358,13 +358,13 @@ def fig_f6_07():
     o.append(T(476, 336, "Đường dòng suôi / Streamlined passages",
                7.0, anchor="start"))
     o.append(T(330, 372,
-               "Vòng chỗ ngồi tự căn giữa; điều tiết hoặc đóng/mở / "
+               "Vòng đế van tự căn giữa; điều tiết hoặc đóng/mở / "
                "Self-centering seat ring; throttling or on-off operation", 7.0, color=GREY))
     return _finish(w, h, o,
                    "Figure 6.7 (p. 155) - Trim to handle particles",
                    "Hình 6.7 (tr. 155) · Trim xử lý hạt rắn",
                    "Hình 6.7 (tr. 155) · Van quay nút lệch tâm với đường dòng suôi, trim kim loại bền "
-                   "và vòng chỗ ngồi tự căn giữa, dùng cho chất lưu xói mòn, đóng cặn và khó xử lý, "
+                   "và vòng đế van tự căn giữa, dùng cho chất lưu xói mòn, đóng cặn và khó xử lý, "
                    "vận hành điều tiết hoặc đóng/mở.",
                    "Figure 6.7 (p. 155) · An eccentric plug rotary valve with streamlined flow "
                    "passages, rugged metal trim and a self-centering seat ring, for erosive, coking "
