@@ -6977,3 +6977,30 @@ registration when resumed.
   2 `<loc>` plus 6 hreflang alternates.
 - PPIC `ppic` is now **3/11** 🟠. Next: IPC Ch.3 → Baumann Ch.18 → PPIC Ch.4; Book 11/12
   registration only on confirmation.
+
+## Session 120 — IPC Chapter 3 published
+
+- Chapter: *Transducers – III*, printed pp. 124–203 (PDF pp. 136–215), `work/ipc_decoded.txt`
+  lines 4997–8149 with page renders in `work/ipc3_pages/p136…p215.png`. Bilingual EN/VI slug
+  `ch03-transducers-iii`.
+- The working tree already contained the chapter shell (`ipc_ch03.py`, `ipc_ch03_a.py`,
+  `ipc_ch03_lib.py`, `ipcfig3.py`, `ipcfig3_common.py`) and the three registration edits
+  (`ipc_common.SLUGS[3]`, `reader_book.py done[3]`, `books_site.TRANSLATED["instrumentation and
+  process control"] → ("progress", 8, 3)`). Twelve parallel writers completed `ipc_ch03_b…i.py`
+  and `ipcfig3_a…d.py` against the shared contract in `work/ipc3_brief.md`.
+- Content: 72 numbered figures redrawn as vectors, 45 numbered equations (3.1)–(3.45), 14 tables
+  (Table 3.1–3.4 plus the long thermocouple tolerance/calibration bands transcribed from printed
+  pp. 213–215), no references. Equation (3.34) `Q = K√F` and (3.35) `F = C A ρ(V²/2g)` were
+  confirmed from the printed p185–p187 scans after an integration pass removed five duplicated
+  equations from module g.
+- QA: 72 sequential unique `fig-N` ids per page, 72 XML-valid inline SVGs, 45 equations, 14 tables,
+  0 CJK, 0 content bare ampersands, 0 Spanish guard hits, 0 Vietnamese diacritics in EN prose,
+  0 off-canvas / 0 overlapping figure labels, `check_links.py` broken 0; sitemap **1,100 URLs**
+  (1,085 with language siblings), 8 Ch.3 entries; catalog badge 3/8 in both languages.
+- Pushed `d42d37e1` ("Add IPC chapter 3: Transducers III (EN/VI, 72 vector figures)"). Live EN/VI
+  deep URLs initially 404, then returned 200 after Pages propagation (EN four checks, VI one);
+  live TOC lists Ch.3 ("Transducers – III" / "Bộ chuyển đổi – III"), catalog badge shows
+  "Translating · 3 of 8 chapters" (VI: "Đang dịch · 3/8 chương"), and live sitemap has 2 `<loc>`
+  plus 6 hreflang alternates.
+- IPC `ipc` is now **3/8** 🟠. Next: Baumann Ch.18 → PPIC Ch.4 → IPC Ch.4; Book 11/12
+  registration only on confirmation.

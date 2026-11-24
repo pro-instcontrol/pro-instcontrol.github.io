@@ -1,21 +1,22 @@
-# HANDOFF — Campaign state 2026-11-23 (Emerson + IIH complete; Books 7/9/10 in progress)
+# HANDOFF — Campaign state 2026-11-24 (Emerson + IIH complete; Books 7/9/10 in progress)
 
-**State now (2026-11-23):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
+**State now (2026-11-24):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **17/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **3/11**, IPC `ipc` **2/8**.
-**Live chapter HEAD `d8159c1c`** (PPIC Ch.3 "Study of Control Strategy of the Converter in Solar
-Photovoltaic Power System", 10 printed pages, 8 vector figures, 13 references); live sitemap
-1,098 URLs, catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 17/32, PPIC badge 3/11,
-IPC badge 2/8, IPC Ch.2, Baumann Ch.17 and PPIC Ch.3 EN/VI deep URLs 200, sitemap 8 entries per
-new chapter, `check_links.py` broken 0. Full tables in `report.md`.
+Baumann `cvp` **17/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **3/11**, IPC `ipc` **3/8**.
+**Live chapter HEAD `d42d37e1`** (IPC Ch.3 "Transducers – III", 80 PDF pages / printed pp. 124–203,
+72 vector figures, 45 equations, 14 tables); live sitemap 1,100 URLs, catalog badges IIH 8/8 and
+Emerson 15/15 both `full`, Baumann badge 17/32, PPIC badge 3/11, IPC badge 3/8, IPC Ch.3, Baumann
+Ch.17 and PPIC Ch.3 EN/VI deep URLs 200, sitemap 8 entries per new chapter, `check_links.py`
+broken 0. Full tables in `report.md`.
 
-**Next unit:** none queued for Emerson, IIH, IPC Ch.2, Baumann Ch.17 or PPIC Ch.3. The standing
-remaining order is IPC `ipc` Ch.3 → Baumann `cvp` Ch.18 → PPIC `ppic` Ch.4, with Book 11/12
+**Next unit:** none queued for Emerson, IIH, IPC Ch.3, Baumann Ch.17 or PPIC Ch.3. The standing
+remaining order is Baumann `cvp` Ch.18 → PPIC `ppic` Ch.4 → IPC `ipc` Ch.4, with Book 11/12
 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 17/32 (Ch.2–17 done) and PPIC at 3/11 (Ch.1–3 done). Also two books located but not registered
+complete at 8/8 (Ch.2–8 done), Baumann at 17/32 (Ch.2–17 done), PPIC at 3/11 (Ch.1–3 done) and
+IPC at 3/8 (Ch.1–3 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
@@ -47,6 +48,19 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
   not just `build/*.py`, to confirm zero remaining occurrences.
 - Named HTML entities (`&Delta;`, `&radic;`, `&minus;`, …) fail the 0-bare-ampersand gate; chapter
   agents should emit literal Unicode (Δ, √, −, ×, °, …) in equation markup.
+
+## 0.7 IPC Ch.3 "Transducers – III" published in `d42d37e1`
+The working tree already had the chapter shell (`ipc_ch03.py`, `ipc_ch03_a.py`, `ipc_ch03_lib.py`,
+`ipcfig3.py`, `ipcfig3_common.py`) and the three registration edits. Twelve parallel writers added
+`ipc_ch03_b…i.py` (sections 3.1.3–3.4) and `ipcfig3_a…d.py` (18 figures each) using the shared
+contract in `work/ipc3_brief.md`. Source is `work/ipc_decoded.txt` lines 4997–8149 with renders in
+`work/ipc3_pages/p136…p215.png`. Integration removed a 14k-character overlap in module g that
+duplicated equations (3.34)–(3.38) from module f; the printed p185–p187 relations (Q = K√F and
+F = C A ρ(V²/2g)) confirm module f is correct. QA: 72 sequential unique `fig-N` ids, 72 XML-valid
+SVGs, 45 equations (3.1)–(3.45), 14 tables, 0 CJK / 0 content bare `&` / 0 Spanish / 0 Vietnamese
+diacritics in EN, 0 off-canvas / 0 overlapping labels, `check_links.py` broken 0, sitemap 1,100.
+Live EN/VI 200 after Pages propagation, TOC row present, badge 3/8 in both languages. **IPC is
+3/8 🟠; IPC `TRANSLATED` remains `("progress", 8, 3)`.**
 
 ## A. Continuation queue (user's order)
 0. ~~IIH Ch.8 "Control Valves" — final chapter~~ — **published** in `905dd942` (8 figs, 111 refs,
@@ -109,8 +123,11 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
    Table 2.1, 20 numbered equations, 12 worked examples, 11 exercises, 61 source pages, broken 0).
    Nine parallel writers: `ipcfig2_a/b/c.py` (20/20/18 figs) + `ipc_ch02_a…f.py` through a shared
    `ipc_ch02_lib.py` contract, merged by `ipcfig2.py` and `ipc_ch02.py`; pre-rendered pages in
-   `work/ipc2_pages/p075…p135.png`. Remaining ch3–8 — source **`work/ipc_decoded.txt`** (NOT the
-   raw dump — glyph codes). The Spanish guard must exclude "con" (Vietnamese "nhóm con").
+   `work/ipc2_pages/p075…p135.png`. ~~Ch.3 "Transducers – III"~~ — **published** in `d42d37e1`
+   (72 vector figs, 45 equations, 14 tables, 80 source pages, broken 0); twelve parallel writers
+   against `work/ipc3_brief.md`, merged by `ipcfig3.py` and `ipc_ch03.py`. Remaining ch4–8 — source
+   **`work/ipc_decoded.txt`** (NOT the raw dump — glyph codes). The Spanish guard must exclude
+   "con" (Vietnamese "nhóm con").
 6. Register Book 11 / Book 12 from the two located PDFs when the user confirms.
 
 Per-chapter flow: survey source span + figures → delegate writing to a background agent with a
@@ -159,3 +176,9 @@ QA → commit/push → live verify → update `TRANSLATION-STATUS.md` + memory l
 - When inserting a new `BOOKS` spec before `def num(n, lang):`, don't duplicate the closing
   brace of the dict (bit us twice).
 - `books_site.py` `SyntaxWarning` (invalid escape sequence, line ~980) is pre-existing noise.
+- Parallel prose writers may add `hasattr(F, "fig_fNN")` stand-ins so they can be QA'd before the
+  figure suppliers land; these are inert once the real registry is imported, but still verify the
+  built page's figure ids are sequential and that every figure is a real vector redraw.
+- When several writers split one chapter, give each an exact decoded-line range and check the
+  equation numbers at the boundaries: IPC Ch.3 initially duplicated (3.34)–(3.38) across modules
+  f and g because g's range started one source page too early.

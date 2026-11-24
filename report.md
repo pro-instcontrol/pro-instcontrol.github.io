@@ -5,12 +5,14 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-23):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
+**Status (2026-11-24):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `d8159c1c`**
-(PPIC Ch.3 "Study of Control Strategy of the Converter in Solar Photovoltaic Power System":
-10 printed pages, 8 vector figures, 13 references, no tables or numbered equations) — the prior
-HEAD `128ff523` was Baumann Ch.17 "Will My Valve Be Too Noisy?" (3 printed pages, no figures,
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `d42d37e1`**
+(Book 10 IPC Ch.3 "Transducers – III": 80 PDF pages / printed pp. 124–203, 72 vector figures,
+45 numbered equations, 14 tables, no references) — the prior HEAD `d8159c1c` was PPIC Ch.3
+"Study of Control Strategy of the Converter in Solar Photovoltaic Power System":
+10 printed pages, 8 vector figures, 13 references, no tables or numbered equations — and before
+that `128ff523` was Baumann Ch.17 "Will My Valve Be Too Noisy?" (3 printed pages, no figures,
 Equation (17-1), 3 references and 5 reading items), and before that `e74d218a` was IPC Ch.2
 "Transducers – II"
 (58 vector figures, 20 numbered equations, Table 2.1, 12 worked examples and 11 exercise
@@ -85,7 +87,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **17/32** 🟠 | 29 (ch1–6, ch9–11, ch13, ch15; ch17 has no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **3/11** 🟠 | 20 (ch1–3: 12 + 8) |
-| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **2/8** 🟠 | 109 (ch1–2: 51 + 58) |
+| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **3/8** 🟠 | 181 (ch1–3: 51 + 58 + 72) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
 (Emerson), 294 (IIH), 295 (PPIC), 296 (IPC).
@@ -164,6 +166,9 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 - IPC Ch.1 "Transducers – I" (51 figs, 7 tables, printed pp. 1–62)
   + Ch.2 "Transducers – II" (58 vector figs, Table 2.1, 20 numbered equations, 12 worked
   examples, 11 exercise questions, PDF pp. 75–135 / printed pp. 63–123, published in `e74d218a`)
+  + Ch.3 "Transducers – III" (72 vector figs, 45 numbered equations, 14 tables including the
+  thermocouple tolerance/calibration bands, PDF pp. 136–215 / printed pp. 124–203, published in
+  `d42d37e1`)
 
 ### Live verification (2026-11-22, after resuming)
 - Emerson Ch.3 EN/VI deep URLs → **HTTP 200** (after Pages negative caching cleared); live TOC
@@ -294,6 +299,13 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   chuyển đổi trong hệ thống điện mặt trời quang điện"), the catalog badge shows "Translating ·
   3 of 11 chapters" (VI: "Đang dịch · 3/11 chương"), and the live sitemap includes all 8 Ch.3 URL
   entries.
+- IPC Ch.3 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation (EN after
+  four checks, VI immediately); both live pages contain 72 XML-valid inline SVGs with 72 unique
+  `fig-N` ids, 45 numbered equations, 14 tables, 0 CJK / 0 content bare ampersands / 0 Spanish
+  hits and 0 Vietnamese diacritics in the EN prose, both live TOCs list Ch.3 ("Transducers – III"
+  / "Bộ chuyển đổi – III"), the catalog badge shows "Translating · 3 of 8 chapters" (VI: "Đang dịch
+  · 3/8 chương"), and the live sitemap includes all 8 Ch.3 URL entries (2 `<loc>` + 6 hreflang
+  alternates).
 
 ---
 
@@ -353,14 +365,16 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   → `6721deb7` (Baumann ch13) → `251d3805` (Baumann ch14)
   → `a387b13a` (Baumann ch15) → `21f05412` (Baumann ch16)
   → `fed6e480` (PPIC ch2) → `e74d218a` (IPC ch2) → `128ff523` (Baumann ch17)
-  → `d8159c1c` (PPIC ch3, **live chapter HEAD**).
+  → `d8159c1c` (PPIC ch3) → `d42d37e1` (IPC ch3, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
 ## 6. Queue (user's stated order)
 1. ~~Integrate Book 10 `ipc` Chapter 1~~ — **done** in `2ca04367` (51 figs, 7 tables, broken 0);
    ~~Ch.2 "Transducers – II"~~ — **done** in `e74d218a` (58 figs, Table 2.1, 20 equations, 12
-   examples, 11 exercises, broken 0); remaining Ch.3–8.
+   examples, 11 exercises, broken 0);
+   ~~Ch.3 "Transducers – III"~~ — **done** in `d42d37e1` (72 figs, 45 equations, 14 tables,
+   broken 0); remaining Ch.4–8.
 2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs)
    ~~Ch.4 "pH Measurement"~~ — **done** in `399e0cbb` (22 figs)
    ~~Ch.5 "Measurement of Flow Rate"~~ — **done** in `db6c38fb` (10 figs)
@@ -406,6 +420,19 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    **done** in `d8159c1c` (8 vector figs, 13 refs, printed pp. 39–48, broken 0); remaining Ch.4–11.
 
 ### Resume notes
+- IPC Ch.3 (80 PDF pages / printed pp. 124–203, 72 vector figures, 45 numbered equations,
+  14 tables) was found in the working tree as a shell (`ipc_ch03.py`, `ipc_ch03_a.py`,
+  `ipc_ch03_lib.py`, `ipcfig3.py`, `ipcfig3_common.py` plus the three registration edits) with
+  eight section modules and four figure suppliers missing. Twelve parallel writers produced
+  `ipc_ch03_b…i.py` and `ipcfig3_a…d.py` against `work/ipc3_brief.md`. Integration caught five
+  duplicated equations ((3.34)–(3.38)) in module g; the overlap was removed after checking the
+  printed p185–p187 relations (Q = K√F and F = C A ρ(V²/2g)) against module f. The temporary
+  `hasattr(F, …)` figure fallbacks in modules b/c/g/h are inert once the real suppliers register.
+  QA: 72 sequential unique `fig-N` ids per page, 72 XML-valid SVGs, 45 equations, 14 tables,
+  0 CJK / 0 content bare `&` / 0 Spanish / 0 Vietnamese diacritics in EN, 0 off-canvas /
+  0 overlapping labels, `check_links.py` broken 0, sitemap 1,100 URLs / 1,085 with siblings,
+  8 entries for Ch.3. Published in `d42d37e1`; live EN/VI 200 after Pages propagation (EN four
+  checks, VI one), TOC row and 3/8 badge verified.
 - PPIC Ch.3 (10 PDF pages / printed pp. 39–48, 8 vector figures, 13 references) was split across
   four parallel writers: `ppicfig3.py` redrew the PV block diagram, Simulink model, control
   subsystem, SPWM pulse trains, stacked simulation waveforms, TMS320F28035 control card, four
