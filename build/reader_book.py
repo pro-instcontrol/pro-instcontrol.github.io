@@ -782,6 +782,7 @@ BOOKS = {
             10: "ch10-valve-positioners",
             11: "ch11-the-mystery-of-line-pressure-produced-valve-stem-forces",
             12: "ch12-how-to-install-a-control-valve",
+            13: "ch13-how-good-is-the-valve-i-purchased",
         },
         "copyright_en": "Original work © 2011 Hans D. Baumann, published by ISA / John Wiley & Sons.",
         "copyright_vi": "Bản gốc © 2011 Hans D. Baumann, do ISA / John Wiley & Sons xuất bản.",
