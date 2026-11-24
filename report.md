@@ -7,8 +7,8 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-23):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `3ec4148a`**
-(Baumann Ch.9, published after the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `a009ad42`**
+(Baumann Ch.10, published after the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
 Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
 the 42-page Ch.13 with 10 data tables / 897 rows, Ch.14 "Pipe Data" with 16 data tables / 521 rows,
 and the final 31-page Ch.15 "Conversions and Equivalents" with 19 data tables / 1,108 rows, Index
@@ -26,7 +26,9 @@ figures, Table 6-1A/B, the cavitation-noise relation) followed, then Ch.7 "Sizin
 Let the Computer Do It All!" (no figures, Table 7-1 vendor list, valve-gain footnote). Ch.8
 "What About Fail-Safe?" (2 pages, no figures, the 75–80% footnote and a 4-level severity list)
 followed, then Ch.9 "Why Most People Choose 'Equal Percentage' as a Flow Characteristic" (9 pages,
-4 vector figures, 4 numeric tables, 3 references).
+4 vector figures, 4 numeric tables, 3 references). Ch.10 "Valve Positioners" (13 pages, 4 vector
+figures, Table 10-1, four references) followed, with the prose split across three section modules
+and the figures redrawn from the printed SAMSON, Flowserve and Emerson diagrams.
 
 ---
 
@@ -50,7 +52,7 @@ followed, then Ch.9 "Why Most People Choose 'Equal Percentage' as a Flow Charact
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **9/32** 🟠 | 15 (ch1–6, ch9) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **10/32** 🟠 | 19 (ch1–6, ch9–10) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
@@ -70,6 +72,8 @@ followed, then Ch.9 "Why Most People Choose 'Equal Percentage' as a Flow Charact
   + Ch.8 "What About Fail-Safe?" (0 figs, 75–80% footnote, printed pp. 55–56, published in `7fec110f`)
   + Ch.9 "Why Most People Choose 'Equal Percentage' as a Flow Characteristic" (4 figs, 4 tables,
   printed pp. 57–65, published in `3ec4148a`)
+  + Ch.10 "Valve Positioners" (4 figs, Table 10-1, 4 refs, printed pp. 67–79, published in
+  `a009ad42`)
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
@@ -176,6 +180,10 @@ followed, then Ch.9 "Why Most People Choose 'Equal Percentage' as a Flow Charact
 - Baumann Ch.9 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.9, catalog
   badge shows "Translating · 9 of 32 chapters" (VI: "Đang dịch · 9/32 chương"), live sitemap
   includes all 8 Ch.9 URL entries.
+- Baumann Ch.10 EN/VI deep URLs → **HTTP 200** after Pages propagation; live EN/VI pages each
+  contain four `fig-N` figures, both live TOCs list Ch.10 ("Valve Positioners" / "Bộ định vị van"),
+  catalog badge shows "Translating · 10 of 32 chapters" (VI: "Đang dịch · 10/32 chương"), and the
+  live sitemap includes all 8 Ch.10 URL entries.
 
 ---
 
@@ -230,7 +238,8 @@ followed, then Ch.9 "Why Most People Choose 'Equal Percentage' as a Flow Charact
   → `db6c38fb` (IIH ch5) → `dfb266f0` (IIH ch6) → `675a28a7` (IIH ch7)
   → `905dd942` (IIH ch8, Book 8 complete) → `68cf7511` (Baumann ch5 + site-wide seat/cavitation/
   flashing terminology pass) → `f5ceb53d` (Baumann ch6) → `d3e54069` (Baumann ch7)
-  → `7fec110f` (Baumann ch8) → `3ec4148a` (Baumann ch9, **live chapter HEAD**).
+  → `7fec110f` (Baumann ch8) → `3ec4148a` (Baumann ch9)
+  → `a009ad42` (Baumann ch10, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -250,7 +259,9 @@ followed, then Ch.9 "Why Most People Choose 'Equal Percentage' as a Flow Charact
    Table 7-1);
    ~~Ch.8 "What About Fail-Safe?"~~ — **done** (`7fec110f`, 0 figs, footnote + severity list);
    ~~Ch.9 "Why Most People Choose 'Equal Percentage'..."~~ — **done** (`3ec4148a`, 4 figs,
-   4 tables, 3 refs); remaining Ch.10–32.
+   4 tables, 3 refs);
+   ~~Ch.10 "Valve Positioners"~~ — **done** (`a009ad42`, 4 figs, Table 10-1, 4 refs);
+   remaining Ch.11–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
    `89e84b27` (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 + 3 + 5 figs, broken 0); Ch.13 added 10 data
@@ -263,6 +274,14 @@ followed, then Ch.9 "Why Most People Choose 'Equal Percentage' as a Flow Charact
 7. Book 9 `ppic` Chapters 2–11 after the user's named queues.
 
 ### Resume notes
+- Baumann Ch.10 (13 PDF pages, 4 vector figures, one timing table, four references, one additional
+  reading item) was split across four parallel agents: a figure supplier working from
+  `work/cvp10_p74/p75/p79/p83.png` and three section writers using a fixed `body_vi()` /
+  `body_en()` block contract. Integrated in `cvp_ch10.py` with a bilingual glossary, then QA'd:
+  all inline SVGs XML-valid, four unique `fig-N` ids per page, 0 CJK, 0 content bare ampersands
+  (only the two pre-existing shell font-URL ampersands), no Vietnamese in EN tables, and
+  `check_links.py` broken 0. Published in `a009ad42`; sitemap regenerated to 1,078 URLs /
+  1,063 with language siblings, including 8 entries for Ch.10.
 - Baumann Ch.9 (9 PDF pages, 4 vector figures, 4 numeric tables, 5 equations, 3 references) was
   split across two parallel agents with the standard figure/prose contract: figure supplier
   (`cvpfig9.py`) worked from four pypdfium2 page renders, prose (`cvp_ch09.py`) reconstructed the

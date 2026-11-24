@@ -2,18 +2,18 @@
 
 **State now (2026-11-23):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **9/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` 1/11, IPC `ipc` 1/8.
-**Live chapter HEAD `3ec4148a`** (Baumann Ch.9); live sitemap 1,076 URLs, catalog badges IIH 8/8
-and Emerson 15/15 both `full`, Baumann badge 9/32, Ch.9 EN/VI deep URLs 200, sitemap 8 Ch.9
+Baumann `cvp` **10/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` 1/11, IPC `ipc` 1/8.
+**Live chapter HEAD `a009ad42`** (Baumann Ch.10); live sitemap 1,078 URLs, catalog badges IIH 8/8
+and Emerson 15/15 both `full`, Baumann badge 10/32, Ch.10 EN/VI deep URLs 200, sitemap 8 Ch.10
 entries, `check_links.py` broken 0. Full tables in `report.md`.
 
 **Next unit:** none queued for Emerson or IIH. Awaiting the user's next instruction; the standing
-remaining order is Baumann `cvp` Ch.10 → PPIC `ppic` Ch.2 → IPC `ipc` Ch.2, with Book 11/12
+remaining order is Baumann `cvp` Ch.11 → PPIC `ppic` Ch.2 → IPC `ipc` Ch.2, with Book 11/12
 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done) and Baumann at 9/32 (Ch.2–9 done). Also two books located but not registered
+complete at 8/8 (Ch.2–8 done) and Baumann at 10/32 (Ch.2–10 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
@@ -70,11 +70,13 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
    live EN/VI 200, TOC row present, badge 4/8.
 1. ~~Book 8 `iih` ch2–8~~ — **done, book complete 8/8**; source `work/ihii_raw.txt`;
    printed = PDF − 14.
-2. ~~Baumann `cvp` ch3–9~~ — **done** (`e71e3415`, `d487a9cb`, `68cf7511`, `f5ceb53d`, `d3e54069`,
-   `7fec110f`, `3ec4148a`); remaining ch10–32, source `work/cvp_raw.txt`. Short chapters (≤6 pages,
-   ≤2 figures) go to one agent for both figure and prose modules; mid-size chapters with 3–4 charts
-   split into figure supplier + prose with a fixed `fig_fNN` contract, both working from pypdfium2
-   page renders.
+2. ~~Baumann `cvp` ch3–10~~ — **done** (`e71e3415`, `d487a9cb`, `68cf7511`, `f5ceb53d`, `d3e54069`,
+   `7fec110f`, `3ec4148a`, `a009ad42`); remaining ch11–32, source `work/cvp_raw.txt`. Short chapters
+   (≤6 pages, ≤2 figures) go to one agent for both figure and prose modules; mid-size chapters with
+   3–4 charts split into figure supplier + prose with a fixed `fig_fNN` contract, both working from
+   pypdfium2 page renders. Long data-heavy chapters can use one figure supplier plus several
+   section writers against a fixed `body_vi()` / `body_en()` block contract (as in Ch.10:
+   `cvpfig10.py` + `cvp_ch10a/b/c.py`, integrated by `cvp_ch10.py`).
 3. ~~Emerson `cvh6` ch3–ch15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
    `89e84b27`. **Book complete 15/15**; no further Emerson chapters are queued. Source

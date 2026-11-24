@@ -6652,3 +6652,38 @@ registration when resumed.
   Equal Percentage flow characteristic (EN/VI, 4 vector figures, 4 tables)").
 - Baumann `cvp` is now **9/32** 🟠. Next: Baumann Ch.10 → PPIC Ch.2 → IPC Ch.2; Book 11/12
   registration only on confirmation.
+
+## Session 109 — Baumann Chapter 10 published
+
+- Book 7 `cvp` Ch.10 "Valve Positioners": 13 source pages (PDF pp. 72–84, printed 67–79), 4 vector
+  figures, Table 10-1 (four actuator-size/time-constant rows), 4 references and 1 additional
+  reading item. Source source pages were rendered with pypdfium2 to `work/cvp10_p74/p75/p79/p83.png`.
+  Work was split across four parallel agents:
+  - figure supplier: `build/cvpfig10.py` (`fig_f101`…`fig_f104` — two-panel Bode dynamic-response
+    chart with the 0.75/0.32 cps break frequencies and Q/K annotations; smart-valve mass-flow
+    cascade schematic; digital positioner principle with stem and diagnostic pressure feedback;
+    field-based architecture with engineering/management/operations/maintenance and intelligent
+    field devices);
+  - prose section A: `build/cvp_ch10a.py` (when to use positioners, split-ranging, reverse action,
+    deadband/booster/diagnostics cases, time-constant ratios, 5:1 speed / 10:1 gain adjustments,
+    open-loop-gain footnote, Fig. 10-1 and Table 10-1);
+  - prose section B: `build/cvp_ch10b.py` (specifying positioners/transducers, vibration and air
+    quality, SCFH rule and volume booster, smart positioners/smart valves, Figs. 10-2/10-3, HART
+    and transmission-lag notes, and the 9-item digital-vs-analog summary);
+  - prose section C: `build/cvp_ch10c.py` (accessories/software, field-based architecture and
+    Fig. 10-4, repeated "Accessories" section, references, additional reading, source notes).
+- Integration: `build/cvp_ch10.py` concatenates the three matched `body_vi()` / `body_en()` blocks
+  and adds the bilingual glossary, `PAGES_SRC = 13` and both titles. Each language has 18 headings,
+  4 figures, 1 table, 4 captions and identical block order.
+- QA: all four SVGs XML-valid with unique `fig-1`…`fig-4`, 4/4 localized captions per page, 0 CJK,
+  0 content bare ampersands (only the two pre-existing shell font-URL ampersands), 0 named entities,
+  0 "chỗ ngồi" / "bay hơi nháy" / "chớp hơi" / "dòng sôi", 0 Vietnamese in EN tables. `check_links.py`
+  broken 0; sitemap **1,078 URLs** (1,063 with language siblings), 8 Ch.10 entries; catalog badge
+  10/32 in both languages. Source notes record OCR damage, the repeated "Accessories" heading,
+  simplified vector redraws, source credits, and the `21/4 in` → `2 1/4 in` table normalization.
+- Registration: `cvp_common.SLUGS[10]`, `reader_book.py done[10]`, `books_site.TRANSLATED[
+  "control valve primer"]` → `("progress", 32, 10)`. Pushed `a009ad42` ("Add Baumann chapter 10:
+  Valve Positioners"). Live EN/VI deep URLs returned 200 after Pages propagation; live TOCs list
+  both language titles and the live sitemap includes 8 Ch.10 entries.
+- Baumann `cvp` is now **10/32** 🟠. Next: Baumann Ch.11 → PPIC Ch.2 → IPC Ch.2; Book 11/12
+  registration only on confirmation.
