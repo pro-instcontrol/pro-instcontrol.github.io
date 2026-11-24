@@ -7,9 +7,11 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-23):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `e74d218a`**
-(IPC Ch.2 "Transducers – II": 58 vector figures, 20 numbered equations, Table 2.1, 12 worked
-examples and 11 exercise questions, printed pp. 63–123) — the prior HEAD `fed6e480` was PPIC Ch.2
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `128ff523`**
+(Baumann Ch.17 "Will My Valve Be Too Noisy?": 3 printed pages, no figures, Equation (17-1),
+3 references and 5 reading items) — the prior HEAD `e74d218a` was IPC Ch.2 "Transducers – II"
+(58 vector figures, 20 numbered equations, Table 2.1, 12 worked examples and 11 exercise
+questions, printed pp. 63–123), and before that `fed6e480` was PPIC Ch.2
 "Advanced Measuring (Instrumentation) Methods for Nuclear Installations: A Review", published after
 Baumann Ch.16 and the IIH/Emerson work below. The paused Emerson Ch.3 was published,
 Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
@@ -45,7 +47,10 @@ solid-particle and wet-steam erosion, guide and bearing materials, 1 hardness fo
 followed. Baumann Ch.15 "Cavitation" (printed pp. 103–108: 5 vector figures, a material-lifetime
 table, the cavitation-noise relations, 2 refs and 2 additional-reading items) followed. Baumann
 Ch.16 "Concern for the Environment" (printed pp. 109–110: no figures, fugitive emissions, gasket
-and bonnet sealing, extended bonnets and packing friction) followed. PPIC Ch.2 "Advanced Measuring
+and bonnet sealing, extended bonnets and packing friction) followed, then Baumann Ch.17
+"Will My Valve Be Too Noisy?" (printed pp. 111–113: no figures, the outlet Mach-number relation
+(17-1), the 90 dBA OSHA limit, the EC worked examples, ISA-75.17 / IEC 60534-8-3, 3 references
+and 5 reading items). PPIC Ch.2 "Advanced Measuring
 (Instrumentation) Methods for Nuclear Installations: A Review" (printed pp. 13–38: 7 vector
 figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards and accident
 instrumentation) then followed.
@@ -72,7 +77,7 @@ instrumentation) then followed.
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **16/32** 🟠 | 29 (ch1–6, ch9–11, ch13, ch15) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **17/32** 🟠 | 29 (ch1–6, ch9–11, ch13, ch15; ch17 has no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **2/11** 🟠 | 12 (ch1–2) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **2/8** 🟠 | 109 (ch1–2: 51 + 58) |
@@ -109,6 +114,8 @@ instrumentation) then followed.
   + Ch.16 "Concern for the Environment" (0 figs, fugitive emissions, gasket/bonnet sealing,
   extended bonnets, packing friction and rotary stem packing, printed pp. 109–110, published in
   `21f05412`)
+  + Ch.17 "Will My Valve Be Too Noisy?" (0 figs, Equation (17-1), 3 refs, 5 reading items,
+  printed pp. 111–113, published in `128ff523`)
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
@@ -266,6 +273,12 @@ instrumentation) then followed.
   TOCs list Ch.2 ("Transducers – II" / "Bộ chuyển đổi – II"), the catalog badge shows
   "Translating · 2 of 8 chapters" (VI: "Đang dịch · 2/8 chương"), and the live sitemap includes all
   8 Ch.2 URL entries.
+- Baumann Ch.17 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation; both
+  live pages contain two equations including numbered (17-1), 8 list items (3 references + 5
+  reading items), 0 figures, 0 CJK / 0 bare ampersands in page content, both live TOCs list Ch.17
+  ("Will My Valve Be Too Noisy?" / "Van của tôi có quá ồn không?"), the catalog badge shows
+  "Translating · 17 of 32 chapters" (VI: "Đang dịch · 17/32 chương"), and the live sitemap
+  includes all 8 Ch.17 URL entries.
 
 ---
 
@@ -324,7 +337,8 @@ instrumentation) then followed.
   → `a009ad42` (Baumann ch10) → `630b7742` (Baumann ch11) → `e356728c` (Baumann ch12)
   → `6721deb7` (Baumann ch13) → `251d3805` (Baumann ch14)
   → `a387b13a` (Baumann ch15) → `21f05412` (Baumann ch16)
-  → `fed6e480` (PPIC ch2) → `e74d218a` (IPC ch2, **live chapter HEAD**).
+  → `fed6e480` (PPIC ch2) → `e74d218a` (IPC ch2) → `128ff523` (Baumann ch17,
+  **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -359,7 +373,9 @@ instrumentation) then followed.
    ~~Ch.15 "Cavitation"~~ — **done** (`a387b13a`, 5 vector figs, material-lifetime table,
    cavitation-noise equations, 2 refs, 2 reading items);
    ~~Ch.16 "Concern for the Environment"~~ — **done** (`21f05412`, 0 figs, fugitive emissions,
-   gasket/bonnet sealing, extended bonnets, packing friction); remaining Ch.17–32.
+   gasket/bonnet sealing, extended bonnets, packing friction);
+   ~~Ch.17 "Will My Valve Be Too Noisy?"~~ — **done** (`128ff523`, 0 figs, Eq. 17-1, 3 refs,
+   5 reading items); remaining Ch.18–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
    `89e84b27` (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 + 3 + 5 figs, broken 0); Ch.13 added 10 data
@@ -373,6 +389,17 @@ instrumentation) then followed.
    — **done** in `fed6e480` (7 vector figs, 76 refs, printed pp. 13–38, broken 0); remaining Ch.3–11.
 
 ### Resume notes
+- Baumann Ch.17 (3 printed pages / PDF pp. 114–116, no figures or tables) was written from scratch
+  as one module `cvp_ch17.py` by a single agent: the three noise sources, plug resonance with the
+  fₙ relation, the OSHA 90 dBA criterion and 130/110 dBA pipe-damage thresholds, the EC worked
+  examples (16,875 and 810), ISA-75.17 versus IEC 60534-8-3, and Equation (17-1) read from the
+  printed page (`M_d = 0.20 P₁ Cᵥ F_L / (D² P₂ Cᵢ / 343)`) because the OCR dump garbles it.
+  The three references and five reading items are transcribed verbatim, except "Measurement &
+  Control" → "Measurement and Control" to satisfy the 0-bare-ampersand gate. A QA review corrected
+  one VI phrase ("áp suất âm" → "mức áp suất âm thanh"). QA: 0 CJK, 0 bare ampersands, 0 Spanish,
+  2 equations, 0 figures, 3 refs + 5 reading items per page, `check_links.py` broken 0, sitemap
+  1,096 URLs / 1,081 with siblings, 8 entries for Ch.17. Published in `128ff523`; live EN/VI 200
+  after Pages propagation, TOC row and 17/32 badge verified.
 - IPC Ch.2 (61 PDF pages / printed pp. 63–123, 58 vector figures, Table 2.1, 20 numbered
   equations, 12 worked examples, 11 exercise questions) was split across nine parallel writers:
   three figure suppliers (`ipcfig2_a/b/c.py`, 20/20/18 figures) working from `work/ipc2_pages/p075…

@@ -6920,3 +6920,29 @@ registration when resumed.
   and live sitemap has 2 `<loc>` plus 6 hreflang alternates.
 - IPC `ipc` is now **2/8** 🟠. Next: Baumann Ch.17 → PPIC Ch.3 → IPC Ch.3; Book 11/12
   registration only on confirmation.
+
+## Session 118 — Baumann Chapter 17 published
+
+- Chapter: *Will My Valve Be Too Noisy?*, printed pp. 111–113 (PDF pp. 114–116),
+  `work/cvp_raw.txt`. Bilingual EN/VI slug `ch17-will-my-valve-be-too-noisy`.
+- Three source pages, no figures and no tables. `build/cvp_ch17.py` translates the three noise
+  sources, plug resonance (fₙ relation), the OSHA 90 dBA criterion and the 130/110 dBA pipe-damage
+  thresholds, the energy-coefficient examples (EC = 16,875 and 810), ISA-75.17 versus IEC
+  60534-8-3, the outlet Mach-number limit and the closing promise of the ABC method. Equation
+  (17-1) was read from the printed page (the OCR dump garbles it):
+  `M_d = 0.20 P₁ Cᵥ F_L / (D² P₂ Cᵢ / 343)`. The three references and five reading items are
+  transcribed verbatim except "Measurement & Control" → "Measurement and Control" for the
+  0-bare-ampersand gate; the missing source quirk "the from of" was not invented. QA review
+  corrected one VI phrase ("áp suất âm" → "mức áp suất âm thanh").
+- QA: 0 CJK, 0 content bare ampersands (2 shell font-URL ones), 0 Spanish, 2 equations (one
+  numbered 17-1), 0 figures, 3 references + 5 reading items per page, `check_links.py` broken 0;
+  sitemap **1,096 URLs** (1,081 with language siblings), 8 Ch.17 entries; catalog badge 17/32 in
+  both languages.
+- Registration: `cvp_common.SLUGS[17]`, `reader_book.py done[17]`, `books_site.TRANSLATED[
+  "control valve primer"]` → `("progress", 32, 17)`. Pushed `128ff523` ("Add Baumann chapter 17:
+  Will My Valve Be Too Noisy? (EN/VI)"). Live EN/VI deep URLs initially 404, then returned 200
+  after Pages propagation; live TOC lists Ch.17 ("Will My Valve Be Too Noisy?" / "Van của tôi có
+  quá ồn không?"), catalog badge shows "Translating · 17 of 32 chapters" (VI: "Đang dịch · 17/32
+  chương"), and live sitemap has 2 `<loc>` plus 6 hreflang alternates.
+- Baumann `cvp` is now **17/32** 🟠. Next: PPIC Ch.3 → IPC Ch.3 → Baumann Ch.18; Book 11/12
+  registration only on confirmation.

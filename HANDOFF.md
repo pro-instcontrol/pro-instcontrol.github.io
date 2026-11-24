@@ -2,20 +2,20 @@
 
 **State now (2026-11-23):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **16/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **2/11**, IPC `ipc` **2/8**.
-**Live chapter HEAD `e74d218a`** (IPC Ch.2 "Transducers – II", 58 vector figures, Table 2.1,
-20 numbered equations, 12 worked examples, 11 exercise questions); live sitemap 1,094 URLs,
-catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 16/32, PPIC badge 2/11,
-IPC badge 2/8, IPC Ch.2 EN/VI deep URLs 200, sitemap 8 Ch.2 entries, `check_links.py` broken 0.
-Full tables in `report.md`.
+Baumann `cvp` **17/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **2/11**, IPC `ipc` **2/8**.
+**Live chapter HEAD `128ff523`** (Baumann Ch.17 "Will My Valve Be Too Noisy?", 3 printed pages,
+no figures, Equation (17-1), 3 references and 5 reading items); live sitemap 1,096 URLs,
+catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 17/32, PPIC badge 2/11,
+IPC badge 2/8, IPC Ch.2 and Baumann Ch.17 EN/VI deep URLs 200, sitemap 8 entries per new chapter,
+`check_links.py` broken 0. Full tables in `report.md`.
 
-**Next unit:** none queued for Emerson, IIH or IPC Ch.2. The standing remaining order is
-Baumann `cvp` Ch.17 → PPIC `ppic` Ch.3 → IPC `ipc` Ch.3, with Book 11/12 registration only on
-confirmation.
+**Next unit:** none queued for Emerson, IIH, IPC Ch.2 or Baumann Ch.17. The standing remaining
+order is Baumann `cvp` Ch.18 → PPIC `ppic` Ch.3 → IPC `ipc` Ch.3, with Book 11/12 registration
+only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 16/32 (Ch.2–16 done) and PPIC at 2/11 (Ch.1–2 done). Also two books located but not registered
+complete at 8/8 (Ch.2–8 done), Baumann at 17/32 (Ch.2–17 done) and PPIC at 2/11 (Ch.1–2 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
@@ -74,7 +74,9 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
    printed = PDF − 14.
 2. ~~Baumann `cvp` ch3–16~~ — **done** (`e71e3415`, `d487a9cb`, `68cf7511`, `f5ceb53d`, `d3e54069`,
    `7fec110f`, `3ec4148a`, `a009ad42`, `630b7742`, `e356728c`, `6721deb7`, `251d3805`,
-   `a387b13a`, `21f05412`); remaining ch17–32, source `work/cvp_raw.txt`. Short chapters
+   `a387b13a`, `21f05412`); ~~Ch.17 "Will My Valve Be Too Noisy?"~~ — **done** in `128ff523`
+   (0 figs, Eq. 17-1, 3 refs, 5 reading items, 3 printed pages); remaining ch18–32, source
+   `work/cvp_raw.txt`. Short chapters
    (≤6 pages, ≤2 figures) go to one agent for both figure and prose modules; mid-size chapters with
    3–4 charts split into figure supplier + prose with a fixed `fig_fNN` contract, both working from
    pypdfium2 page renders. Long data-heavy chapters can use one figure supplier plus several
