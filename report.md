@@ -7,9 +7,12 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-23):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `128ff523`**
-(Baumann Ch.17 "Will My Valve Be Too Noisy?": 3 printed pages, no figures, Equation (17-1),
-3 references and 5 reading items) — the prior HEAD `e74d218a` was IPC Ch.2 "Transducers – II"
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `d8159c1c`**
+(PPIC Ch.3 "Study of Control Strategy of the Converter in Solar Photovoltaic Power System":
+10 printed pages, 8 vector figures, 13 references, no tables or numbered equations) — the prior
+HEAD `128ff523` was Baumann Ch.17 "Will My Valve Be Too Noisy?" (3 printed pages, no figures,
+Equation (17-1), 3 references and 5 reading items), and before that `e74d218a` was IPC Ch.2
+"Transducers – II"
 (58 vector figures, 20 numbered equations, Table 2.1, 12 worked examples and 11 exercise
 questions, printed pp. 63–123), and before that `fed6e480` was PPIC Ch.2
 "Advanced Measuring (Instrumentation) Methods for Nuclear Installations: A Review", published after
@@ -53,7 +56,9 @@ and bonnet sealing, extended bonnets and packing friction) followed, then Bauman
 and 5 reading items). PPIC Ch.2 "Advanced Measuring
 (Instrumentation) Methods for Nuclear Installations: A Review" (printed pp. 13–38: 7 vector
 figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards and accident
-instrumentation) then followed.
+  instrumentation) then followed, then PPIC Ch.3 "Study of Control Strategy of the Converter in
+  Solar Photovoltaic Power System" (printed pp. 39–48: 8 vector figures, 13 references, TI
+  TMS320F28035 experiments, MATLAB/Simulink and SPWM/LCL-filter waveforms).
 
 ---
 
@@ -79,7 +84,7 @@ instrumentation) then followed.
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **17/32** 🟠 | 29 (ch1–6, ch9–11, ch13, ch15; ch17 has no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **2/11** 🟠 | 12 (ch1–2) |
+| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **3/11** 🟠 | 20 (ch1–3: 12 + 8) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **2/8** 🟠 | 109 (ch1–2: 51 + 58) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
@@ -154,6 +159,8 @@ instrumentation) then followed.
 - PPIC Ch.1 "Catalytic Reduction of Dissolved Oxygen" (5 figs, 4 tables)
   + Ch.2 "Advanced Measuring (Instrumentation) Methods for Nuclear Installations: A Review"
   (7 figs, 76 refs, no tables, printed pp. 13–38, published in `fed6e480`)
+  + Ch.3 "Study of Control Strategy of the Converter in Solar Photovoltaic Power System"
+  (8 vector figs, 13 refs, no tables/equations, printed pp. 39–48)
 - IPC Ch.1 "Transducers – I" (51 figs, 7 tables, printed pp. 1–62)
   + Ch.2 "Transducers – II" (58 vector figs, Table 2.1, 20 numbered equations, 12 worked
   examples, 11 exercise questions, PDF pp. 75–135 / printed pp. 63–123, published in `e74d218a`)
@@ -279,6 +286,14 @@ instrumentation) then followed.
   ("Will My Valve Be Too Noisy?" / "Van của tôi có quá ồn không?"), the catalog badge shows
   "Translating · 17 of 32 chapters" (VI: "Đang dịch · 17/32 chương"), and the live sitemap
   includes all 8 Ch.17 URL entries.
+- PPIC Ch.3 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation; both live
+  pages contain 8 XML-valid inline SVGs with 8 unique `fig-N` ids and localized captions
+  (`Figure 3.x` / `Hình 3.x`), 13 reference items, 0 CJK / 0 bare ampersands in page content,
+  0 off-canvas / 0 overlapping figure labels, both live TOCs list Ch.3 ("Study of Control Strategy
+  of the Converter in Solar Photovoltaic Power System" / "Nghiên cứu chiến lược điều khiển bộ
+  chuyển đổi trong hệ thống điện mặt trời quang điện"), the catalog badge shows "Translating ·
+  3 of 11 chapters" (VI: "Đang dịch · 3/11 chương"), and the live sitemap includes all 8 Ch.3 URL
+  entries.
 
 ---
 
@@ -337,8 +352,8 @@ instrumentation) then followed.
   → `a009ad42` (Baumann ch10) → `630b7742` (Baumann ch11) → `e356728c` (Baumann ch12)
   → `6721deb7` (Baumann ch13) → `251d3805` (Baumann ch14)
   → `a387b13a` (Baumann ch15) → `21f05412` (Baumann ch16)
-  → `fed6e480` (PPIC ch2) → `e74d218a` (IPC ch2) → `128ff523` (Baumann ch17,
-  **live chapter HEAD**).
+  → `fed6e480` (PPIC ch2) → `e74d218a` (IPC ch2) → `128ff523` (Baumann ch17)
+  → `d8159c1c` (PPIC ch3, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -386,9 +401,23 @@ instrumentation) then followed.
 6. **Register candidate Book 12** — *A Guide to the Automation Body of Knowledge*, 2nd ed.
    (511 pp, 34 MB) — located and surveyed, not registered.
 7. ~~Book 9 `ppic` Ch.2 "Advanced Measuring (Instrumentation) Methods for Nuclear Installations"~~
-   — **done** in `fed6e480` (7 vector figs, 76 refs, printed pp. 13–38, broken 0); remaining Ch.3–11.
+   — **done** in `fed6e480` (7 vector figs, 76 refs, printed pp. 13–38, broken 0);
+   ~~Ch.3 "Study of Control Strategy of the Converter in Solar Photovoltaic Power System"~~ —
+   **done** in `d8159c1c` (8 vector figs, 13 refs, printed pp. 39–48, broken 0); remaining Ch.4–11.
 
 ### Resume notes
+- PPIC Ch.3 (10 PDF pages / printed pp. 39–48, 8 vector figures, 13 references) was split across
+  four parallel writers: `ppicfig3.py` redrew the PV block diagram, Simulink model, control
+  subsystem, SPWM pulse trains, stacked simulation waveforms, TMS320F28035 control card, four
+  complementary gate pulses with dead time and the four-channel oscilloscope traces;
+  `ppic_ch03a/b/c.py` translated Abstract/Introduction/Structure, Simulation Model, and
+  Experiments/Conclusions/References respectively. `ppic_ch03.py` assembled the three streams with
+  a bilingual glossary and source-note box. The figure writer's temporary path mismatch was fixed
+  by creating zero-padded aliases of the pre-rendered page images. QA: 8 XML-valid SVGs per page,
+  8 unique `fig-N` ids, 8/8 localized captions per page, 13 reference items, 0 CJK, 0 content bare
+  ampersands, 0 off-canvas / 0 overlapping figure labels, `check_links.py` broken 0, sitemap
+  1,098 URLs / 1,083 with siblings, 8 entries for Ch.3. Published in `d8159c1c`; live EN/VI 200
+  after Pages propagation, TOC row and 3/11 badge verified.
 - Baumann Ch.17 (3 printed pages / PDF pp. 114–116, no figures or tables) was written from scratch
   as one module `cvp_ch17.py` by a single agent: the three noise sources, plug resonance with the
   fₙ relation, the OSHA 90 dBA criterion and 130/110 dBA pipe-damage thresholds, the EC worked

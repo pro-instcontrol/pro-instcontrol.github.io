@@ -2,20 +2,20 @@
 
 **State now (2026-11-23):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **17/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **2/11**, IPC `ipc` **2/8**.
-**Live chapter HEAD `128ff523`** (Baumann Ch.17 "Will My Valve Be Too Noisy?", 3 printed pages,
-no figures, Equation (17-1), 3 references and 5 reading items); live sitemap 1,096 URLs,
-catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 17/32, PPIC badge 2/11,
-IPC badge 2/8, IPC Ch.2 and Baumann Ch.17 EN/VI deep URLs 200, sitemap 8 entries per new chapter,
-`check_links.py` broken 0. Full tables in `report.md`.
+Baumann `cvp` **17/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **3/11**, IPC `ipc` **2/8**.
+**Live chapter HEAD `d8159c1c`** (PPIC Ch.3 "Study of Control Strategy of the Converter in Solar
+Photovoltaic Power System", 10 printed pages, 8 vector figures, 13 references); live sitemap
+1,098 URLs, catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 17/32, PPIC badge 3/11,
+IPC badge 2/8, IPC Ch.2, Baumann Ch.17 and PPIC Ch.3 EN/VI deep URLs 200, sitemap 8 entries per
+new chapter, `check_links.py` broken 0. Full tables in `report.md`.
 
-**Next unit:** none queued for Emerson, IIH, IPC Ch.2 or Baumann Ch.17. The standing remaining
-order is Baumann `cvp` Ch.18 → PPIC `ppic` Ch.3 → IPC `ipc` Ch.3, with Book 11/12 registration
-only on confirmation.
+**Next unit:** none queued for Emerson, IIH, IPC Ch.2, Baumann Ch.17 or PPIC Ch.3. The standing
+remaining order is IPC `ipc` Ch.3 → Baumann `cvp` Ch.18 → PPIC `ppic` Ch.4, with Book 11/12
+registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 17/32 (Ch.2–17 done) and PPIC at 2/11 (Ch.1–2 done). Also two books located but not registered
+complete at 8/8 (Ch.2–8 done), Baumann at 17/32 (Ch.2–17 done) and PPIC at 3/11 (Ch.1–3 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
@@ -102,7 +102,9 @@ sitemap has all 8 Ch.3 URL entries. Visual fixes from the prior session (figs 3.
    note markup helper and makes both glossary boxes render as the English source-note text.
    Name that function `source_notes(lang)` instead; fixed in Ch.3 and Ch.4.
 4. ~~Book 9 `ppic` ch2~~ — **published** in `fed6e480` (7 vector figs, 76 refs, printed pp. 13–38,
-   26 source pages, broken 0). Remaining ch3–11; source `work/ppic_raw.txt`; printed = PDF − 16.
+   26 source pages, broken 0). ~~Ch.3 "Study of Control Strategy of the Converter in Solar
+   Photovoltaic Power System"~~ — **published** in `d8159c1c` (8 vector figs, 13 refs, 10 source
+   pages, broken 0). Remaining ch4–11; source `work/ppic_raw.txt`; printed = PDF − 16.
 5. ~~Book 10 `ipc` ch2 "Transducers – II"~~ — **published** in `e74d218a` (58 vector figs,
    Table 2.1, 20 numbered equations, 12 worked examples, 11 exercises, 61 source pages, broken 0).
    Nine parallel writers: `ipcfig2_a/b/c.py` (20/20/18 figs) + `ipc_ch02_a…f.py` through a shared

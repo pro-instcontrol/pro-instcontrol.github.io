@@ -6946,3 +6946,34 @@ registration when resumed.
   chương"), and live sitemap has 2 `<loc>` plus 6 hreflang alternates.
 - Baumann `cvp` is now **17/32** 🟠. Next: PPIC Ch.3 → IPC Ch.3 → Baumann Ch.18; Book 11/12
   registration only on confirmation.
+
+## Session 119 — PPIC Chapter 3 published
+
+- Chapter: *Study of Control Strategy of the Converter in Solar Photovoltaic Power System* by Jin
+  Liu and Yigong Zhang, printed pp. 39–48 (PDF pp. 55–64), `work/ppic_raw.txt`. Bilingual EN/VI
+  slug `ch03-study-of-control-strategy-of-the-converter`.
+- Ten source pages, eight numbered figures, 13 references, no tables and no numbered equations.
+  Four parallel writers produced `build/ppicfig3.py` (PV block diagram, Simulink model, control
+  subsystem, SPWM pulses, stacked simulation waveforms, TMS320F28035 control card, complementary
+  gate pulses with dead time, four-channel oscilloscope traces) and `build/ppic_ch03a/b/c.py`
+  (Abstract/Introduction/Structure, Simulation Model, Experiments/Conclusions/References).
+  `build/ppic_ch03.py` assembled the three streams with a bilingual glossary and source-note box.
+- A path mismatch in the figure brief (zero-padded image names) was fixed by creating aliases of
+  the pre-rendered pages. The first QA run reported 0/8 VI captions because the checker tested
+  `"/vi/" in path` against a path starting `vi/`; the checker was corrected, and the generated
+  captions were confirmed correct. Source quirks retained in EN include «is consisted of»,
+  «voltage should great than» and the duplicate references 3 and 9.
+- QA: 8 XML-valid inline SVGs per page, 8 unique `fig-N` ids, 8/8 localized captions per page,
+  13 reference items per page, 0 CJK, 0 content bare ampersands, 0 off-canvas/overlapping figure
+  labels, `check_links.py` broken 0; sitemap **1,098 URLs** (1,083 with language siblings), 8
+  Ch.3 entries; catalog badge 3/11 in both languages.
+- Registration: `ppic_common.SLUGS[3]`, `reader_book.py done[3]`, `books_site.TRANSLATED[
+  "handbook on power plant instrumentation and control"]` → `("progress", 11, 3)`. Pushed
+  `d8159c1c` ("Add PPIC chapter 3: solar PV converter control (EN/VI, 8 vector figures)"). Live
+  EN/VI deep URLs initially 404, then returned 200 after Pages propagation; live TOC lists Ch.3
+  ("Study of Control Strategy of the Converter in Solar Photovoltaic Power System" / "Nghiên cứu
+  chiến lược điều khiển bộ chuyển đổi trong hệ thống điện mặt trời quang điện"), catalog badge
+  shows "Translating · 3 of 11 chapters" (VI: "Đang dịch · 3/11 chương"), and live sitemap has
+  2 `<loc>` plus 6 hreflang alternates.
+- PPIC `ppic` is now **3/11** 🟠. Next: IPC Ch.3 → Baumann Ch.18 → PPIC Ch.4; Book 11/12
+  registration only on confirmation.
