@@ -7,8 +7,8 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-23):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `d3e54069`**
-(Baumann Ch.7, published after the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `7fec110f`**
+(Baumann Ch.8, published after the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
 Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
 the 42-page Ch.13 with 10 data tables / 897 rows, Ch.14 "Pipe Data" with 16 data tables / 521 rows,
 and the final 31-page Ch.15 "Conversions and Equivalents" with 19 data tables / 1,108 rows, Index
@@ -23,7 +23,9 @@ figures, 7 data tables, equations 5-1–5-18, 8 references) was then published, 
 site-wide terminology pass: valve *seat* = đế van / bệ van / mặt tựa của van, *cavitation* = xâm
 thực, *flashing* = hóa hơi. Baumann Ch.6 "High-Recovery Valves" (printed pp. 47–50: 2 vector
 figures, Table 6-1A/B, the cavitation-noise relation) followed, then Ch.7 "Sizing and Selection—
-Let the Computer Do It All!" (no figures, Table 7-1 vendor list, valve-gain footnote).
+Let the Computer Do It All!" (no figures, Table 7-1 vendor list, valve-gain footnote). Ch.8
+"What About Fail-Safe?" (2 pages, no figures, the 75–80% footnote and a 4-level severity list)
+followed.
 
 ---
 
@@ -47,7 +49,7 @@ Let the Computer Do It All!" (no figures, Table 7-1 vendor list, valve-gain foot
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **7/32** 🟠 | 11 (ch1–6) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **8/32** 🟠 | 11 (ch1–6) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
@@ -64,6 +66,7 @@ Let the Computer Do It All!" (no figures, Table 7-1 vendor list, valve-gain foot
   + Ch.6 "High-Recovery Valves" (2 figs, Table 6-1A/B, printed pp. 47–50, published in `f5ceb53d`)
   + Ch.7 "Sizing and Selection—Let the Computer Do It All!" (0 figs, Table 7-1, printed pp. 51–54,
   published in `d3e54069`)
+  + Ch.8 "What About Fail-Safe?" (0 figs, 75–80% footnote, printed pp. 55–56, published in `7fec110f`)
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
@@ -164,6 +167,9 @@ Let the Computer Do It All!" (no figures, Table 7-1 vendor list, valve-gain foot
 - Baumann Ch.7 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.7, catalog
   badge shows "Translating · 7 of 32 chapters" (VI: "Đang dịch · 7/32 chương"), live sitemap
   includes all 8 Ch.7 URL entries.
+- Baumann Ch.8 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.8, catalog
+  badge shows "Translating · 8 of 32 chapters" (VI: "Đang dịch · 8/32 chương"), live sitemap
+  includes all 8 Ch.8 URL entries.
 
 ---
 
@@ -217,8 +223,8 @@ Let the Computer Do It All!" (no figures, Table 7-1 vendor list, valve-gain foot
   (Emerson ch13)   → `67f84ff5` (Emerson ch14) → `89e84b27` (Emerson ch15) → `399e0cbb` (IIH ch4)
   → `db6c38fb` (IIH ch5) → `dfb266f0` (IIH ch6) → `675a28a7` (IIH ch7)
   → `905dd942` (IIH ch8, Book 8 complete) → `68cf7511` (Baumann ch5 + site-wide seat/cavitation/
-  flashing terminology pass) → `f5ceb53d` (Baumann ch6) → `d3e54069` (Baumann ch7,
-  **live chapter HEAD**).
+  flashing terminology pass) → `f5ceb53d` (Baumann ch6) → `d3e54069` (Baumann ch7)
+  → `7fec110f` (Baumann ch8, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -235,7 +241,9 @@ Let the Computer Do It All!" (no figures, Table 7-1 vendor list, valve-gain foot
    ~~Ch.5 "Valve Sizing Made Easy"~~ — **done** (`68cf7511`, 2 figs, 7 tables, 18 equations);
    ~~Ch.6 "High-Recovery Valves"~~ — **done** (`f5ceb53d`, 2 figs, Table 6-1A/B);
    ~~Ch.7 "Sizing and Selection—Let the Computer Do It All!"~~ — **done** (`d3e54069`, 0 figs,
-   Table 7-1); remaining Ch.8–32.
+   Table 7-1);
+   ~~Ch.8 "What About Fail-Safe?"~~ — **done** (`7fec110f`, 0 figs, footnote + severity list);
+   remaining Ch.9–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
    `89e84b27` (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 + 3 + 5 figs, broken 0); Ch.13 added 10 data
@@ -248,6 +256,10 @@ Let the Computer Do It All!" (no figures, Table 7-1 vendor list, valve-gain foot
 7. Book 9 `ppic` Chapters 2–11 after the user's named queues.
 
 ### Resume notes
+- Baumann Ch.8 (2 PDF pages, no figures/tables, one 75–80% footnote, one 4-item severity list)
+  was written by one agent as `cvp_ch08.py`; editorial h2 sections were added because the source
+  has no subheadings. Published in `7fec110f`; `check_links.py` broken 0, sitemap 1,074 URLs /
+  1,059 with siblings, 8 entries for Ch.8.
 - Baumann Ch.7 (4 PDF pages, no figures, Table 7-1 with 7 vendor entries, one valve-gain footnote)
   was written by one agent as a single module (`cvp_ch07.py`), following the short-chapter recipe.
   Published in `d3e54069`; `check_links.py` broken 0, sitemap 1,072 URLs / 1,057 with siblings,

@@ -6605,3 +6605,24 @@ registration when resumed.
   Sizing and Selection - Let the Computer Do It All (EN/VI, vendor table)").
 - Baumann `cvp` is now **7/32** 🟠. Next: Baumann Ch.8 → PPIC Ch.2 → IPC Ch.2; Book 11/12
   registration only on confirmation.
+
+## Session 107 — Baumann Chapter 8 published
+
+- Book 7 `cvp` Ch.8 "What About Fail-Safe?": 2 source pages (PDF pp. 61–62, printed 55–56), no
+  figures, tables or references. One agent produced `build/cvp_ch08.py` with 7 h2 + 1 h3,
+  11 paragraphs, 1 note block for the 75–80% footnote, 1 source-note block, and one 4-item `ol`
+  (product yield → process shutdown → equipment damage → injury/loss of life), identical block
+  order in both languages. Editorial h2 sections were added because the source has none.
+- Full bilingual coverage: spring-diaphragm fail-safe action, cylinder/electric actuator provisions,
+  fail-close vs fail-open selection with the natural-gas, kettle/exothermic-reaction, steam-tracing
+  and motor-bearing examples, failure self-check questions, relief-valve capacity and trapped-liquid
+  thermal expansion, fail-in-place with lockup valves/solenoids, flow direction to guard against stem
+  failure (and the flow-to-close instability caveat with Chapter 10 cross-reference).
+- QA: 0 CJK, 0 bare ampersands in content, 0 named entities, 0 terminology violations; footnote
+  percentages preserved. `check_links.py` broken 0; sitemap **1,074 URLs** (1,059 with language
+  siblings), 8 Ch.8 entries; catalog badge 8/32 in both languages.
+- Registration: `cvp_common.SLUGS[8]`, `reader_book.py done[8]`, `books_site.TRANSLATED[
+  "control valve primer"]` → `("progress", 32, 8)`. Pushed `7fec110f` ("Publish Baumann Ch.8:
+  What About Fail-Safe? (EN/VI, footnote and severity list)").
+- Baumann `cvp` is now **8/32** 🟠. Next: Baumann Ch.9 → PPIC Ch.2 → IPC Ch.2; Book 11/12
+  registration only on confirmation.
