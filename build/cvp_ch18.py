@@ -3,7 +3,7 @@
 
 Source: Baumann, *Control Valve Primer*, 5th ed. (ISA / Wiley), printed pp.
 115-120 (PDF pp. 117-122). Six printed pages, one vector figure, one gas-constant
-table, six numbered equations, two references and three additional-reading
+table, six numbered equations, two references and four additional-reading
 items. The OCR text layer garbles every equation; the printed forms were read
 from pypdfium2 renders of the six source pages.
 """
@@ -384,6 +384,6 @@ def body_en():
                "standards ISA-75.17 and ABC, the disclaimer, sections A–B–C with "
                "the gas-constant table, the modifier section and the 8-inch ball "
                "valve example, the three sound-reducing trim types in Part 2, "
-               "Figure 18-1, two references and three additional-reading items, "
+               "Figure 18-1, two references and four additional-reading items, "
                "all of which are retained."))
     return "".join(b)

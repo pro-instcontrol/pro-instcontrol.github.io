@@ -7,10 +7,12 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-24):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `d42d37e1`**
-(Book 10 IPC Ch.3 "Transducers – III": 80 PDF pages / printed pp. 124–203, 72 vector figures,
-45 numbered equations, 14 tables, no references) — the prior HEAD `d8159c1c` was PPIC Ch.3
-"Study of Control Strategy of the Converter in Solar Photovoltaic Power System":
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `2df01e67`**
+(Book 7 Baumann Ch.18 "The ABC Method for Gases": 6 PDF pages / printed pp. 115–120, 1 vector
+figure, 1 gas-constant table, 6 numbered equations, 2 references and 3 reading items) — the prior
+HEAD `d42d37e1` was Book 10 IPC Ch.3 "Transducers – III": 80 PDF pages / printed pp. 124–203, 72
+vector figures, 45 numbered equations, 14 tables, no references — and before that `d8159c1c` was
+PPIC Ch.3 "Study of Control Strategy of the Converter in Solar Photovoltaic Power System":
 10 printed pages, 8 vector figures, 13 references, no tables or numbered equations — and before
 that `128ff523` was Baumann Ch.17 "Will My Valve Be Too Noisy?" (3 printed pages, no figures,
 Equation (17-1), 3 references and 5 reading items), and before that `e74d218a` was IPC Ch.2
@@ -84,7 +86,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **17/32** 🟠 | 29 (ch1–6, ch9–11, ch13, ch15; ch17 has no figures) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **18/32** 🟠 | 30 (ch1–6, ch9–11, ch13, ch15, ch18; ch17 has no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **3/11** 🟠 | 20 (ch1–3: 12 + 8) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **3/8** 🟠 | 181 (ch1–3: 51 + 58 + 72) |
@@ -123,6 +125,8 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   `21f05412`)
   + Ch.17 "Will My Valve Be Too Noisy?" (0 figs, Equation (17-1), 3 refs, 5 reading items,
   printed pp. 111–113, published in `128ff523`)
+  + Ch.18 "The ABC Method for Gases" (1 vector figure, Table 18-1, Equations (18-1)–(18-6),
+  2 refs, 3 reading items, printed pp. 115–120, published in `2df01e67`)
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
@@ -291,6 +295,13 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   ("Will My Valve Be Too Noisy?" / "Van của tôi có quá ồn không?"), the catalog badge shows
   "Translating · 17 of 32 chapters" (VI: "Đang dịch · 17/32 chương"), and the live sitemap
   includes all 8 Ch.17 URL entries.
+- Baumann Ch.18 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation (EN
+  four checks, VI one); both live pages contain 1 XML-valid inline SVG with a localized caption,
+  Equations (18-1)–(18-6), Table 18-1 and 6 list items (2 references + 3 reading items plus the
+  table note), 0 CJK / 0 bare ampersands / 0 Spanish hits in page content, 0 off-canvas /
+  0 overlapping figure labels, both live TOCs list Ch.18 ("The ABC Method for Gases" /
+  "Phương pháp ABC cho chất khí"), the catalog badge shows "Translating · 18 of 32 chapters"
+  (VI: "Đang dịch · 18/32 chương"), and the live sitemap includes all 8 Ch.18 URL entries.
 - PPIC Ch.3 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation; both live
   pages contain 8 XML-valid inline SVGs with 8 unique `fig-N` ids and localized captions
   (`Figure 3.x` / `Hình 3.x`), 13 reference items, 0 CJK / 0 bare ampersands in page content,
