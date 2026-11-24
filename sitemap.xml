@@ -470,6 +470,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch01-transducers-i/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch02-transducers-ii/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch02-transducers-ii/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-and-process-control/ch02-transducers-ii/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch02-transducers-ii/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/isa-5-1-instrumentation-symbols/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/isa-5-1-instrumentation-symbols/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/isa-5-1-instrumentation-symbols/"/>
@@ -3765,6 +3771,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch01-transducers-i/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-and-process-control/ch01-transducers-i/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch01-transducers-i/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/instrumentation-and-process-control/ch02-transducers-ii/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch02-transducers-ii/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-and-process-control/ch02-transducers-ii/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch02-transducers-ii/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/isa-5-1-instrumentation-symbols/</loc>
