@@ -6687,3 +6687,31 @@ registration when resumed.
   both language titles and the live sitemap includes 8 Ch.10 entries.
 - Baumann `cvp` is now **10/32** 🟠. Next: Baumann Ch.11 → PPIC Ch.2 → IPC Ch.2; Book 11/12
   registration only on confirmation.
+
+## Session 110 — Baumann Chapter 11 published
+
+- Chapter: *The Mystery of Line Pressure-Produced Valve Stem Forces, or Selecting the Correct
+  Actuator Size*, printed pp. 81–90 (PDF pp. 85–94), `work/cvp_raw.txt`. Bilingual EN/VI slug
+  `ch11-the-mystery-of-line-pressure-produced-valve-stem-forces`.
+- Drafts found untracked at resume: `build/cvpfig11.py` (3 figures), `build/cvp_ch11a.py`
+  ("The valve does not close properly": P1/shutoff-pressure specification, two closure mechanisms,
+  hot-oil worked example, piston/spring-diaphragm sizing, positioner output span fallacy, three
+  remedies), `build/cvp_ch11b.py` ("The valve is unstable": stiffness factor Kn, worked
+  angle-valve and butterfly-valve examples, Equation 11-1, references, additional reading, source
+  notes). Added the missing `build/cvp_ch11.py` integration module (bilingual glossary,
+  `PAGES_SRC = 10`, both titles, section concatenation).
+- QA: Figure 11-1 had eight duplicate form labels where the generic per-column labels were
+  overprinted by explicit ones; replaced with one label per column. All three SVGs then XML-valid,
+  label-clean at actual per-element font sizes (0 off-canvas, 0 overlaps) and visually checked as
+  a rendered PNG. Per page: 3 `fig-N` figures with unique ids, 3/3 localized captions, 0 CJK,
+  0 content bare ampersands (only the two pre-existing shell font-URL ones), 0 Spanish. Source
+  notes document the OCR repairs (`P 1`, `2 2 π/4`, `15-inch angle-seating`, `toque`) and the
+  simplified ISA-form redrawing. `check_links.py` broken 0; sitemap **1,080 URLs** (1,065 with
+  language siblings), 8 Ch.11 entries; catalog badge 11/32 in both languages.
+- Registration: `cvp_common.SLUGS[11]`, `reader_book.py done[11]`, `books_site.TRANSLATED[
+  "control valve primer"]` → `("progress", 32, 11)`. Pushed `630b7742` ("Add Baumann chapter 11:
+  line pressure-produced stem forces"). Live EN/VI deep URLs returned 200 after Pages propagation
+  (site stayed at 10/32 for ~1 minute after push), live TOC lists Ch.11 and the live sitemap has
+  all 8 Ch.11 URL entries.
+- Baumann `cvp` is now **11/32** 🟠. Next: Baumann Ch.12 → PPIC Ch.2 → IPC Ch.2; Book 11/12
+  registration only on confirmation.
