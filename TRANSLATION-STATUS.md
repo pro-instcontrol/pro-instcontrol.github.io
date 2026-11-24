@@ -6738,3 +6738,31 @@ registration when resumed.
   propagation (~3 min); live TOC lists Ch.12 and the live sitemap has all 8 Ch.12 URL entries.
 - Baumann `cvp` is now **12/32** 🟠. Next: Baumann Ch.13 → PPIC Ch.2 → IPC Ch.2; Book 11/12
   registration only on confirmation.
+
+## Session 112 — Baumann Chapter 13 published
+
+- Chapter: *How Good Is the Valve I Purchased?*, printed pp. 95–98 (PDF pp. 98–101),
+  `work/cvp_raw.txt`. Bilingual EN/VI slug `ch13-how-good-is-the-valve-i-purchased`.
+- Written from scratch: `build/cvpfig13.py` redraws source Figures 13-1 (closed-loop variability
+  versus log loop time constant, curves A/B/C, ideal line, MANUAL and minimum-variability
+  callouts) and 13-2 (static step response: I/P input, actuator travel and flow across 0.5–10%
+  steps), working from pypdfium2 renders `work/cvp13_p99.png` and `work/cvp13_p100.png`;
+  `build/cvp_ch13.py` carries the bilingual prose, the long installed-gain footnote, two
+  references and three additional-reading items. Source credit to Emerson Process Control kept
+  in both figure captions.
+- Pre-build defects caught and fixed: a `B` variable collision (chart bottom versus curve B) in
+  the figure module; a bare ampersand in the «Pulp & Paper» reference title (escaped to
+  `&amp;`); and a first build that reported "figures 1" because Figure 13-2 had not been inserted
+  into either prose body (both `fig(2, …)` calls added, count then 2).
+- QA: both SVGs XML-valid and label-clean at actual font sizes (0 off-canvas, 0 overlaps), both
+  visually checked as a rendered PNG; per page 2 `fig-N` figures with unique ids, 2/2 localized
+  captions, 0 CJK, 0 content bare ampersands, 0 Spanish, no Vietnamese outside the intentional
+  bilingual headings. `check_links.py` broken 0; sitemap **1,084 URLs** (1,069 with language
+  siblings), 8 Ch.13 entries; catalog badge 13/32 in both languages. Source notes record the
+  OCR hyphenations, the printed «8% / 7%» gain inconsistency and the printed 2.4%/1.4% values.
+- Registration: `cvp_common.SLUGS[13]`, `reader_book.py done[13]`, `books_site.TRANSLATED[
+  "control valve primer"]` → `("progress", 32, 13)`. Pushed `6721deb7` ("Add Baumann chapter 13:
+  How Good Is the Valve I Purchased"). Live EN/VI deep URLs returned 200 after Pages propagation,
+  each with both figures; live TOC lists Ch.13 and the live sitemap has all 8 Ch.13 URL entries.
+- Baumann `cvp` is now **13/32** 🟠. Next: Baumann Ch.14 → PPIC Ch.2 → IPC Ch.2; Book 11/12
+  registration only on confirmation.
