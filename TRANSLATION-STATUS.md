@@ -7004,3 +7004,31 @@ registration when resumed.
   plus 6 hreflang alternates.
 - IPC `ipc` is now **3/8** 🟠. Next: Baumann Ch.18 → PPIC Ch.4 → IPC Ch.4; Book 11/12
   registration only on confirmation.
+
+## Session 121 — Baumann Chapter 18 published
+
+- Chapter: *The ABC Method for Gases*, printed pp. 115–120 (PDF pp. 117–122), `work/cvp_raw.txt`.
+  Bilingual EN/VI slug `ch18-the-abc-method-for-gases`.
+- Six source pages, one vector figure, one gas-constant table, six numbered equations and
+  2 references plus 4 additional-reading items. One writer produced `build/cvp_ch18.py` and
+  `build/cvpfig18.py` from six pypdfium2 renders `work/cvp18_p117…p122.png`.
+- The OCR layer garbles every equation. The printed forms were read from p118–p120:
+  (18-1) `A = 25 log(D) − 10 + 20 log(Cᵥ/D²) dBA`, (18-2) `B = 35 log(P₁) − 35 dBA`,
+  (18-3) `C = 27 + 30 + 30 log(X) + 20 log(F_d) dBA`, (18-4) `A + B + C + G`,
+  (18-5) `A + B + C + ΔF_L − r_w + G plus other modifiers`,
+  (18-6) `ΔF_L = 30 log(actual F_L / 0.7)`. The source quirks «IEC standard 834-8-3» and
+  the modifier wording are kept in the English text; the Vietnamese uses the intended terms.
+  `cvpfig18.py` redraws Figure 18-1 with eight test points and the 30 log(10X) slope note.
+- QA: 1 XML-valid inline SVG with a localized caption, 6 equation numbers (18-1)–(18-6),
+  1 table, 6 list items, 0 CJK / 0 content bare ampersands / 0 Spanish hits, 0 off-canvas /
+  0 overlapping figure labels, `check_links.py` broken 0; sitemap **1,102 URLs** (1,087 with
+  language siblings), 8 Ch.18 entries; catalog badge 18/32 in both languages.
+- Pushed `2df01e67` ("Add Baumann chapter 18: The ABC Method for Gases (EN/VI)"). A
+  post-publish cross-check found the additional-reading count was recorded as 3 instead of 4;
+  `d7c9c22f` corrected both chapter modules' source note, rebuilt both pages and re-ran QA.
+  Live EN/VI deep URLs initially 404, then returned 200 after Pages propagation (EN four
+  checks, VI one); live TOC lists Ch.18 ("The ABC Method for Gases" / "Phương pháp ABC cho
+  chất khí"), catalog badge shows "Translating · 18 of 32 chapters" (VI: "Đang dịch · 18/32
+  chương"), and live sitemap has 2 `<loc>` plus 6 hreflang alternates.
+- Baumann `cvp` is now **18/32** 🟠. Next: PPIC Ch.4 → IPC Ch.4 → Baumann Ch.19; Book 11/12
+  registration only on confirmation.
