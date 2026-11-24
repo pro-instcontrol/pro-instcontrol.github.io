@@ -957,7 +957,10 @@ BOOKS = {
             11: ("Saturated Adaptive Output-Feedback Power-Level Control for Modular High Temperature Gas-Cooled Reactors",
                  "Điều khiển công suất thích ứng bão hòa phản hồi đầu ra cho lò phản ứng làm mát bằng khí nhiệt độ cao dạng module"),
         },
-        "done": {1: "ch01-catalytic-reduction-of-dissolved-oxygen"},
+        "done": {
+            1: "ch01-catalytic-reduction-of-dissolved-oxygen",
+            2: "ch02-advanced-measuring-methods-for-nuclear-installations",
+        },
         "copyright_en": "Original work © 2019 Bibliotex; individual chapters © their authors, Creative Commons.",
         "copyright_vi": "Bản gốc © 2019 Bibliotex; từng chương © tác giả tương ứng, giấy phép Creative Commons.",
         "lede_en": ("An edited volume on power plant instrumentation and control: dissolved-oxygen reduction, advanced nuclear measurement methods, photovoltaic converters, fuzzy fault detection, thorium/uranium fuels, wide-area protection, environmental impact, coal-plant damping, predictive maintenance, digital I&C reliability and reactor power-level control."),

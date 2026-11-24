@@ -28,6 +28,7 @@ BOOK["ppic"] = {
 # that exist, so an in-progress book never ships a broken "next" link.
 SLUGS["ppic"] = {
     1: "ch01-catalytic-reduction-of-dissolved-oxygen",
+    2: "ch02-advanced-measuring-methods-for-nuclear-installations",
 }
 
 # Re-export the shared helpers so chapter modules can `import ppic_common as C`.
