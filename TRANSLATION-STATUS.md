@@ -6582,3 +6582,26 @@ registration when resumed.
   High-Recovery Valves (EN/VI, 2 vector figures, 2 tables)").
 - Baumann `cvp` is now **6/32** 🟠. Next: Baumann Ch.7 → PPIC Ch.2 → IPC Ch.2; Book 11/12
   registration only on confirmation.
+
+## Session 106 — Baumann Chapter 7 published
+
+- Book 7 `cvp` Ch.7 "Sizing and Selection—Let the Computer Do It All!": 4 source pages (PDF pp.
+  58–61, printed 51–54), no figures, one table (Table 7-1, 7 vendor entries with names/addresses
+  kept verbatim) and one numbered footnote on valve gain. One agent produced `build/cvp_ch07.py`
+  with 7 h2 + 1 h3, 9 paragraphs, 1 table, 2 note blocks (footnote + source note) and 2 lists per
+  language, identical block order; no figure module was needed.
+- Full bilingual coverage: the two software approaches and their drawbacks, iterative recalculation,
+  false precision and hand-check advice, selection parameters and the "Company A" remark, installed
+  characteristic and gain dq/ds, the program checklist (ISA/IEC sizing and noise standards, ABC
+  alternative, 85% Cv rule, 5%/10% travel rules), the warning list (choked flow, velocity and
+  0.3 Mach, cavitation/flashing), and the gain ±1 footnote. Source note records OCR hyphenations,
+  the partial-vendor-table framing, and the source's Chapter 14 cross-reference for cavitation
+  even though Chapter 15 treats it.
+- QA: 0 CJK, 0 bare ampersands in content, 0 named entities, 0 terminology violations, 1 vendor
+  table per language. `check_links.py` broken 0; sitemap **1,072 URLs** (1,057 with language
+  siblings), 8 Ch.7 entries; catalog badge 7/32 in both languages.
+- Registration: `cvp_common.SLUGS[7]`, `reader_book.py done[7]`, `books_site.TRANSLATED[
+  "control valve primer"]` → `("progress", 32, 7)`. Pushed `d3e54069` ("Publish Baumann Ch.7:
+  Sizing and Selection - Let the Computer Do It All (EN/VI, vendor table)").
+- Baumann `cvp` is now **7/32** 🟠. Next: Baumann Ch.8 → PPIC Ch.2 → IPC Ch.2; Book 11/12
+  registration only on confirmation.
