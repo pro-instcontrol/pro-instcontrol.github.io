@@ -7,8 +7,8 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-23):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `68cf7511`**
-(Baumann Ch.5, published after the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `f5ceb53d`**
+(Baumann Ch.6, published after the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
 Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
 the 42-page Ch.13 with 10 data tables / 897 rows, Ch.14 "Pipe Data" with 16 data tables / 521 rows,
 and the final 31-page Ch.15 "Conversions and Equivalents" with 19 data tables / 1,108 rows, Index
@@ -21,7 +21,8 @@ Sampling Techniques" (19 vector figures, 13 data tables, PDF pp. 257–302) and 
 **completing Book 8 at 8/8**. Baumann Ch.5 "Valve Sizing Made Easy" (printed pp. 24–46: 2 vector
 figures, 7 data tables, equations 5-1–5-18, 8 references) was then published, together with a
 site-wide terminology pass: valve *seat* = đế van / bệ van / mặt tựa của van, *cavitation* = xâm
-thực, *flashing* = hóa hơi.
+thực, *flashing* = hóa hơi. Baumann Ch.6 "High-Recovery Valves" (printed pp. 47–50: 2 vector
+figures, Table 6-1A/B, the cavitation-noise relation) followed.
 
 ---
 
@@ -45,7 +46,7 @@ thực, *flashing* = hóa hơi.
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **5/32** 🟠 | 9 (ch1–5) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **6/32** 🟠 | 11 (ch1–6) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
@@ -59,6 +60,7 @@ thực, *flashing* = hóa hơi.
   (1 fig, printed pp. 21–23)
   + Ch.5 "Valve Sizing Made Easy" (2 figs, 7 tables, equations 5-1–5-18, printed pp. 24–46,
   published in `68cf7511`)
+  + Ch.6 "High-Recovery Valves" (2 figs, Table 6-1A/B, printed pp. 47–50, published in `f5ceb53d`)
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
@@ -153,6 +155,9 @@ thực, *flashing* = hóa hơi.
   badge shows "Translating · 5 of 32 chapters" (VI: "Đang dịch · 5/32 chương"), live sitemap
   includes all 8 Ch.5 URL entries. Live terminology spot-check: 0 "chỗ ngồi" and 44 "đế van" on
   the Emerson VI Ch.3 page.
+- Baumann Ch.6 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.6, catalog
+  badge shows "Translating · 6 of 32 chapters" (VI: "Đang dịch · 6/32 chương"), live sitemap
+  includes all 8 Ch.6 URL entries.
 
 ---
 
@@ -206,7 +211,7 @@ thực, *flashing* = hóa hơi.
   (Emerson ch13)   → `67f84ff5` (Emerson ch14) → `89e84b27` (Emerson ch15) → `399e0cbb` (IIH ch4)
   → `db6c38fb` (IIH ch5) → `dfb266f0` (IIH ch6) → `675a28a7` (IIH ch7)
   → `905dd942` (IIH ch8, Book 8 complete) → `68cf7511` (Baumann ch5 + site-wide seat/cavitation/
-  flashing terminology pass, **live chapter HEAD**).
+  flashing terminology pass) → `f5ceb53d` (Baumann ch6, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -221,7 +226,8 @@ thực, *flashing* = hóa hơi.
    **Book 8 complete 8/8**.
 3. ~~Baumann `cvp` Ch.3 + Ch.4~~ — **done** (`e71e3415`, `d487a9cb`);
    ~~Ch.5 "Valve Sizing Made Easy"~~ — **done** (`68cf7511`, 2 figs, 7 tables, 18 equations);
-   remaining Ch.6–32.
+   ~~Ch.6 "High-Recovery Valves"~~ — **done** (`f5ceb53d`, 2 figs, Table 6-1A/B);
+   remaining Ch.7–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
    `89e84b27` (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 + 3 + 5 figs, broken 0); Ch.13 added 10 data
@@ -234,6 +240,11 @@ thực, *flashing* = hóa hơi.
 7. Book 9 `ppic` Chapters 2–11 after the user's named queues.
 
 ### Resume notes
+- Baumann Ch.6 (4 PDF pages, 2 vector figures, Table 6-1A/B with 4 rows each, one acoustic
+  relation) was written by one agent as a matched pair (`cvpfig6.py` + `cvp_ch06.py`); source
+  pages were rendered to `work/cvp6_p55.png` / `cvp6_p57.png` so the patent drawing and the
+  sound-level chart could be redrawn from the printed originals. Published in `f5ceb53d`;
+  `check_links.py` broken 0, sitemap 1,070 URLs / 1,055 with siblings, 8 entries for Ch.6.
 - Baumann Ch.5 (23 PDF pages, 2 vector figures, 7 tables / 119 + 11 rows, 18 numbered equations,
   8 references) was split across three parallel section agents (`cvp_ch05a/b/c.py`) against a
   fixed block-parity contract, integrated in `cvp_ch05.py` with a bilingual glossary and a

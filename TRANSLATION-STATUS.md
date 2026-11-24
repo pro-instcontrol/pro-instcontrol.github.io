@@ -6560,3 +6560,25 @@ registration when resumed.
   271 deletions.
 - Baumann `cvp` is now **5/32** 🟠. Next: Baumann Ch.6 → PPIC Ch.2 → IPC Ch.2; Book 11/12
   registration only on confirmation.
+
+## Session 105 — Baumann Chapter 6 published
+
+- Book 7 `cvp` Ch.6 "High-Recovery Valves": 4 source pages (PDF pp. 54–57, printed 47–50), 2 vector
+  figures, Table 6-1 parts A/B (4 rows each), and the cavitation-noise relation
+  `30 log(10 × FL²/fxz) = 3.3 dB`. Source pages were rendered with pypdfium2 to
+  `work/cvp6_p55.png` / `work/cvp6_p57.png` so the agent could redraw the patent drawing and the
+  sound-level chart from the printed originals rather than the OCR text dump.
+- One agent produced the matched modules `build/cvpfig6.py` (`fig_f61`, `fig_f62`) and
+  `build/cvp_ch06.py` with 6 h2 + 1 h3, 12 paragraphs, 1 equation, 2 tables and 2 figure embeds
+  per language, identical block order. The source note records the OCR hyphenations, the
+  schematic redraw of the patent drawing, the unexplained asterisked P2 values in Table 6-1, and
+  the caption's black/red line convention.
+- QA: both SVGs XML-valid with all text inside the viewBox, unique `fig-1`/`fig-2`, 2/2 localized
+  captions per page, 2 tables per page, 0 CJK, 0 named entities, 0 content bare ampersands,
+  0 bad terminology. `check_links.py` broken 0; sitemap **1,070 URLs** (1,055 with language
+  siblings), 8 Ch.6 entries; catalog badge 6/32 in both languages.
+- Registration: `cvp_common.SLUGS[6]`, `reader_book.py done[6]`, `books_site.TRANSLATED[
+  "control valve primer"]` → `("progress", 32, 6)`. Pushed `f5ceb53d` ("Publish Baumann Ch.6:
+  High-Recovery Valves (EN/VI, 2 vector figures, 2 tables)").
+- Baumann `cvp` is now **6/32** 🟠. Next: Baumann Ch.7 → PPIC Ch.2 → IPC Ch.2; Book 11/12
+  registration only on confirmation.
