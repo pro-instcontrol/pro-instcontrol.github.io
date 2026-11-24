@@ -6824,3 +6824,34 @@ registration when resumed.
   has 2 `<loc>` plus 6 hreflang alternates for Ch.15.
 - Baumann `cvp` is now **15/32** 🟠. Next: Baumann Ch.16 → PPIC Ch.2 → IPC Ch.2; Book 11/12
   registration only on confirmation.
+
+## Session 115 — Baumann Chapter 16 published
+
+- Chapter: *Concern for the Environment*, printed pp. 109–110 (PDF pp. 112–113),
+  `work/cvp_raw.txt`. Bilingual EN/VI slug `ch16-concern-for-the-environment`.
+- Written from scratch as the single module `build/cvp_ch16.py` (no figures, no tables, no
+  references): the two fugitive-emission leakage paths, flexible ring gaskets and the 2.5×
+  minimum bolting load, the cage-trim thermal-expansion caution, extended bonnets for liquids
+  and steam, the packing-friction rule of thumb with the 1/2-in stem / 100 psi / 500 in²
+  diaphragm example (±0.04 psi, 0.6% of span), spring-loaded Teflon V-ring versus graphite
+  packing, spring-loaded packing followers, and rotary-stem packing with the 1-in stem / 80 lb
+  / 40 in-lb / 0.4 psi example. Six equations make the printed arithmetic explicit without
+  adding source data; printed «longtime leakage problems» and «spring load packing followers»
+  are retained in EN.
+- Pre-build scan caught the Spanish-guard false positive «con số» (changed to «các giá trị»).
+  The first build exposed a VI page-title mismatch against the registered TOC label; the page
+  title was changed from «Mối quan tâm về môi trường» to «Quan tâm đến môi trường» and the full
+  chain rebuilt. Styled EN/VI page screenshots were visually checked after serving the site
+  locally.
+- QA: 0 CJK, 2 bare ampersands (shell Google Fonts only), 0 Spanish, no Vietnamese outside
+  intentional bilingual headings on the EN page, 6 equations, one 2-item ordered list, one
+  source-note box per page, `check_links.py` broken 0; sitemap **1,090 URLs** (1,075 with language
+  siblings), 8 Ch.16 entries; catalog badge 16/32 in both languages.
+- Registration: `cvp_common.SLUGS[16]`, `reader_book.py done[16]`, `books_site.TRANSLATED[
+  "control valve primer"]` → `("progress", 32, 16)`. Pushed `21f05412` ("Add Baumann chapter 16:
+  Concern for the Environment (EN/VI)"). Live EN/VI deep URLs initially 404, then returned 200
+  after two Pages propagation checks; live TOC lists Ch.16 ("Concern for the Environment" /
+  "Quan tâm đến môi trường"), catalog badge shows "Translating · 16 of 32 chapters"
+  (VI: "Đang dịch · 16/32 chương"), and live sitemap has 2 `<loc>` plus 6 hreflang alternates.
+- Baumann `cvp` is now **16/32** 🟠. Next: PPIC Ch.2 → IPC Ch.2 → Baumann Ch.17; Book 11/12
+  registration only on confirmation.

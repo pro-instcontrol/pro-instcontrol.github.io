@@ -7,8 +7,8 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-23):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `a387b13a`**
-(Baumann Ch.15 "Cavitation", published after Ch.14 and the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `21f05412`**
+(Baumann Ch.16 "Concern for the Environment", published after Ch.15 and the IIH/Emerson work below) — the paused Emerson Ch.3 was published,
 Ch.4–Ch.15 added (including the 52-page Ch.5 with 39 tables, the 30-page Ch.10 with 53 figures,
 the 42-page Ch.13 with 10 data tables / 897 rows, Ch.14 "Pipe Data" with 16 data tables / 521 rows,
 and the final 31-page Ch.15 "Conversions and Equivalents" with 19 data tables / 1,108 rows, Index
@@ -40,7 +40,9 @@ pp. 95–98: 2 vector figures redrawn from the printed Emerson charts, a footnot
 the Valve Trim and Other Questions Concerning Valve Material" (printed pp. 99–102: no figures,
 solid-particle and wet-steam erosion, guide and bearing materials, 1 hardness footnote, 3 refs)
 followed. Baumann Ch.15 "Cavitation" (printed pp. 103–108: 5 vector figures, a material-lifetime
-table, the cavitation-noise relations, 2 refs and 2 additional-reading items) followed.
+table, the cavitation-noise relations, 2 refs and 2 additional-reading items) followed. Baumann
+Ch.16 "Concern for the Environment" (printed pp. 109–110: no figures, fugitive emissions, gasket
+and bonnet sealing, extended bonnets and packing friction) followed.
 
 ---
 
@@ -64,7 +66,7 @@ table, the cavitation-noise relations, 2 refs and 2 additional-reading items) fo
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **15/32** 🟠 | 29 (ch1–6, ch9–11, ch13, ch15) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **16/32** 🟠 | 29 (ch1–6, ch9–11, ch13, ch15) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **1/11** 🟠 | 5 (ch1) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **1/8** 🟠 | 51 (ch1) |
@@ -98,6 +100,9 @@ table, the cavitation-noise relations, 2 refs and 2 additional-reading items) fo
   `251d3805`)
   + Ch.15 "Cavitation" (5 figs, material-lifetime table, cavitation-noise equations, 2 refs,
   2 reading items, printed pp. 103–108, published in `a387b13a`)
+  + Ch.16 "Concern for the Environment" (0 figs, fugitive emissions, gasket/bonnet sealing,
+  extended bonnets, packing friction and rotary stem packing, printed pp. 109–110, published in
+  `21f05412`)
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
@@ -232,6 +237,12 @@ table, the cavitation-noise relations, 2 refs and 2 additional-reading items) fo
   TOCs list Ch.15 ("Cavitation" / "Xâm thực"), the catalog badge shows "Translating · 15 of 32
   chapters" (VI: "Đang dịch · 15/32 chương"), and the live sitemap includes all 8 Ch.15 URL
   entries (2 `<loc>` + 6 hreflang alternates).
+- Baumann Ch.16 EN/VI deep URLs → initially 404, then **HTTP 200** after two Pages propagation
+  checks; both live pages retain six equations and the two-item leakage list with 0 CJK / 2
+  shell-only bare ampersands, both live TOCs list Ch.16 ("Concern for the Environment" /
+  "Quan tâm đến môi trường"), the catalog badge shows "Translating · 16 of 32 chapters"
+  (VI: "Đang dịch · 16/32 chương"), and the live sitemap includes all 8 Ch.16 URL entries
+  (2 `<loc>` + 6 hreflang alternates).
 
 ---
 
@@ -289,7 +300,7 @@ table, the cavitation-noise relations, 2 refs and 2 additional-reading items) fo
   → `7fec110f` (Baumann ch8) → `3ec4148a` (Baumann ch9)
   → `a009ad42` (Baumann ch10) → `630b7742` (Baumann ch11) → `e356728c` (Baumann ch12)
   → `6721deb7` (Baumann ch13) → `251d3805` (Baumann ch14)
-  → `a387b13a` (Baumann ch15, **live chapter HEAD**).
+  → `a387b13a` (Baumann ch15) → `21f05412` (Baumann ch16, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -320,7 +331,9 @@ table, the cavitation-noise relations, 2 refs and 2 additional-reading items) fo
    ~~Ch.14 "When Do I Need to 'Hard Face' the Valve Trim..."~~ — **done** (`251d3805`, 0 figs,
    hardness footnote, 3 refs);
    ~~Ch.15 "Cavitation"~~ — **done** (`a387b13a`, 5 vector figs, material-lifetime table,
-   cavitation-noise equations, 2 refs, 2 reading items); remaining Ch.16–32.
+   cavitation-noise equations, 2 refs, 2 reading items);
+   ~~Ch.16 "Concern for the Environment"~~ — **done** (`21f05412`, 0 figs, fugitive emissions,
+   gasket/bonnet sealing, extended bonnets, packing friction); remaining Ch.17–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
    `89e84b27` (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 + 3 + 5 figs, broken 0); Ch.13 added 10 data
@@ -333,6 +346,20 @@ table, the cavitation-noise relations, 2 refs and 2 additional-reading items) fo
 7. Book 9 `ppic` Chapters 2–11 after the user's named queues.
 
 ### Resume notes
+- Baumann Ch.16 (2 PDF pages / printed pp. 109–110, no figures) was written from scratch as one
+  module `cvp_ch16.py`: fugitive emissions, the two leakage paths, flexible ring gaskets and the
+  2.5× minimum bolting load, cage-trim thermal-expansion caution, extended bonnets, the
+  packing-friction rule of thumb with the worked 1/2-in stem / 100 psi / 500 in² diaphragm
+  example (±0.04 psi, 0.6% span), graphite packing, spring-loaded followers, and the rotary-stem
+  torque example (80 lb → 40 in-lb → 0.4 psi). All numbers and the printed «longtime leakage»
+  and «spring load packing followers» wording retained in EN; six equations are shown explicitly.
+  Pre-build scan caught the Spanish-guard false positive «con số», changed to «các giá trị».
+  The first build exposed a title mismatch with the registered VI TOC label; the page title was
+  changed to "Quan tâm đến môi trường" and the chain rebuilt. QA: 0 CJK, 2 shell-only bare
+  ampersands, 0 Spanish, no Vietnamese outside bilingual headings on the EN page, 6 equations,
+  `check_links.py` broken 0, sitemap 1,090 URLs / 1,075 with siblings, 8 entries for Ch.16.
+  Published in `21f05412`; live EN/VI 200 after two propagation checks, TOC row and 16/32 badge
+  verified.
 - Baumann Ch.15 (6 PDF pages / printed pp. 103–108, 5 vector figures) was written from scratch as
   the matched pair `cvpfig15.py` + `cvp_ch15.py`: theoretical sound profiles, hollow-stem air
   injection, the sharktooth anticavitation butterfly valve, laboratory sound-test data and the
