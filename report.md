@@ -7,10 +7,12 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-24):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `1065ce57`**
-(Book 9 PPIC Ch.5 "Analysis of the Spatial Separation Effects of Thorium/Uranium Fuels in
-Block-Type HTRs": 27 PDF pages / printed pp. 79–105, 17 vector figures, 5 tables, equations
-(1)–(5), 18 references) — the prior HEAD `34f48d9a` was Book 7 Baumann Ch.19 "The Graphical ABC
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `64d01a87`**
+(Book 10 IPC Ch.5 "Signal Conditioning and Data Acquisition System": 43 PDF pages / printed pp.
+229–271, 43 vector figures, 78 unnumbered equations, 11 worked examples and an 18-question
+exercise) — the prior HEAD `1065ce57` was Book 9 PPIC Ch.5 "Analysis of the Spatial Separation
+Effects of Thorium/Uranium Fuels in Block-Type HTRs": 27 PDF pages / printed pp. 79–105, 17 vector
+figures, 5 tables, equations (1)–(5), 18 references — and before that `34f48d9a` was Book 7 Baumann Ch.19 "The Graphical ABC
 Method for Gases": 3 PDF pages / printed pp. 121–123, 3 vector graphs A/B/C computed from the
 Chapter 18 equations, one pipe-schedule table and one worked example — and before that
 `fb826fcb` was Book 10 IPC Ch.4 "Telemetry": 25 PDF pages /
@@ -98,7 +100,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **19/32** 🟠 | 33 (ch1–6, ch9–11, ch13, ch15, ch18–19; ch17 has no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **5/11** 🟠 | 48 (ch1–5: 5 + 7 + 8 + 11 + 17) |
-| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **4/8** 🟠 | 211 (ch1–4: 51 + 58 + 72 + 30) |
+| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **5/8** 🟠 | 254 (ch1–5: 51 + 58 + 72 + 30 + 43) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
 (Emerson), 294 (IIH), 295 (PPIC), 296 (IPC).
@@ -192,6 +194,8 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   `d42d37e1`)
   + Ch.4 "Telemetry" (30 vector figs, equations (4.1)–(4.4), 4 worked examples, 15 exercises,
   printed pp. 204–228, published in `fb826fcb`)
+  + Ch.5 "Signal Conditioning and Data Acquisition System" (43 vector figs, 78 unnumbered
+  equations, 11 worked examples, 18 exercises, printed pp. 229–271, published in `64d01a87`)
 
 ### Live verification (2026-11-22, after resuming)
 - Emerson Ch.3 EN/VI deep URLs → **HTTP 200** (after Pages negative caching cleared); live TOC
@@ -366,6 +370,13 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   tách không gian giữa nhiên liệu thori/urani trong lò HTR dạng khối"), the catalog badge shows
   "Translating · 5 of 11 chapters" (VI: "Đang dịch · 5/11 chương"), and the live sitemap includes
   all 8 Ch.5 URL entries.
+- IPC Ch.5 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation; both live
+  pages contain 43 XML-valid inline SVGs with 43 sequential `fig-N` ids and localized captions
+  (`Figure 5.x` / `Hình 5.x`), 78 unnumbered equations, 11 worked examples and an 18-question
+  exercise, 0 CJK / 0 bare ampersands / 0 Spanish hits in page content, both live TOCs list Ch.5
+  ("Signal Conditioning and Data Acquisition System" / "Điều hòa tín hiệu và Hệ thống thu thập
+  dữ liệu"), the catalog badge shows "Translating · 5 of 8 chapters" (VI: "Đang dịch · 5/8
+  chương"), and the live sitemap includes all 8 Ch.5 URL entries.
 
 ---
 
@@ -427,8 +438,8 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   → `fed6e480` (PPIC ch2) → `e74d218a` (IPC ch2) → `128ff523` (Baumann ch17)
   → `d8159c1c` (PPIC ch3) → `d42d37e1` (IPC ch3) → `2df01e67` (Baumann ch18)
   → `d7c9c22f` (Baumann ch18 reading-count correction) → `3ab39813` (PPIC ch4)
-  → `fb826fcb` (IPC ch4) → `34f48d9a` (Baumann ch19) → `1065ce57` (PPIC ch5,
-  **live chapter HEAD**).
+  → `fb826fcb` (IPC ch4) → `34f48d9a` (Baumann ch19) → `1065ce57` (PPIC ch5)
+  → `64d01a87` (IPC ch5, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -439,7 +450,10 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    ~~Ch.3 "Transducers – III"~~ — **done** in `d42d37e1` (72 figs, 45 equations, 14 tables,
    broken 0);
    ~~Ch.4 "Telemetry"~~ — **done** in `fb826fcb` (30 vector figs, 4 equations, 4 examples,
-   15 exercises, printed pp. 204–228, broken 0); remaining Ch.5–8.
+   15 exercises, printed pp. 204–228, broken 0);
+   ~~Ch.5 "Signal Conditioning and Data Acquisition System"~~ — **done** in `64d01a87` (43 vector
+   figs, 78 unnumbered equations, 11 examples, 18 exercises, printed pp. 229–271, broken 0);
+   remaining Ch.6–8.
 2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs)
    ~~Ch.4 "pH Measurement"~~ — **done** in `399e0cbb` (22 figs)
    ~~Ch.5 "Measurement of Flow Rate"~~ — **done** in `db6c38fb` (10 figs)
@@ -495,6 +509,19 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    printed pp. 79–105, broken 0); remaining Ch.6–11.
 
 ### Resume notes
+- IPC Ch.5 (43 PDF pages / printed pp. 229–271, 43 vector figures, 78 unnumbered equations, 11
+  worked examples and an 18-question exercise) was written from `work/ipc_decoded.txt` lines
+  9128–10907 with renders `work/ipc5_pages/p241…p283.png`. Eight section writers
+  (`ipc_ch05a…h.py`) and four figure suppliers (`ipcfig5_a…d.py`) worked against
+  `work/ipc5_brief.md`; `ipcfig5.py` and `ipc_ch05.py` merged them. The brief mislabeled three
+  printed figures (5.28 is a weighted-resistor DAC, 5.36 is an RS-232 pin table, 5.39 is an
+  Ethernet frame); prose and vector captions follow the printed pages instead. Integration fixed
+  a missing default argument in `ipcfig5_c.py`'s `node()` helper; the supplier's other 42 figures
+  were unaffected. QA: 43 sequential unique `fig-N` ids per page, 43 XML-valid SVGs, 43/43
+  localized captions, 78 equations, 11 examples, 18 exercise items, 0 CJK / 0 content bare `&` /
+  0 Spanish / 0 Vietnamese diacritics in EN prose, 0 off-canvas / 0 overlapping figure labels,
+  `check_links.py` broken 0, sitemap 1,112 URLs, 8 entries for Ch.5. Published in `64d01a87`;
+  live EN/VI 200 after Pages propagation, TOC row and 5/8 badge verified.
 - PPIC Ch.5 (27 PDF pages / printed pp. 79–105, 17 vector figures, 5 tables, 5 equations, 18 refs)
   was written from `work/ppic_raw.txt` lines 2478–3213 with renders `work/ppic5_pages/p095…p121.png`.
   Seven section writers (`ppic_ch05a…g.py`) and three figure suppliers (`ppicfig5_a/b/c.py`) worked

@@ -2,23 +2,23 @@
 
 **State now (2026-11-24):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **19/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **5/11**, IPC `ipc` **4/8**.
-**Live chapter HEAD `1065ce57`** (PPIC Ch.5 "Analysis of the Spatial Separation Effects of
-Thorium/Uranium Fuels in Block-Type HTRs", 27 PDF pages / printed pp. 79–105, 17 vector figures,
-5 tables, equations (1)–(5), 18 refs); live sitemap 1,110 URLs, catalog badges IIH 8/8 and
-Emerson 15/15 both `full`, Baumann badge 19/32, PPIC badge 5/11, IPC badge 4/8, PPIC Ch.5,
+Baumann `cvp` **19/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **5/11**, IPC `ipc` **5/8**.
+**Live chapter HEAD `64d01a87`** (IPC Ch.5 "Signal Conditioning and Data Acquisition System",
+43 PDF pages / printed pp. 229–271, 43 vector figures, 78 unnumbered equations, 11 worked
+examples, 18 exercise questions); live sitemap 1,112 URLs, catalog badges IIH 8/8 and Emerson
+15/15 both `full`, Baumann badge 19/32, PPIC badge 5/11, IPC badge 5/8, IPC Ch.5, PPIC Ch.5,
 Baumann Ch.19, IPC Ch.4, PPIC Ch.4, Baumann Ch.18, IPC Ch.3, Baumann Ch.17 and PPIC Ch.3 EN/VI
 deep URLs 200, sitemap 8 entries per new chapter, `check_links.py` broken 0. Full tables in
 `report.md`.
 
-**Next unit:** none queued for Emerson, IIH, IPC Ch.3/Ch.4, Baumann Ch.18/Ch.19, PPIC Ch.3–Ch.5.
-The standing remaining order is IPC `ipc` Ch.5 → Baumann `cvp` Ch.20 → PPIC `ppic` Ch.6, with
+**Next unit:** none queued for Emerson, IIH, IPC Ch.3–Ch.5, Baumann Ch.18/Ch.19, PPIC Ch.3–Ch.5.
+The standing remaining order is Baumann `cvp` Ch.20 → PPIC `ppic` Ch.6 → IPC `ipc` Ch.6, with
 Book 11/12 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
 complete at 8/8 (Ch.2–8 done), Baumann at 19/32 (Ch.2–19 done), PPIC at 5/11 (Ch.1–5 done) and
-IPC at 4/8 (Ch.1–4 done). Also two books located but not registered
+IPC at 5/8 (Ch.1–5 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
@@ -129,6 +129,21 @@ sequential unique `fig-N` ids, 17 XML-valid SVGs, 17/17 localized captions, 5 ta
 after Pages propagation, TOC row present, badge 5/11 in both languages. **PPIC is 5/11 🟠;
 `TRANSLATED["handbook on power plant instrumentation and control"]` is `("progress", 11, 5)`.**
 
+## 0.13 IPC Ch.5 "Signal Conditioning and Data Acquisition System" published in `64d01a87`
+Eight section writers (`ipc_ch05a…h.py`) and four figure suppliers (`ipcfig5_a…d.py`) worked
+against `work/ipc5_brief.md`; `ipcfig5.py` and `ipc_ch05.py` merged them. Source is
+`work/ipc_decoded.txt` lines 9128–10907 (PDF pp. 241–283, printed pp. 229–271) with renders
+`work/ipc5_pages/p241…p283.png`. Content: 43 vector figures, 78 unnumbered printed formulas,
+eleven worked Examples 5.1–5.11 and the 18-question exercise. Three brief labels conflicted with
+the printed diagrams (5.28 weighted-resistor DAC, 5.36 RS-232 pin table, 5.39 Ethernet frame);
+both prose and captions follow print. Integration fixed a missing default argument in
+`ipcfig5_c.py`'s `node()` helper. QA: 43 sequential unique `fig-N` ids, 43 XML-valid SVGs,
+43/43 localized captions, 78 equations, 11 examples, 18 exercise items, 0 CJK / 0 content bare
+`&` / 0 Spanish / 0 Vietnamese diacritics in EN prose, 0 off-canvas / 0 overlapping labels,
+`check_links.py` broken 0, sitemap 1,112. Live EN/VI 200 after Pages propagation, TOC row
+present, badge 5/8 in both languages. **IPC is 5/8 🟠; `TRANSLATED["instrumentation and process
+control"]` is `("progress", 8, 5)`.**
+
 ## A. Continuation queue (user's order)
 0. ~~IIH Ch.8 "Control Valves" — final chapter~~ — **published** in `905dd942` (8 figs, 111 refs,
    4 tables incl. the 108-entry book index, 45 source pages). Two parallel agents (figure supplier
@@ -204,9 +219,12 @@ after Pages propagation, TOC row present, badge 5/11 in both languages. **PPIC i
    against `work/ipc3_brief.md`, merged by `ipcfig3.py` and `ipc_ch03.py`.
    ~~Ch.4 "Telemetry"~~ — **published** in `fb826fcb` (30 vector figs, 4 equations, 4 examples,
    15 exercises, 25 source pages, broken 0); seven section writers and two figure suppliers
-   against `work/ipc4_brief.md`, merged by `ipcfig4.py` and `ipc_ch04.py`. Remaining ch5–8 — source
-   **`work/ipc_decoded.txt`** (NOT the raw dump — glyph codes). The Spanish guard must exclude
-   "con" (Vietnamese "nhóm con").
+   against `work/ipc4_brief.md`, merged by `ipcfig4.py` and `ipc_ch04.py`.
+   ~~Ch.5 "Signal Conditioning and Data Acquisition System"~~ — **published** in `64d01a87`
+   (43 vector figs, 78 unnumbered equations, 11 examples, 18 exercises, 43 source pages, broken 0);
+   eight section writers and four figure suppliers against `work/ipc5_brief.md`, merged by
+   `ipcfig5.py` and `ipc_ch05.py`. Remaining ch6–8 — source **`work/ipc_decoded.txt`** (NOT the raw
+   dump — glyph codes). The Spanish guard must exclude "con" (Vietnamese "nhóm con").
 6. Register Book 11 / Book 12 from the two located PDFs when the user confirms.
 
 Per-chapter flow: survey source span + figures → delegate writing to a background agent with a

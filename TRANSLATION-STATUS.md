@@ -7124,3 +7124,29 @@ registration when resumed.
   plus 6 hreflang alternates.
 - PPIC `ppic` is now **5/11** 🟠. Next: IPC Ch.5 → Baumann Ch.20 → PPIC Ch.6; Book 11/12
   registration only on confirmation.
+
+## Session 127 — IPC Chapter 5 published
+
+- Chapter: *Signal Conditioning and Data Acquisition System*, printed pp. 229–271 (PDF pp. 241–283),
+  `work/ipc_decoded.txt` lines 9128–10907 with renders `work/ipc5_pages/p241…p283.png`. Bilingual
+  EN/VI slug `ch05-signal-conditioning-and-data-acquisition-system`.
+- Eight section writers (`ipc_ch05a…h.py`) and four figure suppliers (`ipcfig5_a/b/c/d.py`) worked
+  against `work/ipc5_brief.md`; `ipcfig5.py` and `ipc_ch05.py` merged them. Content: 43 vector
+  figures (DAQ and circuit blocks, multiplexers, sample-and-hold, ADC/DAC ladders, PC architecture,
+  bus wiring and frame formats), 78 unnumbered printed formulas, eleven worked Examples 5.1–5.11
+  and the 18-question exercise.
+- The brief mislabeled three printed figures (5.28 weighted-resistor DAC, 5.36 RS-232 pin table,
+  5.39 Ethernet frame); prose and captions follow the printed pages instead. Integration fixed a
+  missing default argument in `ipcfig5_c.py`'s `node()` helper; the other 42 figures were unaffected.
+- QA: 43 sequential unique `fig-N` ids per page, 43 XML-valid SVGs, 43/43 localized captions,
+  78 equations, 11 examples, 18 exercise items, 0 CJK / 0 content bare ampersands / 0 Spanish /
+  0 Vietnamese diacritics in EN prose, 0 off-canvas / 0 overlapping figure labels,
+  `check_links.py` broken 0; sitemap **1,112 URLs** (1,097 with language siblings), 8 Ch.5
+  entries; catalog badge 5/8 in both languages.
+- Pushed `64d01a87` ("Add IPC chapter 5: signal conditioning and data acquisition (EN/VI, 43 vector
+  figures)"). Live EN/VI deep URLs initially 404, then 200 after Pages propagation; live TOC lists
+  Ch.5 ("Signal Conditioning and Data Acquisition System" / "Điều hòa tín hiệu và Hệ thống thu thập
+  dữ liệu"), badges read "Translating · 5 of 8 chapters" / "Đang dịch · 5/8 chương", and live
+  sitemap has 2 `<loc>` plus 6 hreflang alternates.
+- IPC `ipc` is now **5/8** 🟠. Next: Baumann Ch.20 → PPIC Ch.6 → IPC Ch.6; Book 11/12
+  registration only on confirmation.
