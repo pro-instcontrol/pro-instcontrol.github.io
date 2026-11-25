@@ -7258,3 +7258,30 @@ registration when resumed.
   live TOCs list Ch.21 and the live sitemap has 8 Ch.21 URL entries.
 - Baumann `cvp` is now **21/32** 🟠. Next: PPIC Ch.7 → IPC Ch.7 → Baumann Ch.22; Book 11/12
   registration only on confirmation.
+
+## Session 132 — PPIC Chapter 7 published
+
+- Chapter: *Spatial Aspects of Environmental Impact of Power Plants* / *Khía cạnh không gian của
+  tác động môi trường của nhà máy điện*, PDF pp. 141–167, printed pp. 125–151 (printed = PDF − 16),
+  `work/ppic_raw.txt` lines 3758–4544 with 27 renders `work/ppic7_pages/p141…p167.png`.
+  Bilingual EN/VI slug `ch07-spatial-aspects-of-environmental-impact-of-power-plants`.
+- Seven prose agents (`ppic_ch07a…g.py`) and one figure supplier (`ppicfig7.py`) worked against
+  `work/ppic7_brief.md`; `ppic_ch07.py` and `ppic_ch07_lib.py` merged them. Content: two vector
+  figures (SEA procedure flowchart; two SEA-goal impact-intensity bar panels), six raster tables
+  transcribed from page images (Tables 7.1–7.6), 59 verbatim references, no numbered equations.
+- Integration repaired a printed bullet split across the e/f source boundary: the continuation
+  was merged into section e's item and the duplicate list item was removed from section f.
+  Initial QA flagged four "Vietnamese" characters that were actually French/Swedish diacritics
+  in verbatim bibliography entries; `work/qa_ppic7.py` now exempts the reference list from that
+  check while continuing to test all other prose.
+- QA: 2 sequential unique `fig-N` ids, 2 XML-valid SVGs, 2/2 localized captions, 6 tables,
+  59 refs, no equations, 0 CJK / 0 content bare ampersands / 0 Spanish / 0 Vietnamese diacritics
+  in EN prose outside the bibliography, 0 off-canvas / 0 overlapping labels, `check_links.py`
+  broken 0; sitemap **1,122 URLs** (1,107 with language siblings), 8 Ch.7 entries; catalog badge
+  7/11 in both languages.
+- Pushed `51251826` ("Add PPIC chapter 7: environmental impact of power plants (EN/VI, 2 figures,
+  6 tables)"). Live EN/VI deep URLs initially 404, then 200 after Pages propagation; live pages
+  contain 2 valid SVGs, 6 tables and 59 references; live TOCs list Ch.7 and the live sitemap has
+  8 Ch.7 URL entries.
+- PPIC `ppic` is now **7/11** 🟠. Next: IPC Ch.7 → Baumann Ch.22 → PPIC Ch.8; Book 11/12
+  registration only on confirmation.

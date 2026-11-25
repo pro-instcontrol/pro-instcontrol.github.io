@@ -7,14 +7,16 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-25):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `ed5931f4`**
-(Book 7 Baumann Ch.21 "The ABC Method for Estimating Hydrodynamic Sound Level": 3 PDF/printed pp.
-133–135, one 11-column table, 28 unnumbered equations, one worked example, no figures) — the prior
-HEAD `b5a7b37e` was Book 10 IPC Ch.6 "Process Control": 45 PDF pages / printed pp. 272–316, 26
-vector figures, equations (6.1)–(6.4), 13 worked examples and a 14-question exercise, no tables —
-and before that `612baf12` was Book 9 PPIC Ch.6 "Developments of Power System Protection and
-Control": 18 PDF pages / printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered
-equations — and before that
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `51251826`**
+(Book 9 PPIC Ch.7 "Spatial Aspects of Environmental Impact of Power Plants": 27 PDF pages /
+printed pp. 125–151, 2 vector figures, 6 tables, 59 references, no equations) — the prior HEAD
+`ed5931f4` was Book 7 Baumann Ch.21 "The ABC Method for Estimating Hydrodynamic Sound Level":
+3 PDF/printed pp. 133–135, one 11-column table, 28 unnumbered equations, one worked example,
+no figures — and before that `b5a7b37e` was Book 10 IPC Ch.6 "Process Control": 45 PDF pages /
+printed pp. 272–316, 26 vector figures, equations (6.1)–(6.4), 13 worked examples and a
+14-question exercise, no tables — and before that `612baf12` was Book 9 PPIC Ch.6 "Developments
+of Power System Protection and Control": 18 PDF pages / printed pp. 107–124, 3 vector figures,
+17 references, no tables or numbered equations — and before that
 `cf190d85` was Book 7 Baumann Ch.20 "Methods of Aerodynamic Valve Noise Reduction": 7 PDF pages /
 printed pp. 125–131, 5 vector figures, Equation 20-1 plus six unnumbered expressions, eight
 abatement bullets, two references — and before that `64d01a87` was Book 10 IPC Ch.5 "Signal
@@ -109,7 +111,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **21/32** 🟠 | 38 (ch1–6, ch9–11, ch13, ch15, ch18–20; ch17/ch21 have no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **6/11** 🟠 | 51 (ch1–6: 5 + 7 + 8 + 11 + 17 + 3) |
+| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **7/11** 🟠 | 53 (ch1–7: 5 + 7 + 8 + 11 + 17 + 3 + 2) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **6/8** 🟠 | 280 (ch1–6: 51 + 58 + 72 + 30 + 43 + 26) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
@@ -881,5 +883,21 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   URLs (8 Ch.21 entries). Live EN/VI deep URLs 200, TOC rows present, catalog badge 21/32.
 - Baumann `cvp` is now **21/32** 🟠; remaining Baumann chapters are Ch.22–Ch.32. Next in the
   standing order: PPIC Ch.7 → IPC Ch.7 → Baumann Ch.22.
+
+## PPIC Chapter 7 — Spatial Aspects of Environmental Impact of Power Plants (2026-11-25)
+
+- PDF pp. 141–167, printed pp. 125–151 (printed = PDF − 16), EN/VI slug
+  `ch07-spatial-aspects-of-environmental-impact-of-power-plants`, published in `51251826` and
+  verified live after Pages propagation.
+- Seven section writers and one figure supplier against `work/ppic7_brief.md`. Two vector figures
+  (SEA flowchart and two goal-impact bar panels), six transcribed tables, 59 verbatim references,
+  no numbered equations. The bold *Bistrica* / *Djerdap III* chart titles were confirmed against
+  the printed page image.
+- QA: 2/2 sequential XML-valid figures with localized captions, 6 tables, 59 refs, 0 CJK /
+  bare `&` / Spanish / Vietnamese-in-English prose, 0 label overlaps, broken links 0, sitemap
+  1,122 URLs (8 Ch.7 entries). The four apparent VI-leak hits were French/Swedish diacritics in
+  bibliography entries; the QA gate now excludes the verbatim reference list from that check.
+- PPIC `ppic` is now **7/11** 🟠; remaining PPIC chapters are Ch.8–Ch.11. Next in the standing
+  order: IPC Ch.7 → Baumann Ch.22 → PPIC Ch.8.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

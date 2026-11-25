@@ -2,28 +2,30 @@
 
 **State now (2026-11-25):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **21/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **6/11**, IPC `ipc` **6/8**.
-**Live chapter HEAD `ed5931f4`** (Baumann Ch.21 "The ABC Method for Estimating Hydrodynamic Sound
-Level", 3 PDF/printed pp. 133–135, one 11-column Table 21-1, 28 unnumbered equations, no figures);
-prior HEAD `b5a7b37e` was IPC Ch.6 "Process Control", 45 PDF pages / printed pp. 272–316, 26
+Baumann `cvp` **21/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **7/11**, IPC `ipc` **6/8**.
+**Live chapter HEAD `51251826`** (PPIC Ch.7 "Spatial Aspects of Environmental Impact of Power
+Plants", 27 PDF pages / printed pp. 125–151, 2 vector figures, 6 tables, 59 references, no
+equations); prior HEAD `ed5931f4` was Baumann Ch.21 "The ABC Method for Estimating Hydrodynamic
+Sound Level", 3 PDF/printed pp. 133–135, one 11-column Table 21-1, 28 unnumbered equations,
+no figures — and before that `b5a7b37e` was IPC Ch.6 "Process Control", 45 PDF pages / printed pp. 272–316, 26
 vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercise — and before that
 `612baf12` was PPIC Ch.6 "Developments of Power System Protection and Control", 18 PDF pages /
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,120 URLs,
-catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 21/32, PPIC badge 6/11,
-IPC badge 6/8; Baumann Ch.21, IPC Ch.6, PPIC Ch.6, Baumann Ch.20, IPC Ch.5, PPIC Ch.5, Baumann Ch.19, IPC Ch.4,
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,122 URLs,
+catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 21/32, PPIC badge 7/11,
+IPC badge 6/8; PPIC Ch.7, Baumann Ch.21, IPC Ch.6, PPIC Ch.6, Baumann Ch.20, IPC Ch.5, PPIC Ch.5, Baumann Ch.19, IPC Ch.4,
 PPIC Ch.4, Baumann Ch.18, IPC Ch.3, Baumann Ch.17 and PPIC Ch.3 EN/VI deep URLs 200, sitemap
 8 entries per new chapter, `check_links.py` broken 0. Full tables in `report.md`.
 
-**Next unit:** none queued for Emerson, IIH, IPC Ch.3–Ch.6, Baumann Ch.18–Ch.21, PPIC Ch.3–Ch.6.
-The standing remaining order is PPIC `ppic` Ch.7 → IPC `ipc` Ch.7 → Baumann `cvp` Ch.22, with
+**Next unit:** none queued for Emerson, IIH, IPC Ch.3–Ch.6, Baumann Ch.18–Ch.21, PPIC Ch.3–Ch.7.
+The standing remaining order is IPC `ipc` Ch.7 → Baumann `cvp` Ch.22 → PPIC `ppic` Ch.8, with
 Book 11/12 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 21/32 (Ch.2–21 done), PPIC at 6/11 (Ch.1–6 done) and
+complete at 8/8 (Ch.2–8 done), Baumann at 21/32 (Ch.2–21 done), PPIC at 7/11 (Ch.1–7 done) and
 IPC at 6/8 (Ch.1–6 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
@@ -217,6 +219,23 @@ EN prose, `check_links.py` broken 0, sitemap 1,120. Live EN/VI verified after Pa
 TOC row present, badge 21/32 in both languages. **Baumann is 21/32 🟠;
 `TRANSLATED["control valve primer"]` is `("progress", 32, 21)`.**
 
+## 0.18 PPIC Ch.7 "Spatial Aspects of Environmental Impact of Power Plants" published in `51251826`
+Seven prose agents (`ppic_ch07a…g.py`) and one figure supplier (`ppicfig7.py`) worked against
+`work/ppic7_brief.md`; `ppic_ch07.py` and `ppic_ch07_lib.py` merged them. Source is
+`work/ppic_raw.txt` lines 3758–4544 (PDF pp. 141–167, printed pp. 125–151, printed = PDF − 16),
+with 27 pypdfium2 renders `work/ppic7_pages/p141…p167.png`. Content: two vector figures (SEA
+flowchart and the two goal-impact bar panels), six transcribed raster tables, 59 verbatim
+references and no numbered equations. The e/f boundary split a printed bullet mid-sentence;
+integration merged the continuation into the section-e bullet and removed the duplicate item
+from section f. The initial QA run flagged four Vietnamese-leak hits that were actually French
+and Swedish diacritics in verbatim bibliography entries; `work/qa_ppic7.py` now excludes the
+reference list from that check while still checking all other prose.
+QA: 2 sequential unique `fig-N` ids, 2 XML-valid SVGs, 2/2 localized captions, 6 tables, 59 refs,
+no equations, 0 CJK / 0 content bare `&` / 0 Spanish / 0 Vietnamese diacritics in EN prose,
+0 off-canvas / 0 overlapping labels, `check_links.py` broken 0, sitemap 1,122. Live EN/VI verified
+after Pages propagation, TOC row present, badge 7/11 in both languages. **PPIC is 7/11 🟠;
+`TRANSLATED["handbook on power plant instrumentation and control"]` is `("progress", 11, 7)`.**
+
 ## A. Continuation queue (user's order)
 0. ~~IIH Ch.8 "Control Valves" — final chapter~~ — **published** in `905dd942` (8 figs, 111 refs,
    4 tables incl. the 108-entry book index, 45 source pages). Two parallel agents (figure supplier
@@ -288,7 +307,9 @@ TOC row present, badge 21/32 in both languages. **Baumann is 21/32 🟠;
    Thorium/Uranium Fuels in Block-Type HTRs"~~ — **published** in `1065ce57` (17 vector figs,
    5 tables, equations (1)–(5), 18 refs, 27 source pages, broken 0); ~~Ch.6 "Developments of
    Power System Protection and Control"~~ — **published** in `612baf12` (3 vector figs, 17 refs,
-   18 source pages, broken 0). Remaining ch7–11; source `work/ppic_raw.txt`; printed = PDF − 16.
+   18 source pages, broken 0); ~~Ch.7 "Spatial Aspects of Environmental Impact of Power Plants"~~
+   — **published** in `51251826` (2 vector figs, 6 tables, 59 refs, 27 source pages, broken 0).
+   Remaining ch8–11; source `work/ppic_raw.txt`; printed = PDF − 16.
 5. ~~Book 10 `ipc` ch2 "Transducers – II"~~ — **published** in `e74d218a` (58 vector figs,
    Table 2.1, 20 numbered equations, 12 worked examples, 11 exercises, 61 source pages, broken 0).
    Nine parallel writers: `ipcfig2_a/b/c.py` (20/20/18 figs) + `ipc_ch02_a…f.py` through a shared
