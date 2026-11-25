@@ -500,7 +500,7 @@ TRANSLATED = {
     "control valve handbook - 6th edition": ("full", 15, 15),
     "illustrated handbook of industrial instrumentation": ("full", 8, 8),
     "handbook on power plant instrumentation and control": ("progress", 11, 6),
-    "instrumentation and process control": ("progress", 8, 5),
+    "instrumentation and process control": ("progress", 8, 6),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
