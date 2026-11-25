@@ -969,6 +969,7 @@ BOOKS = {
             4: "ch04-nuclear-power-plant-instrumentation-fault-detection",
             5: "ch05-analysis-of-spatial-separation-effects",
             6: "ch06-developments-of-power-system-protection-and-control",
+            7: "ch07-spatial-aspects-of-environmental-impact-of-power-plants",
         },
         "copyright_en": "Original work © 2019 Bibliotex; individual chapters © their authors, Creative Commons.",
         "copyright_vi": "Bản gốc © 2019 Bibliotex; từng chương © tác giả tương ứng, giấy phép Creative Commons.",
