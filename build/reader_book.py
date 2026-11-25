@@ -788,6 +788,7 @@ BOOKS = {
             16: "ch16-concern-for-the-environment",
             17: "ch17-will-my-valve-be-too-noisy",
             18: "ch18-the-abc-method-for-gases",
+            19: "ch19-the-graphical-abc-method-for-gases",
         },
         "copyright_en": "Original work © 2011 Hans D. Baumann, published by ISA / John Wiley & Sons.",
         "copyright_vi": "Bản gốc © 2011 Hans D. Baumann, do ISA / John Wiley & Sons xuất bản.",
