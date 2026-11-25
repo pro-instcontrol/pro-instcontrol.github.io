@@ -7150,3 +7150,28 @@ registration when resumed.
   sitemap has 2 `<loc>` plus 6 hreflang alternates.
 - IPC `ipc` is now **5/8** 🟠. Next: Baumann Ch.20 → PPIC Ch.6 → IPC Ch.6; Book 11/12
   registration only on confirmation.
+
+## Session 128 — Baumann Chapter 20 published
+
+- Chapter: *Methods of Aerodynamic Valve Noise Reduction*, printed pp. 125–131 (PDF pp. 126–132),
+  `work/cvp_raw.txt` lines 3539–3682 with pypdfium2 renders `work/cvp20_pages/p126…p132.png`.
+  Bilingual EN/VI slug `ch20-methods-of-aerodynamic-valve-noise-reduction`.
+- One prose agent wrote `cvp_ch20.py`; one figure supplier redrew the five printed diagrams in
+  `cvpfig20.py` (multistep plug, multi-orifice cage, labyrinth insert, two-stage trim, fluted
+  butterfly valve with restrictor). Both worked from `work/cvp20_brief.md`.
+- Content: Equation 20-1 (`ηm` with pressure-ratio and `F_L²` terms) plus six unnumbered printed
+  expressions, eight abatement bullets, the 5000–20,000 Hz ultrasonic-flow-meter caution and the
+  two printed references. No tables. Equations were transcribed from page images because the OCR
+  layer garbles them; printed p130 gives the restrictor pressure ratio as 1.1 or 1.15 (not 1.5).
+- QA: 5 sequential unique `fig-N` ids per page, 5 XML-valid SVGs, 5/5 localized captions, one
+  numbered equation, seven equations total, eight bullets, two refs, no tables, 0 CJK / 0 content
+  bare ampersands / 0 Spanish / 0 Vietnamese diacritics in EN prose, 0 off-canvas / 0 overlapping
+  figure labels, `check_links.py` broken 0; sitemap **1,114 URLs** (1,099 with language siblings),
+  8 Ch.20 entries; catalog badge 20/32 in both languages.
+- Pushed `cf190d85` ("Add Baumann chapter 20: aerodynamic valve noise reduction (EN/VI, 5 vector
+  figures)"). Live EN/VI deep URLs initially 404, then 200 after Pages propagation; live TOC lists
+  Ch.20 ("Methods of Aerodynamic Valve Noise Reduction" / "Phương pháp giảm tiếng ồn khí động học
+  của van"), badges read "Translating · 20 of 32 chapters" / "Đang dịch · 20/32 chương", and live
+  sitemap has 2 `<loc>` plus 6 hreflang alternates.
+- Baumann `cvp` is now **20/32** 🟠. Next: PPIC Ch.6 → IPC Ch.6 → Baumann Ch.21; Book 11/12
+  registration only on confirmation.

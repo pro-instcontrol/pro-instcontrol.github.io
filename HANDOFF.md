@@ -2,22 +2,22 @@
 
 **State now (2026-11-24):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **19/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **5/11**, IPC `ipc` **5/8**.
-**Live chapter HEAD `64d01a87`** (IPC Ch.5 "Signal Conditioning and Data Acquisition System",
-43 PDF pages / printed pp. 229–271, 43 vector figures, 78 unnumbered equations, 11 worked
-examples, 18 exercise questions); live sitemap 1,112 URLs, catalog badges IIH 8/8 and Emerson
-15/15 both `full`, Baumann badge 19/32, PPIC badge 5/11, IPC badge 5/8, IPC Ch.5, PPIC Ch.5,
-Baumann Ch.19, IPC Ch.4, PPIC Ch.4, Baumann Ch.18, IPC Ch.3, Baumann Ch.17 and PPIC Ch.3 EN/VI
-deep URLs 200, sitemap 8 entries per new chapter, `check_links.py` broken 0. Full tables in
-`report.md`.
+Baumann `cvp` **20/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **5/11**, IPC `ipc` **5/8**.
+**Live chapter HEAD `cf190d85`** (Baumann Ch.20 "Methods of Aerodynamic Valve Noise Reduction",
+7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six unnumbered
+expressions, eight abatement bullets, two references); live sitemap 1,114 URLs, catalog badges
+IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 20/32, PPIC badge 5/11, IPC badge 5/8,
+Baumann Ch.20, IPC Ch.5, PPIC Ch.5, Baumann Ch.19, IPC Ch.4, PPIC Ch.4, Baumann Ch.18,
+IPC Ch.3, Baumann Ch.17 and PPIC Ch.3 EN/VI deep URLs 200, sitemap 8 entries per new chapter,
+`check_links.py` broken 0. Full tables in `report.md`.
 
-**Next unit:** none queued for Emerson, IIH, IPC Ch.3–Ch.5, Baumann Ch.18/Ch.19, PPIC Ch.3–Ch.5.
-The standing remaining order is Baumann `cvp` Ch.20 → PPIC `ppic` Ch.6 → IPC `ipc` Ch.6, with
+**Next unit:** none queued for Emerson, IIH, IPC Ch.3–Ch.5, Baumann Ch.18–Ch.20, PPIC Ch.3–Ch.5.
+The standing remaining order is PPIC `ppic` Ch.6 → IPC `ipc` Ch.6 → Baumann `cvp` Ch.21, with
 Book 11/12 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 19/32 (Ch.2–19 done), PPIC at 5/11 (Ch.1–5 done) and
+complete at 8/8 (Ch.2–8 done), Baumann at 20/32 (Ch.2–20 done), PPIC at 5/11 (Ch.1–5 done) and
 IPC at 5/8 (Ch.1–5 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
@@ -142,7 +142,23 @@ both prose and captions follow print. Integration fixed a missing default argume
 `&` / 0 Spanish / 0 Vietnamese diacritics in EN prose, 0 off-canvas / 0 overlapping labels,
 `check_links.py` broken 0, sitemap 1,112. Live EN/VI 200 after Pages propagation, TOC row
 present, badge 5/8 in both languages. **IPC is 5/8 🟠; `TRANSLATED["instrumentation and process
-control"]` is `("progress", 8, 5)`.**
+control"]` is `("progress", 8, 5)`**
+
+## 0.14 Baumann Ch.20 "Methods of Aerodynamic Valve Noise Reduction" published in `cf190d85`
+One prose agent and one figure supplier worked from `work/cvp20_brief.md`. Source is
+`work/cvp_raw.txt` lines 3539–3682 (PDF pp. 126–132, printed pp. 125–131, printed = PDF − 1),
+with pypdfium2 renders `work/cvp20_pages/p126…p132.png`. Content: five vector redraws (multistep
+plug, multi-orifice cage, labyrinth insert, two-stage trim, butterfly valve plus restrictor),
+Equation 20-1 plus six unnumbered printed expressions, the eight-bullet abatement summary, a
+caution about ultrasonic flow meters and two references. Equations were read from page images
+because the OCR layer garbles them; the printed restrictor ratio is 1.1 or 1.15 (not 1.5), and
+the source note records the decoding. Integration aligned `TITLE_VI` with the registered TOC
+label. QA: 5 sequential unique `fig-N` ids, 5 XML-valid SVGs, 5/5 localized captions, one numbered
+equation, seven equations total, eight bullets, two refs, no tables, 0 CJK / 0 content bare `&` /
+0 Spanish / 0 Vietnamese diacritics in EN prose, 0 off-canvas / 0 overlapping labels,
+`check_links.py` broken 0, sitemap 1,114. Live EN/VI 200 after Pages propagation, TOC row
+present, badge 20/32 in both languages. **Baumann is 20/32 🟠;
+`TRANSLATED["control valve primer"]` is `("progress", 32, 20)`.**
 
 ## A. Continuation queue (user's order)
 0. ~~IIH Ch.8 "Control Valves" — final chapter~~ — **published** in `905dd942` (8 figs, 111 refs,
@@ -175,7 +191,10 @@ control"]` is `("progress", 8, 5)`.**
    ~~Ch.18 "The ABC Method for Gases"~~ — **done** in `2df01e67`, corrected in `d7c9c22f`
    (1 fig, Table 18-1, Eqs. 18-1–18-6, 2 refs, 4 reading items, 6 printed pages);
    ~~Ch.19 "The Graphical ABC Method for Gases"~~ — **done** in `34f48d9a` (3 vector graphs,
-   1 table, 1 example, 3 printed pages); remaining ch20–32, source `work/cvp_raw.txt`.
+   1 table, 1 example, 3 printed pages);
+   ~~Ch.20 "Methods of Aerodynamic Valve Noise Reduction"~~ — **done** in `cf190d85` (5 vector
+   figs, Eq. 20-1 + 6 unnumbered expressions, 8 bullets, 2 refs, 7 printed pages); remaining
+   ch21–32, source `work/cvp_raw.txt`.
    Short chapters
    (≤6 pages, ≤2 figures) go to one agent for both figure and prose modules; mid-size chapters with
    3–4 charts split into figure supplier + prose with a fixed `fig_fNN` contract, both working from

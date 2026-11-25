@@ -7,12 +7,15 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-24):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `64d01a87`**
-(Book 10 IPC Ch.5 "Signal Conditioning and Data Acquisition System": 43 PDF pages / printed pp.
-229–271, 43 vector figures, 78 unnumbered equations, 11 worked examples and an 18-question
-exercise) — the prior HEAD `1065ce57` was Book 9 PPIC Ch.5 "Analysis of the Spatial Separation
-Effects of Thorium/Uranium Fuels in Block-Type HTRs": 27 PDF pages / printed pp. 79–105, 17 vector
-figures, 5 tables, equations (1)–(5), 18 references — and before that `34f48d9a` was Book 7 Baumann Ch.19 "The Graphical ABC
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `cf190d85`**
+(Book 7 Baumann Ch.20 "Methods of Aerodynamic Valve Noise Reduction": 7 PDF pages / printed pp.
+125–131, 5 vector figures, Equation 20-1 plus six unnumbered expressions, eight abatement bullets,
+two references) — the prior HEAD `64d01a87` was Book 10 IPC Ch.5 "Signal Conditioning and Data
+Acquisition System": 43 PDF pages / printed pp. 229–271, 43 vector figures, 78 unnumbered equations,
+11 worked examples and an 18-question exercise — and before that `1065ce57` was Book 9 PPIC Ch.5
+"Analysis of the Spatial Separation Effects of Thorium/Uranium Fuels in Block-Type HTRs": 27 PDF
+pages / printed pp. 79–105, 17 vector figures, 5 tables, equations (1)–(5), 18 references — and
+before that `34f48d9a` was Book 7 Baumann Ch.19 "The Graphical ABC
 Method for Gases": 3 PDF pages / printed pp. 121–123, 3 vector graphs A/B/C computed from the
 Chapter 18 equations, one pipe-schedule table and one worked example — and before that
 `fb826fcb` was Book 10 IPC Ch.4 "Telemetry": 25 PDF pages /
@@ -97,7 +100,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **19/32** 🟠 | 33 (ch1–6, ch9–11, ch13, ch15, ch18–19; ch17 has no figures) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **20/32** 🟠 | 38 (ch1–6, ch9–11, ch13, ch15, ch18–20; ch17 has no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **5/11** 🟠 | 48 (ch1–5: 5 + 7 + 8 + 11 + 17) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **5/8** 🟠 | 254 (ch1–5: 51 + 58 + 72 + 30 + 43) |
@@ -141,6 +144,9 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   `d7c9c22f`)
   + Ch.19 "The Graphical ABC Method for Gases" (3 vector graphs, one pipe-schedule table,
   one worked example, printed pp. 121–123, published in `34f48d9a`)
+  + Ch.20 "Methods of Aerodynamic Valve Noise Reduction" (5 vector figures, Equation 20-1 plus
+  six unnumbered expressions, eight abatement bullets, 2 refs, printed pp. 125–131, published in
+  `cf190d85`)
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
@@ -377,6 +383,13 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   ("Signal Conditioning and Data Acquisition System" / "Điều hòa tín hiệu và Hệ thống thu thập
   dữ liệu"), the catalog badge shows "Translating · 5 of 8 chapters" (VI: "Đang dịch · 5/8
   chương"), and the live sitemap includes all 8 Ch.5 URL entries.
+- Baumann Ch.20 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation; both
+  live pages contain 5 XML-valid inline SVGs with sequential `fig-1..5` ids and localized captions
+  (`Figure 20-N` / `Hình 20-N`), numbered Equation 20-1 plus six unnumbered expressions, eight
+  abatement bullets and two references, 0 CJK / 0 bare ampersands / 0 Spanish hits in page content,
+  both live TOCs list Ch.20 ("Methods of Aerodynamic Valve Noise Reduction" / "Phương pháp giảm
+  tiếng ồn khí động học của van"), the catalog badge shows "Translating · 20 of 32 chapters" (VI:
+  "Đang dịch · 20/32 chương"), and the live sitemap includes all 8 Ch.20 URL entries.
 
 ---
 
@@ -439,7 +452,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   → `d8159c1c` (PPIC ch3) → `d42d37e1` (IPC ch3) → `2df01e67` (Baumann ch18)
   → `d7c9c22f` (Baumann ch18 reading-count correction) → `3ab39813` (PPIC ch4)
   → `fb826fcb` (IPC ch4) → `34f48d9a` (Baumann ch19) → `1065ce57` (PPIC ch5)
-  → `64d01a87` (IPC ch5, **live chapter HEAD**).
+  → `64d01a87` (IPC ch5) → `cf190d85` (Baumann ch20, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -487,7 +500,10 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    ~~Ch.18 "The ABC Method for Gases"~~ — **done** (`2df01e67`, corrected `d7c9c22f`, 1 fig,
    Table 18-1, Eqs. 18-1–18-6, 2 refs, 4 reading items);
    ~~Ch.19 "The Graphical ABC Method for Gases"~~ — **done** in `34f48d9a` (3 vector graphs,
-   pipe-schedule table, 1 example, printed pp. 121–123, broken 0); remaining Ch.20–32.
+   pipe-schedule table, 1 example, printed pp. 121–123, broken 0);
+   ~~Ch.20 "Methods of Aerodynamic Valve Noise Reduction"~~ — **done** in `cf190d85` (5 vector
+   figs, Eq. 20-1 + 6 unnumbered expressions, 8 bullets, 2 refs, printed pp. 125–131, broken 0);
+   remaining Ch.21–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
    `89e84b27` (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 + 3 + 5 figs, broken 0); Ch.13 added 10 data
@@ -546,6 +562,17 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   0 overlapping figure labels, `check_links.py` broken 0, sitemap 1,108 URLs, 8 entries for Ch.19.
   Published in `34f48d9a`; live EN/VI 200 after Pages propagation, TOC row and 19/32 badge
   verified.
+- Baumann Ch.20 (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
+  unnumbered expressions) was written from `work/cvp_raw.txt` lines 3539–3682 with seven
+  pypdfium2 renders `work/cvp20_pages/p126…p132.png`. A prose agent wrote `cvp_ch20.py` from
+  `work/cvp20_brief.md`, while a figure agent drew five engineering diagrams in `cvpfig20.py`.
+  Equations were transcribed from page images because the OCR layer garbles them; the printed
+  restrictor ratio on p130 is 1.1 or 1.15 (not 1.5), and the EN page keeps it. QA: 5 sequential
+  unique `fig-N` ids per page, 5 XML-valid SVGs, 5/5 localized captions, one numbered equation,
+  seven equations total, eight abatement bullets, two references, no tables, 0 CJK / 0 content
+  bare `&` / 0 Spanish / 0 Vietnamese diacritics in EN prose, 0 off-canvas / 0 overlapping figure
+  labels, `check_links.py` broken 0, sitemap 1,114 URLs, 8 entries for Ch.20. Published in
+  `cf190d85`; live EN/VI 200 after Pages propagation, TOC row and 20/32 badge verified.
 - IPC Ch.4 (25 PDF pages / printed pp. 204–228, 30 vector figures, 4 numbered equations,
   4 worked examples and a 15-question exercise) was written from `work/ipc_decoded.txt` lines
   8150–9127 and 25 pypdfium2 renders `work/ipc4_pages/p216…p240.png`. Seven section writers
