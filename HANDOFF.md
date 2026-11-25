@@ -2,21 +2,21 @@
 
 **State now (2026-11-24):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **18/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **4/11**, IPC `ipc` **4/8**.
-**Live chapter HEAD `fb826fcb`** (IPC Ch.4 "Telemetry", 25 PDF pages / printed pp. 204–228,
-30 vector figures, equations (4.1)–(4.4), 4 worked examples, 15 exercises); live sitemap 1,106
-URLs, catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 18/32, PPIC badge
-4/11, IPC badge 4/8, IPC Ch.4, PPIC Ch.4, Baumann Ch.18, IPC Ch.3, Baumann Ch.17 and PPIC Ch.3
-EN/VI deep URLs 200, sitemap 8 entries per new chapter, `check_links.py` broken 0. Full tables
-in `report.md`.
+Baumann `cvp` **19/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **4/11**, IPC `ipc` **4/8**.
+**Live chapter HEAD `34f48d9a`** (Baumann Ch.19 "The Graphical ABC Method for Gases", 3 PDF pages
+/ printed pp. 121–123, 3 vector graphs A/B/C, 1 pipe-schedule table, 1 worked example); live
+sitemap 1,108 URLs, catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 19/32,
+PPIC badge 4/11, IPC badge 4/8, Baumann Ch.19, IPC Ch.4, PPIC Ch.4, Baumann Ch.18, IPC Ch.3,
+Baumann Ch.17 and PPIC Ch.3 EN/VI deep URLs 200, sitemap 8 entries per new chapter,
+`check_links.py` broken 0. Full tables in `report.md`.
 
-**Next unit:** none queued for Emerson, IIH, IPC Ch.3/Ch.4, Baumann Ch.18, PPIC Ch.3/Ch.4.
-The standing remaining order is Baumann `cvp` Ch.19 → PPIC `ppic` Ch.5 → IPC `ipc` Ch.5, with
+**Next unit:** none queued for Emerson, IIH, IPC Ch.3/Ch.4, Baumann Ch.18/Ch.19, PPIC Ch.3/Ch.4.
+The standing remaining order is PPIC `ppic` Ch.5 → IPC `ipc` Ch.5 → Baumann `cvp` Ch.20, with
 Book 11/12 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 18/32 (Ch.2–18 done), PPIC at 4/11 (Ch.1–4 done) and
+complete at 8/8 (Ch.2–8 done), Baumann at 19/32 (Ch.2–19 done), PPIC at 4/11 (Ch.1–4 done) and
 IPC at 4/8 (Ch.1–4 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
@@ -102,6 +102,19 @@ overlapping figure labels, `check_links.py` broken 0, sitemap 1,106. Live EN/VI 
 propagation, TOC row present, badge 4/8 in both languages. **IPC is 4/8 🟠;
 `TRANSLATED["instrumentation and process control"]` is `("progress", 8, 4)`.**
 
+## 0.11 Baumann Ch.19 "The Graphical ABC Method for Gases" published in `34f48d9a`
+Two agents worked from `work/cvp19_brief.md`: `cvpfig19.py` redraws Graphs A/B/C as computed
+log curves (seven Cv/D² curves, one P₁ curve, six Fd curves), and `cvp_ch19.py` carries the
+bilingual A/B/C lookup procedure, pipe-schedule modifier table and the 85 → 81 dB example.
+Source is `work/cvp_raw.txt` lines 3502–3538 (PDF pp. 123–125, printed pp. 121–123) with renders
+`work/cvp19_pages/p123…p125.png`. The source prose says schedule 160 subtracts 6 dB while the
+printed table says −8; both are retained with a bilingual source note. QA: 3 unique `fig-N` ids,
+3 XML-valid SVGs, 3/3 localized captions, 1 table, 0 CJK / 0 content bare `&` / 0 Spanish /
+0 Vietnamese diacritics in EN prose, 0 off-canvas / 0 overlapping labels, `check_links.py`
+broken 0, sitemap 1,108. Live EN/VI 200 after Pages propagation, TOC row present, badge 19/32
+in both languages. **Baumann is 19/32 🟠; `TRANSLATED["control valve primer"]` is
+`("progress", 32, 19)`.**
+
 ## A. Continuation queue (user's order)
 0. ~~IIH Ch.8 "Control Valves" — final chapter~~ — **published** in `905dd942` (8 figs, 111 refs,
    4 tables incl. the 108-entry book index, 45 source pages). Two parallel agents (figure supplier
@@ -131,8 +144,10 @@ propagation, TOC row present, badge 4/8 in both languages. **IPC is 4/8 🟠;
    `a387b13a`, `21f05412`); ~~Ch.17 "Will My Valve Be Too Noisy?"~~ — **done** in `128ff523`
    (0 figs, Eq. 17-1, 3 refs, 5 reading items, 3 printed pages);
    ~~Ch.18 "The ABC Method for Gases"~~ — **done** in `2df01e67`, corrected in `d7c9c22f`
-   (1 fig, Table 18-1, Eqs. 18-1–18-6, 2 refs, 4 reading items, 6 printed pages); remaining
-   ch19–32, source `work/cvp_raw.txt`. Short chapters
+   (1 fig, Table 18-1, Eqs. 18-1–18-6, 2 refs, 4 reading items, 6 printed pages);
+   ~~Ch.19 "The Graphical ABC Method for Gases"~~ — **done** in `34f48d9a` (3 vector graphs,
+   1 table, 1 example, 3 printed pages); remaining ch20–32, source `work/cvp_raw.txt`.
+   Short chapters
    (≤6 pages, ≤2 figures) go to one agent for both figure and prose modules; mid-size chapters with
    3–4 charts split into figure supplier + prose with a fixed `fig_fNN` contract, both working from
    pypdfium2 page renders. Long data-heavy chapters can use one figure supplier plus several

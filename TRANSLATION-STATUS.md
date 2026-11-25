@@ -7075,3 +7075,27 @@ registration when resumed.
   "Đang dịch · 4/8 chương", and live sitemap has 2 `<loc>` plus 6 hreflang alternates.
 - IPC `ipc` is now **4/8** 🟠. Next: Baumann Ch.19 → PPIC Ch.5 → IPC Ch.5; Book 11/12
   registration only on confirmation.
+
+## Session 125 — Baumann Chapter 19 published
+
+- Chapter: *The Graphical ABC Method for Gases*, printed pp. 121–123 (PDF pp. 123–125),
+  `work/cvp_raw.txt` lines 3502–3538 with renders `work/cvp19_pages/p123…p125.png`. Bilingual
+  EN/VI slug `ch19-the-graphical-abc-method-for-gases`.
+- Two agents worked from `work/cvp19_brief.md`: `cvpfig19.py` redraws Graphs A/B/C as computed
+  log curves (seven `Cv/D²` curves, one `P₁` curve, six `Fd` curves), with dual-unit axes and
+  circled A/B/C marks; `cvp_ch19.py` carries the bilingual lookup procedure, the pipe-schedule
+  modifier table and the 85 → 81 dB worked example.
+- The source prose says schedule 160 subtracts 6 dB while its printed table says −8; both are
+  retained in EN with a bilingual source note. No equation numbers were invented; the printed
+  `X = (P₁ − P₂)/P₁` and `30 log(F_L/0.7)` are carried as unnumbered equations.
+- QA: 3 unique `fig-N` ids, 3 XML-valid SVGs, 3/3 localized captions, 1 table, 0 CJK / 0 content
+  bare ampersands / 0 Spanish / 0 Vietnamese diacritics in EN prose, 0 off-canvas / 0 overlapping
+  figure labels, `check_links.py` broken 0; sitemap **1,108 URLs** (1,093 with language siblings),
+  8 Ch.19 entries; catalog badge 19/32 in both languages.
+- Pushed `34f48d9a` ("Add Baumann chapter 19: Graphical ABC Method for Gases (EN/VI, 3 vector
+  graphs)"). Live EN/VI deep URLs initially 404, then 200 after Pages propagation; live TOC lists
+  Ch.19 ("The Graphical ABC Method for Gases" / "Phương pháp ABC dạng đồ thị cho chất khí"),
+  badges read "Translating · 19 of 32 chapters" / "Đang dịch · 19/32 chương", and live sitemap
+  has 2 `<loc>` plus 6 hreflang alternates.
+- Baumann `cvp` is now **19/32** 🟠. Next: PPIC Ch.5 → IPC Ch.5 → Baumann Ch.20; Book 11/12
+  registration only on confirmation.

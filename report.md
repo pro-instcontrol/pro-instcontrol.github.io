@@ -7,10 +7,12 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-24):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `fb826fcb`**
-(Book 10 IPC Ch.4 "Telemetry": 25 PDF pages / printed pp. 204–228, 30 vector figures,
-4 numbered equations (4.1)–(4.4), 4 worked examples and a 15-question exercise) — the prior
-HEAD `3ab39813` was Book 9 PPIC Ch.4 "Nuclear Power Plant Instrumentation Fault Detection Using
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `34f48d9a`**
+(Book 7 Baumann Ch.19 "The Graphical ABC Method for Gases": 3 PDF pages / printed pp. 121–123,
+3 vector graphs A/B/C computed from the Chapter 18 equations, one pipe-schedule table and one
+worked example) — the prior HEAD `fb826fcb` was Book 10 IPC Ch.4 "Telemetry": 25 PDF pages /
+printed pp. 204–228, 30 vector figures, 4 numbered equations (4.1)–(4.4), 4 worked examples
+and a 15-question exercise — and before that `3ab39813` was Book 9 PPIC Ch.4 "Nuclear Power Plant Instrumentation Fault Detection Using
 Fuzzy Logic": 30 PDF pages / printed pp. 49–78, 11 vector figures, 4 tables, printed equations
 (1), (2), (4), 51 references — and before that `d7c9c22f` was Book 7 Baumann Ch.18 "The ABC Method for Gases":
 6 PDF pages / printed pp. 115–120, 1 vector figure, 1 gas-constant table, 6 numbered equations,
@@ -90,7 +92,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **18/32** 🟠 | 30 (ch1–6, ch9–11, ch13, ch15, ch18; ch17 has no figures) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **19/32** 🟠 | 33 (ch1–6, ch9–11, ch13, ch15, ch18–19; ch17 has no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **4/11** 🟠 | 31 (ch1–4: 5 + 7 + 8 + 11) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **4/8** 🟠 | 211 (ch1–4: 51 + 58 + 72 + 30) |
@@ -132,6 +134,8 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   + Ch.18 "The ABC Method for Gases" (1 vector figure, Table 18-1, Equations (18-1)–(18-6),
   2 refs, 4 reading items, printed pp. 115–120, published in `2df01e67` and corrected in
   `d7c9c22f`)
+  + Ch.19 "The Graphical ABC Method for Gases" (3 vector graphs, one pipe-schedule table,
+  one worked example, printed pp. 121–123, published in `34f48d9a`)
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
@@ -341,6 +345,13 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   0 Spanish hits in page content, both live TOCs list Ch.4 ("Telemetry" / "Đo từ xa"), the catalog
   badge shows "Translating · 4 of 8 chapters" (VI: "Đang dịch · 4/8 chương"), and the live sitemap
   includes all 8 Ch.4 URL entries (2 `<loc>` + 6 hreflang alternates).
+- Baumann Ch.19 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation; both
+  live pages contain 3 XML-valid inline SVGs (Graphs A/B/C) with localized `Figure 19-N` /
+  `Hình 19-N` captions, one pipe-schedule table, the 85 → 81 dB example, 0 CJK / 0 bare
+  ampersands / 0 Spanish hits in page content, both live TOCs list Ch.19 ("The Graphical ABC
+  Method for Gases" / "Phương pháp ABC dạng đồ thị cho chất khí"), the catalog badge shows
+  "Translating · 19 of 32 chapters" (VI: "Đang dịch · 19/32 chương"), and the live sitemap
+  includes all 8 Ch.19 URL entries.
 
 ---
 
@@ -402,7 +413,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   → `fed6e480` (PPIC ch2) → `e74d218a` (IPC ch2) → `128ff523` (Baumann ch17)
   → `d8159c1c` (PPIC ch3) → `d42d37e1` (IPC ch3) → `2df01e67` (Baumann ch18)
   → `d7c9c22f` (Baumann ch18 reading-count correction) → `3ab39813` (PPIC ch4)
-  → `fb826fcb` (IPC ch4, **live chapter HEAD**).
+  → `fb826fcb` (IPC ch4) → `34f48d9a` (Baumann ch19, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -445,7 +456,9 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    ~~Ch.17 "Will My Valve Be Too Noisy?"~~ — **done** (`128ff523`, 0 figs, Eq. 17-1, 3 refs,
    5 reading items);
    ~~Ch.18 "The ABC Method for Gases"~~ — **done** (`2df01e67`, corrected `d7c9c22f`, 1 fig,
-   Table 18-1, Eqs. 18-1–18-6, 2 refs, 4 reading items); remaining Ch.19–32.
+   Table 18-1, Eqs. 18-1–18-6, 2 refs, 4 reading items);
+   ~~Ch.19 "The Graphical ABC Method for Gases"~~ — **done** in `34f48d9a` (3 vector graphs,
+   pipe-schedule table, 1 example, printed pp. 121–123, broken 0); remaining Ch.20–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
    `89e84b27` (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 + 3 + 5 figs, broken 0); Ch.13 added 10 data
@@ -464,6 +477,18 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    printed pp. 49–78, broken 0); remaining Ch.5–11.
 
 ### Resume notes
+- Baumann Ch.19 (3 PDF pages / printed pp. 121–123, 3 vector graphs) was written from
+  `work/cvp_raw.txt` lines 3502–3538 and three pypdfium2 renders `work/cvp19_pages/p123…p125.png`.
+  A figure agent computed all curves in `cvpfig19.py` from the Chapter 18 relations
+  (`A = 25 log D − 10 + 20 log(Cv/D²)`, `B = 35 log P₁ − 35`, `C = 27 + 30 log(10X) + 20 log Fd`)
+  and a prose agent wrote `cvp_ch19.py` with the dual-unit axes, the A/B/C lookup procedure, the
+  pipe-schedule table and the 85 → 81 dB worked example. The source prose says schedule 160
+  subtracts 6 dB while its printed table says −8; both are retained with a bilingual source note.
+  QA: 3 unique `fig-N` ids per page, 3 XML-valid SVGs, 3/3 localized captions, 1 table, 0 CJK /
+  0 content bare `&` / 0 Spanish / 0 Vietnamese diacritics in EN prose, 0 off-canvas /
+  0 overlapping figure labels, `check_links.py` broken 0, sitemap 1,108 URLs, 8 entries for Ch.19.
+  Published in `34f48d9a`; live EN/VI 200 after Pages propagation, TOC row and 19/32 badge
+  verified.
 - IPC Ch.4 (25 PDF pages / printed pp. 204–228, 30 vector figures, 4 numbered equations,
   4 worked examples and a 15-question exercise) was written from `work/ipc_decoded.txt` lines
   8150–9127 and 25 pypdfium2 renders `work/ipc4_pages/p216…p240.png`. Seven section writers
