@@ -344,6 +344,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch05-analysis-of-spatial-separation-effects/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch06-developments-of-power-system-protection-and-control/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch06-developments-of-power-system-protection-and-control/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/ch06-developments-of-power-system-protection-and-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch06-developments-of-power-system-protection-and-control/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/"/>
@@ -3705,6 +3711,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch05-analysis-of-spatial-separation-effects/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/ch05-analysis-of-spatial-separation-effects/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch05-analysis-of-spatial-separation-effects/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/ch06-developments-of-power-system-protection-and-control/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch06-developments-of-power-system-protection-and-control/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/ch06-developments-of-power-system-protection-and-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch06-developments-of-power-system-protection-and-control/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/</loc>
