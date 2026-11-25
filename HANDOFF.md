@@ -2,26 +2,28 @@
 
 **State now (2026-11-25):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **20/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **6/11**, IPC `ipc` **6/8**.
-**Live chapter HEAD `b5a7b37e`** (IPC Ch.6 "Process Control", 45 PDF pages / printed pp. 272–316,
-26 vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercise); prior HEAD
+Baumann `cvp` **21/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **6/11**, IPC `ipc` **6/8**.
+**Live chapter HEAD `ed5931f4`** (Baumann Ch.21 "The ABC Method for Estimating Hydrodynamic Sound
+Level", 3 PDF/printed pp. 133–135, one 11-column Table 21-1, 28 unnumbered equations, no figures);
+prior HEAD `b5a7b37e` was IPC Ch.6 "Process Control", 45 PDF pages / printed pp. 272–316, 26
+vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercise — and before that
 `612baf12` was PPIC Ch.6 "Developments of Power System Protection and Control", 18 PDF pages /
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,118 URLs,
-catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 20/32, PPIC badge 6/11,
-IPC badge 6/8; IPC Ch.6, PPIC Ch.6, Baumann Ch.20, IPC Ch.5, PPIC Ch.5, Baumann Ch.19, IPC Ch.4,
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,120 URLs,
+catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 21/32, PPIC badge 6/11,
+IPC badge 6/8; Baumann Ch.21, IPC Ch.6, PPIC Ch.6, Baumann Ch.20, IPC Ch.5, PPIC Ch.5, Baumann Ch.19, IPC Ch.4,
 PPIC Ch.4, Baumann Ch.18, IPC Ch.3, Baumann Ch.17 and PPIC Ch.3 EN/VI deep URLs 200, sitemap
 8 entries per new chapter, `check_links.py` broken 0. Full tables in `report.md`.
 
-**Next unit:** none queued for Emerson, IIH, IPC Ch.3–Ch.6, Baumann Ch.18–Ch.20, PPIC Ch.3–Ch.6.
-The standing remaining order is Baumann `cvp` Ch.21 → PPIC `ppic` Ch.7 → IPC `ipc` Ch.7, with
+**Next unit:** none queued for Emerson, IIH, IPC Ch.3–Ch.6, Baumann Ch.18–Ch.21, PPIC Ch.3–Ch.6.
+The standing remaining order is PPIC `ppic` Ch.7 → IPC `ipc` Ch.7 → Baumann `cvp` Ch.22, with
 Book 11/12 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 20/32 (Ch.2–20 done), PPIC at 6/11 (Ch.1–6 done) and
+complete at 8/8 (Ch.2–8 done), Baumann at 21/32 (Ch.2–21 done), PPIC at 6/11 (Ch.1–6 done) and
 IPC at 6/8 (Ch.1–6 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
@@ -196,6 +198,25 @@ QA: 26 sequential unique `fig-N` ids, 26 XML-valid SVGs, 26/26 localized caption
 present, badge 6/8 in both languages. **IPC is 6/8 🟠;
 `TRANSLATED["instrumentation and process control"]` is `("progress", 8, 6)`.**
 
+## 0.17 Baumann Ch.21 "The ABC Method for Estimating Hydrodynamic Sound Level" published in `ed5931f4`
+One prose agent produced `cvp_ch21.py` from `work/cvp21_brief.md`. Source is `work/cvp_raw.txt`
+lines 3683–3759 (`=== PAGE 133 ===`–`=== PAGE 135 ===`), with pypdfium2 renders
+`work/cvp21_pages/p133…p135.png`. **For this chapter printed = PDF page (133–135), unlike Ch.20
+where printed = PDF − 1** — the brief records the offset change explicitly.
+Content: the scope disclaimer, input list, Table 21-1 (11 columns; the Globe Valve row carries
+only four printed numbers, the remaining six cells empty), initial calculations and calculation
+steps (28 unnumbered equations), liquid pipe-schedule modifiers −3/−6 dB, the 6-inch butterfly
+valve worked example (97.1 dBA estimate vs 94 dBA test), two additional test points and the
+closing turbulent-vs-cavitation paragraph. No figures and no numbered equations. The Table 21-1
+values, radical in `E = 45(1/√X_Fz)` and worked-example numbers were checked against page images
+because the OCR layer garbles them; the liquid schedule modifiers deliberately differ from the
+gas values in Ch.18.
+QA: 0 figures, 1 table per language with all printed numbers, 28 `class="eq"` blocks per language,
+no numbered equation labels, 0 CJK / 0 content bare `&` / 0 Spanish / 0 Vietnamese diacritics in
+EN prose, `check_links.py` broken 0, sitemap 1,120. Live EN/VI verified after Pages propagation,
+TOC row present, badge 21/32 in both languages. **Baumann is 21/32 🟠;
+`TRANSLATED["control valve primer"]` is `("progress", 32, 21)`.**
+
 ## A. Continuation queue (user's order)
 0. ~~IIH Ch.8 "Control Valves" — final chapter~~ — **published** in `905dd942` (8 figs, 111 refs,
    4 tables incl. the 108-entry book index, 45 source pages). Two parallel agents (figure supplier
@@ -229,8 +250,10 @@ present, badge 6/8 in both languages. **IPC is 6/8 🟠;
    ~~Ch.19 "The Graphical ABC Method for Gases"~~ — **done** in `34f48d9a` (3 vector graphs,
    1 table, 1 example, 3 printed pages);
    ~~Ch.20 "Methods of Aerodynamic Valve Noise Reduction"~~ — **done** in `cf190d85` (5 vector
-   figs, Eq. 20-1 + 6 unnumbered expressions, 8 bullets, 2 refs, 7 printed pages); remaining
-   ch21–32, source `work/cvp_raw.txt`.
+   figs, Eq. 20-1 + 6 unnumbered expressions, 8 bullets, 2 refs, 7 printed pages);
+   ~~Ch.21 "The ABC Method for Estimating Hydrodynamic Sound Level"~~ — **done** in `ed5931f4`
+   (0 figs, Table 21-1, 28 unnumbered equations, 3 printed pages); remaining ch22–32, source
+   `work/cvp_raw.txt`.
    Short chapters
    (≤6 pages, ≤2 figures) go to one agent for both figure and prose modules; mid-size chapters with
    3–4 charts split into figure supplier + prose with a fixed `fig_fNN` contract, both working from

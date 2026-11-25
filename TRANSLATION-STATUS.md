@@ -7235,3 +7235,26 @@ registration when resumed.
   live TOC lists Ch.6 and the live sitemap has 8 Ch.6 URL entries.
 - IPC `ipc` is now **6/8** 🟠. Next: Baumann Ch.21 → PPIC Ch.7 → IPC Ch.7; Book 11/12
   registration only on confirmation.
+
+## Session 131 — Baumann Chapter 21 published
+
+- Chapter: *The ABC Method for Estimating Hydrodynamic Sound Level* / *Phương pháp ABC ước tính
+  mức âm thanh thủy động*, printed and PDF pp. 133–135 (`work/cvp_raw.txt` lines 3683–3759),
+  with renders `work/cvp21_pages/p133…p135.png`. Bilingual EN/VI slug
+  `ch21-the-abc-method-for-estimating-hydrodynamic-sound-level`.
+- One prose agent produced `cvp_ch21.py` from `work/cvp21_brief.md`. Unlike Ch.20, printed page
+  numbers equal PDF page numbers here; the brief records the offset change. The chapter has zero
+  figures, one 11-column Table 21-1 and 28 unnumbered equations. The table values, the radical in
+  `E = 45(1/√X_Fz)` and the worked-example numbers were read from printed page images because the
+  OCR layer garbles them; the liquid pipe-schedule modifiers are −3/−6 dB (not Ch.18's gas values).
+- QA: 0 figures, 1 table per language with all printed values (the Globe Valve row keeps four
+  numbers and six empty cells), 28 `class="eq"` blocks per language, no numbered equation labels,
+  0 CJK / 0 content bare ampersands / 0 Spanish / 0 Vietnamese diacritics in EN prose,
+  `check_links.py` broken 0; sitemap **1,120 URLs** (1,105 with language siblings), 8 Ch.21
+  entries; catalog badge 21/32 in both languages.
+- Pushed `ed5931f4` ("Add Baumann chapter 21: hydrodynamic sound level ABC method (EN/VI)"). Live
+  EN/VI deep URLs initially 404, then 200 after Pages propagation; both live pages contain one
+  table with the verified numbers, 28 equations, no figures and no numbered equation labels;
+  live TOCs list Ch.21 and the live sitemap has 8 Ch.21 URL entries.
+- Baumann `cvp` is now **21/32** 🟠. Next: PPIC Ch.7 → IPC Ch.7 → Baumann Ch.22; Book 11/12
+  registration only on confirmation.

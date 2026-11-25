@@ -7,11 +7,14 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-25):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `b5a7b37e`**
-(Book 10 IPC Ch.6 "Process Control": 45 PDF pages / printed pp. 272–316, 26 vector figures,
-equations (6.1)–(6.4), 13 worked examples and a 14-question exercise, no tables) — the prior HEAD
-`612baf12` was Book 9 PPIC Ch.6 "Developments of Power System Protection and Control": 18 PDF pages
-/ printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before that
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `ed5931f4`**
+(Book 7 Baumann Ch.21 "The ABC Method for Estimating Hydrodynamic Sound Level": 3 PDF/printed pp.
+133–135, one 11-column table, 28 unnumbered equations, one worked example, no figures) — the prior
+HEAD `b5a7b37e` was Book 10 IPC Ch.6 "Process Control": 45 PDF pages / printed pp. 272–316, 26
+vector figures, equations (6.1)–(6.4), 13 worked examples and a 14-question exercise, no tables —
+and before that `612baf12` was Book 9 PPIC Ch.6 "Developments of Power System Protection and
+Control": 18 PDF pages / printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered
+equations — and before that
 `cf190d85` was Book 7 Baumann Ch.20 "Methods of Aerodynamic Valve Noise Reduction": 7 PDF pages /
 printed pp. 125–131, 5 vector figures, Equation 20-1 plus six unnumbered expressions, eight
 abatement bullets, two references — and before that `64d01a87` was Book 10 IPC Ch.5 "Signal
@@ -104,7 +107,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **20/32** 🟠 | 38 (ch1–6, ch9–11, ch13, ch15, ch18–20; ch17 has no figures) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **21/32** 🟠 | 38 (ch1–6, ch9–11, ch13, ch15, ch18–20; ch17/ch21 have no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **6/11** 🟠 | 51 (ch1–6: 5 + 7 + 8 + 11 + 17 + 3) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **6/8** 🟠 | 280 (ch1–6: 51 + 58 + 72 + 30 + 43 + 26) |
@@ -863,5 +866,20 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   present, catalog badge "Translating · 6 of 8 chapters" / "Đang dịch · 6/8 chương".
 - IPC `ipc` is now **6/8** 🟠; remaining IPC chapters are Ch.7–Ch.8. Next in the standing order:
   Baumann Ch.21 → PPIC Ch.7 → IPC Ch.7.
+
+## Baumann Chapter 21 — The ABC Method for Estimating Hydrodynamic Sound Level (2026-11-25)
+
+- Printed and PDF pp. 133–135 (3 pages), EN/VI slug
+  `ch21-the-abc-method-for-estimating-hydrodynamic-sound-level`, published in `ed5931f4` and
+  verified live after Pages propagation. For this chapter printed = PDF (unlike Ch.20).
+- One writer produced `cvp_ch21.py` from `work/cvp21_brief.md`: zero figures, one 11-column
+  Table 21-1, 28 unnumbered equations, the 6-inch butterfly valve worked example (97.1 dBA
+  estimate vs 94 dBA test), two additional test points and the closing turbulent-vs-cavitation
+  paragraph. Table values and formulas were checked against page images.
+- QA: 1 table per language with all printed numbers, 28 equation blocks, no figures or numbered
+  equations, 0 CJK / bare `&` / Spanish / Vietnamese-in-English, broken links 0, sitemap 1,120
+  URLs (8 Ch.21 entries). Live EN/VI deep URLs 200, TOC rows present, catalog badge 21/32.
+- Baumann `cvp` is now **21/32** 🟠; remaining Baumann chapters are Ch.22–Ch.32. Next in the
+  standing order: PPIC Ch.7 → IPC Ch.7 → Baumann Ch.22.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.
