@@ -7032,3 +7032,46 @@ registration when resumed.
   chương"), and live sitemap has 2 `<loc>` plus 6 hreflang alternates.
 - Baumann `cvp` is now **18/32** 🟠. Next: PPIC Ch.4 → IPC Ch.4 → Baumann Ch.19; Book 11/12
   registration only on confirmation.
+
+## Session 122 — PPIC Chapter 4 published
+
+- Chapter: *Nuclear Power Plant Instrumentation Fault Detection Using Fuzzy Logic*, printed pp.
+  49–78 (PDF pp. 65–94), `work/ppic_raw.txt` with renders `work/ppic4_p065…p094.png`. Bilingual
+  EN/VI slug `ch04-nuclear-power-plant-instrumentation-fault-detection`.
+- Five section writers (`ppic_ch04a…e.py`) and three figure suppliers (`ppicfig4_a…c.py`) worked
+  against `work/ipc`-style brief `work/ppic4_brief.md`; `ppicfig4.py` and `ppic_ch04.py` merged
+  them. Content: 11 vector figures, 4 tables, printed equation labels (1), (2), (4) and 51
+  references. Equation (3) was not invented even though the source discusses three fuzzy
+  frequency values.
+- Integration fixed a stray `·` outside a quoted Vietnamese literal in `note_terms()` and
+  shortened two overlapping y-axis labels. QA: 11 sequential unique `fig-N` ids, 11 XML-valid
+  SVGs, 11/11 localized captions, 4 tables, 61 list items, 0 CJK / 0 content bare ampersands /
+  0 Spanish / 0 Vietnamese diacritics in EN prose, 0 off-canvas / 0 overlapping labels,
+  `check_links.py` broken 0; sitemap **1,104 URLs**, 8 Ch.4 entries; catalog badge 4/11.
+- Pushed `3ab39813` ("Add PPIC chapter 4: fuzzy fault detection (EN/VI, 11 vector figures)").
+  Live EN/VI deep URLs initially 404, then 200 after Pages propagation; live TOC lists Ch.4 and
+  the live sitemap has 2 `<loc>` plus 6 hreflang alternates.
+- PPIC `ppic` is now **4/11** 🟠. Next: IPC Ch.4 → Baumann Ch.19 → PPIC Ch.5.
+
+## Session 123 — IPC Chapter 4 published
+
+- Chapter: *Telemetry*, printed pp. 204–228 (PDF pp. 216–240), `work/ipc_decoded.txt` lines
+  8150–9127 with renders `work/ipc4_pages/p216…p240.png`. Bilingual EN/VI slug `ch04-telemetry`.
+- Seven section writers (`ipc_ch04_a…g.py`) and two figure suppliers (`ipcfig4_a/b.py`) worked
+  against `work/ipc4_brief.md`; `ipcfig4.py` and `ipc_ch04.py` merged them. Content: 30 vector
+  figures (cabling sketches, safety barrier, fibre construction, modulation waveforms, SDS block
+  diagram), equations (4.1)–(4.4), four worked examples and the 15-question exercise. Example
+  4.1's odd printed arithmetic is retained in EN and clarified in VI; Example 4.4's final error
+  calculation was carried over from printed p228.
+- Integration fixed a missing opening quote in the VI key-term string. QA: 30 sequential unique
+  `fig-N` ids, 30 XML-valid SVGs, 30/30 localized captions, equations (4.1)–(4.4), 15 exercise
+  items, 0 CJK / 0 content bare ampersands / 0 Spanish / 0 Vietnamese diacritics in EN prose
+  outside the intentionally bilingual SVG strips, 0 off-canvas / 0 overlapping figure labels,
+  `check_links.py` broken 0; sitemap **1,106 URLs** (1,091 with language siblings), 8 Ch.4
+  entries; catalog badge 4/8 in both languages.
+- Pushed `fb826fcb` ("Add IPC chapter 4: Telemetry (EN/VI, 30 vector figures)"). Live EN/VI deep
+  URLs initially 404, then 200 after Pages propagation; live pages contain 30 valid SVGs each,
+  live TOC lists Ch.4 ("Telemetry" / "Đo từ xa"), badges read "Translating · 4 of 8 chapters" /
+  "Đang dịch · 4/8 chương", and live sitemap has 2 `<loc>` plus 6 hreflang alternates.
+- IPC `ipc` is now **4/8** 🟠. Next: Baumann Ch.19 → PPIC Ch.5 → IPC Ch.5; Book 11/12
+  registration only on confirmation.

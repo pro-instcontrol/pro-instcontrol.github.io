@@ -2,21 +2,22 @@
 
 **State now (2026-11-24):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **18/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **3/11**, IPC `ipc` **3/8**.
-**Live chapter HEAD `d7c9c22f`** (Baumann Ch.18 "The ABC Method for Gases", 6 PDF pages /
-printed pp. 115–120, 1 vector figure, 1 table, 6 equations, 2 refs + 4 reading items); live sitemap
-1,102 URLs, catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 18/32, PPIC badge
-3/11, IPC badge 3/8, Baumann Ch.18, IPC Ch.3, Baumann Ch.17 and PPIC Ch.3 EN/VI deep URLs 200,
-sitemap 8 entries per new chapter, `check_links.py` broken 0. Full tables in `report.md`.
+Baumann `cvp` **18/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **4/11**, IPC `ipc` **4/8**.
+**Live chapter HEAD `fb826fcb`** (IPC Ch.4 "Telemetry", 25 PDF pages / printed pp. 204–228,
+30 vector figures, equations (4.1)–(4.4), 4 worked examples, 15 exercises); live sitemap 1,106
+URLs, catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 18/32, PPIC badge
+4/11, IPC badge 4/8, IPC Ch.4, PPIC Ch.4, Baumann Ch.18, IPC Ch.3, Baumann Ch.17 and PPIC Ch.3
+EN/VI deep URLs 200, sitemap 8 entries per new chapter, `check_links.py` broken 0. Full tables
+in `report.md`.
 
-**Next unit:** none queued for Emerson, IIH, IPC Ch.3, Baumann Ch.18 or PPIC Ch.3. The standing
-remaining order is PPIC `ppic` Ch.4 → IPC `ipc` Ch.4 → Baumann `cvp` Ch.19, with Book 11/12
-registration only on confirmation.
+**Next unit:** none queued for Emerson, IIH, IPC Ch.3/Ch.4, Baumann Ch.18, PPIC Ch.3/Ch.4.
+The standing remaining order is Baumann `cvp` Ch.19 → PPIC `ppic` Ch.5 → IPC `ipc` Ch.5, with
+Book 11/12 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 18/32 (Ch.2–18 done), PPIC at 3/11 (Ch.1–3 done) and
-IPC at 3/8 (Ch.1–3 done). Also two books located but not registered
+complete at 8/8 (Ch.2–8 done), Baumann at 18/32 (Ch.2–18 done), PPIC at 4/11 (Ch.1–4 done) and
+IPC at 4/8 (Ch.1–4 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
@@ -73,6 +74,33 @@ QA: 1 XML-valid SVG with localized caption, 6 equation numbers, 1 table, 6 list 
 additional-reading count; `d7c9c22f` rebuilt both pages and corrected the source note. Live EN/VI
 200 after Pages propagation, TOC row present, badge 18/32 in both languages. **Baumann is 18/32
 🟠; `TRANSLATED["control valve primer"]` is `("progress", 32, 18)`.**
+
+## 0.9 PPIC Ch.4 "Nuclear Power Plant Instrumentation Fault Detection Using Fuzzy Logic" published in `3ab39813`
+Five section writers produced `ppic_ch04a…e.py` and three figure suppliers produced `ppicfig4_a…c.py`
+against `work/ppic4_brief.md`; `ppicfig4.py` and `ppic_ch04.py` merged them. Source is
+`work/ppic_raw.txt` lines for PDF pp. 65–94 (`work/ppic4_p065…p094.png`), printed pp. 49–78
+(printed = PDF − 16). The source omits equation (3) despite discussing three fuzzy frequency
+values; the printed labels (1), (2), (4) were preserved, not invented. Integration fixed a stray
+`·` outside a quoted Vietnamese literal in `note_terms()` and shortened two overlapping y-axis
+labels (`Temperature (°F)` → `°F`, `Pressure (psia)` → `psia`). QA: 11 sequential unique `fig-N`
+ids, 11 XML-valid SVGs, 11/11 localized captions, equations `['1', '2', '4']`, 4 tables, 61 list
+items, 0 CJK / 0 content bare `&` / 0 Spanish / 0 Vietnamese diacritics in EN prose, 0 off-canvas /
+0 overlapping labels, `check_links.py` broken 0, sitemap 1,104. Live EN/VI 200 after Pages
+propagation (EN four checks, VI one), TOC row present, badge 4/11 in both languages. **PPIC is
+4/11 🟠; `TRANSLATED["handbook on power plant instrumentation and control"]` is
+`("progress", 11, 4)`.**
+
+## 0.10 IPC Ch.4 "Telemetry" published in `fb826fcb`
+Seven section writers produced `ipc_ch04_a…g.py` and two figure suppliers produced
+`ipcfig4_a/b.py` against `work/ipc4_brief.md`; `ipcfig4.py` and `ipc_ch04.py` merged them. Source
+is `work/ipc_decoded.txt` lines 8150–9127 (PDF pp. 216–240, printed pp. 204–228) with renders in
+`work/ipc4_pages/p216…p240.png`. Integration fixed a missing opening quote in the VI key-term
+string. QA: 30 sequential unique `fig-N` ids, 30 XML-valid SVGs, 30/30 localized captions,
+equations (4.1)–(4.4), 15 exercise items, 0 CJK / 0 content bare `&` / 0 Spanish / 0 Vietnamese
+diacritics in EN prose outside the intentionally bilingual SVG strips, 0 off-canvas / 0
+overlapping figure labels, `check_links.py` broken 0, sitemap 1,106. Live EN/VI 200 after Pages
+propagation, TOC row present, badge 4/8 in both languages. **IPC is 4/8 🟠;
+`TRANSLATED["instrumentation and process control"]` is `("progress", 8, 4)`.**
 
 ## A. Continuation queue (user's order)
 0. ~~IIH Ch.8 "Control Valves" — final chapter~~ — **published** in `905dd942` (8 figs, 111 refs,
@@ -139,7 +167,10 @@ additional-reading count; `d7c9c22f` rebuilt both pages and corrected the source
    `ipc_ch02_lib.py` contract, merged by `ipcfig2.py` and `ipc_ch02.py`; pre-rendered pages in
    `work/ipc2_pages/p075…p135.png`. ~~Ch.3 "Transducers – III"~~ — **published** in `d42d37e1`
    (72 vector figs, 45 equations, 14 tables, 80 source pages, broken 0); twelve parallel writers
-   against `work/ipc3_brief.md`, merged by `ipcfig3.py` and `ipc_ch03.py`. Remaining ch4–8 — source
+   against `work/ipc3_brief.md`, merged by `ipcfig3.py` and `ipc_ch03.py`.
+   ~~Ch.4 "Telemetry"~~ — **published** in `fb826fcb` (30 vector figs, 4 equations, 4 examples,
+   15 exercises, 25 source pages, broken 0); seven section writers and two figure suppliers
+   against `work/ipc4_brief.md`, merged by `ipcfig4.py` and `ipc_ch04.py`. Remaining ch5–8 — source
    **`work/ipc_decoded.txt`** (NOT the raw dump — glyph codes). The Spanish guard must exclude
    "con" (Vietnamese "nhóm con").
 6. Register Book 11 / Book 12 from the two located PDFs when the user confirms.

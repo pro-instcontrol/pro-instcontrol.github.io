@@ -7,14 +7,18 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-24):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `d7c9c22f`**
-(Book 7 Baumann Ch.18 "The ABC Method for Gases": 6 PDF pages / printed pp. 115–120, 1 vector
-figure, 1 gas-constant table, 6 numbered equations, 2 references and 4 reading items) — the prior
-HEAD `d42d37e1` was Book 10 IPC Ch.3 "Transducers – III": 80 PDF pages / printed pp. 124–203, 72
-vector figures, 45 numbered equations, 14 tables, no references — and before that `d8159c1c` was
-PPIC Ch.3 "Study of Control Strategy of the Converter in Solar Photovoltaic Power System":
-10 printed pages, 8 vector figures, 13 references, no tables or numbered equations — and before
-that `128ff523` was Baumann Ch.17 "Will My Valve Be Too Noisy?" (3 printed pages, no figures,
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `fb826fcb`**
+(Book 10 IPC Ch.4 "Telemetry": 25 PDF pages / printed pp. 204–228, 30 vector figures,
+4 numbered equations (4.1)–(4.4), 4 worked examples and a 15-question exercise) — the prior
+HEAD `3ab39813` was Book 9 PPIC Ch.4 "Nuclear Power Plant Instrumentation Fault Detection Using
+Fuzzy Logic": 30 PDF pages / printed pp. 49–78, 11 vector figures, 4 tables, printed equations
+(1), (2), (4), 51 references — and before that `d7c9c22f` was Book 7 Baumann Ch.18 "The ABC Method for Gases":
+6 PDF pages / printed pp. 115–120, 1 vector figure, 1 gas-constant table, 6 numbered equations,
+2 references and 4 reading items — and before that `d42d37e1` was Book 10 IPC Ch.3
+"Transducers – III": 80 PDF pages / printed pp. 124–203, 72 vector figures, 45 numbered equations,
+14 tables, no references — and before that `d8159c1c` was PPIC Ch.3 "Study of Control Strategy of
+the Converter in Solar Photovoltaic Power System": 10 printed pages, 8 vector figures, 13
+references, no tables or numbered equations — and before that `128ff523` was Baumann Ch.17 "Will My Valve Be Too Noisy?" (3 printed pages, no figures,
 Equation (17-1), 3 references and 5 reading items), and before that `e74d218a` was IPC Ch.2
 "Transducers – II"
 (58 vector figures, 20 numbered equations, Table 2.1, 12 worked examples and 11 exercise
@@ -88,8 +92,8 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **18/32** 🟠 | 30 (ch1–6, ch9–11, ch13, ch15, ch18; ch17 has no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **3/11** 🟠 | 20 (ch1–3: 12 + 8) |
-| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **3/8** 🟠 | 181 (ch1–3: 51 + 58 + 72) |
+| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **4/11** 🟠 | 31 (ch1–4: 5 + 7 + 8 + 11) |
+| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **4/8** 🟠 | 211 (ch1–4: 51 + 58 + 72 + 30) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
 (Emerson), 294 (IIH), 295 (PPIC), 296 (IPC).
@@ -168,12 +172,16 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   (7 figs, 76 refs, no tables, printed pp. 13–38, published in `fed6e480`)
   + Ch.3 "Study of Control Strategy of the Converter in Solar Photovoltaic Power System"
   (8 vector figs, 13 refs, no tables/equations, printed pp. 39–48)
+  + Ch.4 "Nuclear Power Plant Instrumentation Fault Detection Using Fuzzy Logic" (11 vector figs,
+  4 tables, printed equations (1), (2), (4), 51 refs, printed pp. 49–78, published in `3ab39813`)
 - IPC Ch.1 "Transducers – I" (51 figs, 7 tables, printed pp. 1–62)
   + Ch.2 "Transducers – II" (58 vector figs, Table 2.1, 20 numbered equations, 12 worked
   examples, 11 exercise questions, PDF pp. 75–135 / printed pp. 63–123, published in `e74d218a`)
   + Ch.3 "Transducers – III" (72 vector figs, 45 numbered equations, 14 tables including the
   thermocouple tolerance/calibration bands, PDF pp. 136–215 / printed pp. 124–203, published in
   `d42d37e1`)
+  + Ch.4 "Telemetry" (30 vector figs, equations (4.1)–(4.4), 4 worked examples, 15 exercises,
+  printed pp. 204–228, published in `fb826fcb`)
 
 ### Live verification (2026-11-22, after resuming)
 - Emerson Ch.3 EN/VI deep URLs → **HTTP 200** (after Pages negative caching cleared); live TOC
@@ -311,6 +319,15 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   chuyển đổi trong hệ thống điện mặt trời quang điện"), the catalog badge shows "Translating ·
   3 of 11 chapters" (VI: "Đang dịch · 3/11 chương"), and the live sitemap includes all 8 Ch.3 URL
   entries.
+- PPIC Ch.4 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation (EN four
+  checks, VI one); both live pages contain 11 XML-valid inline SVGs with 11 sequential `fig-N`
+  ids and localized captions (`Figure 4.x` / `Hình 4.x`), printed equation labels (1), (2), (4),
+  4 tables and 61 list items (51 references plus other lists), 0 CJK / 0 bare ampersands /
+  0 Spanish hits / 0 Vietnamese diacritics in EN prose, 0 off-canvas / 0 overlapping figure
+  labels, both live TOCs list Ch.4 ("Nuclear Power Plant Instrumentation Fault Detection Using
+  Fuzzy Logic" / "Phát hiện lỗi thiết bị đo trong nhà máy điện hạt nhân bằng logic mờ"), the
+  catalog badge shows "Translating · 4 of 11 chapters" (VI: "Đang dịch · 4/11 chương"), and the
+  live sitemap includes all 8 Ch.4 URL entries.
 - IPC Ch.3 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation (EN after
   four checks, VI immediately); both live pages contain 72 XML-valid inline SVGs with 72 unique
   `fig-N` ids, 45 numbered equations, 14 tables, 0 CJK / 0 content bare ampersands / 0 Spanish
@@ -318,6 +335,12 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   / "Bộ chuyển đổi – III"), the catalog badge shows "Translating · 3 of 8 chapters" (VI: "Đang dịch
   · 3/8 chương"), and the live sitemap includes all 8 Ch.3 URL entries (2 `<loc>` + 6 hreflang
   alternates).
+- IPC Ch.4 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation; both live
+  pages contain 30 XML-valid inline SVGs with 30 sequential `fig-N` ids and localized captions
+  (`Figure 4.x` / `Hình 4.x`), equation labels (4.1)–(4.4), 0 CJK / 0 bare ampersands /
+  0 Spanish hits in page content, both live TOCs list Ch.4 ("Telemetry" / "Đo từ xa"), the catalog
+  badge shows "Translating · 4 of 8 chapters" (VI: "Đang dịch · 4/8 chương"), and the live sitemap
+  includes all 8 Ch.4 URL entries (2 `<loc>` + 6 hreflang alternates).
 
 ---
 
@@ -378,7 +401,8 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   → `a387b13a` (Baumann ch15) → `21f05412` (Baumann ch16)
   → `fed6e480` (PPIC ch2) → `e74d218a` (IPC ch2) → `128ff523` (Baumann ch17)
   → `d8159c1c` (PPIC ch3) → `d42d37e1` (IPC ch3) → `2df01e67` (Baumann ch18)
-  → `d7c9c22f` (Baumann ch18 reading-count correction, **live chapter HEAD**).
+  → `d7c9c22f` (Baumann ch18 reading-count correction) → `3ab39813` (PPIC ch4)
+  → `fb826fcb` (IPC ch4, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -387,7 +411,9 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    ~~Ch.2 "Transducers – II"~~ — **done** in `e74d218a` (58 figs, Table 2.1, 20 equations, 12
    examples, 11 exercises, broken 0);
    ~~Ch.3 "Transducers – III"~~ — **done** in `d42d37e1` (72 figs, 45 equations, 14 tables,
-   broken 0); remaining Ch.4–8.
+   broken 0);
+   ~~Ch.4 "Telemetry"~~ — **done** in `fb826fcb` (30 vector figs, 4 equations, 4 examples,
+   15 exercises, printed pp. 204–228, broken 0); remaining Ch.5–8.
 2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs)
    ~~Ch.4 "pH Measurement"~~ — **done** in `399e0cbb` (22 figs)
    ~~Ch.5 "Measurement of Flow Rate"~~ — **done** in `db6c38fb` (10 figs)
@@ -432,9 +458,40 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 7. ~~Book 9 `ppic` Ch.2 "Advanced Measuring (Instrumentation) Methods for Nuclear Installations"~~
    — **done** in `fed6e480` (7 vector figs, 76 refs, printed pp. 13–38, broken 0);
    ~~Ch.3 "Study of Control Strategy of the Converter in Solar Photovoltaic Power System"~~ —
-   **done** in `d8159c1c` (8 vector figs, 13 refs, printed pp. 39–48, broken 0); remaining Ch.4–11.
+   **done** in `d8159c1c` (8 vector figs, 13 refs, printed pp. 39–48, broken 0);
+   ~~Ch.4 "Nuclear Power Plant Instrumentation Fault Detection Using Fuzzy Logic"~~ —
+   **done** in `3ab39813` (11 vector figs, 4 tables, printed equations (1), (2), (4), 51 refs,
+   printed pp. 49–78, broken 0); remaining Ch.5–11.
 
 ### Resume notes
+- IPC Ch.4 (25 PDF pages / printed pp. 204–228, 30 vector figures, 4 numbered equations,
+  4 worked examples and a 15-question exercise) was written from `work/ipc_decoded.txt` lines
+  8150–9127 and 25 pypdfium2 renders `work/ipc4_pages/p216…p240.png`. Seven section writers
+  (`ipc_ch04_a…g.py`) and two figure suppliers (`ipcfig4_a/b.py`) worked against
+  `work/ipc4_brief.md`; `ipcfig4.py` and `ipc_ch04.py` merged them. Integration fixed a missing
+  opening quote in the VI key-term string in `ipc_ch04.py`. The printed Example 4.1 arithmetic
+  is kept in EN and clarified in VI; Example 4.4's final error calculation was carried over from
+  printed p228. QA: 30 sequential unique `fig-N` ids per page, 30 XML-valid SVGs, 30/30 localized
+  captions, equations (4.1)–(4.4), 15 exercise items, 0 CJK / 0 content bare `&` / 0 Spanish
+  hits / 0 Vietnamese diacritics in EN prose outside the intentionally bilingual SVG strips,
+  0 off-canvas / 0 overlapping figure labels, `check_links.py` broken 0, sitemap 1,106 URLs,
+  8 entries for Ch.4. Published in `fb826fcb`; live EN/VI 200 after Pages propagation, TOC row
+  and 4/8 badge verified.
+- PPIC Ch.4 (30 PDF pages / printed pp. 49–78, 11 vector figures, 4 tables, printed equations
+  (1), (2), (4) and 51 references) was split across five section writers (`ppic_ch04a…e.py`)
+  and three figure suppliers (`ppicfig4_a…c.py`) against `work/ppic4_brief.md`, using
+  `work/ppic_raw.txt` and 30 pypdfium2 renders `work/ppic4_p065…p094.png`. `ppicfig4.py`
+  merged the 11 figure callables and `ppic_ch04.py` added the bilingual glossary and source
+  note. The source discusses three fuzzy frequency values but prints only equations (1), (2)
+  and (4), so equation (3) was deliberately not invented. Integration fixed a stray `·`
+  outside a quoted Vietnamese literal in `note_terms()`; figure QA found two overlapping
+  y-axis labels, fixed by shortening `Temperature (°F)` → `°F` and `Pressure (psia)` → `psia`.
+  QA: 11 sequential unique `fig-N` ids per page, 11 XML-valid SVGs, 11/11 localized captions,
+  equations `['1', '2', '4']`, 4 tables, 61 list items, 0 CJK / 0 content bare `&` / 0 Spanish /
+  0 Vietnamese diacritics in EN prose, 0 off-canvas / 0 overlapping figure labels,
+  `check_links.py` broken 0, sitemap 1,104 URLs, 8 entries for Ch.4. Published in `3ab39813`;
+  live EN/VI 200 after Pages propagation (EN four checks, VI one), TOC row and 4/11 badge
+  verified.
 - Baumann Ch.18 (6 PDF pages / printed pp. 115–120, one vector chart, one table, six numbered
   equations) was written from `work/cvp_raw.txt` and six pypdfium2 renders
   `work/cvp18_p117…p122.png`. The OCR layer garbles every equation, so (18-1)–(18-6),
