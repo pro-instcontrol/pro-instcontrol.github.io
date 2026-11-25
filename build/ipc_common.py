@@ -30,6 +30,7 @@ SLUGS["ipc"] = {
     1: "ch01-transducers-i",
     2: "ch02-transducers-ii",
     3: "ch03-transducers-iii",
+    4: "ch04-telemetry",
 }
 
 # Re-export the shared helpers so chapter modules can `import ipc_common as C`.

@@ -506,6 +506,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch03-transducers-iii/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch04-telemetry/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch04-telemetry/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-and-process-control/ch04-telemetry/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch04-telemetry/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/isa-5-1-instrumentation-symbols/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/isa-5-1-instrumentation-symbols/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/isa-5-1-instrumentation-symbols/"/>
@@ -3837,6 +3843,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch03-transducers-iii/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-and-process-control/ch03-transducers-iii/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch03-transducers-iii/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/instrumentation-and-process-control/ch04-telemetry/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch04-telemetry/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-and-process-control/ch04-telemetry/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-and-process-control/ch04-telemetry/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/isa-5-1-instrumentation-symbols/</loc>
