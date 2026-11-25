@@ -789,6 +789,7 @@ BOOKS = {
             17: "ch17-will-my-valve-be-too-noisy",
             18: "ch18-the-abc-method-for-gases",
             19: "ch19-the-graphical-abc-method-for-gases",
+            20: "ch20-methods-of-aerodynamic-valve-noise-reduction",
         },
         "copyright_en": "Original work © 2011 Hans D. Baumann, published by ISA / John Wiley & Sons.",
         "copyright_vi": "Bản gốc © 2011 Hans D. Baumann, do ISA / John Wiley & Sons xuất bản.",
