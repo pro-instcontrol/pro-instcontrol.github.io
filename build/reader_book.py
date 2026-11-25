@@ -965,6 +965,7 @@ BOOKS = {
             2: "ch02-advanced-measuring-methods-for-nuclear-installations",
             3: "ch03-study-of-control-strategy-of-the-converter",
             4: "ch04-nuclear-power-plant-instrumentation-fault-detection",
+            5: "ch05-analysis-of-spatial-separation-effects",
         },
         "copyright_en": "Original work © 2019 Bibliotex; individual chapters © their authors, Creative Commons.",
         "copyright_vi": "Bản gốc © 2019 Bibliotex; từng chương © tác giả tương ứng, giấy phép Creative Commons.",
