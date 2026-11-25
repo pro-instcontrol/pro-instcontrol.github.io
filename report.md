@@ -5,11 +5,13 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-24):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
+**Status (2026-11-25):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `612baf12`**
-(Book 9 PPIC Ch.6 "Developments of Power System Protection and Control": 18 PDF pages / printed
-pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations) — the prior HEAD
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `b5a7b37e`**
+(Book 10 IPC Ch.6 "Process Control": 45 PDF pages / printed pp. 272–316, 26 vector figures,
+equations (6.1)–(6.4), 13 worked examples and a 14-question exercise, no tables) — the prior HEAD
+`612baf12` was Book 9 PPIC Ch.6 "Developments of Power System Protection and Control": 18 PDF pages
+/ printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before that
 `cf190d85` was Book 7 Baumann Ch.20 "Methods of Aerodynamic Valve Noise Reduction": 7 PDF pages /
 printed pp. 125–131, 5 vector figures, Equation 20-1 plus six unnumbered expressions, eight
 abatement bullets, two references — and before that `64d01a87` was Book 10 IPC Ch.5 "Signal
@@ -105,7 +107,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **20/32** 🟠 | 38 (ch1–6, ch9–11, ch13, ch15, ch18–20; ch17 has no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **6/11** 🟠 | 51 (ch1–6: 5 + 7 + 8 + 11 + 17 + 3) |
-| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **5/8** 🟠 | 254 (ch1–5: 51 + 58 + 72 + 30 + 43) |
+| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **6/8** 🟠 | 280 (ch1–6: 51 + 58 + 72 + 30 + 43 + 26) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
 (Emerson), 294 (IIH), 295 (PPIC), 296 (IPC).
@@ -846,5 +848,20 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 - Emerson `cvh6` is now **complete at 15/15**: 228 vector figures through Ch.12 plus 45 data tables /
   2,526 rows in Ch.13–15. No chapter/site changes are pending for this book.
 - Before editing status docs again, check `git status --short` to see what is already committed.
+
+## IPC Chapter 6 — Process Control (2026-11-25)
+
+- Printed pp. 272–316 (PDF pp. 284–328), 45 source pages, EN/VI slug
+  `ch06-process-control`, published in `b5a7b37e` and verified live after Pages propagation.
+- Nine section modules (`ipc_ch06a…i.py`) and three figure suppliers (`ipcfig6_a/b/c.py`)
+  against `work/ipc6_brief.md`. 26 vector figures, equations (6.1)–(6.4), 13 worked examples
+  and a 14-question exercise; no printed tables or reference list. Numbered equations were
+  transcribed from page images because the glyph-decoded text scrambles them.
+- QA: 26/26 sequential XML-valid figures with localized captions, 51 equations, 13 examples,
+  14 exercise items, 0 CJK / bare `&` / Spanish / Vietnamese-in-English, 0 label overlaps,
+  broken links 0, sitemap 1,118 URLs (8 Ch.6 entries). Live EN/VI deep URLs 200, TOC row
+  present, catalog badge "Translating · 6 of 8 chapters" / "Đang dịch · 6/8 chương".
+- IPC `ipc` is now **6/8** 🟠; remaining IPC chapters are Ch.7–Ch.8. Next in the standing order:
+  Baumann Ch.21 → PPIC Ch.7 → IPC Ch.7.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

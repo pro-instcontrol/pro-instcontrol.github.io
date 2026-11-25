@@ -7206,3 +7206,32 @@ registration when resumed.
   alternates.
 - PPIC `ppic` is now **6/11** 🟠. Next: IPC Ch.6 → Baumann Ch.21 → PPIC Ch.7; Book 11/12
   registration only on confirmation.
+
+## Session 130 — IPC Chapter 6 published
+
+- Chapter: *Process Control* / *Điều khiển quá trình*, printed pp. 272–316 (PDF pp. 284–328),
+  `work/ipc_decoded.txt` lines 10908–12747 with 45 pypdfium2 renders
+  `work/ipc6_pages/p284…p328.png`. Bilingual EN/VI slug `ch06-process-control`.
+- Nine prose agents (`ipc_ch06a…i.py`) and three figure suppliers (`ipcfig6_a/b/c.py`) produced
+  the chapter against a new `work/ipc6_brief.md`; the first draft of that brief was written to a
+  path outside the working copy and was recreated in the correct workspace before integration.
+  Content: 26 vector figures, four numbered equations (6.1)–(6.4), 13 worked examples and a
+  14-question exercise; no tables or reference list in the printed chapter.
+- Equations were transcribed from printed page images (p279, p282, p284) because the decoded
+  text garbles them: (6.1) `E₀ = (100/P_b)·E_s + B`, (6.2) `E_s = ((E₀ − B)·P_b)/100`,
+  (6.3) `E_o = (1/T_i)∫E_s dt + B`, (6.4) `E₀ = T_d·dE_s/dt + B`. Example arithmetic was kept
+  as printed even where inconsistent (Examples 6.2 and 6.8). Section-g initially extended into
+  the opening of 6.10.1 because Figure 6.24 falls there; the built heading sequence was checked
+  and has no duplicate headings.
+- QA: 26 sequential unique `fig-N` ids per page, 26 XML-valid SVGs, 26/26 localized captions,
+  51 equations (4 numbered plus example formulas), 13 examples, 14 exercise items, 0 CJK /
+  0 content bare ampersands / 0 Spanish / 0 Vietnamese diacritics in EN prose, 0 off-canvas /
+  0 overlapping figure labels, `check_links.py` broken 0; sitemap **1,118 URLs** (1,103 with
+  language siblings), 8 Ch.6 entries; catalog badge 6/8 in both languages.
+- Pushed `b5a7b37e` ("Add IPC chapter 6: process control (EN/VI, 26 vector figures)"). Live EN/VI
+  deep URLs initially 404, then 200 after Pages propagation; live pages contain 26 XML-valid
+  inline SVGs with sequential `fig-1..26` ids, 26/26 localized captions, 51 equations, 13
+  examples, 0 CJK / 0 content bare ampersands / 0 Spanish / 0 Vietnamese diacritics in EN prose;
+  live TOC lists Ch.6 and the live sitemap has 8 Ch.6 URL entries.
+- IPC `ipc` is now **6/8** 🟠. Next: Baumann Ch.21 → PPIC Ch.7 → IPC Ch.7; Book 11/12
+  registration only on confirmation.

@@ -1,26 +1,28 @@
-# HANDOFF — Campaign state 2026-11-24 (Emerson + IIH complete; Books 7/9/10 in progress)
+# HANDOFF — Campaign state 2026-11-25 (Emerson + IIH complete; Books 7/9/10 in progress)
 
-**State now (2026-11-24):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
+**State now (2026-11-25):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **20/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **6/11**, IPC `ipc` **5/8**.
-**Live chapter HEAD `612baf12`** (PPIC Ch.6 "Developments of Power System Protection and Control",
-18 PDF pages / printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered
-equations); prior HEAD `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
+Baumann `cvp` **20/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **6/11**, IPC `ipc` **6/8**.
+**Live chapter HEAD `b5a7b37e`** (IPC Ch.6 "Process Control", 45 PDF pages / printed pp. 272–316,
+26 vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercise); prior HEAD
+`612baf12` was PPIC Ch.6 "Developments of Power System Protection and Control", 18 PDF pages /
+printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
+that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,116 URLs,
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,118 URLs,
 catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 20/32, PPIC badge 6/11,
-IPC badge 5/8; PPIC Ch.6, Baumann Ch.20, IPC Ch.5, PPIC Ch.5, Baumann Ch.19, IPC Ch.4,
+IPC badge 6/8; IPC Ch.6, PPIC Ch.6, Baumann Ch.20, IPC Ch.5, PPIC Ch.5, Baumann Ch.19, IPC Ch.4,
 PPIC Ch.4, Baumann Ch.18, IPC Ch.3, Baumann Ch.17 and PPIC Ch.3 EN/VI deep URLs 200, sitemap
 8 entries per new chapter, `check_links.py` broken 0. Full tables in `report.md`.
 
-**Next unit:** none queued for Emerson, IIH, IPC Ch.3–Ch.5, Baumann Ch.18–Ch.20, PPIC Ch.3–Ch.6.
-The standing remaining order is IPC `ipc` Ch.6 → Baumann `cvp` Ch.21 → PPIC `ppic` Ch.7, with
+**Next unit:** none queued for Emerson, IIH, IPC Ch.3–Ch.6, Baumann Ch.18–Ch.20, PPIC Ch.3–Ch.6.
+The standing remaining order is Baumann `cvp` Ch.21 → PPIC `ppic` Ch.7 → IPC `ipc` Ch.7, with
 Book 11/12 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
 complete at 8/8 (Ch.2–8 done), Baumann at 20/32 (Ch.2–20 done), PPIC at 6/11 (Ch.1–6 done) and
-IPC at 5/8 (Ch.1–5 done). Also two books located but not registered
+IPC at 6/8 (Ch.1–6 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
@@ -177,6 +179,23 @@ or equations, 0 CJK / 0 content bare `&` / 0 Spanish / 0 Vietnamese diacritics i
 after Pages propagation, TOC row present, badge 6/11 in both languages. **PPIC is 6/11 🟠;
 `TRANSLATED["handbook on power plant instrumentation and control"]` is `("progress", 11, 6)`.**
 
+## 0.16 IPC Ch.6 "Process Control" published in `b5a7b37e`
+Nine prose agents (`ipc_ch06a…i.py`) and three figure suppliers (`ipcfig6_a/b/c.py`) worked
+against `work/ipc6_brief.md`; `ipcfig6.py` and `ipc_ch06.py` merged them. Source is
+`work/ipc_decoded.txt` lines 10908–12747 (PDF pp. 284–328, printed pp. 272–316, printed = PDF −
+12), with 45 pypdfium2 renders `work/ipc6_pages/p284…p328.png`. Content: 26 vector figures,
+numbered equations (6.1)–(6.4) transcribed from printed p279/p282/p284 images, 13 worked
+examples with printed arithmetic preserved, and a 14-question exercise; no tables or references.
+Prose writers installed non-overwriting `hasattr` figure stand-ins while suppliers ran; all 26
+real vectors superseded them. The section-g writer extended into the opening of 6.10.1 because
+Figure 6.24 sits there, but the built heading sequence has no duplicates.
+QA: 26 sequential unique `fig-N` ids, 26 XML-valid SVGs, 26/26 localized captions, 51 equations
+(4 numbered + 47 example formulas), 13 examples, 14 exercise items, 0 CJK / 0 content bare `&` /
+0 Spanish / 0 Vietnamese diacritics in EN prose, 0 off-canvas / 0 overlapping labels,
+`check_links.py` broken 0, sitemap 1,118. Live EN/VI 200 after Pages propagation, TOC row
+present, badge 6/8 in both languages. **IPC is 6/8 🟠;
+`TRANSLATED["instrumentation and process control"]` is `("progress", 8, 6)`.**
+
 ## A. Continuation queue (user's order)
 0. ~~IIH Ch.8 "Control Valves" — final chapter~~ — **published** in `905dd942` (8 figs, 111 refs,
    4 tables incl. the 108-entry book index, 45 source pages). Two parallel agents (figure supplier
@@ -260,8 +279,12 @@ after Pages propagation, TOC row present, badge 6/11 in both languages. **PPIC i
    ~~Ch.5 "Signal Conditioning and Data Acquisition System"~~ — **published** in `64d01a87`
    (43 vector figs, 78 unnumbered equations, 11 examples, 18 exercises, 43 source pages, broken 0);
    eight section writers and four figure suppliers against `work/ipc5_brief.md`, merged by
-   `ipcfig5.py` and `ipc_ch05.py`. Remaining ch6–8 — source **`work/ipc_decoded.txt`** (NOT the raw
-   dump — glyph codes). The Spanish guard must exclude "con" (Vietnamese "nhóm con").
+   `ipcfig5.py` and `ipc_ch05.py`.
+   ~~Ch.6 "Process Control"~~ — **published** in `b5a7b37e` (26 vector figs, equations (6.1)–(6.4),
+   13 examples, 14 exercises, 45 source pages, broken 0); nine section writers and three figure
+   suppliers against `work/ipc6_brief.md`, merged by `ipcfig6.py` and `ipc_ch06.py`. Remaining
+   ch7–8 — source **`work/ipc_decoded.txt`** (NOT the raw dump — glyph codes). The Spanish guard
+   must exclude "con" (Vietnamese "nhóm con").
 6. Register Book 11 / Book 12 from the two located PDFs when the user confirms.
 
 Per-chapter flow: survey source span + figures → delegate writing to a background agent with a
