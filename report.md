@@ -7,10 +7,13 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-24):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `34f48d9a`**
-(Book 7 Baumann Ch.19 "The Graphical ABC Method for Gases": 3 PDF pages / printed pp. 121–123,
-3 vector graphs A/B/C computed from the Chapter 18 equations, one pipe-schedule table and one
-worked example) — the prior HEAD `fb826fcb` was Book 10 IPC Ch.4 "Telemetry": 25 PDF pages /
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `1065ce57`**
+(Book 9 PPIC Ch.5 "Analysis of the Spatial Separation Effects of Thorium/Uranium Fuels in
+Block-Type HTRs": 27 PDF pages / printed pp. 79–105, 17 vector figures, 5 tables, equations
+(1)–(5), 18 references) — the prior HEAD `34f48d9a` was Book 7 Baumann Ch.19 "The Graphical ABC
+Method for Gases": 3 PDF pages / printed pp. 121–123, 3 vector graphs A/B/C computed from the
+Chapter 18 equations, one pipe-schedule table and one worked example — and before that
+`fb826fcb` was Book 10 IPC Ch.4 "Telemetry": 25 PDF pages /
 printed pp. 204–228, 30 vector figures, 4 numbered equations (4.1)–(4.4), 4 worked examples
 and a 15-question exercise — and before that `3ab39813` was Book 9 PPIC Ch.4 "Nuclear Power Plant Instrumentation Fault Detection Using
 Fuzzy Logic": 30 PDF pages / printed pp. 49–78, 11 vector figures, 4 tables, printed equations
@@ -94,7 +97,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **19/32** 🟠 | 33 (ch1–6, ch9–11, ch13, ch15, ch18–19; ch17 has no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **4/11** 🟠 | 31 (ch1–4: 5 + 7 + 8 + 11) |
+| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **5/11** 🟠 | 48 (ch1–5: 5 + 7 + 8 + 11 + 17) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **4/8** 🟠 | 211 (ch1–4: 51 + 58 + 72 + 30) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
@@ -178,6 +181,9 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   (8 vector figs, 13 refs, no tables/equations, printed pp. 39–48)
   + Ch.4 "Nuclear Power Plant Instrumentation Fault Detection Using Fuzzy Logic" (11 vector figs,
   4 tables, printed equations (1), (2), (4), 51 refs, printed pp. 49–78, published in `3ab39813`)
+  + Ch.5 "Analysis of the Spatial Separation Effects of Thorium/Uranium Fuels in Block-Type
+  HTRs" (17 vector figs, 5 tables, equations (1)–(5), 18 refs, printed pp. 79–105, published in
+  `1065ce57`)
 - IPC Ch.1 "Transducers – I" (51 figs, 7 tables, printed pp. 1–62)
   + Ch.2 "Transducers – II" (58 vector figs, Table 2.1, 20 numbered equations, 12 worked
   examples, 11 exercise questions, PDF pp. 75–135 / printed pp. 63–123, published in `e74d218a`)
@@ -352,6 +358,14 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   Method for Gases" / "Phương pháp ABC dạng đồ thị cho chất khí"), the catalog badge shows
   "Translating · 19 of 32 chapters" (VI: "Đang dịch · 19/32 chương"), and the live sitemap
   includes all 8 Ch.19 URL entries.
+- PPIC Ch.5 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation; both live
+  pages contain 17 XML-valid inline SVGs with 17 sequential `fig-N` ids and localized captions
+  (`Figure 5.x` / `Hình 5.x`), five data tables, equation labels (1)–(5), 0 CJK / 0 bare
+  ampersands / 0 Spanish hits in page content, both live TOCs list Ch.5 ("Analysis of the Spatial
+  Separation Effects of Thorium/Uranium Fuels in Block-Type HTRs" / "Phân tích ảnh hưởng của sự
+  tách không gian giữa nhiên liệu thori/urani trong lò HTR dạng khối"), the catalog badge shows
+  "Translating · 5 of 11 chapters" (VI: "Đang dịch · 5/11 chương"), and the live sitemap includes
+  all 8 Ch.5 URL entries.
 
 ---
 
@@ -413,7 +427,8 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   → `fed6e480` (PPIC ch2) → `e74d218a` (IPC ch2) → `128ff523` (Baumann ch17)
   → `d8159c1c` (PPIC ch3) → `d42d37e1` (IPC ch3) → `2df01e67` (Baumann ch18)
   → `d7c9c22f` (Baumann ch18 reading-count correction) → `3ab39813` (PPIC ch4)
-  → `fb826fcb` (IPC ch4) → `34f48d9a` (Baumann ch19, **live chapter HEAD**).
+  → `fb826fcb` (IPC ch4) → `34f48d9a` (Baumann ch19) → `1065ce57` (PPIC ch5,
+  **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -474,9 +489,24 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    **done** in `d8159c1c` (8 vector figs, 13 refs, printed pp. 39–48, broken 0);
    ~~Ch.4 "Nuclear Power Plant Instrumentation Fault Detection Using Fuzzy Logic"~~ —
    **done** in `3ab39813` (11 vector figs, 4 tables, printed equations (1), (2), (4), 51 refs,
-   printed pp. 49–78, broken 0); remaining Ch.5–11.
+   printed pp. 49–78, broken 0);
+   ~~Ch.5 "Analysis of the Spatial Separation Effects of Thorium/Uranium Fuels in Block-Type
+   HTRs"~~ — **done** in `1065ce57` (17 vector figs, 5 tables, equations (1)–(5), 18 refs,
+   printed pp. 79–105, broken 0); remaining Ch.6–11.
 
 ### Resume notes
+- PPIC Ch.5 (27 PDF pages / printed pp. 79–105, 17 vector figures, 5 tables, 5 equations, 18 refs)
+  was written from `work/ppic_raw.txt` lines 2478–3213 with renders `work/ppic5_pages/p095…p121.png`.
+  Seven section writers (`ppic_ch05a…g.py`) and three figure suppliers (`ppicfig5_a/b/c.py`) worked
+  against `work/ppic5_brief.md`. The OCR layer scrambles equations, so (1)–(5) were transcribed
+  from printed p110/p115 and all five data tables were checked against page images. Prose writers
+  installed non-overwriting `hasattr` figure stubs while suppliers ran in parallel; the merged
+  `ppicfig5` registry supplied all 17 real vectors at build time. QA: 17 sequential unique
+  `fig-N` ids per page, 17 XML-valid SVGs, 17/17 localized captions, 5 tables, equations (1)–(5),
+  18 references, 0 CJK / 0 content bare `&` / 0 Spanish / 0 Vietnamese diacritics in EN prose,
+  0 off-canvas / 0 overlapping figure labels, `check_links.py` broken 0, sitemap 1,110 URLs,
+  8 entries for Ch.5. Published in `1065ce57`; live EN/VI 200 after Pages propagation, TOC row
+  and 5/11 badge verified.
 - Baumann Ch.19 (3 PDF pages / printed pp. 121–123, 3 vector graphs) was written from
   `work/cvp_raw.txt` lines 3502–3538 and three pypdfium2 renders `work/cvp19_pages/p123…p125.png`.
   A figure agent computed all curves in `cvpfig19.py` from the Chapter 18 relations

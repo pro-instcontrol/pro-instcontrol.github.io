@@ -2,21 +2,22 @@
 
 **State now (2026-11-24):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **19/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **4/11**, IPC `ipc` **4/8**.
-**Live chapter HEAD `34f48d9a`** (Baumann Ch.19 "The Graphical ABC Method for Gases", 3 PDF pages
-/ printed pp. 121–123, 3 vector graphs A/B/C, 1 pipe-schedule table, 1 worked example); live
-sitemap 1,108 URLs, catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 19/32,
-PPIC badge 4/11, IPC badge 4/8, Baumann Ch.19, IPC Ch.4, PPIC Ch.4, Baumann Ch.18, IPC Ch.3,
-Baumann Ch.17 and PPIC Ch.3 EN/VI deep URLs 200, sitemap 8 entries per new chapter,
-`check_links.py` broken 0. Full tables in `report.md`.
+Baumann `cvp` **19/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **5/11**, IPC `ipc` **4/8**.
+**Live chapter HEAD `1065ce57`** (PPIC Ch.5 "Analysis of the Spatial Separation Effects of
+Thorium/Uranium Fuels in Block-Type HTRs", 27 PDF pages / printed pp. 79–105, 17 vector figures,
+5 tables, equations (1)–(5), 18 refs); live sitemap 1,110 URLs, catalog badges IIH 8/8 and
+Emerson 15/15 both `full`, Baumann badge 19/32, PPIC badge 5/11, IPC badge 4/8, PPIC Ch.5,
+Baumann Ch.19, IPC Ch.4, PPIC Ch.4, Baumann Ch.18, IPC Ch.3, Baumann Ch.17 and PPIC Ch.3 EN/VI
+deep URLs 200, sitemap 8 entries per new chapter, `check_links.py` broken 0. Full tables in
+`report.md`.
 
-**Next unit:** none queued for Emerson, IIH, IPC Ch.3/Ch.4, Baumann Ch.18/Ch.19, PPIC Ch.3/Ch.4.
-The standing remaining order is PPIC `ppic` Ch.5 → IPC `ipc` Ch.5 → Baumann `cvp` Ch.20, with
+**Next unit:** none queued for Emerson, IIH, IPC Ch.3/Ch.4, Baumann Ch.18/Ch.19, PPIC Ch.3–Ch.5.
+The standing remaining order is IPC `ipc` Ch.5 → Baumann `cvp` Ch.20 → PPIC `ppic` Ch.6, with
 Book 11/12 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 19/32 (Ch.2–19 done), PPIC at 4/11 (Ch.1–4 done) and
+complete at 8/8 (Ch.2–8 done), Baumann at 19/32 (Ch.2–19 done), PPIC at 5/11 (Ch.1–5 done) and
 IPC at 4/8 (Ch.1–4 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
@@ -115,6 +116,19 @@ broken 0, sitemap 1,108. Live EN/VI 200 after Pages propagation, TOC row present
 in both languages. **Baumann is 19/32 🟠; `TRANSLATED["control valve primer"]` is
 `("progress", 32, 19)`.**
 
+## 0.12 PPIC Ch.5 "Analysis of the Spatial Separation Effects of Thorium/Uranium Fuels in Block-Type HTRs" published in `1065ce57`
+Seven section writers (`ppic_ch05a…g.py`) and three figure suppliers (`ppicfig5_a/b/c.py`) worked
+against `work/ppic5_brief.md`; `ppicfig5.py` and `ppic_ch05.py` merged them. Source is
+`work/ppic_raw.txt` lines 2478–3213 (PDF pp. 95–121, printed pp. 79–105) with renders
+`work/ppic5_pages/p095…p121.png`. Equations (1)–(5) were transcribed from printed p110/p115 and
+all five numeric tables checked against page images. Prose writers installed non-overwriting
+`hasattr` figure stubs; the merged registry supplied all 17 real vectors at build time. QA: 17
+sequential unique `fig-N` ids, 17 XML-valid SVGs, 17/17 localized captions, 5 tables, equations
+(1)–(5), 18 refs, 0 CJK / 0 content bare `&` / 0 Spanish / 0 Vietnamese diacritics in EN prose,
+0 off-canvas / 0 overlapping labels, `check_links.py` broken 0, sitemap 1,110. Live EN/VI 200
+after Pages propagation, TOC row present, badge 5/11 in both languages. **PPIC is 5/11 🟠;
+`TRANSLATED["handbook on power plant instrumentation and control"]` is `("progress", 11, 5)`.**
+
 ## A. Continuation queue (user's order)
 0. ~~IIH Ch.8 "Control Valves" — final chapter~~ — **published** in `905dd942` (8 figs, 111 refs,
    4 tables incl. the 108-entry book index, 45 source pages). Two parallel agents (figure supplier
@@ -175,7 +189,12 @@ in both languages. **Baumann is 19/32 🟠; `TRANSLATED["control valve primer"]`
 4. ~~Book 9 `ppic` ch2~~ — **published** in `fed6e480` (7 vector figs, 76 refs, printed pp. 13–38,
    26 source pages, broken 0). ~~Ch.3 "Study of Control Strategy of the Converter in Solar
    Photovoltaic Power System"~~ — **published** in `d8159c1c` (8 vector figs, 13 refs, 10 source
-   pages, broken 0). Remaining ch4–11; source `work/ppic_raw.txt`; printed = PDF − 16.
+   pages, broken 0); ~~Ch.4 "Nuclear Power Plant Instrumentation Fault Detection Using Fuzzy
+   Logic"~~ — **published** in `3ab39813` (11 vector figs, 4 tables, equations (1)/(2)/(4),
+   51 refs, 30 source pages, broken 0); ~~Ch.5 "Analysis of the Spatial Separation Effects of
+   Thorium/Uranium Fuels in Block-Type HTRs"~~ — **published** in `1065ce57` (17 vector figs,
+   5 tables, equations (1)–(5), 18 refs, 27 source pages, broken 0). Remaining ch6–11; source
+   `work/ppic_raw.txt`; printed = PDF − 16.
 5. ~~Book 10 `ipc` ch2 "Transducers – II"~~ — **published** in `e74d218a` (58 vector figs,
    Table 2.1, 20 numbered equations, 12 worked examples, 11 exercises, 61 source pages, broken 0).
    Nine parallel writers: `ipcfig2_a/b/c.py` (20/20/18 figs) + `ipc_ch02_a…f.py` through a shared

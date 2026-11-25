@@ -7099,3 +7099,28 @@ registration when resumed.
   has 2 `<loc>` plus 6 hreflang alternates.
 - Baumann `cvp` is now **19/32** 🟠. Next: PPIC Ch.5 → IPC Ch.5 → Baumann Ch.20; Book 11/12
   registration only on confirmation.
+
+## Session 126 — PPIC Chapter 5 published
+
+- Chapter: *Analysis of the Spatial Separation Effects of Thorium/Uranium Fuels in Block-Type
+  HTRs*, printed pp. 79–105 (PDF pp. 95–121), `work/ppic_raw.txt` lines 2478–3213 with renders
+  `work/ppic5_pages/p095…p121.png`. Bilingual EN/VI slug `ch05-analysis-of-spatial-separation-effects`.
+- Seven section writers (`ppic_ch05a…g.py`) and three figure suppliers (`ppicfig5_a/b/c.py`) worked
+  against `work/ppic5_brief.md`; `ppicfig5.py` and `ppic_ch05.py` merged them. Content: 17 vector
+  figures (core geometry, four separation levels, calculation/cost flow diagrams, compact/block
+  configurations and ten data plots), five numeric tables, equations (1)–(5) and 18 references.
+- The OCR layer scrambles equations; (1)–(5) were read from printed p110/p115. All five tables were
+  checked against the page images, including Table 5.4's six rows and Table 5.5's pcm values with
+  parenthesized percentages. Prose writers installed non-overwriting `hasattr` figure stubs while
+  suppliers ran in parallel; the merged registry supplied all 17 real vectors at build time.
+- QA: 17 sequential unique `fig-N` ids per page, 17 XML-valid SVGs, 17/17 localized captions,
+  5 tables, equations (1)–(5), 18 refs, 0 CJK / 0 content bare ampersands / 0 Spanish / 0 Vietnamese
+  diacritics in EN prose, 0 off-canvas / 0 overlapping figure labels, `check_links.py` broken 0;
+  sitemap **1,110 URLs** (1,095 with language siblings), 8 Ch.5 entries; catalog badge 5/11.
+- Pushed `1065ce57` ("Add PPIC chapter 5: thorium/uranium HTR separation (EN/VI, 17 vector
+  figures)"). Live EN/VI deep URLs initially 404, then 200 after Pages propagation; live pages
+  contain 17 valid SVGs, five tables and equations (1)–(5), live TOC lists Ch.5, badges read
+  "Translating · 5 of 11 chapters" / "Đang dịch · 5/11 chương", and live sitemap has 2 `<loc>`
+  plus 6 hreflang alternates.
+- PPIC `ppic` is now **5/11** 🟠. Next: IPC Ch.5 → Baumann Ch.20 → PPIC Ch.6; Book 11/12
+  registration only on confirmation.
