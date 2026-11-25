@@ -7175,3 +7175,34 @@ registration when resumed.
   sitemap has 2 `<loc>` plus 6 hreflang alternates.
 - Baumann `cvp` is now **20/32** 🟠. Next: PPIC Ch.6 → IPC Ch.6 → Baumann Ch.21; Book 11/12
   registration only on confirmation.
+
+## Session 129 — PPIC Chapter 6 published
+
+- Chapter: *Developments of Power System Protection and Control*, printed pp. 107–124 (PDF
+  pp. 123–140), `work/ppic_raw.txt` lines 3224–3757 with pypdfium2 renders
+  `work/ppic6_pages/p123…p140.png`. Bilingual EN/VI slug
+  `ch06-developments-of-power-system-protection-and-control`.
+- One prose agent produced `ppic_ch06.py` and one figure supplier produced `ppicfig6.py` from
+  `work/ppic6_brief.md`; the same brief was corrected to point to reference lines 3693–3757.
+  Content: three vector figures (protection development timeline, relay-zone coverage,
+  communication-assisted protection) and 17 references, with no tables or numbered equations.
+- Integration fixed two module defects: an unterminated string literal in the EN prose and an
+  incorrect `_CUR_LANG` owner (`ppic_common` → shared `bolton_common` alias). The printed p125
+  timeline was checked against the page image; five wrong years were corrected (differential
+  1908, power-line carrier 1927, computer relay 1970, GPS 1990; distance 1923 retained) along
+  with the brief and Figure 6.1.
+- QA: 3 sequential unique `fig-N` ids per page, 3 XML-valid SVGs, 3/3 localized captions, 17 refs,
+  no tables or equations, 0 CJK / 0 content bare ampersands / 0 Spanish / 0 Vietnamese diacritics
+  in EN prose, 0 off-canvas / 0 overlapping figure labels, `check_links.py` broken 0; sitemap
+  **1,116 URLs** (1,101 with language siblings), 8 entries for Ch.6; catalog badge 6/11 in both
+  languages.
+- Pushed `612baf12` ("Add PPIC chapter 6: power system protection and control (EN/VI, 3 vector
+  figures)"). Live EN/VI deep URLs verified HTTP 200 after Pages propagation; live pages contain
+  3 XML-valid inline SVGs with sequential `fig-1..3` ids, 3/3 localized captions, 17 references,
+  0 CJK / 0 content bare ampersands / 0 Spanish / 0 Vietnamese diacritics in EN prose, 0 clipped
+  or overlapping labels; live TOCs list Ch.6 ("Developments of Power System Protection and
+  Control" / "Phát triển bảo vệ và điều khiển hệ thống điện"), badges read "Translating · 6 of 11
+  chapters" / "Đang dịch · 6/11 chương", and live sitemap has 2 `<loc>` plus 6 hreflang
+  alternates.
+- PPIC `ppic` is now **6/11** 🟠. Next: IPC Ch.6 → Baumann Ch.21 → PPIC Ch.7; Book 11/12
+  registration only on confirmation.
