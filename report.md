@@ -1063,4 +1063,20 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 - PPIC `ppic` is now **9/11** 🟠; remaining PPIC chapters are Ch.10–11. Next in the standing
   order: Baumann Ch.24 → PPIC Ch.10.
 
+## Baumann Chapter 24 — Avoiding Leaky Valve Stem Packing (2026-11-26)
+
+- PDF pp. 145–150, printed pp. 147–152 (printed = PDF + 2), EN/VI slug
+  `ch24-avoiding-leaky-valve-stem-packing`, published in `38e1806b`.
+- One prose module (`cvp_ch24.py`) and one figure module (`cvpfig24.py`). Full bilingual
+  translation of the eight packing rules, leakage examples, bellows failure modes, two
+  references and two additional-reading items. Figure 24-1 is a vector bellows-seal assembly
+  with internal pressurization, labelled in both languages; the printed canvas was enlarged
+  after visual QA corrected clipped callouts.
+- QA: 1 XML-valid SVG, unique `fig-1`, localized caption, 0 CJK / bare `&` / Spanish /
+  Vietnamese-in-English prose, `check_links.py` broken 0, sitemap 1,136 URLs. Live EN/VI deep
+  URLs HTTP 200, TOC row present, catalog badge 24/32.
+- Baumann `cvp` is now **24/32** 🟠; remaining Baumann chapters are Ch.25–32. Next in the
+  standing order: PPIC Ch.10 "Models for the Reliability Analysis of Digital Instrumentation
+  and Control Systems for Nuclear Power Plants" (PDF pp. 245–269).
+
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

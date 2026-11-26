@@ -7361,3 +7361,24 @@ row and prev/next links, and both languages were built, QA'd, committed, pushed 
   broken 0, sitemap 1,134; badge 9/11.
 Live HEAD `60c5df89`; all six EN/VI deep URLs HTTP 200 after Pages propagation. Remaining:
 Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
+
+## Session 2026-11-26 — Baumann Ch.24 published (EN/VI)
+- **Baumann Ch.24 "Avoiding Leaky Valve Stem Packing"** (`38e1806b`): one prose module
+  (`build/cvp_ch24.py`) and one figure module (`build/cvpfig24.py`). Source `work/cvp_raw.txt`
+  PDF pp. 145-150 = printed pp. 147-152 (printed = PDF + 2), six source pages. Figure 24-1 is a
+  vector bellows-seal assembly (bellows, internal pressurization, packing, bonnet, stem,
+  telltale); the eight packing rules, leakage examples, bellows failure causes, two references
+  and two additional-reading items are fully bilingual. Captions: `Hình 24.1` / `Figure 24.1`.
+- Integration fixes: `_path(..., close=True)` replaced with `_poly(..., close=True)` because
+  the shared `_path()` helper has no `close` argument; a bare `·` outside a Vietnamese string
+  literal was quoted; canvas enlarged 680×360 → 680×380 and the telltale/bonnet labels and
+  bilingual strip repositioned after visual QA found clipping.
+- QA: 1 inline SVG, XML-valid, unique `fig-1`, localized caption, 0 CJK / bare `&` / Spanish /
+  Vietnamese-in-English prose, `check_links.py` broken 0, sitemap 1,136 URLs. EN/VI deep URLs
+  `https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch24-avoiding-leaky-valve-stem-packing/`
+  and the `/vi/` counterpart both HTTP 200 after Push propagation (initial 404 was from using a
+  wrong `/en/`-prefixed URL, not a deployment problem).
+- Baumann `cvp` is now **24/32** 🟠; catalog badge 24/32. Live HEAD `38e1806b`. Remaining:
+  Baumann ch25-32, PPIC ch10-11. Next unit: PPIC Ch.10 "Models for the Reliability Analysis of
+  Digital Instrumentation and Control Systems for Nuclear Power Plants" (PDF pp. 245-269,
+  printed pp. 229-253, printed = PDF − 16). Books 11/12 located but unregistered.
