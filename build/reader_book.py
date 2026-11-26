@@ -795,6 +795,7 @@ BOOKS = {
             23: "ch23-flashing",
             24: "ch24-avoiding-leaky-valve-stem-packing",
             25: "ch25-seat-leakage-and-seat-materials",
+            26: "ch26-valves-for-sanitary-or-aseptic-service",
         },
         "copyright_en": "Original work © 2011 Hans D. Baumann, published by ISA / John Wiley & Sons.",
         "copyright_vi": "Bản gốc © 2011 Hans D. Baumann, do ISA / John Wiley & Sons xuất bản.",
