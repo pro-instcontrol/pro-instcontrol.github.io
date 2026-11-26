@@ -501,6 +501,7 @@ TRANSLATED = {
     "illustrated handbook of industrial instrumentation": ("full", 8, 8),
     "handbook on power plant instrumentation and control": ("full", 11, 11),
     "instrumentation and process control": ("full", 8, 8),
+    "exprotection global-america-basics": ("full", 6, 6),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
@@ -538,6 +539,7 @@ BOOK_SLUG = {
     "illustrated handbook of industrial instrumentation": "illustrated-handbook-industrial-instrumentation-control",
     "handbook on power plant instrumentation and control": "handbook-power-plant-instrumentation-control",
     "instrumentation and process control": "instrumentation-and-process-control",
+    "exprotection global-america-basics": "exprotection-global-america-basics",
 }
 
 

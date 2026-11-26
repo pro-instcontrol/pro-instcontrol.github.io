@@ -380,6 +380,48 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch01-hazardous-locations-and-the-two-systems/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch01-hazardous-locations-and-the-two-systems/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch01-hazardous-locations-and-the-two-systems/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch01-hazardous-locations-and-the-two-systems/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch02-classes-groups-and-temperature-classes/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch02-classes-groups-and-temperature-classes/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch02-classes-groups-and-temperature-classes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch02-classes-groups-and-temperature-classes/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch03-protection-methods-and-enclosure-types/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch03-protection-methods-and-enclosure-types/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch03-protection-methods-and-enclosure-types/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch03-protection-methods-and-enclosure-types/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch04-environmental-protection-and-ingress-protection/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch04-environmental-protection-and-ingress-protection/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch04-environmental-protection-and-ingress-protection/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch04-environmental-protection-and-ingress-protection/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch05-north-american-equipment-certification/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch05-north-american-equipment-certification/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch05-north-american-equipment-certification/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch05-north-american-equipment-certification/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch06-atex-ce-marking-and-the-iec-ex-scheme/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch06-atex-ce-marking-and-the-iec-ex-scheme/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch06-atex-ce-marking-and-the-iec-ex-scheme/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch06-atex-ce-marking-and-the-iec-ex-scheme/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/"/>
@@ -3867,6 +3909,48 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/ch05-control-valve-actuators/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch01-hazardous-locations-and-the-two-systems/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch01-hazardous-locations-and-the-two-systems/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch01-hazardous-locations-and-the-two-systems/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch01-hazardous-locations-and-the-two-systems/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch02-classes-groups-and-temperature-classes/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch02-classes-groups-and-temperature-classes/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch02-classes-groups-and-temperature-classes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch02-classes-groups-and-temperature-classes/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch03-protection-methods-and-enclosure-types/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch03-protection-methods-and-enclosure-types/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch03-protection-methods-and-enclosure-types/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch03-protection-methods-and-enclosure-types/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch04-environmental-protection-and-ingress-protection/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch04-environmental-protection-and-ingress-protection/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch04-environmental-protection-and-ingress-protection/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch04-environmental-protection-and-ingress-protection/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch05-north-american-equipment-certification/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch05-north-american-equipment-certification/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch05-north-american-equipment-certification/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch05-north-american-equipment-certification/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch06-atex-ce-marking-and-the-iec-ex-scheme/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch06-atex-ce-marking-and-the-iec-ex-scheme/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/ch06-atex-ce-marking-and-the-iec-ex-scheme/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/ch06-atex-ce-marking-and-the-iec-ex-scheme/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/</loc>
