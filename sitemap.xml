@@ -302,6 +302,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch21-the-abc-method-for-estimating-hydrodynamic-sound-level/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch22-graphical-estimation-of-noise-produced-by-turbulence-and-cavitation-of-liquids/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch22-graphical-estimation-of-noise-produced-by-turbulence-and-cavitation-of-liquids/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch22-graphical-estimation-of-noise-produced-by-turbulence-and-cavitation-of-liquids/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch22-graphical-estimation-of-noise-produced-by-turbulence-and-cavitation-of-liquids/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/"/>
@@ -3693,6 +3699,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch21-the-abc-method-for-estimating-hydrodynamic-sound-level/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch21-the-abc-method-for-estimating-hydrodynamic-sound-level/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch21-the-abc-method-for-estimating-hydrodynamic-sound-level/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch22-graphical-estimation-of-noise-produced-by-turbulence-and-cavitation-of-liquids/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch22-graphical-estimation-of-noise-produced-by-turbulence-and-cavitation-of-liquids/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch22-graphical-estimation-of-noise-produced-by-turbulence-and-cavitation-of-liquids/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch22-graphical-estimation-of-noise-produced-by-turbulence-and-cavitation-of-liquids/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/</loc>
