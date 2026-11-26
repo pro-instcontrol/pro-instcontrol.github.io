@@ -7542,6 +7542,31 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   count from 4 to 5: eqs 5, lists 2/4, 2 h3, 2 refs, key values present, no figures/tables,
   0 CJK / bare & / Spanish / VI-in-EN prose, `check_links.py` broken 0, sitemap 1,150 URLs.
   Local TOC lists Ch.29, catalog badge 29/32.
-- Baumann `cvp` is now **29/32** 🟠; remaining: ch30–32. Next unit: Baumann Ch.30 "The Bus
-  System to the Rescue, or What the Future May Bring" (printed p. 175+; PDF p.169 shows
-  printed 175, so the offset becomes +6 at the chapter break). Books 11/12 still unregistered.
+- Baumann `cvp` was **29/32** 🟠 at this point; next unit was Baumann Ch.30.
+
+## Session 2026-11-26 — Baumann Ch.30 published (EN/VI)
+- **Baumann Ch.30 "The Bus System to the Rescue, or What the Future May Bring"**
+  (`decac128`): source spans PDF pp. 169–175 = printed pp. 175–181 (**printed = PDF + 6**),
+  rendered to `work/cvp30_pages/p169.png`…`p175.png`. Seven printed pages, four figures,
+  one endnote, one reference, no tables or equations.
+- Prose module `build/cvp_ch30.py` was drafted from the rendered pages and finished with two
+  figure suppliers: `build/cvpfig30_a.py` (Fig. 30-1 solid-state valve cross-section, Fig. 30-2
+  fieldbus schematic) and `build/cvpfig30_b.py` (Fig. 30-3 distributed-control patent drawing
+  with its compact block diagram, Fig. 30-4 air-loaded regulator with its loop diagram).
+  Brief: `work/cvp30_brief.md`. Every figure is a labelled vector with VI/EN captions and aria.
+- Content preserved: the IC Sensors solid-state valve and 0–150 cc/min at 1–50 psig; 4–20 mA
+  fieldbus versus analog signalling; 10 continuous data channels per valve in a 500-loop plant;
+  intrinsic-safety current limits and multiplexing/pneumatic lockup; distributed control;
+  smart valves and the vortex flow meter; 10% steam-pressure drop with 1/2-inch bulb lag of
+  60–180 s; the air-loaded regulator and fixed/variable orifice; ISA-100, Wireless HART and
+  the 20-mile wireless limit.
+- QA script `work/qa_cvp30.py` added; both EN and VI pages PASS: figs `[1,2,3,4]`, 4
+  XML-valid SVGs, 4/4 correctly-prefixed captions, 2 h3 sections, 1 reference, 2 footnotes,
+  all key numbers present, 0 CJK / bare `&` / Spanish / VI-in-EN prose, `check_links.py`
+  broken 0, sitemap 1,152 URLs. Live EN/VI deep URLs **200** after Pages negative caching
+  cleared; local and live TOCs list Ch.30, catalog badge 30/32.
+- Baumann `cvp` is now **30/32** 🟠; remaining: Ch.31 "Thinking “Green” and Saving Metal"
+  (PDF 176–177 / printed 183–184, one cage-valve figure) and Ch.32 "Pipe Vibration Due to
+  Sound" (PDF 178–182 / printed 185–189, two figures, several equations garbled in the PDF
+  text layer — transcribe from `work/cvp32_pages/p178.png` and `p180.png`). Books 11/12
+  still unregistered.
