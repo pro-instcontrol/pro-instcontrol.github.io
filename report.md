@@ -128,7 +128,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **23/32** 🟠 | 44 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23; ch17/ch21 have no figures) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **25/32** 🟠 | 44 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23; ch17/ch21 have no figures; ch25 = 2 data tables) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
@@ -1127,6 +1127,27 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   EN/VI deep URLs initially 404 from Pages negative caching, then HTTP 200; both TOCs list
   Ch.11, 8 Ch.11 sitemap entries, catalog badge **“Fully translated · 11 of 11 chapters”** /
   **“Đã dịch đầy đủ · 11/11 chương”**.
-- Next in the standing order: Baumann `cvp` Ch.25–32. Books 11/12 located but unregistered.
+- Next in the standing order was Baumann `cvp` Ch.25–32. Books 11/12 located but unregistered.
+
+## Baumann Chapter 25 — Seat Leakage and Seat Materials (2026-11-26)
+
+- Printed pp. 153–155 (PDF pp. 151–153; printed = PDF + 2), EN/VI slug
+  `ch25-seat-leakage-and-seat-materials`, published in `0d6c5f5b`. A compact **three-page data
+  chapter**: **two tables**, no figures, no equations, no references.
+- Full bilingual translation of the ANSI/FCI seat-leakage discussion: soft versus metal seating,
+  rangeability versus leakage rate, Buna N / Teflon / Type 316 / Type 440 C / Stellit seat
+  materials and their temperature limits, the Class V gas-test derivation (4.7 × 4 = 18.8
+  cc/min for a 4-inch seat), and the “How Does a Valve Close?” section on push-down versus
+  sliding seals and positioner calibration at 4/3 psia (fail close) and 14/15 psi (fail open).
+- Table 25-1 transcribes all six ANSI/FCI leakage classes with original footnotes (*, **, (b),
+  (c)) and the IEC 60534-4-4 (2008) revision note. Table 25-2 transcribes all twelve Class VI
+  leakage-rate rows (1–16 inch seats). Tables appear adjacent in the printed source; Table 25-1
+  was placed first because it is cited first.
+- QA script `work/qa_cvp25.py` (both EN and VI PASS): 2 tables with 7/13 rows, all 21 checked
+  source values present in each language (decimal comma localized in VI), 0 figures, 0 CJK /
+  bare `&` / Spanish / Vietnamese-in-English prose, `check_links.py` broken 0, sitemap 1,142
+  URLs. TOC lists Ch.25, catalog badge 25/32.
+- Baumann `cvp` is now **25/32** 🟠; remaining Baumann chapters Ch.26–32. Next in the standing
+  order: Baumann Ch.26 "Valves for Sanitary or Aseptic Service" (printed pp. 157 onward).
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

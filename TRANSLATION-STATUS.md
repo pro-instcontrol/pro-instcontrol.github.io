@@ -7430,3 +7430,25 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   Ch.25. Books 11/12 located but unregistered. Book candidates found for later registration:
   McMillan *Electrical Installations in Hazardous Areas* (Ex/IS) and *Hydrocarbon Processing:
   Advanced Process Control and Information Systems* (refinery I&C).
+
+## Session 2026-11-26 — Baumann Ch.25 published (EN/VI)
+- **Baumann Ch.25 "Seat Leakage and Seat Materials"** (`0d6c5f5b`): written directly as a compact
+  three-page data chapter (no parallel writers). Source `work/cvp_raw.txt` lines 4137–4237, PDF
+  pp. 151–153 = printed pp. 153–155 (printed = PDF + 2). Two tables, no figures, no equations,
+  no references.
+- Full bilingual translation: ANSI/FCI Class VI "drip tight" requirement, soft versus metal
+  seating, rangeability versus leakage rate, Buna N / Teflon / Type 316 / Type 440 C / Stellit
+  seat materials with temperature limits, the Class V gas-test derivation (4.7 × 4 = 18.8
+  cc/min for a 4-inch seat), and "How Does a Valve Close?" — push-down versus sliding seals and
+  positioner calibration (4/3 psia fail close, 14/15 psi fail open).
+- Table 25-1 preserves all six ANSI/FCI leakage classes plus the original footnotes (*, **, (b),
+  (c)) and the IEC 60534-4-4 (2008) revision note. Table 25-2 transcribes all twelve Class VI
+  rows (1–16 inch seats). The two tables print adjacent in the source; Table 25-1 was placed
+  first because it is cited first. Numeric rows shared language-neutral, headers/captions localized.
+- QA script `work/qa_cvp25.py` added. First run failed on the VI page on a literal English string
+  ("18.8 cc/min") while the VI correctly localizes to "18,8 cc/phút"; removed the redundant
+  literal. Then both pages PASS: 2 tables (7/13 rows), all 21 checked source values present,
+  0 figures, 0 CJK / bare & / Spanish / VI-in-EN prose, `check_links.py` broken 0, sitemap 1,142
+  URLs. Local TOC lists Ch.25, catalog badge 25/32.
+- Baumann `cvp` is now **25/32** 🟠; remaining: ch26–32. Next unit: Baumann Ch.26 "Valves for
+  Sanitary or Aseptic Service" (printed pp. 157+). Books 11/12 still unregistered.
