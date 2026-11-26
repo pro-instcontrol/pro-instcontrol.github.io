@@ -5,9 +5,12 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-26):** **all 14 registered reader books complete and live 🟢** (rows below;
+**Status (2026-11-26):** **all 15 registered reader books complete and live 🟢** (rows below;
 flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
-IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32). **Live chapter HEAD `ee024fab`**
+IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32, R. STAHL ExProtection `expb` 🟢
+6/6). **Live chapter HEAD `023705e9`** (ExProtection Global-America-Basics: 14 source pages,
+six bilingual units, six vector figures, 13 transcribed tables — the new reader book requested
+from `/books/work/70/`). Prior chapter HEAD `ee024fab`
 (Book 7 Baumann Ch.32 "Pipe Vibration Due to Sound": 5 PDF pages / printed pp. 185–189,
 2 vector figures, 6 displayed equations, one worked field case, one additional-reading item
 — completing Baumann at 32/32 and the whole campaign). Prior published HEAD `a3fdd131` was
@@ -132,6 +135,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 | 11 | **3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018)** | **8** | **108 redrawn** (ch1–8) + 17 data tables (ch4/ch7/ch8) + 108-entry book index | ✅ **live, 🟢 8/8** |
 | 12 | **Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (2019)** | **8** | **346 redrawn** (ch1–8) + 7 tables + 45 numbered equations | ✅ **live, 🟢 8/8** |
 | 13 | **L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019)** | **11** | **~220 redrawn** + tables + 100+ numbered equations | ✅ **live, 🟢 11/11** |
+| 14 | **R. STAHL, *ExProtection Global-America-Basics*** | **6** | **6 redrawn** + 13 transcribed tables | ✅ **live, 🟢 6/6** |
 
 ### Registered campaign books — all complete
 | Key | Book | Source | Chapters | Done | Figures so far |
@@ -1310,7 +1314,27 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   `[1,2]`, 2 XML-valid SVGs, 2/2 correct captions, 6 equations, 1-item reading list, all
   key values present, 0 CJK / bare `&` / Spanish / VI-in-EN prose, `check_links.py` broken 0,
   sitemap 1,156 URLs. Catalog badge flipped to `full` at 32/32.
-- **All 14 registered reader books and every queued chapter are now translated and live.**
-  Books 11/12 remain unregistered pending user confirmation.
+- At this point all 14 registered reader books and every queued chapter were translated and
+  live; Books 11/12 remained unregistered pending user confirmation.
+
+## ExProtection Global-America-Basics — new reader book from work/70 (2026-11-26)
+- At the user's request the R. STAHL 14-page primer at `/books/work/70/` was translated and
+  published as a new reader book (`023705e9`). Source PDF
+  `D:/Ebooks/Process Control and Automation/ExProtection_Global-America-Basics.pdf`, text
+  `work/exprotection_raw.txt`, page renders `work/exprotection_pages/p01.png`–`p14.png`,
+  brief `work/expb_brief.md`. Printed labels A–A13 map to PDF pages 1–14.
+- Split into six bilingual units: hazardous locations/two systems; classes, groups and
+  temperature classes; protection methods and enclosure types; environmental/ingress
+  protection; North American certification; ATEX, CE and IECEx. All 13 printed tables were
+  transcribed as HTML and six diagrams were redrawn as labelled vectors (two risk charts,
+  fire triangle, IP chart, NEC 505 and ATEX/CENELEC marking diagrams).
+- Registered `expb` in `reader_book.py`, added `expb_common.py`/`reader_expb.py`, badge
+  `full` 6/6 and a `BOOK_SLUG` entry so both the catalog card and work/70 link to the reader.
+- QA script `work/qa_expb.py`: all 12 EN/VI pages PASS — figure/table counts as expected,
+  all SVGs XML-valid, 0 CJK / bare `&` / Spanish / VI-in-EN prose. Fixed two bare ampersands
+  in the NEMA 7/8 and 9/10 group caption and neutralised the French proper name
+  “Conformité Européenne” in the leak guard. `check_links.py` broken 0, sitemap 1,170 URLs.
+- **All 15 registered reader books are now complete and live.** Books 11/12 from the older
+  candidate list remain unregistered pending explicit confirmation.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

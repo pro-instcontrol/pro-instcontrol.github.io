@@ -7609,5 +7609,26 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   SVGs, 2/2 correct captions, 6 equations, 1-item reading list, all key values present,
   0 CJK / bare `&` / Spanish / VI-in-EN prose, `check_links.py` broken 0, sitemap 1,156 URLs.
   Catalog badge flipped to `full` at 32/32.
-- **All 14 registered reader books and every queued chapter are now translated and live.**
-  Books 11/12 remain unregistered pending explicit user confirmation.
+- At this point all 14 registered reader books and every queued chapter were translated and
+  live; Books 11/12 remained unregistered pending explicit user confirmation.
+
+## Session 2026-11-26 — ExProtection Global-America-Basics added from work/70
+- At the user's request, the R. STAHL primer at `/books/work/70/` was translated and published
+  as a new reader book in commit `023705e9`. Source PDF
+  `D:/Ebooks/Process Control and Automation/ExProtection_Global-America-Basics.pdf` (14 pages);
+  text dump `work/exprotection_raw.txt`, page renders `work/exprotection_pages/p01.png`–`p14.png`,
+  brief `work/expb_brief.md`. Printed labels A–A13 = PDF pages 1–14.
+- Six bilingual units drafted in three parallel pairs: hazardous locations/two systems;
+  classes, groups and temperature classes; protection methods and enclosure types;
+  environmental/ingress protection; North American certification; ATEX, CE and IECEx.
+- Created `build/expb_common.py`, `build/reader_expb.py`, six `expb_chNN.py` modules and five
+  figure modules (`expbfig01/02/04/05/06.py`): six vector redraws (two risk charts, fire
+  triangle, IP ingress chart, NEC 505 and ATEX/CENELEC marking diagrams) and 13 HTML tables.
+- Registered `expb` with a 6/6 done map in `reader_book.py`; added badge `full` 6/6 and a
+  `BOOK_SLUG` mapping in `books_site.py` so both catalog cards and work/70 link to the reader.
+- QA script `work/qa_expb.py`: all 12 EN/VI pages PASS — expected figure/table counts,
+  XML-valid SVGs, 0 CJK / bare `&` / Spanish / VI-in-EN prose, all source codes present.
+  Fixed bare ampersands in the NEMA 7/8 and 9/10 caption; neutralised the French proper name
+  “Conformité Européenne” for the leak guard. `check_links.py` broken 0, sitemap 1,170 URLs.
+- **All 15 registered reader books are now complete and live.** The older Books 11/12
+  candidates remain unregistered pending explicit user confirmation.

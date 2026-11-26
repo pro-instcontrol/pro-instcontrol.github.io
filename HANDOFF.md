@@ -1,8 +1,10 @@
 # HANDOFF — Campaign state 2026-11-26 (ALL REGISTERED BOOKS COMPLETE)
 
-**State now (2026-11-26):** all 14 reader books complete 🟢 (see `report.md`; flagship Book 6
+**State now (2026-11-26):** all 15 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
-11/11, Baumann `cvp` 32/32, Borden `bcv` 1/1). **Live chapter HEAD `ee024fab`** (Baumann Ch.32
+11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `023705e9`**
+(ExProtection Global-America-Basics, six bilingual units / six vector figures / 13 tables,
+published from the user's `/books/work/70/` request); prior HEAD `ee024fab` (Baumann Ch.32
 "Pipe Vibration Due to Sound", 5 PDF pages / printed pp. 185–189, 2 vector figures, 6 displayed
 equations, one field case — completing Baumann at 32/32 and the entire queued campaign); prior
 published HEAD `a3fdd131` was Baumann Ch.31 "Thinking “Green” and Saving Metal", 2 PDF pages /
@@ -43,13 +45,14 @@ printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered eq
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
 unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,140 URLs,
-catalog badges IIH 8/8, Emerson 15/15, IPC 8/8, PPIC 11/11 and Baumann 32/32 all `full`;
-Baumann Ch.32, Ch.31, Ch.30 and Ch.29 EN/VI deep URLs **200** after Pages propagation,
-both TOCs list all 32 chapters, `check_links.py` broken 0, sitemap 1,156 URLs. Full tables in `report.md`.
+catalog badges IIH 8/8, Emerson 15/15, IPC 8/8, PPIC 11/11, Baumann 32/32 and ExProtection
+6/6 all `full`; Baumann and ExProtection EN/VI deep URLs **200** after Pages propagation,
+both TOCs list all units, `check_links.py` broken 0, sitemap 1,170 URLs. Full tables in `report.md`.
 
-**Next unit: none — the queued campaign is complete.** All registered books are 🟢 full.
-Only optional work remains: Books 11/12 registration on explicit user confirmation (candidate
-books listed below). If new chapters are queued, reuse the recipe below; note Baumann's
+**Next unit: none — the queued campaign is complete.** All 15 registered books are 🟢 full,
+including the newly requested R. STAHL ExProtection primer. Only optional work remains: Books
+11/12 registration on explicit user confirmation (candidate books listed below). If new
+chapters are queued, reuse the recipe below; note Baumann's
 printed = PDF + 2 generally, but +3 in Ch.26, +4 in Ch.27–28, +5 in Ch.29, +6 in Ch.30 and
 +7 in Ch.31–32, and that equations must be transcribed from rendered pages, not the garbled
 text layer. PPIC
