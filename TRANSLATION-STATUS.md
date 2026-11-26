@@ -7565,8 +7565,27 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   all key numbers present, 0 CJK / bare `&` / Spanish / VI-in-EN prose, `check_links.py`
   broken 0, sitemap 1,152 URLs. Live EN/VI deep URLs **200** after Pages negative caching
   cleared; local and live TOCs list Ch.30, catalog badge 30/32.
-- Baumann `cvp` is now **30/32** 🟠; remaining: Ch.31 "Thinking “Green” and Saving Metal"
-  (PDF 176–177 / printed 183–184, one cage-valve figure) and Ch.32 "Pipe Vibration Due to
-  Sound" (PDF 178–182 / printed 185–189, two figures, several equations garbled in the PDF
-  text layer — transcribe from `work/cvp32_pages/p178.png` and `p180.png`). Books 11/12
-  still unregistered.
+- Baumann `cvp` was **30/32** 🟠 at this point; next was Ch.31.
+
+## Session 2026-11-26 — Baumann Ch.31 published (EN/VI)
+- **Baumann Ch.31 "Thinking “Green” and Saving Metal"** (`a3fdd131`): source PDF pp. 176–177
+  = printed pp. 183–184 (**printed = PDF + 7**), rendered to `work/cvp31_pages/p176.png`–`p177.png`.
+  Two printed pages, one figure, one long endnote, three additional-reading items, no tables
+  or equations.
+- Prose and figure were drafted together against `work/cvp31_brief.md`: `build/cvp_ch31.py`
+  and `build/cvpfig31.py` (`fig_f311()`, a 680×420 vector cross-section with flanges, bonnet,
+  cage, double-stage plug/stem, A–E bilingual callouts and a flow arrow). Full EN/VI caption
+  translations and aria labels supplied through `vfig._fig()`.
+- Content preserved: Ch.29 lower pressure drops, Ch.6 valve selection, cage-valve bonnet flange
+  weight cut in half, rotary valves at less than half the weight with about 20% more Cv,
+  lower pump/compressor energy and freight, better margins, and the Electroheat Induction
+  endnote with its full URL and 550–575 kWh/ton figure.
+- QA script `work/qa_cvp31.py` added; both EN and VI pages PASS: figs `[1]`, 1 XML-valid SVG,
+  1/1 correct caption, 1 h3, 3-item reading list, all key values present, 0 CJK / bare `&` /
+  Spanish / VI-in-EN prose, `check_links.py` broken 0, sitemap 1,154 URLs. Live EN/VI deep
+  URLs **200** after Pages negative caching cleared; local and live TOCs list Ch.31, catalog
+  badge 31/32.
+- Baumann `cvp` is now **31/32** 🟠; remaining: Ch.32 "Pipe Vibration Due to Sound"
+  (PDF 178–182 / printed 185–189, two figures, several equations garbled in the PDF text
+  layer — transcribe from `work/cvp32_pages/p178.png` and `p180.png`). Books 11/12 still
+  unregistered.

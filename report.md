@@ -7,12 +7,14 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-26):** 13 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8, IPC `ipc` 🟢 8/8,
-PPIC `ppic` 🟢 11/11); the remaining campaign book is Baumann `cvp` at 30/32 across Book 7.
-**Live chapter HEAD `decac128`** (Book 7 Baumann Ch.30 "The Bus System to the Rescue, or What the
-Future May Bring": 7 PDF pages / printed pp. 175–181, 4 vector figures, one endnote, one
-reference, no tables or equations) — prior published HEAD `add4b759` was Baumann Ch.29 "Saving
-Energy" (3 PDF pages / printed pp. 171–173, 5 displayed equations, 2 references, no
-figures/tables); before that `35c0eceb` was Book 9 PPIC Ch.11 "Saturated Adaptive
+PPIC `ppic` 🟢 11/11); the remaining campaign book is Baumann `cvp` at 31/32 across Book 7.
+**Live chapter HEAD `a3fdd131`** (Book 7 Baumann Ch.31 "Thinking “Green” and Saving Metal":
+2 PDF pages / printed pp. 183–184, one vector cage-valve cross-section, one endnote, three
+reading items, no tables or equations) — prior published HEAD `decac128` was Baumann Ch.30
+"The Bus System to the Rescue, or What the Future May Bring" (7 PDF pages / printed
+pp. 175–181, 4 vector figures, one endnote, one reference); before that `add4b759` was
+Baumann Ch.29 "Saving Energy" (3 PDF pages / printed pp. 171–173, 5 displayed equations,
+2 references, no figures/tables); before that `35c0eceb` was Book 9 PPIC Ch.11 "Saturated Adaptive
 Output-Feedback Power-Level Control for Modular High Temperature Gas-Cooled Reactors":
 29 PDF pages / printed pp. 255–283, 5 vector figures, no tables, 62 numbered equations,
 24 references — completing PPIC at 11/11) — prior HEAD `60c5df89` was Book 9 PPIC Ch.9 "Predictive Maintenance Based on Control Charts Applied
@@ -132,7 +134,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **30/32** 🟠 | 52 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23, ch26, ch30 = 4; ch17/ch21/ch27/ch28/ch29 have no figures; ch25 = 2 data tables) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **31/32** 🟠 | 53 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23, ch26, ch30 = 4; ch17/ch21/ch27/ch28/ch29 have no figures; ch25 = 2 data tables; ch31 = 1) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
@@ -186,6 +188,8 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   pneumatic actuators, saving energy — see the session logs below for commits and counts)
   + Ch.30 "The Bus System to the Rescue, or What the Future May Bring" (4 vector figures, one
   endnote, 1 ref, printed pp. 175–181, published in `decac128`)
+  + Ch.31 "Thinking “Green” and Saving Metal" (1 vector cage-valve cross-section, one endnote,
+  3 reading items, printed pp. 183–184, published in `a3fdd131`)
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
@@ -1262,9 +1266,28 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   2 footnotes, all key values present, 0 CJK / bare `&` / Spanish / VI-in-EN prose,
   `check_links.py` broken 0, sitemap 1,152 URLs. Live EN/VI deep URLs **200** after Pages
   negative caching cleared; both TOCs list Ch.30, catalog badge 30/32.
-- Baumann `cvp` is now **30/32** 🟠; remaining: Ch.31 "Thinking “Green” and Saving Metal"
-  (PDF 176–177 = printed 183–184, one figure) and Ch.32 "Pipe Vibration Due to Sound"
+- Baumann `cvp` was **30/32** 🟠 at this point; next was Ch.31.
+
+## Baumann Chapter 31 — Thinking “Green” and Saving Metal (2026-11-26)
+- Published in `a3fdd131` (status docs in the follow-up commit). Source `work/cvp_raw.txt`
+  PDF pp. 176–177 = printed pp. 183–184 (printed = PDF + 7), rendered to
+  `work/cvp31_pages/p176.png`–`p177.png`. Two printed pages, one figure, one long endnote,
+  three additional-reading items, no tables or equations.
+- Content: lower pressure drops per Ch.29 and valve selection per Ch.6, the cage-valve
+  bonnet flange weight cut in half by proper cage retention, rotary (not on-off) valves at
+  less than half the weight of globes with about 20% more Cv, lower pumping energy and
+  freight, and better margins for maker and user. Electroheat Induction endnote retained
+  with its full URL and 550–575 kWh/ton figure.
+- Figure 31-1 redrawn as a labelled vector cross-section (`cvpfig31.py`, `fig_f311()`) with
+  flanges, bonnet, cage, double-stage plug/stem, seals A–E and bilingual callouts.
+- Brief `work/cvp31_brief.md`; QA script `work/qa_cvp31.py`: both EN and VI PASS — one
+  XML-valid SVG, correct caption, 1 h3, 3-item reading list, all key numbers present,
+  0 CJK / bare `&` / Spanish / VI-in-EN prose, `check_links.py` broken 0, sitemap 1,154
+  URLs. Live EN/VI deep URLs **200** after Pages negative caching cleared; both TOCs list
+  Ch.31, catalog badge 31/32.
+- Baumann `cvp` is now **31/32** 🟠; remaining: Ch.32 "Pipe Vibration Due to Sound"
   (PDF 178–182 = printed 185–189, two figures and several equations garbled in the text
-  layer). Books 11/12 remain unregistered pending user confirmation.
+  layer). Completing Ch.32 finishes the whole book and the campaign. Books 11/12 remain
+  unregistered pending user confirmation.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.
