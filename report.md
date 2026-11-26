@@ -128,7 +128,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **25/32** 🟠 | 44 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23; ch17/ch21 have no figures; ch25 = 2 data tables) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **26/32** 🟠 | 48 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23, ch26 = 4; ch17/ch21 have no figures; ch25 = 2 data tables) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
@@ -1147,7 +1147,27 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   source values present in each language (decimal comma localized in VI), 0 figures, 0 CJK /
   bare `&` / Spanish / Vietnamese-in-English prose, `check_links.py` broken 0, sitemap 1,142
   URLs. TOC lists Ch.25, catalog badge 25/32.
-- Baumann `cvp` is now **25/32** 🟠; remaining Baumann chapters Ch.26–32. Next in the standing
-  order: Baumann Ch.26 "Valves for Sanitary or Aseptic Service" (printed pp. 157 onward).
+- Baumann `cvp` was **25/32** 🟠 at this point; next was Baumann Ch.26.
+
+## Baumann Chapter 26 — Valves for Sanitary or Aseptic Service (2026-11-26)
+
+- Printed pp. 157–163 (PDF pp. 154–160; printed = PDF + 3), EN/VI slug
+  `ch26-valves-for-sanitary-or-aseptic-service`, published in `db21261a`. Seven printed pages,
+  **4 vector figures**, **1 table** and **3 references**, no equations.
+- Full bilingual translation of sanitary versus aseptic (germ-free) valves, CIP/SIP cleaning,
+  orbital welding, modulating control in bioprocessing (0.001–500 L/min high-purity water),
+  3-A Council food-industry design, the four valve figures (self-draining angle valve with
+  metal plug; modern flow-to-open sanitary/aseptic valve with tapered grooves; diaphragm valve;
+  improved modulating diaphragm valve with toggle mechanism, secondary seal and telltale),
+  the EPDM/PTFE diaphragm, the ~45° retracted slope and FL ≥ 0.85 low-cavitation flow path,
+  and the <2% deadband permitting operation without a separate positioner.
+- Figure captions were redrawn from page renders; the printed “septic service” wording in the
+  Figure 26-4 caption and the “0.4 t to 0.5” typo in Table 26-1 are preserved and flagged.
+- QA script `work/qa_cvp26.py` (both EN and VI PASS): 4 sequential XML-valid SVGs with localized
+  captions, 1 surface-finish table with correct values, 3 references, 0 CJK / bare `&` /
+  Spanish / Vietnamese-in-English prose, `check_links.py` broken 0, sitemap 1,144 URLs. TOC lists
+  Ch.26, catalog badge 26/32.
+- Baumann `cvp` is now **26/32** 🟠; remaining Baumann chapters Ch.27–32. Next in the standing
+  order: Baumann Ch.27 "Sixteen Commandments: What You Shall Not Do!" (printed pp. 165 onward).
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

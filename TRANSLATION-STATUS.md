@@ -7452,3 +7452,27 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   URLs. Local TOC lists Ch.25, catalog badge 25/32.
 - Baumann `cvp` is now **25/32** 🟠; remaining: ch26–32. Next unit: Baumann Ch.26 "Valves for
   Sanitary or Aseptic Service" (printed pp. 157+). Books 11/12 still unregistered.
+
+## Session 2026-11-26 — Baumann Ch.26 published (EN/VI)
+- **Baumann Ch.26 "Valves for Sanitary or Aseptic Service"** (`db21261a`): one figure agent wrote
+  `cvpfig26.py` (4 vector figures) against `work/cvp26_pages/p154.png`–`p160.png`; prose written
+  in parallel. Source `work/cvp_raw.txt` lines 4238–4351, PDF pp. 154–160 = printed pp. 157–163
+  (**printed = PDF + 3 here**). Seven printed pages, four figures, one table, three references,
+  no equations.
+- Full bilingual translation of sanitary vs aseptic valves, CIP/SIP, orbital welding, modulating
+  bioprocess control, 3-A Council design, all four valve designs (self-draining angle valve,
+  flow-to-open sanitary valve with tapered grooves, diaphragm valve, improved modulating
+  diaphragm valve with toggle mechanism and secondary seal/tell tale), EPDM/PTFE diaphragm,
+  45° retracted slope with FL ≥ 0.85, and the <2% deadband.
+- Integration fixes: a missing opening quote in the VI glossary (SyntaxError) and a missing space
+  were corrected; Table 26-1 rows were split into per-language variants because the "đến"/"to"
+  connector is language-specific. QA script `work/qa_cvp26.py` initially assumed dot-numbered
+  captions ("Figure 26.1") but the Baumann shell uses the hyphen convention ("Figure 26-1") —
+  fixed the regex.
+- Printed quirks preserved/flagged: "septic service" in the Figure 26-4 caption (likely a
+  misprint for aseptic) and the "0.4 t to 0.5" typo in Table 26-1 corrected to "0.4 to 0.5"
+  with a note. Both QA pages PASS: 4 XML-valid SVGs, captions 4/4, 1 table (4 rows), 3 refs,
+  11 checked data values present, 0 CJK / bare & / Spanish / VI-in-EN prose, `check_links.py`
+  broken 0, sitemap 1,144 URLs. Local TOC lists Ch.26, catalog badge 26/32.
+- Baumann `cvp` is now **26/32** 🟠; remaining: ch27–32. Next unit: Baumann Ch.27 "Sixteen
+  Commandments: What You Shall Not Do!" (printed p. 165+). Books 11/12 still unregistered.
