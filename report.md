@@ -5,12 +5,15 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-26):** 12 reader books complete and live 🟢 (rows below; flagship Book 6
-*Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8, IPC `ipc` 🟢 8/8);
-the remaining campaign books are still in progress across Books 7 and 9. **Live chapter HEAD
-`60c5df89`** (Book 9 PPIC Ch.9 "Predictive Maintenance Based on Control Charts Applied at
-Thermoelectric Power Plant": 30 PDF pages / printed pp. 199–228, 11 vector figures, 2 tables,
-12 numbered equations, 40 references) — prior HEAD `5787c03a` was Book 7 Baumann Ch.23
+**Status (2026-11-26):** 13 reader books complete and live 🟢 (rows below; flagship Book 6
+*Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8, IPC `ipc` 🟢 8/8,
+PPIC `ppic` 🟢 11/11); the remaining campaign book is Baumann `cvp` across Book 7. **Live chapter
+HEAD `35c0eceb`** (Book 9 PPIC Ch.11 "Saturated Adaptive Output-Feedback Power-Level Control for
+Modular High Temperature Gas-Cooled Reactors": 29 PDF pages / printed pp. 255–283, 5 vector
+figures, no tables, 62 numbered equations, 24 references — completing PPIC at 11/11) —
+prior HEAD `60c5df89` was Book 9 PPIC Ch.9 "Predictive Maintenance Based on Control Charts Applied
+at Thermoelectric Power Plant": 30 PDF pages / printed pp. 199–228, 11 vector figures, 2 tables,
+12 numbered equations, 40 references — before that `5787c03a` was Book 7 Baumann Ch.23
 "Flashing": 2 PDF/printed pp. 145–146, one vector figure, a flashing-sizing relation and one
 worked example with a documented printed arithmetic discrepancy — before that `f6b4426f` was
 Book 10 IPC Ch.8 "Microprocessor Based Instrumentation System": 44 PDF pages / printed pp.
@@ -120,13 +123,13 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 | 10 | **Emerson, *Control Valve Handbook*, 6th ed. (2020)** | **15** | **228 redrawn** (ch1–12) + 45 data tables (ch13–15) | ✅ **live, 🟢 15/15** |
 | 11 | **3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018)** | **8** | **108 redrawn** (ch1–8) + 17 data tables (ch4/ch7/ch8) + 108-entry book index | ✅ **live, 🟢 8/8** |
 | 12 | **Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (2019)** | **8** | **346 redrawn** (ch1–8) + 7 tables + 45 numbered equations | ✅ **live, 🟢 8/8** |
+| 13 | **L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019)** | **11** | **~220 redrawn** + tables + 100+ numbered equations | ✅ **live, 🟢 11/11** |
 
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **23/32** 🟠 | 44 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23; ch17/ch21 have no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **9/11** 🟠 | 85 (ch1–9: 5 + 7 + 8 + 11 + 17 + 3 + 2 + 21 + 11) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
 (Emerson), 294 (IIH), 295 (PPIC), 296 (IPC).
@@ -1097,7 +1100,33 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   offsets or overlaps, `check_links.py` broken 0, sitemap 1,138 URLs. EN/VI deep URLs HTTP 200
   after Pages propagation, both TOCs list Ch.10, sitemap has 8 Ch.10 entries, catalog badge
   10/11.
-- PPIC `ppic` is now **10/11** 🟠; remaining PPIC chapter is Ch.11. Next in the standing order:
-  PPIC Ch.11 → Baumann Ch.25–32.
+- PPIC `ppic` was **10/11** 🟠 at this point; next was PPIC Ch.11 → Baumann Ch.25–32.
+
+## PPIC Chapter 11 — Saturated Adaptive Output-Feedback Power-Level Control (2026-11-26)
+
+- PDF pp. 271–299, printed pp. 255–283 (printed = PDF − 16; PDF p.300 blank), EN/VI slug
+  `ch11-saturated-adaptive-output-feedback-power-level-control`, published in `35c0eceb`.
+  Author Zhe Dong (Tsinghua University / Key Laboratory of Advanced Reactor Engineering and
+  Safety). **PPIC is now complete at 11/11** 🟢.
+- Five prose writers, four equation writers and three figure suppliers worked against
+  `work/ppic11_brief.md`. Full bilingual translation of the MHTGR/NSSM model, point kinetics,
+  ISS problem formulation, Theorem 1 and its saturated adaptive output-feedback controller,
+  the two-step Lyapunov proof with shifted-ectropy functions, both six-panel simulation cases
+  (power up 50→100% RFP, power down 100→50% RFP at 10% RFP/min), discussion, conclusions,
+  acknowledgments and all 24 references. **5 vector figures**, **no tables**, **62 numbered
+  equations (1)–(62)**.
+- The PDF text layer omits every displayed equation and the simulation figures span several
+  pages; all equations and figure trends were re-read from rendered pages. Printed quirks kept
+  verbatim: duplicated `x₁` denominators in several fractions, `ch`/`th` hyperbolic notation,
+  θ̃ tildes in the Lyapunov functions, the two-page equation (58) chain, and mangled reference
+  entries. The chapter explicitly warns that the controller is for normal power operation,
+  **not reactor startup**.
+- QA: 5/5 sequential XML-valid SVGs with localized captions, 62 equation numbers (1–62) exactly
+  once per language, 24 references, 0 tables, 0 CJK / bare `&` / Spanish / Vietnamese-in-English
+  prose, 0 off-canvas labels or label overlaps, `check_links.py` broken 0, sitemap 1,140 URLs.
+  EN/VI deep URLs initially 404 from Pages negative caching, then HTTP 200; both TOCs list
+  Ch.11, 8 Ch.11 sitemap entries, catalog badge **“Fully translated · 11 of 11 chapters”** /
+  **“Đã dịch đầy đủ · 11/11 chương”**.
+- Next in the standing order: Baumann `cvp` Ch.25–32. Books 11/12 located but unregistered.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

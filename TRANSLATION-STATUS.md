@@ -7406,3 +7406,27 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   Next unit: PPIC Ch.11 "Saturated Adaptive Output-Feedback Power-Level Control for Modular
   High Temperature Gas-Cooled Reactors" (source starts at `===PDFPAGE 271===`). Books 11/12
   located but unregistered.
+
+## Session 2026-11-26 — PPIC Ch.11 published, PPIC complete (EN/VI)
+- **PPIC Ch.11 "Saturated Adaptive Output-Feedback Power-Level Control for Modular High
+  Temperature Gas-Cooled Reactors"** (`35c0eceb`): five prose writers, four equation writers and
+  three figure suppliers against `work/ppic11_brief.md`. Source `work/ppic_raw.txt` lines
+  7167–7782, PDF pp. 271–299 = printed pp. 255–283 (printed = PDF − 16; PDF p.300 blank). Author
+  Zhe Dong (Tsinghua University). Five vector figures (MHTGR NSSM cutaway, nuclear/PV micro-grid,
+  saturated adaptive closed-loop block diagram, two six-panel simulation sets), no tables,
+  numbered equations (1)–(62) and all 24 references.
+- The PDF text layer omits every displayed equation; all 62 were transcribed from rendered pages.
+  Printed quirks preserved: duplicated `x₁` denominators in eqs. 37/43/47/52/53, `ch`/`th`
+  hyperbolic notation, θ̃ tildes in the Lyapunov functions, the two-page equation (58) chain, and
+  mangled reference entries. The chapter explicitly warns the controller is for normal power
+  operation, **not reactor startup**.
+- QA scripts `work/qa_ppic11.py` and `work/qa_ppic11_figs.py` added. Both built pages PASS: 5
+  sequential XML-valid SVGs with localized captions, 62 equation numbers (1–62) exactly once per
+  language, 24 refs, 0 tables, 0 CJK / bare & / Spanish / VI-in-EN prose, 0 off-canvas labels or
+  overlaps, `check_links.py` broken 0, sitemap 1,140 URLs. EN/VI deep URLs initially 404 from Pages
+  negative caching, then HTTP 200; 2 TOC rows per language, 8 sitemap entries, catalog badge
+  **"Fully translated · 11 of 11 chapters"** / **"Đã dịch đầy đủ · 11/11 chương"**.
+- PPIC `ppic` is now **11/11 complete** 🟢; remaining: Baumann `cvp` ch25–32. Next unit: Baumann
+  Ch.25. Books 11/12 located but unregistered. Book candidates found for later registration:
+  McMillan *Electrical Installations in Hazardous Areas* (Ex/IS) and *Hydrocarbon Processing:
+  Advanced Process Control and Information Systems* (refinery I&C).

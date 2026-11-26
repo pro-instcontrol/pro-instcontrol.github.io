@@ -1,11 +1,14 @@
-# HANDOFF — Campaign state 2026-11-26 (Emerson, IIH and IPC complete; Books 7/9 in progress)
+# HANDOFF — Campaign state 2026-11-26 (Emerson, IIH, IPC and PPIC complete; Book 7 in progress)
 
-**State now (2026-11-26):** 12 reader books complete 🟢 (see `report.md`; flagship Book 6
-*Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8). Remaining
-campaign: Baumann `cvp` **24/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **10/11**.
-**Live chapter HEAD `5a71fc4f`** (PPIC Ch.10 "Models for the Reliability Analysis of Digital
+**State now (2026-11-26):** 13 reader books complete 🟢 (see `report.md`; flagship Book 6
+*Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
+11/11). Remaining campaign: Baumann `cvp` **24/32**, Borden `bcv` 1/1 🟢.
+**Live chapter HEAD `35c0eceb`** (PPIC Ch.11 "Saturated Adaptive Output-Feedback Power-Level
+Control for Modular High Temperature Gas-Cooled Reactors", 29 PDF pages / printed pp. 255–283,
+5 vector figures, no tables, 62 numbered equations (1)–(62), 24 references — completing PPIC
+at 11/11); prior HEAD `5a71fc4f` was PPIC Ch.10 "Models for the Reliability Analysis of Digital
 Instrumentation and Control Systems for Nuclear Power Plants", 25 PDF pages / printed pp.
-229–253, 5 vector figures, 12 tables, equations (1)–(8), 25 references); prior HEAD `38e1806b`
+229–253, 5 vector figures, 12 tables, equations (1)–(8), 25 references; before that `38e1806b`
 was Baumann Ch.24 "Avoiding Leaky Valve Stem Packing", 6 PDF pages / printed pp. 147–152,
 one vector bellows-seal schematic, 8 packing rules, 2 refs and 2 reading items); before that
 `60c5df89` was PPIC Ch.9 "Predictive Maintenance Based on Control
@@ -31,24 +34,41 @@ vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercis
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,138 URLs,
-catalog badges IIH 8/8, Emerson 15/15 and IPC 8/8 all `full`, Baumann badge 24/32, PPIC badge
-10/11; Baumann Ch.24 and PPIC Ch.10 EN/VI deep URLs **200**, both PPIC TOCs list Ch.10,
-sitemap has 8 Ch.10 URL entries, `check_links.py` broken 0. Full tables in `report.md`.
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,140 URLs,
+catalog badges IIH 8/8, Emerson 15/15, IPC 8/8 and PPIC 11/11 all `full`, Baumann badge 24/32;
+PPIC Ch.11 EN/VI deep URLs **200** after Pages propagation, both PPIC TOCs list Ch.11, sitemap
+has 8 Ch.11 URL entries, `check_links.py` broken 0. Full tables in `report.md`.
 
-**Next unit:** PPIC `ppic` Ch.11 "Saturated Adaptive Output-Feedback Power-Level Control for
-Modular High Temperature Gas-Cooled Reactors" (source `work/ppic_raw.txt` starts at
-`===PDFPAGE 271===`, printed = PDF − 16). Then Baumann `cvp` Ch.25 onward (source
-`work/cvp_raw.txt`, printed = PDF + 2). Book 11/12 registration only on confirmation.
+**Next unit:** Baumann `cvp` Ch.25 onward (source `work/cvp_raw.txt`, printed = PDF + 2); PPIC
+is complete at 11/11 — no further PPIC chapters queued. Book 11/12 registration only on
+confirmation. Candidate books located for later registration: McMillan *Electrical Installations
+in Hazardous Areas* (678 pp, Ex/IS) and *Hydrocarbon Processing: Advanced Process Control and
+Information Systems* (215 pp, refinery I&C) — see `report.md`/handoff note.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 24/32 (Ch.2–24 done), PPIC at 10/11 (Ch.1–10 done) and
-IPC at 8/8 (Ch.1–8 done). Also two books located but not registered
+complete at 8/8 (Ch.2–8 done), Baumann at 24/32 (Ch.2–24 done), PPIC at 11/11 (Ch.1–11 done) and
+IPC at 8/8 (Ch.1–8 done). Also books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
 ---
+
+## 0.91 Session 91 — PPIC Ch.11 published, PPIC complete (2026-11-26)
+- Five prose writers (`ppic_ch11a…e.py`), four equation writers (`ppic_ch11_eqa…d.py`, 62
+  equations) and three figure suppliers (`ppicfig11_a/b/c.py`, 5 figures) worked against
+  `work/ppic11_brief.md`. Source `work/ppic_raw.txt` lines 7167–7782 (PDF pp. 271–299, printed
+  pp. 255–283, printed = PDF − 16; PDF p.300 blank), `PAGES_SRC = 29`.
+- The PDF text layer omits every displayed equation; all 62 were re-read from rendered pages
+  (`work/ppic11_pages/`), including the two-page equation (58) chain and the five proof
+  transcription quirks (duplicated `x₁` denominators, `ch`/`th` notation, θ̃ tildes). Section e
+  carries the explicit normal-operation-not-startup warning. No tables in the printed chapter.
+- QA scripts `work/qa_ppic11.py` and `work/qa_ppic11_figs.py` added. Both pages PASS: 5 sequential
+  XML-valid SVGs, 62 equation numbers (1–62) exactly once per language, 24 refs, 0 tables, 0 CJK
+  / bare `&` / Spanish / VI-in-EN prose, 0 off-canvas or overlapping labels, `check_links.py`
+  broken 0, sitemap 1,140 URLs. Pushed at `35c0eceb`; deep URLs 404 briefly from Pages negative
+  caching, then HTTP 200, TOC rows and full 11/11 badge live.
+- PPIC `ppic` is **11/11 complete** 🟢. Next: Baumann Ch.25 onward.
 
 ## 0.88 Session 90 — PPIC Ch.10 published (2026-11-26)
 - Five prose writers and three figure suppliers worked against `work/ppic10_brief.md`.
