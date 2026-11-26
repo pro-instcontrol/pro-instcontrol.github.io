@@ -1134,6 +1134,7 @@ BOOKS = {
         },
         "done": {
             1: "ch01-introduction",
+            2: "ch02-area-classification",
         },
         "copyright_en": "Original work © 1998 Reed Educational and Professional Publishing Ltd.",
         "copyright_vi": "Bản gốc © 1998 Reed Educational and Professional Publishing Ltd.",

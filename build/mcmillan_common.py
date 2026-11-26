@@ -27,6 +27,7 @@ BOOK["mcmillan"] = {
 # navigation so the site never links to a 404.
 SLUGS["mcmillan"] = {
     1: "ch01-introduction",
+    2: "ch02-area-classification",
 }
 
 (p, lead, h2, h3, h4, eq, quote, ul, ol, note, refs, table, fig, keyterms,
