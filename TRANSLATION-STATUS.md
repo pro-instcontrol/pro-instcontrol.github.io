@@ -7494,3 +7494,30 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   `check_links.py` broken 0, sitemap 1,146 URLs. Local TOC lists Ch.27, catalog badge 27/32.
 - Baumann `cvp` is now **27/32** 🟠; remaining: ch28–32. Next unit: Baumann Ch.28 "Electric
   versus Pneumatic Actuators" (printed p. 167+). Books 11/12 still unregistered.
+
+## Session 2026-11-26 — Baumann Ch.28 published (EN/VI)
+- **Baumann Ch.28 "Electric versus Pneumatic Actuators"** (`5dfda7d5`): written directly.
+  Source `work/cvp_raw.txt` lines 4388–4470, PDF pp. 163–165 = printed pp. 167–169
+  (**printed = PDF + 4 here**). Three printed pages, six application bullets for electric
+  actuators, four electric actuator types, a pneumatic-vs-electric ripple discussion, two
+  references, no figures/tables/equations.
+- Full bilingual translation of the 1965 prediction (85% electric by 1975) versus the <5%
+  reality; the six niches for electric actuation (no deadband, 0.02% travel resolution,
+  remote sites without instrument air, severe dynamic stem forces, high stem force at low
+  frequency, packing friction/breakaway torque, “as is” position on power failure); the four
+  types (AC gear drive: 1000 rpm reduced to 10 rpm, 25% duty cycle, up to 5000 ft × lb;
+  DC stepping motor: 1 in 5000 steps, can stall without burning out; electric-hydraulic:
+  pumped oil, 100% duty cycle, return-spring fail-safe, lower power than continuous pumping;
+  modulating solenoid: long armature, variable voltage, pressure-balanced trim, HVAC);
+  HART / Foundation Fieldbus / PROFIBUS; and why pneumatics still win — cost, reliability,
+  bulk, frequency response, fail-safe, ±0.01 psi / 2 Hz ripple absorbed like a large
+  capacitor, and gear-tooth load reversal leading to failure in weeks or months.
+- VI decimal commas are normalized in QA; proper names Béla / Lipták are neutralized for the
+  VI-in-EN leak check because their Latin accents overlap the Vietnamese diacritic range.
+  Source quirk “discreet steps” retained in EN and flagged in the source-quirks note.
+- QA script `work/qa_cvp28.py` added; both pages PASS: lists 6/4, 3 h3 sections, 2 refs,
+  key values present, no figures/tables, 0 CJK / bare & / Spanish / VI-in-EN prose,
+  `check_links.py` broken 0, sitemap 1,148 URLs. Local TOC lists Ch.28, catalog badge 28/32.
+- Baumann `cvp` is now **28/32** 🟠; remaining: ch29–32. Next unit: Baumann Ch.29 "Saving
+  Energy" (printed p. 171+; PDF p.166 shows printed 171, so verify the offset in the raw
+  text). Books 11/12 still unregistered.

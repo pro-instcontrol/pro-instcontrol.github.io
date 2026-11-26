@@ -128,7 +128,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **27/32** 🟠 | 48 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23, ch26 = 4; ch17/ch21/ch27 have no figures; ch25 = 2 data tables) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **28/32** 🟠 | 48 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23, ch26 = 4; ch17/ch21/ch27/ch28 have no figures; ch25 = 2 data tables) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
@@ -1185,7 +1185,31 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   numbers and units (3 ft, 3–15 psi, 250 ft/s) present, no figures or tables, 0 CJK / bare `&` /
   Spanish / Vietnamese-in-English prose, `check_links.py` broken 0, sitemap 1,146 URLs. TOC lists
   Ch.27, catalog badge 27/32.
-- Baumann `cvp` is now **27/32** 🟠; remaining Baumann chapters Ch.28–32. Next in the standing
-  order: Baumann Ch.28 "Electric versus Pneumatic Actuators" (printed pp. 167 onward).
+- Baumann `cvp` was **27/32** 🟠 at this point; next was Baumann Ch.28.
+
+## Baumann Chapter 28 — Electric versus Pneumatic Actuators (2026-11-26)
+
+- Printed pp. 167–169 (PDF pp. 163–165; **printed = PDF + 4 here**), EN/VI slug
+  `ch28-electric-versus-pneumatic-actuators`, published in `5dfda7d5`. Three printed pages,
+  six application bullets, four electric actuator types, two references; no figures, tables
+  or equations.
+- Full bilingual translation of the 1965 forecast that 85% of valves would be electric by
+  1975 versus the <5% reality; the six electric-actuator niches (zero-deadband positioning
+  with 0.02% resolution, remote sites without instrument air, severe stem dynamic forces,
+  high stem force at low frequency, packing friction/breakaway torque, “as is” failure
+  position); the four types (AC gear drive at 1000 rpm reduced to 10 rpm, 25% duty cycle,
+  up to 5000 ft × lb; DC stepping motors at 1 in 5000 steps; electric-hydraulic units with
+  100% duty cycle and return-spring fail-safe; low-power modulating solenoids with
+  pressure-balanced trim for HVAC); HART / Foundation Fieldbus / PROFIBUS control; and the
+  pneumatic case — lower cost and mass, inherent fail-safe, ±0.01 psi at 2 Hz absorbed like
+  a capacitor, versus gear-tooth fatigue after roughly a million ripple cycles.
+- QA script `work/qa_cvp28.py` (both EN and VI PASS): 6/4 bullets, 3 subsections, 2 refs,
+  key numbers present (85%, 5%, 0.02%, 1000 rpm, 10 rpm, 25%, 5000 ft × lb, 1 in 5000
+  steps / 1 trên 5000 bước, ±0.01 psi, 2 Hz, 100%), no figures or tables, 0 CJK / bare `&` /
+  Spanish / Vietnamese-in-English prose, `check_links.py` broken 0, sitemap 1,148 URLs.
+  TOC lists Ch.28, catalog badge 28/32.
+- Baumann `cvp` is now **28/32** 🟠; remaining Baumann chapters Ch.29–32. Next in the standing
+  order: Baumann Ch.29 "Saving Energy" (printed pp. 171 onward; PDF p.166 shows printed 171,
+  so verify the offset in the raw text before setting PAGES_SRC).
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.
