@@ -7302,3 +7302,21 @@ Vietnamese-in-EN prose, 0 off-canvas or overlapping SVG labels. Registered slug
 sitemap 1,124 URLs, `check_links.py` broken 0. Published in `dfb96cc7`, pushed
 `f893ee2c..dfb96cc7`; live EN/VI chapter, TOC and catalog URLs all HTTP 200.
 Remaining: IPC ch8 (last), Baumann ch22-32, PPIC ch8-11. Books 11/12 located, not registered.
+
+## Session 83 — Baumann Ch.22 "Graphical Estimation of Noise Produced by Turbulence and Cavitation of Liquids" published (EN/VI)
+One figure supplier and three prose writers worked against `work/cvp22_brief.md`. Source
+`work/cvp_raw.txt` lines 3760-3944 (PDF pp. 136-142 = printed pp. 137-143, printed = PDF + 1;
+printed p.144 absent from the e-book, Ch.23 begins on printed p.145). Full EN/VI translation of
+the graphical ABC method for liquids: Equation 22-1, Graphs A/B/C and the rotary-plug test chart,
+the worked 4-inch example (86.6 dBA estimate vs 89 dBA test), Table 22-1 with 18 data rows and
+12 columns, anticavitation trim and its multistep example (60.14 dBA vs 60 dBA test), single-
+stage resistance trims, the liquid-modification equation (90.7 dBA example) and pipe-schedule
+modifiers. Five source graphs redrawn as computed vectors in `cvpfig22.py`.
+VI 97,357 / EN 97,074 chars; 5 sequential unique `fig-1`..`fig-5` ids, 5 XML-valid SVGs,
+5 localized captions, 1 table (19 `tr`), 16/15 equation blocks, 0 CJK / bare ampersands /
+Spanish / Vietnamese-in-EN prose, 0 off-canvas or overlapping labels. The OCR layer garbles
+every equation and many table cells; all were re-read from page renders, with printed quirks
+(`log(156)`, `10.31`, `371`, `18,6`, `028`) retained in EN. Registered slug, done[22] and
+progress 22/32. Site rebuilt: 512 work pages, sitemap 1,126 URLs, `check_links.py` broken 0.
+Published in `6ffef536`, pushed `afdae4f1..6ffef536`; live EN/VI chapter, TOC and catalog URLs
+all HTTP 200. Remaining: Baumann ch23-32, PPIC ch8-11, IPC ch8 (last). Books 11/12 unregistered.

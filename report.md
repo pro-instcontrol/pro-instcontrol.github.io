@@ -7,10 +7,12 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-25):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `dfb96cc7`**
-(Book 10 IPC Ch.7 "Display Devices and Recorders": 24 PDF pages / printed pp. 317–340,
-32 vector figures, no tables or equations, 11 exercise questions) — the prior HEAD `51251826` was
-Book 9 PPIC Ch.7 "Spatial Aspects of Environmental Impact of Power Plants": 27 PDF pages /
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `6ffef536`**
+(Book 7 Baumann Ch.22 "Graphical Estimation of Noise Produced by Turbulence and Cavitation of
+Liquids": 7 PDF/printed pp. 137–143, 5 vector graphs, one 18-row Table 22-1, Equation 22-1 plus
+many unnumbered formulas, four worked examples) — the prior HEAD `dfb96cc7` was Book 10 IPC Ch.7
+"Display Devices and Recorders": 24 PDF pages / printed pp. 317–340, 32 vector figures, no tables
+or equations, 11 exercise questions — and before that `51251826` was Book 9 PPIC Ch.7 "Spatial Aspects of Environmental Impact of Power Plants": 27 PDF pages /
 printed pp. 125–151, 2 vector figures, 6 tables, 59 references, no equations — and before that
 `ed5931f4` was Book 7 Baumann Ch.21 "The ABC Method for Estimating Hydrodynamic Sound Level":
 3 PDF/printed pp. 133–135, one 11-column table, 28 unnumbered equations, one worked example,
@@ -111,7 +113,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **21/32** 🟠 | 38 (ch1–6, ch9–11, ch13, ch15, ch18–20; ch17/ch21 have no figures) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **22/32** 🟠 | 43 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22; ch17/ch21 have no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **7/11** 🟠 | 53 (ch1–7: 5 + 7 + 8 + 11 + 17 + 3 + 2) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **7/8** 🟠 | 312 (ch1–7: 51 + 58 + 72 + 30 + 43 + 26 + 32) |
@@ -478,7 +480,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   → `fb826fcb` (IPC ch4) → `34f48d9a` (Baumann ch19) → `1065ce57` (PPIC ch5)
   → `64d01a87` (IPC ch5) → `cf190d85` (Baumann ch20) → `612baf12` (PPIC ch6)
   → `b5a7b37e` (IPC ch6) → `ed5931f4` (Baumann ch21) → `51251826` (PPIC ch7)
-  → `dfb96cc7` (IPC ch7, **live chapter HEAD**).
+  → `dfb96cc7` (IPC ch7) → `6ffef536` (Baumann ch22, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -533,7 +535,11 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    pipe-schedule table, 1 example, printed pp. 121–123, broken 0);
    ~~Ch.20 "Methods of Aerodynamic Valve Noise Reduction"~~ — **done** in `cf190d85` (5 vector
    figs, Eq. 20-1 + 6 unnumbered expressions, 8 bullets, 2 refs, printed pp. 125–131, broken 0);
-   remaining Ch.21–32.
+   ~~Ch.21 "The ABC Method for Estimating Hydrodynamic Sound Level"~~ — **done** in `ed5931f4`
+   (0 figs, Table 21-1, 28 equations, broken 0);
+   ~~Ch.22 "Graphical Estimation of Noise Produced by Turbulence and Cavitation of Liquids"~~
+   — **done** in `6ffef536` (5 vector graphs, 18-row Table 22-1, Eq. 22-1, printed pp. 137–143,
+   broken 0); remaining Ch.23–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
    `89e84b27` (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 + 3 + 5 figs, broken 0); Ch.13 added 10 data
@@ -926,7 +932,26 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   0 CJK / bare `&` / Spanish / Vietnamese-in-English prose, 0 label overlaps, `check_links.py`
   broken 0, sitemap 1,124 URLs (8 Ch.7 entries). Live EN/VI deep URLs 200 (221/231 kB), TOC row
   present, catalog badge "Translating · 7 of 8 chapters" / "Đang dịch · 7/8 chương".
-- IPC `ipc` is now **7/8** 🟠; remaining IPC chapter is Ch.8 only. Next in the standing order:
-  Baumann Ch.22 → PPIC Ch.8 → IPC Ch.8.
+- IPC `ipc` is now **7/8** 🟠; remaining IPC chapter is Ch.8 only.
+
+## Baumann Chapter 22 — Graphical Estimation of Noise Produced by Turbulence and Cavitation of Liquids (2026-11-25)
+
+- PDF pp. 136–142 = printed pp. 137–143 (printed = PDF + 1), EN/VI slug
+  `ch22-graphical-estimation-of-noise-produced-by-turbulence-and-cavitation-of-liquids`,
+  published in `6ffef536` and verified live after Pages propagation. Printed p.144 is absent
+  from this e-book; Ch.23 starts on printed p.145.
+- One figure supplier and three prose writers against `work/cvp22_brief.md`. Five graph figures
+  (Graph A pipe-diameter/Cv curves, Graph B inlet pressure, Graph C turbulence/cavitation
+  families, rotary-plug test data, multistep-trim test data), Table 22-1 with 18 data rows and
+  12 columns, Equation 22-1 and many unnumbered formulas, four worked examples, and the
+  schedule-40/80/160 modifiers. The OCR layer garbles every equation and many table cells;
+  all were transcribed from page renders. Printed arithmetic quirks kept in EN (`log(156)`,
+  `10.31`, `371`, `18,6`, `028`), corrected meanings in VI.
+- QA: 5/5 sequential XML-valid SVGs with localized captions, one table with 19 `tr` elements
+  (header + 18 rows), 16 equation blocks in EN / 15 in VI, 0 CJK / bare `&` / Spanish /
+  Vietnamese-in-English prose, 0 label overlaps, `check_links.py` broken 0, sitemap 1,126 URLs.
+  Live EN/VI deep URLs 200 (101/104 kB), TOC row present, catalog badge 22/32.
+- Baumann `cvp` is now **22/32** 🟠; remaining Baumann chapters are Ch.23–32. Next in the
+  standing order: PPIC Ch.8 → IPC Ch.8 → Baumann Ch.23.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

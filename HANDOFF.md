@@ -2,10 +2,12 @@
 
 **State now (2026-11-25):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **21/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **7/11**, IPC `ipc` **7/8**.
-**Live chapter HEAD `dfb96cc7`** (IPC Ch.7 "Display Devices and Recorders", 24 PDF pages /
-printed pp. 317–340, 32 vector figures, no tables/equations, 11 exercise questions); prior HEAD
-`51251826` was PPIC Ch.7 "Spatial Aspects of Environmental Impact of Power Plants", 27 PDF pages /
+Baumann `cvp` **22/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **7/11**, IPC `ipc` **7/8**.
+**Live chapter HEAD `6ffef536`** (Baumann Ch.22 "Graphical Estimation of Noise Produced by
+Turbulence and Cavitation of Liquids", 7 PDF/printed pp. 137–143, 5 vector graphs, 18-row
+Table 22-1, Eq. 22-1 plus many unnumbered formulas, four worked examples); prior HEAD
+`dfb96cc7` was IPC Ch.7 "Display Devices and Recorders", 24 PDF pages / printed pp. 317–340,
+32 vector figures, no tables/equations, 11 exercise questions; before that `51251826` was PPIC Ch.7 "Spatial Aspects of Environmental Impact of Power Plants", 27 PDF pages /
 printed pp. 125–151, 2 vector figures, 6 tables, 59 references, no equations; before that
 `ed5931f4` was Baumann Ch.21 "The ABC Method for Estimating Hydrodynamic
 Sound Level", 3 PDF/printed pp. 133–135, one 11-column Table 21-1, 28 unnumbered equations,
@@ -15,20 +17,22 @@ vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercis
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,124 URLs,
-catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 21/32, PPIC badge 7/11,
-IPC badge 7/8; IPC Ch.7, PPIC Ch.7, Baumann Ch.21, IPC Ch.6, PPIC Ch.6, Baumann Ch.20, IPC Ch.5, PPIC Ch.5, Baumann Ch.19, IPC Ch.4,
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,126 URLs,
+catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 22/32, PPIC badge 7/11,
+IPC badge 7/8; Baumann Ch.22, IPC Ch.7, PPIC Ch.7, Baumann Ch.21, IPC Ch.6, PPIC Ch.6, Baumann Ch.20, IPC Ch.5, PPIC Ch.5, Baumann Ch.19, IPC Ch.4,
 PPIC Ch.4, Baumann Ch.18, IPC Ch.3, Baumann Ch.17 and PPIC Ch.3 EN/VI deep URLs 200, sitemap
-8 entries per new chapter, `check_links.py` broken 0. Full tables in `report.md`.
+entries per new chapter, `check_links.py` broken 0. Full tables in `report.md`.
 
-**Next unit:** Baumann `cvp` Ch.22 (source `work/cvp_raw.txt`; short chapters ≤6 pages with ≤2
-figures go to one agent for both figure and prose modules).
-The standing remaining order is Baumann `cvp` Ch.22 → PPIC `ppic` Ch.8 → IPC `ipc` Ch.8 (last
-chapter), with Book 11/12 registration only on confirmation.
+**Next unit:** PPIC `ppic` Ch.8 "Optimization and Damping Performance of Power Plants With
+Coal-Fired Steam Turbine Generators" (PDF pp. 169–214, 46 source pages; source `work/ppic_raw.txt`,
+printed = PDF − 16). Large chapters need a figure supplier plus several section writers against
+a shared brief.
+The standing remaining order is PPIC `ppic` Ch.8 → IPC `ipc` Ch.8 (last chapter) → Baumann `cvp`
+Ch.23, with Book 11/12 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 21/32 (Ch.2–21 done), PPIC at 7/11 (Ch.1–7 done) and
+complete at 8/8 (Ch.2–8 done), Baumann at 22/32 (Ch.2–22 done), PPIC at 7/11 (Ch.1–7 done) and
 IPC at 7/8 (Ch.1–7 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
@@ -252,6 +256,22 @@ QA: 32 sequential unique `fig-N` ids, 32 XML-valid SVGs, 32/32 localized caption
 0 content bare `&` / 0 Spanish / 0 Vietnamese in EN prose, 0 off-canvas / overlapping labels,
 `check_links.py` broken 0, sitemap 1,124. Live EN/VI 200, TOC row present, badge 7/8.
 **IPC is 7/8 🟠; only Ch.8 remains.**
+
+## 0.20 Baumann Ch.22 "Graphical Estimation of Noise Produced by Turbulence and Cavitation of Liquids" published in `6ffef536`
+One figure supplier and three prose writers worked against `work/cvp22_brief.md`. Source is
+`work/cvp_raw.txt` lines 3760–3944 (`=== PAGE 136 ===`–`=== PAGE 142 ===`): PDF pp. 136–142 =
+printed pp. 137–143 (printed = PDF + 1); printed p.144 is absent from the e-book and Ch.23
+starts on printed p.145. `PAGES_SRC = 7`. Content: five computed vector graphs (`cvpfig22.py`,
+mirroring `cvpfig19.py` helpers), a printed 18-row × 12-column Table 22-1, Equation 22-1 and
+many unnumbered formulas, four worked examples, and pipe-schedule modifiers. **GOTCHA:** the OCR
+layer garbles every equation and many table cells — transcribe from `work/cvp22_pages/p136…p142.png`;
+the printed Equation 22-1 is `L_a,liq. = A + B + C − rw plus modifiers, in dBA at 1 m distance`,
+not the OCR-derived `L_Ae,1m = …`. Figure 22-1 has no printed formula (fitted log family), and
+Figure 22-3's peak heights were fitted to the printed 49/40/35/30 dBA curves.
+QA: 5 sequential unique `fig-N` ids, 5 XML-valid SVGs, 5/5 localized captions, 1 table with
+19 `<tr>` elements, 16/15 equation blocks, 0 CJK / 0 content bare `&` / 0 Spanish / 0 Vietnamese
+in EN prose, 0 off-canvas / overlapping labels, `check_links.py` broken 0, sitemap 1,126.
+Live EN/VI 200, TOC row present, badge 22/32. **Baumann is 22/32 🟠; Ch.23–32 remain.**
 
 ## A. Continuation queue (user's order)
 0. ~~IIH Ch.8 "Control Valves" — final chapter~~ — **published** in `905dd942` (8 figs, 111 refs,
