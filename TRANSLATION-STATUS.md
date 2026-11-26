@@ -7632,3 +7632,96 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   “Conformité Européenne” for the leak guard. `check_links.py` broken 0, sitemap 1,170 URLs.
 - **All 15 registered reader books are now complete and live.** The older Books 11/12
   candidates remain unregistered pending explicit user confirmation.
+
+## Session 2026-11-26 — Emerson upstream measurement guide added (EN/VI)
+- At the user's request, Emerson *Measurement Instrumentation for Upstream Oil & Gas*
+  (MS-00803-0400-3030 Rev AA, 2026, 32 pages) was added as a new bilingual reader book
+  at `/books/read/measurement-instrumentation-upstream-oil-gas/` and
+  `/vi/books/read/measurement-instrumentation-upstream-oil-gas/`. Source PDF:
+  https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/marketing/industries/oil-and-gas/documents/doc-emerson-ms-00803-0400-3030.pdf
+- Ten units drafted: overview/value chain; well pads and wellheads; gas lift; separators;
+  heater treaters; oil and water tanks; LACT; natural gas sales to pipelines; facility-wide
+  safety; autonomous resilient operations. All 10/10 chapters translated to Vietnamese.
+- Each unit carries a redrawn labelled vector schematic preserving the source instrument
+  tags (PT, TT, FT, LI, LS, SM, GD, UGLD, FD, CM, GC, FQI) and a source figure-caption
+  section covering the guide's 27 numbered photographs/diagrams.
+- Catalog cards added to both shelves; totals raised 257 → 258 works and 185,819 → 185,851
+  pages. Sitemap gained 11 alternating en/vi URLs. `build/check_links.py`:
+  pages 1200, local references 35160, broken 0. No source PDF is republished; the page
+  links to Emerson and carries the © 2026 Emerson attribution.
+
+## Session 2026-11-26 — Cross-book Instrumentation & Control focus section
+- At the user's clarification, no whole books were imported. A thematic bilingual focus
+  section was created instead at `/books/read/instrumentation-control-systems-focus/` and
+  `/vi/books/read/instrumentation-control-systems-focus/`, titled *Instrumentation &
+  Control Systems — A Cross-Book Focus*.
+- Source collection scanned: `E:/Ebooks/Oil and Gas` (238 PDFs). Shortlist based on
+  bookmark/TOC keyword hits for instrumentation, control, measurement, SCADA, alarm and
+  monitoring. Final source map spans 14 works, including *Pipeline Rules of Thumb
+  Handbook* (ch. 7, 15, 16, 17), *Surface Production Operations Vol. 1* (§2), *Natural
+  Gas Engineering Handbook* (ch. 10), *Petroleum Engineers Handbook Part 2* (§16),
+  *Handbook of Storage Tank Systems: Codes, Regulations, and Designs* (ch. 6 and sample
+  specifications), NFPA 58, Shell IWCF, and *Pipeline Corrosion and Cathodic Protection*.
+- Six curated units, each naming its sources: control valves/final elements; measurement
+  and metering; process control and instrumentation; SCADA/automation; tank-farm
+  instrumentation and overfill protection; safety instrumentation and integrity monitoring.
+  All 6/6 units are translated to Vietnamese. Each unit carries a redrawn inline SVG and
+  retains source numbers (0.2 gal/hr, 85/90/95% overfill thresholds, Cv relations,
+  40 CFR 280, API 2350, PEI RP100, NFPA 30/30A, 100 mV criterion).
+- Catalog cards added to both shelves; totals raised 258 → 259 works and 185,851 →
+  185,971 pages. Sitemap gained 7 alternating en/vi URLs. `build/check_links.py`:
+  pages 1214, local references 35508, broken 0. No source work is republished verbatim.
+
+## Session 2026-11-26 — Oil Refinery cross-book focus section
+- At the user's request ("Do the same but focus in Oil Refinery"), a second thematic
+  bilingual section was created at `/books/read/oil-refinery-focus/` and
+  `/vi/books/read/oil-refinery-focus/`, titled *Oil Refining — A Cross-Book Focus*.
+  Again, no whole book was imported: only curated, attributed sections were used.
+- Source collection `E:/Ebooks/Oil and Gas` was scanned for refinery handbooks and process
+  economics titles. Final source map spans 8 works: *Handbook of Petroleum Processing*
+  (ch. 1-4, 6-8, 13 and refining/gasoline/environmental sections), *Handbook of Petroleum
+  Refining Processes* (Platforming, FCC, Isocracking, sulfur management, gasoline
+  desulfurization, alkylation), *Petroleum Refining: Technology and Economics*, *Practical
+  Advances in Petroleum Processing* Vol. 1 and Vol. 2, and *Chemistry of Petrochemical
+  Processes*. Extraction bundles live in `refinery-build/extract/u1`…`u6`.
+- Six curated units, all translated 6/6 into Vietnamese, each naming its sources and
+  carrying a bilingual inline SVG: crude assays and configuration; atmospheric/vacuum
+  distillation; FCC/hydrocracking/coking; gasoline upgrading; sulfur and environment;
+  support systems, quality control and advanced control. Source numbers and relations are
+  retained (cut points 400/500/650°F; desalting 12,000-35,000 V and 90-95%/99%; furnace
+  650-750°F; VGO 750-1050°F; H2S scrubbing above 3 vol%; CCR 345 kPa / octane 108;
+  HDS 100-150 SCFB/wt%, HDN 200-350 SCFB/wt%; MPC payback 4-12 months).
+- Catalog cards added to both shelves; totals raised 259 → 260 works and 185,971 →
+  186,091 pages. Sitemap gained 7 alternating en/vi URLs. QA: JSON 48/48 EN/VI paragraph
+  pairs, no CJK characters, all 14 SVGs inside the viewBox, no double-slash navigation,
+  XML-valid sitemap. `build/check_links.py`: pages 1228, local references 35856, broken 0.
+- Also repaired three pre-existing BCIT work-card links (Docs → work/257, Entry Docs →
+  work/258, Flow → work/259) and the matching search-index map in both catalogs; these
+  had been corrupted by an earlier blanket counter replacement.
+
+## Session 2026-11-26 — Petrochemical industry cross-book focus section
+- At the user's request ("Do the same with focus on Petrochemical industry"), a third
+  thematic bilingual section was created at `/books/read/petrochemical-industry-focus/`
+  and `/vi/books/read/petrochemical-industry-focus/`, titled *Petrochemical Industry —
+  A Cross-Book Focus*. As before, no whole book was republished; only curated, attributed
+  sections were used.
+- Source collection `E:/Ebooks/Oil and Gas` was scanned by petrochemical keyword density
+  across all PDFs. The strongest sources were *Chemistry of Petrochemical Processes*
+  (Matar, 2nd ed., 2000), Wiley *Critical Content: Petroleum Technology* Part III entries
+  (Petrochemical Feedstocks, Ethylene, Propylene, BTX Processing, Benzene, Toluene,
+  Xylenes, Ethylbenzene, Butadiene, Isoprene, Fuels Synthetic Liquid, Economic Evaluation),
+  *Petroleum Product Handbook* Section 12, and the petroleum-refining library. Extraction
+  bundles live in `petrochemical-build/extract/u1`…`u6`.
+- Six curated units, all translated 6/6 into Vietnamese, each naming its sources and
+  carrying a bilingual inline SVG: feedstocks and refinery integration; steam cracking,
+  ethylene and propylene; BTX and C8 separation; C4 olefins, dienes and rubber; synthesis
+  gas and nonhydrocarbon intermediates; polymers, materials and economics. Source numbers
+  are retained (22.5 trillion ft3 U.S. 1998 gas use; amine 15-30%; cracker outlet 800°C;
+  p-xylene 60% versus about 90% with isomerization; 70% of 1-butene to LLDPE; CH4 + H2O →
+  CO + 3H2; +286 kJ/mol water splitting; 0.18-1.8 MMscfd methanol-to-hydrogen; 100 billion
+  lb PE in 1997; 54 U.S. establishments / $20.5 billion shipments in 1997; catalysts over
+  60% of organic output and 90% of processes).
+- Catalog cards added to both shelves; totals raised 260 → 261 works and 186,091 →
+  186,211 pages. Sitemap gained 7 alternating en/vi URLs. QA: JSON 48/48 EN/VI paragraph
+  pairs, no CJK characters, all 14 SVGs inside the viewBox, no double-slash navigation,
+  XML-valid sitemap. `build/check_links.py`: pages 1242, local references 36204, broken 0.
