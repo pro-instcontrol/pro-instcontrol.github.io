@@ -1,14 +1,20 @@
-# HANDOFF — Campaign state 2026-11-25 (Emerson + IIH complete; Books 7/9/10 in progress)
+# HANDOFF — Campaign state 2026-11-26 (Emerson, IIH and IPC complete; Books 7/9 in progress)
 
-**State now (2026-11-25):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
-*Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **22/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **8/11**, IPC `ipc` **7/8**.
-**Live chapter HEAD `4338ee22`** (PPIC Ch.8 "Optimization and Damping Performance of a Coal-Fired
-Power Plant Building Equipped with Multiple Coal Bucket Dampers", 46 PDF pages / printed
-pp. 153–198, 21 vector figures, 3 tables, 22 equation blocks, 38 references); prior HEAD
-`6ffef536` was Baumann Ch.22 "Graphical Estimation of Noise Produced by Turbulence and
-Cavitation of Liquids", 7 PDF/printed pp. 137–143, 5 vector graphs, 18-row Table 22-1, Eq. 22-1
-plus many unnumbered formulas, four worked examples; before that `dfb96cc7` was IPC Ch.7 "Display Devices and Recorders", 24 PDF pages / printed pp. 317–340,
+**State now (2026-11-26):** 12 reader books complete 🟢 (see `report.md`; flagship Book 6
+*Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8). Remaining
+campaign: Baumann `cvp` **23/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **9/11**.
+**Live chapter HEAD `60c5df89`** (PPIC Ch.9 "Predictive Maintenance Based on Control Charts
+Applied at Thermoelectric Power Plant", 30 PDF pages / printed pp. 199–228, 11 vector figures,
+2 tables, equations (1)–(12), 40 references); prior HEAD `5787c03a` was Baumann Ch.23 "Flashing",
+2 PDF/printed pp. 145–146, one vector schematic, sizing relation and worked example; before
+that `f6b4426f` was IPC Ch.8 "Microprocessor Based Instrumentation System", 44 PDF pages /
+printed pp. 341–384, 34 vector figures and 30 exercises (book complete 8/8); before that
+`4338ee22` was PPIC Ch.8 "Optimization and Damping Performance of a Coal-Fired Power Plant
+Building Equipped with Multiple Coal Bucket Dampers", 46 PDF pages / printed pp. 153–198, 21
+vector figures, 3 tables, 22 equation blocks, 38 references; before that `6ffef536` was Baumann
+Ch.22 "Graphical Estimation of Noise Produced by Turbulence and Cavitation of Liquids", 7 PDF/
+printed pp. 137–143, 5 vector graphs, 18-row Table 22-1, Eq. 22-1 plus many unnumbered formulas,
+four worked examples; before that `dfb96cc7` was IPC Ch.7 "Display Devices and Recorders", 24 PDF pages / printed pp. 317–340,
 32 vector figures, no tables/equations, 11 exercise questions; before that `51251826` was PPIC Ch.7 "Spatial Aspects of Environmental Impact of Power Plants", 27 PDF pages /
 printed pp. 125–151, 2 vector figures, 6 tables, 59 references, no equations; before that
 `ed5931f4` was Baumann Ch.21 "The ABC Method for Estimating Hydrodynamic
@@ -19,26 +25,41 @@ vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercis
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,128 URLs,
-catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 22/32, PPIC badge 8/11,
-IPC badge 7/8; PPIC Ch.8, Baumann Ch.22, IPC Ch.7, PPIC Ch.7, Baumann Ch.21, IPC Ch.6, PPIC Ch.6, Baumann Ch.20, IPC Ch.5, PPIC Ch.5, Baumann Ch.19, IPC Ch.4,
-PPIC Ch.4, Baumann Ch.18, IPC Ch.3, Baumann Ch.17 and PPIC Ch.3 EN/VI deep URLs 200, sitemap
-entries per new chapter, `check_links.py` broken 0. Full tables in `report.md`.
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,134 URLs,
+catalog badges IIH 8/8, Emerson 15/15 and IPC 8/8 all `full`, Baumann badge 23/32, PPIC badge
+9/11; IPC Ch.8, Baumann Ch.23 and PPIC Ch.9 EN/VI deep URLs **200** after Pages propagation,
+sitemap entries per new chapter, `check_links.py` broken 0. Full tables in `report.md`.
 
-**Next unit:** IPC `ipc` Ch.8 "Microprocessor Based Instrumentation System" (PDF pp. 353–396,
-44 source pages; source `work/ipc_decoded.txt`, printed = PDF − 12). Large chapters need a
-figure supplier plus several section writers against a shared brief.
-The standing remaining order is IPC `ipc` Ch.8 (last chapter) → Baumann `cvp` Ch.23 → PPIC
-`ppic` Ch.9, with Book 11/12 registration only on confirmation.
+**Next unit:** Baumann `cvp` Ch.24 "Avoiding Leaky Valve Stem Packing" (printed pp. 147 onward;
+source `work/cvp_raw.txt` starts at `=== PAGE 145 ===`, printed = PDF + 2). Then PPIC `ppic`
+Ch.10 "Models for the Reliability Analysis of Digital Instrumentation and Control Systems for
+Nuclear Power Plants" (PDF pp. 245 onward, printed = PDF − 16). Book 11/12 registration only
+on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 22/32 (Ch.2–22 done), PPIC at 8/11 (Ch.1–8 done) and
-IPC at 7/8 (Ch.1–7 done). Also two books located but not registered
+complete at 8/8 (Ch.2–8 done), Baumann at 23/32 (Ch.2–23 done), PPIC at 9/11 (Ch.1–9 done) and
+IPC at 8/8 (Ch.1–8 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
 ---
+
+## 0.86 Sessions 86–88 — IPC Ch.8, Baumann Ch.23, PPIC Ch.9 (2026-11-26)
+- IPC Ch.8 (`f6b4426f`): an already-written draft set (6 prose + 4 figure modules) was validated
+  and published; 34 vector figures, 30 exercises, book complete 8/8. The brief mislabeled Fig.34
+  as a data highway; printed p.390 shows a basic-controller slot, and the drawing follows print.
+- Baumann Ch.23 (`5787c03a`): 2-page chapter, one vector redraw of the flashing photograph.
+  OCR garbles the sizing equation; forms were read from the rendered page. The printed worked
+  example says Cv = 117 although substitution gives ≈41.6 — EN keeps the printed number and
+  both languages flag the discrepancy.
+- PPIC Ch.9 (`60c5df89`): 5 prose writers + 3 figure suppliers against `work/ppic9_brief.md`;
+  11 vector figures, Table 1 (7 rows, spanning printed pp. 210–211), Table 2 (5 rows × 4 α
+  levels), numbered equations (1)–(12), 40 refs. The brief initially said equations were
+  unnumbered; the coordinator restored printed numbers. The VI-in-EN guard false-positives on
+  the Serbian author name `Đurović`; allowlisted in `work/qa_ppic9.py`.
+- All three chapters passed XML/CJK/ES/bare-&/overlap/link gates; `check_links.py` broken 0,
+  sitemap 1,134 URLs, EN/VI deep URLs 200 after Pages propagation.
 
 ## 0. Done: Book 10 `ipc` Chapter 1 integrated (push `2ca04367`)
 Redid the 3 registration edits, built chapter/TOC/site/sitemap, QA'd (51 figs XML-valid,

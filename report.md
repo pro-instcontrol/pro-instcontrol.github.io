@@ -5,12 +5,19 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-25):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
-*Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `4338ee22`**
-(Book 9 PPIC Ch.8 "Optimization and Damping Performance of a Coal-Fired Power Plant Building
+**Status (2026-11-26):** 12 reader books complete and live 🟢 (rows below; flagship Book 6
+*Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8, IPC `ipc` 🟢 8/8);
+the remaining campaign books are still in progress across Books 7 and 9. **Live chapter HEAD
+`60c5df89`** (Book 9 PPIC Ch.9 "Predictive Maintenance Based on Control Charts Applied at
+Thermoelectric Power Plant": 30 PDF pages / printed pp. 199–228, 11 vector figures, 2 tables,
+12 numbered equations, 40 references) — prior HEAD `5787c03a` was Book 7 Baumann Ch.23
+"Flashing": 2 PDF/printed pp. 145–146, one vector figure, a flashing-sizing relation and one
+worked example with a documented printed arithmetic discrepancy — before that `f6b4426f` was
+Book 10 IPC Ch.8 "Microprocessor Based Instrumentation System": 44 PDF pages / printed pp.
+341–384, 34 vector figures, 30 exercises, completing IPC at 8/8 — and before that `4338ee22`
+was PPIC Ch.8 "Optimization and Damping Performance of a Coal-Fired Power Plant Building
 Equipped with Multiple Coal Bucket Dampers": 46 PDF pages / printed pp. 153–198, 21 vector
-figures, 3 tables, 22 equation blocks, 38 references) — the prior HEAD `6ffef536` was Book 7
+figures, 3 tables, 22 equation blocks, 38 references — and before that `6ffef536` was Book 7
 Baumann Ch.22 "Graphical Estimation of Noise Produced by Turbulence and Cavitation of Liquids":
 7 PDF/printed pp. 137–143, 5 vector graphs, one 18-row Table 22-1, Equation 22-1 plus many
 unnumbered formulas, four worked examples — and before that `dfb96cc7` was Book 10 IPC Ch.7
@@ -112,14 +119,14 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 | 9 | **Smith & Zappe, *Valve Selection Handbook*, 5th ed. (2004) — flagship** | **21** | **235 redrawn** | ✅ **live, 🟢 21/21** |
 | 10 | **Emerson, *Control Valve Handbook*, 6th ed. (2020)** | **15** | **228 redrawn** (ch1–12) + 45 data tables (ch13–15) | ✅ **live, 🟢 15/15** |
 | 11 | **3G E-learning, *Illustrated Handbook of Industrial Instrumentation & Control* (2018)** | **8** | **108 redrawn** (ch1–8) + 17 data tables (ch4/ch7/ch8) + 108-entry book index | ✅ **live, 🟢 8/8** |
+| 12 | **Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (2019)** | **8** | **346 redrawn** (ch1–8) + 7 tables + 45 numbered equations | ✅ **live, 🟢 8/8** |
 
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **22/32** 🟠 | 43 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22; ch17/ch21 have no figures) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **23/32** 🟠 | 44 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23; ch17/ch21 have no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **8/11** 🟠 | 74 (ch1–8: 5 + 7 + 8 + 11 + 17 + 3 + 2 + 21) |
-| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **7/8** 🟠 | 312 (ch1–7: 51 + 58 + 72 + 30 + 43 + 26 + 32) |
+| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **9/11** 🟠 | 85 (ch1–9: 5 + 7 + 8 + 11 + 17 + 3 + 2 + 21 + 11) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
 (Emerson), 294 (IIH), 295 (PPIC), 296 (IPC).
@@ -163,6 +170,11 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   + Ch.20 "Methods of Aerodynamic Valve Noise Reduction" (5 vector figures, Equation 20-1 plus
   six unnumbered expressions, eight abatement bullets, 2 refs, printed pp. 125–131, published in
   `cf190d85`)
+  + Ch.21 "The ABC Method for Estimating Hydrodynamic Sound Level" (0 figs, 28 equations)
+  + Ch.22 "Graphical Estimation of Noise Produced by Turbulence and Cavitation of Liquids"
+  (5 vector graphs, 18-row Table 22-1, published in `6ffef536`)
+  + Ch.23 "Flashing" (1 vector schematic, flashing-sizing relation, one worked example, printed
+  pp. 145–146, published in `5787c03a`; printed Cv = 117 retained with an arithmetic note)
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
@@ -210,6 +222,13 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   `1065ce57`)
   + Ch.6 "Developments of Power System Protection and Control" (3 vector figs, 17 refs,
   no tables or numbered equations, printed pp. 107–124, published in `612baf12`)
+  + Ch.7 "Spatial Aspects of Environmental Impact of Power Plants" (2 vector figs, 6 tables,
+  59 refs, published in `51251826`)
+  + Ch.8 "Optimization and Damping Performance of a Coal-Fired Power Plant Building" (21 vector
+  figs, 3 tables, 38 refs, published in `4338ee22`)
+  + Ch.9 "Predictive Maintenance Based on Control Charts Applied at Thermoelectric Power Plant"
+  (11 vector figs, 2 tables, equations (1)–(12), 40 refs, printed pp. 199–228, published in
+  `60c5df89`)
 - IPC Ch.1 "Transducers – I" (51 figs, 7 tables, printed pp. 1–62)
   + Ch.2 "Transducers – II" (58 vector figs, Table 2.1, 20 numbered equations, 12 worked
   examples, 11 exercise questions, PDF pp. 75–135 / printed pp. 63–123, published in `e74d218a`)
@@ -224,6 +243,17 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   PDF pp. 284–328 / printed pp. 272–316, published in `b5a7b37e`)
   + Ch.7 "Display Devices and Recorders" (32 vector figs, no tables/equations, 11 exercises,
   PDF pp. 329–352 / printed pp. 317–340, published in `dfb96cc7`)
+  + Ch.8 "Microprocessor Based Instrumentation System" (34 vector figs, 30 exercises, PDF pp.
+  353–396 / printed pp. 341–384, published in `f6b4426f`) — **book complete 8/8**
+
+### Latest live verification (2026-11-26)
+- IPC Ch.8, Baumann Ch.23 and PPIC Ch.9 EN/VI deep URLs → **HTTP 200** after Pages negative
+  caching cleared; TOCs list 8/8, 23/32 and 9/11, IPC catalog badge `full`.
+- Sitemap **1,134 URLs** (1,119 with language siblings); `check_links.py`: **broken 0**.
+- QA for the three chapters: IPC 34/34 XML-valid SVGs, 30 exercise items, 0 CJK / bare `&` /
+  Spanish / VI-in-EN, 0 label offsets or overlaps; Baumann 1 XML-valid SVG and a documented
+  printed arithmetic slip; PPIC 11/11 XML-valid SVGs, 2 tables, 12 numbered equations, 40 refs,
+  0 CJK / bare `&` / Spanish / VI-in-EN (Serbian `Đurović` allowlisted), 0 label overlaps.
 
 ### Live verification (2026-11-22, after resuming)
 - Emerson Ch.3 EN/VI deep URLs → **HTTP 200** (after Pages negative caching cleared); live TOC
@@ -502,7 +532,8 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    14 exercises, broken 0);
    ~~Ch.7 "Display Devices and Recorders"~~ — **done** in `dfb96cc7` (32 vector figs, 11 exercises,
    PDF pp. 329–352 / printed pp. 317–340, broken 0);
-   remaining Ch.8 only.
+   ~~Ch.8 "Microprocessor Based Instrumentation System"~~ — **done** in `f6b4426f` (34 vector figs,
+   30 exercises, printed pp. 341–384, broken 0); **Book 10 complete 8/8**.
 2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs)
    ~~Ch.4 "pH Measurement"~~ — **done** in `399e0cbb` (22 figs)
    ~~Ch.5 "Measurement of Flow Rate"~~ — **done** in `db6c38fb` (10 figs)
@@ -543,7 +574,9 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    (0 figs, Table 21-1, 28 equations, broken 0);
    ~~Ch.22 "Graphical Estimation of Noise Produced by Turbulence and Cavitation of Liquids"~~
    — **done** in `6ffef536` (5 vector graphs, 18-row Table 22-1, Eq. 22-1, printed pp. 137–143,
-   broken 0); remaining Ch.23–32.
+   broken 0);
+   ~~Ch.23 "Flashing"~~ — **done** in `5787c03a` (1 vector schematic, sizing relation, printed
+   pp. 145–146, broken 0); remaining Ch.24–32.
 4. ~~Emerson `cvh6` Ch.3–Ch.15~~ — **done** in `8909e5fc`, `cbc667cc`, `56b8a0f9`, `d2a1da0a`,
    `9e136a59`, `dfac0c08`, `155b8c5c`, `558a8e49`, `e70bd6a7`, `8d523ae8`, `092d513d`, `67f84ff5`,
    `89e84b27` (52 + 27 + 18 + 9 + 14 + 11 + 7 + 53 + 3 + 5 figs, broken 0); Ch.13 added 10 data
@@ -569,7 +602,9 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    (2 vector figs, 6 tables, 59 refs, broken 0);
    ~~Ch.8 "Optimization and Damping Performance of a Coal-Fired Power Plant Building"~~ — **done**
    in `4338ee22` (21 vector figs, 3 tables, 38 refs, broken 0);
-   remaining Ch.9–11.
+   ~~Ch.9 "Predictive Maintenance Based on Control Charts Applied at Thermoelectric Power Plant"~~
+   — **done** in `60c5df89` (11 vector figs, 2 tables, 12 numbered equations, 40 refs, broken 0);
+   remaining Ch.10–11.
 
 ### Resume notes
 - IPC Ch.5 (43 PDF pages / printed pp. 229–271, 43 vector figures, 78 unnumbered equations, 11
@@ -978,5 +1013,54 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   200 (598/608 kB), TOC row present, catalog badge 8/11.
 - PPIC `ppic` is now **8/11** 🟠; remaining PPIC chapters are Ch.9–11. Next in the standing order:
   IPC Ch.8 → Baumann Ch.23 → PPIC Ch.9.
+
+## IPC Chapter 8 — Microprocessor Based Instrumentation System (2026-11-26)
+
+- PDF pp. 353–396, printed pp. 341–384 (printed = PDF − 12), EN/VI slug
+  `ch08-microprocessor-based-instrumentation-system`, published in `f6b4426f` and verified live
+  after Pages propagation.
+- Six prose writers and four figure suppliers against `work/ipc8_brief.md`. Full translation of
+  the stored-program/microprocessor concept, interfacing (PIA, isolation, masking, ADC/DAC),
+  system bus and interrupts, Modbus/ABDH/ARCNET/IEEE 1118/PROFIBUS/FIP, PLC components and ladder
+  programming, DCS architecture and the 30-question exercise, with **34 vector figures**, no
+  printed tables or numbered equations. Figure 34 is a basic-controller slot; the brief's label
+  was imprecise and the printed p.390 render was followed.
+- QA: 34/34 sequential XML-valid SVGs, 30 exercise items per language, 0 CJK / bare `&` /
+  Spanish / Vietnamese-in-English prose, 0 label offsets or overlaps, `check_links.py` broken
+  0, sitemap 1,130 URLs. Live EN/VI deep URLs 200 (289/283 kB), TOC 8/8, catalog badge `full`.
+- IPC `ipc` is now **8/8** 🟢 — **Book 10 complete**; no further IPC chapters queued.
+
+## Baumann Chapter 23 — Flashing (2026-11-26)
+
+- PDF pp. 143–144 = printed pp. 145–146 (printed = PDF + 2), EN/VI slug `ch23-flashing`,
+  published in `5787c03a` and verified live after Pages propagation.
+- One prose module and one figure module. The printed photograph of a flashing water jet was
+  redrawn as a labelled vector schematic (valve body/seat, two-phase jet, entrained vapor,
+  open-air redissolution). The OCR-garbled sizing relation
+  `Cv = Q / [(P1 − Pv × Ff)^0.5 / FL]` and `Ff = 0.96 − 0.28 (Pv/Pc)^0.5 Pv` were transcribed
+  from the rendered page. The printed worked example states `Cv = 117` although direct
+  substitution gives ≈41.6; the English text retains the printed result and both languages
+  flag the discrepancy.
+- QA: 1 XML-valid SVG, unique `fig-1`, 0 CJK / bare `&` / Spanish, `check_links.py` broken 0,
+  sitemap 1,132 URLs. Live EN/VI deep URLs 200, TOC row present, catalog badge 23/32.
+- Baumann `cvp` is now **23/32** 🟠; remaining Baumann chapters are Ch.24–32.
+
+## PPIC Chapter 9 — Predictive Maintenance Based on Control Charts (2026-11-26)
+
+- PDF pp. 215–244, printed pp. 199–228 (printed = PDF − 16), EN/VI slug
+  `ch09-predictive-maintenance-based-on-control-charts`, published in `60c5df89`.
+- Five prose writers and three figure suppliers against `work/ppic9_brief.md`. Full translation
+  of the TEKO coal-mill grinding-table condition-monitoring study: acoustic signals, spectrogram
+  features, Hotelling T² charts, hidden Markov model, results and all 40 references, with **11
+  vector figures**, **2 tables** and printed equations **(1)–(12)**. Table 1 (7 rows), Table 2
+  (5 rows × 4 significance levels) and the UCL values were transcribed from rendered pages;
+  the coordinator restored equation numbers that the writer had left unnumbered.
+- QA: 11/11 sequential XML-valid SVGs with localized captions, 2 tables, 12 numbered equation
+  blocks, 40 references, 0 CJK / bare `&` / Spanish / Vietnamese-in-English prose (Serbian
+  `Đurović` allowlisted), 0 label offsets or overlaps, `check_links.py` broken 0, sitemap
+  1,134 URLs. EN/VI pages and TOCs pushed at `60c5df89`; deep URLs verified **HTTP 200** after
+  Pages propagation.
+- PPIC `ppic` is now **9/11** 🟠; remaining PPIC chapters are Ch.10–11. Next in the standing
+  order: Baumann Ch.24 → PPIC Ch.10.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

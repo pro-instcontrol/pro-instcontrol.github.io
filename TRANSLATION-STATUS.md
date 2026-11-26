@@ -7336,3 +7336,28 @@ Registered slug, done[8] and progress 8/11. Site rebuilt: 512 work pages, sitema
 `check_links.py` broken 0. Published in `4338ee22`, pushed `0c6384e9..4338ee22`; live EN/VI
 chapter, TOC and catalog URLs all HTTP 200. Remaining: PPIC ch9-11, IPC ch8 (last), Baumann
 ch23-32. Books 11/12 located but unregistered.
+
+## Session 2026-11-26 — IPC Ch.8, Baumann Ch.23 and PPIC Ch.9 published (EN/VI)
+Three chapters landed in one batch; all figures are vector redraws, every chapter has a TOC
+row and prev/next links, and both languages were built, QA'd, committed, pushed and live-verified.
+- **IPC Ch.8 "Microprocessor Based Instrumentation System"** (`f6b4426f`): pre-existing draft set
+  (6 prose + 4 figure modules) validated and integrated. PDF pp. 353-396 = printed pp. 341-384;
+  34 vector figures, 30 exercises, no tables/equations. Figure 34 follows printed p.390 (basic
+  controller slot) rather than the brief's imprecise data-highway label. QA: 34 sequential unique
+  fig ids, 34 XML-valid SVGs, 0 CJK / bare & / Spanish / VI-in-EN, 0 label offsets or overlaps,
+  broken 0, sitemap 1,130. Book 10 IPC complete at 8/8, badge `full`.
+- **Baumann Ch.23 "Flashing"** (`5787c03a`): PDF/printed pp. 143-144 / 145-146; one vector
+  schematic of the flashing water jet. The sizing relation and Ff modifier were transcribed
+  from page renders; the printed worked-example result Cv = 117 conflicts with direct
+  substitution (≈41.6), so EN keeps the printed number and both languages flag it. QA: 1
+  unique fig id, XML valid, 0 CJK / bare & / Spanish, broken 0, sitemap 1,132; badge 23/32.
+- **PPIC Ch.9 "Predictive Maintenance Based on Control Charts Applied at Thermoelectric Power
+  Plant"** (`60c5df89`): 5 prose writers + 3 figure suppliers against `work/ppic9_brief.md`.
+  PDF pp. 215-244 = printed pp. 199-228; 11 vector figures, Table 1 (7 rows, spanning two
+  printed pages), Table 2 (5 rows × 4 α levels), equations (1)-(12), all 40 references. The
+  brief initially called the equations unnumbered; the coordinator restored printed numbers.
+  QA: 11 sequential unique fig ids, 11 XML-valid SVGs, 2 tables, 12 numbered equations, 40
+  refs, 0 CJK / bare & / Spanish / VI-in-EN (Serbian `Đurović` allowlisted), 0 label overlaps,
+  broken 0, sitemap 1,134; badge 9/11.
+Live HEAD `60c5df89`; all six EN/VI deep URLs HTTP 200 after Pages propagation. Remaining:
+Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
