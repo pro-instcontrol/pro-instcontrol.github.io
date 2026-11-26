@@ -7671,3 +7671,30 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
 - Catalog cards added to both shelves; totals raised 258 → 259 works and 185,851 →
   185,971 pages. Sitemap gained 7 alternating en/vi URLs. `build/check_links.py`:
   pages 1214, local references 35508, broken 0. No source work is republished verbatim.
+
+## Session 2026-11-26 — Oil Refinery cross-book focus section
+- At the user's request ("Do the same but focus in Oil Refinery"), a second thematic
+  bilingual section was created at `/books/read/oil-refinery-focus/` and
+  `/vi/books/read/oil-refinery-focus/`, titled *Oil Refining — A Cross-Book Focus*.
+  Again, no whole book was imported: only curated, attributed sections were used.
+- Source collection `E:/Ebooks/Oil and Gas` was scanned for refinery handbooks and process
+  economics titles. Final source map spans 8 works: *Handbook of Petroleum Processing*
+  (ch. 1-4, 6-8, 13 and refining/gasoline/environmental sections), *Handbook of Petroleum
+  Refining Processes* (Platforming, FCC, Isocracking, sulfur management, gasoline
+  desulfurization, alkylation), *Petroleum Refining: Technology and Economics*, *Practical
+  Advances in Petroleum Processing* Vol. 1 and Vol. 2, and *Chemistry of Petrochemical
+  Processes*. Extraction bundles live in `refinery-build/extract/u1`…`u6`.
+- Six curated units, all translated 6/6 into Vietnamese, each naming its sources and
+  carrying a bilingual inline SVG: crude assays and configuration; atmospheric/vacuum
+  distillation; FCC/hydrocracking/coking; gasoline upgrading; sulfur and environment;
+  support systems, quality control and advanced control. Source numbers and relations are
+  retained (cut points 400/500/650°F; desalting 12,000-35,000 V and 90-95%/99%; furnace
+  650-750°F; VGO 750-1050°F; H2S scrubbing above 3 vol%; CCR 345 kPa / octane 108;
+  HDS 100-150 SCFB/wt%, HDN 200-350 SCFB/wt%; MPC payback 4-12 months).
+- Catalog cards added to both shelves; totals raised 259 → 260 works and 185,971 →
+  186,091 pages. Sitemap gained 7 alternating en/vi URLs. QA: JSON 48/48 EN/VI paragraph
+  pairs, no CJK characters, all 14 SVGs inside the viewBox, no double-slash navigation,
+  XML-valid sitemap. `build/check_links.py`: pages 1228, local references 35856, broken 0.
+- Also repaired three pre-existing BCIT work-card links (Docs → work/257, Entry Docs →
+  work/258, Flow → work/259) and the matching search-index map in both catalogs; these
+  had been corrupted by an earlier blanket counter replacement.

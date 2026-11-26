@@ -7132,4 +7132,46 @@
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-control-systems-focus/ch06-safety-instrumentation-integrity/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch06-safety-instrumentation-integrity/"/>
   </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/oil-refinery-focus/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/oil-refinery-focus/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch01-crude-oil-and-refinery-configuration/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch01-crude-oil-and-refinery-configuration/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/oil-refinery-focus/ch01-crude-oil-and-refinery-configuration/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch01-crude-oil-and-refinery-configuration/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch02-atmospheric-and-vacuum-distillation/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch02-atmospheric-and-vacuum-distillation/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/oil-refinery-focus/ch02-atmospheric-and-vacuum-distillation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch02-atmospheric-and-vacuum-distillation/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch03-conversion-fcc-hydrocracking-coking/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch03-conversion-fcc-hydrocracking-coking/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/oil-refinery-focus/ch03-conversion-fcc-hydrocracking-coking/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch03-conversion-fcc-hydrocracking-coking/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch04-gasoline-upgrading/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch04-gasoline-upgrading/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/oil-refinery-focus/ch04-gasoline-upgrading/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch04-gasoline-upgrading/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch05-sulfur-and-environment/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch05-sulfur-and-environment/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/oil-refinery-focus/ch05-sulfur-and-environment/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch05-sulfur-and-environment/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch06-support-systems-quality-and-advanced-control/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch06-support-systems-quality-and-advanced-control/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/oil-refinery-focus/ch06-support-systems-quality-and-advanced-control/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/oil-refinery-focus/ch06-support-systems-quality-and-advanced-control/"/>
+  </url>
 </urlset>
