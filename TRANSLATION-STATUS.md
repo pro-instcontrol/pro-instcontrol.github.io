@@ -7632,3 +7632,20 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   “Conformité Européenne” for the leak guard. `check_links.py` broken 0, sitemap 1,170 URLs.
 - **All 15 registered reader books are now complete and live.** The older Books 11/12
   candidates remain unregistered pending explicit user confirmation.
+
+## Session 2026-11-26 — Emerson upstream measurement guide added (EN/VI)
+- At the user's request, Emerson *Measurement Instrumentation for Upstream Oil & Gas*
+  (MS-00803-0400-3030 Rev AA, 2026, 32 pages) was added as a new bilingual reader book
+  at `/books/read/measurement-instrumentation-upstream-oil-gas/` and
+  `/vi/books/read/measurement-instrumentation-upstream-oil-gas/`. Source PDF:
+  https://www.emerson.com/is/content/emerson/en/measurement-instrumentation/marketing/industries/oil-and-gas/documents/doc-emerson-ms-00803-0400-3030.pdf
+- Ten units drafted: overview/value chain; well pads and wellheads; gas lift; separators;
+  heater treaters; oil and water tanks; LACT; natural gas sales to pipelines; facility-wide
+  safety; autonomous resilient operations. All 10/10 chapters translated to Vietnamese.
+- Each unit carries a redrawn labelled vector schematic preserving the source instrument
+  tags (PT, TT, FT, LI, LS, SM, GD, UGLD, FD, CM, GC, FQI) and a source figure-caption
+  section covering the guide's 27 numbered photographs/diagrams.
+- Catalog cards added to both shelves; totals raised 257 → 258 works and 185,819 → 185,851
+  pages. Sitemap gained 11 alternating en/vi URLs. `build/check_links.py`:
+  pages 1200, local references 35160, broken 0. No source PDF is republished; the page
+  links to Emerson and carries the © 2026 Emerson attribution.
