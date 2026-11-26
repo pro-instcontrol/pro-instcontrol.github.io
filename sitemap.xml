@@ -7090,4 +7090,46 @@
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/measurement-instrumentation-upstream-oil-gas/ch10-autonomous-resilient-operations/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/measurement-instrumentation-upstream-oil-gas/ch10-autonomous-resilient-operations/"/>
   </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-control-systems-focus/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch01-control-valves-and-final-elements/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch01-control-valves-and-final-elements/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-control-systems-focus/ch01-control-valves-and-final-elements/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch01-control-valves-and-final-elements/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch02-measurement-and-metering/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch02-measurement-and-metering/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-control-systems-focus/ch02-measurement-and-metering/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch02-measurement-and-metering/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch03-process-control-and-instrumentation/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch03-process-control-and-instrumentation/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-control-systems-focus/ch03-process-control-and-instrumentation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch03-process-control-and-instrumentation/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch04-scada-automation-and-remote-operations/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch04-scada-automation-and-remote-operations/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-control-systems-focus/ch04-scada-automation-and-remote-operations/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch04-scada-automation-and-remote-operations/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch05-tank-farm-instrumentation-overfill/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch05-tank-farm-instrumentation-overfill/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-control-systems-focus/ch05-tank-farm-instrumentation-overfill/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch05-tank-farm-instrumentation-overfill/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch06-safety-instrumentation-integrity/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch06-safety-instrumentation-integrity/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/instrumentation-control-systems-focus/ch06-safety-instrumentation-integrity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/instrumentation-control-systems-focus/ch06-safety-instrumentation-integrity/"/>
+  </url>
 </urlset>

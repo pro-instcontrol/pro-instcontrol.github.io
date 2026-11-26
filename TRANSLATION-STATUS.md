@@ -7649,3 +7649,25 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   pages. Sitemap gained 11 alternating en/vi URLs. `build/check_links.py`:
   pages 1200, local references 35160, broken 0. No source PDF is republished; the page
   links to Emerson and carries the © 2026 Emerson attribution.
+
+## Session 2026-11-26 — Cross-book Instrumentation & Control focus section
+- At the user's clarification, no whole books were imported. A thematic bilingual focus
+  section was created instead at `/books/read/instrumentation-control-systems-focus/` and
+  `/vi/books/read/instrumentation-control-systems-focus/`, titled *Instrumentation &
+  Control Systems — A Cross-Book Focus*.
+- Source collection scanned: `E:/Ebooks/Oil and Gas` (238 PDFs). Shortlist based on
+  bookmark/TOC keyword hits for instrumentation, control, measurement, SCADA, alarm and
+  monitoring. Final source map spans 14 works, including *Pipeline Rules of Thumb
+  Handbook* (ch. 7, 15, 16, 17), *Surface Production Operations Vol. 1* (§2), *Natural
+  Gas Engineering Handbook* (ch. 10), *Petroleum Engineers Handbook Part 2* (§16),
+  *Handbook of Storage Tank Systems: Codes, Regulations, and Designs* (ch. 6 and sample
+  specifications), NFPA 58, Shell IWCF, and *Pipeline Corrosion and Cathodic Protection*.
+- Six curated units, each naming its sources: control valves/final elements; measurement
+  and metering; process control and instrumentation; SCADA/automation; tank-farm
+  instrumentation and overfill protection; safety instrumentation and integrity monitoring.
+  All 6/6 units are translated to Vietnamese. Each unit carries a redrawn inline SVG and
+  retains source numbers (0.2 gal/hr, 85/90/95% overfill thresholds, Cv relations,
+  40 CFR 280, API 2350, PEI RP100, NFPA 30/30A, 100 mV criterion).
+- Catalog cards added to both shelves; totals raised 258 → 259 works and 185,851 →
+  185,971 pages. Sitemap gained 7 alternating en/vi URLs. `build/check_links.py`:
+  pages 1214, local references 35508, broken 0. No source work is republished verbatim.
