@@ -320,6 +320,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch24-avoiding-leaky-valve-stem-packing/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch25-seat-leakage-and-seat-materials/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch25-seat-leakage-and-seat-materials/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch25-seat-leakage-and-seat-materials/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch25-seat-leakage-and-seat-materials/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/"/>
@@ -3759,6 +3765,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch24-avoiding-leaky-valve-stem-packing/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch24-avoiding-leaky-valve-stem-packing/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch24-avoiding-leaky-valve-stem-packing/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch25-seat-leakage-and-seat-materials/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch25-seat-leakage-and-seat-materials/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch25-seat-leakage-and-seat-materials/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch25-seat-leakage-and-seat-materials/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/</loc>

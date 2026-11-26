@@ -794,6 +794,7 @@ BOOKS = {
             22: "ch22-graphical-estimation-of-noise-produced-by-turbulence-and-cavitation-of-liquids",
             23: "ch23-flashing",
             24: "ch24-avoiding-leaky-valve-stem-packing",
+            25: "ch25-seat-leakage-and-seat-materials",
         },
         "copyright_en": "Original work © 2011 Hans D. Baumann, published by ISA / John Wiley & Sons.",
         "copyright_vi": "Bản gốc © 2011 Hans D. Baumann, do ISA / John Wiley & Sons xuất bản.",
