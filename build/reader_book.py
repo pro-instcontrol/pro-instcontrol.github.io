@@ -799,6 +799,7 @@ BOOKS = {
             27: "ch27-sixteen-commandments-what-you-shall-not-do",
             28: "ch28-electric-versus-pneumatic-actuators",
             29: "ch29-saving-energy",
+            30: "ch30-the-bus-system-to-the-rescue",
         },
         "copyright_en": "Original work © 2011 Hans D. Baumann, published by ISA / John Wiley & Sons.",
         "copyright_vi": "Bản gốc © 2011 Hans D. Baumann, do ISA / John Wiley & Sons xuất bản.",
