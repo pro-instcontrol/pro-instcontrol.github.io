@@ -801,6 +801,7 @@ BOOKS = {
             29: "ch29-saving-energy",
             30: "ch30-the-bus-system-to-the-rescue",
             31: "ch31-thinking-green-and-saving-metal",
+            32: "ch32-pipe-vibration-due-to-sound",
         },
         "copyright_en": "Original work © 2011 Hans D. Baumann, published by ISA / John Wiley & Sons.",
         "copyright_vi": "Bản gốc © 2011 Hans D. Baumann, do ISA / John Wiley & Sons xuất bản.",
