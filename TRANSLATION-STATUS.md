@@ -7521,3 +7521,27 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
 - Baumann `cvp` is now **28/32** 🟠; remaining: ch29–32. Next unit: Baumann Ch.29 "Saving
   Energy" (printed p. 171+; PDF p.166 shows printed 171, so verify the offset in the raw
   text). Books 11/12 still unregistered.
+
+## Session 2026-11-26 — Baumann Ch.29 published (EN/VI)
+- **Baumann Ch.29 "Saving Energy"** (`add4b759`): written directly. Source `work/cvp_raw.txt`
+  lines 4471–4535, PDF pp. 166–168 = printed pp. 171–173 (**printed = PDF + 5 here**). Three
+  printed pages, five displayed equations, two references, no figures/tables.
+- Full bilingual translation of the 5% / 5–10 psi rule versus the old 50% dynamic-head rule,
+  the pump-power equation P = 4.2 × 10⁻⁴ × ΔP × q, the 120 gpm oil worked example (50 psi →
+  2.5 kW, 1½ in, Cᵥ 15.1), the 5 psi alternative (0.25 kW, 2.5 − 0.25 = 2.25 kW per hour,
+  20,000 kW per year, 2 in, Cᵥ 48, $2,000 per year saved, line size 2 in removes reducers),
+  reduced trim vibration/cavitation, Engel's German and US energy-savings estimates
+  (120,000 pumps, 200,000 control valves, 180 MW, 1.5 million MWh, 4–5 million MWh per year),
+  and Singleton's nonchoked/choked liquid and choked-gas equations with psia/Cᵥ/Fʟ/Gf
+  definitions. Closing caveat: no endorsement of speed-controlled pumps.
+- All five equations were garbled in the PDF text layer and were transcribed from
+  `work/cvp29_pages/p166.png`–`p168.png`, rendered from the source PDF at
+  `D:/Ebooks/Process Control and Automation/Control-valve-primer-a-users-guide-fifth-edition.pdf`.
+  VI decimal points localized to commas; source “kW per hour” wording retained.
+- QA script `work/qa_cvp29.py` added; both pages PASS after correcting the expected equation
+  count from 4 to 5: eqs 5, lists 2/4, 2 h3, 2 refs, key values present, no figures/tables,
+  0 CJK / bare & / Spanish / VI-in-EN prose, `check_links.py` broken 0, sitemap 1,150 URLs.
+  Local TOC lists Ch.29, catalog badge 29/32.
+- Baumann `cvp` is now **29/32** 🟠; remaining: ch30–32. Next unit: Baumann Ch.30 "The Bus
+  System to the Rescue, or What the Future May Bring" (printed p. 175+; PDF p.169 shows
+  printed 175, so the offset becomes +6 at the chapter break). Books 11/12 still unregistered.

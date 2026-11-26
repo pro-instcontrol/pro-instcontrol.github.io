@@ -2,8 +2,8 @@
 
 **State now (2026-11-26):** 13 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
-11/11). Remaining campaign: Baumann `cvp` **28/32**, Borden `bcv` 1/1 🟢.
-**Live chapter HEAD `5dfda7d5`** (Baumann Ch.28 "Electric versus Pneumatic Actuators", 3 PDF pages / printed pp. 167–169, 6 advantage bullets, 4 actuator types, 2 references, no figures/tables/equations); prior HEAD `35c0eceb` was PPIC Ch.11 "Saturated Adaptive Output-Feedback Power-Level
+11/11). Remaining campaign: Baumann `cvp` **29/32**, Borden `bcv` 1/1 🟢.
+**Live chapter HEAD `add4b759`** (Baumann Ch.29 "Saving Energy", 3 PDF pages / printed pp. 171–173, 5 displayed equations, 2 references, no figures/tables); prior HEAD `5dfda7d5` was Baumann Ch.28 "Electric versus Pneumatic Actuators", 6 advantage bullets, 4 actuator types, 2 references, no figures/tables/equations; before that `35c0eceb` was PPIC Ch.11 "Saturated Adaptive Output-Feedback Power-Level
 Control for Modular High Temperature Gas-Cooled Reactors", 29 PDF pages / printed pp. 255–283,
 5 vector figures, no tables, 62 numbered equations (1)–(62), 24 references — completing PPIC
 at 11/11); prior HEAD `5a71fc4f` was PPIC Ch.10 "Models for the Reliability Analysis of Digital
@@ -35,13 +35,13 @@ printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered eq
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
 unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,140 URLs,
-catalog badges IIH 8/8, Emerson 15/15, IPC 8/8 and PPIC 11/11 all `full`, Baumann badge 28/32;
-Baumann Ch.28, Ch.27 and PPIC Ch.11 EN/VI deep URLs **200** after Pages propagation, both TOCs
-list their chapters, `check_links.py` broken 0. Full tables in `report.md`.
+catalog badges IIH 8/8, Emerson 15/15, IPC 8/8 and PPIC 11/11 all `full`, Baumann badge 29/32;
+Baumann Ch.29, Ch.28, Ch.27 and PPIC Ch.11 EN/VI deep URLs **200** after Pages propagation,
+both TOCs list their chapters, `check_links.py` broken 0. Full tables in `report.md`.
 
-**Next unit:** Baumann `cvp` Ch.29 onward (source `work/cvp_raw.txt`; printed = PDF + 2 for
-Baumann generally, but +3 in Ch.26, +4 in Ch.27–28 and +5 at the start of Ch.29 — verify per
-chapter from the printed page number in the raw text); PPIC
+**Next unit:** Baumann `cvp` Ch.30 onward (source `work/cvp_raw.txt`; printed = PDF + 2 for
+Baumann generally, but +3 in Ch.26, +4 in Ch.27–28, +5 in Ch.29 and +6 at the start of Ch.30
+— verify per chapter from the printed page number in the raw text); PPIC
 is complete at 11/11 — no further PPIC chapters queued. Book 11/12 registration only on
 confirmation. Candidate books located for later registration: McMillan *Electrical Installations
 in Hazardous Areas* (678 pp, Ex/IS) and *Hydrocarbon Processing: Advanced Process Control and
@@ -49,12 +49,26 @@ Information Systems* (215 pp, refinery I&C) — see `report.md`/handoff note.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 28/32 (Ch.2–28 done), PPIC at 11/11 (Ch.1–11 done) and
+complete at 8/8 (Ch.2–8 done), Baumann at 29/32 (Ch.2–29 done), PPIC at 11/11 (Ch.1–11 done) and
 IPC at 8/8 (Ch.1–8 done). Also books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
 ---
+
+## 0.96 Session 96 — Baumann Ch.29 published (2026-11-26)
+- `cvp_ch29.py` written directly: three printed pages, five displayed equations, two
+  references, and no figures or tables.
+  Source `work/cvp_raw.txt` lines 4471–4535, PDF pp. 166–168 = printed pp. 171–173
+  (**printed = PDF + 5 here**). PAGES_SRC = 3.
+- Equations garbled in the PDF text layer were re-read from `work/cvp29_pages/p166.png`–
+  `p168.png` rendered from the source PDF in `D:/Ebooks/Process Control and Automation`:
+  main power formula, worked 120 gpm example, nonchoked liquid, choked liquid, choked gas.
+  VI decimal commas localized; source “kW per hour” wording retained.
+- QA script `work/qa_cvp29.py` added; both pages PASS after correcting the expected equation
+  count from 4 to 5: eqs 5, lists 2/4, 2 h3, 2 refs, no figures/tables, 0 CJK / bare `&` /
+  Spanish / VI-in-EN, `check_links.py` broken 0, sitemap 1,150 URLs. Pushed at `add4b759`;
+  Baumann 29/32. Next: Ch.30 "The Bus System to the Rescue..." (offset +6 at start).
 
 ## 0.95 Session 95 — Baumann Ch.28 published (2026-11-26)
 - `cvp_ch28.py` written directly: three printed pages, six electric-advantage bullets, four

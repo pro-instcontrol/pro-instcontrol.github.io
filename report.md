@@ -128,7 +128,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **28/32** 🟠 | 48 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23, ch26 = 4; ch17/ch21/ch27/ch28 have no figures; ch25 = 2 data tables) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **29/32** 🟠 | 48 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23, ch26 = 4; ch17/ch21/ch27/ch28/ch29 have no figures; ch25 = 2 data tables) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
@@ -1208,8 +1208,33 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   steps / 1 trên 5000 bước, ±0.01 psi, 2 Hz, 100%), no figures or tables, 0 CJK / bare `&` /
   Spanish / Vietnamese-in-English prose, `check_links.py` broken 0, sitemap 1,148 URLs.
   TOC lists Ch.28, catalog badge 28/32.
-- Baumann `cvp` is now **28/32** 🟠; remaining Baumann chapters Ch.29–32. Next in the standing
-  order: Baumann Ch.29 "Saving Energy" (printed pp. 171 onward; PDF p.166 shows printed 171,
-  so verify the offset in the raw text before setting PAGES_SRC).
+- Baumann `cvp` was **28/32** 🟠 at this point; next was Baumann Ch.29.
+
+## Baumann Chapter 29 — Saving Energy (2026-11-26)
+
+- Printed pp. 171–173 (PDF pp. 166–168; **printed = PDF + 5 here**), EN/VI slug
+  `ch29-saving-energy`, published in `add4b759`. Three printed pages, five displayed
+  equations (the main power formula, the worked 120 gpm example, and three Singleton
+  relations), 2 references; no figures or tables.
+- Full bilingual translation of the 5% / 5–10 psi pressure-drop rule versus the old 50%
+  dynamic-head rule, the pump-power relation `P = 4.2 × 10⁻⁴ × ΔP × q`, the 120 gpm oil
+  example (50 psi → 2.5 kW; 1½ in valve, Cᵥ 15.1), the 5 psi alternative (0.25 kW;
+  2.25 kW per hour saved, 20,000 kW per year; 2 in valve, Cᵥ 48; $2,000 per year saved;
+  2 in line removes reducers), reduced trim vibration and cavitation, Engel’s German
+  pump/valve statistics (120,000 pumps, 200,000 valves, 180 MW, 1.5 million MWh per year;
+  4–5 million MWh per year in the US), and the choked/nonchoked liquid and choked-gas
+  energy equations with psia, Cᵥ, Fʟ and Gf definitions. No endorsement of
+  speed-controlled pumps.
+- The PDF text layer garbled every equation; all five were transcribed from high-resolution
+  pypdfium2 renders of printed pp. 171–173. VI decimal points were localized to commas;
+  the source’s “kW per hour” wording was retained verbatim.
+- QA script `work/qa_cvp29.py` (both EN and VI PASS): 5 equations, 2/4 definition lists,
+  2 h3 sections, 2 refs, all key numbers/units present, no figures or tables, 0 CJK /
+  bare `&` / Spanish / Vietnamese-in-English prose, `check_links.py` broken 0, sitemap
+  1,150 URLs. TOC lists Ch.29, catalog badge 29/32.
+- Baumann `cvp` is now **29/32** 🟠; remaining Baumann chapters Ch.30–32. Next in the standing
+  order: Baumann Ch.30 "The Bus System to the Rescue, or What the Future May Bring"
+  (printed p. 175 onward; PDF p.169 shows printed 175, so the offset becomes +6 at the
+  chapter break — verify in the raw text before setting PAGES_SRC).
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.
