@@ -5,14 +5,16 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-26):** 13 reader books complete and live 🟢 (rows below; flagship Book 6
-*Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8, IPC `ipc` 🟢 8/8,
-PPIC `ppic` 🟢 11/11); the remaining campaign book is Baumann `cvp` at 31/32 across Book 7.
-**Live chapter HEAD `a3fdd131`** (Book 7 Baumann Ch.31 "Thinking “Green” and Saving Metal":
-2 PDF pages / printed pp. 183–184, one vector cage-valve cross-section, one endnote, three
-reading items, no tables or equations) — prior published HEAD `decac128` was Baumann Ch.30
-"The Bus System to the Rescue, or What the Future May Bring" (7 PDF pages / printed
-pp. 175–181, 4 vector figures, one endnote, one reference); before that `add4b759` was
+**Status (2026-11-26):** **all 14 registered reader books complete and live 🟢** (rows below;
+flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
+IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32). **Live chapter HEAD `ee024fab`**
+(Book 7 Baumann Ch.32 "Pipe Vibration Due to Sound": 5 PDF pages / printed pp. 185–189,
+2 vector figures, 6 displayed equations, one worked field case, one additional-reading item
+— completing Baumann at 32/32 and the whole campaign). Prior published HEAD `a3fdd131` was
+Baumann Ch.31 "Thinking “Green” and Saving Metal" (2 PDF pages / printed pp. 183–184, one
+vector cage-valve cross-section, one endnote, three reading items); before that `decac128` was
+Baumann Ch.30 "The Bus System to the Rescue" (7 PDF pages / printed pp. 175–181, 4 vector
+figures, one endnote, one reference); before that `add4b759` was
 Baumann Ch.29 "Saving Energy" (3 PDF pages / printed pp. 171–173, 5 displayed equations,
 2 references, no figures/tables); before that `35c0eceb` was Book 9 PPIC Ch.11 "Saturated Adaptive
 Output-Feedback Power-Level Control for Modular High Temperature Gas-Cooled Reactors":
@@ -131,10 +133,10 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 | 12 | **Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (2019)** | **8** | **346 redrawn** (ch1–8) + 7 tables + 45 numbered equations | ✅ **live, 🟢 8/8** |
 | 13 | **L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019)** | **11** | **~220 redrawn** + tables + 100+ numbered equations | ✅ **live, 🟢 11/11** |
 
-### Remaining campaign books (registered, translated chapter by chapter)
+### Registered campaign books — all complete
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **31/32** 🟠 | 53 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23, ch26, ch30 = 4; ch17/ch21/ch27/ch28/ch29 have no figures; ch25 = 2 data tables; ch31 = 1) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **32/32** 🟢 | 55 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23, ch26, ch30 = 4; ch17/ch21/ch27/ch28/ch29 have no figures; ch25 = 2 data tables; ch31 = 1; ch32 = 2) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
@@ -190,6 +192,9 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   endnote, 1 ref, printed pp. 175–181, published in `decac128`)
   + Ch.31 "Thinking “Green” and Saving Metal" (1 vector cage-valve cross-section, one endnote,
   3 reading items, printed pp. 183–184, published in `a3fdd131`)
+  + Ch.32 "Pipe Vibration Due to Sound" (2 vector figures, 6 displayed equations, one field
+  case, one reading item, printed pp. 185–189, published in `ee024fab`) — **Baumann 32/32,
+  campaign complete**
 - Borden Ch.5 "Control Valve Actuators" (4 figs) — book complete
 - Emerson Ch.1 "Introduction to Control Valves" (19 figs, printed pp. 16–33)
   + Ch.2 "Control Valve Performance" (10 figs, printed pp. 34–53)
@@ -1285,9 +1290,27 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   0 CJK / bare `&` / Spanish / VI-in-EN prose, `check_links.py` broken 0, sitemap 1,154
   URLs. Live EN/VI deep URLs **200** after Pages negative caching cleared; both TOCs list
   Ch.31, catalog badge 31/32.
-- Baumann `cvp` is now **31/32** 🟠; remaining: Ch.32 "Pipe Vibration Due to Sound"
-  (PDF 178–182 = printed 185–189, two figures and several equations garbled in the text
-  layer). Completing Ch.32 finishes the whole book and the campaign. Books 11/12 remain
-  unregistered pending user confirmation.
+- Baumann `cvp` was **31/32** 🟠 at this point; next was Ch.32.
+
+## Baumann Chapter 32 — Pipe Vibration Due to Sound (2026-11-26) — CAMPAIGN COMPLETE
+- Published in `ee024fab` (status docs in the follow-up commit). Source `work/cvp_raw.txt`
+  PDF pp. 178–182 = printed pp. 185–189 (printed = PDF + 7), rendered to
+  `work/cvp32_pages/p178.png`–`p182.png`. Five printed pages, two figures, six displayed
+  equations, one worked field case, one Summary example, one additional-reading item.
+- All six equations were garbled in the PDF text layer and were transcribed from the page
+  images: Lwi = 10 log(Wa/10⁻¹²), Lwi = 120 + 10 log(M ci²/2) + η, the −40 dB sonic
+  acoustic-efficiency factor, the jet-diameter/peak-frequency relation and the
+  386 m/s ÷ 0.097 m = 3980 Hz worked proof. Retained the Exxon 160 dB / 148 dB / 60 G / 100 G
+  findings, the 4 million SCFH natural-gas case (111 dBA → 78 dBA after a low-noise valve),
+  and the 20,000 lb/h steam example (98 dB, 136 dB, 2200 Hz, 10 G).
+- Figures redrawn as vectors in `cvpfig32.py`: a log-log acceleration/frequency graph with
+  Lwi = 160/120/80 dB lines computed from a ∝ f·10^(Lwi/20) and the 4000 Hz → 140 m/s²
+  (14 G) dotted guide, and an angle-valve jet schematic with Mach 0.1/1/1/0.1 zones.
+- Brief `work/cvp32_brief.md`; QA script `work/qa_cvp32.py`: both EN and VI PASS — figs
+  `[1,2]`, 2 XML-valid SVGs, 2/2 correct captions, 6 equations, 1-item reading list, all
+  key values present, 0 CJK / bare `&` / Spanish / VI-in-EN prose, `check_links.py` broken 0,
+  sitemap 1,156 URLs. Catalog badge flipped to `full` at 32/32.
+- **All 14 registered reader books and every queued chapter are now translated and live.**
+  Books 11/12 remain unregistered pending user confirmation.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

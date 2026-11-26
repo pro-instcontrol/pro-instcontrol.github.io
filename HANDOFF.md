@@ -1,9 +1,17 @@
-# HANDOFF — Campaign state 2026-11-26 (Emerson, IIH, IPC and PPIC complete; Book 7 in progress)
+# HANDOFF — Campaign state 2026-11-26 (ALL REGISTERED BOOKS COMPLETE)
 
-**State now (2026-11-26):** 13 reader books complete 🟢 (see `report.md`; flagship Book 6
+**State now (2026-11-26):** all 14 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
-11/11). Remaining campaign: Baumann `cvp` **31/32**, Borden `bcv` 1/1 🟢.
-**Live chapter HEAD `a3fdd131`** (Baumann Ch.31 "Thinking “Green” and Saving Metal", 2 PDF pages / printed pp. 183–184, one vector cage-valve cross-section, one endnote, three reading items); prior published HEAD `decac128` was Baumann Ch.30 "The Bus System to the Rescue", 7 PDF pages / printed pp. 175–181, 4 vector figures, one endnote, one reference; before that `add4b759` was Baumann Ch.29 "Saving Energy", 3 PDF pages / printed pp. 171–173, 5 displayed equations, 2 references, no figures/tables; before that `5dfda7d5` was Baumann Ch.28 "Electric versus Pneumatic Actuators", 6 advantage bullets, 4 actuator types, 2 references, no figures/tables/equations; before that `35c0eceb` was PPIC Ch.11 "Saturated Adaptive Output-Feedback Power-Level
+11/11, Baumann `cvp` 32/32, Borden `bcv` 1/1). **Live chapter HEAD `ee024fab`** (Baumann Ch.32
+"Pipe Vibration Due to Sound", 5 PDF pages / printed pp. 185–189, 2 vector figures, 6 displayed
+equations, one field case — completing Baumann at 32/32 and the entire queued campaign); prior
+published HEAD `a3fdd131` was Baumann Ch.31 "Thinking “Green” and Saving Metal", 2 PDF pages /
+printed pp. 183–184, one vector cage-valve cross-section, one endnote, three reading items;
+before that `decac128` was Baumann Ch.30 "The Bus System to the Rescue", 7 PDF pages / printed
+pp. 175–181, 4 vector figures, one endnote, one reference; before that `add4b759` was Baumann
+Ch.29 "Saving Energy", 3 PDF pages / printed pp. 171–173, 5 displayed equations, 2 references;
+before that `5dfda7d5` was Baumann Ch.28 "Electric versus Pneumatic Actuators", 6 advantage
+bullets, 4 actuator types, 2 references; before that `35c0eceb` was PPIC Ch.11 "Saturated Adaptive Output-Feedback Power-Level
 Control for Modular High Temperature Gas-Cooled Reactors", 29 PDF pages / printed pp. 255–283,
 5 vector figures, no tables, 62 numbered equations (1)–(62), 24 references — completing PPIC
 at 11/11); prior HEAD `5a71fc4f` was PPIC Ch.10 "Models for the Reliability Analysis of Digital
@@ -35,16 +43,16 @@ printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered eq
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
 unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,140 URLs,
-catalog badges IIH 8/8, Emerson 15/15, IPC 8/8 and PPIC 11/11 all `full`, Baumann badge 31/32;
-Baumann Ch.31, Ch.30, Ch.29 and Ch.28 EN/VI deep URLs **200** after Pages propagation,
-both TOCs list their chapters, `check_links.py` broken 0, sitemap 1,154 URLs. Full tables in `report.md`.
+catalog badges IIH 8/8, Emerson 15/15, IPC 8/8, PPIC 11/11 and Baumann 32/32 all `full`;
+Baumann Ch.32, Ch.31, Ch.30 and Ch.29 EN/VI deep URLs **200** after Pages propagation,
+both TOCs list all 32 chapters, `check_links.py` broken 0, sitemap 1,156 URLs. Full tables in `report.md`.
 
-**Next unit:** Baumann `cvp` Ch.32 — the FINAL chapter (source `work/cvp_raw.txt`; printed =
-PDF + 2 generally, but +3 in Ch.26, +4 in Ch.27–28, +5 in Ch.29, +6 in Ch.30 and +7 in
-Ch.31–32 — verify per chapter from the printed page number in the raw text). Ch.32 has two
-figures (frequency/acceleration graph and angle-valve jet schematic, PDF 178–182 / printed
-185–189) and equations that must be transcribed from rendered pages, not the garbled text
-layer. Completing it flips the catalog badge to `full` at 32/32. PPIC
+**Next unit: none — the queued campaign is complete.** All registered books are 🟢 full.
+Only optional work remains: Books 11/12 registration on explicit user confirmation (candidate
+books listed below). If new chapters are queued, reuse the recipe below; note Baumann's
+printed = PDF + 2 generally, but +3 in Ch.26, +4 in Ch.27–28, +5 in Ch.29, +6 in Ch.30 and
++7 in Ch.31–32, and that equations must be transcribed from rendered pages, not the garbled
+text layer. PPIC
 is complete at 11/11 — no further PPIC chapters queued. Book 11/12 registration only on
 confirmation. Candidate books located for later registration: McMillan *Electrical Installations
 in Hazardous Areas* (678 pp, Ex/IS) and *Hydrocarbon Processing: Advanced Process Control and
@@ -52,7 +60,7 @@ Information Systems* (215 pp, refinery I&C) — see `report.md`/handoff note.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 31/32 (Ch.2–31 done), PPIC at 11/11 (Ch.1–11 done) and
+complete at 8/8 (Ch.2–8 done), Baumann at 32/32 (Ch.2–32 done), PPIC at 11/11 (Ch.1–11 done) and
 IPC at 8/8 (Ch.1–8 done). Also books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).

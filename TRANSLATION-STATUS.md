@@ -7585,7 +7585,29 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   Spanish / VI-in-EN prose, `check_links.py` broken 0, sitemap 1,154 URLs. Live EN/VI deep
   URLs **200** after Pages negative caching cleared; local and live TOCs list Ch.31, catalog
   badge 31/32.
-- Baumann `cvp` is now **31/32** 🟠; remaining: Ch.32 "Pipe Vibration Due to Sound"
-  (PDF 178–182 / printed 185–189, two figures, several equations garbled in the PDF text
-  layer — transcribe from `work/cvp32_pages/p178.png` and `p180.png`). Books 11/12 still
-  unregistered.
+- Baumann `cvp` was **31/32** 🟠 at this point; next was Ch.32.
+
+## Session 2026-11-26 — Baumann Ch.32 published — CAMPAIGN COMPLETE
+- **Baumann Ch.32 "Pipe Vibration Due to Sound"** (`ee024fab`): source PDF pp. 178–182 =
+  printed pp. 185–189 (**printed = PDF + 7**), rendered to `work/cvp32_pages/p178.png`–`p182.png`.
+  Five printed pages, two figures, six displayed equations, one field case, one Summary
+  example and one additional-reading item.
+- Prose `build/cvp_ch32.py` and figures `build/cvpfig32.py` were drafted in parallel against
+  `work/cvp32_brief.md`. All six equations were garbled in the PDF text layer and were
+  transcribed from the rendered pages: Lwi = 10 log(Wa/10⁻¹²), Lwi = 120 + 10 log(M ci²/2) + η,
+  η = −40 dB at sonic gas speed, fp = 0.2 Uvc/Dj with Dj = 0.046 Fd (FL Cv)^0.5,
+  fp = Uvc/di for angle/rotary valves, and 386 m/s ÷ 0.097 m = 3980 Hz ≈ 4000 Hz.
+- Content preserved: Exxon's 160 dB limit / 148 dB SPL / 60 G at 100 Hz / 100 G at 400 Hz;
+  resonant wall-fatigue warning; the 2-inch angle valve with 4 million SCFH natural gas at
+  4000 → 2300 psia, 111 dBA at 4000 Hz, 120 dB Lwi → 140 m/s² (14 G) and a jackhammer-like
+  noise, fixed by a low-noise valve down to 78 dBA; the steam case (20,000 lb/h, 500 → 250
+  psia, 98 dB, 136 dB, 2200 Hz, 10 G); and Carucci/Mueller ASME 82-WA/PVP-8 (1982).
+- Figures: a log-log acceleration/frequency graph with Lwi = 160/120/80 dB lines computed from
+  a ∝ f·10^(Lwi/20) and a 4000 Hz → 140 m/s² dotted guide; and an angle-valve enlarged-outlet
+  schematic with Mach 0.1/1/1/0.1 velocity zones, both bilingual.
+- QA script `work/qa_cvp32.py` added; both EN and VI pages PASS: figs `[1,2]`, 2 XML-valid
+  SVGs, 2/2 correct captions, 6 equations, 1-item reading list, all key values present,
+  0 CJK / bare `&` / Spanish / VI-in-EN prose, `check_links.py` broken 0, sitemap 1,156 URLs.
+  Catalog badge flipped to `full` at 32/32.
+- **All 14 registered reader books and every queued chapter are now translated and live.**
+  Books 11/12 remain unregistered pending explicit user confirmation.
