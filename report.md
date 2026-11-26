@@ -128,7 +128,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 ### Remaining campaign books (registered, translated chapter by chapter)
 | Key | Book | Source | Chapters | Done | Figures so far |
 |-----|------|--------|----------|------|----------------|
-| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **26/32** 🟠 | 48 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23, ch26 = 4; ch17/ch21 have no figures; ch25 = 2 data tables) |
+| `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **27/32** 🟠 | 48 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22–23, ch26 = 4; ch17/ch21/ch27 have no figures; ch25 = 2 data tables) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
@@ -1167,7 +1167,25 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   captions, 1 surface-finish table with correct values, 3 references, 0 CJK / bare `&` /
   Spanish / Vietnamese-in-English prose, `check_links.py` broken 0, sitemap 1,144 URLs. TOC lists
   Ch.26, catalog badge 26/32.
-- Baumann `cvp` is now **26/32** 🟠; remaining Baumann chapters Ch.27–32. Next in the standing
-  order: Baumann Ch.27 "Sixteen Commandments: What You Shall Not Do!" (printed pp. 165 onward).
+- Baumann `cvp` was **26/32** 🟠 at this point; next was Baumann Ch.27.
+
+## Baumann Chapter 27 — Sixteen Commandments: What You Shall Not Do! (2026-11-26)
+
+- Printed pp. 165–166 (PDF pp. 161–162; **printed = PDF + 4 here**), EN/VI slug
+  `ch27-sixteen-commandments-what-you-shall-not-do`, published in `2db5f9a9`. Two printed pages,
+  sixteen numbered rules, no figures, tables, equations or references.
+- Full bilingual translation of all sixteen “You shall not” commandments: steam valves on
+  down-headers, steam traps, condensate return placement, cage-trim supports, I/P transducer
+  and actuator-spring ranges, wafer valves in fire-hazard areas, packing tightness at startup,
+  hydrostatic testing of bellows-sealed valves, single-seated globe flow direction, carbon
+  steel in condensate service, pipe/valve diameter ratio, unstable controllers and leaky
+  packing, low-noise-trim outlet velocity, unsupported heavy actuators, cryogenic bonnet
+  insulation, and plugged pneumatic vents.
+- QA script `work/qa_cvp27.py` (both EN and VI PASS): 16 list items per language, original
+  numbers and units (3 ft, 3–15 psi, 250 ft/s) present, no figures or tables, 0 CJK / bare `&` /
+  Spanish / Vietnamese-in-English prose, `check_links.py` broken 0, sitemap 1,146 URLs. TOC lists
+  Ch.27, catalog badge 27/32.
+- Baumann `cvp` is now **27/32** 🟠; remaining Baumann chapters Ch.28–32. Next in the standing
+  order: Baumann Ch.28 "Electric versus Pneumatic Actuators" (printed pp. 167 onward).
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

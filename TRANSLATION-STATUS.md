@@ -7476,3 +7476,21 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   broken 0, sitemap 1,144 URLs. Local TOC lists Ch.26, catalog badge 26/32.
 - Baumann `cvp` is now **26/32** 🟠; remaining: ch27–32. Next unit: Baumann Ch.27 "Sixteen
   Commandments: What You Shall Not Do!" (printed p. 165+). Books 11/12 still unregistered.
+
+## Session 2026-11-26 — Baumann Ch.27 published (EN/VI)
+- **Baumann Ch.27 "Sixteen Commandments: What You Shall Not Do!"** (`2db5f9a9`): written directly.
+  Source `work/cvp_raw.txt` lines 4352–4470, PDF pp. 161–162 = printed pp. 165–166
+  (**printed = PDF + 4 here**). Two printed pages, sixteen numbered rules, no figures, tables,
+  equations or references.
+- Full bilingual translation of all sixteen rules: steam valves on down-headers and steam traps,
+  condensate return placement, cage-trim elastic support, I/P transducer vs actuator-spring
+  range, flangeless wafer valves in fire-hazard areas, packing tightness at startup,
+  hydrostatic testing of bellows-sealed valves, single-seated globe flow direction, carbon steel
+  in condensate service, pipe/valve diameter ratio, unstable controllers and leaky packing,
+  low-noise-trim outlet velocity, unsupported heavy actuators, cryogenic bonnet insulation, and
+  plugged pneumatic vents. VI/EN rule arrays separate; original numbers and units retained.
+- QA script `work/qa_cvp27.py` added; both pages PASS: 16 rules per language, 3 ft / 3–15 psi /
+  250 ft/s present, no figures or tables, 0 CJK / bare & / Spanish / VI-in-EN prose,
+  `check_links.py` broken 0, sitemap 1,146 URLs. Local TOC lists Ch.27, catalog badge 27/32.
+- Baumann `cvp` is now **27/32** 🟠; remaining: ch28–32. Next unit: Baumann Ch.28 "Electric
+  versus Pneumatic Actuators" (printed p. 167+). Books 11/12 still unregistered.
