@@ -798,6 +798,7 @@ BOOKS = {
             26: "ch26-valves-for-sanitary-or-aseptic-service",
             27: "ch27-sixteen-commandments-what-you-shall-not-do",
             28: "ch28-electric-versus-pneumatic-actuators",
+            29: "ch29-saving-energy",
         },
         "copyright_en": "Original work © 2011 Hans D. Baumann, published by ISA / John Wiley & Sons.",
         "copyright_vi": "Bản gốc © 2011 Hans D. Baumann, do ISA / John Wiley & Sons xuất bản.",

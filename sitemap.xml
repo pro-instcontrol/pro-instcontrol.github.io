@@ -344,6 +344,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch28-electric-versus-pneumatic-actuators/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch29-saving-energy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch29-saving-energy/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch29-saving-energy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch29-saving-energy/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valves-borden-practical-guide/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/"/>
@@ -3807,6 +3813,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch28-electric-versus-pneumatic-actuators/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch28-electric-versus-pneumatic-actuators/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch28-electric-versus-pneumatic-actuators/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch29-saving-energy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch29-saving-energy/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/control-valve-primer-baumann/ch29-saving-energy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/control-valve-primer-baumann/ch29-saving-energy/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/control-valves-borden-practical-guide/</loc>
