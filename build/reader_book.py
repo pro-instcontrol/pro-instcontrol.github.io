@@ -1135,6 +1135,7 @@ BOOKS = {
         "done": {
             1: "ch01-introduction",
             2: "ch02-area-classification",
+            3: "ch03-area-classification-practice",
         },
         "copyright_en": "Original work © 1998 Reed Educational and Professional Publishing Ltd.",
         "copyright_vi": "Bản gốc © 1998 Reed Educational and Professional Publishing Ltd.",
@@ -1145,10 +1146,10 @@ BOOKS = {
         "lede_vi": ("Tài liệu 22 chương về lắp đặt điện trong khu vực nguy hiểm: phân loại khu vực "
                     "cho khí, hơi, sương mù và bụi; tính toán tốc độ thoát; các nguyên lý bảo vệ "
                     "châu Âu và Anh; lựa chọn thiết bị, lắp đặt, kiểm tra và bảo trì."),
-        "lede_done_en": ("Chapter 1 of Electrical Installations in Hazardous Areas is available "
+        "lede_done_en": ("Chapters 1-3 of Electrical Installations in Hazardous Areas are available "
                          "in English and Vietnamese; the remaining chapters are being translated."),
-        "lede_done_vi": ("Chương 1 của Lắp đặt điện trong khu vực nguy hiểm đã có bản tiếng Anh và "
-                         "tiếng Việt; các chương còn lại đang được dịch."),
+        "lede_done_vi": ("Các chương 1-3 của Lắp đặt điện trong khu vực nguy hiểm đã có bản tiếng "
+                         "Anh và tiếng Việt; các chương còn lại đang được dịch."),
         "policy_en": ("<b>About this copy.</b> The source PDF is held in the local library "
                       "catalogue and is not republished here; this is the online contents map "
                       "with links to chapters that have a Vietnamese translation."),

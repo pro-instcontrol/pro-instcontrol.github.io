@@ -28,6 +28,7 @@ BOOK["mcmillan"] = {
 SLUGS["mcmillan"] = {
     1: "ch01-introduction",
     2: "ch02-area-classification",
+    3: "ch03-area-classification-practice",
 }
 
 (p, lead, h2, h3, h4, eq, quote, ul, ol, note, refs, table, fig, keyterms,

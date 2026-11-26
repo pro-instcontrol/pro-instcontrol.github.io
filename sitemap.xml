@@ -398,6 +398,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/electrical-installations-hazardous-areas/ch02-area-classification/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/electrical-installations-hazardous-areas/ch03-area-classification-practice/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/electrical-installations-hazardous-areas/ch03-area-classification-practice/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/electrical-installations-hazardous-areas/ch03-area-classification-practice/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/electrical-installations-hazardous-areas/ch03-area-classification-practice/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/exprotection-global-america-basics/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/"/>
@@ -3951,6 +3957,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/electrical-installations-hazardous-areas/ch02-area-classification/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/electrical-installations-hazardous-areas/ch02-area-classification/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/electrical-installations-hazardous-areas/ch02-area-classification/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/electrical-installations-hazardous-areas/ch03-area-classification-practice/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/electrical-installations-hazardous-areas/ch03-area-classification-practice/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/electrical-installations-hazardous-areas/ch03-area-classification-practice/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/electrical-installations-hazardous-areas/ch03-area-classification-practice/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/exprotection-global-america-basics/</loc>
