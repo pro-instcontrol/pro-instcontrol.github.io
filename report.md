@@ -5,7 +5,7 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-26):** **all 15 registered reader books complete and live 🟢** (rows below;
+**Status (2026-11-26):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 3/22 (rows below;
 flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
 IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32, R. STAHL ExProtection `expb` 🟢
 6/6). **Live chapter HEAD `023705e9`** (ExProtection Global-America-Basics: 14 source pages,
@@ -1336,5 +1336,23 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   “Conformité Européenne” in the leak guard. `check_links.py` broken 0, sitemap 1,170 URLs.
 - **All 15 registered reader books are now complete and live.** Books 11/12 from the older
   candidate list remain unregistered pending explicit confirmation.
+
+## McMillan reader — new ongoing book (2026-11-26)
+- A 22-chapter reader from Alan McMillan, *Electrical Installations in Hazardous Areas*
+  (Butterworth-Heinemann, 1998; 678 PDF pages; printed = PDF − 21) has been registered and
+  is being translated one chapter at a time. Chapter 1 “Introduction” (`13dfadf3`, 21 pages,
+  7 vector figures, 2 tables) and Chapter 2 “Area classification” (`227cf5e3`, 21 pages,
+  6 vector figures, 1 table) preceded Chapter 3 “Area classification practice for gases,
+  vapours and mists in freely ventilated situations” (`0bb7546`, merged as `7bcc937a`).
+- Chapter 3 covers printed pp. 43–86 (PDF pp. 64–107, `PAGES_SRC = 44`): all eleven sections
+  3.1–3.4.11, 16 vector redraws (printed Figs 3.1–3.5 and 3.9–3.19), four transcribed tables
+  (3.1–3.4) and six references. Eight PDF pages 80–87 (printed 59–66) are literal
+  “MISSING PAGE” placeholders in the supplied PDF; the tail of 3.3.3, all of 3.3.4, most of
+  3.3.5, Figs 3.6–3.8 and Tables 3.5–3.10 are unavailable and are flagged in both languages.
+- Brief `work/mcmillan_ch03_brief.md`; QA script `work/qa_mcmillan_ch03.py`: both EN and VI
+  pages PASS — figs 1–16, 16 XML-valid SVGs, 4 tables (13/11/8/8 rows), 6 refs, 1 h2 / 4 h3 /
+  21 h4, all key values present, 0 CJK / bare `&` / Spanish / VI-in-EN prose. The catalog badge
+  is 🟠 3/22; `check_links.py` broken 0, merged sitemap 1,212 URLs after reconciling four
+  upstream focus-section commits. Next unit: McMillan Chapter 4.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

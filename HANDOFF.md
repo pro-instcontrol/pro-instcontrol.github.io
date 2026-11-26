@@ -1,8 +1,12 @@
 # HANDOFF — Campaign state 2026-11-26 (ALL REGISTERED BOOKS COMPLETE)
 
-**State now (2026-11-26):** all 15 reader books complete 🟢 (see `report.md`; flagship Book 6
+**State now (2026-11-26):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
-11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `023705e9`**
+11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `7bcc937a`**
+(McMillan Ch.3 “Area classification practice for gases, vapours and mists in freely ventilated
+situations”: 44 source pages, 16 vector figures, 4 tables, 6 refs; `0bb7546` chapter commit merged
+with four upstream focus-section commits). **Next unit: McMillan Ch.4** — see `TRANSLATION-STATUS.md`.
+Prior HEAD `227cf5e3` (McMillan Ch.2 “Area classification”, 6 vector figures, 1 table). Prior `023705e9`
 (ExProtection Global-America-Basics, six bilingual units / six vector figures / 13 tables,
 published from the user's `/books/work/70/` request); prior HEAD `ee024fab` (Baumann Ch.32
 "Pipe Vibration Due to Sound", 5 PDF pages / printed pp. 185–189, 2 vector figures, 6 displayed
@@ -49,10 +53,13 @@ catalog badges IIH 8/8, Emerson 15/15, IPC 8/8, PPIC 11/11, Baumann 32/32 and Ex
 6/6 all `full`; Baumann and ExProtection EN/VI deep URLs **200** after Pages propagation,
 both TOCs list all units, `check_links.py` broken 0, sitemap 1,170 URLs. Full tables in `report.md`.
 
-**Next unit: none — the queued campaign is complete.** All 15 registered books are 🟢 full,
-including the newly requested R. STAHL ExProtection primer. Only optional work remains: Books
-11/12 registration on explicit user confirmation (candidate books listed below). If new
-chapters are queued, reuse the recipe below; note Baumann's
+**Next unit: McMillan Ch.4** — “Calculation of release rates and the extents of hazardous
+areas”. The older 15-book campaign is complete 🟢, and McMillan chapters 1–3 are live at 3/22;
+continue one chapter at a time with the same brief → figures → prose → QA → push recipe. The
+McMillan 678-page source has eight literal “MISSING PAGE” pages (PDF 80–87 = printed 59–66):
+never invent the missing Figs 3.6–3.8 or Tables 3.5–3.10, and carry forward the source-gap note.
+Books 11/12 registration still requires explicit user confirmation (candidate books below).
+If other chapters are queued, reuse the recipe below; note Baumann's
 printed = PDF + 2 generally, but +3 in Ch.26, +4 in Ch.27–28, +5 in Ch.29, +6 in Ch.30 and
 +7 in Ch.31–32, and that equations must be transcribed from rendered pages, not the garbled
 text layer. PPIC

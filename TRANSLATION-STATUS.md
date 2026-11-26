@@ -7633,6 +7633,34 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
 - **All 15 registered reader books are now complete and live.** The older Books 11/12
   candidates remain unregistered pending explicit user confirmation.
 
+## Session 2026-11-26 — McMillan Chapter 3 published (EN/VI, 16 vector figures)
+- New ongoing reader: Alan McMillan, *Electrical Installations in Hazardous Areas*
+  (Butterworth-Heinemann, 1998), 678 PDF pages, printed = PDF − 21. Chapter 1
+  (`13dfadf3`) and Chapter 2 (`227cf5e3`) were already live; Chapter 3 was published
+  in `0bb7546` and merged with four upstream focus-section commits in `7bcc937a`.
+- Chapter 3, “Area classification practice for gases, vapours and mists in freely
+  ventilated situations”, spans PDF pp. 64–107 = printed pp. 43–86 (`PAGES_SRC = 44`).
+  It carries all eleven printed sections (3.1–3.4.11), 16 vector figure redraws
+  (printed Figs 3.1–3.5 and 3.9–3.19), four fully transcribed tables (3.1–3.4),
+  and six numbered references.
+- **Critical source defect:** PDF pp. 80–87 (printed 59–66) are literal “MISSING PAGE”
+  placeholders in the supplied source PDF. The tail of 3.3.3, all of 3.3.4, most of
+  3.3.5, Figures 3.6–3.8 and Tables 3.5–3.10 cannot be recovered. Both language
+  pages carry an explicit source-gap note; nothing was invented. The brief
+  `work/mcmillan_ch03_brief.md` records the verified captions, table rows and gap.
+- Five source-order prose modules (`mcmillan_ch03a…e.py`) and four supplier modules
+  (`mcmillanfig03_a…d.py`) were assembled by `mcmillan_ch03.py`; figure display ids
+  are sequential 1–16 even though printed figure numbers skip 3.6–3.8.
+- QA script `work/qa_mcmillan_ch03.py`: both EN and VI pages PASS — figs 1–16, 16
+  XML-valid SVGs, 16/16 localized captions, tables 4 (13/11/8/8 rows), 6 refs,
+  1 h2 / 4 h3 / 21 h4, all key values present, 0 CJK / bare `&` / Spanish /
+  VI-in-EN prose. Integration fixed three English headings in module E that had
+  Vietnamese as the first heading argument. `check_links.py` broken 0;
+  merged sitemap 1,212 URLs after reconciling four upstream catalog commits.
+- Catalog badge is now 🟠 3/22 chapters; TOC rows 22, done rows 3. Next unit:
+  McMillan Chapter 4, “Calculation of release rates and the extents of hazardous
+  areas” (printed pp. 87 onward; check the PDF page offset before starting).
+
 ## Session 2026-11-26 — Emerson upstream measurement guide added (EN/VI)
 - At the user's request, Emerson *Measurement Instrumentation for Upstream Oil & Gas*
   (MS-00803-0400-3030 Rev AA, 2026, 32 pages) was added as a new bilingual reader book
