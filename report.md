@@ -1079,4 +1079,25 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   standing order: PPIC Ch.10 "Models for the Reliability Analysis of Digital Instrumentation
   and Control Systems for Nuclear Power Plants" (PDF pp. 245–269).
 
+## PPIC Chapter 10 — Models for the Reliability Analysis of Digital I&C Systems (2026-11-26)
+
+- PDF pp. 245–269, printed pp. 229–253 (printed = PDF − 16; PDF p.270 blank), EN/VI slug
+  `ch10-models-for-the-reliability-analysis-of-digital-instrumentation-and-control-systems`,
+  published in `5a71fc4f`.
+- Five prose writers and three figure suppliers against `work/ppic10_brief.md`. Full bilingual
+  translation of the DFM and Markov/CCMT comparison: pressurizer control logic and prime
+  implicants, PSA/SAPHIRE incorporation, CPU and feedwater-valve FMEAs, finite-difference time
+  step, CVSS cell partitioning, top-event probability and reliability results, conclusions and
+  all 25 references. **5 vector figures**, **12 tables** and numbered equations **(1)–(8)**.
+  All equations and table symbols were re-read from rendered pages. Two printed quirks were
+  preserved and flagged: the duplicated “Sprays” row in Table 6 and the m→cm unit switch in
+  Table 10.
+- QA: 5/5 sequential XML-valid SVGs with localized captions, 12 tables, 8 numbered equation
+  blocks, 25 references, 0 CJK / bare `&` / Spanish / Vietnamese-in-English prose, 0 label
+  offsets or overlaps, `check_links.py` broken 0, sitemap 1,138 URLs. EN/VI deep URLs HTTP 200
+  after Pages propagation, both TOCs list Ch.10, sitemap has 8 Ch.10 entries, catalog badge
+  10/11.
+- PPIC `ppic` is now **10/11** 🟠; remaining PPIC chapter is Ch.11. Next in the standing order:
+  PPIC Ch.11 → Baumann Ch.25–32.
+
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

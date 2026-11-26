@@ -7382,3 +7382,27 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   Baumann ch25-32, PPIC ch10-11. Next unit: PPIC Ch.10 "Models for the Reliability Analysis of
   Digital Instrumentation and Control Systems for Nuclear Power Plants" (PDF pp. 245-269,
   printed pp. 229-253, printed = PDF − 16). Books 11/12 located but unregistered.
+
+## Session 2026-11-26 — PPIC Ch.10 published (EN/VI)
+- **PPIC Ch.10 "Models for the Reliability Analysis of Digital Instrumentation and Control
+  Systems for Nuclear Power Plants"** (`5a71fc4f`): five prose writers and three figure
+  suppliers against `work/ppic10_brief.md`. Source `work/ppic_raw.txt` lines 6373-7164,
+  PDF pp. 245-269 = printed pp. 229-253 (printed = PDF − 16; PDF p.270 blank). Five vector
+  figures (pressurizer layout, feedwater-valve Markov diagram, two-CPU Markov diagram,
+  top-event probability chart, reliability chart), 12 tables, numbered equations (1)-(8)
+  and all 25 references.
+- The PDF text layer omits all equations and garbles some table symbols, so equations, Markov
+  labels and table values were transcribed from rendered pages. Two printed quirks preserved
+  and flagged in both languages: Table 6 repeats a `Sprays` row, and Table 10 changes units
+  from m to cm in its last two rows. Integration escaped the one bare `&` in the glossary
+  `I&C` term.
+- QA: 5 sequential unique fig ids, 5 XML-valid SVGs with localized captions, 12 tables,
+  8 numbered equations (`1` through `8`), 25 refs, 0 CJK / bare & / Spanish / VI-in-EN prose,
+  0 off-canvas or overlapping SVG labels, `check_links.py` broken 0, sitemap 1,138 URLs.
+  EN/VI chapter pages, both TOCs and the sitemap were pushed at `5a71fc4f`; deep URLs initially
+  404 due Pages negative caching, then HTTP 200 with both TOC rows present and 8 Ch.10 sitemap
+  entries.
+- PPIC `ppic` is now **10/11** 🟠; catalog badge 10/11. Remaining: PPIC ch11, Baumann ch25-32.
+  Next unit: PPIC Ch.11 "Saturated Adaptive Output-Feedback Power-Level Control for Modular
+  High Temperature Gas-Cooled Reactors" (source starts at `===PDFPAGE 271===`). Books 11/12
+  located but unregistered.

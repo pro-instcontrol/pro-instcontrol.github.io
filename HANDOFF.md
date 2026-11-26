@@ -2,15 +2,18 @@
 
 **State now (2026-11-26):** 12 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8). Remaining
-campaign: Baumann `cvp` **24/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **9/11**.
-**Live chapter HEAD `38e1806b`** (Baumann Ch.24 "Avoiding Leaky Valve Stem Packing", 6 PDF
-pages / printed pp. 147–152, one vector bellows-seal schematic, 8 packing rules, 2 refs and 2
-reading items); prior HEAD `60c5df89` was PPIC Ch.9 "Predictive Maintenance Based on Control
+campaign: Baumann `cvp` **24/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **10/11**.
+**Live chapter HEAD `5a71fc4f`** (PPIC Ch.10 "Models for the Reliability Analysis of Digital
+Instrumentation and Control Systems for Nuclear Power Plants", 25 PDF pages / printed pp.
+229–253, 5 vector figures, 12 tables, equations (1)–(8), 25 references); prior HEAD `38e1806b`
+was Baumann Ch.24 "Avoiding Leaky Valve Stem Packing", 6 PDF pages / printed pp. 147–152,
+one vector bellows-seal schematic, 8 packing rules, 2 refs and 2 reading items); before that
+`60c5df89` was PPIC Ch.9 "Predictive Maintenance Based on Control
 Charts Applied at Thermoelectric Power Plant", 30 PDF pages / printed pp. 199–228, 11 vector
 figures, 2 tables, equations (1)–(12), 40 references); before that `5787c03a` was Baumann Ch.23
 "Flashing",
 2 PDF/printed pp. 145–146, one vector schematic, sizing relation and worked example; before
-before that `f6b4426f` was IPC Ch.8 "Microprocessor Based Instrumentation System", 44 PDF pages /
+that `f6b4426f` was IPC Ch.8 "Microprocessor Based Instrumentation System", 44 PDF pages /
 printed pp. 341–384, 34 vector figures and 30 exercises (book complete 8/8); before that
 `4338ee22` was PPIC Ch.8 "Optimization and Damping Performance of a Coal-Fired Power Plant
 Building Equipped with Multiple Coal Bucket Dampers", 46 PDF pages / printed pp. 153–198, 21
@@ -28,26 +31,39 @@ vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercis
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,136 URLs,
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,138 URLs,
 catalog badges IIH 8/8, Emerson 15/15 and IPC 8/8 all `full`, Baumann badge 24/32, PPIC badge
-9/11; Baumann Ch.24 EN/VI deep URLs **200** after Push propagation (initial 404 came from a
-wrong `/en/`-prefixed check URL, not deployment), sitemap entries per new chapter,
-`check_links.py` broken 0. Full tables in `report.md`.
+10/11; Baumann Ch.24 and PPIC Ch.10 EN/VI deep URLs **200**, both PPIC TOCs list Ch.10,
+sitemap has 8 Ch.10 URL entries, `check_links.py` broken 0. Full tables in `report.md`.
 
-**Next unit:** PPIC `ppic` Ch.10 "Models for the Reliability Analysis of Digital Instrumentation
-and Control Systems for Nuclear Power Plants" (PDF pp. 245–269, printed pp. 229–253,
-printed = PDF − 16; source `work/ppic_raw.txt` starts at `===PDFPAGE 245===`, render directory
-`work/ppic10_pages/p245…p269.png`). Then Baumann `cvp` Ch.25 onward (source `work/cvp_raw.txt`,
-printed = PDF + 2). Book 11/12 registration only on confirmation.
+**Next unit:** PPIC `ppic` Ch.11 "Saturated Adaptive Output-Feedback Power-Level Control for
+Modular High Temperature Gas-Cooled Reactors" (source `work/ppic_raw.txt` starts at
+`===PDFPAGE 271===`, printed = PDF − 16). Then Baumann `cvp` Ch.25 onward (source
+`work/cvp_raw.txt`, printed = PDF + 2). Book 11/12 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
-complete at 8/8 (Ch.2–8 done), Baumann at 24/32 (Ch.2–24 done), PPIC at 9/11 (Ch.1–9 done) and
+complete at 8/8 (Ch.2–8 done), Baumann at 24/32 (Ch.2–24 done), PPIC at 10/11 (Ch.1–10 done) and
 IPC at 8/8 (Ch.1–8 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
 ---
+
+## 0.88 Session 90 — PPIC Ch.10 published (2026-11-26)
+- Five prose writers and three figure suppliers worked against `work/ppic10_brief.md`.
+  Source `work/ppic_raw.txt` lines 6373–7164 (PDF pp. 245–269, printed pp. 229–253,
+  printed = PDF − 16; PDF p.270 blank). Content: 5 vector figures (pressurizer control layout,
+  feedwater-valve Markov diagram, two-CPU Markov diagram, top-event probability chart,
+  reliability chart), 12 tables, numbered equations (1)–(8), 25 references.
+- Equations and table symbols were re-read from page renders because the PDF text layer omits
+  them. Two printed source quirks preserved and flagged: Table 6 repeats a “Sprays” row;
+  Table 10 switches units from m to cm in the last two rows. Integration escaped one bare `&`
+  in the glossary `I&C` term.
+- QA: 5 sequential unique XML-valid SVGs, 5/5 localized captions, 12 tables, 8 numbered
+  equations, 25 refs, 0 CJK / bare `&` / Spanish / VI-in-EN prose, 0 off-canvas or overlapping
+  labels, `check_links.py` broken 0, sitemap 1,138 URLs. Pushed at `5a71fc4f`; PPIC 10/11.
+  Next: PPIC Ch.11, then Baumann Ch.25.
 
 ## 0.87 Session 89 — Baumann Ch.24 published (2026-11-26)
 - `cvp_ch24.py` + `cvpfig24.py`: six source pages (PDF 145–150 = printed 147–152), eight
