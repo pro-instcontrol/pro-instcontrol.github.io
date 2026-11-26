@@ -392,6 +392,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch09-predictive-maintenance-based-on-control-charts/"/>
   </url>
   <url>
+    <loc>https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch10-models-for-the-reliability-analysis-of-digital-instrumentation-and-control-systems/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch10-models-for-the-reliability-analysis-of-digital-instrumentation-and-control-systems/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/ch10-models-for-the-reliability-analysis-of-digital-instrumentation-and-control-systems/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch10-models-for-the-reliability-analysis-of-digital-instrumentation-and-control-systems/"/>
+  </url>
+  <url>
     <loc>https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/illustrated-handbook-industrial-instrumentation-control/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/"/>
@@ -3819,6 +3825,12 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch09-predictive-maintenance-based-on-control-charts/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/ch09-predictive-maintenance-based-on-control-charts/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch09-predictive-maintenance-based-on-control-charts/"/>
+  </url>
+  <url>
+    <loc>https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/ch10-models-for-the-reliability-analysis-of-digital-instrumentation-and-control-systems/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch10-models-for-the-reliability-analysis-of-digital-instrumentation-and-control-systems/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://pro-instcontrol.github.io/vi/books/read/handbook-power-plant-instrumentation-control/ch10-models-for-the-reliability-analysis-of-digital-instrumentation-and-control-systems/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pro-instcontrol.github.io/books/read/handbook-power-plant-instrumentation-control/ch10-models-for-the-reliability-analysis-of-digital-instrumentation-and-control-systems/"/>
   </url>
   <url>
     <loc>https://pro-instcontrol.github.io/vi/books/read/illustrated-handbook-industrial-instrumentation-control/</loc>

@@ -975,6 +975,7 @@ BOOKS = {
             7: "ch07-spatial-aspects-of-environmental-impact-of-power-plants",
             8: "ch08-optimization-and-damping-performance-coal-fired-power-plant",
             9: "ch09-predictive-maintenance-based-on-control-charts",
+            10: "ch10-models-for-the-reliability-analysis-of-digital-instrumentation-and-control-systems",
         },
         "copyright_en": "Original work © 2019 Bibliotex; individual chapters © their authors, Creative Commons.",
         "copyright_vi": "Bản gốc © 2019 Bibliotex; từng chương © tác giả tương ứng, giấy phép Creative Commons.",
