@@ -7320,3 +7320,19 @@ every equation and many table cells; all were re-read from page renders, with pr
 progress 22/32. Site rebuilt: 512 work pages, sitemap 1,126 URLs, `check_links.py` broken 0.
 Published in `6ffef536`, pushed `afdae4f1..6ffef536`; live EN/VI chapter, TOC and catalog URLs
 all HTTP 200. Remaining: Baumann ch23-32, PPIC ch8-11, IPC ch8 (last). Books 11/12 unregistered.
+
+## Session 84 — PPIC Ch.8 "Optimization and Damping Performance of a Coal-Fired Power Plant Building" published (EN/VI)
+Seven prose writers and three figure suppliers worked against `work/ppic8_brief.md`. Source
+`work/ppic_raw.txt` lines 4548-5484 (PDF pp. 169-214 = printed pp. 153-198, printed = PDF - 16).
+Full EN/VI translation of the CBD/MTMD parameter optimization, 1:30 shaking-table model, 53
+seismic excitations, FEA validation and conclusions; 21 vector figures redrawn in `ppicfig8_a/b/c.py`,
+3 tables (similarity coefficients, CBD parameters, test conditions), 22 equation blocks with
+printed numbers (1)-(13) and (14)-(23), and all 38 verbatim references.
+VI 587,839 / EN 592,577 chars; 21 sequential unique `fig-1`..`fig-21` ids, 21 XML-valid SVGs,
+21 localized captions, 3 tables, 22 equations, 38 refs, 0 CJK / bare ampersands / Spanish
+("El Centro" allowlisted) / Vietnamese-in-EN prose, 0 off-canvas or overlapping labels.
+Table values, equation coefficients and chart series were re-read from the rendered pages.
+Registered slug, done[8] and progress 8/11. Site rebuilt: 512 work pages, sitemap 1,128 URLs,
+`check_links.py` broken 0. Published in `4338ee22`, pushed `0c6384e9..4338ee22`; live EN/VI
+chapter, TOC and catalog URLs all HTTP 200. Remaining: PPIC ch9-11, IPC ch8 (last), Baumann
+ch23-32. Books 11/12 located but unregistered.

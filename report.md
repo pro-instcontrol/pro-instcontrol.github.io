@@ -7,10 +7,13 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-25):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `6ffef536`**
-(Book 7 Baumann Ch.22 "Graphical Estimation of Noise Produced by Turbulence and Cavitation of
-Liquids": 7 PDF/printed pp. 137–143, 5 vector graphs, one 18-row Table 22-1, Equation 22-1 plus
-many unnumbered formulas, four worked examples) — the prior HEAD `dfb96cc7` was Book 10 IPC Ch.7
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `4338ee22`**
+(Book 9 PPIC Ch.8 "Optimization and Damping Performance of a Coal-Fired Power Plant Building
+Equipped with Multiple Coal Bucket Dampers": 46 PDF pages / printed pp. 153–198, 21 vector
+figures, 3 tables, 22 equation blocks, 38 references) — the prior HEAD `6ffef536` was Book 7
+Baumann Ch.22 "Graphical Estimation of Noise Produced by Turbulence and Cavitation of Liquids":
+7 PDF/printed pp. 137–143, 5 vector graphs, one 18-row Table 22-1, Equation 22-1 plus many
+unnumbered formulas, four worked examples — and before that `dfb96cc7` was Book 10 IPC Ch.7
 "Display Devices and Recorders": 24 PDF pages / printed pp. 317–340, 32 vector figures, no tables
 or equations, 11 exercise questions — and before that `51251826` was Book 9 PPIC Ch.7 "Spatial Aspects of Environmental Impact of Power Plants": 27 PDF pages /
 printed pp. 125–151, 2 vector figures, 6 tables, 59 references, no equations — and before that
@@ -115,7 +118,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 |-----|------|--------|----------|------|----------------|
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **22/32** 🟠 | 43 (ch1–6, ch9–11, ch13, ch15, ch18–20, ch22; ch17/ch21 have no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
-| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **7/11** 🟠 | 53 (ch1–7: 5 + 7 + 8 + 11 + 17 + 3 + 2) |
+| `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **8/11** 🟠 | 74 (ch1–8: 5 + 7 + 8 + 11 + 17 + 3 + 2 + 21) |
 | `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **7/8** 🟠 | 312 (ch1–7: 51 + 58 + 72 + 30 + 43 + 26 + 32) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
@@ -480,7 +483,8 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   → `fb826fcb` (IPC ch4) → `34f48d9a` (Baumann ch19) → `1065ce57` (PPIC ch5)
   → `64d01a87` (IPC ch5) → `cf190d85` (Baumann ch20) → `612baf12` (PPIC ch6)
   → `b5a7b37e` (IPC ch6) → `ed5931f4` (Baumann ch21) → `51251826` (PPIC ch7)
-  → `dfb96cc7` (IPC ch7) → `6ffef536` (Baumann ch22, **live chapter HEAD**).
+  → `dfb96cc7` (IPC ch7) → `6ffef536` (Baumann ch22) → `4338ee22` (PPIC ch8,
+  **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -561,7 +565,11 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    printed pp. 79–105, broken 0);
    ~~Ch.6 "Developments of Power System Protection and Control"~~ — **done** in `612baf12`
    (3 vector figs, 17 refs, no tables/equations, printed pp. 107–124, broken 0);
-   remaining Ch.7–11.
+   ~~Ch.7 "Spatial Aspects of Environmental Impact of Power Plants"~~ — **done** in `51251826`
+   (2 vector figs, 6 tables, 59 refs, broken 0);
+   ~~Ch.8 "Optimization and Damping Performance of a Coal-Fired Power Plant Building"~~ — **done**
+   in `4338ee22` (21 vector figs, 3 tables, 38 refs, broken 0);
+   remaining Ch.9–11.
 
 ### Resume notes
 - IPC Ch.5 (43 PDF pages / printed pp. 229–271, 43 vector figures, 78 unnumbered equations, 11
@@ -951,7 +959,24 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   (header + 18 rows), 16 equation blocks in EN / 15 in VI, 0 CJK / bare `&` / Spanish /
   Vietnamese-in-English prose, 0 label overlaps, `check_links.py` broken 0, sitemap 1,126 URLs.
   Live EN/VI deep URLs 200 (101/104 kB), TOC row present, catalog badge 22/32.
-- Baumann `cvp` is now **22/32** 🟠; remaining Baumann chapters are Ch.23–32. Next in the
-  standing order: PPIC Ch.8 → IPC Ch.8 → Baumann Ch.23.
+- Baumann `cvp` is now **22/32** 🟠; remaining Baumann chapters are Ch.23–32.
+
+## PPIC Chapter 8 — Optimization and Damping Performance of a Coal-Fired Power Plant Building (2026-11-25)
+
+- PDF pp. 169–214, printed pp. 153–198 (printed = PDF − 16), EN/VI slug
+  `ch08-optimization-and-damping-performance-coal-fired-power-plant`, published in `4338ee22`
+  and verified live after Pages propagation.
+- Seven prose writers and three figure suppliers against `work/ppic8_brief.md`. Full translation
+  of the optimization method for multiple coal bucket dampers (CBDs), the 1:30 shaking-table
+  model, 53 seismic excitations, FEA validation and conclusions, with **21 vector figures**,
+  **3 tables**, **22 equation blocks** and all **38 references**. Table values, equation
+  coefficients and chart series were read from the rendered pages; printed equation numbers
+  (1)–(13), (14)–(23) and all figure numbers are preserved.
+- QA: 21/21 sequential XML-valid SVGs with localized captions, 3 tables, 22 equation blocks,
+  38 references, 0 CJK / bare `&` / Spanish (with "El Centro" allowlisted) / Vietnamese-in-English
+  prose, 0 label overlaps, `check_links.py` broken 0, sitemap 1,128 URLs. Live EN/VI deep URLs
+  200 (598/608 kB), TOC row present, catalog badge 8/11.
+- PPIC `ppic` is now **8/11** 🟠; remaining PPIC chapters are Ch.9–11. Next in the standing order:
+  IPC Ch.8 → Baumann Ch.23 → PPIC Ch.9.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.
