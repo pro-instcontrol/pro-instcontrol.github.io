@@ -2,10 +2,12 @@
 
 **State now (2026-11-25):** 11 reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8). Remaining campaign:
-Baumann `cvp` **21/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **7/11**, IPC `ipc` **6/8**.
-**Live chapter HEAD `51251826`** (PPIC Ch.7 "Spatial Aspects of Environmental Impact of Power
-Plants", 27 PDF pages / printed pp. 125–151, 2 vector figures, 6 tables, 59 references, no
-equations); prior HEAD `ed5931f4` was Baumann Ch.21 "The ABC Method for Estimating Hydrodynamic
+Baumann `cvp` **21/32**, Borden `bcv` 1/1 🟢, PPIC `ppic` **7/11**, IPC `ipc` **7/8**.
+**Live chapter HEAD `dfb96cc7`** (IPC Ch.7 "Display Devices and Recorders", 24 PDF pages /
+printed pp. 317–340, 32 vector figures, no tables/equations, 11 exercise questions); prior HEAD
+`51251826` was PPIC Ch.7 "Spatial Aspects of Environmental Impact of Power Plants", 27 PDF pages /
+printed pp. 125–151, 2 vector figures, 6 tables, 59 references, no equations; before that
+`ed5931f4` was Baumann Ch.21 "The ABC Method for Estimating Hydrodynamic
 Sound Level", 3 PDF/printed pp. 133–135, one 11-column Table 21-1, 28 unnumbered equations,
 no figures — and before that `b5a7b37e` was IPC Ch.6 "Process Control", 45 PDF pages / printed pp. 272–316, 26
 vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercise — and before that
@@ -13,20 +15,21 @@ vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercis
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,122 URLs,
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,124 URLs,
 catalog badges IIH 8/8 and Emerson 15/15 both `full`, Baumann badge 21/32, PPIC badge 7/11,
-IPC badge 6/8; PPIC Ch.7, Baumann Ch.21, IPC Ch.6, PPIC Ch.6, Baumann Ch.20, IPC Ch.5, PPIC Ch.5, Baumann Ch.19, IPC Ch.4,
+IPC badge 7/8; IPC Ch.7, PPIC Ch.7, Baumann Ch.21, IPC Ch.6, PPIC Ch.6, Baumann Ch.20, IPC Ch.5, PPIC Ch.5, Baumann Ch.19, IPC Ch.4,
 PPIC Ch.4, Baumann Ch.18, IPC Ch.3, Baumann Ch.17 and PPIC Ch.3 EN/VI deep URLs 200, sitemap
 8 entries per new chapter, `check_links.py` broken 0. Full tables in `report.md`.
 
-**Next unit:** none queued for Emerson, IIH, IPC Ch.3–Ch.6, Baumann Ch.18–Ch.21, PPIC Ch.3–Ch.7.
-The standing remaining order is IPC `ipc` Ch.7 → Baumann `cvp` Ch.22 → PPIC `ppic` Ch.8, with
-Book 11/12 registration only on confirmation.
+**Next unit:** Baumann `cvp` Ch.22 (source `work/cvp_raw.txt`; short chapters ≤6 pages with ≤2
+figures go to one agent for both figure and prose modules).
+The standing remaining order is Baumann `cvp` Ch.22 → PPIC `ppic` Ch.8 → IPC `ipc` Ch.8 (last
+chapter), with Book 11/12 registration only on confirmation.
 
 **User's queued continuation (verbatim order):** "Book 8 Chapters 2–8, Baumann Chapters 3–32,
 and Emerson Chapters 2–15 do one by one" — the Emerson leg is **complete at 15/15**; Book 8 is
 complete at 8/8 (Ch.2–8 done), Baumann at 21/32 (Ch.2–21 done), PPIC at 7/11 (Ch.1–7 done) and
-IPC at 6/8 (Ch.1–6 done). Also two books located but not registered
+IPC at 7/8 (Ch.1–7 done). Also two books located but not registered
 (*Fundamentals of Industrial Instrumentation*, 348 pp; *A Guide to the Automation Body of
 Knowledge*, 2nd ed., 511 pp).
 
@@ -235,6 +238,20 @@ no equations, 0 CJK / 0 content bare `&` / 0 Spanish / 0 Vietnamese diacritics i
 0 off-canvas / 0 overlapping labels, `check_links.py` broken 0, sitemap 1,122. Live EN/VI verified
 after Pages propagation, TOC row present, badge 7/11 in both languages. **PPIC is 7/11 🟠;
 `TRANSLATED["handbook on power plant instrumentation and control"]` is `("progress", 11, 7)`.**
+
+## 0.19 IPC Ch.7 "Display Devices and Recorders" published in `dfb96cc7`
+Five prose writers (`ipc_ch07a…e.py`) and three figure suppliers (`ipcfig7_a/b/c.py`) worked
+against `work/ipc7_brief.md`, using the generic `ipc_ch06_lib.py` helpers and the new chapter-7
+`ipcfig7_common.py` (same helpers as ch6 with `7.n` captions). Source: `work/ipc_decoded.txt`
+lines 12745–13598 (PDF pp. 329–352, printed pp. 317–340) with 24 pypdfium2 renders in
+`work/ipc7_pages/p329…p352.png`. Content: 32 vector figures (recorders, tape heads, X-Y plotter,
+paperless recorder, LED/LCD cells, seven-segment/dot-matrix/bar-graph displays, Nixie, LVD, EPI),
+no tables or numbered equations, 11 exercise questions. The a/b prose boundary splits a printed
+fanfold sentence mid-clause and joins correctly; writers c/d split the 7.3 headings cleanly.
+QA: 32 sequential unique `fig-N` ids, 32 XML-valid SVGs, 32/32 localized captions, 0 CJK /
+0 content bare `&` / 0 Spanish / 0 Vietnamese in EN prose, 0 off-canvas / overlapping labels,
+`check_links.py` broken 0, sitemap 1,124. Live EN/VI 200, TOC row present, badge 7/8.
+**IPC is 7/8 🟠; only Ch.8 remains.**
 
 ## A. Continuation queue (user's order)
 0. ~~IIH Ch.8 "Control Valves" — final chapter~~ — **published** in `905dd942` (8 figs, 111 refs,

@@ -7285,3 +7285,20 @@ registration when resumed.
   8 Ch.7 URL entries.
 - PPIC `ppic` is now **7/11** 🟠. Next: IPC Ch.7 → Baumann Ch.22 → PPIC Ch.8; Book 11/12
   registration only on confirmation.
+
+## Session 82 — IPC Ch.7 "Display Devices and Recorders" published (EN/VI)
+Five prose writers and three figure suppliers worked against `work/ipc7_brief.md`. Source
+`work/ipc_decoded.txt` lines 12745–13598 (PDF pp. 329–352 = printed pp. 317–340, 24 source
+pages) with 24 pypdfium2 renders. Full translation of 7.1 Recorders, 7.2 X-Y Plotter and
+7.3 Digital Data Display Devices, plus the 11-question exercise. 32 source figures redrawn
+as vectors in `ipcfig7_a/b/c.py` via the new `ipcfig7_common.py`: potentiometric null-balance
+loop, circular/strip/fanfold charts, pen details, magnetic/digital tape recording, X-Y plotter,
+programmable/paperless recorders, LED/LCD cells and seven-segment/dot-matrix/bar-graph displays,
+Nixie tube, LVD and EPI cells. No tables or numbered equations in the source.
+VI 213,117 / EN 216,315 chars; 32 sequential unique `fig-1`…`fig-32` ids, 32 XML-valid SVGs,
+32 localized captions, 11 exercise items per language, 0 CJK / bare ampersands / Spanish /
+Vietnamese-in-EN prose, 0 off-canvas or overlapping SVG labels. Registered slug
+`ch07-display-devices-and-recorders`, done[7], progress 7/8. Site rebuilt: 512 work pages,
+sitemap 1,124 URLs, `check_links.py` broken 0. Published in `dfb96cc7`, pushed
+`f893ee2c..dfb96cc7`; live EN/VI chapter, TOC and catalog URLs all HTTP 200.
+Remaining: IPC ch8 (last), Baumann ch22-32, PPIC ch8-11. Books 11/12 located, not registered.

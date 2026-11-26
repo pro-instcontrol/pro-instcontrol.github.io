@@ -7,9 +7,11 @@
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
 **Status (2026-11-25):** 11 reader books complete and live 🟢 (rows below; flagship Book 6
 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8); the remaining
-campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `51251826`**
-(Book 9 PPIC Ch.7 "Spatial Aspects of Environmental Impact of Power Plants": 27 PDF pages /
-printed pp. 125–151, 2 vector figures, 6 tables, 59 references, no equations) — the prior HEAD
+campaign books are still in progress across Books 7, 9 and 10. **Live chapter HEAD `dfb96cc7`**
+(Book 10 IPC Ch.7 "Display Devices and Recorders": 24 PDF pages / printed pp. 317–340,
+32 vector figures, no tables or equations, 11 exercise questions) — the prior HEAD `51251826` was
+Book 9 PPIC Ch.7 "Spatial Aspects of Environmental Impact of Power Plants": 27 PDF pages /
+printed pp. 125–151, 2 vector figures, 6 tables, 59 references, no equations — and before that
 `ed5931f4` was Book 7 Baumann Ch.21 "The ABC Method for Estimating Hydrodynamic Sound Level":
 3 PDF/printed pp. 133–135, one 11-column table, 28 unnumbered equations, one worked example,
 no figures — and before that `b5a7b37e` was Book 10 IPC Ch.6 "Process Control": 45 PDF pages /
@@ -112,7 +114,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
 | `cvp` | **Book 7** — H. D. Baumann, *Control Valve Primer*, 5th ed. (ISA/Wiley 2011) | 204 pp | 32 | **21/32** 🟠 | 38 (ch1–6, ch9–11, ch13, ch15, ch18–20; ch17/ch21 have no figures) |
 | `bcv` | **Book 7b** — Borden/Friedmann, *Control Valves* (ISA Practical Guides 1998) — Ch.5 excerpt | 12 pp scan | 1 | **1/1** 🟢 | 4 |
 | `ppic` | **Book 9** — L. N. Jalali (ed.), *Handbook on Power Plant Instrumentation and Control* (Bibliotex 2019) | 308 pp | 11 | **7/11** 🟠 | 53 (ch1–7: 5 + 7 + 8 + 11 + 17 + 3 + 2) |
-| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **6/8** 🟠 | 280 (ch1–6: 51 + 58 + 72 + 30 + 43 + 26) |
+| `ipc` | **Book 10** — Prasad/Jayaswal/Priye, *Instrumentation and Process Control* (I.K. International 2019) | 403 pp | 8 | **7/8** 🟠 | 312 (ch1–7: 51 + 58 + 72 + 30 + 43 + 26 + 32) |
 
 **Library catalog:** 258 works; new works this campaign: 291 (Baumann), 292 (Borden), 293
 (Emerson), 294 (IIH), 295 (PPIC), 296 (IPC).
@@ -213,6 +215,10 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   printed pp. 204–228, published in `fb826fcb`)
   + Ch.5 "Signal Conditioning and Data Acquisition System" (43 vector figs, 78 unnumbered
   equations, 11 worked examples, 18 exercises, printed pp. 229–271, published in `64d01a87`)
+  + Ch.6 "Process Control" (26 vector figs, equations (6.1)–(6.4), 13 examples, 14 exercises,
+  PDF pp. 284–328 / printed pp. 272–316, published in `b5a7b37e`)
+  + Ch.7 "Display Devices and Recorders" (32 vector figs, no tables/equations, 11 exercises,
+  PDF pp. 329–352 / printed pp. 317–340, published in `dfb96cc7`)
 
 ### Live verification (2026-11-22, after resuming)
 - Emerson Ch.3 EN/VI deep URLs → **HTTP 200** (after Pages negative caching cleared); live TOC
@@ -470,8 +476,9 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   → `d8159c1c` (PPIC ch3) → `d42d37e1` (IPC ch3) → `2df01e67` (Baumann ch18)
   → `d7c9c22f` (Baumann ch18 reading-count correction) → `3ab39813` (PPIC ch4)
   → `fb826fcb` (IPC ch4) → `34f48d9a` (Baumann ch19) → `1065ce57` (PPIC ch5)
-  → `64d01a87` (IPC ch5) → `cf190d85` (Baumann ch20) → `612baf12` (PPIC ch6, **live chapter
-  HEAD**).
+  → `64d01a87` (IPC ch5) → `cf190d85` (Baumann ch20) → `612baf12` (PPIC ch6)
+  → `b5a7b37e` (IPC ch6) → `ed5931f4` (Baumann ch21) → `51251826` (PPIC ch7)
+  → `dfb96cc7` (IPC ch7, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -485,7 +492,11 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
    15 exercises, printed pp. 204–228, broken 0);
    ~~Ch.5 "Signal Conditioning and Data Acquisition System"~~ — **done** in `64d01a87` (43 vector
    figs, 78 unnumbered equations, 11 examples, 18 exercises, printed pp. 229–271, broken 0);
-   remaining Ch.6–8.
+   ~~Ch.6 "Process Control"~~ — **done** in `b5a7b37e` (26 vector figs, 4 equations, 13 examples,
+   14 exercises, broken 0);
+   ~~Ch.7 "Display Devices and Recorders"~~ — **done** in `dfb96cc7` (32 vector figs, 11 exercises,
+   PDF pp. 329–352 / printed pp. 317–340, broken 0);
+   remaining Ch.8 only.
 2. ~~Book 8 `iih` Ch.3 "Measurement of Level"~~ — **done** in `2d19c7d2` (21 figs)
    ~~Ch.4 "pH Measurement"~~ — **done** in `399e0cbb` (22 figs)
    ~~Ch.5 "Measurement of Flow Rate"~~ — **done** in `db6c38fb` (10 figs)
@@ -899,5 +910,23 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   bibliography entries; the QA gate now excludes the verbatim reference list from that check.
 - PPIC `ppic` is now **7/11** 🟠; remaining PPIC chapters are Ch.8–Ch.11. Next in the standing
   order: IPC Ch.7 → Baumann Ch.22 → PPIC Ch.8.
+
+## IPC Chapter 7 — Display Devices and Recorders (2026-11-25)
+
+- PDF pp. 329–352, printed pp. 317–340 (printed = PDF − 12), EN/VI slug
+  `ch07-display-devices-and-recorders`, published in `dfb96cc7` and verified live after Pages
+  propagation.
+- Five section writers and three figure suppliers against `work/ipc7_brief.md`: 32 vector figures
+  (potentiometric and chart recorders, magnetic/digital tape, fanfold, X-Y plotter, programmable
+  and paperless recorders, LED/LCD cells, seven-segment/dot-matrix/bar-graph displays, Nixie, LVD
+  and EPI cells), no tables or numbered equations, and the 11-question exercise. The a/b prose
+  boundary joins the printed fanfold sentence mid-clause as in the source; section 7.3 headings
+  are split cleanly between writers c and d.
+- QA: 32/32 sequential XML-valid SVGs with localized captions, 11 exercise items per language,
+  0 CJK / bare `&` / Spanish / Vietnamese-in-English prose, 0 label overlaps, `check_links.py`
+  broken 0, sitemap 1,124 URLs (8 Ch.7 entries). Live EN/VI deep URLs 200 (221/231 kB), TOC row
+  present, catalog badge "Translating · 7 of 8 chapters" / "Đang dịch · 7/8 chương".
+- IPC `ipc` is now **7/8** 🟠; remaining IPC chapter is Ch.8 only. Next in the standing order:
+  Baumann Ch.22 → PPIC Ch.8 → IPC Ch.8.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.
