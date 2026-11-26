@@ -55,6 +55,7 @@ SLUGS["cvp"] = {
     25: "ch25-seat-leakage-and-seat-materials",
     26: "ch26-valves-for-sanitary-or-aseptic-service",
     27: "ch27-sixteen-commandments-what-you-shall-not-do",
+    28: "ch28-electric-versus-pneumatic-actuators",
 }
 
 # Re-export the shared helpers so chapter modules can `import cvp_common as C`.
