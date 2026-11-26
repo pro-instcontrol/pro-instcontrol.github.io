@@ -7698,3 +7698,30 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
 - Also repaired three pre-existing BCIT work-card links (Docs → work/257, Entry Docs →
   work/258, Flow → work/259) and the matching search-index map in both catalogs; these
   had been corrupted by an earlier blanket counter replacement.
+
+## Session 2026-11-26 — Petrochemical industry cross-book focus section
+- At the user's request ("Do the same with focus on Petrochemical industry"), a third
+  thematic bilingual section was created at `/books/read/petrochemical-industry-focus/`
+  and `/vi/books/read/petrochemical-industry-focus/`, titled *Petrochemical Industry —
+  A Cross-Book Focus*. As before, no whole book was republished; only curated, attributed
+  sections were used.
+- Source collection `E:/Ebooks/Oil and Gas` was scanned by petrochemical keyword density
+  across all PDFs. The strongest sources were *Chemistry of Petrochemical Processes*
+  (Matar, 2nd ed., 2000), Wiley *Critical Content: Petroleum Technology* Part III entries
+  (Petrochemical Feedstocks, Ethylene, Propylene, BTX Processing, Benzene, Toluene,
+  Xylenes, Ethylbenzene, Butadiene, Isoprene, Fuels Synthetic Liquid, Economic Evaluation),
+  *Petroleum Product Handbook* Section 12, and the petroleum-refining library. Extraction
+  bundles live in `petrochemical-build/extract/u1`…`u6`.
+- Six curated units, all translated 6/6 into Vietnamese, each naming its sources and
+  carrying a bilingual inline SVG: feedstocks and refinery integration; steam cracking,
+  ethylene and propylene; BTX and C8 separation; C4 olefins, dienes and rubber; synthesis
+  gas and nonhydrocarbon intermediates; polymers, materials and economics. Source numbers
+  are retained (22.5 trillion ft3 U.S. 1998 gas use; amine 15-30%; cracker outlet 800°C;
+  p-xylene 60% versus about 90% with isomerization; 70% of 1-butene to LLDPE; CH4 + H2O →
+  CO + 3H2; +286 kJ/mol water splitting; 0.18-1.8 MMscfd methanol-to-hydrogen; 100 billion
+  lb PE in 1997; 54 U.S. establishments / $20.5 billion shipments in 1997; catalysts over
+  60% of organic output and 90% of processes).
+- Catalog cards added to both shelves; totals raised 260 → 261 works and 186,091 →
+  186,211 pages. Sitemap gained 7 alternating en/vi URLs. QA: JSON 48/48 EN/VI paragraph
+  pairs, no CJK characters, all 14 SVGs inside the viewBox, no double-slash navigation,
+  XML-valid sitemap. `build/check_links.py`: pages 1242, local references 36204, broken 0.
