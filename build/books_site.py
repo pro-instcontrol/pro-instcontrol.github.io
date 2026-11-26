@@ -389,6 +389,11 @@ DESC = {
         "and why the two do not map cleanly.",
         "Bảo vệ chống nổ theo cả hệ IEC và Bắc Mỹ: zone so với division, và vì sao hai hệ "
         "không ánh xạ sạch sang nhau."),
+    "electrical installations in hazardous areas": (
+        "McMillan's 678-page reference on hazardous-area electrical practice: classification, "
+        "release-rate calculation, protection concepts, selection, installation and maintenance.",
+        "Tài liệu 678 trang của McMillan về thực hành điện trong khu vực nguy hiểm: phân loại, "
+        "tính tốc độ thoát, nguyên lý bảo vệ, lựa chọn, lắp đặt và bảo trì."),
     "inherent safety in process plant design": (
         "A VTT dissertation on measuring inherent safety by index — minimise, substitute, moderate, "
         "simplify, made quantitative.",
@@ -502,6 +507,7 @@ TRANSLATED = {
     "handbook on power plant instrumentation and control": ("full", 11, 11),
     "instrumentation and process control": ("full", 8, 8),
     "exprotection global-america-basics": ("full", 6, 6),
+    "electrical installations in hazardous areas": ("progress", 22, 1),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
@@ -540,6 +546,7 @@ BOOK_SLUG = {
     "handbook on power plant instrumentation and control": "handbook-power-plant-instrumentation-control",
     "instrumentation and process control": "instrumentation-and-process-control",
     "exprotection global-america-basics": "exprotection-global-america-basics",
+    "electrical installations in hazardous areas": "electrical-installations-hazardous-areas",
 }
 
 

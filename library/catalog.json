@@ -108,13 +108,13 @@
   }
  ],
  "totals": {
-  "files": 2686,
-  "bytes": 2261380993,
-  "pdfs": 808,
-  "unique_pdfs": 586,
+  "files": 2687,
+  "bytes": 2296937009,
+  "pdfs": 809,
+  "unique_pdfs": 587,
   "duplicate_sets": 214,
   "wasted_bytes": 571049915,
-  "works": 258
+  "works": 259
  },
  "extensions": [
   {
@@ -24386,6 +24386,33 @@
    "desc": {
     "en": "A graduate-level textbook on industrial instrumentation and process control — transducers, telemetry, signal conditioning, PID control, recorders and microprocessor-based instrumentation systems.",
     "vi": "Giáo trình thiết bị đo và điều khiển quá trình — bộ chuyển đổi, đo từ xa, xử lý tín hiệu, điều khiển PID, máy ghi và hệ thống thiết bị đo vi xử lý."
+   }
+  },
+  {
+   "id": 297,
+   "title": "Electrical Installations in Hazardous Areas",
+   "dir": "D:/Ebooks/Chemical and Hazardous Area/MCMILLAN, A. (1998). Electrical Installations in Hazardous Areas",
+   "domain": "safety",
+   "why": 4,
+   "docs": [
+    {
+     "path": "D:/Ebooks/Chemical and Hazardous Area/MCMILLAN, A. (1998). Electrical Installations in Hazardous Areas/Electrical Installations in Hazardous Areas - A. McMillan (1998) WW.pdf",
+     "title": "Electrical Installations in Hazardous Areas - A. McMillan (1998) WW",
+     "pages": 678,
+     "bytes": 35555016,
+     "copies": [],
+     "head": "Electrical Installations in Hazardous Areas Eur Ing Alan McMillan C Eng FIEE FInstMC Butterworth-Heinemann First published 1998"
+    }
+   ],
+   "ndocs": 1,
+   "pages": 678,
+   "bytes": 35555016,
+   "year": 1998,
+   "copies": 0,
+   "head": "Electrical Installations in Hazardous Areas Eur Ing Alan McMillan C Eng FIEE FInstMC Butterworth-Heinemann First published 1998",
+   "desc": {
+    "en": "McMillan's Butterworth-Heinemann reference on electrical installations in hazardous areas: area classification, release calculations, European and UK apparatus protection concepts, selection, installation, inspection and maintenance.",
+    "vi": "Tài liệu tham khảo của McMillan (Butterworth-Heinemann) về lắp đặt điện trong khu vực nguy hiểm: phân loại khu vực, tính toán thoát khí, các nguyên lý bảo vệ thiết bị theo tiêu chuẩn châu Âu và Anh, lựa chọn, lắp đặt, kiểm tra và bảo trì."
    }
   }
  ]

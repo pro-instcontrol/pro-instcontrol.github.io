@@ -1079,6 +1079,88 @@ BOOKS = {
         "note_en": ("Printed labels A–A13 correspond to PDF pages 1–14. All tables are transcribed as HTML and all diagrams are redrawn as labelled vectors retaining source codes and values."),
         "note_vi": ("Nhãn in A–A13 tương ứng với các trang PDF 1–14. Mọi bảng được chép sang HTML và mọi sơ đồ được vẽ lại dạng vector có nhãn, giữ nguyên mã và giá trị của bản gốc."),
     },
+    "mcmillan": {
+        "slug": "electrical-installations-hazardous-areas",
+        "title_en": "Electrical Installations in Hazardous Areas",
+        "title_vi": "Lắp đặt điện trong khu vực nguy hiểm",
+        "byline_en": "Alan McMillan · Electrical Installations in Hazardous Areas (Butterworth-Heinemann, 1998)",
+        "byline_vi": "Alan McMillan · Lắp đặt điện trong khu vực nguy hiểm (Butterworth-Heinemann, 1998)",
+        "pages": 678,
+        "files": 1,
+        "first_en": ("ch01-introduction", "Introduction"),
+        "first_vi": ("ch01-introduction", "Giới thiệu"),
+        "chapters": {
+            1: ("Introduction", "Giới thiệu"),
+            2: ("Area classification", "Phân loại khu vực"),
+            3: ("Area classification practice for gases, vapours and mists in freely ventilated situations",
+                "Thực hành phân loại khu vực cho khí, hơi và sương mù trong điều kiện thông gió tự do"),
+            4: ("Calculation of release rates and the extents of hazardous areas",
+                "Tính toán tốc độ thoát và phạm vi khu vực nguy hiểm"),
+            5: ("Area classification practice for gases, vapours and mists in areas which are not freely ventilated",
+                "Thực hành phân loại khu vực cho khí, hơi và sương mù ở nơi không thông gió tự do"),
+            6: ("Area classification practice for dusts", "Thực hành phân loại khu vực cho bụi"),
+            7: ("Design philosophy for electrical apparatus for explosive atmospheres",
+                "Triết lý thiết kế thiết bị điện dùng trong khí quyển nổ"),
+            8: ("General requirements for explosion protected apparatus (gas, vapour and mist risks)",
+                "Yêu cầu chung cho thiết bị bảo vệ chống nổ (nguy cơ khí, hơi và sương mù)"),
+            9: ("Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'",
+                "Thiết bị theo nguyên lý bọc kín 'm', ngâm dầu 'o' và nhồi bột 'q'"),
+            10: ("Apparatus using protection concept flameproof enclosure 'd'",
+                 "Thiết bị theo nguyên lý vỏ chống cháy 'd'"),
+            11: ("Apparatus using protection concept pressurization 'p'",
+                 "Thiết bị theo nguyên lý tạo áp 'p'"),
+            12: ("Apparatus using protection concept increased safety 'e'",
+                 "Thiết bị theo nguyên lý an toàn tăng cường 'e'"),
+            13: ("Apparatus and systems using protection concept intrinsic safety 'i'",
+                 "Thiết bị và hệ thống theo nguyên lý an toàn nội tại 'i'"),
+            14: ("Apparatus using protection concept 'N' ('n')",
+                 "Thiết bị theo nguyên lý 'N' ('n')"),
+            15: ("Protection concepts for apparatus for dust risks",
+                 "Nguyên lý bảo vệ thiết bị cho nguy cơ bụi"),
+            16: ("Other methods of protection and future apparatus requirements",
+                 "Phương pháp bảo vệ khác và yêu cầu thiết bị trong tương lai"),
+            17: ("Selection of power supply, apparatus and interconnecting cabling system for both gas/vapour/mist risks and dust risks",
+                 "Lựa chọn nguồn điện, thiết bị và hệ thống cáp liên kết cho cả nguy cơ khí/hơi/sương mù và bụi"),
+            18: ("Installations in explosive atmospheres of gas, vapour, mist and dust",
+                 "Lắp đặt trong khí quyển nổ chứa khí, hơi, sương mù và bụi"),
+            19: ("Installation of pressurized apparatus and other uses of the pressurization technique",
+                 "Lắp đặt thiết bị tạo áp và các ứng dụng khác của kỹ thuật tạo áp"),
+            20: ("Installation of intrinsically safe apparatus and associated apparatus and intrinsically safe systems 'i'",
+                 "Lắp đặt thiết bị an toàn nội tại, thiết bị liên quan và hệ thống an toàn nội tại 'i'"),
+            21: ("Documentation, inspection, test and maintenance of explosion protected apparatus, systems and installations",
+                 "Tài liệu, kiểm tra, thử nghiệm và bảo trì thiết bị, hệ thống và lắp đặt bảo vệ chống nổ"),
+            22: ("Radio frequency radiation and static electricity",
+                 "Bức xạ tần số vô tuyến và tĩnh điện"),
+        },
+        "done": {
+            1: "ch01-introduction",
+        },
+        "copyright_en": "Original work © 1998 Reed Educational and Professional Publishing Ltd.",
+        "copyright_vi": "Bản gốc © 1998 Reed Educational and Professional Publishing Ltd.",
+        "lede_en": ("A 22-chapter reference on electrical installations in hazardous areas: "
+                    "area classification for gases, vapours, mists and dusts; release-rate "
+                    "calculation; European and UK protection concepts; apparatus selection, "
+                    "installation, inspection and maintenance."),
+        "lede_vi": ("Tài liệu 22 chương về lắp đặt điện trong khu vực nguy hiểm: phân loại khu vực "
+                    "cho khí, hơi, sương mù và bụi; tính toán tốc độ thoát; các nguyên lý bảo vệ "
+                    "châu Âu và Anh; lựa chọn thiết bị, lắp đặt, kiểm tra và bảo trì."),
+        "lede_done_en": ("Chapter 1 of Electrical Installations in Hazardous Areas is available "
+                         "in English and Vietnamese; the remaining chapters are being translated."),
+        "lede_done_vi": ("Chương 1 của Lắp đặt điện trong khu vực nguy hiểm đã có bản tiếng Anh và "
+                         "tiếng Việt; các chương còn lại đang được dịch."),
+        "policy_en": ("<b>About this copy.</b> The source PDF is held in the local library "
+                      "catalogue and is not republished here; this is the online contents map "
+                      "with links to chapters that have a Vietnamese translation."),
+        "policy_vi": ("<b>Cách đọc bản dịch.</b> Tệp PDF nguồn được lưu trong thư viện cục bộ và "
+                      "không được đăng lại tại đây; đây là bản đồ mục lục trực tuyến với liên "
+                      "kết tới các chương đã có bản dịch tiếng Việt."),
+        "note_en": ("For the main text, printed page = PDF page − 21. Chapter figures are "
+                    "redrawn as labelled vectors and the two overview tables are transcribed "
+                    "as HTML, retaining source codes, temperatures and classification notes."),
+        "note_vi": ("Với phần nội dung chính, trang in = trang PDF − 21. Hình vẽ được dựng lại "
+                    "dạng vector có nhãn và hai bảng tổng hợp được chép sang HTML, giữ nguyên "
+                    "mã, nhiệt độ và ghi chú phân loại của bản gốc."),
+    },
 }
 
 
