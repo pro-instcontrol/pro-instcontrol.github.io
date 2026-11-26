@@ -499,7 +499,7 @@ TRANSLATED = {
     "control valves - practical guides": ("full", 1, 1),
     "control valve handbook - 6th edition": ("full", 15, 15),
     "illustrated handbook of industrial instrumentation": ("full", 8, 8),
-    "handbook on power plant instrumentation and control": ("progress", 11, 10),
+    "handbook on power plant instrumentation and control": ("full", 11, 11),
     "instrumentation and process control": ("full", 8, 8),
 }
 

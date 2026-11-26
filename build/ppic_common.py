@@ -37,6 +37,7 @@ SLUGS["ppic"] = {
     8: "ch08-optimization-and-damping-performance-coal-fired-power-plant",
     9: "ch09-predictive-maintenance-based-on-control-charts",
     10: "ch10-models-for-the-reliability-analysis-of-digital-instrumentation-and-control-systems",
+    11: "ch11-saturated-adaptive-output-feedback-power-level-control",
 }
 
 # Re-export the shared helpers so chapter modules can `import ppic_common as C`.
