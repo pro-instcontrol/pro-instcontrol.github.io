@@ -971,6 +971,7 @@ BOOKS = {
             5: "ch05-analysis-of-spatial-separation-effects",
             6: "ch06-developments-of-power-system-protection-and-control",
             7: "ch07-spatial-aspects-of-environmental-impact-of-power-plants",
+            8: "ch08-optimization-and-damping-performance-coal-fired-power-plant",
         },
         "copyright_en": "Original work © 2019 Bibliotex; individual chapters © their authors, Creative Commons.",
         "copyright_vi": "Bản gốc © 2019 Bibliotex; từng chương © tác giả tương ứng, giấy phép Creative Commons.",
