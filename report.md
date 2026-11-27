@@ -5,12 +5,15 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-26):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 3/22 (rows below;
+**Status (2026-11-26):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 4/22 (rows below;
 flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
 IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32, R. STAHL ExProtection `expb` 🟢
-6/6). **Live chapter HEAD `023705e9`** (ExProtection Global-America-Basics: 14 source pages,
-six bilingual units, six vector figures, 13 transcribed tables — the new reader book requested
-from `/books/work/70/`). Prior chapter HEAD `ee024fab`
+6/6). **Live chapter HEAD `99e874c5`** (McMillan Ch.4 "Calculation of release rates and the
+extents of hazardous areas": 38 source pages, 3 vector figures, 2 tables, 68 equation blocks,
+7 references). Prior chapter HEAD `7bcc937a` (McMillan Ch.3, 44 source pages, 16 vector figures,
+4 tables, 6 refs); before that `023705e9` was ExProtection Global-America-Basics (14 source
+pages, six bilingual units, six vector figures, 13 transcribed tables — the new reader book
+requested from `/books/work/70/`). Prior chapter HEAD `ee024fab`
 (Book 7 Baumann Ch.32 "Pipe Vibration Due to Sound": 5 PDF pages / printed pp. 185–189,
 2 vector figures, 6 displayed equations, one worked field case, one additional-reading item
 — completing Baumann at 32/32 and the whole campaign). Prior published HEAD `a3fdd131` was
@@ -1343,7 +1346,8 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   is being translated one chapter at a time. Chapter 1 “Introduction” (`13dfadf3`, 21 pages,
   7 vector figures, 2 tables) and Chapter 2 “Area classification” (`227cf5e3`, 21 pages,
   6 vector figures, 1 table) preceded Chapter 3 “Area classification practice for gases,
-  vapours and mists in freely ventilated situations” (`0bb7546`, merged as `7bcc937a`).
+  vapours and mists in freely ventilated situations” (`0bb7546`, merged as `7bcc937a`) and
+  Chapter 4 “Calculation of release rates and the extents of hazardous areas” (`99e874c5`).
 - Chapter 3 covers printed pp. 43–86 (PDF pp. 64–107, `PAGES_SRC = 44`): all eleven sections
   3.1–3.4.11, 16 vector redraws (printed Figs 3.1–3.5 and 3.9–3.19), four transcribed tables
   (3.1–3.4) and six references. Eight PDF pages 80–87 (printed 59–66) are literal
@@ -1353,6 +1357,20 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   pages PASS — figs 1–16, 16 XML-valid SVGs, 4 tables (13/11/8/8 rows), 6 refs, 1 h2 / 4 h3 /
   21 h4, all key values present, 0 CJK / bare `&` / Spanish / VI-in-EN prose. The catalog badge
   is 🟠 3/22; `check_links.py` broken 0, merged sitemap 1,212 URLs after reconciling four
-  upstream focus-section commits. Next unit: McMillan Chapter 4.
+  upstream focus-section commits.
+- Chapter 4 covers printed pp. 87–124 (PDF pp. 108–145, `PAGES_SRC = 38`): all six sections
+  4.1–4.6, six worked examples, 34 numbered equations (4.22 is absent in print), 68 equation
+  blocks, three vector figures (dispersion-changeover chart, release geometry, Reynolds chart)
+  and two transcribed tables (196 material rows in Table 4.1 plus 13 vapour-pressure rows in
+  Table 4.2). Unlike Chapter 3, the source span has no MISSING PAGE placeholders.
+- Brief `work/mcmillan_ch04_brief.md`; QA scripts `work/qa_mcmillan_ch04.py` and
+  `work/qa_mcmillan_ch04_figs.py`: both EN and VI pages PASS — figs 1–3, 3 XML-valid SVGs,
+  3/3 localized captions, 2 tables (197/14 rows including headers), 7 refs, 68 equation blocks,
+  1 h2 / 6 h3 / 7 h4, all key values present, 0 CJK / bare `&` / Spanish / VI-in-EN prose,
+  0 clipped or overlapping SVG labels. Named HTML entities in the draft prose were normalized
+  to literal Unicode to satisfy the bare-ampersand gate. Pushed `99e874c5`; live EN/VI deep
+  URLs initially 404, then HTTP 200 after Pages propagation; live pages, TOC row, 4/22 badge
+  and 8 sitemap entries verified. `check_links.py` broken 0, sitemap 1,246 URLs. Next unit:
+  McMillan Chapter 5.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

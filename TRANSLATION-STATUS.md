@@ -7753,3 +7753,38 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   186,211 pages. Sitemap gained 7 alternating en/vi URLs. QA: JSON 48/48 EN/VI paragraph
   pairs, no CJK characters, all 14 SVGs inside the viewBox, no double-slash navigation,
   XML-valid sitemap. `build/check_links.py`: pages 1242, local references 36204, broken 0.
+
+## Session 2026-11-26 — McMillan Chapter 4 published (EN/VI, 3 vector figures, 2 tables)
+
+- Chapter: *Calculation of release rates and the extents of hazardous areas*, printed
+  pp. 87–124 (PDF pp. 108–145, `PAGES_SRC = 38`, printed = PDF − 21). Bilingual slug
+  `ch04-calculation-of-release-rates-and-extents`. Brief `work/mcmillan_ch04_brief.md`, source
+  renders `work/mcmillan_ch04_pages/p108.png`–`p145.png`. Unlike Chapter 3 this span contains
+  no MISSING PAGE placeholders.
+- Five prose agents had produced `mcmillan_ch04a…e.py`, four table agents had transcribed the
+  ten-page Table 4.1 into `mcmillan_tbl41_a…d.py`, and one figure supplier had drawn the three
+  printed diagrams in `mcmillanfig04_a.py`. Integration added `mcmillan_ch04.py`, inserting the
+  196-row Table 4.1 after the section 4.1 lead-in and appending the seven printed references
+  and a bilingual source-quirks note.
+- Content: six sections, six worked examples, 34 printed equation numbers (Eq. 4.22 is absent
+  in print), 68 equation blocks, three vector redraws (dispersion-changeover log chart, release
+  geometry, Reynolds-number chart), Table 4.1 (196 flammable-material rows), Table 4.2 (13
+  vapour-pressure rows) and seven references. Printed inconsistencies are retained with notes:
+  the Fig. 4.1 text swaps the printed legend curves, §4.5 cites a non-existent ventilation
+  table, the conclusion cites an unprinted Fig. 4.5, the §4.5.1 heading prints BS/EN 10079-10,
+  and the worked examples contain several internal numerical mismatches.
+- Integration normalized named HTML entities in the prose modules to literal Unicode to satisfy
+  the zero-bare-ampersand gate. QA scripts `work/qa_mcmillan_ch04.py` and
+  `work/qa_mcmillan_ch04_figs.py`: both EN and VI PASS — figs `[1,2,3]`, 3 XML-valid SVGs,
+  3/3 localized captions, 2 tables (197/14 rows including headers), 7 refs, 68 equation blocks,
+  1 h2 / 6 h3 / 7 h4, all key values present, 0 CJK / 0 content bare ampersands / 0 Spanish /
+  0 VI-in-EN prose, 0 clipped or overlapping SVG labels. The Spanish guard omits `para` because
+  Table 4.1's printed footnote legitimately says "para forms".
+- Pushed `99e874c5` ("Publish McMillan chapter 4: release rates and hazardous-area extents
+  (EN/VI, 3 vector figures, 2 tables)"). Live EN/VI deep URLs initially 404, then HTTP 200
+  after Pages propagation; live pages contain 3 XML-valid SVGs, 3/3 localized captions, 2 tables
+  with 197/14 rows, 68 equation blocks, 7 refs and 0 guard hits; live TOC lists Ch.4, catalog
+  badges read "Translating · 4 of 22 chapters" / "Đang dịch · 4/22 chương", and the live sitemap
+  has 2 `<loc>` plus 6 hreflang alternates. `check_links.py` broken 0; sitemap 1,246 URLs.
+- McMillan is now **4/22** 🟠. Next unit: Ch.5 "Area classification practice for gases,
+  vapours and mists in areas which are not freely ventilated".

@@ -2,10 +2,11 @@
 
 **State now (2026-11-26):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
-11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `7bcc937a`**
-(McMillan Ch.3 “Area classification practice for gases, vapours and mists in freely ventilated
-situations”: 44 source pages, 16 vector figures, 4 tables, 6 refs; `0bb7546` chapter commit merged
-with four upstream focus-section commits). **Next unit: McMillan Ch.4** — see `TRANSLATION-STATUS.md`.
+11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `99e874c5`**
+(McMillan Ch.4 “Calculation of release rates and the extents of hazardous areas”: 38 source pages,
+3 vector figures, 2 tables, 68 equation blocks, 7 refs). **Next unit: McMillan Ch.5** — see
+`TRANSLATION-STATUS.md`. Prior HEAD `7bcc937a` (McMillan Ch.3, 44 source pages, 16 vector figures,
+4 tables, 6 refs; `0bb7546` chapter commit merged with four upstream focus-section commits).
 Prior HEAD `227cf5e3` (McMillan Ch.2 “Area classification”, 6 vector figures, 1 table). Prior `023705e9`
 (ExProtection Global-America-Basics, six bilingual units / six vector figures / 13 tables,
 published from the user's `/books/work/70/` request); prior HEAD `ee024fab` (Baumann Ch.32
@@ -48,13 +49,15 @@ vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercis
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,140 URLs,
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,246 URLs,
 catalog badges IIH 8/8, Emerson 15/15, IPC 8/8, PPIC 11/11, Baumann 32/32 and ExProtection
-6/6 all `full`; Baumann and ExProtection EN/VI deep URLs **200** after Pages propagation,
-both TOCs list all units, `check_links.py` broken 0, sitemap 1,170 URLs. Full tables in `report.md`.
+6/6 all `full`, McMillan badge 🟠 4/22; McMillan, Baumann and ExProtection EN/VI deep URLs
+**200** after Pages propagation, all TOCs list all units, `check_links.py` broken 0.
+Full tables in `report.md`.
 
-**Next unit: McMillan Ch.4** — “Calculation of release rates and the extents of hazardous
-areas”. The older 15-book campaign is complete 🟢, and McMillan chapters 1–3 are live at 3/22;
+**Next unit: McMillan Ch.5** — “Area classification practice for gases, vapours and mists in
+areas which are not freely ventilated”. The older 15-book campaign is complete 🟢, and McMillan
+chapters 1–4 are live at 4/22;
 continue one chapter at a time with the same brief → figures → prose → QA → push recipe. The
 McMillan 678-page source has eight literal “MISSING PAGE” pages (PDF 80–87 = printed 59–66):
 never invent the missing Figs 3.6–3.8 or Tables 3.5–3.10, and carry forward the source-gap note.
@@ -76,6 +79,26 @@ IPC at 8/8 (Ch.1–8 done). Also books located but not registered
 Knowledge*, 2nd ed., 511 pp).
 
 ---
+
+## 0.97 McMillan Ch.4 "Calculation of release rates and the extents of hazardous areas" published in `99e874c5`
+- Source `work/mcmillan_ch04_brief.md`: PDF pp. 108–145 = printed pp. 87–124, `PAGES_SRC = 38`
+  (printed = PDF − 21), with 38 pypdfium2 renders in `work/mcmillan_ch04_pages/`. Unlike Ch.3
+  there are no MISSING PAGE placeholders. Five prose modules (`mcmillan_ch04a…e.py`), one figure
+  supplier (`mcmillanfig04_a.py`) and four table modules (`mcmillan_tbl41_a…d.py`) were merged
+  by `mcmillan_ch04.py`; the shell inserts the 196-row Table 4.1 after the section 4.1 lead-in.
+- Content: six sections, six worked examples, 34 printed equation numbers (4.22 is absent),
+  68 equation blocks, three vector redraws (dispersion-changeover chart, release geometry,
+  Reynolds chart), two tables (196 material rows + 13 vapour-pressure rows) and seven references.
+- Integration normalized named HTML entities (`&times;`, `&minus;`, `&Delta;`, …) to literal
+  Unicode in the prose modules so the content has 0 bare ampersands; the site shell still has
+  its two pre-existing Google-Fonts ampersands. QA scripts `work/qa_mcmillan_ch04.py` and
+  `work/qa_mcmillan_ch04_figs.py`: both EN/VI pages PASS — figs 1–3, 3 XML-valid SVGs, 3/3
+  localized captions, tables 197/14 rows, 7 refs, 68 equation blocks, 1 h2 / 6 h3 / 7 h4,
+  all key values present, 0 CJK / bare `&` / Spanish / VI-in-EN prose, 0 clipped or overlapping
+  labels. The Spanish guard omits `para` because Table 4.1's printed footnote says "para forms".
+- `check_links.py` broken 0; sitemap 1,246 URLs with 8 entries for Ch.4. Live EN/VI deep URLs
+  initially 404, then **200** after Pages propagation; live pages, TOC row, 4/22 badge and
+  8 sitemap entries verified. **McMillan is 4/22 🟠. Next: Ch.5.**
 
 ## 0.96 Session 96 — Baumann Ch.29 published (2026-11-26)
 - `cvp_ch29.py` written directly: three printed pages, five displayed equations, two
