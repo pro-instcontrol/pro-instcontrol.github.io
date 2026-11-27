@@ -5,12 +5,10 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 9/22 (rows below;
+**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 10/22 (rows below;
 flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
 IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32, R. STAHL ExProtection `expb` 🟢
-6/6). **Live chapter HEAD `10ecd23e`** (McMillan Ch.9 "Apparatus using protection concepts
-encapsulation 'm', oil immersion 'o' and powder filling 'q'": 17 source pages / printed pp.
-209–225, 2 vector figures, 3 tables, 30 references, no equations). Prior chapter HEAD `70ec088b`
+6/6). **Live chapter HEAD `3edc08f0`** (McMillan Ch.10 "Apparatus using protection concept flameproof enclosure 'd'": 49 source pages / printed pp. 226–274, 29 vector figures, 15 tables, 17 references, no equations). Prior chapter HEAD `10ecd23e` was McMillan Ch.9 "Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'" (17 source pages / printed pp. 209–225, 2 vector figures, 3 tables, 30 references); before that `70ec088b`
 (McMillan Ch.8 "General requirements for explosion protected apparatus (gas, vapour and mist
 risks)": 31 source pages / printed pp. 178–208, 9 vector figures, 6 tables, 19 references, no
 equations). Prior chapter HEAD `11e932ca` (McMillan Ch.7 "Design
@@ -1475,7 +1473,24 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   URLs initially 404/200, then both HTTP 200 after Pages propagation; live pages, TOC rows,
   9/22 catalog badges in both languages and 8 sitemap entries verified. `check_links.py` broken 0,
   sitemap 1,256 URLs.
-  Next unit: McMillan Chapter 10.
+- Chapter 10 covers printed pp. 226–274 (PDF pp. 247–295, `PAGES_SRC = 49`): "Apparatus using
+  protection concept flameproof enclosure 'd'" — standards history, flamepath construction and
+  testing, flat/flanged/spigot/cylindrical/threaded/cemented joints, shaft and rotating-machine
+  joints, enclosure construction and entry facilities, fasteners, component parts, freestanding
+  components and lampholders. 29 vector figures, 15 transcribed tables and 17 references; no
+  equations or worked examples. No `MISSING PAGE` placeholders.
+- Assembled brief `work/mcmillan_ch10_brief.md` from six verified surveys, writer contract
+  `work/mcmillan_ch10_writer_contract.md`, fixed module map `work/mcmillan_ch10_module_map.md`,
+  49 page renders, nine prose modules `mcmillan_ch10a…i.py`, four figure suppliers
+  `mcmillanfig10a…d.py` and three table modules `mcmillan_tbl10_1_5.py`,
+  `mcmillan_tbl10_6_10.py`, `mcmillan_tbl10_11_15.py`, merged by `mcmillan_ch10.py`. QA scripts
+  `work/qa_mcmillan_ch10.py` and `work/qa_mcmillan_ch10_figs.py`: both EN and VI pages PASS —
+  29/29 XML-valid SVGs with localized captions, 15 tables, 17 refs, 1 h2 / 6 h3 / 28 h4, all key
+  values present, 0 CJK / bare `&` / Spanish / VI-in-EN prose, 0 off-canvas or overlapping
+  labels. QA allowlisted the French proper noun `Européen` in the CENELEC reference and the
+  localized `0,1 mm` decimal comma in VI. Pushed `3edc08f0`; EN/VI deep URLs initially 404, then
+  both HTTP 200 after Pages propagation; live pages, TOC rows, 10/22 catalog badges and 8 sitemap
+  entries verified. `check_links.py` broken 0, sitemap 1,258 URLs. Next unit: McMillan Chapter 11.
 - Catalog restoration (2026-11-27): the four curated cross-book cards — Measurement
   Instrumentation for Upstream Oil & Gas, Instrumentation & Control Systems focus, Oil Refining
   focus and Petrochemical Industry focus — were dropped when the Chapter 4 rebuild regenerated

@@ -2,10 +2,12 @@
 
 **State now (2026-11-27):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
-11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `10ecd23e`**
-(McMillan Ch.9 “Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and
-powder filling 'q'”: 17 source pages, 2 vector figures, 3 tables, 30 refs). **Next unit: McMillan
-Ch.10** — see `TRANSLATION-STATUS.md`.
+11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `3edc08f0`**
+(McMillan Ch.10 “Apparatus using protection concept flameproof enclosure 'd'”: 49 source pages
+/ printed pp. 226–274, 29 vector figures, 15 tables, 17 refs). **Next unit: McMillan Ch.11** —
+see `TRANSLATION-STATUS.md`. Prior HEAD `10ecd23e` was McMillan Ch.9 “Apparatus using protection
+concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'” (17 source pages, 2 vector
+figures, 3 tables, 30 refs).
 Prior HEAD `70ec088b` (McMillan Ch.8 “General requirements for explosion protected apparatus
 (gas, vapour and mist risks)”: 31 source pages, 9 vector figures, 6 tables, 19 refs); before that
 `32bc3380` (McMillan Ch.6 “Area classification practice for dusts”: 15 source pages,
@@ -58,9 +60,9 @@ vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercis
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,256 URLs,
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,258 URLs,
 catalog badges IIH 8/8, Emerson 15/15, IPC 8/8, PPIC 11/11, Baumann 32/32 and ExProtection
-6/6 all `full`, McMillan badge 🟠 9/22; McMillan, Baumann and ExProtection EN/VI deep URLs
+6/6 all `full`, McMillan badge 🟠 10/22; McMillan, Baumann and ExProtection EN/VI deep URLs
 **200** after Pages propagation, all TOCs list all units, `check_links.py` broken 0.
 Full tables in `report.md`.
 
@@ -71,8 +73,8 @@ were accidentally dropped by the Chapter 4 catalog rebuild. They are now emitted
 counts; live EN/VI catalogs show 21 translated cards, 21 in the translated pill, and all four
 links. Never hand-edit the generated `books/index.html` to add these cards again.
 
-**Next unit: McMillan Ch.10**. The older 15-book campaign is complete 🟢, and McMillan
-chapters 1–9 are live at 9/22;
+**Next unit: McMillan Ch.11**. The older 15-book campaign is complete 🟢, and McMillan
+chapters 1–10 are live at 10/22;
 continue one chapter at a time with the same brief → figures → prose → QA → push recipe. The
 McMillan 678-page source has eight literal “MISSING PAGE” pages (PDF 80–87 = printed 59–66):
 never invent the missing Figs 3.6–3.8 or Tables 3.5–3.10, and carry forward the source-gap note.
@@ -94,6 +96,28 @@ IPC at 8/8 (Ch.1–8 done). Also books located but not registered
 Knowledge*, 2nd ed., 511 pp).
 
 ---
+
+## 0.102 McMillan Ch.10 "Apparatus using protection concept flameproof enclosure 'd'" published in `3edc08f0`
+- Source printed pp. 226–274 (PDF 247–295, `PAGES_SRC = 49`, printed = PDF − 21), raw lines
+  10567–12260, 49 pypdfium2 renders in `work/mcmillan_ch10_pages/`. No `MISSING PAGE` pages.
+- Six verified surveys (`work/ch10_survey_a…f.md`) were assembled into `work/mcmillan_ch10_brief.md`;
+  `work/mcmillan_ch10_writer_contract.md` and `work/mcmillan_ch10_module_map.md` fixed the
+  nine-prose / four-figure / three-table module contracts. Nine prose modules
+  `mcmillan_ch10a…i.py`, four figure suppliers `mcmillanfig10a…d.py` (29 vector redraws) and
+  three table modules `mcmillan_tbl10_1_5.py`, `mcmillan_tbl10_6_10.py`,
+  `mcmillan_tbl10_11_15.py` (15 tables) were merged by `mcmillan_ch10.py`, which owns the
+  17 printed references, glossary, source-quirk note and copyright.
+- QA `work/qa_mcmillan_ch10.py` and `work/qa_mcmillan_ch10_figs.py`: both EN and VI pages PASS —
+  29 XML-valid SVGs, 29/29 localized captions, 15 tables, 17 refs, 1 h2 / 6 h3 / 28 h4, no
+  equations, 0 CJK / bare `&` / Spanish / VI-in-EN prose, 0 off-canvas or overlapping labels.
+  QA allowlists `Européen` (French proper noun in the CENELEC reference) and localizes
+  `0.1 mm` vs `0,1 mm`. Printed quirks retained with notes include the image-only p275 figure
+  and Table 10.12, OCR `70.3.2`/`70.3.3`, Table 10.8's unclosed parenthesis, Table 10.10's
+  missing `≤`, `efc.`, `neither … or`, `Fab of IEC 61`, and the BS 5101 reference-16 mismatch.
+- Pushed `3edc08f0`; EN/VI deep URLs initially 404, then both HTTP 200 after Pages propagation.
+  Live TOC rows, 10/22 catalog badges ("Translating · 10 of 22 chapters" / "Đang dịch · 10/22
+  chương") and 8 sitemap entries verified; `check_links.py` broken 0, sitemap 1,258 URLs.
+  **McMillan is 10/22 🟠. Next: Ch.11.**
 
 ## 0.101 McMillan Ch.9 "Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'" published in `10ecd23e`
 - Source `work/mcmillan_ch09_brief.md`: PDF pp. 230–246 = printed pp. 209–225, `PAGES_SRC = 17`

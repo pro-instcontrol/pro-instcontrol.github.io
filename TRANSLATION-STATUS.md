@@ -7915,3 +7915,31 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   ("Translating · 9 of 22 chapters" / "Đang dịch · 9/22 chương") and 8 sitemap entries verified.
   `check_links.py` broken 0; sitemap 1,256 URLs.
 - McMillan is now **9/22** 🟠. Next unit: Ch.10.
+
+## Session 2026-11-27 — McMillan Chapter 10 published (EN/VI, 29 vector figures, 15 tables, 17 refs)
+
+- Chapter: *Apparatus using protection concept flameproof enclosure 'd'*, printed pp. 226–274
+  (PDF pp. 247–295, `PAGES_SRC = 49`, printed = PDF − 21), raw lines 10567–12260. Bilingual slug
+  `ch10-apparatus-using-protection-concept-flameproof-enclosure-d`. 49 renders in
+  `work/mcmillan_ch10_pages/`; no `MISSING PAGE` placeholders, equations or worked examples.
+- Six verified surveys (`work/ch10_survey_a…f.md`) were assembled into `work/mcmillan_ch10_brief.md`.
+  `work/mcmillan_ch10_writer_contract.md` and `work/mcmillan_ch10_module_map.md` fixed the
+  nine-prose / four-figure / three-table module contracts. Nine prose writers, four figure
+  suppliers (29 vector redraws) and three table transcribers (15 transcribed tables) worked in
+  parallel and were merged by `mcmillan_ch10.py`, which owns the 17 printed references,
+  glossary, source-quirk note and copyright.
+- Content: §10.1 Standards; §10.2 construction/testing of flamepaths (flat, spigot, composite,
+  cylindrical, threaded and cemented joints; shaft and rotating-machine joints; greasing and
+  joint tests); §10.3 enclosure construction, entry facilities, fasteners, component parts,
+  freestanding components and lampholders. Printed quirks retained with notes: image-only p275
+  Fig. 10.14 / Table 10.12, OCR `70.3.2`/`70.3.3`, Table 10.8 unclosed parenthesis, Table 10.10
+  missing `≤`, `efc.`, `neither … or`, `Fab of IEC 61`, and BS 5101's reference-16 marker.
+- QA `work/qa_mcmillan_ch10.py` and `work/qa_mcmillan_ch10_figs.py`: both EN and VI pages PASS —
+  fig ids 1–29, 29 XML-valid SVGs, 29/29 localized captions, 15 tables, 17 refs, 1 h2 / 6 h3 /
+  28 h4, 0 equations, 0 CJK / bare `&` / Spanish / VI-in-EN prose, 0 off-canvas or overlapping
+  labels. QA allowlists French `Européen` and localizes `0.1 mm` vs `0,1 mm`.
+- Pushed `3edc08f0` ("Publish McMillan chapter 10: flameproof enclosure 'd' (EN/VI, 29 vector
+  figures, 15 tables)"), 27 files / 6,811 insertions. Live EN/VI deep URLs initially 404, then
+  both HTTP 200 after Pages propagation; live TOC rows, 10/22 catalog badges and 8 sitemap entries
+  verified. `check_links.py` broken 0; sitemap 1,258 URLs.
+- McMillan is now **10/22** 🟠. Next unit: Ch.11.
