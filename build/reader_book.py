@@ -1140,6 +1140,7 @@ BOOKS = {
             5: "ch05-not-freely-ventilated-areas",
             6: "ch06-area-classification-practice-for-dusts",
             7: "ch07-design-philosophy-for-electrical-apparatus",
+            8: "ch08-general-requirements-for-explosion-protected-apparatus",
         },
         "copyright_en": "Original work © 1998 Reed Educational and Professional Publishing Ltd.",
         "copyright_vi": "Bản gốc © 1998 Reed Educational and Professional Publishing Ltd.",
