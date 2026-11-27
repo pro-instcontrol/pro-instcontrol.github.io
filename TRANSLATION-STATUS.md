@@ -7788,3 +7788,31 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   has 2 `<loc>` plus 6 hreflang alternates. `check_links.py` broken 0; sitemap 1,246 URLs.
 - McMillan is now **4/22** 🟠. Next unit: Ch.5 "Area classification practice for gases,
   vapours and mists in areas which are not freely ventilated".
+
+## Session 2026-11-26 — McMillan Chapter 5 published (EN/VI, 15 vector figures)
+
+- Chapter: *Area classification practice for gases, vapours and mists in areas which are not
+  freely ventilated*, printed pp. 125–148 (PDF pp. 146–169, `PAGES_SRC = 24`, printed = PDF − 21).
+  Bilingual slug `ch05-not-freely-ventilated-areas`. Brief `work/mcmillan_ch05_brief.md`, source
+  renders `work/mcmillan_ch05_pages/p146.png`–`p169.png`. Unlike Chapter 3 this span contains no
+  MISSING PAGE placeholders.
+- A survey agent produced the brief; five prose agents wrote `mcmillan_ch05a…e.py` and two figure
+  suppliers drew `mcmillanfig05_a.py` (figs 5.1–5.10) and `mcmillanfig05_b.py` (figs 5.11–5.15).
+  Integration added `mcmillan_ch05.py`, the four printed references and bilingual source notes.
+- Content: all sections 5.1–5.7, 15 vector redraws, one worked example reusing Eqs. 4.7, 4.31
+  and 4.32, 8 unnumbered equation blocks and four references. No table and no new numbered
+  equation is printed. Printed inconsistencies are retained with notes: duplicate 5.3.2 heading,
+  §5.1.3's "Table 4.2" ventilation cross-reference, Fig. 5.8's undefined Y/y legend symbols,
+  Fig. 5.14's missing word in note (3), Fig. 5.15's "eveness" typo, and the Example's degraded
+  superscripts, ambiguous grouping, missing mass unit and Q where Eq. 4.32 has V<sub>m</sub>.
+- QA scripts `work/qa_mcmillan_ch05.py` and `work/qa_mcmillan_ch05_figs.py`: both EN and VI PASS —
+  figs 1–15, 15 XML-valid SVGs, 15/15 localized captions, 0 tables, 4 refs, 8 equation blocks,
+  1 h2 / 8 h3 / 17 h4, all key values present, 0 CJK / 0 content bare ampersands / 0 Spanish /
+  0 VI-in-EN prose, 0 clipped or overlapping SVG labels.
+- Pushed `9a5fc6fd` ("Publish McMillan chapter 5: not freely ventilated areas (EN/VI, 15 vector
+  figures)"). Live EN/VI deep URLs initially 404, then HTTP 200 after Pages propagation; live
+  pages contain 15 XML-valid SVGs, 15/15 localized captions, 4 refs, 8 equation blocks and 0 guard
+  hits; live TOC lists Ch.5, catalog badges read "Translating · 5 of 22 chapters" /
+  "Đang dịch · 5/22 chương", and the live sitemap has 2 `<loc>` plus 6 hreflang alternates.
+  `check_links.py` broken 0; sitemap 1,248 URLs.
+- McMillan is now **5/22** 🟠. Next unit: Ch.6 "Area classification practice for dusts".

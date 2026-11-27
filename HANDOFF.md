@@ -2,12 +2,14 @@
 
 **State now (2026-11-26):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
-11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `99e874c5`**
-(McMillan Ch.4 “Calculation of release rates and the extents of hazardous areas”: 38 source pages,
-3 vector figures, 2 tables, 68 equation blocks, 7 refs). **Next unit: McMillan Ch.5** — see
-`TRANSLATION-STATUS.md`. Prior HEAD `7bcc937a` (McMillan Ch.3, 44 source pages, 16 vector figures,
-4 tables, 6 refs; `0bb7546` chapter commit merged with four upstream focus-section commits).
-Prior HEAD `227cf5e3` (McMillan Ch.2 “Area classification”, 6 vector figures, 1 table). Prior `023705e9`
+11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `9a5fc6fd`**
+(McMillan Ch.5 “Area classification practice for gases, vapours and mists in areas which are not
+freely ventilated”: 24 source pages, 15 vector figures, 8 unnumbered equation blocks, 4 refs).
+**Next unit: McMillan Ch.6** — see `TRANSLATION-STATUS.md`. Prior HEAD `99e874c5` (McMillan Ch.4,
+38 source pages, 3 vector figures, 2 tables, 68 equation blocks, 7 refs); before that `7bcc937a`
+(McMillan Ch.3, 44 source pages, 16 vector figures, 4 tables, 6 refs; `0bb7546` chapter commit
+merged with four upstream focus-section commits). Prior HEAD `227cf5e3` (McMillan Ch.2 “Area
+classification”, 6 vector figures, 1 table). Prior `023705e9`
 (ExProtection Global-America-Basics, six bilingual units / six vector figures / 13 tables,
 published from the user's `/books/work/70/` request); prior HEAD `ee024fab` (Baumann Ch.32
 "Pipe Vibration Due to Sound", 5 PDF pages / printed pp. 185–189, 2 vector figures, 6 displayed
@@ -49,15 +51,14 @@ vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercis
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,246 URLs,
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,248 URLs,
 catalog badges IIH 8/8, Emerson 15/15, IPC 8/8, PPIC 11/11, Baumann 32/32 and ExProtection
-6/6 all `full`, McMillan badge 🟠 4/22; McMillan, Baumann and ExProtection EN/VI deep URLs
+6/6 all `full`, McMillan badge 🟠 5/22; McMillan, Baumann and ExProtection EN/VI deep URLs
 **200** after Pages propagation, all TOCs list all units, `check_links.py` broken 0.
 Full tables in `report.md`.
 
-**Next unit: McMillan Ch.5** — “Area classification practice for gases, vapours and mists in
-areas which are not freely ventilated”. The older 15-book campaign is complete 🟢, and McMillan
-chapters 1–4 are live at 4/22;
+**Next unit: McMillan Ch.6** — “Area classification practice for dusts”. The older 15-book
+campaign is complete 🟢, and McMillan chapters 1–5 are live at 5/22;
 continue one chapter at a time with the same brief → figures → prose → QA → push recipe. The
 McMillan 678-page source has eight literal “MISSING PAGE” pages (PDF 80–87 = printed 59–66):
 never invent the missing Figs 3.6–3.8 or Tables 3.5–3.10, and carry forward the source-gap note.
@@ -79,6 +80,26 @@ IPC at 8/8 (Ch.1–8 done). Also books located but not registered
 Knowledge*, 2nd ed., 511 pp).
 
 ---
+
+## 0.98 McMillan Ch.5 "Area classification practice for gases, vapours and mists in areas which are not freely ventilated" published in `9a5fc6fd`
+- Source `work/mcmillan_ch05_brief.md`: PDF pp. 146–169 = printed pp. 125–148, `PAGES_SRC = 24`
+  (printed = PDF − 21), with 24 pypdfium2 renders in `work/mcmillan_ch05_pages/`. No MISSING PAGE
+  placeholders. Five prose modules (`mcmillan_ch05a…e.py`) and two figure suppliers
+  (`mcmillanfig05_a.py` figs 1–10, `mcmillanfig05_b.py` figs 11–15) were merged by the new
+  `mcmillan_ch05.py`. No table and no new numbered equation is printed.
+- Content: all sections 5.1–5.7, 15 vector redraws (wall and roof geometries, ventilation
+  schematics, paint-spray booth), one worked example reusing Eqs. 4.7/4.31/4.32, 8 unnumbered
+  equation blocks and four references. Printed quirks retained with notes: duplicate 5.3.2
+  heading, the "Table 4.2" ventilation cross-reference, Fig. 5.8's undefined Y/y legend symbols,
+  Fig. 5.14's missing word, Fig. 5.15's "eveness" typo, and the worked-example typography and
+  grouping problems.
+- QA scripts `work/qa_mcmillan_ch05.py` and `work/qa_mcmillan_ch05_figs.py`: both EN/VI pages
+  PASS — figs 1–15, 15 XML-valid SVGs, 15/15 localized captions, 0 tables, 4 refs, 8 equation
+  blocks, 1 h2 / 8 h3 / 17 h4, all key values present, 0 CJK / bare `&` / Spanish / VI-in-EN
+  prose, 0 clipped or overlapping labels. `check_links.py` broken 0; sitemap 1,248 URLs with
+  8 entries for Ch.5. Live EN/VI deep URLs initially 404, then **200** after Pages propagation;
+  live pages, TOC row, 5/22 badge and 8 sitemap entries verified. **McMillan is 5/22 🟠.
+  Next: Ch.6 "Area classification practice for dusts".**
 
 ## 0.97 McMillan Ch.4 "Calculation of release rates and the extents of hazardous areas" published in `99e874c5`
 - Source `work/mcmillan_ch04_brief.md`: PDF pp. 108–145 = printed pp. 87–124, `PAGES_SRC = 38`
