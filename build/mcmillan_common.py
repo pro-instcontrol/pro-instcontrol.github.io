@@ -35,6 +35,7 @@ SLUGS["mcmillan"] = {
     7: "ch07-design-philosophy-for-electrical-apparatus",
     8: "ch08-general-requirements-for-explosion-protected-apparatus",
     9: "ch09-apparatus-using-protection-concepts-encapsulation-oil-immersion-powder-filling",
+    10: "ch10-apparatus-using-protection-concept-flameproof-enclosure-d",
 }
 
 (p, lead, h2, h3, h4, eq, quote, ul, ol, note, refs, table, fig, keyterms,
