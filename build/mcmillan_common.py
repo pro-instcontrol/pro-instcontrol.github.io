@@ -34,6 +34,7 @@ SLUGS["mcmillan"] = {
     6: "ch06-area-classification-practice-for-dusts",
     7: "ch07-design-philosophy-for-electrical-apparatus",
     8: "ch08-general-requirements-for-explosion-protected-apparatus",
+    9: "ch09-apparatus-using-protection-concepts-encapsulation-oil-immersion-powder-filling",
 }
 
 (p, lead, h2, h3, h4, eq, quote, ul, ol, note, refs, table, fig, keyterms,
