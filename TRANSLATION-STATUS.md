@@ -7846,5 +7846,32 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   rows `[3,43,3]`, 4 refs, 0 equations and 0 guard hits; live TOC lists Ch.6, catalog badges read
   "Translating · 6 of 22 chapters" / "Đang dịch · 6/22 chương", and the live sitemap has 2
   `<loc>` plus 6 hreflang alternates. `check_links.py` broken 0; sitemap 1,250 URLs.
-- McMillan is now **6/22** 🟠. Next unit: Ch.7 "Design philosophy for electrical apparatus for
-  explosive atmospheres".
+- McMillan is now **7/22** 🟠. Next unit: Ch.8 "General requirements for explosion protected
+  apparatus (gas, vapour and mist risks)".
+
+## Session 2026-11-27 — McMillan Chapter 7 published (EN/VI, pure prose, 7 references)
+
+- Chapter: *Design philosophy for electrical apparatus for explosive atmospheres*, printed pp.
+  164–177 (PDF pp. 185–198, `PAGES_SRC = 14`, printed = PDF − 21). Bilingual slug
+  `ch07-design-philosophy-for-electrical-apparatus`. Brief `work/mcmillan_ch07_brief.md`, source
+  renders `work/mcmillan_ch07_pages/p185.png`–`p198.png`. No MISSING PAGE placeholders.
+- A survey agent produced the brief; five prose agents wrote `mcmillan_ch07a…e.py`, merged by the
+  new `mcmillan_ch07.py` with the seven printed references and bilingual quirk notes. The chapter
+  is pure prose: 0 figures, 0 tables, 0 equations and 0 worked examples. The nine BS 5501 mappings
+  and all standard blocks are bold paragraphs, not tables.
+- Content: §§7.1–7.5.4, the italic golden rule, protection concepts ‘o’/‘m’/‘p’/‘e’/‘d’/‘q’/‘i’/
+  ‘ia’/‘ib’/‘s’, Zone 2 type ‘n’, dust risks, apparatus construction Standards and the marketing
+  situation. Printed quirks retained with notes: “Selected Industrial Apparatus”, “1970's⁴”,
+  the ‘o’-letter trap, Zone-suitability variants, “European Journal⁷”, “third editions of These
+  standards”, the CENELEC expansion, “These was”, “Section 7.4.1”, “BS 7535” twice,
+  “BS 5501, Part 2 (1997)” and IEC 79/15 versus IEC 79–15. The Vietnamese h2 was corrected to
+  match the registered TOC title before build.
+- QA `work/qa_mcmillan_ch07.py`: both EN and VI pages PASS — 1 h2 / 6 h3 / 11 h4, 7 refs,
+  0 figures/tables/equations, all key values present, 0 CJK / 0 content bare ampersands /
+  0 Spanish / 0 VI-in-EN prose.
+- Pushed `11e932ca` ("Publish McMillan chapter 7: design philosophy for electrical apparatus
+  (EN/VI, 7 references)"). Live EN/VI deep URLs initially 404, then HTTP 200 after Pages
+  propagation; live pages contain 1 h2 / 6 h3 / 11 h4, 7 refs, 0 figures/tables/equations and
+  0 guard hits; live TOC lists Ch.7, catalog badges read "Translating · 7 of 22 chapters" /
+  "Đang dịch · 7/22 chương", and the live sitemap has 2 `<loc>` plus hreflang alternates.
+  `check_links.py` broken 0; sitemap 1,252 URLs.

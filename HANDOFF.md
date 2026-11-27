@@ -1,10 +1,12 @@
-# HANDOFF — Campaign state 2026-11-26 (ALL REGISTERED BOOKS COMPLETE)
+# HANDOFF — Campaign state 2026-11-27 (ALL REGISTERED BOOKS COMPLETE)
 
-**State now (2026-11-26):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
+**State now (2026-11-27):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
-11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `32bc3380`**
-(McMillan Ch.6 “Area classification practice for dusts”: 15 source pages, 3 vector figures,
-3 tables, 4 refs). **Next unit: McMillan Ch.7** — see `TRANSLATION-STATUS.md`. Prior HEAD `9a5fc6fd`
+11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `11e932ca`**
+(McMillan Ch.7 “Design philosophy for electrical apparatus for explosive atmospheres”: 14 source
+pages, 7 refs, no figures/tables/equations). **Next unit: McMillan Ch.8** — see `TRANSLATION-STATUS.md`.
+Prior HEAD `32bc3380` (McMillan Ch.6 “Area classification practice for dusts”: 15 source pages,
+3 vector figures, 3 tables, 4 refs); before that `9a5fc6fd`
 (McMillan Ch.5 “Area classification practice for gases, vapours and mists in areas which are not
 freely ventilated”: 24 source pages, 15 vector figures, 8 unnumbered equation blocks, 4 refs);
 before that `99e874c5` (McMillan Ch.4, 38 source pages, 3 vector figures, 2 tables, 68 equation
@@ -53,15 +55,15 @@ vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercis
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,250 URLs,
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,252 URLs,
 catalog badges IIH 8/8, Emerson 15/15, IPC 8/8, PPIC 11/11, Baumann 32/32 and ExProtection
-6/6 all `full`, McMillan badge 🟠 6/22; McMillan, Baumann and ExProtection EN/VI deep URLs
+6/6 all `full`, McMillan badge 🟠 7/22; McMillan, Baumann and ExProtection EN/VI deep URLs
 **200** after Pages propagation, all TOCs list all units, `check_links.py` broken 0.
 Full tables in `report.md`.
 
-**Next unit: McMillan Ch.7** — “Design philosophy for electrical apparatus for explosive
-atmospheres”. The older 15-book campaign is complete 🟢, and McMillan chapters 1–6 are live
-at 6/22;
+**Next unit: McMillan Ch.8** — “General requirements for explosion protected apparatus (gas,
+vapour and mist risks)”. The older 15-book campaign is complete 🟢, and McMillan chapters 1–7 are
+live at 7/22;
 continue one chapter at a time with the same brief → figures → prose → QA → push recipe. The
 McMillan 678-page source has eight literal “MISSING PAGE” pages (PDF 80–87 = printed 59–66):
 never invent the missing Figs 3.6–3.8 or Tables 3.5–3.10, and carry forward the source-gap note.
@@ -83,6 +85,28 @@ IPC at 8/8 (Ch.1–8 done). Also books located but not registered
 Knowledge*, 2nd ed., 511 pp).
 
 ---
+
+## 0.100 McMillan Ch.7 "Design philosophy for electrical apparatus for explosive atmospheres" published in `11e932ca`
+- Source `work/mcmillan_ch07_brief.md`: PDF pp. 185–198 = printed pp. 164–177, `PAGES_SRC = 14`
+  (printed = PDF − 21), with 14 pypdfium2 renders in `work/mcmillan_ch07_pages/`. No MISSING PAGE
+  placeholders. Pure prose chapter: 0 figures, 0 tables, 0 equations, 0 worked examples and
+  7 references. The nine BS 5501 mappings and every standard block are bold text, not tables.
+- A survey agent produced the verified brief; five prose agents wrote `mcmillan_ch07a…e.py`,
+  merged by the new `mcmillan_ch07.py` with the seven printed references and bilingual quirk notes.
+  No figure or table supplier was needed. The Vietnamese h2 was corrected to match the registered
+  TOC title after local QA caught the paraphrase.
+- Content: §§7.1–7.5.4, the italic golden rule, protection concepts ‘o’/‘m’/‘p’/‘e’/‘d’/‘q’/‘i’/
+  ‘ia’/‘ib’/‘s’, Zone 2 type ‘n’, dust-protection discussion, the EN/BS/IEC apparatus Standards and
+  the marketing situation. Printed inconsistencies retained with notes: “Selected Industrial
+  Apparatus”, “1970's⁴”, the ‘o’-letter trap, Zone-suitability variants, “European Journal⁷”,
+  “third editions of These standards”, the CENELEC expansion, “These was”, “Section 7.4.1”,
+  “BS 7535” twice, “BS 5501, Part 2 (1997)” and IEC 79/15 versus IEC 79–15.
+- QA `work/qa_mcmillan_ch07.py`: both EN/VI pages PASS — 1 h2 / 6 h3 / 11 h4, 7 refs,
+  0 figures/tables/equations, all key values present, 0 CJK / bare `&` / Spanish / VI-in-EN prose.
+  `check_links.py` broken 0; sitemap 1,252 URLs with 2 Ch.7 locs plus hreflang alternates. Live
+  EN/VI deep URLs initially 404, then **200** after Pages propagation; live pages, TOC row and
+  7/22 badge verified. **McMillan is 7/22 🟠. Next: Ch.8 "General requirements for explosion
+  protected apparatus (gas, vapour and mist risks)".**
 
 ## 0.99 McMillan Ch.6 "Area classification practice for dusts" published in `32bc3380`
 - Source `work/mcmillan_ch06_brief.md`: PDF pp. 170–184 = printed pp. 149–163, `PAGES_SRC = 15`

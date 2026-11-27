@@ -5,11 +5,13 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-26):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 6/22 (rows below;
+**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 7/22 (rows below;
 flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
 IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32, R. STAHL ExProtection `expb` 🟢
-6/6). **Live chapter HEAD `32bc3380`** (McMillan Ch.6 "Area classification practice for dusts":
-15 source pages, 3 vector figures, 3 tables, 4 references). Prior chapter HEAD `9a5fc6fd`
+6/6). **Live chapter HEAD `11e932ca`** (McMillan Ch.7 "Design philosophy for electrical apparatus
+for explosive atmospheres": 14 source pages, 7 references, no figures, tables or equations). Prior
+chapter HEAD `32bc3380` (McMillan Ch.6 "Area classification practice for dusts": 15 source pages,
+3 vector figures, 3 tables, 4 references); before that `9a5fc6fd`
 (McMillan Ch.5 "Area classification practice for gases, vapours and mists in areas which are not
 freely ventilated": 24 source pages, 15 vector figures, 8 unnumbered equation blocks, 4
 references); before that `99e874c5` (McMillan Ch.4, 38 source pages, 3 vector figures, 2 tables,
@@ -1410,6 +1412,23 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   and "1-1.5", lowercase "once again", and Table 6.2's `mj` / g/l / blank / non-numeric /
   near-duplicate rows. Pushed `32bc3380`; live EN/VI deep URLs initially 404, then HTTP 200
   after Pages propagation; live pages, TOC row, 6/22 badge and 8 sitemap entries verified.
-  `check_links.py` broken 0, sitemap 1,250 URLs. Next unit: McMillan Chapter 7.
+  `check_links.py` broken 0, sitemap 1,250 URLs.
+- Chapter 7 covers printed pp. 164–177 (PDF pp. 185–198, `PAGES_SRC = 14`): chapter opener and
+  golden rule, §§7.1–7.5.4 (history, protection concepts ‘o’/‘m’/‘p’/‘e’/‘d’/‘q’/‘i’/‘ia’/‘ib’/‘s’,
+  Zone 2 type ‘n’, dust risks, apparatus construction Standards and the marketing situation),
+  plus seven references. It is a pure prose chapter: 0 figures, 0 tables, 0 equations and 0 worked
+  examples; the nine BS 5501 mappings and standard headings are bold text, not tables. No
+  MISSING PAGE placeholders occur in the span.
+- Brief `work/mcmillan_ch07_brief.md`; five prose modules `mcmillan_ch07a…e.py` merged by
+  `mcmillan_ch07.py`; QA gate `work/qa_mcmillan_ch07.py`: both EN and VI pages PASS — 1 h2 /
+  6 h3 / 11 h4, 7 refs, 0 figures/tables/equations, all key values present, 0 CJK / bare `&` /
+  Spanish / VI-in-EN prose. Printed quirks preserved with notes include the italic golden rule,
+  “Selected Industrial Apparatus”, “1970's⁴”, the ‘o’-letter trap, Zone-suitability variants,
+  “European Journal⁷”, “third editions of These standards”, the CENELEC expansion, “These was”,
+  “Section 7.4.1”, “BS 7535” twice, “BS 5501, Part 2 (1997)” and the IEC 79/15 versus IEC 79–15
+  variants. The Vietnamese h2 was corrected to match the registered TOC title before build.
+  Pushed `11e932ca`; live EN/VI deep URLs initially 404, then HTTP 200 after Pages propagation;
+  live pages, TOC row, 7/22 badge and 2 sitemap URLs plus hreflang alternates verified.
+  `check_links.py` broken 0, sitemap 1,252 URLs. Next unit: McMillan Chapter 8.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.
