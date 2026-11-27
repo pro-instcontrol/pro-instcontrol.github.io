@@ -5,12 +5,15 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 8/22 (rows below;
+**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 9/22 (rows below;
 flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
 IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32, R. STAHL ExProtection `expb` 🟢
-6/6). **Live chapter HEAD `70ec088b`** (McMillan Ch.8 "General requirements for explosion protected
-apparatus (gas, vapour and mist risks)": 31 source pages / printed pp. 178–208, 9 vector figures,
-6 tables, 19 references, no equations). Prior chapter HEAD `11e932ca` (McMillan Ch.7 "Design
+6/6). **Live chapter HEAD `10ecd23e`** (McMillan Ch.9 "Apparatus using protection concepts
+encapsulation 'm', oil immersion 'o' and powder filling 'q'": 17 source pages / printed pp.
+209–225, 2 vector figures, 3 tables, 30 references, no equations). Prior chapter HEAD `70ec088b`
+(McMillan Ch.8 "General requirements for explosion protected apparatus (gas, vapour and mist
+risks)": 31 source pages / printed pp. 178–208, 9 vector figures, 6 tables, 19 references, no
+equations). Prior chapter HEAD `11e932ca` (McMillan Ch.7 "Design
 philosophy for electrical apparatus for explosive atmospheres": 14 source pages, 7 references, no
 figures, tables or equations). Prior chapter HEAD `32bc3380` (McMillan Ch.6 "Area classification practice for dusts": 15 source pages,
 3 vector figures, 3 tables, 4 references); before that `9a5fc6fd`
@@ -1452,7 +1455,27 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   "Section 8.5.1" cross-reference. Pushed `70ec088b`; live EN/VI deep URLs initially 404, then
   HTTP 200 after Pages propagation; live pages, TOC rows, 8/22 catalog badges in both languages
   and 8 sitemap entries verified. `check_links.py` broken 0, sitemap 1,254 URLs.
-  Next unit: McMillan Chapter 9.
+- Chapter 9 covers printed pp. 209–225 (PDF pp. 230–246, `PAGES_SRC = 17`): "Apparatus using
+  protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'" — ten
+  exclusions from BS 5501 Part 1 (1977), encapsulation specification/apparatus/circuits/process/
+  components and type testing, oil-immersion construction/containment/oil requirements/connections,
+  and powder-filling material/enclosure/circuits/connections/type testing. Two vector figures,
+  three transcribed tables and 30 references (29 numbered plus unnumbered BS 5784); no equations
+  or worked examples.
+- Brief `work/mcmillan_ch09_brief.md` plus writer contract `work/mcmillan_ch09_writer_contract.md`;
+  five prose modules `mcmillan_ch09a…e.py`, one figure supplier `mcmillanfig09.py` and one table
+  module `mcmillan_tbl91_93.py` merged by `mcmillan_ch09.py`. QA scripts `work/qa_mcmillan_ch09.py`
+  and `work/qa_mcmillan_ch09_figs.py`: both EN and VI pages PASS — 2/2 XML-valid SVGs with
+  localized captions, 3 tables, 30 refs, 1 h2 / 11 h3 / 16 h4, all key values present, 0 CJK /
+  bare `&` / Spanish / VI-in-EN prose, 0 clipped or overlapping labels. Two Spanish-guard false
+  positives (`que thăm dầu`, `nếu que`) and three localization differences (`Vùng 1/2`,
+  `60 giây`) were resolved in the VI QA gate. Printed quirks preserved with notes include
+  headings "9.7.7" and "9.2.7", BS 5501 part 8 "(1998)" against ref 3 "(1988)", `1OOOV dc`,
+  BS/EN 50019 (1993) against ref 10 (1994), and BS 2782²⁸. Pushed `10ecd23e`; live EN/VI deep
+  URLs initially 404/200, then both HTTP 200 after Pages propagation; live pages, TOC rows,
+  9/22 catalog badges in both languages and 8 sitemap entries verified. `check_links.py` broken 0,
+  sitemap 1,256 URLs.
+  Next unit: McMillan Chapter 10.
 - Catalog restoration (2026-11-27): the four curated cross-book cards — Measurement
   Instrumentation for Upstream Oil & Gas, Instrumentation & Control Systems focus, Oil Refining
   focus and Petrochemical Industry focus — were dropped when the Chapter 4 rebuild regenerated

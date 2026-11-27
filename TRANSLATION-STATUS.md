@@ -7885,3 +7885,33 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   `books_site.py`, so future rebuilds preserve them.
 - Pushed `0f80f56f`. Live EN/VI catalogs show 21 translated cards, translated pill 21,
   visible-count 261/261 and all four reader links; `check_links.py` broken 0.
+
+## Session 2026-11-27 — McMillan Chapter 9 published (EN/VI, 2 vector figures, 3 tables, 30 refs)
+
+- Chapter: *Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder
+  filling 'q'*, printed pp. 209–225 (PDF pp. 230–246, `PAGES_SRC = 17`, printed = PDF − 21).
+  Bilingual slug `ch09-apparatus-using-protection-concepts-encapsulation-oil-immersion-powder-filling`.
+  Verified survey `work/mcmillan_ch09_brief.md`, writer contract
+  `work/mcmillan_ch09_writer_contract.md`, renders `work/mcmillan_ch09_pages/p230.png`–`p246.png`,
+  raw lines 9858–10566. No MISSING PAGE placeholders, equations or worked examples.
+- Parallel production: five prose writers (`mcmillan_ch09a…e.py`), one figure supplier
+  (`mcmillanfig09.py`, Figs 9.1–9.2) and one table transcriber (`mcmillan_tbl91_93.py`,
+  Tables 9.1–9.3), integrated by `mcmillan_ch09.py` with the 29 numbered references plus the
+  unnumbered BS 5784 line, bilingual glossary, source-quirk note and copyright.
+- Content: §§9.1–9.3.5 — ten exclusions from BS 5501 Part 1 (1977), encapsulation specification,
+  apparatus types, circuits/components, process, cells and batteries, type testing; oil-immersion
+  construction, containment with breathing device, protective-fluid Standards, connections and
+  testing; powder-filling material, enclosure, separations, components, connections and testing.
+  Printed quirks kept with notes: headings "9.7.7" and "9.2.7", BS 5501 part 8 "(1998)" against
+  ref 3 "(1988)", `1OOOV dc`, BS/EN 50019 (1993) against ref 10 (1994), BS 2782²⁸.
+- QA scripts `work/qa_mcmillan_ch09.py` and `work/qa_mcmillan_ch09_figs.py`: both EN and VI pages
+  PASS — fig ids `[1,2]`, 2 XML-valid SVGs, 2/2 localized captions, 3 tables, 30 refs, 1 h2 /
+  11 h3 / 16 h4, all key values present, 0 CJK / 0 bare `&` / 0 Spanish / 0 VI-in-EN prose,
+  0 off-canvas or overlapping SVG labels. VI gate allowlists `que thăm dầu` / `nếu que` as
+  Vietnamese phrases and uses localized `Vùng 1/2` and `60 giây` expectations.
+- Pushed `10ecd23e` ("Publish McMillan chapter 9: encapsulation, oil immersion and powder filling
+  (EN/VI, 2 vector figures, 3 tables, 30 refs)"). Live EN/VI deep URLs initially 404/200, then
+  both HTTP 200 after Pages propagation; live pages, TOC rows, 9/22 catalog badges
+  ("Translating · 9 of 22 chapters" / "Đang dịch · 9/22 chương") and 8 sitemap entries verified.
+  `check_links.py` broken 0; sitemap 1,256 URLs.
+- McMillan is now **9/22** 🟠. Next unit: Ch.10.
