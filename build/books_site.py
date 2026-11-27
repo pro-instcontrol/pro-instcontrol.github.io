@@ -12,6 +12,7 @@ if HERE not in sys.path:
 
 import framework  # noqa: E402  (one nav list for the whole site)
 import lib_release  # noqa: E402  (release-bucket routing for PDF downloads)
+import catalog_extra_cards as EXTRA  # noqa: E402  (four curated cross-book cards)
 CAT = os.path.join(ROOT, "library", "catalog.json")
 
 # Two catalogue records describe the same 5th-edition Valve Selection
@@ -1299,8 +1300,9 @@ def footer(lang):
 
 def build_index(lang):
     cat, dom, by_shelf = load()
-    total = sum(len(v) for v in by_shelf.values())
-    pages = sum(w["pages"] for v in by_shelf.values() for w in v)
+    total = sum(len(v) for v in by_shelf.values()) + EXTRA.EXTRA_WORKS
+    pages = (sum(w["pages"] for v in by_shelf.values() for w in v)
+             + EXTRA.EXTRA_PAGES)
 
     # stamp shelf id on works for the card filter
     for sid, ws in by_shelf.items():
@@ -1325,7 +1327,8 @@ def build_index(lang):
     trans_ws.sort(key=lambda w: (
         1 if "valve selection handbook" in w["title"].lower() else 0,
         -w["pages"], w["title"].lower()))
-    n_tr = len(trans_ws)
+    extra_cards = EXTRA.CARDS[lang]
+    n_tr = len(trans_ws) + len(extra_cards)
 
     if lang == "vi":
         title = "Thư Viện Sách Kỹ Thuật Đo Lường & Điều Khiển"
@@ -1372,7 +1375,7 @@ def build_index(lang):
                   if lang == "vi" else
                   "Works with a Vietnamese translation (complete or in "
                   "progress) — open and read")
-        cards = "".join(card(w, lang, dom) for w in trans_ws)
+        cards = "".join(card(w, lang, dom) for w in trans_ws) + "".join(extra_cards)
         sections.append(
             '<section class="section translated-shelf" id="shelf-translated">'
             '<div class="section-title"><h2>%s</h2><span class="sub">%s</span></div>'
