@@ -1430,5 +1430,11 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   Pushed `11e932ca`; live EN/VI deep URLs initially 404, then HTTP 200 after Pages propagation;
   live pages, TOC row, 7/22 badge and 2 sitemap URLs plus hreflang alternates verified.
   `check_links.py` broken 0, sitemap 1,252 URLs. Next unit: McMillan Chapter 8.
+- Catalog restoration (2026-11-27): the four curated cross-book cards — Measurement
+  Instrumentation for Upstream Oil & Gas, Instrumentation & Control Systems focus, Oil Refining
+  focus and Petrochemical Industry focus — were dropped when the Chapter 4 rebuild regenerated
+  `books/index.html`. They are now owned by `build/catalog_extra_cards.py` and survive rebuilds
+  (`0f80f56f`). Live EN/VI catalogs again show 21 translated cards, 261 works / 186,211 pages
+  and all four reader links; `check_links.py` broken 0.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

@@ -7875,3 +7875,13 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   0 guard hits; live TOC lists Ch.7, catalog badges read "Translating · 7 of 22 chapters" /
   "Đang dịch · 7/22 chương", and the live sitemap has 2 `<loc>` plus hreflang alternates.
   `check_links.py` broken 0; sitemap 1,252 URLs.
+
+## Session 2026-11-27 — Curated catalog cards restored
+
+- Restored the four cross-book reader cards dropped by the Chapter 4 catalog rebuild:
+  Measurement Instrumentation for Upstream Oil & Gas, Instrumentation & Control Systems focus,
+  Oil Refining focus and Petrochemical Industry focus. Their exact original EN/VI markup and the
+  261-work / 186,211-page catalog counts now live in `build/catalog_extra_cards.py`, imported by
+  `books_site.py`, so future rebuilds preserve them.
+- Pushed `0f80f56f`. Live EN/VI catalogs show 21 translated cards, translated pill 21,
+  visible-count 261/261 and all four reader links; `check_links.py` broken 0.

@@ -61,6 +61,13 @@ catalog badges IIH 8/8, Emerson 15/15, IPC 8/8, PPIC 11/11, Baumann 32/32 and Ex
 **200** after Pages propagation, all TOCs list all units, `check_links.py` broken 0.
 Full tables in `report.md`.
 
+**Catalog restoration (2026-11-27, `0f80f56f`):** the four curated cross-book reader cards
+(upstream oil & gas measurement, I&C systems focus, oil refining focus, petrochemical focus)
+were accidentally dropped by the Chapter 4 catalog rebuild. They are now emitted from
+`build/catalog_extra_cards.py` with their exact original markup and the 261-work / 186,211-page
+counts; live EN/VI catalogs show 21 translated cards, 21 in the translated pill, and all four
+links. Never hand-edit the generated `books/index.html` to add these cards again.
+
 **Next unit: McMillan Ch.8** — “General requirements for explosion protected apparatus (gas,
 vapour and mist risks)”. The older 15-book campaign is complete 🟢, and McMillan chapters 1–7 are
 live at 7/22;
