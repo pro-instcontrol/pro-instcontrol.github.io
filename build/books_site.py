@@ -507,7 +507,7 @@ TRANSLATED = {
     "handbook on power plant instrumentation and control": ("full", 11, 11),
     "instrumentation and process control": ("full", 8, 8),
     "exprotection global-america-basics": ("full", 6, 6),
-    "electrical installations in hazardous areas": ("progress", 22, 3),
+    "electrical installations in hazardous areas": ("progress", 22, 4),
 }
 
 # level -> (vietnamese format, english format); %d/%d are done/total
