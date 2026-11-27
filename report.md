@@ -5,13 +5,15 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-26):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 5/22 (rows below;
+**Status (2026-11-26):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 6/22 (rows below;
 flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
 IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32, R. STAHL ExProtection `expb` 🟢
-6/6). **Live chapter HEAD `9a5fc6fd`** (McMillan Ch.5 "Area classification practice for gases,
-vapours and mists in areas which are not freely ventilated": 24 source pages, 15 vector figures,
-8 unnumbered equation blocks, 4 references). Prior chapter HEAD `99e874c5` (McMillan Ch.4,
-38 source pages, 3 vector figures, 2 tables, 68 equation blocks, 7 refs); before that `7bcc937a`
+6/6). **Live chapter HEAD `32bc3380`** (McMillan Ch.6 "Area classification practice for dusts":
+15 source pages, 3 vector figures, 3 tables, 4 references). Prior chapter HEAD `9a5fc6fd`
+(McMillan Ch.5 "Area classification practice for gases, vapours and mists in areas which are not
+freely ventilated": 24 source pages, 15 vector figures, 8 unnumbered equation blocks, 4
+references); before that `99e874c5` (McMillan Ch.4, 38 source pages, 3 vector figures, 2 tables,
+68 equation blocks, 7 refs); before that `7bcc937a`
 was McMillan Ch.3 (44 source pages, 16 vector figures, 4 tables, 6 refs); before that
 `023705e9` was ExProtection Global-America-Basics (14 source pages, six bilingual units, six
 vector figures, 13 transcribed tables — the new reader book requested from `/books/work/70/`).
@@ -1349,9 +1351,10 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   7 vector figures, 2 tables) and Chapter 2 “Area classification” (`227cf5e3`, 21 pages,
   6 vector figures, 1 table) preceded Chapter 3 “Area classification practice for gases,
   vapours and mists in freely ventilated situations” (`0bb7546`, merged as `7bcc937a`),
-  Chapter 4 “Calculation of release rates and the extents of hazardous areas” (`99e874c5`) and
+  Chapter 4 “Calculation of release rates and the extents of hazardous areas” (`99e874c5`),
   Chapter 5 “Area classification practice for gases, vapours and mists in areas which are not
-  freely ventilated” (`9a5fc6fd`).
+  freely ventilated” (`9a5fc6fd`) and Chapter 6 “Area classification practice for dusts”
+  (`32bc3380`).
 - Chapter 3 covers printed pp. 43–86 (PDF pp. 64–107, `PAGES_SRC = 44`): all eleven sections
   3.1–3.4.11, 16 vector redraws (printed Figs 3.1–3.5 and 3.9–3.19), four transcribed tables
   (3.1–3.4) and six references. Eight PDF pages 80–87 (printed 59–66) are literal
@@ -1389,6 +1392,24 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   “eveness” typo in Fig. 5.15 and the worked-example typography/grouping problems. Pushed
   `9a5fc6fd`; live EN/VI deep URLs initially 404, then HTTP 200 after Pages propagation; live
   pages, TOC row, 5/22 badge and 8 sitemap entries verified. `check_links.py` broken 0,
-  sitemap 1,248 URLs. Next unit: McMillan Chapter 6.
+  sitemap 1,248 URLs.
+- Chapter 6 covers printed pp. 149–163 (PDF pp. 170–184, `PAGES_SRC = 15`): chapter opener,
+  §§6.1–6.3.3, three vector figures (cyclone/bag filter, indoor hopper, outdoor hopper) and three
+  transcribed tables (Table 6.1 Zone relationship, 39-row/2-page Table 6.2 dust properties, Table
+  6.3 grade/Zone relationship with layer effects), plus four references. No numbered equation or
+  worked example is printed. Unlike Chapter 3 the source span has no MISSING PAGE placeholders;
+  the two landscape Table 6.2 pages were transcribed from high-zoom renders, not the garbled text
+  layer.
+- Brief `work/mcmillan_ch06_brief.md`; QA scripts `work/qa_mcmillan_ch06.py` and
+  `work/qa_mcmillan_ch06_figs.py`: both EN and VI pages PASS — figs 1–3, 3 XML-valid SVGs, 3/3
+  localized captions, 3 tables with body rows `[3, 43, 3]`, 4 refs, 0 equation blocks,
+  1 h2 / 3 h3 / 10 h4, all key values present, 0 CJK / bare `&` / Spanish / VI-in-EN prose,
+  0 clipped or overlapping SVG labels. Printed quirks preserved with notes include the doubled
+  "been", "and, is in definition, synonymous", plural "Factories Acts", IEC standard-number
+  variants, Fig. 6.2's "Zone 2" note, mixed x/y/z and X/y dimension case, hyphenated "50-100"
+  and "1-1.5", lowercase "once again", and Table 6.2's `mj` / g/l / blank / non-numeric /
+  near-duplicate rows. Pushed `32bc3380`; live EN/VI deep URLs initially 404, then HTTP 200
+  after Pages propagation; live pages, TOC row, 6/22 badge and 8 sitemap entries verified.
+  `check_links.py` broken 0, sitemap 1,250 URLs. Next unit: McMillan Chapter 7.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

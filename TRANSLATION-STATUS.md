@@ -7816,3 +7816,35 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   "Đang dịch · 5/22 chương", and the live sitemap has 2 `<loc>` plus 6 hreflang alternates.
   `check_links.py` broken 0; sitemap 1,248 URLs.
 - McMillan is now **5/22** 🟠. Next unit: Ch.6 "Area classification practice for dusts".
+
+## Session 2026-11-26 — McMillan Chapter 6 published (EN/VI, 3 vector figures, 3 tables)
+
+- Chapter: *Area classification practice for dusts*, printed pp. 149–163 (PDF pp. 170–184,
+  `PAGES_SRC = 15`, printed = PDF − 21). Bilingual slug
+  `ch06-area-classification-practice-for-dusts`. Brief `work/mcmillan_ch06_brief.md`, source
+  renders `work/mcmillan_ch06_pages/p170.png`–`p184.png`. No MISSING PAGE placeholders.
+- A survey agent produced the brief; table agents transcribed Tables 6.1/6.3 and the two landscape
+  pages of Table 6.2; a figure supplier drew Figs. 6.1–6.3 in `mcmillanfig06.py`; four prose agents
+  wrote `mcmillan_ch06a…d.py`. Integration added `mcmillan_ch06.py`, the four printed references,
+  bilingual key terms and a source-quirks note. Table 6.2 was inserted between modules A and B to
+  match the printed page order.
+- Content: §§6.1–6.3.3, three vector redraws, three tables (3-row Zone relationship, 39-row dust
+  properties table across two landscape pages, 3-row grade/Zone table with layer effects) and four
+  references. No numbered equation or worked example is printed. Printed inconsistencies are
+  retained with notes: doubled "been", "and, is in definition, synonymous", plural "Factories
+  Acts", IEC standard-number variants, Fig. 6.2's "Zone 2", mixed x/y/z and X/y dimension case,
+  hyphenated "50-100" and "1-1.5", lowercase "once again", and Table 6.2's `mj` / g/l / blank /
+  non-numeric / near-duplicate-row conventions.
+- QA scripts `work/qa_mcmillan_ch06.py` and `work/qa_mcmillan_ch06_figs.py`: both EN and VI PASS —
+  figs `[1,2,3]`, 3 XML-valid SVGs, 3/3 localized captions, 3 tables with body rows
+  `[3,43,3]`, 4 refs, 0 equation blocks, 1 h2 / 3 h3 / 10 h4, all key values present, 0 CJK /
+  0 content bare ampersands / 0 Spanish / 0 VI-in-EN prose, 0 clipped or overlapping SVG labels.
+  A duplicate prose handoff at 6.1.1 and a repeated fragment at 6.2.2 were removed before build.
+- Pushed `32bc3380` ("Publish McMillan chapter 6: area classification practice for dusts (EN/VI,
+  3 vector figures, 3 tables)"). Live EN/VI deep URLs initially 404, then HTTP 200 after Pages
+  propagation; live pages contain 3 XML-valid SVGs, 3/3 localized captions, 3 tables with body
+  rows `[3,43,3]`, 4 refs, 0 equations and 0 guard hits; live TOC lists Ch.6, catalog badges read
+  "Translating · 6 of 22 chapters" / "Đang dịch · 6/22 chương", and the live sitemap has 2
+  `<loc>` plus 6 hreflang alternates. `check_links.py` broken 0; sitemap 1,250 URLs.
+- McMillan is now **6/22** 🟠. Next unit: Ch.7 "Design philosophy for electrical apparatus for
+  explosive atmospheres".

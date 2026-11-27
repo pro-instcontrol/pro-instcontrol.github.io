@@ -2,11 +2,13 @@
 
 **State now (2026-11-26):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
-11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `9a5fc6fd`**
+11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `32bc3380`**
+(McMillan Ch.6 “Area classification practice for dusts”: 15 source pages, 3 vector figures,
+3 tables, 4 refs). **Next unit: McMillan Ch.7** — see `TRANSLATION-STATUS.md`. Prior HEAD `9a5fc6fd`
 (McMillan Ch.5 “Area classification practice for gases, vapours and mists in areas which are not
-freely ventilated”: 24 source pages, 15 vector figures, 8 unnumbered equation blocks, 4 refs).
-**Next unit: McMillan Ch.6** — see `TRANSLATION-STATUS.md`. Prior HEAD `99e874c5` (McMillan Ch.4,
-38 source pages, 3 vector figures, 2 tables, 68 equation blocks, 7 refs); before that `7bcc937a`
+freely ventilated”: 24 source pages, 15 vector figures, 8 unnumbered equation blocks, 4 refs);
+before that `99e874c5` (McMillan Ch.4, 38 source pages, 3 vector figures, 2 tables, 68 equation
+blocks, 7 refs); before that `7bcc937a`
 (McMillan Ch.3, 44 source pages, 16 vector figures, 4 tables, 6 refs; `0bb7546` chapter commit
 merged with four upstream focus-section commits). Prior HEAD `227cf5e3` (McMillan Ch.2 “Area
 classification”, 6 vector figures, 1 table). Prior `023705e9`
@@ -51,14 +53,15 @@ vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercis
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,248 URLs,
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,250 URLs,
 catalog badges IIH 8/8, Emerson 15/15, IPC 8/8, PPIC 11/11, Baumann 32/32 and ExProtection
-6/6 all `full`, McMillan badge 🟠 5/22; McMillan, Baumann and ExProtection EN/VI deep URLs
+6/6 all `full`, McMillan badge 🟠 6/22; McMillan, Baumann and ExProtection EN/VI deep URLs
 **200** after Pages propagation, all TOCs list all units, `check_links.py` broken 0.
 Full tables in `report.md`.
 
-**Next unit: McMillan Ch.6** — “Area classification practice for dusts”. The older 15-book
-campaign is complete 🟢, and McMillan chapters 1–5 are live at 5/22;
+**Next unit: McMillan Ch.7** — “Design philosophy for electrical apparatus for explosive
+atmospheres”. The older 15-book campaign is complete 🟢, and McMillan chapters 1–6 are live
+at 6/22;
 continue one chapter at a time with the same brief → figures → prose → QA → push recipe. The
 McMillan 678-page source has eight literal “MISSING PAGE” pages (PDF 80–87 = printed 59–66):
 never invent the missing Figs 3.6–3.8 or Tables 3.5–3.10, and carry forward the source-gap note.
@@ -80,6 +83,32 @@ IPC at 8/8 (Ch.1–8 done). Also books located but not registered
 Knowledge*, 2nd ed., 511 pp).
 
 ---
+
+## 0.99 McMillan Ch.6 "Area classification practice for dusts" published in `32bc3380`
+- Source `work/mcmillan_ch06_brief.md`: PDF pp. 170–184 = printed pp. 149–163, `PAGES_SRC = 15`
+  (printed = PDF − 21), with 15 pypdfium2 renders in `work/mcmillan_ch06_pages/`. No MISSING PAGE
+  placeholders. The two landscape renders p173/p174 carry the whole of Table 6.2; all table cells,
+  figure dimensions and standard designations were read from page images rather than the garbled
+  PDF text layer.
+- Four prose modules (`mcmillan_ch06a…d.py`) were merged by the new `mcmillan_ch06.py`. Table 6.1
+  is emitted by module A, Table 6.3 by module B, the three vector figures by module C via
+  `mcmillanfig06.py`, and the two-page Table 6.2 insert by the shell between A and B. Tables 6.1
+  and 6.3 come from `mcmillan_tbl61.py`; Table 6.2 is assembled from `mcmillan_tbl62_a…c.py`
+  by `mcmillan_tbl62.py` (4 group rows + 39 data rows).
+- Content: §§6.1–6.3.3, three figures (cyclone and bag filter, indoor hopper, outdoor hopper),
+  three tables (Zone relationship, dust properties, grade/Zone relationship with layer effects)
+  and four references. No numbered equation and no worked example is printed. Printed quirks are
+  retained with notes: doubled "been", "and, is in definition, synonymous", plural "Factories
+  Acts", IEC 1241–2 variants, Fig. 6.2's "Zone 2", mixed dimension case, hyphenated "50-100" and
+  "1-1.5", lowercase "once again", and Table 6.2's `mj`, g/l, blank, non-numeric and duplicate-row
+  conventions.
+- QA scripts `work/qa_mcmillan_ch06.py` and `work/qa_mcmillan_ch06_figs.py`: both EN/VI pages
+  PASS — figs `[1,2,3]`, 3 XML-valid SVGs, 3/3 localized captions, 3 tables with body rows
+  `[3,43,3]`, 4 refs, 0 equation blocks, 1 h2 / 3 h3 / 10 h4, all key values present, 0 CJK /
+  bare `&` / Spanish / VI-in-EN prose, 0 clipped or overlapping labels. `check_links.py` broken 0;
+  sitemap 1,250 URLs with 8 Ch.6 entries. Live EN/VI deep URLs initially 404, then **200** after
+  Pages propagation; live pages, TOC row, 6/22 badge and 8 sitemap entries verified. **McMillan is
+  6/22 🟠. Next: Ch.7 "Design philosophy for electrical apparatus for explosive atmospheres".**
 
 ## 0.98 McMillan Ch.5 "Area classification practice for gases, vapours and mists in areas which are not freely ventilated" published in `9a5fc6fd`
 - Source `work/mcmillan_ch05_brief.md`: PDF pp. 146–169 = printed pp. 125–148, `PAGES_SRC = 24`
