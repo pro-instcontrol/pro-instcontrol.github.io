@@ -2,9 +2,10 @@
 
 **State now (2026-11-27):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
-11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `11e932ca`**
-(McMillan Ch.7 “Design philosophy for electrical apparatus for explosive atmospheres”: 14 source
-pages, 7 refs, no figures/tables/equations). **Next unit: McMillan Ch.8** — see `TRANSLATION-STATUS.md`.
+11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1). **Live chapter HEAD `70ec088b`**
+(McMillan Ch.8 “General requirements for explosion protected apparatus (gas, vapour and mist
+risks)”: 31 source pages, 9 vector figures, 6 tables, 19 refs). **Next unit: McMillan Ch.9** —
+see `TRANSLATION-STATUS.md`.
 Prior HEAD `32bc3380` (McMillan Ch.6 “Area classification practice for dusts”: 15 source pages,
 3 vector figures, 3 tables, 4 refs); before that `9a5fc6fd`
 (McMillan Ch.5 “Area classification practice for gases, vapours and mists in areas which are not
@@ -68,9 +69,9 @@ were accidentally dropped by the Chapter 4 catalog rebuild. They are now emitted
 counts; live EN/VI catalogs show 21 translated cards, 21 in the translated pill, and all four
 links. Never hand-edit the generated `books/index.html` to add these cards again.
 
-**Next unit: McMillan Ch.8** — “General requirements for explosion protected apparatus (gas,
-vapour and mist risks)”. The older 15-book campaign is complete 🟢, and McMillan chapters 1–7 are
-live at 7/22;
+**Next unit: McMillan Ch.9** — “Apparatus using protection concepts encapsulation 'm', oil
+immersion 'o' and powder filling 'q'”. The older 15-book campaign is complete 🟢, and McMillan
+chapters 1–8 are live at 8/22;
 continue one chapter at a time with the same brief → figures → prose → QA → push recipe. The
 McMillan 678-page source has eight literal “MISSING PAGE” pages (PDF 80–87 = printed 59–66):
 never invent the missing Figs 3.6–3.8 or Tables 3.5–3.10, and carry forward the source-gap note.

@@ -5,12 +5,14 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 7/22 (rows below;
+**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 8/22 (rows below;
 flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
 IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32, R. STAHL ExProtection `expb` 🟢
-6/6). **Live chapter HEAD `11e932ca`** (McMillan Ch.7 "Design philosophy for electrical apparatus
-for explosive atmospheres": 14 source pages, 7 references, no figures, tables or equations). Prior
-chapter HEAD `32bc3380` (McMillan Ch.6 "Area classification practice for dusts": 15 source pages,
+6/6). **Live chapter HEAD `70ec088b`** (McMillan Ch.8 "General requirements for explosion protected
+apparatus (gas, vapour and mist risks)": 31 source pages / printed pp. 178–208, 9 vector figures,
+6 tables, 19 references, no equations). Prior chapter HEAD `11e932ca` (McMillan Ch.7 "Design
+philosophy for electrical apparatus for explosive atmospheres": 14 source pages, 7 references, no
+figures, tables or equations). Prior chapter HEAD `32bc3380` (McMillan Ch.6 "Area classification practice for dusts": 15 source pages,
 3 vector figures, 3 tables, 4 references); before that `9a5fc6fd`
 (McMillan Ch.5 "Area classification practice for gases, vapours and mists in areas which are not
 freely ventilated": 24 source pages, 15 vector figures, 8 unnumbered equation blocks, 4
@@ -1429,7 +1431,28 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   variants. The Vietnamese h2 was corrected to match the registered TOC title before build.
   Pushed `11e932ca`; live EN/VI deep URLs initially 404, then HTTP 200 after Pages propagation;
   live pages, TOC row, 7/22 badge and 2 sitemap URLs plus hreflang alternates verified.
-  `check_links.py` broken 0, sitemap 1,252 URLs. Next unit: McMillan Chapter 8.
+  `check_links.py` broken 0, sitemap 1,252 URLs.
+- Chapter 8 covers printed pp. 178–208 (PDF pp. 199–229, `PAGES_SRC = 31`): "General requirements
+  for explosion protected apparatus (gas, vapour and mist risks)" — Standards shall/should/must,
+  BS/EN 50014 (1993) and its eight matters, Group I/II and IIA/IIB/IIC sub-groups (160/80/40 µJ,
+  MIC ratios, MESG), temperature classes T1–T6, enclosure impact/IP/residual-charge/plastics
+  requirements, fasteners/interlocks/bushings/cements, connection facilities and cable entries,
+  rotating machines/switchgear/fuses/plugs/luminaires, Ex components and EEx marking. Nine vector
+  figures, six transcribed tables and 19 references; no numbered equations or worked examples.
+- Brief `work/mcmillan_ch08_brief.md` plus writer contract `work/mcmillan_ch08_writer_contract.md`;
+  six prose modules `mcmillan_ch08a…f.py`, one figure supplier `mcmillanfig08.py` and three table
+  modules `mcmillan_tbl81_82.py`, `mcmillan_tbl83_84.py`, `mcmillan_tbl85_86.py` merged by
+  `mcmillan_ch08.py`. Table 8.3's printed row order (1–6) and row-6 value (2/1 J) were corrected
+  from the page render; Table 8.5's source line follows the print "from BS/EN 50014¹". QA scripts
+  `work/qa_mcmillan_ch08.py` and `work/qa_mcmillan_ch08_figs.py`: both EN and VI pages PASS —
+  9/9 XML-valid SVGs with localized captions, 6 tables, 19 refs, 1 h2 / 5 h3 / 21 h4, all key
+  values present, 0 CJK / bare `&` / Spanish / VI-in-EN prose, 0 clipped or overlapping labels.
+  Printed quirks preserved with notes include heading "8.7.4" for fasteners, "1450 °C" for the T1
+  limit, lower-case "european" in Table 8.1, the "IS0" zero, `Exm`/`Ex m` and the unmatched
+  "Section 8.5.1" cross-reference. Pushed `70ec088b`; live EN/VI deep URLs initially 404, then
+  HTTP 200 after Pages propagation; live pages, TOC rows, 8/22 catalog badges in both languages
+  and 8 sitemap entries verified. `check_links.py` broken 0, sitemap 1,254 URLs.
+  Next unit: McMillan Chapter 9.
 - Catalog restoration (2026-11-27): the four curated cross-book cards — Measurement
   Instrumentation for Upstream Oil & Gas, Instrumentation & Control Systems focus, Oil Refining
   focus and Petrochemical Industry focus — were dropped when the Chapter 4 rebuild regenerated
