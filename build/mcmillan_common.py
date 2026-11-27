@@ -30,6 +30,7 @@ SLUGS["mcmillan"] = {
     2: "ch02-area-classification",
     3: "ch03-area-classification-practice",
     4: "ch04-calculation-of-release-rates-and-extents",
+    5: "ch05-not-freely-ventilated-areas",
 }
 
 (p, lead, h2, h3, h4, eq, quote, ul, ol, note, refs, table, fig, keyterms,
