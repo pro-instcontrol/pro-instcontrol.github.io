@@ -1143,6 +1143,7 @@ BOOKS = {
             8: "ch08-general-requirements-for-explosion-protected-apparatus",
             9: "ch09-apparatus-using-protection-concepts-encapsulation-oil-immersion-powder-filling",
             10: "ch10-apparatus-using-protection-concept-flameproof-enclosure-d",
+            11: "ch11-apparatus-using-protection-concept-pressurization-p",
         },
         "copyright_en": "Original work © 1998 Reed Educational and Professional Publishing Ltd.",
         "copyright_vi": "Bản gốc © 1998 Reed Educational and Professional Publishing Ltd.",
