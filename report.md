@@ -5,10 +5,10 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-28):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 16/22 (rows below;
+**Status (2026-11-28):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 17/22 (rows below;
 flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
 IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32, R. STAHL ExProtection `expb` 🟢
-6/6). **Live chapter HEAD `3d1e77dd`** (McMillan Ch.16 "Other methods of protection and future apparatus requirements": 8 source pages / printed pp. 474–481, 2 vector figures, no tables, 4 references, no displayed equations). Prior chapter HEAD `07dd6606` was McMillan Ch.15 "Protection concepts for apparatus for dust risks" (18 source pages / printed pp. 456–473, 2 vector figures, 2 tables, 10 references, no displayed equations); prior chapter HEAD `11044175` was McMillan Ch.14 "Apparatus using protection concept 'N' ('n')" (29 source pages / printed pp. 427–455, 5 vector figures, 7 tables, 28 references, no displayed equations); before that `759e8f73` was McMillan Ch.13 "Apparatus and systems using protection concept intrinsic safety 'i'" (96 source pages / printed pp. 331–426, 45 vector figures, 12 tables, 17 references, 16 displayed formula/value blocks); before that `1bfe7067` was McMillan Ch.12 "Apparatus with protection concept increased safety 'e'" (35 source pages / printed pp. 296–330, 16 vector figures, 7 tables, 16 references, 2 unnumbered equation blocks); before that `3ddba55b` was McMillan Ch.11 "Apparatus using protection concept pressurization 'p'" (22 source pages, 8 vector figures, 2 tables, 10 references, no equations); before that `3edc08f0` was McMillan Ch.10 "Apparatus using protection concept flameproof enclosure 'd'" (49 source pages / printed pp. 226–274, 29 vector figures, 15 tables, 17 references, no equations); before that `10ecd23e` was McMillan Ch.9 "Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'" (17 source pages / printed pp. 209–225, 2 vector figures, 3 tables, 30 references); before that `70ec088b`
+6/6). **Live chapter HEAD `b08f2d7a`** (McMillan Ch.17 "Selection of power supply, apparatus and interconnecting cabling system for both gas/vapour/mist risks and dust risks": 21 source pages / printed pp. 482–502, 3 vector figures, no tables, 4 unnumbered display blocks, 10 references). Prior chapter HEAD `3d1e77dd` was McMillan Ch.16 "Other methods of protection and future apparatus requirements" (8 source pages / printed pp. 474–481, 2 vector figures, no tables, 4 references, no displayed equations); prior chapter HEAD `07dd6606` was McMillan Ch.15 "Protection concepts for apparatus for dust risks" (18 source pages / printed pp. 456–473, 2 vector figures, 2 tables, 10 references, no displayed equations); prior chapter HEAD `11044175` was McMillan Ch.14 "Apparatus using protection concept 'N' ('n')" (29 source pages / printed pp. 427–455, 5 vector figures, 7 tables, 28 references, no displayed equations); before that `759e8f73` was McMillan Ch.13 "Apparatus and systems using protection concept intrinsic safety 'i'" (96 source pages / printed pp. 331–426, 45 vector figures, 12 tables, 17 references, 16 displayed formula/value blocks); before that `1bfe7067` was McMillan Ch.12 "Apparatus with protection concept increased safety 'e'" (35 source pages / printed pp. 296–330, 16 vector figures, 7 tables, 16 references, 2 unnumbered equation blocks); before that `3ddba55b` was McMillan Ch.11 "Apparatus using protection concept pressurization 'p'" (22 source pages, 8 vector figures, 2 tables, 10 references, no equations); before that `3edc08f0` was McMillan Ch.10 "Apparatus using protection concept flameproof enclosure 'd'" (49 source pages / printed pp. 226–274, 29 vector figures, 15 tables, 17 references, no equations); before that `10ecd23e` was McMillan Ch.9 "Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'" (17 source pages / printed pp. 209–225, 2 vector figures, 3 tables, 30 references); before that `70ec088b`
 (McMillan Ch.8 "General requirements for explosion protected apparatus (gas, vapour and mist
 risks)": 31 source pages / printed pp. 178–208, 9 vector figures, 6 tables, 19 references, no
 equations). Prior chapter HEAD `11e932ca` (McMillan Ch.7 "Design
@@ -327,8 +327,11 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   badge now shows "🟢 Fully translated · 15 of 15 chapters" (VI: "🟢 Đã dịch đầy đủ · 15/15 chương"),
   live sitemap includes all 8 Ch.15 URL entries (2 `<loc>` + 6 hreflang alternates).
 - Ch.16 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation; live TOC lists
-  Ch.16, catalog badge shows "Translating · 16 of 22 chapters" (VI: "Đang dịch · 16/22 chương"),
+  Ch.16, catalog   badge shows "Translating · 16 of 22 chapters" (VI: "Đang dịch · 16/22 chương"),
   live sitemap includes all 8 Ch.16 URL entries.
+- Ch.17 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation; live TOC lists
+  Ch.17, catalog badge shows "Translating · 17 of 22 chapters" (VI: "Đang dịch · 17/22 chương"),
+  live sitemap includes all 8 Ch.17 URL entries.
 - Local build at `905dd942`: sitemap **1,066 URLs** (1,051 with language siblings);
   `check_links.py` **broken 0**; 1,068 pages / 31,814 local references.
 - IIH Ch.4 EN/VI deep URLs → **HTTP 200** after Pages propagation; live TOC lists Ch.4
@@ -1665,6 +1668,30 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   lowercase `chapter 15` and `Chapters 9,10,11,12,13 and 15`. Pushed `3d1e77dd`; live EN/VI deep
   URLs initially 404, then both HTTP 200 after Pages propagation; live pages, TOC rows, 16/22
   catalog badges in both languages and 8 sitemap entries verified. `check_links.py` broken 0,
-  sitemap 1,270 URLs. Next unit: McMillan Chapter 17.
+  sitemap 1,270 URLs. Next unit at that point: McMillan Chapter 17.
+- Chapter 17 covers printed pp. 482–502 (PDF pp. 503–523, `PAGES_SRC = 21`): "Selection of power
+  supply, apparatus and interconnecting cabling system for both gas/vapour/mist risks and dust
+  risks" — TN-C-S/TN-S supplies and earthing, electrical protection, apparatus selection by gas,
+  vapour, mist and dust risks and by zone, MIC/MESG sub-groups, T1–T6 temperature classes, ambient
+  derating, and conduit/cable systems for zones 0/1/2/20/21/22, plus 10 references. Three vector
+  figures (17.1 TN-C-S distribution, 17.2 TN-S distribution, 17.3 earthing arrangements), no
+  tables, no numbered equations and four unnumbered display blocks. No `MISSING PAGE` placeholders.
+- Brief `work/mcmillan_ch17_brief.md` from three verified surveys A–C of all 21 renders, writer
+  contract `work/mcmillan_ch17_writer_contract.md`, fixed module map
+  `work/mcmillan_ch17_module_map.md`, three prose modules `mcmillan_ch17a…c.py` and one figure
+  supplier `mcmillanfig17.py`, merged by `mcmillan_ch17.py`. The older survey D was superseded by C.
+  Verified anchors: `=== PAGE 511 ===` LF 20913, `=== PAGE 518 ===` LF 21195, Chapter 18 start
+  LF 21453. QA scripts `work/qa_mcmillan_ch17.py` and `work/qa_mcmillan_ch17_figs.py`: both EN
+  and VI pages PASS — 3/3 XML-valid SVGs with localized captions, 0 tables, 4 unnumbered `eq`
+  blocks, 10 refs in printed order, 1 h2 / 11 h3 / 21 h4, 0 CJK / bare `&` / Spanish / VI-in-EN
+  prose, 0 off-canvas or overlapping labels. The English QA exempts the printed French phrase
+  `raison d’être` from the diacritic guard. Printed quirks retained with notes include
+  `240 V rms`, `nuisance rips`, `carbon disulphide in not addressed`, `exits` in Fig. 17.3,
+  inverted-looking Sub-group IIB bounds, descending T3–T1 list, `94/9/EU`, `ignition ignition`,
+  `enlosures`, `raison d’être`, `Type ‘s’`, `Flameproof enclosures ‘p’`, `(See Chapter 15)`,
+  duplicated `(CSP)`, missing full stop after `60 V peak ac or dc`, and scrambled two-column
+  reference order. Pushed `b08f2d7a`; live EN/VI deep URLs initially 404, then both HTTP 200 after
+  Pages propagation; live pages, TOC rows, 17/22 catalog badges and 8 sitemap entries verified.
+  `check_links.py` broken 0, sitemap 1,272 URLs. Next unit: McMillan Chapter 18.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

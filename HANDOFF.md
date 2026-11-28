@@ -3,10 +3,13 @@
 **State now (2026-11-28):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
 11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1), plus the ongoing McMillan
-reader at **16/22**. **Live chapter HEAD `3d1e77dd`**
-(McMillan Ch.16 “Other methods of protection and future apparatus requirements”: 8 source pages /
-printed pp. 474–481, 2 vector figures, no tables, 4 refs, no displayed equations).
-**Next unit: McMillan Ch.17** — see `TRANSLATION-STATUS.md`.
+reader at **17/22**. **Live chapter HEAD `b08f2d7a`**
+(McMillan Ch.17 “Selection of power supply, apparatus and interconnecting cabling system for both
+gas/vapour/mist risks and dust risks”: 21 source pages / printed pp. 482–502, 3 vector figures,
+no tables, 4 unnumbered display blocks, 10 refs).
+**Next unit: McMillan Ch.18** — see `TRANSLATION-STATUS.md`.
+Prior HEAD `3d1e77dd` was McMillan Ch.16 “Other methods of protection and future apparatus
+requirements” (8 source pages / printed pp. 474–481, 2 vector figures, no tables, 4 refs).
 Prior HEAD `07dd6606` was McMillan Ch.15 “Protection concepts for apparatus for dust risks”
 (18 source pages / printed pp. 456–473, 2 vector figures, 2 tables, 10 refs, no displayed equations);
 prior HEAD `11044175` was McMillan Ch.14 “Apparatus using protection concept 'N' ('n')”
@@ -189,6 +192,34 @@ Knowledge*, 2nd ed., 511 pp).
   both languages and 8 sitemap entries; `check_links.py` broken 0, sitemap 1,268 URLs.
   **McMillan is 15/22 🟠. Next: Ch.16.**
 
+## 0.109 McMillan Ch.17 "Selection of power supply, apparatus and interconnecting cabling" published in `b08f2d7a`
+- Source: printed pp. 482–502 = PDF pp. 503–523, `PAGES_SRC = 21` (printed = PDF − 21), raw
+  LF lines 20594–21452 in `work/mcmillan_raw.txt`; `=== PAGE 524 ===` at LF 21453 begins Chapter 18
+  and is out of scope. 21 pypdfium2 renders in `work/mcmillan_ch17_pages/`. No `MISSING PAGE`
+  placeholders. Three verified surveys A–C cover all pages; the older survey D is superseded by C.
+  Verified anchors: `=== PAGE 511 ===` LF 20913, `=== PAGE 518 ===` LF **21195**. Brief, writer
+  contract and module map are `work/mcmillan_ch17_{brief,writer_contract,module_map}.md`.
+- Coverage: 17.1 TN-C-S/TN-S supplies and earthing; 17.2 electrical protection; 17.3 apparatus
+  selection by gas/vapour/mist and dust risks, MIC/MESG sub-groups, T1–T6 temperature classes,
+  ambient derating and certification; 17.3.3 zones 0/1/2/20/21; Zone 22 (Zone Y); 17.4 conduit and
+  cable systems for zones 0/20, 1/21 and 2/22; 10 printed references. Three vector figures
+  (17.1 TN-C-S distribution, 17.2 TN-S distribution, 17.3 earthing arrangements), no tables, no
+  numbered equations and four unnumbered display blocks.
+- Three prose modules `mcmillan_ch17a…c.py` and one figure supplier `mcmillanfig17.py` were merged
+  by `mcmillan_ch17.py`, which owns the 10 references, glossary, source-quirk note and copyright.
+  Image readings override OCR throughout: `240 V rms`, `nuisance rips`, `exits` in Fig. 17.3,
+  `94/9/EU`, `ignition ignition`, `enlosures`, `raison d’être`, `Type ‘s’`, `Flameproof enclosures
+  ‘p’`, `(See Chapter 15)`, duplicated `(CSP)`, missing full stop after `60 V peak ac or dc`, and
+  scrambled two-column reference labels 6/8/9.
+- QA `work/qa_mcmillan_ch17.py` and `work/qa_mcmillan_ch17_figs.py`: both EN and VI pages PASS —
+  3 XML-valid SVGs, 3/3 localized captions, 0 tables, 4 unnumbered eq blocks, 10 refs in printed
+  order, 1 h2 / 11 h3 / 21 h4, 0 CJK / bare `&` / Spanish / VI-in-EN prose, 0 off-canvas or
+  overlapping labels. The English QA exempts the printed French `raison d’être` from the VI guard.
+- Pushed `b08f2d7a`; live EN/VI deep URLs initially 404, then both HTTP 200 after Pages
+  propagation. Live pages show 3 figs / 0 tables / 4 eq / 10 refs, TOC rows, 17/22 catalog badges
+  in both languages and 8 sitemap entries; `check_links.py` broken 0, sitemap 1,272 URLs.
+  **McMillan is 17/22 🟠. Next: Ch.18.**
+
 ## 0.108 McMillan Ch.16 "Other methods of protection and future apparatus requirements" published in `3d1e77dd`
 - Source: printed pp. 474–481 = PDF pp. 495–502, `PAGES_SRC = 8` (printed = PDF − 21), raw
   LF lines 20315–20593 in `work/mcmillan_raw.txt`; Chapter 17 starts at LF 20594 and is out of
@@ -214,7 +245,7 @@ Knowledge*, 2nd ed., 511 pp).
 - Pushed `3d1e77dd`; live EN/VI deep URLs initially 404, then both HTTP 200 after Pages
   propagation. Live pages show 2 figs / 0 tables / 4 refs, TOC rows, 16/22 catalog badges in
   both languages and 8 sitemap entries; `check_links.py` broken 0, sitemap 1,270 URLs.
-  **McMillan is 16/22 🟠. Next: Ch.17.**
+  **McMillan was 16/22 🟠 at that point; next was Ch.17.**
 
 ## 0.104 McMillan Ch.12 "Apparatus with protection concept increased safety 'e'" published in `1bfe7067`
 - Source `work/mcmillan_ch12_brief.md` from six verified surveys: PDF pp. 317–351 = printed

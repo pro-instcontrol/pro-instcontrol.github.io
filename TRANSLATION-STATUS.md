@@ -8103,4 +8103,29 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
 - Pushed `3d1e77dd` ("Publish McMillan chapter 16: future protection requirements (EN/VI,
   2 vector figures)"), 15 files / 1,255 insertions. Live EN/VI deep URLs initially 404, then both
   HTTP 200 after Pages propagation; live pages show 2 figs / 0 tables / 4 refs, TOC rows,
-  16/22 catalog badges and 8 sitemap entries. McMillan is now **16/22** 🟠; next unit: Ch.17.
+  16/22 catalog badges and 8 sitemap entries. McMillan was **16/22** 🟠 at that point; next unit was Ch.17.
+
+## Session 2026-11-28 — McMillan Chapter 17 published (EN/VI, 3 vector figures, 4 displays, 10 refs)
+- Source printed pp. 482–502 (PDF pp. 503–523, `PAGES_SRC = 21`, printed = PDF − 21), raw LF
+  lines 20594–21452 in `work/mcmillan_raw.txt`; `=== PAGE 524 ===` at LF 21453 starts Chapter 18.
+  21 renders in `work/mcmillan_ch17_pages/p503.png` … `p523.png`. No `MISSING PAGE` placeholders.
+  Three verified surveys A–C cover all pages; the earlier survey D is superseded by C. Verified
+  anchors: `=== PAGE 511 ===` LF 20913, `=== PAGE 518 ===` LF **21195** (not 21198). Survey A ends
+  at LF 20912 and B starts mid-sentence at LF 20916 after the LF 20915 tail ending `However,`.
+- Coverage: TN-C-S/TN-S supplies and earthing; electrical protection; selection by gas/vapour/mist
+  and dust risks; MIC/MESG sub-groups; T1–T6 classes and ambient derating; zones 0/1/2/20/21/22;
+  conduit and cable systems; 10 printed references. Three vector figures (17.1–17.3), no tables,
+  no numbered equations and four unnumbered displays (MIC/MESG inequalities, T6–T1 list, surface
+  temperature equation and its four-line `where` key).
+- Three prose modules `mcmillan_ch17a…c.py` and one figure supplier `mcmillanfig17.py` were merged
+  by `mcmillan_ch17.py`, which owns the references, glossary, source-quirk note and copyright.
+  All six prose bodies end with `return "".join(b)`.
+- QA: both EN and VI pages PASS — fig ids 1–3, 3 XML-valid SVGs, 3/3 localized captions, 0 tables,
+  4 eq blocks, 10 refs in printed order, 1 h2 / 11 h3 / 21 h4, 0 CJK / bare `&` / Spanish /
+  VI-in-EN prose, 0 off-canvas or overlapping labels. The English QA exempts the printed French
+  `raison d’être` from the diacritic guard. `check_links.py` pages 1,274, local references 36,954,
+  broken 0; sitemap 1,272 URLs with 8 Ch.17 entries; TOC 1 row per language; badge 17/22.
+- Pushed `b08f2d7a` ("Publish McMillan chapter 17: power supply, apparatus and cabling (EN/VI,
+  3 vector figures)"), 15 files / 3,009 insertions. Live EN/VI deep URLs initially 404, then both
+  HTTP 200 after Pages propagation; live pages show 3 figs / 0 tables / 4 eq / 10 refs, TOC rows,
+  17/22 catalog badges and 8 sitemap entries. McMillan is now **17/22** 🟠; next unit: Ch.18.
