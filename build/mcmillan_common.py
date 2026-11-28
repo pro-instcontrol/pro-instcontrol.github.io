@@ -39,6 +39,7 @@ SLUGS["mcmillan"] = {
     11: "ch11-apparatus-using-protection-concept-pressurization-p",
     12: "ch12-apparatus-with-protection-concept-increased-safety-e",
     13: "ch13-apparatus-and-systems-using-intrinsic-safety-i",
+    14: "ch14-apparatus-using-protection-concept-n",
 }
 
 (p, lead, h2, h3, h4, eq, quote, ul, ol, note, refs, table, fig, keyterms,
