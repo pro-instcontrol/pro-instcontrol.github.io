@@ -5,10 +5,10 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 10/22 (rows below;
+**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 11/22 (rows below;
 flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
 IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32, R. STAHL ExProtection `expb` 🟢
-6/6). **Live chapter HEAD `3edc08f0`** (McMillan Ch.10 "Apparatus using protection concept flameproof enclosure 'd'": 49 source pages / printed pp. 226–274, 29 vector figures, 15 tables, 17 references, no equations). Prior chapter HEAD `10ecd23e` was McMillan Ch.9 "Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'" (17 source pages / printed pp. 209–225, 2 vector figures, 3 tables, 30 references); before that `70ec088b`
+6/6). **Live chapter HEAD `3ddba55b`** (McMillan Ch.11 "Apparatus using protection concept pressurization 'p'": 22 source pages / printed pp. 275–296, 8 vector figures, 2 tables, 10 references, no equations). Prior chapter HEAD `3edc08f0` was McMillan Ch.10 "Apparatus using protection concept flameproof enclosure 'd'" (49 source pages / printed pp. 226–274, 29 vector figures, 15 tables, 17 references, no equations); before that `10ecd23e` was McMillan Ch.9 "Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'" (17 source pages / printed pp. 209–225, 2 vector figures, 3 tables, 30 references); before that `70ec088b`
 (McMillan Ch.8 "General requirements for explosion protected apparatus (gas, vapour and mist
 risks)": 31 source pages / printed pp. 178–208, 9 vector figures, 6 tables, 19 references, no
 equations). Prior chapter HEAD `11e932ca` (McMillan Ch.7 "Design
@@ -1490,7 +1490,31 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   labels. QA allowlisted the French proper noun `Européen` in the CENELEC reference and the
   localized `0,1 mm` decimal comma in VI. Pushed `3edc08f0`; EN/VI deep URLs initially 404, then
   both HTTP 200 after Pages propagation; live pages, TOC rows, 10/22 catalog badges and 8 sitemap
-  entries verified. `check_links.py` broken 0, sitemap 1,258 URLs. Next unit: McMillan Chapter 11.
+  entries verified. `check_links.py` broken 0, sitemap 1,258 URLs.
+- Chapter 11 covers printed pp. 275–296 (PDF pp. 296–317, `PAGES_SRC = 22`): "Apparatus using
+  protection concept pressurization 'p'" — standards background (CP 1003, NEC, 76/117/EEC,
+  CENELEC, BS 5501 Part 3, BS/EN 50016), static pressurization / leakage compensation / continuous
+  dilution, purge and dilution gases, flammable materials imported into enclosures, enclosures,
+  ducting and internal components, spark and particle arresters, internal releases, and the
+  pressure/purge detection and safety-sequence provisions. Eight vector figures, two transcribed
+  tables (11.1 pressurization vs release conditions, 11.2 spark/particle barrier requirements)
+  and 10 references; no equations or worked examples. No `MISSING PAGE` placeholders.
+- Brief `work/mcmillan_ch11_brief.md` from three verified surveys, writer contract
+  `work/mcmillan_ch11_writer_contract.md`, fixed module map `work/mcmillan_ch11_module_map.md`,
+  22 page renders, five prose modules `mcmillan_ch11a…e.py`, one figure supplier
+  `mcmillanfig11.py` and one table supplier `mcmillan_tbl11_1_2.py`, merged by
+  `mcmillan_ch11.py`. QA scripts `work/qa_mcmillan_ch11.py` and `work/qa_mcmillan_ch11_figs.py`:
+  both EN and VI pages PASS — 8/8 XML-valid SVGs with localized captions, 2 tables with localized
+  VI rows, 10 refs, 1 h2 / 4 h3 / 18 h4, all key values present, 0 CJK / bare `&` / Spanish /
+  VI-in-EN prose, 0 off-canvas or overlapping labels. QA removed a stale "IEC 79" token left over
+  from the Chapter 10 gate, localized the "spark and particle" check for VI, and allowlisted the
+  French proper noun `Centre Européen de Normalisation Électrique` in the EN reference list.
+  Printed quirks retained with notes include the heading's `(1995)` against the body's `(1996)⁶`,
+  'as described in Chapter 11' inside Chapter 11, `made,?`, `gasflow`, `chromotographs`,
+  `BS/EN 500147` OCR corruption, and the unclosed parenthesis in `worn BSEN 50026)`. Pushed
+  `3ddba55b`; live EN/VI deep URLs initially 404, then both HTTP 200 after Pages propagation;
+  live pages, TOC rows, 11/22 catalog badges and 8 sitemap entries verified. `check_links.py`
+  broken 0, sitemap 1,260 URLs. Next unit: McMillan Chapter 12.
 - Catalog restoration (2026-11-27): the four curated cross-book cards — Measurement
   Instrumentation for Upstream Oil & Gas, Instrumentation & Control Systems focus, Oil Refining
   focus and Petrochemical Industry focus — were dropped when the Chapter 4 rebuild regenerated

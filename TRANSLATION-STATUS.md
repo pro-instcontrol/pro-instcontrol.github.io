@@ -7942,4 +7942,30 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   figures, 15 tables)"), 27 files / 6,811 insertions. Live EN/VI deep URLs initially 404, then
   both HTTP 200 after Pages propagation; live TOC rows, 10/22 catalog badges and 8 sitemap entries
   verified. `check_links.py` broken 0; sitemap 1,258 URLs.
-- McMillan is now **10/22** 🟠. Next unit: Ch.11.
+- McMillan was **10/22** 🟠; next unit was Ch.11.
+
+## Session 2026-11-27 — McMillan Chapter 11 published (EN/VI, 8 vector figures, 2 tables, 10 refs)
+- Source raw lines 12261–13067, PDF pp. 296–317 = printed pp. 275–296, `PAGES_SRC = 22`
+  (printed = PDF − 21); brief `work/mcmillan_ch11_brief.md`, module map and writer contract,
+  22 renders in `work/mcmillan_ch11_pages/`. No `MISSING PAGE` placeholders, no equations or
+  worked examples.
+- Chapter shell, module D, eight vector figures, QA gates and all three registrations were
+  already in the working copy when this session resumed. Modules A/B/C/E and
+  `build/mcmillan_tbl11_1_2.py` were supplied by five parallel writers. Contents: 11.1 standards
+  (CP 1003, NEC, 76/117/EEC, CENELEC, BS 5501 Part 3, BS/EN 50016), 11.2 static / leakage
+  compensation / continuous dilution, Table 11.1 with seven footnotes and a note, 11.3 purge
+  and dilution gases, 11.4 flammable materials imported into enclosures, 11.5 enclosures,
+  ducting and internal components, Figs 11.1–11.6, spark/particle arresters and Table 11.2,
+  internal-release Fig. 11.8, and 11.6 safety provisions and devices.
+- Integration fixes: VI table rows were switched from shared English `ROWS111`/`ROWS112` to
+  `ROWS111_VI`/`ROWS112_VI` in modules A and E. QA gate `work/qa_mcmillan_ch11.py` was corrected
+  to drop a stale `IEC 79` token inherited from the Ch.10 gate, to use localized
+  `tia lửa và hạt` for VI instead of the English `spark and particle`, and to allowlist the
+  French proper noun `Centre Européen de Normalisation Électrique` in the EN-only diacritic check.
+- QA: both EN and VI pages PASS — fig ids 1–8, 8 XML-valid SVGs, 8/8 localized captions, 2 tables,
+  10 refs, 1 h2 / 4 h3 / 18 h4, no equations, 0 CJK / bare `&` / Spanish / VI-in-EN prose, 0
+  off-canvas or overlapping labels. `check_links.py` pages 1,262, local references 36,654,
+  broken 0; sitemap 1,260 URLs with 8 Ch.11 entries; TOC 1 row per language; badge 11/22.
+- Pushed `3ddba55b` ("Publish McMillan chapter 11: pressurization 'p' (EN/VI, 8 vector figures,
+  2 tables)"), 18 files / 3,386 insertions. Live EN/VI deep URLs initially 404, then both HTTP 200
+  after Pages propagation. McMillan is now **11/22** 🟠; next unit: Ch.12.
