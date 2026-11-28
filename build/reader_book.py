@@ -1148,6 +1148,7 @@ BOOKS = {
             13: "ch13-apparatus-and-systems-using-intrinsic-safety-i",
             14: "ch14-apparatus-using-protection-concept-n",
             15: "ch15-protection-concepts-for-dust-risks",
+            16: "ch16-other-methods-of-protection-and-future-apparatus-requirements",
         },
         "copyright_en": "Original work © 1998 Reed Educational and Professional Publishing Ltd.",
         "copyright_vi": "Bản gốc © 1998 Reed Educational and Professional Publishing Ltd.",

@@ -41,6 +41,7 @@ SLUGS["mcmillan"] = {
     13: "ch13-apparatus-and-systems-using-intrinsic-safety-i",
     14: "ch14-apparatus-using-protection-concept-n",
     15: "ch15-protection-concepts-for-dust-risks",
+    16: "ch16-other-methods-of-protection-and-future-apparatus-requirements",
 }
 
 (p, lead, h2, h3, h4, eq, quote, ul, ol, note, refs, table, fig, keyterms,
