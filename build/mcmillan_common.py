@@ -42,6 +42,7 @@ SLUGS["mcmillan"] = {
     14: "ch14-apparatus-using-protection-concept-n",
     15: "ch15-protection-concepts-for-dust-risks",
     16: "ch16-other-methods-of-protection-and-future-apparatus-requirements",
+    17: "ch17-selection-of-power-supply-apparatus-and-cabling",
 }
 
 (p, lead, h2, h3, h4, eq, quote, ul, ol, note, refs, table, fig, keyterms,

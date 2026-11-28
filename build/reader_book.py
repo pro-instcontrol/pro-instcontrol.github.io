@@ -1149,6 +1149,7 @@ BOOKS = {
             14: "ch14-apparatus-using-protection-concept-n",
             15: "ch15-protection-concepts-for-dust-risks",
             16: "ch16-other-methods-of-protection-and-future-apparatus-requirements",
+            17: "ch17-selection-of-power-supply-apparatus-and-cabling",
         },
         "copyright_en": "Original work © 1998 Reed Educational and Professional Publishing Ltd.",
         "copyright_vi": "Bản gốc © 1998 Reed Educational and Professional Publishing Ltd.",
