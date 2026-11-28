@@ -7968,4 +7968,25 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   broken 0; sitemap 1,260 URLs with 8 Ch.11 entries; TOC 1 row per language; badge 11/22.
 - Pushed `3ddba55b` ("Publish McMillan chapter 11: pressurization 'p' (EN/VI, 8 vector figures,
   2 tables)"), 18 files / 3,386 insertions. Live EN/VI deep URLs initially 404, then both HTTP 200
-  after Pages propagation. McMillan is now **11/22** 🟠; next unit: Ch.12.
+  after Pages propagation. McMillan was **11/22** 🟠; next unit was Ch.12.
+
+## Session 2026-11-27 — McMillan Chapter 12 published (EN/VI, 16 vector figures, 7 tables, 16 refs)
+- Source raw lines 13100–14485, PDF pp. 317–351 = printed pp. 296–330, `PAGES_SRC = 35`
+  (printed = PDF − 21); brief `work/mcmillan_ch12_brief.md` from six verified surveys, module map
+  and writer contract, 35 renders in `work/mcmillan_ch12_pages/`. No `MISSING PAGE` placeholders.
+- Six prose modules A–F covered: 12.1 standards; 12.2 enclosures, terminals, creepage and
+  clearance, insulation and windings; 12.3 terminal enclosures, luminaires, caplamps,
+  instruments, secondary batteries, heating devices, rotating machines and other apparatus.
+  Four figure suppliers produced Figs 12.1–12.16; two table suppliers produced Tables 12.1–12.7.
+  The shell carried the 16-item reference list, glossary and source-quirk note.
+- Integration fixes: module E's `fig_f1212` call was corrected to figure module C; QA gate was
+  updated from 0 to 2 displayed equations after the writer correctly preserved two unnumbered
+  formulas in 12.3.5 and 12.3.7. VI-specific table rows were used for Tables 12.3, 12.4, 12.5
+  and 12.7; the other tables are numeric/symbolic-only.
+- QA: both EN and VI pages PASS — fig ids 1–16, 16 XML-valid SVGs, 16/16 localized captions,
+  7 tables, 16 refs, 2 equations, 1 h2 / 8 h3 / 16 h4, 0 CJK / bare `&` / Spanish / VI-in-EN
+  prose, 0 off-canvas or overlapping labels. `check_links.py` pages 1,264, local references
+  36,704, broken 0; sitemap 1,262 URLs with 8 Ch.12 entries; TOC 1 row per language; badge 12/22.
+- Pushed `1bfe7067` ("Publish McMillan chapter 12: increased safety 'e' (EN/VI, 16 vector
+  figures, 7 tables)"), 23 files / 5,957 insertions. Live EN/VI deep URLs initially 404, then
+  both HTTP 200 after Pages propagation. McMillan is now **12/22** 🟠; next unit: Ch.13.

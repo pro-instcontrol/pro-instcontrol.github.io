@@ -3,11 +3,14 @@
 **State now (2026-11-27):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
 11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1), plus the ongoing McMillan
-reader at **11/22**. **Live chapter HEAD `3ddba55b`**
-(McMillan Ch.11 “Apparatus using protection concept pressurization 'p'”: 22 source pages
-/ printed pp. 275–296, 8 vector figures, 2 tables, 10 refs). **Next unit: McMillan Ch.12** —
-see `TRANSLATION-STATUS.md`. Prior HEAD `3edc08f0` was McMillan Ch.10 “Apparatus using protection
-concept flameproof enclosure 'd'” (49 source pages, 29 vector figures, 15 tables, 17 refs);
+reader at **12/22**. **Live chapter HEAD `1bfe7067`**
+(McMillan Ch.12 “Apparatus with protection concept increased safety 'e'”: 35 source pages
+/ printed pp. 296–330, 16 vector figures, 7 tables, 16 refs, 2 unnumbered formulas).
+**Next unit: McMillan Ch.13** — see `TRANSLATION-STATUS.md`.
+Prior HEAD `3ddba55b` was McMillan Ch.11 “Apparatus using protection concept pressurization 'p'”
+(22 source pages, 8 vector figures, 2 tables, 10 refs); before that `3edc08f0` was McMillan Ch.10
+“Apparatus using protection concept flameproof enclosure 'd'” (49 source pages, 29 vector figures,
+15 tables, 17 refs);
 before that `10ecd23e` was McMillan Ch.9 “Apparatus using protection
 concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'” (17 source pages, 2 vector
 figures, 3 tables, 30 refs).
@@ -65,7 +68,7 @@ that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
 unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,258 URLs,
 catalog badges IIH 8/8, Emerson 15/15, IPC 8/8, PPIC 11/11, Baumann 32/32 and ExProtection
-6/6 all `full`, McMillan badge 🟠 11/22; McMillan, Baumann and ExProtection EN/VI deep URLs
+6/6 all `full`, McMillan badge 🟠 12/22; McMillan, Baumann and ExProtection EN/VI deep URLs
 **200** after Pages propagation, all TOCs list all units, `check_links.py` broken 0.
 Full tables in `report.md`.
 
@@ -76,8 +79,8 @@ were accidentally dropped by the Chapter 4 catalog rebuild. They are now emitted
 counts; live EN/VI catalogs show 21 translated cards, 21 in the translated pill, and all four
 links. Never hand-edit the generated `books/index.html` to add these cards again.
 
-**Next unit: McMillan Ch.12**. The older 15-book campaign is complete 🟢, and McMillan
-chapters 1–11 are live at 11/22;
+**Next unit: McMillan Ch.13**. The older 15-book campaign is complete 🟢, and McMillan
+chapters 1–12 are live at 12/22;
 continue one chapter at a time with the same brief → figures → prose → QA → push recipe. The
 McMillan 678-page source has eight literal “MISSING PAGE” pages (PDF 80–87 = printed 59–66):
 never invent the missing Figs 3.6–3.8 or Tables 3.5–3.10, and carry forward the source-gap note.
@@ -100,6 +103,25 @@ Knowledge*, 2nd ed., 511 pp).
 
 ---
 
+## 0.104 McMillan Ch.12 "Apparatus with protection concept increased safety 'e'" published in `1bfe7067`
+- Source `work/mcmillan_ch12_brief.md` from six verified surveys: PDF pp. 317–351 = printed
+  pp. 296–330, `PAGES_SRC = 35` (printed = PDF − 21), raw lines 13100–14485, with 35 pypdfium2
+  renders in `work/mcmillan_ch12_pages/`. No MISSING PAGE placeholders. Sixteen figures, seven
+  tables, sixteen references, two unnumbered displayed formulas.
+- Six writers supplied prose modules A–F, four suppliers produced the 16 vector figures, and two
+  suppliers produced Tables 12.1–12.7. Integration fix: module E's `fig_f1212` reference was
+  moved from figure module D to C. QA gate updated from 0 to 2 displayed equations per language.
+  VI-specific row constants used for Tables 12.3, 12.4, 12.5 and 12.7; Tables 12.1, 12.2 and
+  12.6 are numeric/symbolic-only and shared.
+- QA `work/qa_mcmillan_ch12.py` and `work/qa_mcmillan_ch12_figs.py`: both EN and VI pages PASS —
+  16 XML-valid SVGs, 16/16 localized captions, 7 tables, 16 refs, 2 equations, 1 h2 / 8 h3 /
+  16 h4, no CJK / bare `&` / Spanish / VI-in-EN prose, 0 off-canvas or overlapping labels.
+  Printed quirks kept with notes: unnumbered Fig. 12.2 caption, 'Figure continued' notes,
+  `spade/eylet`, `Flameoroof`, `t, time`, `IJn ratios`, `IF’ Code`, `5 second`.
+- Pushed `1bfe7067`; EN/VI deep URLs initially 404, then both HTTP 200 after Pages propagation.
+  Live TOC rows, 12/22 catalog badges and 8 sitemap entries verified; `check_links.py` broken 0,
+  sitemap 1,262 URLs. **McMillan is 12/22 🟠. Next: Ch.13.**
+
 ## 0.103 McMillan Ch.11 "Apparatus using protection concept pressurization 'p'" published in `3ddba55b`
 - Source `work/mcmillan_ch11_brief.md` from three verified surveys: PDF pp. 296–317 = printed
   pp. 275–296, `PAGES_SRC = 22` (printed = PDF − 21), raw lines 12261–13067, with 22 pypdfium2
@@ -120,7 +142,7 @@ Knowledge*, 2nd ed., 511 pp).
   `BS/EN 500147` OCR corruption and `worn BSEN 50026)`.
 - Pushed `3ddba55b`; EN/VI deep URLs initially 404, then both HTTP 200 after Pages propagation.
   Live TOC rows, 11/22 catalog badges and 8 sitemap entries verified; `check_links.py` broken 0,
-  sitemap 1,260 URLs. **McMillan is 11/22 🟠. Next: Ch.12.**
+  sitemap 1,260 URLs. **McMillan was 11/22 🟠; next was Ch.12.**
 
 ## 0.102 McMillan Ch.10 "Apparatus using protection concept flameproof enclosure 'd'" published in `3edc08f0`
 - Source printed pp. 226–274 (PDF 247–295, `PAGES_SRC = 49`, printed = PDF − 21), raw lines

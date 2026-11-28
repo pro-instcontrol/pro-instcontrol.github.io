@@ -5,10 +5,10 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 11/22 (rows below;
+**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 12/22 (rows below;
 flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
 IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32, R. STAHL ExProtection `expb` 🟢
-6/6). **Live chapter HEAD `3ddba55b`** (McMillan Ch.11 "Apparatus using protection concept pressurization 'p'": 22 source pages / printed pp. 275–296, 8 vector figures, 2 tables, 10 references, no equations). Prior chapter HEAD `3edc08f0` was McMillan Ch.10 "Apparatus using protection concept flameproof enclosure 'd'" (49 source pages / printed pp. 226–274, 29 vector figures, 15 tables, 17 references, no equations); before that `10ecd23e` was McMillan Ch.9 "Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'" (17 source pages / printed pp. 209–225, 2 vector figures, 3 tables, 30 references); before that `70ec088b`
+6/6). **Live chapter HEAD `1bfe7067`** (McMillan Ch.12 "Apparatus with protection concept increased safety 'e'": 35 source pages / printed pp. 296–330, 16 vector figures, 7 tables, 16 references, 2 unnumbered equation blocks). Prior chapter HEAD `3ddba55b` was McMillan Ch.11 "Apparatus using protection concept pressurization 'p'" (22 source pages, 8 vector figures, 2 tables, 10 references, no equations); before that `3edc08f0` was McMillan Ch.10 "Apparatus using protection concept flameproof enclosure 'd'" (49 source pages / printed pp. 226–274, 29 vector figures, 15 tables, 17 references, no equations); before that `10ecd23e` was McMillan Ch.9 "Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'" (17 source pages / printed pp. 209–225, 2 vector figures, 3 tables, 30 references); before that `70ec088b`
 (McMillan Ch.8 "General requirements for explosion protected apparatus (gas, vapour and mist
 risks)": 31 source pages / printed pp. 178–208, 9 vector figures, 6 tables, 19 references, no
 equations). Prior chapter HEAD `11e932ca` (McMillan Ch.7 "Design
@@ -1514,7 +1514,32 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   `BS/EN 500147` OCR corruption, and the unclosed parenthesis in `worn BSEN 50026)`. Pushed
   `3ddba55b`; live EN/VI deep URLs initially 404, then both HTTP 200 after Pages propagation;
   live pages, TOC rows, 11/22 catalog badges and 8 sitemap entries verified. `check_links.py`
-  broken 0, sitemap 1,260 URLs. Next unit: McMillan Chapter 12.
+  broken 0, sitemap 1,260 URLs.
+- Chapter 12 covers printed pp. 296–330 (PDF pp. 317–351, `PAGES_SRC = 35`): "Apparatus with
+  protection concept increased safety 'e' (BS/EN 50019 (1994))" — standards background; basic
+  construction requirements for enclosures, terminals, separation of conducting parts, creepage
+  and clearance, insulation and windings; additional requirements for terminal enclosures,
+  mains-powered luminaires, caplamps, measuring instruments and transformers, secondary
+  batteries, heating devices, rotating machines and other apparatus. Sixteen vector figures,
+  seven transcribed tables (12.1–12.7), sixteen references, and two unnumbered displayed
+  formulas (the H₂ generation rate and the rotating-machine air gap). No `MISSING PAGE`
+  placeholders.
+- Brief `work/mcmillan_ch12_brief.md` from six verified surveys, writer contract
+  `work/mcmillan_ch12_writer_contract.md`, fixed module map `work/mcmillan_ch12_module_map.md`,
+  35 page renders, six prose modules `mcmillan_ch12a…f.py`, four figure suppliers
+  `mcmillanfig12_a…d.py` and two table modules `mcmillan_tbl12_1_4.py`,
+  `mcmillan_tbl12_5_7.py`, merged by `mcmillan_ch12.py`. QA scripts
+  `work/qa_mcmillan_ch12.py` and `work/qa_mcmillan_ch12_figs.py`: both EN and VI pages PASS —
+  16/16 XML-valid SVGs with localized captions, 7 tables with VI-specific rows where needed,
+  16 refs, 2 displayed formulas, 1 h2 / 8 h3 / 16 h4, all key values present, 0 CJK / bare `&` /
+  Spanish / VI-in-EN prose, 0 off-canvas or overlapping labels. Integration corrected module E's
+  `fig_f1212` supplier reference from figure module D to C, and the QA gate was updated from 0 to
+  2 displayed equations. Printed quirks retained with notes include the unnumbered Fig. 12.2
+  caption, 'Figure continued' notes on Figs 12.6–12.7, `spade/eylet`, `Flameoroof`, `t, time`,
+  `IJn ratios`, `IF’ Code` and `5 second`. Pushed `1bfe7067`; live EN/VI deep URLs initially 404,
+  then both HTTP 200 after Pages propagation; live pages, TOC rows, 12/22 catalog badges and 8
+  sitemap entries verified. `check_links.py` broken 0, sitemap 1,262 URLs. Next unit: McMillan
+  Chapter 13.
 - Catalog restoration (2026-11-27): the four curated cross-book cards — Measurement
   Instrumentation for Upstream Oil & Gas, Instrumentation & Control Systems focus, Oil Refining
   focus and Petrochemical Industry focus — were dropped when the Chapter 4 rebuild regenerated
