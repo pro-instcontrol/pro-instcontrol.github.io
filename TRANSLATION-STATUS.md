@@ -8022,3 +8022,32 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   figures, 12 tables)"), 26 files / 15,660 insertions. Live EN/VI deep URLs initially 404, then
   both HTTP 200 after Pages propagation; live pages show 45 figs / 12 tables, TOC rows, 13/22
   catalog badges and 8 sitemap entries. McMillan is now **13/22** 🟠; next unit: Ch.14.
+
+## Session 2026-11-27 — McMillan Chapter 14 published (EN/VI, 5 vector figures, 7 tables, 28 refs)
+- Source printed pp. 427–455 (PDF pp. 448–476, `PAGES_SRC = 29`, printed = PDF − 21), raw LF
+  lines 18415–19613 in `work/mcmillan_raw.txt`, 29 renders in `work/mcmillan_ch14_pages/`. Bilingual
+  slug `ch14-apparatus-using-protection-concept-n`. No `MISSING PAGE` placeholders. Three verified
+  surveys A–C were assembled into `work/mcmillan_ch14_brief.md`; writer contract
+  `work/mcmillan_ch14_writer_contract.md` and module map `work/mcmillan_ch14_module_map.md` fixed
+  the three-prose / one-figure / three-table contracts. Survey A/B anchor drift was caught:
+  `=== PAGE 458 ===` is at LF 18896, not 18939; survey A's transcription was already correctly
+  limited to PDF 448–457.
+- Coverage: §14.1–14.5.5 — Zone 2 rationale and BS 6941/IEC 79-15 standardization; constructional
+  requirements for impact, IP ratings, wiring, external connections, creepage/clearance and
+  insulation tests; additional requirements for rotating machines, fuses, luminaires and
+  electronic/low-power apparatus; enclosed break devices, non-incendive components, hermetically
+  sealed devices, energy-limited circuits and restricted breathing enclosures; 28 printed
+  references. Five vector figures (14.1–14.5), seven tables (14.1–14.7), no numbered or displayed
+  equations.
+- Three prose modules `mcmillan_ch14a…c.py`, one figure supplier `mcmillanfig14.py` and three
+  table modules `mcmillan_tbl14_1_3.py`, `mcmillan_tbl14_4_5.py`, `mcmillan_tbl14_6_7.py` were
+  merged by `mcmillan_ch14.py`, which owns the references, glossary, source-quirk note and
+  copyright. Integration fixed module B returning a list instead of a joined string.
+- QA: both EN and VI pages PASS — fig ids 1–5, 5 XML-valid SVGs, 5/5 localized captions, 7 tables,
+  28 refs, 1 h2 / 16 h3 / 28 h4, 0 displayed equations, 0 CJK / bare `&` / Spanish / VI-in-EN
+  prose, 0 off-canvas or overlapping labels. `check_links.py` pages 1,268, local references
+  36,804, broken 0; sitemap 1,266 URLs with 8 Ch.14 entries; TOC 1 row per language; badge 14/22.
+- Pushed `11044175` ("Publish McMillan chapter 14: protection concept 'N' (EN/VI, 5 vector
+  figures, 7 tables)"), 18 files / 4,292 insertions. Live EN/VI deep URLs initially 404, then both
+  HTTP 200 after Pages propagation; live pages show 5 figs / 7 tables / 28 refs, TOC rows, 14/22
+  catalog badges and 8 sitemap entries. McMillan is now **14/22** 🟠; next unit: Ch.15.

@@ -3,11 +3,13 @@
 **State now (2026-11-27):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
 11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1), plus the ongoing McMillan
-reader at **13/22**. **Live chapter HEAD `759e8f73`**
-(McMillan Ch.13 “Apparatus and systems using protection concept intrinsic safety 'i'”: 96 source
-pages / printed pp. 331–426, 45 vector figures, 12 tables, 17 refs, 16 displayed equation blocks).
-**Next unit: McMillan Ch.14** — see `TRANSLATION-STATUS.md`.
-Prior HEAD `1bfe7067` was McMillan Ch.12 “Apparatus with protection concept increased safety 'e'”
+reader at **14/22**. **Live chapter HEAD `11044175`**
+(McMillan Ch.14 “Apparatus using protection concept 'N' ('n')”: 29 source pages /
+printed pp. 427–455, 5 vector figures, 7 tables, 28 refs, no displayed equations).
+**Next unit: McMillan Ch.15** — see `TRANSLATION-STATUS.md`.
+Prior HEAD `759e8f73` was McMillan Ch.13 “Apparatus and systems using protection concept intrinsic safety 'i'”
+(96 source pages / printed pp. 331–426, 45 vector figures, 12 tables, 17 refs, 16 displayed equation blocks);
+before that `1bfe7067` was McMillan Ch.12 “Apparatus with protection concept increased safety 'e'”
 (35 source pages, 16 vector figures, 7 tables, 16 refs, 2 unnumbered formulas); before that
 `3ddba55b` was McMillan Ch.11 “Apparatus using protection concept pressurization 'p'”
 (22 source pages, 8 vector figures, 2 tables, 10 refs); before that `3edc08f0` was McMillan Ch.10
@@ -68,9 +70,9 @@ vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercis
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,258 URLs,
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,266 URLs,
 catalog badges IIH 8/8, Emerson 15/15, IPC 8/8, PPIC 11/11, Baumann 32/32 and ExProtection
-6/6 all `full`, McMillan badge 🟠 13/22; McMillan, Baumann and ExProtection EN/VI deep URLs
+6/6 all `full`, McMillan badge 🟠 14/22; McMillan, Baumann and ExProtection EN/VI deep URLs
 **200** after Pages propagation, all TOCs list all units, `check_links.py` broken 0.
 Full tables in `report.md`.
 
@@ -81,8 +83,8 @@ were accidentally dropped by the Chapter 4 catalog rebuild. They are now emitted
 counts; live EN/VI catalogs show 21 translated cards, 21 in the translated pill, and all four
 links. Never hand-edit the generated `books/index.html` to add these cards again.
 
-**Next unit: McMillan Ch.14**. The older 15-book campaign is complete 🟢, and McMillan
-chapters 1–13 are live at 13/22;
+**Next unit: McMillan Ch.15**. The older 15-book campaign is complete 🟢, and McMillan
+chapters 1–14 are live at 14/22;
 continue one chapter at a time with the same brief → figures → prose → QA → push recipe. The
 McMillan 678-page source has eight literal “MISSING PAGE” pages (PDF 80–87 = printed 59–66):
 never invent the missing Figs 3.6–3.8 or Tables 3.5–3.10, and carry forward the source-gap note.
@@ -128,6 +130,33 @@ Knowledge*, 2nd ed., 511 pp).
   propagation. Live pages show 45 figs / 12 tables, TOC rows, 13/22 catalog badges in both
   languages and 8 sitemap entries; `check_links.py` broken 0, sitemap 1,264 URLs.
   **McMillan is 13/22 🟠. Next: Ch.14.**
+
+## 0.106 McMillan Ch.14 "Apparatus using protection concept 'N' ('n')" published in `11044175`
+- Source: printed pp. 427–455 = PDF pp. 448–476, `PAGES_SRC = 29` (printed = PDF − 21), raw
+  LF lines 18415–19613 in `work/mcmillan_raw.txt`, with 29 pypdfium2 renders in
+  `work/mcmillan_ch14_pages/`. No `MISSING PAGE` placeholders. Three verified surveys A–C were
+  assembled into `work/mcmillan_ch14_brief.md`, with `work/mcmillan_ch14_writer_contract.md`
+  and `work/mcmillan_ch14_module_map.md` fixing the three-prose / one-figure / three-table
+  contracts. Survey A/B anchor drift was caught: `=== PAGE 458 ===` is at LF 18896, not 18939.
+- Three prose modules `mcmillan_ch14a…c.py`, one figure supplier `mcmillanfig14.py` (5 vector
+  redraws: bayonet lampholder, tube-pin support, automatic lamp isolation, microswitch,
+  restricted-breathing nomograph) and three table modules `mcmillan_tbl14_1_3.py`,
+  `mcmillan_tbl14_4_5.py`, `mcmillan_tbl14_6_7.py` (Tables 14.1–14.7) were merged by
+  `mcmillan_ch14.py`, which owns the 28 printed references, glossary, source-quirk note and
+  copyright. No numbered or displayed equations; the Table 14.2 formula and test voltages stay
+  inline. Integration fixed module B returning a list instead of a joined string.
+- QA `work/qa_mcmillan_ch14.py` and `work/qa_mcmillan_ch14_figs.py`: both EN and VI pages PASS —
+  5 XML-valid SVGs, 5/5 localized captions, 7 tables, 28 refs, 1 h2 / 16 h3 / 28 h4, 0 displayed
+  equations, 0 CJK / bare `&` / Spanish / VI-in-EN prose, 0 off-canvas or overlapping labels.
+  Printed quirks kept with notes include `historically`, `counties`, unclosed `Type ‘N` quotes,
+  `Kg`, `20cms`, `(K)` table unit, `70 °C` vs `80°C`, `premiss`, `machmes`, `tₑ`,
+  `80±2°C for 168 hours (7 days)`, `2 × 10⁶ N/m² for 96 Hours (4 days)`, `L/R ration`,
+  `rigourous`, `Notwithstanding ths`, `less then 40 °C`, `Specific for Starters`, and ref 25's
+  missing full stop.
+- Pushed `11044175`; live EN/VI deep URLs initially 404, then both HTTP 200 after Pages
+  propagation. Live pages show 5 figs / 7 tables / 28 refs, TOC rows, 14/22 catalog badges in
+  both languages and 8 sitemap entries; `check_links.py` broken 0, sitemap 1,266 URLs.
+  **McMillan is 14/22 🟠. Next: Ch.15.**
 
 ## 0.104 McMillan Ch.12 "Apparatus with protection concept increased safety 'e'" published in `1bfe7067`
 - Source `work/mcmillan_ch12_brief.md` from six verified surveys: PDF pp. 317–351 = printed

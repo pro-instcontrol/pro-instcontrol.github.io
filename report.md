@@ -5,10 +5,10 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 12/22 (rows below;
+**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 14/22 (rows below;
 flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
 IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32, R. STAHL ExProtection `expb` 🟢
-6/6). **Live chapter HEAD `1bfe7067`** (McMillan Ch.12 "Apparatus with protection concept increased safety 'e'": 35 source pages / printed pp. 296–330, 16 vector figures, 7 tables, 16 references, 2 unnumbered equation blocks). Prior chapter HEAD `3ddba55b` was McMillan Ch.11 "Apparatus using protection concept pressurization 'p'" (22 source pages, 8 vector figures, 2 tables, 10 references, no equations); before that `3edc08f0` was McMillan Ch.10 "Apparatus using protection concept flameproof enclosure 'd'" (49 source pages / printed pp. 226–274, 29 vector figures, 15 tables, 17 references, no equations); before that `10ecd23e` was McMillan Ch.9 "Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'" (17 source pages / printed pp. 209–225, 2 vector figures, 3 tables, 30 references); before that `70ec088b`
+6/6). **Live chapter HEAD `11044175`** (McMillan Ch.14 "Apparatus using protection concept 'N' ('n')": 29 source pages / printed pp. 427–455, 5 vector figures, 7 tables, 28 references, no displayed equations). Prior chapter HEAD `759e8f73` was McMillan Ch.13 "Apparatus and systems using protection concept intrinsic safety 'i'" (96 source pages / printed pp. 331–426, 45 vector figures, 12 tables, 17 references, 16 displayed formula/value blocks); before that `1bfe7067` was McMillan Ch.12 "Apparatus with protection concept increased safety 'e'" (35 source pages / printed pp. 296–330, 16 vector figures, 7 tables, 16 references, 2 unnumbered equation blocks); before that `3ddba55b` was McMillan Ch.11 "Apparatus using protection concept pressurization 'p'" (22 source pages, 8 vector figures, 2 tables, 10 references, no equations); before that `3edc08f0` was McMillan Ch.10 "Apparatus using protection concept flameproof enclosure 'd'" (49 source pages / printed pp. 226–274, 29 vector figures, 15 tables, 17 references, no equations); before that `10ecd23e` was McMillan Ch.9 "Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'" (17 source pages / printed pp. 209–225, 2 vector figures, 3 tables, 30 references); before that `70ec088b`
 (McMillan Ch.8 "General requirements for explosion protected apparatus (gas, vapour and mist
 risks)": 31 source pages / printed pp. 178–208, 9 vector figures, 6 tables, 19 references, no
 equations). Prior chapter HEAD `11e932ca` (McMillan Ch.7 "Design
@@ -485,6 +485,14 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   ("Developments of Power System Protection and Control" / "Phát triển bảo vệ và điều khiển hệ
   thống điện"), the catalog badge shows "Translating · 6 of 11 chapters" (VI: "Đang dịch · 6/11
   chương"), and the live sitemap includes all 8 Ch.6 URL entries.
+- McMillan Ch.14 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation; both
+  live pages contain 5 XML-valid inline SVGs with sequential `fig-1..5` ids and localized captions
+  (`Figure 14.N` / `Hình 14.N`), 7 tables, 28 references and no displayed equations, 0 CJK /
+  0 bare ampersands / 0 Spanish hits / 0 Vietnamese diacritics in EN prose, 0 off-canvas /
+  0 overlapping figure labels, both live TOCs list Ch.14 ("Apparatus using protection concept 'N'
+  ('n')" / "Thiết bị theo nguyên lý 'N' ('n')"), the catalog badge shows "Translating · 14 of 22
+  chapters" (VI: "Đang dịch · 14/22 chương"), and the live sitemap includes all 8 Ch.14 URL
+  entries.
 
 ---
 
@@ -549,8 +557,13 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   → `fb826fcb` (IPC ch4) → `34f48d9a` (Baumann ch19) → `1065ce57` (PPIC ch5)
   → `64d01a87` (IPC ch5) → `cf190d85` (Baumann ch20) → `612baf12` (PPIC ch6)
   → `b5a7b37e` (IPC ch6) → `ed5931f4` (Baumann ch21) → `51251826` (PPIC ch7)
-  → `dfb96cc7` (IPC ch7) → `6ffef536` (Baumann ch22) → `4338ee22` (PPIC ch8,
-  **live chapter HEAD**).
+  → `dfb96cc7` (IPC ch7) → `6ffef536` (Baumann ch22) → `4338ee22` (PPIC ch8)
+  → `023705e9` (ExProtection) → `13dfadf3` (McMillan ch1) → `227cf5e3` (McMillan ch2)
+  → `7bcc937a` (McMillan ch3) → `99e874c5` (McMillan ch4) → `9a5fc6fd` (McMillan ch5)
+  → `32bc3380` (McMillan ch6) → `11e932ca` (McMillan ch7) → `70ec088b` (McMillan ch8)
+  → `10ecd23e` (McMillan ch9) → `3edc08f0` (McMillan ch10) → `3ddba55b` (McMillan ch11)
+  → `1bfe7067` (McMillan ch12) → `759e8f73` (McMillan ch13)
+  → `11044175` (McMillan ch14, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -1571,6 +1584,32 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   truncated Fig. 13.39 caption, `ration`, and the 0.033/0.035 μF conflict. Pushed `759e8f73`;
   live EN/VI deep URLs initially 404, then both HTTP 200 after Pages propagation; live pages,
   TOC rows, 13/22 catalog badges in both languages and 8 sitemap entries verified.
-  `check_links.py` broken 0, sitemap 1,264 URLs. Next unit: McMillan Chapter 14.
+  `check_links.py` broken 0, sitemap 1,264 URLs.
+- Chapter 14 covers printed pp. 427–455 (PDF pp. 448–476, `PAGES_SRC = 29`): "Apparatus using
+  protection concept 'N' ('n')" — Zone 2 rationale and BS 6941/IEC 79-15 standardization,
+  general constructional requirements (impact, IP ratings, wiring, external connections,
+  creepage/clearance and insulation tests), additional requirements for rotating machines,
+  fuses, luminaires and electronic/low-power apparatus, and apparatus producing arcs, sparks or
+  hot surfaces (enclosed break devices, hermetically sealed devices, energy-limited circuits and
+  restricted breathing enclosures), plus 28 references. Five vector figures, seven transcribed
+  tables and no numbered/displayed equations. No `MISSING PAGE` placeholders.
+- Brief `work/mcmillan_ch14_brief.md` from three verified surveys, writer contract
+  `work/mcmillan_ch14_writer_contract.md`, fixed module map `work/mcmillan_ch14_module_map.md`,
+  29 page renders, three prose modules `mcmillan_ch14a…c.py`, one figure supplier
+  `mcmillanfig14.py` (Figs 14.1–14.5) and three table modules `mcmillan_tbl14_1_3.py`,
+  `mcmillan_tbl14_4_5.py`, `mcmillan_tbl14_6_7.py`, merged by `mcmillan_ch14.py`. The three
+  surveys caught a raw-line anchor drift (`=== PAGE 458 ===` at LF 18896, not 18939); survey A's
+  transcription was already correctly limited to PDF 448–457. Integration fixed module B
+  returning a list instead of a joined string. QA scripts `work/qa_mcmillan_ch14.py` and
+  `work/qa_mcmillan_ch14_figs.py`: both EN and VI pages PASS — 5/5 XML-valid SVGs with localized
+  captions, 7 tables, 28 refs, 1 h2 / 16 h3 / 28 h4, 0 displayed equations, 0 CJK /
+  bare `&` / Spanish / VI-in-EN prose, 0 off-canvas or overlapping labels. Printed quirks retained
+  with notes include `historically`, `counties`, unclosed `Type ‘N` quotes, `Kg`, `20cms`, `(K)`
+  table unit, `70 °C` vs `80°C`, `premiss`, `machmes`, `tₑ`, `80±2°C for 168 hours (7 days)`,
+  `2 × 10⁶ N/m² for 96 Hours (4 days)`, `L/R ration`, `rigourous`, `Notwithstanding ths`,
+  `less then 40 °C`, `Specific for Starters`, and the missing full stop in reference 25.
+  Pushed `11044175`; live EN/VI deep URLs initially 404, then both HTTP 200 after Pages
+  propagation; live pages, TOC rows, 14/22 catalog badges in both languages and 8 sitemap
+  entries verified. `check_links.py` broken 0, sitemap 1,266 URLs. Next unit: McMillan Chapter 15.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.
