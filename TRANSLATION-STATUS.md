@@ -8078,3 +8078,29 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   vector figures, 2 tables)"), 16 files / 3,028 insertions. Live EN/VI deep URLs initially 404,
   then both HTTP 200 after Pages propagation; live pages show 2 figs / 2 tables / 10 refs, TOC
   rows, 15/22 catalog badges and 8 sitemap entries. McMillan is now **15/22** 🟠; next unit: Ch.16.
+
+## Session 2026-11-28 — McMillan Chapter 16 published (EN/VI, 2 vector figures, 0 tables, 4 refs)
+- Source printed pp. 474–481 (PDF pp. 495–502, `PAGES_SRC = 8`, printed = PDF − 21), raw LF
+  lines 20315–20593 in `work/mcmillan_raw.txt`; Chapter 17 starts at LF 20594 and is OUT OF SCOPE.
+  Rendered pages `work/mcmillan_ch16_pages/p495.png` … `p502.png` were used. No `MISSING PAGE`
+  placeholders. Two verified surveys A–B were assembled into `work/mcmillan_ch16_brief.md`;
+  `work/mcmillan_ch16_writer_contract.md` and `work/mcmillan_ch16_module_map.md` fixed the
+  three-prose / one-figure / no-table contracts. Image readings override OCR (`q` not `4`,
+  `16.2.2` not `76.2.2`, `481` not `48 1`, and references 3/4 in image order).
+- Coverage: 76/117/EEC versus 94/9/EC, Inspection Certificates and Certificates of Conformity,
+  essential requirements, the five general requirements, materials of construction, general
+  design and constructional requirements, Category 1/2/3 apparatus and protective systems,
+  use of apparatus, and 4 printed references. Two vector figures (16.1 CE/Community Mark and
+  16.2 hexagon `Ex` mark), no tables and no numbered or displayed equations.
+- Three prose modules `mcmillan_ch16a…c.py` and one figure supplier `mcmillanfig16.py` were
+  merged by `mcmillan_ch16.py`, which owns the references, glossary, source-quirk note and
+  copyright. All six prose bodies end with `return "".join(b)`.
+- QA: both EN and VI pages PASS — fig ids 1–2, 2 XML-valid SVGs, 2/2 localized captions, 0 tables,
+  4 refs in printed order, 1 h2 / 4 h3 / 12 h4, 0 displayed equations, 0 CJK / bare `&` / Spanish /
+  VI-in-EN prose, 0 off-canvas or overlapping labels. `check_links.py` pages 1,272, local references
+  36,904, broken 0; sitemap 1,270 URLs with 8 Ch.16 entries; TOC 1 row per language; badge 16/22.
+  The English QA exempts the printed `Européen` in reference 4 from the diacritic guard.
+- Pushed `3d1e77dd` ("Publish McMillan chapter 16: future protection requirements (EN/VI,
+  2 vector figures)"), 15 files / 1,255 insertions. Live EN/VI deep URLs initially 404, then both
+  HTTP 200 after Pages propagation; live pages show 2 figs / 0 tables / 4 refs, TOC rows,
+  16/22 catalog badges and 8 sitemap entries. McMillan is now **16/22** 🟠; next unit: Ch.17.

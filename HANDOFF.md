@@ -1,13 +1,15 @@
-# HANDOFF — Campaign state 2026-11-27 (ALL REGISTERED BOOKS COMPLETE)
+# HANDOFF — Campaign state 2026-11-28 (ALL REGISTERED BOOKS COMPLETE)
 
-**State now (2026-11-27):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
+**State now (2026-11-28):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
 11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1), plus the ongoing McMillan
-reader at **15/22**. **Live chapter HEAD `07dd6606`**
-(McMillan Ch.15 “Protection concepts for apparatus for dust risks”: 18 source pages /
-printed pp. 456–473, 2 vector figures, 2 tables, 10 refs, no displayed equations).
-**Next unit: McMillan Ch.16** — see `TRANSLATION-STATUS.md`.
-Prior HEAD `11044175` was McMillan Ch.14 “Apparatus using protection concept 'N' ('n')”
+reader at **16/22**. **Live chapter HEAD `3d1e77dd`**
+(McMillan Ch.16 “Other methods of protection and future apparatus requirements”: 8 source pages /
+printed pp. 474–481, 2 vector figures, no tables, 4 refs, no displayed equations).
+**Next unit: McMillan Ch.17** — see `TRANSLATION-STATUS.md`.
+Prior HEAD `07dd6606` was McMillan Ch.15 “Protection concepts for apparatus for dust risks”
+(18 source pages / printed pp. 456–473, 2 vector figures, 2 tables, 10 refs, no displayed equations);
+prior HEAD `11044175` was McMillan Ch.14 “Apparatus using protection concept 'N' ('n')”
 (29 source pages / printed pp. 427–455, 5 vector figures, 7 tables, 28 refs, no displayed equations);
 before that `759e8f73` was McMillan Ch.13 “Apparatus and systems using protection concept intrinsic safety 'i'”
 (96 source pages / printed pp. 331–426, 45 vector figures, 12 tables, 17 refs, 16 displayed equation blocks);
@@ -186,6 +188,33 @@ Knowledge*, 2nd ed., 511 pp).
   propagation. Live pages show 2 figs / 2 tables / 10 refs, TOC rows, 15/22 catalog badges in
   both languages and 8 sitemap entries; `check_links.py` broken 0, sitemap 1,268 URLs.
   **McMillan is 15/22 🟠. Next: Ch.16.**
+
+## 0.108 McMillan Ch.16 "Other methods of protection and future apparatus requirements" published in `3d1e77dd`
+- Source: printed pp. 474–481 = PDF pp. 495–502, `PAGES_SRC = 8` (printed = PDF − 21), raw
+  LF lines 20315–20593 in `work/mcmillan_raw.txt`; Chapter 17 starts at LF 20594 and is out of
+  scope. The 8 pypdfium2 renders already present in `work/mcmillan_ch16_pages/` were used. No
+  `MISSING PAGE` placeholders. Two verified surveys A–B were assembled into
+  `work/mcmillan_ch16_brief.md`, with `work/mcmillan_ch16_writer_contract.md` and
+  `work/mcmillan_ch16_module_map.md` fixing the three-prose / one-figure / no-table contracts.
+  Image readings prevail over OCR: `q` not `4`, `16.2.2` not `76.2.2`, folio `481` not `48 1`,
+  and references 3/4 restored to image order.
+- Three prose modules `mcmillan_ch16a…c.py` and one figure supplier `mcmillanfig16.py` (2 vector
+  redraws: CE/Community Mark and hexagonal `Ex` explosion-protection mark) were merged by
+  `mcmillan_ch16.py`, which owns the 4 printed references, glossary, source-quirk note and
+  copyright. No numbered or displayed equations; no tables.
+- QA `work/qa_mcmillan_ch16.py` and `work/qa_mcmillan_ch16_figs.py`: both EN and VI pages PASS —
+  2 XML-valid SVGs, 2/2 localized captions, 0 tables, 4 refs in printed order, 1 h2 / 4 h3 / 12 h4,
+  0 displayed equations, 0 CJK / bare `&` / Spanish / VI-in-EN prose, 0 off-canvas or overlapping
+  labels. Printed quirks kept with notes include `Zone 0 and 1`, `resultantly, slow advance`,
+  `not withstanding`, `formed by is own release`,
+  `The use of the ‘G’ and ‘D’ are also new`, `technical-standards-making body`,
+  `in much the same vane`, `not has been`, lowercase
+  `chapter 15` and `Chapters 9,10,11,12,13 and 15`. The English QA exempts the printed `Européen`
+  in reference 4 from the Vietnamese-diacritic guard.
+- Pushed `3d1e77dd`; live EN/VI deep URLs initially 404, then both HTTP 200 after Pages
+  propagation. Live pages show 2 figs / 0 tables / 4 refs, TOC rows, 16/22 catalog badges in
+  both languages and 8 sitemap entries; `check_links.py` broken 0, sitemap 1,270 URLs.
+  **McMillan is 16/22 🟠. Next: Ch.17.**
 
 ## 0.104 McMillan Ch.12 "Apparatus with protection concept increased safety 'e'" published in `1bfe7067`
 - Source `work/mcmillan_ch12_brief.md` from six verified surveys: PDF pp. 317–351 = printed
