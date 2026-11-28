@@ -1547,4 +1547,30 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   (`0f80f56f`). Live EN/VI catalogs again show 21 translated cards, 261 works / 186,211 pages
   and all four reader links; `check_links.py` broken 0.
 
+- Chapter 13 covers printed pp. 331–426 (PDF pp. 352–447, `PAGES_SRC = 96`): "Apparatus and
+  systems using protection concept intrinsic safety 'i'" — standards background (BS 1259,
+  BASEEFA, BS 5501 Parts 7/9, EN/BS-EN 50020, IEC 79-11), definitions and system boundaries,
+  spark-test apparatus and ignition thresholds (inductive, capacitive, resistive, composite and
+  crowbar-protected circuits), hot-surface ignition and small-component temperature relaxations,
+  component ratings and construction, clearances/creepages/separations, infallible transformers and
+  assemblies, zener-diode safety barriers, input/output parameters, fault counting, multicore
+  cables, cable capacitance/inductance and the closing L/R paragraph. Forty-five vector figures,
+  twelve transcribed tables and seventeen references; no numbered equations, but sixteen displayed
+  formula/value blocks. No `MISSING PAGE` placeholders.
+- Brief `work/mcmillan_ch13_brief.md` from six verified surveys, writer contract
+  `work/mcmillan_ch13_writer_contract.md`, fixed module map `work/mcmillan_ch13_module_map.md`,
+  96 page renders, six prose modules `mcmillan_ch13a…f.py`, six figure suppliers
+  `mcmillanfig13_a…f.py` and three table modules `mcmillan_tbl13_1_4.py`,
+  `mcmillan_tbl13_5_8.py`, `mcmillan_tbl13_9_12.py`, merged by `mcmillan_ch13.py`. QA scripts
+  `work/qa_mcmillan_ch13.py` and `work/qa_mcmillan_ch13_figs.py`: both EN and VI pages PASS —
+  45/45 XML-valid SVGs with localized captions, 12 tables, 17 refs, 1 h2 / 28 h3 / 86 h4, 16
+  displayed equations, all key values present, 0 CJK / bare `&` / Spanish / VI-in-EN prose, 0
+  off-canvas or overlapping labels. Printed quirks retained with notes include OCR `μJ` as `pJ`,
+  heading `13.5. I`, the wrong "Table 13.6 on page 362" cross-reference, `01.3`, `195.0`,
+  `117.0`, `BSIEN 50020`, `13.70.4`, `Out out`, `Exelsior`, `R_o/L`, `Associate apparatus`, the
+  truncated Fig. 13.39 caption, `ration`, and the 0.033/0.035 μF conflict. Pushed `759e8f73`;
+  live EN/VI deep URLs initially 404, then both HTTP 200 after Pages propagation; live pages,
+  TOC rows, 13/22 catalog badges in both languages and 8 sitemap entries verified.
+  `check_links.py` broken 0, sitemap 1,264 URLs. Next unit: McMillan Chapter 14.
+
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.

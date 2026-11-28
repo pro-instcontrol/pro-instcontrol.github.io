@@ -7989,4 +7989,36 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   36,704, broken 0; sitemap 1,262 URLs with 8 Ch.12 entries; TOC 1 row per language; badge 12/22.
 - Pushed `1bfe7067` ("Publish McMillan chapter 12: increased safety 'e' (EN/VI, 16 vector
   figures, 7 tables)"), 23 files / 5,957 insertions. Live EN/VI deep URLs initially 404, then
-  both HTTP 200 after Pages propagation. McMillan is now **12/22** 🟠; next unit: Ch.13.
+  both HTTP 200 after Pages propagation. McMillan was **12/22** 🟠; next unit was Ch.13.
+
+## Session 2026-11-27 — McMillan Chapter 13 published (EN/VI, 45 vector figures, 12 tables, 17 refs)
+- Source raw lines 14486–18414, PDF pp. 352–447 = printed pp. 331–426, `PAGES_SRC = 96`
+  (printed = PDF − 21); bilingual slug
+  `ch13-apparatus-and-systems-using-intrinsic-safety-i`. 96 renders in
+  `work/mcmillan_ch13_pages/`; no `MISSING PAGE` placeholders, no numbered equations, but
+  sixteen displayed formula/value blocks. Six verified surveys were assembled into
+  `work/mcmillan_ch13_brief.md`, with `work/mcmillan_ch13_writer_contract.md` and
+  `work/mcmillan_ch13_module_map.md` fixing the six-prose / six-figure / three-table contracts.
+- Six prose modules A–F, six figure suppliers (45 genuine vector redraws) and three table
+  suppliers (Tables 13.1–13.12) were merged by `mcmillan_ch13.py`, which owns the 17 printed
+  references, glossary, source-quirk note and copyright. Coverage: §§13.1–13.14 — standards and
+  definitions, spark-test apparatus and ignition thresholds, hot-surface and component rules,
+  clearance/creepage/separation, infallible transformers and assemblies, zener barriers,
+  input/output parameters, fault counting, multicore cables and cable capacitance/inductance.
+  The unnumbered table-like lists on pp.416–418 were rendered as prose/list markup so the page
+  contains exactly twelve numbered tables.
+- Survey line anchors needed small corrections (PAGE 368 at 15070 not 15090, PAGE 400 at 16475
+  not 16601, PAGE 416 at 17208 not 17254); all 96 page renders were viewed. Printed quirks were
+  retained with bilingual notes: OCR `μJ` as `pJ`, heading `13.5. I`, wrong "Table 13.6 on page
+  362" cross-reference, `01.3`, `195.0`, `117.0`, `BSIEN 50020`, `13.70.4`, `Out out`,
+  `Exelsior`, `R_o/L`, `Associate apparatus`, truncated Fig.13.39 caption, `ration`, and the
+  0.033/0.035 μF conflict.
+- QA: both EN and VI pages PASS — fig ids 1–45, 45 XML-valid SVGs, 45/45 localized captions,
+  12 tables, 17 refs, 16 displayed equation blocks, 1 h2 / 28 h3 / 86 h4, 0 CJK / bare `&` /
+  Spanish / VI-in-EN prose, 0 off-canvas or overlapping labels. `check_links.py` pages 1,266,
+  local references 36,754, broken 0; sitemap 1,264 URLs with 8 Ch.13 entries; TOC 1 row per
+  language; badge 13/22.
+- Pushed `759e8f73` ("Publish McMillan chapter 13: intrinsic safety 'i' (EN/VI, 45 vector
+  figures, 12 tables)"), 26 files / 15,660 insertions. Live EN/VI deep URLs initially 404, then
+  both HTTP 200 after Pages propagation; live pages show 45 figs / 12 tables, TOC rows, 13/22
+  catalog badges and 8 sitemap entries. McMillan is now **13/22** 🟠; next unit: Ch.14.
