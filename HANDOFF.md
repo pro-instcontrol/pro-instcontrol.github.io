@@ -3,11 +3,13 @@
 **State now (2026-11-27):** all 15 previously registered reader books complete 🟢 (see `report.md`; flagship Book 6
 *Valve Selection Handbook* 21/21, Emerson `cvh6` 15/15, IIH `iih` 8/8, IPC `ipc` 8/8, PPIC `ppic`
 11/11, Baumann `cvp` 32/32, R. STAHL `expb` 6/6, Borden `bcv` 1/1), plus the ongoing McMillan
-reader at **14/22**. **Live chapter HEAD `11044175`**
-(McMillan Ch.14 “Apparatus using protection concept 'N' ('n')”: 29 source pages /
-printed pp. 427–455, 5 vector figures, 7 tables, 28 refs, no displayed equations).
-**Next unit: McMillan Ch.15** — see `TRANSLATION-STATUS.md`.
-Prior HEAD `759e8f73` was McMillan Ch.13 “Apparatus and systems using protection concept intrinsic safety 'i'”
+reader at **15/22**. **Live chapter HEAD `07dd6606`**
+(McMillan Ch.15 “Protection concepts for apparatus for dust risks”: 18 source pages /
+printed pp. 456–473, 2 vector figures, 2 tables, 10 refs, no displayed equations).
+**Next unit: McMillan Ch.16** — see `TRANSLATION-STATUS.md`.
+Prior HEAD `11044175` was McMillan Ch.14 “Apparatus using protection concept 'N' ('n')”
+(29 source pages / printed pp. 427–455, 5 vector figures, 7 tables, 28 refs, no displayed equations);
+before that `759e8f73` was McMillan Ch.13 “Apparatus and systems using protection concept intrinsic safety 'i'”
 (96 source pages / printed pp. 331–426, 45 vector figures, 12 tables, 17 refs, 16 displayed equation blocks);
 before that `1bfe7067` was McMillan Ch.12 “Apparatus with protection concept increased safety 'e'”
 (35 source pages, 16 vector figures, 7 tables, 16 refs, 2 unnumbered formulas); before that
@@ -70,9 +72,9 @@ vector figures, equations (6.1)–(6.4), 13 worked examples, 14-question exercis
 printed pp. 107–124, 3 vector figures, 17 references, no tables or numbered equations — and before
 that `cf190d85` was Baumann Ch.20 "Methods of Aerodynamic Valve Noise
 Reduction" (7 PDF pages / printed pp. 125–131, 5 vector figures, Equation 20-1 plus six
-unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,266 URLs,
+unnumbered expressions, eight abatement bullets, two references). Live sitemap 1,268 URLs,
 catalog badges IIH 8/8, Emerson 15/15, IPC 8/8, PPIC 11/11, Baumann 32/32 and ExProtection
-6/6 all `full`, McMillan badge 🟠 14/22; McMillan, Baumann and ExProtection EN/VI deep URLs
+6/6 all `full`, McMillan badge 🟠 15/22; McMillan, Baumann and ExProtection EN/VI deep URLs
 **200** after Pages propagation, all TOCs list all units, `check_links.py` broken 0.
 Full tables in `report.md`.
 
@@ -83,8 +85,8 @@ were accidentally dropped by the Chapter 4 catalog rebuild. They are now emitted
 counts; live EN/VI catalogs show 21 translated cards, 21 in the translated pill, and all four
 links. Never hand-edit the generated `books/index.html` to add these cards again.
 
-**Next unit: McMillan Ch.15**. The older 15-book campaign is complete 🟢, and McMillan
-chapters 1–14 are live at 14/22;
+**Next unit: McMillan Ch.16**. The older 15-book campaign is complete 🟢, and McMillan
+chapters 1–15 are live at 15/22;
 continue one chapter at a time with the same brief → figures → prose → QA → push recipe. The
 McMillan 678-page source has eight literal “MISSING PAGE” pages (PDF 80–87 = printed 59–66):
 never invent the missing Figs 3.6–3.8 or Tables 3.5–3.10, and carry forward the source-gap note.
@@ -157,6 +159,33 @@ Knowledge*, 2nd ed., 511 pp).
   propagation. Live pages show 5 figs / 7 tables / 28 refs, TOC rows, 14/22 catalog badges in
   both languages and 8 sitemap entries; `check_links.py` broken 0, sitemap 1,266 URLs.
   **McMillan is 14/22 🟠. Next: Ch.15.**
+
+## 0.107 McMillan Ch.15 "Protection concepts for apparatus for dust risks" published in `07dd6606`
+- Source: printed pp. 456–473 = PDF pp. 477–494, `PAGES_SRC = 18` (printed = PDF − 21), raw
+  LF lines 19614–20314 in `work/mcmillan_raw.txt`. The 18 pypdfium2 renders in
+  `work/mcmillan_ch15_pages/` were generated this run from the source PDF at
+  `D:/Ebooks/Chemical and Hazardous Area/MCMILLAN, A. (1998). Electrical Installations in
+  Hazardous Areas/Electrical Installations in Hazardous Areas - A. McMillan (1998) WW.pdf`.
+  No `MISSING PAGE` placeholders. Three verified surveys A–C were assembled into
+  `work/mcmillan_ch15_brief.md`, with `work/mcmillan_ch15_writer_contract.md` and
+  `work/mcmillan_ch15_module_map.md` fixing the three-prose / one-figure / one-table contracts.
+  Survey B/C anchor drift was caught: PDF p.489 begins at LF 20071 and p.490 at 20111; survey C
+  covered all six assigned pages from 20071–20314, so there was no transcription gap.
+- Three prose modules `mcmillan_ch15a…c.py`, one figure supplier `mcmillanfig15.py` (2 vector
+  redraws: ungasketted joint dimensions and gasketed/‘o’-ring joints) and one table module
+  `mcmillan_tbl15_1_2.py` (Tables 15.1–15.2) were merged by `mcmillan_ch15.py`, which owns the
+  10 printed references, glossary, source-quirk note and copyright. No numbered or displayed
+  equations; all formulas remain inline.
+- QA `work/qa_mcmillan_ch15.py` and `work/qa_mcmillan_ch15_figs.py`: both EN and VI pages PASS —
+  2 XML-valid SVGs, 2/2 localized captions, 2 tables, 10 refs, 1 h2 / 20 h3 / 19 h4, 0 displayed
+  equations, 0 CJK / bare `&` / Spanish / VI-in-EN prose, 0 off-canvas or overlapping labels.
+  Printed quirks kept with notes include `{[280 × 2/3] − 10)`, the 85 °C rule against
+  `225 − 75 − 10`, T1/T4/T2/T3/T5/T6 table order, `‘N(’n’)’`, `6.3μm`, `Semi-permanent`,
+  `‘o’ ring`, `A ≥ 5 mm`, `≤16`, `1000V ac and 1200V dc` and the two-column reference mispairings.
+- Pushed `07dd6606`; live EN/VI deep URLs initially 404, then both HTTP 200 after Pages
+  propagation. Live pages show 2 figs / 2 tables / 10 refs, TOC rows, 15/22 catalog badges in
+  both languages and 8 sitemap entries; `check_links.py` broken 0, sitemap 1,268 URLs.
+  **McMillan is 15/22 🟠. Next: Ch.16.**
 
 ## 0.104 McMillan Ch.12 "Apparatus with protection concept increased safety 'e'" published in `1bfe7067`
 - Source `work/mcmillan_ch12_brief.md` from six verified surveys: PDF pp. 317–351 = printed

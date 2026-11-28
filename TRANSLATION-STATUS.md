@@ -8051,3 +8051,30 @@ Baumann ch24-32, PPIC ch10-11. Books 11/12 located but unregistered.
   figures, 7 tables)"), 18 files / 4,292 insertions. Live EN/VI deep URLs initially 404, then both
   HTTP 200 after Pages propagation; live pages show 5 figs / 7 tables / 28 refs, TOC rows, 14/22
   catalog badges and 8 sitemap entries. McMillan is now **14/22** 🟠; next unit: Ch.15.
+
+## Session 2026-11-28 — McMillan Chapter 15 published (EN/VI, 2 vector figures, 2 tables, 10 refs)
+- Source printed pp. 456–473 (PDF pp. 477–494, `PAGES_SRC = 18`, printed = PDF − 21), raw LF
+  lines 19614–20314 in `work/mcmillan_raw.txt`, 18 newly rendered pages in
+  `work/mcmillan_ch15_pages/`. Bilingual slug `ch15-protection-concepts-for-dust-risks`. No
+  `MISSING PAGE` placeholders. Three verified surveys A–C were assembled into
+  `work/mcmillan_ch15_brief.md`; writer contract `work/mcmillan_ch15_writer_contract.md` and
+  module map `work/mcmillan_ch15_module_map.md` fixed the three-prose / one-figure / one-table
+  contracts. Survey B/C anchor drift was caught: PDF p.489 begins at LF 20071 and p.490 at 20111;
+  survey C covered all six assigned pages from 20071–20314, so there was no transcription gap.
+- Coverage: dust Zones 20/21/22; BS 6467 and BS 7535 standardization; dust-tight and
+  dust-protected enclosures; IP codes, ingress limits and temperature classification; Table 15.1
+  equivalent dust ignition temperatures; joints, finishes, connection facilities and cable
+  entries; plugs/sockets, luminaires and the selection of gas/vapour/mist protection concepts for
+  dust risks; 10 printed references. Two vector figures (15.1–15.2), two tables (15.1–15.2), no
+  numbered or displayed equations.
+- Three prose modules `mcmillan_ch15a…c.py`, one figure supplier `mcmillanfig15.py` and one table
+  module `mcmillan_tbl15_1_2.py` were merged by `mcmillan_ch15.py`, which owns the references,
+  glossary, source-quirk note and copyright.
+- QA: both EN and VI pages PASS — fig ids 1–2, 2 XML-valid SVGs, 2/2 localized captions, 2 tables,
+  10 refs, 1 h2 / 20 h3 / 19 h4, 0 displayed equations, 0 CJK / bare `&` / Spanish / VI-in-EN
+  prose, 0 off-canvas or overlapping labels. `check_links.py` pages 1,270, local references
+  36,854, broken 0; sitemap 1,268 URLs with 8 Ch.15 entries; TOC 1 row per language; badge 15/22.
+- Pushed `07dd6606` ("Publish McMillan chapter 15: dust risks protection concepts (EN/VI, 2
+  vector figures, 2 tables)"), 16 files / 3,028 insertions. Live EN/VI deep URLs initially 404,
+  then both HTTP 200 after Pages propagation; live pages show 2 figs / 2 tables / 10 refs, TOC
+  rows, 15/22 catalog badges and 8 sitemap entries. McMillan is now **15/22** 🟠; next unit: Ch.16.

@@ -5,10 +5,10 @@
 **Working copy:** `C:\Users\Phamd\WorkBuddy AI\2026-10-29-10-38-18\`
 **Campaign directive (verbatim):** *"always add all figures, split chapters and TOC, links to TOC,
 same standard as the last 3 books, do all autonomously"* — EN/VI only, **no Spanish**.
-**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 14/22 (rows below;
+**Status (2026-11-27):** **all 15 originally registered reader books complete and live 🟢**, plus the new ongoing McMillan reader at 15/22 (rows below;
 flagship Book 6 *Valve Selection Handbook* 🟢 21/21, Emerson `cvh6` 🟢 15/15, IIH `iih` 🟢 8/8,
 IPC `ipc` 🟢 8/8, PPIC `ppic` 🟢 11/11, Baumann `cvp` 🟢 32/32, R. STAHL ExProtection `expb` 🟢
-6/6). **Live chapter HEAD `11044175`** (McMillan Ch.14 "Apparatus using protection concept 'N' ('n')": 29 source pages / printed pp. 427–455, 5 vector figures, 7 tables, 28 references, no displayed equations). Prior chapter HEAD `759e8f73` was McMillan Ch.13 "Apparatus and systems using protection concept intrinsic safety 'i'" (96 source pages / printed pp. 331–426, 45 vector figures, 12 tables, 17 references, 16 displayed formula/value blocks); before that `1bfe7067` was McMillan Ch.12 "Apparatus with protection concept increased safety 'e'" (35 source pages / printed pp. 296–330, 16 vector figures, 7 tables, 16 references, 2 unnumbered equation blocks); before that `3ddba55b` was McMillan Ch.11 "Apparatus using protection concept pressurization 'p'" (22 source pages, 8 vector figures, 2 tables, 10 references, no equations); before that `3edc08f0` was McMillan Ch.10 "Apparatus using protection concept flameproof enclosure 'd'" (49 source pages / printed pp. 226–274, 29 vector figures, 15 tables, 17 references, no equations); before that `10ecd23e` was McMillan Ch.9 "Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'" (17 source pages / printed pp. 209–225, 2 vector figures, 3 tables, 30 references); before that `70ec088b`
+6/6). **Live chapter HEAD `07dd6606`** (McMillan Ch.15 "Protection concepts for apparatus for dust risks": 18 source pages / printed pp. 456–473, 2 vector figures, 2 tables, 10 references, no displayed equations). Prior chapter HEAD `11044175` was McMillan Ch.14 "Apparatus using protection concept 'N' ('n')" (29 source pages / printed pp. 427–455, 5 vector figures, 7 tables, 28 references, no displayed equations); before that `759e8f73` was McMillan Ch.13 "Apparatus and systems using protection concept intrinsic safety 'i'" (96 source pages / printed pp. 331–426, 45 vector figures, 12 tables, 17 references, 16 displayed formula/value blocks); before that `1bfe7067` was McMillan Ch.12 "Apparatus with protection concept increased safety 'e'" (35 source pages / printed pp. 296–330, 16 vector figures, 7 tables, 16 references, 2 unnumbered equation blocks); before that `3ddba55b` was McMillan Ch.11 "Apparatus using protection concept pressurization 'p'" (22 source pages, 8 vector figures, 2 tables, 10 references, no equations); before that `3edc08f0` was McMillan Ch.10 "Apparatus using protection concept flameproof enclosure 'd'" (49 source pages / printed pp. 226–274, 29 vector figures, 15 tables, 17 references, no equations); before that `10ecd23e` was McMillan Ch.9 "Apparatus using protection concepts encapsulation 'm', oil immersion 'o' and powder filling 'q'" (17 source pages / printed pp. 209–225, 2 vector figures, 3 tables, 30 references); before that `70ec088b`
 (McMillan Ch.8 "General requirements for explosion protected apparatus (gas, vapour and mist
 risks)": 31 source pages / printed pp. 178–208, 9 vector figures, 6 tables, 19 references, no
 equations). Prior chapter HEAD `11e932ca` (McMillan Ch.7 "Design
@@ -493,6 +493,14 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   ('n')" / "Thiết bị theo nguyên lý 'N' ('n')"), the catalog badge shows "Translating · 14 of 22
   chapters" (VI: "Đang dịch · 14/22 chương"), and the live sitemap includes all 8 Ch.14 URL
   entries.
+- McMillan Ch.15 EN/VI deep URLs → initially 404, then **HTTP 200** after Pages propagation; both
+  live pages contain 2 XML-valid inline SVGs with sequential `fig-1..2` ids and localized captions
+  (`Figure 15.N` / `Hình 15.N`), 2 tables, 10 references and no displayed equations, 0 CJK /
+  0 bare ampersands / 0 Spanish hits / 0 Vietnamese diacritics in EN prose, 0 off-canvas /
+  0 overlapping figure labels, both live TOCs list Ch.15 ("Protection concepts for apparatus for
+  dust risks" / "Nguyên lý bảo vệ thiết bị cho nguy cơ bụi"), the catalog badge shows
+  "Translating · 15 of 22 chapters" (VI: "Đang dịch · 15/22 chương"), and the live sitemap
+  includes all 8 Ch.15 URL entries.
 
 ---
 
@@ -563,7 +571,7 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   → `32bc3380` (McMillan ch6) → `11e932ca` (McMillan ch7) → `70ec088b` (McMillan ch8)
   → `10ecd23e` (McMillan ch9) → `3edc08f0` (McMillan ch10) → `3ddba55b` (McMillan ch11)
   → `1bfe7067` (McMillan ch12) → `759e8f73` (McMillan ch13)
-  → `11044175` (McMillan ch14, **live chapter HEAD**).
+  → `11044175` (McMillan ch14) → `07dd6606` (McMillan ch15, **live chapter HEAD**).
 - Status-document updates are committed separately from chapter pushes.
 - GitHub Pages negative caching can briefly 404 deep paths; retry with cache-busting queries.
 
@@ -1610,6 +1618,29 @@ figures, 76 references and a 26-page review of reactor, fuel-cycle, safeguards a
   `less then 40 °C`, `Specific for Starters`, and the missing full stop in reference 25.
   Pushed `11044175`; live EN/VI deep URLs initially 404, then both HTTP 200 after Pages
   propagation; live pages, TOC rows, 14/22 catalog badges in both languages and 8 sitemap
-  entries verified. `check_links.py` broken 0, sitemap 1,266 URLs. Next unit: McMillan Chapter 15.
+  entries verified. `check_links.py` broken 0, sitemap 1,266 URLs.
+- Chapter 15 covers printed pp. 456–473 (PDF pp. 477–494, `PAGES_SRC = 18`): "Protection concepts
+  for apparatus for dust risks" — dust Zones 20/21/22, BS 6467 and BS 7535 standardization,
+  dust-tight and dust-protected enclosures, IP codes and temperature classification, equivalent
+  dust ignition temperatures, constructional requirements for joints and finishes, connection
+  facilities and cable entries, plugs/sockets/luminaires, and selection of gas/vapour/mist
+  protection concepts for dust risks, plus 10 references. Two vector figures, two transcribed
+  tables and no numbered/displayed equations. No `MISSING PAGE` placeholders.
+- Brief `work/mcmillan_ch15_brief.md` from three verified surveys, writer contract
+  `work/mcmillan_ch15_writer_contract.md`, fixed module map `work/mcmillan_ch15_module_map.md`,
+  18 page renders (newly rendered from the source PDF), three prose modules `mcmillan_ch15a…c.py`,
+  one figure supplier `mcmillanfig15.py` (Figs 15.1–15.2) and one table module
+  `mcmillan_tbl15_1_2.py` (Tables 15.1–15.2), merged by `mcmillan_ch15.py`. Survey B/C anchor
+  drift was caught: PDF p.489 begins at LF 20071 and p.490 at 20111; survey C covered all six
+  assigned pages from 20071–20314, so there was no transcription gap. QA scripts
+  `work/qa_mcmillan_ch15.py` and `work/qa_mcmillan_ch15_figs.py`: both EN and VI pages PASS —
+  2/2 XML-valid SVGs with localized captions, 2 tables, 10 refs, 1 h2 / 20 h3 / 19 h4, 0 displayed
+  equations, 0 CJK / bare `&` / Spanish / VI-in-EN prose, 0 off-canvas or overlapping labels.
+  Printed quirks retained with notes include `{[280 × 2/3] − 10)`, the 85 °C rule against
+  `225 − 75 − 10`, T1/T4/T2/T3/T5/T6 table order, `‘N(’n’)’`, `6.3μm`, `Semi-permanent`,
+  `‘o’ ring`, `A ≥ 5 mm`, `≤16`, `1000V ac and 1200V dc` and the two-column reference mispairings.
+  Pushed `07dd6606`; live EN/VI deep URLs initially 404, then both HTTP 200 after Pages
+  propagation; live pages, TOC rows, 15/22 catalog badges in both languages and 8 sitemap
+  entries verified. `check_links.py` broken 0, sitemap 1,268 URLs. Next unit: McMillan Chapter 16.
 
 See `HANDOFF.md` for the step-by-step continuation recipe and QA gates.
